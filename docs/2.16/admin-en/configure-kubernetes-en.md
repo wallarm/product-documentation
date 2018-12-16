@@ -129,6 +129,8 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
 * [nginx.ingress.kubernetes.io/wallarm-acl](configure-parameters-en.md#wallarm_acl)
 
+### Applying annotation to the Ingress resource
+
 To apply the settings to your Ingress, please use the following command:
 
 ```
@@ -139,8 +141,24 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
 * `ANNOTATION_NAME` is the name of the annotation from the list above,
 * `VALUE` is the value of the annotation from the list above.
 
-For example, to enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
+### Annotation examples
+
+#### Enabling IP blocking
+
+To enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
 
 ```
 kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on
+```
+
+#### Enabling attack analysis with libdetection
+
+The [**libdetection**](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+
+To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
+
+To enable attack analysis with **libdetection**, it is required to apply the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
+
+```bash
+kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
 ```
