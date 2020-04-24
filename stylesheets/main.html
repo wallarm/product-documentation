@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+<!-- Custom front matter -->
+{% block extrahead %}
+
+  <!-- Determine title -->
+  {% set title = config.site_name %}
+  {% if page and page.title and not page.is_homepage %}
+    {% set title = config.site_name ~ " - " ~ page.title | striptags %}
+  {% endif %}
+
+  <!-- The image needs to have an absolute URL -->
+  {% set image = config.site_url ~ 'assets/images/banner.png' %}
+
+  <!-- Open graph meta tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ config.site_description }}" />
+  <meta property="og:url" content="{{ page.canonical_url }}" />
+  <meta property="og:image" content="{{ image }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter meta tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@squidfunk" />
+  <meta name="twitter:creator" content="@squidfunk" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ config.site_description }}" />
+  <meta name="twitter:image" content="{{ image }}" />
+{% endblock %}
+
+<!-- Announcement bar -->
+{% block announce %}
+  <style>
+
+    /* Add background color transition */
+    .md-announce {
+      transition: background-color 125ms;
+    }
+
+    /* Change background color on link focus */
+    .md-announce:focus-within {
+      background-color: var(--md-accent-fg-color);
+    }
+
+    /* Preserve link color */
+    .md-announce a,
+    .md-announce a:focus,
+    .md-announce a:hover {
+      color: currentColor;
+    }
+
+    /* Don't wrap name of blog article */
+    .md-announce strong {
+      white-space: nowrap;
+    }
+  </style>
+    We have moved documentation to a new platform and kept the previous structure. You can find information using the paths as before.
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ base_url }}/css/lightgallery.min.css">
+{% endblock styles %}
+
+{% block libs %}
+    {{ super() }}
+    <script src="{{ base_url }}/js/lightgallery.min.js"></script>
+{% endblock libs %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+    var elements = document.getElementsByClassName("lightgallery");
+    for(var i=0; i<elements.length; i++) {
+       lightGallery(elements[i]);
+    }
+    </script>
+{% endblock scripts %}
+
+
+{% block fonts %} 
+  
+       <!-- Load fonts from Google --> 
+       {% if font != false %} 
+         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin /> 
+         <link rel="stylesheet" type="text/css" 
+             href="https://fonts.googleapis.com/css?family={{ 
+               font.text | replace(' ', '+') + ':300,400,400i,700%7C' + 
+               font.code | replace(' ', '+') 
+             }}&display=fallback" /> 
+         <style> 
+           body, input { 
+             font-family: "{{ font.text }}", "Helvetica Neue", 
+               Helvetica, Arial, sans-serif; 
+           } 
+           pre, code, kbd { 
+             font-family: "{{ font.code }}", "Courier New", 
+               Courier, monospace; 
+           } 
+         </style> 
+       {% endif %} 
+     {% endblock %}

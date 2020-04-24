@@ -1,0 +1,2 @@
+!!! info "Connecting to the instance via a custom private key"
+    If during base instance creation process you have enabled connection to the instance via a custom SSH key pair, make sure you have access to the private key from this key pair.
