@@ -1,5 +1,22 @@
-FROM python:3.7.0
-COPY ./product-docs-en/ /product-docs-en/
-WORKDIR /product-docs-en/
-RUN pip install mkdocs
-CMD ["mkdocs", "build"]
+# build stage
+FROM python:3.7.0 as build-stage
+
+WORKDIR /tmp
+
+
+RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
+RUN python setup.py install
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set working directory
+WORKDIR /docs
+COPY . .
+RUN mkdocs build
+
+# production stage
+FROM nginx:1.18-alpine as production-stage
+COPY --from=build-stage /docs/site /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
