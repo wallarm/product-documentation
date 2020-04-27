@@ -1,12 +1,11 @@
 # OpsGenie Notifications
 
-You can set up Wallarm to send notifications to OpsGenie.
+You can set up Wallarm to send notifications to OpsGenie for the following events:
 
 Notifications can be set up for the following events:
 
-* System-related:
-  - integration settings changed.
-* Vulnerability detected.
+* [Vulnerability](../../../glossary-en.md#vulnerability) detected
+* [Hit](../../../glossary-en.md#hit) detected
 
 ## Setting up Notifications
 
@@ -16,7 +15,7 @@ Notifications can be set up for the following events:
 4. Open the *Settings* → *Integrations* tab.
 5. Click the *OpsGenie* block or click the *Add integration* button and choose *OpsGenie*.
     
-    ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
+    ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 6. Paste the API key that you copied before into the *API key* field in Wallarm Dashboard.
 7. Enter the integration name and select the event types you want to be notified of.
 8. Click *Create*.

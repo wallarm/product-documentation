@@ -63,8 +63,10 @@ markdown_extensions:
   - prependnewline
   - lightgallery
 
+google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
+
 nav:
-  - Wallarm Overview: index.md
+  - Wallarm Overview: README.md
   - Qiuck Start:
     - How Wallarm Works:
       - Introduction: quickstart-en/how-wallarm-works/qs-intro-en.md

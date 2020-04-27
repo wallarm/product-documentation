@@ -96,3 +96,19 @@ tarantool:
 ## The Installation Is Complete
 
 This completes the installation of postanalytics.
+
+!!! warning "Protect Installed Postanalytics Module"
+    We **highly recommend** to protect a newly installed Wallarm postanalytics module with a firewall. Otherwise, there is a risk of getting an unauthorized access to the service that may result in:
+    
+    *   disclosure of information about processed requests, and
+    *   possibility of executing arbitrary Lua code and operating system commands.
+         
+    Please note that no such a risk exists if you are deploying the postanalytics module alongside with the other Wallarm module on the same server because in this case the postanalytics module will listen on the `127.0.0.1:3313`.    
+    
+    
+    **Firewall settings to apply for the separately installed postanalytics module:**
+
+    *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
+        *   `api.wallarm.com:444` is the API server in the EU Wallarm cloud.
+        *   `us1.api.wallarm.com:444` is the API server in the US Wallarm cloud.
+    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filter nodes.    
