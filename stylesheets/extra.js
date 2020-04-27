@@ -9,6 +9,14 @@ for(var i = 0; i < links.length; i++) {
 /*
  * Add Clearbit
  */
+function injectScript(src, cb) {
+  let script = document.createElement('script');
+
+  script.src = src;
+  cb && (script.onload = cb);
+  document.body.append(script);
+}
+
 
 function initClearbit() {
   let reveal_gtag_map = {
