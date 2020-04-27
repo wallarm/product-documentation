@@ -28,7 +28,7 @@ docker stop <container name>
 Run the command:
 
 ``` bash
-docker run -d -v /path/to/license.key:/etc/wallarm/license.key -v /path/to/node.yaml:/etc/wallarm/node.yaml -e NGINX_BACKEND=93.184.216.34 wallarm/node
+docker run -d -v /path/to/license.key:/etc/wallarm/license.key -v /path/to/node.yaml:/etc/wallarm/node.yaml -e NGINX_BACKEND=93.184.216.34 wallarm/node:2.14
 ```
 
 !!! info "See also"

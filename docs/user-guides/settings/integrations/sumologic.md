@@ -6,7 +6,9 @@ You can set up Wallarm to send notifications to Sumo Logic for the following eve
     *   new user created
     *   integration settings changed
 *   Vulnerability detected
+*   [Vulnerability](../../../glossary-en.md#vulnerability) detected
 *   Network perimeter changed
+*  [Hit](../../../glossary-en.md#hit) detected
 
 ## Setting up Notifications
 
@@ -23,7 +25,7 @@ Perform the following actions in your Wallarm account:
       * https://us1.my.wallarm.com/settings/integrations/ for the [US cloud](../../../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
 2. Click the *Sumo Logic* block or click the *Add integration* button and choose *Sumo Logic*.
 
-   ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
+   ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 3. Paste the copied value of *HTTP Source Address (URL)* to the *HTTP Source Address (URL)* field.
 4. Enter the integration name and select the event types you want to be notified of.
 5. Click *Create*.

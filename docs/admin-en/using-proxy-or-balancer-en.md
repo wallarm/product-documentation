@@ -4,7 +4,7 @@
 
 [link-haproxy-docs]:        http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor
 [link-nginx-directives]:    https://nginx.org/en/docs/http/ngx_http_realip_module.html
-[link-test-attack]:         https://docs.wallarm.com/en/quickstart-en/qs-check-operation-en.html#2-run-a-test-attack
+[link-test-attack]:         ../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack
 
 [anchor-configuring-proxy]: #configuring-a-proxy-server-or-load-balancer
 [anchor-configuring-node]:  #configuring-the-filter-node

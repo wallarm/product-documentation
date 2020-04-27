@@ -2,15 +2,16 @@
 
 #   PagerDuty Notifications
 
-You can set up Wallarm to send notifications to PagerDuty.
+You can set up Wallarm to send notifications to PagerDuty for the following events:
 
 Notifications can be set up for the following events:
 
-*   System-related:
-    *   New user creation
-    *   Integration settings change
-*   Vulnerability detection
-*   Network perimeter change
+*   System related:
+    *   new user created
+    *   integration settings changed
+*   [Vulnerability](../../../glossary-en.md#vulnerability) detected
+*   Network perimeter changed
+*   [Hit](../../../glossary-en.md#hit) detected
 
 ##  Setting up Notifications
 
@@ -38,7 +39,7 @@ To create a PagerDuty integration on the Wallarm console, perform the following 
 
 2. Click the *PagerDuty* block or click the *Add integration* button and choose *PagerDuty*.
 
-    ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
+    ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
 3. Paste the integration key that was copied from the PagerDuty interface into the *Integration key* field.
 

@@ -5,8 +5,9 @@ You can set up Wallarm to send notifications to Splunk for the following events:
 *   System-related:
     *   new user created
     *   integration settings changed
-*   Vulnerability detected
+*   [Vulnerability](../../../glossary-en.md#vulnerability) detected
 *   Network perimeter changed
+*  [Hit](../../../glossary-en.md#hit) detected
 
 ##  Setting up Notifications
 
@@ -25,7 +26,7 @@ Perform the following actions in the Wallarm interface:
 1. Proceed to the *Integrations* tab of the *Settings* section.
 2. Click the *Splunk* block or click the *Add integration* button and choose *Splunk*.
 
-   ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
+   ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 3. Paste the token value generated in Splunk into the *HEC Token* field.
 4. Paste the URL of your Splunk instance into the *API URL* field. For example, if you are using the Splunk cloud, the URL should be similar to the following: `https://prd-p-tj2xx2f2xntv.cloud.splunk.com`.
 5. Enter the integration name and select the event types you want to be notified of.

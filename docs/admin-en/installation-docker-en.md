@@ -27,11 +27,11 @@ Run one of the `docker run` commands depending on the [cloud](../quickstart-en/h
 
 === "EU cloud"
     ``` bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node:2.14
     ```
 === "US cloud"
     ``` bash
-    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node
+    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node:2.14
     ```
 
 where:
@@ -71,7 +71,7 @@ If a filter node with the same name as the node's container identifier is alread
 To avoid this, pass the `DEPLOY_FORCE=true` environment variable to the container.
 
 ```
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="IP address or FQDN" wallarm/node
+docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="IP address or FQDN" wallarm/node:2.14
 ```
 
 If the registration process finishes successfully, then the container's `/etc/wallarm` directory will be populated with the license file (`license.key`), a file with the credentials for the filter node to access the cloud (`node.yaml`), and other files required for proper node operation.
@@ -94,11 +94,11 @@ Run one of the `docker run` commands depending on the [cloud](../quickstart-en/h
 
 === "EU cloud"
     ``` bash
-    docker run -d "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node
+    docker run -d "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.14
     ```
 === "US cloud"
     ``` bash
-    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node
+    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.14
     ```
 
 ### Use of a Prepared Configuration File Containing Credentials
@@ -108,7 +108,7 @@ Pass the following files to the filter node's container via Docker volumes:
 * the `license.key` file.
 
 ``` bash
-docker run -d -v /path/to/node.yaml:/etc/wallarm/node.yaml -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node
+docker run -d -v /path/to/node.yaml:/etc/wallarm/node.yaml -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.14
 ```
 
 ## 3. Configure NGINX-Wallarm
