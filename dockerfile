@@ -3,7 +3,7 @@ FROM python:3.7.0 as build-stage
 
 WORKDIR /tmp
 
-
+# Plugin for image zoom
 RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
 RUN python setup.py install
 
