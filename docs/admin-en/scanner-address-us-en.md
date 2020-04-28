@@ -1,4 +1,4 @@
-[file-ips-list]: https://docs.wallarm.com/downloads/scanner-ip-addresses-us.txt
+[file-ips-list]: ../downloads/scanner-ip-addresses-us.txt
 
 # Scanner Addresses for US Cloud
 
@@ -7,7 +7,7 @@
     
     If you are using the EU Cloud <https://my.wallarm.com>, proceed to the [list of scanner addresses for EU Cloud](scanner-address-en.md).
 
-The list of ip addresses for US Cloud from which the Wallarm Scanner scans for [vulnerabilities](../glossary-en.md#vulnerability).
+The list of IP addresses for US Cloud from which the Wallarm Scanner scans for [vulnerabilities](../glossary-en.md#vulnerability).
 
 --8<-- "../include/scanner-ip-request-us.md"
 

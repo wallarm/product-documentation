@@ -5,7 +5,7 @@ Wallarm is a DevOps-friendly Web Application Firewall (WAF) uniquely suited to p
 Wallarm's hybrid architecture safeguards your resources by offering:
 
 * Protection from hacker attacks.
-* Automatic detection of [vulnerabilities](glossary-en.md#vulnerability).
+* Automatic detection of vulnerabilities.
 
 Wallarm does the following:
 
