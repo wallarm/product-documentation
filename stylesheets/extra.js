@@ -94,10 +94,3 @@ injectScript('https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_8
 
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
-
-
-/*
-* Add Influ2
-*/
-
-injectScript('https://www.influ2.com/tracker?clid=eb788f04-02ab-465b-85fa-fac796e0491d');

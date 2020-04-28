@@ -1,4 +1,4 @@
-[file-ips-list]: https://docs.wallarm.com/downloads/scanner-ip-addresses-eu.txt
+[file-ips-list]: ../downloads/scanner-ip-addresses-eu.txt
 
 # Scanner Addresses for EU Cloud
 
