@@ -1,5 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
+site_description: Wallarm AI-powered Platform automates real-time application protection and security testing for websites, microservices and APIs across public and private clouds.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
