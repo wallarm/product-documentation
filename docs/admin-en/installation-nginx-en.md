@@ -1,12 +1,12 @@
 # Installing as a Dynamic Module for NGINX
 
 !!! warning "Commercial NGINX Plus and Open Source NGINX"
-    The instructions in this section address the filter node installation as a dynamic module for the free open-source NGINX.
+    This instruction addresses the filter node installation as a dynamic module for the open-source `stable` NGINX.
+    Wallarm module for NGINX does not work with the `mainline` version of open-source NGINX.
 
     If you are running the commercial NGINX Plus, you need a different set of instructions. See [Installing with NGINX Plus](installation-nginxplus-en.md).
 
-If you have a running NGINX installed in your network infrastructure, you can install
-Wallarm as a dynamic module for NGINX.
+If you have a running NGINX installed in your network infrastructure, you can install Wallarm as a dynamic module for NGINX.
 
 ## Use with Official vs. Custom Builds of NGINX
 
@@ -55,12 +55,40 @@ To install as a dynamic module for NGINX, you must:
     
 ## 1. Install NGINX
 
+!!! warning "Stable version of NGINX module"
+    Please note that the `stable` NGINX version should be installed because its `mainline` version is not compatible with the Wallarm NGINX module.
+
 You can:
 
 * Use [the official build](https://nginx.org/en/linux_packages.html).
-* Prepare a custom build with the similar compilation options.
 
-[See the official NGINX installation instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
+    The instructions on how to install the `stable` NGINX for the [distributions supported by Wallarm](supported-platforms.md) are listed below:
+
+    === "Debian"
+        ```bash
+        apt install curl gnupg2 ca-certificates lsb-release
+        echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list
+        curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
+        apt update
+        apt install nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        apt install curl gnupg2 ca-certificates lsb-release
+        echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | tee /etc/apt/sources.list.d/nginx.list
+        curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
+        apt update
+        apt install nginx
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        echo '[nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true' > /etc/yum.repos.d/nginx.repo
+        yum install nginx
+        ```
+
+* Prepare a custom build with the similar compilation options. To do that, use the source code from the `stable` branch of the [NGINX repository](http://hg.nginx.org/pkg-oss/branches).
+
+[See the official NGINX installation instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/) for extra information.
 
 !!! info "Installing on Amazon Linux 2"
     To install NGINX on Amazon Linux 2, use the CentOS 7 instruction.
