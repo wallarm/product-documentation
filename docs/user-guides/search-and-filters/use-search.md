@@ -15,7 +15,7 @@
 [anchor13]:     #search-by-path
 [anchor14]:     #search-by-parameter
 [anchor15]:     #search-by-request-identifier
-[anchor16]:     #search-by-attack-status
+[anchor16]:     #search-attacks-by-the-action
 
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#cross-site-scripting-xss
@@ -67,7 +67,7 @@ Parameters you enter into the search string will automatically duplicate in the 
 * [Type of object][anchor1]
 * [Type of attack or vulnerability][anchor2]
 * [Aim of attack or vulnerability][anchor3]
-* [Attack status][anchor16]
+* [Action with an attack][anchor16]
 * [Severity level][anchor4]
 * [Vulnerability identifier][anchor5]
 * [Vulnerability status][anchor6]
@@ -120,11 +120,11 @@ Specify in the search string:
 * `database`: to search for database attacks/vulnerabilities.
 * `server`: to search for app server attacks/vulnerabilities.
 
-### Search by Attack Status
+### Search Attacks by the Action
 
 Specify in the search string:
 
-* `falsepositive`: to search for attacks marked as false positive.
+* `falsepositive`: to search for attacks marked as false positives.
 * `!falsepositive`: to search for real attacks.
 
 ### Search by Risk Level

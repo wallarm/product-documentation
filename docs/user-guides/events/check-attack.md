@@ -9,7 +9,7 @@
 [img-vulns-tab]:        ../../images/user-guides/events/check-vulns.png
 [img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
 [use-search]:             ../search-and-filters/use-search.md
-[search-by-attack-status]: ../search-and-filters/use-search.md#search-by-attack-status
+[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 
 # Checking Events
 
@@ -42,7 +42,7 @@ The *Attacks* tab displays information in the following columns:
 * *Status*: The server's response status code on the request. When there are several response status codes, the most frequent one is displayed. 
     * The number in a smaller font displayed under the main number shows the total number of different response status codes of the protected resource on the selected attack in the specified timeframe. 
 * *Parameter*: The malicious request's parameters.
-* *Verification*: The attack verification status. To sort attacks by the false positive status, use the search filter below or specify the status in the search string as described [here][search-by-attack-status].
+* *Verification*: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below or specify the action in the search string as described [here][search-by-attack-status].
     ![!Filter for false positive][img-show-falsepositive]
 
 You can click the “**Sort by latest hit**” switch to sort attacks by the time of the last request from the most recent one to the oldest one.

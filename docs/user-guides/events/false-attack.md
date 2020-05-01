@@ -9,19 +9,18 @@
 
 A false attack is a valid request erroneously identified as an attack.
 
-After analyzing an attack, you may conclude that it is a false positive.
+After analyzing an attack, you may conclude that all requests in this attack or the part of them are false positives.
 
 ## Mark an Attack as a False Positive
 
-1. Select an attack.
-2. Click a row that represents a request.
-3. Click *False* in the *Actions* column.
+1. Select an attack in the **Events** section.
+2. Collapse the list of requests in this attack.
+3. Define a valid request and click **False** in the **Actions** column.
 
-![!False attack][img-false-attack]
+    ![!False attack][img-false-attack]
+4. Confirm the action clicking the **OK** button in the modal window.
 
-A pop-up message will be displayed to inform you that the attack was marked as false. This message also contains a few additional pieces of information. Click the *OK* button on the pop-up.
-
-![!The pop-up message][img-popup]
+    ![!The pop-up message][img-popup]
 
 If all the requests in the attack are marked as the false positives, then the information about that attack will look like this:
 
