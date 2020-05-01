@@ -70,7 +70,7 @@ If a filter node with the same name as the node's container identifier is alread
 
 To avoid this, pass the `DEPLOY_FORCE=true` environment variable to the container.
 
-```
+``` bash
 docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="IP address or FQDN" wallarm/node:2.14
 ```
 
