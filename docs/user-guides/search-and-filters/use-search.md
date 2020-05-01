@@ -125,7 +125,7 @@ Specify in the search string:
 Specify in the search string:
 
 * `falsepositive`: to search for attacks marked as false positive.
-* `!falsepositive`: to search for invalid requests.
+* `!falsepositive`: to search for real attacks.
 
 ### Search by Risk Level
 
