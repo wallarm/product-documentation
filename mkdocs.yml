@@ -11,6 +11,7 @@ plugins:
   - search
   - minify:
       minify_html: true
+dev_addr: '0.0.0.0:8000'
 
 theme:
   name: material
