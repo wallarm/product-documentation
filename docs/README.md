@@ -18,7 +18,7 @@ Wallarm does the following:
 
     Applies machine learning to reconstruct the application logic and API schema based on the resource's traffic.
 
-    Creates dynamic blocking rules based on abnormal data patterns.
+    Creates dynamic blocking rules based on abnormal data patterns.jdkkd
 
 - _Protects_
 
