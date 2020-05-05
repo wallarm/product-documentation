@@ -1,8 +1,6 @@
 # Telegram Reports and Notifications
 
-You can set up Wallarm to send notifications to Telegram
-
-Notifications can be set up on the following events:
+You can set up Wallarm to send notifications to Telegram for the following events:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 

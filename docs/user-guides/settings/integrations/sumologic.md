@@ -14,7 +14,7 @@ Perform the following actions in the Sumo Logic interface:
 
 Perform the following actions in your Wallarm account:
 
-1. Go to your Wallarm account > **Settings** > **Integrations** in the [EU](https://my.wallarm.com/settings/integrations/) or [US](https://us1.my.wallarm.com/settings/integrations/) cloud.
+1. Go to your Wallarm account → **Settings** → **Integrations** in the [EU](https://my.wallarm.com/settings/integrations/) or [US](https://us1.my.wallarm.com/settings/integrations/) cloud.
 2. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
 
       ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
