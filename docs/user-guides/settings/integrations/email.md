@@ -1,8 +1,6 @@
 # Email Reports and Notifications
 
-You can enter email addresses that will be used to deliver scheduled reports and instant notifications.
-
-Notifications can be set up for the following events:
+You can enter email addresses that will be used to deliver scheduled reports and instant notifications for the following events:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 

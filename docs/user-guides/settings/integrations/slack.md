@@ -1,8 +1,6 @@
 # Slack Notifications
 
-You can set up Wallarm to send notifications to your Slack channel.
-
-Notifications can be set up for the following events:
+You can set up Wallarm to send notifications to your Slack channel for the following events:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 

@@ -2,8 +2,6 @@
 
 You can set up Wallarm to send notifications to OpsGenie for the following events:
 
-Notifications can be set up for the following events:
-
 * [Vulnerability](../../../glossary-en.md#vulnerability) detected
 * [Hit](../../../glossary-en.md#hit) detected
 

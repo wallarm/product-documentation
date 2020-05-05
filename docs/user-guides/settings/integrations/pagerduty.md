@@ -4,8 +4,6 @@
 
 You can set up Wallarm to send notifications to PagerDuty for the following events:
 
-Notifications can be set up for the following events:
-
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
 ##  Setting up Notifications
