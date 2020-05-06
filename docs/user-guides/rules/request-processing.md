@@ -31,7 +31,7 @@ To find attacks, the filter node processes the URL as follows: it analyzes both 
 
 The *URL* parser provides the following filters that apply to an HTTP request:
 
-* **url**: string with the original URL value;
+* **uri**: string with the original URL value;
 * **path**: an array with URL parts separated by the `/` symbol (the last URL part is not included in the array). If there is only one part in the URL, the array will be empty;
 * **action_name**: the last part of the URL after the `/` symbol and before the first period `.`. This part of the URL is always present in the request even if its value is an empty string;
 * **action_ext**: the part of the URL after the last period `.`. It may be missing in the request;
@@ -39,7 +39,7 @@ The *URL* parser provides the following filters that apply to an HTTP request:
 
 For example, in the request `/blogs/123/index.php?q=aaa`, there will be the following parameters:
 
-* `[url]`&nbsp;— `/blogs/123/index.php?q=aaa`
+* `[uri]`&nbsp;— `/blogs/123/index.php?q=aaa`
 * `[path, 0]`&nbsp;— `blogs`
 * `[path, 1]`&nbsp;— `123`
 * `[action_name]`&nbsp;— `index`
