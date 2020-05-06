@@ -13,7 +13,7 @@ To install the filter node, do the following:
 1. Install NGINX.
 2. Add the Wallarm repositories, from which you will download packages.
 3. Install the Wallarm packages.
-4. Configure postanalytics.
+4. Configure the postanalytics module.
 5. Connect the Wallarm module.
 6. Connect the filter node to the Wallarm cloud.
 
