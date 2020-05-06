@@ -24,7 +24,7 @@ Notifications can be set up for the following events:
 
 ## Disabling Notifications
 
-1. Go to your Wallarm account > *Settings* > *Integrations* by the link below:
+1. Go to your Wallarm account → *Settings* → *Integrations* by the link below:
       * https://my.wallarm.com/settings/integrations/ for the [EU cloud](../../../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud)
       * https://us1.my.wallarm.com/settings/integrations/ for the [US cloud](../../../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
 2. Select an integration and click *Disable*.
