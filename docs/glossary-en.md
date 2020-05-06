@@ -13,7 +13,7 @@ A vulnerability is not a characteristic of the Internet. A vulnerability is a ch
 
 ## Hit
 
-A hit is an invalid request detected and possibly blocked by WAF node depending on [filtering mode configuration](admin-en/configure-wallarm-mode.md). For example:
+A hit is a malicious request detected and possibly blocked by WAF node depending on [filtering mode configuration](admin-en/configure-wallarm-mode.md). For example:
 
 ![!Hit example](images/glossary/hit-example.png)
 
