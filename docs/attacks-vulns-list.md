@@ -59,7 +59,7 @@ Each entity in the list
 
     The name of a particular attack can be the same as the name of the vulnerability this attack exploits. In this case, such an entity will be tagged with the combined “Vulnerability/Attack” tag.
 
-*   has the Wallarm code that corresponds to this entity.      
+*   has the Wallarm code that corresponds to this entity.   
 
 Most of the vulnerabilities and attacks on this list are also accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
