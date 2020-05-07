@@ -10,7 +10,8 @@
 # Checking Vulnerabilities
 
 You can check [vulnerabilities][glossary-vulnerability] on the *Vulnerabilities* tab of the Wallarm interface.
-By default, the list is sorted by the vulnerability discovery date.
+
+By default, all vulnerabilities are divided into groups by the risk level. Lists inside the groups are sorted by the vulnerability discovery date.
 
 ![!Vulnerabilities tab][img-check-vulns]
 

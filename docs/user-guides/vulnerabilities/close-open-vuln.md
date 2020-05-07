@@ -27,7 +27,7 @@ Wallarm will mark the vulnerability as closed.
 
 ## Open a Vulnerability
 
-Click the *Open* button next to the desired vulnerability in the list to reopen the previously closed vulnerability.
+Click the *Reopen* button next to the desired vulnerability in the list to reopen the previously closed vulnerability.
 
 ![!Opening a vulnerability in the list][img-open-vuln]
 
