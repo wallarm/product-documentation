@@ -15,6 +15,7 @@
 [anchor13]:     #search-by-path
 [anchor14]:     #search-by-parameter
 [anchor15]:     #search-by-request-identifier
+[anchor16]:     #search-attacks-by-the-action
 
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#cross-site-scripting-xss
@@ -37,14 +38,11 @@
 
 You can search for virtually any attribute of attacks, incidents, and vulnerabilities. 
 
-Wallarm is equipped with a query language similar to human language, which makes submitting queries intuitive.
-Queries can be refined using special modifiers, which are described below.
+Wallarm is equipped with a query language similar to human language, which makes submitting queries intuitive. Queries can be refined using special modifiers, which are described below.
 
-When values of different parameters are specified, the results will meet all those conditions.
-When different values for the same parameter are specified, the results will meet any of those conditions.
+When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
 
-To search within a single application, specify in the search string `pool:<application name>`,
-where `<application name>` is set on the *Applications* tab in the *Settings* section.
+To search within a single application, specify in the search string `pool:<application name>`, where `<application name>` is set on the *Applications* tab in the *Settings* section.
 
 Examples of search requests:
 
@@ -69,6 +67,7 @@ Parameters you enter into the search string will automatically duplicate in the 
 * [Type of object][anchor1]
 * [Type of attack or vulnerability][anchor2]
 * [Aim of attack or vulnerability][anchor3]
+* [Action with an attack][anchor16]
 * [Severity level][anchor4]
 * [Vulnerability identifier][anchor5]
 * [Vulnerability status][anchor6]
@@ -120,6 +119,13 @@ Specify in the search string:
 * `client`: to search for client data attacks/vulnerabilities.
 * `database`: to search for database attacks/vulnerabilities.
 * `server`: to search for app server attacks/vulnerabilities.
+
+### Search Attacks by the Action
+
+Specify in the search string:
+
+* `falsepositive`: to search for attacks marked as false positives.
+* `!falsepositive`: to search for real attacks.
 
 ### Search by Risk Level
 

@@ -7,17 +7,19 @@
 [img-current-attacks]:  ../../images/user-guides/events/current-attack.png
 [img-incidents-tab]:    ../../images/user-guides/events/incident-vuln.png
 [img-vulns-tab]:        ../../images/user-guides/events/check-vulns.png
+[img-show-falsepositive]: ../../images/user-guides/events/filter-for-falsepositive.png
+[use-search]:             ../search-and-filters/use-search.md
+[search-by-attack-status]: ../search-and-filters/use-search.md#search-attacks-by-the-action
 
 # Checking Events
 
-You can check attacks, incidents, and vulnerabilities in the *Events* tab of the Wallarm interface.
-This tab displays data in the following tabs:
+You can check attacks, incidents, and vulnerabilities in the *Events* tab of the Wallarm interface. This tab displays data in the following tabs:
 
 * The *Attacks* tab displays all groups of associated malicious requests.
 * The *Incidents* tab displays all the malicious requests that exploit existing vulnerabilities.
 * The *Vulnerabilities* tab displays all the discovered errors made when building or implementing a web application that can lead to an information security risk.
 
-You can use the search field or manually set the data period.
+To find required data, you can use the search field as described [here][use-search] or manually set required search filters.
 
 ## The *Attacks* Tab 
 
@@ -40,7 +42,8 @@ The *Attacks* tab displays information in the following columns:
 * *Status*: The server's response status code on the request. When there are several response status codes, the most frequent one is displayed. 
     * The number in a smaller font displayed under the main number shows the total number of different response status codes of the protected resource on the selected attack in the specified timeframe. 
 * *Parameter*: The malicious request's parameters.
-* *Verification*: The attack verification status.
+* *Verification*: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below or specify the action in the search string as described [here][search-by-attack-status].
+    ![!Filter for false positive][img-show-falsepositive]
 
 You can click the “**Sort by latest hit**” switch to sort attacks by the time of the last request from the most recent one to the oldest one.
 
@@ -68,7 +71,6 @@ The *Vulnerabilities* tab displays information in the following columns:
 * *Domain*: The domain that the vulnerability was discovered at.
 * *ID*: The unique identifier of the vulnerability in the Wallarm system.
 * *Title*: The title of the vulnerability.
-
 
 ## Events that are Currently Happening
 
