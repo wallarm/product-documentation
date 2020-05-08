@@ -5,7 +5,7 @@ metadata:
   name: wallarm-sidecar-nginx-conf
 data:
   default: |
-    map $remote_addr $wallarm_mode_real {
+    geo $remote_addr $wallarm_mode_real {
       # Please replace <WALLARM_MODE> below by the request filtering mode: 
       # off to disable request processing
       # monitoring to process but not block requests
