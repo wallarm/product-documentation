@@ -5,7 +5,7 @@ metadata:
   name: wallarm-sidecar-nginx-conf
 data:
   default: |
-    map $remote_addr $wallarm_mode_real {
+    geo $remote_addr $wallarm_mode_real {
       default {{ .Values.wallarm.mode | quote }};
       # IP addresses and rules for US cloud scanners
       23.239.18.250 off;104.237.155.105 off;45.56.71.221 off;45.79.194.128 off;104.237.151.202 off;45.33.15.249 off;45.33.43.225 off;45.79.10.15 off;45.33.79.18 off;45.79.75.59 off;23.239.30.236 off;50.116.11.251 off;45.56.123.144 off;45.79.143.18 off;172.104.21.210 off;74.207.237.202 off;45.79.186.159 off;45.79.216.187 off;45.33.16.32 off;96.126.127.23 off;172.104.208.113 off;192.81.135.28 off;35.235.101.133 off;34.94.16.235 off;35.236.51.79 off;35.236.87.46 off;35.236.16.246 off;35.236.110.91 off;35.236.61.185 off;35.236.14.198 off;35.236.96.31 off;35.235.124.137 off;35.236.100.176 off;34.94.13.81 off;35.236.55.214 off;35.236.127.211 off;35.236.126.84 off;35.236.3.158 off;35.235.112.188 off;35.236.118.146 off;35.236.1.4 off;35.236.20.89 off;
