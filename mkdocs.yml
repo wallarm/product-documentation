@@ -132,6 +132,10 @@ nav:
     - Configuration:
       - Configuration Options (NGINX): admin-en/configure-parameters-en.md
       - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
+      - Blocking by IP Address:
+        - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
+        - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
+        - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
       - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
       - Fine-tuning of Wallarm Ingress Controller:
         - Configuration Parameters: admin-en/configure-kubernetes-en.md
@@ -170,10 +174,6 @@ nav:
         - Disabling and Removing the Configured SSO Provider: admin-en/configuration-guides/sso/disable-sso-provider.md 
     - Integration:
       - Configuring a Failover Method: admin-en/configure-backup-en.md
-      - Blocking by IP Address:
-        - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
-        - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
-        - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
       - Using a Mirrored Wallarm Repository:
         - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
         - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
