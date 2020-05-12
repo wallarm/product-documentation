@@ -269,6 +269,7 @@ nav:
         - Slack Notifications: user-guides/settings/integrations/slack.md
         - Telegram Reports and Notifications: user-guides/settings/integrations/telegram.md
         - OpsGenie Notifications: user-guides/settings/integrations/opsgenie.md
+        - InsightConnect Notifications: user-guides/settings/integrations/insightconnect.md
         - PagerDuty Notifications: user-guides/settings/integrations/pagerduty.md
         - Splunk Notifications: user-guides/settings/integrations/splunk.md
         - Sumo Logic Notifications: user-guides/settings/integrations/sumologic.md
