@@ -11,7 +11,7 @@ Wallarm does the following:
 
 - _Discovers_
 
-	Discovers your company's hosts, domains, and services accessible from the outside by combining deep scanning and accessing data from external
+	Discovers your company's hosts, domains, and services accessible from the outside by combining deep scanning and accessing data from externaljjdkjdj
 	sources.
 
 - _Analyzes_
