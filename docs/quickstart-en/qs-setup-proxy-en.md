@@ -21,7 +21,7 @@ By default, this directory contains the following configuration files:
 
 You can create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
 
-To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](test link).
 
 Wallarm directives define the operation logic of the Wallarm filter node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](../admin-en/configure-parameters-en.md) page.
 
