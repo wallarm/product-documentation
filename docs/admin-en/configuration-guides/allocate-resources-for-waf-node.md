@@ -4,7 +4,7 @@ The amount of memory allocated for the WAF node determines the quality and speed
 
 In a WAF node there are two main memory consumers:
 
-* [Tarantool](#tarantool), also called **postanalytics module**. This is the local data, analytic backend and the primary memory consumer in a WAF node.
+* [Tarantool](#tarantool), also called **postanalytics module**. This is the local data analytics backend and the primary memory consumer in a WAF node.
 * [NGINX](#nginx) is the main WAF node and reverse proxy component.
 
 ## Tarantool
