@@ -94,16 +94,3 @@ injectScript('https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_8
 
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
-
-// Add Intercom
-
-function initIntercom() {
-  try {
-      window.Intercom('boot', {
-          app_id: 'xdb7h6w4',
-          created_at: Date.now()
-      });
-  } catch (e) {}
-}
-
-injectScript('https://widget.intercom.io/widget/xdb7h6w4', initIntercom);
