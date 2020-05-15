@@ -94,3 +94,9 @@ injectScript('https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_8
 
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
+
+/*
+* Add HubSpot
+*/
+
+injectScript('https://js.hs-scripts.com/3989912.js');
