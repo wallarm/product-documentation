@@ -1,6 +1,6 @@
 # Allocating Resources for WAF Node
 
-The amount of memory allocated for the WAF node determines the quality and speed of request processing. This instruction describes recommendations for WAF node memory allocation.
+The amount of memory allocated for the WAF node determines the quality and speed of request processing. These instructions describe the recommendations for WAF node memory allocation.
 
 In a WAF node there are two main memory consumers:
 
@@ -21,7 +21,7 @@ In a WAF node there are two main memory consumers:
 
 ## NGINX
 
-NGINX memory consumption depends on many factors, and on average it can be estimated as the following:
+NGINX memory consumption depends on many factors. On average it can be estimated as the following:
 
 ```
 Number of concurrent request * Average request size * 3
@@ -54,6 +54,6 @@ The NGINX memory consumption can be estimated as follows:
 * for other deployment options, use the NGINX configuration files.
 
 !!! info "Recommendations from the CPU utilization perspective"
-    When running in the production mode it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process.
+    When running in production mode, it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process.
     
-    Actual NGINX CPU utilization depends on many factors like RPS level, an average size of request and response, number of LOM rules handled by the node, types, and layers of employed data encodings like Base64 or data compression, etc. On average one CPU core can handle about 500 RPS. In the majority of cases it is recommended to initially over-provision a WAF node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).
+    Actual NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of LOM rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc. On average, one CPU core can handle about 500 RPS. In the majority of cases it is recommended to initially over-provision a WAF node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).

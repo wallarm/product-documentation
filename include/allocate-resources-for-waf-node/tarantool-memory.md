@@ -1,6 +1,6 @@
-Postanalytics uses the in-memory storage Tarantool. The Tarantool database is used to keep in a circular buffer a local copy of the data stream processed by a WAF node, including request and response headers and request bodies (but not response bodies). 
+Postanalytics uses the in-memory storage Tarantool. The Tarantool database is used to keep in a circular buffer a local copy of the data stream processed by a WAF node, including request/response headers and request bodies (but not response bodies). 
 
-The recommended value is 75% of the total server memory. But there is a more accurate way to define the required value: to make a WAF node efficient, the database should keep at least 15 minutes of transmitted data, with about 2x overhead for data serialization. Following these points, the amount of memory can be estimated by the formula:
+The recommended value is 75% of the total server memory. However, there is a more accurate way to define the required value. To make a WAF node efficient, the database should keep at least 15 minutes of transmitted data with about 2x overhead for data serialization. Following these points, the amount of memory can be estimated by the formula:
 
 ```
 Speed of request processing per minute in bytes * 15 * 2
