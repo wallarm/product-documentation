@@ -21,15 +21,15 @@ The `collectd` metrics have the following view:
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
-Detailed description of metric format is available by the [link](../monitoring/intro.md#how-metrics-look).
+A detailed description of the metric format is available at this [link](../monitoring/intro.md#how-metrics-look).
 
 !!! note
     * In the list of available metrics below, the host name (the `host/` part) is omitted.
-    * When using the `collectd_nagios` utility, the host name must be omitted. It is set separately using the `-H` parameter ([more about using the utility][doc-nagios-details]).
+    * When using the `collectd_nagios` utility, the host name must be omitted. It is set separately using the `-H` parameter ([more about using this utility][doc-nagios-details]).
 
 ## Types of Wallarm Metrics
 
-Allowed types of Wallarm metrics are described below. The type is stored in the `type` metric parameter.
+The allowed types of Wallarm metrics are described below. The type is stored in the `type` metric parameter.
 
 * `gauge` is a numerical representation of the measured value. The value can both increase and decrease.
 
@@ -89,7 +89,7 @@ The number of requests that were considered abnormal for the application. Tempor
 
 ### Number of Lost Requests
 
-The number of requests not analyzed by the postanalytics module and not passed to Wallarm API. Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and not taken into account when analyzing next requests. The number is the sum of [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api].
+The number of requests not analyzed by the postanalytics module and not passed to Wallarm API. Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and are not taken into account when analyzing next requests. The number is the sum of [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api].
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-requests_lost`
 * **Metric value:** `0`, the sum of [`tnt_errors`][anchor-tnt] and [`api_errors`][anchor-api]
@@ -98,7 +98,7 @@ The number of requests not analyzed by the postanalytics module and not passed t
 
 #### Number of Requests not Analyzed by the Postanalytics Module
 
-The number of requests not analyzed by the postanalytics module. The metric is collected if sending requests to the postanalytics module is configured ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and not taken into account when analyzing next requests.
+The number of requests not analyzed by the postanalytics module. This metric is collected if sending requests to the postanalytics module is configured ([`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and are not taken into account when analyzing next requests.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-tnt_errors`
 * **Metric value:** `0`
@@ -107,33 +107,33 @@ The number of requests not analyzed by the postanalytics module. The metric is c
     * Get the NGINX and Tarantool logs and analyze errors if any.
     * Check if the Tarantool server address ([`wallarm_tarantool_upstream`](../configure-parameters-en.md#wallarm_tarantool_upstream)) is correct.
     * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)).
-    * Contact the [Wallarm support team](mailto:support@wallarm.com) and provide the data above if the issue was not resolved.
+    * Contact the [Wallarm support team](mailto:support@wallarm.com) and provide the data above if the issue is not resolved.
 
 #### Number of Requests not Passed to the Wallarm API
 
-The number of requests not passed to Wallarm API. The metric is collected if passing requests to Wallarm API is configured ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and not taken into account when analyzing next requests.
+The number of requests not passed to Wallarm API. This metric is collected if passing requests to Wallarm API is configured ([`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)). Blocking rules are applied to these requests, but requests are not visible in your Wallarm account and not taken into account when analyzing next requests.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-api_errors`
 * **Metric value:** `0`
 * **Rate of change:** `curl_json-wallarm_nginx/derive-api_errors`
 * **Troubleshooting recommendations:**
     * Get the NGINX and Tarantool logs and analyze errors if any.
-    * Check if Wallarm API settings ([`wallarm_api_conf`](../configure-parameters-en.md#wallarm_api_conf)) are correct.
+    * Check if the Wallarm API settings ([`wallarm_api_conf`](../configure-parameters-en.md#wallarm_api_conf)) are correct.
     * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)).
     * Contact the [Wallarm support team](mailto:support@wallarm.com) and provide the data above if the issue was not resolved.
 
 ### Number of Issues Completed NGINX Worker Process Abnormally
 
-The number of issues led to abnormal completion of the NGINX worker process. The most common reason for abnormal completion is a critical error in NGINX.
+A number of issues have led to abnormal completion of the NGINX worker process. The most common reason for abnormal completion is a critical error in NGINX.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-segfaults`
 * **Metric value:** `0`
 * **Rate of change:** `curl_json-wallarm_nginx/derive-segfaults`
 * **Troubleshooting recommendations:**
-    1. Collect the data about current state using the `/usr/share/wallarm-common/collect-info.sh` script.
+    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
     2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
-### Number of Situations when the Virtual Memory Limit was Exceeded
+### Number of Situations Exceeding the Virtual Memory Limit
 
 The number of situations when the virtual memory limit was exceeded.
 
@@ -145,7 +145,7 @@ The number of situations when the virtual memory limit was exceeded.
     * `curl_json-wallarm_nginx/derive-memfaults` for `curl_json-wallarm_nginx/gauge-memfaults`
     * `curl_json-wallarm_nginx/derive-softmemfaults` for `curl_json-wallarm_nginx/gauge-softmemfaults`
 * **Troubleshooting recommendations:**
-    1. Collect the data about current state using the `/usr/share/wallarm-common/collect-info.sh` script.
+    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
     2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Request Analysis Time (in Seconds)
@@ -197,9 +197,9 @@ The number of proton.db and [LOM][doc-lom] pairs that were successfully download
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
     3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
 
-#### Number of proton.db and LOM Pairs Downloaded from Last Saved Files
+#### Number of proton.db and LOM Pairs Downloaded from the Last Saved Files
 
-The number of proton.db and [LOM][doc-lom] pairs downloaded from last saved files. These files store last successfully downloaded pairs. If pairs were updated but not downloaded, the data from last saved files used.
+The number of proton.db and [LOM][doc-lom] pairs downloaded from the last saved files. These files store the last successfully downloaded pairs. If pairs were updated but not downloaded, the data from the last saved files is used.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-proton_instances-fallback`
 * **Metric value:** `>0`
@@ -208,7 +208,7 @@ The number of proton.db and [LOM][doc-lom] pairs downloaded from last saved file
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
     3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
 
-#### Number of inactive proton.db and LOM Pairs
+#### Number of Inactive proton.db and LOM Pairs
 
 The number of connected proton.db and [LOM][doc-lom] pairs that could not be read.
 
@@ -229,13 +229,13 @@ ID of the last processed request. The value can both increase and decrease.
     * `wallarm-tarantool/counter-last_request_id` if the value increased
     * `wallarm-tarantool/gauge-last_request_id` if the value increased or decreased
 * **Metric value:** no limits
-* **Troubleshooting recommendations:** if there are incoming requests but the value is not changed, check if the filter node settings are correct
+* **Troubleshooting recommendations:** if there are incoming requests but the value does not change, check if the filter node settings are correct
 
 ### Deleted Requests
 
 #### Indication of Deleted Requests
 
-The flag signaling that requests with attacks are deleted from the postanalytics module but not sent to the [cloud](../../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud).
+The flag signaling that requests with attacks have been deleted from the postanalytics module but not sent to the [cloud](../../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud).
 
 * **Metric:** `wallarm-tarantool/gauge-export_drops_flag`
 * **Metric value:**
@@ -243,7 +243,7 @@ The flag signaling that requests with attacks are deleted from the postanalytics
     * `1` if requests are deleted (not enough memory, please follow the instructions below)
 * **Troubleshooting recommendations:**
     * Increase the [`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit) value.
-    * Install the postanalytics module in a separate server pool following the [instructions](../installation-postanalytics-en.md).
+    * Install the postanalytics module in a separate server pool following these [instructions](../installation-postanalytics-en.md).
 
 #### Number of Deleted Requests
 
@@ -268,12 +268,12 @@ The delay between the recording of a request by the postanalytics module and dow
     * warning if `>60`
     * critical if `>300`
 * **Troubleshooting recommendations:**
-    * Read logs from the `/var/log/wallarm/export-attacks.log` file and analyze errors. Increased value can be caused by low network throughput from the filter node to Wallarm’s API service.
-    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)). The [`tnt_errors`][anchor-tnt] metric also increases if allocated memory is exceeded.
+    * Read logs from the `/var/log/wallarm/export-attacks.log` file and analyze errors. An increased value can be caused by low network throughput from the filter node to Wallarm’s API service.
+    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
 
 ### Time of Storing Requests in the Postanalytics Module (in Seconds)
 
-Time that the postanalytics module stores requests. The value depends on the amount of memory allocated to the postanalytics module and on the size and properties of the processed HTTP requests. The shorter the interval, the worse the detection algorithms work—because they rely on historical data. As a result, if intervals are too short, an attacker can perform brute force attacks faster, without being noticed. In this case, less data will be obtained on the attacker's behavior history.
+Time that the postanalytics module stores requests. The value depends on the amount of memory allocated to the postanalytics module and on the size and properties of the processed HTTP requests. The shorter the interval, the worse the detection algorithms work—because they rely on historical data. As a result, if the intervals are too short, an attacker can perform brute force attacks faster and without being noticed. In this case, less data will be obtained on the attacker's behavior history.
 
 * **Metric:** `wallarm-tarantool/gauge-timeframe_size`
 * **Metric value:**
