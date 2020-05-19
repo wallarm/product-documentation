@@ -24,10 +24,10 @@ Select the method of the controller installation:
 
 #### Creating a New Controller
 
-1. Go to your Wallarm account > the **Nodes** tab by the link below:
+1. Go to your Wallarm account > the **Nodes** tab via the link below:
     * https://my.wallarm.com/nodes for the EU cloud,
     * https://us1.my.wallarm.com/nodes for the US cloud.
-2. Create the filter node with the **Cloud** type and copy the token.
+2. Create a filter node with the **Cloud** type and copy the token.
     ![!Creation of a cloud node](../images/installation-kubernetes/en/create-cloud-node.png)
 3. Clone the repository of Wallarm NGINX Ingress:
     ```
@@ -47,10 +47,10 @@ Select the method of the controller installation:
       
 #### Replacing an Existing Controller
 
-1. Go to your Wallarm account > the **Nodes** tab by the link below:
+1. Go to your Wallarm account > the **Nodes** tab via the link below:
     * https://my.wallarm.com/nodes for the EU cloud,
     * https://us1.my.wallarm.com/nodes for the US cloud.
-2. Create the filter node with the **Cloud** type and copy the token.
+2. Create a filter node with the **Cloud** type and copy the token.
     ![!Creation of a cloud node](../images/installation-kubernetes/en/create-cloud-node.png)
 3. Clone the repository of Wallarm NGINX Ingress:
    
@@ -75,7 +75,7 @@ kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-m
 kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-instance=INSTANCE
 ```
 * `YOUR_INGRESS_NAME` is the name of your Ingress,
-* `INSTANCE` is a positive number which is unique to each of your applications or application groups. This will allow you to obtain separate statistics and distinguish between the attacks aimed at corresponding applications.
+* `INSTANCE` is a positive number that is unique to each of your applications or application groups. This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications.
 
 ### Step 3: Checking the Wallarm Ingress Controller Operation
 
@@ -93,7 +93,7 @@ kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-i
     ingress-controller-nginx-ingress-default-backend-584ffc6c7xj5xx   1/1       Running   0          5m
     ```
 2. Send a test attack to your Ingress resource as described in this [documentation](../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack).
-3. Go to your Wallarm account > the **Events** tab by the link below and check that an attack is displayed in the list:
+3. Go to your Wallarm account > the **Events** tab via the link below and check that an attack is displayed in the list:
     * https://my.wallarm.com for the EU cloud,
     * https://us1.my.wallarm.com for the US cloud.
 
