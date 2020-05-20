@@ -6,7 +6,7 @@ You can set up Wallarm to send notifications to InsightConnect for the following
 
 ## Setting up Notifications
 
-At first, generate and copy an API key as follows:
+First, generate and copy an API key as follows:
 
 1. Open the InsightConnect's UI → **Settings** → **API Keys** page and click **New User Key**, enter an API key name (e.g. `Wallarm API`) and click **Generate**.
 2. Copy the generated API key.
@@ -18,7 +18,7 @@ Secondly, generate and copy an API URL as follows:
 1. Go back to the InsightConnect's UI, open the **Automation** → **Workflows** page and create a new page for the Wallarm notification.
 2. When asked to choose a trigger, choose the **API Trigger**.
 3. Copy the generated URL.
-4. Go back to **insightConnect** configuration in your Wallarm account and paste the API URL that you copied before into the **API URL** field.
+4. Go back to **insightConnect** configuration on your Wallarm account and paste the API URL that you copied before into the **API URL** field.
 
 Thirdly, finish the setup:
 
