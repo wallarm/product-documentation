@@ -57,6 +57,8 @@ Depending on your operating system, run one of the following commands:
 
 --8<-- "../include/access-repo-en.md"
 
+--8<-- "../include/issue-with-gpg-keys.md"
+
 ## 2. Install Wallarm Packages
 
 To install the filter node and postanalytics on the same server, run the command:
