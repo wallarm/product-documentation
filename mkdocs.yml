@@ -212,8 +212,8 @@ nav:
     - Introduction: user-guides/user-intro.md
     - Dashboards:
       - Overview: user-guides/dashboard/intro.md
-      - The “WAF” Dashboard: user-guides/dashboard/waf.md
-      - The “Scanner” Dashboard: user-guides/dashboard/scanner.md
+      - WAF Dashboard: user-guides/dashboard/waf.md
+      - Scanner Dashboard: user-guides/dashboard/scanner.md
     - Events:
       - Checking Events: user-guides/events/check-attack.md
       - Analyzing Attacks: user-guides/events/analyze-attack.md
