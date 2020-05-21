@@ -104,6 +104,8 @@ Depending on your operating system, run one of the commands:
 
 --8<-- "../include/access-repo-en.md"
 
+--8<-- "../include/issue-with-gpg-keys.md"
+
 ## 3. Install the Wallarm Packages
 
 ### Install the Requests Processing and Postanalytics on the Same Server

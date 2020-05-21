@@ -32,5 +32,5 @@
 === "CentOS 7.x"
     ``` bash
     yum install -y epel-release
-    rpm -i https://repo.wallarm.com/centos/wallarm-node/7/x86_64/Packages/wallarm-node-repo-1-2.el7.centos.noarch.rpm
+    rpm -i https://repo.wallarm.com/centos/wallarm-node/7/x86_64/Packages/wallarm-node-repo-1-5.el7.centos.noarch.rpm
     ```
