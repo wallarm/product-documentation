@@ -1,58 +1,95 @@
-[img-dashboard-options]:    ../../images/user-guides/dashboard/waf-dashboard-options.png
 [img-traffic-stats]:        ../../images/user-guides/dashboard/waf-traffic-stats.png
 [img-attacks-stats]:        ../../images/user-guides/dashboard/waf-attacks-stats.png
 [img-blacklist-stats]:      ../../images/user-guides/dashboard/waf-blacklist-stats.png
+[img-traffic-cur-month]:    ../../images/user-guides/dashboard/waf-current-month-stats.png
+[img-attacks-type]:         ../../images/user-guides/dashboard/attack-types.png
+[img-attacks-sources]:      ../../images/user-guides/dashboard/attack-sources.png
 
 [doc-setup-app]:            ../settings/applications.md
 [doc-events-tab]:           ../events/check-attack.md
 [doc-blacklist-tab]:        ../blacklist.md
+[doc-scanner]:              ../scanner/intro.md
 
 [gl-hit]:                   ../../glossary-en.md#hit
 
+# WAF Dashboard
 
-#   The “WAF” Dashboard
+The WAF dashboard consists of the following data blocks:
 
-This dashboard provides you with information related to web firewall operations:
-*   traffic statistics
-*   data about applications under attack
-*   blacklisted IP addresses
+* Statistics for the current month and the speed of request encountering
+* Normal and malicious traffic
+* Top targets
+* Attack types
+* Attack sources
+* Blacklisted IP addresses
 
-When working with this dashboard, you can
-*   choose the date range you are interested in (default choice: one month prior to the current date). This choice influences all information on the dashboard.
-*   choose the application you are interested in (default choice: all applications). This choice influences the displayed traffic statistics. To use this filter, [configure a few applications][doc-setup-app] first.
+You can filter data from the last five blocks by the following parameters:
 
-![!Available options][img-dashboard-options]
+* **Application**. By default, all applications [added][doc-setup-app] in the settings.
+* **Time period**. By default, one month prior to the current date.
 
-##  Traffic Statistics
+## Statistics for the current month and the speed of request encountering
 
-![!Traffic statistics][img-traffic-stats]
+![!Current month statistics][img-traffic-cur-month]
 
-Available statistics are
-*   the number of requests, [hits][gl-hit], and blocked hits in the current month
-*   the real-time speed at which requests and hits are encountered
-*   graphs for the chosen date range:
-    *   the amount of traffic
-    *   the number of requests, hits, and incidents
-    *   the approximated cost of the attacks
-    
-Hover the mouse pointer over a point on the graph to get extra information about exact numbers of traffic and events in the particular period of time. To view detailed data, click the point on the graph. The [*Events* tab][doc-events-tab] will open. The table on this tab will contain events or incidents in the selected period.
+The block contains the following parameters:
 
-##  Data About Applications Under Attack
+* The number of requests, [hits][gl-hit], and blocked hits in the current month
+* The real-time speed at which requests and hits are encountered
 
-![!Data about applications under attack][img-attacks-stats]
+## Normal and malicious traffic
 
-For each configured application, the dashboard shows
-*   the number of detected incidents, and
-*   the number of hits.
+![!Normal and malicious traffic][img-traffic-stats]
 
-You can filter the data displayed on the pie chart. To do this, check or uncheck the checkbox to the left of the application's name. 
+The graph shows the following statistics for the selected period:
 
-##  Blacklisted IP Addresses
+* The amount of traffic
+* The number of requests, hits, and incidents
+* The estimated cost of attacks for the attacker: the value considers the approximate cost of IP address renting and the attacks duration
 
-![!Blacklisted IP addresses][img-blacklist-stats]
+Points on the graph shows parameter values at a time:
 
-This part of the dashboard shows a few blacklisted IP addresses. A reason for blocking and the time until unblocking are shown for each entry in the list.
+* Hover the mouse pointer over a point on the graph to get summary information on traffic at a time.
+* Click on a graph point to be redirected to the to [**Events** section][doc-events-tab] and view detailed information on each hit and incident at a time. 
 
-Press the *Full list* button to be redirected to the [*Blacklist* tab][doc-blacklist-tab], where you can view the full blacklist and manage its entries.
+## Top targets
 
-Also, there is a graph on the right that shows statistics on IP address blocking and unblocking events.
+![!Top targets][img-attacks-stats]
+
+The chart shows the ratio of hits number in each application for the selected period. To hide the application from the chart, uncheck the box next to the application name in the table.
+
+The table shows data for each application for the selected period:
+
+* The number of detected incidents
+* The number of detected hits
+* Trends: change in the hits number for a selected period and for the same previous period. For example: if you check the statistics for the last month, the trend displays the difference in the hits number between the last and previous months as a percentage
+
+## Attack types
+
+![!Attack types][img-attacks-type]
+
+The block contains the top types of attacks detected in requests for a selected period. Types are divided into blocks:
+
+* Top types among all attacks
+* Top types among requests that triggered the incident
+
+Clicking the attack type redirects to the [**Events** section][doc-events-tab] with a list of hits or incidents of this type for the selected period.
+
+## Attack sources
+
+![!Attack sources][img-attacks-sources]
+
+The block shows statistics on the attack sources for the selected period:
+
+* World map with the attack number distributed by source country
+* Top attack source countries
+* Top attack source resources: statistics on data centers provided IP addresses from which requests were received
+
+## Blacklisted IP addresses
+
+![!Blacklisted IP addresses][img-blacklist-stats] 
+
+The block shows the following data:
+
+* IP addresses that are currently blacklisted. A reason for blocking and the time until unblocking are shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] press the **Full list** button.
+* A graph with statistics on IP address blocking events for a selected period.
