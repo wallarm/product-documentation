@@ -12,16 +12,16 @@
     The Kong platform shall meet the following requirements:
 
     * Kong version 1.4.3 or lower
-    * Kong installed on the platform [supported by Wallarm][doc-supported-os] according to Kong [official instructions][kong-install]
+    * Kong installed on a platform [supported by Wallarm][doc-supported-os] according to Kong's [official instructions][kong-install]
     
     One of the following points is required for proper Kong operation:
     
     * prepared configuration files,
     * configured database.
     
-    Please make sure that installed Kong meets the prerequisites before proceeding with Wallarm installation.
+    Please make sure that the installed Kong meets the prerequisites before proceeding with Wallarm installation.
     
-    The official Kong documentation is available by the [link][kong-docs].
+    The official Kong documentation is available at this [link][kong-docs].
 
 !!! warning "Known Limitations"
     * The [`wallarm_block_page`][doc-wallarmblockpage] directive is not supported.
