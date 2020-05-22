@@ -5,12 +5,12 @@
 
 # Dashboards Overview
 
-The **Dashboards** section in your Wallarm account shows graphs and metrics on the history of events in your system and on the current status of resources. Data is displayed on two dashboards:
+The **Dashboards** section on your Wallarm account shows the event history's graphs and metrics of the system, as well as the current status of resources. Data is displayed on two dashboards:
 
 * [WAF dashboard](waf.md) with statistics on the WAF node operation
 
     ![! WAF dashboard](../../images/user-guides/dashboard/dashboard-waf.png)
-* [Scanner Dashboard](scanner.md) with statistics on detected vulnerabilities
+* [Scanner Dashboard](scanner.md) with statistics on the detected vulnerabilities
 
     ![! Dashboard Scanner](../../images/user-guides/dashboard/dashboard-scanner.png)
 
