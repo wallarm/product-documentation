@@ -47,22 +47,22 @@ The graph shows the following statistics for the selected period:
 * The number of requests, hits, and incidents
 * The estimated cost of attacks for the attacker: the value considers the approximate cost of IP address renting and the attacks duration
 
-Points on the graph shows parameter values at a time:
+Points on the graph shows parameter values at a specific time:
 
-* Hover the mouse pointer over a point on the graph to get summary information on traffic at a time.
-* Click on a graph point to be redirected to the to [**Events** section][doc-events-tab] and view detailed information on each hit and incident at a time. 
+* Hover the mouse pointer over a point on the graph to get summary information on traffic at a specific time.
+* Click on a graph point to be redirected to the to [**Events** section][doc-events-tab] and view detailed information on each hit and incident at that point in time. 
 
 ## Top targets
 
 ![!Top targets][img-attacks-stats]
 
-The chart shows the ratio of hits number in each application for the selected period. To hide the application from the chart, uncheck the box next to the application name in the table.
+The chart shows the ratio of hits in each application for the selected period. To hide the application from the chart, uncheck the box next to the application name in the table.
 
 The table shows data for each application for the selected period:
 
 * The number of detected incidents
 * The number of detected hits
-* Trends: change in the hits number for a selected period and for the same previous period. For example: if you check the statistics for the last month, the trend displays the difference in the hits number between the last and previous months as a percentage
+* Trends: change in the hits' number for a selected period and for the same previous period. For example: if you check the statistics for the last month, the trend displays the difference in the hits number between the last and previous months as a percentage
 
 ## Attack types
 
@@ -73,7 +73,7 @@ The block contains the top types of attacks detected in requests for a selected 
 * Top types among all attacks
 * Top types among requests that triggered the incident
 
-Clicking the attack type redirects to the [**Events** section][doc-events-tab] with a list of hits or incidents of this type for the selected period.
+Clicking the attack type redirects to the [**Events** section][doc-events-tab] with a list of hits or incidents of this type of attack for the selected period.
 
 ## Attack sources
 
@@ -83,7 +83,7 @@ The block shows statistics on the attack sources for the selected period:
 
 * World map with the attack number distributed by source country
 * Top attack source countries
-* Top attack source resources: statistics on data centers provided IP addresses from which requests were received
+* Top attack source resources: statistics on data centers IP addresses from which requests were received
 
 ## Blacklisted IP addresses
 
@@ -91,5 +91,5 @@ The block shows statistics on the attack sources for the selected period:
 
 The block shows the following data:
 
-* IP addresses that are currently blacklisted. A reason for blocking and the time until unblocking are shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] press the **Full list** button.
+* IP addresses that are currently blacklisted. In addition, a reason for blocking and the time until it will be unblocked are also shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] press the **Full list** button.
 * A graph with statistics on IP address blocking events for a selected period.
