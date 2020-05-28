@@ -43,7 +43,7 @@ The NGINX memory consumption can be estimated as follows:
 * for the NGINX Ingress controller pod (`ingress-controller`), use the following sections in the `values.yaml` file:
     ```
     controller:
-    resources:
+      resources:
         limits:
         cpu: 1000m
         memory: 1640Mi
