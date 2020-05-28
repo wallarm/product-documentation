@@ -3,7 +3,7 @@ Tarantool memory is configured for the `ingress-controller-wallarm-tarantool` po
 * To set up memory in GB:
     ```
     controller:
-    wallarm:
+      wallarm:
         tarantool:
         arena: "0.2"
     ```
@@ -11,7 +11,7 @@ Tarantool memory is configured for the `ingress-controller-wallarm-tarantool` po
 * To set up memory in CPU:
     ```
     controller:
-    wallarm:
+      wallarm:
         tarantool:
         resources:
             limits:
