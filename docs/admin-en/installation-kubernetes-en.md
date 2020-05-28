@@ -33,16 +33,15 @@ Select the method of the controller installation:
     ```
     git clone https://github.com/wallarm/ingress-chart
     ```
-4. Go to the `ingress-chart` directory and install the Wallarm Ingress controller:
+4. Install the Wallarm Ingress controller:
     ```
-    cd ..
-    helm install --set wallarm.enabled=true,wallarm.token="YOUR_CLOUD_NODE_TOKEN",wallarm.apiHost="WALLARM_API_HOST" INGRESS_CONTROLLER_NAME ingress-chart/wallarm-ingress -n KUBERNETES_NAMESPACE
+    helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=<WALLARM_API_HOST> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
    
-    * `YOUR_CLOUD_NODE_TOKEN` is the token value you've received earlier.
-    * `WALLARM_API_HOST` is `api.wallarm.com` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud) or `us1.api.wallarm.com` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud).
-    * `INGRESS_CONTROLLER_NAME` is the name of the Wallarm Ingress controller.
-    * `KUBERNETES_NAMESPACE` is the namespace of your Ingress.
+    * `<YOUR_CLOUD_NODE_TOKEN>` is the token value you've received earlier
+    * `<WALLARM_API_HOST>` is `api.wallarm.com` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud) or `us1.api.wallarm.com` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
+    * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller
+    * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
     
       
 #### Replacing an Existing Controller
@@ -60,13 +59,13 @@ Select the method of the controller installation:
 4. Replace an existing controller:
    
     ```
-    helm upgrade --set wallarm.enabled=true,wallarm.token="YOUR_CLOUD_NODE_TOKEN",wallarm.apiHost="WALLARM_API_HOST" INGRESS_CONTROLLER_NAME KUBERNETES_NAMESPACE --reuse-values
+    helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=<WALLARM_API_HOST> <INGRESS_CONTROLLER_NAME> <KUBERNETES_NAMESPACE> --reuse-values
     ```
    
-    * `YOUR_CLOUD_NODE_TOKEN` is the token value you've received earlier.
-    * `WALLARM_API_HOST` is `api.wallarm.com` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud) or `us1.api.wallarm.com` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud).
-    * `INGRESS_CONTROLLER_NAME` is the name of the Ingress controller to replace,
-    * `KUBERNETES_NAMESPACE` is the namespace of your Ingress.
+    * `<YOUR_CLOUD_NODE_TOKEN>` is the token value you've received earlier
+    * `<WALLARM_API_HOST>` is `api.wallarm.com` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud) or `us1.api.wallarm.com` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
+    * `<INGRESS_CONTROLLER_NAME>` is the name of the Ingress controller to replace
+    * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 
 ### Step 2: Enabling Traffic Analysis for Your Ingress
 
