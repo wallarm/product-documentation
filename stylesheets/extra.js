@@ -100,3 +100,14 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 */
 
 injectScript('https://js.hs-scripts.com/3989912.js');
+
+/*
+* Add LeadLander
+*/
+
+var sf14gv = 27823;
+  (function() {
+    var sf14g = document.createElement('script');
+    sf14g.src = 'https://tracking.leadlander.com/lt.min.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sf14g, s);
+  })();
