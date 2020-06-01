@@ -1,34 +1,29 @@
-# Slack Notifications
+# Slack
 
-You can set up Wallarm to send notifications to your Slack channel for the following events:
+You can set up Wallarm to send real time notifications to your Slack channel for the following events:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 
-## Setting up Notifications
+## Setting up integration
 
 1. Open the **Settings** → **Integrations** tab.
 2. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
+3. Enter an integration name.
+4. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.
+5. Copy the provided Webhook URL and paste the value to the **Webhook URL** field in Wallarm UI.
+6. Choose events to trigger notifications. If the events are not chosen, notifications will not be sent.
+7. Press **Add integration**.
 
-      ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
-3. Go to the [WebHooks](https://my.slack.com/services/new/incoming-webhook/) page.
-4. Select the Slack channel that will receive notifications. Click **Add Incoming WebHooks integration**.
-5. Copy the link and put it in Wallarm into the **WebHook link** field.
-6. Enter the integration name and select the event types you want to be notified of.
-7. Click **Create**.
+      ![!Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
-## Disabling Notifications
+## Updating integration
+
+--8<-- "../include/integrations/update-integration.md"
+
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Email reports and notifications](email.md)
-    * [Telegram reports and notifications](telegram.md)
-    * [OpsGenie notifications](opsgenie.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [PagerDuty notifications](pagerduty.md)
-    * [Splunk notifications](splunk.md)
-    * [Sumo Logic notifications](sumologic.md)

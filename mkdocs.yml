@@ -265,14 +265,14 @@ nav:
       - Activity Log: user-guides/settings/audit-log.md
       - Integrations:
         - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
-        - Email Reports and Notifications: user-guides/settings/integrations/email.md
-        - Slack Notifications: user-guides/settings/integrations/slack.md
-        - Telegram Reports and Notifications: user-guides/settings/integrations/telegram.md
-        - OpsGenie Notifications: user-guides/settings/integrations/opsgenie.md
-        - InsightConnect Notifications: user-guides/settings/integrations/insightconnect.md
-        - PagerDuty Notifications: user-guides/settings/integrations/pagerduty.md
-        - Splunk Notifications: user-guides/settings/integrations/splunk.md
-        - Sumo Logic Notifications: user-guides/settings/integrations/sumologic.md
+        - Email Report: user-guides/settings/integrations/email.md
+        - Slack: user-guides/settings/integrations/slack.md
+        - Telegram: user-guides/settings/integrations/telegram.md
+        - OpsGenie: user-guides/settings/integrations/opsgenie.md
+        - InsightConnect: user-guides/settings/integrations/insightconnect.md
+        - PagerDuty: user-guides/settings/integrations/pagerduty.md
+        - Splunk: user-guides/settings/integrations/splunk.md
+        - Sumo Logic: user-guides/settings/integrations/sumologic.md
     - Guide to Using SSO Authentication to Log in to Wallarm: user-guides/use-sso.md
   - Partner Guide:
     - Introduction: partner-en/partner-intro-en.md

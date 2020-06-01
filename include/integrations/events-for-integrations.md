@@ -1,5 +1,3 @@
-* System-related:
-    * new user created
-    * integration settings changed
-* [Vulnerability](../../../glossary-en.md#vulnerability) detected
-* Network perimeter changed
+* System related: newly added users, deleted or disabled integration
+* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected
+* [Scope](../../scanner/check-scope.md) changed: updates in hosts, services, and domains

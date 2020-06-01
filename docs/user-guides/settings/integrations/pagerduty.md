@@ -1,60 +1,48 @@
 [link-pagerduty-docs]: https://support.pagerduty.com/docs/services-and-integrations
 
-#   PagerDuty Notifications
+#   PagerDuty
 
-You can set up Wallarm to send notifications to PagerDuty for the following events:
+You can set up Wallarm to send real time incidents to PagerDuty when the following events detected:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-##  Setting up Notifications
+##  Setting up integration
 
-In PagerDuty you can [set up an integration][link-pagerduty-docs] for any existing service or create a new service specifically for Wallarm:
+In PagerDuty UI, [set up an integration [link-pagerduty-docs] for any existing service or create a new service specifically for Wallarm:
 
 1. Go to **Configuration** → **Services**.
+2. Open the settings of the existing service or press the **New Service** button.
+3. Create a new integration:
 
-2. Select an existing service by clicking its name to set up an integration for it or create a new service by clicking the **New service** button.
+    *   If you are configuring integrations of the existing service, go to the **Integrations** tab and press the **New Integration** button.
+    *   If you are creating a new service, enter the service name and proceed to the **Integration Settings** section.
+4. Enter the integration name and select the **Use our API directly** option as an integration type.
+5. Save the settings:
 
-3. Create a new integration.
-
-    *   If you are configuring integrations of the existing service, go to the **Integrations** tab and click the **New Integration** button.
-    *   If you are creating a new service, enter the desired name for it into the **Name** field and proceed to the **Integration Settings** section.
+    *   If you are configuring integrations of the existing service, press the **Add Integration** button.
+    *   If you are creating a new service, configure the rest of the settings sections and press the **Add Service** button.
     
-4. Enter the desired name of the integration into the **Integration name** field (e.g. `Wallarm Integration`) and select the **Use our API directly** option as an integration type.
+5. Copy the provided **Integration Key**.
 
-    *   If you are configuring integrations of the existing service, click the **Add Integration** button.
-    *   If you are creating a new service, configure the rest of the settings sections and click the **Add Service** button.
-    
-5. Copy the **Integration Key** that corresponds to the new integration. It will be used later to create an integration on the Wallarm console.
+In Wallarm UI:
 
-To create a PagerDuty integration on the Wallarm console, perform the following actions:
+1. Open **Settings** → **Integrations** tab.
+2. Click the **PagerDuty** block or press the **Add integration** button and choose **PagerDuty**. 
+3. Enter an integration name.
+4. Paste the **Integration Key** value into the appropriate field.
+5. Choose events to trigger notifications. If the events are not chosen, PagerDuty incidents will not be added.
+6. Press **Add integration**.
 
-1. Go to the **Integrations** tab of the **Settings**.
+    ![!PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
-2. Click the **PagerDuty** block or click the **Add integration** button and choose **PagerDuty**.
+## Updating integration
 
-    ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+--8<-- "../include/integrations/update-integration.md"
 
-3. Paste the integration key that was copied from the PagerDuty interface into the **Integration key** field.
-
-4. Enter the integration name and select the event types you want to be notified of.
-
-5. Save the integration by clicking the **Create** button.
-
-You will now receive notifications on your PagerDuty account from the selected Wallarm event types.
-
-## Disabling Notifications
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Email reports and notifications](email.md)
-    * [Slack notifications](slack.md)
-    * [Telegram reports and notifications](telegram.md)
-    * [OpsGenie notifications](opsgenie.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [Splunk notifications](splunk.md)
-    * [Sumo Logic notifications](sumologic.md)

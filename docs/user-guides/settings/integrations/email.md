@@ -1,41 +1,31 @@
-# Email Reports and Notifications
+# Email Report
 
-You can enter email addresses that will be used to deliver scheduled reports and instant notifications for the following events:
+You can set additional email addresses that will be used to deliver scheduled reports and instant notifications. Sending messages to your personal email is configured by default.
 
---8<-- "../include/integrations/events-for-integrations.md"
+* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
+* Notifications are sent in real time and include brief details of the following events:
+    --8<-- "../include/integrations/events-for-integrations.md"
 
-You can also schedule a full report delivery on a daily, weekly, or monthly basis.
-
-!!! info
-    To add the email addresses, you must have the *Administrator* role in the Wallarm system.
-
-
-## Add Email Addresses and Configure Notifications
+## Setting up integration
 
 1. Open **Settings** → **Integrations** tab.
-2. Click the **Email reports** block or click the **Add integration** button and choose **Email reports**. 
+2. Click the **Email report** block or press the **Add integration** button and choose **Email report**. 
+3. Enter an integration name.
+4. Enter email addresses using a comma as a separator.
+5. Choose the frequency of sending security reports. If the frequency is not chosen, reports will not be sent.
+6. Choose events to trigger notifications. If the events are not chosen, notifications will not be sent.
+7. Press **Add integration**.
 
-    ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
-3. Enter email addresses using a comma as a separator.
-4. Enter an integration name.
-5. Choose the notification types and reports you need.
-6. Click **Create**.
+    ![!Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
-Wallarm will now deliver reports and notifications to those email addresses. 
+## Updating integration
 
-## Disabling Reports and Notifications
+--8<-- "../include/integrations/update-integration.md"
+
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Slack notifications](slack.md)
-    * [Telegram reports and notifications](telegram.md)
-    * [OpsGenie notifications](opsgenie.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [PagerDuty notifications](pagerduty.md)
-    * [Splunk notifications](splunk.md)
-    * [Sumo Logic notifications](sumologic.md)

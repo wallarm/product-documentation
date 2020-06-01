@@ -1,35 +1,38 @@
-# OpsGenie Notifications
+# OpsGenie
 
-You can set up Wallarm to send notifications to OpsGenie for the following events:
+You can set up Wallarm to send real time alerts to OpsGenie for the following events:
 
-* [Vulnerability](../../../glossary-en.md#vulnerability) detected
-* [Hit](../../../glossary-en.md#hit) detected
+* [Hits](../../../glossary-en.md#hit) detected
+* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected
 
-## Setting up Notifications
+## Setting up integration
 
-1. Add new **API integration** in OpsGenie Dashboard.
-2. Copy the API key that was generated upon integration creation in OpsGenie to your clipboard.
-3. Go to your Wallarm account → **Settings** → **Integrations** in the [EU](https://my.wallarm.com/settings/integrations/) or [US](https://us1.my.wallarm.com/settings/integrations/) cloud.
-4. Click the **OpsGenie** block or click the **Add integration** button and choose **OpsGenie**.
+In [OpsGenie UI](https://app.opsgenie.com/teams/list):
 
-    ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
-5. Paste the API key that you copied before into the **API key** field.
-6. Enter the integration name and select the event types you want to be notified of.
-7. Click **Create**.
+1. Go to your team ➝ **Integrations**.
+5. Press the **Add integration** button and choose **API**.
+6. Enter the name for a new integration and press **Save Integration**.
+7. Copy the provided API key.
 
-## Disabling Notifications
+In Wallarm UI:
+
+1. Open **Settings** → **Integrations** tab.
+2. Click the **OpsGenie** block or press the **Add integration** button and choose **OpsGenie**.
+3. Enter an integration name.
+4. Paste the copied API key to the **API key** field.
+5. Choose events to trigger notifications. If the events are not chosen, notifications will not be sent.
+6. Press **Add integration**.
+
+    ![!OpsGenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+
+## Updating integration
+
+--8<-- "../include/integrations/update-integration.md"
+
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Email reports and notifications](email.md)
-    * [Slack notifications](slack.md)
-    * [Telegram reports and notifications](telegram.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [PagerDuty notifications](pagerduty.md)
-    * [Splunk notifications](splunk.md)
-    * [Sumo Logic notifications](sumologic.md)

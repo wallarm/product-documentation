@@ -8,7 +8,7 @@ To reduce the amount of noise, you can also configure the parameters of events t
 * [hits](../../glossary-en.md#hit),
 * users added to the account.
 
-To receive notifications an reports, you can use Slack, email, Sumo Logic and other [integrations](../settings/integrations/integrations-intro.md).
+To receive notifications and reports, you can use Slack, email, Sumo Logic and other [integrations](../settings/integrations/integrations-intro.md).
 
 **Trigger Examples**
 
