@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "ansi-escapes": "^4.3.0",
+        "puppeteer": "^2.1.1",
+        "pdf-merger-js": "^3.0.1"
+    }
+}
