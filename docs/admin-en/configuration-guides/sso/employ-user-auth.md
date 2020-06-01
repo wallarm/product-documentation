@@ -7,7 +7,7 @@
 [doc-allow-access-okta]:    okta/allow-access-to-wl.md
 
 [doc-user-sso-guide]:       ../../../user-guides/use-sso.md
-[doc-disable-sso]:          disable-sso-provider.md   
+[doc-disable-sso]:          change-sso-provider.md   
 
 [anchor-enable]:            #enabling-sso-authentication-for-users 
 [anchor-disable]:           #disabling-sso-authentication-for-users      
@@ -41,4 +41,4 @@ To disable SSO authentication for Wallarm users, go to *Settings → Users*. Fin
 After that, the user will be notified by an email that the login using SSO is disabled with a suggestion (link) to restore the password to log in with the login/password pair. In addition, two-factor authentication becomes available to the user.
 
 !!! info "See also"
-    [Disabling and removing the configured SSO provider.][doc-disable-sso]
+    [Changing the configured integration with SSO provider][doc-disable-sso]

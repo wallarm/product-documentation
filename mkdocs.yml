@@ -171,7 +171,7 @@ nav:
           - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
           - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
         - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
-        - Disabling and Removing the Configured SSO Provider: admin-en/configuration-guides/sso/disable-sso-provider.md 
+        - Changing the Configured Integration with SSO Provider: admin-en/configuration-guides/sso/change-sso-provider.md 
     - Integration:
       - Configuring a Failover Method: admin-en/configure-backup-en.md
       - Using a Mirrored Wallarm Repository:

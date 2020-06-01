@@ -8,7 +8,7 @@
 [doc-user-sso-guide]:               ../../../../user-guides/use-sso.md
 
 [doc-employ-sso]:                   ../employ-user-auth.md
-[doc-disable-sso]:                  ../disable-sso-provider.md
+[doc-disable-sso]:                  ../change-sso-provider.md
 
 [link-okta]:                        https://www.okta.com/
 
@@ -35,4 +35,4 @@ After that, [configure SSO authentication][doc-employ-sso] for Wallarm users.
 
 !!! info "See also"
     *   [User guide][doc-user-sso-guide] to using SSO authentication to log in to Wallarm.
-    *   [Disabling and removing the configured SSO provider.][doc-disable-sso]
+    *   [Changing the configured integration with SSO provider][doc-disable-sso]
