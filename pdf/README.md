@@ -21,7 +21,4 @@ Run this command in the project root directory:
 $ node pdf
 ```
 
-Wait until the generation process is done. Then you can see a `index.pdf` and `docs.pdf` in the `tmp/` directory.
-You need to manually merge this files. The reason two separated files are created is because margins and header/footer
-in the index page and other pages are different. And there is no automatic merge due to broken ToC links during
-the merging process. On Mac OS, it is super easy to copy and paste the index page into the main content.
+Wait until the generation process is done. Then you can find the `en-waf-documentation.pdf` file in the `tmp/` directory.
