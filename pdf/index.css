@@ -1,0 +1,101 @@
+body {
+    display: initial;
+}
+
+.markdown-section {
+    overflow: visible;
+}
+
+.pdf-index {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.75em;
+    color: #333;
+}
+
+.pdf-index-logo {
+    width: 300px;
+    margin-bottom: 75px;
+}
+
+.pdf-page-break {
+    break-after: page;
+}
+
+h1, h2, h3,
+p, img, pre,
+.callout {
+    break-inside: avoid;
+}
+
+/* Table of Contents*/
+
+#toc {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12.8px;
+}
+
+#toc a {
+    color: blue;
+}
+
+#toc li {
+    margin: 0 0 0.5em 0;
+    padding: 0;
+    list-style: none;
+}
+
+#toc li.chapter {
+    margin-top: 0.5em;
+}
+
+#toc li.depth {
+    margin-left: 60px;
+}
+
+#toc li.depth-0 {
+    margin-left: 0;
+    font-weight: bold;
+}
+
+#toc li.depth-1 {
+    margin-left: 20px;
+}
+
+#toc li.depth-2 {
+    margin-left: 40px;
+}
+
+#toc li.depth-3 {
+    margin-left: 60px;
+}
+
+#toc li.depth-4 {
+    margin-left: 80px;
+}
+
+#toc li.depth-5 {
+    margin-left: 100px;
+}
+
+#toc li.depth-6 {
+    margin-left: 120px;
+}
+
+/* Turn termtabs to flat list */
+
+.termtabs .termtabs-body .tab {
+    display: block;
+}
+
+.termtabs .termtabs-body .label {
+    font-size: 12px;
+    color: #a6a6a6;
+}
