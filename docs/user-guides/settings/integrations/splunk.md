@@ -1,47 +1,39 @@
-#   Splunk Notifications
+#   Splunk
 
-You can set up Wallarm to send notifications to Splunk for the following events:
+You can set up Wallarm to send alerts to Splunk when the following events are triggered:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-##  Setting up Notifications
+##  Setting up integration
 
-Perform the following actions in the Splunk interface:
+In Splunk UI:
 
-1.  Proceed to the **Settings** → **Add data** menu section.
-2.  Select **Monitor** to proceed to the **Select Source** step.
-3.  Select **HTTP Event Collector** and enter the integration name into the **Name** field. All other fields are optional.
-4.  Press the **Next** button to proceed to the **Input Settings** step.
-5.  On the **Input Settings** step, you can keep the default configuration and click the **Review** button.
-6.  On the **Review** step, check the correctness of the configuration. Click the **Submit** button to confirm the settings and proceed to the **Done** step.
-7.  The generated token is displayed in the **Token Value** field on the **Done** step. Copy it to the clipboard to enter it into the **HEC Token** field when later creating a Splunk integration in the Wallarm interface.
+1. Open the **Settings** ➝ **Add Data** page and select **Monitor**.
+2. Select the **HTTP Event Collector** option, enter an integration name and press **Next**.
+3. Skip choosing the data type at the **Input Settings** page and continue to **Review Settings**.
+4. Review and **Submit** the settings.
+5. Copy the provided token.
 
-Perform the following actions in the Wallarm interface:
+In Wallarm UI:
 
-1. Proceed to the **Integrations** tab of the **Settings** section.
-2. Click the **Splunk** block or click the **Add integration** button and choose **Splunk**.
+1. Open **Settings** → **Integrations** tab.
+2. Click the **Splunk** block or press the **Add integration** button and choose **Splunk**.
+3. Enter an integration name.
+4. Paste the copied token into the **HEC token** field.
+5. Paste HEC URI and the port number of your Splunk instance into the **HEC URI:PORT** field. For example: `https://hec.splunk.com:8088`.
+6. Choose event types to trigger notifications. If the events are not chosen, Splunk alerts will not be sent.
+7. Press **Add integration**.
 
-      ![!Adding integration via the button](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
-3. Paste the token value generated in Splunk into the **HEC Token** field.
-4. Paste the URL of your Splunk instance into the **API URL** field. For example, if you are using the Splunk cloud, the URL should be similar to the following: `https://prd-p-tj2xx2f2xntv.cloud.splunk.com`.
-5. Enter the integration name and select the event types you want to be notified of.
-6. Click **Create**.
+![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
-Now notifications for events of the selected types will appear in Splunk.
+## Updating integration
 
-## Disabling Notifications
+--8<-- "../include/integrations/update-integration.md"
+
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Email reports and notifications](email.md)
-    * [Slack notifications](slack.md)
-    * [Telegram reports and notifications](telegram.md)
-    * [OpsGenie notifications](opsgenie.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [PagerDuty notifications](pagerduty.md)
-    * [Sumo Logic notifications](sumologic.md)

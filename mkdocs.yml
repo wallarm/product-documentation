@@ -171,7 +171,7 @@ nav:
           - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
           - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
         - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
-        - Disabling and Removing the Configured SSO Provider: admin-en/configuration-guides/sso/disable-sso-provider.md 
+        - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
     - Integration:
       - Configuring a Failover Method: admin-en/configure-backup-en.md
       - Using a Mirrored Wallarm Repository:
@@ -265,15 +265,15 @@ nav:
       - Activity Log: user-guides/settings/audit-log.md
       - Integrations:
         - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
-        - Email Reports and Notifications: user-guides/settings/integrations/email.md
-        - Slack Notifications: user-guides/settings/integrations/slack.md
-        - Telegram Reports and Notifications: user-guides/settings/integrations/telegram.md
-        - OpsGenie Notifications: user-guides/settings/integrations/opsgenie.md
-        - InsightConnect Notifications: user-guides/settings/integrations/insightconnect.md
-        - PagerDuty Notifications: user-guides/settings/integrations/pagerduty.md
-        - Splunk Notifications: user-guides/settings/integrations/splunk.md
-        - Sumo Logic Notifications: user-guides/settings/integrations/sumologic.md
-    - Guide to Using SSO Authentication to Log in to Wallarm: user-guides/use-sso.md
+        - Email Report: user-guides/settings/integrations/email.md
+        - Slack: user-guides/settings/integrations/slack.md
+        - Telegram: user-guides/settings/integrations/telegram.md
+        - OpsGenie: user-guides/settings/integrations/opsgenie.md
+        - InsightConnect: user-guides/settings/integrations/insightconnect.md
+        - PagerDuty: user-guides/settings/integrations/pagerduty.md
+        - Splunk: user-guides/settings/integrations/splunk.md
+        - Sumo Logic: user-guides/settings/integrations/sumologic.md
+    - Using single sign-on to Wallarm portal: user-guides/use-sso.md
   - Partner Guide:
     - Introduction: partner-en/partner-intro-en.md
     - Signing up with Wallarm: partner-en/partner-signup-en.md

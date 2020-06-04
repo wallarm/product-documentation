@@ -1,6 +1,6 @@
-[integration-pane-img]:         ../../../images/user-guides/settings/integration-pane.png
-[add-integration-img]:          ../../../images/user-guides/settings/add-integration-button.png
-[disable-button]:               ../../../images/user-guides/settings/disable-button.png
+[integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
+[add-integration-img]:          ../../../images/user-guides/settings/integrations/add-integration-button.png
+[disable-button]:               ../../../images/user-guides/settings/integrations/disable-button.png
 
 [email-notifications]:          ./email.md
 [slack-notifications]:          ./slack.md
@@ -12,29 +12,54 @@
 [sumologic-notifications]:      ./sumologic.md
 [account]:                      ../account.md
 
-#   Integrations Overview
+# Integrations Overview
 
-The **Integrations** tab of the **Settings** section allows you to configure reports and notifications on various events.
+The **Settings** → **Integrations** tab allows you to integrate with different systems to get scheduled reports and instant notifications through them:
 
-All integrations are divided into the following blocks:
-*   **Reports**:
-    *   Personal — the reports that are sent to your email. You can also configure these reports on the [**Profile**][account] tab of the **Settings** section.
-    *   [Email reports][email-notifications]
-    *   [Slack][slack-notifications] notifications
-    *   [Telegram][telegram-notifications] notifications
-*   **Incident management and SIEM systems**:
-    *   [OpsGenie][opsgenie-notifications] notifications
-    *   [InsightConnect][insightconnect-notifications] notifications
-    *   [PagerDuty][pagerduty-notifications] notifications
-    *   [Splunk][splunk-notifications] notifications
-    *   [Sumo Logic][sumologic-notifications] notifications
+* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
+* Notifications are sent when vulnerabilities, hits, scope changes, or system related events are detected in your system. Notifications include brief details of detected activity.
+
+!!! info "Administrator access"
+    The integration setup is available only for users with the **Administrator** role.
+
+## Integration types
+
+The systems available for integration are grouped in the following blocks: **Email and messengers** and **Incident management and SIEM systems**.
 
 ![!Integrations Overview][integration-pane-img]
 
-You can use the **Add integration** button to add new integrations in addition to the displayed blocks.
+### Email and messengers
+
+* **Personal email** — the reports and notifications that are sent to the email indicated upon registration. You can also configure these notifications on the [**Profile**][account] tab.
+* [Email report][email-notifications]
+* [Slack][slack-notifications]
+* [Telegram][telegram-notifications]
+
+### Incident management and SIEM systems
+
+* [OpsGenie][opsgenie-notifications]
+* [InsightConnect][insightconnect-notifications]
+* [PagerDuty][pagerduty-notifications]
+* [Splunk][splunk-notifications]
+* [Sumo Logic][sumologic-notifications]
+
+## Adding an integration
+
+To add a new integration, click the icon of the unconfigured system on the **All** tab or press the **Add integration** button and select the required system. Further steps are described in the selected system instructions.
 
 ![!Adding Integrations][add-integration-img]
 
-You can use the **All**, **Enabled**, and **Disabled** tabs to filter the displayed integrations.
+The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
+
+## Filtering integrations
+
+To filter displayed integrations, you can use the tabs:
+
+* **All** with enabled, disabled and not yet configured integrations
+* **Enabled** with active configured integrations
+* **Disabled** with disabled configured integrations
 
 ![!Filtering Integrations][disable-button]
+
+!!! info "Advanced notifications setup"
+    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).

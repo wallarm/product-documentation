@@ -1,43 +1,34 @@
-# Telegram Reports and Notifications
+# Telegram
 
-You can set up Wallarm to send notifications to Telegram for the following events:
+You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
 
---8<-- "../include/integrations/events-for-integrations.md"
+* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
+* Notifications include brief details of triggered events:
+    --8<-- "../include/integrations/events-for-integrations.md"
 
-You can also schedule a full report delivery on a daily, weekly, or monthly basis.
-
-## Setting up Reports and Notifications
+## Setting up integration
 
 1. Open the **Settings** → **Integrations** tab.
 2. Click the **Telegram** block or click the **Add integration** button and choose **Telegram**.
+3. Add [@WallarmBot](https://t.me/WallarmBot) to the Telegram group receiving Wallarm notifications and follow the authentication link.
+4. After redirection to Wallarm UI, authenticate WallarmBot.
+5. Enter an integration name.
+6. Choose the frequency of sending security reports. If the frequency is not chosen, reports will not be sent.
+7. Choose event types to trigger notifications. If the events are not chosen, notifications will not be sent.
+8. Press **Add integration**.
 
-    ![!Adding integration via the button](../../../images/user-guides/settings/add-integration-button.png)
-3. Click **Open bot**.
+    ![!Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
-    !!! info
-        If clicking the *Open bot* button did not open the Telegram chat with the bot, try using the [link](tg://resolve?domain=WallarmBot).
-4. In the new Telegram chat with the bot, click `/start`. The Wallarm bot will create a unique link.
-5. Click the created link. Click **Authorize**.
-6. Set the notification events and the report recurrence.
-7. Click **Save**.
+You can also start the chat with [@WallarmBot](https://t.me/WallarmBot) directly. WallarmBot will send reports and notifications as well.
 
-The selected notifications and reports will now be sent to Telegram.
+## Updating integration
 
-You can also add @WallarmBot to any of your chats. The notifications will be sent to the chat as well.
+--8<-- "../include/integrations/update-integration.md"
 
-## Disabling Reports and Notifications
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
-
-!!! info "See also"
-    * [Email reports and notifications](email.md)
-    * [Slack notifications](slack.md)
-    * [OpsGenie notifications](opsgenie.md)
-    * [InsightConnect notifications](insightconnect.md)
-    * [PagerDuty notifications](pagerduty.md)
-    * [Splunk notifications](splunk.md)
-    * [Sumo Logic notifications](sumologic.md)
