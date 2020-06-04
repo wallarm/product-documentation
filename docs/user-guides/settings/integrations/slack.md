@@ -1,6 +1,6 @@
 # Slack
 
-You can set up Wallarm to send real time notifications to your Slack channel for the following events:
+You can set up Wallarm to send notifications to your Slack channel when the following events are triggered:
 
 --8<-- "../include/integrations/events-for-integrations.md"
 

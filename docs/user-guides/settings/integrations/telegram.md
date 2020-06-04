@@ -3,7 +3,7 @@
 You can set up Wallarm to send scheduled reports and instant notifications to Telegram.
 
 * Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-* Notifications are sent in real time and include brief details of the following events:
+* Notifications include brief details of triggered events:
     --8<-- "../include/integrations/events-for-integrations.md"
 
 ## Setting up integration

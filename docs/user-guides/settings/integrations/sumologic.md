@@ -1,6 +1,6 @@
 # Sumo Logic
 
-You can set up Wallarm to write real time Sumo Logic logs when the following events detected:
+You can set up Wallarm to write Sumo Logic logs when the following events are triggered:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 

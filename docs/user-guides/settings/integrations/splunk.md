@@ -1,6 +1,6 @@
 #   Splunk
 
-You can set up Wallarm to send real time alerts to Splunk for the following events:
+You can set up Wallarm to send alerts to Splunk when the following events are triggered:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 

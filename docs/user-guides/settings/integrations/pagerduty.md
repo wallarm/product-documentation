@@ -2,7 +2,7 @@
 
 #   PagerDuty
 
-You can set up Wallarm to send real time incidents to PagerDuty when the following events detected:
+You can set up Wallarm to send incidents to PagerDuty when the following events are triggered:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 

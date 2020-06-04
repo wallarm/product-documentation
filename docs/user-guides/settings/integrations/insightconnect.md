@@ -1,6 +1,6 @@
 # InsightConnect
 
-You can set up Wallarm to send real time notifications to InsightConnect for the following events:
+You can set up Wallarm to send notifications to InsightConnect when the following events are triggered:
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 

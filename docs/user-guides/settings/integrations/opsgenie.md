@@ -1,6 +1,6 @@
 # OpsGenie
 
-You can set up Wallarm to send real time alerts to OpsGenie for the following events:
+You can set up Wallarm to send alerts to OpsGenie when following events are triggered:
 
 * [Hits](../../../glossary-en.md#hit) detected
 * [Vulnerabilities](../../../glossary-en.md#vulnerability) detected
