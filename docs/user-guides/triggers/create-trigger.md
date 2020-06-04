@@ -47,9 +47,11 @@ A reaction is an action that should be performed if the specified condition and 
 * Slack
 * Telegram
 * OpsGenie
+* InsightConnect
 * PagerDuty
 * Splunk
 * Sumo Logic
+* Webhook
 
 To add a reaction:
 1. Set up integrations with email, messengers and incident management or SIEM systems as described in the [instruction](../settings/integrations/integrations-intro.md). To use already existing integration, skip this step.

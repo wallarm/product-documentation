@@ -10,6 +10,7 @@
 [pagerduty-notifications]:      ./pagerduty.md
 [splunk-notifications]:         ./splunk.md
 [sumologic-notifications]:      ./sumologic.md
+[webhook-notifications]:      ./webhook.md
 [account]:                      ../account.md
 
 # Integrations Overview
@@ -24,7 +25,7 @@ The **Settings** → **Integrations** tab allows you to integrate with different
 
 ## Integration types
 
-The systems available for integration are grouped in the following blocks: **Email and messengers** and **Incident management and SIEM systems**.
+The systems available for integration are grouped in the following blocks: **Email and messengers**, **Incident management and SIEM systems** and **Other systems**.
 
 ![!Integrations Overview][integration-pane-img]
 
@@ -42,6 +43,10 @@ The systems available for integration are grouped in the following blocks: **Ema
 * [PagerDuty][pagerduty-notifications]
 * [Splunk][splunk-notifications]
 * [Sumo Logic][sumologic-notifications]
+
+### Other systems
+
+* [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol
 
 ## Adding an integration
 
