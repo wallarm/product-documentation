@@ -41,4 +41,4 @@ To disable SSO authentication for Wallarm users, go to *Settings → Users*. Fin
 After that, the user will be notified by an email that the login using SSO is disabled with a suggestion (link) to restore the password to log in with the login/password pair. In addition, two-factor authentication becomes available to the user.
 
 !!! info "See also"
-    [Changing the configured integration with SSO provider][doc-disable-sso]
+    [Changing the configured SSO authentication][doc-disable-sso]

@@ -1,4 +1,4 @@
-#   Changing the Configured Integration with SSO Provider
+#   Changing the Configured SSO Authentication
 
 [img-disable-sso-provider]:     ../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
 
@@ -9,14 +9,14 @@
 [anchor-disable]:   #disabling
 [anchor-remove]:    #removing
 
-You can [edit][anchor-edit], [disable][anchor-disable] or [remove][anchor-remove] configured SSO provider.
+You can [edit][anchor-edit], [disable][anchor-disable] or [remove][anchor-remove] configured SSO authentication.
 
 !!! warning "Attention: SSO will be disabled for all users"
     Note that when you disable or remove SSO authentication, it will be disabled for all users. Users will be notified that SSO authentication is disabled and the password needs to be restored.
 
 ## Editing
 
-To edit configured SSO integration:
+To edit configured SSO authentication:
 
 1. Go to **Settings → Integration** in Wallarm UI.
 2. Select the **Edit** option in configured SSO provider menu.

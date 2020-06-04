@@ -35,4 +35,4 @@ After that, [configure SSO authentication][doc-employ-sso] for Wallarm users.
 
 !!! info "See also"
     *   [User guide][doc-user-sso-guide] to using SSO authentication to log in to Wallarm.
-    *   [Changing the configured integration with SSO provider][doc-disable-sso]
+    *   [Changing the configured SSO authentication][doc-disable-sso]
