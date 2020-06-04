@@ -273,7 +273,7 @@ nav:
         - PagerDuty: user-guides/settings/integrations/pagerduty.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
-    - Guide to Using SSO Authentication to Log in to Wallarm: user-guides/use-sso.md
+    - Using single sign-on to Wallarm portal: user-guides/use-sso.md
   - Partner Guide:
     - Introduction: partner-en/partner-intro-en.md
     - Signing up with Wallarm: partner-en/partner-signup-en.md

@@ -7,9 +7,9 @@
 [link-okta]:        https://www.okta.com/
 
 
-#   Guide to Using SSO Authentication to Log in to Wallarm
+#   Using single sign-on to Wallarm portal
 
-This guide will cover the process of user authentication on the Wallarm portal using Single Sign-On (SSO) technology.
+This guide will cover the process of user authentication on the Wallarm portal using Single Sign‑On (SSO) technology.
 
 !!! info "Prerequisites"
     If SSO authentication was enabled and your account role is not *Admin*, then you can now only use SSO authentication to log in to the Wallarm portal.

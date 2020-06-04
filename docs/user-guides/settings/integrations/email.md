@@ -13,7 +13,7 @@ You can set additional email addresses that will be used to deliver scheduled re
 3. Enter an integration name.
 4. Enter email addresses using a comma as a separator.
 5. Choose the frequency of sending security reports. If the frequency is not chosen, reports will not be sent.
-6. Choose events to trigger notifications. If the events are not chosen, notifications will not be sent.
+6. Choose event types to trigger notifications. If the events are not chosen, notifications will not be sent.
 7. Press **Add integration**.
 
     ![!Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)

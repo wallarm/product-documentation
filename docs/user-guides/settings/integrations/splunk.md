@@ -4,7 +4,7 @@ You can set up Wallarm to send alerts to Splunk when the following events are tr
 
 --8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-##  Setting up Notifications
+##  Setting up integration
 
 In Splunk UI:
 
@@ -21,7 +21,7 @@ In Wallarm UI:
 3. Enter an integration name.
 4. Paste the copied token into the **HEC token** field.
 5. Paste HEC URI and the port number of your Splunk instance into the **HEC URI:PORT** field. For example: `https://hec.splunk.com:8088`.
-6. Choose events to trigger notifications. If the events are not chosen, Splunk alerts will not be sent.
+6. Choose event types to trigger notifications. If the events are not chosen, Splunk alerts will not be sent.
 7. Press **Add integration**.
 
 ![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
@@ -30,10 +30,10 @@ In Wallarm UI:
 
 --8<-- "../include/integrations/update-integration.md"
 
-## Disabling Notifications
+## Disabling integration
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Removing Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"

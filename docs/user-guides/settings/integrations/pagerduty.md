@@ -30,7 +30,7 @@ In Wallarm UI:
 2. Click the **PagerDuty** block or press the **Add integration** button and choose **PagerDuty**. 
 3. Enter an integration name.
 4. Paste the **Integration Key** value into the appropriate field.
-5. Choose events to trigger notifications. If the events are not chosen, PagerDuty incidents will not be added.
+5. Choose event types to trigger notifications. If the events are not chosen, PagerDuty incidents will not be added.
 6. Press **Add integration**.
 
     ![!PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)

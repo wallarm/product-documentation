@@ -14,7 +14,7 @@ You can set up Wallarm to send scheduled reports and instant notifications to Te
 4. After redirection to Wallarm UI, authenticate WallarmBot.
 5. Enter an integration name.
 6. Choose the frequency of sending security reports. If the frequency is not chosen, reports will not be sent.
-7. Choose events to trigger notifications. If the events are not chosen, notifications will not be sent.
+7. Choose event types to trigger notifications. If the events are not chosen, notifications will not be sent.
 8. Press **Add integration**.
 
     ![!Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
@@ -29,6 +29,6 @@ You can also start the chat with [@WallarmBot](https://t.me/WallarmBot) directly
 
 --8<-- "../include/integrations/disable-integration.md"
 
-## Deleting Integration
+## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
