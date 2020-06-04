@@ -65,7 +65,7 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
         "domain": "www.example.com",
         "threat": "Low",
         "link": "https://my.wallarm.com/object/282157",
-        "summary": "Обнаружена новая уязвимость"
+        "summary": "New vulnerability identified"
     }
     ]
     ```
