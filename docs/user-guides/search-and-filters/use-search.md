@@ -20,7 +20,7 @@
 [al-sqli]:                ../../attacks-vulns-list.md#sql-injection
 [al-xss]:                 ../../attacks-vulns-list.md#cross-site-scripting-xss
 [al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]:         ../../attacks-vulns-list.md#brute-force-attack
+[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
 [al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
@@ -50,7 +50,7 @@ Examples of search requests:
 * `attacks today`: to search for all attacks that happened today.
 * `vulns sqli`: to search for [SQL-injection][al-sqli] vulnerabilities.
 * `vulns 01/01/2019-01/10/2019`: to search for vulnerabilities within a certain period of time.
-* `xss 01/14/2019`: to search for all vulnerabilities, suspicions, attacks, and incidents of [cross-site scripting][al-xss] on 14 January 2019.
+* `xss 01/14/2019`: to search for all vulnerabilities, suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 January 2019.
 * `p:xss 01/14/2019`: to search for all vulnerabilities, suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. http://localhost/?xss=attack-here) as of 14 January 2019.
 * `attacks 2-9/2018`: to search for all attacks from February to September 2018.
 * `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks, incidents, and vulnerabilities on `/catalog/import.php` path since yesterday.
@@ -201,7 +201,7 @@ To set a required range of IP addresses, you can use
 
 It is possible to search by the total number of IP addresses that are related to an attack or an incident (only for attacks and incidents):
 *   `ip:1000+ last month`—search for attacks and incidents over the past month for which the number of unique IP addresses is more than 1000 (equivalent to `attacks incidents ip:1000+ last month`).
-*   `xss ip:100+`—search for all cross-site scripting attacks and incidents. The search result will be empty if the number of attacking IP addresses (with the XSS attack type) is less than 100.
+*   `xss ip:100+`—search for all cross‑site scripting attacks and incidents. The search result will be empty if the number of attacking IP addresses (with the XSS attack type) is less than 100.
 *   `xss p:id ip:100+`—search for all XSS attacks and incidents related to the id parameter (`?id=aaa`). This will return results only if the number of different IP addresses exceeds 100.
 
 ### Search by Server Response Status

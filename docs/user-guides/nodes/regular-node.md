@@ -1,6 +1,6 @@
 # Regular WAF nodes
 
-Regular WAF node is used in Linux-based, Kubernetes sidecar and Docker-based deployments.
+Regular WAF node is used in Linux‑based, Kubernetes sidecar and Docker‑based deployments.
 
 ## Creating WAF node
 

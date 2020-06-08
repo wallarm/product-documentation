@@ -32,4 +32,4 @@ After that you will receive a message that the status of the service has been up
 
 ##  Setup Complete
 
-This completes the configuration of the G Suite-based SSO, and now you can start configuring the [user specific][doc-use-user-auth] SSO authentication on the Wallarm side.
+This completes the configuration of the G Suite‑based SSO, and now you can start configuring the [user specific][doc-use-user-auth] SSO authentication on the Wallarm side.

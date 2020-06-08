@@ -31,7 +31,7 @@ In the *Scope* block of the *Scanner* tab, the elements are shown in three colum
 If Wallarm can determine which data center the given IP address belongs to, then the corresponding tag will be displayed to the right of the element or group of elements: the “AWS” tag for Amazon, the “GCP” tag for Google and the “Azure” tag for Microsoft data centers.
 
 !!! info
-    By default, the scope scanning starts with the domain of the e-mail address that was specified upon Wallarm account creation.
+    By default, the scope scanning starts with the domain of the email address that was specified upon Wallarm account creation.
 
 The elements' names displayed in bold font correspond with the group of observed resources. The number of resources the certain group contains is shown in small grey font near its name. Click the group name to expand the list of the resources it contains.
 

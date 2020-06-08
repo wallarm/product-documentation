@@ -1,6 +1,6 @@
 # Cloud WAF nodes
 
-Cloud WAF node is used in cloud-based deployments on Amazon AWS, Google Cloud Platform, Heroku, and in Kubernetes Ingress controller deployments.
+Cloud WAF node is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, Heroku, and in Kubernetes Ingress controller deployments.
 
 ## Creating WAF node
 

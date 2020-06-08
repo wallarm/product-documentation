@@ -1,6 +1,6 @@
 # Wallarm Overview
 
-Wallarm is a DevOps-friendly Web Application Firewall (WAF) uniquely suited to protect your cloud applications and APIs.
+Wallarm is a DevOps‑friendly Web Application Firewall (WAF) uniquely suited to protect your cloud applications and APIs.
 
 Wallarm's hybrid architecture safeguards your resources by offering:
 
@@ -22,7 +22,7 @@ Wallarm does the following:
 
 - _Protects_
 
-    Blocks unauthorized access, evaluates attacks, and alerts on high-risk attempts targeted at the validated vulnerabilities. Applies virtual patches.
+    Blocks unauthorized access, evaluates attacks, and alerts on high‑risk attempts targeted at the validated vulnerabilities. Applies virtual patches.
 	
 - _Verifies_
 

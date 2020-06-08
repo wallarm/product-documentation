@@ -1,8 +1,8 @@
 # Installing as a Dynamic Module for NGINX
 
 !!! warning "Commercial NGINX Plus and Open Source NGINX"
-    This instruction addresses the filter node installation as a dynamic module for the open-source `stable` NGINX.
-    Wallarm module for NGINX does not work with the `mainline` version of open-source NGINX.
+    This instruction addresses the filter node installation as a dynamic module for the open‑source `stable` NGINX.
+    Wallarm module for NGINX does not work with the `mainline` version of open‑source NGINX.
 
     If you are running the commercial NGINX Plus, you need a different set of instructions. See [Installing with NGINX Plus](installation-nginxplus-en.md).
 
@@ -28,7 +28,7 @@ With your support request, provide the following information provided by the out
   * [NGINX official build](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
   * NGINX custom build: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
 
-* The user (and the user's group) who is running the NGINX worker processes: `grep -w 'user' <path to the NGINX configuration files/nginx.conf>`
+* The user (and the user's group) who is running the NGINX worker processes: `grep ‑w 'user' <path‑to‑the‑NGINX‑configuration‑files/nginx.conf>`
 
 ## Installation Options
 

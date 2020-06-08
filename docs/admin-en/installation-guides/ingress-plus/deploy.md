@@ -40,9 +40,9 @@ To deploy the Ingress controller, do the following:
 
     
 !!! info "RBAC support"
-    If a Role-Based Access Control (RBAC) mechanism is enabled in your Kubernetes cluster, you should perform additional steps to get your Ingress controller properly configured. This guide will provide you with the basic configurations for either RBAC-enabled clusters or RBAC-disabled clusters.
+    If a Role‑Based Access Control (RBAC) mechanism is enabled in your Kubernetes cluster, you should perform additional steps to get your Ingress controller properly configured. This guide will provide you with the basic configurations for either RBAC-enabled clusters or RBAC-disabled clusters.
     
-    If your cluster has the RBAC configured in a specific way or if you need additional information about role-based cluster access management, refer to the official Kubernetes [documentation][link-kubernetes-docs-rbac]. If you use a Kubernetes cluster from a cloud service provider, you could refer to the provider’s documentation as well.
+    If your cluster has the RBAC configured in a specific way or if you need additional information about role‑based cluster access management, refer to the official Kubernetes [documentation][link-kubernetes-docs-rbac]. If you use a Kubernetes cluster from a cloud service provider, you could refer to the provider’s documentation as well.
 
 ##  1.  Setting up the Deployment Environment
 

@@ -11,11 +11,11 @@ To see your profile data and settings, proceed to *Settings* → *Profile* tab.
 
 In your profile, you can check your account information.
 
-* Your *E-mail* is shown in large font at the top of the page.
-* Your *Role* in the Wallarm system&nbsp;— **Admin**, **Analyst**, or **Deploy** is shown right below your e-mail.
+* Your *Email* is shown in large font at the top of the page.
+* Your *Role* in the Wallarm system&nbsp;— **Admin**, **Analyst**, or **Deploy** is shown right below your email.
 * *Name & phone*.
 * *Date & time format*: your preferred date and time format to be used in the Wallarm system.
-* *E-mail reports*: your preferred reports frequency and reported events.
+* *Email reports*: your preferred reports frequency and reported events.
 * *Security*: your last password data change and Two-Factor authentication status.
 * *Recent sign in*: your sign-in history in the Wallarm system.
 
@@ -68,4 +68,4 @@ The password is required if you want to turn two-factor authentication off.
 ![!Two-factor authentication page overview][img-2fa-page]
 
 !!! info "Compatibility"
-    You can use any application or device that supports Time-Based One-Time Password Algorithm (RFC6238) to generate one-time codes.
+    You can use any application or device that supports Time‑Based One‑Time Password Algorithm (RFC6238) to generate one‑time codes.

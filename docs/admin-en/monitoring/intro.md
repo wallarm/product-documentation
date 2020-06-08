@@ -1,6 +1,6 @@
 [link-collectd]:            https://collectd.org/
 
-[av-bruteforce]:            ../../attacks-vulns-list.md#brute-force-attack
+[av-bruteforce]:            ../../attacks-vulns-list.md#bruteforce-attack
 [doc-postanalitycs]:        ../installation-postanalytics-en.md
 
 [link-collectd-naming]:     https://collectd.org/wiki/index.php/Naming_schema
@@ -151,7 +151,7 @@ You can collect metrics from a filter node in several ways:
 
 *   [By exporting data via `collectd-nagios`][doc-collectd-nagios].
   
-    This [utility][link-collectd-nagios] receives the value of the given metric from `collectd` and presents it in a [Nagios-compatible format][link-nagios-format].
+    This [utility][link-collectd-nagios] receives the value of the given metric from `collectd` and presents it in a [Nagios‑compatible format][link-nagios-format].
   
     You can export metrics to [Nagios][link-nagios] or [Zabbix][link-zabbix] monitoring systems by employing this utility.
   

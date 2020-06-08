@@ -77,7 +77,7 @@ Start by copying the buildpack's [default configuration file](https://github.com
 
 ### Application and Dyno Coordination
 
-The buildpack will not start NGINX with the Wallarm module until a file is written to `/tmp/app-initialized`. Since NGINX binds to the dyno's $PORT and since $PORT determines if the app can receive traffic, you can delay NGINX traffic reception until your application is ready to handle it. The examples below show how and when you should write the file when working with Unicorn.
+The buildpack will not start NGINX with the Wallarm module until a file is written to `/tmp/app‑initialized`. Since NGINX binds to the dyno's $PORT and since $PORT determines if the app can receive traffic, you can delay NGINX traffic reception until your application is ready to handle it. The examples below show how and when you should write the file when working with Unicorn.
 
 ## Filter Node Setup Example
 

@@ -21,7 +21,7 @@ There are two ways to pass the identity provider metadata (in this case Okta) to
 
     Click the *Enter manually* link and copy the Okta service parameters to the fields of the setup wizard as follows:
     
-    *   **Identity Provider Single Sign-On URL** to the **Identity provider SSO URL** field.
+    *   **Identity Provider Single Sign‑On URL** to the **Identity provider SSO URL** field.
     *   **Identity Provider Issuer** to the **Identity provider issuer** field.
     *   **X.509 Certificate** to the **X.509 Certificate** field.
     

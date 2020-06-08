@@ -8,7 +8,7 @@ If the [SELinux][link-selinux] mechanism is enabled on a host with a filter node
 * It will not be possible to export filter node metrics to monitoring systems via the TCP protocol (see [“Monitoring the Filter Node”][doc-monitoring]).  
 
 
-SELinux is installed and enabled by default on RedHat-based Linux distributions (e.g., CentOS or Amazon Linux 2). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.  
+SELinux is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.  
 
 It is mandatory to either disable SELinux or configure SELinux so it does not disrupt the filter node operation.
 

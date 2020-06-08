@@ -34,7 +34,7 @@ To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mir
     !!! warning "Important!"
         Make sure to remove the `<PATH_TO_REPODATA_FOLDER>` fragment from the `baseurl` parameter so that the `baseurl` points to the root of the repository.
     
-    An example of the `/etc/yum.repos.d/artifactory.repo` file for the `wallarm-centos-upload-local` sample repository:
+    An example of the `/etc/yum.repos.d/artifactory.repo` file for the `wallarm‑centos‑upload‑local` sample repository:
 
     ```bash
     [Artifactory]

@@ -5,9 +5,9 @@
 [doc-envoy-fine-tuning]:    ../../configuration-guides/envoy/fine-tuning.md
 
 
-#   Installing with Docker (Using the Envoy-Based Docker Image)
+#   Installing with Docker (Using the Envoy‑Based Docker Image)
 
-An Envoy-based filter node can be deployed as a Docker container. This Docker container is a thick one and contains all the subsystems of the filter node.
+An Envoy‑based filter node can be deployed as a Docker container. This Docker container is a thick one and contains all the subsystems of the filter node.
 
 ##  Quick Deployment Procedure
 
@@ -109,7 +109,7 @@ When in the simplified configuration mode, a filter node automatically creates a
 
 To run a node in the simplified configuration mode, pass the web application's name or IP address to the node's container via the `ENVOY_BACKEND` environment variable.
 
-According to the generated configuration file, the filter node is placed in the “blocking” operation mode, which will result in the blocking of all attacks targeted to the protected application. To run the filter node in the other operation modes (e.g., monitoring mode), create an appropriate Envoy configuration file and pass it to the node's Docker container (see [this document][doc-envoy-fine-tuning] for more information about fine-tuning an Envoy-based filter node). 
+According to the generated configuration file, the filter node is placed in the “blocking” operation mode, which will result in the blocking of all attacks targeted to the protected application. To run the filter node in the other operation modes (e.g., monitoring mode), create an appropriate Envoy configuration file and pass it to the node's Docker container (see [this document][doc-envoy-fine-tuning] for more information about fine-tuning an Envoy‑based filter node). 
 
 ####    Using a Prepared Envoy Configuration File 
 

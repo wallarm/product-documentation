@@ -23,11 +23,11 @@
     The following values are used as demonstration values in this guide:
     
     *   `WallarmApp` as a value for the **App name** parameter (in Okta).
-    *   `https://sso.online.wallarm.com/acs` as a value for the **Single sign-on URL** parameter (in Okta).
+    *   `https://sso.online.wallarm.com/acs` as a value for the **Single sign‑on URL** parameter (in Okta).
     *   `https://sso.online.wallarm.com/entity-id` as a value for the **Audience URI** parameter (in Okta).
 
 !!! warning
-    Ensure that you replace the sample values for the **Single sign-on URL** and **Audience URI** parameters with the real ones obtained in the [previous step][doc-setup-sp].
+    Ensure that you replace the sample values for the **Single sign‑on URL** and **Audience URI** parameters with the real ones obtained in the [previous step][doc-setup-sp].
 
 Log in to the Okta service (the account must have administrator rights) and click on the *Administrator* button in the upper right.
 
@@ -39,7 +39,7 @@ In the new application section, click the *Create New App* button on the right.
 
 In the pop-up window, set the following options:
 1.  **Platform** → “Web”.
-2.  **Sign-on method** → “SAML 2.0”.
+2.  **Sign‑on method** → “SAML 2.0”.
 
 Click the *Create* button.
 
@@ -75,7 +75,7 @@ At this stage you will need the parameters generated [earlier][doc-setup-sp] on 
     To learn more about the rest of the parameters (including those related to the digital signature and SAML message encryption settings), please refer to the [Okta documentation][link-okta-docs].
 
 Fill in the following basic parameters:
-*   **Single sign-on URL**—enter the **Assertion Consumer Service URL (ACS URL)** value previously obtained on the Wallarm side.
+*   **Single sign‑on URL**—enter the **Assertion Consumer Service URL (ACS URL)** value previously obtained on the Wallarm side.
 *   **Audience URI (SP Entity ID)**—enter the value of the **Wallarm Entity ID** received earlier on the Wallarm side.
 
 The remaining parameters for the initial setup can be left as default.

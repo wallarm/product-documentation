@@ -1,4 +1,4 @@
-# Configuration Options for the Envoy-Based Filter Node 
+# Configuration Options for the Envoy‑Based Filter Node 
 
 [link-lom]:                     ../../../glossary-en.md#lom
 [link-dashboard]:               ../../../user-guides/dashboard/waf.md

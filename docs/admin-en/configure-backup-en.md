@@ -10,7 +10,7 @@ If the web application and filter nodes are in a data center, use the data cente
 
 ## VRRP or CARP 
 
-On each filter node, start a `keepalived` or `ucarp` daemon that monitors the availability of the nodes and starts forwarding traffic if the nodes go down. This is a standard high availability method that can also be used for traffic load balancing by starting a failover-IP on each node and distributing the traffic with DNS balancing.
+On each filter node, start a `keepalived` or `ucarp` daemon that monitors the availability of the nodes and starts forwarding traffic if the nodes go down. This is a standard high availability method that can also be used for traffic load balancing by starting a failover‑IP on each node and distributing the traffic with DNS balancing.
 
 !!! info "Working with NGINX Plus"
     Wallarm can be set up to work on [NGINX Plus](https://www.nginx.com/products/nginx/) with a custom VRRP wrapper.

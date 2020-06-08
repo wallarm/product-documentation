@@ -13,7 +13,7 @@
 
 #   Creating an Image with the Wallarm Filter Node on the Google Cloud Platform
 
-To set up auto-scaling of the Wallarm filter nodes deployed on the Google Cloud Platform (GCP) you first need virtual machine images. This document describes the procedure for preparing an image of the virtual machine with the Wallarm filter node installed. For detailed information about setting up auto-scaling, proceed to this [link][link-docs-gcp-autoscaling].
+To set up auto scaling of the Wallarm filter nodes deployed on the Google Cloud Platform (GCP) you first need virtual machine images. This document describes the procedure for preparing an image of the virtual machine with the Wallarm filter node installed. For detailed information about setting up auto scaling, proceed to this [link][link-docs-gcp-autoscaling].
 
 To create an image with the Wallarm filter node on GCP, perform the following procedures:
 1.  [Creating and configuring the filter node instance on the Google Cloud Platform][anchor-node].
@@ -73,4 +73,4 @@ Once the image creation process is finished, you will be directed to a page that
 
 ![!Images list][img-check-image]
 
-Now you can [set up the auto-scaling][link-docs-gcp-autoscaling] of Wallarm filter nodes on the Google Cloud Platform using the prepared image.
+Now you can [set up the auto scaling][link-docs-gcp-autoscaling] of Wallarm filter nodes on the Google Cloud Platform using the prepared image.

@@ -16,8 +16,8 @@ The **Nodes** section of Wallarm UI allows you to manage WAF nodes:
 
 The WAF node type depends on the platform:
 
-* [Regular node](regular-node.md) is used in Linux-based, Kubernetes sidecar and Docker-based deployments.
-* [Cloud node](cloud-node.md) is used in cloud-based deployments on Amazon AWS, Google Cloud Platform, Heroku, and in Kubernetes Ingress controller deployments.
+* [Regular node](regular-node.md) is used in Linux‑based, Kubernetes sidecar and Docker‑based deployments.
+* [Cloud node](cloud-node.md) is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, Heroku, and in Kubernetes Ingress controller deployments.
 
 Detailed information on working with different WAF node types is described in the instructions by the links above. 
 

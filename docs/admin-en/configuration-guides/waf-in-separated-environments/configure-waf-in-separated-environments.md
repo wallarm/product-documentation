@@ -10,7 +10,7 @@ If you perform the initial rollout of WAF protection for environments, it is rec
 4. Learn about how to operate, scale, and monitor the WAF solution; confirm the stability of the new network component.
 5. Deploy WAF nodes in your production environment with the filtering mode set to `monitoring`.
 6. Implement proper configuration management and monitoring processes for the new WAF component.
-7. Keep the traffic flowing via the WAF nodes in all your environments, including testing and production, for 7-14 days to give the WAF cloud-based backend some time to learn about your application.
+7. Keep the traffic flowing via the WAF nodes in all your environments, including testing and production, for 7-14 days to give the WAF cloud‑based backend some time to learn about your application.
 8. Enable the `blocking` filtering mode in all your non-production environments and use automated or manual tests to confirm the protected application is working as expected.
 9. Enable the `blocking` filtering mode in the production environment. Using available methods, confirm that the application is working as expected.
 

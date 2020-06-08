@@ -67,7 +67,7 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 ## 8. Allocate More Memory for the Wallarm Node
 
-The Wallarm Node uses Tarantool, an open-source in-memory database, to calculate traffic metrics required for automated adjusting of security rules.
+The Wallarm Node uses Tarantool, an open‑source in-memory database, to calculate traffic metrics required for automated adjusting of security rules.
 
 By default, the amount of RAM allocated to Tarantool is 75% of the total instance memory.
 

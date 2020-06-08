@@ -15,7 +15,7 @@ Wallarm will email the custom report to you.
 1. Go to the *Events* tab.
 2. Use the *Search* field to customize your search results.
 3. Click the report button on the right.
-4. Put in your e-mail address and click the report button next to the e-mail field.
+4. Put in your email address and click the report button next to the email field.
 
 Wallarm will generate the report and email it to you.
 

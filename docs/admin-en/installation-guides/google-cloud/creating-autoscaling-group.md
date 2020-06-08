@@ -8,9 +8,9 @@
 [link-multiple-metrics-policy]:                     https://cloud.google.com/compute/docs/autoscaler/multiple-policies
 [link-creating-load-balancer]:                      load-balancing-guide.md
 
-#  Creating a Managed Instance Group with Enabled Auto-Scaling
+#  Creating a Managed Instance Group with Enabled Auto Scaling
 
-To create a managed instance group and configure its auto-scaling, perform the following steps:
+To create a managed instance group and configure its auto scaling, perform the following steps:
 
 1.  Navigate to the “Instance groups” page in the “Compute Engine” section of the menu and click the “Create instance group” button.
 
@@ -20,7 +20,7 @@ To create a managed instance group and configure its auto-scaling, perform the f
 
 3.  Select “Managed instance group” in the “Group type” setting.
 
-4.  Enable auto-scaling for the instance group by selecting the “On” option from the “Autoscaling” drop-down list.
+4.  Enable auto scaling for the instance group by selecting the “On” option from the “Autoscaling” drop-down list.
 
 5.  Select the required scaling policy from the “Autoscaling policy” drop-down list. 
     
@@ -33,7 +33,7 @@ To create a managed instance group and configure its auto-scaling, perform the f
     3.  Stackdriver Monitoring Metric: The size of the group is controlled to keep the selected metric from the Stackdriver Monitoring instrument at the required level ([Stackdriver Monitoring Metric policy documentation][link-stackdriver-monitoring-metric-policy]).
     4.  Multiple Metrics: The decision to change the size of the group is made on the basis of multiple metrics ([multiple metrics policy documentation][link-multiple-metrics-policy]). 
     
-    This guide uses the “CPU usage” policy to demonstrate the principles of working with the auto-scaling mechanism.
+    This guide uses the “CPU usage” policy to demonstrate the principles of working with the auto scaling mechanism.
     
     To apply this policy, specify the required average processors' load level in the “Target CPU usage” field (in percentages).
     
@@ -52,9 +52,9 @@ To create a managed instance group and configure its auto-scaling, perform the f
 
 9.  Make sure all of the parameters of the instance group are configured correctly and then click the “Create” button.
 
-The specified number of instances will automatically launch upon the successful creation of the auto-scaling group.
+The specified number of instances will automatically launch upon the successful creation of the auto scaling group.
 
-You can check that the auto-scaling group was created correctly by viewing the number of launched instances in the group and comparing this data point with the number of filter nodes connected to the Wallarm cloud.
+You can check that the auto scaling group was created correctly by viewing the number of launched instances in the group and comparing this data point with the number of filter nodes connected to the Wallarm cloud.
 
 You can do this using the Wallarm website. For example, if two instances with filter nodes are concurrently operating, the Wallarm website will display this number for the corresponding cloud node on the *Nodes* tab.
 

@@ -1,6 +1,6 @@
 # Blocking by IP Address
 
-Typically, blocking malicious requests on a request-by-request basis is preferable than blocking by IP addresses. However, in some cases, using IP blacklists is necessary.
+Typically, blocking malicious requests on a request‑by‑request basis is preferable than blocking by IP addresses. However, in some cases, using IP blacklists is necessary.
 
 IP blacklists should be used in the following cases:
 
@@ -20,7 +20,7 @@ This is the most intuitive method providing the user with a convenient graphical
 
 ### Blocking with NGINX
 
-This method is the most resource-intensive one. However, it allows customizing the message that the user sees when the request is blocked.
+This method is the most resource‑intensive one. However, it allows customizing the message that the user sees when the request is blocked.
 
 [Read more...](configure-ip-blocking-nginx-en.md).
 

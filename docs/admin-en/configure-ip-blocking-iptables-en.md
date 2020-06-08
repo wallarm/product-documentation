@@ -94,7 +94,7 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         *   If the script does not finish within the 90 second timeout, then its execution will be explicitly terminated.
         *   The script's logs will be written in the specified log file (e.g, `/path/to/log`); the `stderr` error output stream will be redirected to the `stdout` standard output stream.
          
-5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.blacklist-sync.last` because it changes every time the script starts successfully.
+5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.blacklist‑sync.last` because it changes every time the script starts successfully.
 
 6.  Whitelisting IP addresses. 
 

@@ -19,7 +19,7 @@
 
 ### Step 1: Creating Wallarm ConfigMap
 
-Go to the Helm chart directory > the `templates` folder and create the `wallarm-sidecar-configmap.yaml` template with the following content:
+Go to the Helm chart directory > the `templates` folder and create the `wallarm‑sidecar‑configmap.yaml` template with the following content:
 
 --8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-helm-template.md"
 
