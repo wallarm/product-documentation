@@ -36,7 +36,7 @@ When configuring a filter node you can add Wallarm IDs for your environments usi
 2. Specify ID configuration in a filter node:
 
     * using the [`wallarm_instance`](../../configure-parameters-en.md#wallarm_instance) directive for Linux-based, Kubernetes sidecar and Docker-based deployments;
-    * using the [`nginx.ingress.kubernetes.io/wallarm-instance`](../../configure-kubernetes-en.md#ingress-annotations) annotation for Kubernetes NGINX Ingress controller deployments.Now, when creating a new filter node rule it is possible to specify that the rule will be assigned to a set of specific instance IDs. Without the attribute, a new rule will be automatically applied to all protected resources in a Wallarm account.
+    * using the [`nginx.ingress.kubernetes.io/wallarm-instance`](../../configure-kubernetes-en.md#ingress-annotations) annotation for Kubernetes NGINX Ingress controller deployments. Now, when creating a new filter node rule it is possible to specify that the rule will be assigned to a set of specific instance IDs. Without the attribute, a new rule will be automatically applied to all protected resources in a Wallarm account.
 
 ![!Creating rule for ID](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 

@@ -237,8 +237,9 @@ nav:
         - Overview: user-guides/scanner/configure-scanner.md
         - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
     - Nodes:
-      - Nodes Overview: user-guides/nodes/nodes.md
-      - Creating and Managing a Node: user-guides/nodes/create-node.md
+      - WAF nodes overview: user-guides/nodes/nodes.md
+      - Regular WAF nodes: user-guides/nodes/regular-node.md
+      - Cloud WAF nodes: user-guides/nodes/cloud-node.md
     - Rules:
       - Application Profile Rules: user-guides/rules/intro.md
       - Inspecting Application Profile Rules: user-guides/rules/view.md
