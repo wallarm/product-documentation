@@ -8,7 +8,7 @@ You can set up Wallarm to send incidents to PagerDuty when the following events 
 
 ##  Setting up integration
 
-In PagerDuty UI, [set up an integration [link-pagerduty-docs] for any existing service or create a new service specifically for Wallarm:
+In PagerDuty UI, [set up an integration][link-pagerduty-docs] for any existing service or create a new service specifically for Wallarm:
 
 1. Go to **Configuration** → **Services**.
 2. Open the settings of the existing service or press the **New Service** button.
