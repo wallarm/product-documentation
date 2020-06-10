@@ -46,7 +46,7 @@ The following deployment scheme is used in this document:
 *   To execute commands on a remote host, the NRPE plugin is used. The plugin comprises
     *   The `nrpe` service that is installed on the monitored host alongside the filter node. It listens on the `5666/TCP` standard NRPE port.
     *   The `check_nrpe` NRPE Nagios plugin that is installed on the Nagios host and allows Nagios to execute commands on the remote host where the `nrpe` service is installed.
-*   NRPE will be used to call the `collectd_nagios` utility that provides the `collectd` metrics in a Nagios-compatible format.
+*   NRPE will be used to call the `collectd_nagios` utility that provides the `collectd` metrics in a Nagios‑compatible format.
 
 ##  Configuring Metrics Export to Nagios
 
@@ -133,7 +133,7 @@ To do this, perform the following steps on the filter node host:
     sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
     ```
     
-    This command allows the `nagios` user to get the value of the [`curl_json-wallarm_nginx/gauge-attacks`][link-metric] metric (the number of recorded attacks) for the `node.example.local` host.
+    This command allows the `nagios` user to get the value of the [`curl_json‑wallarm_nginx/gauge‑attacks`][link-metric] metric (the number of recorded attacks) for the `node.example.local` host.
     
     **Example of command output:**
     

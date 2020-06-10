@@ -17,7 +17,7 @@
 
 #   Setting up Incoming Request Balancing
 
-Now that you have a [configured][link-doc-asg-guide] managed instance group with enabled auto-scaling, you need to create and configure a Load Balancer that distributes incoming HTTP and HTTPS connections between several filter nodes from the instance group.
+Now that you have a [configured][link-doc-asg-guide] managed instance group with enabled auto scaling, you need to create and configure a Load Balancer that distributes incoming HTTP and HTTPS connections between several filter nodes from the instance group.
 
 You can configure the following types of Load Balancers on the Google Cloud Platform:
 *   HTTP(S) Load Balancer,

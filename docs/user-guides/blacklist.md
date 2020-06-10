@@ -7,9 +7,9 @@
 
 # IP Address Blacklist
 
-Wallarm can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral-based attacks when every single request by itself is legitimate (e.g. login attempts with username/password pairs), blocking by origin is necessary.
+Wallarm can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request by itself is legitimate (e.g. login attempts with username/password pairs), blocking by origin is necessary.
 
-Wallarm can block bots and behavioral-based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the blacklist. Administrators can also manually add IP addresses and subnets for blocking.
+Wallarm can block bots and behavioral‑based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the blacklist. Administrators can also manually add IP addresses and subnets for blocking.
 
 ![!Blacklist tab overview][img-blacklist]
 

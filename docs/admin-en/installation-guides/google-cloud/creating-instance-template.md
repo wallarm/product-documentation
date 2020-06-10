@@ -33,4 +33,4 @@ A filter node instance template will be used later as the base when creating a m
 
 6.  Click the “Create” button and wait until the template creation process is finished. 
 
-After creating the instance template, you can proceed with the [creation of a managed instance group][link-creating-instance-group] with enabled auto-scaling.
+After creating the instance template, you can proceed with the [creation of a managed instance group][link-creating-instance-group] with enabled auto scaling.

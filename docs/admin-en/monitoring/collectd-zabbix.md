@@ -14,7 +14,7 @@
 
 [doc-unixsock]:             fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 
-#   Exporting Metrics to Zabbix via the `collectd-nagios` Utility
+#   Exporting Metrics to Zabbix via the `collectd‑nagios` Utility
 
 This document provides an example of exporting filter node metrics to the [Zabbix][link-zabbix] monitoring system using the [`collectd-nagios`][link-collectd-nagios] utility.
 

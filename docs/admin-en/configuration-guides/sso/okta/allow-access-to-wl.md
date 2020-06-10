@@ -27,4 +27,4 @@ The access rights to the Wallarm application are now set up. Now, users assigned
 
 ##  Setup Complete
 
-This completes the configuration of the Okta-based SSO, and now you can start configuring the [user specific][doc-use-user-auth] SSO authentication on the Wallarm side.
+This completes the configuration of the Okta‑based SSO, and now you can start configuring the [user specific][doc-use-user-auth] SSO authentication on the Wallarm side.

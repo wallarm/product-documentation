@@ -7,7 +7,7 @@
 [link-okta]:        https://www.okta.com/
 
 
-#   Using single sign-on to Wallarm portal
+#   Using single sign‑on to Wallarm portal
 
 This guide will cover the process of user authentication on the Wallarm portal using Single Sign‑On (SSO) technology.
 

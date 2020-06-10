@@ -10,7 +10,7 @@
 
     
     !!! info "About the gRPC Protocol"
-        gRPC is a modern open-source high-performance Remote Procedure Call (RPC) [framework][link-grpc-docs] from Google.
+        gRPC is a modern open‑source high-performance Remote Procedure Call (RPC) [framework][link-grpc-docs] from Google.
         
         Its high performance is achieved through the use of [HTTP/2][link-http2-docs] for transport and [protobuf][link-protobuf-docs] for data type descriptions.
         

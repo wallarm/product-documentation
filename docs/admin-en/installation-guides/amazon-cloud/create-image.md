@@ -15,9 +15,9 @@
 
 #   Creating an AMI with the Wallarm Filter Node
 
-You can set up auto-scaling for the Wallarm filter nodes deployed on the Amazon cloud. This function requires preliminarily prepared virtual machine images.
+You can set up auto scaling for the Wallarm filter nodes deployed on the Amazon cloud. This function requires preliminarily prepared virtual machine images.
 
-This document describes the procedure of preparing an Amazon Machine Image (AMI) with the Wallarm filter node installed. AMI is required for the filter node auto-scaling setup. To see detailed information about setting up auto-scaling, proceed to this [link][link-docs-aws-autoscaling].
+This document describes the procedure of preparing an Amazon Machine Image (AMI) with the Wallarm filter node installed. AMI is required for the filter node auto scaling setup. To see detailed information about setting up auto scaling, proceed to this [link][link-docs-aws-autoscaling].
 
 To create an AMI with the Wallarm filter node, perform the following procedures:
 1.  [Creating and configuring the filter node instance in the Amazon cloud][anchor-node];
@@ -45,7 +45,7 @@ Before creating an AMI you need to perform an initial configuration of a single 
     !!! warning "Use a token to connect to the Wallarm cloud"
         Please note that you need to connect the filter node to the Wallarm cloud using a token. Multiple filter nodes are allowed to connect to the Wallarm cloud using the same token. 
         
-        Thus, upon filter nodes’ auto-scaling, you will not need to manually connect each of the filter nodes to the Wallarm cloud.
+        Thus, upon filter nodes’ auto scaling, you will not need to manually connect each of the filter nodes to the Wallarm cloud.
 
 3.  [Configure][link-docs-reverse-proxy-setup] the filter node to act as a reverse proxy for your web application.
 
@@ -85,4 +85,4 @@ You can now create a virtual machine image based on the configured filter node i
 !!! info "Image visibility"
     Because the prepared image contains settings that are specific to your application and the Wallarm token, it is not recommended to change the image visibility setting and make it public (by default, AMIs are created with the “Private” visibility setting).
 
-Now you can [set up][link-docs-aws-autoscaling] the auto-scaling of Wallarm filter nodes in the Amazon cloud using the prepared image.
+Now you can [set up][link-docs-aws-autoscaling] the auto scaling of Wallarm filter nodes in the Amazon cloud using the prepared image.

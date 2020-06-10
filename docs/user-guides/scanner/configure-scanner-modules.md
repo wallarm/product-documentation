@@ -20,7 +20,7 @@ The scanner consists of multiple modules, each of which is responsible for detec
 ### Filtering Modules by Tag
 
 You can filter modules by their tags, which are grouped by type:
-*   The vulnerability type—tags for different vulnerability types, such as Remote Code Execution, Path Traversal, or Cross-Site Scripting.
+*   The vulnerability type—tags for different vulnerability types, such as Remote Code Execution, Path Traversal, or Cross‑Site Scripting.
 *   The vulnerable technology—tags for different technologies and software, that if used may cause a vulnerability detection. 
 *   The presence of the vulnerability in the Common Vulnerabilities and Exposures (CVE) database—such vulnerabilities contain the `CVE` tag.
 

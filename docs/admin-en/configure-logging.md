@@ -20,7 +20,7 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `tarantool.log`: the log of the postanalytics module operations.
 
 
-##  Configuring Extended Logging for the NGINX-Based Filter Node
+##  Configuring Extended Logging for the NGINX‑Based Filter Node
 
 NGINX writes logs of the processed requests (access logs) into a separate log file, using the predefined `combined` logging format by default.
 

@@ -16,7 +16,7 @@
 
 The `/etc/wallarm/syncnode` file contains environment variables that define the way the cloud node will synchronize with the Wallarm cloud. You can configure the synchronization process by adding desired environment variables to this file and assigning your own values to them.
 
-The `wallarm-synccloud` service applies the changes made to the `/etc/wallarm/syncnode` file to the synchronization process and runs the synchronization with the new configuration.
+The `wallarm‑synccloud` service applies the changes made to the `/etc/wallarm/syncnode` file to the synchronization process and runs the synchronization with the new configuration.
 
 Run the following command to get the list of the environment variables which can be used to configure the synchronization:
 
@@ -59,7 +59,7 @@ The following environment variables can be used for synchronization configuratio
     * `true`, `yes`, and `1` to enable verification.
     * Any other value to disable verification.
 * `WALLARM_API_CA_PATH` — path to the Wallarm API certificate authority file. 
-* `WALLARM_SYNCNODE` — enable/disable node-specific data synchronization (default value: `yes`). If the synchronization is enabled, the files for the cloud node operation (such as [LOM file][glossary-lom]) will be periodically downloaded from the cloud. If the synchronization is disabled, the files for the cloud node operation will not be downloaded. This variable accepts the following values:
+* `WALLARM_SYNCNODE` — enable/disable node‑specific data synchronization (default value: `yes`). If the synchronization is enabled, the files for the cloud node operation (such as [LOM file][glossary-lom]) will be periodically downloaded from the cloud. If the synchronization is disabled, the files for the cloud node operation will not be downloaded. This variable accepts the following values:
     * `true`, `yes`, and `1` to enable synchronization.
     * Any other value to disable synchronization.
 * `WALLARM_SYNCNODE_INTERVAL` — interval between synchronizations in seconds (default value: `600`).
@@ -70,4 +70,4 @@ The following environment variables can be used for synchronization configuratio
 * `WALLARM_SYNCNODE_MODE` — access rights to the files needed for the cloud node operation (default value: `0640`).
 
 !!! warning "Configuration of the access rights to the files needed for the cloud node operation"
-    Make sure that after configuring access rights using the `WALLARM_SYNCNODE_OWNER`, `WALLARM_SYNCNODE_GROUP`, and `WALLARM_SYNCNODE_MODE` variables, the `wallarm-worker` and `nginx` services can read content of the files needed for the cloud node operation.
+    Make sure that after configuring access rights using the `WALLARM_SYNCNODE_OWNER`, `WALLARM_SYNCNODE_GROUP`, and `WALLARM_SYNCNODE_MODE` variables, the `wallarm‑worker` and `nginx` services can read content of the files needed for the cloud node operation.

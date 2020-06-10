@@ -5,7 +5,7 @@
 * Wallarm account in the [EU cloud](https://my.wallarm.com/) or [US cloud](https://us1.my.wallarm.com/)
 * Username and password of the user with the **Deploy** role added to your Wallarm account. To add a new user, please follow the [instructions](../../../../user-guides/settings/users.md#create-a-user)
 * AWS account and user with the **admin** permissions
-* Accepted Terms for the [WordPress Certified by Bitnami and Automattic](https://aws.amazon.com/marketplace/server/procurement?productId=7d426cb7-9522-4dd7-a56b-55dd8cc1c8d0) and [Wallarm Node (AI-based NG-WAF instance) by Wallarm](https://aws.amazon.com/marketplace/server/procurement?productId=34faafd7-601d-43ac-8d22-3f2d839028c5) products on AWS Marketplace
+* Accepted Terms for the [WordPress Certified by Bitnami and Automattic](https://aws.amazon.com/marketplace/server/procurement?productId=7d426cb7-9522-4dd7-a56b-55dd8cc1c8d0) and [Wallarm Node (AI‑based NG-WAF instance) by Wallarm](https://aws.amazon.com/marketplace/server/procurement?productId=34faafd7-601d-43ac-8d22-3f2d839028c5) products on AWS Marketplace
 * Installed [`terraform`](https://learn.hashicorp.com/terraform/getting-started/install.html) CLI tools version 0.12.18 or later
 * Installed [`jq`](https://stedolan.github.io/jq/download/) CLI tools
 * Installed [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) CLI tools

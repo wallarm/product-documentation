@@ -41,7 +41,7 @@ A man in the middle (MITM) attack consists of an attacker secretly relaying the 
 [See OWASP](https://owasp.org/www-community/attacks/Man-in-the-middle_attack).
 
 ## Circular Buffer
-A circular buffer is a data structure that uses a single, fixed-size buffer as if it were connected end-to-end.
+A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
 [See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
 
 ## LOM

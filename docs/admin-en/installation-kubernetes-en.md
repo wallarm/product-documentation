@@ -28,7 +28,7 @@ Select the method of the controller installation:
     * https://my.wallarm.com/nodes for the EU cloud,
     * https://us1.my.wallarm.com/nodes for the US cloud.
 2. Create a filter node with the **Cloud** type and copy the token.
-    ![!Creation of a cloud node](../images/installation-kubernetes/en/create-cloud-node.png)
+    ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Clone the repository of Wallarm NGINX Ingress:
     ```
     git clone https://github.com/wallarm/ingress-chart
@@ -50,7 +50,7 @@ Select the method of the controller installation:
     * https://my.wallarm.com/nodes for the EU cloud,
     * https://us1.my.wallarm.com/nodes for the US cloud.
 2. Create a filter node with the **Cloud** type and copy the token.
-    ![!Creation of a cloud node](../images/installation-kubernetes/en/create-cloud-node.png)
+    ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Clone the repository of Wallarm NGINX Ingress:
    
     ```

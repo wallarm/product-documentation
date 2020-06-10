@@ -3,7 +3,7 @@
 [doc-config-params]:          configure-parameters-en.md
 [doc-monitoring]:             monitoring/intro.md
 
-# Installing with Docker (Using the NGINX-Based Docker Image)
+# Installing with Docker (Using the NGINX‑Based Docker Image)
 
 The filter node can be deployed as a Docker container. The Docker container is a fat one and contains all subsystems of the filter node.
 
@@ -157,7 +157,7 @@ Changing the rotation parameters through environment variables is not possible. 
 
 ## 5. Configure Monitoring
 
-To monitor the filter node, there are Nagios-compatible scripts inside the container. See details in [Monitor the filter node][doc-monitoring].
+To monitor the filter node, there are Nagios‑compatible scripts inside the container. See details in [Monitor the filter node][doc-monitoring].
 
 Example of running the scripts:
 
@@ -183,6 +183,6 @@ The IP blocking functionality provides the following additional features:
 
 * If the WAF detects at least three different attack vectors from an IP address, the address is automatically added to the blacklist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
 
-* Ability to use Wallarm to protect against behavior-based attacks such as [brute-force](../attacks-vulns-list.md#brute-force-attack), [path traversal attacks](../attacks-vulns-list.md#path-traversal) or [forced browsing](../attacks-vulns-list.md#forced-browsing).
+* Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../attacks-vulns-list.md#path-traversal) or [forced browsing](../attacks-vulns-list.md#forced-browsing).
 
 To enable IP blocking functionality, please select the configuration method at the [Methods of Blocking by IP Address](configure-ip-blocking-en.md) page and follow the appropriate instructions.

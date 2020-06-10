@@ -17,15 +17,15 @@
 [anchor-lt]:    #1-creating-a-launch-template
 [anchor-asg]:   #2-creating-an-auto-scaling-group
 
-#   Setting Up Filter Node Auto-Scaling
+#   Setting Up Filter Node Auto Scaling
 
 !!! info "Required rights"
-    Before setting up auto-scaling, make sure that your Amazon AWS account is granted with one of the following rights:
+    Before setting up auto scaling, make sure that your Amazon AWS account is granted with one of the following rights:
     
     *   `AutoScalingFullAccess`
     *   `AutoScalingConsoleFullAccess`
 
-To set up filter node auto-scaling, proceed with the following steps:
+To set up filter node auto scaling, proceed with the following steps:
 1.  [Creating a Launch Template][anchor-lt]
 2.  [Creating an Auto Scaling Group][anchor-asg]
 
@@ -57,16 +57,16 @@ Create a Launch Template by doing the following steps:
     
 Wait until the template creation process is finished.
 
-After creating the Launch Template, you can proceed with the creation of an Auto-Scaling Group.
+After creating the Launch Template, you can proceed with the creation of an Auto Scaling Group.
 
 ##  2.  Creating an Auto Scaling Group
 
-!!! info "Selecting an auto-scaling method"
+!!! info "Selecting an auto scaling method"
     This section describes the process of creating an Auto Scaling Group using the EC2 Auto Scaling method. 
 
     You can also use the AWS Auto Scaling method. 
 
-    To see a detailed FAQ about auto-scaling methods from Amazon, proceed to this [link][link-doc-as-faq].
+    To see a detailed FAQ about auto scaling methods from Amazon, proceed to this [link][link-doc-as-faq].
 
 To create an Auto Scaling Group, do the following steps:
 1.  Navigate to the *Auto Scaling Groups* tab on the Amazon EC2 dashboard and click the *Create Auto Scaling Group* button.
@@ -84,7 +84,7 @@ To create an Auto Scaling Group, do the following steps:
     If you followed this guide when creating a Launch Template and an instance type to launch virtual machines on was specified, then you can use the *Adhere to the launch template* option.
     
     !!! info "Select the proper instance type"
-        You can also select the *Combine purchase options and instances* option if no instance type is specified in your Launch Template or if you want to select multiple different instance types for auto-scaling.
+        You can also select the *Combine purchase options and instances* option if no instance type is specified in your Launch Template or if you want to select multiple different instance types for auto scaling.
         
         Select the same instance type that you used when you initially configured the filter node or a more powerful one. Using a less powerful instance type may lead to issues in filter node operation.
 
@@ -106,7 +106,7 @@ To create an Auto Scaling Group, do the following steps:
     
 9.  Navigate to the *Configure scaling policies* page by clicking the *Next: Configure scaling policies* button.
 
-10. Select the “Use scaling policies to adjust the capacity of this group” option to enable auto-scaling.
+10. Select the “Use scaling policies to adjust the capacity of this group” option to enable auto scaling.
 
 11. Enter the minimum and the maximum Auto Scaling Group size.
 
@@ -146,7 +146,7 @@ To create an Auto Scaling Group, do the following steps:
 
     4.  Click the *Create Alarm* button to create an event.
     
-    5.  Select the action to be taken in the case the “High CPU Utilization” event triggers. For example, you may configure an auto-scaling policy to add (using the *Add* action) one instance when the event is triggered.
+    5.  Select the action to be taken in the case the “High CPU Utilization” event triggers. For example, you may configure an auto scaling policy to add (using the *Add* action) one instance when the event is triggered.
     
     6.  The event may trigger early if resource consumption leaps occur after adding a new instance. To avoid this, you can set up a warm-up period in seconds using the *Instances need `X` seconds to warm up* parameter. No events will be triggered during this period of time.
     
@@ -162,7 +162,7 @@ The specified number of instances will be launched automatically upon the succes
 
 You can check that the Auto Scaling Group has been created correctly by viewing the number of launched instances in the group and comparing this data with the number of filter nodes connected to the Wallarm cloud.
 
-You can do this using the Wallarm website. For example, if two instances with filter nodes are concurrently operating, the Wallarm website will display the “2/2 nodes are active” label for the corresponding cloud node on the *Nodes* tab.
+You can do this using the Wallarm website. For example, if two instances with filter nodes are concurrently operating, the Wallarm website will display this number for the corresponding cloud node on the *Nodes* tab.
 
 ![!Checking the Auto Scaling Group status][img-check-asg-in-cloud]
 

@@ -188,7 +188,7 @@ Data in the request body can be transmitted in *multipart* format. In a request 
 * `[post, multipart, 'p4', array, 1]`&nbsp;— `7`
 * `[post, multipart, 'p4', pollution]`&nbsp;— `6,7`
 
-In addition, each parameter can have its own headings. If a file name is specified in the `Content-Disposition` header, the file is considered to be loaded in this parameter, and the parameter will look like this:
+In addition, each parameter can have its own headings. If a file name is specified in the `Content‑Disposition` header, the file is considered to be loaded in this parameter, and the parameter will look like this:
 * `[post, multipart, 'someparam', file]`&nbsp;— file contents
 
 #### Percent
