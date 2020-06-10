@@ -2,6 +2,7 @@
 [doc-apps-link]:        settings/applications.md
 
 [img-blacklist]:        ../images/user-guides/blacklist/blacklist.png
+[img-blacklist-add]:        ../images/user-guides/blacklist/ip-blacklisting.png
 [img-blacklist-change-time]: ../images/user-guides/blacklist/blacklist-contextual-change-time.png
 [img-blacklist-unblock]: ../images/user-guides/blacklist/blacklist-contextual-unblock.png
 
@@ -50,11 +51,9 @@ One can extend the blocking time for the currently blocked IP address via the **
 
 ![!Change blocking time][img-blacklist-change-time]
 
-Select the new data to unblock IP address and optionally describe a reason of changes.
-
 ### Unblocking IPs
 
-To unblock IP address, use **Unblock** on the entry with a blocked IP.
+To unblock IP address, use **Unblock** on the entry with a blocked IP or select several IP addresses and press **Unblock**.
 
 ![!Unblock IP][img-blacklist-unblock]
 
@@ -73,14 +72,15 @@ To start blocking of IP address:
 
 1. Press the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
-3. Pick a date or use the slider to specify the blocking time.
-4. Choose whether to block IPs for all applications or for a selected application.
-5. Optionally, provide a comment on the blocking reason.
-6. Click **Add to blacklist**.
 
-The minimum blocking time period is 60 minutes.
+    !!! info "Subnet mask"
+        Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
+3. Choose whether to block IPs for all applications or for a specific application.
+4. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
+5. Provide a comment on the blocking reason.
+6. Press **Add to blacklist**.
 
-Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
+![!Adding to blacklist][img-blacklist-add]
 
 ## Exporting Blacklist Entries
 
