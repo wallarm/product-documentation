@@ -192,7 +192,7 @@ Create a Procfile containing the following:
 web: wallarm/bin/start-wallarm bundle exec unicorn -c config/unicorn.rb
 ```
 
-Create & push the Heroku app by running the command depending on the [cloud] you are using: 
+Create & push the Heroku app by running the command depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) you are using: 
 
 === "EU cloud"
     ``` bash
