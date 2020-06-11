@@ -50,7 +50,7 @@ The systems available for integration are grouped in the following blocks: **Ema
 
 ## Adding an integration
 
-To add a new integration, click the icon of the unconfigured system on the **All** tab or press the **Add integration** button and select the required system. Further steps are described in the selected system instructions.
+To add a new integration, click the icon of the unconfigured system on the **All** tab or click the **Add integration** button and select the required system. Further steps are described in the selected system instructions.
 
 ![!Adding Integrations][add-integration-img]
 
@@ -60,7 +60,7 @@ The number of integrations with one system is not limited. For example: to send 
 
 To filter displayed integrations, you can use the tabs:
 
-* **All** with enabled, disabled and not yet configured integrations
+* **All** with enabled, disabled, and not yet configured integrations
 * **Enabled** with active configured integrations
 * **Disabled** with disabled configured integrations
 
