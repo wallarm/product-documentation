@@ -39,7 +39,78 @@ The following points are currently supported:
 Condition categories:
 
 * **equal**: point value must match precisely with the comparison argument.
-* **regex**: point value must match the regular expression. Note that the system uses [a limited subset of the regular expression syntax][link-regex].
+* **regex**: point value must match the regular expression. To match requests with regular expressions, the Pire library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [Pire repository][link-regex].
+
+    ??? info "Supported regular expression syntax"
+        Characters that can be used as‑is:
+
+        * Lowercase Latin letters: `a b c d e f g h i j k l m n o p q r s t u v w x y z`
+        * Capital Latin letters: `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z`
+        * Digits: `0 1 3 4 5 6 7 8 9`
+        * Special characters: <code>! " # % & ' , - / : ; < = > @ ] _ ` } ~</code>
+        * Whitespaces
+
+        Characters that must be escaped with a backslash (`\`):
+
+        * `. $ ^ { [ ( | ) * + ? \`
+
+        Characters that must be converted to ASCII according to ISO‑8859:
+
+        * UTF‑8 characters (for example, Russian letter `т` coverted to ASCII is `Ñ`)
+
+        Character classes:
+
+        * `\W` for any non-alphanumeric character; this is equivalent to the set `[^a-zA-Z0-9_]`
+        * `\w` for any alphanumeric character and the underscore; this is equivalent to the set `[a-zA-Z0-9_]`
+        * `\D` for any non-digit character; this is equivalent to the set `[^0-9]`
+        * `\d` for any decimal digit; this is equivalent to the set `[0-9]`
+        * `\S` for any non-whitespace character
+        * `\s` for any whitespace character
+        * `.` for any character except a newline
+        * `()` to match whatever regular expression present inside `()`
+        * `[]` for a single character present inside `[]` (case sensitive); the class can be used for the specific cases:
+            * to ignore case (for example, `[cC]`)
+            * `[a-z]` to match one of lowercase Latin letters
+            * `[A-Z]` to match one of capital Latin letters
+            * `[0-9]` to match one of digits
+            * `[a-zA-Z0-9\.]` to match one of lowercase, or capital Latin letters, or digits, or dot
+        
+        Logic characters:
+
+        * `~` is equal to NOT
+        * `|` is equal to OR
+        * `&` is equal to AND
+
+
+        Characters to specify string boundaries:
+
+        * `^` for the start of the string
+        * `$` for the end of the string
+
+        Quantifiers:
+
+        * `*` for 0 or more repetitions of the preceding RE
+        * `+` for 1 or more repetitions of the preceding RE
+        * `?` for 0 or 1 repetitions of the preceding RE
+        * `{m}` for `m` repetitions of the preceding RE
+        * `{m,n}` for `m` to `n` repetitions of the preceding RE; omitting `n` specifies an infinite upper bound
+
+        Character combinations that work with specifics:
+
+        * `^.*$` is equal to `^.+$` (for example, empty HEADER will not be blocked if `^.*$` is passed in the rule)
+        * `^.?$`, `^.{0,}$`, `^.{0,n}$` are equal to `^.+$`
+
+        Not supported syntax:
+
+        * Three-digit octal codes `\NNN`, `\oNNN`, `\ONNN`
+        * `\cN` passing control characters via `\c` (for example, `cC` for CTRL+C)
+        * `\A` for the start of the string
+        * `\z` for the end of the string
+        * `\b` before or after the whitespace character in the end of the string
+        * `??`, `*?`, `+?` lazy quantifiers
+        * Conditionals
+        * Characters from not [basic Latin characters](https://unicode-table.com/en/blocks/basic-latin/) list
+
 * **absent**: the request should not contain the designated point. In this case, the comparison argument is not used.
 
 ### Rule
