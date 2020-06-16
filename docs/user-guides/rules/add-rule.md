@@ -20,9 +20,11 @@ If necessary, it is possible to modify the branch to which a rule will be added.
 ![!Adding a new rule][img-add-rule]
 
 
-### Branch Description
+## Branch Description
 
 A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
+
+### Points
 
 The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
 
@@ -36,82 +38,165 @@ The following points are currently supported:
 * **header**: request headers.
 * **method**: request methods.
 
-Condition categories:
+### Condition types
 
-* **equal**: point value must match precisely with the comparison argument.
-* **regex**: point value must match the regular expression. To match requests with regular expressions, the Pire library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [Pire repository][link-regex].
+#### equal
 
-    ??? info "Supported regular expression syntax"
-        Characters that can be used as‑is:
+The point value must match precisely with the comparison argument.
 
-        * Lowercase Latin letters: `a b c d e f g h i j k l m n o p q r s t u v w x y z`
-        * Capital Latin letters: `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z`
-        * Digits: `0 1 3 4 5 6 7 8 9`
-        * Special characters: <code>! " # % & ' , - / : ; < = > @ ] _ ` } ~</code>
-        * Whitespaces
+#### regex
 
-        Characters that must be escaped with a backslash (`\`):
+The point value must match the regular expression. 
 
-        * `. $ ^ { [ ( | ) * + ? \`
+##### Regular expression syntax
 
-        Characters that must be converted to ASCII according to ISO‑8859:
+To match requests with regular expressions, the Pire library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [Pire repository][link-regex].
 
-        * UTF‑8 characters (for example, Russian letter `т` coverted to ASCII is `Ñ`)
+??? info "Show regular expression syntax"
+    Characters that can be used as‑is:
 
-        Character classes:
+    * Lowercase Latin letters: `a b c d e f g h i j k l m n o p q r s t u v w x y z`
+    * Capital Latin letters: `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z`
+    * Digits: `0 1 3 4 5 6 7 8 9`
+    * Special characters: <code>! " # % ' , - / : ; < = > @ ] _ ` }</code>
+    * Whitespaces
 
-        * `\W` for any non-alphanumeric character; this is equivalent to the set `[^a-zA-Z0-9_]`
-        * `\w` for any alphanumeric character and the underscore; this is equivalent to the set `[a-zA-Z0-9_]`
-        * `\D` for any non-digit character; this is equivalent to the set `[^0-9]`
-        * `\d` for any decimal digit; this is equivalent to the set `[0-9]`
-        * `\S` for any non-whitespace character
-        * `\s` for any whitespace character
-        * `.` for any character except a newline
-        * `()` to match whatever regular expression present inside `()`
-        * `[]` for a single character present inside `[]` (case sensitive); the class can be used for the specific cases:
-            * to ignore case (for example, `[cC]`)
-            * `[a-z]` to match one of lowercase Latin letters
-            * `[A-Z]` to match one of capital Latin letters
-            * `[0-9]` to match one of digits
-            * `[a-zA-Z0-9\.]` to match one of lowercase, or capital Latin letters, or digits, or dot
-        
-        Logic characters:
+    Characters that must be placed into square brackets `[]` instead of escaping with `\`:
 
-        * `~` is equal to NOT
-        * `|` is equal to OR
-        * `&` is equal to AND
+    * `. $ ^ { [ ( | ) * + ? \ & ~`
 
+    Characters that must be converted to ASCII according to ISO‑8859:
 
-        Characters to specify string boundaries:
+    * UTF‑8 characters (for example, Russian letter `т` converted to ASCII is `Ñ`)
 
-        * `^` for the start of the string
-        * `$` for the end of the string
+    Character groups:
 
-        Quantifiers:
+    * `.` for any character except a newline
+    * `()` for whatever regular expression present inside `()`
+    * `[]` for a single character present inside `[]` (case sensitive); the class can be used for the specific cases:
+        * to ignore case (for example, `[cC]`)
+        * `[a-z]` to match one of lowercase Latin letters
+        * `[A-Z]` to match one of capital Latin letters
+        * `[0-9]` to match one of digits
+        * `[a-zA-Z0-9\.]` to match one of lowercase, or capital Latin letters, or digits, or dot
 
-        * `*` for 0 or more repetitions of the preceding RE
-        * `+` for 1 or more repetitions of the preceding RE
-        * `?` for 0 or 1 repetitions of the preceding RE
-        * `{m}` for `m` repetitions of the preceding RE
-        * `{m,n}` for `m` to `n` repetitions of the preceding RE; omitting `n` specifies an infinite upper bound
+    Logic characters:
 
-        Character combinations that work with specifics:
+    * `~` is equal to NOT
+    * `|` is equal to OR
+    * `&` is equal to AND
 
-        * `^.*$` is equal to `^.+$` (for example, empty HEADER will not be blocked if `^.*$` is passed in the rule)
-        * `^.?$`, `^.{0,}$`, `^.{0,n}$` are equal to `^.+$`
+    Characters to specify string boundaries:
 
-        Not supported syntax:
+    * `^` for the start of the string
+    * `$` for the end of the string
 
-        * Three-digit octal codes `\NNN`, `\oNNN`, `\ONNN`
-        * `\cN` passing control characters via `\c` (for example, `cC` for CTRL+C)
-        * `\A` for the start of the string
-        * `\z` for the end of the string
-        * `\b` before or after the whitespace character in the end of the string
-        * `??`, `*?`, `+?` lazy quantifiers
-        * Conditionals
-        * Characters from not [basic Latin characters](https://unicode-table.com/en/blocks/basic-latin/) list
+    Quantifiers:
 
-* **absent**: the request should not contain the designated point. In this case, the comparison argument is not used.
+    * `*` for 0 or more repetitions of the preceding RE
+    * `+` for 1 or more repetitions of the preceding RE
+    * `?` for 0 or 1 repetitions of the preceding RE
+    * `{m}` for `m` repetitions of the preceding RE
+    * `{m,n}` for `m` to `n` repetitions of the preceding RE; omitting `n` specifies an infinite upper bound
+
+    Character combinations that work with specifics:
+
+    * `^.*$` is equal to `^.+$` (for example, empty HEADER will not be blocked if `^.*$` is passed in the rule)
+    * `^.?$`, `^.{0,}$`, `^.{0,n}$` are equal to `^.+$`
+
+    Temporarily not supported:
+
+    * Character classes like `\W` for non-alphanumerics, `\w` for alphanumerics, `\D` for any non-digits, `\d` for any decimals, `\S` for non-whitespaces, `\s` for whitespaces
+
+    Not supported syntax:
+
+    * Three-digit octal codes `\NNN`, `\oNNN`, `\ONNN`
+    * `\cN` passing control characters via `\c` (for example, `cC` for CTRL+C)
+    * `\A` for the start of the string
+    * `\z` for the end of the string
+    * `\b` before or after the whitespace character in the end of the string
+    * `??`, `*?`, `+?` lazy quantifiers
+    * Conditionals
+    * Characters from not [basic Latin characters](https://unicode-table.com/en/blocks/basic-latin/) list
+
+##### Testing regular expressions
+
+To test the regular expression, you can use the **cpire** utility on supported Debian or Ubuntu:
+
+1. If Wallarm repository is not added, execute the commands:
+    
+    === "Debian 8.x (jessie)"
+        ```bash
+        apt-get update
+        apt-get install dirmngr
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+    === "Debian 9.x (stretch)"
+        ```bash
+        apt-get update
+        apt-get install dirmngr
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+    === "Debian 10.x (buster)"
+        ```bash
+        apt-get update
+        apt-get install dirmngr
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+    === "Ubuntu 14.04 LTS (trusty)"
+        ```bash
+        apt-get update
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node trusty/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+    === "Ubuntu 16.04 LTS (xenial)"
+        ```bash
+        apt-get update
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node xenial/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+    === "Ubuntu 18.04 LTS (bionic)"
+        ```bash
+        apt-get update
+        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.14/' > /etc/apt/sources.list.d/wallarm.list"
+        apt-get update
+        ```
+2. Install the **cpire** utility:
+
+    ```bash
+    apt install libcpire-utils
+    ```
+3. Run the **cpire** utility:
+    ```bash
+    cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
+    ```
+4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
+    * `0` if the value matches with the regular expression
+    * `FAIL` if the value does not match with the regular expression
+
+##### Examples of regular expressions
+
+* `/[.]git` matches any string that includes __/.git*__
+* `[.]example[.]com` matches any string that includes __.example.com__
+* `/[.]example[.].*[.]com$` matches any string ending with __/.example.*.com__
+* `^(~((1\.2\.3\.4)|(5\.6\.7\.8)))$` matches all IP addresses excluding 1.2.3.4 and 5.6.7.8
+* `/[.]example[.]com[.]php$` matches any string ending with __/.example.com.php__
+* `[sS][qQ][lL][mM][aA][pP]` matches any string that includes __sqlmap__, each letter can be lower or upper case (for example, __sqLmAp__, __SqLMap__, etc)
+* `(admin|cmd)[\].(exe|bat|sh)` matches any string that includes __admin\\.exe__ or __admin\\.bat__ or __admin\\.sh__ or __cmd\\.exe__ or __cmd\\.bat__ or __cmd\\.sh__
+* `[oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt` matches any string that includes __onmouseonload__ with letters in lower and upper case or __win\\.ini__ or __prompt__
+
+#### absent
+
+The request should not contain the designated point. In this case, the comparison argument is not used.
 
 ### Rule
 
