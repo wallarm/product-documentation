@@ -14,24 +14,24 @@ In PagerDuty UI, [set up an integration][link-pagerduty-docs] for any existing s
 2. Open the settings of the existing service or press the **New Service** button.
 3. Create a new integration:
 
-    *   If you are configuring integrations of the existing service, go to the **Integrations** tab and press the **New Integration** button.
+    *   If you are configuring integrations of the existing service, go to the **Integrations** tab and click the **New Integration** button.
     *   If you are creating a new service, enter the service name and proceed to the **Integration Settings** section.
 4. Enter the integration name and select the **Use our API directly** option as an integration type.
 5. Save the settings:
 
-    *   If you are configuring integrations of the existing service, press the **Add Integration** button.
-    *   If you are creating a new service, configure the rest of the settings sections and press the **Add Service** button.
+    *   If you are configuring integrations of the existing service, click the **Add Integration** button.
+    *   If you are creating a new service, configure the rest of the settings sections and click the **Add Service** button.
     
 5. Copy the provided **Integration Key**.
 
 In Wallarm UI:
 
 1. Open **Settings** → **Integrations** tab.
-2. Click the **PagerDuty** block or press the **Add integration** button and choose **PagerDuty**. 
+2. Click the **PagerDuty** block or click the **Add integration** button and choose **PagerDuty**. 
 3. Enter an integration name.
 4. Paste the **Integration Key** value into the appropriate field.
 5. Choose event types to trigger notifications. If the events are not chosen, PagerDuty incidents will not be added.
-6. Press **Add integration**.
+6. Click **Add integration**.
 
     ![!PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
