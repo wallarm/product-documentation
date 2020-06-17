@@ -5,24 +5,11 @@
 
 By default, blocking by IP address is turned off. To activate it, proceed to the following steps:
 
-1.  Go to the folder that contains the NGINX configuration files. To do this, select and run the command that corresponds with your filter node installation method from the tabs below.
+1.  Go to the folder that contains the NGINX configuration files:
 
-    === "Dynamic NGINX module"
-        ```bash
-        cd /etc/nginx/conf.d
-        ```
-    === "Dynamic NGINX module from OS repositories"
-        ```bash
-        cd /etc/nginx/conf.d
-        ```
-    === "NGINX Plus module"
-        ```bash
-        cd /etc/nginx/conf.d
-        ```
-    === "NGINX-Wallarm module (DEPRECATED)"
-        ```bash
-        cd /etc/nginx-wallarm/conf.d
-        ```
+    ```bash
+    cd /etc/nginx/conf.d
+    ```
 
 2.  In the current folder, create a file named `/etc/nginx/conf.d/wallarm‑acl.conf` with the following content:
 
@@ -186,45 +173,6 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
         === "Amazon Linux 2"
             ```basn
             /var/lib/nginx/wallarm_acl_default
-            ```
-    
-    *   NGINX-Wallarm module (DEPRECATED):
-    
-        === "Debian 8.x (jessie)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Debian 9.x (stretch)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Debian 10.x (buster)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Ubuntu 14.04 LTS (trusty)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Ubuntu 16.04 LTS (xenial)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Ubuntu 18.04 LTS (bionic)"
-            ```basn
-            /var/lib/nginx-wallarm/wallarm_acl_default
-            ```
-        === "CentOS 6.x"
-            ```basn
-            /var/cache/nginx-wallarm/wallarm_acl_default
-            ```
-        === "CentOS 7.x"
-            ```basn
-            /var/cache/nginx-wallarm/wallarm_acl_default
-            ```
-        === "Amazon Linux 2"
-            ```basn
-            /var/cache/nginx-wallarm/wallarm_acl_default
             ```
          
 3.  Turn on blocking for the particular vhosts and/or locations by adding the following lines to their configuration files:

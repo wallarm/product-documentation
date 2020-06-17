@@ -12,7 +12,6 @@
 [link-ig-nginx]:                    installation-nginx-en.md
 [link-ig-nginx-distr]:              installation-nginx-distr-en.md
 [link-ig-nginxplus]:                installation-nginxplus-en.md#5-connect-the-wallarm-module
-[link-ig-deprecated]:               installation-linux-en.md
 
 The filter node that is used with NGINX or NGINX Plus consists of the following modules:
 *   The module that connects to NGINX (NGINX Plus)
@@ -50,11 +49,6 @@ The Wallarm module for NGINX can be connected by one of the following installati
 *   Installing NGINX packages from the NGINX repository ([instruction][link-ig-nginx])
 *   Installing NGINX packages from the Debian repository ([instruction][link-ig-nginx-distr])
 *   Installing NGINX packages from the CentOS repository ([instruction][link-ig-nginx-distr])
-
-!!! info "Deprecated Installation Option"
-    If you are using the Wallarm Node version *2.10 or lower*, you can [install][link-ig-deprecated] an NGINX build from Wallarm that includes all components necessary for the filter node to work.
-    
-    Such a build only exists for NGINX. If you are using NGINX Plus, you need to [connect the Wallarm module to NGINX Plus][link-ig-nginxplus] even if the Wallarm Node version is 2.10 or lower.
 
 ### Module for NGINX Plus
 
