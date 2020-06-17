@@ -85,8 +85,8 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
     * **Connection timeout, in seconds**: if the connection to the server cannot be established during the specified time, the request fails. By default: 20 seconds.
 
     ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
-6. Choose event types to trigger sending notifications to Webhook URL. If the events are not chosen, notifications will not be sent.
-7. Press **Add integration**.
+6. Choose event types to trigger sending notifications to Webhook URL. If the events are not chosen, then notifications will not be sent.
+7. Click **Add integration**.
 
     ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
