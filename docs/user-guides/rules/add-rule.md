@@ -117,7 +117,6 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
     * `\b` before or after the whitespace character in the end of the string
     * `??`, `*?`, `+?` lazy quantifiers
     * Conditionals
-    * Characters from not [basic Latin characters](https://unicode-table.com/en/blocks/basic-latin/) list
 
 **Testing regular expressions**
 
@@ -180,7 +179,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
     ```
     
-    If the regular expression is invalid, the utility will return an error message.
+    If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`). If the regular expression is invalid, the utility will return an error message.
 4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
     * `0` if the value matches with the regular expression
     * `FAIL` if the value does not match with the regular expression

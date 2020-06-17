@@ -12,7 +12,7 @@ In some cases, it may prove useful to add a signature for attack detection manua
 
 To do this, you need to create the rule *Define a request as an attack based on a regular expression* and fill in the fields:
 
-*Regex*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Note that the system supports [a limited subset of the regular expression syntax][link-regex].
+*Regex*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#regex).
 
 *Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
