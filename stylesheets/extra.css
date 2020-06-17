@@ -44,3 +44,34 @@
 .md-typeset .tabbed-content>.codehilite:only-child pre>code, .md-typeset .tabbed-content>.codehilitetable:only-child>code, .md-typeset .tabbed-content>.highlight:only-child pre>code, .md-typeset .tabbed-content>.highlighttable:only-child>code {
   white-space: pre-wrap;
 }
+
+.md-search__form {
+  border-radius: 3px;
+}
+
+.demo-button  {
+  background-color: #FC7303; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0 15px;
+  margin: 0.3rem 0.5em;
+  border-radius: 3px;
+  text-decoration: none;
+  line-height: 1.8rem;
+}
+
+@media screen and (min-width: 601px) {
+  .mobile-button  {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .desktop-button  {
+    display: none;
+  }
+}
