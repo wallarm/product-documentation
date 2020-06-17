@@ -40,15 +40,15 @@ The following points are currently supported:
 
 ### Condition types
 
-#### equal
+#### EQUAL
 
 The point value must match precisely with the comparison argument.
 
-#### regex
+#### REGEX
 
 The point value must match the regular expression. 
 
-##### Regular expression syntax
+**Regular expression syntax**
 
 To match requests with regular expressions, the Pire library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [Pire repository][link-regex].
 
@@ -72,13 +72,13 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
     Character groups:
 
     * `.` for any character except a newline
-    * `()` for whatever regular expression present inside `()`
-    * `[]` for a single character present inside `[]` (case sensitive); the class can be used for the specific cases:
+    * `()` for grouping regular expressions, searching symbols present inside `()` or establishing a precedence order
+    * `[]` for a single character present inside `[]` (case sensitive); the group can be used for the specific cases:
         * to ignore case (for example, `[cC]`)
         * `[a-z]` to match one of lowercase Latin letters
         * `[A-Z]` to match one of capital Latin letters
         * `[0-9]` to match one of digits
-        * `[a-zA-Z0-9\.]` to match one of lowercase, or capital Latin letters, or digits, or dot
+        * `[a-zA-Z0-9[.]]` to match one of lowercase, or capital Latin letters, or digits, or dot
 
     Logic characters:
 
@@ -93,15 +93,15 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
 
     Quantifiers:
 
-    * `*` for 0 or more repetitions of the preceding RE
-    * `+` for 1 or more repetitions of the preceding RE
-    * `?` for 0 or 1 repetitions of the preceding RE
-    * `{m}` for `m` repetitions of the preceding RE
-    * `{m,n}` for `m` to `n` repetitions of the preceding RE; omitting `n` specifies an infinite upper bound
+    * `*` for 0 or more repetitions of the preceding regular expression
+    * `+` for 1 or more repetitions of the preceding regular expression
+    * `?` for 0 or 1 repetitions of the preceding regular expression
+    * `{m}` for `m` repetitions of the preceding regular expression
+    * `{m,n}` for `m` to `n` repetitions of the preceding regular expression; omitting `n` specifies an infinite upper bound
 
     Character combinations that work with specifics:
 
-    * `^.*$` is equal to `^.+$` (for example, empty HEADER will not be blocked if `^.*$` is passed in the rule)
+    * `^.*$` is equal to `^.+$` (empty values does not match with `^.*$`)
     * `^.?$`, `^.{0,}$`, `^.{0,n}$` are equal to `^.+$`
 
     Temporarily not supported:
@@ -111,7 +111,7 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
     Not supported syntax:
 
     * Three-digit octal codes `\NNN`, `\oNNN`, `\ONNN`
-    * `\cN` passing control characters via `\c` (for example, `cC` for CTRL+C)
+    * `\cN` passing control characters via `\c` (for example, `\cC` for CTRL+C)
     * `\A` for the start of the string
     * `\z` for the end of the string
     * `\b` before or after the whitespace character in the end of the string
@@ -119,11 +119,11 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
     * Conditionals
     * Characters from not [basic Latin characters](https://unicode-table.com/en/blocks/basic-latin/) list
 
-##### Testing regular expressions
+**Testing regular expressions**
 
 To test the regular expression, you can use the **cpire** utility on supported Debian or Ubuntu:
 
-1. If Wallarm repository is not added, execute the commands:
+1. Add Wallarm repository:
     
     === "Debian 8.x (jessie)"
         ```bash
@@ -179,26 +179,60 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ```bash
     cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
     ```
+    
+    If the regular expression is invalid, the utility will return an error message.
 4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
     * `0` if the value matches with the regular expression
     * `FAIL` if the value does not match with the regular expression
 
-##### Examples of regular expressions
+**Examples of regular expressions**
 
-* `/[.]git` matches any string that includes __/.git*__
-* `[.]example[.]com` matches any string that includes __.example.com__
-* `/[.]example[.].*[.]com$` matches any string ending with __/.example.*.com__
-* `^(~((1\.2\.3\.4)|(5\.6\.7\.8)))$` matches all IP addresses excluding 1.2.3.4 and 5.6.7.8
-* `/[.]example[.]com[.]php$` matches any string ending with __/.example.com.php__
-* `[sS][qQ][lL][mM][aA][pP]` matches any string that includes __sqlmap__, each letter can be lower or upper case (for example, __sqLmAp__, __SqLMap__, etc)
-* `(admin|cmd)[\].(exe|bat|sh)` matches any string that includes __admin\\.exe__ or __admin\\.bat__ or __admin\\.sh__ or __cmd\\.exe__ or __cmd\\.bat__ or __cmd\\.sh__
-* `[oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt` matches any string that includes __onmouseonload__ with letters in lower and upper case or __win\\.ini__ or __prompt__
+* To match any string that includes <code>/.git</code>
 
-#### absent
+    ```
+    /[.]git
+    ```
+* To match any string that includes <code>.example.com</code>
+
+    ```
+    [.]example[.]com
+    ```
+* To match any string ending with <code>/.example.*.com</code>
+
+    ```
+    /[.]example[.].*[.]com$
+    ```
+* To match all IP addresses excluding 1.2.3.4 and 5.6.7.8
+
+    ```
+    ^(~((1[.]2[.]3[.]4)|(5[.]6[.]7[.]8)))$
+    ```
+* To match any string ending with <code>/.example.com.php</code>
+
+    ```
+    /[.]example[.]com[.]php$
+    ```
+* To match any string that includes <code>sqlmap</code>with letters in lower and upper case: <code>sqLmAp</code>, <code>SqLMap</code>, etc
+
+    ```
+    [sS][qQ][lL][mM][aA][pP]
+    ```
+* To match any string that includes one or several values: <code>admin\\.exe</code>, <code>admin\\.bat</code>, <code>admin\\.sh</code>, <code>cmd\\.exe</code>, <code>cmd\\.bat</code>, <code>cmd\\.sh</code>
+
+    ```
+    (admin|cmd)[\].(exe|bat|sh)
+    ```
+* To match any string that includes one or several values: <code>onmouse</code> with letters in lower and upper case, <code>onload</code> with letters in lower and upper case, <code>win\\.ini</code>, <code>prompt</code>
+
+    ```
+    [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
+    ```
+
+#### ABSENT
 
 The request should not contain the designated point. In this case, the comparison argument is not used.
 
-### Rule
+## Rule
 
 The added request processing rule is described in the *Then* section.
 
