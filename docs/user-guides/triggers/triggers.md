@@ -10,7 +10,7 @@ To reduce the amount of noise, you can also configure the parameters of events t
 
 To receive notifications and reports, you can use Slack, email, Sumo Logic and other [integrations](../settings/integrations/integrations-intro.md).
 
-**Trigger Examples**
+## Trigger examples
 
 * Send the notification to Slack if at least one brute-force attack was detected in a second
 
@@ -24,7 +24,8 @@ To receive notifications and reports, you can use Slack, email, Sumo Logic and o
 
     ![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
 
-!!! info "See also"
-    * [Creating Triggers](create-trigger.md)
-    * [Disabling Triggers](disable-trigger.md)
-    * [Deleting Triggers](delete-trigger.md)
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/ODHh-die9tY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

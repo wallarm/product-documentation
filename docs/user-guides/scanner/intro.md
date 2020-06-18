@@ -66,6 +66,8 @@ Vulnerabilities that were fixed more than a month ago are checked once a week.
 
 Vulnerabilities marked as false are not checked.
 
-!!! info "See also"
-    * [Working with the scope][link-work-with-scope]
-    * [Scanner settings][link-configure-scanner]
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/CiF2oLmxBac" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

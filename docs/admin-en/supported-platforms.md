@@ -28,6 +28,8 @@
         *   [The Wallarm EU cloud][link-wallarm-account-eu]
         *   [The Wallarm US cloud][link-wallarm-account-us]
 
+## List of platforms
+
 The Wallarm filter node can be installed on the following platforms:
 *   NGINX and NGINX Plus
     
@@ -92,3 +94,9 @@ The Wallarm filter node can be installed on the following platforms:
         *   Ubuntu 18.04 LTS (bionic)
         *   CentOS 6.x
         *   CentOS 7.x
+
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/QUaFqbdku5Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
