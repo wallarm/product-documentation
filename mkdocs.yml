@@ -33,6 +33,8 @@ extra:
       link: https://twitter.com/wallarm
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/4871419
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
 
 extra_css:
   - 'extra.css'
