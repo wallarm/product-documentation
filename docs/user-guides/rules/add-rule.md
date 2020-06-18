@@ -67,7 +67,7 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
 
     Characters that must be converted to ASCII according to ISO‑8859:
 
-    * UTF‑8 characters (for example, Russian letter `т` converted to ASCII is `Ñ`)
+    * UTF‑8 characters (for example, the character `т` converted to ASCII is `Ñ`)
 
     Character groups:
 
