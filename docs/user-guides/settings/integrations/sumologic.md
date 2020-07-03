@@ -18,8 +18,8 @@ In Wallarm UI:
 2. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
 3. Enter an integration name.
 4. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
-5. Choose event types to trigger sending messages to Sumo Logic. If the events are not chosen, messages will not be sent.
-6. Press **Add integration**.
+5. Choose event types to trigger sending messages to Sumo Logic. If the events are not chosen, then messages will not be sent.
+6. Click **Add integration**.
 
 ![!Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 

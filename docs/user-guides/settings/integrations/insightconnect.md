@@ -24,8 +24,8 @@ Secondly, generate and copy an API URL as follows:
 Thirdly, finish the setup in Wallarm UI:
 
 1. Enter an integration name.
-2. Choose event types to trigger notifications. If the events are not chosen, notifications will not be sent.
-3. Press **Add integration**.
+2. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
+3. Click **Add integration**.
 
 ![!InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
