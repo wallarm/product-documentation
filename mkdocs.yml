@@ -33,6 +33,8 @@ extra:
       link: https://twitter.com/wallarm
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/4871419
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
 
 extra_css:
   - 'extra.css'
@@ -69,7 +71,7 @@ google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
 nav:
   - Wallarm Overview: README.md
-  - Qiuck Start:
+  - Quick Start:
     - How Wallarm Works:
       - Introduction: quickstart-en/how-wallarm-works/qs-intro-en.md
       - Security Model of Shared Responsibility for Customer Data: quickstart-en/how-wallarm-works/shared-responsibility.md

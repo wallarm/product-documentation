@@ -47,5 +47,8 @@ After logging in to the Wallarm portal, you will be presented with the following
     
 *   Depending on the actions you take, some additional sidebars might be displayed to you at the very right of the portal.     
 
-!!! info "See also"
-    [Administrator guide][link-admin-guide]
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/R8v9npJAXSo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

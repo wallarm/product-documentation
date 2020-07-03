@@ -58,3 +58,9 @@ During the active vulnerability check, the scanner restarts tests to check wheth
 If a previously detected vulnerability is not found after the recheck, the scanner marks it as resolved.
 
 You can disable or enable vulnerability rechecking using the *Recheck vulnerabilities* toggle.
+
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/qJ1evgbDMLA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

@@ -68,3 +68,9 @@ To filter displayed integrations, you can use the tabs:
 
 !!! info "Advanced notifications setup"
     For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
+
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/DVfoXYuBy-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
