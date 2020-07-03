@@ -10,20 +10,20 @@ The **Nodes** section of Wallarm UI allows you to manage WAF nodes:
 ![!WAF nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Administrator access"
-    Creating, deleting of WAF nodes and regenerating of WAF node token is available only for users with the **Administrator** role. Viewing the details of installed WAF nodes is available for all users.
+    The creating, deleting, and regenerating of WAF nodes/tokens is only available to users with the **Administrator** role. Viewing the details of installed WAF nodes is available to all users.
 
 ## WAF node types
 
 The WAF node type depends on the platform:
 
-* [Regular node](regular-node.md) is used in Linux‑based, Kubernetes sidecar and Docker‑based deployments.
+* [Regular node](regular-node.md) is used in Linux‑based, Kubernetes sidecar, and Docker‑based deployments.
 * [Cloud node](cloud-node.md) is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, Heroku, and in Kubernetes Ingress controller deployments.
 
-Detailed information on working with different WAF node types is described in the instructions by the links above. 
+Detailed information regarding working with different WAF node types can be found in the instructions linked above. 
 
 ## Filtering WAF nodes
 
-To filter displayed WAF nodes, you can enter the name, UUID, token or IP address of the node in the search field or use the tabs:
+To filter displayed WAF nodes, you can enter the name, UUID, token, or IP address of the node in the search field or use the tabs:
 
 * **All** with active and inactive regular and cloud nodes.
 * **Regular** with active and inactive [regular nodes](regular-node.md).
