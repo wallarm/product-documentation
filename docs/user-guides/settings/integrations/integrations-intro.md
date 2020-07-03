@@ -69,6 +69,16 @@ To filter displayed integrations, you can use the tabs:
 !!! info "Advanced notifications setup"
     For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
 
+## Retrying failed requests
+
+Notifications to the system are sent via requests. If the system responds to Wallarm request with any code other than `2xx`, Wallarm resends the request with the interval until the `2xx` code is received:
+
+* The first cycle intervals: 1, 3, 5, 10, 10 seconds
+* The second cycle intervals: 0, 1, 3, 5, 30 seconds
+* The third cycle intervals:  1, 1, 3, 5, 10, 30 minutes
+
+If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. A notification about disabled integration is sent to the configured systems and to the email of the account administrators.
+
 ## Demo videos
 
 <div class="video-wrapper">
