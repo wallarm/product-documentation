@@ -59,7 +59,7 @@ Select the method of the controller installation:
 4. Replace an existing controller:
    
     ```
-    helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=<WALLARM_API_HOST> <INGRESS_CONTROLLER_NAME> <KUBERNETES_NAMESPACE> --reuse-values
+    helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=<WALLARM_API_HOST> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE> --reuse-values
     ```
    
     * `<YOUR_CLOUD_NODE_TOKEN>` is the token value you've received earlier
