@@ -279,6 +279,7 @@ nav:
           - Overview: user-guides/settings/integrations/webhook.md
           - Examples:
             - Fluentd + QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+            - Logstash + QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
     - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
   - Partner Guide:
     - Introduction: partner-en/partner-intro-en.md
