@@ -49,7 +49,7 @@ output {
 More detailed description of configuration files is available in the [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
 
 !!! info "Testing Logstash configuration"
-    To check that Logstash logs are created and forwarded to QRadar, the PUT or POST request can be sent to Logstash.
+    To check that Logstash logs are created and forwarded to QRadar, the POST request can be sent to Logstash.
 
     **Request example:**
     ```curl
