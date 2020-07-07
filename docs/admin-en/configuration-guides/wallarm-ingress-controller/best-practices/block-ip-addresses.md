@@ -10,7 +10,7 @@ After enabling the [IP blocking functionality](../../../configure-ip-blocking-en
 
 To enable the IP blocking functionality in the Ingress controller, please follow the instructions below:
 1. Upgrade Wallarm Ingress controller Helm chart to version 1.7.0 or later from the [GitHub](https://github.com/wallarm/ingress-chart) repository (including the `values.yaml` file).
-2. Open the `ingress-chart/wallarm-ingress/values.yaml` file of updated Helm chart version and set the `controller.wallarm.acl.enabled` attribute to `true`:
+2. Open the `ingress-chart/wallarm-ingress/values.yaml` file of the updated Helm chart version and set the `controller.wallarm.acl.enabled` attribute to `true`:
     ```
     controller:
         wallarm:
@@ -22,7 +22,7 @@ To enable the IP blocking functionality in the Ingress controller, please follow
     helm upgrade INGRESS_CONTROLLER_NAME VALUES_YAML_FOLDER --reuse-values
     ```
     * `INGRESS_CONTROLLER_NAME` is the name of an existing Wallarm Ingress controller,
-    * `VALUES_YAML_FOLDER` is the path to the folder with updated `values.yaml`.
+    * `VALUES_YAML_FOLDER` is the path to the folder with the updated `values.yaml` file.
 
     Synchronization of IP blocking blacklist data between the Ingress controller and Wallarm cloud is enabled.
 4. Enable the IP blocking functionality for your Ingress using the following command:
@@ -31,7 +31,7 @@ To enable the IP blocking functionality in the Ingress controller, please follow
     ```
     * `YOUR_INGRESS_NAME` is the name of your Ingress.
 
-To disable the functionality, please use the similar command with the `off` value:
+To disable this functionality, please use the same command with the `off` value:
 ```
 kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=off
 ```

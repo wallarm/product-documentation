@@ -181,7 +181,7 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
 
 The IP blocking functionality provides the following additional features:
 
-* If the WAF detects at least three different attack vectors from an IP address, the address is automatically added to the blacklist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
+* If the WAF detects at least three different attack vectors from an IP address, the address will be automatically added to the blacklist and blocked for 1 hour. If similar behavior from the same IP address is detected again, the IP will be blocked for 2 hours, and so on.
 
 * Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../attacks-vulns-list.md#path-traversal) or [forced browsing](../attacks-vulns-list.md#forced-browsing).
 

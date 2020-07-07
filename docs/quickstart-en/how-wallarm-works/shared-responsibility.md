@@ -4,7 +4,7 @@ Wallarm WAF relies on a shared responsibility security model. In this model, all
 
 Wallarm WAF is a hybrid solution (part software and part SaaS) with two major components in different areas of responsibilities:
 
-* **Wallarm WAF filter node** software, deployed in your infrastructure and managed by you. The WAF node component is responsible for filtering end-user requests, sending safe requests to your application and blocking malicious requests. The WAF node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm cloud for analysis.
+* **Wallarm WAF filter node** software, deployed in your infrastructure and managed by you. The WAF node component is responsible for filtering end user requests, sending safe requests to your application and blocking malicious requests. The WAF node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm cloud for analysis.
 * **Wallarm cloud**, a cloud component managed by Wallarm, is responsible for receiving meta-information about processed requests and detected attacks from the WAF nodes; as well as generating application-specific WAF rules and making them available for the nodes to download. The console UI and public API provide you with the ability to see security reports and individual events; manage WAF rules, console users, external integrations, etc.
 
 ![!Responsibilities scheme](../../images/shared-responsibility.png)
