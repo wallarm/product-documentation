@@ -53,7 +53,7 @@ One can extend the blocking time for the currently blocked IP address via the **
 
 ### Unblocking IPs
 
-To unblock IP address, use **Unblock** on the entry with a blocked IP or select several IP addresses and press **Unblock**.
+To unblock IP address, use **Unblock** on the entry with a blocked IP or select several IP addresses and click **Unblock**.
 
 ![!Unblock IP][img-blacklist-unblock]
 
@@ -70,7 +70,7 @@ You can filter the history by:
 
 To start blocking of IP address:
 
-1. Press the **Block IP or Subnet** button.
+1. Click the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
 
     !!! info "Subnet mask"
@@ -78,7 +78,7 @@ To start blocking of IP address:
 3. Choose whether to block IPs for all applications or for a specific application.
 4. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
 5. Provide a comment on the blocking reason.
-6. Press **Add to blacklist**.
+6. Click **Add to blacklist**.
 
 ![!Adding to blacklist][img-blacklist-add]
 

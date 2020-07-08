@@ -91,5 +91,5 @@ The block shows statistics on the attack sources for the selected period:
 
 The block shows the following data:
 
-* IP addresses that are currently blacklisted. In addition, a reason for blocking and the time until it will be unblocked are also shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] press the **Full list** button.
+* IP addresses that are currently blacklisted. In addition, a reason for blocking and the time until it will be unblocked are also shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] click the **Full list** button.
 * A graph with statistics on IP address blocking events for a selected period.
