@@ -9,7 +9,7 @@
 # Installing with Kong
 
 !!! info "Prerequisites"
-    The Kong platform shall meet the following requirements:
+    Requirements for the Kong platform:
 
     * Kong version 1.4.3 or lower
     * Kong installed on a platform [supported by Wallarm][doc-supported-os] according to Kong's [official instructions][kong-install]

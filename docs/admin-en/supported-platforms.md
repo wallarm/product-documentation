@@ -83,7 +83,7 @@ The Wallarm filter node can be installed on the following platforms:
 *   Kong ([installation instructions][link-ig-kong])
 
     !!! info "Supported Operating Systems"
-        The Kong platform must have version 1.4.3 or lower and must be installed on one of the following operating systems:
+        The Kong platform must be version 1.4.3 or lower and must be installed on one of the following operating systems:
         
         *   Debian 8.x (jessie)
         *   Debian 9.x (stretch)
