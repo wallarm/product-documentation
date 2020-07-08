@@ -4,14 +4,15 @@
 
 The general aspects of Nginx Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics which should be enabled and monitored in a mission-critical environment. The `controller.wallarm.metrics` attribute of `values.yaml` enables the `/wallarm-metrics` metrics endpoint of the Ingress controller: 
 ```
-wallarm:
-    metrics:
-      enabled: true
-      service:
-        annotations:
-          prometheus.io/scrape: "true"
-          prometheus.io/path: /wallarm-metrics
-          prometheus.io/port: "18080"
+controller:
+  wallarm:
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/path: /wallarm-metrics
+            prometheus.io/port: "18080"
 ```
 
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
