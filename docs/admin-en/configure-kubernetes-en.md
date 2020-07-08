@@ -56,7 +56,7 @@ The settings are performed via the `values.yaml` file. By default, the file look
       resources: {}
 ```
 
-Description of main parameters you can set up is provided below. Other parameters always have default value or need to be changed rarely, its description is provided by the [link][link-helm-chart-details].
+A description of the main parameters you can set up is provided below. Other parameters come with default value and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
 
 ### wallarm.enabled
 

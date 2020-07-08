@@ -88,25 +88,25 @@ Specifies the directory that will be used to save the state of the ACL.
 
 ### wallarm_acl_block_page
 
-Lets you set up the response code and the page returned to the client when the request was sent from the [blocked](../user-guides/blacklist.md) IP address.
+Lets you set up the response code and the page returned to the client when the request was sent from a [blocked](../user-guides/blacklist.md) IP address.
 
 The directive can take any value including:
 * the path to the blocking page file on the server,
 * the name of `location`,
 * the path to the file with the blocking page template on the machine that runs NGINX,
-* error code.
+* an error code.
 
-**To return a particular page in the response to the blocked request:**
-1. Create the blocking page and save this file on the server. For example, the `blacklist_block.html` file.
+**To return a particular page in response to a blocked request:**
+1. Create the blocking page and save this file on the server. For example, the file `blacklist_block.html`.
 2. Add the `wallarm_acl_block_page` directive and specify the path to the blocking page file:
 
     ```
     wallarm_acl_block_page /path/blacklist_block.html
     ```
 
-    The client with the blacklist IP address will be redirected to the `blacklist_block.html` page.
+    The client with the blacklisted IP address will be redirected to the `blacklist_block.html` page.
 
-**To apply an existing `location` configuration to the blocked request:**
+**To apply an existing `location` configuration to a blocked request:**
 1. Enter the blocking message into the `location` block. For example:
     
     ```
@@ -119,10 +119,10 @@ The directive can take any value including:
     location @block {'The page is blocked';}
     ```
 
-    The request from the blacklist IP address will be blocked with the `The page is blocked` message.
+    A request from a blacklisted IP address will be blocked with the message `The page is blocked`.
 
 **To return a specific error code along with the blocking page in the response to the blocked request:**
-1. Create the blocking page and save this file on the server. For example, the `445.htm` file.
+1. Create the blocking page and save this file on the server. For example, the file `445.htm`.
 2. Add the `location` block with the blocking page settings:
 
     ```
@@ -150,7 +150,7 @@ The directive can take any value including:
     wallarm_acl_block_page /err445;
     ```
 
-    After all settings are applied, the configuration file will look like follows:
+    After all settings are applied, the configuration file will look as follows:
 
     ```
     wallarm_block_page /err445;     # /err445 – location to redirect the request to
@@ -165,10 +165,10 @@ The directive can take any value including:
         }
     ```
 
-    The client with the blacklist IP address will be redirected to the `445.htm` page and will receive the `445` error code in the response to the request.
+    The client with a blacklisted IP address will be redirected to the `445.htm` page and will receive the `445` error code in response to their request.
 
-**To return the dynamic blocking page in the response to the blocked request:**
-1. Create a template for the dynamic blocking page and save this file on the machine that runs NGINX, for example, the `blacklist_block.html` page. You can also use the template provided by Wallarm which is named `wallarm_blocked.html`.
+**To return a dynamic blocking page in response to a blocked request:**
+1. Create a template for the dynamic blocking page and save this file on the machine that runs NGINX; for example, the `blacklist_block.html` page. You can also use the template provided by Wallarm which is named `wallarm_blocked.html`.
 
     !!! info "Including NGINX variables in the blocking page template"
         You can include NGINX variables in your blocking page template to display a dynamic value by specifying the name of the NGINX variable starting with the `$` symbol.
@@ -230,7 +230,7 @@ The directive can take any value including:
 * the path to the file with the blocking page template on the machine that runs NGINX,
 * error code.
 
-**To return a particular page in the response to the blocked request:**
+**To return a particular page in response to a blocked request:**
 1. Create the blocking page and save this file on the server. For example, the `block.html` file.
 2. Add the `wallarm_block_page` directive and specify the path to the blocking page file:
 
@@ -240,7 +240,7 @@ The directive can take any value including:
 
     The client sent the request will be redirected to the `block.html` page.
 
-**To apply an existing `location` configuration to the blocked request:**
+**To apply an existing `location` configuration to a blocked request:**
 1. Enter the blocking message into the `location` block. For example:
     
     ```
@@ -284,7 +284,7 @@ The directive can take any value including:
     wallarm_block_page /err445;
     ```
 
-    After all settings are applied, the configuration file will look like follows:
+    After all settings are applied, the configuration file will look as follows:
 
     ```
     wallarm_block_page /err445;     # /err445 – location to redirect the request to
@@ -356,14 +356,14 @@ A path to the proton.db file that has the global settings for requests filtering
 ### wallarm_file_check_interval
 
 Defines an interval between checking new data in proton.db and [LOM](../glossary-en.md#lom). The unit of measure is specified in the suffix as follows:
-* not specified for minutes,
+* no suffix for minutes,
 * `s` for seconds,
 * `ms` for milliseconds.
 
 !!! info
-    This parameter is configured inside the http block only.
+    This parameter is configured only inside the http block.
     
-    **Default value**: `1` (1 minute)
+    **Default value**: `1` (one minute)
 
 ### wallarm_instance
 
@@ -523,14 +523,14 @@ Lets you enable and disable an HTML parser for responses to requests. Can be:
 
 ### wallarm_stalled_worker_timeout
 
-Sets the time limit of a single request processing for NGINX worker in seconds.
+Sets the time limit for processing a single request for an NGINX worker in seconds.
 
 If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) parameters.
 
 !!! info
     This parameter can be set inside the http, server and location blocks.
     
-    **Default value**: `5` (5 seconds)
+    **Default value**: `5` (five seconds)
 
 ### wallarm_process_time_limit
 
