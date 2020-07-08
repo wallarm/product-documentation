@@ -88,9 +88,9 @@ To export the blocking data, use the **Export list** button.
 
 Wallarm will export a CSV file based on the date range currently selected in the UI with the following fields:
 
-* **IP**: IP address.
-* **Application**: ID of the application for which IP address is blocked.
-* **Type**: the action type (**block** or **unblock**).
-* **Time**: the date and time of the action.
-* **Country**: the blocked IP address's country.
-* **Reason**: automatically generated or manually inserted reason for blacklisting.
+* **IP**: IP address
+* **Application**: ID of the application for which IP address is blocked
+* **Type**: the action type (**block** or **unblock**)
+* **Time**: the date and time of the action
+* **Country**: the blocked IP address's country
+* **Reason**: automatically generated or manually inserted reason for blacklisting
