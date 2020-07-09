@@ -32,7 +32,7 @@ By default, the **Blacklist** section is opened on the **Now** tab with the curr
 
 For each element of a blacklist entry, Wallarm shows:
 
-* **IP/Source**: the blocked IP address and if detected, the provider of this address: AWS, GCP, Azure, Tor. There may also be a code of the country where IP address is registered.
+* **IP/Source**: the blocked IP address and, if detected, the provider of this address: AWS, GCP, Azure, or Tor. There may also be a country code of where the IP address is registered.
 * **Reason**: automatically generated or manually inserted reason for blacklisting.
 * **Application**: the application that is protected by the blacklist.
 * **Block time**: the date and time of the blocking.
@@ -53,7 +53,7 @@ One can extend the blocking time for the currently blocked IP address via the **
 
 ### Unblocking IPs
 
-To unblock IP address, use **Unblock** on the entry with a blocked IP or select several IP addresses and press **Unblock**.
+To unblock IP addresses, use **Unblock** on the entry with a blocked IP or select several IP addresses and click **Unblock**.
 
 ![!Unblock IP][img-blacklist-unblock]
 
@@ -70,7 +70,7 @@ You can filter the history by:
 
 To start blocking of IP address:
 
-1. Press the **Block IP or Subnet** button.
+1. Click the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
 
     !!! info "Subnet mask"
@@ -78,7 +78,7 @@ To start blocking of IP address:
 3. Choose whether to block IPs for all applications or for a specific application.
 4. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
 5. Provide a comment on the blocking reason.
-6. Press **Add to blacklist**.
+6. Click **Add to blacklist**.
 
 ![!Adding to blacklist][img-blacklist-add]
 
@@ -88,9 +88,9 @@ To export the blocking data, use the **Export list** button.
 
 Wallarm will export a CSV file based on the date range currently selected in the UI with the following fields:
 
-* **IP**: IP address.
-* **Application**: ID of the application for which IP address is blocked.
-* **Type**: the action type (**block** or **unblock**).
-* **Time**: the date and time of the action.
-* **Country**: the blocked IP address's country.
-* **Reason**: automatically generated or manually inserted reason for blacklisting.
+* **IP**: IP address
+* **Application**: ID of the application for which IP address is blocked
+* **Type**: the action type (**block** or **unblock**)
+* **Time**: the date and time of the action
+* **Country**: the blocked IP address's country
+* **Reason**: automatically generated or manually inserted reason for blacklisting
