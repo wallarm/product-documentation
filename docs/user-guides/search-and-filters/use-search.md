@@ -152,18 +152,23 @@ Specify vulnerability status in the search string. Vulnerability can have one of
 
 ### Search by Event Time
 
-Specify time range in the search string. If the time interval is not specified, the search is conducted within the events occurred during the last 24 hours. Use the following data format: MM/DD/YYYY (for example, `01/14/2014`). If year is not specified, the current year is used. Thus, `01/14` is the same as `01/14/2019`.
+Specify time period in the search string. If the period is not specified, the search is conducted within the events occurred during the last 24 hours.
 
-Usage of string aliases is possible:
+There are the following methods to specify the period:
 
-* `yesterday`: always equal to yesterday's date.
-* `today`: always equal to today's date.
+* By date: `01/10/2019-01/14/2019`
+* By date and time (seconds are disregarded): `01/10/2019 11:11`, `11:30-12:22`, `01/10/2019 11:12-01/14/2019 12:14`
+* With relation to a certain moment of time: `>01/10/19`
+* Using string aliases: `yesterday` equal to yesterday's date or `today` equal to today's date
 
-You can also specify the following intervals for the search:
+Date and time format depends on the settings specified in your [profile](../settings/account.md#changing-your-date-time-format):
 
-* by date: `01/10/2019-01/14/2019`
-* by time (seconds are disregarded): `01/10/2019 11:11`, `11:30-12:22`, `01/10/2019 11:12-01/14/2019 12:14`
-* with relation to a certain moment of time: `>01/10/19`
+* MM/DD/YYYY if **MDY** is selected
+* DD/MM/YYYY if **DMY** is selected
+* `13:00` if **24‑hour** is ticked
+* `1pm` if **24‑hour** is unticked
+
+The month can be specified as both number and name: `01`, `1`, `January`, `Jan` for January. The year can be specified in both full form (`2020`) and shortened form (`20`). If year is not specified in the date, the current year is used.
 
 ### Search by IP Address
 
