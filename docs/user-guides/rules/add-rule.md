@@ -42,7 +42,14 @@ The following points are currently supported:
 
 #### EQUAL
 
-The point value must match precisely with the comparison argument.
+The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
+
+#### IEQUAL
+
+The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
+
+!!! info "IEQUAL in WAF node 2.8 or lower"
+    The IEQUAL type is supported only in WAF node 2.10 and higher. In other versions, IEQUAL is considered as EQUAL.
 
 #### REGEX
 
