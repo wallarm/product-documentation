@@ -275,7 +275,11 @@ nav:
         - PagerDuty: user-guides/settings/integrations/pagerduty.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
-        - Webhook: user-guides/settings/integrations/webhook.md
+        - Webhook:
+          - Overview: user-guides/settings/integrations/webhook.md
+          - Examples:
+            - Fluentd + QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+            - Logstash + QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
     - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
   - Partner Guide:
     - Introduction: partner-en/partner-intro-en.md
