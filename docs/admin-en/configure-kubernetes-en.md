@@ -10,6 +10,7 @@
 The settings are performed via the `values.yaml` file. By default, the file looks as follows:
 
 ```
+controller:
   wallarm:
     enabled: false
     apiHost: api.wallarm.com
