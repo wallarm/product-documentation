@@ -128,7 +128,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
         ```bash
         apt-get update
         apt-get install dirmngr
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
@@ -136,7 +136,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
         ```bash
         apt-get update
         apt-get install dirmngr
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
@@ -144,28 +144,28 @@ To test the regular expression, you can use the **cpire** utility on supported D
         ```bash
         apt-get update
         apt-get install dirmngr
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
     === "Ubuntu 14.04 LTS (trusty)"
         ```bash
         apt-get update
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node trusty/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
     === "Ubuntu 16.04 LTS (xenial)"
         ```bash
         apt-get update
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node xenial/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         apt-get update
-        apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.14/' > /etc/apt/sources.list.d/wallarm.list"
         apt-get update
         ```
