@@ -1,7 +1,7 @@
 === "Debian 8.x (jessie-backports)"
     ``` bash
     apt-get install dirmngr
-    apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
     echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/ignore-release-date
     echo 'deb http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list
     echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' > /etc/apt/sources.list.d/wallarm.list
@@ -11,14 +11,14 @@
 === "Debian 9.x (stretch)"
     ``` bash
     apt-get install dirmngr
-    apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' >/etc/apt/sources.list.d/wallarm.list"
     apt-get update
     ```
 === "Debian 9.x (stretch-backports)"
     ``` bash
     apt-get install dirmngr
-    apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' >/etc/apt/sources.list.d/wallarm.list"
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.14/' >> /etc/apt/sources.list.d/wallarm.list"
 
@@ -30,7 +30,7 @@
 === "Debian 10.x (buster)"
     ``` bash
     apt-get install dirmngr
-    apt-key adv --keyserver keys.gnupg.net --recv-keys 72B865FD
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.14/' > /etc/apt/sources.list.d/wallarm.list"
     apt-get update
     ```
