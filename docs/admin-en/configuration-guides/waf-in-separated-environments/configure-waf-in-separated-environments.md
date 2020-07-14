@@ -36,7 +36,7 @@ Low-level configuration can easily be seperately managed for different customer 
 Since each rule record can be associated with a [different set](how-waf-in-separated-environments-works.md#resource-identification) of application instance IDs or `HOST` request headers, the following options are recommended:
 
 * First apply a new configuration to a test or development environment, verify the functionality, and then apply the change for the production environment.
-* Use the `Define a request as an attack based on a regular expression WAF` rule in the `Experimental` mode. This mode allows the rule to be deployed directly in the production environment without the risk of mistakenly blocking valid end-user requests.
+* Use the `Define a request as an attack based on a regular expression WAF` rule in the `Experimental` mode. This mode allows the rule to be deployed directly in the production environment without the risk of mistakenly blocking valid end user requests.
 
     ![!Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 

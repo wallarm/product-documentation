@@ -99,7 +99,7 @@ kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-i
 ## Configuration
 
 After the Wallarm Ingress controller is successfully installed and checked, you can make advanced configurations to the solution such as:
-* [Proper Reporting of End-user Public IP Address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [Proper Reporting of End User Public IP Address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 * [Management of IP Addresses Blocking](configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
 * [Configuration of IP Whitelisting for Wallarm Scanner](configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
 * [High Availability Considerations](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)

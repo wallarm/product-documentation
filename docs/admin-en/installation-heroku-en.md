@@ -7,9 +7,9 @@
 # Installing as a Heroku App
 
 !!! warning "Installation prerequisites"
-    Before installing the filter node please make sure the following requirements are respected:
+    Before installing the filter node, please make sure the following requirements are met:
     
-    * Your app is using the Heroku-16 or Heroku-18 stack. Detailed information about stacks is available in [Heroku documentation](https://devcenter.heroku.com/articles/stack).
+    * Your app uses the Heroku-16 or Heroku-18 stack. Detailed information about stacks is available in the [Heroku documentation](https://devcenter.heroku.com/articles/stack).
     * You have a Wallarm account with the Administrator role.
 
 Wallarm can protect web-applications and API deployed on the Heroku platform. The Wallarm filter node can be installed by connecting the application to a Buildpack that was built specifically for Heroku apps.

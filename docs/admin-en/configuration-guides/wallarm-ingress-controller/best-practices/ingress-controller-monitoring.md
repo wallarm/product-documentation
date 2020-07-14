@@ -2,7 +2,7 @@
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-The general aspects of Nginx Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics which should be enabled and monitored in a mission-critical environment. The `controller.wallarm.metrics` attribute of `values.yaml` enables the `/wallarm-metrics` metrics endpoint of the Ingress controller: 
+The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics that should be enabled and monitored in a mission-critical environment. The `controller.wallarm.metrics` attribute of `values.yaml` enables the `/wallarm-metrics` metrics endpoint of the Ingress controller: 
 ```
 controller:
   wallarm:

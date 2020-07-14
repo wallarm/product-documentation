@@ -57,13 +57,13 @@ Fill in the remaining parameters if required. Click *Next*.
 
 At the final stage of configuring the application, you will be prompted to provide mappings between service provider's attributes to the available user profile fields. Wallarm (as a service provider) requires you to create an attribute mapping.
 
-Press *Add new mapping* and then map the `email` attribute to the “Primary Email” user profile field (in the “Basic Information” group).
+Click *Add new mapping* and then map the `email` attribute to the “Primary Email” user profile field (in the “Basic Information” group).
 
 ![!Creating an attribute mapping][img-create-attr-mapping]
 
 Click *Finish*.
 
-After that, you will be informed in the pop-up window that the provided information is saved and, in order to complete the SAML SSO configuration, you will need to upload the data about the identity provider (Google) in the admin panel of the service provider (Wallarm). Press *Ok*.
+After that, you will be informed in the pop-up window that the provided information is saved and, in order to complete the SAML SSO configuration, you will need to upload the data about the identity provider (Google) in the admin panel of the service provider (Wallarm). Click *Ok*.
 
 After that, you will be redirected to the page of the created application.
 Once the application is created, it is disabled for all your organizations in G Suite. To activate the SSO for this application, click the *Edit Service* button. 
