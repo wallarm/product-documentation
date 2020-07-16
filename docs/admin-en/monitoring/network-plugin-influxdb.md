@@ -156,8 +156,8 @@ At this point, InfluxDB should be running, ready to receive metrics from `collec
 ### Configuring `collectd`
 
 Configure `collectd` to export metrics to InfluxDB:
-1.  Connect to the filter node (for example, by using the SSH protocol). Make sure you are logged in as root or another account with superuser privileges.
-2.  Create a file named `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` with the following content:
+1. Connect to the filter node (for example, by using the SSH protocol). Make sure you are logged in as root or another account with superuser privileges.
+2. Create a file named `/etc/collectd/collectd.conf.d/export-to-influxdb.conf` with the following content:
    
     ```
     LoadPlugin network
@@ -172,8 +172,8 @@ Configure `collectd` to export metrics to InfluxDB:
     1.  The server, to send metrics to (`10.0.30.30`)
     2.  The port that server listens on (`25826/UDP`)
     
-3.  Restart the `collectd` service by running the appropriate command:
+3. Restart the `collectd` service by running the appropriate command:
 
-  --8<-- "../include/monitoring/collectd-restart.md"
+    --8<-- "../include/monitoring/collectd-restart.md"
 
 Now InfluxDB receives all the metrics of the filter node. You can visualize the metrics you are interested in and monitor them [with Grafana][doc-grafana].

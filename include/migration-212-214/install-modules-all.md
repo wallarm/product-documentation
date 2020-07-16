@@ -4,5 +4,5 @@
     ```
 === "CentOS or Amazon Linux 2"
     ```bash
-    yum upgrade wallarm-node
+    yum update wallarm-node
     ```
