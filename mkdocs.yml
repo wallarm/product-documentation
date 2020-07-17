@@ -201,6 +201,7 @@ nav:
     - Operations:
       - Configuring SELinux: admin-en/configure-selinux.md
       - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
+      - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md 
     - Troubleshooting: admin-en/troubleshooting.md
     - Wallarm API: admin-en/api-en.md
     - Support of the Scanner Operation:
