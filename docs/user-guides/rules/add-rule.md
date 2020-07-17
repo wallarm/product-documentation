@@ -29,14 +29,15 @@ A branch description consists of a set of conditions for various parameters that
 The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
 
 The following points are currently supported:
-* **instance**: application ID.
-* **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...).
-* **scheme**: http or https.
-* **url**: full URL of the request in the same form as it was passed in the first line of the HTTP request.
-* **path**, **action_name**, **action_ext**: URL elements. The details are provided in the [request analysis description][link-request-processing].
-* **get**: GET parameters in the request.
-* **header**: request headers.
-* **method**: request methods.
+
+* **instance**: application ID
+* **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
+* **scheme**: http or https
+* **uri**: part of the request URL without domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
+* **path**, **action_name**, **action_ext**: URL elements. The details are provided in the [request analysis description][link-request-processing]
+* **get**: GET parameters in the request
+* **header**: request headers
+* **method**: request methods
 
 ### Condition types
 
