@@ -82,7 +82,7 @@ You can:
         ```
     === "CentOS or Amazon Linux 2"
         ```bash
-        echo '[nginx-stable] name=nginx stable repo baseurl=http://nginx.org/packages/centos/$releasever/$basearch/ gpgcheck=1 enabled=1 gpgkey=https://nginx.org/keys/nginx_signing.key module_hotfixes=true' > /etc/yum.repos.d/nginx.repo
+        echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' > /etc/yum.repos.d/nginx.repo
         yum install nginx
         ```
 
