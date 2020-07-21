@@ -65,6 +65,10 @@ Most of the vulnerabilities and attacks on this list are also accompanied by one
 
 Additionally, the Wallarm filter node employs several special attack and vulnerability types for the internal purpose of marking processed traffic. Such entities are not accompanied by CWE codes but are [listed separately][anchor-special-list]. 
 
+??? info "Watch Wallarm video about how WAF protects against OWASP Top 10"
+    <div class="video-wrapper">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
 ##  The Main List of Attacks and Vulnerabilities
 
