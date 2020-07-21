@@ -115,6 +115,10 @@ You may follow these recommendations:
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
 *   Restrict a web application from accessing any files or directories on the server it runs on, except those within the scope of the application. 
 
+??? info "Watch Wallarm video about brute‑force attacks"
+    <div class="video-wrapper">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/0R_2wL5_a-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 
 ### Resource Scanning
 
