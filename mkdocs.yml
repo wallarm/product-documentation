@@ -247,7 +247,7 @@ nav:
       - Inspecting Application Profile Rules: user-guides/rules/view.md
       - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
       - Compilation and Update Of Security Rules: user-guides/rules/compiling.md
-      - How Wallarm Analyzes Requests: user-guides/rules/request-processing.md
+      - Analyzing Requests: user-guides/rules/request-processing.md
       - Filter Mode Rule: user-guides/rules/wallarm-mode-rule.md
       - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
       - Virtual Patching: user-guides/rules/vpatch-rule.md

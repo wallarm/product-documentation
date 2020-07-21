@@ -34,7 +34,7 @@ The following points are currently supported:
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
 * **scheme**: http or https
 * **uri**: part of the request URL without domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
-* **path**, **action_name**, **action_ext**: URL elements. The details are provided in the [request analysis description][link-request-processing]
+* **path**, **action_name**, **action_ext**: URL elements (recommended format for URL describing). More details are provided in the [request analysis description][link-request-processing]
 * **get**: GET parameters in the request
 * **header**: request headers
 * **method**: request methods
