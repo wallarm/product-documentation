@@ -402,7 +402,6 @@ Traffic processing mode:
 - **off**: requests are not processed.
 - **monitoring**: all requests are processed, but none of them is blocked even if an attack is detected.
 - **block**: all requests where an attack was detected are blocked.
-- **aggressive**: all non-standard requests are blocked. For example, mapping a string in the field usually used for passing a number. Use this mode with extreme caution.
 
 The value can include variables that are available after receiving a request string and headers. This can be used for applying various policies for various clients:
 
