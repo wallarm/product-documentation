@@ -547,9 +547,9 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - **on**: the requests are always blocked
 - **off**: the requests are always ignored
 - **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
-
-  - **monitoring**: the requests are ignored
-  - **block** and **aggressive**: the requests are blocked
+    - **off**: the requests are not processed
+    - **monitoring**: the requests are ignored
+    - **block**: the requests are blocked
 
 !!! info
     This parameter can be set inside the http, server and location blocks.

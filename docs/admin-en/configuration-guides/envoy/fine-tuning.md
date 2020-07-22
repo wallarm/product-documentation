@@ -233,8 +233,9 @@ This parameter specifies the action to take when the request processing time exc
 *   `on`: the requests are always blocked
 *   `off`: the requests are always ignored
 *   `attack`: depends on the attack blocking mode set via the `mode` parameter:
+    *   `off`: the requests are not processed
     *   `monitoring`: the requests are ignored
-    *   `block` and `aggressive`: the requests are blocked
+    *   `block`: the requests are blocked
 
 !!! info
     **Default value:** `attack`
