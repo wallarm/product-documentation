@@ -10,8 +10,8 @@ In the provided example, events are sent via webhooks to the Logstash log collec
 
 ## Used resources
 
-* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available by `https://logstash.example.domain.com`
-* [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available by the IP address `https://109.111.35.11:514`
+* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
+* [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
 ### Logstash configuration
@@ -46,7 +46,7 @@ output {
 }
 ```
 
-More detailed description of configuration files is available in the [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
+A more detailed description of the configuration files is available in the [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
 
 !!! info "Testing Logstash configuration"
     To check that Logstash logs are created and forwarded to QRadar, the POST request can be sent to Logstash.
@@ -67,7 +67,7 @@ More detailed description of configuration files is available in the [official L
 
 ### QRadar configuration (optional)
 
-In QRadar, the log source is configured. It helps to easily find Logstash logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
+In QRadar, the log source is configured. It helps easily find Logstash logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
 
 * **Log Source Name**: `Logstash`
 * **Log Source Description**: `Logs from Logstash`
@@ -76,7 +76,7 @@ In QRadar, the log source is configured. It helps to easily find Logstash logs i
 * **Log Source Identifier**: Logstash IP address
 * Other default settings
 
-More detailed description of QRadar log source setup is available in the [official IBM documentation](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
+A more detailed description of the QRadar log source setup is available in the [official IBM documentation](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
 ![!QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
@@ -94,6 +94,6 @@ Logstash will log the event as follows:
 
 ![!Log about new user in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
 
-The following data in JSON format will be displayed in QRadar log payload:
+The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
