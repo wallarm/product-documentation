@@ -11,7 +11,7 @@ The list of IP addresses for US Cloud from which the Wallarm Scanner scans for [
 
 --8<-- "../include/scanner-ip-request-us.md"
 
-Rechecker IP addresses:
+IP addresses used by Wallarm to recheck attacks:
 
 --8<-- "../include/rechecker-ip-us.md"
 

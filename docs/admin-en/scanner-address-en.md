@@ -7,11 +7,11 @@
     
     If you are using the US Cloud <https://us1.my.wallarm.com>, proceed to the [list of scanner addresses for US Cloud](scanner-address-us-en.md).
 
-The list of ip addresses for EU Cloud from which the Wallarm Scanner scans for [vulnerabilities](../glossary-en.md#vulnerability).
+The list of IP addresses for EU Cloud from which the Wallarm Scanner scans company resources for [vulnerabilities](../glossary-en.md#vulnerability).
 
 --8<-- "../include/scanner-ip-request.md"
 
-Active Threat Verification scanner:
+IP addresses used by Wallarm to recheck attacks:
 
 --8<-- "../include/scanner-ip-validate.md"
 
