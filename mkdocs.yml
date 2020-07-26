@@ -1,6 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: Wallarm AI-powered Platform automates real-time application protection and security testing for websites, microservices and APIs across public and private clouds.
+site_description: Wallarm Advanced WAF protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
