@@ -199,7 +199,6 @@ This sets the traffic filtration mode:
 *   `off`: requests are not processed.
 *   `monitoring`: all requests are processed, but none of them are blocked even if an attack is detected.
 *   `block`: all requests where an attack is detected are blocked.
-*   `aggressive`: all non-standard requests are blocked, for example, mapping a string in the field usually used for passing a number. Use this mode with extreme caution.
 
 The modes are listed from the most lenient to the strictest one.
 
@@ -234,8 +233,9 @@ This parameter specifies the action to take when the request processing time exc
 *   `on`: the requests are always blocked
 *   `off`: the requests are always ignored
 *   `attack`: depends on the attack blocking mode set via the `mode` parameter:
+    *   `off`: the requests are not processed
     *   `monitoring`: the requests are ignored
-    *   `block` and `aggressive`: the requests are blocked
+    *   `block`: the requests are blocked
 
 !!! info
     **Default value:** `attack`

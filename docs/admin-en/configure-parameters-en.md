@@ -402,7 +402,6 @@ Traffic processing mode:
 - **off**: requests are not processed.
 - **monitoring**: all requests are processed, but none of them is blocked even if an attack is detected.
 - **block**: all requests where an attack was detected are blocked.
-- **aggressive**: all non-standard requests are blocked. For example, mapping a string in the field usually used for passing a number. Use this mode with extreme caution.
 
 The value can include variables that are available after receiving a request string and headers. This can be used for applying various policies for various clients:
 
@@ -548,9 +547,9 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - **on**: the requests are always blocked
 - **off**: the requests are always ignored
 - **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
-
-  - **monitoring**: the requests are ignored
-  - **block** and **aggressive**: the requests are blocked
+    - **off**: the requests are not processed
+    - **monitoring**: the requests are ignored
+    - **block**: the requests are blocked
 
 !!! info
     This parameter can be set inside the http, server and location blocks.
