@@ -60,7 +60,7 @@ Allows you to declare and configure an ACL database to restrict access by IP add
 
 ```
 wallarm_acl_db wapi {
-  wallarm_acl_path /var/cache/nginx / wallarm/acl/wapi;
+  wallarm_acl_path /var/cache/nginx/wallarm/acl/wapi;
 }
 ```
 
