@@ -48,7 +48,7 @@ The systems available for integration are grouped in the following blocks: **Ema
 
 * [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol. For examples:
     * [With Fluentd configured to forward logs to QRadar](webhook-examples/fluentd-qradar.md)
-    * [With Logstash configured to forward logs to QRadar](webhook-examples/logstash-qradar.md)
+    * With Logstash configured to forward logs to [QRadar](webhook-examples/logstash-qradar.md), [Splunk](webhook-examples/logstash-splunk.md)
 
 ## Adding an integration
 
