@@ -1,4 +1,4 @@
-# Fluentd + Splunk
+# Splunk Enterprise via Fluentd
 
 ## Example overview
 

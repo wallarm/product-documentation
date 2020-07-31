@@ -279,10 +279,10 @@ nav:
         - Webhook:
           - Overview: user-guides/settings/integrations/webhook.md
           - Examples:
-            - Fluentd + QRadar: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-            - Logstash + QRadar: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-            - Fluentd + Splunk: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-            - Logstash + Splunk: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+            - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+            - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+            - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+            - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
     - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
   - Release Notes:
     - Version 2.14: release-notes-en/relnotes-en_v2.14.md

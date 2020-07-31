@@ -1,4 +1,4 @@
-# Logstash + Splunk
+# Splunk Enterprise via Logstash
 
 ## Example overview
 
