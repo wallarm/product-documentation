@@ -1,4 +1,4 @@
-# Fluentd + QRadar
+# IBM QRadar via Fluentd
 
 ## Example overview
 

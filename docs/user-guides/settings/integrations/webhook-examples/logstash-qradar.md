@@ -1,4 +1,4 @@
-# Logstash + QRadar
+# IBM QRadar via Logstash
 
 ## Example overview
 
