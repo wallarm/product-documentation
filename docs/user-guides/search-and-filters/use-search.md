@@ -36,7 +36,7 @@
 
 # Using Search
 
-You can search for virtually any attribute of attacks, incidents, and vulnerabilities. 
+You can search for virtually any attacks, incidents, and vulnerabilities. 
 
 Wallarm is equipped with a query language similar to human language, which makes submitting queries intuitive. Queries can be refined using special modifiers, which are described below.
 
@@ -60,7 +60,7 @@ In addition to using the search string, you can retrieve data using filters (see
 Parameters you enter into the search string will automatically duplicate in the filters and vice versa.
 
 !!! info "Save as a filter"
-    Any search query or combination of filters can be saved using the *Save as template* button and quickly accessed later with the *Searches* drop-down list.
+    Any search query or combination of filters can be saved using the *Save as template* button and quickly accessed later with the *Searches* drop-down menu.
 
 ## Search Attributes
 
@@ -152,7 +152,7 @@ Specify vulnerability status in the search string. Vulnerability can have one of
 
 ### Search by Event Time
 
-Specify time period in the search string. If the period is not specified, the search is conducted within the events occurred during the last 24 hours.
+Specify time period in the search string. If the period is not specified, the search is conducted within the events that occurred during the last 24 hours.
 
 There are the following methods to specify the period:
 
@@ -168,7 +168,7 @@ Date and time format depends on the settings specified in your [profile](../sett
 * `13:00` if **24‑hour** is ticked
 * `1pm` if **24‑hour** is unticked
 
-The month can be specified as both number and name: `01`, `1`, `January`, `Jan` for January. The year can be specified in both full form (`2020`) and shortened form (`20`). If year is not specified in the date, the current year is used.
+The month can be specified as both number and name: `01`, `1`, `January`, `Jan` for January. The year can be specified in both full form (`2020`) and shortened form (`20`). If the year is not specified in the date, then the current year is used.
 
 ### Search by IP Address
 
@@ -248,7 +248,7 @@ Strings that start with `/` are processed without a prefix. Any string can be sp
 
 To search by parameter, use the `p:`, `param:`, or `parameter:` prefix and also the `=` suffix.
 
-For example, if you need to find attacks aimed at the `xss` parameter but not at XSS-attacks (for instance, SQL-injection attack having `xss` in the GET-parameter), specify `attacks p:xss` in the search string.
+For example, if you need to find attacks aimed at the `xss` parameter but not at XSS-attacks (for instance, SQL-injection attack having `xss` in the GET-parameter), then specify `attacks p:xss` in the search string.
 
 A string that does not start with `/` and ends with `=` is considered to be a parameter (wherein the ending `=` character is not included in the value). Any string can be specified with a prefix.
 
@@ -272,7 +272,7 @@ Example:
 ### Search by Request Identifier
 
 To search for attacks and incidents by request identifier, specify the `request_id` prefix.
-The `request_id` parameter has the following value form: `a79199bcea606040cc79f913325401fb`. To make it easier to read, in the examples below this parameter has been replaced by the placeholder abbreviation `<requestId>`.
+The `request_id` parameter has the following value form: `a79199bcea606040cc79f913325401fb`. In order to make it easier to read, this parameter has been replaced by the placeholder abbreviation `<requestId>` in the examples below.
 
 Examples:
 *   `attacks incidents request_id:<requestId>`: to search for an attack or an incident with the `request_id` equal to `<requestId>`.
