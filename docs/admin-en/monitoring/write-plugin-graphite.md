@@ -22,21 +22,24 @@ The following deployment scheme is used in this document:
 *   Wallarm filter node is deployed on a host accessible via the `10.0.30.5` IP address and the `node.example.local` fully qualified domain name.
 
     The `write_graphite` plugin for `collectd` on the filter node is configured as follows:
-    *   All metrics are sent to the `10.0.30.30` server listening on the `2003/TCP` port.
-    *   Some Wallarm-specific `collectd` plugins support multiple [instances][link-collectd-naming], so the `write_graphite` plugin contains the `SeparateInstances` parameter set to `true`. The `true` value means that the plugin can work with several instances.
+
+      *   All metrics are sent to the `10.0.30.30` server listening on the `2003/TCP` port.
+      *   Some Wallarm-specific `collectd` plugins support multiple [instances][link-collectd-naming], so the `write_graphite` plugin contains the `SeparateInstances` parameter set to `true`. The `true` value means that the plugin can work with several instances.
     
     A complete list of plugin options is available [here][link-write-plugin].
     
 *   Both `graphite` and `grafana` services are deployed as Docker containers on a separate host with the `10.0.30.30` IP address.
     
     The `graphite` service with Graphite is configured as follows:
-    *   It listens for incoming connections on the `2003/TCP` port, to which `collectd` will send the filter node metrics.
-    *   It listens for incoming connections on the `8080/TCP` port, through which communication with Grafana will occur.
-    *   The service shares the `sample-net` Docker network with the `grafana` service.
+
+      *   It listens for incoming connections on the `2003/TCP` port, to which `collectd` will send the filter node metrics.
+      *   It listens for incoming connections on the `8080/TCP` port, through which communication with Grafana will occur.
+      *   The service shares the `sample-net` Docker network with the `grafana` service.
 
     The `grafana` service with Grafana is configured as follows:
-    *   The Grafana web console is available at `http://10.0.30.30:3000`.
-    *   The service shares the `sample-net` Docker network with the `graphite` service.
+
+      *   The Grafana web console is available at `http://10.0.30.30:3000`.
+      *   The service shares the `sample-net` Docker network with the `graphite` service.
 
 ##  Configuring Metrics Export to Graphite
 
