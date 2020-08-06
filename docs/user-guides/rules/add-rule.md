@@ -13,7 +13,7 @@ To add a new rule, go to the *Profile & Rules* tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
 
-To add a rule to an existing branch, click *Add rule* (the button will appear in the pop-up menu on the right after hovering the mouse cursor over the branch description line). You can also perform this operation on the rule page of this branch.
+To add a rule to an existing branch, click *Add rule* (after hovering the mouse cursor over the branch description line, the button will appear in the pop-up menu on the right). You can also perform this operation on the rule page of this branch.
 
 If necessary, it is possible to modify the branch to which a rule will be added. For this, click on the *If request is* clause in the rule-adding form and make changes to the branch description conditions. If a new branch is created, it will appear on the screen, and the application structure view will be updated.
 
@@ -33,7 +33,7 @@ The following points are currently supported:
 * **instance**: application ID
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
 * **scheme**: http or https
-* **uri**: part of the request URL without domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
+* **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
 * **path**, **action_name**, **action_ext**: URL elements (recommended format for URL describing). More details are provided in the [request analysis description][link-request-processing]
 * **get**: GET parameters in the request
 * **header**: request headers
@@ -184,7 +184,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
     ```
     
-    If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`). If the regular expression is invalid, the utility will return an error message.
+    If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`). If the regular expression is invalid, then the utility will return an error message.
 4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
     * `0` if the value matches with the regular expression
     * `FAIL` if the value does not match with the regular expression
