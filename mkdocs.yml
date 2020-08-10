@@ -24,6 +24,7 @@ theme:
     repo: fontawesome/brands/github-alt
   font:
     text: Inter
+    code: Roboto Mono
 
 extra:
   social:
