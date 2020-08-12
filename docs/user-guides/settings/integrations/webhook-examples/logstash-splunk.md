@@ -20,7 +20,7 @@ Logstash logs are sent to Splunk HTTP Event Controller with the name `Wallarm Lo
 
 ![!HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
-To access the HTTP Event Controller, generated token `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` will be used.
+To access the HTTP Event Controller, use the generated token `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb`.
 
 More detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
