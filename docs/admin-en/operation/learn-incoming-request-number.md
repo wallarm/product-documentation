@@ -19,7 +19,7 @@ Normally, the following teams in a company may have an easy access to the inform
 
 There are several methods to look for the number of requests handled by the application:
 
-* AWS customers using ELB or ALB load balancers can use AWS monitoring metrics, which uses the load balancers to estimate the level of daily and weekly requests for applications served by the load balancers:
+* AWS customers using ELB or ALB load balancers can use AWS monitoring metrics of load balancers to estimate the level of daily and weekly requests for applications served by the load balancers:
 
     ![!AWS monitoring example](../../images/operation/aws-requests-example.png)
 
