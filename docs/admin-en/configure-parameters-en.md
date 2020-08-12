@@ -88,72 +88,40 @@ Specifies the directory that will be used to save the state of the ACL.
 
 ### wallarm_acl_block_page
 
-Lets you set up the response code and the page returned to the client when the request was sent from a [blocked](../user-guides/blacklist.md) IP address.
+Lets you set up the response code and the page returned to the client when the request was sent from a [blocked](../user-guides/blacklist.md) IP address. Directive value format: `wallarm_acl_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
 
-The directive can take any value including:
-* the path to the blocking page file on the server,
-* the name of `location`,
-* the path to the file with the blocking page template on the machine that runs NGINX,
-* an error code.
+By default, the response code 403 and default NGINX block page are returned to the client. You can set up the following configurations:
 
-**To return a particular page in response to a blocked request:**
-1. Create the blocking page and save this file on the server. For example, the file `blacklist_block.html`.
-2. Add the `wallarm_acl_block_page` directive and specify the path to the blocking page file:
+* Return default Wallarm block page and a custom response code:
 
-    ```
-    wallarm_acl_block_page /path/blacklist_block.html
+    ```bash
+    wallarm_acl_block_page &/usr/share/nginx/html/wallarm_blocked.html response_code=445;
     ```
 
-    The client with the blacklisted IP address will be redirected to the `blacklist_block.html` page.
+    To return default response code 403, you can omit `response_code=445`. 
+* Return custom block page and response code:
 
-**To apply an existing `location` configuration to a blocked request:**
-1. Enter the blocking message into the `location` block. For example:
-    
+    ```bash
+    # block page block.html located in /usr/share/nginx/html
+    # response code 445
+    wallarm_acl_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
-    location @block {'The page is blocked';}
-    ```
-2. Add the `wallarm_acl_block_page` directive and specify the `location` block name:
-   
-    ```
+
+    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address sent a request.
+
+* Return blocking message or the block page and custom response code described in the `location` block:
+
+    ```bash
+    # response code 445 and the message "The page is blocked"
     wallarm_acl_block_page @block;
-    location @block {'The page is blocked';}
-    ```
-
-    A request from a blacklisted IP address will be blocked with the message `The page is blocked`.
-
-**To return a specific error code along with the blocking page in the response to the blocked request:**
-1. Create the blocking page and save this file on the server. For example, the file `445.htm`.
-2. Add the `location` block with the blocking page settings:
-
-    ```
-    location @blocked {
-        root /var/www/errors;           # The directory with the 445.htm file
-        rewrite ^(.*)$ /445.htm break;  # The redirect to the /445.htm
+    location @block {
+        return 445 'The page is blocked';
     }
     ```
-3. Add the `error_page` object and specify the error code and the name of the blocking page `location`:
 
-    ```
-    error_page 445 @blocked;
-    ```
-4. Add the `location` block with the error code settings:
-
-    ```
-    location = /err445 {
-        internal;                   # The internal location that is not available from the outside
-        return 445;                 # The 445 response code is returned
-    }
-    ```
-5. Add the `wallarm_acl_block_page` directive and specify the name of the error code `location`:
-
-    ```
-    wallarm_acl_block_page /err445;
-    ```
-
-    After all settings are applied, the configuration file will look as follows:
-
-    ```
-    wallarm_block_page /err445;     # /err445 – location to redirect the request to
+    ```bash
+    # response code 445 and the page 445.html located in /usr/share/nginx/html
+    wallarm_acl_block_page /err445;     # /err445 – location to redirect the request to
     error_page 445 @blocked;        # The request that triggered the 445 error is passed to the @blocked location 
     location @blocked {
         root /var/www/errors;           # The directory with the 445.htm file
@@ -164,28 +132,14 @@ The directive can take any value including:
         return 445;                 # The 445 response code is returned
         }
     ```
-
-    The client with a blacklisted IP address will be redirected to the `445.htm` page and will receive the `445` error code in response to their request.
-
-**To return a dynamic blocking page in response to a blocked request:**
-1. Create a template for the dynamic blocking page and save this file on the machine that runs NGINX; for example, the `blacklist_block.html` page. You can also use the template provided by Wallarm which is named `wallarm_blocked.html`.
-
-    !!! info "Including NGINX variables in the blocking page template"
-        You can include NGINX variables in your blocking page template to display a dynamic value by specifying the name of the NGINX variable starting with the `$` symbol.
-
-2. Add the `wallarm_acl_block_page` directive and specify the path to the template on the machine starting with the `&` symbol:
-
+    
+!!! warning "Important Information for Debian and CentOS Users"
+    If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
     ```
-    wallarm_acl_block_page &C:/templates/blacklist_block.html
+    UUID ${request_id}
     ```
 
-    !!! warning "Important Information for Debian and CentOS Users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
-        ```
-        UUID ${request_id}  # This part of the code should be removed
-        ```
-
-        This applies to both `wallarm_blocked.html` and to your own dynamic page template.
+    This applies to both `wallarm_blocked.html` and to the custom block page.
 
 !!! info
     This parameter can be set inside the http, server and location blocks.
@@ -222,71 +176,39 @@ api:
 
 ### wallarm_block_page
 
-Lets you set up the response code and page returned to the client when an [invalid request](../glossary-en.md#invalid-request) has been blocked. 
+Lets you set up the response code and page returned to the client when a malicious request has been blocked. Directive value format: `wallarm_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
 
-The directive can take any value including:
-* the path to the blocking page file on the server,
-* the name of `location`,
-* the path to the file with the blocking page template on the machine that runs NGINX,
-* error code.
+By default, the response code 403 and default NGINX block page are returned to the client. You can set up the following configurations:
 
-**To return a particular page in response to a blocked request:**
-1. Create the blocking page and save this file on the server. For example, the `block.html` file.
-2. Add the `wallarm_block_page` directive and specify the path to the blocking page file:
+* Return default Wallarm block page and a custom response code:
 
-    ```
-    wallarm_block_page /path/block.html
+    ```bash
+    wallarm_block_page &/usr/share/nginx/html/wallarm_blocked.html response_code=445;
     ```
 
-    The client sent the request will be redirected to the `block.html` page.
+    To return default response code 403, you can omit `response_code=445`. 
+* Return custom block page and response code:
 
-**To apply an existing `location` configuration to a blocked request:**
-1. Enter the blocking message into the `location` block. For example:
-    
+    ```bash
+    # block page block.html located in /usr/share/nginx/html
+    # response code 445
+    wallarm_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
-    location @block {'The page is blocked';}
-    ```
-2. Add the `wallarm_block_page` directive and specify the `location` block name:
-   
-    ```
+
+    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address sent a request.
+
+* Return blocking message or the block page and custom response code described in the `location` block:
+
+    ```bash
+    # response code 445 and the message "The page is blocked"
     wallarm_block_page @block;
-    location @block {'The page is blocked';}
-    ```
-
-    The request will be blocked with the `The page is blocked` message.
-
-**To return a specific error code along with the blocking page in the response to the blocked request:**
-1. Create the blocking page and save this file on the server. For example, the `445.htm` file.
-2. Add the `location` block with the blocking page settings:
-
-    ```
-    location @blocked {
-        root /var/www/errors;           # The directory with the 445.htm file
-        rewrite ^(.*)$ /445.htm break;  # The redirect to the /445.htm
+    location @block {
+        return 445 'The page is blocked';
     }
     ```
-3. Add the `error_page` object and specify the error code and the name of the blocking page `location`:
 
-    ```
-    error_page 445 @blocked;
-    ```
-4. Add the `location` block with the error code settings:
-
-    ```
-    location = /err445 {
-        internal;                   # The internal location that is not available from the outside
-        return 445;                 # The 445 response code is returned
-    }
-    ```
-5. Add the `wallarm_block_page` directive and specify the name of the error code `location`:
-
-    ```
-    wallarm_block_page /err445;
-    ```
-
-    After all settings are applied, the configuration file will look as follows:
-
-    ```
+    ```bash
+    # response code 445 and the page 445.html located in /usr/share/nginx/html
     wallarm_block_page /err445;     # /err445 – location to redirect the request to
     error_page 445 @blocked;        # The request that triggered the 445 error is passed to the @blocked location 
     location @blocked {
@@ -298,28 +220,14 @@ The directive can take any value including:
         return 445;                 # The 445 response code is returned
         }
     ```
-
-    The client sent the request will be redirected to the `445.htm` page and will receive the `445` error code in the response to the request.
-
-**To return the dynamic blocking page in the response to the blocked request:**
-1. Create a template for the dynamic blocking page and save this file on the machine that runs NGINX, for example, the `block.html` page. You can also use the template provided by Wallarm which is named `wallarm_blocked.html`.
-
-    !!! info "Including NGINX variables in the blocking page template"
-        You can include NGINX variables in your blocking page template to display a dynamic value by specifying the name of the NGINX variable starting with the `$` symbol.
-
-2. Add the `wallarm_block_page` directive and specify the path to the template on the machine starting with the `&` symbol:
-
+    
+!!! warning "Important Information for Debian and CentOS Users"
+    If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
     ```
-    wallarm_block_page &C:/templates/block.html
+    UUID ${request_id}
     ```
 
-    !!! warning "Important Information for Debian and CentOS Users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
-        ```
-        UUID ${request_id}  # This part of the code should be removed
-        ```
-
-        This applies to both `wallarm_blocked.html` and to your own dynamic page template.
+    This applies to both `wallarm_blocked.html` and to the custom block page.
 
 !!! info
     This parameter can be set inside the http, server and location blocks.
