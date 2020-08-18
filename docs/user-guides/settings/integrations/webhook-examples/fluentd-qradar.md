@@ -10,8 +10,8 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 
 ## Used resources
 
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available by `https://fluentd‑example‑domain.com`
-* [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available by the IP address `https://109.111.35.11:514`
+* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd‑example‑domain.com`
+* [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
 ### Fluentd configuration
@@ -53,7 +53,7 @@ Fluentd is configured in the `td-agent.conf` file:
 </match>
 ```
 
-More detailed description of configuration files is available in the [official Fluentd documentation](https://docs.fluentd.org/configuration/config-file).
+A more detailed description of configuration files is available in the [official Fluentd documentation](https://docs.fluentd.org/configuration/config-file).
 
 !!! info "Testing Fluentd configuration"
     To check that Fluentd logs are created and forwarded to QRadar, the PUT or POST request can be sent to Fluentd.
@@ -74,7 +74,7 @@ More detailed description of configuration files is available in the [official F
 
 ### QRadar configuration (optional)
 
-In QRadar, the log source is configured. It helps to easily find Fluentd logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
+In QRadar, the log source is configured. It helps easily find Fluentd logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
 
 * **Log Source Name**: `Fluentd`
 * **Log Source Description**: `Logs from Fluentd`
@@ -83,7 +83,7 @@ In QRadar, the log source is configured. It helps to easily find Fluentd logs in
 * **Log Source Identifier**: Fluentd IP address
 * Other default settings
 
-More detailed description of QRadar log source setup is available in the [official IBM documentation](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
+A more detailed description of QRadar log source setup is available in the [official IBM documentation](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
 ![!QRadar log source setup for Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
 
@@ -101,6 +101,6 @@ Fluentd will log the event as follows:
 
 ![!Log about new user in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
 
-The following data in JSON format will be displayed in QRadar log payload:
+The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
