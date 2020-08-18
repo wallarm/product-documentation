@@ -33,6 +33,15 @@
 
 .md-typeset p {
   line-height: 1.5;
+  font-size: 16px;
+}
+
+.admonition p {
+  font-size: 14px;
+}
+
+.md-typeset code {
+  font-size: 14px;
 }
 
 .md-nav__link {

@@ -22,6 +22,9 @@ theme:
   favicon: images/favicon.ico
   icon:
     repo: fontawesome/brands/github-alt
+  font:
+    text: Inter
+    code: Roboto Mono
 
 extra:
   social:
@@ -70,7 +73,7 @@ markdown_extensions:
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
 nav:
-  - Wallarm Overview: README.md
+  - Home: index.md
   - Quick Start:
     - How Wallarm Works:
       - Introduction: quickstart-en/how-wallarm-works/qs-intro-en.md

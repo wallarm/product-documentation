@@ -31,15 +31,17 @@ The following deployment scheme is used in this document:
 *   Both `influxdb` and grafana services are deployed as Docker containers on a separate host with the `10.0.30.30` IP address.
 
     The `influxdb` service with the InfluxDB database is configured as follows:
-    *   A `collectd` data source has been created (the `collectd` input according to InfluxDB terminology), which listens on the `25826/UDP` port and writes incoming metrics to a database called `collectd`.
-    *   Communication with the InfluxDB API occurs via the `8086/TCP` port.
-    *   The service shares a `sample-net` Docker network with the `grafana` service.
+
+      * A `collectd` data source has been created (the `collectd` input according to InfluxDB terminology), which listens on the `25826/UDP` port and writes incoming metrics to a database called `collectd`.
+      * Communication with the InfluxDB API occurs via the `8086/TCP` port.
+      * The service shares a `sample-net` Docker network with the `grafana` service.
     
     
     
     The `grafana` service with Grafana is configured as follows:
-    *   The Grafana web console is available at `http://10.0.30.30:3000`.
-    *   The service shares the `sample-net` Docker network with the `influxdb` service.
+    
+      * The Grafana web console is available at `http://10.0.30.30:3000`.
+      * The service shares the `sample-net` Docker network with the `influxdb` service.
 
 ##  Configuring Metrics Export to InfluxDB
 
