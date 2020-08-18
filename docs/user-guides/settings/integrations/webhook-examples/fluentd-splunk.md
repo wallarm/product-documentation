@@ -16,11 +16,11 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 
 ### Splunk Enterprise configuration
 
-Fluentd logs are sent to Splunk HTTP Event Controller with the name `Wallarm Fluentd logs` and is set to default settings:
+Fluentd logs are sent to Splunk HTTP Event Controller with the name `Wallarm Fluentd logs` and are set to default settings:
 
 ![!HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
-To access the HTTP Event Controller, use the bgenerated token `f44b3179-91aa-44f5-a6f7-202265e10475`.
+In this example, use the generated token `f44b3179-91aa-44f5-a6f7-202265e10475` to access the HTTP Event Controller.
 
 More detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
