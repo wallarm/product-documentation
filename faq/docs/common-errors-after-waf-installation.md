@@ -1,4 +1,4 @@
-# Troubleshooting
+# Errors after Wallarm WAF installation
 
 ## File Download Scenarios Fail
 
@@ -17,7 +17,6 @@ Change the value in `client_max_body_size`:
 	}
 	```
 
-	where `/file/upload` is the address that accepts the file uploads.
+	* `/file/upload` is the address that accepts the file uploads.
 
-!!! info "See also"
-    [The directive description in the official NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+Detailed directive description is available in the [official NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size).

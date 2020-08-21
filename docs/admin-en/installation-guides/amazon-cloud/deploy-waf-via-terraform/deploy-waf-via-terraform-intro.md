@@ -31,4 +31,4 @@ The provided Terraform code deploys the following network architecture:
 !!! info "See also"
     * [Quick Start with Provided Example](deploy-waf-via-terraform-quick-start.md)
     * [Description of Example Terraform Code](deploy-waf-via-terraform-code-desc.md)
-    * [FAQ](deploy-waf-via-terraform-faq.md)
+    * [FAQ](../../../../faq/waf-aws-via-terraform-installation.md)

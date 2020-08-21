@@ -1,6 +1,6 @@
-# FAQ on Deploying WAF Node Using Terraform
+# Deploying WAF Node in AWS Using Terraform
 
-### On the first run `terraform apply` command fails with message "Error: Provider produced inconsistent final plan". What to do?
+### On the first run terraform apply command fails with message "Error: Provider produced inconsistent final plan". What to do?
 
 Please try to run `terraform apply` one more time. This should solve the problem.
 
