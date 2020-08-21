@@ -196,11 +196,6 @@ nav:
           - Zabbix:
             - Exporting Metrics to Zabbix via the `collectd‑nagios` Utility: admin-en/monitoring/collectd-zabbix.md
             - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md  
-    - Updating and Migrating:
-      - Updating on Linux: admin-en/update-linux-en.md
-      - Updating the Separately Installed Postanalytics Module: admin-en/update-postanalytics.md
-      - Updating Docker: admin-en/update-docker-en.md
-      - Migrating the Filter Node 2.12 to 2.14 on Linux: admin-en/migrating-212-214.md
     - Operations:
       - Configuring SELinux: admin-en/configure-selinux.md
       - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
@@ -287,14 +282,11 @@ nav:
             - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
             - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
     - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
-  - Release Notes:
-    - Version 2.14: release-notes-en/relnotes-en_v2.14.md
-    - Version 2.12: release-notes-en/relnotes-en_v2.12.md
-    - Version 2.10: release-notes-en/relnotes-en_v2.10.md
-    - Version 2.8: release-notes-en/relnotes-en_v2.8.md
-    - Version 2.6: release-notes-en/relnotes-en_v2.6.md
-    - Version 2.4: release-notes-en/relnotes-en_v2.4.md
-    - Version 2.2: release-notes-en/relnotes-en_v2.2.md
+  - Updating and Migrating:
+    - What is new in WAF 2.14: updating-migrating/what-is-new.md
+    - Updating NGINX WAF modules: updating-migrating/nginx-modules.md
+    - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
+    - Updating Docker: updating-migrating/docker-container.md
   - Appendix:
     - Glossary: glossary-en.md
     - Attacks and Vulnerabilities List: attacks-vulns-list.md

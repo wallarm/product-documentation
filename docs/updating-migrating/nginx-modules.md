@@ -1,7 +1,7 @@
-[doc-install-nginx-distr]:      installation-nginx-distr-en.md#1-add-the-repositories
-[check-operation]:              installation-check-operation-en.md
+[doc-install-nginx-distr]:      ../admin-en/installation-nginx-distr-en.md#1-add-the-repositories
+[check-operation]:              ../admin-en/installation-check-operation-en.md
 
-#   Migrating the Filter Node 2.12 to 2.14 on Linux
+# Updating NGIN WAF modules
 
 To migrate an existing filter node version 2.12 to version 2.14, do the following:
 1.  Add the Wallarm repository for the new filter node version.

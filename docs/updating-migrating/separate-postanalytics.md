@@ -1,4 +1,4 @@
-[docs-module-update]:   update-linux-en.md
+[docs-module-update]:   nginx-modules.md
 
 #   Updating the Separately Installed Postanalytics Module  
 

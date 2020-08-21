@@ -1,7 +1,6 @@
 # Updating the Docker Container
 
-To update the Wallarm modules installed inside the Docker
-container, you must:
+To update the Wallarm modules installed inside the Docker container, you need to:
 
 1. Download the updated image.
 2. Stop the running container.
@@ -12,7 +11,7 @@ container, you must:
 Run the command:
 
 ``` bash
-docker pull wallarm/node
+docker pull wallarm/node:2.14
 ```
 
 ## 2. Stop the Running Container
@@ -32,4 +31,4 @@ docker run -d -v /path/to/license.key:/etc/wallarm/license.key -v /path/to/node.
 ```
 
 !!! info "See also"
-    [Deploying with Docker](installation-docker-en.md)
+    [Deploying with Docker](../admin-en/installation-docker-en.md)
