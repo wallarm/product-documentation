@@ -1,17 +1,16 @@
 Add the server address of postanalytics to `/etc/nginx-wallarm/conf.d/wallarm.conf`:
 
-```
+```bash
+upstream wallarm_tarantool {
+    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+    keepalive 2;
+}
 
-     upstream wallarm_tarantool {
-         server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-         server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-         
-         keepalive 2;
-    }
+# omitted
 
-    ...
-
-    wallarm_tarantool_upstream wallarm_tarantool;
+wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
 !!! warning "Required conditions"
