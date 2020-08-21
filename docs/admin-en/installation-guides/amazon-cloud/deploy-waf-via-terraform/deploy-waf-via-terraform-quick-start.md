@@ -97,7 +97,7 @@ The DNS name can be used to access the freshly installed Wordpress service with 
 
 The WAF cluster is configured with a self-signed SSL certificate so it should be possible to access the same DNS name using HTTPS protocol but the browser will show a security warning.
 
-You can simulate a web attack by adding `/?id='or+1=1--a-<script>prompt(1)</script>` to the web request - the request should be blocked by the WAF with response code 403:
+You can simulate a web attack by adding `/?id='or+1=1--a-<script>prompt(1)</script>'` to the web request - the request should be blocked by the WAF with response code 403:
 
 ![!403 error code after sending an attack](../../../../images/admin-guides/configuration-guides/terraform-guide/attacked-source.png)
 

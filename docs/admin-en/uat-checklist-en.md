@@ -22,7 +22,7 @@ This section provides you with a checklist to ensure your Wallarm instance opera
 1. Send a malicious request to your resource:
 
    ```
-   http://<resource_URL>/?id='or+1=1--a-<script>prompt(1)</script>
+   http://<resource_URL>/?id='or+1=1--a-<script>prompt(1)</script>'
    ```
 
 2. Run the following command to check if the attack count increased:

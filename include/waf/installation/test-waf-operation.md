@@ -14,7 +14,7 @@
 2. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
     ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>''
     ```
 
     WAF node will block the request, the code `403 Forbidden` will be returned in the response to the request.

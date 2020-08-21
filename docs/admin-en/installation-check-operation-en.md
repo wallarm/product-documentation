@@ -44,7 +44,7 @@ protected resource.
 For example:
 
 ```
-http://<resource_URL>/?id='or+1=1--a-<script>prompt(1)</script>
+http://<resource_URL>/?id='or+1=1--a-<script>prompt(1)</script>'
 ```
 
 Wallarm must detect in the request the following:
