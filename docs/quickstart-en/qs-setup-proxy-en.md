@@ -75,7 +75,7 @@ To meet the listed conditions, the contents of the configuration file must be th
 After saving the edited configuration file, restart NGINX:
 
 ```bash
-service nginx reload
+sudo service nginx reload
 ```
 
 Perform the checking to see that the filter node is operational and filters traffic. See

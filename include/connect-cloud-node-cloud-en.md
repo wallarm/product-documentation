@@ -71,11 +71,11 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
     
     === "EU Cloud"
         ```bash
-        /usr/share/wallarm-common/addnode
+        sudo /usr/share/wallarm-common/addnode
         ```
     === "US Cloud"
         ```bash
-        /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
     
 1.  Provide your Wallarm account’s login and password when prompted.

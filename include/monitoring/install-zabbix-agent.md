@@ -1,8 +1,8 @@
 === "DEB-based distributions"
     ```bash
-    apt install zabbix-agent
+    sudo apt install zabbix-agent
     ```
 === "RPM-based distributions"
     ```bash
-    yum install zabbix-agent
+    sudo yum install zabbix-agent
     ```

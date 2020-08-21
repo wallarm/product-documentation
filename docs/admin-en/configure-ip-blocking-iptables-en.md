@@ -25,39 +25,39 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
     === "Debian 8.x (jessie)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "Debian 9.x (stretch)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "Debian 10.x (buster)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "Ubuntu 14.04 LTS (trusty)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "Ubuntu 16.04 LTS (xenial)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        apt install wallarm-extra-scripts
+        sudo apt install wallarm-extra-scripts
         ```
     === "CentOS 6.x"
         ```bash
-        yum install wallarm-extra-scripts
+        sudo yum install wallarm-extra-scripts
         ```
     === "CentOS 7.x"
         ```bash
-        yum install wallarm-extra-scripts
+        sudo yum install wallarm-extra-scripts
         ```
     === "Amazon Linux 2"
         ```bash
-        yum install wallarm-extra-scripts
+        sudo yum install wallarm-extra-scripts
         ```
 
     The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_blacklist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.

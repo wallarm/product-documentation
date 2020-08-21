@@ -87,7 +87,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 3. To apply changes, restart the Tarantool daemon:
     
     ```
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 
 ## 9. Configure Logging
@@ -99,7 +99,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 Restart NGINX by running the following command:
 
 ``` bash
-systemctl restart nginx
+sudo systemctl restart nginx
 ```
 
 ## The Installation Is Complete

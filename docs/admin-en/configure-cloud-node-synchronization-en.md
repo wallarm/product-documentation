@@ -38,7 +38,7 @@ To modify necessary synchronization parameters, proceed with the following steps
 2. Launch the following command to update synchronization parameters:
     
     ```
-    /bin/systemctl restart wallarm-synccloud
+    sudo /bin/systemctl restart wallarm-synccloud
     ```
     
     The process will apply the values, that were assigned to the environment variables in the `/etc/wallarm/syncnode` file, as new parameters for node and Wallarm cloud synchronization. After the command execution, the filter node will be performing the synchronization procedure according to the new parameters.

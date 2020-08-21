@@ -1,6 +1,6 @@
 === "Debian or Ubuntu"
     ```bash
-    apt install wallarm-node-tarantool --no-install-recommends
+    sudo apt install wallarm-node-tarantool --no-install-recommends
     ```
 === "CentOS or Amazon Linux 2"
     ```bash

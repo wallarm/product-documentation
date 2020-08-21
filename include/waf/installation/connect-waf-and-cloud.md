@@ -10,11 +10,11 @@ The WAF node interacts with the Wallarm Cloud. To connect the WAF node to the Cl
     
     === "EU Cloud"
         ``` bash
-        /usr/share/wallarm-common/addnode
+        sudo /usr/share/wallarm-common/addnode
         ```
     === "US Cloud"
         ``` bash
-        /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
 3. Input an email and password of you account in Wallarm Console.
 4. Input the WAF node name or click Enter to use automatically generated name.
