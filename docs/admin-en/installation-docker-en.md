@@ -121,7 +121,7 @@ transferring the `NGINX_BACKEND` environment variable.
 
 ### Simplified Process
 
-*  `NGINX_BACKEND` — The backend address to which all incoming requests must be transferred. If the address does not have the `http://` or `https://`, prefix, then `http://` is used by default. See details in [proxy_pass](https://nginx.org/ru/docs/http/ngx_http_proxy_module.html#proxy_pass).
+*  `NGINX_BACKEND` — The backend address to which all incoming requests must be transferred. If the address does not have the `http://` or `https://`, prefix, then `http://` is used by default. See details in [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass).
 
     Do not use the `NGINX_BACKEND` variable if you do need the simplified configuration process and if you use your own configuration files.
    

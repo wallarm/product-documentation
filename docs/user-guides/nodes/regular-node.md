@@ -6,8 +6,8 @@ The regular WAF node is used in Linux‑based, Kubernetes sidecar and Docker‑b
 
 The regular WAF node is created while setting up integration with the platform:
 
-* [NGINX](../../admin-en/installation-nginx-en.md)
-* [NGINX Plus](../../admin-en/installation-nginxplus-en.md)
+* [NGINX](../../waf-installation/nginx/dynamic-module.md)
+* [NGINX Plus](../..//waf-installation/nginx-plus.md)
 * [Docker](../../admin-en/installation-docker-en.md)
 * [Kubernetes sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * [Kong](../../admin-en/installation-kong-en.md)

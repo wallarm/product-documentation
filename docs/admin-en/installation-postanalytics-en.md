@@ -21,7 +21,7 @@ repositories.
 
 Depending on your operating system, run one of the commands:
 
---8<-- "../include/add-repo-en.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos.md"
 
 --8<-- "../include/access-repo-en.md"
 
@@ -59,11 +59,11 @@ Run one of the following scripts depending on the [cloud](../quickstart-en/how-w
 
 === "EU cloud"
     ```bash
-    /usr/share/wallarm-common/addnode --no-sync
+    sudo /usr/share/wallarm-common/addnode --no-sync
     ```
 === "US cloud"
     ```bash
-    /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
+    sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
     ```
 
 Once started, the script will prompt for the login and password. Provide the login and password that you use to access the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud.

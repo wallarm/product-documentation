@@ -9,9 +9,9 @@
 [anchor-mod-inst-nginxplus]:        #module-for-nginx-plus
 [anchor-mod-inst-postanalytics]:    #postanalytics-module
 
-[link-ig-nginx]:                    installation-nginx-en.md
-[link-ig-nginx-distr]:              installation-nginx-distr-en.md
-[link-ig-nginxplus]:                installation-nginxplus-en.md#5-connect-the-wallarm-module
+[link-ig-nginx]:                    ../waf-installation/nginx/dynamic-module.md
+[link-ig-nginx-distr]:              ../waf-installation/nginx/dynamic-module-from-distr.md
+[link-ig-nginxplus]:                ../waf-installation/nginx-plus.md
 
 The filter node that is used with NGINX or NGINX Plus consists of the following modules:
 *   The module that connects to NGINX (NGINX Plus)

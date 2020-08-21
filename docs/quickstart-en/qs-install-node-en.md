@@ -37,7 +37,7 @@ The filter node is installed and updated from the Wallarm repositories.
 
 Depending on your operating system, run one of the commands:
 
---8<-- "../include/add-repo-en.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos.md"
 
 --8<-- "../include/access-repo-en.md"
 
@@ -45,7 +45,7 @@ Depending on your operating system, run one of the commands:
 
 Depending on your operating system, run one of the commands:
 
---8<-- "../include/install-nginx-postanalytics-en.md"
+--8<-- "../include/waf/installation/nginx-postanalytics.md"
 
 ## 4. Configure Postanalytics
 
@@ -81,7 +81,7 @@ pid        /var/run/nginx.pid;
 Copy the configuration files for the system setup:
 
 ``` bash
-cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
+sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
 ```
 
 ## 6. Connect the Filter Node to the Wallarm Cloud

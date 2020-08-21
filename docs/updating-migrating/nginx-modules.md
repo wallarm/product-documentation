@@ -1,4 +1,4 @@
-[doc-install-nginx-distr]:      ../admin-en/installation-nginx-distr-en.md#1-add-the-repositories
+[doc-install-nginx-distr]:      ../waf-installation/nginx/dynamic-module-from-distr.md#1-add-debiancentos-repositories
 [check-operation]:              ../admin-en/installation-check-operation-en.md
 
 # Updating NGIN WAF modules

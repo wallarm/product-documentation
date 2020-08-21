@@ -90,9 +90,9 @@ nav:
       - Supported Platforms: admin-en/supported-platforms.md
       - NGINX:
         - Installation Options Overview: admin-en/installation-nginx-overview.md
-        - Installing as a Dynamic Module for NGINX: admin-en/installation-nginx-en.md
-        - Installing as a Dynamic Module with NGINX from Debian/CentOS Repositories: admin-en/installation-nginx-distr-en.md
-        - Installing with NGINX Plus: admin-en/installation-nginxplus-en.md
+        - Installing as a Dynamic Module for NGINX stable: waf-installation/nginx/dynamic-module.md
+        - Installing as a Dynamic Module for NGINX from Debian/CentOS Repositories: waf-installation/nginx/dynamic-module-from-distr.md
+        - Installing ad a Dynamic Module for NGINX Plus: waf-installation/nginx-plus.md
         - Installing with Docker: admin-en/installation-docker-en.md 
       - Kubernetes:
         - Installing Wallarm Ingress Controller:
@@ -156,6 +156,7 @@ nav:
         - How WAF Filter Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
         - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md
       - Blocking Part of a Website: admin-en/block-part-en.md
+      - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
       - Settings for Using a Balancer or Proxy: admin-en/using-proxy-or-balancer-en.md
       - Masking Sensitive Data: admin-en/sensitive-data-en.md
       - Filter Node and Cloud Synchronization Configuration: admin-en/configure-cloud-node-synchronization-en.md

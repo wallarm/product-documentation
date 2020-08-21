@@ -46,7 +46,7 @@ If you installed Wallarm with NGINX Plus or as a dynamic module for NGINX, resta
 
 Restart the `nginx` service:
 
---8<-- "../include/restart-nginx-en.md"
+--8<-- "../include/waf/restart-nginx.md"
 
 If you installed Wallarm without NGINX Plus or not as a dynamic module for NGINX, restart the `nginx-wallarm` service.
 

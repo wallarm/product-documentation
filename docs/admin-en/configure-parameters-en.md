@@ -1,5 +1,4 @@
-[doc-nginx-install]:    installation-nginx-distr-en.md
-[doc-nginx-install]:        installation-nginx-distr-en.md
+[doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-en.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-en.md
 
@@ -546,15 +545,15 @@ With the `wallarm_tarantool_upstream` you can balance the requests between sever
 
 **Example:**
 
-```
-     upstream wallarm_tarantool {
-        server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
-        keepalive 1;
-    }
+```bash
+upstream wallarm_tarantool {
+    server 127.0.0.1:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    keepalive 1;
+}
 
-    ...
+# omitted
 
-    wallarm_tarantool_upstream wallarm_tarantool;
+wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
 See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).

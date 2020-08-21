@@ -20,7 +20,7 @@ Limitations:
 ![!](../images/mirror-traffic-en.png)
 
 1. Configure NGINX: install the module and configure the request mirroring.
-2. Install and configure the Wallarm node. See [Installing as a dynamic module for NGINX](installation-nginx-en.md).
+2. Install and configure the Wallarm node. See [Installing as a dynamic module for NGINX](../waf-installation/nginx/dynamic-module.md).
 
 On step 1, install the mirroring module [ngx_http_mirror_module](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) and configure the request mirroring to an additional backend.
 

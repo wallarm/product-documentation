@@ -17,7 +17,7 @@ On each filter node, start a `keepalived` or `ucarp` daemon that monitors the av
 
     Most of the Linux distributions, including CentOS and Debian, have custom packages that can install this build.
     
-    To find out about installation of Wallarm with NGINX Plus, see detailed instructions on the [«Installing with NGINX Plus»](installation-nginxplus-en.md) page.
+    To find out about installation of Wallarm with NGINX Plus, see detailed instructions on the [«Installing with NGINX Plus»](../waf-installation/nginx-plus.md) page.
 
 ## Hardware L3 or L4 Load Balancer
 
