@@ -1,0 +1,1 @@
+--8<-- "2.14/user-guides/rules/sensitive-data-rule.md"

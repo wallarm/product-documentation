@@ -1,0 +1,1 @@
+--8<-- "2.14/admin-en/configuration-guides/sso/okta/setup-sp.md"

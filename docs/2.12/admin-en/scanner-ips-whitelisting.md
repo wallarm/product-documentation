@@ -1,0 +1,1 @@
+--8<-- "2.14/admin-en/scanner-ips-whitelisting.md"

@@ -1,0 +1,1 @@
+--8<-- "2.14/user-guides/settings/integrations/integrations-intro.md"
