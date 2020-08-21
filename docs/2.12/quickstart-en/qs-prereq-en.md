@@ -1,1 +1,7 @@
---8<-- "2.14/quickstart-en/qs-prereq-en.md"
+# Prerequisites
+
+--8<-- "../include/prereq-en.md"
+
+**Supported Operating Systems**
+
+--8<-- "../include/os-support-en-2.12.md"

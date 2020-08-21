@@ -109,6 +109,5 @@ To find parameters used for advanced configuration and appropriate instructions,
 
 ## Known Restrictions
 
-* IP blocking is not supported in Wallarm Node version 2.12 or lower.
 * Operation without the postanalytics service is not supported. 
 * Scaling down postanalytics service may result in a partial loss of attack data.

@@ -2,13 +2,42 @@
 
 #   Updating the Separately Installed Postanalytics Module  
 
-If the postanalytics module is installed on the separate server, then you need to update it prior to updating the [Wallarm NGINX module][docs-module-update].
+This instruction describes the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating the WAF node modules][docs-module-update].
 
-To update the postanalytics module, do the following:
-1.  Execute the commands below in order to perform the update. The choice of the commands depends on the operation system in use:
+## Step 1: Add new Wallarm WAF repositories
 
---8<-- "../include/update-postanalytics.md"
-    
-2.  Restart the `wallarm-tarantool` service by executing one of the commands below. The choice of the command depends on the operation system in use:
+--8<-- "../include/migration-212-214/add-new-repo.md"
 
---8<-- "../include/update-postanalytics-restart-service.md"
+## Step 2: Install updated Tarantool packages
+
+=== "Debian"
+    ```bash
+    sudo apt install wallarm-node-tarantool
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt install wallarm-node-tarantool
+    ```
+=== "CentOS или Amazon Linux 2"
+    ```bash
+    sudo yum update wallarm-node-tarantool
+    ```
+
+## Step 3: Restart the postanalytics module
+
+=== "Debian"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo service wallarm-tarantool restart
+    ```
+=== "CentOS 6.x"
+    ```bash
+    sudo service wallarm-tarantool restart
+    ```
+=== "CentOS 7.x или Amazon Linux 2"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```

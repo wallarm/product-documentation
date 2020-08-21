@@ -262,7 +262,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 
 #### Other configurations
 
-To update other NGINX and Wallarm WAF cconfigurations, use the NGINX documentation and the list of [available Wallarm WAF directives][waf-directives-instr].
+To update other NGINX and Wallarm WAF configurations, use the NGINX documentation and the list of [available Wallarm WAF directives][waf-directives-instr].
 
 ### 6. Restart NGINX
 

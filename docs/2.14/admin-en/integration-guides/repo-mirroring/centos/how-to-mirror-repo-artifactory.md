@@ -55,8 +55,6 @@ To create a local copy of the Wallarm repository, do the following:
         sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
         ```
 
-    --8<-- "../include/issue-with-gpg-keys.md"
-
 2.  Navigate to a temporary directory (e.g., `/tmp`) and synchronize the Wallarm repository to this directory by executing the following command:
 
     ```bash

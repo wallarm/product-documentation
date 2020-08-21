@@ -1,14 +1,10 @@
-﻿    
 [link-kubectl-website]:             https://kubernetes.io/docs/reference/kubectl/overview/
 [link-kubectl-docs]:                https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [link-host-header]:                 https://tools.ietf.org/html/rfc7230#section-5.4
 [link-ingress-docs]:                https://kubernetes.io/docs/concepts/services-networking/ingress/
 [link-example-domain]:              https://www.example.com/
-
-    
 [anchor1]:      #1-creating-a-file-with-the-settings-for-the-ingress-resource
 [anchor2]:      #2-deploying-the-ingress-resource
-    
 [link-next-chapter]:        wallarm-services-check.md
 [link-previous-chapter]:    deploy.md
 

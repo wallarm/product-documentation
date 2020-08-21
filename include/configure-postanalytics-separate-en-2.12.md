@@ -14,10 +14,6 @@ Open for editing the configuration file of Tarantool:
     ```bash
     vi /etc/default/wallarm-tarantool
     ```
-=== "Debian 10.x (buster)"
-    ```bash
-    vi /etc/default/wallarm-tarantool
-    ```
 === "Ubuntu 14.04 LTS (trusty)"
     ```bash
     vi /etc/default/wallarm-tarantool
@@ -35,10 +31,6 @@ Open for editing the configuration file of Tarantool:
     vi /etc/sysconfig/wallarm-tarantool
     ```
 === "CentOS 7.x"
-    ```bash
-    vi /etc/sysconfig/wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
     ```bash
     vi /etc/sysconfig/wallarm-tarantool
     ```
@@ -71,10 +63,6 @@ PORT=3313
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
 === "Ubuntu 14.04 LTS (trusty)"
     ```bash
     sudo service wallarm-tarantool restart
@@ -92,10 +80,6 @@ PORT=3313
     sudo service wallarm-tarantool restart
     ```
 === "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

@@ -8,11 +8,6 @@
     sudo apt update
     sudo apt install wallarm-node
     ```
-=== "Debian 10.x (buster)"
-    ``` bash
-    sudo apt update
-    sudo apt install wallarm-node
-    ```
 === "Ubuntu 14.04 LTS (trusty)"
     ``` bash
     sudo apt update
@@ -33,10 +28,6 @@
     yum update wallarm-node
     ```
 === "CentOS 7.x"
-    ``` bash
-    yum update wallarm-node
-    ```
-=== "Amazon Linux 2"
     ``` bash
     yum update wallarm-node
     ```

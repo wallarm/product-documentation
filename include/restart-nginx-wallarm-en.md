@@ -26,7 +26,3 @@
     ``` bash
     sudo systemctl restart nginx-wallarm
     ```
-=== "Amazon Linux 2"
-    ``` bash
-    sudo systemctl restart nginx-wallarm
-    ```

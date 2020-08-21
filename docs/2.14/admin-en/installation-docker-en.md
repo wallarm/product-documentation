@@ -18,7 +18,6 @@ To deploy the filter node as a Docker container, you must:
 5. Configure monitoring.
 
 !!! warning "Known limitations"
-    * [IP blocking][doc-ip-blocking] is not supported in Wallarm Node version 2.12 or lower.
     * Most [Wallarm directives][doc-config-params] cannot be changed through environment variables; these directives must be written in configuration files inside the container.
 
 ## 1. Deploy the Filter Node

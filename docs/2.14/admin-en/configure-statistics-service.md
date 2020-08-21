@@ -69,7 +69,7 @@ As a result, you will get a response of the type:
 "stalled_workers_count":0,"stalled_workers":[] }
 ```
 
-The following response parameters are available in filter node version 2.10 and lower:
+The following response parameters are available:
 *   `requests`: the number of requests that have been processed by the filter node.
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests.
@@ -87,8 +87,6 @@ The following response parameters are available in filter node version 2.10 and 
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
     *   `fallback`: the number of proton.db + LOM pairs loaded from the last saved files.
     *   `failed`: the number of proton.db + LOM pairs that were not initialized and run in the “do not analyze” mode.
-    
-The following parameters are available in filter node version 2.12:
 *   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive).
 *   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive) and the amount of time spent on request processing.
 

@@ -1,16 +1,10 @@
-﻿    
 [link-next-chapter]:    assembly.md
-
-
 [link-ingress-controller-assembly]: assembly.md
 [link-ingress-controller-deploy]:   deploy.md
 [link-ingress-resource-creation]:   resource-creation.md
 [link-wallarm-services-check]:      wallarm-services-check.md
-    
-    
-    
-    
-#   Introduction    
+
+# Introduction
 
 This guide will use “Wallarm NGINX Plus Ingress controller” as the shortened name for the “NGINX Plus Ingress controller with integrated Wallarm services.”
 

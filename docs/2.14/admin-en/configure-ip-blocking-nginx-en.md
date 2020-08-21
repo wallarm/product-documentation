@@ -1,8 +1,5 @@
 # Blocking with NGINX
 
-!!! info "Supported version"
-    This feature is supported starting Wallarm Node 2.8
-
 By default, blocking by IP address is turned off. To activate it, proceed to the following steps:
 
 1.  Go to the folder that contains the NGINX configuration files:
