@@ -26,6 +26,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
+  version: "2.14"
 
 extra:
   social:
