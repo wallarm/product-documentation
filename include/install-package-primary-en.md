@@ -1,22 +1,22 @@
 === "Debian 8.x (jessie)"
     ``` bash
-    apt-get install --no-install-recommends wallarm-node-nginx nginx-wallarm
+    apt install --no-install-recommends wallarm-node-nginx nginx-wallarm
     ```
 === "Debian 9.x (stretch)"
     ``` bash
-    apt-get install --no-install-recommends wallarm-node-nginx nginx-wallarm
+    apt install --no-install-recommends wallarm-node-nginx nginx-wallarm
     ```
 === "Ubuntu 14.04 LTS (trusty)"
     ``` bash
-    apt-get install --no-install-recommends wallarm-node-nginx nginx-wallarm
+    apt install --no-install-recommends wallarm-node-nginx nginx-wallarm
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ``` bash
-    apt-get install --no-install-recommends wallarm-node-nginx nginx-wallarm
+    apt install --no-install-recommends wallarm-node-nginx nginx-wallarm
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ``` bash
-    apt-get install --no-install-recommends wallarm-node-nginx nginx-wallarm
+    apt install --no-install-recommends wallarm-node-nginx nginx-wallarm
     ```
 === "CentOS 6.x"
     ``` bash

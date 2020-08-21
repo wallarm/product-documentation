@@ -25,27 +25,27 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
     === "Debian 8.x (jessie)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "Debian 9.x (stretch)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "Debian 10.x (buster)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "Ubuntu 14.04 LTS (trusty)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "Ubuntu 16.04 LTS (xenial)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        apt-get install wallarm-extra-scripts
+        apt install wallarm-extra-scripts
         ```
     === "CentOS 6.x"
         ```bash
