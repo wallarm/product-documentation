@@ -49,39 +49,39 @@ SLAB_ALLOC_ARENA=10.4
 
 === "Debian 8.x (jessie)"
     ```bash
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Debian 9.x (stretch)"
     ```bash
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Debian 10.x (buster)"
     ```bash
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Ubuntu 14.04 LTS (trusty)"
     ```bash
-    service wallarm-tarantool restart
+    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
-    service wallarm-tarantool restart
+    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
-    service wallarm-tarantool restart
+    sudo service wallarm-tarantool restart
     ```
 === "CentOS 6.x"
     ```bash
-    service wallarm-tarantool restart
+    sudo service wallarm-tarantool restart
     ```
 === "CentOS 7.x"
     ```bash
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Amazon Linux 2"
     ```bash
-    systemctl restart wallarm-tarantool
+    sudo systemctl restart wallarm-tarantool
     ```
 
 To learn how long a Tarantool instance is capable of keeping traffic details with the current level of WAF node load, you can use the [`wallarm‑tarantool/gauge‑timeframe_size`](https://docs.wallarm.com/admin-en/monitoring/available-metrics#time-of-storing-requests-in-the-postanalytics-module-in-seconds) monitoring metric.

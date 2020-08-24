@@ -1,8 +1,8 @@
 === "DEB-based distributions"
     ```bash
-    apt install --no-install-recommends collectd-utils
+    sudo apt install --no-install-recommends collectd-utils
     ```
 === "RPM-based distributions"
     ```bash
-    yum install collectd-utils
+    sudo yum install collectd-utils
     ```

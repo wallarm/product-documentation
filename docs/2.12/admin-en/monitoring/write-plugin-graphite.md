@@ -1,0 +1,1 @@
+--8<-- "2.14/admin-en/monitoring/write-plugin-graphite.md"

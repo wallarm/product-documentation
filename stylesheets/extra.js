@@ -111,3 +111,49 @@ var sf14gv = 27823;
     sf14g.src = 'https://tracking.leadlander.com/lt.min.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sf14g, s);
   })();
+
+// Show version selector only for WAF guides
+
+var activeLinks = document.getElementsByClassName('md-tabs__link--active');
+if (activeLinks[0].text === ' WAF guides ') {
+  document.getElementById('versionsDiv').style.display = 'inline-block'
+}
+else {
+  document.getElementById('versionsDiv').style.display = 'none'
+}
+  
+// Show the list of versions
+
+function versionClicked (event) {
+  if (document.getElementById('versionsList').style.display === 'none') {
+    document.getElementById('versionsList').style.display = 'block'
+    document.getElementById('versionsMain').classList.add("versions-main-active")
+  } else {
+    document.getElementById('versionsList').style.display = 'none'
+    document.getElementById('versionsMain').classList.remove("versions-main-active")
+  }
+}
+
+// Open the docs for selected version and change value in the selector
+
+function goToVersion (event, currentVersion, version) {
+  event.preventDefault()
+
+  if (currentVersion === version) {
+    window.location.reload(false);
+  }
+  else {
+    let tmp = window.location.pathname.split('/');
+    window.top.location.href = tmp.join('/');
+    if (version === "2.14") {
+      window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
+    } else {
+      if (currentVersion === "2.14") {
+      window.top.location.href = window.location.pathname.replace('/','/'+version+'/');
+      }
+      else {
+          window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/'+version+'/')
+      }
+    }
+  }
+}

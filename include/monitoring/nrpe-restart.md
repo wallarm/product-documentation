@@ -1,8 +1,8 @@
 === "CentOS 6 and Ubuntu 14.04"
     ```bash
-    service nrpe restart
+    sudo service nrpe restart
     ```
 === "Other supported distributions"
     ```bash
-    systemctl restart nrpe
+    sudo systemctl restart nrpe
     ```

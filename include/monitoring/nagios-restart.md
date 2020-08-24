@@ -1,8 +1,8 @@
 === "CentOS 6 and Ubuntu 14.04"
     ```bash
-    service nagios restart
+    sudo service nagios restart
     ```
 === "Other supported distributions"
     ```bash
-    systemctl restart nagios
+    sudo systemctl restart nagios
     ```

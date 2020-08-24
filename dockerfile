@@ -14,6 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /docs
 COPY . .
 RUN mkdocs build
+RUN mkdocs build -f mkdocs-2.12.yml
+RUN mkdocs build -f mkdocs-2.10.yml
 
 # production stage
 FROM nginx:1.18-alpine as production-stage
