@@ -17,6 +17,15 @@
 5. [Update](#step-4-updating-the-helm-chart-configuration-file) the Helm chart configuration file.
 6. [Test](#step-5-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
 
+!!! info "If Wallarm WAF is already installed in your environment"
+    If you install Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the installation in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+
+    The version of deployed Wallarm WAF image is specified in the Helm chart configuration file → `wallarm.image.tag`.
+
+    * If the version `2.14` is specified, follow the current instruction.
+    * If the version `2.12` is specified, follow the [instructions for 2.12](/2.12/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `2.14` in all deployments and follow the current instruction.
+    * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the current instruction.
+
 ### Step 1: Creating Wallarm ConfigMap
 
 Go to the Helm chart directory > the `templates` folder and create a `wallarm‑sidecar‑configmap.yaml` template with the following content:

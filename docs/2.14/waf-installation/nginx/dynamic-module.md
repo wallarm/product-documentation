@@ -13,10 +13,13 @@
 [configure-selinux-instr]:          ../../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[update-instr]:                     ../../updating-migrating/nginx-modules.md
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
 This instruction describes the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX `stable` installed from the NGINX repository.
+
+--8<-- "../include/waf/installation/already-installed-waf.md"
 
 ## Requirements
 
