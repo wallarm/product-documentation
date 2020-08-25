@@ -17,5 +17,5 @@
         ```
 
     * If the version `2.14.x` is installed, follow the current instruction.
-    * If the version `2.12.x` is installed, follow the [instructions for 2.12](/2.12/waf-installation/nginx/dynamic-module/) or [update the packages to 2.14][update-instr] in all installations.
+    * If the version `2.12.x` is installed, follow the [instructions for 2.12][2.12-installation-instr] or [update the packages to 2.14][update-instr] in all installations.
     * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14][update-instr] in all installations.

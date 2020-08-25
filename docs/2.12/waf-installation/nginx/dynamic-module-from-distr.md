@@ -13,6 +13,7 @@
 [configure-selinux-instr]:          ../../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[2.14-installation-instr]:          /waf-installation/nginx/dynamic-module-from-distr/
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 

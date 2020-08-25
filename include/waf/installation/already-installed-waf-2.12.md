@@ -16,6 +16,6 @@
         yum list wallarm-node
         ```
 
-    * If the version `2.14.x` is installed, follow the [instructions for 2.14](/waf-installation/nginx/dynamic-module/).
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14][2.14-installation-instr].
     * If the version `2.12.x` is installed, follow the current instruction or [update the packages to 2.14](/updating-migrating/nginx-modules/) in all installations.
     * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14](/updating-migrating/nginx-modules/) in all installations.

@@ -14,6 +14,7 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
+[2.12-installation-instr]:          /2.12/waf-installation/nginx/dynamic-module/
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
