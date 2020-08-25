@@ -22,9 +22,9 @@
 
     The version of deployed Wallarm WAF image is specified in the Helm chart configuration file → `wallarm.image.tag`.
 
-    * If the version `2.14` is specified, follow the [instruction for 2.14](admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the version `2.12` is specified, follow the current instruction or increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `2.14` is specified, follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `2.12` is specified, follow the current instruction or increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
 
 ### Step 1: Creating Wallarm ConfigMap
 
