@@ -27,7 +27,7 @@ The following node properties and metrics are available:
 * Time of the last synchronization of the WAF node and Wallarm cloud
 * Date of the WAF node creation
 * Number of requests processed by the node in the current month
-* Versions of the installed WAF node components
+* Versions of installed LOM and proton.db
 
 ![!Regular WAF node card](../../images/user-guides/nodes/view-regular-node.png)
 
