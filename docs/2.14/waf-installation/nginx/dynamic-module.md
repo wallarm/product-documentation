@@ -129,7 +129,7 @@ To run postanalytics and process the requests on different servers, the followin
 4. Copy the configuration files for the system setup:
 
     ``` bash
-    sudo cp /usr/share/doc/nginx-plus-module-wallarm/examples/*.conf /etc/nginx/conf.d/
+    sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
 ### 5. Connect the WAF node to Wallarm Cloud
