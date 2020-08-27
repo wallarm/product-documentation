@@ -78,6 +78,7 @@ The following response parameters are available:
 *   `blocked`: the number of blocked requests.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
+*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `segfaults`: the number of issues that led to the emergency termination of the worker process.
@@ -85,8 +86,8 @@ The following response parameters are available:
 *   `time_detect`: the total time of requests analysis.
 *   `db_id`: proton.db version.
 *   `lom_id`: [LOM][gl-lom] version.
-*   `db_apply_time`: Unix time of the last update of the proton.db file
-*   `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file
+*   `db_apply_time`: Unix time of the last update of the proton.db file.
+*   `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file.
 *   `proton_instances`: information about proton.db + LOM pairs:
     *   `total`: the number of proton.db + LOM pairs.
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
@@ -95,14 +96,14 @@ The following response parameters are available:
 *   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive).
 *   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive) and the amount of time spent on request processing.
 *   `ts_files`: information about the [LOM](../glossary-en.md#lom) file:
-    *   `id`: used LOM version
-    *   `size`: LOM file size in bytes
-    *   `mod_time`: Unix time of the last update of the LOM file
-    *   `fname`: path to the LOM file
+    *   `id`: used LOM version.
+    *   `size`: LOM file size in bytes.
+    *   `mod_time`: Unix time of the last update of the LOM file.
+    *   `fname`: path to the LOM file.
 *   `db_files`: information about the proton.db file:
-    *   `id`: used proton.db version
-    *   `size`: proton.db file size in bytes
-    *   `mod_time`: Unix time of the last update of the proton.db file
-    *   `fname`: path to the proton.db file
+    *   `id`: used proton.db version.
+    *   `size`: proton.db file size in bytes.
+    *   `mod_time`: Unix time of the last update of the proton.db file.
+    *   `fname`: path to the proton.db file.
 
 The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start Wallarm.
