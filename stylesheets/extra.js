@@ -1,3 +1,4 @@
+var rootVersion = '2.14';
 var links = document.links;
 
 for(var i = 0; i < links.length; i++) {
@@ -119,6 +120,16 @@ if (activeLinks[0].text === ' WAF guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
 }
 else {
+  // Change the link to FAQ articles editing
+  if (activeLinks[0].text === ' FAQ ') {
+    var githubLink = document.getElementsByClassName("md-content__button md-icon");
+    var wrongLink = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/faq/";
+    var correctLink = "https://github.com/wallarm/product-docs-en/edit/master/faq/docs/"; 
+    if (githubLink[0].href.startsWith(wrongLink)) { 
+      var newGithubLink = githubLink[0].href.replace(wrongLink, correctLink);
+      githubLink[0].setAttribute('href',newGithubLink); 
+      }
+  }
   document.getElementById('versionsDiv').style.display = 'none'
 }
   
@@ -145,10 +156,10 @@ function goToVersion (event, currentVersion, version) {
   else {
     let tmp = window.location.pathname.split('/');
     window.top.location.href = tmp.join('/');
-    if (version === "2.14") {
+    if (version === rootVersion) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
     } else {
-      if (currentVersion === "2.14") {
+      if (currentVersion === rootVersion) {
       window.top.location.href = window.location.pathname.replace('/','/'+version+'/');
       }
       else {
