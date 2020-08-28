@@ -5,15 +5,24 @@
 
     === "Debian"
         ```bash
+        # if WAF node and postanalytics are installed on the same server
         apt list wallarm-node
+        # if WAF node and postanalytics are installed on different servers
+        apt list wallarm-node-nginx
         ```
     === "Ubuntu"
         ```bash
+        # if WAF node and postanalytics are installed on the same server
         apt list wallarm-node
+        # if WAF node and postanalytics are installed on different servers
+        apt list wallarm-node-nginx
         ```
     === "CentOS or Amazon Linux 2"
         ```bash
+        # if WAF node and postanalytics are installed on the same server
         yum list wallarm-node
+        # if WAF node and postanalytics are installed on different servers
+        yum list wallarm-node-nginx
         ```
 
     * If the version `2.14.x` is installed, follow the current instruction.
