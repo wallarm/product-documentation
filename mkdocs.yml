@@ -12,7 +12,7 @@ plugins:
   - minify:
       minify_html: true
   - monorepo
-dev_addr: '0.0.0.0:8000'
+dev_addr: '127.0.0.1:8000'
 
 theme:
   name: material
