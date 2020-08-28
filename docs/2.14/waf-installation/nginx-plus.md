@@ -13,10 +13,14 @@
 [configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
+[update-instr]:                     ../updating-migrating/nginx-modules.md
+[2.12-installation-instr]:          /2.12/waf-installation/nginx-plus/
 
 # Installing dynamic WAF module for NGINX Plus
 
 This instruction describes the steps to install Wallarm WAF as a dynamic module for the official commercial version of NGINX Plus.
+
+--8<-- "../include/waf/installation/already-installed-waf.md"
 
 ## Requirements
 

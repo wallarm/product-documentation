@@ -26,6 +26,19 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 Launch your filter node instance using this [link](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node), and click *LAUNCH ON COMPUTER ENGINE*.
 
+!!! info "If Wallarm WAF instance is already launched"
+    If you launch Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the instance in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+
+    To check the launched version, run the following command:
+
+    ```
+    yum list wallarm-node
+    ```
+
+    * If the version `2.14.x` is installed, follow the current instruction.
+    * If the version `2.12.x` is installed, follow the [instructions for 2.12](/2.12/admin-en/installation-gcp-en/) or update all Wallarm WAF instances to 2.14.
+    * If the deprecated version is installed (`2.10.x` or lower), please update all Wallarm WAF instances to 2.14.
+
 The instance will launch with a preinstalled filter node.
 
 To see detailed information on launching instances in the Google Cloud, proceed to this [link][link-launch-instance].

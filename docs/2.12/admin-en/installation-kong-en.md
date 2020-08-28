@@ -47,6 +47,28 @@ To install the Wallarm module with Kong, you need to:
 
 --8<-- "../include/elevated-priveleges.md"
 
+!!! info "If Wallarm WAF is already installed in your environment"
+    If you install Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the installation in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+
+    To check the installed version:
+
+    === "Debian"
+        ```bash
+        apt list wallarm-node
+        ```
+    === "Ubuntu"
+        ```bash
+        apt list wallarm-node
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        yum list wallarm-node
+        ```
+
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14](/admin-en/installation-kong-en/).
+    * If the version `2.12.x` is installed, follow the current instruction or [update the packages to 2.14](/updating-migrating/nginx-modules/) in all installations.
+    * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14](/updating-migrating/nginx-modules/) in all installations.
+
 ## 1. Add Wallarm Repositories
 
 The filter node installs and updates from the Wallarm repositories.
