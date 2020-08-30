@@ -141,7 +141,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     This applies to both `wallarm_blocked.html` and to the custom block page.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
 
 ### wallarm_api_conf
 
