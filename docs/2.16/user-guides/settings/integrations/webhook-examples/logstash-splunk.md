@@ -11,7 +11,7 @@ In the provided example, events are sent via webhooks to the Logstash log collec
 ## Used resources
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
-* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available by `https://logstash.example.domain.com`
+* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
 ### Splunk Enterprise configuration
@@ -22,7 +22,7 @@ Logstash logs are sent to Splunk HTTP Event Controller with the name `Wallarm Lo
 
 To access the HTTP Event Controller, generated token `93eaeba4-97a9-46c7-abf3-4e0c545fa5cb` will be used.
 
-More detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
+A more detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
 ### Logstash configuration
 
@@ -30,7 +30,7 @@ Logstash is configured in the `logstash-sample.conf` file:
 
 * Incoming webhook processing is configured in the `input` section:
     * All HTTP and HTTPS traffic is sent to 5044 Logstash port
-    * SSL certificate for HTTPS connection is located in the file `/etc/pki/ca.pem`
+    * SSL certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
 * Forwarding logs to Splunk and log output are configured in the `output` section:
     * Logs are forwarded from Logstash to Splunk in the JSON format
     * All event logs are forwarded from Logstash to Splunk API endpoint `https://109.111.35.11:8088/services/collector/raw` via POST requests. To authorize requests, the HTTPS Event Collector token is used
@@ -55,7 +55,7 @@ output {
 }
 ```
 
-More detailed description of configuration files is available in the [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
+A more detailed description of configuration files is available in the [official Logstash documentation](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html).
 
 !!! info "Testing Logstash configuration"
     To check that Logstash logs are created and forwarded to Splunk, the POST request can be sent to Logstash.

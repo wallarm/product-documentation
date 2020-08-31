@@ -11,7 +11,7 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 ## Used resources
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available by `https://fluentd‑example‑domain.com`
+* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd‑example‑domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
 ### Splunk Enterprise configuration
@@ -20,9 +20,9 @@ Fluentd logs are sent to Splunk HTTP Event Controller with the name `Wallarm Flu
 
 ![!HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
-To access the HTTP Event Controller, generated token `f44b3179-91aa-44f5-a6f7-202265e10475` will be used.
+To access the HTTP Event Controller, the generated token `f44b3179-91aa-44f5-a6f7-202265e10475` will be used.
 
-More detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
+A more detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
 ### Fluentd configuration
 
@@ -30,7 +30,7 @@ Fluentd is configured in the `td-agent.conf` file:
 
 * Incoming webhook processing is configured in the `source` directive:
     * All HTTP and HTTPS traffic is sent to 9880 Fluentd port
-    * TLS certificate for HTTPS connection is located in the file `/etc/pki/ca.pem`
+    * TLS certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
 * Forwarding logs to Splunk and log output are configured in the `match` directive:
     * All event logs are copied from Fluentd and forwarded to Splunk HTTP Event Controller via the output plugin [fluent-plugin-splunk-hec](https://github.com/splunk/fluent-plugin-splunk-hec)
     * Fluentd logs are additionally printed on the command line in JSON format (19-22 code lines). The setting is used to verify that events are logged via Fluentd
@@ -61,7 +61,7 @@ Fluentd is configured in the `td-agent.conf` file:
 </match>
 ```
 
-More detailed description of configuration files is available in the [official Fluentd documentation](https://docs.fluentd.org/configuration/config-file).
+A more detailed description of configuration files is available in the [official Fluentd documentation](https://docs.fluentd.org/configuration/config-file).
 
 !!! info "Testing Fluentd configuration"
     To check that Fluentd logs are created and forwarded to Splunk, the PUT or POST request can be sent to Fluentd.
