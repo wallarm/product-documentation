@@ -20,7 +20,7 @@ Fluentd is configured in the `td-agent.conf` file:
 
 * Incoming webhook processing is configured in the `source` directive:
     * All HTTP and HTTPS traffic is sent to 9880 Fluentd port
-    * TLS certificate for HTTPS connection is located in the file `/etc/pki/ca.pem`
+    * TLS certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
 * Forwarding logs to QRadar and log output are configured in the `match` directive:
     * All event logs are copied from Fluentd and forwarded to QRadar at the IP address `https://109.111.35.11:514`
     * Logs are forwarded from Fluentd to QRadar in the JSON format according to the [Syslog](https://en.wikipedia.org/wiki/Syslog) standard
@@ -74,7 +74,7 @@ A more detailed description of configuration files is available in the [official
 
 ### QRadar configuration (optional)
 
-In QRadar, the log source is configured. It helps easily find Fluentd logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
+In QRadar, the log source is configured. It helps to easily find Fluentd logs in the list of all logs in QRadar, and can also be used for further log filtering. The log source is configured as follows:
 
 * **Log Source Name**: `Fluentd`
 * **Log Source Description**: `Logs from Fluentd`
