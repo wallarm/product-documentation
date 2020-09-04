@@ -113,14 +113,14 @@ To install the filter node and postanalytics on the same server, run the command
 
 To install the filter node alone, run the command:
 
---8<-- "../include/install-package-primary-kong-en.md"
+--8<-- "../include/install-package-primary-kong-en-2.12.md"
 
 ## 3. Configure Postanalytics 
 
 !!! info
     Skip this step if you installed postanalytics on a separate server as you already have your postanalytics configured.
 
---8<-- "../include/configure-postanalytics-kong-en.md"
+--8<-- "../include/configure-postanalytics-kong-en-2.12.md"
 
 ## 4. Set up the Filter Node for Using a Proxy Server
 

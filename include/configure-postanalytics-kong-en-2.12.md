@@ -26,6 +26,10 @@ Open for editing the configuration file of Tarantool:
     ``` bash
     vi /etc/default/wallarm-tarantool
     ```
+=== "CentOS 6.x"
+    ``` bash
+    vi /etc/sysconfig/wallarm-tarantool
+    ```
 === "CentOS 7.x"
     ``` bash
     vi /etc/sysconfig/wallarm-tarantool
@@ -59,6 +63,10 @@ SLAB_ALLOC_ARENA=24
     sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
+    ``` bash
+    sudo service wallarm-tarantool restart
+    ```
+=== "CentOS 6.x"
     ``` bash
     sudo service wallarm-tarantool restart
     ```

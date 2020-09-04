@@ -1,4 +1,4 @@
-=== "Debian 8.x (jessie)"
+=== "Debian 8.x (jessie-backports)"
     ``` bash
     sudo systemctl status wallarm-tarantool
     ```
@@ -9,10 +9,6 @@
 === "Debian 10.x (buster)"
     ``` bash
     sudo systemctl status wallarm-tarantool
-    ```
-=== "Ubuntu 14.04 LTS (trusty)"
-    ``` bash
-    sudo service wallarm-tarantool status
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ``` bash

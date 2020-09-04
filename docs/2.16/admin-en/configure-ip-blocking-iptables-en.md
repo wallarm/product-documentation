@@ -23,19 +23,11 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
     Run the command:
 
-    === "Debian 8.x (jessie)"
-        ```bash
-        sudo apt install wallarm-extra-scripts
-        ```
     === "Debian 9.x (stretch)"
         ```bash
         sudo apt install wallarm-extra-scripts
         ```
     === "Debian 10.x (buster)"
-        ```bash
-        sudo apt install wallarm-extra-scripts
-        ```
-    === "Ubuntu 14.04 LTS (trusty)"
         ```bash
         sudo apt install wallarm-extra-scripts
         ```

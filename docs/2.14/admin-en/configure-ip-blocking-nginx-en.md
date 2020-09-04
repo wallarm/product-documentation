@@ -57,19 +57,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 
     *   Dynamic NGINX module:
     
-        === "Debian 8.x (jessie)"
-            ```basn
-            /var/cache/nginx/wallarm_acl_default
-            ```
         === "Debian 9.x (stretch)"
             ```basn
             /var/cache/nginx/wallarm_acl_default
             ```
         === "Debian 10.x (buster)"
-            ```basn
-            /var/cache/nginx/wallarm_acl_default
-            ```
-        === "Ubuntu 14.04 LTS (trusty)"
             ```basn
             /var/cache/nginx/wallarm_acl_default
             ```
@@ -96,19 +88,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     
     *   Dynamic NGINX module from OS repositories:
     
-        === "Debian 8.x (jessie)"
-            ```basn
-            /var/lib/nginx/wallarm_acl_default
-            ```
         === "Debian 9.x (stretch)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
         === "Debian 10.x (buster)"
-            ```basn
-            /var/lib/nginx/wallarm_acl_default
-            ```
-        === "Ubuntu 14.04 LTS (trusty)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
@@ -135,19 +119,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     
     *   NGINX Plus module:
     
-        === "Debian 8.x (jessie)"
-            ```basn
-            /var/lib/nginx/wallarm_acl_default
-            ```
         === "Debian 9.x (stretch)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
         === "Debian 10.x (buster)"
-            ```basn
-            /var/lib/nginx/wallarm_acl_default
-            ```
-        === "Ubuntu 14.04 LTS (trusty)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```

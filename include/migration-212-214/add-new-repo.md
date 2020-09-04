@@ -14,11 +14,6 @@
         ```
 2. Comment out the previous repository address and add an address for Wallarm WAF 2.14:
 
-    === "Debian 8.x (jessie)"  
-        ``` bash
-        # deb http://repo.wallarm.com/debian/wallarm-node jessie/
-        deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/
-        ```
     === "Debian 8.x (jessie-backports)"
         ``` bash
         # deb http://repo.wallarm.com/debian/wallarm-node jessie/
@@ -37,11 +32,6 @@
         # deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/
         deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/
         deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.14/
-        ```
-    === "Ubuntu 14.04 LTS (trusty)"
-        ```bash
-        # deb http://repo.wallarm.com/ubuntu/wallarm-node trusty/
-        deb http://repo.wallarm.com/ubuntu/wallarm-node trusty/2.14/
         ```
     === "Ubuntu 16.04 LTS (xenial)"
         ```bash

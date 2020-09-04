@@ -1,20 +1,8 @@
-=== "Debian 8.x (jessie)"
-    ``` bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list
-    sudo apt update
-    ```
 === "Debian 9.x (stretch)"
     ``` bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Ubuntu 14.04 LTS (trusty)"
-    ``` bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node trusty/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list
     sudo apt update
     ```
 === "Ubuntu 16.04 LTS (xenial)"

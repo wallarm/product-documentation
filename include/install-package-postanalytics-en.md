@@ -1,4 +1,4 @@
-=== "Debian 8.x (jessie)"
+=== "Debian 8.x (jessie-backports)"
     ``` bash
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
@@ -7,10 +7,6 @@
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
 === "Debian 10.x (buster)"
-    ``` bash
-    sudo apt install --no-install-recommends wallarm-node-tarantool
-    ```
-=== "Ubuntu 14.04 LTS (trusty)"
     ``` bash
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```

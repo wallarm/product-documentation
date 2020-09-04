@@ -17,7 +17,7 @@ In a WAF node there are two main memory consumers:
 
 ### Allocating Resources in Other Deployment Options
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-others.md"
+--8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-others-postanalytics.md"
 
 ## NGINX
 
