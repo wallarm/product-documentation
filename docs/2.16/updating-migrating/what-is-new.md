@@ -11,3 +11,4 @@
     * `ts_files`: object with information about the [LOM](../glossary-en.md#lom) file
     * `db_files`: object with information about the proton.db file
     * `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
+* Dropped support of the operating system CentOS 6.x
