@@ -77,13 +77,6 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
 
 ### 2. Install NGINX with Wallarm WAF packages
 
-!!! warning "Using the Debian 8.x (jessie) repository"
-    Note that using the NGINX installed from the `jessie` repository will result in non-functioning Wallarm module for NGINX.
-    
-    You need to add the `jessie-backports` backports repository and install NGINX from this repository.
-    
-    If you follow the instructions from the previous step to add the repositories to your system, then the backports repository is already set up. You can execute the command for Debian 8.x (see below) to get all necessary components installed.
-
 #### Request processing and postanalytics on the same server
 
 The command installs the following packages:

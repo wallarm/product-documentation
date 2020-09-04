@@ -40,10 +40,9 @@ The Wallarm filter node can be installed on the following platforms:
     !!! info "Supported Operating Systems"
         The Wallarm modules can be installed on the following operating systems:
         
-        *   Debian 8.x (jessie)
+        *   Debian 8.x (jessie-backports)
         *   Debian 9.x (stretch)
         *   Debian 10.x (buster)
-        *   Ubuntu 14.04 LTS (trusty)
         *   Ubuntu 16.04 LTS (xenial)
         *   Ubuntu 18.04 LTS (bionic)
         *   CentOS 6.x
@@ -85,9 +84,7 @@ The Wallarm filter node can be installed on the following platforms:
     !!! info "Supported Operating Systems"
         The Kong platform must be version 1.4.3 or lower and must be installed on one of the following operating systems:
         
-        *   Debian 8.x (jessie)
         *   Debian 9.x (stretch)
-        *   Ubuntu 14.04 LTS (trusty)
         *   Ubuntu 16.04 LTS (xenial)
         *   Ubuntu 18.04 LTS (bionic)
         *   CentOS 6.x

@@ -21,7 +21,7 @@ repositories.
 
 Depending on your operating system, run one of the commands:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-postanalytics.md"
 
 --8<-- "../include/access-repo-en.md"
 
