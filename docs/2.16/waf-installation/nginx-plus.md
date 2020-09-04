@@ -39,7 +39,7 @@ Install NGINX Plus and its dependencies using the [official NGINX instruction](h
 
 Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
 
 ### 3. Install Wallarm WAF packages
 
@@ -120,13 +120,13 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 6. Update Wallarm WAF configuration
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-2.16.md"
 
 ### 7. Restart NGINX Plus
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx.md"
+--8<-- "../include/waf/restart-nginx-2.16.md"
 
 ### 8. Test Wallarm WAF operation
 

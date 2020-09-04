@@ -33,10 +33,6 @@ This instruction describes the steps to update the postanalytics module installe
     ```bash
     sudo service wallarm-tarantool restart
     ```
-=== "CentOS 6.x"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
 === "CentOS 7.x или Amazon Linux 2"
     ```bash
     sudo systemctl restart wallarm-tarantool

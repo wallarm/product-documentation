@@ -64,11 +64,6 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "CentOS 6.x"
-    ```bash
-    sudo yum install --enablerepo=extras -y epel-release centos-release-SCL
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/2.14/x86_64/Packages/wallarm-node-repo-1-5.el6.noarch.rpm
-    ```
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
@@ -101,10 +96,6 @@ The command installs the following packages:
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
-=== "CentOS 6.x"
-    ```bash
-    sudo yum install nginx wallarm-node nginx-mod-http-wallarm
-    ```
 === "CentOS 7.x"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
@@ -135,10 +126,6 @@ The commands installs packages for NGINX and for the NGINX-Wallarm module:
 === "Debian 10.x (buster)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
-    ```
-=== "CentOS 6.x"
-    ```bash
-    sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 === "CentOS 7.x"
     ```bash
@@ -237,10 +224,6 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
         ``` bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === "CentOS 6.x"
-        ```bash
-        sudo service wallarm-tarantool restart
-        ```
     === " CentOS 7.x"
         ```bash
         sudo systemctl restart wallarm-tarantool
@@ -264,10 +247,6 @@ To update other NGINX and Wallarm WAF configurations, use the NGINX documentatio
 === "Debian"
     ```bash
     sudo systemctl restart nginx
-    ```
-=== "CentOS 6.x"
-    ```bash
-    sudo service nginx restart
     ```
 === "CentOS 7.x"
     ```bash

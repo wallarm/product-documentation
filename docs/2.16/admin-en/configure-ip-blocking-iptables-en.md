@@ -39,10 +39,6 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         ```bash
         sudo apt install wallarm-extra-scripts
         ```
-    === "CentOS 6.x"
-        ```bash
-        sudo yum install wallarm-extra-scripts
-        ```
     === "CentOS 7.x"
         ```bash
         sudo yum install wallarm-extra-scripts
