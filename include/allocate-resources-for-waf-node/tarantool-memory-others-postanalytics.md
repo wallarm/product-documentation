@@ -1,10 +1,6 @@
-**Allocate the operating memory size for Tarantool**
+The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/etc/default/wallarm‑tarantool` configuration file. To allocate memory:
 
-The amount of memory determines the quality of work of the statistical algorithms.
-
-The recommended value is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB.
-
-Open for editing the configuration file of Tarantool:
+<ol start="1"><li>Open for editing the configuration file of Tarantool:</li></ol>
 
 === "Debian 8.x (jessie-backports)"
     ```bash
@@ -39,29 +35,17 @@ Open for editing the configuration file of Tarantool:
     vi /etc/sysconfig/wallarm-tarantool
     ```
 
-Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive.
-
-For example:
+<ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. For example:</li></ol>
 
 ```
-SLAB_ALLOC_ARENA=24
+SLAB_ALLOC_ARENA=10.4
 ```
 
-**Configure the server addresses of postanalytics**
-
-Uncomment HOST and PORT variables and set them the following values:
-
-``` bash
-# address and port for bind
-HOST='0.0.0.0'
-PORT=3313
-```
-
-**Restart Tarantool**
+<ol start="3"><li>Restart Tarantool:</li></ol>
 
 === "Debian 8.x (jessie-backports)"
     ```bash
-    sudo service wallarm-tarantool restart
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Debian 9.x (stretch)"
     ```bash
@@ -73,11 +57,11 @@ PORT=3313
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
-    sudo systemctl restart wallarm-tarantool
+    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
-    sudo systemctl restart wallarm-tarantool
+    sudo service wallarm-tarantool restart
     ```
 === "CentOS 6.x"
     ```bash
@@ -91,3 +75,5 @@ PORT=3313
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
+
+To learn how long a Tarantool instance is capable of keeping traffic details with the current level of WAF node load, you can use the [`wallarm‑tarantool/gauge‑timeframe_size`](https://docs.wallarm.com/admin-en/monitoring/available-metrics#time-of-storing-requests-in-the-postanalytics-module-in-seconds) monitoring metric.

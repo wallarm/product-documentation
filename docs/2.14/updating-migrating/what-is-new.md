@@ -24,4 +24,5 @@
 *   Support for the following operating systems was added:
     *   Debian 10,
     *   Amazon Linux 2.
+* Dporred support of operating systems Debian 8.x (jessie) and Ubuntu 14.04 LTS (trusty). Support of Debian 8.x (jessie-backports) is still available.
 *   Support of [blocking requests by IP addresses](../admin-en/configure-ip-blocking-en.md) for Wallarm Ingress controller and WAF node deployed in a Docker container

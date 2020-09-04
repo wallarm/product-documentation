@@ -1,45 +1,42 @@
-**Allocate the operating memory size for Tarantool**
-
 The amount of memory determines the quality of work of the statistical algorithms.
 
 The recommended value is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB.
 
+**Allocate the operating memory size for Tarantool:**
+
 Open for editing the configuration file of Tarantool:
 
-=== "Debian 8.x (jessie-backports)"
-    ```bash
+=== "Debian 8.x (jessie)"
+    ``` bash
     vi /etc/default/wallarm-tarantool
     ```
 === "Debian 9.x (stretch)"
-    ```bash
+    ``` bash
     vi /etc/default/wallarm-tarantool
     ```
-=== "Debian 10.x (buster)"
-    ```bash
+=== "Ubuntu 14.04 LTS (trusty)"
+    ``` bash
     vi /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 16.04 LTS (xenial)"
-    ```bash
+    ``` bash
     vi /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 18.04 LTS (bionic)"
-    ```bash
+    ``` bash
     vi /etc/default/wallarm-tarantool
     ```
 === "CentOS 6.x"
-    ```bash
+    ``` bash
     vi /etc/sysconfig/wallarm-tarantool
     ```
 === "CentOS 7.x"
-    ```bash
-    vi /etc/sysconfig/wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
+    ``` bash
     vi /etc/sysconfig/wallarm-tarantool
     ```
 
-Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive.
+Set the allocated memory size in the configuration file of Tarantool via the
+`SLAB_ALLOC_ARENA` directive.
 
 For example:
 
@@ -47,47 +44,33 @@ For example:
 SLAB_ALLOC_ARENA=24
 ```
 
-**Configure the server addresses of postanalytics**
+**Restart Tarantool:**
 
-Uncomment HOST and PORT variables and set them the following values:
-
-``` bash
-# address and port for bind
-HOST='0.0.0.0'
-PORT=3313
-```
-
-**Restart Tarantool**
-
-=== "Debian 8.x (jessie-backports)"
-    ```bash
-    sudo service wallarm-tarantool restart
+=== "Debian 8.x (jessie)"
+    ``` bash
+    sudo systemctl restart wallarm-tarantool
     ```
 === "Debian 9.x (stretch)"
-    ```bash
+    ``` bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
+=== "Ubuntu 14.04 LTS (trusty)"
+    ``` bash
+    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
+    ``` bash
+    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
+    ``` bash
+    sudo service wallarm-tarantool restart
     ```
 === "CentOS 6.x"
-    ```bash
+    ``` bash
     sudo service wallarm-tarantool restart
     ```
 === "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
+    ``` bash
     sudo systemctl restart wallarm-tarantool
     ```

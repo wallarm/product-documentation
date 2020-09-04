@@ -2,19 +2,12 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 
 <ol start="1"><li>Open for editing the configuration file of Tarantool:</li></ol>
 
-=== "Debian 8.x (jessie)"
-    ```bash
-    vi /etc/default/wallarm-tarantool
-    ```
+
 === "Debian 9.x (stretch)"
     ```bash
     vi /etc/default/wallarm-tarantool
     ```
 === "Debian 10.x (buster)"
-    ```bash
-    vi /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 14.04 LTS (trusty)"
     ```bash
     vi /etc/default/wallarm-tarantool
     ```
@@ -47,10 +40,6 @@ SLAB_ALLOC_ARENA=10.4
 
 <ol start="3"><li>Restart Tarantool:</li></ol>
 
-=== "Debian 8.x (jessie)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
 === "Debian 9.x (stretch)"
     ```bash
     sudo systemctl restart wallarm-tarantool
@@ -58,10 +47,6 @@ SLAB_ALLOC_ARENA=10.4
 === "Debian 10.x (buster)"
     ```bash
     sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 14.04 LTS (trusty)"
-    ```bash
-    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
