@@ -19,7 +19,7 @@
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
-This instruction describes the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX `stable` installed from the NGINX repository.
+These instructions describe the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
 --8<-- "../include/waf/installation/already-installed-waf.md"
 
@@ -35,7 +35,7 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
 
 ### 1. Install NGINX stable and dependencies
 
-There are the following options to install NGINX `stable` from the NGINX repository:
+These are the following options to install NGINX `stable` from the NGINX repository:
 
 * Installation from the built package
 
@@ -81,7 +81,7 @@ Wallarm WAF is installed and updated from the Wallarm repositories. To add repos
 To run postanalytics and process the requests on the same server, the following packages are required:
 
 * `nginx-module-wallarm` for the NGINX-Wallarm module
-* `wallarm-node` for the postanalytics module, Tarantool database and additional NGINX-Wallarm packages
+* `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
 --8<-- "../include/waf/installation/nginx-postanalytics.md"
 
@@ -104,7 +104,7 @@ To run postanalytics and process the requests on different servers, the followin
         sudo yum install wallarm-node-nginx nginx-module-wallarm
         ```
 
-* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instruction](../../admin-en/installation-postanalytics-en.md))
+* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in these [instructions](../../admin-en/installation-postanalytics-en.md))
 
 ### 4. Connect the Wallarm WAF module
 
