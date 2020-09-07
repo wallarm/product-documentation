@@ -43,3 +43,5 @@
     * If the version `2.14.x` is installed, follow the instructions for [WAF node 2.14][2.14-installation-instr] and for [separate postanalytics 2.14][install-postanalytics-docs].
     * If the version `2.12.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics 2.12][install-postanalytics-instr] or update [WAF node packages][nginx-modules-update-docs] and [separate postanalytics packages][separate-postanalytics-update-docs] to 2.14 in all installations.
     * If the deprecated version is installed (`2.10.x` or lower), please update the [WAF node packages][nginx-modules-update-docs] and [separate postanalytics packages][separate-postanalytics-update-docs] to 2.14 in all installations.
+    
+    More information about version support is available in the [WAF node versioning policy][versioning-policy].

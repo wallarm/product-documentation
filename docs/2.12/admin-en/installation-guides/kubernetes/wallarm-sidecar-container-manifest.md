@@ -26,6 +26,8 @@
     * If the version `2.12` is specified, follow the current instruction or increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
     * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
 
+    More information about version support is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+
 ### Step 1: Creating Wallarm ConfigMap
 
 <ol start="1"><li>Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:</li></ol>

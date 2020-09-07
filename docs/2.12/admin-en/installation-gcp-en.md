@@ -39,6 +39,8 @@ Launch your filter node instance using this [link](https://console.cloud.google.
     * If the version `2.12.x` is installed, follow the current instruction or update all Wallarm WAF instances to 2.14.
     * If the deprecated version is installed (`2.10.x` or lower), please update all Wallarm WAF instances to 2.14.
 
+    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+
 The instance will launch with a preinstalled filter node.
 
 To see detailed information on launching instances in the Google Cloud, proceed to this [link][link-launch-instance].
