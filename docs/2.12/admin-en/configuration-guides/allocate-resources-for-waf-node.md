@@ -1,3 +1,5 @@
+[gauge-timeframe-docs]: ../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds
+
 # Allocating Resources for WAF Node
 
 The amount of memory allocated for the WAF node determines the quality and speed of request processing. These instructions describe the recommendations for WAF node memory allocation.

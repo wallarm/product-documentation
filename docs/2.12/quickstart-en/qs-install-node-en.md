@@ -1,3 +1,5 @@
+[gauge-timeframe-docs]: ../admin-en/monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds
+
 # Installing the Filter Node (NGINX)
 
 !!! info "Request processing"
