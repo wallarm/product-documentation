@@ -60,6 +60,10 @@ Wallarm publishes information about the new minor version in the following sourc
 
     ![!Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
 
+Information about available updates for minor WAF node versions and for WAF node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the WAF node with the latest component versions installed looks like:
+
+![!Node card](../images/user-guides/nodes/view-regular-node.png)
+
 ### Update procedure
 
 Along with the release of the new WAF node minor version, installation instructions and instructions for current artifacts update are published. The methods of updating artifacts may differ. To update versions of artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
