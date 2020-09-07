@@ -197,3 +197,7 @@
     transform: none;
   }
 }
+
+.md-typeset__table code {
+  white-space: nowrap;
+}

@@ -1,153 +1,181 @@
-[anchor-reg-auto]:          #automatic-registration
-[anchor-reg-values]:        #use-of-prepared-credentials
-[anchor-reg-file]:          #use-of-a-prepared-configuration-file-containing-credentials
-      
-[doc-envoy-fine-tuning]:    ../../configuration-guides/envoy/fine-tuning.md
+# Running Docker Envoy‑based image
 
+This instruction describes the steps to run WAF Docker image based on [Envoy 1.12.2](https://www.envoyproxy.io/docs/envoy/v1.12.2/). The image contains all systems required for correct WAF operation:
 
-#   Installing with Docker (Using the Envoy‑Based Docker Image)
+* Envoy proxy services with embedded Wallarm WAF module
+* Tarantool modules for postanalytics
+* Other services and scripts
 
-An Envoy‑based filter node can be deployed as a Docker container. This Docker container is a thick one and contains all the subsystems of the filter node.
+Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
 
-##  Quick Deployment Procedure
+## Running the image with new WAF node
 
-To quickly deploy a filter node, execute the following command:
+New WAF node will be automatically registered in Wallarm Cloud when the image is run.
 
-``` bash
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
-```
+* For **basic** WAF node configuration, it is required to pass environment variables to the Docker container
+* For **advanced** WAF node configuration, it is required to pass environment variables and mount the directory with the `envoy.yaml` configuration file to the Docker container
 
-In this command insert your specific parameters as follows:
-*   `deploy@example.com`—login for your Wallarm account
-*   `very_secret`—password for your Wallarm account
-*   `api.wallarm.com`—the name of the Wallarm API server. The name to choose depends on the Wallarm cloud you are using:
-    *   If you log in to the <https://us1.my.wallarm.com> portal with your Wallarm account, then you are using the American cloud. Set the `WALLARM_API_HOST=us1.api.wallarm.com` environment variable.
-    *   If you log in to the <https://my.wallarm.com> portal with your Wallarm account, then you are using the European cloud. Either set the `WALLARM_API_HOST=us1.api.wallarm.com` environment variable or omit it (a node registers itself in the European cloud by default)
-*   `example.com`—the name or IP address of the web application to protect
-*   `memvalue`—the amount of memory allocated to Tarantool (in gigabytes)
+### Basic flow
 
-After running the command the following will happen:
-*   The filter node will automatically register itself in the Wallarm cloud.
-*   The protected web application will be available at `http://<Docker host name or IP address>:80`.
+You can pass the following basic WAF node settings to the container via the option `-e`:
 
+Environment variable | Description| Required
+--- | ---- | ----
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+`ENVOY_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+`WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `block`. | No
+`TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. By default: 0.2 gygabytes. | No
+`WALLARM_ACL_ENABLE` | Allows to block requests sent from the [blacklisted](../../../user-guides/blacklist.md) IP addresses. By default: `false`. | No 
 
-##  Common Deployment Procedure
+To run the image, use the command:
 
-The common deployment procedure is described in this section.
+=== "EU Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    ```
+=== "US Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    ```
 
-### 1.  Choose How to Connect a Filter Node to the Wallarm Cloud
+The command does the following:
 
-A filter node interacts with the Wallarm cloud and should be connected to the cloud. The cloud is located on a remote server.
+* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
+* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID `uuid` and secret key `secret`
+    * `license.key` with Wallarm license key
 
-You have the following options to connect the node to the cloud:
-*   [use automatic registration][anchor-reg-auto]
-*   [use prepared credentials][anchor-reg-values]
-*   [use a prepared configuration file containing the node's credentials][anchor-reg-file]
+    Credentials are required to run the image with existing WAF node.
+* Protects the resource `http://ENVOY_BACKEND:80`.
 
-!!! warning "Registration of a New Node"
-    Automatic registration should be used when deploying a new filter node.
+### Advanced flow
 
-####    Automatic Registration
+You can mount prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
-Specify the login and password pair that corresponds to a Wallarm account to automatically register the filter node in the Wallarm cloud. To do so, pass both the login and password values to the node's container via the `DEPLOY_USER` and `DEPLOY_PASSWORD` environment variables accordingly (using the `-e` parameter of the `docker run` command).
+* WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
+* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.12.2/configuration/overview/v2_overview#)
 
-The filter node will try to automatically register itself in the Wallarm cloud on the first start.
-    
-If a filter node with the same name as the node's container identifier is already registered in the cloud, then the registration process will fail. To avoid this, pass the `DEPLOY_FORCE=true` environment variable to the container.
+To run the image with advanced settings:
 
-**Example:**
+1. Pass environment variables above to the container via the `-e` option. Please omit `ENVOY_BACKEND` and `WALLARM_MODE`, its values must be specified in the file `envoy.yaml`.
+2. Mount the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory via the `-v` option.
 
-``` bash
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e DEPLOY_FORCE=true -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
-```
+=== "EU Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    ```
+=== "US Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    ```
 
-If the registration process finishes successfully, then the container's `/etc/wallarm` directory will be populated with the license file (`license.key`), a file with the credentials for the filter node to access the cloud (`node.yaml`), and other files required for proper node operation.
+The command does the following:
 
-On the next start of the same filter node, registration will not be required. The filter node communicates with the cloud using the following artifacts acquired during the automatic registration:
-*   The `uuid` and `secret` values (they are placed in the `/etc/wallarm/node.yaml` file).
-*   The Wallarm license key (it is placed in the `/etc/wallarm/license.key` file).    
+* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
+* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID `uuid` and secret key `secret`
+    * `license.key` with Wallarm license key
 
-To connect the already registered filter node to the cloud, pass to its container
-*   either the `uuid` and `secret` values via the environment variables and the `license.key` file
-*   or the `node.yaml` and `license.key` files. 
+    Credentials are required to run the image with existing WAF node.
+* Protects the resource `http://ENVOY_BACKEND:80`.
 
-####    Use of Prepared Credentials
+## Running the image with existing WAF node
 
-Pass to the filter node's container
-*   the `uuid` and `secret` values via the corresponding `NODE_UUID` and `NODE_SECRET` environment variables and
-*   the `license.key` file via Docker volumes. 
+To run existing WAF node, you can pass credentials to access Wallarm Cloud received after WAF node creation to the Docker container:
 
-**Example:**
+* WAF node UUID `uuid` via the `NODE_UUID` variable or mounting `node.yaml` to the `/etc/wallarm` container directory
+* Secret key `secret` via the `NODE_SECRET` variable or mounting `node.yaml` to the `/etc/wallarm` container directory
+* Wallarm license key `license.key` mounting the file to the `/etc/wallarm` container directory
 
-``` bash
-docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
-```
+Define the WAF node configuration type and follow the appropriate instructions:
 
-####    Use of a Prepared Configuration File Containing Credentials
+* For **basic** WAF node configuration, it is required to pass environment variables and mount `license.key` to the Docker container
+* For **advanced** WAF node configuration, it is required to pass environment variables and mount `license.key`, `envoy.yaml` to the Docker container
 
-Pass the following files to the filter node's container via Docker volumes:
-*   the `node.yaml` file, containing the credentials for the filter node to access the Wallarm cloud.
-*   the `license.key` file. 
+### Basic flow
 
-**Example:**
+You can pass the following basic WAF node settings to the container via the option `-e`:
 
-```
-docker run -d -v /configs/license.key:/etc/wallarm/license.key -v /configs/node.yaml:/etc/wallarm/node.yaml -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
-```
+Environment variable | Description| Required
+--- | ---- | ----
+`NODE_UUID` | WAF node UUID (`uuid` from `node.yaml`).| Yes, if `node.yaml` is not mounted
+`NODE_SECRET` | WAF node secret key (`secret` from `node.yaml`). | Yes, if `node.yaml` is not mounted
+`ENVOY_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+`WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `block`. | No
+`TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. By default: 0.2 gygabytes. | No
+`WALLARM_ACL_ENABLE` | Allows to block requests sent from the [blacklisted](../../../user-guides/blacklist.md) IP addresses. By default: `false`. | No 
 
-### 2.  Choose How to Configure a Filter Node
+To run the image, use the command:
 
-A filter node is configured via the `/etc/envoy/envoy.yaml` Envoy YAML configuration file. 
+=== "EU Cloud"
+    ```bash
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    ```
+=== "US Cloud"
+    ```bash
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    ```
 
-To configure the filter node, you can either
-*   run the container with the filter mode in the simplified configuration mode or
-*   use a prepared Envoy configuration file.
+The command does the following:
 
-####    Running Node in the Simplified Configuration Mode
+* Runs the WAF node with the specified UUID.
+* Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
+* Duplicates credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID `uuid` and secret key `secret`
+    * `license.key` with Wallarm license key
 
-When in the simplified configuration mode, a filter node automatically creates a minimal Envoy configuration file to protect the specified web application.
+    Credentials are required to run the image with existing WAF node.
+* Protects the resource `http://ENVOY_BACKEND:80`.
 
-To run a node in the simplified configuration mode, pass the web application's name or IP address to the node's container via the `ENVOY_BACKEND` environment variable.
+### Advanced flow
 
-According to the generated configuration file, the filter node is placed in the “blocking” operation mode, which will result in the blocking of all attacks targeted to the protected application. To run the filter node in the other operation modes (e.g., monitoring mode), create an appropriate Envoy configuration file and pass it to the node's Docker container (see [this document][doc-envoy-fine-tuning] for more information about fine-tuning an Envoy‑based filter node). 
+You can mount prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
-####    Using a Prepared Envoy Configuration File 
+* WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
+* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.12.2/configuration/overview/v2_overview#)
 
-To use a prepared Envoy configuration file, mount the corresponding YAML file into the node's container as a `/etc/envoy/envoy.yaml` file.
+To run the image with advanced settings:
 
-**Example:**
+1. Pass environment variables above to the container via the `-e` option. Please omit `ENVOY_BACKEND` and `WALLARM_MODE`, its values must be specified in the file `envoy.yaml`.
+2. Mount the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory via the `-v` option.
 
-```
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
-```
+=== "EU Cloud"
+    ```bash
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    ```
+=== "US Cloud"
+    ```bash
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    ```
 
-!!! info "Note on the Configuration Mode"
-    The majority of the commands mentioned in this document use the simplified configuration mode and the `ENVOY_BACKEND` environment variable; however, you can use a prepared Envoy configuration file in these commands as well.
+The command does the following:
 
-### 3.  Choose the Amount of Memory to Allocate to Tarantool
+* Runs the WAF node with the specified UUID.
+* Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
+* Duplicates credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID `uuid` and secret key `secret`
+    * `license.key` with Wallarm license key
 
-The postanalytics module operates using the in-memory database Tarantool. The amount of allocated memory determines the quality of the work of the statistical algorithms. The recommended value is 75 percent of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB.
+    Credentials are required to run the image with existing WAF node.
+* Protects the resource `http://ENVOY_BACKEND:80`.
 
-When deploying a container with a filter node, specify the amount of memory to be allocated to the Tarantool (in gigabytes) by passing the `TARANTOOL_MEMORY_GB` environment variable into the node's container.
+## Configuration of log rotation (optional)
 
-**Example:**
+The log file rotation is preconfigured and enabled by default. You can adjust the rotation settings if necessary. These settings are located in the `/etc/logrotate.d` directory of the container.
 
-```
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80  wallarm/envoy
-```
+## Testing WAF node operation
 
-In this example, 16 gigabytes of memory are allocated to Tarantool.
+1. Send the request with test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the protected resource address:
 
-### 4.  Configure Log Rotation (If Necessary)
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
 
-The log file rotation is preconfigured and enabled by default.
-
-You can adjust the rotation settings if necessary.
-These settings are located in the `/etc/logrotate.d` directory of the filter node's container.
-
-
-##  The Installation Is Complete
-
-Now the deployment is complete. 
-
-<!-- --8<-- "../include/check-setup-installation-en.md" -->
+    WAF node will block the request and return the code `403 blocked by wallarm filter`.
+2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+    ![!Attacks in the interface](../../../images/admin-guides/test-attacks.png)
