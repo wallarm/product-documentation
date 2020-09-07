@@ -45,7 +45,6 @@ The Wallarm filter node can be installed on the following platforms:
         *   Debian 10.x (buster)
         *   Ubuntu 16.04 LTS (xenial)
         *   Ubuntu 18.04 LTS (bionic)
-        *   CentOS 6.x
         *   CentOS 7.x
         *   Amazon Linux 2
         
@@ -87,5 +86,4 @@ The Wallarm filter node can be installed on the following platforms:
         *   Debian 9.x (stretch)
         *   Ubuntu 16.04 LTS (xenial)
         *   Ubuntu 18.04 LTS (bionic)
-        *   CentOS 6.x
         *   CentOS 7.x

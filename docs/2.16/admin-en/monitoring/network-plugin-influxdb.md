@@ -176,6 +176,6 @@ Configure `collectd` to export metrics to InfluxDB:
     
 3. Restart the `collectd` service by running the appropriate command:
 
-    --8<-- "../include/monitoring/collectd-restart.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 Now InfluxDB receives all the metrics of the filter node. You can visualize the metrics you are interested in and monitor them [with Grafana][doc-grafana].

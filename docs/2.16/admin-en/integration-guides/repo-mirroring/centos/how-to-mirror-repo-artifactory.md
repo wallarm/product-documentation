@@ -18,7 +18,7 @@
 
 You can create and use a local copy (also known as a *mirror*) of the Wallarm repository to be sure that all filter nodes in your infrastructure are deployed from a single source and have the same version number.
 
-This document will guide you through the process of mirroring the Wallarm repository for a CentOS 6/7 server via the JFrog Artifactory repository manager.
+This document will guide you through the process of mirroring the Wallarm repository for a CentOS 7 server via the JFrog Artifactory repository manager.
 
 
 !!! info "Prerequisites"
@@ -26,7 +26,7 @@ This document will guide you through the process of mirroring the Wallarm reposi
     
     *   You have these components installed on your server:
     
-        *   CentOS 6 or CentOS 7 operating system
+        *   CentOS 7 operating system
         *   `yum-utils` and `epel-release` packages
         *   JFrog Artifactory software capable of creating RPM repositories ([installation instructions][link-jfrog-installation])
             
@@ -46,14 +46,9 @@ Wallarm repository mirroring comprises
 To create a local copy of the Wallarm repository, do the following:
 1.  Add the Wallarm repository by executing the following command:
 
-    === "CentOS 6.x"
-        ```bash
-        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/6/2.14/x86_64/Packages/wallarm-node-repo-1-5.el6.noarch.rpm
-        ```
-    === "CentOS 7.x"
-        ```bash
-        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
-        ```
+    ```bash
+    sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
+    ```
 
 2.  Navigate to a temporary directory (e.g., `/tmp`) and synchronize the Wallarm repository to this directory by executing the following command:
 

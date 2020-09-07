@@ -48,7 +48,7 @@ Configure and connect the [network plugin][link-network-plugin] to `collectd`:
          
 3.  Restart the `collectd` service by executing the appropriate command:
 
-    --8<-- "../include/monitoring/collectd-restart.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 !!! info "Example"
     Read an [example of exporting metrics][doc-network-plugin-example] to InfluxDB via the Network plugin with subsequent visualization of the metrics in Grafana.
@@ -92,7 +92,7 @@ To export metrics using this method:
 
 4.  Restart the `collectd` service by executing the appropriate command:
 
-    --8<-- "../include/monitoring/collectd-restart.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.md"
 
 5.  Get the value of the necessary metric by running the appropriate command:
 

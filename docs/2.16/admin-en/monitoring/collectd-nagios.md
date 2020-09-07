@@ -69,7 +69,7 @@ To do this, on a filter node host:
     
 3.  Restart the NRPE service by executing the appropriate command:
 
-    --8<-- "../include/monitoring/nrpe-restart.md"
+    --8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
 ### 2.  Install the Nagios NRPE Plugin on the Nagios Host
 
@@ -162,7 +162,7 @@ command[check_wallarm_nginx_attacks]=/usr/bin/collectd-nagios -s /var/run/collec
 
 After you have added all necessary commands to the NRPE service configuration file, restart the service by executing the appropriate command:
 
---8<-- "../include/monitoring/nrpe-restart.md"
+--8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
 ### 8.  On the Nagios Host, Use the Configuration Files to Specify the Filter Node Host and to Define the Services to Monitor
 
@@ -202,7 +202,7 @@ For example, this can be done as follows:
 
 3.  Restart the Nagios service by running the appropriate command:
 
---8<-- "../include/monitoring/nagios-restart.md"
+--8<-- "../include/monitoring/nagios-restart-2.16.md"
 
 ## Setup is Complete
 

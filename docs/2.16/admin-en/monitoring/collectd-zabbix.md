@@ -137,7 +137,7 @@ UserParameter=wallarm_nginx-gauge-attacks, sudo /usr/bin/collectd-nagios -s /var
 
 ####    5.  After all the necessary commands have been added to the Zabbix agent configuration file, restart the agent
 
---8<-- "../include/monitoring/zabbix-agent-restart.md"
+--8<-- "../include/monitoring/zabbix-agent-restart-2.16.md"
 
 ##  Setup Complete
 

@@ -61,7 +61,7 @@ This instruction describes the steps to update installed WAF modules to version 
 
 ## Step 3: Restart NGINX
 
---8<-- "../include/waf/restart-nginx.md"
+--8<-- "../include/waf/restart-nginx-2.16.md"
 
 ## Step 4: Test Wallarm WAF operation
 
