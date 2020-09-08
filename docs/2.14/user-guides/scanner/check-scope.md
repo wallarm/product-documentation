@@ -28,7 +28,7 @@ To learn more about configuring the scanner, see the [“Scanner settings”][li
 
 In the *Scope* block of the *Scanner* tab, the elements are shown in three columns: *Domains*, *IPs*, and *Services*. The total number of elements of a certain type is shown near the column name in a small grey font.
 
-If Wallarm can determine which data center the given IP address belongs to, then the corresponding tag will be displayed to the right of the element or group of elements: the “AWS” tag for Amazon, the “GCP” tag for Google and the “Azure” tag for Microsoft data centers.
+If Wallarm can determine which data center the given IP address belongs to, then the corresponding tag will be displayed to the right of the element or group of elements: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers.
 
 !!! info
     By default, the scope scanning starts with the domain of the email address that was specified upon Wallarm account creation.
