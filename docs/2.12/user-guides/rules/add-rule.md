@@ -111,7 +111,7 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
 
     Temporarily not supported:
 
-    * Character classes like `\W` for non-alphanumerics, `\w` for alphanumerics, `\D` for any non-digits, `\d` for any decimals, `\S` for non-whitespaces, `\s` for whitespaces
+    * Character classes like `\W` for non-alphabetics, `\w` for alphabetics, `\D` for any non-digits, `\d` for any decimals, `\S` for non-whitespaces, `\s` for whitespaces
 
     Not supported syntax:
 
