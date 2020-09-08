@@ -1,6 +1,6 @@
 # Wallarm WAF subscription plans
 
-Subscription plan is conditions to access Wallarm WAF: billing amount and frequency, the set of available modules and features.
+Subscription plan is conditions to access Wallarm WAF: subscription period, the set of available modules and features.
 
 This document describes the parts of the Wallarm WAF subscription plan and the way of forming these parts.
 
