@@ -160,7 +160,12 @@ function goToVersion (event, currentVersion, version) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
     } else {
       if (currentVersion === rootVersion) {
-      window.top.location.href = window.location.pathname.replace('/','/'+version+'/');
+        if (tmp[1].startsWith('docs')) {
+          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+version+'/');
+        }
+        else {
+          window.top.location.href = window.location.pathname.replace('/','/'+version+'/');
+        }
       }
       else {
           window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/'+version+'/')

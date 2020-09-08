@@ -89,9 +89,9 @@ To install the Wallarm module with Kong, you need to:
         yum list wallarm-node-tarantool
         ```
 
-    * If the version `2.14.x` is installed, follow the instructions for [WAF node 2.14](/admin-en/installation-kong-en/) and for [separate postanalytics 2.14](/admin-en/installation-postanalytics-en/).
-    * If the version `2.12.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md) or update [WAF node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to 2.14 in all installations.
-    * If the deprecated version is installed (`2.10.x` or lower), please update the [WAF node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to 2.14 in all installations.
+    * If the version `2.14.x` is installed, follow the instructions for [WAF node 2.14](../../../admin-en/installation-kong-en/) and for [separate postanalytics 2.14](../../../admin-en/installation-postanalytics-en/).
+    * If the version `2.12.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md) or update [WAF node packages](../../../updating-migrating/nginx-modules/) and [separate postanalytics packages](../../../updating-migrating/separate-postanalytics/) to 2.14 in all installations.
+    * If the deprecated version is installed (`2.10.x` or lower), please update the [WAF node packages](../../../updating-migrating/nginx-modules/) and [separate postanalytics packages](../../../updating-migrating/separate-postanalytics/) to 2.14 in all installations.
 
 ## 1. Add Wallarm Repositories
 

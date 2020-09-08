@@ -35,7 +35,7 @@ Launch your filter node instance using this [link](https://console.cloud.google.
     yum list wallarm-node
     ```
 
-    * If the version `2.14.x` is installed, follow the [instruction for 2.14](/admin-en/installation-gcp-en/).
+    * If the version `2.14.x` is installed, follow the [instruction for 2.14](../../../admin-en/installation-gcp-en/).
     * If the version `2.12.x` is installed, follow the current instruction or update all Wallarm WAF instances to 2.14.
     * If the deprecated version is installed (`2.10.x` or lower), please update all Wallarm WAF instances to 2.14.
 

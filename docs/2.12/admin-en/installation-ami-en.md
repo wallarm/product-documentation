@@ -76,7 +76,7 @@ To launch an instance with the filter node, proceed to this [link](https://aws.a
     yum list wallarm-node
     ```
 
-    * If the version `2.14.x` is installed, follow the [instruction for 2.14](/admin-en/installation-ami-en/).
+    * If the version `2.14.x` is installed, follow the [instruction for 2.14](../../../admin-en/installation-ami-en/).
     * If the version `2.12.x` is installed, follow the current instruction or update all Wallarm WAF instances to 2.14.
     * If the deprecated version is installed (`2.10.x` or lower), please update all Wallarm WAF instances to 2.14.
 

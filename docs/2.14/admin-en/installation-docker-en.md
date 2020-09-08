@@ -19,7 +19,7 @@ The functionality of the filter node installed inside the Docker container is co
     ```
 
     * If the version `2.14.x` is installed, follow the current instruction.
-    * If the version `2.12.x` is installed, follow the [instructions for 2.12](/2.12/admin-en/installation-docker-en/) or [update the packages to 2.14](../updating-migrating/docker-container.md) in all deployments.
+    * If the version `2.12.x` is installed, follow the [instructions for 2.12](../../2.12/admin-en/installation-docker-en/) or [update the packages to 2.14](../updating-migrating/docker-container.md) in all deployments.
     * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14](../updating-migrating/docker-container.md) in all deployments.
 
 !!! warning "Known limitations"
