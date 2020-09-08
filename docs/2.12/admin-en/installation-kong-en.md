@@ -93,6 +93,8 @@ To install the Wallarm module with Kong, you need to:
     * If the version `2.12.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md) or update [WAF node packages](../../../updating-migrating/nginx-modules/) and [separate postanalytics packages](../../../updating-migrating/separate-postanalytics/) to 2.14 in all installations.
     * If the deprecated version is installed (`2.10.x` or lower), please update the [WAF node packages](../../../updating-migrating/nginx-modules/) and [separate postanalytics packages](../../../updating-migrating/separate-postanalytics/) to 2.14 in all installations.
 
+    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+
 ## 1. Add Wallarm Repositories
 
 The filter node installs and updates from the Wallarm repositories.

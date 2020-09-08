@@ -19,6 +19,7 @@
 [nginx-modules-update-docs]:        ../../../updating-migrating/nginx-modules/
 [separate-postanalytics-update-docs]:   ../../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
+[versioning-policy]:               ../../updating-migrating/versioning-policy.md
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 

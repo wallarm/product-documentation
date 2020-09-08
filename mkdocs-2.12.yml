@@ -290,6 +290,7 @@ nav:
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Updating and Migrating:
       - What is new in WAF 2.12: updating-migrating/what-is-new.md
+      - WAF node versioning policy: updating-migrating/versioning-policy.md
       - Updating NGINX WAF modules to 2.12: updating-migrating/nginx-modules.md
       - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
       - Updating Docker: updating-migrating/docker-container.md

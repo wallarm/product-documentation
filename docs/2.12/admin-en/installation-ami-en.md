@@ -80,6 +80,8 @@ To launch an instance with the filter node, proceed to this [link](https://aws.a
     * If the version `2.12.x` is installed, follow the current instruction or update all Wallarm WAF instances to 2.14.
     * If the deprecated version is installed (`2.10.x` or lower), please update all Wallarm WAF instances to 2.14.
 
+    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+
 When creating an instance, you need to specify the [previously created][anchor1] security group. To do this, perform the following actions:
 1.  While working with the Launch Instance Wizard, proceed to the *6. Configure Security Group* instance launch step by clicking the corresponding tab.
 2.  Choose the “Select an existing security group” option in the *Assign a security group* setting.
