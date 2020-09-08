@@ -18,9 +18,9 @@ The functionality of the filter node installed inside the Docker container is co
     apt list wallarm-node
     ```
 
-    * If the version `2.14.x` is installed, follow the [instructions for 2.14](/admin-en/installation-docker-en/).
-    * If the version `2.12.x` is installed, follow the current instruction or [update the packages to 2.14](/updating-migrating/docker-container/) in all deployments.
-    * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14](/updating-migrating/docker-container/) in all deployments.
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14](../../../admin-en/installation-docker-en/).
+    * If the version `2.12.x` is installed, follow the current instruction or [update the packages to 2.14](../../../updating-migrating/docker-container/) in all deployments.
+    * If the deprecated version is installed (`2.10.x` or lower), please [update the packages to 2.14](../../../updating-migrating/docker-container/) in all deployments.
 
 !!! warning "Known limitations"
     * [IP blocking][doc-ip-blocking] is not supported.

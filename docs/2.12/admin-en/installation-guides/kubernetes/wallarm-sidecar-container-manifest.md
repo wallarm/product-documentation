@@ -22,9 +22,9 @@
 
     The version of deployed Wallarm WAF image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
-    * If the version `2.14` is specified, follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
-    * If the version `2.12` is specified, follow the current instruction or increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
-    * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `2.14` is specified, follow the [instruction for 2.14](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `2.12` is specified, follow the current instruction or increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the deprecated version is specified (`2.10` or lower), please increase the version of the image to `2.14` in all deployments and follow the [instruction for 2.14](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
 
 ### Step 1: Creating Wallarm ConfigMap
 
