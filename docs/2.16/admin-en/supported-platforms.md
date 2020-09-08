@@ -8,7 +8,6 @@
 [link-ig-ingress-nginxplus]:    installation-guides/ingress-plus/introduction.md
 [link-ig-aws]:                  installation-ami-en.md
 [link-ig-gcloud]:               installation-gcp-en.md
-[link-ig-heroku]:               installation-heroku-en.md
 [link-ig-docker-nginx]:         installation-docker-en.md
 [link-ig-kong]:                 installation-kong-en.md
 
@@ -77,7 +76,6 @@ The Wallarm filter node can be installed on the following platforms:
 *   The cloud platforms:
     *   Amazon AWS ([installation instructions][link-ig-aws])
     *   Google Cloud ([installation instructions][link-ig-gcloud])
-    *   Heroku with the Heroku-16 or Heroku-18 stack ([installation instructions][link-ig-heroku])
 *   Kong ([installation instructions][link-ig-kong])
 
     !!! info "Supported Operating Systems"
