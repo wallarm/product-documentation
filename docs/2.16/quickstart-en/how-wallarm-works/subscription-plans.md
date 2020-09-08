@@ -31,7 +31,7 @@ The set of features included to the subscription plan is defined individually wi
 * Receiving security reports
 * etc
 
-To define features that should be included to your subscriotion plan, please send the request to [support@wallarm.com](mailto:support@wallarm.com). 
+To define features that should be included to your subscription plan, please send the request to [support@wallarm.com](mailto:support@wallarm.com). 
 
 ## Subscription management
 
