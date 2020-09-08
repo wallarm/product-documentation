@@ -31,12 +31,6 @@ WAF node artifact versions have the following format:
 
 Versions of WAF node packages may differ within the same artifact. For example, if only one package needs to be updated, then the remaining packages retain the previous version.
 
-## Version stability
-
-To release the stable WAF node versions, Wallarm properly checks the operation of each version using functional, integration, regression and other tests. If the set of tests is finished successfully, Wallarm checks how the WAF node processes real traffic. If WAF is stable, Wallarm publishes the verified version to the public.
-
-To support the stable operation of the published version, autotests are used. Basic WAF node installation and configuration scenarios are tested every hour. If errors are found, changes are applied to the WAF node in the new version of the patch (`<PATCH_VERSION>`).
-
 ## Version support
 
 Wallarm supports 2 latest versions of the WAF node in the following way:
