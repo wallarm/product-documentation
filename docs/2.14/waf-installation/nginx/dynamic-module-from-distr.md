@@ -193,7 +193,7 @@ By default, WAF node is in the status `off` and does not filter requests. Change
     ```
 2. Add the line `wallarm_mode block;` to the `server` block:
 
-"For example `/etc/nginx/conf.d/default.conf`"
+??? "Example of the file `/etc/nginx/conf.d/default.conf`"
 
     ```bash
     server {
