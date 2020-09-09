@@ -78,7 +78,7 @@ The command installs the following packages:
 
 * `nginx` for NGINX
 * `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
-* `wallarm-node` for the postanalytics module, Tarantool database and additional NGINX-Wallarm packages
+* `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
 === "Debian 8.x (jessie-backports)"
     ```bash
@@ -105,11 +105,11 @@ The command installs the following packages:
 
 To run postanalytics and process the requests on different servers, the following packages are required:
 
-* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instruction](../../admin-en/installation-postanalytics-en.md))
+* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../../admin-en/installation-postanalytics-en.md))
 
 * `wallarm-node-nginx` and `libnginx-mod-http-wallarm`/`nginx-mod-http-wallarm` for the NGINX-Wallarm module
 
-The commands installs packages for NGINX and for the NGINX-Wallarm module:
+The commands install packages for NGINX and for the NGINX-Wallarm module:
 
 === "Debian 8.x (jessie-backports)"
     ```bash
