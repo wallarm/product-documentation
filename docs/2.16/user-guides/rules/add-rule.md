@@ -129,16 +129,6 @@ To test the regular expression, you can use the **cpire** utility on supported D
 
 1. Add Wallarm repository:
     
-    === "Debian 8.x (jessie-backports)"
-        ```bash
-        sudo apt install dirmngr
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        echo 'Acquire::Check-Valid-Until "false";' | sudo tee /etc/apt/apt.conf.d/ignore-release-date
-        echo 'deb http://archive.debian.org/debian jessie-backports/ main' | sudo tee /etc/apt/sources.list.d/jessie-backports.list
-        echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list
-        echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie-backports/2.14/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list
-        sudo apt update
-        ```
     === "Debian 9.x (stretch)"
         ```bash
         sudo apt update

@@ -39,7 +39,6 @@ The Wallarm filter node can be installed on the following platforms:
     !!! info "Supported Operating Systems"
         The Wallarm modules can be installed on the following operating systems:
         
-        *   Debian 8.x (jessie-backports)
         *   Debian 9.x (stretch)
         *   Debian 10.x (buster)
         *   Ubuntu 16.04 LTS (xenial)
