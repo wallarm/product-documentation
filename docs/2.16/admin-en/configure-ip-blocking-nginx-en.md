@@ -73,6 +73,10 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/cache/nginx/wallarm_acl_default
             ```
+        === "Ubuntu 20.04 LTS (focal)"
+            ```basn
+            /var/cache/nginx/wallarm_acl_default
+            ```
         === "CentOS 7.x"
             ```basn
             /var/lib/nginx/wallarm_acl_default
@@ -104,6 +108,10 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
+        === "Ubuntu 20.04 LTS (focal)"
+            ```basn
+            /var/lib/nginx/wallarm_acl_default
+            ```
         === "CentOS 7.x"
             ```basn
             /var/lib/nginx/wallarm_acl_default
@@ -132,6 +140,10 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             /var/lib/nginx/wallarm_acl_default
             ```
         === "Ubuntu 18.04 LTS (bionic)"
+            ```basn
+            /var/lib/nginx/wallarm_acl_default
+            ```
+        === "Ubuntu 20.04 LTS (focal)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```

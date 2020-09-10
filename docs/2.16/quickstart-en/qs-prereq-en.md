@@ -14,6 +14,7 @@ systems:
 * Debian 10.x (buster)
 * Ubuntu 16.04 LTS (xenial)
 * Ubuntu 18.04 LTS (bionic)
+* Ubuntu 20.04 LTS (focal)
 * CentOS 7.x
 * Amazon Linux 2
 * CentOS 8.x

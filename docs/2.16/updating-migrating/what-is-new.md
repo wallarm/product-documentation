@@ -16,3 +16,4 @@
 * Dropped support of the cloud system Heroku
 * Dropped support of the operating system Debian 8.x (jessie-backports)
 * Support of CentOS 8.x
+* Support of Ubuntu 20.04 LTS (Focal Fossa)
