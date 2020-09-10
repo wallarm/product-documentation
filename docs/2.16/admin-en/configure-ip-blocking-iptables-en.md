@@ -47,6 +47,10 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         ```bash
         sudo yum install wallarm-extra-scripts
         ```
+    === "CentOS 8.x"
+        ```bash
+        sudo yum install wallarm-extra-scripts
+        ```
 
     The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_blacklist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.
 

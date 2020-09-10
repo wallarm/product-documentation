@@ -16,3 +16,4 @@ systems:
 * Ubuntu 18.04 LTS (bionic)
 * CentOS 7.x
 * Amazon Linux 2
+* CentOS 8.x

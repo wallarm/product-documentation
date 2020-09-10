@@ -81,7 +81,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-    
+        === "CentOS 8.x"
+            ```basn
+            /var/lib/nginx/wallarm_acl_default
+            ```
+
     *   Dynamic NGINX module from OS repositories:
     
         === "Debian 9.x (stretch)"
@@ -108,7 +112,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-    
+        === "CentOS 8.x"
+            ```basn
+            /var/lib/nginx/wallarm_acl_default
+            ```
+
     *   NGINX Plus module:
     
         === "Debian 9.x (stretch)"
@@ -135,7 +143,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-         
+        === "CentOS 8.x"
+            ```basn
+            /var/lib/nginx/wallarm_acl_default
+            ```
+
 3.  Turn on blocking for the particular vhosts and/or locations by adding the following lines to their configuration files:
 
     ```
