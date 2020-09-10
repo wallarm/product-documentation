@@ -14,7 +14,7 @@ An Envoy‑based filter node can be deployed as a Docker container. This Docker 
 To quickly deploy a filter node, execute the following command:
 
 ``` bash
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
+docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy:2.16
 ```
 
 In this command insert your specific parameters as follows:
@@ -58,7 +58,7 @@ If a filter node with the same name as the node's container identifier is alread
 **Example:**
 
 ``` bash
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e DEPLOY_FORCE=true -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
+docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e DEPLOY_FORCE=true -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy:2.16
 ```
 
 If the registration process finishes successfully, then the container's `/etc/wallarm` directory will be populated with the license file (`license.key`), a file with the credentials for the filter node to access the cloud (`node.yaml`), and other files required for proper node operation.
@@ -80,7 +80,7 @@ Pass to the filter node's container
 **Example:**
 
 ``` bash
-docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
+docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy:2.16
 ```
 
 ####    Use of a Prepared Configuration File Containing Credentials
@@ -92,7 +92,7 @@ Pass the following files to the filter node's container via Docker volumes:
 **Example:**
 
 ```
-docker run -d -v /configs/license.key:/etc/wallarm/license.key -v /configs/node.yaml:/etc/wallarm/node.yaml -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
+docker run -d -v /configs/license.key:/etc/wallarm/license.key -v /configs/node.yaml:/etc/wallarm/node.yaml -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy:2.16
 ```
 
 ### 2.  Choose How to Configure a Filter Node
@@ -118,7 +118,7 @@ To use a prepared Envoy configuration file, mount the corresponding YAML file in
 **Example:**
 
 ```
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy
+docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80  wallarm/envoy:2.16
 ```
 
 !!! info "Note on the Configuration Mode"
@@ -133,7 +133,7 @@ When deploying a container with a filter node, specify the amount of memory to b
 **Example:**
 
 ```
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80  wallarm/envoy
+docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80  wallarm/envoy:2.16
 ```
 
 In this example, 16 gigabytes of memory are allocated to Tarantool.
