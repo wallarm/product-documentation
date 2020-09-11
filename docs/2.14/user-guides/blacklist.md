@@ -32,7 +32,7 @@ By default, the **Blacklist** section is opened on the **Now** tab with the curr
 
 For each element of a blacklist entry, Wallarm shows:
 
-* **IP/Source**: the blocked IP address. The following information is also displayed if it was found in Wallarm or IP2Location databases:
+* **IP/Source**: the blocked IP address. The following information is also displayed if it was found in the Wallarm databases:
     * The country in which the IP address is registered
     * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers
     * The **Tor** tag if the attack's source is the Tor network

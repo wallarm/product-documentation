@@ -26,11 +26,11 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
 * **Payloads**: Attack type and the number of unique [attack vectors](../../glossary-en.md#attack-vector). 
 * **Top IP / Source**: The IP address from which the malicious requests originated. When the malicious requests originate from several IP addresses, the interface shows the IP address responsible for the most requests. There is also the following data displayed for the IP address:
      * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
-     * The country in which the IP address is registered (if it was found in Wallarm or IP2Location databases)
-     * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers (if it was found in Wallarm or IP2Location databases)
-     * The **Tor** tag if the attack's source is the Tor network (if it was found in Wallarm or IP2Location databases)
-     * The **VPN** tag if IP address belongs to VPN (if it was found in Wallarm or IP2Location databases)
-     * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server (if it was found in Wallarm or IP2Location databases)
+     * The country in which the IP address is registered (if it was found in the Wallarm databases)
+     * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers (if it was found in the Wallarm databases)
+     * The **Tor** tag if the attack's source is the Tor network (if it was found in the Wallarm databases)
+     * The **VPN** tag if IP address belongs to VPN (if it was found in the Wallarm databases)
+     * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server (if it was found in the Wallarm databases)
 * **Domain / Path**: The domain and path that the request targeted.
 * **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
