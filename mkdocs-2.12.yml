@@ -297,7 +297,4 @@ nav:
     - Appendix:
       - Glossary: glossary-en.md
       - Attacks and Vulnerabilities List: attacks-vulns-list.md
-      # - Envoy
-      #   - Installing with Docker: admin-en/installation-guides/envoy/envoy-docker.md
-      #   - Configuration Options (Envoy): admin-en/configuration-guides/envoy/fine-tuning.md
   - FAQ: '!include ./faq/mkdocs.yml'

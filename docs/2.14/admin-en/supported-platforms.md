@@ -12,10 +12,6 @@
 [link-ig-docker-nginx]:         installation-docker-en.md
 [link-ig-kong]:                 installation-kong-en.md
 
-<!-- Uncomment when Envoy docs will be required
-[link-ig-docker-envoy]:         installation-guides/envoy/envoy-docker.md 
--->
-
 #   Supported Platforms
 
 !!! info "Installation Prerequisites"
@@ -51,14 +47,6 @@ The Wallarm filter node can be installed on the following platforms:
         
     !!! warning "Operating System Requirements"
         The modules can only be installed on 64-bit operating systems.
-
-<!-- Uncomment when Envoy docs will be required
-*   Envoy
-
-    The integration of the filter node with Envoy is performed using several modules.
-
-    You can deploy a filter node as a Docker container. The resulting filter node installation will contain all necessary modules (see [installation instructions][link-ig-docker-envoy]).
--->
     
 *   The Kubernetes Cluster
 

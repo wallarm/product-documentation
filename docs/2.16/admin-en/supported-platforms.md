@@ -51,13 +51,9 @@ The Wallarm filter node can be installed on the following platforms:
     !!! warning "Operating System Requirements"
         The modules can only be installed on 64-bit operating systems.
 
-<!-- Uncomment when Envoy docs will be required
-*   Envoy
+* Envoy
 
-    The integration of the filter node with Envoy is performed using several modules.
-
-    You can deploy a filter node as a Docker container. The resulting filter node installation will contain all necessary modules (see [installation instructions][link-ig-docker-envoy]).
--->
+    You can deploy a WAF node as a Docker container. The resulting WAF node installation will contain all necessary modules (see [installation instructions](installation-guides/envoy/envoy-docker.md)).
     
 *   The Kubernetes Cluster
 

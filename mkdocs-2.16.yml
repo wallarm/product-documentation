@@ -139,10 +139,12 @@ nav:
               - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
           - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
+        - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate Postanalytics Installation: admin-en/installation-postanalytics-en.md
         - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
+        - Configuration Options (Envoy): admin-en/configuration-guides/envoy/fine-tuning.md
         - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
         - Blocking by IP Address:
           - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
