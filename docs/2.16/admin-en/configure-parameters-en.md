@@ -9,7 +9,7 @@
 
 ## Wallarm Directives
 
-### wallarm_enable_libdetection
+<!-- ### wallarm_enable_libdetection
 
 Enables additional validation of attacks via the **libdetection** library. **libdetection** uses improved attack detection algorithms to reduce the number of false positives.
 
@@ -20,7 +20,7 @@ To allow **libdetection** to parse and check the request body, please ensure tha
 !!! info
     This parameter can be set inside the http, server and location blocks.
 
-    Default value is `off`.
+    Default value is `off`. -->
 
 ### wallarm_acl
 

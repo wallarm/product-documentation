@@ -17,7 +17,7 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
 ## New features
 
 * [Displaying versions](../user-guides/nodes/regular-node.md#viewing-details-of-waf-node) of installed WAF, NGINX-WAF, Envoy-WAF components in Wallarm Console
-* New configuration directive [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to reduce the number of false positives using additional attacks validation with improved algorithms
+<!-- * New configuration directive [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to reduce the number of false positives using additional attacks validation with improved algorithms -->
 * Ability to append or replace the value of the NGINX header `Server`. For setup, it is required to add an appropriate rule to the application profile. To add the rule, please contact [our technical support](mailto:support@wallarm.com)
 * New WAF node statistics parameters:
     * `db_apply_time`: Unix time of the last update of the proton.db file
