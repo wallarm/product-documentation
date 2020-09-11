@@ -30,29 +30,19 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
 
 ### 1. Add Debian/CentOS repositories
 
-=== "Debian 8.x (jessie-backports)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    echo 'Acquire::Check-Valid-Until "false";' | sudo tee /etc/apt/apt.conf.d/ignore-release-date
-    echo 'deb http://archive.debian.org/debian jessie-backports/ main' | sudo tee /etc/apt/sources.list.d/jessie-backports.list
-    echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list
-    echo 'deb http://repo.wallarm.com/debian/wallarm-node jessie-backports/2.14/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list
-    sudo apt update
-    ```
 === "Debian 9.x (stretch)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 9.x (stretch-backports)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.14/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.16/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
     # for correct WAF operation, uncomment the following line in /etc/apt/sources.list`:
     # deb http://deb.debian.org/debian stretch-backports main contrib non-free
     sudo apt update
@@ -61,13 +51,13 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.14/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
     ```
 
 ### 2. Install NGINX with Wallarm WAF packages
@@ -80,10 +70,6 @@ The command installs the following packages:
 * `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
 * `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
-=== "Debian 8.x (jessie-backports)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm -t jessie-backports
-    ```
 === "Debian 9.x (stretch)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
@@ -111,10 +97,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 The commands install packages for NGINX and for the NGINX-Wallarm module:
 
-=== "Debian 8.x (jessie-backports)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm -t jessie-backports
-    ```
 === "Debian 9.x (stretch)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
