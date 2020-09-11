@@ -17,6 +17,17 @@
 5. [Deploy](#step-4-deploying-the-manifest-to-the-kubernetes-cluster) the manifest to the Kubernetes cluster.
 6. [Test](#step-5-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
 
+!!! info "If Wallarm WAF is already installed in your environment"
+    If you install Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the installation in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+
+    The version of deployed Wallarm WAF image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
+
+    * If the version `2.16` is specified, follow the current instruction.
+    * If the version `2.14` is specified, follow the [instructions for 2.14](../../../../2.14/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `2.16` in all deployments and follow the current instruction.
+    * If the version `2.12` or lower is specified, please increase the version of the image to `2.16` in all deployments and follow the current instruction.
+
+    More information about version support is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+
 ### Step 1: Creating Wallarm ConfigMap
 
 <ol start="1"><li>Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:</li></ol>

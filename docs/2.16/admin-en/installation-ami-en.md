@@ -65,6 +65,21 @@ To see detailed information about creating a security group, proceed to this [li
 
 ## 4. Launch a Filter Node Instance
 
+!!! info "If Wallarm WAF instance is already launched"
+    If you launch Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the instance in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+
+    To check the launched version, run the following command:
+
+    ```
+    yum list wallarm-node
+    ```
+
+    * If the version `2.16.x` is installed, follow the current instruction.
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14](../../2.14/admin-en/installation-ami-en/) or update all Wallarm WAF instances to 2.16.
+    * If the version`2.12.x` or lower is installed, please update all Wallarm WAF instances to 2.16.
+
+    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+
 To launch an instance with the filter node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD). 
 
 When creating an instance, you need to specify the [previously created][anchor1] security group. To do this, perform the following actions:
