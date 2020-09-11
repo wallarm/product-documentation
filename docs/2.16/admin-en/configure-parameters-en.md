@@ -13,7 +13,9 @@
 
 Enables additional validation of attacks via the **libdetection** library. **libdetection** uses improved attack detection algorithms to reduce the number of false positives.
 
-**libdetection** parses malicious requests detected by **libproton** and checks these requests for attacks. If **libdetection** does not confirm the attack, the request will not be blocked.
+**libdetection** parses malicious requests detected by **libproton** and checks these requests for attacks. If **libdetection** does not confirm the attack, the request will not be defined as a malicious request and will not be blocked (if the WAF node is working in the `block` mode).
+
+To allow **libdetection** to parse and check the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
 !!! info
     This parameter can be set inside the http, server and location blocks.
