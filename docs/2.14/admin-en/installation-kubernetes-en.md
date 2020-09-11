@@ -50,7 +50,7 @@
 ### Step 2: Enabling Traffic Analysis for Your Ingress
 
 ``` bash
-kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-mode=block
+kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
 kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-instance=<INSTANCE>
 ```
 * `<YOUR_INGRESS_NAME>` is the name of your Ingress
