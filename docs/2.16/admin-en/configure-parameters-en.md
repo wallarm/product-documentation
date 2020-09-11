@@ -9,6 +9,17 @@
 
 ## Wallarm Directives
 
+### wallarm_enable_libdetection
+
+Enables additional validation of attacks via the **libdetection** library. **libdetection** uses improved attack detection algorithms to reduce the number of false positives.
+
+**libdetection** parses malicious requests detected by **libproton** and checks these requests for attacks. If **libdetection** does not confirm the attack, the request will not be blocked.
+
+!!! info
+    This parameter can be set inside the http, server and location blocks.
+
+    Default value is `off`.
+
 ### wallarm_acl
 
 Allows you to restrict access to resources when a request IP address is in the specified ACL (Access Control List). 

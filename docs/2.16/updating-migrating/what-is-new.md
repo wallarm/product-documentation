@@ -17,3 +17,4 @@
 * Dropped support of the operating system Debian 8.x (jessie-backports)
 * Support of CentOS 8.x
 * Support of Ubuntu 20.04 LTS (Focal Fossa)
+* New [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) directive to reduce the number of false positives using additional attacks validation with improved algorithms
