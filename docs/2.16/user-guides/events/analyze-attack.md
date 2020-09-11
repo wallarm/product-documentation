@@ -30,9 +30,12 @@ Each request displays the associated information in the following columns:
 
 * *Date*: Date and time of the request.
 * *Payload*: [Attack vector][glossary-attack-vector]. Clicking the value in the payload column displays reference information on the attack type.
-* *Source*: The IP address from which the request originated. Clicking the IP address adds the IP address value into the search field.
-  * If Wallarm can determine which data center the given IP address belongs to, then the corresponding tag will be displayed in the column: the “AWS” tag for Amazon, the “GCP” tag for Google and the “Azure” tag for Microsoft data centers.
-  * If the IP address belongs to the Tor network, then the “Tor” tag will be shown in the column below the address.  
+* *Source*: The IP address from which the request originated. Clicking the IP address adds the IP address value into the search field. The following information is also displayed if it was found in the Wallarm databases:
+    * The country in which the IP address is registered
+    * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers
+    * The **Tor** tag if the attack's source is the Tor network
+    * The **VPN** tag if IP address belongs to VPN
+    * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server
 * *Status*: The server's response status code from the request.
 * *Size*: The server's response size.
 * *Time*: The server's response time.
