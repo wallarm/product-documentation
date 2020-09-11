@@ -81,7 +81,7 @@ edit_uri: ../product-docs-en/edit/master/docs/2.12/
 nav:
   - WAF guides:
     - Home: index.md
-    - What is new: updating-migrating/what-is-new.md
+    - What is New: updating-migrating/what-is-new.md
     - Quick Start:
       - How Wallarm Works:
         - Introduction: quickstart-en/how-wallarm-works/qs-intro-en.md
