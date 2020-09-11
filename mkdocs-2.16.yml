@@ -104,14 +104,7 @@ nav:
           - Installing as a Dynamic Module for NGINX Plus: waf-installation/nginx-plus.md
           - Installing with Docker: admin-en/installation-docker-en.md 
         - Kubernetes:
-          - Installing Wallarm Ingress Controller:
-            - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
-            - Installing NGINX Plus Ingress Controller with Integrated Wallarm Services:
-              - Introduction: admin-en/installation-guides/ingress-plus/introduction.md
-              - Building the Wallarm NGINX Plus Ingress Controller: admin-en/installation-guides/ingress-plus/assembly.md
-              - Deploying the Wallarm NGINX Plus Ingress Controller: admin-en/installation-guides/ingress-plus/deploy.md
-              - Creating an Ingress Resource: admin-en/installation-guides/ingress-plus/resource-creation.md
-              - Checking the Operation of the Wallarm Services: admin-en/installation-guides/ingress-plus/wallarm-services-check.md
+          - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
           - Installing Wallarm Sidecar Container:
             - How It Works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md

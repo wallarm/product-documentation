@@ -5,7 +5,6 @@
 
 [link-ig-ingress-nginx]:        installation-kubernetes-en.md
 [link-ig-ingress-nginx-d2iq]:   https://docs.d2iq.com/ksphere/konvoy/partner-solutions/wallarm/
-[link-ig-ingress-nginxplus]:    installation-guides/ingress-plus/introduction.md
 [link-ig-aws]:                  installation-ami-en.md
 [link-ig-gcloud]:               installation-gcp-en.md
 [link-ig-docker-nginx]:         installation-docker-en.md
@@ -58,7 +57,7 @@ The Wallarm filter node can be installed on the following platforms:
 *   The Kubernetes Cluster
 
     !!! warning "Supported Kubernetes Platform"
-        Please note, that the Wallarm NGINX or NGINX Plus Ingress controllers run only on the Kubernetes platform version 1.15 and lower.
+        Please note, that the Wallarm NGINX Ingress controllers run only on the Kubernetes platform version 1.15 and lower.
     
     Installing the filter node on the Kubernetes Cluster provides the following options:
     
@@ -69,7 +68,7 @@ The Wallarm filter node can be installed on the following platforms:
             
             [The Wallarm's installation instructions][link-ig-ingress-nginx] are suitable if you are deploying the Ingress Controller with integrated Wallarm services on the Konvoy. However, you may want to look at [the D2IQ's installation instructions][link-ig-ingress-nginx-d2iq].  
     
-    *   The NGINX Plus Ingress Controller with Integrated Wallarm Services ([installation instructions][link-ig-ingress-nginxplus])
+    * The Wallarm sidecar container ([installation instructions](installation-guides/kubernetes/wallarm-sidecar-container/))
 *   The cloud platforms:
     *   Amazon AWS ([installation instructions][link-ig-aws])
     *   Google Cloud ([installation instructions][link-ig-gcloud])

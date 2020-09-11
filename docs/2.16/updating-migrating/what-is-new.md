@@ -7,6 +7,7 @@ Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑
 * Dropped support for the operating system CentOS 6.x
 * Dropped support for the cloud platform Heroku
 * Dropped support for the operating system Debian 8.x (jessie-backports)
+* Dropped support for the NGINX Plus Ingress Controller with integrated Wallarm services
 * Added CentOS 8.x support
 <!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 * Added Envoy support
