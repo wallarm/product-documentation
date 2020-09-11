@@ -89,11 +89,11 @@ To install the Wallarm module with Kong, you need to:
         yum list wallarm-node-tarantool
         ```
 
-    * If the version `2.16.x` is installed, follow the current instruction for WAF node and for [separate postanalytics](installation-postanalytics-en.md).
+    * If the version `2.16.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md).
     * If the version `2.14.x` is installed, follow the instruction for [WAF node 2.14](../../2.14/admin-en/installation-kong-en/) and for [separate postanalytics 2.14](../../2.14/admin-en/installation-postanalytics-en/) or update [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
     * If the version `2.12.x` or lower is installed, please update the [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
 
-    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
 ## 1. Add Wallarm Repositories
 

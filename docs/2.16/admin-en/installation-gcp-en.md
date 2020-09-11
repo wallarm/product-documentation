@@ -34,10 +34,10 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
     ```
 
     * If the version `2.16.x` is installed, follow the current instruction.
-    * If the version `2.14.x` is installed, follow the [instructions for 2.14](../../2.14/admin-en/installation-ami-en/) or update all Wallarm WAF instances to 2.16.
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14](../../2.14/admin-en/installation-gcp-en/) or update all Wallarm WAF instances to 2.16.
     * If the version`2.12.x` or lower is installed, please update all Wallarm WAF instances to 2.16.
 
-    More information about version support is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
 Launch your filter node instance using this [link](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node), and click *LAUNCH ON COMPUTER ENGINE*.
 
