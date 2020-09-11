@@ -15,3 +15,4 @@
 * Ability to append or replace the value of the NGINX header `Server`. For setup, it is required to add an appropriate rule to the application profile. To add the rule, please contact [our technical support](mailto:support@wallarm.com)
 * Dropped support of the cloud system Heroku
 * Dropped support of the operating system Debian 8.x (jessie-backports)
+* Support of CentOS 8.x

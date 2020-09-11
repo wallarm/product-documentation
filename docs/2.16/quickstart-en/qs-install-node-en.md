@@ -80,6 +80,10 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     vi /etc/sysconfig/wallarm-tarantool
     ```
+=== "CentOS 8.x"
+    ```bash
+    vi /etc/sysconfig/wallarm-tarantool
+    ```
 
 <ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. For example:</li></ol>
 
@@ -110,6 +114,10 @@ SLAB_ALLOC_ARENA=10.4
     sudo systemctl restart wallarm-tarantool
     ```
 === "Amazon Linux 2"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "CentOS 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

@@ -59,6 +59,11 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
     ```
+=== "CentOS 8.x"
+    ```bash
+    sudo yum install -y epel-release
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.16/x86_64/Packages/wallarm-node-repo-1-5.el8.noarch.rpm
+    ```
 
 ### 2. Install NGINX with Wallarm WAF packages
 
@@ -86,6 +91,10 @@ The command installs the following packages:
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
+=== "CentOS 8.x"
+    ```bash
+    sudo yum install nginx wallarm-node nginx-mod-http-wallarm
+    ```
 
 #### Request processing and postanalytics on different servers
 
@@ -110,6 +119,10 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
     ```
 === "CentOS 7.x"
+    ```bash
+    sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
+    ```
+=== "CentOS 8.x"
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```

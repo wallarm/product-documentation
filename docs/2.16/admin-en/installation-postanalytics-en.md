@@ -57,6 +57,11 @@ Depending on your operating system, run one of the commands:
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
     ```
+=== "CentOS 8.x"
+    ```bash
+    sudo yum install -y epel-release
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.16/x86_64/Packages/wallarm-node-repo-1-5.el8.noarch.rpm
+    ```
 
 --8<-- "../include/access-repo-en.md"
 
@@ -88,6 +93,10 @@ Install NGINX-Wallarm and the required scripts to interact with the Wallarm clou
     sudo yum install wallarm-node-tarantool
     ```
 === "Amazon Linux 2"
+    ```bash
+    sudo yum install wallarm-node-tarantool
+    ```
+=== "CentOS 8.x"
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
@@ -123,6 +132,10 @@ Open for editing the configuration file of Tarantool:
     vi /etc/sysconfig/wallarm-tarantool
     ```
 === "Amazon Linux 2"
+    ```bash
+    vi /etc/sysconfig/wallarm-tarantool
+    ```
+=== "CentOS 8.x"
     ```bash
     vi /etc/sysconfig/wallarm-tarantool
     ```
@@ -168,6 +181,10 @@ PORT=3313
     sudo systemctl restart wallarm-tarantool
     ```
 === "Amazon Linux 2"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "CentOS 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
