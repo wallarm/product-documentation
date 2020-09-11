@@ -1,6 +1,6 @@
 [docs-postanalytics-update]:   separate-postanalytics.md
 
-# Updating NGINX WAF modules to 2.12
+# Updating Linux WAF packages
 
 This instruction describes the steps to update installed Wallarm WAF modules to teh version 2.12.
 

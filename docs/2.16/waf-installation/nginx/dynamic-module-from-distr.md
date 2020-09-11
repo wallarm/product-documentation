@@ -13,10 +13,19 @@
 [configure-selinux-instr]:          ../../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[2.14-install-postanalytics-instr]: ../../../2.14/admin-en/installation-postanalytics-en/
+[update-instr]:                     ../../updating-migrating/nginx-modules.md
+[2.14-installation-instr]:          ../../../2.14/waf-installation/nginx-plus/
+[nginx-modules-update-docs]:        ../../../updating-migrating/nginx-modules/
+[separate-postanalytics-update-docs]:   ../../../updating-migrating/separate-postanalytics/
+[install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
+[versioning-policy]:               ../../updating-migrating/versioning-policy.md
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 
 This instruction describes the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
+
+--8<-- "../include/waf/installation/already-installed-waf-2.16.md"
 
 ## Requirements
 
