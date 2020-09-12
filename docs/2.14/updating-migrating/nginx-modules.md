@@ -13,7 +13,7 @@
 
 # Updating Linux WAF packages
 
-This instruction describes the steps to update Linux WAF packages installed according to the instructions below to the version 2.14.
+These instructions describe the steps to update Linux WAF packages installed according to the instructions below to the version 2.14.
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -23,7 +23,7 @@ This instruction describes the steps to update Linux WAF packages installed acco
 ## Update procedure
 
 * If WAF node and postanalytics modules are installed on the same server, follow the instrutions below to update all packages.
-* If WAF node and postanalytics modules are installed on different servers, first update the postanalytics module following the [instruction](separate-postanalytics.md) and perform the steps below for WAF node modules.
+* If WAF node and postanalytics modules are installed on different servers, first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
 
 ## Step 1: Add new Wallarm WAF repositories
 
@@ -48,7 +48,7 @@ This instruction describes the steps to update Linux WAF packages installed acco
 
 ### WAF node and postanalytics on different servers
 
-1. Update postanalytics packages following the [instruction](separate-postanalytics.md).
+1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
 2. Update WAF node packages:
 
     === "Debian"
@@ -74,6 +74,6 @@ This instruction describes the steps to update Linux WAF packages installed acco
 
 ## Settings customization
 
-Wallarm WAF modules are updated to version 2.14. Previous WAF node settings will be applied to a new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm WAF modules are updated to version 2.14. Previous WAF node settings will be automatically applied to the new version. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options.md"
