@@ -23,7 +23,7 @@
 
 # Installing dynamic WAF module for NGINX Plus
 
-This instruction describes the steps to install Wallarm WAF as a dynamic module for the official commercial version of NGINX Plus.
+These instructions describe the steps to install Wallarm WAF as a dynamic module for the official commercial version of NGINX Plus.
 
 --8<-- "../include/waf/installation/already-installed-waf.md"
 
@@ -39,10 +39,10 @@ This instruction describes the steps to install Wallarm WAF as a dynamic module 
     
 ### 1. Install NGINX Plus and dependencies
 
-Install NGINX Plus and its dependencies using the [official NGINX instruction](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
+Install NGINX Plus and its dependencies using these [official NGINX instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
 
 !!! info "Installing on Amazon Linux 2"
-    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instruction.
+    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instructions.
 
 ### 2. Add Wallarm WAF repositories
 
@@ -57,7 +57,7 @@ Wallarm WAF is installed and updated from the Wallarm repositories. To add repos
 To run postanalytics and process the requests on the same server, the following packages are required:
 
 * `nginx-plus-module-wallarm` for the NGINX Plus-Wallarm module
-* `wallarm-node` for the postanalytics module, Tarantool database and additional NGINX Plus-Wallarm packages
+* `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX Plus-Wallarm packages
 
 === "Debian"
     ```bash
