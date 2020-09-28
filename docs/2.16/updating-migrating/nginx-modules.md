@@ -23,7 +23,7 @@ This instruction describes the steps to update Linux WAF packages installed acco
 ## Update procedure
 
 * If WAF node and postanalytics modules are installed on the same server, follow the instrutions below to update all packages.
-* If WAF node and postanalytics modules are installed on different servers, first update the postanalytics module following the [instruction](separate-postanalytics.md) and perform the steps below for WAF node modules.
+* If WAF node and postanalytics modules are installed on different servers, first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
 
 ## Step 1: Add new Wallarm WAF repositories
 
@@ -93,7 +93,7 @@ This instruction describes the steps to update Linux WAF packages installed acco
 
 ### WAF node and postanalytics on different servers
 
-1. Update postanalytics packages following the [instruction](separate-postanalytics.md).
+1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
 2. Update WAF node packages:
 
     === "Debian"
