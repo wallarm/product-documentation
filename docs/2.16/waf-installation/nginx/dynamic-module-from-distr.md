@@ -23,7 +23,7 @@
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 
-This instruction describes the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
+These instructions describe the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 
 --8<-- "../include/waf/installation/already-installed-waf-2.16.md"
 

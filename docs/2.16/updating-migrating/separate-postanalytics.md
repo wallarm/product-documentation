@@ -2,7 +2,7 @@
 
 #   Updating the Separately Installed Postanalytics Module  
 
-This instruction describes the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux WAF packages][docs-module-update].
+These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux WAF packages][docs-module-update].
 
 ## Step 1: Add new Wallarm WAF repositories
 

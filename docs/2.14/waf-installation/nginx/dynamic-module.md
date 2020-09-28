@@ -70,7 +70,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
 !!! info "Installing on Amazon Linux 2"
-    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instruction.
+    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instructions.
 
 ### 2. Add Wallarm WAF repositories
 

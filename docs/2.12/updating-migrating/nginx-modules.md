@@ -2,7 +2,7 @@
 
 # Updating Linux WAF packages
 
-This instruction describes the steps to update installed Wallarm WAF modules to teh version 2.12.
+These instructions describe the steps to update installed Wallarm WAF modules to teh version 2.12.
 
 !!! warning "Updating the Postanalytics Module"
     The postanalytics module should be [updated][docs-postanalytics-update] prior to updating any other packages if it is installed on the separate server.

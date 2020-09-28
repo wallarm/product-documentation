@@ -1,6 +1,6 @@
 # Updating NGINX Ingress controller with integrated Wallarm WAF
 
-This instruction describes the steps to update deployed Wallarm Ingress Controller to the new version with WAF node 2.14.
+These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with WAF node 2.14.
 
 * To update Wallarm Ingress controller, you need to clone new Helm chart version and apply updates to the installed version.
 * Current Ingress controller settings and Ingress annotations will be saved and applied to a new version automatically.
