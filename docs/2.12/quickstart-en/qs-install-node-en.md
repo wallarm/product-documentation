@@ -8,7 +8,7 @@
     * Initial processing by the NGINX-Module-Wallarm
     * Postanalytics and the statistical analysis of the processed requests.
 
-This instruction describes the installation of the Wallarm filter node as a dynamic module for NGINX on the same server with postanalytics.
+These instructions describe the installation of the Wallarm filter node as a dynamic module for NGINX on the same server with postanalytics.
 
 To install the filter node, do the following:
 

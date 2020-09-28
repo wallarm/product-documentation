@@ -13,7 +13,7 @@
 
 # Updating Linux WAF packages
 
-This instruction describes the steps to update Linux WAF packages installed according to the instructions below to the version 2.14.
+These instructions describe the steps to update Linux WAF packages installed according to the instructions below to the version 2.14.
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)

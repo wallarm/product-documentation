@@ -1,6 +1,6 @@
 # Running Docker Envoy‑based image
 
-This instruction describes the steps to run WAF Docker image based on [Envoy 1.12.2](https://www.envoyproxy.io/docs/envoy/v1.12.2/). The image contains all systems required for correct WAF operation:
+These instructions describe the steps to run WAF Docker image based on [Envoy 1.12.2](https://www.envoyproxy.io/docs/envoy/v1.12.2/). The image contains all systems required for correct WAF operation:
 
 * Envoy proxy services with embedded Wallarm WAF module
 * Tarantool modules for postanalytics

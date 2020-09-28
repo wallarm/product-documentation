@@ -1,6 +1,6 @@
 # Access to Wallarm API via Proxy
 
-This instruction describes the steps to configure access to Wallarm API via the proxy server.
+These instructions describe the steps to configure access to Wallarm API via the proxy server.
 
 * `https://api.wallarm.com/` for the EU cloud
 * `https://us1.api.wallarm.com/` for the US cloud
