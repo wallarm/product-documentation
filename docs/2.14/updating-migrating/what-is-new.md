@@ -4,7 +4,7 @@
 [link-http2-docs]:      https://developers.google.com/web/fundamentals/performance/http2
 [link-protobuf-docs]:   https://developers.google.com/protocol-buffers/
 
-*   Support for gRPC was added: now Wallarm can protect API and web applications that operates via the gRPC protocol.
+*   Support for gRPC was added: now Wallarm can protect API and web applications that operate via the gRPC protocol.
 
     
     !!! info "About the gRPC Protocol"
@@ -21,7 +21,7 @@
 
 *   A few improvements were made to the monitoring and other system components.
 
-*   Support for the following operating systems was added:
+*   Support for the following operating systems were added:
     *   Debian 10,
     *   Amazon Linux 2.
 * Dporred support of operating systems Debian 8.x (jessie) and Ubuntu 14.04 LTS (trusty). Support of Debian 8.x (jessie-backports) is still available.
