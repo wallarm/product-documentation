@@ -230,6 +230,12 @@ To search by HTTP request method, specify the `method:` prefix.
 
 To search for `GET`, `POST`, `PUT`, `DELETE`, `OPTIONS`: if upper-case is used, then the search string can be specified without a prefix. For all other values, a prefix should be specified.
 
+### Search by a number of hits within attack/incident
+
+To search attacks and incidents by a number of hits, specify the `N:` prefix.
+
+For example, you can search for attacks that have more than 100 hits: `attacks N:>100`. Or search for attacks with less than 10 hits with `attacks N:<10`.
+
 ### Search by Domain
 
 To search by domain, use the `d:` or `domain:` prefix.
