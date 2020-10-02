@@ -73,7 +73,7 @@ To launch an instance with the filter node, proceed to this [link](https://aws.a
     To check the launched version, run the following command:
 
     ```
-    yum list wallarm-node
+    apt list wallarm-node
     ```
 
     * If the version `2.14.x` is installed, follow the [instruction for 2.14](../../../admin-en/installation-ami-en/).

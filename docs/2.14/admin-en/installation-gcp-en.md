@@ -32,7 +32,7 @@ Launch your filter node instance using this [link](https://console.cloud.google.
     To check the launched version, run the following command:
 
     ```
-    yum list wallarm-node
+    apt list wallarm-node
     ```
 
     * If the version `2.14.x` is installed, follow the current instruction.
