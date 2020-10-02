@@ -62,10 +62,6 @@ The list of WAF node directives is available at the [link](../admin-en/configure
 
 To create the virtual machine image based on the WAF node 2.14, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../admin-en/installation-guides/google-cloud/create-image.md).
 
-## Step 6: Configure the WAF node autoscaling
-
-To configure the WAF node autoscaling, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md) or [GCP](../admin-en/installation-guides/google-cloud/autoscaling-overview.md).
-
-## Step 7: Delete the previous WAF node instance
+## Step 6: Delete the previous WAF node instance
 
 If the new version of the WAF node is successfully configured and tested, remove the instance and virtual machine image with the previous version of the WAF node using the AWS or GCP management console.
