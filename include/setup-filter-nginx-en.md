@@ -1,9 +1,8 @@
-The `etc/nginx/conf.d` directory contains NGINX and Wallarm filter node configuration files.
+The following files contain NGINX and WAF node settings:
 
-By default, this directory contains the following configuration files:
-*   The `default.conf` file defines the configuration of NGINX.
-*   The `wallarm.conf` file defines the global configuration of Wallarm filter node.
-*   The `wallarm-status.conf` file defines the Wallarm monitoring configuration.
+* `/etc/nginx/nginx.conf` defines the configuration of NGINX
+* `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm WAF node
+* `/etc/nginx/conf.d/wallarm‑status.conf` defines the WAF node monitoring service configuration
 
 You can create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
 
