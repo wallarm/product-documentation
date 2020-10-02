@@ -17,7 +17,7 @@
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    WAF node will block the request and the code `403 Forbidden` will be returned in the response to the request.
+    If the WAF node mode is `block`, the request will be blocked with the response `403 Forbidden` returned.
 3. Send the request to `wallarm-status` and ensure the values of parameters `requests` and `attacks` increased:
 
     ```bash

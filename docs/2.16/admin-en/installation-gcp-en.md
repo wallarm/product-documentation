@@ -30,7 +30,7 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
     To check the launched version, run the following command:
 
     ```
-    yum list wallarm-node
+    apt list wallarm-node
     ```
 
     * If the version `2.16.x` is installed, follow the current instruction.
