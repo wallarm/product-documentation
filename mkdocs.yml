@@ -295,6 +295,7 @@ nav:
       - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
       - Updating Docker: updating-migrating/docker-container.md
       - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
+      - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
       - Attacks and Vulnerabilities List: attacks-vulns-list.md
