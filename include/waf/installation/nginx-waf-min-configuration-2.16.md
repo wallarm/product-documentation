@@ -4,12 +4,12 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 * `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm‑status.conf` with WAF node monitoring settings. Detailed description is available by the [link][wallarm-status-instr]
+* `/etc/nginx/conf.d/wallarm‑status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtering mode
 
-By default, WAF node is in the status `off` and does not filter requests. Change the filtering mode on the NGINX settings level to block requests with attacks:
+By default, WAF node is in the status `off` and does not filter requests. Change the filtering mode within the NGINX settings to block requests by:
 
 1. Open the file `/etc/nginx/conf.d/default.conf`:
 
@@ -18,7 +18,7 @@ By default, WAF node is in the status `off` and does not filter requests. Change
     ```
 2. Add the line `wallarm_mode block;` to the `server` block:
 
-??? "Example of `/etc/nginx/conf.d/default.conf`"
+??? "Example of the file `/etc/nginx/conf.d/default.conf`"
 
     ```bash
     server {
@@ -44,7 +44,7 @@ By default, WAF node is in the status `off` and does not filter requests. Change
 #### Memory
 
 !!! info "Postanalytics on the separate server"
-    If you installed postanalytics on a separate server, skip this step as you already have your postanalytics configured.
+    If you installed postanalytics on a separate server, then skip this step as you already have your postanalytics configured.
 
 The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 
@@ -68,7 +68,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
     SLAB_ALLOC_ARENA=24
     ```
 
-    Detailed recommendations about allocating memory for Tarantool are described in the [instruction][memory-instr]. 
+    Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
     === "Debian"
@@ -87,7 +87,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 #### Address of the separate postanalytics server
 
 !!! info "NGINX-Wallarm and postanalytics on the same server"
-    If the NGINX-Wallarm and postanalytics modules are installed on the same server, skip this step.
+    If the NGINX-Wallarm and postanalytics modules are installed on the same server, then skip this step.
 
 --8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
 
