@@ -455,10 +455,10 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the *blocking* mode (`wallarm_mode block;`) and ignored in the *monitoring* mode (`wallarm_mode monitoring;`).
 
-Default value is 1000ms (one second).
-
 !!! info
     This parameter can be set inside the http, server and location blocks.
+    
+    **Default value**: 1000ms (one second).
 
 ### wallarm_process_time_limit_block
 
