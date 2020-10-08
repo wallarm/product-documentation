@@ -57,13 +57,13 @@ A more detailed description of the configuration files is available in the [offi
     ```
 
     **Logstash logs:**
-    ![!Логи Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
+    ![!Logs in Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
 
     **QRadar logs:**
-    ![!Логи QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
+    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
 
     **QRadar log payload:**
-    ![!Логи QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
+    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
 
 ### QRadar configuration (optional)
 
