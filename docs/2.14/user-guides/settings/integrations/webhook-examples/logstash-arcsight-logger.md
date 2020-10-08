@@ -90,8 +90,8 @@ A more detailed description of the configuration files is available in the [offi
 
 Logstash will log the event as follows:
 
-![!Log about new user in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![!Log about new user in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 The following entry will be displayed in ArcSight Logger events:
 
-![!New user card in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![!New user card in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
