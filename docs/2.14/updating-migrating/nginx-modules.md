@@ -35,11 +35,11 @@ These instructions describe the steps to update Linux WAF packages installed acc
 
 === "Debian"
     ```bash
-    sudo apt install wallarm-node --no-install-recommends
+    sudo apt install wallarm-node wallarm-node-tarantool --no-install-recommends
     ```
 === "Ubuntu"
     ```bash
-    sudo apt install wallarm-node --no-install-recommends
+    sudo apt install wallarm-node wallarm-node-tarantool --no-install-recommends
     ```
 === "CentOS or Amazon Linux 2"
     ```bash
