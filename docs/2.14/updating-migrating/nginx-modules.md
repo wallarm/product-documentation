@@ -43,7 +43,7 @@ These instructions describe the steps to update Linux WAF packages installed acc
     ```
 === "CentOS or Amazon Linux 2"
     ```bash
-    sudo yum update wallarm-node
+    sudo yum update wallarm-node wallarm-node-tarantool
     ```
 
 ### WAF node and postanalytics on different servers
