@@ -27,3 +27,4 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
     * `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
 
     The full list of available statistics parameters is available by the [link](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
+* [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud
