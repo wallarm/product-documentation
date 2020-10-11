@@ -69,6 +69,7 @@ The Wallarm filter node can be installed on the following platforms:
 *   The cloud platforms:
     *   Amazon AWS ([installation instructions][link-ig-aws])
     *   Google Cloud ([installation instructions][link-ig-gcloud])
+    *   Yandex.Cloud ([installation instructions](installation-guides/install-in-yandex-cloud.md))
 *   Kong ([installation instructions][link-ig-kong])
 
     !!! info "Supported Operating Systems"

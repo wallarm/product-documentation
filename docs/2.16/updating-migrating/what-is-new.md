@@ -10,6 +10,7 @@ Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑
 * Added CentOS 8.x support
 <!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 * Added Envoy support
+* Added Yandex.Cloud support
 
 All platforms available for the WAF node 2.16 installation are listed by the [link](../admin-en/supported-platforms.md).
 

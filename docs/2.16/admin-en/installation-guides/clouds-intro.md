@@ -18,6 +18,7 @@ You can:
 *   Install a single filter node in the cloud:
     *   [Amazon AWS][docs-amazon-node]
     *   [Google Cloud Platform][docs-google-node]
+    *   [Yandex Cloud](install-in-yandex-cloud.md)
 *   Create an image of a deployed filter node to configure auto scaling of nodes:
     *   [Amazon AWS][docs-amazon-image]
     *   [Google Cloud Platform][docs-google-image]
