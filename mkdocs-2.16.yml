@@ -130,7 +130,6 @@ nav:
               - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
               - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
               - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-          - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate Postanalytics Installation: admin-en/installation-postanalytics-en.md
