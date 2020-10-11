@@ -41,11 +41,11 @@ To connect the node to the cloud using the token, proceed with the following ste
     
     === "EU Cloud"
         ``` bash
-        /usr/share/wallarm-common/addcloudnode
+        sudo /usr/share/wallarm-common/addcloudnode
         ```
     === "US Cloud"
         ``` bash
-        /usr/share/wallarm-common/addcloudnode -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/addcloudnode -H us1.api.wallarm.com
         ```
         
 1. Paste the filter node token from your clipboard. 
