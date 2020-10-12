@@ -28,4 +28,5 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
 
     The full list of available statistics parameters is available by the [link](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
 <!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
+* Installation of the WAF node in the form of the [Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details of optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
