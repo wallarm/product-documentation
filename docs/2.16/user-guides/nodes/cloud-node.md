@@ -17,7 +17,6 @@ You can create a cloud node while setting up integration with the platform or us
     * [Amazon AWS](../../admin-en/installation-ami-en.md)
     * [Google Cloud Platfrom](../../admin-en/installation-gcp-en.md)
     * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
-    * [NGINX Plus Ingress controller](../../admin-en/installation-guides/ingress-plus/introduction.md)
 
 ## Viewing details of WAF node
 

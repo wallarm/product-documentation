@@ -5,84 +5,20 @@
 
 [link-ig-ingress-nginx]:        installation-kubernetes-en.md
 [link-ig-ingress-nginx-d2iq]:   https://docs.d2iq.com/ksphere/konvoy/partner-solutions/wallarm/
-[link-ig-ingress-nginxplus]:    installation-guides/ingress-plus/introduction.md
 [link-ig-aws]:                  installation-ami-en.md
 [link-ig-gcloud]:               installation-gcp-en.md
 [link-ig-docker-nginx]:         installation-docker-en.md
 [link-ig-kong]:                 installation-kong-en.md
 
-<!-- Uncomment when Envoy docs will be required
-[link-ig-docker-envoy]:         installation-guides/envoy/envoy-docker.md 
--->
+# Supported platforms
 
-#   Supported Platforms
+The Wallarm WAF node can be installed on the following platforms:
 
-!!! info "Installation Prerequisites"
-    Make sure that you acquire the following before installing the filter node:
-
-    *   The supported platform 
-    *   The permissions to execute commands with `root` rights
-    *   A Wallarm account in one of the following clouds:
-
-        *   [The Wallarm EU cloud][link-wallarm-account-eu]
-        *   [The Wallarm US cloud][link-wallarm-account-us]
-
-The Wallarm filter node can be installed on the following platforms:
-*   NGINX and NGINX Plus
-    
-    The integration of the filter node with NGINX or NGINX Plus is performed using several modules.
-    
-    There are [several options for module installation][link-doc-nginx-overview]. The option you select will depend on the way you install NGINX or NGINX Plus.
-    
-    Additionally, you can deploy a filter node as a Docker container. The resulting filter node installation will contain all necessary modules (see [installation instructions][link-ig-docker-nginx]).
-    
-    !!! info "Supported Operating Systems"
-        The Wallarm modules can be installed on the following operating systems:
-        
-        *   Debian 9.x (stretch)
-        *   Debian 10.x (buster)
-        *   Ubuntu 16.04 LTS (xenial)
-        *   Ubuntu 18.04 LTS (bionic)
-        <!-- *   Ubuntu 20.04 LTS (focal) -->
-        *   CentOS 7.x
-        *   Amazon Linux 2
-        *   CentOS 8.x
-        
-    !!! warning "Operating System Requirements"
-        The modules can only be installed on 64-bit operating systems.
-
-<!-- Uncomment when Envoy docs will be required
-*   Envoy
-
-    The integration of the filter node with Envoy is performed using several modules.
-
-    You can deploy a filter node as a Docker container. The resulting filter node installation will contain all necessary modules (see [installation instructions][link-ig-docker-envoy]).
--->
-    
-*   The Kubernetes Cluster
-
-    !!! warning "Supported Kubernetes Platform"
-        Please note, that the Wallarm NGINX or NGINX Plus Ingress controllers run only on the Kubernetes platform version 1.15 and lower.
-    
-    Installing the filter node on the Kubernetes Cluster provides the following options:
-    
-    *   The NGINX Ingress Controller with Integrated Wallarm Services ([installation instructions][link-ig-ingress-nginx])
-    
-        !!! info "Konvoy Support"
-            Note that you can deploy this Ingress controller on the Konvoy by D2IQ (formerly Mesosphere).
-            
-            [The Wallarm's installation instructions][link-ig-ingress-nginx] are suitable if you are deploying the Ingress Controller with integrated Wallarm services on the Konvoy. However, you may want to look at [the D2IQ's installation instructions][link-ig-ingress-nginx-d2iq].  
-    
-    *   The NGINX Plus Ingress Controller with Integrated Wallarm Services ([installation instructions][link-ig-ingress-nginxplus])
-*   The cloud platforms:
-    *   Amazon AWS ([installation instructions][link-ig-aws])
-    *   Google Cloud ([installation instructions][link-ig-gcloud])
-*   Kong ([installation instructions][link-ig-kong])
-
-    !!! info "Supported Operating Systems"
-        The Kong platform must be version 1.4.3 or lower and must be installed on one of the following operating systems:
-        
-        *   Debian 9.x (stretch)
-        *   Ubuntu 16.04 LTS (xenial)
-        *   Ubuntu 18.04 LTS (bionic)
-        *   CentOS 7.x
+| Platform                                                                                               | Installation options                  |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| NGINX `stable` installed on the 64-bit operating system from the list:<ul><li>Debian 9.x (stretch)</li><li>Debian 10.x (buster)</li><li>Ubuntu 16.04 LTS (xenial)</li><li>Ubuntu 18.04 LTS (bionic)</li><li>CentOS 7.x</li><li>CentOS 8.x</li><li>Amazon Linux 2</li></ul> | <ul><li>[Module for NGINX `stable` from the NGINX repository](../waf-installation/nginx/dynamic-module.md)</li><li>[Module for NGINX `stable` from the Debian/CentOS repository](../waf-installation/nginx/dynamic-module-from-distr.md)</li></ul>                                                                                                                                              |
+| NGINX Plus                                                                                             | <ul><li>[Module for NGINX Plus](../waf-installation/nginx-plus.md)</li></ul>                                                                                                        |
+| Docker                                                                                                 | <ul><li>[Docker container with NGINX modules](installation-docker-en.md)</li><li>[Docker container with Envoy modules](installation-guides/envoy/envoy-docker.md)</li></ul>           |
+| Kubernetes 1.15 and lower                                                                              | <ul><li>[NGINX Ingress controller][link-ig-ingress-nginx]<br>You can deploy the Ingress controller on the Konvoy by D2IQ (formerly Mesosphere). The instructions mentioned above are suitable if you are deploying the Ingress controller with integrated Wallarm WAF services on the Konvoy. However, you may want to look at the [D2IQ's installation instructions][link-ig-ingress-nginx-d2iq].</li><li>[Sidecar container](installation-guides/kubernetes/wallarm-sidecar-container.md)</li></ul>                                                                                                                                         |
+| Cloud platforms                                                                                        | <ul><li>[Yandex.Cloud image](installation-guides/install-in-yandex-cloud.md)</li></ul>                                                                                                                                              |
+| Kong 1.4.3 and lower installed on the 64-bit operating system from the list:<br><ul><li>Debian 9.x (stretch)</li><li>Ubuntu 16.04 LTS (xenial)</li><li>Ubuntu 18.04 LTS (bionic)</li><li>CentOS 7.x</li></ul>                                            | <ul><li>[Module for Kong][link-ig-kong]</li></ul>                                                                                                                                         |

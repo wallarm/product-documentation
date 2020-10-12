@@ -10,6 +10,7 @@ Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑
 * Added CentOS 8.x support
 <!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 * Added Envoy support
+* Added Yandex.Cloud support
 
 All platforms available for the WAF node 2.16 installation are listed by the [link](../admin-en/supported-platforms.md).
 
@@ -26,3 +27,5 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
     * `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
 
     The full list of available statistics parameters is available by the [link](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
+<!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
+* Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details of optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
