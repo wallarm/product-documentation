@@ -91,6 +91,21 @@ These instructions describe the steps to update Linux WAF packages installed acc
     sudo yum update wallarm-node wallarm-node-tarantool
     ```
 
+For the NGINX Plus module, please also update the package `nginx-plus-module-wallarm`:
+
+=== "Debian"
+    ```bash
+    sudo apt install nginx-plus-module-wallarm --no-install-recommends
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt install nginx-plus-module-wallarm --no-install-recommends
+    ```
+=== "CentOS или Amazon Linux 2"
+    ```bash
+    sudo yum update nginx-plus-module-wallarm
+    ```
+
 ### WAF node and postanalytics on different servers
 
 1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
@@ -107,6 +122,21 @@ These instructions describe the steps to update Linux WAF packages installed acc
     === "CentOS или Amazon Linux 2"
         ```bash
         sudo yum update wallarm-node-nginx
+        ```
+    
+    For the NGINX Plus module, please also update the package `nginx-plus-module-wallarm`:
+
+    === "Debian"
+        ```bash
+        sudo apt install nginx-plus-module-wallarm --no-install-recommends
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt install nginx-plus-module-wallarm --no-install-recommends
+        ```
+    === "CentOS или Amazon Linux 2"
+        ```bash
+        sudo yum update nginx-plus-module-wallarm
         ```
 
 ## Step 3: Restart NGINX
