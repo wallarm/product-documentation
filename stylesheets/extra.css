@@ -201,3 +201,7 @@
 .md-typeset__table code {
   white-space: nowrap;
 }
+
+code:focus {
+  outline: 0;
+}
