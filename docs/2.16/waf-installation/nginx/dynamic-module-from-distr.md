@@ -15,7 +15,7 @@
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [2.14-install-postanalytics-instr]: ../../../2.14/admin-en/installation-postanalytics-en/
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
-[2.14-installation-instr]:          ../../../2.14/waf-installation/nginx-plus/
+[2.14-installation-instr]:          ../../../2.14/waf-installation/nginx/dynamic-module-from-distr/
 [nginx-modules-update-docs]:        ../../../updating-migrating/nginx-modules/
 [separate-postanalytics-update-docs]:   ../../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
