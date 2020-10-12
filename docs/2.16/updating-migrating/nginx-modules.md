@@ -87,6 +87,21 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
     sudo yum update
     ```
 
+For the NGINX Plus module, please also update the package `nginx-plus-module-wallarm`:
+
+=== "Debian"
+    ```bash
+    sudo apt install nginx-plus-module-wallarm --no-install-recommends
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt install nginx-plus-module-wallarm --no-install-recommends
+    ```
+=== "CentOS или Amazon Linux 2"
+    ```bash
+    sudo yum update nginx-plus-module-wallarm
+    ```
+
 ### WAF node and postanalytics on different servers
 
 !!! warning "Sequence of steps to update the WAF node and postanalytics modules"
@@ -108,6 +123,21 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
     === "CentOS или Amazon Linux 2"
         ```bash
         sudo yum update
+        ```
+    
+    For the NGINX Plus module, please also update the package `nginx-plus-module-wallarm`:
+
+    === "Debian"
+        ```bash
+        sudo apt install nginx-plus-module-wallarm --no-install-recommends
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt install nginx-plus-module-wallarm --no-install-recommends
+        ```
+    === "CentOS или Amazon Linux 2"
+        ```bash
+        sudo yum update nginx-plus-module-wallarm
         ```
 
 ## Step 3: Restart NGINX
