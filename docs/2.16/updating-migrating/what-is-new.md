@@ -30,3 +30,12 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
 <!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
 * Installation of the WAF node in the form of the [Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details of optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
+
+## Update process
+
+The WAF node update process depends on the platform and installation forms. Please select the installation form and follow the instructions:
+
+* Modules for NGINX, NGINX Plus, Kong: [Updating Linux WAF packages](nginx-modules.md)
+* Docker container with the modules for NGINX: [Updating the Docker Container](docker-container.md)
+* NGINX Ingress controller with integrated Wallarm WAF: [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
+<!-- * Cloud platform: [Updating the cloud WAF node image](cloud-image.md) -->
