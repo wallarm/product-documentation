@@ -9,13 +9,20 @@ The filter node can be deployed as a Docker container. The Docker container is a
 
 The functionality of the filter node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
-To deploy the filter node as a Docker container, you must:
+!!! info "If the Wallarm WAF image is already deployed in your environment"
+    If you deploy Wallarm WAF image instead of already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
 
-1. Deploy the filter node.
-2. Connect the filter node to the Wallarm cloud.
-3. Configure NGINX-Wallarm.
-4. Configure logging.
-5. Configure monitoring.
+    To check the installed version, run the following command in the container:
+
+    ```bash
+    apt list wallarm-node
+    ```
+
+    * If the version `2.16.x` is installed, follow the current instruction.
+    * If the version `2.14.x` is installed, follow the [instructions for 2.14](../../2.14/admin-en/installation-docker-en/) or [update the packages to 2.16](../updating-migrating/docker-container.md) in all deployments.
+    * If the version `2.12.x` or lower is installed, please [update the packages to 2.16](../updating-migrating/docker-container.md) in all deployments.
+
+    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
 !!! warning "Known limitations"
     * Most [Wallarm directives][doc-config-params] cannot be changed through environment variables; these directives must be written in configuration files inside the container.

@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Set working directory
 WORKDIR /docs
 COPY . .
+RUN mkdocs build -f mkdocs-2.16.yml
 RUN mkdocs build
 RUN mkdocs build -f mkdocs-2.12.yml
 RUN mkdocs build -f mkdocs-2.10.yml

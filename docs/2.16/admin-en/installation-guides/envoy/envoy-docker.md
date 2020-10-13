@@ -1,6 +1,6 @@
 # Running Docker Envoy‑based image
 
-These instructions describe the steps to run the WAF Docker image based on [Envoy 1.12.2](https://www.envoyproxy.io/docs/envoy/v1.12.2/). The image contains all systems required for correct WAF operation:
+These instructions describe the steps to run the WAF Docker image based on [Envoy 1.15.0](https://www.envoyproxy.io/docs/envoy/v1.15.0/). The image contains all systems required for correct WAF operation:
 
 * Envoy proxy services with embedded Wallarm WAF module
 * Tarantool modules for postanalytics
@@ -56,7 +56,7 @@ The command does the following:
 You can mount the prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
 * WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
-* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.12.2/configuration/overview/v2_overview#)
+* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
 To run the image with advanced settings:
 
@@ -137,7 +137,7 @@ The command does the following:
 You can mount prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
 * WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
-* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.12.2/configuration/overview/v2_overview#)
+* Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
 To run the image with advanced settings:
 

@@ -26,7 +26,7 @@
     * If the version `2.14` is specified, follow the [instructions for 2.14](../../../../2.14/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `2.16` in all deployments and follow the current instruction.
     * If the version `2.12` or lower is specified, please increase the version of the image to `2.16` in all deployments and follow the current instruction.
 
-    More information about version support is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+    More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
 
 ### Step 1: Creating Wallarm ConfigMap
 
