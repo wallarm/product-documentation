@@ -1,32 +1,38 @@
 [link-analyzing-attacks]:       analyze-attack.md
 
 [img-false-attack]:             ../../images/user-guides/events/false-attack.png
-[img-popup]:                    ../../images/user-guides/events/pop-up-accept.png
 [img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
 
 
-# Working with False Attacks
+# Working with false attacks
 
 A false attack is a valid request erroneously identified as an attack.
 
-After analyzing an attack, you may conclude that all requests in this attack or the part of them are false positives.
+After analyzing an attack, you may conclude that all requests in this attack or the part of them are false positives. To prevent the WAF node from recognizing such requests as attacks during further traffic analysis, you can mark several requests or the entire attack as a false positive.
 
-## Mark an Attack as a False Positive
+## Mark a hit as a false positive
+
+To mark one request (hit) as a false positive:
 
 1. Select an attack in the **Events** section.
 2. Collapse the list of requests in this attack.
 3. Define a valid request and click **False** in the **Actions** column.
 
-    ![!False attack][img-false-attack]
-4. Confirm the action clicking the **OK** button in the modal window.
+    ![!False hit][img-false-attack]
 
-    ![!The pop-up message][img-popup]
+## Mark an attack as a false positive
+
+To mark all requests (hits) in the attack as the false positives:
+
+1. Select an attack with valid requests in the **Events** section.
+2. Click **Mark false positive**.
+
+    ![!False attack](../../images/user-guides/events/analyze-attack.png)
 
 If all the requests in the attack are marked as the false positives, then the information about that attack will look like this:
 
 ![!The whole attack is marked as false one][img-removed-attack-info]
 
-Wallarm will reconfigure the traffic filtration rules. These requests will not be detected as an attack from now on.
+## Remove a false positive mark
 
-!!! info "See also"
-    [Analyzing attacks][link-analyzing-attacks]
+To remove a false positive mark from the hit or attack, please send a request to [Wallarm technical support](mailto: support@wallarm.com). Also, you can undo a false positive mark in the dialog box in the Wallarm Console within a few seconds after the mark was applied.
