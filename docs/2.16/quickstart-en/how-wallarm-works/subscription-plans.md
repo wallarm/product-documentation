@@ -31,10 +31,10 @@ The set of features included to the subscription plan is defined individually wi
 * Receiving security reports
 * etc
 
-To define features that should be included to your subscription plan, please send the request to [support@wallarm.com](mailto:support@wallarm.com). 
+To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
 ## Subscription management
 
-* To activate, cancel, or change a subscription, please send a request to [support@wallarm.com](mailto:support@wallarm.com).
+* To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 * Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../../user-guides/settings/subscriptions.md).
 * Subscription cost is determined based on [incoming traffic volume](../../admin-en/operation/learn-incoming-request-number.md), subscription period, the set of connected modules, and features.
