@@ -33,11 +33,11 @@ To run the image, use the command:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16
     ```
 
 The command does the following:
@@ -65,11 +65,11 @@ To run the image with advanced settings:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e ENVOY_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16
     ```
 
 The command does the following:
@@ -114,11 +114,11 @@ To run the image, use the command:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e ENVOY_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16
     ```
 
 The command does the following:
@@ -146,11 +146,11 @@ To run the image with advanced settings:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy
+    docker run -d -e NODE_UUID="some_uuid" -e NODE_SECRET="some_secret" -v /configs/license.key:/etc/wallarm/license.key -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -v /configs/envoy.key:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16
     ```
 
 The command does the following:
