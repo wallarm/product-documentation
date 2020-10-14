@@ -17,6 +17,9 @@ Enables additional validation of attacks via the **libdetection** library. **lib
 
 To allow **libdetection** to parse and check the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
+!!! warning "Memory consumption increase"
+    When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
+
 !!! info
     This parameter can be set inside the http, server and location blocks.
 
