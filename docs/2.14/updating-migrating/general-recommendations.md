@@ -2,18 +2,6 @@
 
 This document describes recommendations and associated risks for a safe update of Wallarm WAF node. Please use these recommendations to migrate to a newer version of the WAF node with less cost and risk.
 
-## Possible risks
-
-Below are the risks that may occur when updating the WAF node. To reduce the impact of the risks, please follow the appropriate guidelines when updating:
-
-* Changed functionality. Please check the section [What is new](what-is-new.md) to be informed of all the breaking, major and minor changes on the new WAF node version.
-
-    In most installation forms, the configuration of the previous version is automatically applied to the new version after updating a WAF node (when updating the cloud image, you should manually transfer the configuration files to the new version).
-* New false positives. We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. To reduce the risk, deploy the new version of the WAF node in the `monitoring` [filtering mode](../admin-en/configure-wallarm-mode.md) and check for false positives in the Wallarm Console → section **Events**.
-
-    If you find false attacks, mark them as false positives or contact the [Wallarm technical support](mailto:support@wallarm.com). If there are no false positives in the event list, put the WAF node in the `block` mode.
-* Increased amount of used memory and CPU resources. Please check the section [What is new](what-is-new.md) to be informed of changes in memory and CPU usage. Also, monitor the WAF node operation: if you find that amount of used memory and CPU resources increased significantly, please contact the [Wallarm technical support](mailto:support@wallarm.com).
-
 ## Common recommendations
 
 * Carefully plan and monitor the WAF node update process. Estimated release dates for new versions of WAF nodes are published in the [WAF node versioning policy](versioning-policy.md).
@@ -22,11 +10,42 @@ Below are the risks that may occur when updating the WAF node. To reduce the imp
 * Deploy a new version of the WAF node with the filtering mode set to `monitoring`. If all modules work correctly and there are no false positives in the `monitoring` mode, put the WAF node in `block` mode.
 * Update NGINX to the latest version available before applying WAF node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build a WAF module for a custom version of NGINX.
 
+## Possible risks
+
+Below are the risks that may occur when updating the WAF node. To reduce the impact of the risks, please follow the appropriate guidelines when updating.
+
+### Changed functionality
+
+Each minor version of the WAF node contains a set of changes:
+
+* Support for new installation options.
+* Dropped support for unclaimed installation options.
+* New WAF node features. Most of the new features are configured via the directives in configuration files.
+* Optimization of the current WAF node features. The configuration of the previous version is automatically applied to the new version and does not require additional changes. When updating the cloud image, you should manually transfer the configuration files to the new version.
+
+Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change in planning the upgrade.
+
+### New false positives
+
+We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. However each system has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
+
+To analyze the number of new false positives after the update:
+
+1. Deploy the new version of the WAF node in the `monitoring` [mode](../admin-en/configure-wallarm-mode.md) and send the traffic to the WAF node.
+2. After some time, open Wallarm Console → **Events** section and analyze the number of requests that are mistakenly recognized as attacks.
+3. If you find abnormal growth in the number of false attacks, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+
+### Increased amount of used memory and CPU resources
+
+Usage of some new WAF node features may cause a slight increase in the amount of used memory and CPU resources. Information about changes in the amount of used resources is highlighted in the [What is new](what-is-new.md) section.
+
+Also, it is recommended to monitor the WAF node operation: if you find that amount of used memory and CPU resources increased significantly, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+
 ## Update process
 
-The WAF node update process depends on the platform and installation forms. Please select the installation form and follow the instructions:
+The WAF node update process depends on the platform and installation forms. Please select the installation form and follow the appropriate instructions:
 
-* Modules for NGINX, NGINX Plus, Kong: [Updating Linux WAF packages](nginx-modules.md)
-* Docker container with the modules for NGINX: [Updating the Docker Container](docker-container.md)
-* NGINX Ingress controller with integrated Wallarm WAF: [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-* Cloud platform: [Updating the cloud WAF node image](cloud-image.md)
+* [Modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
+* [Docker container with the modules for NGINX](docker-container.md)
+* [NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
+* [Cloud WAF node image](cloud-image.md)
