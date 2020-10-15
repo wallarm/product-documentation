@@ -63,7 +63,7 @@ Wallarm Cloud applies requests sampling to the brute‑force attacks:
 * The first 5 requests (hits) from each IP address for each hour are saved in the sample in the Wallarm Cloud
 * The rest of the hits are not saved in the sample, but their number is recorded in a separate parameter
 
-If more than 5 hits were sent during the brute‑force attack, the information about 5 saved hits and the number of hits not included in the sample are displayed in the brute‑force attack details.
+Saved hits and the number of other hits are displayed in brute‑force attack details in Wallarm Console.
 
 <!-- image -->
 
