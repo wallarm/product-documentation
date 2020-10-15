@@ -56,6 +56,17 @@ The Wallarm interface will display the request in its raw format.
 
 ![!Raw format of the request][img-analyze-attack-raw]
 
+## Sampling of requests in brute‑force attacks
+
+Wallarm Cloud applies requests sampling to the brute‑force attacks:
+
+* The first 5 requests (hits) from each IP address for each hour are saved in the sample in the Wallarm Cloud
+* The rest of the hits are not saved in the sample, but their number is recorded in a separate parameter
+
+Saved hits and the number of other hits are displayed in brute‑force attack details in Wallarm Console.
+
+<!-- image -->
+
 ## Demo videos
 
 <div class="video-wrapper">

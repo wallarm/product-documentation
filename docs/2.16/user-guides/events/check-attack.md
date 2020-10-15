@@ -31,7 +31,7 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
      * The **Tor** tag if the attack's source is the Tor network (if it was found in the Wallarm databases)
      * The **VPN** tag if IP address belongs to VPN (if it was found in the Wallarm databases)
      * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server (if it was found in the Wallarm databases)
-* **Domain / Path**: The domain and path that the request targeted.
+* **Domain / Path**: The domain, path and the application ID that the request targeted.
 * **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
 * **Verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below or specify the action in the search string as described [here][search-by-attack-status].
