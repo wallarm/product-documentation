@@ -37,9 +37,10 @@ All platforms available for the WAF node 2.16 installation are listed [here](../
 
 ## Update process
 
-The WAF node update process depends on the platform and installation forms. Please select the installation form and follow the instructions:
+To update the WAF node, it is recommended to check the general recommendations for the process and follow the instructions for updating the installed modules:
 
-* Modules for NGINX, NGINX Plus, and Kong: [Updating Linux WAF packages](nginx-modules.md)
-* Docker container with the modules for NGINX: [Updating the Docker Container](docker-container.md)
-* NGINX Ingress controller with integrated Wallarm WAF: [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-<!-- * Cloud platform: [Updating the cloud WAF node image](cloud-image.md) -->
+* [General recommendations for a safe WAF node update process](general-recommendations.md)
+* [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
+* [Updating the Docker container with the modules for NGINX](docker-container.md)
+* [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
+<!-- * [Cloud WAF node image](cloud-image.md) -->
