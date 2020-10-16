@@ -226,6 +226,16 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ```
     [oO][nN][mM][oO][uU][sS][eE]|[oO][nN][lL][oO][aA][dD]|win[\].ini|prompt
     ```
+* To match any string that starts with `Mozilla` but does not contain the string `1aa875F49III`
+    
+    ```
+    ^(Mozilla(~(.*1aa875F49III.*)))$
+    ```
+* To match any string with one of the values: `python-requests/`, `PostmanRuntime/`, `okhttp/3.14.0`, `node-fetch/1.0`
+
+    ```
+    ^(python-requests/|PostmanRuntime/|okhttp/3.14.0|node-fetch/1.0)
+    ```
 
 #### ABSENT
 
