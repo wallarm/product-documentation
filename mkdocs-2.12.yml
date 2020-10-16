@@ -83,9 +83,9 @@ nav:
     - Home: index.md
     - What is New: updating-migrating/what-is-new.md
     - About Wallarm WAF:
-        - Overview: quickstart-en/how-wallarm-works/qs-intro-en.md
-        - Security Model of Shared Responsibility for Customer Data: quickstart-en/how-wallarm-works/shared-responsibility.md
-        - Wallarm WAF subscription plans: quickstart-en/how-wallarm-works/subscription-plans.md
+        - Overview: about-wallarm-waf/overview.md
+        - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
+        - Wallarm WAF subscription plans: about-wallarm-waf/subscription-plans.md
     - Quick Start:
       - Prerequisites: quickstart-en/qs-prereq-en.md
       - Installation:

@@ -10,16 +10,16 @@ Wallarm API provides interaction between components of the Wallarm system. You c
 * etc.
 
 Description of API methods is given in the API Reference by the link:
-* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud)
-* https://apiconsole.us1.wallarm.com/ for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
+* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
+* https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm-waf/overview.md#us-cloud)
 
 ![!Wallarm API Reference](../images/wallarm-api-reference.png)
 
 ## API Endpoint
 
 API requests are sent to the following URL:
-* `https://api.wallarm.com/` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud)
-* `https://us1.api.wallarm.com/` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud)
+* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
+* `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud)
 
 ## Authentication of API Requests
 

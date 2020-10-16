@@ -7,7 +7,7 @@ Wallarm WAF is a hybrid solution (part software and part SaaS) with two major co
 * **Wallarm WAF filter node** software, deployed in your infrastructure and managed by you. The WAF node component is responsible for filtering end user requests, sending safe requests to your application and blocking malicious requests. The WAF node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm cloud for analysis.
 * **Wallarm cloud**, a cloud component managed by Wallarm, is responsible for receiving meta-information about processed requests and detected attacks from the WAF nodes; as well as generating application-specific WAF rules and making them available for the nodes to download. The console UI and public API provide you with the ability to see security reports and individual events; manage WAF rules, console users, external integrations, etc.
 
-![!Responsibilities scheme](../../images/shared-responsibility.png)
+![!Responsibilities scheme](../images/shared-responsibility.png)
 
 ## Wallarm Responsibilities
 
@@ -45,4 +45,4 @@ As with any third-party service, it’s important for a Wallarm client to unders
 
 The only data transmitted from WAF nodes to the Wallarm Cloud that may include any sensitive details is information about detected malicious requests. It’s highly unlikely that a malicious request would contain any sensitive data. However, the recommended approach is mask HTTP request fields which may contain PII or credit card details, such as `token`, `password`, `api_key`, `email`, `cc_number`, etc. Using this approach will guarantee that specified information fields will never leave your security perimeter.
 
-You can apply a special WAF rule called **Mark as sensitive data** to specify what fields (in the request URI, headers or body) should be omitted when sending attack information from a WAF node to the Wallarm Cloud. For additional information about masking the data, please see the [document](../../user-guides/rules/sensitive-data-rule.md) or contact [Wallarm support team](mailto:request@wallarm.com).
+You can apply a special WAF rule called **Mark as sensitive data** to specify what fields (in the request URI, headers or body) should be omitted when sending attack information from a WAF node to the Wallarm Cloud. For additional information about masking the data, please see the [document](../user-guides/rules/sensitive-data-rule.md) or contact [Wallarm support team](mailto:request@wallarm.com).

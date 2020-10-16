@@ -48,7 +48,7 @@ Configuration files are located in the `terraform` folder of the repository:
     * `YOUR_ACCESS_KEY_ID` is your access key ID
     * `YOUR_SECRET_ACCESS_KEY` is your secret access key
 3. (Optional) Specify your public SSH key in the `key_pair` variable in the `variables.tf` file, if you plan to access the employed EC2 instances using SSH.
-4. (Optional) Specify the `api.wallarm.com` API endpoint in the `wallarm_api_domain` variable in the `variables.tf` file, if you use the [EU cloud](../../../../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud). If you use the [US cloud](../../../../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud), please leave an existing value.
+4. (Optional) Specify the `api.wallarm.com` API endpoint in the `wallarm_api_domain` variable in the `variables.tf` file, if you use the [EU cloud](../../../../about-wallarm-waf/overview.md#eu-cloud). If you use the [US cloud](../../../../about-wallarm-waf/overview.md#us-cloud), please leave an existing value.
 5. (Optional) Set AWS region data in the variables listed below in the `variables.tf` file. The provided example is configured for AWS region `us-west-1` (North California).
     * `aws_region` (you can find the list of AWS regions [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html))
     * `az_a`

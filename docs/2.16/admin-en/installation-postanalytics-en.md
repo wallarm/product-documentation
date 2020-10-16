@@ -223,7 +223,7 @@ The module status should be `active`:
 
 Provide access to the Wallarm cloud so that postanalytics can always update the rules, upload metrics, and the attack data.
 
-Run one of the following scripts depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) in use: 
+Run one of the following scripts depending on the [cloud](../about-wallarm-waf/overview.md#cloud) in use: 
 
 === "EU cloud"
     ```bash

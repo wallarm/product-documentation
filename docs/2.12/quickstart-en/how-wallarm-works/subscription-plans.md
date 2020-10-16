@@ -1,1 +1,0 @@
---8<-- "2.14/quickstart-en/how-wallarm-works/subscription-plans.md"
