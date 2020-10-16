@@ -102,7 +102,7 @@ nav:
           - Installing as a Dynamic Module for NGINX stable: waf-installation/nginx/dynamic-module.md
           - Installing as a Dynamic Module for NGINX from Debian/CentOS Repositories: waf-installation/nginx/dynamic-module-from-distr.md
           - Installing as a Dynamic Module for NGINX Plus: waf-installation/nginx-plus.md
-          - Installing with Docker: admin-en/installation-docker-en.md 
+          - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
           - Installing Wallarm Ingress Controller:
             - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
