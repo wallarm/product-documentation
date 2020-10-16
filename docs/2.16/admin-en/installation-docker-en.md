@@ -2,12 +2,19 @@
 [doc-wallarm-mode]:           configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          configure-parameters-en.md
 [doc-monitoring]:             monitoring/intro.md
+[waf-mode-instr]:                   configure-wallarm-mode.md
+[logging-instr]:                    configure-logging.md
+[proxy-balancer-instr]:             using-proxy-or-balancer-en.md
+[scanner-whitelisting-instr]:       scanner-ips-whitelisting.md
+[process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
 
-# Installing with Docker (Using the NGINX‑Based Docker Image)
+# Running Docker NGINX‑based image
 
-The filter node can be deployed as a Docker container. The Docker container is a fat one and contains all subsystems of the filter node.
+## Image overview
 
-The functionality of the filter node installed inside the Docker container is completely identical to the functionality of the other deployment options.
+The WAF node can be deployed as a Docker container. The Docker container is a fat one and contains all subsystems of the WAF node.
+
+The functionality of the WAF node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
 !!! info "If the Wallarm WAF image is already deployed in your environment"
     If you deploy Wallarm WAF image instead of already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
@@ -24,146 +31,139 @@ The functionality of the filter node installed inside the Docker container is co
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
-!!! warning "Known limitations"
-    * Most [Wallarm directives][doc-config-params] cannot be changed through environment variables; these directives must be written in configuration files inside the container.
+## Requirements
 
-## 1. Deploy the Filter Node
+* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
-Run one of the `docker run` commands depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) in use: 
+## Options for running the container
 
-=== "EU cloud"
-    ``` bash
-    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node:2.16
+The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
+
+* **In the environment variables**. This option allows to configure only basic WAF node parameters, the most [directives](configure-parameters-en.md) cannot be changed through environment variables.
+* **In the mounted configuration file**. This option allows to configure all the WAF node [directives](configure-parameters-en.md).
+
+## Run the container passing the environment variables
+
+You can pass the following basic WAF node settings to the container via the option `-e`:
+
+Environment variable | Description| Required
+--- | ---- | ----
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+`NGINX_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+`WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`. | No
+`TARANTOOL_MEMORY_GB` | [Amount of memory](configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. By default: 0.2 gygabytes. | No
+`WALLARM_ACL_ENABLE` | Enables the [IP blocking functionality](configure-ip-blocking-en.md). By default: `false`. | No 
+
+To run the image, use the command:
+
+=== "EU Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="example.com" -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/node:2.16
     ```
-=== "US cloud"
-    ``` bash
-    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND=example.com -e TARANTOOL_MEMORY_GB=memvalue -p 80:80 wallarm/node:2.16
-    ```
-
-where:
-
-* `example.com` — the protected resource.
-* `deploy@example.com` — login to the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud.
-
-* `very_secret` — password for the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud.
-* `memvalue` – amount of memory allocated to Tarantool.
-
-After running the command, you will have:
-
-* The protected resource on port 80.
-* The filter node registered in the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud; the filter node displayed in the Wallarm interface.
-
-You can also fine-tune the deployment by putting additional configuration files
-inside the container.
-
-## 2. Connect the Filter Node to the Wallarm Cloud
-
-The filter node interacts with the Wallarm cloud located on a remote server.
-
-To connect the filter node to the Wallarm cloud, you have the following options:
-
-* Automatic registration.
-* Using credentials.
-* Using a prepared configuration file.
-
-### Automatic Registration
-
-Transfer the environment variables `DEPLOY_USER`, `DEPLOY_PASSWORD` with the access credentials to the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud.
-
-The filter node will try to automatically register itself in the Wallarm cloud on the first start.
-
-If a filter node with the same name as the node's container identifier is already registered in the cloud, then the registration process will fail.
-
-To avoid this, pass the `DEPLOY_FORCE=true` environment variable to the container.
-
-``` bash
-docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="IP address or FQDN" wallarm/node:2.16
-```
-
-If the registration process finishes successfully, then the container's `/etc/wallarm` directory will be populated with the license file (`license.key`), a file with the credentials for the filter node to access the cloud (`node.yaml`), and other files required for proper node operation.
-
-On the next start of the same filter node, registration will not be required. The filter node communicates with the cloud using the following artifacts acquired during the automatic registration:
-* The `uuid` and `secret` values (they are placed in the `/etc/wallarm/node.yaml` file).
-* The Wallarm license key (it is placed in the `/etc/wallarm/license.key` file).
-
-To connect the already registered filter node to the cloud, pass to its container
-* either the `uuid` and `secret` values via the environment variables and the `license.key` file
-* or the `node.yaml` and `license.key` files.
-
-### Use of Prepared Credentials
-
-Pass to the filter node's container
-* the `uuid` and `secret` values via the corresponding `NODE_UUID` and `NODE_SECRET` environment variables, and
-* the `license.key` file via Docker volumes.
-
-Run one of the `docker run` commands depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) in use: 
-
-=== "EU cloud"
-    ``` bash
-    docker run -d "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.16
-    ```
-=== "US cloud"
-    ``` bash
-    docker run -d -e WALLARM_API_HOST=us1.api.wallarm.com -e "NODE_UUID=00000000-0000-0000-0000-000000000000" -e NODE_SECRET="0000000000000000000000000000000000000000000000000000000000000000" -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.16
+=== "US Cloud"
+    ```bash
+    docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e NGINX_BACKEND="example.com" -e WALLARM_API_HOST=us1.api.wallarm.com -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/node:2.16
     ```
 
-### Use of a Prepared Configuration File Containing Credentials
+The command does the following:
 
-Pass the following files to the filter node's container via Docker volumes:
-* the `node.yaml` file, containing the credentials for the filter node to access the Wallarm cloud, and
-* the `license.key` file.
+* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Creates the file `default` with minimal NGINX configuration and passed WAF node configuration in the `/etc/nginx/sites-enabled` container directory.
+* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID and secret key
+    * `license.key` with Wallarm license key
+* Protects the resource `http://NGINX_BACKEND:80`.
 
-``` bash
-docker run -d -v /path/to/node.yaml:/etc/wallarm/node.yaml -v /path/to/license.key:/etc/wallarm/license.key -e NGINX_BACKEND=192.168.xxx.1 wallarm/node:2.16
-```
+## Run the container mounting the configuration file
 
-## 3. Configure NGINX-Wallarm
+You can mount the prepared configuration file to the Docker container via the `-v` option. The file must contain the following settings:
 
-The filter node configuration is done via the NGINX configuration file.
+* [WAF node directives](configure-parameters-en.md)
+* [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
 
-The use of container lets you go through a simplified configuration process
-by using the environment variables. The simplified process is enabled by
-transferring the `NGINX_BACKEND` environment variable.
+??? info "See an example of the mounted file with minimal settings"
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        #listen 443 ssl;
 
-### Simplified Process
+        server_name localhost;
 
-*  `NGINX_BACKEND` — The backend address to which all incoming requests must be transferred. If the address does not have the `http://` or `https://`, prefix, then `http://` is used by default. See details in [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass).
+        #ssl_certificate cert.pem;
+        #ssl_certificate_key cert.key;
 
-    Do not use the `NGINX_BACKEND` variable if you do need the simplified configuration process and if you use your own configuration files.
-   
-    Note that without the `NGINX_BACKEND` variable, Wallarm will not start automatically. To start Wallarm, configure `wallarm_mode monitoring`. See details in the `wallarm_mode` directive [description][doc-wallarm-mode].
-*  `WALLARM_MODE`: The NGINX-Wallarm module operation mode. See details in the `wallarm_mode` directive [description][doc-wallarm-mode].
+        root /usr/share/nginx/html;
 
-### Configuration Files
+        index index.html index.htm;
 
-The directories used by NGINX:
+        wallarm_mode monitoring;
+        # wallarm_instance 1;
+        # wallarm_acl default;
 
-* `/etc/nginx-wallarm/conf.d` — common settings.
-* `/etc/nginx-wallarm/sites-enabled` — virtual host settings.
-* `/var/www/html` — static files.
+        location / {
+                proxy_pass http://example.com;
+                include proxy_params;
+        }
+    }
+    ```
 
-## 4. Configure Logging
+To run the image:
 
-The logging is enabled by default.
+1. Pass required environment variables to the container via the `-e` option:
 
-The log directories are:
+    Environment variable | Description| Required
+    --- | ---- | ----
+    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 
-* `/var/log/nginx-wallarm/` — NGINX logs.
-* `/var/log/wallarm/` — Wallarm logs.
+2. Mount the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory via the `-v` option.
 
-### Configure Extended Logging
+    === "EU Cloud"
+        ```bash
+        docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:2.16
+        ```
+    === "US Cloud"
+        ```bash
+        docker run -d -e DEPLOY_USER="deploy@example.com" -e DEPLOY_PASSWORD="very_secret" -e WALLARM_API_HOST=us1.api.wallarm.com -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:2.16
+        ```
 
---8<-- "../include/installation-step-logging.md"
+The command does the following:
 
-### Configure Log Rotation
+* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
+* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with WAF node UUID and secret key
+    * `license.key` with Wallarm license key
+* Protects the resource `http://NGINX_BACKEND:80`.
 
-By default, the logs rotate once every 24 hours.
+!!! info "Mounting other configuration files"
+    The container directories used by NGINX:
 
-Changing the rotation parameters through environment variables is not possible. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`.
+    * `/etc/nginx/conf.d` — common settings
+    * `/etc/nginx/sites-enabled` — virtual host settings
+    * `/var/www/html` — static files
 
-## 5. Configure Monitoring
+    If required, you can mount any files to the listed container directories. The WAF node directives should be described in the `/etc/nginx/sites-enabled/default` file.
 
-To monitor the filter node, there are Nagios‑compatible scripts inside the container. See details in [Monitor the filter node][doc-monitoring].
+## Logging configuration
+
+The logging is enabled by default. The log directories are:
+
+* `/var/log/nginx` — NGINX logs
+* `/var/log/wallarm` — Wallarm WAF logs
+
+To configure extended logging of the WAF node variables, please use these [instructions](configure-logging.md).
+
+By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
+
+## Monitoring configuration
+
+To monitor the WAF node, there are Nagios‑compatible scripts inside the container. See details in [Monitoring the WAF node][doc-monitoring].
 
 Example of running the scripts:
 
@@ -175,20 +175,25 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_tarantool_tim
 docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay -w 120 -c 300
 ```
 
-## The Installation Is Complete
+## Testing WAF node operation
 
---8<-- "../include/check-setup-installation-en.md"
+1. Send the request with test [SQLI](../attacks-vulns-list.md#sql-injection) and [XSS](../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the protected resource address:
 
---8<-- "../include/filter-node-defaults.md"
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
 
---8<-- "../include/installation-extra-steps.md"
+    If the WAF node works in the `block` mode, the request will be blocked and the code `403 Forbidden` will be returned.
+2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+    ![!Attacks in the interface](../images/admin-guides/test-attacks.png)
 
-### Blocking Requests by IP Address
+## Configuring the use cases
 
-The IP blocking functionality provides the following additional features:
+The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration optins:
 
-* If the WAF detects at least three different attack vectors from an IP address, the address will be automatically added to the blacklist and blocked for 1 hour. If similar behavior from the same IP address is detected again, the IP will be blocked for 2 hours, and so on.
-
-* Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../attacks-vulns-list.md#path-traversal) or [forced browsing](../attacks-vulns-list.md#forced-browsing).
-
-To enable IP blocking functionality, please select the configuration method at the [Methods of Blocking by IP Address](configure-ip-blocking-en.md) page and follow the appropriate instructions.
+* [Configuration of the filtering mode][waf-mode-instr]
+* [Logging WAF node variables][logging-instr]
+* [Adding Wallarm Scanner addresses to the whitelist in the `block` filtering mode][scanner-whitelisting-instr]
+* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
+* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
