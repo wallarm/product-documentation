@@ -82,11 +82,11 @@ nav:
   - WAF guides:
     - Home: index.md
     - What is New: updating-migrating/what-is-new.md
-    - Quick Start:
-      - How Wallarm Works:
-        - Introduction: quickstart-en/how-wallarm-works/qs-intro-en.md
+    - About Wallarm WAF:
+        - Overview: quickstart-en/how-wallarm-works/qs-intro-en.md
         - Security Model of Shared Responsibility for Customer Data: quickstart-en/how-wallarm-works/shared-responsibility.md
         - Wallarm WAF subscription plans: quickstart-en/how-wallarm-works/subscription-plans.md
+    - Quick Start:
       - Prerequisites: quickstart-en/qs-prereq-en.md
       - Installation:
         - Creating the Wallarm Account: quickstart-en/qs-license-en.md
