@@ -29,7 +29,7 @@ Wallarm clients are responsible for the following points:
 
 * Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
 
-* Configuring proper WAF [data masking rules](#masking-of-sensitive-data) for any sensitive data which may leave the client’s security perimeter and is sent to the Wallarm cloud as a part of reporting of detected malicious requests.
+* Configuring proper WAF [data masking rules](../user-guides/rules/sensitive-data-rule.md) for any sensitive data which may leave the client’s security perimeter and is sent to the Wallarm cloud as a part of reporting of detected malicious requests.
 
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 
