@@ -12,15 +12,15 @@ These instructions describe how to configure a virtual machine with [Wallarm WAF
 
 ### Yandex.Cloud configuration
 
-* Access to the [Yandex.Cloud management console](https://console.cloud.yandex.com/)
-* Payment account in the status of `ACTIVE` or `TRIAL_ACTIVE` displayed on the [billing page](https://console.cloud.yandex.com/billing)
-* Created folder. By default, the folder `default` will be created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
-* Created 2048‑bit RSA key pair for SSH connection. To create a key pair, please follow these [instructions](https://cloud.yandex.com/docs/compute/operations/vm-connect/ssh#creating-ssh-keys)
+* Access to [Yandex.Cloud management console](https://console.cloud.yandex.com/)
+* Status of account payment displayed as `ACTIVE` or `TRIAL_ACTIVE` on the [billing page](https://console.cloud.yandex.com/billing)
+* Create a folder. By default, the folder `default` is created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
+* Create 2048‑bit RSA key pair for SSH connection. To create a key pair, please follow these [instructions](https://cloud.yandex.com/docs/compute/operations/vm-connect/ssh#creating-ssh-keys)
 
 ### Wallarm WAF configuration
 
-* Access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to `https://api.wallarm.com:444` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com:444` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 * Executing all commands as a superuser (e.g. `root`)
 
 ## Installation
@@ -42,7 +42,7 @@ These instructions describe how to configure a virtual machine with [Wallarm WAF
 
 ### 3. Connect the WAF node to Wallarm Cloud
 
-Connect the WAF node to Wallarm Cloud using the **cloud WAF node token** or Wallarm Console account **login and password**.
+Connect the WAF node to the Wallarm Cloud using the **cloud WAF node token** or Wallarm Console account **login and password**.
 
 #### Using the cloud WAF node token
 
@@ -85,25 +85,25 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 * `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm‑status.conf` with WAF node monitoring settings. A detailed description is available within the [link](../configure-statistics-service.md)
+* `/etc/nginx/conf.d/wallarm‑status.conf` with WAF node monitoring settings. A detailed description is available within this [link](../configure-statistics-service.md)
 * `/etc/default/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtering mode
 
 By default, the WAF node is in the status `monitoring` and does not block requests. Change the filtering mode within the NGINX settings to block requests by:
 
-1. Open the file `/etc/nginx/conf.d/wallarm.conf`:
+1. Opening the file `/etc/nginx/conf.d/wallarm.conf`:
 
     ```bash
     sudo vim /etc/nginx/conf.d/wallarm.conf
     ```
-2. Comment out the line `wallarm_mode monitoring;`.
-3. Open the file `/etc/nginx/nginx.conf`:
+2. Commenting out the line `wallarm_mode monitoring;`.
+3. Opening the file `/etc/nginx/nginx.conf`:
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-4. Add the line `wallarm_mode block;` to the `http` block:
+4. Adding the line `wallarm_mode block;` to the `http` block:
 
 ??? "Example of the file `/etc/nginx/nginx.conf`"
 
@@ -184,7 +184,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
     ```bash
     SLAB_ALLOC_ARENA=24
     ```
-3. To apply changes, restart Tarantool:
+3. Apply changes, restart Tarantool:
 
     ```bash
     sudo systemctl restart wallarm-tarantool
@@ -210,7 +210,7 @@ sudo systemctl restart nginx
     curl http://127.0.0.8/wallarm-status
     ```
 
-    The request will return statistics about analyzed requests. The response format is provided below, a more detailed description of parameters is available by the [link](../configure-statistics-service.md).
+    The request will return statistics about analyzed requests. The response format is provided below, a more detailed description of parameters is available [here](../configure-statistics-service.md).
     ```
     { "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
     "requests_lost":0,"segfaults":0,"memfaults":0,"softmemfaults":0,"time_detect":0,"db_id":46,
@@ -223,8 +223,8 @@ sudo systemctl restart nginx
     curl http://84.201.148.210/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the WAF node mode is `block`, the request will be blocked with the response `403 Forbidden` returned.
-3. Send the request to `wallarm-status` and ensure the values of parameters `requests` and `attacks` increased:
+    If the WAF node mode is `block`, then the request will be blocked with the response `403 Forbidden` returned.
+3. Send the request to `wallarm-status` and ensure the parameter values of `requests` and `attacks` has increased:
 
     ```bash
     curl http://127.0.0.8/wallarm-status
