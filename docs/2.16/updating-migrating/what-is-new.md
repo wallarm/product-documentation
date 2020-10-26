@@ -12,12 +12,12 @@ Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑
 * Added Envoy support
 * Added Yandex.Cloud support
 
-All platforms available for the WAF node 2.16 installation are listed by the [link](../admin-en/supported-platforms.md).
+All platforms available for the WAF node 2.16 installation are listed [here](../admin-en/supported-platforms.md).
 
 ## New features
 
-* [Displaying versions](../user-guides/nodes/regular-node.md#viewing-details-of-waf-node) of installed WAF, NGINX-WAF, Envoy-WAF components in Wallarm Console
-* New configuration directive [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to reduce the number of false positives using additional attacks validation with improved algorithms
+* [Displaying versions](../user-guides/nodes/regular-node.md#viewing-details-of-waf-node) of installed WAF, NGINX-WAF, and Envoy-WAF components in the Wallarm Console
+* New configuration directive [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) reduces the number of false positives using additional attack validation with improved algorithms
 
     !!! warning "Memory consumption increase"
         When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
@@ -28,18 +28,18 @@ All platforms available for the WAF node 2.16 installation are listed by the [li
     * `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file
     * `ts_files`: object with information about the [LOM](../glossary-en.md#lom) file
     * `db_files`: object with information about the proton.db file
-    * `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
+    * `overlimits_time`: the number of attacks with the type of [overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
 
-    The full list of available statistics parameters is available by the [link](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
+    The full list of available statistics parameters is available [here](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
 <!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
 * Installation of the WAF node in the form of the [Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
-* Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details of optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
+* Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details about optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
 
 ## Update process
 
 The WAF node update process depends on the platform and installation forms. Please select the installation form and follow the instructions:
 
-* Modules for NGINX, NGINX Plus, Kong: [Updating Linux WAF packages](nginx-modules.md)
+* Modules for NGINX, NGINX Plus, and Kong: [Updating Linux WAF packages](nginx-modules.md)
 * Docker container with the modules for NGINX: [Updating the Docker Container](docker-container.md)
 * NGINX Ingress controller with integrated Wallarm WAF: [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
 <!-- * Cloud platform: [Updating the cloud WAF node image](cloud-image.md) -->
