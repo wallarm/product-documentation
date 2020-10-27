@@ -57,11 +57,11 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the WAF node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
+    If the WAF node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in the Wallarm Console → **Nodes**.
 
 ## Configuring
 
-Ingress controller settings and Ingress annotations will be automatically moved from the previous version to a new version. The list of all settings and annotations is available at the [link](../admin-en/configure-kubernetes-en.md).
+Ingress controller settings and Ingress annotations will be automatically moved from the previous version to the new version. The list of all settings and annotations is available [here](../admin-en/configure-kubernetes-en.md).
 
 Configuration use cases:
 
