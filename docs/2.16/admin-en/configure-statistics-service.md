@@ -42,8 +42,11 @@ server {
 
 ```
 
-!!! info "The `listen` directive"
-    Note that if you change the IP address of the `listen` directive (in the example above, `127.0.0.8`), you will need to adjust the monitoring settings of the filter node to the new IP address. In addition, you may need to add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses).
+!!! info "Changing the `listen` directive"
+    Note that if you change the IP address of the `listen` directive (in the example above, `127.0.0.8`), you will also need to change the following settings:
+    
+    * Adjust the monitoring settings of the WAF node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`
+    * Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses)
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
 
