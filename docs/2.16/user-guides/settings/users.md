@@ -25,21 +25,33 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 
 ## User Roles
 
-There are three user roles:
+Users of Wallarm clients can have the following roles:
 
-* **Analyst**: a standard user who analyzes information about [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability].
-* **Administrator**: a user with elevated access rights who can fine-tune the system.
-* **Deploy**: a user who can only add new nodes.
+* **Administrator** with access to all Wallarm WAF settings
+* **Analyst** with access view main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Read Only** with access to view main Wallarm WAF settings
+* **Deploy** with access to create WAF nodes using the `addnode` script and with no access to Wallarm Console
 
-The Administrator role grants the following permissions to the user:
+For Wallarm partners, global roles **Global Administrator**, **Global Analyst**, **Global Read Only** are also available. Global roles provide users with access to the partner account and linked client accounts, regular roles provide users with access only to the partner account.
 
-* Create, edit, and delete filter nodes using the *Nodes* tab.
-* Create, edit, and delete triggers using the *Triggers* tab.
-* Change the Wallarm mode settings using the *Global* tab.
-* View, create, edit, and delete applications using the *Applications* tab.
-* View, create, edit, and delete integrations using the *Integrations* tab.
-* View, create, edit, and delete users using the *Users* tab.
-* View the activity log using the *Activity Log* tab.
+More detailed information about access of different user roles to Wallarm WAF entitites is provided in the table below. Entity management covers entity creating, editing and deleting.
+
+| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | Deploy                            |
+|---------------------|--------------------------------------|--------------------------|------------------------------|-----------------------------------|
+| **WAF nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` script |
+| **Dashboard**       | View                                 | View                     | View                         | -                                 |
+| **Events**          | View and manage                      | View and manage          | View                         | -                                 |
+| **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
+| **Scanner**         | View and manage                      | View and manage          | View                         | -                                 |
+| **Triggers**        | View and manage                      | -                        | -                            | -                                 |
+| **Blacklist**       | View, manage and export              | View, manage and export  | View and export              | -                                 |
+| **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
+| **WAF mode**        | View and manage                      | View                     | View                         | -                                 |
+| **Applications**    | View and manage                      | View                     | View                         | -                                 |
+| **Markers**         | View and manage                      | -                        | -                            | -                                 |
+| **Integrations**    | View and manage                      | -                        | -                            | -                                 |
+| **Users**           | View and manage                      | -                        | View                         | -                                 |
+| **Activity log**    | View                                 | -                        | View                         | -                                 |
 
 ## Viewing Users
 
@@ -153,6 +165,3 @@ To delete a  particular user account, perform the following actions:
 If it is necessary to delete several user accounts, select the users whose accounts you need to delete. The action panel will appear. Click the *Delete* button on this panel.
 
 ![!Deleting several users' accounts][img-disable-delete-multi]
-
-!!! info "See also"
-    [User activity log][link-audit-log]

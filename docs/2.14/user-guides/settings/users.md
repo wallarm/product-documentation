@@ -165,6 +165,3 @@ To delete a  particular user account, perform the following actions:
 If it is necessary to delete several user accounts, select the users whose accounts you need to delete. The action panel will appear. Click the *Delete* button on this panel.
 
 ![!Deleting several users' accounts][img-disable-delete-multi]
-
-!!! info "See also"
-    [User activity log][link-audit-log]
