@@ -8,9 +8,9 @@ Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑
 * Dropped support for the cloud platform Heroku
 * Dropped support for the operating system Debian 8.x (jessie-backports)
 * Added CentOS 8.x support
-<!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 * Added Envoy support
 * Added Yandex.Cloud support
+<!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 
 All platforms available for the WAF node 2.16 installation are listed [here](../admin-en/supported-platforms.md).
 
