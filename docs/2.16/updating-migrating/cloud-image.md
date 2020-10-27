@@ -22,13 +22,13 @@ A more detailed description of the upgrade steps is provided below.
 ## Step 1: Launch a new instance with the WAF node 2.16
 
 1. Open the Wallarm WAF node image on [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD) or [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node) and proceed to the image launch.
-2. At the launch step, make the following settings:
+2. At the launch step, set the following settings:
 
       * Select the image version `2.16.x`
       * For AWS, select the [created security group](../admin-en/installation-ami-en.md#3-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.
-4. For GCP, configure the instance following the [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filter-node-instance).
+4. For GCP, configure the instance following these [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filter-node-instance).
 
 ## Step 2: Connect the WAF node to Wallarm Cloud
 
@@ -52,7 +52,7 @@ A more detailed description of the upgrade steps is provided below.
 
 Detailed information about working with NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/ru/docs/beginners_guide.html).
 
-The list of WAF node directives is available at the [link](../admin-en/configure-parameters-en.md).
+The list of WAF node directives is available [here](../admin-en/configure-parameters-en.md).
 
 ## Step 4: Test WAF node operation
 

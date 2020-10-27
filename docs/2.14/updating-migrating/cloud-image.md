@@ -52,7 +52,7 @@ A more detailed description of the upgrade steps is provided below.
 
 Detailed information about working with NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/ru/docs/beginners_guide.html).
 
-The list of WAF node directives is available here [link](../admin-en/configure-parameters-en.md).
+The list of WAF node directives is available [here](../admin-en/configure-parameters-en.md).
 
 ## Step 4: Test WAF node operation
 
