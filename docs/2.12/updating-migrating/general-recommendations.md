@@ -21,7 +21,7 @@ A new minor version of the WAF node may contain the following changes:
 * Support for new installation options
 * Dropped support for unclaimed installation options
 * New WAF node features
-* Optimization of the current WAF node features
+* Optimization of work of the WAF node
 
 The configuration of the previous version is automatically applied to the new version and does not require additional changes. When updating the cloud image, you should manually transfer the configuration files to the new version. Most of the new features are configured via the directives in configuration files.
 
@@ -35,11 +35,11 @@ To analyze the number of new false positives after the update:
 
 1. Deploy the new version of the WAF node in the `monitoring` [mode](../admin-en/configure-wallarm-mode.md) and send the traffic to the WAF node.
 2. After some time, open Wallarm Console → **Events** section and analyze the number of requests that are mistakenly recognized as attacks.
-3. If you find abnormal growth in the number of false attacks, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+3. If you find abnormal growth in the number of false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
-### Increased amount of used memory and CPU resources
+### Increased amount of used resources
 
-Usage of some new WAF node features may cause changes in the amount of used memory and CPU resources. Information about changes in the amount of used resources is highlighted in the [What is new](what-is-new.md) section.
+Usage of some new WAF node features may cause changes in the amount of used resources. Information about changes in the amount of used resources is highlighted in the [What is new](what-is-new.md) section.
 
 Also, it is recommended to monitor the WAF node operation: if you find significant differences in the actual amount of used resources and in the amount specified in the documentation, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
