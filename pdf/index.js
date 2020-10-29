@@ -1,5 +1,5 @@
 const { generatePDF } = require('./browser');
 
 generatePDF({
-    origin: 'https://wallarm.com/docs/'
+    origin: 'https://docs.wallarm.com/'
 });
