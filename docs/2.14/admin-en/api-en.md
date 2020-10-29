@@ -49,11 +49,15 @@ Your UUID and secret key are used.
 2. Refresh the API Reference page using the link:
     * https://apiconsole.eu1.wallarm.com/ for the EU cloud,
     * https://apiconsole.us1.wallarm.com/ for the US cloud.
-3. Send the `POST /v1/user` request from the API Reference UI and copy the `uuid` value from the response.
-4. Send the `POST /v1/user/renew_secret` request from the API Reference UI and copy the `secret` value from the response.
+3. Send the `POST /v1/user` request without the parameters from the API Reference UI and copy the `uuid` value from the response.
+4. Send the `POST /v1/user/renew_secret` request without the parameters from the API Reference UI and copy the `secret` value from the response.
 
-    !!! warning "Previously generated secret"
-        The generation of a new secret invalidates the previously generated value. If the previous secret value is already used in other API clients, please replace it with the newly generated secret value.
+    !!! warning "Reusing the `secret` value"
+        The request `POST /v1/user/renew_secret` generates a new value of the secret key and invalidates the previous value. To use the secret key securely:
+
+        * Write down the `secret` value from the first `POST /v1/user/renew_secret` call in a secure place. The secret key value will not be shown again.
+        * Reuse the stored `secret` value in all requests to Wallarm API.
+        * If you generated a new `secret` value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
 5. Send the required request from your client passing the following values:
     * `uuid` in the `X‑WallarmAPI‑UUID` header parameter.
     * `secret` in the `X‑WallarmAPI‑Secret` header parameter.
