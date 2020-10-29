@@ -31,4 +31,4 @@ Wallarm does the following:
 **Resources**
 
 * [Wallarm website](https://wallarm.com)
-* [Official documentation](https://wallarm.com/docs)
+* [Official documentation](https://docs.wallarm.com/)
