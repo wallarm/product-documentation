@@ -68,8 +68,8 @@ Allows you to enable or disable Wallarm functions.
 ### wallarm.apiHost
 
 Wallarm API endpoint. Can be:
-* `api.wallarm.com` for the [EU cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#eu-cloud),
-* `us1.api.wallarm.com` for the [US cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#us-cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
+* `us1.api.wallarm.com` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud).
 
 **Default value**: `api.wallarm.com`
 

@@ -119,7 +119,7 @@ git add config/unicorn.rb
 git commit -m 'Update unicorn config to listen on NGINX socket.'
 ```
 
-Connect to the Wallarm cloud by running the command depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) you are using: 
+Connect to the Wallarm cloud by running the command depending on the [cloud](../about-wallarm-waf/overview.md#cloud) you are using: 
 
 === "EU cloud"
     ``` bash
@@ -192,7 +192,7 @@ Create a Procfile containing the following:
 web: wallarm/bin/start-wallarm bundle exec unicorn -c config/unicorn.rb
 ```
 
-Create & push the Heroku app by running the command depending on the [cloud](../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud) you are using: 
+Create & push the Heroku app by running the command depending on the [cloud](../about-wallarm-waf/overview.md#cloud) you are using: 
 
 === "EU cloud"
     ``` bash

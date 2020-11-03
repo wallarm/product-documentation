@@ -235,7 +235,7 @@ ID of the last processed request. The value can both increase and decrease.
 
 #### Indication of Deleted Requests
 
-The flag signaling that requests with attacks have been deleted from the postanalytics module but not sent to the [cloud](../../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud).
+The flag signaling that requests with attacks have been deleted from the postanalytics module but not sent to the [cloud](../../about-wallarm-waf/overview.md#cloud).
 
 * **Metric:** `wallarm-tarantool/gauge-export_drops_flag`
 * **Metric value:**
@@ -247,7 +247,7 @@ The flag signaling that requests with attacks have been deleted from the postana
 
 #### Number of Deleted Requests
 
-The number of requests with attacks that were deleted from the postanalytics module but were not sent to the [cloud](../../quickstart-en/how-wallarm-works/qs-intro-en.md#cloud). The number of attacks in the request does not affect the value. The metric is collected if [`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests).
+The number of requests with attacks that were deleted from the postanalytics module but were not sent to the [cloud](../../about-wallarm-waf/overview.md#cloud). The number of attacks in the request does not affect the value. The metric is collected if [`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests).
 
 It is recommended to use the [`wallarm-tarantool/gauge-export_drops_flag`](#indication-of-deleted-requests) metric when configuring monitoring notifications.
 

@@ -17,7 +17,7 @@ The set of all Wallarm WAF modules is provided below. Modules can be added to an
 * **Active threat verification** detects open application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the WAF node and looks for vulnerabilities in the corresponding parts of the application.
 * **Rules configuration** allows you to manually add request processing rules: block malicious requests if the WAF node is working in the `monitoring` mode or if any known attack vector is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
 * **Scope** scans the company's network perimeter: discovering new domains, IP addresses, services, and notification of new objects.
-* **Vulnerability scanner** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../../attacks-vulns-list.md).
+* **Vulnerability scanner** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
 
 ### Features
 
@@ -36,5 +36,5 @@ To define features that should be included to your subscription plan, please sen
 ## Subscription management
 
 * To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-* Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../../user-guides/settings/subscriptions.md).
-* Subscription cost is determined based on [incoming traffic volume](../../admin-en/operation/learn-incoming-request-number.md), subscription period, the set of connected modules, and features.
+* Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+* Subscription cost is determined based on [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md), subscription period, the set of connected modules, and features.
