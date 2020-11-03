@@ -31,6 +31,7 @@ spec:
           value: "password"
         - name: DEPLOY_FORCE
           value: "true"
+        # Whether to enable the IP blocking functionality
         - name: WALLARM_ACL_ENABLE
           value: "true"
         # Amount of memory in GB for request analytics data, 

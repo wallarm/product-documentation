@@ -52,7 +52,9 @@ Go to the Helm chart directory > the `templates` folder and create a `wallarm‑
 
 --8<-- "../include/kubernetes-sidecar-container/service-template.md"
 
-<ol start="2"><li>Make sure the <code>ports.targetPort</code> value is identical to <code>ports.containerPort</code> that was defined in the Wallarm sidecar container.</li></ol>
+<ol start="2"><li>Change the <code>ports.targetPort</code> value to point to the Wallarm sidecar container port (<code>ports.containerPort</code> defined in the Wallarm sidecar container). For example:</li></ol>
+
+--8<-- "../include/kubernetes-sidecar-container/service-template-sidecar-port.md"
 
 ### Step 4: Updating the Helm Chart Configuration File
 
@@ -71,11 +73,11 @@ helm lint
 <ol start="4"><li>Deploy the modified Helm chart in the Kubernetes cluster using the following command:</li></ol>
 
 ```
-helm upgrade RELEASE CHART
+helm upgrade <RELEASE> <CHART>
 ```
 
-* `RELEASE` is the name of an existing Helm chart,
-* `CHART` is the path to the Helm chart directory.
+* `<RELEASE>` is the name of an existing Helm chart,
+* `<CHART>` is the path to the Helm chart directory.
 
 !!! warning "NetworkPolicy Object in Kubernetes"
     If the application also uses the `NetworkPolicy` object it should be updated to reflect the Wallarm sidecar container port specified above.

@@ -24,6 +24,9 @@ data:
         index index.html index.htm;
         wallarm_mode $wallarm_mode_real;
         # wallarm_instance 1;
+        # Uncomment the following line to enable
+        # WAF IP blocking functionality
+        # wallarm_acl default;
         set_real_ip_from 0.0.0.0/0;
         real_ip_header X-Forwarded-For;
         location / {
