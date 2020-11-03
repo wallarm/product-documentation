@@ -89,6 +89,9 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 
 ### WAF node and postanalytics on different servers
 
+!!! warning "Sequence of steps to update the WAF node and postanalytics modules"
+    If the WAF node and postanalytics modules are installed on different servers, it is required to update the postanalytics packages before updating the WAF node packages.
+
 1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
 2. Update WAF node packages:
 
