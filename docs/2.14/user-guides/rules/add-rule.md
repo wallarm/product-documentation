@@ -87,7 +87,7 @@ To match requests with regular expressions, the Pire library is used. Mostly, th
 
     Logic characters:
 
-    * `~` is equal to NOT
+    * `~` is equal to NOT. The inverted expression and the character must be placed into `()`,<br>for example: `(~(a))`
     * `|` is equal to OR
     * `&` is equal to AND
 
@@ -178,13 +178,15 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ```bash
     cpire-runner -r '<YOUR_REGULAR_EXPRESSION>'
     ```
-    
-    If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`). If the regular expression is invalid, then the utility will return an error message.
 4. Enter the value to check whether it matches with the regular expression. The utility will return the result:
     * `0` if the value matches with the regular expression
     * `FAIL` if the value does not match with the regular expression
+    * Error message if the regular expression is invalid
 
-**Examples of regular expressions**
+    !!! warning "Specifics of handling the `\` character"
+        If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`).
+
+**Examples of regular expressions added via the Wallarm Console**
 
 * To match any string that includes <code>/.git</code>
 

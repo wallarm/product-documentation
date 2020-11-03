@@ -70,6 +70,8 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 
 ## Step 2: Update Wallarm WAF packages
 
+### WAF node and postanalytics on the same server
+
 === "Debian"
     ```bash
     sudo apt update
@@ -84,6 +86,29 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
     ```bash
     sudo yum update
     ```
+
+### WAF node and postanalytics on different servers
+
+!!! warning "Sequence of steps to update the WAF node and postanalytics modules"
+    If the WAF node and postanalytics modules are installed on different servers, it is required to update the postanalytics packages before updating the WAF node packages.
+
+1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
+2. Update WAF node packages:
+
+    === "Debian"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/wallarm.list -o Dir::Etc::sourceparts=""
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade -o Dir::Etc::sourcelist=/etc/apt/sources.list.d/wallarm.list -o Dir::Etc::sourceparts=""
+        ```
+    === "CentOS или Amazon Linux 2"
+        ```bash
+        sudo yum update
+        ```
 
 ## Step 3: Restart NGINX
 
