@@ -1,6 +1,6 @@
 # Recommendations for a safe WAF node update process
 
-This document describes recommendations and associated risks for a safe update of Wallarm WAF node.
+This document describes recommendations and associated risks for a safe update of Wallarm WAF node up to 2.12.
 
 ## Common recommendations
 
@@ -26,6 +26,32 @@ A new minor version of the WAF node may contain the following changes:
 The configuration of the previous version is automatically applied to the new version and does not require additional changes. When updating the cloud image, you should manually transfer the configuration files to the new version. Most of the new features are configured via the directives in configuration files.
 
 Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change in planning the upgrade.
+
+??? "Set of changes in WAF node 2.12"
+    **Supported installation options**
+
+    * Deleted custom NGINX Build with Embedded Wallarm Module. Now only a dynamic module for NGINX is supported.
+    * Installation of WAF node in Kubernetes is available:
+        * [Installing NGINX Ingress Controller with Integrated Wallarm Services](../admin-en/installation-kubernetes-en.md)	
+        * [Installing NGINX Plus Ingress Controller with Integrated Wallarm Services](../admin-en/installation-guides/ingress-plus/introduction.md)	
+        * [Installing Wallarm Sidecar Container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
+
+    **New WAF node features**
+
+    * Attack grouping added.
+    * URL encoding recognition added to the htmljs parser.
+    * The possibility to limit request data processing iteration time added.
+    * The `wallarm_request_chunk_size` directive that allows limiting the number of bytes to be processed in one request parameter added.
+    * The informational pages about blocking added.
+    * The `time_tnt` parameter was removed from the displayed node statistics.
+    * The information about the data on whether the query is received completely added.
+    * The assessment of the `time_detect` parameter in the filter node statistics fixed.
+    * New WAF node statistics parameters are added: `stalled_workers_count` and `stalled_workers`.
+    * Support for the new format of serialized requests in the wallarm-tarantool version 1.11.0 or higher. Before updating to 2.12, ensure that wallarm-tarantool version 1.11.0 or higher is already installed.
+
+    **Optimization of work of the WAF node**
+
+    * Query processing- and system resilience-related improvements were made.
 
 ### New false positives
 
