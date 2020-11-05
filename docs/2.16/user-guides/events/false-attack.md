@@ -25,7 +25,7 @@ To mark one request (hit) as a false positive:
 To mark all requests (hits) in the attack as the false positives:
 
 1. Select an attack with valid requests in the **Events** section.
-2. Click **Mark false positive**.
+2. Click **Report attack as false positive**.
 
     ![!False attack](../../images/user-guides/events/analyze-attack.png)
 
