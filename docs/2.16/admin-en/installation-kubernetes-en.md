@@ -4,7 +4,7 @@
 
 * Kubernetes platform version 1.15 or lower
 * [Helm](https://helm.sh/) package manager
-* Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx)
+* Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 0.26.2
 
 !!! info "See also"
     * [What is Ingress?](https://kubernetes.io/docs/concepts/services-networking/ingress/)
