@@ -38,7 +38,7 @@ More detailed information about access of different user roles to Wallarm WAF en
 
 | Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | Deploy                            |
 |---------------------|--------------------------------------|--------------------------|------------------------------|-----------------------------------|
-| **WAF nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` script |
+| **WAF nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` and `addcloudnode` scripts |
 | **Dashboard**       | View                                 | View                     | View                         | -                                 |
 | **Events**          | View and manage                      | View and manage          | View                         | -                                 |
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
