@@ -1,4 +1,4 @@
-var rootVersion = '2.16';
+// Open external links in new tab
 var links = document.links;
 
 for(var i = 0; i < links.length; i++) {
@@ -7,9 +7,8 @@ for(var i = 0; i < links.length; i++) {
     links[i].rel = 'noopener';
   } 
 }
-/*
- * Add Clearbit
- */
+
+// Add Clearbit
 function injectScript(src, cb) {
   let script = document.createElement('script');
 
@@ -17,7 +16,6 @@ function injectScript(src, cb) {
   cb && (script.onload = cb);
   document.body.append(script);
 }
-
 
 function initClearbit() {
   let reveal_gtag_map = {
@@ -89,23 +87,15 @@ function initClearbit() {
 injectScript('https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_80545ea927108087193f8bfbac6682de&variable=reveal', initClearbit);
 
 
-/*
-* Add LeadFeeder
-*/
-
+// Add LeadFeeder
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
 
-/*
-* Add HubSpot
-*/
+// Add HubSpot
 
 injectScript('https://js.hs-scripts.com/3989912.js');
 
-/*
-* Add LeadLander
-*/
-
+// Add LeadLander
 var sf14gv = 27823;
   (function() {
     var sf14g = document.createElement('script');
@@ -114,7 +104,7 @@ var sf14gv = 27823;
   })();
 
 // Show version selector only for WAF guides
-
+var rootVersion = '2.16';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
 if (activeLinks[0].text === ' WAF guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
@@ -133,8 +123,7 @@ else {
   document.getElementById('versionsDiv').style.display = 'none'
 }
   
-// Show the list of versions
-
+// Show the list of available WAF versions
 function versionClicked (event) {
   if (document.getElementById('versionsList').style.display === 'none') {
     document.getElementById('versionsList').style.display = 'block'
@@ -145,8 +134,7 @@ function versionClicked (event) {
   }
 }
 
-// Open the docs for selected version and change value in the selector
-
+// Open the docs for selected WAF version and change value in the selector
 function goToVersion (event, currentVersion, version) {
   event.preventDefault()
 
@@ -173,3 +161,26 @@ function goToVersion (event, currentVersion, version) {
     }
   }
 }
+
+// Collapse expanded menu items when a new item is expanded
+var navClassName = ".md-nav__toggle";
+var navigationElements = document.querySelectorAll(navClassName);
+
+function getAllNavigationElements(element, selector){
+  if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
+    var allChildren = element.parentElement.parentElement.children;
+    for (let index = 0; index < allChildren.length; index++) {
+      var child = allChildren[index];
+      var navigationInput = child.querySelector(selector);
+      if(navigationInput && navigationInput !== element){
+        navigationInput.checked = false;
+      }
+    }
+  }
+}
+
+navigationElements.forEach(el => {
+  el.addEventListener('change', function(){
+    getAllNavigationElements(this, navClassName);
+  }, false);
+})
