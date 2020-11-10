@@ -10,8 +10,3 @@ Deleting a trigger cannot be undone. The trigger will be permanently removed fro
 
 1. Click the **Delete** button.
 2. Confirm the action clicking **Delete trigger** in the confirmation window.
-
-!!! info "See also"
-    * [What are Triggers](triggers.md)
-    * [Creating Triggers](create-trigger.md)
-    * [Disabling Triggers](disable-trigger.md)

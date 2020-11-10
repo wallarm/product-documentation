@@ -11,8 +11,3 @@ A disabled trigger will be displayed in the lists with **All** and **Disabled** 
 ![!Disabled trigger](../../images/user-guides/triggers/disabled-trigger.png)
 
 To re‑enable sending notifications and reactions to events, the **Enable** option is used.
-
-!!! info "See also"
-    * [What are Triggers](triggers.md)
-    * [Creating Triggers](create-trigger.md)
-    * [Deleting Triggers](delete-trigger.md)

@@ -4,9 +4,12 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 To reduce the amount of noise, you can also configure the parameters of events to be notified about. The following events are available for setup:
 
+* Requests
+* [Attack vectors](../../glossary-en.md#attack-vector)
 * [Attacks](../../glossary-en.md#attack)
 * [Incidents](../../glossary-en.md#security-incident)
 * [Hits](../../glossary-en.md#hit)
+* IP address added to the blacklist
 * Users added to the account
 
 To receive notifications and reports, you can use Slack, email, Sumo Logic and other [integrations](../settings/integrations/integrations-intro.md).
@@ -24,6 +27,18 @@ To receive notifications and reports, you can use Slack, email, Sumo Logic and o
 * Send the data to Splunk if at least one incident with the application server or database is detected in one second
 
     ![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
+
+* Send the webhook to Webhook URL if a new IP address was added to the blacklist
+
+    ![!Example of a trigger for a blacklisted IP](../../images/user-guides/triggers/trigger-example4.png)
+
+    ??? info "Show notification example"
+        ```bash
+        {
+            "summary": "Please make attention! Notification about blacklisted IP is triggered: IP 1.1.1.1 was blocked until 2020-11-10 11:48:22 +0300"
+        }
+        ```
+        `Notification about blacklisted IP` is the name of the trigger.
 
 ## Demo videos
 

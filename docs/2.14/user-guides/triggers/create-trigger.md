@@ -13,12 +13,16 @@ Triggers are configured in your Wallarm account > the **Triggers** section. Only
 ## Step 1: Choosing a Condition
 
 A condition is a system event to be notified about. The following conditions are available for notification:
+
+* Number of requests
+* Number of attack vectors
 * Number of attacks
 * Number of hits
 * Number of incidents
+* Blacklisted IP
 * User added
 
-![!Available conditions](../../images/user-guides/triggers/trigger-types.png)
+![!Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
 
 Choose a condition in your Wallarm account interface and set the lower threshold for the reaction, if the setting is available.
 
@@ -65,8 +69,3 @@ To add a reaction:
 2. Specify the trigger's name and description (if required) and click the **Done** button.
 
 The saved trigger will be displayed in the trigger list in your Wallarm account.
-
-!!! info "See also"
-    * [What are Triggers](triggers.md)
-    * [Disabling Triggers](disable-trigger.md)
-    * [Deleting Triggers](delete-trigger.md)
