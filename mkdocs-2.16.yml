@@ -111,26 +111,26 @@ nav:
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
             - Kubernetes Deployment Based on Manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud Platforms:
-          # - Installation Options Overview: admin-en/installation-guides/clouds-intro.md
-          # - Installing on Amazon AWS:
-          #   - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-ami-en.md
-          #   - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
+          - Installation Options Overview: admin-en/installation-guides/clouds-intro.md
+          - Installing on Amazon AWS:
+            - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-ami-en.md
+            - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
           #   - Deploying WAF Node Using Terraform:
           #     - Introduction: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
           #     - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
           #     - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
-          #   - Setting Up Filter Node Auto Scaling:
-          #     - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-          #     - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-          #     - Setting Up Incoming Request Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-          # - Installing on the Google Cloud Platform:
-          #   - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-gcp-en.md
-          #   - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
-          #   - Setting Up Filter Node Auto Scaling:
-          #     - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
-          #     - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
-          #     - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-          #     - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+            - Setting Up Filter Node Auto Scaling:
+              - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+              - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+              - Setting Up Incoming Request Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+          - Installing on the Google Cloud Platform:
+            - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-gcp-en.md
+            - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
+            - Setting Up Filter Node Auto Scaling:
+              - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+              - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
+              - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+              - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
           - Installing on Yandex.Cloud: admin-en/installation-guides/install-in-yandex-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
@@ -295,7 +295,7 @@ nav:
         - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
         - Updating Docker: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
-        # - Updating the cloud WAF node image: updating-migrating/cloud-image.md
+        - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
       - Attacks and Vulnerabilities List: attacks-vulns-list.md
