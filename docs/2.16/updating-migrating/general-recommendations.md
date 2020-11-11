@@ -5,9 +5,9 @@ This document describes recommendations and associated risks for a safe update o
 ## Common recommendations
 
 * Carefully plan and monitor the WAF node update process. Estimated release dates for new versions of WAF nodes are published in the [WAF node versioning policy](versioning-policy.md).
-* If your infrastructure has multiple WAF nodes installed, update them gradually. After updating the first WAF node, ensure that the modules work correctly and gradually update other WAF nodes.
+* If your infrastructure has multiple WAF nodes installed, update them gradually. After updating the first WAF node, monitor the WAF node modules operation within a day and gradually update other WAF nodes if the first WAF node operates correctly.
 * For the model with separated development and production environments, update the WAF node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring WAF nodes for separated environments](../admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md#gradual-rollout-of-new-waf-changes).
-* Before updating the WAF node, set the WAF node filtering mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode, put the WAF node in the `block` mode.
+* Before updating the WAF node, set the WAF node filtering mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, put the WAF node in the `block` mode.
 * Update NGINX to the latest version available before applying WAF node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build a WAF module for a custom version of NGINX.
 
 ## Possible risks
@@ -64,17 +64,6 @@ Before upgrading, please check the [set of changes](what-is-new.md) and consider
     **Optimization of work of the WAF node**
 
     * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details about optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
-
-## Update process
-
-To update the WAF node, it is recommended to check the general recommendations for the process and follow the instructions for updating the installed modules:
-
-* [General recommendations for a safe WAF node update process](general-recommendations.md)
-* [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
-* [Updating the Docker container with the modules for NGINX](docker-container.md)
-* [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-<!-- * [Cloud WAF node image](cloud-image.md) -->
-
 
 ### New false positives
 
