@@ -65,17 +65,6 @@ Before upgrading, please check the [set of changes](what-is-new.md) and consider
 
     * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details about optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
 
-## Update process
-
-To update the WAF node, it is recommended to check the general recommendations for the process and follow the instructions for updating the installed modules:
-
-* [General recommendations for a safe WAF node update process](general-recommendations.md)
-* [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
-* [Updating the Docker container with the modules for NGINX](docker-container.md)
-* [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-<!-- * [Cloud WAF node image](cloud-image.md) -->
-
-
 ### New false positives
 
 We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. However each system has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
