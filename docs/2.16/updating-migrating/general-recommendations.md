@@ -88,4 +88,4 @@ The WAF node update process depends on the platform and installation forms. Plea
 * [Modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
 * [Docker container with the modules for NGINX](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-<!-- * [Cloud WAF node image](cloud-image.md) -->
+* [Cloud WAF node image](cloud-image.md)

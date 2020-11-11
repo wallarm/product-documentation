@@ -43,4 +43,4 @@ To update the WAF node, it is recommended to check the general recommendations f
 * [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
 * [Updating the Docker container with the modules for NGINX](docker-container.md)
 * [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
-<!-- * [Cloud WAF node image](cloud-image.md) -->
+* [Cloud WAF node image](cloud-image.md)
