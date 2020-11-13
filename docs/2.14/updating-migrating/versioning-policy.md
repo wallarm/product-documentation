@@ -1,6 +1,6 @@
 # WAF node versioning policy
 
-This policy describes the method of versioning of different WAF node artifacts: Linux packages, Docker containers, Helm charts, etc. You can use this document to select the WAF node version for installation and to schedule installed packages update.
+This policy describes the method of versioning of different WAF node artifacts: Linux packages, Docker containers, Helm charts, etc. You can use this document to select the WAF node version for installation and to schedule updates of installed packages.
 
 !!! info "Artifact"
     The artifact is the result of WAF node development that is used to install the WAF node on the platform. For example: Linux packages, Kong API modules, Docker containers, etc.
@@ -27,13 +27,13 @@ WAF node artifact versions have the following format:
 | `<MAJOR_VERSION>`              | Major WAF node version:<ul><li>Major rework of the component</li><li>Incompatible changes</li></ul>Initial value is `2`. The value increases by 1, for example: `2.14.0`, `3.1.0`.                                                                                                                    | No release expected              |
 | `<MINOR_VERSION>`              | Minor WAF node version:<ul><li>New product features</li><li>Major bug fixes</li><li>Other compatible changes</li></ul>The value increases by 2, for example: `2.12`, `2.14`.                                                                                                             | 2 times per year                         |
 | `<PATCH_VERSION>`              | WAF node patch version:<ul><li>Minor bug fixes</li><li>New features added after a special request</li></ul>Initial value is `0`. The value increases by 1, for example: `2.14.0`, `2.14.1`.                                                                                                                                     | Once a month                        |
-| `<BUILD_NUMBER>` (optional) | WAF node build version. The value is assigned automatically by the employed package build platform. The value will be not assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `2.14.0-1`, `2.14.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
+| `<BUILD_NUMBER>` (optional) | WAF node build version. The value is assigned automatically by the employed package build platform. The value will not be assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `2.14.0-1`, `2.14.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
 
 Versions of WAF node packages may differ within the same artifact. For example, if only one package needs to be updated, then the remaining packages retain the previous version.
 
 ## Version support
 
-Wallarm supports 2 latest versions of the WAF node in the following way:
+Wallarm supports 2 latest versions of the WAF node in the following ways:
 
 * In the latest version, releases bug fixes. May release new features after a special request.
 * In the previous version, releases bug fixes.
@@ -56,6 +56,6 @@ Wallarm publishes information about the new minor version in the following sourc
 
 ### Update procedure
 
-Along with the release of the new WAF node minor version, installation instructions and instructions for current artifacts update are published. The methods of updating artifacts may differ. To update versions of artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
+Along with the release of the new WAF node minor version, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
 
 After updating to a new minor version or patch version, all previous WAF node settings will be saved and applied to the new version.

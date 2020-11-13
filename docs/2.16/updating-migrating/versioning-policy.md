@@ -60,6 +60,6 @@ Information about available updates for minor WAF node versions and for WAF node
 
 ### Update procedure
 
-Along with the release of the new WAF node minor version, installation instructions and updated instructions for current artifacts are published. The methods of updating artifacts may differ. To update versions of artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
+Along with the release of the new WAF node minor version, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
 
 After updating to a new minor version or patch version, all previous WAF node settings will be saved and applied to the new version.
