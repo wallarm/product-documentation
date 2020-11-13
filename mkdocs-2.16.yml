@@ -115,10 +115,10 @@ nav:
           - Installing on Amazon AWS:
             - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-ami-en.md
             - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-          #   - Deploying WAF Node Using Terraform:
-          #     - Introduction: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
-          #     - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
-          #     - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
+            - Deploying WAF Node Using Terraform:
+              - Introduction: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
+              - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
+              - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
             - Setting Up Filter Node Auto Scaling:
               - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
               - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md

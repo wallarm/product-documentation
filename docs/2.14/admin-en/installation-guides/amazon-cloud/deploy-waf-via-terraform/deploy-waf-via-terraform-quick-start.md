@@ -55,7 +55,7 @@ Configuration files are located in the `terraform` folder of the repository:
     * `az_b`
     * `wallarm_node_ami_id` with the used AWS EC2 Wallarm WAF node image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:
     ```
-    aws ec2 describe-images --filters "Name=name,Values=*Wallarm Node-2.12*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
+    aws ec2 describe-images --filters "Name=name,Values=*Wallarm Node-2.14*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
     ```
 
     * `wordpress_ami_id` with the used AWS EC2 Wordpress image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:
@@ -67,7 +67,7 @@ Configuration files are located in the `terraform` folder of the repository:
 
 1. Go to the `terraform` folder of the cloned repository:
     ```
-    cd terrafrom-example/terraform
+    cd terraform-example/terraform
     ```
 2. Deploy the whole stack using the following commands:
 
