@@ -105,7 +105,7 @@ Specifies the directory that will be used to save the state of the ACL.
 
 Lets you set up the response code and the page returned to the client when the request was sent from a [blocked](../user-guides/blacklist.md) IP address. Directive value format: `wallarm_acl_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
 
-By default, the response code 403 and default NGINX block page are returned to the client. If you would liike to customize the return to the client, you can set up the following configurations:
+By default, the response code 403 and default NGINX block page are returned to the client. If you would like to customize the return to the client, you can set up the following configurations:
 
 * Default Wallarm block page and a custom response code:
 
@@ -193,7 +193,7 @@ api:
 
 Lets you set up the response code and page returned to the client when a malicious request has been blocked. Directive value format: `wallarm_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
 
-By default, the response code 403 and default NGINX block page are returned to the client. If you would liike to customize the return to the client, you can set up the following configurations:
+By default, the response code 403 and default NGINX block page are returned to the client. If you would like to customize the return to the client, you can set up the following configurations:
 
 * Default Wallarm block page and a custom response code:
 
@@ -202,7 +202,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     ```
 
     To return default response code 403, you can omit `response_code=445`. 
-* Custom block page and response code return:
+* Custom block page and response code:
 
     ```bash
     # block page block.html located in /usr/share/nginx/html
@@ -265,7 +265,7 @@ With the value set to **on**, NGINX has the ability to enter an emergency mode; 
 
 ### wallarm_force
 
-Sets the requests' analysis and generated LOM rules based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
+Sets the requests' analysis and LOM rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
 
 ### wallarm_global_trainingset_path
 
@@ -434,7 +434,7 @@ location /zy {
 
 ### wallarm_parse_html_response
 
-Lets you enable and disable an HTML parser for responses and requests. Can be:
+Lets you enable and disable an HTML parser for responses to requests. Can be:
 * `on`
 * `off`
 
