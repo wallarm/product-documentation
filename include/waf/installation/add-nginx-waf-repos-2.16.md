@@ -24,12 +24,6 @@
     sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-<!-- === "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ``` -->
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
@@ -45,3 +39,9 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.16/x86_64/Packages/wallarm-node-repo-1-5.el8.noarch.rpm
     ```
+<!-- === "Ubuntu 20.04 LTS (focal)"
+    ```bash
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sudo apt update
+    ``` -->

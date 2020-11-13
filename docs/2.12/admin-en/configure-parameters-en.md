@@ -5,7 +5,7 @@
 # Configuration Options for the NGINX‑Based Filter Node
 
 !!! info "NGINX official documentation"
-    The Wallarm configuration is very similar to the NGINX configuration. [See the official NGINX documentation](https://www.nginx.com/resources/admin-guide/). Along with the Wallarm specific configuration options, you have the full capabilities of NGINX configuration.
+    The Wallarm configuration is very similar to the NGINX configuration. [See the official NGINX documentation](https://www.nginx.com/resources/admin-guide/). Along with the Wallarm specific configuration options, you have the full capabilities of the NGINX configuration.
 
 ## Wallarm Directives
 
@@ -31,11 +31,11 @@ deny all;
 ```
 
 !!! info
-    This parameter can be set inside the http, server and/or location blocks.
+    This parameter can be set inside the http, server, and/or location blocks.
 
 ### wallarm_acl_api
 
-If this directive is applied within the location block, than this location can be used to manage ACL content.
+If this directive is applied within the location block, then this location can be used to manage ACL content.
 
 **Example:**
 ```
@@ -49,7 +49,7 @@ location / wallarm-acl {
 ```
 
 !!! info
-    This parameter can be set inside the http, server and/or location blocks.
+    This parameter can be set inside the http, server, and/or location blocks.
 
 ### wallarm_acl_db
 
@@ -72,7 +72,7 @@ wallarm_acl_db wapi {
 
 Allows you to set the initial memory size to be allocated for the corresponding ACL.
 
-When the limit is reached, the memory will be automatically reallocated, but the API request that attempted to change the ACL and caused the overflow, will produce an error and should be repeated.
+When the limit is reached, the memory will be automatically reallocated. However, the API request that attempted to change the ACL and caused the overflow, will produce an error and should be repeated.
 
 !!! info
     The parameter can only be configured inside the `wallarm_acl_db` block.
@@ -121,13 +121,13 @@ Lets you set up the page returned to the client when a malicious request has bee
 
 By default, the response code 403 and default NGINX block page are returned to the client. You can set up the following configurations:
 
-* Return default Wallarm block page:
+* Default Wallarm block page:
 
     ```bash
     wallarm_block_page &/usr/share/nginx/html/wallarm_blocked.html;
     ```
 
-* Return custom block page:
+* Custom block page:
 
     ```bash
     # block page block.html located in /usr/share/nginx/html
@@ -136,7 +136,7 @@ By default, the response code 403 and default NGINX block page are returned to t
 
     You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
 
-* Return blocking message or the block page and custom response code described in the `location` block:
+* Blocking message return or the block page and custom response code described in the `location` block:
 
     ```bash
     # response code 445 and the message "The page is blocked"
@@ -181,22 +181,22 @@ A directory in which the backup catalog for the proton.db and [LOM](../glossary-
 
 ### wallarm_fallback
 
-With the value set to **on**, NGINX has the ability to enter an emergency mode: if proton.db or LOM cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
+With the value set to **on**, NGINX has the ability to enter an emergency mode; if proton.db or LOM cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
 
 
 ### wallarm_force
 
-Sets the requests analysis and LOM rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
+Sets the requests' analysis and LOM rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
 
 ### wallarm_global_trainingset_path
 
-A path to the proton.db file that has the global settings for requests filtering, which do not depend on the application structure.
+A path to the proton.db file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `/etc/wallarm/proton.db`
 
@@ -214,14 +214,14 @@ Defines an interval between checking new data in proton.db and [LOM](../glossary
 
 ### wallarm_instance
 
-An application identifier. The directive is used to visually separate the data of different applications on *Dashboard*. Numeric values only.
+An application identifier. The directive is used to visually separate the data of different applications on the *Dashboard*. Numeric values only.
 
 The application identifiers are used solely for the convenience of data presentation. To correctly separate the data of different applications, the same application identifiers must be set in the Wallarm interface.
 
 Any filter node will filter traffic for any number of applications without additional configuration.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
 
 
 ### wallarm_key_path
@@ -237,7 +237,7 @@ A path to the Wallarm license key.
 A path to the [LOM](../glossary-en.md#lom) file that contains information on the protected application and the filter node settings.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `/etc/wallarm/lom`
 
@@ -247,7 +247,7 @@ A path to the [LOM](../glossary-en.md#lom) file that contains information on the
 Traffic processing mode:
 
 - **off**: requests are not processed.
-- **monitoring**: all requests are processed, but none of them is blocked even if an attack is detected.
+- **monitoring**: all requests are processed, but none of them are blocked even if an attack is detected.
 - **block**: all requests where an attack was detected are blocked.
 
 The value can include variables that are available after receiving a request string and headers. This can be used for applying various policies for various clients:
@@ -263,10 +263,10 @@ geo $wallarm_mode_real {
 wallarm_mode $wallarm_mode_real;
 ```
 
-You can see the detailed example of filtration mode configuration by proceeding to the [link](block-part-en.md).
+You can see the detailed example of filtration mode configuration by proceeding to this [link](block-part-en.md).
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `off`
 
@@ -286,7 +286,7 @@ Manages the ability to override the `wallarm_mode` values via filtering rules do
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, the Wallarm cloud can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `on`
 
@@ -301,7 +301,7 @@ Possible values:
 - **off**: responses are not analyzed.
 
 !!! info
-    This parameter can be set inside http, server and location blocks.
+    This parameter can be set inside http, server, and location blocks.
     
     **Default value**: `on`
 
@@ -310,14 +310,14 @@ Possible values:
 
 ### wallarm_parse_websocket
 
-Wallarm has full WebSockets support. By default, the WebSockets messages are not analyzed for attacks. To force the feature, use the `wallarm_parse_websocket` directive.
+Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use the `wallarm_parse_websocket` directive.
 
 Possible values:
 - **on**: message analyses is enabled
 - **off**: message analyses is disabled.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `off`
 
@@ -354,7 +354,7 @@ location /zy {
 ```
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
 
 ### wallarm_parse_html_response
 
@@ -363,7 +363,7 @@ Lets you enable and disable an HTML parser for responses to requests. Can be:
 * `off`
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `on`
 
@@ -374,7 +374,7 @@ Sets the time limit for processing a single request for an NGINX worker in secon
 If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) parameters.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `5` (five seconds)
 
@@ -383,8 +383,8 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the *blocking* mode (`wallarm_mode block;`) and ignored in the *monitoring* mode (`wallarm_mode monitoring;`).
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
-
+    This parameter can be set inside the http, server, and location blocks.
+    
     **Default value**: 1000ms (one second).
 
 ### wallarm_process_time_limit_block
@@ -399,7 +399,7 @@ The ability to manage the blocking of requests, which exceed the time limit set 
     - **block**: the requests are blocked
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `wallarm_process_time_limit_block attack`
 
@@ -407,7 +407,7 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 
 Set a limit for the maximum amount of memory that can be used for processing of a single request.
 
-If the limit is exceeded the request processing will be interrupted and a user will get 500 error.
+If the limit is exceeded, the request processing will be interrupted and a user will get a 500 error.
 
 The following suffixes can be used in this parameter:
 * `k` or `K` for kilobytes
@@ -419,11 +419,11 @@ Value of 0 turns the limit off.
 By default, limits are off. 
 
 !!! info
-    This parameter can be set inside the http, server and/or location blocks.
+    This parameter can be set inside the http, server, and/or location blocks.
 
 ### wallarm_proton_log_mask_master
 
-Settings of the debug logging for the master process NGINX. 
+Settings for the debug logging of the NGINX master process. 
 
 !!! warning "Using the directive"
     You need to configure the directive only if you are told to do so by the Wallarm support team member. They will provide you with the value to use with the directive.
@@ -434,7 +434,7 @@ Settings of the debug logging for the master process NGINX.
 
 ### wallarm_proton_log_mask_worker
 
-Settings of the debug logging for a worker process NGINX. 
+Settings of the debug logging for a NGINX worker process. 
 
 !!! warning "Using the directive"
     You need to configure the directive only if you are told to do so by the Wallarm support team member. They will provide you with the value to use with the directive.
@@ -450,12 +450,12 @@ Limits the size of the part of the request that is processed during one iteratio
 * `g` or `G` for gigabytes
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     **Default value**: `8k` (8 kilobytes).
 
 ### wallarm_set_tag
 
-Defines the key value pair for label each request. A value can contain variables.
+Defines the label of key value pairs for each request. A value can contain variables.
 
 Specified tags will be available in postanalytics.
 
@@ -481,7 +481,7 @@ wallarm_set_tag somename $var;
 
 ### wallarm_tarantool_upstream
 
-With the `wallarm_tarantool_upstream` you can balance the requests between several postanalytics servers.
+With the `wallarm_tarantool_upstream`, you can balance the requests between several postanalytics servers.
 
 **Example:**
 
@@ -514,19 +514,19 @@ A limit on the time that a filter node spends on one iteration of processing a r
 You can use time intervals suffixes that are described in the [nginx documentation](https://nginx.org/en/docs/syntax.html) to assign different time unit values to the directive.
 
 !!! info
-    This parameter can be set inside the http, server and location blocks.
+    This parameter can be set inside the http, server, and location blocks.
     **Default value**: `0` (time limit for single iteration is disabled).
 
 -----
 
 !!! warning
-    Due to nginx server limitations, it is necessary to disable the request buffering by assigning the `off` value to the `proxy_request_buffering` nginx directive for the `wallarm_timeslice` directive to work.
+    Due to NGINX server limitations, it is necessary to disable the buffering request by assigning the `off` value to the `proxy_request_buffering` NGINX directive for the `wallarm_timeslice` directive to work.
 
 ### wallarm_ts_request_memory_limit
 
 Set a limit for the maximum amount of memory that can be used by one instance of proton.db and LOM.
 
-If the memory limit is exceeded while processing of some request, user will get 500 error.
+If the memory limit is exceeded while processing some request, the user will get a 500 error.
 
 The following suffixes can be used in this parameter:
 * `k` or `K` for kilobytes
@@ -536,7 +536,7 @@ The following suffixes can be used in this parameter:
 Value of **0** turns the limit off.
 
 !!! info
-    This parameter can be set inside the http, server and/or location blocks.
+    This parameter can be set inside the http, server, and/or location blocks.
     
     **Default value**: `1` GB
 
@@ -570,10 +570,10 @@ Depending on the other directives, the default value will be assigned as follows
 ### wallarm_upstream_connect_attempts
 
 Defines the number of immediate reconnects to the Tarantool or Wallarm API.
-If a connection to the Tarantool or API is terminated, then the attempt to reconnect will not occur, except when there are no more connections and the serialized request queue is not empty.
+If a connection to the Tarantool or API is terminated, then the attempt to reconnect will not occur. However, this is not the case when there aren't anymore connections and the serialized request queue is not empty.
 
 !!! note
-    Reconnection may occur through another server because the “upstream” subsystem is responsible for choosing the server.
+    Reconnection may occur through another server, because the “upstream” subsystem is responsible for choosing the server.
     
     This parameter can be set inside the http block only.
 
@@ -617,4 +617,4 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
 ### wallarm_worker_rlimit_vmem
 
 !!! warning "Deprecated"
-    It is now an alias for [wallarm_ts_request_memory_limit](#wallarm_ts_request_memory_limit) directive.
+    It is now an alias for the [wallarm_ts_request_memory_limit](#wallarm_ts_request_memory_limit) directive.
