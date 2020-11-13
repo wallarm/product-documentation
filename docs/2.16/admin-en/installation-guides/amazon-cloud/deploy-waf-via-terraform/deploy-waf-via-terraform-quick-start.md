@@ -67,7 +67,7 @@ Configuration files are located in the `terraform` folder of the repository:
 
 1. Go to the `terraform` folder of the cloned repository:
     ```
-    cd terrafrom-example/terraform
+    cd terraform-example/terraform
     ```
 2. Deploy the whole stack using the following commands:
 
