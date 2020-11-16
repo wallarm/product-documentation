@@ -205,3 +205,19 @@
 code:focus {
   outline: 0;
 }
+
+.services-status-common {
+  padding: .4rem 0;
+  margin: auto .6rem;
+  font-size: .64rem;
+}
+.md-footer-copyright {
+  flex: 1 1 100%;
+  padding: 0 0 .4rem 0;
+  margin-bottom: .6rem;
+}
+
+.md-footer-meta__inner.md-grid {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
