@@ -4,7 +4,25 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
 
-      <!-- Copyright and theme information -->
+      <!-- Wallarm service status -->
+
+      <div class="services-status-common">
+        <a href= "https://status.wallarm.com" target="_blank">Wallarm service status: <span id = "services-status" class = "service-status"></span>
+          <svg id = "status-check-success" style="vertical-align: text-top;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM12.0404 4.99284C12.431 5.38337 12.431 6.01653 12.0404 6.40706L7.45711 10.9904C7.06658 11.3809 6.43342 11.3809 6.04289 10.9904L3.95956 8.90706C3.56904 8.51653 3.56904 7.88337 3.95956 7.49284C4.35009 7.10232 4.98325 7.10232 5.37377 7.49284L6.75 8.86907L10.6262 4.99284C11.0168 4.60232 11.6499 4.60232 12.0404 4.99284Z" fill="#56CC54"/>
+            </svg>   
+          <svg id = "status-check-failed" style="display: none; vertical-align: text-top;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM5.15003 5.15007C5.54056 4.75955 6.17372 4.75955 6.56425 5.15007L8 6.58582L9.43575 5.15007C9.82627 4.75955 10.4594 4.75955 10.85 5.15007C11.2405 5.5406 11.2405 6.17376 10.85 6.56428L9.41421 8.00004L10.85 9.43579C11.2405 9.82631 11.2405 10.4595 10.85 10.85C10.4594 11.2405 9.82627 11.2405 9.43575 10.85L8 9.41425L6.56425 10.85C6.17372 11.2405 5.54056 11.2405 5.15003 10.85C4.75951 10.4595 4.75951 9.82631 5.15003 9.43579L6.58578 8.00004L5.15003 6.56428C4.75951 6.17376 4.75951 5.5406 5.15003 5.15007Z" fill="#F24444"/>
+            </svg>                       
+          </a>
+      </div>
+
+      <!-- Social links -->
+      {% block social %}
+        {% include "partials/social.html" %}
+      {% endblock %}
+
+      <!-- Copyright -->
       <div class="md-footer-copyright">
         {% if config.copyright %}
           <div class="md-footer-copyright__highlight">
@@ -13,10 +31,21 @@
         {% endif %}
       </div>
 
-      <!-- Social links -->
-      {% block social %}
-        {% include "partials/social.html" %}
-      {% endblock %}
     </div>
   </div>
+  <!-- Script to get common Wallarm service status -->
+  <script type="text/javascript" src="https://cdn.statuspage.io/se-v2.js"></script>
+  <script>
+    var sp = new StatusPage.page({ page : '1000hc1f0mzf' });
+    sp.status({
+    success : function(data) {
+      var statusDiv = document.getElementById("services-status");
+      statusDiv.innerHTML = data.status.description;
+      if (data.status.description !== "All Systems Operational") {
+        document.getElementById('status-check-success').style.display = 'none';
+        document.getElementById('status-check-failed').style.display = 'inherit';
+      }
+    }
+  });
+</script>
 </footer>
