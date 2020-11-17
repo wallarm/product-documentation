@@ -254,10 +254,8 @@ nav:
         - Virtual Patching: user-guides/rules/vpatch-rule.md
         - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
       - Triggers:
-        - What are Triggers: user-guides/triggers/triggers.md
-        - Creating Triggers: user-guides/triggers/create-trigger.md
-        - Disabling Triggers: user-guides/triggers/disable-trigger.md
-        - Deleting Triggers: user-guides/triggers/delete-trigger.md
+        - Working with triggers: user-guides/triggers/triggers.md
+        - Trigger examples: user-guides/triggers/trigger-examples.md
       - IP Address Blacklist: user-guides/blacklist.md
       - Settings:
         - Profile: user-guides/settings/account.md
