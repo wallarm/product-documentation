@@ -56,3 +56,19 @@ Please make attention! Notification about incidents is triggered: The number of 
 ```
 
 * `Notification about incidents` is the trigger name
+
+## Notification to Webhook URL if IP address was added to the blacklist
+
+If an IP address was added to the blacklist, the webhook about this event will be sent to Webhook URL.
+
+![!Example of trigger for blacklisted IP](../../images/user-guides/triggers/trigger-example4.png)
+
+Webhook:
+
+```
+{
+    "summary": "Please make attention! Notification about blacklisted IP is triggered: IP 1.1.1.1 was blocked until 2020-11-10 11:48:22 +0300"
+}
+```
+
+* `Notification about blacklisted IP` is the trigger name
