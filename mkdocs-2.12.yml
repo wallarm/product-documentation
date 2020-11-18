@@ -301,5 +301,5 @@ nav:
         - Updating Docker: updating-migrating/docker-container.md
     - Appendix:
       - Glossary: glossary-en.md
-      - Attacks and Vulnerabilities List: attacks-vulns-list.md
+      - Attack and Vulnerability Types: attacks-vulns-list.md
   - FAQ: '!include ./faq/mkdocs.yml'
