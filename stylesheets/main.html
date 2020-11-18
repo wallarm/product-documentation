@@ -21,7 +21,6 @@
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <link rel="stylesheet" href="extra.css?={{ build_date_utc.strftime('%S%f') }}">
 
 {% endblock %}
 
@@ -32,6 +31,9 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="{{ base_url }}/css/lightgallery.min.css">
+    {% for path in config["extra_css"] %}
+    <link rel="stylesheet" href="{{ path | url }}?=1" />
+    {% endfor %}
 {% endblock styles %}
 
 {% block libs %}
@@ -47,7 +49,9 @@
        lightGallery(elements[i]);
     }
     </script>
-    <script src="extra.js?={{ build_date_utc.strftime('%S%f') }}"></script>
+    {% for path in config["extra_javascript"] %}
+    <script src="{{ path | url }}?v=1"></script>
+  {% endfor %}
 {% endblock scripts %}
 
 
