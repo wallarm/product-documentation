@@ -298,5 +298,5 @@ nav:
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
-      - Attacks and Vulnerabilities List: attacks-vulns-list.md
+      - Attack and Vulnerability Types: attacks-vulns-list.md
   - FAQ: '!include ./faq/mkdocs.yml'

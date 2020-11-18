@@ -1,4 +1,4 @@
-#   Attacks and Vulnerabilities List 
+#   Attack and Vulnerability Types 
 
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
 [cwe-78]:   https://cwe.mitre.org/data/definitions/78.html
