@@ -32,7 +32,7 @@
 
 <ol start="1"><li>Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:</li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest.md"
+--8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest-2.12.md"
 
 <ol start="2"><li>Update parameter values following the code comments.</li></ol>
 
