@@ -1,0 +1,1 @@
+--8<-- "2.16/partner-waf-node/connecting-clients.md"
