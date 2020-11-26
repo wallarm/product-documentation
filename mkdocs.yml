@@ -20,7 +20,7 @@ theme:
   features:
     - tabs
   logo: images/wallarm-logo.svg
-  favicon: images/favicon.ico
+  favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
   font:

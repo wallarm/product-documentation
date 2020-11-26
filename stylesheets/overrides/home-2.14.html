@@ -3,48 +3,6 @@
 {% block content %}
   {{ super() }}
 
-  <style>
-
-  .navigation {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 16px;
-    grid-auto-rows: minmax(100px, auto);
-    display: grid;  
-  }
-
-  @media screen and (max-width: 600px) {
-    .navigation {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
-
-  .navigation-card {
-    padding: 24px;
-    border: 1px solid #DAE1EB;
-    border-radius: 8px;
-  }
-
-  .navigation-card h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: hsla(0, 0%, 0%, 0.54);
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
-
-  .navigation-card p {
-    margin-bottom: 0px;
-    margin-top: 5px;
-    color: black;
-  }
-
-  .navigation-card:hover {
-    box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
-    transition: box-shadow 0.3s;
-    transition-timing-function: cubic-bezier(0.25, 0, 0, 0.25);
-  }
-  </style>
-
   <p>Wallarm Advanced WAF protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.</p>
 
   <div class="admonition info"> <p class="admonition-title">Update available</p> <p>We recommend updating Wallarm WAF modules to the latest product version with CentOS 8.x, Envoy and other supported <a href="../updating-migrating/what-is-new/">new features</a>. To update your version to 2.16, please follow the <a href="../updating-migrating/nginx-modules/">instructions</a>.</p> </div>

@@ -40,6 +40,17 @@
           </div>
         {% endif %}
       </div>
+
+      <!-- Button to open search dialogue -->
+      {% if "search" in config["plugins"] %}
+      <label class="md-header-nav__button md-icon" for="__search">
+        {% include ".icons/material/magnify.svg" %}
+      </label>
+      
+      <!-- Search interface -->
+      {% include "partials/search.html" %}
+      {% endif %}
+    
       <!-- Demo button -->
       <a href="https://wallarm.com/?utm_source=Document&utm_medium=Document to Demo&utm_campaign=Document to Demo&utm_content=Document to Demo#request-demo-modal" class="demo-button desktop-button">
         Request a demo
@@ -48,14 +59,5 @@
       <a href="https://wallarm.com/?utm_source=Document&utm_medium=Document to Demo&utm_campaign=Document to Demo&utm_content=Document to Demo#request-demo-modal" class="demo-button mobile-button">
         Demo
       </a>
-      <!-- Button to open search dialogue -->
-      {% if "search" in config["plugins"] %}
-        <label class="md-header-nav__button md-icon" for="__search">
-          {% include ".icons/material/magnify.svg" %}
-        </label>
-  
-        <!-- Search interface -->
-        {% include "partials/search.html" %}
-      {% endif %}
     </nav>
   </header>
