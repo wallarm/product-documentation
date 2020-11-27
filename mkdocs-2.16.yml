@@ -286,6 +286,11 @@ nav:
               - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
               - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
+    - Working with the Partner WAF Node:
+      - Partner scheme overview: partner-waf-node/overview.md
+      - Creating and configuring a partner account: partner-waf-node/creating-partner-account.md
+      - Creating and linking clients: partner-waf-node/connecting-clients.md
+      - Installing and configuring a partner WAF node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
       - WAF node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe WAF node update process: updating-migrating/general-recommendations.md
