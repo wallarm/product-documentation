@@ -40,6 +40,10 @@ a.md-header-nav__button.md-logo:after {
   left: 139px;
 }
 
+.md-typeset .headerlink {
+  display: initial;
+}
+
 /* Navigation tabs */
 
 .md-tabs__link {
@@ -55,12 +59,20 @@ a.md-header-nav__button.md-logo:after {
   font-weight: bold;
 }
 
+a.md-tabs__link:hover {
+  transition: color 0.3s ease;
+}
+
 /* Left navigation */
 
 .md-nav__link {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.md-nav__link:hover {
+  transition: color 0.3s ease;
 }
 
 @media screen and (max-width: 76.1875em) {
@@ -81,7 +93,7 @@ a.md-header-nav__button.md-logo:after {
 
   span.md-nav__icon.md-icon {
     position: unset;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
   }
   svg.navigation-arrow {
     vertical-align: unset;
@@ -231,6 +243,7 @@ img {
 
 .demo-button:hover  {
   background-color: #D85602;
+  transition: all 0.3s ease;
 }
 
 @media screen and (min-width: 601px) {
