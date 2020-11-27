@@ -129,6 +129,15 @@ else {
       githubLink[0].setAttribute('href',newGithubLink);
     }
   }
+  if (activeLinks[0].text === ' Demo videos ') {
+    var githubLink = document.getElementsByClassName("md-content__button md-icon");
+    var wrongLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/demo-videos/";
+    var correctLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/demo-videos/docs/";
+    if (githubLink[0].href.startsWith(wrongLink_videos)) {
+      var newGithubLink = githubLink[0].href.replace(wrongLink_videos, correctLink_videos);
+      githubLink[0].setAttribute('href',newGithubLink);
+    }
+  }
   document.getElementById('versionsDiv').style.display = 'none'
 }
   

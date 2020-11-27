@@ -83,3 +83,4 @@ nav:
     - Home: index.md
   - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'
+  - Demo videos: '!include ./demo-videos/mkdocs.yml'
