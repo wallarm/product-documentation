@@ -81,4 +81,5 @@ edit_uri: ../product-docs-en/edit/master/docs/2.10/
 nav:
   - WAF guides:
     - Home: index.md
+  - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'

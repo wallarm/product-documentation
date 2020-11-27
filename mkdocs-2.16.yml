@@ -204,7 +204,6 @@ nav:
         - Configuring SELinux: admin-en/configure-selinux.md
         - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
         - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md
-      - Wallarm API: admin-en/api-en.md
       - Support of the Scanner Operation:
         - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-whitelisting.md 
         - Scanner Addresses:
@@ -298,4 +297,5 @@ nav:
     - Appendix:
       - Glossary: glossary-en.md
       - Attack and Vulnerability Types: attacks-vulns-list.md
+  - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'

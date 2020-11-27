@@ -110,7 +110,7 @@ if (activeLinks[0].text === ' WAF guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
 }
 else {
-  // Change the link to FAQ articles editing
+  // Change the link to FAQ and Wallarm API articles editing
   if (activeLinks[0].text === ' FAQ ') {
     var githubLink = document.getElementsByClassName("md-content__button md-icon");
     var wrongLink = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/faq/";
@@ -119,6 +119,15 @@ else {
       var newGithubLink = githubLink[0].href.replace(wrongLink, correctLink);
       githubLink[0].setAttribute('href',newGithubLink); 
       }
+  }
+  if (activeLinks[0].text === ' Wallarm API ') {
+    var githubLink = document.getElementsByClassName("md-content__button md-icon");
+    var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/api/";
+    var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/";
+    if (githubLink[0].href.startsWith(wrongLink_api)) {
+      var newGithubLink = githubLink[0].href.replace(wrongLink_api, correctLink_api);
+      githubLink[0].setAttribute('href',newGithubLink);
+    }
   }
   document.getElementById('versionsDiv').style.display = 'none'
 }
