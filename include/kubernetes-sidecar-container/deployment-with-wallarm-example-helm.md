@@ -29,6 +29,8 @@ spec:
           value: {{ .Values.wallarm.deploy_password | quote }}
         - name: DEPLOY_FORCE
           value: "true"
+        - name: WALLARM_ACL_ENABLE
+          value: "true"
         - name: TARANTOOL_MEMORY_GB
           value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
         ports:

@@ -31,8 +31,6 @@ spec:
           value: "password"
         - name: DEPLOY_FORCE
           value: "true"
-        - name: WALLARM_ACL_ENABLE
-          value: "true"
         # Amount of memory in GB for request analytics data, 
         # recommended value is 75% of the total server memory
         - name: TARANTOOL_MEMORY_GB

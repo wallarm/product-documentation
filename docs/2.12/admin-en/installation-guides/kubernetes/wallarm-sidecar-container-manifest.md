@@ -32,7 +32,7 @@
 
 <ol start="1"><li>Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:</li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest.md"
+--8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest-2.12.md"
 
 <ol start="2"><li>Update parameter values following the code comments.</li></ol>
 
@@ -46,13 +46,17 @@
 
 --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-2.12.md"
 
+<ol start="3"><li>Update parameter values following the code comments.</li></ol>
+
 ### Step 3: Updating the Service Object in Kubernetes
 
 <ol start="1"><li>Return to the Kubernetes manifests and open the template that defines the <code>Service</code> object that points to <code>Deployment</code> modified in the previous step. For example:</li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/service-template.md"
+--8<-- "../include/kubernetes-sidecar-container/service-template-manifest.md"
 
-<ol start="2"><li>Make sure the <code>ports.targetPort</code> value is identical to <code>ports.containerPort</code> value that was defined in the Wallarm sidecar container.</li></ol>
+<ol start="2"><li>Change the <code>ports.targetPort</code> value to point to the Wallarm sidecar container port (<code>ports.containerPort</code> defined in the Wallarm sidecar container). For example:</li></ol>
+
+--8<-- "../include/kubernetes-sidecar-container/service-template-sidecar-port-manifest.md"
 
 ### Step 4: Deploying the Manifest to the Kubernetes Cluster
 
