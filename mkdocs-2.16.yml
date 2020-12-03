@@ -180,7 +180,7 @@ nav:
             - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
           - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
           - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
-      - Integration:
+      - Monitoring & Failover:
         - Configuring a Failover Method: admin-en/configure-backup-en.md
         - Using a Mirrored Wallarm Repository:
           - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
