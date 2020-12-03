@@ -85,7 +85,9 @@ nav:
     - About Wallarm WAF:
         - Overview: about-wallarm-waf/overview.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
-        - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
+        - Data management policies:
+          - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
+          - Data retention policy: about-wallarm-waf/data-retention-policy.md
         - Wallarm WAF subscription plans: about-wallarm-waf/subscription-plans.md
     - Quick Start:
       - Prerequisites: quickstart-en/qs-prereq-en.md
