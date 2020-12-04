@@ -10,7 +10,7 @@ This policy describes the method of versioning of different WAF node artifacts: 
 | WAF node version | Release date   | Support until |
 |------------------|----------------|---------------|
 | 2.10 and lower   |                | May 2019      |
-| 2.12             | March 2019     | November 2020 |
+| 2.12             | March 2019     | January 2021  |
 | 2.14             | February 2020  |               |
 | 2.16             | October 2020   |               |
 
@@ -33,10 +33,11 @@ Versions of WAF node packages may differ within the same artifact. For example, 
 
 ## Version support
 
-Wallarm supports 2 latest versions of the WAF node in the following ways:
+Wallarm supports 3 latest versions of the WAF node in the following ways:
 
 * In the latest version, releases bug fixes. May release new features after a special request.
 * In the previous version, releases bug fixes.
+* In the third available version, releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
 When installing a WAF node for the first time, it is recommended to use the latest available version. When installing an additional WAF node in the environment with already installed WAF nodes, it is recommended to use the same minor version in all installations for full compatibility.
 
