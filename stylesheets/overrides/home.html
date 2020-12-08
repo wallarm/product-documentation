@@ -3,48 +3,6 @@
 {% block content %}
   {{ super() }}
 
-  <style>
-
-  .navigation {
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 16px;
-    grid-auto-rows: minmax(100px, auto);
-    display: grid;  
-  }
-
-  @media screen and (max-width: 600px) {
-    .navigation {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
-
-  .navigation-card {
-    padding: 24px;
-    border: 1px solid #DAE1EB;
-    border-radius: 8px;
-  }
-
-  .navigation-card h3 {
-    font-size: 18px;
-    font-weight: bold;
-    color: hsla(0, 0%, 0%, 0.54);
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
-
-  .navigation-card p {
-    margin-bottom: 0px;
-    margin-top: 5px;
-    color: black;
-  }
-
-  .navigation-card:hover {
-    box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
-    transition: box-shadow 0.3s;
-    transition-timing-function: cubic-bezier(0.25, 0, 0, 0.25);
-  }
-  </style>
-
   <p>Wallarm Advanced WAF protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.</p>
 
   <div class="navigation">
@@ -66,7 +24,7 @@
         <p>Customize deployed WAF node settings to get the most out of Wallarm WAF for your company</p>
     </a>  
 
-    <a href="./admin-en/api-en/" class="navigation-card">
+    <a href="./api/overview/" class="navigation-card">
         <h3>Wallarm API</h3>
         <p>Learn how to use Wallarm API to extend WAF node functionality</p>
     </a>

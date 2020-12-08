@@ -20,7 +20,7 @@ theme:
   features:
     - tabs
   logo: images/wallarm-logo.svg
-  favicon: images/favicon.ico
+  favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
   font:
@@ -81,4 +81,6 @@ edit_uri: ../product-docs-en/edit/master/docs/2.10/
 nav:
   - WAF guides:
     - Home: index.md
+  - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'
+  - Demo videos: '!include ./demo-videos/mkdocs.yml'
