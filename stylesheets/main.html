@@ -27,9 +27,6 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="{{ base_url }}/css/lightgallery.min.css">
-    {% for path in config["extra_css"] %}
-    <link rel="stylesheet" href="{{ path | url }}?v=2" />
-    {% endfor %}
 {% endblock styles %}
 
 {% block libs %}
@@ -45,9 +42,6 @@
        lightGallery(elements[i]);
     }
     </script>
-    {% for path in config["extra_javascript"] %}
-    <script src="{{ path | url }}?v=2"></script>
-  {% endfor %}
 {% endblock scripts %}
 
 

@@ -19,7 +19,7 @@ theme:
   custom_dir: stylesheets
   features:
     - tabs
-  logo: images/wallarm-logo.svg
+  logo: images/wallarm-logo-new.svg
   favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github-alt
@@ -42,10 +42,10 @@ extra:
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
 
 extra_css:
-  - 'extra.css'
+  - 'extra_new.css'
 
 extra_javascript:
-  - 'extra.js'
+  - 'extra_new.js'
 
 markdown_extensions:
   - admonition
