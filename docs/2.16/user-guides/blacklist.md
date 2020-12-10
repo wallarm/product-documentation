@@ -62,6 +62,15 @@ To unblock IP addresses, use **Unblock** on the entry with a blocked IP or selec
 
 ![!Unblock IP][img-blacklist-unblock]
 
+!!! warning "Repeated blocking of unblocked IP address"
+    After manual unblocking of the automatically blocked IP address, this IP address will be repeatedly blocked after half of the previous blocking time.
+
+    For example:
+
+    1. IP address was automatically blocked for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [default trigger](triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-3-hours-default-trigger)).
+    2. User unblocked this IP address via the Wallarm Console.
+    3. If 4 different attack vectors are sent from this IP address in less than 30 minutes since IP address unblocking, this IP address will not be added to the blacklist.
+
 ## Review Blocking History
 
 To review the blocking history, choose the period for which you want to get data in the **Choose date** field. By default, the history includes all IP addresses and applications.
