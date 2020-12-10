@@ -35,15 +35,15 @@ Configuration files are located in the `terraform` folder of the repository:
 
 1. Set environment variables with credentials for the Wallarm user with the **Deploy** role:
     ```
-    export TF_VAR_deploy_username=DEPLOY_USERNAME
-    export TF_VAR_deploy_password=DEPLOY_PASSWORD
+    export TF_VAR_deploy_username='DEPLOY_USERNAME'
+    export TF_VAR_deploy_password='DEPLOY_PASSWORD'
     ```
     * `DEPLOY_USERNAME` is the username of the user with the **Deploy** role
     * `DEPLOY_PASSWORD` is the password of the user with the **Deploy** role
 2. Set environment variables with your [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys):
     ```
-    export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY_ID"
-    export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_ACCESS_KEY"
+    export AWS_ACCESS_KEY_ID='YOUR_ACCESS_KEY_ID'
+    export AWS_SECRET_ACCESS_KEY='YOUR_SECRET_ACCESS_KEY'
     ```
     * `YOUR_ACCESS_KEY_ID` is your access key ID
     * `YOUR_SECRET_ACCESS_KEY` is your secret access key

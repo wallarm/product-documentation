@@ -34,7 +34,7 @@ spec:
         # Amount of memory in GB for request analytics data, 
         # recommended value is 75% of the total server memory
         - name: TARANTOOL_MEMORY_GB
-          value: 2
+          value: "2"
         ports:
         - name: http
           # Port on which the Wallarm sidecar container accepts requests 
