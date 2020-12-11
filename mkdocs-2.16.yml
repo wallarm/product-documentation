@@ -86,6 +86,7 @@ nav:
         - Overview: about-wallarm-waf/overview.md
         - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
+        - Attack and Vulnerability Types: attacks-vulns-list.md
         - Data management policies:
           - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
@@ -305,7 +306,6 @@ nav:
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
-      - Attack and Vulnerability Types: attacks-vulns-list.md
   - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'
   - Demo videos: '!include ./demo-videos/mkdocs.yml'
