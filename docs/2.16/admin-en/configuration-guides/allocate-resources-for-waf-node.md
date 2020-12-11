@@ -123,11 +123,11 @@ The NGINX memory consumption can be estimated as follows:
     controller:
       resources:
         limits:
-        cpu: 1000m
-        memory: 1640Mi
+          cpu: 1000m
+          memory: 1640Mi
         requests:
-        cpu: 1000m
-        memory: 1640Mi
+          cpu: 1000m
+          memory: 1640Mi
     ```
 * for other deployment options, use the NGINX configuration files.
 
