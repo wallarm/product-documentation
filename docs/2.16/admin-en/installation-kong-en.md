@@ -198,7 +198,7 @@ Open for editing the configuration file of Tarantool:
     vi /etc/sysconfig/wallarm-tarantool
     ```
 
-Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive.
+Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
 For example:
 
