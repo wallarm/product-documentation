@@ -1,7 +1,5 @@
 # What is new in WAF node 2.16
 
-Below you will find the list of updates in the WAF node 2.16. To stay up‑to‑date about all Wallarm components, you can use our [news portal](https://changelog.wallarm.com/).
-
 ## Changes in supported installation platforms
 
 * Dropped support for the operating system CentOS 6.x
@@ -44,3 +42,7 @@ To update the WAF node, it is recommended to check the general recommendations f
 * [Updating the Docker container with the modules for NGINX](docker-container.md)
 * [Updating NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
 * [Cloud WAF node image](cloud-image.md)
+
+----------
+
+[Other updates in Wallarm products and components →](https://changelog.wallarm.com/)

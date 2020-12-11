@@ -1,4 +1,4 @@
-#   What is new in WAF 2.14
+#   What is new in WAF node 2.14
 
 [link-grpc-docs]:       https://grpc.io/
 [link-http2-docs]:      https://developers.google.com/web/fundamentals/performance/http2
@@ -26,3 +26,7 @@
     *   Amazon Linux 2.
 * Dropped support of operating systems Debian 8.x (jessie) and Ubuntu 14.04 LTS (trusty). Support of Debian 8.x (jessie-backports) is still available.
 *   Support of [blocking requests by IP addresses](../admin-en/configure-ip-blocking-en.md) for Wallarm Ingress controller and WAF node deployed in a Docker container
+
+----------
+
+[Other updates in Wallarm products and components →](https://changelog.wallarm.com/)
