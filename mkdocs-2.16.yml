@@ -148,6 +148,7 @@ nav:
           - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
           - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
+        - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
           - Best Practices in Wallarm Ingress Controller Configuration:
