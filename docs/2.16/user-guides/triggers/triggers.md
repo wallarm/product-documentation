@@ -53,12 +53,7 @@ Filters are used for condition detailing. For example, you can set up reactions 
 
 The following filters are available:
 
-* **URL** (only for the number of requests): full URL to which the request was sent. URL format is:
-
-    * `host:port/path` if requests are sent not to the port 80
-    * `host/path` if requests are sent to the port 80
-
-    For example: `example.com/login`.
+* **URL** (only for the number of requests): full URL to which the request was sent. URL format is `host:port/path` for any `port` value. For example: `example.com:80/login` or `255.255.255.255:80/login`.
 
     !!! warning "Compatibility with other filters"
         This filter can be used with all available filters except **Counter name**.
