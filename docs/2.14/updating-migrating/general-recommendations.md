@@ -60,7 +60,7 @@ Before upgrading, please check the [set of changes](what-is-new.md) and consider
 
 ### New false positives
 
-We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. However each system has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
+We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. However each protected application has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
 
 To analyze the number of new false positives after the update:
 

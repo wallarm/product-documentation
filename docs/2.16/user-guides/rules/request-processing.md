@@ -1,6 +1,6 @@
-# Analyzing requests
+# Analyzing and parsing requests
 
-## Principles of analyzing requests
+## Principles of analyzing and parsing requests
 
 For an effective request analysis, Wallarm WAF uses the principles:
 
@@ -10,13 +10,6 @@ For an effective request analysis, Wallarm WAF uses the principles:
 * Consider the context of data processing. For example:
 
     The parameter `name` can be passed in creation requests both as the product name and as a username. However, the processing code for such requests can be different. To define the method of analyzing such parameters, Wallarm WAF may use the URL from which the requests were sent to or other parameters.
-
-## Rules for analyzing requests
-
-When analyzing requests for attacks, Wallarm WAF uses the rules:
-
-* **Global rules** to protect applications against known security threats like OWASP Top 10. Applied to all requests and applications and configured on the Wallarm side.
-* **Custom rules** to protect specific application parts. Applied to particular requests to all applications or to the application parts. Configured in Wallarm Console.
 
 ## Identifying and parsing the request parts
 
@@ -319,7 +312,3 @@ Used to get names of all elements, parameters, or objects. For example:
 * **get_name** for all GET parameter names
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names
-
-## Detecting an attack in the request
-
-After request parts are parsed, Wallarm WAF compares the parsed data with the metrics in the LOM file. If the parsed request completely matches the definition of the attack or matches the regular expression specified in the LOM file, it will be blocked.

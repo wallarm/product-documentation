@@ -83,7 +83,9 @@ nav:
     - Home: index.md
     - About Wallarm WAF:
         - Overview: about-wallarm-waf/overview.md
+        - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
+        - Attack and Vulnerability Types: attacks-vulns-list.md
         - Data management policies:
           - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
@@ -151,6 +153,7 @@ nav:
           - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
           - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
+        - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
           - Best Practices in Wallarm Ingress Controller Configuration:
@@ -253,7 +256,7 @@ nav:
         - Inspecting Application Profile Rules: user-guides/rules/view.md
         - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
         - Compilation and Update Of Security Rules: user-guides/rules/compiling.md
-        - Analyzing Requests: user-guides/rules/request-processing.md
+        - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
         - Filter Mode Rule: user-guides/rules/wallarm-mode-rule.md
         - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
         - Rules defining attack counters: user-guides/rules/define-counters.md
@@ -306,7 +309,6 @@ nav:
         - Updating Docker: updating-migrating/docker-container.md
     - Appendix:
       - Glossary: glossary-en.md
-      - Attack and Vulnerability Types: attacks-vulns-list.md
   - Wallarm API: '!include ./api/mkdocs.yml'
   - FAQ: '!include ./faq/mkdocs.yml'
   - Demo videos: '!include ./demo-videos/mkdocs.yml'
