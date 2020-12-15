@@ -37,23 +37,27 @@ https://example.com/login/?username=admin&password=123456
 
 To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the treshold of request number sent to user authentication or resource file directory URL is exceeded. Request number treshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
 
-Correlation analysis is conducted by the Wallarm WAF postanalytics module. When behavioral attack is detected, requests sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
+* Correlation analysis is conducted by the Wallarm WAF postanalytics module.
+* Comparison of the received requests number and the threshold for the requests number, and blocking of requests is conducted in the Wallarm Cloud.
+
+When behavioral attack is detected, requests sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
 
 To protect the resource against behavioral attacks, it is required to set the treshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
 
 [Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-!!! info "Restrictions in types of resources protected against brute force"
-    Wallarm WAF analyzes only HTTP traffic for brute‑force attacks.
-
 ## Types of protected resources
 
 Wallarm WAF analyzes HTTP and WebSocket traffic sent to the protected resources:
 
-* HTTP traffic analysis is enabled by default
-* WebSocket traffic analysis should be enabled additionally via the directive [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket)
+* HTTP traffic analysis is enabled by default.
 
-Protected resource API can be designed on the basis of REST, gRPC, or GraphQL.
+    Wallarm WAF analyzes HTTP traffic for [input validation attacks](#input-validation-attacks) and [behavioral attacks](#behavioral-attacks).
+* WebSocket traffic analysis should be enabled additionally via the directive [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket).
+
+    Wallarm WAF analyzes WebSocket traffic only for [input validation attacks](#input-validation-attacks).
+
+Protected resource API can be designed on the basis of REST, gRPC, or GraphQL technologies.
 
 ## Attack detection process
 
@@ -92,7 +96,7 @@ Wallarm WAF can process attacks in the following modes:
 * Monitoring mode: detects attacks and displays information about attacks in the Wallarm Console.
 * Blocking mode: detects, blocks attacks and displays information about attacks in the Wallarm Console.
 
-Wallarm WAF ensures quality request analysis and low level of false positives. However each system has its own specificities, so we recommend analyzing the work of the Wallarm WAF in the monitoring mode before enabling the blocking mode.
+Wallarm WAF ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm WAF in the monitoring mode before enabling the blocking mode.
 
 To control the filtering mode, the directive `wallarm_mode` is used. More detailed information about filtering mode configuration is available within the [link](../admin-en/configure-wallarm-mode.md).
 
