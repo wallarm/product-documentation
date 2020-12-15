@@ -94,7 +94,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
     vi /etc/default/wallarm-tarantool
     ```
 
-2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. For example, to set 24 GB:
+2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator). For example, to set 24 GB:
     ```
     SLAB_ALLOC_ARENA=24
     ```

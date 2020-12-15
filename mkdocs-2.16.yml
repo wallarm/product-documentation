@@ -81,7 +81,6 @@ edit_uri: ../product-docs-en/edit/master/docs/2.16/
 nav:
   - WAF guides:
     - Home: index.md
-    - What is New: updating-migrating/what-is-new.md
     - About Wallarm WAF:
         - Overview: about-wallarm-waf/overview.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
@@ -293,6 +292,7 @@ nav:
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner WAF node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
+      - What is new in WAF node 2.16: updating-migrating/what-is-new.md
       - WAF node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe WAF node update process: updating-migrating/general-recommendations.md
       - WAF node update instructions:

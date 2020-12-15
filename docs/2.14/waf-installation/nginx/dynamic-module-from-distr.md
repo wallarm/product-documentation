@@ -234,7 +234,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. For example, 24 GB:
+2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
     
     ```bash
     SLAB_ALLOC_ARENA=24

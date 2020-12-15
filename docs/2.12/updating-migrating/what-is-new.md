@@ -1,4 +1,4 @@
-# What is new in WAF 2.12
+# What is new in WAF node 2.12
 
 ## Breaking Change
 
@@ -79,3 +79,7 @@ You can deploy WAF node in Kubernetes cluster. Select the appropriate deployment
 * [Installing NGINX Ingress Controller with Integrated Wallarm Services](../admin-en/installation-kubernetes-en.md)	
 * [Installing NGINX Plus Ingress Controller with Integrated Wallarm Services](../admin-en/installation-guides/ingress-plus/introduction.md)	
 * [Installing Wallarm Sidecar Container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
+
+----------
+
+[Other updates in Wallarm products and components →](https://changelog.wallarm.com/)

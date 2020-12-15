@@ -54,7 +54,7 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     vi /etc/sysconfig/wallarm-tarantool
     ```
 
-<ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. For example:</li></ol>
+<ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). For example:</li></ol>
 
 ```
 SLAB_ALLOC_ARENA=10.4
@@ -123,11 +123,11 @@ The NGINX memory consumption can be estimated as follows:
     controller:
       resources:
         limits:
-        cpu: 1000m
-        memory: 1640Mi
+          cpu: 1000m
+          memory: 1640Mi
         requests:
-        cpu: 1000m
-        memory: 1640Mi
+          cpu: 1000m
+          memory: 1640Mi
     ```
 * for other deployment options, use the NGINX configuration files.
 
