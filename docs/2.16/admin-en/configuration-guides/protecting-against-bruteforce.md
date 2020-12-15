@@ -11,6 +11,9 @@ Behavioral attacks are characterized by a large number of requests with differen
 
 [Detailed brute force description →](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)
 
+!!! info "Restrictions in types of resources protected against brute force"
+    Wallarm WAF analyzes only HTTP traffic for brute‑force attacks.
+
 These instructions provide steps to configure brute force protection.
 
 ## Configuration steps

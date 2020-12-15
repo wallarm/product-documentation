@@ -43,6 +43,9 @@ To protect the resource against behavioral attacks, it is required to set the tr
 
 [Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
+!!! info "Restrictions in types of resources protected against brute force"
+    Wallarm WAF analyzes only HTTP traffic for brute‑force attacks.
+
 ## Types of protected resources
 
 Wallarm WAF analyzes HTTP and WebSocket traffic sent to the protected resources:
