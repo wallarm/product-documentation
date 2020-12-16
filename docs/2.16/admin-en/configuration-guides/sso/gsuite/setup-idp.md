@@ -10,7 +10,7 @@
 [doc-setup-sp]:             setup-sp.md
 [doc-metadata-transfer]:    metadata-transfer.md
 
-[link-gsuite-adm-console]:  http://admin.google.com
+[link-gsuite-adm-console]:  https://admin.google.com
 
 !!! info "Prerequisites"
     The following values are used as demonstration values in this guide:

@@ -2,7 +2,7 @@
 [img-using-balancer]:       ../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png
 [img-using-haproxy]:        ../images/admin-guides/using-proxy-or-balancer/using-haproxy-en.png
 
-[link-haproxy-docs]:        http://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor
+[link-haproxy-docs]:        https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor
 [link-nginx-directives]:    https://nginx.org/en/docs/http/ngx_http_realip_module.html
 [link-test-attack]:         ../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack
 
