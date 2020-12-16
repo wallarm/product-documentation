@@ -4,7 +4,7 @@
 [doc-admin-sso-okta]:       okta/overview.md
 
 [link-saml]:                https://wiki.oasis-open.org/security/FrontPage
-[link-saml-sso-roles]:      http://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
+[link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     
 
 You can use Single Sign‑On (SSO) technology to authenticate your company's users to the Wallarm portal if your company already uses a [SAML][link-saml] SSO solution.
 

@@ -15,7 +15,7 @@ Enables additional validation of attacks via the **libdetection** library. **lib
 
 **libdetection** parses malicious requests detected by **libproton** and checks these requests for attacks. If **libdetection** does not confirm the attack, then the request will not be defined as a malicious request and will not be blocked (if the WAF node is working in the `block` mode).
 
-To allow **libdetection** to parse and check the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
+To allow **libdetection** to parse and check the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
@@ -122,7 +122,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     wallarm_acl_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
 
-    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
+    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
 
 * Blocking message return or the block page and custom response code described in the `location` block:
 
@@ -210,7 +210,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     wallarm_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
 
-    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
+    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
 
 * Blocking message return or the block page and custom response code described in the `location` block:
 

@@ -106,7 +106,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     wallarm_acl_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
 
-    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
+    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
 
 * Blocking message return or the block page and custom response code described in the `location` block:
 
@@ -194,7 +194,7 @@ By default, the response code 403 and default NGINX block page are returned to t
     wallarm_block_page &/usr/share/nginx/html/block.html response_code=445;
     ```
 
-    You can use [NGINX variables](http://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
+    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
 
 * Blocking message return or the block page and custom response code described in the `location` block:
 
