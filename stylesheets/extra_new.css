@@ -425,6 +425,27 @@ button.md-clipboard.md-icon {
   top: 1.125em;
 }
 
+.md-typeset h1 code, .md-typeset h2 code, .md-typeset h3 code, .md-typeset h4 code, .md-typeset h5 code, .md-typeset h6 code {
+  padding: 6px 8px;
+  color: black;
+}
+
+.md-typeset h1 code {
+  font-size: 18px;
+}
+
+.md-typeset h2 code {
+  font-size: 16px;
+}
+
+.md-typeset h3 code {
+  font-size: 14px;
+}
+
+.md-typeset h4 code {
+  font-size: 12px;
+}
+
 /* Search bar */
 
 .md-search__form {
