@@ -15,15 +15,15 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
 
 ## Requirements
 
-* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in the Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall.
 
 ## Options for running the container
 
 The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
 
-* **In the environment variables**. This option allows to configure only basic WAF node parameters, the most [parameters](../../configuration-guides/envoy/fine-tuning.md) cannot be changed through environment variables.
-* **In the mounted configuration file**. This option allows to configure all the WAF node [parameters](../../configuration-guides/envoy/fine-tuning.md).
+* **In the environment variables**. This option allows for configuration of only basic WAF node parameters, the most [parameters](../../configuration-guides/envoy/fine-tuning.md) cannot be changed through environment variables.
+* **In the mounted configuration file**. This option allows for configuration og all the WAF node [parameters](../../configuration-guides/envoy/fine-tuning.md).
 
 ## Run the container passing the environment variables
 
@@ -31,8 +31,8 @@ You can pass the following basic WAF node settings to the container via the opti
 
 Environment variable | Description| Required
 --- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`. | No
@@ -52,9 +52,9 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
 * Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
-* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with WAF node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://ENVOY_BACKEND:80`.
@@ -72,8 +72,8 @@ To run the image:
 
     Environment variable | Description| Required
     --- | ---- | ----
-    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
+    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 
 2. Mount the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory via the `-v` option.
@@ -89,9 +89,9 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
 * Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
-* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with WAF node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://ENVOY_BACKEND:80`.
@@ -109,5 +109,6 @@ The log file rotation is preconfigured and enabled by default. You can adjust th
     ```
 
     If the WAF node works in the `block` mode, the request will be blocked and the code `403 blocked by wallarm filter` will be returned.
+
 2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks.png)
