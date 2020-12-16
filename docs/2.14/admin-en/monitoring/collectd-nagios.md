@@ -16,7 +16,7 @@
 
 [anchor-header-7]:          #7-add-commands-to-the-nrpe-service-configuration-file-on-the-filter-node-to-get-the-required-metrics
 
-#   Exporting Metrics to Nagios via the `collectd-nagios` Utility
+#   Exporting Metrics to Nagios via the `collectd‑nagios` Utility
 
 This document provides an example of exporting filter node metrics to the [Nagios][link-nagios] monitoring system (the [Nagios Core][link-nagios-core] edition is suggested; however, this document is suitable for any Nagios edition) using the [`collectd-nagios`][link-collectd-nagios] utility.
 

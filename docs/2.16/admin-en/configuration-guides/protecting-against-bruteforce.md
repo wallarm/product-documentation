@@ -69,3 +69,9 @@ You can configure several triggers for brute force protection.
     ![!Dirbust attack in the interface](../../images/user-guides/events/dirbust-attack.png)
 
     To search for attacks, you can use the filters, for example: `dirbust` for dirbust attacks, `brute` for brute‑force attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
+
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0R_2wL5_a-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

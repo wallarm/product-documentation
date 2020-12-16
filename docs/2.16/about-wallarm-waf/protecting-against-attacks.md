@@ -128,3 +128,15 @@ All detected attacks are displayed in the Wallarm Console → **Events** section
 For more information on managing attacks, see the instructions on [working with attacks](../user-guides/events/analyze-attack.md).
 
 ![!Attacks view](../images/user-guides/events/check-attack.png)
+
+## Demo videos
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+---------
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/0R_2wL5_a-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
