@@ -1,5 +1,3 @@
-[link-using-filters]:       use-filter.md
-
 [anchor1]:      #search-by-object-type
 [anchor2]:      #search-by-attack-type-or-vulnerability-type
 [anchor3]:      #search-by-the-attack-target-or-the-vulnerability-target
@@ -55,9 +53,7 @@ Examples of search requests:
 * `attacks 2-9/2018`: to search for all attacks from February to September 2018.
 * `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks, incidents, and vulnerabilities on `/catalog/import.php` path since yesterday.
 
-In addition to using the search string, you can retrieve data using filters (see [Using Filters][link-using-filters]).
-
-Parameters you enter into the search string will automatically duplicate in the filters and vice versa.
+In addition to using the search string, you can retrieve data using filters. Parameters you enter into the search string will automatically duplicate in the filters and vice versa.
 
 !!! info "Save as a filter"
     Any search query or combination of filters can be saved using the *Save as template* button and quickly accessed later with the *Searches* drop-down menu.
@@ -285,6 +281,3 @@ Examples:
 *   `attacks incidents !request_id:<requestId>`: to search for attacks and incidents with the `request_id` not equal to `<requestId>`.
 *   `attacks incidents request_id`: to search for attacks and incidents with any `request_id`.
 *   `attacks incidents !request_id`: to search for attacks and incidents without any `request_id`.
-
-!!! info "See also"
-    [Using filters][link-using-filters]

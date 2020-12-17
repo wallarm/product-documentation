@@ -238,7 +238,6 @@ nav:
         - Working with False Vulnerabilities: user-guides/vulnerabilities/false-vuln.md
       - Search and Filters:
         - Using Search: user-guides/search-and-filters/use-search.md
-        - Using Filters: user-guides/search-and-filters/use-filter.md
         - Creating a Custom Report: user-guides/search-and-filters/custom-report.md
       - Scanner:
         - Scanner Overview: user-guides/scanner/intro.md
