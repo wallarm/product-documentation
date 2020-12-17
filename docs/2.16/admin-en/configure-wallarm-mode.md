@@ -148,8 +148,10 @@ In the *General* tab, you can specify one of the following filtering modes:
     
 ![!The general settings tab][img-general-settings]
 
-!!! info "The Wallarm Cloud and Filter Node Synchronization"
-    The rules defined on the Wallarm cloud are applied during the Wallarm cloud and filter node synchronization process, which is conducted once every 15 minutes.
+!!! info "The Wallarm Cloud and WAF node synchronization"
+    The rules defined on the Wallarm Cloud are applied during the Wallarm Cloud and WAF node synchronization process, which is conducted once every 2 minutes.
+
+    [More details on the WAF node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ## The Filtering Mode Rules in the *Rules* Tab
 
@@ -162,8 +164,10 @@ For more detailed information about working with rules in the *Rules* tab, proce
 
 To see the step-by-step guide for creating a rule that manages the filtration mode, proceed to this [link][link-mode-rules].
 
-!!! info "The Wallarm Cloud and Filter Node Synchronization"
-    The rules defined on the Wallarm cloud are applied during the Wallarm cloud and filter node synchronization process, which is conducted once every 15 minutes.
+!!! info "The Wallarm Cloud and WAF node synchronization"
+    The rules defined on the Wallarm Cloud are applied during the Wallarm Cloud and WAF node synchronization process, which is conducted once every 2 minutes.
+
+    [More details on the WAF node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ## The Filtration Mode Configuration Example
 

@@ -110,7 +110,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 ## 6. Connect the Filter Node to the Wallarm Cloud
 
---8<-- "../include/connect-cloud-node-cloud-en.md"
+--8<-- "../include/connect-cloud-node-cloud-en-2.16.md"
 
 ## 7. Set Up the Filter Node for Using a Proxy Server
 

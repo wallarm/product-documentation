@@ -60,7 +60,7 @@ Connect the WAF node to Wallarm Cloud using the **cloud WAF node token** or Wall
         ```
 4. Paste the copied token value.
 
-The WAF node will now synchronize with the cloud every 5 seconds according to the default synchronization configuration. You can change synchronization configuration in the file `/etc/wallarm/syncnode` following these [instructions](../configure-cloud-node-synchronization-en.md).
+The WAF node will now synchronize with the cloud every 2 minutes according to the default synchronization configuration. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#cloud-waf-node-and-wallarm-cloud-synchronization)
 
 #### Using the administrator login and password
 
@@ -76,6 +76,8 @@ The WAF node will now synchronize with the cloud every 5 seconds according to th
         ```    
 2. Provide your Wallarm administrator account's login and password.
 3. Enter the name of the new WAF node or press Enter to use the virtual machine name.
+
+The WAF node will now synchronize with the cloud every 2 minutes according to the default synchronization configuration. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-waf-node-and-wallarm-cloud-synchronization)
 
 ### 4. Update Wallarm WAF configuration
 
