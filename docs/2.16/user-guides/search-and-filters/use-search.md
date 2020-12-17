@@ -52,6 +52,9 @@ The search field accepts queries with attributes and modifiers similar to human 
 
 When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
 
+!!! info "Setting the attribute value to NOT"
+    To negate the attribute value, please use `!` before the attribute or modifier name. For example: `attacks !ip:111.111.111.111` to show all attacks originated from any IP address excluding `111.111.111.111`.
+
 Below you will find the list of attributes and modifiers available for use in search queries.
 
 ### Search by object type
@@ -181,6 +184,26 @@ It is possible to search by the total number of IP addresses that are related to
 *   `ip:1000+ last month`—search for attacks and incidents over the past month for which the number of unique IP addresses is more than 1000 (equivalent to `attacks incidents ip:1000+ last month`).
 *   `xss ip:100+`—search for all cross‑site scripting attacks and incidents. The search result will be empty if the number of attacking IP addresses (with the XSS attack type) is less than 100.
 *   `xss p:id ip:100+`—search for all XSS attacks and incidents related to the id parameter (`?id=aaa`). This will return results only if the number of different IP addresses exceeds 100.
+
+### Search by the data center the IP address belongs to
+
+To search by the data center, to which the IP address originated the attacks belongs, use the `source:` prefix.
+
+This attribute value can be:
+
+* `tor` for the Tor network
+* `proxy` for the public or web proxy server
+* `vpn` for VPN
+* `aws` for Amazon
+* `azure` for Microsoft Azure
+* `gce` for Google Cloud Platform
+* `dc` for other data centers
+
+### Search by the country in which the IP address is registered
+
+To search by the country, in which the IP address originated the attacks is registered, use the `country:` prefix.
+
+The country name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
 
 ### Search by server response status
 
