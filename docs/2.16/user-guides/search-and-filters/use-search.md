@@ -135,7 +135,16 @@ There are the following methods to specify the period:
 * By date: `01/10/2019-01/14/2019`
 * By date and time (seconds are disregarded): `01/10/2019 11:11`, `11:30-12:22`, `01/10/2019 11:12-01/14/2019 12:14`
 * With relation to a certain moment of time: `>01/10/19`
-* Using string aliases: `yesterday` equal to yesterday's date or `today` equal to today's date
+* Using string aliases:
+    * `yesterday` equal to yesterday's date
+    * `today` equal to today's date
+    * `last <unit>` equal to the period from the entire past unit start to current date and time
+
+        `week`, `month`, `year` or the number of these units can be used as `<unit>`. For example: `last week`, `last 3 month` or `last 3 months`.
+    
+    * `this <unit>` equal to current unit
+
+        `week`, `month`, `year` can be used as `<unit>`. For example: `this week` will return events detected on Monday, Tuesday and Wednesday this week if today is Wednesday.
 
 Date and time format depends on the settings specified in your [profile](../settings/account.md#changing-your-date-time-format):
 
