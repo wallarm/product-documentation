@@ -206,7 +206,6 @@ This attribute value can be:
 * `aws` for Amazon
 * `azure` for Microsoft Azure
 * `gce` for Google Cloud Platform
-* `dc` for other data centers
 
 ### Search by the country in which the IP address is registered
 
