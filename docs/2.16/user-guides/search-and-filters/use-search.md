@@ -44,10 +44,10 @@ The search field accepts queries with attributes and modifiers similar to human 
 * `attacks xss`: to search for all [XSS-attacks][al-xss]
 * `attacks today`: to search for all attacks that happened today
 * `vulns sqli`: to search for [SQL-injection][al-sqli] vulnerabilities
-* `vulns 01/01/2019-01/10/2019`: to search for vulnerabilities within a certain period of time
-* `xss 01/14/2019`: to search for all vulnerabilities, suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 January 2019
-* `p:xss 01/14/2019`: to search for all vulnerabilities, suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 January 2019
-* `attacks 2-9/2018`: to search for all attacks from February to September 2018
+* `vulns 11/01/2020-11/10/2020`: to search for vulnerabilities within a certain period of time
+* `xss 12/14/2020`: to search for all vulnerabilities, suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 December 2020
+* `p:xss 12/14/2020`: to search for all vulnerabilities, suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 December 2020
+* `attacks 9-12/2020`: to search for all attacks from September to December 2020
 * `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks, incidents, and vulnerabilities on `/catalog/import.php` path since yesterday
 
 When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
@@ -132,9 +132,9 @@ Specify time period in the search string. If the period is not specified, the se
 
 There are the following methods to specify the period:
 
-* By date: `01/10/2019-01/14/2019`
-* By date and time (seconds are disregarded): `01/10/2019 11:11`, `11:30-12:22`, `01/10/2019 11:12-01/14/2019 12:14`
-* With relation to a certain moment of time: `>01/10/19`
+* By date: `11/10/2020-11/14/2020`
+* By date and time (seconds are disregarded): `11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
+* With relation to a certain moment of time: `>11/10/20`
 * Using string aliases:
     * `yesterday` equal to yesterday's date
     * `today` equal to today's date
