@@ -2,7 +2,7 @@
 
 The WAF node regularly synchronizes with the Wallarm Cloud to:
 
-* Get updates for [traffic processing rules (LOM)](../about-wallarm-waf/protecting-against-attacks.md#userdefined-detection-rules) and other settings that affect the traffic processing (for example, [triggers ](../user-guides/triggers/triggers.md) and blacklisted IP addresses)
+* Get updates for [traffic processing rules (LOM)](../about-wallarm-waf/protecting-against-attacks.md#userdefined-detection-rules)
 * Get updates of [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
 * Send data on detected attacks and vulnerabilities
 * Send metrics for processed traffic
@@ -122,7 +122,7 @@ To change synchronization parameters, proceed with the following steps:
 
 ### Interval between WAF node and Wallarm Cloud synchronizations
 
-By default, the WAF node synchronizes with the Wallarm Cloud every 120 seconds (2 minutes). You can change the synchronization interval via the system environment variable `WALLARM_SYNCNODE_INTERVAL`.
+By default, the WAF node synchronizes with the Wallarm Cloud every 120‑240 seconds (2‑4 minutes). You can change the synchronization interval via the system environment variable `WALLARM_SYNCNODE_INTERVAL`.
 
 To change the interval between regular WAF node and Wallarm Cloud synchronizations:
 

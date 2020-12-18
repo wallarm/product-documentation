@@ -50,7 +50,7 @@ To connect the node to the cloud using the token, proceed with the following ste
         
 1. Paste the filter node token from your clipboard. 
 
-Your WAF node will now synchronize with the Cloud every 10 minutes according to the default synchronization configuration.
+Your WAF node will now synchronize with the Cloud every 10‑15 minutes according to the default synchronization configuration.
 
 !!! info "WAF node and Cloud synchronization configuration"
     After running the `addcloudnode` script, the `/etc/wallarm/syncnode` file containing the WAF node and Cloud synchronization settings will be created. The settings of the WAF node and Cloud synchronization can be changed via the `/etc/wallarm/syncnode` file.
@@ -88,7 +88,7 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
     
     Ensure the access is not blocked by a firewall.
 
-Your WAF node will now synchronize with the Cloud every 10 minutes according to the default synchronization configuration.
+Your WAF node will now synchronize with the Cloud every 10‑15 minutes according to the default synchronization configuration.
 
 !!! info "WAF node and Cloud synchronization configuration"
     After running the `addnode` script, the `/etc/wallarm/node.yaml` file containing the WAF node and Cloud synchronization settings and other settings required for a correct WAF node operation will be created. The settings of the WAF node and Cloud synchronization can be changed via the `/etc/wallarm/node.yaml` file.

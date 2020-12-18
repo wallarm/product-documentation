@@ -2,7 +2,7 @@
 
 The WAF node regularly synchronizes with the Wallarm Cloud to:
 
-* Get updates for [traffic processing rules (LOM)](../about-wallarm-waf/protecting-against-attacks.md#userdefined-detection-rules) and other settings that affect the traffic processing (for example, [triggers ](../user-guides/triggers/triggers.md) and blacklisted IP addresses)
+* Get updates for [traffic processing rules (LOM)](../about-wallarm-waf/protecting-against-attacks.md#userdefined-detection-rules)
 * Get updates of [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
 * Send data on detected attacks and vulnerabilities
 * Send metrics for processed traffic
