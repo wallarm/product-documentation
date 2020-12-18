@@ -23,6 +23,8 @@ To allow **libdetection** to parse and check the request body, please ensure tha
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
+    To enable libdetection in the Wallarm Ingresss controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
+
     Default value is `off`.
 
 ### wallarm_acl
