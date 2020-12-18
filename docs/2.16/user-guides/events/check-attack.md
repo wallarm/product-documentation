@@ -1,5 +1,4 @@
 [link-using-search]:    ../search-and-filters/use-search.md
-[link-using-filters]:   ../search-and-filters/use-filter.md
 [link-verify-attack]:   ../events/verify-attack.md
 [link-check-vulns]:     ../vulnerabilities/check-vuln.md
 
