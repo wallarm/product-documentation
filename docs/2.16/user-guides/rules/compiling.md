@@ -10,4 +10,6 @@ To analyze requests and detect attacks, the filtering node relies on the LOM (Lo
 
 The process of compiling the LOM typically takes from a few minutes for the simple application to up to an hour for resources with complex structures. Monitoring the progress of LOM assembly is currently unavailable, although it is on our roadmap. One indicator of the LOM processing progress is when and how it gets downloaded to the filter nodes. This information is accessible from the *Nodes* tab.
 
-The LOM downloads happen during filter nodes with Wallarm Cloud synchronization. This synchronization is launched every 15 minutes. You can verify the status of LOM downloads in the log found at `/var/log/wallarm/syncnode.log`.
+The LOM downloads happen during filter nodes with Wallarm Cloud synchronization. This synchronization is launched every 2‑4 minutes. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+
+You can verify the status of LOM downloads in the log found at `/var/log/wallarm/syncnode.log`.

@@ -4,7 +4,6 @@
 [link-wl-console-eu]:              https://my.wallarm.com/
 [link-wl-console-users-us]:        https://us1.my.wallarm.com/settings/users
 [link-wl-console-users-eu]:        https://my.wallarm.com/settings/users
-[link-syncnode]:               ../admin-en/configure-cloud-node-synchronization-en.md
 
 [anchor-token]:                      #connecting-using-the-filter-node-token
 [anchor-credentials]:                      #connecting-using-your-cloud-account-login-and-password
@@ -50,7 +49,7 @@ To connect the node to the cloud using the token, proceed with the following ste
         
 1. Paste the filter node token from your clipboard. 
 
-Your WAF node will now synchronize with the Cloud every 10‑15 minutes according to the default synchronization configuration.
+Your WAF node will now synchronize with the Cloud every 2‑4 minutes according to the default synchronization configuration.
 
 !!! info "WAF node and Cloud synchronization configuration"
     After running the `addcloudnode` script, the `/etc/wallarm/syncnode` file containing the WAF node and Cloud synchronization settings will be created. The settings of the WAF node and Cloud synchronization can be changed via the `/etc/wallarm/syncnode` file.
@@ -88,9 +87,9 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
     
     Ensure the access is not blocked by a firewall.
 
-Your WAF node will now synchronize with the Cloud every 10‑15 minutes according to the default synchronization configuration.
+Your WAF node will now synchronize with the Cloud every 2‑4 minutes according to the default synchronization configuration.
 
 !!! info "WAF node and Cloud synchronization configuration"
-    After running the `addnode` script, the `/etc/wallarm/node.yaml` file containing the WAF node and Cloud synchronization settings and other settings required for a correct WAF node operation will be created. The settings of the WAF node and Cloud synchronization can be changed via the `/etc/wallarm/node.yaml` file.
+    After running the `addnode` script, the `/etc/wallarm/node.yaml` file containing the WAF node and Cloud synchronization settings and other settings required for a correct WAF node operation will be created. The settings of the WAF node and Cloud synchronization can be changed via the `/etc/wallarm/node.yaml` file and system environment variables.
     
     [More details on the WAF node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md#regular-waf-node-and-wallarm-cloud-synchronization)
