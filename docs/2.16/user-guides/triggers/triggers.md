@@ -10,9 +10,9 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 You can configure all the trigger components:
 
-* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, blacklisted IP address, new user added to the account.
+* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, blacklisted IP address, and new user added to the account.
 * **Filters**: condition details. For example: attack types.
-* **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address or marking requests as the brute‑force attack.
+* **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
 Triggers are configured in the **Triggers** section of the Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
 
@@ -81,16 +81,16 @@ A reaction is an action that should be performed if the specified condition and 
 * Add IP to the blacklist.
 * Send a notification to the messenger, SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 
-Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition **Number of attacks**:
+Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:
 
 ![!Choosing an integration](../../images/user-guides/triggers/select-integration.png)
 
 ### Step 4: Saving the trigger
 
-1. Click the **Create** button in the trigger creation modal window.
+1. Click the **Create** button in the trigger creation model window.
 2. Specify the trigger's name and description (if required) and click the **Done** button.
 
-If the trigger name and description are not specified, the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
+If the trigger name and description are not specified, then the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
 
 ## Disabling and deleting triggers
 
