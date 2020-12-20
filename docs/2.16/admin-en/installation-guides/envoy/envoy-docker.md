@@ -16,14 +16,14 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in the Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall.
+* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
 The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
 
 * **In the environment variables**. This option allows for configuration of only basic WAF node parameters, the most [parameters](../../configuration-guides/envoy/fine-tuning.md) cannot be changed through environment variables.
-* **In the mounted configuration file**. This option allows for configuration og all the WAF node [parameters](../../configuration-guides/envoy/fine-tuning.md).
+* **In the mounted configuration file**. This option allows for configuration of all the WAF node [parameters](../../configuration-guides/envoy/fine-tuning.md).
 
 ## Run the container passing the environment variables
 
@@ -109,6 +109,5 @@ The log file rotation is preconfigured and enabled by default. You can adjust th
     ```
 
     If the WAF node works in the `block` mode, the request will be blocked and the code `403 blocked by wallarm filter` will be returned.
-
 2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks.png)
