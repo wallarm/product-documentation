@@ -28,13 +28,13 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 Users of Wallarm clients can have the following roles:
 
 * **Administrator** with access to all Wallarm WAF settings
-* **Analyst** with access view main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Analyst** with access to main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm WAF settings
 * **Deploy** with access to create WAF nodes using the `addnode` script and with no access to Wallarm Console
 
 For Wallarm partners, global roles **Global Administrator**, **Global Analyst**, **Global Read Only** are also available. Global roles provide users with access to the partner account and linked client accounts, regular roles provide users with access only to the partner account.
 
-More detailed information about access of different user roles to Wallarm WAF entitites is provided in the table below. Entity management covers entity creating, editing and deleting.
+More detailed information about access of different user roles to Wallarm WAF entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
 
 | Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | Deploy                            |
 |---------------------|--------------------------------------|--------------------------|------------------------------|-----------------------------------|
@@ -44,7 +44,7 @@ More detailed information about access of different user roles to Wallarm WAF en
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
 | **Scanner**         | View and manage                      | View and manage          | View                         | -                                 |
 | **Triggers**        | View and manage                      | -                        | -                            | -                                 |
-| **Blacklist**       | View, manage and export              | View, manage and export  | View and export              | -                                 |
+| **Blacklist**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
 | **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
 | **WAF mode**        | View and manage                      | View                     | View                         | -                                 |
 | **Applications**    | View and manage                      | View                     | View                         | -                                 |
@@ -66,7 +66,7 @@ You can view user lists in the following tabs:
 
 You can click the cells in the table header to sort users by name, role, email, and last login date.
 
-Also, you can choose one or several users by checking the checkboxes on the left from a user name; therefore, you will be able to do operations on a group of users. 
+You also can choose one or several users by checking the checkboxes on the left of the usernames; therefore, you will be able to do operations on a group of users. 
 
 ## Searching Users
 
@@ -78,7 +78,7 @@ You can use the search field above the table to search users by name, email, or 
 
 1.  In the *Users* tab of the *Settings* section, click the *Add user* button.
 2.  Select the user role from the dropdown list.
-3.  Enter a first and a last name, an email, and a temporary password for the user.
+3.  Enter a first and last name, email, and temporary password for the user.
 
     ![!New user form][img-add-user]
 
