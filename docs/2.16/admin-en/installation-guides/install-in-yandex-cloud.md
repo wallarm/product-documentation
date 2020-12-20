@@ -12,16 +12,20 @@ These instructions describe how to configure a virtual machine with [Wallarm WAF
 
 ### Yandex.Cloud configuration
 
-* Access to [Yandex.Cloud management console](https://console.cloud.yandex.com/)
-* Status of account payment displayed as `ACTIVE` or `TRIAL_ACTIVE` on the [billing page](https://console.cloud.yandex.com/billing)
-* Create a folder. By default, the folder `default` is created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
-* Create 2048‑bit RSA key pair for SSH connection. To create a key pair, please follow these [instructions](https://cloud.yandex.com/docs/compute/operations/vm-connect/ssh#creating-ssh-keys)
+Before starting WAF node installation, please check that you meet all these requirements:
+
+* Have access to the [Yandex.Cloud management console](https://console.cloud.yandex.com/)
+* Have a payment account in the status of `ACTIVE` or `TRIAL_ACTIVE` displayed on the [billing page](https://console.cloud.yandex.com/billing)
+* Created folder. By default, the folder `default` will be created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
+* Created 2048‑bit RSA key pair for SSH connection. To create a key pair, please follow these [instructions](https://cloud.yandex.com/docs/compute/operations/vm-connect/ssh#creating-ssh-keys)
 
 ### Wallarm WAF configuration
 
-* Access the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com:444` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
-* Executing all commands as a superuser (e.g. `root`)
+Before starting WAF node installation, please check that you meet all these requirements:
+
+* Have access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Have access to `https://api.wallarm.com:444` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com:444` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Execute all commands as a superuser (e.g. `root`)
 
 ## Installation
 
@@ -90,20 +94,20 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 
 #### Request filtering mode
 
-By default, the WAF node is in the status `monitoring` and does not block requests. Change the filtering mode within the NGINX settings to block requests by:
+By default, the WAF node is in the status `monitoring` and does not block requests. To block requests, change the filtering mode within the NGINX settings by following these instructions:
 
-1. Opening the file `/etc/nginx/conf.d/wallarm.conf`:
+1. Open the file `/etc/nginx/conf.d/wallarm.conf`:
 
     ```bash
     sudo vim /etc/nginx/conf.d/wallarm.conf
     ```
-2. Commenting out the line `wallarm_mode monitoring;`.
-3. Opening the file `/etc/nginx/nginx.conf`:
+2. Comment out the line `wallarm_mode monitoring;`.
+3. Open the file `/etc/nginx/nginx.conf`:
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-4. Adding the line `wallarm_mode block;` to the `http` block:
+4. Add the line `wallarm_mode block;` to the `http` block:
 
 ??? "Example of the file `/etc/nginx/nginx.conf`"
 
@@ -184,7 +188,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
     ```bash
     SLAB_ALLOC_ARENA=24
     ```
-3. Apply changes, restart Tarantool:
+3. To apply changes, restart Tarantool:
 
     ```bash
     sudo systemctl restart wallarm-tarantool
