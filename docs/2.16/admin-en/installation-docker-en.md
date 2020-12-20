@@ -12,7 +12,7 @@
 
 ## Image overview
 
-The WAF node can be deployed as a Docker container. The Docker container is hefty and contains all subsystems of the WAF node.
+The WAF node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the WAF node.
 
 The functionality of the WAF node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
@@ -34,7 +34,7 @@ The functionality of the WAF node installed inside the Docker container is compl
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall.
+* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
