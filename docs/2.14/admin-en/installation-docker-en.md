@@ -12,12 +12,12 @@
 
 ## Image overview
 
-The WAF node can be deployed as a Docker container. The Docker container is a fat one and contains all subsystems of the WAF node.
+The WAF node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the WAF node.
 
 The functionality of the WAF node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
 !!! info "If the Wallarm WAF image is already deployed in your environment"
-    If you deploy Wallarm WAF image instead of already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
+    If you deploy the Wallarm WAF image instead of the already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
 
     To check the installed version, run the following command in the container:
 
@@ -34,13 +34,13 @@ The functionality of the WAF node installed inside the Docker container is compl
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
 The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
 
-* **In the environment variables**. This option allows to configure only basic WAF node parameters, the most [directives](configure-parameters-en.md) cannot be changed through environment variables.
+* **In the environment variables**. This option allows for configuration of only basic WAF node parameters. Most [directives](configure-parameters-en.md) cannot be changed through environment variables.
 * **In the mounted configuration file**. This option allows to configure all the WAF node [directives](configure-parameters-en.md).
 
 ## Run the container passing the environment variables
@@ -49,8 +49,8 @@ You can pass the following basic WAF node settings to the container via the opti
 
 Environment variable | Description| Required
 --- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
 `NGINX_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`. | No
@@ -70,9 +70,9 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
-* Creates the file `default` with minimal NGINX configuration and passed WAF node configuration in the `/etc/nginx/sites-enabled` container directory.
-* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
+* Creates the file `default` with minimal NGINX configuration and passes WAF node configuration in the `/etc/nginx/sites-enabled` container directory.
+* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with WAF node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://NGINX_BACKEND:80`.
@@ -117,8 +117,8 @@ To run the image:
 
     Environment variable | Description| Required
     --- | ---- | ----
-    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
+    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 
 2. Mount the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory via the `-v` option.
@@ -134,7 +134,7 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in Wallarm Console → **Nodes**.
+* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
 * Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with WAF node UUID and secret key
@@ -159,7 +159,7 @@ The logging is enabled by default. The log directories are:
 
 To configure extended logging of the WAF node variables, please use these [instructions](configure-logging.md).
 
-By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. By default, the logs rotate once every 24 hours. Changing the rotation parameters through environment variables is not possible. 
+By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
 
 ## Monitoring configuration
 
@@ -189,7 +189,7 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
 
 ## Configuring the use cases
 
-The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration optins:
+The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration options:
 
 * [Configuration of the filtering mode][waf-mode-instr]
 * [Logging WAF node variables][logging-instr]
