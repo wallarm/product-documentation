@@ -1,12 +1,12 @@
 # Detecting vulnerabilities
 
-## What is vulnerability?
+## What is a vulnerability?
 
 A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk. The information security risks are:
 
 * Unauthorized data access: for example, access to read and modify user data
 * Denial of service
-* Data corruption and other
+* Data corruption and much more
 
 A vulnerability is not a characteristic of the Internet. A vulnerability is a characteristic of your system. Whether or not you have vulnerabilities does not depend on your Internet traffic. The Internet traffic, however, can be used to detect the vulnerabilities.
 
@@ -28,16 +28,16 @@ Passive vulnerability detection is enabled by default.
 
 #### How it works
 
-The module **Attack rechecker** reproduces each attack from the processed traffic. This mechanism allows the detection of vulnerabilities that could have been exploited during the attack. When reproducing attacks:
+The module **Attack rechecker** reproduces each attack from the processed traffic. This mechanism allows for the detection of vulnerabilities that could have been exploited during the attack. When reproducing attacks:
 
 * Authentication data (cookies, basic-auth, viewstate) is deleted from the original requests
-* Attack vectors possible within the detected attack type are sent in the request
+* Possible attack vectors within the detected attack type are sent in the request
 
 [List of vulnerabilities that can be detected by the module](../attacks-vulns-list.md)
 
 #### Configuration
 
-* The module can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in Wallarm Console → **Scanner** section.
+* The module can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section.
 * If the WAF node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which the attack rechecker sends requests.
 * To add authentication credentials to the requests sent by the attack rechecker, it is required to add a corresponding rule to the application profile. To add a rule, please contact our [technical support](mailto:support@wallarm.com) and send test authentication credentials: API key, token, password or other parameters.
 
@@ -52,9 +52,9 @@ Vulnerability scanner checks all elements of the company scope for typical vulne
 
 #### Configuration
 
-* The scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in Wallarm Console → **Scanner** section. By default, the scanner is enabled
-* The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by the scanner can be configured in Wallarm Console → **Scanner** section. By default, vulnerability scanner detects all available vulnerabilities
-* The [limit of requests sent from the scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in Wallarm Console → **Scanner** section
+* The scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, the scanner is enabled
+* The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by the scanner can be configured in the Wallarm Console → **Scanner** section. By default, vulnerability scanner detects all available vulnerabilities
+* The [limit of requests sent from the scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section
 * If the WAF node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which the scanner sends requests
 
 ## Managing discovered vulnerabilities
