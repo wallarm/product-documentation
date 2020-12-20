@@ -8,7 +8,7 @@ The trigger **Block IPs with high count of attack vectors** is created for all c
 
 You can perform all available trigger actions: edit, disable, delete, or copy the trigger.
 
-## Mark requests as brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
+## Mark requests as a brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
 
 ### With filters by URL and IP
 
@@ -31,14 +31,14 @@ To mark requests as the dirbust (forced browsing) attack, it is required to use 
 
 ## Slack notification if 2 or more SQLi hits were detected in one minute
 
-If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
 ![!Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
 
 Slack notification from the user **wallarm**:
 
 ```
-Please make attention! Notification about SQLi hits is triggered: The number of hits for the sqli type in 1 minute exceeds 1
+May we have your attention please. A notification about SQLi hits is triggered: The number of hits for the SQLi type in 1 minute exceeds 1
 ```
 
 * `Notification about SQLi hits` is the trigger name
@@ -56,7 +56,7 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 * Slack notification from the user **wallarm**:
 
     ```
-    Please make attention! Added user is triggered: New user user@example.com was created by John Smith. New user role is Analyst.
+    May we have your attention please. An newly added user is identified: New user user@example.com was created by John Smith. New user role is Analyst.
     ```
 
     * `Added user` is the trigger name
@@ -66,14 +66,14 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 
 ## OpsGenie notification if 2 or more incidents were detected in one second
 
-If 2 or more incidents with the application server or database were detected in one second, the notification about this event will be sent to OpsGenie.
+If 2 or more incidents with the application server or database were detected in one second, then the notification about this event will be sent to OpsGenie.
 
 ![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
 
 OpsGenie notification:
 
 ```
-Please make attention! Notification about incidents is triggered: The number of incidents for the server, database in 1 second exceeds 1
+ May we have your attention please. A notification about incidents is triggered: The number of incidents for the server database in 1 second exceeds 1
 ```
 
 * `Notification about incidents` is the trigger name
