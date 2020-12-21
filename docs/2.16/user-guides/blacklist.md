@@ -8,7 +8,7 @@
 
 # IP Address Blacklist
 
-Wallarm can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request by itself is legitimate (e.g. login attempts with username/password pairs), blocking by origin is necessary.
+Wallarm can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs), then blocking by origin is necessary.
 
 Wallarm can block bots and behavioral‑based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the blacklist. Administrators can also manually add IP addresses and subnets for blocking.
 
@@ -63,13 +63,13 @@ To unblock IP addresses, use **Unblock** on the entry with a blocked IP or selec
 ![!Unblock IP][img-blacklist-unblock]
 
 !!! warning "Repeated blocking of unblocked IP address"
-    After manual unblocking of the automatically blocked IP address, this IP address will be repeatedly blocked after half of the previous blocking time.
+    After manually unblocking the automatically blocked IP address, this IP address will be repeatedly blocked after half of the previous blocking time.
 
     For example:
 
     1. IP address was automatically blocked for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [default trigger](triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-3-hours-default-trigger)).
     2. User unblocked this IP address via the Wallarm Console.
-    3. If 4 different attack vectors are sent from this IP address in less than 30 minutes since IP address unblocking, this IP address will not be added to the blacklist.
+    3. If 4 different attack vectors are sent from this IP address within 30 minutes of the IP address unblocking, then this IP address will not be added to the blacklist.
 
 ## Review Blocking History
 
@@ -82,7 +82,7 @@ You can filter the history by:
 
 ## Block Manually
 
-To start blocking of IP address:
+To start blocking IP addresses:
 
 1. Click the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
@@ -106,5 +106,5 @@ Wallarm will export a CSV file based on the date range currently selected in the
 * **Application**: ID of the application for which IP address is blocked
 * **Type**: the action type (**block** or **unblock**)
 * **Time**: the date and time of the action
-* **Country**: the blocked IP address's country
+* **Country**: the blocked IP address' country
 * **Reason**: automatically generated or manually inserted reason for blacklisting
