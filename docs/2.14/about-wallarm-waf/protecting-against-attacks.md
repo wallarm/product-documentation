@@ -65,7 +65,7 @@ To detect attacks, Wallarm WAF uses the following process:
 
 1. Determine the request format and parse every request part as described in the [document about request parsing](../user-guides/rules/request-processing.md).
 2. Determine the endpoint the request is addressed to.
-3. Apply [user‑defined detection rules](#userdefined-detection-rules) determined in the LOM file.
+3. Apply [custom detection rules](#custom-detection-rules) determined in the LOM file.
 4. Make a decision whether the request is malicious or not based on rules determined in [proton.db and LOM](#tools-for-attack-detection).
 
 ## Tools for attack detection
@@ -73,7 +73,7 @@ To detect attacks, Wallarm WAF uses the following process:
 To detect malicious requests, Wallarm WAF analyzes all requests sent to the protected resource using the following tools:
 
 * Library **libproton**
-* User‑defined detection rules
+* Custom detection rules
 
 ### Library libproton
 
@@ -81,13 +81,17 @@ The **libproton** library is a primary tool for detecting malicious requests. Th
 
 Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
 
-### User‑defined detection rules
+### Custom detection rules
 
-Wallarm clients can set custom regular expressions which will be used to detect attacks. This settings allows to define individual traffic processing rules for client applications.
+Wallarm clients can set custom detection rules based on protected application specificities. There are the following types of custom detection rules:
 
-Regular expressions can be set using th [rule **Define a request as an attack based on a regular expression**](../user-guides/rules/regex-rule.md). Regular expressions syntax is described within the [link](../user-guides/rules/add-rule.md#regex).
+* [Define brute‑force of force browsing attacks counter](../user-guides/rules/define-counters.md)
+* [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
+* [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
+* [Ignore regular expression](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
+* **Ignore tokens** disables detection of specified attack signs ([tokens](#library-libproton)) in certain requests. This rule is created automatically when adding a [false positive](#false-positives) marks and is not displayed in the Wallarm Console.
 
-User‑defined detection rules and other [rules](../user-guides/rules/intro.md) are compiled into Local Objective Model (LOM). Details about LOM build are available within the [link](../user-guides/rules/compiling.md).
+Custom detection rules and other [rules](../user-guides/rules/intro.md) are compiled into Local Objective Model (LOM) and applied along with the standard rules from **proton.db** when analyzing requests. [More details on LOM building →](../user-guides/rules/compiling.md)
 
 ## Monitoring and blocking attacks
 
