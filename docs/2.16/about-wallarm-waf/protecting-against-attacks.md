@@ -116,6 +116,16 @@ To control the filtering mode, the directive `wallarm_mode` is used. More detail
 
 The filtering mode for behavioral attacks is configured separately via the particular [trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
+## False positives
+
+**False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in vulnerability scanning →](detecting-vulnerabilities.md#false-positives)
+
+When analyzing requests for attacks, Wallarm WAF uses the standard rule set that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
+
+In such cases, standard rules need to be adjusted to accommodate protected application specificities by disabling detection of certain attack signs in the requests with certain address, parameters or other elements. These rules has the action type **Ignore tokens**. The rule **Ignore tokens** is created automatically if an attack or a hit is marked as a false positive in the Wallarm Console. [More details on managing false positives via the Wallarm Console →](../user-guides/events/false-attack.md)
+
+Identifying and handling false positives is a part of fine‑uning Wallarm WAF to protect your applications. We recommend to deploy the first WAF node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the WAF node to blocking mode.
+
 ## Managing detected attacks
 
 All detected attacks are displayed in the Wallarm Console → **Events** section by the filter `attacks`. You can manage attacks through the interface as follows:
