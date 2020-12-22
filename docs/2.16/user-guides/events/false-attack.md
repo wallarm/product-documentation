@@ -6,9 +6,17 @@
 
 # Working with false attacks
 
-A false attack is a valid request erroneously identified as an attack.
+## What is a false positive?
+
+**False positive** occurs when attack signs are detected in the legitimate request.
 
 After analyzing an attack, you may conclude that all requests in this attack or the part of them are false positives. To prevent the WAF node from recognizing such requests as attacks during further traffic analysis, you can mark several requests or the entire attack as a false positive.
+
+## How a false positive mark works?
+
+When a false positive mark is added, the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm-waf/protecting-against-attacks.md#library-libproton)) is automatically created.
+
+Created rule is applied when analyzing requests to the protected application. The rule is not displayed in the Wallarm Console and can be changed or removed only by the request sent to [Wallarm technical support](mailto: support@wallarm.com).
 
 ## Mark a hit as a false positive
 

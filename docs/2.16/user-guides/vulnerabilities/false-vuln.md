@@ -3,24 +3,31 @@
 [img-false-vuln]:       ../../images/user-guides/vulnerabilities/false-vuln.png
 [img-false-vuln-page]:       ../../images/user-guides/vulnerabilities/false-vuln-page.png
 
+# Working with false vulnerabilities
 
-# Working with False Vulnerabilities
+[False positive](../../about-wallarm-waf/detecting-vulnerabilities.md#false-positives) occurs when legitimate entity is qualified as a vulnerability.
 
-A false vulnerability is an entity erroneously qualified as a vulnerability.
+After analyzing a vulnerability, you may conclude that the vulnerability is a false positive. A vulnerability marked as a false positive will be switched to an appropriate status and will not be rechecked.
 
-After analyzing a vulnerability, you may conclude that the vulnerability is a false positive.
+!!! info "If the detected vulnerability exists but cannot be fixed"
+    If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
-## Mark a Vulnerability as a False Positive
+## Mark a vulnerability as a false positive
 
-Click the *Mark as false* button next to the desired vulnerability in the list to mark this vulnerability as a false positive.
+Click the **Mark as false** button next to the desired vulnerability in the list to mark this vulnerability as a false positive.
 
 ![!False positive in the vulnerability list][img-false-vuln]
 
-You can also mark the vulnerability as a false positive by clicking the *Mark as false* button on the page of the desired vulnerability.
+You can also mark the vulnerability as a false positive by clicking the **Mark as false** button on the page of the desired vulnerability.
 
 ![!False positive on the vulnerability page][img-false-vuln-page]
 
 Wallarm will requalify the vulnerability as a false positive.
 
-!!! info "See also"
-    [Analyzing vulnerabilities][link-analyzing-vulns]
+## Remove a false positive mark
+
+The vulnerability marked as a false positive, will be displayed on the **Closed** tab. To remove a false positive mark, please open a vulnerability card and click **Reopen**.
+
+![!False vulnerability](../../images/user-guides/vulnerabilities/discard-false-vuln.png)
+
+The vulnerability will be switched to the status **Open** and will be rechecked with Wallarm WAF tools.
