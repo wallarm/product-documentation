@@ -12,7 +12,11 @@ A vulnerability is not a characteristic of the Internet. A vulnerability is a ch
 
 ## Vulnerability detection methods
 
-To detect vulnerabilities in the application, Wallarm WAF uses the following methods:
+When scanning the application for open vulnerabilities, Wallarm WAF sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm WAF records open vulnerability.
+
+For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm WAF will record the vulnerability with an appropriate type.
+
+To detect vulnerabilities in the application, Wallarm WAF sends requests with attack signs using the following methods:
 
 * **Passive detection**: the vulnerability was found due to the security incident that occurred
 * **Active threat verification**: the module **Attack rechecker** automatically replays attacks detected by the WAF node and finds vulnerabilities in the corresponding parts of the application
@@ -56,6 +60,16 @@ Vulnerability scanner checks all elements of the company scope for typical vulne
 * The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by the scanner can be configured in Wallarm Console → **Scanner** section. By default, vulnerability scanner detects all available vulnerabilities
 * The [limit of requests sent from the scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in Wallarm Console → **Scanner** section
 * If the WAF node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which the scanner sends requests
+
+## False positives
+
+**False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in attack detection →](protecting-against-attacks.md#false-positives)
+
+False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an open vulnerability in one protected application and be expected behavior for another protected application.
+
+If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in the Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be rechecked. [More about managing false positives via the Wallarm Console →](../user-guides/vulnerabilities/false-vuln.md)
+
+If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
 ## Managing discovered vulnerabilities
 
