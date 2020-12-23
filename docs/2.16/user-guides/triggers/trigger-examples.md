@@ -12,10 +12,13 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 
 ### With filters by URL and IP
 
-If 31 or more requests were sent to `https://example.com:80/api/frontend/login` from the IP address `29.218.65.234` in 30 seconds:
+If 31 or more requests were sent to `example.com:80/api/frontend/login` from the IP address `29.218.65.234` in 30 seconds:
 
 * These requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and IP `29.218.65.234` will be added to the blacklist.
 * If the code 404 was returned in the response to all requests, these requests will be marked as [dirbust (forced browsing) attack](../../attacks-vulns-list.md#forced-browsing) and IP `29.218.65.234` will be added to the blacklist.
+
+!!! info "URL value format"
+    The format of the URL filter value is `host:port/path`. The scheme should be omitted.
 
 ![!Brute force / dirbust trigger](../../images/user-guides/triggers/trigger-example5.png)
 
