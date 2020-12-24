@@ -1,25 +1,14 @@
 # Glossary
 
-## Vulnerability
-A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.
-
-The information security risks are:
-
-* Unauthorized data access; for example, access to read and modify user data.
-* Denial of service.
-* Data corruption and other.
-
-A vulnerability is not a characteristic of the Internet. A vulnerability is a characteristic of your system. Whether or not you have vulnerabilities does not depend on your Internet traffic. The Internet traffic, however, can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
-
 ## Hit
 
-A hit is a malicious request detected and possibly blocked by WAF node depending on [filtering mode configuration](admin-en/configure-wallarm-mode.md). For example:
+A hit is a serialized malicious request (original malicious request and metadata added by the WAF node). For example:
 
 ![!Hit example](images/glossary/hit-example.png)
 
 ## Attack
 
-An attack is a collection of similar hits that target the same end-point using the same attack vector and come from the same or different IP addresses. An attack can include a single hit or multiple hits.
+An attack is a single hit or multiple hits that have the same attack type, parameter with the attack vector, and the address they are sent to. Hits may come from the same or different IP addresses and have different value of the attack vector within one attack type.
 
 An example of an attack including a single hit:
 
@@ -31,6 +20,17 @@ An example of an attack including many hits:
 
 ## Attack Vector
 An attack vector is a path or means by which a hacker can gain access to a network resource to deliver a payload.
+
+## Vulnerability
+A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.
+
+The information security risks are:
+
+* Unauthorized data access; for example, access to read and modify user data.
+* Denial of service.
+* Data corruption and other.
+
+The Internet traffic can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
 
 ## Security Incident
 A security incident is an occurrence of a vulnerability exploitation. An incident is an attack targeted at a confirmed vulnerability.
