@@ -113,31 +113,31 @@ Open for editing the configuration file of Tarantool:
 
 === "Debian 9.x (stretch)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Debian 10.x (buster)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "CentOS 7.x"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 === "Amazon Linux 2"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 === "CentOS 8.x"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 
 Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).

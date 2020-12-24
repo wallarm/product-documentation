@@ -91,7 +91,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 1. Open the Tarantool configuration file:
 
     ```
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 
 2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator). For example, to set 24 GB:
