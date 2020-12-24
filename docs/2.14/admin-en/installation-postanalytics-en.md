@@ -1,6 +1,6 @@
 [tarantool-status]:           ../images/tarantool-status.png
 
-# Separate Postanalytics Installation
+# Separate postanalytics module installation
 
 --8<-- "../include/installation-options-en.md"
 

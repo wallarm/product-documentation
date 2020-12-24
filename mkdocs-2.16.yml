@@ -137,7 +137,7 @@ nav:
           - Installing on Yandex.Cloud: admin-en/installation-guides/install-in-yandex-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
-        - Separate Postanalytics Installation: admin-en/installation-postanalytics-en.md
+        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md

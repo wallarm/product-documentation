@@ -143,7 +143,7 @@ nav:
               - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
           - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
-        - Separate Postanalytics Installation: admin-en/installation-postanalytics-en.md
+        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md

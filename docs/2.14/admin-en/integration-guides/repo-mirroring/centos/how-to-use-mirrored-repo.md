@@ -58,4 +58,4 @@ Now you can follow any installation instructions for CentOS. You will need to sk
 !!! info "See also"
     *   [Installing a filter node based on NGINX or NGINX Plus.][doc-install-nginx]
     *   [Installing a filter node on the Kong platform.][doc-install-kong]
-    *   [Separate postanalytics installation.][doc-install-postanalytics]
+    *   [Separate postanalytics module installation.][doc-install-postanalytics]
