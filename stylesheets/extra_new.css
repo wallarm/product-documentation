@@ -71,6 +71,10 @@ a.md-tabs__link:hover {
   justify-content: space-between;
 }
 
+.md-nav__item .md-nav__link--active {
+  color: #FC7303;
+}
+
 .md-nav__link:hover {
   transition: color 0.3s ease;
 }
@@ -108,8 +112,16 @@ svg.navigation-arrow {
   font-size: 16px;
 }
 
-.md-nav__item .md-nav__link--active {
+/* Right navigation */
+
+.md-nav--secondary .md-nav__item .md-nav__link {
+  font-size: 14px;
+}
+
+.md-nav--secondary .md-nav__item .md-nav__link--active {
+  font-weight: bold;
   color: #FC7303;
+  transition: none;
 }
 
 /* Headers */
@@ -478,15 +490,15 @@ a.md-search-result__link:hover {
   box-shadow: inset 0px -1px 0px rgba(229, 229, 229, 0.5);
 }
 
+.md-search-result__link:focus, .md-search-result__link:hover {
+  background-color: #F7F7F8;
+}
+
 .md-search-result em {
   color: #FC7303;
   text-decoration: none;
   font-weight: inherit;
 }
-
-/* .md-search-result__icon {
-  display: none;
-} */
 
 /* Navigation cards at the Home page */
 
