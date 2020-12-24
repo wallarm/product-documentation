@@ -106,7 +106,7 @@ var sf14gv = 27823;
 // Show version selector only for WAF guides
 var rootVersion = '2.16';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
-if (activeLinks[0].text === ' WAF guides ') {
+if (activeLinks[0].text === ' Guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
 }
 else {
