@@ -8,8 +8,6 @@ A vulnerability is an error made due to negligence or inadequate information whe
 * Denial of service
 * Data corruption and other
 
-A vulnerability is not a characteristic of the Internet. A vulnerability is a characteristic of your system. Whether or not you have vulnerabilities does not depend on your Internet traffic. The Internet traffic, however, can be used to detect the vulnerabilities.
-
 ## Vulnerability detection methods
 
 When scanning the application for open vulnerabilities, Wallarm WAF sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm WAF records open vulnerability.

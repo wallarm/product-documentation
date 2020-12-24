@@ -79,7 +79,7 @@ site_dir: site/2.14
 edit_uri: ../product-docs-en/edit/master/docs/2.14/
 
 nav:
-  - WAF guides:
+  - Guides:
     - Home: index.md
     - About Wallarm WAF:
         - Overview: about-wallarm-waf/overview.md
