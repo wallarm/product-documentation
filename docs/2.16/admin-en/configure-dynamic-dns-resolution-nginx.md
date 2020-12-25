@@ -13,6 +13,10 @@ location / {
 
 For dynamic DNS resolution, you can set a `proxy_pass` directive as the variable. In this case, NGINX will use the DNS address that is set in the [`resolver`](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive when calculating the variable.
 
+!!! warning "Impact of dynamic DNS resolution on traffic processing"
+    * NGINX configuration with the `resolver` directive and variable in the `proxy_pass` directive slows down request processing since it will be the additional step of dynamic DNS resolution in the request processing.
+    * If the DNS server is down, NGINX will not process the traffic.
+
 For example:
 
 ```bash
