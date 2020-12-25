@@ -10,6 +10,7 @@
 [configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
+[dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 
 # Updating Linux WAF packages
 
@@ -122,4 +123,4 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 
 Wallarm WAF modules are updated to version 2.16. Previous WAF node settings will be applied to a new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx.md"
