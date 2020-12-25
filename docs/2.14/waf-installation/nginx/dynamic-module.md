@@ -21,6 +21,7 @@
 [separate-postanalytics-update-docs]:   ../../../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../../updating-migrating/versioning-policy.md
+[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
@@ -166,4 +167,4 @@ To run postanalytics and process the requests on different servers, the followin
 
 Dynamic Wallarm WAF module with default settings is installed for NGINX `stable`. To customize Wallarm WAF settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx.md"
