@@ -32,7 +32,7 @@
 !!! warning "Installation of postanalytics on a separate server"
     If you are planning to install postanalytics on a separate server, you must install postanalytics first. 
     
-    See details in [Separate postanalytics installation][doc-postanalytics].
+    See details in [Separate postanalytics module installation][doc-postanalytics].
 
 To install the Wallarm module with Kong, you need to:
 

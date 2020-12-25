@@ -23,35 +23,31 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 
 === "Debian 9.x (stretch)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Debian 10.x (buster)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
-    vi /etc/default/wallarm-tarantool
+    sudo vim /etc/default/wallarm-tarantool
     ```
-<!-- === "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    vi /etc/default/wallarm-tarantool
-    ``` -->
 === "CentOS 7.x"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 === "Amazon Linux 2"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 === "CentOS 8.x"
     ```bash
-    vi /etc/sysconfig/wallarm-tarantool
+    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 
 <ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). For example:</li></ol>
@@ -78,10 +74,6 @@ SLAB_ALLOC_ARENA=10.4
     ```bash
     sudo service wallarm-tarantool restart
     ```
-<!-- === "Ubuntu 20.04 LTS (focal)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ``` -->
 === "CentOS 7.x"
     ```bash
     sudo systemctl restart wallarm-tarantool

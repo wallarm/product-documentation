@@ -1,6 +1,6 @@
 The WAF node interacts with the Wallarm Cloud. To connect the WAF node to the Cloud, proceed with the following steps:
 
-1. Make sure that your Wallarm account has the **Administrator** role enabled and two-factor authentication disabled in Wallarm Console.
+1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 

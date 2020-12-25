@@ -35,6 +35,8 @@ These instructions describe the steps to install Wallarm WAF as a dynamic module
 
 --8<-- "../include/waf/installation/nginx-installation-options.md"
 
+Installation commands for both options are described in the further instructions.
+
 ## Installation
 
 ### 1. Add Debian/CentOS repositories
