@@ -173,6 +173,7 @@ nav:
         - Masking Sensitive Data: admin-en/sensitive-data-en.md
         - WAF node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
         - Working with Filter Node Logs: admin-en/configure-logging.md
+        - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
         - Using Single Sign‑On (SSO):
           - Introduction: admin-en/configuration-guides/sso/intro.md
           - Connecting SSO with G Suite:
