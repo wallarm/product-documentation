@@ -1,266 +1,225 @@
 [tarantool-status]:           ../images/tarantool-status.png
+[configure-selinux-instr]:    configure-selinux.md
+[configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
+[img-wl-console-users]:             ../images/check-users.png 
 
 # Separate postanalytics module installation
 
---8<-- "../include/installation-options-en.md"
+--8<-- "../include/waf/installation/nginx-installation-options.md"
 
-To install postanalytics, you must:
+These instructions provide the steps to install the postanalytics module on a separate server.
 
-1. Add the Wallarm repositories, which is where you will download the packages.
-2. Install the Wallarm packages.
-3. Configure postanalytics.
-4. Connect postanalytics to the Wallarm cloud.
-5. Change the Tarantool addresses for postanalytics.
+## Requirements
 
---8<-- "../include/elevated-priveleges.md"
+* NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../waf-installation/nginx-plus.md)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* SELinux disabled or configured upon the [instruction][configure-selinux-instr]
+* Executing all commands as a superuser (e.g. `root`)
+* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
+* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. If access can be configured only via the proxy server, use the [instruction][configure-proxy-balancer-instr]
+* Installed text editor **vim**, **nano** or any other. In the instruction, **vim** is used
 
-## 1. Add the Wallarm Repositories
+## Installation
 
-The installation and updating of the filter node is done from the Wallarm
-repositories.
+### 1. Add Wallarm WAF repositories
 
-Depending on your operating system, run one of the commands:
+The postanalytics module, like other Wallarm WAF modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node xenial/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.16/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
-    ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
-    ```
-=== "CentOS 8.x"
-    ```bash
-    sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.16/x86_64/Packages/wallarm-node-repo-1-5.el8.noarch.rpm
-    ```
+--8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
 
---8<-- "../include/access-repo-en.md"
+### 2. Install packages for the postanalytics module
 
-## 2. Install the Wallarm Packages
+Install the `wallarm-node-tarantool` package from the Wallarm repository for the postanalytics module and Tarantool database:
 
-!!! warning "Update OpenSSL"
-    Update the OpenSSL package to the latest version available from the repositories of your operating system. Make sure to do this prior to installing the Wallarm packages.
-
-Install NGINX-Wallarm and the required scripts to interact with the Wallarm cloud.
-
-=== "Debian 9.x (stretch)"
+=== "Debian"
     ```bash
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
-=== "Debian 10.x (buster)"
+=== "Ubuntu"
     ```bash
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo yum install wallarm-node-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo yum install wallarm-node-tarantool
-    ```
-=== "CentOS 8.x"
+=== "CentOS or Amazon Linux 2"
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
 
-## 3. Configure Postanalytics
+### 3. Connect the postanalytics module to Wallarm Cloud
 
-**Allocate the operating memory size for Tarantool**
+The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create a separate WAF node for the postanalytics module. Created WAF node will get the security rules from the Cloud and upload attacks data to the Cloud.
 
-The amount of memory determines the quality of work of the statistical algorithms.
+To create the WAF node and connect the postanalytics module to the Cloud:
 
-The recommended value is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB.
+1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
+     
+    You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
-Open for editing the configuration file of Tarantool:
+    ![!User list in Wallarm console][img-wl-console-users]
 
-=== "Debian 9.x (stretch)"
-    ```bash
+2.  Run the `addnode` script in a system with the installed postanalytics module packages:
+    
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/addnode --no-sync
+        ```
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/addnode -H api.wallarm.ru --no-sync
+        ```
+3. Input an email and password of you account in Wallarm Console.
+4. Input the postanalytics WAF node name or click Enter to use automatically generated name.
+5. Open Wallarm Console → **Node** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new WAF node is added to the list.
+
+### 4. Update postanalytics module configuration
+
+The configuration files of the postanalytics module are located in the paths:
+
+* `/etc/default/wallarm-tarantool` for Debian and Ubuntu operating systems
+* `/etc/sysconfig/wallarm-tarantool` for CentOS and Amazon Linux 2 operating systems
+
+To open the file in the editing mode, please use the command:
+
+=== "Debian"
+    ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "Debian 10.x (buster)"
-    ```bash
+=== "Ubuntu"
+    ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
+=== "CentOS or Amazon Linux 2"
+    ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "CentOS 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
 
-Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
+#### Memory
 
-For example:
+The postanalytics module uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory.
 
-```
+The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm‑tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+
+```bash
 SLAB_ALLOC_ARENA=24
 ```
 
-**Configure the server addresses of postanalytics**
+Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-waf-node.md).
 
-Uncomment HOST and PORT variables and set them the following values:
+#### Address of the separate postanalytics server
 
-``` bash
-# address and port for bind
-HOST='0.0.0.0'
-PORT=3313
-```
+To set the address of the separate postanalytics server:
 
-**Restart Tarantool**
+1. Uncomment the `HOST` and `PORT` variables in the `wallarm-tarantool` configuration file and set them the following values:
 
-=== "Debian 9.x (stretch)"
     ```bash
-    sudo systemctl restart wallarm-tarantool
+    # address and port for bind
+    HOST='0.0.0.0'
+    PORT=3313
     ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "CentOS 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
+2. If the configuration file of Tarantool is set up to accept connections on the IP addresses different from `0.0.0.0` or `127.0.0.1`, then please provide the addresses in `/etc/wallarm/node.yaml`:
 
-**Check Tarantool status**
+    ```bash
+    hostname: <name of postanalytics WAF node>
+    uuid: <UUID of postanalytics WAF node>
+    secret: <secret key of postanalytics WAF node>
+    tarantool:
+        host: '<IP address of Tarantool>'
+        port: 3313
+    ```
+3. Add the address of the postanalytics module server to the configuration files on the server with the NGINX‑Wallarm package as described in the instructions for proper installation forms:
 
-To make sure that the postanalytics module has been installed correctly and started successfully, enter the following command:
+    * [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
+    * [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
+    * [NGINX Plus](../waf-installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
+
+### 5. Restart Wallarm WAF services
+
+To apply the settings to the postanalytics and NGINX‑Wallarm modules:
+
+1. Restart the `wallarm-tarantool` service on the server with separate postanalytics module:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
+2. Restart the NGINX service on the server with the NGINX‑Wallarm module:
+
+    === "Debian"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx restart
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+
+### 6. Check the NGINX‑Wallarm and separate postanalytics modules interaction
+
+To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 
 ```bash
-sudo systemctl status wallarm-tarantool
+curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
 ```
 
-The module status should be `active`:
+If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of the Wallarm Console:
 
-![!wallarm-tarantool status][tarantool-status]
+![!Attacks in the interface](../images/admin-guides/test-attacks.png)
 
-## 4. Connect Postanalytics to the Wallarm Cloud
+If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
-Provide access to the Wallarm cloud so that postanalytics can always update the rules, upload metrics, and the attack data.
+* Make sure that the postanalytics service `wallarm-tarantool` is in the status `active`
 
-Run one of the following scripts depending on the [cloud](../about-wallarm-waf/overview.md#cloud) in use: 
-
-=== "EU cloud"
     ```bash
-    sudo /usr/share/wallarm-common/addnode --no-sync
-    ```
-=== "US cloud"
-    ```bash
-    sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
+    sudo systemctl status wallarm-tarantool
     ```
 
-Once started, the script will prompt for the login and password. Provide the login and password that you use to access the Wallarm portal in the [EU](https://my.wallarm.com) or [US](https://us1.my.wallarm.com) cloud.
+    ![!wallarm-tarantool status][tarantool-status]
+* Analyze the postanalytics module logs
 
-Your Wallarm account must have the **Administrator** role. If you have the **Analyst** role, the script will error out.
+    ```bash
+    sudo cat /var/log/wallarm/tarantool.log
+    ```
 
-Accounts with 2FA enabled are not supported. Therefore, script will error out.
+    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
+* On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
 
-!!! info "API Access"
-    The API choice for your filter node depends on the cloud you are using. Please, select the API accordingly:
+    ```bash
+    sudo cat /var/log/nginx/error.log
+    ```
 
-    * If you are using [EU](https://my.wallarm.com) cloud, your node requires access to `https://api.wallarm.com:444`.
-    * If you are using [US](https://us1.my.wallarm.com) cloud, your node requires access to `https://us1.api.wallarm.com:444`.
-   
-    Ensure the access is not blocked by a firewall.
+    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
+* On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
 
-## 5. Change the Tarantool Addresses for Postanalytics
+    ```bash
+    curl http://127.0.0.8/wallarm-status
+    ```
 
-If the configuration file of Tarantool is set up to accept connections on the IP
-addresses different from `0.0.0.0` or `127.0.0.1`, then you must provide the addresses
-in `/etc/wallarm/node.yaml`:
+    [Description of all parameters returned by the statistics service →](configure-statistics-service.md)
 
-```
-hostname: <node hostname>
-uuid: <node uuid>
-secret: <node secret>
-tarantool:
-   host: <IP address of Tarantool host>
-   port: 3313
-```
+## Postanalytics module protection
 
-## The Installation Is Complete
-
-This completes the installation of postanalytics.
-
-!!! warning "Protect Installed Postanalytics Module"
+!!! warning "Protect installed postanalytics module"
     We **highly recommend** to protect a newly installed Wallarm postanalytics module with a firewall. Otherwise, there is a risk of getting unauthorized access to the service that may result in:
     
-    *   disclosure of information about processed requests, and
-    *   possibility of executing arbitrary Lua code and operating system commands.
-         
-    Please note that no such risk exists if you are deploying the postanalytics module alongside with the other Wallarm module on the same server. This holds true because the postanalytics module will listen to the `127.0.0.1:3313`.    
-    
+    *   disclosure of information about processed requests
+    *   possibility of executing arbitrary Lua code and operating system commands
+   
+    Please note that no such risk exists if you are deploying the postanalytics module alongside with the NGINX-Wallarm module on the same server. This holds true because the postanalytics module will listen to the port `3313`.
     
     **Here are the firewall settings that should be applied to the separately installed postanalytics module:**
-
+    
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
-        *   `api.wallarm.com:444` is the API server in the EU Wallarm cloud.
-        *   `us1.api.wallarm.com:444` is the API server in the US Wallarm cloud.
-    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filter nodes.    
+        *   `api.wallarm.com:444` is the API server in the EU Wallarm Cloud
+        *   `us1.api.wallarm.com:444` is the API server in the US Wallarm Cloud
+    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm WAF nodes.
