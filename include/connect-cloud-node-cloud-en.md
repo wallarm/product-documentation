@@ -14,7 +14,7 @@ The filter node interacts with the Wallarm cloud. There are two ways of connecti
 * [Using your cloud account login and password][anchor-credentials]
 
 !!! info "Required access rights"
-    Make sure that your Wallarm account has the Administrator role enabled and two-factor authentication disabled, therefore allowing you to connect a filter node to the cloud.
+    Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled, therefore allowing you to connect a filter node to the cloud.
 
     You can check the aforementioned parameters by navigating to the user account list in the Wallarm console.
     

@@ -79,7 +79,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
         ``` bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === "CentOS 7.x or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
