@@ -10,7 +10,7 @@
 
 **False positive** occurs when attack signs are detected in the legitimate request.
 
-After analyzing an attack, you may conclude that all requests in this attack or the part of them are false positives. To prevent the WAF node from recognizing such requests as attacks during further traffic analysis, you can mark several requests or the entire attack as a false positive.
+After analyzing an attack, you may conclude that all or some requests in this attack are false positives. To prevent the WAF node from recognizing such requests as attacks in future traffic analysis, you can mark several requests or the entire attack as a false positive.
 
 ## How a false positive mark works?
 
@@ -30,14 +30,14 @@ To mark one request (hit) as a false positive:
 
 ## Mark an attack as a false positive
 
-To mark all requests (hits) in the attack as the false positives:
+To mark all requests (hits) in the attack as false positives:
 
 1. Select an attack with valid requests in the **Events** section.
 2. Click **Report attack as false positive**.
 
     ![!False attack](../../images/user-guides/events/analyze-attack.png)
 
-If all the requests in the attack are marked as the false positives, then the information about that attack will look like this:
+If all the requests in the attack are marked as false positives, then the information about that attack will look like this:
 
 ![!The whole attack is marked as false one][img-removed-attack-info]
 
