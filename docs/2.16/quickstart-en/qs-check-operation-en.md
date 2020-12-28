@@ -1,15 +1,8 @@
-# Checking the Filter Node Operation
+# Checking the WAF node operation
 
 [doc-stat-service]:    ../admin-en/configure-statistics-service.md
 
-If everything is configured correctly, Wallarm filters the requests and proxies
-the filtered requests in accordance with the configuration file settings.
-
-To check the correct operation, you must:
-
-1. Execute the `wallarm-status` request.
-2. Run a test attack.
-
+If everything is configured correctly, Wallarm filters the requests and proxies the filtered requests in accordance with the configuration file settings.
     
 ## 1. Execute the `wallarm-status` Request
 
@@ -55,4 +48,5 @@ Now the counter of the number of attacks will increase when a request for `walla
 
 If the operation check is successful, the initial installation and setup is complete.
 
-See [User guide](../user-guides/user-intro.md).
+* [More available configuration options →](../admin-en/configure-parameters-en.md)
+* [User guides →](../user-guides/user-intro.md)

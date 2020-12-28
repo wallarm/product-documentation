@@ -1,166 +1,166 @@
-# Installing the Filter Node (NGINX)
+[img-wl-console-users]:             ../images/check-users.png 
+[memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 
-!!! info "Request processing"
-    Request processing by a filter node consists of the following phases:
-    
-    * Initial processing by the NGINX-Module-Wallarm
-    * Postanalytics and the statistical analysis of the processed requests.
+# Installing the WAF node (NGINX)
 
-These instructions describe the installation of the Wallarm filter node as a dynamic module for NGINX on the same server with postanalytics.
+## Installation overview
 
-To install the filter node, do the following:
+The processing of requests in the WAF is divided into two stages:
 
-1. Install NGINX.
-2. Add the Wallarm repositories, from which you will download packages.
-3. Install the Wallarm packages.
-4. Configure postanalytics.
-5. Connect the Wallarm module.
-6. Connect the filter node to the Wallarm cloud.
+* Primary processing in the NGINX-Wallarm module
+* Statistical analysis of the processed requests in the postanalytics module
 
---8<-- "../include/elevated-priveleges.md"
+Depending on the system architecture, the NGINX-Wallarm and postanalytics modules can be installed on the **same server** or on **different servers**.
 
-## 1. Install NGINX
+These instructions describe the installation of the NGINX-Wallarm and postanalytics modules on the **same server**. The WAF node will be installed as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
-Install NGINX from the official NGINX repositoriy by following the instruction that corresponds with your operating system from the list below.
+[The list of all WAF node installation forms →](../admin-en/supported-platforms.md)
 
-*   [Ubuntu](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-ubuntu-package-from-the-official-nginx-repository)
-*   [Debian](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-debian-package-from-the-official-nginx-repository)
-*   [CentOS](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-centos-rhel-package-from-the-official-nginx-repository)
-*   [Amazon Linux 2](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-centos-rhel-package-from-the-official-nginx-repository): use the CentOS 7 instruction 
+## Requirements
 
-!!! warning "Stable NGINX version"
-    Make sure you are installing the *stable* version of NGINX. The `mainline` part of the path must be omitted from the NGINX repository link.
+* Access to the account with the **Administrator** or **Deploy** [role](../user-guides/settings/users.md) and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Executing all commands as a superuser (e.g. `root`)
+* Supported 64-bit operating system:
 
-## 2. Add the Wallarm Repositories
+    * Debian 9.x (stretch)
+    * Debian 10.x (buster)
+    * Ubuntu 16.04 LTS (xenial)
+    * Ubuntu 18.04 LTS (bionic)
+    * CentOS 7.x
+    * Amazon Linux 2
+    * CentOS 8.x
+* SELinux disabled or configured upon the [instruction](../admin-en/configure-selinux.md)
+* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
+* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. If access can be configured only via the proxy server, use the [instruction](qs-setup-proxy-en.md)
+* Installed text editor **vim**, **nano** or any other. In these instructions, **vim** is used
 
-The filter node is installed and updated from the Wallarm repositories.
+## Installation
 
-Depending on your operating system, run one of the commands:
+### 1. Install NGINX stable and dependencies
+
+These are the following options to install NGINX `stable` from the NGINX repository:
+
+* Installation from the built package
+
+    === "Debian"
+        ```bash
+        sudo apt install curl gnupg2 ca-certificates lsb-release
+        echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+        curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+        sudo apt update
+        sudo apt install nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt install curl gnupg2 ca-certificates lsb-release
+        echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+        curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+        sudo apt update
+        sudo apt install nginx
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
+        sudo yum install nginx
+        ```
+
+* Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options
+
+More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
+
+### 2. Add Wallarm WAF repositories
+
+Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
 
---8<-- "../include/access-repo-en.md"
-
-## 3. Install the Wallarm Packages
+### 3. Install Wallarm WAF packages
 
 Depending on your operating system, run one of the commands:
 
 --8<-- "../include/waf/installation/nginx-postanalytics.md"
 
-## 4. Configure Postanalytics
+### 4. Connect the Wallarm WAF module
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.md"
+1. Open the file `/etc/nginx/nginx.conf`:
 
-The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/etc/default/wallarm‑tarantool` configuration file. To allocate memory:
+    ```bash
+    sudo vim /etc/nginx/nginx.conf
+    ```
+2. Ensure that the `include /etc/nginx/conf.d/*` line is added to the file. If there is no such line, add it.
+3. Add the following directive right after the `worker_processes` directive:
 
-<ol start="1"><li>Open for editing the configuration file of Tarantool:</li></ol>
-
-
-=== "Debian 9.x (stretch)"
     ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
-    ```
-=== "CentOS 8.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
+    load_module modules/ngx_http_wallarm_module.so;
     ```
 
-<ol start="2"><li>Set the <code>SLAB_ALLOC_ARENA</code> attribute to memory size. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). For example:</li></ol>
+    Configuration example with the added directive:
 
-```
-SLAB_ALLOC_ARENA=10.4
-```
+    ```
+    user  nginx;
+    worker_processes  auto;
+    load_module modules/ngx_http_wallarm_module.so;
 
-<ol start="3"><li>Restart Tarantool:</li></ol>
-
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "Ubuntu 18.04 LTS (bionic)"
-    ```bash
-    sudo service wallarm-tarantool restart
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "Amazon Linux 2"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-=== "CentOS 8.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
+    error_log  /var/log/nginx/error.log notice;
+    pid        /var/run/nginx.pid;
     ```
 
-To learn how long a Tarantool instance is capable of keeping traffic details with the current level of WAF node load, you can use the [`wallarm‑tarantool/gauge‑timeframe_size`](../admin-en/monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds) monitoring metric.
+4. Copy the configuration files for the system setup:
 
-To get more information about memory allocation, please use this [documentation](../admin-en/configuration-guides/allocate-resources-for-waf-node.md).
+    ``` bash
+    sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
+    ```
 
-## 5. Connect the Wallarm Module
+### 5. Connect the WAF node to Wallarm Cloud
 
-Open the `/etc/nginx/nginx.conf` file.
+--8<-- "../include/waf/installation/connect-waf-and-cloud.md"
 
-Ensure that you have the `include /etc/nginx/conf.d/*` line in the file. If you do not, add it.
+### 6. Allocate resources for the postanalytics module
 
-Add the following directive right after the `worker_processes` directive:
+The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 
-``` bash
-load_module modules/ngx_http_wallarm_module.so;
-```
+1. Open the Tarantool configuration file in the editing mode:
 
-Configuration example with the added directive:
+    === "Debian"
+        ``` bash
+        sudo vim /etc/default/wallarm-tarantool
+        ```
+    === "Ubuntu"
+        ``` bash
+        sudo vim /etc/default/wallarm-tarantool
+        ```
+    === "CentOS or Amazon Linux 2"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
+2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+    
+    ```bash
+    SLAB_ALLOC_ARENA=24
+    ```
 
-``` bash
-user  nginx;
-worker_processes  auto;
-load_module modules/ngx_http_wallarm_module.so;
+    Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
+3. To apply changes, restart Tarantool:
 
-error_log  /var/log/nginx/error.log notice;
-pid        /var/run/nginx.pid;
-```
+    === "Debian"
+        ``` bash
+        sudo systemctl restart wallarm-tarantool
+        ```
+    === "Ubuntu"
+        ``` bash
+        sudo systemctl restart wallarm-tarantool
+        ```
+    === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
 
-Copy the configuration files for the system setup:
+### 7. Restart NGINX
 
-``` bash
-sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
-```
+--8<-- "../include/waf/restart-nginx-2.16.md"
 
-## 6. Connect the Filter Node to the Wallarm Cloud
+## Next steps
 
---8<-- "../include/connect-cloud-en.md"
+Installation is completed. Now you need to configure the WAF node to filter traffic.
 
-## Installation Completed
-
-The installation is completed.
-
-Now you need to configure the filter node to filter traffic. See [Configure the Proxying and Filtering Rules](qs-setup-proxy-en.md).
+See [Configure the proxying and filtering rules →](qs-setup-proxy-en.md)

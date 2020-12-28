@@ -1,14 +1,6 @@
-# Configure Traffic Proxying
+# Configuring traffic proxying
 
-To process the HTTP requests, Wallarm uses the web and proxy server NGINX
-with additional modules to analyze the traffic.
-
-To configure the proxying and filtering rules, you must:
-1. Edit the NGINX configuration files.
-2. Set up the filter node for using a proxy server.
-3. Restart NGINX.
-
-----------
+To process the HTTP requests, Wallarm uses the web and proxy server NGINX with additional modules to analyze the traffic.
 
 ## 1. Edit the NGINX Configuration Files
 
@@ -74,9 +66,6 @@ To meet the listed conditions, the contents of the configuration file must be th
 
 After saving the edited configuration file, restart NGINX:
 
-```bash
-sudo service nginx reload
-```
+--8<-- "../include/waf/restart-nginx.md"
 
-Perform the checking to see that the filter node is operational and filters traffic. See
-[Check the filter node operation](qs-check-operation-en.md).
+Perform the checking to see that the WAF node is operational and filters traffic. See [Check the WAF node operation →](qs-check-operation-en.md)

@@ -91,12 +91,9 @@ nav:
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
         - Wallarm WAF subscription plans: about-wallarm-waf/subscription-plans.md
     - Quick Start:
-      - Prerequisites: quickstart-en/qs-prereq-en.md
-      - Installation:
-        - Creating the Wallarm Account: quickstart-en/qs-license-en.md
-        - Install the Filter Node (NGINX): quickstart-en/qs-install-node-en.md
-      - Configure Traffic Proxying: quickstart-en/qs-setup-proxy-en.md
-      - Check the Filter Node Operation: quickstart-en/qs-check-operation-en.md
+      - Install the WAF node (NGINX): quickstart-en/qs-install-node-en.md
+      - Configure traffic proxying: quickstart-en/qs-setup-proxy-en.md
+      - Check the WAF node operation: quickstart-en/qs-check-operation-en.md
     - Administrator Guide:
       - Introduction: admin-en/admin-intro-en.md
       - Installation:
