@@ -295,7 +295,7 @@ img {
 .versions {
   margin-bottom: 16px;
   margin-left: .6rem;
-  position: inherit;
+  position: relative;
   font-size: 14px;
   line-height: 20px;
 }
@@ -322,6 +322,7 @@ img {
   position: absolute;
   padding: 8px 0px;
   min-width: 137.422px;
+  z-index: 1;
 }
 
 .divider {
@@ -385,7 +386,6 @@ img {
   }
   .versions-list {
     width: 100%;
-    z-index: 1;
   }
   .versions-main-active .versions-drop {
     transform: none;
