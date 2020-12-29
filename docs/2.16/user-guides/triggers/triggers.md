@@ -53,7 +53,11 @@ Filters are used for condition detailing. For example, you can set up reactions 
 
 The following filters are available:
 
-* **URL** (only for the number of requests): full URL to which the request was sent. URL format is `host:port/path` for any `port` value. For example: `example.com:80/login` or `255.255.255.255:80/login`.
+* **URL** (only for the number of requests): full URL to which the request was sent. This filter is used if the protected resource listens for incoming requests on port other than 80 or 443. If the resource listens for incoming requests on port 80 orr 443, please configure the URL via the **Counter name** filter.
+
+    URL format is `host:port/path`. The scheme should be omitted. `port` accepts any value except for 80 and 443.
+    
+    For example: `example.com:8888/login` or `255.255.255.255:8888/login`.
 
     !!! warning "Compatibility with other filters"
         This filter can be used with all available filters except **Counter name**.
