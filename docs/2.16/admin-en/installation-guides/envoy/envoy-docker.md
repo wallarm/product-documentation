@@ -63,7 +63,7 @@ The command does the following:
 
 You can mount the prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
-* WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
+* WAF node settings as described in the [instructions](../../configuration-guides/envoy/fine-tuning.md)
 * Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
 To run the image:
@@ -109,5 +109,5 @@ The log file rotation is preconfigured and enabled by default. You can adjust th
     ```
 
     If the WAF node works in the `block` mode, the request will be blocked and the code `403 blocked by wallarm filter` will be returned.
-2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks.png)

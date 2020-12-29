@@ -50,7 +50,7 @@ The number of requests processed by the filter node since installation.
 * **Rate of change:** `curl_json-wallarm_nginx/derive-requests`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check the filter node operation as described in the [instruction](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
+    2. Check the filter node operation as described in the [instructions](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
 
 ### Number of Attacks
 
@@ -63,7 +63,7 @@ The number of attacks detected by the filter node since installation.
 * **Rate of change:** `curl_json-wallarm_nginx/derive-attacks`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check the filter node operation as described in the [instruction](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
+    2. Check the filter node operation as described in the [instructions](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
 
 ### Number of Blocked Requests
 
@@ -76,7 +76,7 @@ The number of requests blocked by the filter node since installation. This metri
 * **Rate of change:** `curl_json-wallarm_nginx/derive-blocked`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct and make sure the filter node is in the `block` mode.
-    2. Check the filter node operation as described in the [instruction](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
+    2. Check the filter node operation as described in the [instructions](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
 
 ### Number of Abnormal Requests
 
@@ -157,7 +157,7 @@ Time spent by the filter node analyzing requests since installation.
 * **Rate of change:** `curl_json-wallarm_nginx/derive-time_detect`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check the filter node operation as described in the [instruction](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
+    2. Check the filter node operation as described in the [instructions](../installation-check-operation-en.md). The value should increase by `1` after sending one test attack.
 
 ### Version of proton.db
 

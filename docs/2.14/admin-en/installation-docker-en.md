@@ -25,9 +25,9 @@ The functionality of the WAF node installed inside the Docker container is compl
     apt list wallarm-node
     ```
 
-    * If the version `2.16.x` is installed, follow the [instructions for 2.16](../../../admin-en/installation-docker-en/).
-    * If the version `2.14.x` is installed, follow the current instruction or [update the packages to 2.16](../../../updating-migrating/docker-container/) in all deployments.
-    * If the version `2.12.x` or lower is installed, please [update the packages to 2.16](../../../updating-migrating/docker-container/) in all deployments.
+    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../admin-en/installation-docker-en/).
+    * If the version `2.14.x` is installed, then follow the current instruction or [update the packages to 2.16](../../../updating-migrating/docker-container/) in all deployments.
+    * If the version `2.12.x` or lower is installed, then please [update the packages to 2.16](../../../updating-migrating/docker-container/) in all deployments.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
@@ -184,7 +184,7 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
     ```
 
     If the WAF node works in the `block` mode, the request will be blocked and the code `403 Forbidden` will be returned.
-2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../images/admin-guides/test-attacks.png)
 
 ## Configuring the use cases
