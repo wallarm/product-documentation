@@ -50,7 +50,7 @@ The postanalytics module interacts with the Wallarm Cloud. To connect the postan
 
 To create the WAF node and connect the postanalytics module to the Cloud:
 
-1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
+1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in the Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
@@ -66,9 +66,9 @@ To create the WAF node and connect the postanalytics module to the Cloud:
         ``` bash
         sudo /usr/share/wallarm-common/addnode -H api.wallarm.ru --no-sync
         ```
-3. Input an email and password of you account in Wallarm Console.
+3. Input the email and password for your account in the Wallarm Console.
 4. Input the postanalytics WAF node name or click Enter to use automatically generated name.
-5. Open Wallarm Console → **Node** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new WAF node is added to the list.
+5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new WAF node is added to the list.
 
 ### 4. Update postanalytics module configuration
 
