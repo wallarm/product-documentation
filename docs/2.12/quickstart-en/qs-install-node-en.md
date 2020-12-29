@@ -29,10 +29,10 @@ These instructions describe the installation of the NGINX-Wallarm and postanalyt
     * Ubuntu 18.04 LTS (bionic)
     * CentOS 6.x
     * CentOS 7.x
-* SELinux disabled or configured upon the [instruction](../admin-en/configure-selinux.md)
+* SELinux disabled or configured upon the [instructions](../admin-en/configure-selinux.md)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. If access can be configured only via the proxy server, use the [instruction](qs-setup-proxy-en.md)
-* Installed text editor **vim**, **nano** or any other. In these instructions, **vim** is used
+* Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions](qs-setup-proxy-en.md)
+* Installed text editor **vim**, **nano**, or any other. In these instructions, **vim** is used
 
 ## Installation
 

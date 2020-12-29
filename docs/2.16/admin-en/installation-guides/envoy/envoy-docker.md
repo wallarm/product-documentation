@@ -63,7 +63,7 @@ The command does the following:
 
 You can mount the prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
-* WAF node settings as described in the [instruction](../../configuration-guides/envoy/fine-tuning.md)
+* WAF node settings as described in the [instructions](../../configuration-guides/envoy/fine-tuning.md)
 * Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
 To run the image:

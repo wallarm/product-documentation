@@ -94,7 +94,7 @@ To run postanalytics and process the requests on different servers, the followin
         sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
         ```
 
-* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instruction](../admin-en/installation-postanalytics-en.md))
+* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../admin-en/installation-postanalytics-en.md))
 
 ### 4. Connect the Wallarm WAF module
 
