@@ -7,7 +7,7 @@ This document describes recommendations and associated risks for a safe update o
 * Carefully plan and monitor the WAF node update process. Estimated release dates for new versions of WAF nodes are published in the [WAF node versioning policy](versioning-policy.md).
 * If your infrastructure has multiple WAF nodes installed, update them gradually. After updating the first WAF node, monitor the WAF node modules operation within a day and gradually update other WAF nodes if the first WAF node operates correctly.
 * For the model with separated development and production environments, update the WAF node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring WAF nodes for separated environments](../admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md#gradual-rollout-of-new-waf-changes).
-* Before updating the WAF node, set the WAF node filtering mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, put the WAF node in the `block` mode.
+* Before updating the WAF node, set the WAF node filtering mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, then put the WAF node in the `block` mode.
 * Update NGINX to the latest version available before applying WAF node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build a WAF module for a custom version of NGINX.
 
 ## Possible risks
@@ -25,7 +25,7 @@ A new minor version of the WAF node may contain the following changes:
 
 The configuration of the previous version is automatically applied to the new version and does not require additional changes. When updating the cloud image, you should manually transfer the configuration files to the new version. Most of the new features are configured via the directives in configuration files.
 
-Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change in planning the upgrade.
+Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change when planning the upgrade.
 
 ??? "Set of changes in WAF node 2.12"
     **Supported installation options**
@@ -55,12 +55,12 @@ Before upgrading, please check the [set of changes](what-is-new.md) and consider
 
 ### New false positives
 
-We improve the traffic analysis with each new version of the WAF node, it means that the number of false positives decreases. However each protected application has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
+We improve the traffic analysis with each new version of the WAF node. This means that the number of false positives decreases with each new version. However, each protected application has its own specificities, so we recommend analyzing the work of the new version of the WAF node in the `monitoring` mode before enabling the blocking mode (`block`).
 
 To analyze the number of new false positives after the update:
 
 1. Deploy the new version of the WAF node in the `monitoring` [mode](../admin-en/configure-wallarm-mode.md) and send the traffic to the WAF node.
-2. After some time, open Wallarm Console → **Events** section and analyze the number of requests that are mistakenly recognized as attacks.
+2. After some time, open the Wallarm Console → **Events** section and analyze the number of requests that are mistakenly recognized as attacks.
 3. If you find abnormal growth in the number of false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
 ### Increased amount of used resources
