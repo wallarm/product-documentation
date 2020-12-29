@@ -96,13 +96,6 @@ Specify in the search string:
 * `database`: to search for database attacks/vulnerabilities.
 * `server`: to search for app server attacks/vulnerabilities.
 
-### Search attacks by the action
-
-Specify in the search string:
-
-* `falsepositive`: to search for attacks marked as false positives.
-* `!falsepositive`: to search for real attacks.
-
 ### Search by risk level
 
 Specify the risk level in the search string:
@@ -122,9 +115,8 @@ To search for a certain vulnerability, specify its identifier. It can be specifi
 
 Specify vulnerability status in the search string. Vulnerability can have one of the three statuses:
 
-* `open`: currently relevant vulnerability;
-* `closed`: fixed vulnerability;
-* `falsepositive`: vulnerability marked as false.
+* `open`: currently relevant vulnerability
+* `closed`: fixed vulnerability
 
 ### Search by event time
 
