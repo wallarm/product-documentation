@@ -48,9 +48,9 @@ To install the Wallarm module with Kong, you need to:
 --8<-- "../include/elevated-priveleges.md"
 
 !!! info "If Wallarm WAF is already installed in your environment"
-    If you install Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the installation in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
+    If you install Wallarm WAF instead of an already existing Wallarm WAF or need to duplicate the installation in the same environment, then please keep the same WAF version as currently used or update all installations to the latest version. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
 
-    To check the installed version if WAF node and postanalytics are installed on the same server:
+    To check the installed version of WAF node and postanalytics installed on the same server:
 
     === "Debian"
         ```bash
@@ -89,9 +89,9 @@ To install the Wallarm module with Kong, you need to:
         yum list wallarm-node-tarantool
         ```
 
-    * If the version `2.16.x` is installed, follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md).
-    * If the version `2.14.x` is installed, follow the instruction for [WAF node 2.14](../../2.14/admin-en/installation-kong-en/) and for [separate postanalytics 2.14](../../2.14/admin-en/installation-postanalytics-en/) or update [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
-    * If the version `2.12.x` or lower is installed, please update the [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
+    * If the version `2.16.x` is installed, then follow the current instruction for the WAF node and for [separate postanalytics](installation-postanalytics-en.md).
+    * If the version `2.14.x` is installed, then follow the instruction for [WAF node 2.14](../../2.14/admin-en/installation-kong-en/) and for [separate postanalytics 2.14](../../2.14/admin-en/installation-postanalytics-en/) or update [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
+    * If the version `2.12.x` or lower is installed, then please update the [WAF node packages](../updating-migrating/nginx-modules.md) and [separate postanalytics packages](../updating-migrating/separate-postanalytics.md) to 2.16 in all installations.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
