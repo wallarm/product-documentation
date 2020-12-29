@@ -184,7 +184,7 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
     ```
 
     If the WAF node works in the `block` mode, the request will be blocked and the code `403 Forbidden` will be returned.
-2. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../images/admin-guides/test-attacks.png)
 
 ## Configuring the use cases

@@ -216,7 +216,7 @@ sudo systemctl restart nginx
     curl http://127.0.0.8/wallarm-status
     ```
 
-    The request will return statistics about analyzed requests. The response format is provided below, a more detailed description of parameters is available [here](../configure-statistics-service.md).
+    The request will return statistics about analyzed requests. The response format is provided below. A more detailed description of parameters is available [here](../configure-statistics-service.md).
     ```
     { "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
     "requests_lost":0,"segfaults":0,"memfaults":0,"softmemfaults":0,"time_detect":0,"db_id":46,
@@ -235,7 +235,7 @@ sudo systemctl restart nginx
     ```bash
     curl http://127.0.0.8/wallarm-status
     ```
-4. Open Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+4. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../images/admin-guides/test-attacks.png)
 
 ## Settings customization
