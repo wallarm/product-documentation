@@ -55,7 +55,7 @@ Environment variable | Description| Required
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`. | No
 `TARANTOOL_MEMORY_GB` | [Amount of memory](configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
-`WALLARM_ACL_ENABLE` | Enables the [IP blocking functionality](configure-ip-blocking-en.md). By default: `false`. | No 
+`WALLARM_ACL_ENABLE` | Enables the IP blocking functionality with [default settings](configure-ip-blocking-nginx-en.md). By default: `false`.<br>To enable the IP blocking functionality with custom settings, you need to define appropriate NGINX [directives](configure-parameters-en.md#wallarm_acl) and run the container [mounting](#run-the-container-mounting-the-configuration-file) the configuration file with defined directives. | No 
 
 To run the image, use the command:
 
