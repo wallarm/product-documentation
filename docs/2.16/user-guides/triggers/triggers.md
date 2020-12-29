@@ -87,7 +87,7 @@ Choose one or more reactions in the Wallarm Console interface. Reactions availab
 
 ### Step 4: Saving the trigger
 
-1. Click the **Create** button in the trigger creation model window.
+1. Click the **Create** button in the trigger creation modal dialog.
 2. Specify the trigger's name and description (if required) and click the **Done** button.
 
 If the trigger name and description are not specified, then the trigger is created with the name `New trigger by <username>, <creation_date>` and an empty description.
