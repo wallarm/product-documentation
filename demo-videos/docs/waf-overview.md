@@ -36,6 +36,7 @@
 **Related documentation articles**
 
 * [The list of attacks and vulnerabilities that Wallarm WAF detects](../attacks-vulns-list.md)
+* [Configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ## Protecting cloud applications with Wallarm WAF
 

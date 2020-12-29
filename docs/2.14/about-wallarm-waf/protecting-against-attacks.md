@@ -35,14 +35,14 @@ For example, if an attacker forces password, many similar requests with differen
 https://example.com/login/?username=admin&password=123456
 ```
 
-To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the treshold of request number sent to user authentication or resource file directory URL is exceeded. Request number treshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
+To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
 
 * Correlation analysis is conducted by the Wallarm WAF postanalytics module.
 * Comparison of the received requests number and the threshold for the requests number, and blocking of requests is conducted in the Wallarm Cloud.
 
 When behavioral attack is detected, requests sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
 
-To protect the resource against behavioral attacks, it is required to set the treshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
+To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
 
 [Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 

@@ -8,23 +8,11 @@ The trigger **Block IPs with high count of attack vectors** is created for all c
 
 You can perform all available trigger actions: edit, disable, delete, or copy the trigger.
 
-## Mark requests as brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
+## Mark requests as a brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
 
-### With filters by URL and IP
+### With the filter by the counter name
 
-If 31 or more requests were sent to `example.com:80/api/frontend/login` from the IP address `29.218.65.234` in 30 seconds:
-
-* These requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and IP `29.218.65.234` will be added to the blacklist.
-* If the code 404 was returned in the response to all requests, these requests will be marked as [dirbust (forced browsing) attack](../../attacks-vulns-list.md#forced-browsing) and IP `29.218.65.234` will be added to the blacklist.
-
-!!! info "URL value format"
-    The format of the URL filter value is `host:port/path`. The scheme should be omitted.
-
-![!Brute force / dirbust trigger](../../images/user-guides/triggers/trigger-example5.png)
-
-### With filters by counter name and IP
-
-If 31 or more requests were sent to `https://example.com/api/frontend/login` from the IP address `29.218.65.234` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and IP `29.218.65.234` will be added to the blacklist.
+If 31 or more requests were sent to `https://example.com/api/frontend/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
 
 The request URL `https://example.com/api/frontend/login` is specified in the rule **Define brute-force attacks counter**.
 
@@ -32,9 +20,25 @@ The request URL `https://example.com/api/frontend/login` is specified in the rul
 
 To mark requests as the dirbust (forced browsing) attack, it is required to use the rule **Define forced browsing attacks counter**.
 
+[Details on configuration of brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+
+### With the filter by URL
+
+If 31 or more requests were sent to `example.com:8888/api/frontend/login` in 30 seconds:
+
+* These requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
+* If the code 404 was returned in the response to all requests, these requests will be marked as [dirbust (forced browsing) attack](../../attacks-vulns-list.md#forced-browsing) and the IP address from which requests were originated will be added to the blacklist.
+
+!!! info "URL value format"
+    The format of the URL filter value is `host:port/path`. The scheme should be omitted. `port` accepts any value except for 80 and 443.
+
+![!Brute force / dirbust trigger](../../images/user-guides/triggers/trigger-example5.png)
+
+[Details on configuration of brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+
 ## Slack notification if 2 or more SQLi hits were detected in one minute
 
-If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
 ![!Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
 
