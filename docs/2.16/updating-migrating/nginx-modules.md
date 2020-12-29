@@ -14,7 +14,7 @@
 
 # Updating Linux WAF packages
 
-These instructions describe the steps to update Linux WAF packages installed according to the instructions below to the version 2.16.
+These instructions below describe the steps to update Linux WAF packages installed to version 2.16.
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -23,12 +23,12 @@ These instructions describe the steps to update Linux WAF packages installed acc
 
 ## Update procedure
 
-* If WAF node and postanalytics modules are installed on the same server, follow the instrutions below to update all packages.
-* If WAF node and postanalytics modules are installed on different servers, first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
+* If WAF node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
+* If WAF node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
 
 ## Step 1: Add new Wallarm WAF repository
 
-Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version packages. Please use the commands for the appropriate platform.
+Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version package. Please use the commands for the appropriate platform.
 
 **CentOS and Amazon Linux 2**
 
@@ -39,7 +39,7 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 
 **Debian and Ubuntu**
 
-1. Open the file with the Wallarm WAF repository address in the installed text editor. In this instruction, **vim** is used.
+1. Open the file with the Wallarm WAF repository address in the installed text editor. In these instructions, **vim** is used.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list
@@ -91,7 +91,7 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 ### WAF node and postanalytics on different servers
 
 !!! warning "Sequence of steps to update the WAF node and postanalytics modules"
-    If the WAF node and postanalytics modules are installed on different servers, it is required to update the postanalytics packages before updating the WAF node packages.
+    If the WAF node and postanalytics modules are installed on different servers, then it is required to update the postanalytics packages before updating the WAF node packages.
 
 1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
 2. Update WAF node packages:
@@ -121,6 +121,6 @@ sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/
 
 ## Settings customization
 
-Wallarm WAF modules are updated to version 2.16. Previous WAF node settings will be applied to a new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm WAF modules are updated to version 2.16. Previous WAF node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"
