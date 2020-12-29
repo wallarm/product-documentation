@@ -8,7 +8,7 @@ The trigger **Block IPs with high count of attack vectors** is created for all c
 
 You can perform all available trigger actions: edit, disable, delete, or copy the trigger.
 
-## Mark requests as brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
+## Mark requests as a brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
 
 ### With the filter by the counter name
 
@@ -38,7 +38,7 @@ If 31 or more requests were sent to `example.com:8888/api/frontend/login` in 30 
 
 ## Slack notification if 2 or more SQLi hits were detected in one minute
 
-If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
 ![!Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
 

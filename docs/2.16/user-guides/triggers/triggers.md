@@ -61,7 +61,7 @@ The following filters are available:
 
     !!! warning "Compatibility with other filters"
         This filter can be used with all available filters except **Counter name**.
-* **Counter name** (only for the number of requests): counter name created in the [rule defining a counter](../rules/define-counters.md). More details about this filter usage are described in the [trigger example](trigger-examples.md#mark-requests-as-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+* **Counter name** (only for the number of requests): counter name created in the [rule defining a counter](../rules/define-counters.md). More details about this filter usage are described in the [trigger example](trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
 
     !!! warning "Compatibility with other filters"
         This filter can be used with all available filters except **URL**.

@@ -10,7 +10,7 @@ Rules **Define forced browsing attacks counter** and **Define brute-force attack
      * Number of 404 responses for the rule **Define forced browsing attacks counter**
      * Number of requests for the rule **Define brute-force attacks counter**
 
-     Thresholds are configured via triggers. Examples of triggers are available at this [link](../triggers/trigger-examples.md##mark-requests-as-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+     Thresholds are configured via triggers. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
 
 ## Creating and applying the rule
 
@@ -22,7 +22,7 @@ To create and apply the rule:
     * **Counter name** defines the name of the tag which will be added to the request. The name should correspond to the following format:
         * `d:<name>` for the rule **Define forced browsing attacks counter**
         * `b:<name>` for the rule **Define brute-force attacks counter**
-2. Create a trigger with a threshold for the rule to fire. Examples of triggers are available at this [link](../triggers/trigger-examples.md##mark-requests-as-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+2. Create a trigger with a threshold for the rule to fire. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
 
 ## Rule examples
 
