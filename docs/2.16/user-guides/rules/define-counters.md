@@ -22,6 +22,11 @@ To create and apply the rule:
     * **Counter name** defines the name of the tag which will be added to the request. The name should correspond to the following format:
         * `d:<name>` for the rule **Define forced browsing attacks counter**
         * `b:<name>` for the rule **Define brute-force attacks counter**
+
+    !!! info "Message about inherited counter"
+        If you have a **Default rule** defining attack counter, you can get a message `Inherited counter: <name>` when creating a rule with defined conditions that will trigger this rule. **Default rule** is applied to all incoming requests as it does not have defined conditions that triggger the rule.
+        
+        The message is for informational purposes only. Operation of the rule with defined trigger conditions will not be affected as it has a higher priority than the **Default rule**.
 2. Create a trigger with a threshold for the rule to fire. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
 
 ## Rule examples
