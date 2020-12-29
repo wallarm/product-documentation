@@ -14,7 +14,7 @@
 
 # Updating Linux WAF packages
 
-These instructions below describe the steps to update Linux WAF packages installed to version 2.16.
+These instructions describe the steps to update Linux WAF packages to version 2.16. Linux WAF packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
