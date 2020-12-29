@@ -28,7 +28,7 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 Users of Wallarm clients can have the following roles:
 
 * **Administrator** with access to all Wallarm WAF settings
-* **Analyst** with access to main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Analyst** with access to view main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm WAF settings
 * **Deploy** with access to create WAF nodes using the `addnode` script and with no access to Wallarm Console
 
