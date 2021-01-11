@@ -1,4 +1,4 @@
-[kong-install]:         https://konghq.com/install/
+[kong-install]:         https://konghq.com/get-started/#install
 [kong-docs]:            https://getkong.org/docs/
 [kong-admin-api]:       https://getkong.org/docs/0.10.x/admin-api/
 
