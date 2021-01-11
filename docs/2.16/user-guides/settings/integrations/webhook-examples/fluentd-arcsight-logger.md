@@ -9,7 +9,7 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
 !!! info "Integration with the Enterprise version of ArcSight ESM"
-    To configure forwarding logs from Fluentd to the Enterprise version of ArcSight ESM, it is recommended to configure the Syslog Connector on the ArcSight side and then forward logs from Fluentd to the connector port. A more detailed description of the connectors is available in the [official Micro Focus documentation](https://community.microfocus.com/dcvta86296/attachments/dcvta86296/connector-documentation/612/17/SmartConnector_UserGuide.pdf).
+    To configure forwarding logs from Fluentd to the Enterprise version of ArcSight ESM, it is recommended to configure the Syslog Connector on the ArcSight side and then forward logs from Fluentd to the connector port. To get a more detailed description of the connectors, please download the **SmartConnector User Guide** from the [official ArcSight SmartConnector documentation](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
 
 ## Used resources
 
@@ -28,7 +28,7 @@ ArcSight Logger has logs receiver `Wallarm Fluentd logs` configured as follows:
 
 ![!Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
-A more detailed description of the receiver configuration is available in the [official Micro Focus documentation](https://community.microfocus.com/dcvta86296/attachments/dcvta86296/logger/221/2/Logger_Install_Guide.pdf).
+To get a more detailed description of the receiver configuration, please download the **Logger Installation Guide** of an appropriate version from the [official ArcSight Logger documentation](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
 ### Fluentd configuration
 
