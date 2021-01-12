@@ -90,6 +90,15 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
 
     ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
+## Examples of integrations
+
+--8<-- "../include/integrations/webhook-examples/overview.md"
+
+We described some examples of how to configure the integration with the popular log collectors forwarding logs to the SIEM systems:
+
+* With **Fluentd** configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
+* With **Logstash** configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
+
 ## Updating integration
 
 --8<-- "../include/integrations/update-integration.md"

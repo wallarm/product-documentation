@@ -4,7 +4,7 @@
 
 You can set up Wallarm to send incidents to PagerDuty when the following events are triggered:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/events-for-integrations.md"
 
 ##  Setting up integration
 
