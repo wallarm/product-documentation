@@ -10,7 +10,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 1. Clone new Helm chart version from the Wallarm repository:
 
     ```bash
-    git clone https://github.com/wallarm/ingress-chart --branch stable/2.16 --single-branch
+    git clone https://github.com/wallarm/ingress-chart --branch 2.16.0-3 --single-branch
     ```
 2. Update the previous Helm chart:
 
