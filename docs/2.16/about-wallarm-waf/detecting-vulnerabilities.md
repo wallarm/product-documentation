@@ -41,10 +41,8 @@ The module **Attack rechecker** reproduces each attack from the processed traffi
 
 * The module can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section.
 * If the WAF node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which the attack rechecker sends requests.
-* To add authentication credentials to the requests sent by the attack rechecker, it is required to add a corresponding rule to the application profile. To add a rule, please contact our [technical support](mailto:support@wallarm.com) and send test authentication credentials: API key, token, password or other parameters.
-
-    It is recommended to generate test authentication credentials that will only be used by the Wallarm module **Attack rechecker**.
-* To send requests to the separate application instance (staging or test environment), please contact our [technical support](mailto:support@wallarm.com) and send the address of the application instance. By default, requests are sent to the application address from the original request.
+* To add authentication credentials to the requests sent by the attack rechecker, it is required to add a [corresponding rule](../user-guides/rules/change-request-for-active-verification.md) to the application profile.
+* To send requests to the separate application instance (staging or test environment), it is required to add a [corresponding rule](../user-guides/rules/change-request-for-active-verification.md) to the application profile.
 
 ### Vulnerability scanner
 
