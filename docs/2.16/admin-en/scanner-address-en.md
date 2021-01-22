@@ -11,7 +11,7 @@ The list of IP addresses for EU Cloud from which the Wallarm Scanner scans compa
 
 --8<-- "../include/scanner-ip-request.md"
 
-IP addresses used by Wallarm to recheck attacks:
+IP addresses used by Wallarm to recheck attacks and vulnerabilities:
 
 --8<-- "../include/scanner-ip-validate.md"
 
