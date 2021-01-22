@@ -1,6 +1,6 @@
 # Trigger examples
 
-## Blacklist IP if 4 or more attack vectors were detected in 3 hours (default trigger)
+## Blacklist IP if 4 or more attack vectors were detected in 1 hour (default trigger)
 
 The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different attack vectors were sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.
 
