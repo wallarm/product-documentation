@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-* Kubernetes platform version 1.15 or lower
+* Kubernetes platform version 1.16 and lower, or Kubernetes platform version 1.19
 * [Helm](https://helm.sh/) package manager
 * Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 0.26.2
 
@@ -30,7 +30,7 @@
     ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Clone the repository of Wallarm Helm chart:
     ```
-    git clone https://github.com/wallarm/ingress-chart --branch stable/2.16 --single-branch
+    git clone https://github.com/wallarm/ingress-chart --branch 2.16.0-3 --single-branch
     ```
 4. Install the Wallarm Ingress controller:
 

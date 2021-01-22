@@ -29,6 +29,13 @@ WAF node artifact versions have the following format:
 | `<PATCH_VERSION>`              | WAF node patch version:<ul><li>Minor bug fixes</li><li>New features added after a special request</li></ul>Initial value is `0`. The value increases by 1, for example: `2.14.0`, `2.14.1`.                                                                                                                                     | Once a month                        |
 | `<BUILD_NUMBER>` (optional) | WAF node build version. The value is assigned automatically by the employed package build platform. The value will not be assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `2.14.0-1`, `2.14.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
 
+We recommend using different WAF node version format when downloading the packages or images. The format depends on the [WAF node installation form](../admin-en/supported-platforms.md):
+
+* `<MAJOR_VERSION>.<MINOR_VERSION>` for Linux packages
+* `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>[-<BUILD_NUMBER>]` for Docker and cloud images, and Helm charts
+
+    When pulling Wallarm Docker images, you can also specify the version of the WAF node in the format `<MAJOR_VERSION>.<MINOR_VERSION>`. Since pulled version of the WAF node contains changes of the latest available patch version, behavior of the same `<MAJOR_VERSION>.<MINOR_VERSION>` image version pulled in different time periods may differ.
+
 Versions of WAF node packages may differ within the same artifact. For example, if only one package needs to be updated, then the remaining packages retain the previous version.
 
 ## Version support

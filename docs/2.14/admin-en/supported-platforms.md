@@ -51,7 +51,7 @@ The Wallarm filter node can be installed on the following platforms:
 *   The Kubernetes Cluster
 
     !!! warning "Supported Kubernetes Platform"
-        Please note, that the Wallarm NGINX or NGINX Plus Ingress controllers run only on the Kubernetes platform version 1.15 and lower.
+        Please note, that the Wallarm NGINX or NGINX Plus Ingress controllers run only on the Kubernetes platform version 1.16 and lower.
     
     Installing the filter node on the Kubernetes Cluster provides the following options:
     
