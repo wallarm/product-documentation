@@ -89,10 +89,14 @@ To start blocking IP addresses:
 
     !!! info "Subnet mask"
         Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
-3. Choose whether to block IPs for all applications or for a specific application.
-4. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
-5. Provide a comment on the blocking reason.
-6. Click **Add to blacklist**.
+3. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
+4. Provide a comment on the blocking reason.
+5. Click **Add to blacklist**.
+
+!!! warning "Blocking the IP address for a specific application"
+    By default, the requests to any application are blocked if they are originated from the blacklisted IP address. Application selector is not used when adding the IP address to the blacklist.
+
+    You can select the application the IP blacklist is applied to. To select the application, please set the directive [`wallarm_acl`](../admin-en/configure-parameters-en.md#wallarm_acl) inside the required server or location block in the NGINX configuration file.
 
 ![!Adding to blacklist][img-blacklist-add]
 
