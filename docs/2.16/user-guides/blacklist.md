@@ -20,11 +20,11 @@ The blacklist is available in the **Blacklist** section of your Wallarm account.
 * Instantly unblock any IP address or set the time to unblock
 * Add an IP address or a whole subnet to the blacklist
 
-!!! warning "Enable on Wallarm Node"
-    For the blacklisting to take effect, you must enable it on Wallarm Node.
+!!! warning "Enable IP address blacklisting on the WAF node"
+    For the blacklisting to take effect, please enable it on the WAF node.
     
-    [More...][link-ip-blocking]
-
+    * [Instructions for the regular WAF node][link-ip-blocking]
+    * To enable IP address blacklisting on the [partner WAF node](../partner-waf-node/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Review the Active Blacklist
 
@@ -82,13 +82,15 @@ You can filter the history by:
 
 ## Block Manually
 
+!!! info "Blocking the IP address on the partner WAF node"
+    If you have installed the [partner WAF node](../partner-waf-node/overview.md), please switch to the [account of a client](../partner-waf-node/overview.md#partner-account-components) for which the IP address is blocked before adding the IP address to the blacklist.
+
 To start blocking IP addresses:
 
 1. Click the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
 
-    !!! info "Subnet mask"
-        Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
+    Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
 3. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
 4. Provide a comment on the blocking reason.
 5. Click **Add to blacklist**.

@@ -60,8 +60,8 @@ Partner WAF node has the following characteristics:
     --8<-- "../include/waf/installation/supported-platforms-212.md"
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to the Wallarm Console, the WAF node must be installed at the corresponding partner client level.
 * Can be configured according to the same instructions as a regular WAF node, except for:
-    * The directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) is used to split settings by clients. Splitting by applications does not work.
-    * To enable blocking of requests by IP addresses, please send a request to [Wallarm technical support](mailto:support@wallarm.com). After blocking is enabled, to block IP addresses, you need to add them to the blacklist at the technical client account level.
+    * The directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) is used to split settings by the client applications.
+    * To enable blocking of requests by IP addresses, please send a request to [Wallarm technical support](mailto:support@wallarm.com). After blocking is enabled, to block IP addresses, you need to add them to the blacklist at an appropriate partner client account level.
 
 ## How to become a partner and install a partner WAF node
 
