@@ -20,11 +20,11 @@ The blacklist is available in the **Blacklist** section of your Wallarm account.
 * Instantly unblock any IP address or set the time to unblock
 * Add an IP address or a whole subnet to the blacklist
 
-!!! warning "Enable on Wallarm Node"
-    For the blacklisting to take effect, you must enable it on Wallarm Node.
+!!! warning "Enable IP address blacklisting on the WAF node"
+    For the blacklisting to take effect, please enable it on the WAF node.
     
-    [More...][link-ip-blocking]
-
+    * [Instructions for the regular WAF node][link-ip-blocking]
+    * To enable IP address blacklisting on the [partner WAF node](../partner-waf-node/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Review the Active Blacklist
 
@@ -82,17 +82,23 @@ You can filter the history by:
 
 ## Block Manually
 
+!!! info "Blocking the IP address on the partner WAF node"
+    If you have installed the [partner WAF node](../partner-waf-node/overview.md), please switch to the [account of a client](../partner-waf-node/overview.md#partner-account-components) for which the IP address is blocked before adding the IP address to the blacklist.
+
 To start blocking IP addresses:
 
 1. Click the **Block IP or Subnet** button.
 2. Enter a value in the field **IP, range, or subnet**.
 
-    !!! info "Subnet mask"
-        Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
-3. Choose whether to block IPs for all applications or for a specific application.
-4. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
-5. Provide a comment on the blocking reason.
-6. Click **Add to blacklist**.
+    Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
+3. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
+4. Provide a comment on the blocking reason.
+5. Click **Add to blacklist**.
+
+!!! warning "Blocking the IP address for a specific application"
+    By default, the requests to any application are blocked if they are originated from the blacklisted IP address. Application selector is not used when adding the IP address to the blacklist.
+
+    You can select the application the IP blacklist is applied to. To select the application, please set the directive [`wallarm_acl`](../admin-en/configure-parameters-en.md#wallarm_acl) inside the required server or location block in the NGINX configuration file.
 
 ![!Adding to blacklist][img-blacklist-add]
 

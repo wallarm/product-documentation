@@ -17,6 +17,7 @@ To create a partner account:
         Please sign up using a corporate email address.
 2. Open your email inbox and activate the account using the link from received message.
 3. Send a request for switching your account to a partner status and for creating a [technical client account](overview.md#partner-account-components) to the [Wallarm technical support](mailto:support@wallarm.com). Send the following data with the request:
+    * Name of the used Wallarm Cloud (EU Cloud or US Cloud)
     * Names for a partner account and technical client account
     * Email addresses of employees who should have access to the technical client account (after switching your account to a partner status, you will be able to add employees yourself)
     * Logo for branded Wallarm Console, emails and reports
@@ -28,15 +29,9 @@ To create a partner account:
 
 After switching your account to partner status and creating a [technical client account](overview.md#partner-account-components), Wallarm technical support staff will:
 
-* Add you to the list of users of the technical client account with the [role](../user-guides/settings/users.md) **Global administrator**. You will receive an email with the link for setting a new password to access the technical client account.
-
-    After changing your password, you will be able to sign in to your account. The technical client account will be displayed in the selector of clients in the Wallarm Console:
-
-    ![!Technical client in Operations Console](../images/partner-waf-node/technical-client-in-console.png)
-* If you sent email adrresses of your employees, the Wallarm technical support will add employees to the list of users of the technical client account with the [role](../user-guides/settings/users.md) **Global read only**. Employees will receive emails with the link for setting a new password to access the technical client account.
-* Send you the following credentials:
-    * Partner UUID. The credential will be used for linking clients.
-    * User UUID and secret key. The credentials will be used for authentication to the Wallarm API.
+* Add you to the list of users of the technical client account with the [role](../user-guides/settings/users.md) **Global administrator**.
+* If you sent email adrresses of your employees, the Wallarm technical support will add employees to the list of users of the technical client account with the [role](../user-guides/settings/users.md) **Global read only**. Unregistered employees will receive emails with the link for setting a new password to access the technical client account.
+* Send you the partner UUID. The credential will be used for linking clients.
 
 ## Providing employees with access to a technical client account
 
