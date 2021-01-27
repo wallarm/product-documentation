@@ -8,7 +8,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     cd /etc/nginx/conf.d
     ```
 
-2.  In the current folder, create a file named `/etc/nginx/conf.d/wallarm‑acl.conf` with the following content:
+2.  In the current folder, create a file named `wallarm-acl.conf` with the following content:
 
     ```
     wallarm_acl_db default {
