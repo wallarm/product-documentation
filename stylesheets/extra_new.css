@@ -16,6 +16,10 @@
     font-size: 16px;
 }
 
+.md-grid {
+  max-width: 1440px;
+}
+
 /* Announce bar */
 
 .md-announce {
