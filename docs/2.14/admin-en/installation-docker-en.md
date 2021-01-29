@@ -7,6 +7,9 @@
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [scanner-whitelisting-instr]:       scanner-ips-whitelisting.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
+[default-ip-blocking-settings]:     configure-ip-blocking-nginx-en.md
+[wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl
+[allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
 
 # Running Docker NGINX‑based image
 
@@ -33,8 +36,7 @@ The functionality of the WAF node installed inside the Docker container is compl
 
 ## Requirements
 
-* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+--8<-- "../include/waf/installation/requirements-docker.md"
 
 ## Options for running the container
 
@@ -47,15 +49,7 @@ The WAF node configuration parameters can be passed to the `docker run` command 
 
 You can pass the following basic WAF node settings to the container via the option `-e`:
 
-Environment variable | Description| Required
---- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
-`NGINX_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
-`WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`. | No
-`TARANTOOL_MEMORY_GB` | [Amount of memory](configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
-`WALLARM_ACL_ENABLE` | Enables the IP blocking functionality with [default settings](configure-ip-blocking-nginx-en.md). By default: `false`.<br>To enable the IP blocking functionality with custom settings, you need to define appropriate NGINX [directives](configure-parameters-en.md#wallarm_acl) and run the container [mounting](#run-the-container-mounting-the-configuration-file) the configuration file with defined directives. | No 
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
 
 To run the image, use the command:
 
@@ -115,11 +109,7 @@ To run the image:
 
 1. Pass required environment variables to the container via the `-e` option:
 
-    Environment variable | Description| Required
-    --- | ---- | ----
-    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
-    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
-    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+    --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
 
 2. Mount the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory via the `-v` option.
 
@@ -177,23 +167,10 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
 
 ## Testing WAF node operation
 
-1. Send the request with test [SQLI](../attacks-vulns-list.md#sql-injection) and [XSS](../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the protected resource address:
-
-    ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    ```
-
-    If the WAF node works in the `block` mode, the request will be blocked and the code `403 Forbidden` will be returned.
-2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
-    ![!Attacks in the interface](../images/admin-guides/test-attacks.png)
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Configuring the use cases
 
 The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration options:
 
-* [Configuration of the filtering mode][waf-mode-instr]
-* [Logging WAF node variables][logging-instr]
-* [Adding Wallarm Scanner addresses to the whitelist in the `block` filtering mode][scanner-whitelisting-instr]
-* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
-* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+--8<-- "../include/waf/installation/common-customization-options-docker.md"
