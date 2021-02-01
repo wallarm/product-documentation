@@ -30,7 +30,7 @@ If 31 or more requests were sent to `example.com:8888/api/frontend/login` in 30 
 * If the code 404 was returned in the response to all requests, these requests will be marked as [dirbust (forced browsing) attack](../../attacks-vulns-list.md#forced-browsing) and the IP address from which requests were originated will be added to the blacklist.
 
 !!! info "URL value format"
-    The format of the URL filter value is `host:port/path`. The scheme should be omitted. `port` accepts any value except for 80 and 443.
+    The format of the URL filter value is `host:port/path`. The scheme should be omitted. The `port` value must contain a non‑standard port (to specify 80 or 443 port, please configure the URL via the **Counter name** filter).
 
 ![!Brute force / dirbust trigger](../../images/user-guides/triggers/trigger-example5.png)
 
