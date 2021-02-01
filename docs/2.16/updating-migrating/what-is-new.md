@@ -32,6 +32,7 @@ All platforms available for the WAF node 2.16 installation are listed [here](../
 <!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
 * Installation of the WAF node in the form of the [Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details about optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
+* Decreased default interval between the WAF node and Wallarm Cloud synchronizations. Now default interval is 120 seconds. [More details about the WAF node and Wallarm Cloud synchronization configuration →](../admin-en/configure-cloud-node-synchronization-en.md)
 
 ## Update process
 
