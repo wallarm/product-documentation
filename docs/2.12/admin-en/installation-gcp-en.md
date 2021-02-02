@@ -24,8 +24,6 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ## 2. Launch a Filter Node Instance
 
-Launch your filter node instance using this [link](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node), click *LAUNCH ON COMPUTER ENGINE* and select the `2.12.x` version during launching.
-
 !!! info "If Wallarm WAF instance is already launched"
     If you launch Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the instance in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
 
@@ -41,9 +39,40 @@ Launch your filter node instance using this [link](https://console.cloud.google.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
-The instance will launch with a preinstalled filter node.
+### Launch the instance via the Google Cloud UI
 
-To see detailed information on launching instances in the Google Cloud, proceed to this [link][link-launch-instance].
+To launch the WAF node instance via the Google Cloud UI, please open the [WAF node image on the Google Cloud Marketplace](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) and click **LAUNCH**.
+
+The instance will launch with a preinstalled WAF node. To see detailed information on launching instances in the Google Cloud, please proceed to the [official Google Cloud Platform documentation][link-launch-instance].
+
+### Launch the instance via Terraform or other tools
+
+When using a tool like Terraform to launch the WAF node instance using Wallarm GCP image, you may need to provide the name of this image in the Terraform configuration.
+
+* Image name has the following format:
+
+    ```bash
+    wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
+    ```
+* To launch the instance with the WAF node version 2.12, please use the following image name:
+
+    ```bash
+    wallarm-node-195710/wallarm-node-2-12-4-5-19468-build
+    ```
+
+To get the image name, you can also follow these steps:
+
+1. Install [Google Cloud SDK](https://cloud.google.com/sdk/docs/install).
+2. Execute the command [`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list) with the following parameters:
+
+    ```bash
+    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-2-12-*'" --no-standard-images
+    ```
+3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the WAF node version 2.12 image will have the following name:
+
+    ```bash
+    wallarm-node-195710/wallarm-node-2-12-4-5-19468-build
+    ```
 
 ## 3. Configure the Filter Node Instance
 
