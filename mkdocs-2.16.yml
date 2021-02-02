@@ -299,7 +299,7 @@ nav:
       - WAF node update instructions:
         - Updating Linux WAF packages: updating-migrating/nginx-modules.md
         - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
-        - Updating Docker: updating-migrating/docker-container.md
+        - Updating the running Docker NGINX‑based image: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
