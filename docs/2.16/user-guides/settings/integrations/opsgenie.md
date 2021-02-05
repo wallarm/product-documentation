@@ -20,9 +20,18 @@ In Wallarm UI:
 3. Enter an integration name.
 4. Paste the copied API key to the **API key** field.
 5. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-6. Click **Add integration**.
+6. [Test the integration](#testing-integration) and ensure the settings are correct.
+7. Click **Add integration**.
 
     ![!OpsGenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+
+## Testing integration
+
+--8<-- "../include/integrations/test-integration.md"
+
+Test OpsGenie notification:
+
+![!Test OpsGenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 ## Updating integration
 

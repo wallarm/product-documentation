@@ -14,9 +14,18 @@ You can set additional email addresses that will be used to deliver scheduled re
 4. Enter email addresses using a comma as a separator.
 5. Choose the frequency of sending security reports. If the frequency is not chosen, then reports will not be sent.
 6. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-7. Click **Add integration**.
+7. [Test the integration](#testing-integration) and ensure the settings are correct.
+8. Click **Add integration**.
 
     ![!Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+
+## Testing integration
+
+--8<-- "../include/integrations/test-integration.md"
+
+Test notification example:
+
+![!Test email message](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 ## Updating integration
 
