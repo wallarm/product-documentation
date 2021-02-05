@@ -25,9 +25,18 @@ Thirdly, finish the setup in Wallarm UI:
 
 1. Enter an integration name.
 2. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-3. Click **Add integration**.
+3. [Test the integration](#testing-integration) and ensure the settings are correct.
+4. Click **Add integration**.
 
 ![!InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+
+## Testing integration
+
+--8<-- "../include/integrations/test-integration.md"
+
+Test InsightConnect message:
+
+![!Test InsightConnect notification](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 ## Updating integration
 

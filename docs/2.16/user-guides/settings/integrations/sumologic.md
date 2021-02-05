@@ -19,9 +19,28 @@ In Wallarm UI:
 3. Enter an integration name.
 4. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.
 5. Choose event types to trigger sending messages to Sumo Logic. If the events are not chosen, then messages will not be sent.
-6. Click **Add integration**.
+6. [Test the integration](#testing-integration) and ensure the settings are correct.
+7. Click **Add integration**.
 
 ![!Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+
+## Testing integration
+
+--8<-- "../include/integrations/test-integration.md"
+
+Test Sumo Logic notification:
+
+```bash
+{
+    "title": "Test",
+    "source": "Wallarm",
+    "type": "Info",
+    "domain": "example.com",
+    "threat": "Medium",
+    "link": "https://my.wallarm.com/object/555",
+    "summary": "[Test Message] New vulnerability identified"
+}
+```
 
 ## Updating integration
 

@@ -86,7 +86,8 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
 
     ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. Choose event types to trigger sending notifications to Webhook URL. If the events are not chosen, then notifications will not be sent.
-7. Click **Add integration**.
+7. [Test the integration](#testing-integration) and ensure the settings are correct.
+8. Click **Add integration**.
 
     ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
@@ -98,6 +99,26 @@ We described some examples of how to configure the integration with the popular 
 
 * With **Fluentd** configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
 * With **Logstash** configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
+
+## Testing integration
+
+--8<-- "../include/integrations/test-integration.md"
+
+Test webhook example:
+
+```bash
+[
+  {
+    "title": "Test",
+    "source": "Wallarm",
+    "type": "Info",
+    "domain": "example.com",
+    "threat": "Medium",
+    "link": "https://my.wallarm.com/object/555",
+    "summary": "[Test Message] New vulnerability identified"
+  }
+]
+```
 
 ## Updating integration
 
