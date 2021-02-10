@@ -68,7 +68,7 @@ You can configure several triggers for brute force protection.
 
     ![!Dirbust attack in the interface](../../images/user-guides/events/dirbust-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 requests ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-requests-in-bruteforce-attacks)).
+    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-requests-in-bruteforce-attacks)).
 
     To search for attacks, you can use the filters, for example: `dirbust` for dirbust attacks, `brute` for brute‑force attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
 
