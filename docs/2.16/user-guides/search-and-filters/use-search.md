@@ -84,7 +84,7 @@ Specify in the search string:
 * `dirbust`: to search for [forced browsing][al-forced-browsing] attacks.
 * `ldapi`: to search for [LDAP injection][al-ldapi] attacks/vulnerabilities.
 * `scanner`: to search for [port scanner][al-port-scanner] attacks/vulnerabilities.
-* `info`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
+* `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

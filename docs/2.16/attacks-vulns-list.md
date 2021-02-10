@@ -331,13 +331,15 @@ You may follow these recommendations:
 
 ### Information Exposure
 
-**Vulnerability**<br>
+**Vulnerability/Attack**<br>
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])<br>
-**Wallarm code:** `info`
+**Wallarm code:** `infoleak`
 
 **Description:**
 
-The vulnerable web application either intentionally or unintentionally discloses confidential information to a subject that is not authorized to access it. 
+The vulnerable web application either intentionally or unintentionally discloses confidential information to a subject that is not authorized to access it.
+
+The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm-waf/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses confidential information, Wallarm records an incident and an active vulnerability of the **Information Exposure** type.
 
 **Remediation:**
 
