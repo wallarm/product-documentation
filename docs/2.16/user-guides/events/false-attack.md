@@ -14,7 +14,8 @@ After analyzing an attack, you may conclude that all or some requests in this at
 
 ## How a false positive mark works?
 
-When a false positive mark is added, the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm-waf/protecting-against-attacks.md#library-libproton)) is automatically created.
+* If a false positive mark is added for the attack of the type different from [Information Exposure](../../attacks-vulns-list.md#information-exposure), the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm-waf/protecting-against-attacks.md#library-libproton)) is automatically created.
+* If a false positive mark is added for the incident with the [Information Exposure](../../attacks-vulns-list.md#information-exposure) attack type, the rule disabling analysis of the same requests for detected [vulnerability signs](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-detection-methods) is automatically created.
 
 Created rule is applied when analyzing requests to the protected application. The rule is not displayed in the Wallarm Console and can be changed or removed only by the request sent to [Wallarm technical support](mailto: support@wallarm.com).
 

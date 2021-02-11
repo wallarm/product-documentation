@@ -331,17 +331,24 @@ You may follow these recommendations:
 
 ### Information Exposure
 
-**Vulnerability**<br>
+**Vulnerability/Attack**<br>
 **CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])<br>
-**Wallarm code:** `info`
+**Wallarm code:** `infoleak`
 
 **Description:**
 
-The vulnerable web application either intentionally or unintentionally discloses confidential information to a subject that is not authorized to access it. 
+The application either intentionally or unintentionally discloses sensitive information to a subject that is not authorized to access it.
+
+The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm-waf/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, Wallarm records an incident and an active vulnerability of the **Information Exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
+
+* System and environment status (for example: stack trace, warnings, fatal errors)
+* Network status and configuration
+* The application code or internal state
+* Metadata (for example, logging of connections or message headers)
 
 **Remediation:**
 
-You may follow the recommendation to prohibit a web application from having the ability to display any confidential information.
+You may follow the recommendation to prohibit a web application from having the ability to display any sensitive information.
 
 
 ### Remote Code Execution (RCE)
