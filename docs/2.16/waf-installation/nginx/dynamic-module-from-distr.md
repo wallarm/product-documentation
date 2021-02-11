@@ -21,6 +21,7 @@
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../../updating-migrating/versioning-policy.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
+[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 
@@ -268,4 +269,4 @@ To update other NGINX and Wallarm WAF configurations, use the NGINX documentatio
 
 Dynamic Wallarm WAF module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm WAF settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-216.md"

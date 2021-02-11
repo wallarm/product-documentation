@@ -6,6 +6,7 @@
 [default-ip-blocking-settings]:     ../admin-en/configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
 # Updating the running Docker NGINX‑based image
 
@@ -151,4 +152,4 @@ If the deployed image of the version 2.16 operates correctly, you can delete the
 
 The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](../admin-en/configure-parameters-en.md). Below are some commonly used WAF node configuration options:
 
---8<-- "../include/waf/installation/common-customization-options-docker.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-216.md"
