@@ -76,9 +76,9 @@ The sample of hits and the number of other hits are displayed in the attack deta
 
 **Enabling the sampling algorithm**
 
-* For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), the sampling algorithm is enabled if your RPS value is greater than the average RPS for all clients in the Wallarm Cloud within one hour.
+* For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), the sampling algorithm is enabled if Wallarm detects a high percentage of attacks in your traffic.
 
-    When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to RPS change.
+    When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack perecentage change.
 * For all [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), the sampling algorithm is enabled by default.
 
 ## Demo videos
