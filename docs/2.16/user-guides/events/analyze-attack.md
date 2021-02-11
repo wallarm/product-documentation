@@ -67,7 +67,7 @@ To optimize the data storage and analysis, we apply the sampling algorithm to hi
 
 **Examples**
 
-* If the attack consists of 20 hits (10 identical hits each originated from different IP addresses), data on the first 5 hits from each IP address will be saved in the sampl in the Wallarm Cloud and the number of the rest hits (10) will be recorded in a separate variable.
+* If the attack consists of 20 hits (10 identical hits each originated from different IP addresses), data on the first 5 hits from each IP address will be saved in the sample in the Wallarm Cloud and the number of the rest hits (10) will be recorded in a separate variable.
 * If the attack consists of 10 hits originated from different IP addresses, data on all hits will be saved in the Wallarm Cloud.
 
 The sample of hits and the number of other hits are displayed in the attack details in the Wallarm Console. For example, brute‑force attack:
