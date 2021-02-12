@@ -33,6 +33,20 @@ The set of features included to the subscription plan is defined individually wi
 
 To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
+## Trial period
+
+When a new user is registered in the Wallarm Console, a new client account with an active WAF node trial period is automatically created in the Wallarm system.
+
+* The trial period is free.
+* The trial period lasts 14 days.
+* Wallarm WAF trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm WAF.
+* The trial period can be extended for 14 days more only once.
+
+    The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
+* If the trial period expired, the client account is blocked. When a paid subscription to Wallarm WAF is activated, access to the client account is restored for all users.
+
+Information about the trial period is displayed in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+
 ## Subscription management
 
 * To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
