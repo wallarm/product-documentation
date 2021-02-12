@@ -10,6 +10,7 @@
 [default-ip-blocking-settings]:     configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
+[enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 
 # Running Docker NGINX‑based image
 
@@ -173,4 +174,4 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay 
 
 The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration options:
 
---8<-- "../include/waf/installation/common-customization-options-docker.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-216.md"

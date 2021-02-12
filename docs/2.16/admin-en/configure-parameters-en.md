@@ -11,11 +11,13 @@
 
 ### wallarm_enable_libdetection
 
-Enables additional validation of attacks via the **libdetection** library. **libdetection** uses improved attack detection algorithms to reduce the number of false positives.
+Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-**libdetection** parses malicious requests detected by **libproton** and checks these requests for attacks. If **libdetection** does not confirm the attack, then the request will not be defined as a malicious request and will not be blocked (if the WAF node is working in the `block` mode).
+Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
 
-To allow **libdetection** to parse and check the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
+[More details on **libdetection** →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+
+To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.

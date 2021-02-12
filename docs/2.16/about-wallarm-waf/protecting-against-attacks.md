@@ -84,16 +84,47 @@ Wallarm regularly updates **proton.db** with token sequences for new attack type
 
 ### Library libdetection
 
-The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton**. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+#### libdetection overview
 
-The particular characteristic of **libdetection** is that it analyzes requests not only for token sequences specific for attack types, but also for context in which the token sequence was sent. The library contains the character strings of different attack type syntaxes (SQL injection, Remote code execution, Path Traversal for now). The string is named as the context. Example of the context for the SQL injection attack type: `SELECT example FROM table WHERE id=`.
+The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
+
+* If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the WAF node is working in the `block` mode).
+* If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the WAF node is working in the `block` mode).
+
+Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+
+!!! info "Attack types validated by the libdetection library"
+    Currently, the library **libdetection** only validates SQL Injection attacks.
+
+#### How libdetection works
+
+The particular characteristic of **libdetection** is that it analyzes requests not only for token sequences specific for attack types, but also for context in which the token sequence was sent.
+
+The library contains the character strings of different attack type syntaxes (SQL Injection for now). The string is named as the context. Example of the context for the SQL injection attack type:
+
+```curl
+SELECT example FROM table WHERE id=
+```
 
 The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious request and will not be blocked (if the WAF node is working in the `block` mode).
 
-Analyzing of requests with the **libdetection** library is disabled by default. To enable the analysis, it is required to set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`.
+#### Enabling libdetection
+
+Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis. To enable the analysis, it is required to set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`.
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
+
+#### Testing libdetection
+
+To check operation of **libdetection**, you can send the following legtimate request to the protected resource:
+
+```bash
+curl http://localhost/?id=1' UNION SELECT
+```
+
+* The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
+* If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the WAF node is working in the `block` mode).
 
 ### Custom detection rules
 
