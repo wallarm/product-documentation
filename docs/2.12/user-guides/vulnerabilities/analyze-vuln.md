@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/vulnerabilities/analyze-vuln.md"
+--8<-- "latest/user-guides/vulnerabilities/analyze-vuln.md"

@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/mirror-traffic-en.md"
+--8<-- "latest/admin-en/mirror-traffic-en.md"

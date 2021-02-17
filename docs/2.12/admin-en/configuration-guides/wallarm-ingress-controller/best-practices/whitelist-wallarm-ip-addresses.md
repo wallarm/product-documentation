@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md"
+--8<-- "latest/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md"

@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/monitoring/working-with-nagios.md"
+--8<-- "latest/admin-en/monitoring/working-with-nagios.md"

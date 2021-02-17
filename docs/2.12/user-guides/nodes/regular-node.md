@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/nodes/regular-node.md"
+--8<-- "latest/user-guides/nodes/regular-node.md"

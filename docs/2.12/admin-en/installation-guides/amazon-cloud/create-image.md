@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/installation-guides/amazon-cloud/create-image.md"
+--8<-- "latest/admin-en/installation-guides/amazon-cloud/create-image.md"

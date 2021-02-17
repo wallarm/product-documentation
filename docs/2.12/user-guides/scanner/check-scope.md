@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/scanner/check-scope.md"
+--8<-- "latest/user-guides/scanner/check-scope.md"

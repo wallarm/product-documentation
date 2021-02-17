@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md"
+--8<-- "latest/user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md"

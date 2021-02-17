@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/events/check-attack.md"
+--8<-- "latest/user-guides/events/check-attack.md"

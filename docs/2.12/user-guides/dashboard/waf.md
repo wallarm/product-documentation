@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/dashboard/waf.md"
+--8<-- "latest/user-guides/dashboard/waf.md"

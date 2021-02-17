@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/operation/learn-incoming-request-number.md"
+--8<-- "latest/admin-en/operation/learn-incoming-request-number.md"

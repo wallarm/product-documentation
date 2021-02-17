@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/configuration-guides/sso/okta/setup-idp.md"
+--8<-- "latest/admin-en/configuration-guides/sso/okta/setup-idp.md"

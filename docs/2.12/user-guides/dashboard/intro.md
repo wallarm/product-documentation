@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/dashboard/intro.md"
+--8<-- "latest/user-guides/dashboard/intro.md"

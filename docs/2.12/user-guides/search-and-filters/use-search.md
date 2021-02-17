@@ -1,1 +1,1 @@
---8<-- "2.16/user-guides/search-and-filters/use-search.md"
+--8<-- "latest/user-guides/search-and-filters/use-search.md"

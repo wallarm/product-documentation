@@ -1,1 +1,1 @@
---8<-- "2.14/about-wallarm-waf/shared-responsibility.md"
+--8<-- "latest/about-wallarm-waf/shared-responsibility.md"

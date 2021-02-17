@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/settings/integrations/pagerduty.md"
+--8<-- "latest/user-guides/settings/integrations/pagerduty.md"

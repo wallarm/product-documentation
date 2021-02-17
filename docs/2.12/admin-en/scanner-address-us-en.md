@@ -1,1 +1,1 @@
---8<-- "2.16/admin-en/scanner-address-us-en.md"
+--8<-- "latest/admin-en/scanner-address-us-en.md"

@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/scanner/reserved-domains.md"
+--8<-- "latest/user-guides/scanner/reserved-domains.md"

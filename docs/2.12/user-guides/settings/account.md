@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/settings/account.md"
+--8<-- "latest/user-guides/settings/account.md"

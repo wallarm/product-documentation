@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/events/verify-attack.md"
+--8<-- "latest/user-guides/events/verify-attack.md"

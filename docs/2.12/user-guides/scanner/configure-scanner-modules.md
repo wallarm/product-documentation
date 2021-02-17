@@ -1,1 +1,1 @@
---8<-- "2.14/user-guides/scanner/configure-scanner-modules.md"
+--8<-- "latest/user-guides/scanner/configure-scanner-modules.md"

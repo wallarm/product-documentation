@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/configure-ip-blocking-en.md"
+--8<-- "latest/admin-en/configure-ip-blocking-en.md"

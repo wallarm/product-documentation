@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/monitoring/fetching-metrics.md"
+--8<-- "latest/admin-en/monitoring/fetching-metrics.md"

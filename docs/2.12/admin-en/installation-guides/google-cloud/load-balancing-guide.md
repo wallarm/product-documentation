@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/installation-guides/google-cloud/load-balancing-guide.md"
+--8<-- "latest/admin-en/installation-guides/google-cloud/load-balancing-guide.md"

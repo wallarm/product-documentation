@@ -1,1 +1,1 @@
---8<-- "2.14/admin-en/admin-intro-en.md"
+--8<-- "latest/admin-en/admin-intro-en.md"
