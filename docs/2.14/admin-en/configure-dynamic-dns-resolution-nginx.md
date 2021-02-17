@@ -1,1 +1,1 @@
---8<-- "2.16/admin-en/configure-dynamic-dns-resolution-nginx.md"
+--8<-- "latest/admin-en/configure-dynamic-dns-resolution-nginx.md"

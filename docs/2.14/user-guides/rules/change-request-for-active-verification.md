@@ -1,1 +1,1 @@
---8<-- "2.16/user-guides/rules/change-request-for-active-verification.md"
+--8<-- "latest/user-guides/rules/change-request-for-active-verification.md"

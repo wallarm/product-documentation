@@ -1,1 +1,1 @@
---8<-- "2.16/user-guides/triggers/trigger-examples.md"
+--8<-- "latest/user-guides/triggers/trigger-examples.md"

@@ -1,1 +1,1 @@
---8<-- "2.16/user-guides/settings/audit-log.md"
+--8<-- "latest/user-guides/settings/audit-log.md"
