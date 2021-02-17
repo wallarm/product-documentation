@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/compiling.md"
+--8<-- "latest/user-guides/rules/define-counters.md"
