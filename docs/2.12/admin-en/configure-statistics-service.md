@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-statistics-service.md"
+--8<-- "2.14/admin-en/configure-statistics-service.md"
