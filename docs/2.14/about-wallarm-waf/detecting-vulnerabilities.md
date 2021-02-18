@@ -1,1 +1,1 @@
---8<-- "2.16/about-wallarm-waf/detecting-vulnerabilities.md"
+--8<-- "latest/about-wallarm-waf/detecting-vulnerabilities.md"
