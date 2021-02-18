@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/supported-platforms.md"

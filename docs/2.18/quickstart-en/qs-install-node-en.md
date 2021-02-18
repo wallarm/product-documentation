@@ -1,0 +1,1 @@
+--8<-- "latest/quickstart-en/qs-install-node-en.md"

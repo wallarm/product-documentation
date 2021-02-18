@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/vulnerabilities/close-open-vuln.md"
