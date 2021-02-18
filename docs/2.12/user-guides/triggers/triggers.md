@@ -1,1 +1,0 @@
---8<-- "2.16/user-guides/triggers/triggers.md"

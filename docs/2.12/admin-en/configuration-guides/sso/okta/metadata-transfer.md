@@ -1,1 +1,0 @@
---8<-- "2.14/admin-en/configuration-guides/sso/okta/metadata-transfer.md"

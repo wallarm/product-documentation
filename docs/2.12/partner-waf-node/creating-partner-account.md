@@ -1,1 +1,0 @@
---8<-- "2.16/partner-waf-node/creating-partner-account.md"
