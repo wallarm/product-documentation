@@ -13,6 +13,7 @@ This policy describes the method of versioning of different WAF node artifacts: 
 | 2.12             | March 2019     | January 2021  |
 | 2.14             | February 2020  |               |
 | 2.16             | October 2020   |               |
+| 2.18             | February 2021  |               |
 
 ## Version format
 
