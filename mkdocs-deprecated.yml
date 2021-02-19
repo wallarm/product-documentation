@@ -75,7 +75,7 @@ markdown_extensions:
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
 docs_dir: docs/deprecated
-site_dir: site/2.10
+site_dir: site/2.12
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:
