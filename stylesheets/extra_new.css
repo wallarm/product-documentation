@@ -323,7 +323,7 @@ img {
   background-color: #FFFF;
   box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   padding: 8px 0px;
   min-width: 137.422px;
   z-index: 1;

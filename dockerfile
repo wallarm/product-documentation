@@ -15,8 +15,7 @@ WORKDIR /docs
 COPY . .
 RUN mkdocs build -f mkdocs-2.16.yml
 RUN mkdocs build
-RUN mkdocs build -f mkdocs-2.12.yml
-RUN mkdocs build -f mkdocs-2.10.yml
+RUN mkdocs build -f mkdocs-deprecated.yml
 
 # production stage
 FROM nginx:1.18-alpine as production-stage

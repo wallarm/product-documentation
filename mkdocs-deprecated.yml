@@ -1,0 +1,86 @@
+site_name: Wallarm Documentation
+site_url: https://docs.wallarm.com/
+site_description: Wallarm Advanced WAF protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+
+repo_url: https://github.com/wallarm/product-docs-en
+repo_name: GitHub
+
+copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2021 © Wallarm Inc.'
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - monorepo
+dev_addr: '127.0.0.1:8000'
+
+theme:
+  name: material
+  custom_dir: stylesheets
+  features:
+    - tabs
+  logo: images/wallarm-logo-new.svg
+  favicon: images/favicon.png
+  icon:
+    repo: fontawesome/brands/github-alt
+  font:
+    text: Inter
+    code: Roboto Mono
+  version: "2.12"
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://wallarm.com
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/wallarm
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/wallarm
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/4871419
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
+
+extra_css:
+  - 'extra_new.css'
+
+extra_javascript:
+  - 'extra_new.js'
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      linenums_style: pymdownx-inline
+  - toc:
+      permalink: true
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - pymdownx.snippets:
+      check_paths: true
+      base_path: docs
+  - nl2br
+  - tables
+  - sane_lists
+  - attr_list
+  - prependnewline
+  - lightgallery
+
+google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
+
+docs_dir: docs/deprecated
+site_dir: site/2.12
+edit_uri: ../product-docs-en/edit/master/docs/deprecated/
+
+nav:
+  - Guides:
+    - Home: index.md
+  - Wallarm API: '!include ./api/mkdocs.yml'
+  - FAQ: '!include ./faq/mkdocs.yml'
+  - Demo videos: '!include ./demo-videos/mkdocs.yml'

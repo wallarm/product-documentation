@@ -1,1 +1,0 @@
---8<-- "2.16/admin-en/configuration-guides/protecting-against-bruteforce.md"

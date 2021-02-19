@@ -1,1 +1,0 @@
---8<-- "2.14/user-guides/rules/view.md"
