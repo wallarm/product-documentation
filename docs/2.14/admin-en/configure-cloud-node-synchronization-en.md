@@ -95,7 +95,7 @@ The `node.yaml` file may contain the following parameters for accessing the regu
 
 To change synchronization parameters, proceed with the following steps:
 
-1. Make changes to the `node.yaml` file by adding the parametersfrom the table above and assigning the desired values to them.
+1. Make changes to the `node.yaml` file by adding the parameters from the table above and assigning the desired values to them.
 
     The valid `node.yaml` contents:
 
