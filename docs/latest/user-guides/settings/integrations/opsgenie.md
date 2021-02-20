@@ -1,12 +1,12 @@
-# OpsGenie
+# Opsgenie
 
-You can set up Wallarm to send alerts to OpsGenie when following events are triggered:
+You can set up Wallarm to send alerts to Opsgenie when the following events are triggered:
 
 * [Vulnerabilities](../../../glossary-en.md#vulnerability) detected
 
 ## Setting up integration
 
-In [OpsGenie UI](https://app.opsgenie.com/teams/list):
+In [Opsgenie UI](https://app.opsgenie.com/teams/list):
 
 1. Go to your team ➝ **Integrations**.
 2. Click the **Add integration** button and choose **API**.
@@ -16,22 +16,23 @@ In [OpsGenie UI](https://app.opsgenie.com/teams/list):
 In Wallarm UI:
 
 1. Open **Settings** → **Integrations** tab.
-2. Click the **OpsGenie** block or click the **Add integration** button and choose **OpsGenie**.
+2. Click the **Opsgenie** block or click the **Add integration** button and choose **Opsgenie**.
 3. Enter an integration name.
 4. Paste the copied API key to the **API key** field.
-5. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-6. [Test the integration](#testing-integration) and ensure the settings are correct.
-7. Click **Add integration**.
+5. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
+6. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
+7. [Test the integration](#testing-integration) and ensure the settings are correct.
+8. Click **Add integration**.
 
-    ![!OpsGenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![!Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
 ## Testing integration
 
 --8<-- "../include/integrations/test-integration.md"
 
-Test OpsGenie notification:
+Test Opsgenie notification:
 
-![!Test OpsGenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+![!Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 ## Updating integration
 

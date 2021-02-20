@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   annotations:
     # Wallarm element: annotation to update running pods after changing Wallarm ConfigMap
-    checksum/config: {{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}
+    checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
   selector:

@@ -6,7 +6,7 @@
 
 **Partner WAF node** is a WAF node installed by the partner.
 
-## Scheme of traffic processsing by a partner WAF node
+## Scheme of traffic processing by a partner WAF node
 
 If one partner WAF node is installed within the partner infrastructure, client traffic is processed as follows:
 
