@@ -272,7 +272,7 @@ nav:
           - Email Report: user-guides/settings/integrations/email.md
           - Slack: user-guides/settings/integrations/slack.md
           - Telegram: user-guides/settings/integrations/telegram.md
-          - OpsGenie: user-guides/settings/integrations/opsgenie.md
+          - Opsgenie: user-guides/settings/integrations/opsgenie.md
           - InsightConnect: user-guides/settings/integrations/insightconnect.md
           - PagerDuty: user-guides/settings/integrations/pagerduty.md
           - Splunk: user-guides/settings/integrations/splunk.md

@@ -38,7 +38,7 @@ The systems available for integration are grouped in the following blocks: **Ema
 
 ### Incident management and SIEM systems
 
-* [OpsGenie][opsgenie-notifications]
+* [Opsgenie][opsgenie-notifications]
 * [InsightConnect][insightconnect-notifications]
 * [PagerDuty][pagerduty-notifications]
 * [Splunk][splunk-notifications]

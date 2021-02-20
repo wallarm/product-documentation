@@ -103,15 +103,15 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
     * `Analyst` is the role of the added user
     * `John Doe` is the user who added a new user
 
-## OpsGenie notification if 2 or more incidents were detected in one second
+## Opsgenie notification if 2 or more incidents were detected in one second
 
-If 2 or more incidents with the application server or database were detected in one second, the notification about this event will be sent to OpsGenie.
+If 2 or more incidents with the application server or database were detected in one second, the notification about this event will be sent to Opsgenie.
 
 ![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
 
 **To test the trigger**, it is required to send the attack exploiting an active vulnerability to the protected resource. The Wallarm Console → **Vulnerabilities** section displays active vulnerabilities detected in your applications and the examples of attacks that exploit these vulnerabilities.
 
-If the attack example is sent to the protected resource, Wallarm will record the incident. Two or more recorded incidents will trigger sending the following notification to OpsGenie:
+If the attack example is sent to the protected resource, Wallarm will record the incident. Two or more recorded incidents will trigger sending the following notification to Opsgenie:
 
 ```
 Please make attention! Notification about incidents is triggered: The number of incidents for the server, database in 1 second exceeds 1
