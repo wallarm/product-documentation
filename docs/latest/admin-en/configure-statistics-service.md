@@ -108,5 +108,6 @@ The following response parameters are available:
     *   `size`: proton.db file size in bytes.
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
+* `startid`: randomly-generated unique ID of the WAF node.
 
 The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start Wallarm.
