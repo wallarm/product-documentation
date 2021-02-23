@@ -153,6 +153,15 @@ Lets you set up the response to the request [blocked](configure-wallarm-mode.md)
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
+### wallarm_block_page_add_dynamic_path
+
+This directive is used to initialize the blocking page that has NGINX variables in its code and the path to this blocking page is also set using a variable. Otherwise, the directive is not used.
+
+[More details on the blocking page and error code configuration →](configuration-guides/configure-block-page-and-code.md)
+
+!!! info
+    The directive can be set inside the `http` block of the NGINX configuration file.
+
 ### wallarm_cache_path
 
 A directory in which the backup catalog for the proton.db and [LOM](../glossary-en.md#lom) copy storage is created when the server starts. This directory must be writable for the client that runs NGINX.
