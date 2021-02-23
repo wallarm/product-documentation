@@ -107,58 +107,9 @@ Specifies the directory that will be used to save the state of the ACL.
 
 ### wallarm_acl_block_page
 
-Lets you set up the response code and the page returned to the client when the request was sent from a [blocked](../user-guides/blacklist.md) IP address. Directive value format: `wallarm_acl_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
+Lets you set up the response to the request originated from a [blocked IP address](configure-ip-blocking-en.md).
 
-By default, the response code 403 and default NGINX block page are returned to the client. If you would like to customize the return to the client, you can set up the following configurations:
-
-* Default Wallarm block page and a custom response code:
-
-    ```bash
-    wallarm_acl_block_page &/usr/share/nginx/html/wallarm_blocked.html response_code=445;
-    ```
-
-    To return default response code 403, you can omit `response_code=445`. 
-* Custom block page and response code:
-
-    ```bash
-    # block page block.html located in /usr/share/nginx/html
-    # response code 445
-    wallarm_acl_block_page &/usr/share/nginx/html/block.html response_code=445;
-    ```
-
-    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
-
-* Blocking message return or the block page and custom response code described in the `location` block:
-
-    ```bash
-    # response code 445 and the message "The page is blocked"
-    wallarm_acl_block_page @block;
-    location @block {
-        return 445 'The page is blocked';
-    }
-    ```
-
-    ```bash
-    # response code 445 and the page 445.html located in /usr/share/nginx/html
-    wallarm_acl_block_page /err445;     # /err445 – location to redirect the request to
-    error_page 445 @blocked;        # The request that triggered the 445 error is passed to the @blocked location 
-    location @blocked {
-        root /var/www/errors;           # The directory with the 445.htm file
-        rewrite ^(.*)$ /445.htm break;  # The redirect to the /445.htm
-    }
-    location = /err445 {
-        internal;                   # The internal location that is not available from the outside
-        return 445;                 # The 445 response code is returned
-        }
-    ```
-    
-!!! warning "Important Information for Debian and CentOS Users"
-    If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
-    ```
-    UUID ${request_id}
-    ```
-
-    This applies to both `wallarm_blocked.html` and to the custom block page.
+[More details on the blocking page and error code configuration →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -195,58 +146,9 @@ api:
 
 ### wallarm_block_page
 
-Lets you set up the response code and page returned to the client when a malicious request has been blocked. Directive value format: `wallarm_block_page &/{path_to_file}/{html_htm_file_name} response_code={custom_code};`.
+Lets you set up the response to the request [blocked](configure-wallarm-mode.md) by the WAF node due to detected attack signs.
 
-By default, the response code 403 and default NGINX block page are returned to the client. If you would like to customize the return to the client, you can set up the following configurations:
-
-* Default Wallarm block page and a custom response code:
-
-    ```bash
-    wallarm_block_page &/usr/share/nginx/html/wallarm_blocked.html response_code=445;
-    ```
-
-    To return default response code 403, you can omit `response_code=445`. 
-* Custom block page and response code:
-
-    ```bash
-    # block page block.html located in /usr/share/nginx/html
-    # response code 445
-    wallarm_block_page &/usr/share/nginx/html/block.html response_code=445;
-    ```
-
-    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the block page. For this, add the variable name in the format `${variable_name}` to the block page code. For example, `${remote_addr}` displays on the block page the IP address from which the blocked request was sent.
-
-* Blocking message return or the block page and custom response code described in the `location` block:
-
-    ```bash
-    # response code 445 and the message "The page is blocked"
-    wallarm_block_page @block;
-    location @block {
-        return 445 'The page is blocked';
-    }
-    ```
-
-    ```bash
-    # response code 445 and the page 445.html located in /usr/share/nginx/html
-    wallarm_block_page /err445;     # /err445 – location to redirect the request to
-    error_page 445 @blocked;        # The request that triggered the 445 error is passed to the @blocked location 
-    location @blocked {
-        root /var/www/errors;           # The directory with the 445.htm file
-        rewrite ^(.*)$ /445.htm break;  # The redirect to the /445.htm
-    }
-    location = /err445 {
-        internal;                   # The internal location that is not available from the outside
-        return 445;                 # The 445 response code is returned
-        }
-    ```
-    
-!!! warning "Important Information for Debian and CentOS Users"
-    If you use an NGINX version lower than 1.11 installed from [CentOS/Debian][doc-nginx-install] repositories, you should remove the `request_id` variable from the page code in order to display the dynamic blocking page correctly:
-    ```
-    UUID ${request_id}
-    ```
-
-    This applies to both `wallarm_blocked.html` and to the custom block page.
+[More details on the blocking page and error code configuration →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
