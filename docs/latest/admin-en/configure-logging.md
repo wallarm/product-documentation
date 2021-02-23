@@ -41,6 +41,7 @@ You may use the following filter node variables when defining the NGINX logging 
 |`wallarm_request_time`|Float|Request execution time in seconds|
 |`wallarm_serialized_size`|Integer|Size of the serialized request in bytes|
 |`wallarm_is_input_valid`|Integer|Request validity<br>`0`: request is valid. The request has been checked by filter node and matches LOM rules.<br>`1`: request is invalid. The request has been checked by filter node and does not match LOM rules.|
+| `wallarm_attack_type_list` | String | [Attack types][doc-vuln-list] detected in the request with the library [libproton](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Types are presented in text format:<ul><li>xss</li><li>sqli</li><li>rce</li><li>xxe</li><li>ptrav</li><li>crlf</li><li>redir</li><li>nosqli</li><li>infoleak</li><li>overlimit_res</li><li>logic_bomb</li><li>vpatch</li><li>ldapi</li><li>scanner</li></ul>If several attack types are detected in a request, they are listed with the symbol `|`. For example: if XSS and SQLi attacks are detected, the variable value is `xss|sqli`. |
 |`wallarm_attack_type`|Integer|[Attack types][doc-vuln-list] detected in the request with the library [libproton](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Types are presented in bit string format:<ul><li>`0x00000000`: no attack: `"0"``"0"`</li><li>`0x00000002`: xss: `"2"`</li><li>`0x00000004`: sqli: `"4"`</li><li>`0x00000008`: rce: `"8"`</li><li>`0x00000010`: xxe: `"16"`</li><li>`0x00000020`: ptrav: `"32"`</li><li>`0x00000040`: crlf: `"64"`</li><li>`0x00000080`: redir: `"128"`</li><li>`0x00000100`: nosqli: `"256"`</li><li>`0x00000200`: infoleak: `"512"`</li><li>`0x20000000`: overlimit_res: `"536870912"`</li><li>`0x40000000`: logic_bomb: `"1073741824"`</li><li>`0x80000000`: vpatch: `"2147483648"`</li><li>`0x00002000`: ldapi: `"8192"`</li><li>`0x4000`: scanner: `"16384"`</li></ul>If several attack types are detected in a request, the values are summarized. For example: if XSS and SQLi attacks are detected, the variable value is `6`. |
 
 ### Configuration Example
@@ -57,7 +58,7 @@ To do this, perform the following actions:
     log_format wallarm_combined '$remote_addr - $remote_user [$time_local] '
                                 '"$request" $request_id $status $body_bytes_sent '
                                 '"$http_referer" "$http_user_agent"'
-                                '$wallarm_request_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type';
+                                '$wallarm_request_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list';
     ```
 
 2.  Enable the extended logging format by adding the following directive into the same block as in the first step:
