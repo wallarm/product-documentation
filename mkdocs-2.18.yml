@@ -293,7 +293,7 @@ nav:
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner WAF node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
-      - What is new in WAF node 2.16: updating-migrating/what-is-new.md
+      - What is new in WAF node 2.18: updating-migrating/what-is-new.md
       - WAF node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe WAF node update process: updating-migrating/general-recommendations.md
       - WAF node update instructions:
