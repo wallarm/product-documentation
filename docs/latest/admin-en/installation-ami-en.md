@@ -124,7 +124,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 Filter node uses the in-memory storage Tarantool.
 
-By default, the amount of RAM allocated to Tarantool is 75% of the total instance memory. 
+By default, the amount of RAM allocated to Tarantool is 40% of the total instance memory. 
 
 You can change the amount of RAM allocated for Tarantool. To allocate the instance RAM to Tarantool:
 

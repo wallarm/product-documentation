@@ -113,7 +113,7 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 The Wallarm Node uses Tarantool, an open‑source in-memory database, to calculate traffic metrics required for automated adjusting of security rules.
 
-By default, the amount of RAM allocated to Tarantool is 75% of the total instance memory.
+By default, the amount of RAM allocated to Tarantool is 40% of the total instance memory.
 
 You can change the amount of RAM allocated for Tarantool. To allocate the instance RAM to Tarantool:
 

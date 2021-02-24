@@ -179,7 +179,7 @@ By default, the WAF node is in the status `monitoring` and does not block reques
 
 #### Memory
 
-The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
+The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 40% of the total server memory. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
