@@ -103,6 +103,8 @@ This example shows the following response settings:
         !!! info "Directory for mounted ConfigMap"
             Since existing files in the directory used to mount ConfigMap can be deleted, it is recommended to create a new directory for the files mounted via ConfigMap.
 
+--8<-- "../include/waf/acl-block-page-annotation-support.md"
+
 ### URL for the client redirection
 
 This example shows settings to redirect the client to the page `host/err445`.
@@ -121,6 +123,8 @@ wallarm_block_page /err445;
 ```bash
 kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='/err445'
 ```
+
+--8<-- "../include/waf/acl-block-page-annotation-support.md"
 
 ### Named NGINX `location`
 
@@ -144,3 +148,5 @@ location @block {
 kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="location @block {return 445 'The page is blocked';}"
 kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='@block'
 ```
+
+--8<-- "../include/waf/acl-block-page-annotation-support.md"
