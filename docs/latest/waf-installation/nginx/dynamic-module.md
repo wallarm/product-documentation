@@ -80,7 +80,7 @@ More detailed information about installation is available in the [official NGINX
 
 Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-2.18.md"
 
 ### 3. Install Wallarm WAF packages
 
