@@ -26,7 +26,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "2.18"
+  version: "2.14"
 
 extra:
   social:
@@ -74,9 +74,9 @@ markdown_extensions:
 
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
-docs_dir: docs/2.18
-site_dir: site
-edit_uri: ../product-docs-en/edit/master/docs/latest/
+docs_dir: docs/2.14
+site_dir: site/2.14
+edit_uri: ../product-docs-en/edit/master/docs/2.14/
 
 nav:
   - Guides:
@@ -105,7 +105,14 @@ nav:
           - Installing as a Dynamic Module for NGINX Plus: waf-installation/nginx-plus.md
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
-          - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
+          - Installing Wallarm Ingress Controller:
+            - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
+            - Installing NGINX Plus Ingress Controller with Integrated Wallarm Services:
+              - Introduction: admin-en/installation-guides/ingress-plus/introduction.md
+              - Building the Wallarm NGINX Plus Ingress Controller: admin-en/installation-guides/ingress-plus/assembly.md
+              - Deploying the Wallarm NGINX Plus Ingress Controller: admin-en/installation-guides/ingress-plus/deploy.md
+              - Creating an Ingress Resource: admin-en/installation-guides/ingress-plus/resource-creation.md
+              - Checking the Operation of the Wallarm Services: admin-en/installation-guides/ingress-plus/wallarm-services-check.md
           - Installing Wallarm Sidecar Container:
             - How It Works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
@@ -131,14 +138,12 @@ nav:
               - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
               - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
               - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-          - Installing on Yandex.Cloud: admin-en/installation-guides/install-in-yandex-cloud.md
+          - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
-        - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
-        - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
         - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
         - Blocking by IP Address:
           - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
@@ -294,13 +299,13 @@ nav:
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner WAF node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
-      - What is new in WAF node 2.18: updating-migrating/what-is-new.md
+      - What is new in WAF node 2.14: updating-migrating/what-is-new.md
       - WAF node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe WAF node update process: updating-migrating/general-recommendations.md
       - WAF node update instructions:
         - Updating Linux WAF packages: updating-migrating/nginx-modules.md
         - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
-        - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
+        - Updating the running Docker NGINX‑based image: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
