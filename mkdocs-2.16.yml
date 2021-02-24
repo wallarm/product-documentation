@@ -144,6 +144,7 @@ nav:
           - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
           - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
           - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
+        - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Fine‑tuning of Wallarm Ingress Controller:

@@ -430,6 +430,10 @@ code:focus {
   padding: 16px;
 }
 
+.md-typeset pre>code {
+  white-space: pre-wrap;
+}
+
 button.md-clipboard.md-icon {
   top: .7em;
   right: 1em;

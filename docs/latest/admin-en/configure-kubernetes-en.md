@@ -128,6 +128,7 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-unpack-response](configure-parameters-en.md#wallarm_unpack_response)
 * [nginx.ingress.kubernetes.io/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
 * [nginx.ingress.kubernetes.io/wallarm-acl](configure-parameters-en.md#wallarm_acl)
+* [nginx.ingress.kubernetes.io/wallarm-acl-block-page](configure-parameters-en.md#wallarm_acl_block_page)
 
 ### Applying annotation to the Ingress resource
 
@@ -150,6 +151,38 @@ To enable IP blocking, [create](../user-guides/blacklist.md) the addresses list 
 ```
 kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on
 ```
+
+#### Configuring the blocking page and error code
+
+Annotations used for the blocking page and error code configuration depend on the reason and method of blocking the requests:
+
+* `nginx.ingress.kubernetes.io/wallarm-block-page` is used if the request is [blocked](configure-wallarm-mode.md) by the WAF node due to detected attack signs
+* `nginx.ingress.kubernetes.io/wallarm-acl-block-page` is used if the request is originated from a [blocked IP address](configure-ip-blocking-en.md)
+
+For example, to return the default Wallarm blocking page and the error code 445 in the response to the blocked request:
+
+=== "Request with attack signs"
+    ``` bash
+    kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='&/usr/share/nginx/html/wallarm_blocked.html response_code=445'
+    ```
+=== "Request originated from a blocked IP address"
+    ``` bash
+    kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-acl-block-page='&/usr/share/nginx/html/wallarm_blocked.html response_code=445'
+    ```
+
+[More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
+
+!!! info "Separating the blocking page path and error code with a comma"
+    To separate the blocking page path and error code in the Ingress annotation value, you can use a comma instead of space. For example:
+
+    === "Request with attack signs"
+        ``` bash
+        kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='&/usr/share/nginx/html/wallarm_blocked.html,response_code=445'
+        ```
+    === "Request originated from a blocked IP address"
+        ``` bash
+        kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-acl-block-page='&/usr/share/nginx/html/wallarm_blocked.html,response_code=445'
+        ```
 
 #### Enabling attack analysis with libdetection
 
