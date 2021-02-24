@@ -22,9 +22,9 @@
 
     The version of deployed Wallarm WAF image is specified in the Helm chart configuration file → `wallarm.image.tag`.
 
-    * If the version `2.16` is specified, follow the [instructions for 2.16](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the version `2.14` is specified, follow the current instructions or increase the version of the image to `2.16` in all deployments and follow the [instructions for 2.16](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the version `2.12` or lower is specified, please increase the version of the image to `2.16` in all deployments and follow the [instructions for 2.16](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `2.18` is specified, follow the [instructions for 2.18](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `2.16` is specified, follow the [instructions for 2.16](../../../../../2.16/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `2.18` in all deployments and follow the [instructions for 2.18](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `2.14` or lower is specified, please increase the version of the image to `2.18` in all deployments and follow the [instructions for 2.18](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
 

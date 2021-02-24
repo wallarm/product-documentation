@@ -16,4 +16,4 @@ RUN rm -rf docs
 
 EXPOSE 8000
 ENTRYPOINT ["mkdocs"]
-CMD ["serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs-2.16.yml"]
+CMD ["serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs.yml"]

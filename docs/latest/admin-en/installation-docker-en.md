@@ -29,9 +29,9 @@ The functionality of the WAF node installed inside the Docker container is compl
     apt list wallarm-node
     ```
 
-    * If the version `2.16.x` is installed, then follow the current instruction.
-    * If the version `2.14.x` is installed, then follow the [instructions for 2.14](../../2.14/admin-en/installation-docker-en/) or [update the packages to 2.16](../updating-migrating/docker-container.md) in all deployments.
-    * If the version `2.12.x` or lower is installed, then please [update the packages to 2.16](../updating-migrating/docker-container.md) in all deployments.
+    * If the version `2.18.x` is installed, then follow the current instructions.
+    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../2.16/admin-en/installation-docker-en/) or [update the packages to 2.18](../updating-migrating/docker-container.md) in all deployments.
+    * If the version `2.14.x` or lower is installed, then please [update the packages to 2.18](../updating-migrating/docker-container.md) in all deployments.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 

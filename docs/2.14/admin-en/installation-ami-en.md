@@ -76,9 +76,9 @@ To launch an instance with the filter node, proceed to this [link](https://aws.a
     apt list wallarm-node
     ```
 
-    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../admin-en/installation-ami-en/).
-    * If the version `2.14.x` is installed, then follow the current instructions or update all Wallarm WAF instances to 2.16.
-    * If the version `2.12.x` or lower is installed, then please update all Wallarm WAF instances to 2.16.
+    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](../../../admin-en/installation-ami-en/).
+    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../2.16/admin-en/installation-ami-en/) or update all Wallarm WAF instances to 2.18.
+    * If the version `2.14.x` or lower is installed, then please update all Wallarm WAF instances to 2.18.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 

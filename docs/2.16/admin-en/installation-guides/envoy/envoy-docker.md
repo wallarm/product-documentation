@@ -13,6 +13,20 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
 !!! warning "Supported configuration parameters"
     Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based WAF node configuration are not supported for the Envoy‑based WAF node configuration. See the list of parameters available for the [Envoy‑based WAF node configuration →](../../configuration-guides/envoy/fine-tuning.md)
 
+!!! info "If the Wallarm WAF image is already deployed in your environment"
+    If you deploy the Wallarm WAF image instead of the already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
+
+    To check the installed version, run the following command in the container:
+
+    ```bash
+    yum list wallarm-node
+    ```
+
+    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](../../../../../admin-en/installation-guides/envoy/envoy-docker/).
+    * If the version `2.16.x` is installed, then follow the current instructions or [update the packages to 2.18](../../../../../updating-migrating/docker-container/) in all deployments.
+
+    More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in the Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
