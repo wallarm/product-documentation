@@ -104,7 +104,7 @@ var sf14gv = 27823;
   })();
 
 // Show version selector only for WAF guides
-var rootVersion = '2.16';
+var rootVersion = '2.18';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
 if (activeLinks[0].text === ' Guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
@@ -113,7 +113,7 @@ else {
   // Change the link to FAQ and Wallarm API articles editing
   if (activeLinks[0].text === ' FAQ ') {
     var githubLink = document.getElementsByClassName("md-content__button md-icon");
-    var wrongLink = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/faq/";
+    var wrongLink = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/faq/";
     var correctLink = "https://github.com/wallarm/product-docs-en/edit/master/faq/docs/"; 
     if (githubLink[0].href.startsWith(wrongLink)) { 
       var newGithubLink = githubLink[0].href.replace(wrongLink, correctLink);
@@ -122,7 +122,7 @@ else {
   }
   if (activeLinks[0].text === ' Wallarm API ') {
     var githubLink = document.getElementsByClassName("md-content__button md-icon");
-    var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/api/";
+    var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/api/";
     var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/";
     if (githubLink[0].href.startsWith(wrongLink_api)) {
       var newGithubLink = githubLink[0].href.replace(wrongLink_api, correctLink_api);
@@ -131,7 +131,7 @@ else {
   }
   if (activeLinks[0].text === ' Demo videos ') {
     var githubLink = document.getElementsByClassName("md-content__button md-icon");
-    var wrongLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/docs/" + rootVersion + "/demo-videos/";
+    var wrongLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/demo-videos/";
     var correctLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/demo-videos/docs/";
     if (githubLink[0].href.startsWith(wrongLink_videos)) {
       var newGithubLink = githubLink[0].href.replace(wrongLink_videos, correctLink_videos);
