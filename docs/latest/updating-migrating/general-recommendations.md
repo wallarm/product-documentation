@@ -1,6 +1,6 @@
 # Recommendations for a safe WAF node update process
 
-This document describes recommendations and associated risks for a safe update of Wallarm WAF node up to 2.16.
+This document describes recommendations and associated risks for a safe update of Wallarm WAF node up to 2.18.
 
 ## Common recommendations
 

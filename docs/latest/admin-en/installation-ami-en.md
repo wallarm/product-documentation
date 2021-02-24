@@ -80,7 +80,7 @@ To see detailed information about creating a security group, proceed to this [li
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 
-To launch an instance with the WAF node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the WAF node 2.16.0.
+To launch an instance with the WAF node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the WAF node 2.18.0.
 
 When creating an instance, you need to specify the [previously created][anchor1] security group. To do this, perform the following actions:
 1.  While working with the Launch Instance Wizard, proceed to the *6. Configure Security Group* instance launch step by clicking the corresponding tab.
