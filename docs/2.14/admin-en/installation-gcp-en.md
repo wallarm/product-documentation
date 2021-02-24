@@ -33,9 +33,9 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
     apt list wallarm-node
     ```
 
-    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../admin-en/installation-gcp-en/).
-    * If the version `2.14.x` is installed, then follow the current instructions or update all Wallarm WAF instances to 2.16.
-    * If the version `2.12.x` or lower is installed, then please update all Wallarm WAF instances to 2.16.
+    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](../../../admin-en/installation-gcp-en/).
+    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../2.16/admin-en/installation-gcp-en/) or update all Wallarm WAF instances to 2.18.
+    * If the version `2.14.x` or lower is installed, then please update all Wallarm WAF instances to 2.18.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
 

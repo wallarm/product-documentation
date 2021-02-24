@@ -22,9 +22,9 @@
 
     The version of deployed Wallarm WAF image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
-    * If the version `2.16` is specified, follow the current instruction.
-    * If the version `2.14` is specified, follow the [instructions for 2.14](../../../../2.14/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `2.16` in all deployments and follow the current instruction.
-    * If the version `2.12` or lower is specified, please increase the version of the image to `2.16` in all deployments and follow the current instruction.
+    * If the version `2.18` is specified, follow the [instructions for 2.18](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `2.16` is specified, follow the current instructions or increase the version of the image to `2.18` in all deployments and follow the [instructions for 2.18](../../../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `2.14` or lower is specified, please increase the version of the image to `2.18` in all deployments and follow the current instructions.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
 
