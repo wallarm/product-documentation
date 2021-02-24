@@ -129,6 +129,8 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
 * [nginx.ingress.kubernetes.io/wallarm-acl](configure-parameters-en.md#wallarm_acl)
 
+### Applying annotation to the Ingress resource
+
 To apply the settings to your Ingress, please use the following command:
 
 ```
@@ -139,8 +141,31 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
 * `ANNOTATION_NAME` is the name of the annotation from the list above,
 * `VALUE` is the value of the annotation from the list above.
 
-For example, to enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
+### Annotation examples
+
+#### Enabling IP blocking
+
+To enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
 
 ```
 kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on
 ```
+
+#### Configuring the blocking page and error code
+
+To configure the blocking page and error code returned to the client if the request is [blocked](configure-wallarm-mode.md) by the WAF node due to detected attack signs, you can use the annotation `nginx.ingress.kubernetes.io/wallarm-block-page`.
+
+For example, to return the default Wallarm blocking page and the error code 445 in the response to the blocked request:
+
+``` bash
+kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='&/usr/share/nginx/html/wallarm_blocked.html response_code=445'
+```
+
+[More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
+
+!!! info "Separating the blocking page path and error code with a comma"
+    To separate the blocking page path and error code in the Ingress annotation value, you can use a comma instead of space. For example:
+
+    ``` bash
+    kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='&/usr/share/nginx/html/wallarm_blocked.html,response_code=445'
+    ```
