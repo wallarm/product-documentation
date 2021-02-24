@@ -27,43 +27,19 @@ The configuration of the previous version is automatically applied to the new ve
 
 Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change when planning the upgrade.
 
-??? "Set of changes in WAF node 2.16"
-    **Supported installation options**
-
-    * Dropped support for the operating system CentOS 6.x
-    * Dropped support for the cloud platform Heroku
-    * Dropped support for the operating system Debian 8.x (jessie-backports)
-    * Added CentOS 8.x support
-    * Added Envoy support
-    * Added Yandex.Cloud support
-    <!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
-
-    All platforms available for the WAF node 2.16 installation are listed [here](../admin-en/supported-platforms.md).
-
+??? "Set of changes in WAF node 2.18"
     **New WAF node features**
 
-    * [Displaying versions](../user-guides/nodes/regular-node.md#viewing-details-of-waf-node) of installed WAF, NGINX-WAF, and Envoy-WAF components in the Wallarm Console
-    * New configuration directive [`wallarm_enable_libdtection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) reduces the number of false positives using additional attack validation with improved algorithms
-
-        !!! warning "Memory consumption increase"
-            When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
-
-    * Ability to append or replace the value of the NGINX header `Server`. For setup, it is required to add an appropriate rule to the application profile. To add the rule, please contact [our technical support](mailto:support@wallarm.com)
-    * New WAF node statistics parameters:
-        * `db_apply_time`: Unix time of the last update of the proton.db file
-        * `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file
-        * `ts_files`: object with information about the [LOM](../glossary-en.md#lom) file
-        * `db_files`: object with information about the proton.db file
-        * `overlimits_time`: the number of attacks with the type of [overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node
-
-        The full list of available statistic parameters is available [here](../admin-en/configure-statistics-service.md#working-with-the-statistics-service).
-    <!-- * [Example of Terraform code](../admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md) to deploy a cluster of Wallarm WAF node in AWS public cloud -->
-    
-    * Installation of the WAF node in the form of the [Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
-
-    **Optimization of work of the WAF node**
-
-    * Increased assembly speed of LOM by 5-10 times on average. A more optimized process is now used to generate security rules. You can find more details about optimization in the [post on our news portal](https://changelog.wallarm.com/security-rule-generation-5x-faster-152572)
+    * New variable `wallarm_attack_type_list` in the extended WAF node logging format. Attack types detected in the request are saved in this variable in text format.
+    [More details on the variable `wallarm_attack_type_list` →]
+    * New method for setting up the blocking page and error code returned in the response to the blocked request. Now, to return different responses to requests originated from different devices and applications, you can use the variable as the value of the directives `wallarm_block_page` and `wallarm_acl_block_page`.
+        [Detailed instructions on setting up the response via the variable →]
+    * New WAF node statistics parameter `startid`. This parameter stores the randomly-generated unique ID of the WAF node.
+        [The full list of available statistics parameters →]
+    * Support of new Wallarm Ingress controller annotation `nginx.ingress.kubernetes.io/wallarm-acl-block-page`. This annotation is used to set up the response to the request originated from a blocked IP address.
+        [Example of response configuration via `nginx.ingress.kubernetes.io/wallarm-acl-block-page` →]
+    * Decreased memory amount allocated for the postanalytics service in deployed WAF node cloud image by default.
+        In previous WAF node versions, the default memory amount allocated for Tarantool was 75% of the total instance memory. In the WAF node version 2.18, 40% of the total instance memory is allocated for Tarantool.
 
 ### New false positives
 
