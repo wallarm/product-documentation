@@ -1,5 +1,12 @@
 # What is new in WAF node 2.16
 
+## Breaking change
+
+Since version 2.16.0-8 of the WAF node Docker image, the environment variable `WALLARM_ACL_ENABLE` passed to the [NGINX-based Docker container](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) only accepts the value `true` or `false`.
+
+!!! warning "Values `on` / `enabled` / `ok` / `yes`"
+    The values `on` / `enabled` / `ok` / `yes` assigned to the variable `WALLARM_ACL_ENABLE` disable the IP blocking functionality. We recommend deploying the latest image version specified in the [instructions on running the Docker container](../admin-en/installation-docker-en.md) and passing the value `true` or `false` in this variable.
+
 ## Changes in supported installation platforms
 
 * Dropped support for the operating system CentOS 6.x

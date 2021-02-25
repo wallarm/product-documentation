@@ -49,7 +49,7 @@ The WAF node configuration parameters can be passed to the `docker run` command 
 
 You can pass the following basic WAF node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-214.md"
 
 To run the image, use the command:
 
