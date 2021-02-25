@@ -110,14 +110,19 @@ The library conducts the attack syntax analysis for matching the contexts. If th
 
 #### Enabling libdetection
 
-Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis. To enable the analysis, it is required to set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`.
+Analyzing requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend enabling analysis. 
+
+To enable the analysis:
+
+1. Set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
+2. Set the value of the directive [`proxy_request_buffering`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering) to `on` to allow analyzing the request body. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
 
 #### Testing libdetection
 
-To check operation of **libdetection**, you can send the following legtimate request to the protected resource:
+To check the operation of **libdetection**, you can send the following legitimate request to the protected resource:
 
 ```bash
 curl http://localhost/?id=1' UNION SELECT
