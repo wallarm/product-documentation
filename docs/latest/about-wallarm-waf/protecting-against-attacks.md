@@ -125,7 +125,7 @@ To enable the analysis:
 To check the operation of **libdetection**, you can send the following legitimate request to the protected resource:
 
 ```bash
-curl http://localhost/?id=1' UNION SELECT
+curl "http://localhost/?id=1' UNION SELECT"
 ```
 
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
