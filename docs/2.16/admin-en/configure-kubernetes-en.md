@@ -177,8 +177,17 @@ The [**libdetection**](../about-wallarm-waf/protecting-against-attacks.md#librar
 
 To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
 
-To enable attack analysis with **libdetection**, it is required to apply the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
+There are two options to enable attack analysis with **libdetection**:
 
-```bash
-kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
-```
+* Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
+
+    ```bash
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
+    ```
+* Adding the following snippet to the [`config`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml#L20) object in **values.yaml** of the [cloned Wallarm Helm chart repository](installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller):
+
+    ```bash
+    config: {
+        server-snippet: 'wallarm_enable_libdetection on; proxy_request_buffering on;'
+    }
+    ```
