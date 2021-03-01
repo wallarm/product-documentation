@@ -213,6 +213,7 @@ nav:
         - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
         - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md
       - Support of the Scanner Operation:
+        - Best practices for configuring the Active threat verification feature: admin-en/attack-rechecker-best-practices.md
         - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-whitelisting.md 
         - Scanner Addresses:
           - Scanner Addresses for EU Cloud: admin-en/scanner-address-en.md
