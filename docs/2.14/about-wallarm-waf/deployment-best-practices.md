@@ -144,4 +144,10 @@ Wallarm is constantly working to improve the WAF node software, with new release
 * All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
 * If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-parameters-en.md#wallarm_instance).
 
-<!-- Follow the best practices for the Active Threat Verification feature -->
+## Follow the best practices for the Active threat verification feature
+
+One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecting-vulnerabilities.md) is **Active threat verification**.
+
+**Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
+
+[Learn the best practices for **Attack rechecker** configuration →](../admin-en/attack-rechecker-best-practices.md)
