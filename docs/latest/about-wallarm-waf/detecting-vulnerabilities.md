@@ -44,7 +44,7 @@ To minimize the risk of the described situation, **Attack rechecker** will autom
 
 #### Configuration
 
-The module **Attack rechecker** should be properly configured to work correctly. Please learn the **Attack rechecker** configuration options and best practices on these options setup from [this document](../admin-en/attack-rechecker-best-practices.md).
+The module **Attack rechecker** should be properly configured to work correctly. Please learn the **Attack rechecker** configuration options and best practices for these options setup from [this document](../admin-en/attack-rechecker-best-practices.md).
 
 ### Vulnerability scanner
 

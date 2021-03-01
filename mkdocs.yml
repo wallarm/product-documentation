@@ -90,6 +90,7 @@ nav:
           - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
         - Wallarm WAF subscription plans: about-wallarm-waf/subscription-plans.md
+        - Wallarm WAF deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
     - Quick Start:
       - Install the WAF node (NGINX): quickstart-en/qs-install-node-en.md
       - Configure traffic proxying: quickstart-en/qs-setup-proxy-en.md
