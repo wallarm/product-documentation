@@ -144,7 +144,7 @@ Please reach out to your Wallarm account manager or the technical support team t
 
 ## Have a plan to promptly update to newly released WAF node versions
 
-Wallarm is constantly working to improve the WAF node software, with new releases available about 2 times per year. Please read [this document](../updating-migrating/general-recommendations.md) for information about the recommended approach to perform the upgrades, with associated risks and relevant upgrade procedures.
+Wallarm is constantly working to improve the WAF node software, with new releases available about once a quarter. Please read [this document](../updating-migrating/general-recommendations.md) for information about the recommended approach to perform the upgrades, with associated risks and relevant upgrade procedures.
 
 ## Learn known caveats
 
