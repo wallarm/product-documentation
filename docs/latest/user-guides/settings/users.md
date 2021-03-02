@@ -48,7 +48,6 @@ More detailed information about access of different user roles to Wallarm WAF en
 | **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
 | **WAF mode**        | View and manage                      | View                     | View                         | -                                 |
 | **Applications**    | View and manage                      | View                     | View                         | -                                 |
-| **Markers**         | View and manage                      | -                        | -                            | -                                 |
 | **Integrations**    | View and manage                      | -                        | -                            | -                                 |
 | **Users**           | View and manage                      | -                        | View                         | -                                 |
 | **Activity log**    | View                                 | -                        | View                         | -                                 |

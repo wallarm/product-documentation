@@ -1,7 +1,6 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
 [doc-vuln-list]:            ../attacks-vulns-list.md
 [doc-monitor-node]:         monitoring/intro.md
-[doc-markers]:              ../user-guides/settings/markers.md
 [doc-lom]:                  ../user-guides/rules/compiling.md
 
 
@@ -14,7 +13,6 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `export-attacks.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.
 *   `export-clusterization-data.log`: the log of exporting the filter node cluster's data.
 *   `export-counters.log`: the log of exporting the counters' data (see [“Monitoring the Filter Node”][doc-monitor-node]).
-*   `sync-markers.log`: the log of fetching the [markers][doc-markers] from the Wallarm cloud.
 *   `syncnode.log`: the log of syncing the filter node with the Wallarm cloud (this includes fetching the [LOM][doc-lom] and proton.db files from the cloud).
 *   `tarantool.log`: the log of the postanalytics module operations.
 

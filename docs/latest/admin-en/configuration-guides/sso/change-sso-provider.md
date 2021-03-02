@@ -49,7 +49,3 @@ In the pop-up window, it is required to confirm the removing of the provider, as
 Click *Yes, remove*.
 
 After confirmation, the selected SSO provider will be removed and will no longer be available. Also, you will be able to connect to another SSO provider.
-
-!!! info "See also"
-    *   [Configuring the G Suite SSO provider][doc-setup-sso-gsuite]
-    *   [Configuring the Okta SSO provider][doc-setup-sso-okta]

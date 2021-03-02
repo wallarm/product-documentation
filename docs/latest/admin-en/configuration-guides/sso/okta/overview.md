@@ -32,7 +32,3 @@ The process of connecting SSO with Okta comprises the following steps:
 4.  [Allowing Access to the Wallarm Application on the Okta Side][doc-allow-access-to-wl]
 
 After that, [configure SSO authentication][doc-employ-sso] for Wallarm users.
-
-!!! info "See also"
-    *   [User guide][doc-user-sso-guide] to using SSO authentication to log in to Wallarm.
-    *   [Changing the configured SSO authentication][doc-disable-sso]

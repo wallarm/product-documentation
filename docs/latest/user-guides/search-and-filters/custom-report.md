@@ -18,6 +18,3 @@ Wallarm will email the custom report to you.
 4. Put in your email address and click the report button next to the email field.
 
 Wallarm will generate the report and email it to you.
-
-!!! info "See also"
-    [Using search][link-using-search]

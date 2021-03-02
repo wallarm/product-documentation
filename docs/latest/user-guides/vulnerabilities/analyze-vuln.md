@@ -47,7 +47,3 @@ Vulnerabilities can be detected in the protected applications by the following m
 *   **Test Run**: the vulnerability was found during the test run conducted by FAST.
 
 If the method by which the vulnerability was discovered is unknown, this information is not shown.
-
-!!! info "See also"
-    * [Working with false vulnerabilities][link-false-vulns]
-    * [Checking vulnerabilities][link-checking-vulns]

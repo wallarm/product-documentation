@@ -29,6 +29,3 @@ If the ID is unique, the *Dashboard* tab will let you select the new application
 The *Edit* and *Delete* buttons appear upon hovering the cursor over the application entry.
 * *Edit*: change the name of the corresponding application. 
 * *Delete*: remove the corresponding application entry.
-
-!!! info "See also"
-    [Wallarm configuration options][link-configure-params]

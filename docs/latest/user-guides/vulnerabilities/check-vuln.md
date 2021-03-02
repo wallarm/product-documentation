@@ -52,6 +52,3 @@ You can filter the closed vulnerabilities by clicking the following selectors:
 * *all*: The list of closed and false vulnerabilities.
 * *fixed*: The list fixed vulnerabilities only.
 * *false*: The list of false vulnerabilities only.
-
-!!! info "See also"
-    [Working with false vulnerabilities][link-false-vulns]

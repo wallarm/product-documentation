@@ -54,8 +54,3 @@ To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mir
     ```
 
 Now you can follow any installation instructions for CentOS. You will need to skip the step where the repository is added because you have set up a local repository instead.
-
-!!! info "See also"
-    *   [Installing a filter node based on NGINX or NGINX Plus.][doc-install-nginx]
-    *   [Installing a filter node on the Kong platform.][doc-install-kong]
-    *   [Separate postanalytics module installation.][doc-install-postanalytics]
