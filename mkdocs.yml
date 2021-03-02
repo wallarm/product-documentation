@@ -268,7 +268,6 @@ nav:
         - General: user-guides/settings/general.md
         - Subscriptions: user-guides/settings/subscriptions.md
         - Applications: user-guides/settings/applications.md
-        - Markers: user-guides/settings/markers.md
         - Users: user-guides/settings/users.md
         - Activity Log: user-guides/settings/audit-log.md
         - Integrations:

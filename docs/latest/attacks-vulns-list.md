@@ -521,17 +521,6 @@ A request is marked as a `vpatch` if it is part of an attack that was mitigated 
 
 A request is marked as an `xml_unsafe_header` if its body contains an XML document and the document encoding differs from the encoding stated in the XML header.
 
-
-### Marker
-
-**Attack**<br>
-**Wallarm code:** `marker`
-
-**Description:**    
-
-The `marker` code is used by the Wallarm filter node while uploading information about attacks in the Wallarm cloud.
-
-
 ### Overlimiting of Computational Resources
 
 **Attack**<br>
