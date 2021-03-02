@@ -170,7 +170,6 @@ nav:
         - Blocking Part of a Website: admin-en/block-part-en.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Settings for Using a Balancer or Proxy: admin-en/using-proxy-or-balancer-en.md
-        - Masking Sensitive Data: admin-en/sensitive-data-en.md
         - WAF node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
         - Working with Filter Node Logs: admin-en/configure-logging.md
         - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md

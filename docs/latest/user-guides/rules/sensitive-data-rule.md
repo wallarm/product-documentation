@@ -2,11 +2,17 @@
 
 # Rules for Data Masking
 
-Requests to a web application may contain sensitive data that should not be transferred outside of the server on which it is processed.
+The WAF node sends the following data to the Wallarm Cloud:
 
-Typically, this category includes authorization (cookies, tokens, passwords), personal data and payment credentials.
+* Serialized requests with attacks
+* Wallarm system counters
+* System statistics: CPU load, RAM usage, etc.
+* Wallarm system statistics: number of processed NGINX requests, Tarantool statistics, etc.
+* Information on the nature of the traffic that Wallarm needs to correctly detect application structure
 
-Wallarm Node supports data masking in requests. The real values will be replaced by `*` and will not be accessible either in the Wallarm Cloud or in the local post-analysis module. This method ensures that the protected data cannot leak outside the trusted environment.
+Some data should not be transferred outside of the server on which it is processed. Typically, this category includes authorization (cookies, tokens, passwords), personal data and payment credentials.
+
+WAF Node supports data masking in requests. The real values will be replaced by `*` and will not be accessible either in the Wallarm Cloud or in the local post-analysis module. This method ensures that the protected data cannot leak outside the trusted environment.
 
 It can affect the display of attacks, active attack (threat) verification, and the detection of brute force attacks.
 
