@@ -27,8 +27,3 @@ The provided Terraform code deploys the following network architecture:
 * An ASG managing a cluster of Wallarm WAF nodes. The ASG will use AWS's **User Data** feature to automatically configure new WAF nodes. The implemented provisioning process is mostly following the manual configuration process described on [this page](../../../installation-ami-en.md).
 * An NLB instance facing the Internet and accepting incoming requests to ports 80/TCP and 443/TCP; the requests are passed to the Wallarm WAF nodes. The NLB instance will not terminate SSL sessions (assuming that the WAF nodes will provide the functionality).
 * An ASG running a sample Wordpress application, and an associated ELB instance. The WAF nodes are automatically configured to proxy incoming requests to the DNS name of the Wordpress ELB instance.
-
-!!! info "See also"
-    * [Quick Start with Provided Example](deploy-waf-via-terraform-quick-start.md)
-    * [Description of Example Terraform Code](deploy-waf-via-terraform-code-desc.md)
-    * [FAQ](../../../../faq/waf-aws-via-terraform-installation.md)

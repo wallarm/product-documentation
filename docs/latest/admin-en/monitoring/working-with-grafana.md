@@ -37,11 +37,6 @@ It is assumed that you are using one of the following data sources:
 *   InfluxDB
 *   Graphite
 
-
-!!! info "See also"
-    [Verifying Monitoring.][anchor-verify-monitoring]
-
-
 ##  Connecting a Data Source
 
 ### InfluxDB

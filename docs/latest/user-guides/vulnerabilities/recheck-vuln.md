@@ -18,6 +18,3 @@ You can recheck vulnerabilities.
 ![!A vulnerability that can be rechecked][img-recheck-vuln]
 
 Wallarm will run the vulnerability recheck.
-
-!!! info "See also"
-    [Working with the scanner][link-check-perimeter]
