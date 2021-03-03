@@ -239,7 +239,9 @@ The added request processing rule is described in the *Then* section.
 
 The following rules are supported:
 
-* [Set the filter mode][link-filter-mode-rule].
-* [Mask sensitive data][link-sensitive-data-rule].
-* [Apply a virtual patch][link-virtual-patch].
-* [User-defined detection rules][link-regex-rule].
+* [Set the filter mode][link-filter-mode-rule]
+* [Mask sensitive data][link-sensitive-data-rule]
+* [Define forced browsing / brute-force attacks counter](define-counters.md)
+* [Rewrite request before attack replaying](change-request-for-active-verification.md)
+* [Apply a virtual patch][link-virtual-patch]
+* [User-defined detection rules][link-regex-rule]
