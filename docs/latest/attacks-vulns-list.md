@@ -133,7 +133,7 @@ You may follow these recommendations:
 
 **Description:**    
 
-The `scanner` code is assigned to an HTTP request if this request is believed to be part of third‑party scanner software activity that is targeted to attack or scan a protected resource. The Wallarm scanner's requests are not considered to be a resource scanning attack.  For example, an intruder can use *port scanner software* to enumerate all open network ports and then map services to well‑known port numbers. This information may be used later to attack these services.
+The `scanner` code is assigned to an HTTP request if this request is believed to be part of third‑party scanner software activity that is targeted to attack or scan a protected resource. The Wallarm scanner's requests are not considered to be a resource scanning attack. This information may be used later to attack these services.
 
 **Remediation:**
 
