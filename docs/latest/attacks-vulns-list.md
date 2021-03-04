@@ -262,7 +262,7 @@ You may follow these recommendations:
 
 ### Server‑Side Request Forgery (SSRF)
 
-**Vulnerability/Attack**<br>
+**Vulnerability**<br>
 **CWE code:** [CWE-918][cwe-918]<br>
 **Wallarm code:** `ssrf`
 
