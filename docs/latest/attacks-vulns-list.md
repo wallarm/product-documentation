@@ -31,7 +31,6 @@
 
 [link-cwe]: https://cwe.mitre.org/
 
-[link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 [link-owasp-xxe-cheatsheet]:                https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html
 [link-owasp-xss-cheatsheet]:                https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
 [link-owasp-idor-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html
@@ -186,29 +185,6 @@ You may follow these recommendations:
 *   Use both static and dynamic code analyzers to inspect the produced code.
 *   Meticulously audit all code that is not covered by tests. 
 *   Validate the integrity of any software being installed (e.g., check the software's digital signature).
-
-
-### Cross-Site Request Forgery (CSRF)
-
-**Vulnerability/Attack**<br>
-**CWE code:** [CWE-352][cwe-352]<br>
-**Wallarm code:** `csrf`
-
-**Description:**
-
-A CSRF attack allows an intruder to send requests to a vulnerable application on behalf of a legitimate user.
-
-The corresponding vulnerability occurs due to the user's browser automatically adding cookies that are set for the target domain name while performing the cross‑site request. 
-
-As a result, the intruder can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the intruder does not even need to have access to that user's cookies.
-
-**Remediation:**
-
-You may follow these recommendations:
-*   Employ anti‑CSRF protection mechanisms, such as CSRF tokens and others.
-*   Set the `SameSite` cookie attribute.
-*   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
-
 
 ### Cross‑site Scripting (XSS)
 
