@@ -467,17 +467,6 @@ You may follow these recommendations:
 
 ##  The List of Special Attacks and Vulnerabilities
 
-
-### Anomaly Request
-
-**Vulnerability**<br>
-**Wallarm code:** `anomaly`
-
-**Description:**
-
-A request is marked as an `anomaly` if the filter node considers it anomalous for the given application under protection. An encountered anomalous request may signal that the application is under attack. 
-
-
 ### Virtual Patch
 
 **Attack**<br>
