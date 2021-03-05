@@ -21,7 +21,7 @@ The majority of Wallarm WAF node deployment options use NGINX as the reverse pro
 ## Follow recommended onboarding steps
 
 1. Learn about available [WAF node deployment options](../admin-en/supported-platforms.md).
-2. Learn about available [options to separately manage the WAF configuration](#learn-how-to-perform-gradual-rollout-of-waf-configuration-changes) for your environments (if necessary).
+2. Learn about available options to [separately manage the WAF configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
 3. Deploy WAF nodes in your non-production environments with the [WAF operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
 4. Learn about how to operate, scale and monitor the WAF solution, and confirm the stability of the new network component.
 5. Deploy WAF nodes in your production environment with the [WAF operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
@@ -142,7 +142,7 @@ Wallarm is constantly working to improve the WAF node software, with new release
 ## Learn known caveats
 
 * All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-parameters-en.md#wallarm_instance).
+* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
 
 ## Follow the best practices for the Active threat verification feature
 
