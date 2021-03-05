@@ -45,6 +45,11 @@ The following points are currently supported:
 
 The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
 
+!!! info "EQUAL condition type for the HOST header value"
+    To cover more requests with the rules, we have restricted the EQUAL condition type for the HOST header. Instead of the EQUAL type, we recommend using the type IEQUAL that allows parameter values in any register.
+    
+    If you have previously used the EQUAL type, it will be automatically replaced with the IEQUAL type.
+
 #### IEQUAL
 
 The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
