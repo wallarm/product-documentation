@@ -12,8 +12,8 @@ This feature is highly dependent on the cloud platform being used; in majority o
 
 ```
 controller:
-    service:
-        externalTrafficPolicy: "Local"
+  service:
+    externalTrafficPolicy: "Local"
 ```
 
 #### Enable Ingress Controller to Take the Value from the X-FORWARDED-FOR HTTP Request Header
@@ -25,6 +25,6 @@ This option is more relevant when a customer is using an external CDN service li
 
 ```
 controller:
-    config:
-        use-forwarded-headers: "true"
+  config:
+    use-forwarded-headers: "true"
 ```
