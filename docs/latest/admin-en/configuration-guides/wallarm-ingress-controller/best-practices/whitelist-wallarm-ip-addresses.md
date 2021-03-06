@@ -28,10 +28,10 @@ To whitelist the scanner nodes, please use the following instructions:
 2. Go to the configuration of the associated Ingress resource and set the value of the `nginx.ingress.kubernetes.io/wallarm-mode` annotation to the value `"$wallarm_mode_real"`:
     ```
     apiVersion: extensions/v1beta1
-        kind: Ingress
-        metadata:
-            annotations:
-                nginx.ingress.kubernetes.io/wallarm-mode: "$wallarm_mode_real"
+      kind: Ingress
+      metadata:
+        annotations:
+          nginx.ingress.kubernetes.io/wallarm-mode: "$wallarm_mode_real"
     ```
 3. Apply the updated configurations of the Ingress controller and Ingress resource.
 
