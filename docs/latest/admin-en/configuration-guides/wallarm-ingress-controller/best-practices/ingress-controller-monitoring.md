@@ -6,13 +6,13 @@ The general aspects of NGINX Ingress controller monitoring are already well cove
 ```
 controller:
   wallarm:
-      metrics:
-        enabled: true
-        service:
-          annotations:
-            prometheus.io/scrape: "true"
-            prometheus.io/path: /wallarm-metrics
-            prometheus.io/port: "18080"
+    metrics:
+      enabled: true
+      service:
+        annotations:
+          prometheus.io/scrape: "true"
+          prometheus.io/path: /wallarm-metrics
+          prometheus.io/port: "18080"
 ```
 
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
