@@ -13,9 +13,9 @@ To enable the IP blocking functionality in the Ingress controller, please follow
 2. Open the `ingress-chart/wallarm-ingress/values.yaml` file of the updated Helm chart version and set the `controller.wallarm.acl.enabled` attribute to `true`:
     ```
     controller:
-        wallarm:
-            acl:
-                enabled: true
+      wallarm:
+        acl:
+          enabled: true
     ```
 3. Apply updates to an existing Wallarm Ingress controller using the following command:
     ```
