@@ -7,7 +7,7 @@ The following recommendations are relevant for missing-critical (production) env
 * Use more than one Ingress controller pod instances. The behavior is controlled using the attribute `controller.replicaCount` in the `values.yaml` file. For example:
     ```
     controller:
-        replicaCount: 2
+      replicaCount: 2
     ```
 * Force the Kubernetes cluster to place Ingress controller pods on different nodes: this will increase the Ingress service's resilience in case of a node failure. This behavior is controlled using the Kubernetes pod anti-affinity feature, which is configured in the `values.yaml` file. For example:
     ```
