@@ -34,7 +34,7 @@ The majority of Wallarm WAF node deployment options use NGINX as the reverse pro
 
 The majority of Wallarm service contracts do not limit the number of WAF nodes deployed by the customer, so there is no reason to not deploy the WAF nodes across all your environments, including development, testing, staging, etc.
 
-By deploying and using the WAF nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected in your critical production environment.
+By deploying and using the WAF nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected situations in your critical production environment.
 
 ## Enable the libdetection WAF node library
 
