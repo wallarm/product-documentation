@@ -28,6 +28,13 @@ The configuration of the previous version is automatically applied to the new ve
 Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change when planning the upgrade.
 
 ??? "Set of changes in WAF node 2.18"
+
+    **Changes in supported installation platforms**
+
+    * Added Ubuntu 20.04 LTS (focal) support
+
+    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+
     **New WAF node features**
 
     * New variable `wallarm_attack_type_list` in the extended WAF node logging format. Attack types detected in the request are saved in this variable in text format.

@@ -7,6 +7,12 @@ Since version 2.16.0-8 of the WAF node Docker image, the environment variable `W
 !!! warning "Values `on` / `enabled` / `ok` / `yes`"
     The values `on` / `enabled` / `ok` / `yes` assigned to the variable `WALLARM_ACL_ENABLE` disable the IP blocking functionality. We recommend deploying the latest image version as described in the [instructions on running the Docker container](../admin-en/installation-docker-en.md) and passing the value `true` or `false` in this variable.
 
+## Changes in supported installation platforms
+
+* Added Ubuntu 20.04 LTS (focal) support
+
+[See the full list of supported platforms →](../admin-en/supported-platforms.md)
+
 ## New features
 
 * New variable `wallarm_attack_type_list` in the extended WAF node logging format. Attack types detected in the request are saved in this variable in text format.
