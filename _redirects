@@ -1,0 +1,132 @@
+/en/admin-en/configure-tarantool-en.html   /en/admin-en/configuration-guides/allocate-resources-for-waf-node.html
+/en/quickstart-en/qs-intro-en.html         /en/quickstart-en/how-wallarm-works/qs-intro-en.html
+/ru/admin-ru/configure-tarantool-ru.html   /ru/admin-ru/configuration-guides/allocate-memory-for-waf-node.html
+
+/ru/ https://docs.wallarm.ru/
+/ru https://docs.wallarm.ru/
+/en/ /
+/en  /
+
+~*^(?<u>/ru/.+)$ https://docs.wallarm.ru$u
+~*^/(en|ru)/user-guides/cloud-ui/blacklist/blacklist.html$ /user-guides/blacklist
+~*^/(en|ru)/user-guides/cloud-ui/(?<u>.+).html$ /user-guides/$u
+~*^/(en|ru)/(?<u>.+).html$ /$u
+/admin-en/api-creds-en/ /api/overview/
+/admin-en/api-creds-en /api/overview/
+
+/release-notes-en/relnotes-en_v2.14/ /updating-migrating/what-is-new/
+/release-notes-ru/relnotes-en_v2.12/ /2.12/updating-migrating/what-is-new/
+/admin-en/update-linux-en/ /2.12/updating-migrating/nginx-modules/
+/admin-en/migrating-212-214/ /updating-migrating/nginx-modules/
+/admin-en/update-docker-en/ /updating-migrating/docker-container/
+/admin-en/update-postanalytics/ /updating-migrating/separate-postanalytics/
+/release-notes-en/relnotes-en_v2.14 /updating-migrating/what-is-new/
+/release-notes-ru/relnotes-en_v2.12 /2.12/updating-migrating/what-is-new/
+/admin-en/update-linux-en /2.12/updating-migrating/nginx-modules/
+/admin-en/migrating-212-214 /updating-migrating/nginx-modules/
+/admin-en/update-docker-en /updating-migrating/docker-container/
+/admin-en/update-postanalytics /updating-migrating/separate-postanalytics/
+
+/admin-en/installation-nginx-en/ /waf-installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en/ /waf-installation/nginx-plus/
+/admin-en/installation-nginx-distr-en/ /waf-installation/nginx/dynamic-module-from-distr/
+/admin-en/installation-nginx-en /waf-installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en /waf-installation/nginx-plus/
+/admin-en/installation-nginx-distr-en /waf-installation/nginx/dynamic-module-from-distr/
+
+/admin-en/troubleshooting/ /faq/common-errors-after-waf-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/waf-ingress-installation/
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq/ /faq/waf-aws-via-terraform-installation/
+/admin-en/troubleshooting /faq/common-errors-after-waf-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
+
+~*^/(2.10|2.12|2.14|2.16)/faq/(?<u>.+)$ /faq/$u
+~*^/(2.10|2.12|2.14|2.16)/api/(?<u>.+)$ /api/$u
+~*^/(2.10|2.12|2.14|2.16)/demo-videos/(?<u>.+)$ /demo-videos/$u
+~*^/2.12/(admin-en|quickstart-en|updating-migrating|user-guides|waf-installation|about-wallarm-waf|partner-waf-node)/(?<u>.+)$ /2.12
+~*^/2.12/(attacks-vulns-list|glossary-en) /2.12
+~*^/2.12/(attacks-vulns-list|glossary-en)/ /2.12
+~*^/2.10/(?<u>.+)$ /2.12
+/2.10/ /2.12
+/2.10 2.12
+
+/quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans /about-wallarm-waf/subscription-plans/
+/quickstart-en/how-wallarm-works/qs-intro-en/ /about-wallarm-waf/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility/ /about-wallarm-waf/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans/ /about-wallarm-waf/subscription-plans/
+
+/2.12/quickstart-en/how-wallarm-works/qs-intro-en /2.12/about-wallarm-waf/overview/
+/2.12/quickstart-en/how-wallarm-works/shared-responsibility /2.12/about-wallarm-waf/shared-responsibility/
+/2.12/quickstart-en/how-wallarm-works/subscription-plans /2.12/about-wallarm-waf/subscription-plans/
+/2.12/quickstart-en/how-wallarm-works/qs-intro-en/ /2.12/about-wallarm-waf/overview/
+/2.12/quickstart-en/how-wallarm-works/shared-responsibility/ /2.12/about-wallarm-waf/shared-responsibility/
+/2.12/quickstart-en/how-wallarm-works/subscription-plans/ /2.12/about-wallarm-waf/subscription-plans/
+
+/2.14/quickstart-en/how-wallarm-works/qs-intro-en /2.14/about-wallarm-waf/overview/
+/2.14/quickstart-en/how-wallarm-works/shared-responsibility /2.14/about-wallarm-waf/shared-responsibility/
+/2.14/quickstart-en/how-wallarm-works/subscription-plans /2.14/about-wallarm-waf/subscription-plans/
+/2.14/quickstart-en/how-wallarm-works/qs-intro-en/ /2.14/about-wallarm-waf/overview/
+/2.14/quickstart-en/how-wallarm-works/shared-responsibility/ /2.14/about-wallarm-waf/shared-responsibility/
+/2.14/quickstart-en/how-wallarm-works/subscription-plans/ /2.14/about-wallarm-waf/subscription-plans/
+
+/user-guides/triggers/create-trigger /user-guides/triggers/triggers/#creating-triggers
+/user-guides/triggers/delete-trigger /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/disable-trigger /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/create-trigger/ /user-guides/triggers/triggers/#creating-triggers
+/user-guides/triggers/delete-trigger/ /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/user-guides/triggers/disable-trigger/ /user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/2.12/user-guides/triggers/create-trigger /2.12/user-guides/triggers/triggers/#creating-triggers
+/2.12/user-guides/triggers/delete-trigger /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/disable-trigger /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/create-trigger/ /2.12/user-guides/triggers/triggers/#creating-triggers
+/2.12/user-guides/triggers/delete-trigger/ /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.12/user-guides/triggers/disable-trigger/ /2.12/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/2.14/user-guides/triggers/create-trigger /2.14/user-guides/triggers/triggers/#creating-triggers
+/2.14/user-guides/triggers/delete-trigger /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/disable-trigger /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/create-trigger/ /2.14/user-guides/triggers/triggers/#creating-triggers
+/2.14/user-guides/triggers/delete-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+/2.14/user-guides/triggers/disable-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
+
+/quick-installation/quick-dynamic-module-for-nginx /waf-installation/nginx/dynamic-module/
+/quick-installation/quick-dynamic-module-for-nginx/ /waf-installation/nginx/dynamic-module/
+
+/admin-en/api-en /api/overview/
+/admin-en/api-en/ /api/overview/
+/2.12/admin-en/api-en /api/overview/
+/2.12/admin-en/api-en/ /api/overview/
+/2.14/admin-en/api-en /api/overview/
+/2.14/admin-en/api-en/ /api/overview/
+
+/user-guides/search-and-filters/use-filter/ /user-guides/search-and-filters/use-search/
+/user-guides/search-and-filters/use-filter /user-guides/search-and-filters/use-search/
+/2.14/user-guides/search-and-filters/use-filter/ /2.14/user-guides/search-and-filters/use-search/
+/2.14/user-guides/search-and-filters/use-filter /2.14/user-guides/search-and-filters/use-search/
+/2.12/user-guides/search-and-filters/use-filter/ /2.12/user-guides/search-and-filters/use-search/
+/2.12/user-guides/search-and-filters/use-filter /2.12/user-guides/search-and-filters/use-search/
+
+/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-prereq-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-prereq-en /quickstart-en/qs-install-node-en/#requirements
+
+/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.14/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-license-en/ /quickstart-en/qs-install-node-en/#requirements
+/2.12/quickstart-en/qs-license-en /quickstart-en/qs-install-node-en/#requirements
+
+/admin-en/sensitive-data-en/ /user-guides/rules/sensitive-data-rule/
+/admin-en/sensitive-data-en /user-guides/rules/sensitive-data-rule/
+/2.16/admin-en/sensitive-data-en/ /2.16/user-guides/rules/sensitive-data-rule/
+/2.16/admin-en/sensitive-data-en /2.16/user-guides/rules/sensitive-data-rule/
+/2.14/admin-en/sensitive-data-en/ /2.14/user-guides/rules/sensitive-data-rule/
+/2.14/admin-en/sensitive-data-en /2.14/user-guides/rules/sensitive-data-rule/
