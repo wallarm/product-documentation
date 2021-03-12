@@ -11,8 +11,11 @@ Behavioral attacks are characterized by a large number of requests with differen
 
 [Detailed brute force description →](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)
 
-!!! info "Restrictions in types of resources protected against brute force"
-    Wallarm WAF analyzes only HTTP traffic for brute‑force attacks.
+!!! warning "Brute force protection restrictions"
+    When searching for brute‑force attack signs, Wallarm WAF analyzes only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
+
+    * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
+    * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 These instructions provide steps to configure brute force protection.
 
