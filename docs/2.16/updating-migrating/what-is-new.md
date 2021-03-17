@@ -15,7 +15,6 @@ Since version 2.16.0-8 of the WAF node Docker image, the environment variable `W
 * Added CentOS 8.x support
 * Added Envoy support
 * Added Yandex.Cloud support
-<!-- * Added Ubuntu 20.04 LTS (Focal Fossa) support -->
 
 All platforms available for the WAF node 2.16 installation are listed [here](../admin-en/supported-platforms.md).
 
