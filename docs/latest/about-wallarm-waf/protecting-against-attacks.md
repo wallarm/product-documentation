@@ -46,6 +46,12 @@ To protect the resource against behavioral attacks, it is required to set the th
 
 [Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
+!!! warning "Brute force protection restrictions"
+    When searching for brute‑force attack signs, Wallarm WAF analyzes only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
+
+    * These requests contain signs of [input validation attacks](#input-validation-attacks).
+    * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
+
 ## Types of protected resources
 
 Wallarm WAF analyzes HTTP and WebSocket traffic sent to the protected resources:
