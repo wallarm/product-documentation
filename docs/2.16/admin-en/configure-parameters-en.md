@@ -442,20 +442,6 @@ Limits the size of the part of the request that is processed during one iteratio
     This parameter can be set inside the http, server, and location blocks.
     **Default value**: `8k` (8 kilobytes).
 
-### wallarm_set_tag
-
-Defines the label of key value pairs for each request. A value can contain variables.
-
-Specified tags will be available in postanalytics.
-
-Usage:
-```
-wallarm_set_tag somename $var;
-```
-
-!!! info
-    This parameter can be set inside the server and/or location blocks.
-
 ### wallarm_tarantool_connect_attempts
 
 !!! warning "Deprecated"
