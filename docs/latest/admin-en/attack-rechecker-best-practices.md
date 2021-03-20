@@ -6,6 +6,8 @@ One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecti
 
 **Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
 
+By default **Active threat verification** is disabled. To enable the module, [know how to control the Attack rechecker](#know-how-to-control-the-attack-rechecker).
+
 ## How the Active threat verification feature works
 
 --8<-- "../include/how-attack-rechecker-works.md"
@@ -28,7 +30,7 @@ If your application uses non-standard types of authentication (for example, requ
 
 ### Know how to control the Attack rechecker
 
-The global on/off switch of the **Attack rechecker** module is located in the Wallarm Console → [**Scanner** section](../user-guides/scanner/configure-scanner-modules.md).
+The global on/off switch of the **Attack rechecker** module is located in the Wallarm Console → [**Scanner** section](../user-guides/scanner/configure-scanner-modules.md). By default this module is disabled.
 
 ### Configure proper white-listing rules for scanner IP addresses
 

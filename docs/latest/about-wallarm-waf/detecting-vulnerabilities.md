@@ -17,7 +17,7 @@ For example: if the response to the request sent to read the `/etc/passwd` conte
 To detect vulnerabilities in the application, Wallarm WAF sends requests with attack signs using the following methods:
 
 * **Passive detection**: the vulnerability was found due to the security incident that occurred.
-* **Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
+* **Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 * **Vulnerability scanner**: all elements of the scope are scanned for typical vulnerabilities.
 
 ### Passive detection
@@ -44,7 +44,7 @@ To minimize the risk of the described situation, **Attack rechecker** will autom
 
 #### Configuration
 
-The module **Attack rechecker** should be properly configured to work correctly. Please learn the **Attack rechecker** configuration options and best practices for these options setup from [this document](../admin-en/attack-rechecker-best-practices.md).
+The module **Attack rechecker** is disabled by default. It should be enabled and properly configured to work correctly. Please learn the **Attack rechecker** configuration options and best practices for these options setup from [this document](../admin-en/attack-rechecker-best-practices.md).
 
 ### Vulnerability scanner
 
