@@ -14,6 +14,8 @@ On the **Settings** → **Activity log** tab of the Wallarm Console, you can che
 * [Cloud WAF nodes](../nodes/cloud-node.md)
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
+* [Blocked IP address](../blacklist.md)
+* [Hit sampling](../events/analyze-attack.md#sampling-of-hits)
 
 The logs also include information on the following actions and objects:
 
