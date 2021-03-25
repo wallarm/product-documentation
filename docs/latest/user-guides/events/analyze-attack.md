@@ -70,16 +70,16 @@ To optimize the data storage and analysis, we apply the sampling algorithm to hi
 * If the attack consists of 20 hits (10 identical hits each originated from different IP addresses), data on the first 5 hits from each IP address will be saved in the sample in the Wallarm Cloud and the number of the rest hits (10) will be recorded in a separate variable.
 * If the attack consists of 10 hits originated from different IP addresses, data on all hits will be saved in the Wallarm Cloud.
 
-The sample of hits and the number of other hits are displayed in the attack details in the Wallarm Console. For example, brute‑force attack:
-
-![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
-
 **Enabling the sampling algorithm**
 
 * For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), the sampling algorithm is enabled if Wallarm detects a high percentage of attacks in your traffic.
 
-    When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack perecentage change.
+    When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
 * For all [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), the sampling algorithm is enabled by default.
+
+If hits sampling is enabled for your traffic, the appropriate status, the sample of saved hits, and the number of other hits are displayed in the **Events** section of the Wallarm Console. For example:
+
+![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 ## Demo videos
 
