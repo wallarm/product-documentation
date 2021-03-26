@@ -58,11 +58,11 @@ To run the image, use the command:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16.0-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.18.1-1
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.16.0-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e TARANTOOL_MEMORY_GB=16 -p 80:80 wallarm/envoy:2.18.1-1
     ```
 
 The command does the following:
@@ -96,11 +96,11 @@ To run the image:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16.0-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.18.1-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.16.0-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:2.18.1-1
         ```
 
 The command does the following:
