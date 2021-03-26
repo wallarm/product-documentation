@@ -27,7 +27,7 @@ These instructions describe the steps to update the running Docker NGINX- or Env
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:2.18.0-1
+    docker pull wallarm/envoy:2.18.1-1
     ```
 
 ## Step 2: Stop the running container
