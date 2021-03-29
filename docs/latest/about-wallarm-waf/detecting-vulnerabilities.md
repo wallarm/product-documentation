@@ -36,13 +36,14 @@ Passive vulnerability detection is enabled by default.
 
 #### Potential risks from the Attack rechecker activity
 
-In rare cases when a legitimate request is detected by the WAF as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
+* In rare cases when a legitimate request is detected by the WAF as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
 
-To minimize the risk of the described situation, **Attack rechecker** will automatically strip the following HTTP headers from the replayed requests:
+    To minimize the risk of the described situation, **Attack rechecker** will automatically strip the following HTTP headers from the replayed requests:
 
-* `Cookie`
-* `Authorization: Basic`
-* `Viewstate`
+    * `Cookie`
+    * `Authorization: Basic`
+    * `Viewstate`
+* In cases when the application uses a non-standard authentication method or does not require authenticating the requests, **Attack rechecker** may replay any request from the traffic and harm the system. For example: repeat 100 and more money transactions or orders. To minimize the risk of the described situation, it is recommended to [use testing or staging environments for attack replaying](#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application) and [mask non-standard request authentication parameters](#configure-proper-data-masking-rules).
 
 #### Configuration
 
