@@ -1,3 +1,5 @@
+[whitelist-scanner-addresses]: ../admin-en/attack-rechecker-best-practices.md#configure-proper-white-listing-rules-for-scanner-ip-addresses
+
 # Detecting vulnerabilities
 
 ## What is a vulnerability?
