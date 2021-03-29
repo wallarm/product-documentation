@@ -108,8 +108,8 @@
 /2.14/user-guides/triggers/delete-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
 /2.14/user-guides/triggers/disable-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
 
-/quick-installation/quick-dynamic-module-for-nginx.html /waf-installation/nginx/dynamic-module/
-/quick-installation/quick-dynamic-module-for-nginx.html/ /waf-installation/nginx/dynamic-module/
+/en/quick-installation/quick-dynamic-module-for-nginx.html /waf-installation/nginx/dynamic-module/
+/en/quick-installation/quick-dynamic-module-for-nginx.html/ /waf-installation/nginx/dynamic-module/
 
 /admin-en/api-en /api/overview/
 /admin-en/api-en/ /api/overview/
