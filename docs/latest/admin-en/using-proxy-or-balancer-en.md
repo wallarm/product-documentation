@@ -89,7 +89,7 @@ location / {
 	proxy_pass http://<app-ip>;
 	proxy_set_header Host $host;
 	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_forwarded_for;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 	
      # Settings of determining the true source IP address of requests
 	set_real_ip_from <proxy-ip1>;

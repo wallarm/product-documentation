@@ -64,7 +64,7 @@ To create the WAF node and connect the postanalytics module to the Cloud:
         ```
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/addnode -H api.wallarm.ru --no-sync
+        sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
         ```
 3. Input the email and password for your account in the Wallarm Console.
 4. Input the postanalytics WAF node name or click Enter to use automatically generated name.
