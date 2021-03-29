@@ -43,7 +43,7 @@ Passive vulnerability detection is enabled by default.
     * `Cookie`
     * `Authorization: Basic`
     * `Viewstate`
-* In cases when the application uses a non-standard authentication method or does not require authenticating the requests, **Attack rechecker** may replay any request from the traffic and harm the system. For example: repeat 100 and more money transactions or orders. To minimize the risk of the described situation, it is recommended to [use testing or staging environments for attack replaying](#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application) and [mask non-standard request authentication parameters](#configure-proper-data-masking-rules).
+* In cases when the application uses a non-standard authentication method or does not require authenticating the requests, **Attack rechecker** may replay any request from the traffic and harm the system. For example: repeat 100 and more money transactions or orders. To minimize the risk of the described situation, it is recommended to [use testing or staging environments for attack replaying](../admin-en/attack-rechecker-best-practices.md#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application) and [mask non-standard request authentication parameters](../admin-en/attack-rechecker-best-practices.md#configure-proper-data-masking-rules).
 
 #### Configuration
 
