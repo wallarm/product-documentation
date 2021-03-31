@@ -461,6 +461,10 @@ button.md-clipboard.md-icon {
   font-size: 12px;
 }
 
+.wrapped-code code {
+  white-space: pre-wrap;
+}
+
 /* Search bar */
 
 .md-search__form {
