@@ -47,7 +47,7 @@ The **Attack rechecker** functionality will not work if its IP addresses are not
 
 ### Configure proper notification and escalation rules for detected security incidents
 
-Wallarm provides [integrations with third-party messaging and incident management services](../user-guides/settings/integrations/integrations-intro.md) like Slack, PagerDuty, Opsgenie, Telegram and others. It is highly recommended to configure your Wallarm Cloud instance to use the integrations to dispatch notifications about discovered security incidents to your information security team.
+Wallarm provides [integrations with third-party messaging and incident management services](../user-guides/settings/integrations/integrations-intro.md) like Slack, Telegram, PagerDuty, Opsgenie and others. It is highly recommended to configure your Wallarm Cloud instance to use the integrations to dispatch notifications about discovered security incidents to your information security team.
 
 ### Know how to handle potential leaks of sensitive data from WAF nodes to the Wallarm Cloud
 
