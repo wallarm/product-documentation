@@ -44,6 +44,12 @@ An application ID is specified in the `action.value` parameter.
 
 --8<-- "../include/api-request-examples/create-rule-for-app-id.md"
 
+## Create a rule to block all requests with specific values of HOST and X-FORWARDED-FOR request headers
+
+For domain `MY.DOMAIN.COM` the rule will block all requests besides one having IP address `44.33.22.11` in the value of `X-FORWARDEDE-FOR` HTTP request header.
+
+--8<-- "../include/api-request-examples/create-rule-scanner.md"
+
 ## Delete rule by its ID
 
 --8<-- "../include/api-request-examples/delete-rule-by-id.md"
