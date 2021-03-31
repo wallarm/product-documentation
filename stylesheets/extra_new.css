@@ -426,12 +426,7 @@ code:focus {
 }
 
 .md-typeset .tabbed-content>.codehilite:only-child pre>code, .md-typeset .tabbed-content>.codehilitetable:only-child>code, .md-typeset .tabbed-content>.highlight:only-child pre>code, .md-typeset .tabbed-content>.highlighttable:only-child>code {
-  white-space: pre-wrap;
   padding: 16px;
-}
-
-.md-typeset pre>code {
-  white-space: pre-wrap;
 }
 
 button.md-clipboard.md-icon {
@@ -464,6 +459,10 @@ button.md-clipboard.md-icon {
 
 .md-typeset h4 code {
   font-size: 12px;
+}
+
+.wrapped-code code {
+  white-space: pre-wrap;
 }
 
 /* Search bar */
