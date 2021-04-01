@@ -37,6 +37,31 @@
   font-size: 16px;
 }
 
+a.md-header-nav__button.md-logo:before {
+  content: url(images/left-arrow.svg);
+  position: absolute;
+  right: 139px;
+  top: 9.98px;
+}
+
+.back-wallarmcom {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  top: 75%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  left: 10%;
+}
+
+a.md-header-nav__button.md-logo:not(:hover) + .back-wallarmcom {
+  display: none;
+}
+
 a.md-header-nav__button.md-logo:after {
   content: "|";
   position: absolute;

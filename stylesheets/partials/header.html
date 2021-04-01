@@ -6,13 +6,14 @@
   
       <!-- Link to home -->
       <a
-        href="{{ config.site_url | default(nav.homepage.url, true) | url }}"
-        title="{{ config.site_name }}"
+        href="https://wallarm.com"
         class="md-header-nav__button md-logo"
         aria-label="{{ config.site_name }}"
       >
         {% include "partials/logo.html" %}
       </a>
+
+      <div class="back-wallarmcom">Open wallarm.com</div>
   
       <!-- Button to open drawer -->
       <label class="md-header-nav__button md-icon" for="__drawer">
