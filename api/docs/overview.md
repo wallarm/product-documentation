@@ -65,9 +65,9 @@ Your UUID and secret key are used.
     * `uuid` in the `X‑WallarmAPI‑UUID` header parameter.
     * `secret` in the `X‑WallarmAPI‑Secret` header parameter.
 
-## API restrictions
+<!-- ## API restrictions
 
-Wallarm limits the rate of API calls to 500 requests per second.
+Wallarm limits the rate of API calls to 500 requests per second. -->
 
 ## Wallarm approach to API development and documentation
 
