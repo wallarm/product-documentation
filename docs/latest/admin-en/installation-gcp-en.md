@@ -57,7 +57,7 @@ When using a tool like Terraform to launch the WAF node instance using Wallarm G
 * To launch the instance with the WAF node version 2.18, please use the following image name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-2-18-0-X-XXXXX-build
+    wallarm-node-195710/wallarm-node-2-18-0-3-19887-build
     ```
 
 To get the image name, you can also follow these steps:
@@ -71,7 +71,7 @@ To get the image name, you can also follow these steps:
 3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the WAF node version 2.18 image will have the following name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-2-18-0-X-XXXXX-build
+    wallarm-node-195710/wallarm-node-2-18-0-3-19887-build
     ```
 
 ## 3. Configure the Filter Node Instance
