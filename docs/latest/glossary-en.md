@@ -38,7 +38,7 @@ An incident, just like an attack, is an entity external to your system and is a 
 
 ## MITM
 A man in the middle (MITM) attack consists of an attacker secretly relaying the communication between two parties who believe they are directly communicating with each other.
-[See OWASP](https://owasp.org/www-community/attacks/Man-in-the-middle_attack).
+[See OWASP](https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack).
 
 ## Circular Buffer
 A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
