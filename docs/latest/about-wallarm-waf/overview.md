@@ -47,7 +47,7 @@ Endpoints for the clouds are provided below.
 
 ### EU Cloud
 
-Physically located in France.
+Physically located in the Netherlands.
 
 * https://my.wallarm.com/ to create Wallarm account
 * `https://api.wallarm.com/` to call API methods
