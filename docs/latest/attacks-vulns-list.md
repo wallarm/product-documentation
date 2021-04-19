@@ -215,7 +215,7 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 You may follow these recommendations:
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
-*   Apply the recommendations from the [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
+*   Apply the recommendations from the [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
 
 
 ### Insecure Direct Object References (IDOR)
