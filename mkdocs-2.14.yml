@@ -50,7 +50,7 @@ extra_javascript:
 markdown_extensions:
   - admonition
   - pymdownx.highlight:
-      linenums_style: pymdownx-inline
+      linenums_style: table
   - toc:
       permalink: true
   - pymdownx.critic
