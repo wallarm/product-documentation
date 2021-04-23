@@ -34,7 +34,7 @@ Logstash is configured in the `logstash-sample.conf` file:
 * Forwarding logs to Splunk and log output are configured in the `output` section:
     * Logs are forwarded from Logstash to Splunk in the JSON format
     * All event logs are forwarded from Logstash to Splunk API endpoint `https://109.111.35.11:8088/services/collector/raw` via POST requests. To authorize requests, the HTTPS Event Collector token is used
-    * Logstash logs are additionally printed on the command line (15 code line). The setting is used to verify that events are logged via Logstash
+    * Logstash logs are additionally printed on the command line (15th code line). The setting is used to verify that events are logged via Logstash
 
 ```bash linenums="1"
 input {

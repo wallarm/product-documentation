@@ -25,7 +25,7 @@ Logstash is configured in the `logstash-sample.conf` file:
     * All event logs are forwarded from Logstash to QRadar at the IP address `https://109.111.35.11:514`
     * Logs are forwarded from Logstash to QRadar in the JSON format according to the [Syslog](https://en.wikipedia.org/wiki/Syslog) standard
     * Connection with QRadar is established via TCP
-    * Logstash logs are additionally printed on the command line (15 code line). The setting is used to verify that events are logged via Logstash
+    * Logstash logs are additionally printed on the command line (15th code line). The setting is used to verify that events are logged via Logstash
 
 ```bash linenums="1"
 input {
