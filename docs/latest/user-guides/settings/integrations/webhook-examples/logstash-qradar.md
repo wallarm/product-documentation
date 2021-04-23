@@ -14,6 +14,8 @@ In the provided example, events are sent via webhooks to the Logstash log collec
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+Since the links to the Logstash and QRadar services are cited as examples, they do not respond.
+
 ### Logstash configuration
 
 Logstash is configured in the `logstash-sample.conf` file:
