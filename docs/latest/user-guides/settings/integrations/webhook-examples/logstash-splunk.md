@@ -32,7 +32,8 @@ Logstash is configured in the `logstash-sample.conf` file:
 
 * Incoming webhook processing is configured in the `input` section:
     * All HTTP and HTTPS traffic is sent to 5044 Logstash port
-    * SSL certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
+    * Certificate for HTTPS connection to Logstash is located within the file `/etc/server.crt`
+    * Private key for the certificate is located within the file `/etc/server.key`
 * Forwarding logs to Splunk and log output are configured in the `output` section:
     * Logs are forwarded from Logstash to Splunk in the JSON format
     * All event logs are forwarded from Logstash to Splunk API endpoint `https://109.111.35.11:8088/services/collector/raw` via POST requests. To authorize requests, the HTTPS Event Collector token is used
@@ -43,7 +44,8 @@ input {
   http { # input plugin for HTTP and HTTPS traffic
     port => 5044 # port for incoming requests
     ssl => true # HTTPS traffic processing
-    ssl_certificate => "/etc/pki/ca.pem" # certificate for HTTPS connection
+    ssl_certificate => "/etc/server.crt" # certificate for HTTPS connection
+    ssl_key => "/etc/server.key" # private key for the certificate
   }
 }
 output {
