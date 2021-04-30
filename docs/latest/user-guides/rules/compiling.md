@@ -1,15 +1,19 @@
-# Compilation and Update of Security Rules
+# Building and unloading of a custom ruleset
 
-To analyze requests and detect attacks, the filtering node relies on the LOM (Local Object Module), which contains specially formatted rules from application profiles. Data in the LOM file is optimized to accelerate request analysis.
+A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The WAF node relies on the custom ruleset during incoming requests analysis.
 
-!!! warning "Changes in the analysis rules are not applied instantly"
-    Before the rules can be applied, they need to be processed which means
-    
-    * The LOM file is compiled
-    * The newly compiled version of the LOM is downloaded from the Wallarm Cloud to every Wallarm Node
+Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the WAF node** are finished.
 
-The process of compiling the LOM typically takes from a few minutes for the simple application to up to an hour for resources with complex structures. Monitoring the progress of LOM assembly is currently unavailable, although it is on our roadmap. One indicator of the LOM processing progress is when and how it gets downloaded to the filter nodes. This information is accessible from the *Nodes* tab.
+## Custom ruleset building
 
-The LOM downloads happen during filter nodes with Wallarm Cloud synchronization. This synchronization is launched every 2‑4 minutes. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Proile&Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the WAF node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
-You can verify the status of LOM downloads in the log found at `/var/log/wallarm/syncnode.log`.
+Custom ruleset build status and expected completion time are displayed in the Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
+
+![!Build status](../../images/user-guides/rules/build-rules-status.png)
+
+## Unloading a custom ruleset to the WAF node
+
+Custom ruleset build is unloaded to the WAF node during the WAF node and Wallarm Cloud synchronization. By default, synchronization of the WAF node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+
+The status of unloading a custom ruleset to the WAF node is logged to the file `/var/log/wallarm/syncnode.log`.
