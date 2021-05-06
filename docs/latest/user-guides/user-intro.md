@@ -7,7 +7,7 @@
 [doc-subscriptions]:        settings/subscriptions.md
 
 
-# Introduction
+# Introduction to the User Guide
 
 This guide provides information on Wallarm operation options. All of these operations are performed using the Wallarm portal.
 

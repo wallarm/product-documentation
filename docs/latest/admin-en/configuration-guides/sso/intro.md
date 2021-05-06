@@ -1,4 +1,4 @@
-#   Introduction
+# Overview of integration with the SAML SSO solution
 
 [doc-admin-sso-gsuite]:     gsuite/overview.md
 [doc-admin-sso-okta]:       okta/overview.md

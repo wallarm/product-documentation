@@ -85,7 +85,7 @@ nav:
   - Guides:
     - Home: index.md
     - About Wallarm WAF:
-        - Overview: about-wallarm-waf/overview.md
+        - How Wallarm WAF works: about-wallarm-waf/overview.md
         - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
         - Attack and Vulnerability Types: attacks-vulns-list.md
@@ -99,11 +99,11 @@ nav:
       - Configure traffic proxying: quickstart-en/qs-setup-proxy-en.md
       - Check the WAF node operation: quickstart-en/qs-check-operation-en.md
     - Administrator Guide:
-      - Introduction: admin-en/admin-intro-en.md
+      - Introduction to the Administrator Guide: admin-en/admin-intro-en.md
       - Installation:
         - Supported Platforms: admin-en/supported-platforms.md
         - NGINX:
-          - Installation Options Overview: admin-en/installation-nginx-overview.md
+          - NGINX Installation Options Overview: admin-en/installation-nginx-overview.md
           - Installing as a Dynamic Module for NGINX stable: waf-installation/nginx/dynamic-module.md
           - Installing as a Dynamic Module for NGINX from Debian/CentOS Repositories: waf-installation/nginx/dynamic-module-from-distr.md
           - Installing as a Dynamic Module for NGINX Plus: waf-installation/nginx-plus.md
@@ -115,26 +115,26 @@ nav:
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
             - Kubernetes Deployment Based on Manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud Platforms:
-          - Installation Options Overview: admin-en/installation-guides/clouds-intro.md
+          - Cloud Platform Installation Options Overview: admin-en/installation-guides/clouds-intro.md
           - Installing on Amazon AWS:
-            - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-ami-en.md
+            - Creating and Configuring an AMI with the WAF Node: admin-en/installation-ami-en.md
             - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
             - Deploying WAF Node Using Terraform:
-              - Introduction: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
+              - Introduction to using Terraform for the WAF node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
               - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
               - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
             - Setting Up Filter Node Auto Scaling:
-              - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+              - Overview of the WAF node Auto Scaling Configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
               - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-              - Setting Up Incoming Request Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+              - Setting Up Incoming Request Balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
           - Installing on the Google Cloud Platform:
-            - Creating and Configuring the Wallarm Filter Node Instance: admin-en/installation-gcp-en.md
+            - Creating and Configuring a GCP Instance with the WAF Node: admin-en/installation-gcp-en.md
             - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
             - Setting Up Filter Node Auto Scaling:
-              - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+              - Overview of the WAF node Auto Scaling Configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
               - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
               - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-              - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+              - Setting up Incoming Request Balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
           - Installing on Yandex.Cloud: admin-en/installation-guides/install-in-yandex-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
@@ -171,16 +171,16 @@ nav:
         - Working with Filter Node Logs: admin-en/configure-logging.md
         - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
         - Using Single Sign‑On (SSO):
-          - Introduction: admin-en/configuration-guides/sso/intro.md
+          - Overview of integration with the SAML SSO solution: admin-en/configuration-guides/sso/intro.md
           - Connecting SSO with G Suite:
-            - Overview: admin-en/configuration-guides/sso/gsuite/overview.md
-            - "Step 1: Generating Parameters on the Wallarm Side": admin-en/configuration-guides/sso/gsuite/setup-sp.md
+            - Overview of Steps for Connecting SSO with G Suite: admin-en/configuration-guides/sso/gsuite/overview.md
+            - "Step 1: Generating Parameters on the Wallarm Side (G Suite)": admin-en/configuration-guides/sso/gsuite/setup-sp.md
             - "Step 2: Creating and Configuring an Application in G Suite": admin-en/configuration-guides/sso/gsuite/setup-idp.md
             - "Step 3: Transferring G Suite Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/gsuite/metadata-transfer.md
             - "Step 4: Allowing Access to the Wallarm Application on the G Suite Side": admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md
           - Connecting SSO with Okta:
-            - Overview: admin-en/configuration-guides/sso/okta/overview.md
-            - "Step 1: Generating Parameters on the Wallarm Side": admin-en/configuration-guides/sso/okta/setup-sp.md
+            - Overview of Steps for Connecting SSO with Okta: admin-en/configuration-guides/sso/okta/overview.md
+            - "Step 1: Generating Parameters on the Wallarm Side (Okta)": admin-en/configuration-guides/sso/okta/setup-sp.md
             - "Step 2: Creating and Configuring an Application in Okta": admin-en/configuration-guides/sso/okta/setup-idp.md
             - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
             - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
@@ -192,7 +192,7 @@ nav:
           - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
           - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
         - Monitoring the Filter Node:
-          - Introduction: admin-en/monitoring/intro.md
+          - Introduction to the WAF node monitoring: admin-en/monitoring/intro.md
           - How to Fetch Metrics: admin-en/monitoring/fetching-metrics.md
           - Available Metrics: admin-en/monitoring/available-metrics.md
           - Examples of Exporting and Working with Metrics:
@@ -218,9 +218,9 @@ nav:
           - Scanner Addresses for US Cloud: admin-en/scanner-address-us-en.md
         - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
     - User Guide:
-      - Introduction: user-guides/user-intro.md
+      - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboards:
-        - Overview: user-guides/dashboard/intro.md
+        - Dashboards Overview: user-guides/dashboard/intro.md
         - WAF Dashboard: user-guides/dashboard/waf.md
         - Scanner Dashboard: user-guides/dashboard/scanner.md
       - Events:
@@ -242,7 +242,7 @@ nav:
         - Working with the Scope: user-guides/scanner/check-scope.md
         - Reserved Domains: user-guides/scanner/reserved-domains.md
         - Scanner Settings: 
-          - Overview: user-guides/scanner/configure-scanner.md
+          - General Scanner Settings: user-guides/scanner/configure-scanner.md
           - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
       - Nodes:
         - WAF nodes overview: user-guides/nodes/nodes.md
@@ -282,7 +282,7 @@ nav:
           - Splunk: user-guides/settings/integrations/splunk.md
           - Sumo Logic: user-guides/settings/integrations/sumologic.md
           - Webhook:
-            - Overview: user-guides/settings/integrations/webhook.md
+            - Webhook Integration Overview: user-guides/settings/integrations/webhook.md
             - Examples:
               - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
               - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
