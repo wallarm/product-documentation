@@ -12,6 +12,7 @@ plugins:
   - minify:
       minify_html: true
   - monorepo
+  - meta-descriptions
 dev_addr: '127.0.0.1:8000'
 
 theme:
@@ -72,6 +73,7 @@ markdown_extensions:
   - prependnewline
   - lightgallery:
       show_description_in_lightgallery: false
+  - meta
 
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
