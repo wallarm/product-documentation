@@ -1,10 +1,21 @@
 // Open external links in new tab
 var links = document.links;
+var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/2.16/api/overview.md";
+var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/overview.md";
+
 
 for(var i = 0; i < links.length; i++) {
   if (links[i].hostname != window.location.hostname) {
+    if (links[i].href == wrongLink_api) {
+      // window.location.replace(correctLink_api);
+      links[i].setAttribute('href',correctLink_api);
+      links[i].target = '_blank';
+      links[i].rel = 'noopener';
+    }
+    else {    
     links[i].target = '_blank';
     links[i].rel = 'noopener';
+    }
   } 
 }
 
