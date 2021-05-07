@@ -42,7 +42,7 @@
 /2.12/faq/* /faq
 /2.14/faq/* /faq
 /2.16/faq/* /faq
-/2.12/api/* /api
+/2.12/api/* /api/*
 /2.14/api/* /api
 /2.16/api/* /api
 /2.12/demo-videos/* /demo-videos
@@ -146,4 +146,3 @@
 /en/admin-en/api-creds-en.html /api/overview/
 /en/admin-en/installation-gcp-en.html /admin-en/installation-gcp-en/
 
-https://github.com/wallarm/product-docs-en/edit/master/docs/latest/api/request-examples.md https://github.com/wallarm/product-docs-en/edit/master/api/docs/request-examples.md
