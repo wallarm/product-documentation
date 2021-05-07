@@ -39,8 +39,8 @@
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
 /admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
 
-/2.12/faq/* /faq
-/2.14/faq/* /faq
+/2.12/faq/* /faq/:splat
+/2.14/faq/:page /faq/:page
 /2.16/faq/* /faq
 /2.12/api/* /api/*
 /2.14/api/* /api
