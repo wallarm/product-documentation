@@ -11,7 +11,6 @@ plugins:
   - search
   - minify:
       minify_html: true
-  - monorepo
   - meta-descriptions
 dev_addr: '127.0.0.1:8000'
 
@@ -308,6 +307,18 @@ nav:
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
-  - Wallarm API: '!include ./api/mkdocs.yml'
-  - FAQ: '!include ./faq/mkdocs.yml'
-  - Demo videos: '!include ./demo-videos/mkdocs.yml'
+  - Wallarm API:
+    - Wallarm API overview: api/overview.md
+    - Wallarm API request examples: api/request-examples.md 
+  - FAQ:
+    - Compatibility of Wallarm WAF with NGINX versions: faq/waf-nginx-compatibility.md
+    - Deploying WAF Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
+    - Installing Wallarm WAF Ingress controller: faq/waf-ingress-installation.md
+    - Errors after Wallarm WAF installation: faq/common-errors-after-waf-installation.md
+    - Wallarm service status page: faq/wallarm-status-page.md
+  - Demo videos:
+    - Wallarm WAF overview and deployment options: demo-videos/waf-overview.md
+    - Inspecting events detected by the Wallarm WAF node: demo-videos/waf-events-inspection.md
+    - Wallarm Scanner overview: demo-videos/scanner-overview.md
+    - Notifications and reactions to events detected by Wallarm WAF: demo-videos/notifications.md
+    - Wallarm FAST overview and integration options: demo-videos/fast-overview.md

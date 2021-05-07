@@ -1,0 +1,1 @@
+--8<-- "latest/faq/waf-nginx-compatibility.md"

@@ -10,5 +10,5 @@ pip3 install --no-cache-dir -r requirements.txt &&
 mkdocs build &&
 mkdocs build -f mkdocs-2.16.yml &&
 mkdocs build -f mkdocs-2.14.yml &&
-mkdocs build -f mkdocs-deprecated.yml
+mkdocs build -f mkdocs-deprecated.yml -q
 """
