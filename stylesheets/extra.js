@@ -1,6 +1,6 @@
 // Open external links in new tab
 var links = document.links;
-var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/2.16/api/overview.md";
+var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/api/overview.md";
 var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/overview.md";
 
 
@@ -131,15 +131,15 @@ else {
       githubLink[0].setAttribute('href',newGithubLink); 
       }
   }
-  if (activeLinks[0].text === ' Wallarm API ') {
-    var githubLink = document.getElementsByClassName("md-content__button md-icon");
-    var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/api/";
-    var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/";
-    if (githubLink[0].href.startsWith(wrongLink_api)) {
-      var newGithubLink = githubLink[0].href.replace(wrongLink_api, correctLink_api);
-      githubLink[0].setAttribute('href',newGithubLink);
-    }
-  }
+  // if (activeLinks[0].text === ' Wallarm API ') {
+  //   var githubLink = document.getElementsByClassName("md-content__button md-icon");
+  //   var wrongLink_api = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/api/";
+  //   var correctLink_api = "https://github.com/wallarm/product-docs-en/edit/master/api/docs/";
+  //   if (githubLink[0].href.startsWith(wrongLink_api)) {
+  //     var newGithubLink = githubLink[0].href.replace(wrongLink_api, correctLink_api);
+  //     githubLink[0].setAttribute('href',newGithubLink);
+  //   }
+  // }
   if (activeLinks[0].text === ' Demo videos ') {
     var githubLink = document.getElementsByClassName("md-content__button md-icon");
     var wrongLink_videos = "https://github.com/wallarm/product-docs-en/edit/master/docs/latest/demo-videos/";
