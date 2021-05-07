@@ -39,11 +39,26 @@
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
 /admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
 
+/2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
-/2.14/faq/* /faq/:splat 301
-https://docs.wallarm.com/2.16/faq/* https://docs.wallarm.com/faq/:splat 301!
-https://docs.wallarm.com/2.16/api/* https://docs.wallarm.com/api/:splat 301
-https://docs.wallarm.com/2.14/demo-videos/* https://docs.wallarm.com/demo-videos/:splat
+/2.12/demo-videos/* /demo-videos/:splat 301!
+/2.14/api/* /api/:splat 301!
+/2.14/faq/* /faq/:splat 301!
+/2.14/demo-videos/* /demo-videos/:splat 301!
+/2.16/api/* /api/:splat 301!
+/2.16/faq/* /faq/:splat 301!
+/2.16/demo-videos/* /demo-videos/:splat 301!
+/2.12/admin-en/* /2.12
+/2.12/quickstart-en/* /2.12
+/2.12/updating-migrating/* /2.12
+/2.12/user-guides/* /2.12
+/2.12/waf-installation/* /2.12
+/2.12/about-wallarm-waf/* /2.12
+/2.12/partner-waf-node/* /2.12
+/2.12/attacks-vulns-list /2.12
+/2.12/attacks-vulns-list/ /2.12
+/2.12/glossary-en /2.12
+/2.12/glossary-en/ /2.12
 /2.10/* /2.12
 /2.10/ /2.12
 /2.10 /2.12
