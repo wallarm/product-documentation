@@ -39,18 +39,15 @@
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
 /admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
 
-/2.10/faq/ /faq/
-/2.12/faq/ /faq/
-/2.14/faq/*/ /faq/:splat
-/2.16/faq/*/ /faq/:splat
-/2.10/api/*/ /api/:splat
-/2.12/api/*/ /api/:splat
-/2.14/api/*/ /api/:splat
-/2.16/api/*/ /api/:splat
-/2.10/demo-videos/*/ /demo-videos/:splat
-/2.12/demo-videos/*/ /demo-videos/:splat
-/2.14/demo-videos/*/ /demo-videos/:splat
-/2.16/demo-videos/*/ /demo-videos/:splat
+/2.12/faq/* /faq
+/2.14/faq/* /faq
+/2.16/faq/* /faq
+/2.12/api/* /api
+/2.14/api/* /api
+/2.16/api/* /api
+/2.12/demo-videos/* /demo-videos
+/2.14/demo-videos/* /demo-videos
+/2.16/demo-videos/* /demo-videos
 /2.12/admin-en/* /2.12
 /2.12/quickstart-en/* /2.12
 /2.12/updating-migrating/* /2.12
