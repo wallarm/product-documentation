@@ -15,7 +15,7 @@
 [img-checking-attacks]:             ../../../images/test-attack.png
 
 
-#   Setting up Incoming Request Balancing
+#   Setting up Incoming Request Balancing on GCP
 
 Now that you have a [configured][link-doc-asg-guide] managed instance group with enabled auto scaling, you need to create and configure a Load Balancer that distributes incoming HTTP and HTTPS connections between several filter nodes from the instance group.
 

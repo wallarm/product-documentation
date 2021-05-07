@@ -25,7 +25,7 @@
 
 [doc-selinux]:  ../configure-selinux.md
 
-#   Introduction
+# Introduction to the WAF node monitoring
 
 You can monitor the state of a filter node using the node-provided metrics. These metrics are gathered by the [`collectd`][link-collectd] service that is installed on every Wallarm filter node.
 

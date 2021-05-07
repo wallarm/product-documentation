@@ -10,7 +10,7 @@
 [anchor-create]:        #1-creating-a-load-balancer
 [anchor-configure]:     #2-setting-up-an-auto-scaling-group-for-using-the-created-balancer
 
-#   Creating a Load Balancer
+#   Creating a Load Balancer on AWS
 
 Now, once you have a [configured][link-doc-asg-guide] filter node Auto Scaling Group, you need to create and configure a Load Balancer that distributes incoming HTTP and HTTPS connections among several filter nodes from the Auto Scaling Group.
 
