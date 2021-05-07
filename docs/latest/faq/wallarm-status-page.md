@@ -7,7 +7,7 @@ Yes, the Wallarm status page is available at https://status.wallarm.com. The pag
 * **Wallarm EU Cloud**
 * **Wallarm US Cloud**
 
-![!Wallarm status page](images/status-page.png)
+![!Wallarm status page](../images/status-page.png)
 
 ## Will I receive a notification when a service status changes?
 

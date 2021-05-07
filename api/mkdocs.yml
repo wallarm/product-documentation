@@ -1,6 +1,0 @@
-site_name: api
-edit_uri: ../product-docs-en/edit/master/api/docs/
-
-nav:
-  - Wallarm API overview: overview.md
-  - Wallarm API request examples: request-examples.md 

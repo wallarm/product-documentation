@@ -1,9 +1,0 @@
-site_name: faq
-edit_uri: ../product-docs-en/edit/master/faq/docs/
-
-nav:
-  - Compatibility of Wallarm WAF with NGINX versions: waf-nginx-compatibility.md
-  - Deploying WAF Node in AWS Using Terraform: waf-aws-via-terraform-installation.md 
-  - Installing Wallarm WAF Ingress controller: waf-ingress-installation.md
-  - Errors after Wallarm WAF installation: common-errors-after-waf-installation.md
-  - Wallarm service status page: wallarm-status-page.md

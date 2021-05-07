@@ -1,9 +1,0 @@
-site_name: demo-videos
-edit_uri: ../product-docs-en/edit/master/demo-videos/docs/
-
-nav:
-  - Wallarm WAF overview and deployment options: waf-overview.md
-  - Inspecting events detected by the Wallarm WAF node: waf-events-inspection.md
-  - Wallarm Scanner overview: scanner-overview.md
-  - Notifications and reactions to events detected by Wallarm WAF: notifications.md
-  - Wallarm FAST overview and integration options: fast-overview.md
