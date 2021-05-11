@@ -36,12 +36,12 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-5.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
