@@ -48,11 +48,11 @@ To create a local copy of the Wallarm repository, do the following:
 
     === "CentOS 6.x"
         ```bash
-        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/6/2.14/x86_64/Packages/wallarm-node-repo-1-5.el6.noarch.rpm
+        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/6/2.14/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
         ```
     === "CentOS 7.x"
         ```bash
-        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-5.el7.noarch.rpm
+        sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
         ```
 
 2.  Navigate to a temporary directory (e.g., `/tmp`) and synchronize the Wallarm repository to this directory by executing the following command:
