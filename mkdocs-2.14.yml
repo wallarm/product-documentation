@@ -121,7 +121,6 @@ nav:
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
             - Kubernetes Deployment Based on Manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud Platforms:
-          - Cloud Platform Installation Options Overview: admin-en/installation-guides/clouds-intro.md
           - Installing on Amazon AWS:
             - Creating and Configuring an AMI with the WAF Node: admin-en/installation-ami-en.md
             - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md

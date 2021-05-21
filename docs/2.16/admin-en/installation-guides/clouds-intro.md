@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/installation-guides/clouds-intro.md"
