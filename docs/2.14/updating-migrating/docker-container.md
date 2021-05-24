@@ -7,6 +7,7 @@
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [nginx-waf-directives]:             ../admin-en/configure-parameters-en.md
+[mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 
 # Updating the running Docker NGINX‑based image
 

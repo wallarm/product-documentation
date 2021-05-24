@@ -12,6 +12,7 @@
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
+[mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 
 # Running Docker NGINX‑based image
 

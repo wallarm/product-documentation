@@ -8,6 +8,7 @@
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             ../admin-en/configure-parameters-en.md
+[mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 
 # Updating the running Docker NGINX‑based image
 
