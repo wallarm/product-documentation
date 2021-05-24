@@ -121,25 +121,27 @@ nav:
             - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
             - Kubernetes Deployment Based on Manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud Platforms:
-          - Installing on Amazon AWS:
-            - Creating and Configuring an AMI with the WAF Node: admin-en/installation-ami-en.md
-            - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-            - Deploying WAF Node Using Terraform:
-              - Introduction to using Terraform for the WAF node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
-              - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
-              - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
-            - Setting Up Filter Node Auto Scaling:
-              - Overview of the WAF node Auto Scaling Configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-              - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-              - Setting Up Incoming Request Balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-          - Installing on the Google Cloud Platform:
-            - Creating and Configuring a GCP Instance with the WAF Node: admin-en/installation-gcp-en.md
-            - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
-            - Setting Up Filter Node Auto Scaling:
-              - Overview of the WAF node Auto Scaling Configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
-              - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
-              - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-              - Setting up Incoming Request Balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+          - Amazon AWS:
+            - AWS Marketplace image deployment:
+              - Creating and Configuring an AMI with the WAF Node: admin-en/installation-ami-en.md
+              - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
+              - Deploying WAF Node Using Terraform:
+                - Introduction to using Terraform for the WAF node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
+                - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
+                - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
+              - Setting Up Filter Node Auto Scaling:
+                - Overview of the WAF node Auto Scaling Configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+                - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+                - Setting Up Incoming Request Balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+          - Google Cloud Platform:
+            - GCP Marketplace image deployment:
+              - Creating and Configuring a GCP Instance with the WAF Node: admin-en/installation-gcp-en.md
+              - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
+              - Setting Up Filter Node Auto Scaling:
+                - Overview of the WAF node Auto Scaling Configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+                - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
+                - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+                - Setting up Incoming Request Balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
           - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
