@@ -6,6 +6,7 @@
 [default-ip-blocking-settings]:     ../admin-en/configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[nginx-waf-directives]:             ../admin-en/configure-parameters-en.md
 
 # Updating the running Docker NGINX‑based image
 
@@ -36,10 +37,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 When running the container using the updated image, you can pass the same configuration parameters that were passed when running a previous image version. If some parameters are deprecated or added in the new WAF node version, the appropriate information is published in the list of the [new version changes](what-is-new.md).
 
-There are two options for running the container using the updated image:
-
-* **With the environment variables**. This option allows for configuration of only basic WAF node parameters. Most [directives](../admin-en/configure-parameters-en.md) cannot be changed through environment variables.
-* **In the mounted configuration file**. This option allows to configure all the WAF node [directives](../admin-en/configure-parameters-en.md).
+--8<-- "../include/waf/installation/docker-running-options.md"
 
 ### Run the container passing the environment variables
 
