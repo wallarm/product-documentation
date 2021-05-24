@@ -46,7 +46,6 @@
 
 **Related documentation articles**
 
-* [Overview of WAF node installation options for cloud platforms](../admin-en/installation-guides/clouds-intro.md)
 * [The list of all plaforms availablle for the WAF node deployment](../admin-en/supported-platforms.md)
 
 ## Deploying the WAF node as Kubernetes sidecar container

@@ -10,6 +10,8 @@
 [default-ip-blocking-settings]:     configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
+[nginx-waf-directives]:             configure-parameters-en.md
+[mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 
 # Running Docker NGINX‑based image
 
@@ -40,10 +42,7 @@ The functionality of the WAF node installed inside the Docker container is compl
 
 ## Options for running the container
 
-The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
-
-* **In the environment variables**. This option allows for configuration of only basic WAF node parameters. Most [directives](configure-parameters-en.md) cannot be changed through environment variables.
-* **In the mounted configuration file**. This option allows to configure all the WAF node [directives](configure-parameters-en.md).
+--8<-- "../include/waf/installation/docker-running-options.md"
 
 ## Run the container passing the environment variables
 
