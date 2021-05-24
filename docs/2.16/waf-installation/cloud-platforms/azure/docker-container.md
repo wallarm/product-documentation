@@ -102,7 +102,7 @@ To deploy the container with environment variables and mounted configuration fil
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-3. Create a configuration file with the WAF node settings locally. A example of the file with minimal settings:
+3. Create a configuration file with the WAF node settings locally. An example of the file with minimal settings:
 
     ```bash
     server {
@@ -208,4 +208,4 @@ To deploy the container with environment variables and mounted configuration fil
 3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks.png)
 
-Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required WAF node parameters with correct values are passed to the container.
+Details on errors that occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required WAF node parameters with correct values are passed to the container.
