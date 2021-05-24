@@ -135,6 +135,8 @@ nav:
                 - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
                 - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
                 - Setting up Incoming Request Balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+          - Microsoft Azure:
+            - Deployment of the WAF node Docker image to Azure: waf-installation/cloud-platforms/azure/docker-container.md
           - Yandex.Cloud:
             - Yandex.Cloud Marketplace image deployment: admin-en/installation-guides/install-in-yandex-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
