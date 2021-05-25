@@ -174,3 +174,47 @@ navigationElements.forEach(el => {
     getAllNavigationElements(this, navClassName);
   }, false);
 })
+
+// Expand and collapse supported platform cards on click
+
+function platformClicked (event, platformId) {
+  event.preventDefault();
+  optionsId = platformId + 'Id';
+  var activeOptions=document.getElementsByClassName('option-active');
+  // console.log(this);
+
+  if (activeOptions.length != 0) {
+    for (let index = 0; index < activeOptions.length; index++) {
+      if (activeOptions[i].children[0].children[3].id != this.optionsId) {
+      document.getElementById(activeOptions[i].children[0].children[3].id).style.display = 'none';
+      activeOptions[i].classList.remove("option-active");
+      }
+      else { console.log(this.optionsId) }
+    }
+    if (document.getElementById(optionsId).style.display === 'none') {
+      document.getElementById(optionsId).style.display = 'block';
+      document.getElementById(platformId).parentNode.classList.add("option-active");
+    }
+    else {
+      document.getElementById(optionsId).style.display = 'none';
+      document.getElementById(platformId).parentNode.classList.remove("option-active");
+    }
+  }
+  else {
+    if (document.getElementById(optionsId).style.display === 'none') {
+      document.getElementById(optionsId).style.display = 'block';
+      document.getElementById(platformId).parentNode.classList.add("option-active");
+    }
+    else {
+      document.getElementById(optionsId).style.display = 'none';
+      document.getElementById(platformId).parentNode.classList.remove("option-active");
+    }
+  }
+}
+
+// Cancel collapsing and expanding spported platform cards when clicking the links inside these cards
+
+function noAction(event) {
+  event.stopImmediatePropagation();
+  return false;
+}

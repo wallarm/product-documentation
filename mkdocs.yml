@@ -100,7 +100,7 @@ nav:
     - Administrator Guide:
       - Introduction to the Administrator Guide: admin-en/admin-intro-en.md
       - Installation:
-        - Supported Platforms: admin-en/supported-platforms.md
+        - Wallarm WAF deployment options: admin-en/supported-platforms.md
         - NGINX:
           - NGINX Installation Options Overview: admin-en/installation-nginx-overview.md
           - Installing as a Dynamic Module for NGINX stable: waf-installation/nginx/dynamic-module.md

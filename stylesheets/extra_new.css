@@ -617,3 +617,95 @@ a.navigation-card:hover {
   margin: auto .6rem;
   font-size: .64rem;
 }
+
+/* Deployment options (most styles are reused from navigation) */
+
+.platforms {
+  grid-template-columns: repeat(3, 1fr);
+} 
+
+@media screen and (max-width: 600px) {
+  .platforms {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.option-card:hover {
+  border-color: #FC7303;
+  box-shadow: none;
+}
+
+.activePlatform:hover {
+  box-shadow: 0px 1px 8px rgba(149, 157, 172, 0.4);
+  transition: box-shadow 0.3s;
+  transition-timing-function: cubic-bezier(0.25, 0, 0, 0.25);
+}
+
+.option-active {
+  border-color: #FC7303;
+}
+
+.option-active .options-drop {
+  transform: rotate(90deg);
+}
+
+.option-active .options-drop path {
+  stroke: #FC7303;
+}
+
+.options-list {
+  position: static; 
+  padding-top: 16px;
+}
+
+.options-list a {
+  display: block;
+  padding: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color:black;
+  background: #F7F7F8;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.options-list a:hover {
+  background: #FEE1B4;
+  text-decoration: none;
+  color: black;
+}
+
+.platform-card {
+  padding: unset;
+  transition: all 0.3s ease;
+}
+
+.platform-card h3 {
+  margin-bottom: unset;
+}
+
+.platform-card:hover {
+  border-color: #FC7303;
+  box-shadow: unset;
+}
+
+.platform-card:hover .options-drop path {
+  stroke: #FC7303;
+}
+
+.platform-card-button {
+  font-size: 14px;
+  padding: 24px 32px;
+  cursor: pointer;
+  height: 100%;
+}
+
+.platform-icon {
+  border: none;
+}
+
+.options-drop {
+  border: none;
+  vertical-align: middle;
+  transition: transform 0.24s cubic-bezier(0.24,0.1,0.24,1);
+}
