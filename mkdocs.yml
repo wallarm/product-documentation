@@ -144,6 +144,7 @@ nav:
           - Yandex.Cloud:
             - Yandex.Cloud Marketplace image deployment: admin-en/installation-guides/install-in-yandex-cloud.md
             - Deployment of the WAF node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
+          - Deployment of the WAF node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
