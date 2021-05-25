@@ -146,6 +146,8 @@ nav:
             - Deployment of the WAF node Docker image to GCP: waf-installation/cloud-platforms/gcp/docker-container.md
           - Microsoft Azure:
             - Deployment of the WAF node Docker image to Azure: waf-installation/cloud-platforms/azure/docker-container.md
+          - Alibaba Cloud:
+            - Deployment of the WAF node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
           - Yandex.Cloud:
             - Deployment of the WAF node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
           - Installing on Heroku: admin-en/installation-heroku-en.md
