@@ -4,7 +4,7 @@ To process the HTTP requests, Wallarm uses the web and proxy server NGINX with a
 
 ## 1. Edit the NGINX Configuration Files
 
-The `etc/nginx/conf.d` directory contains NGINX and Wallarm filter node configuration files.
+The `/etc/nginx/conf.d` directory contains NGINX and Wallarm filter node configuration files.
 
 By default, this directory contains the following configuration files:
 *   The `default.conf` file defines the configuration of NGINX.
