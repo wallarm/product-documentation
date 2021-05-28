@@ -1,79 +1,371 @@
-[link-wallarm-account-eu]:         https://my.wallarm.com
-[link-wallarm-account-us]:         https://us1.my.wallarm.com
+# Wallarm WAF deployment options
 
-[link-doc-nginx-overview]:      installation-nginx-overview.md
+## Web servers and API gateways
 
-[link-ig-ingress-nginx]:        installation-kubernetes-en.md
-[link-ig-ingress-nginx-d2iq]:   https://docs.d2iq.com/ksphere/konvoy/partner-solutions/wallarm/
-[link-ig-ingress-nginxplus]:    installation-guides/ingress-plus/introduction.md
-[link-ig-aws]:                  installation-ami-en.md
-[link-ig-gcloud]:               installation-gcp-en.md
-[link-ig-heroku]:               installation-heroku-en.md
-[link-ig-docker-nginx]:         installation-docker-en.md
-[link-ig-kong]:                 installation-kong-en.md
+<div class="navigation platforms">
 
-#   Supported Platforms
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="nginx" class="platform-card-button" onClick="platformClicked(event, 'nginx')">
+        <img class="platform-icon" src="../../images/platform-icons/nginx.svg">
+        <h3>NGINX Stable
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node compatible to NGINX Stable with...</p>
+        <div id="nginxId" class="options-list" style="display: none;">
+            <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
+            <a href="#docker-images" onClick="noAction(event)">Docker container</a>
+            <a href="#kubernetes" onClick="noAction(event)">Kubernetes</a>
+            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+        </div>
+    </div>
+</div> 
 
-!!! info "Installation Prerequisites"
-    Make sure that you acquire the following before installing the filter node:
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="nginxPlus" class="platform-card-button" onClick="platformClicked(event, 'nginxPlus')">
+        <img class="platform-icon" src="../../images/platform-icons/nginx-plus.svg">
+        <h3>NGINX Plus
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node compatible to NGINX Plus with...</p>
+        <div id="nginxPlusId" class="options-list" style="display: none;">
+            <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
+            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+        </div>    
+    </div>
+</div> 
 
-    *   The supported platform 
-    *   The permissions to execute commands with `root` rights
-    *   A Wallarm account in one of the following clouds:
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="kong" class="platform-card-button" onClick="platformClicked(event, 'kong')">
+        <img class="platform-icon" src="../../images/platform-icons/kong.svg">
+        <h3>Kong
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node compatible to Kong with...</p>
+        <div id="kongId" class="options-list" style="display: none;">
+            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+        </div>    
+    </div>
+</div>
+</div>
 
-        *   [The Wallarm EU cloud][link-wallarm-account-eu]
-        *   [The Wallarm US cloud][link-wallarm-account-us]
 
-The Wallarm filter node can be installed on the following platforms:
-*   NGINX and NGINX Plus
-    
-    The integration of the filter node with NGINX or NGINX Plus is performed using several modules.
-    
-    There are [several options for module installation][link-doc-nginx-overview]. The option you select will depend on the way you install NGINX or NGINX Plus.
-    
-    Additionally, you can deploy a filter node as a Docker container. The resulting filter node installation will contain all necessary modules (see [installation instructions][link-ig-docker-nginx]).
-    
-    !!! info "Supported Operating Systems"
-        The Wallarm modules can be installed on the following operating systems:
-        
-        *   Debian 8.x (jessie-backports)
-        *   Debian 9.x (stretch)
-        *   Debian 10.x (buster)
-        *   Ubuntu 16.04 LTS (xenial)
-        *   Ubuntu 18.04 LTS (bionic)
-        *   CentOS 6.x
-        *   CentOS 7.x
-        *   Amazon Linux 2
-        
-    !!! warning "Operating System Requirements"
-        The modules can only be installed on 64-bit operating systems.
-    
-*   The Kubernetes Cluster
+## Cloud platforms
 
-    !!! warning "Supported Kubernetes Platform"
-        Please note, that the Wallarm NGINX or NGINX Plus Ingress controllers run only on the Kubernetes platform version 1.16 and lower.
-    
-    Installing the filter node on the Kubernetes Cluster provides the following options:
-    
-    *   The NGINX Ingress Controller with Integrated Wallarm Services ([installation instructions][link-ig-ingress-nginx])
-    
-        !!! info "Konvoy Support"
-            Note that you can deploy this Ingress controller on the Konvoy by D2IQ (formerly Mesosphere).
-            
-            [The Wallarm's installation instructions][link-ig-ingress-nginx] are suitable if you are deploying the Ingress Controller with integrated Wallarm services on the Konvoy. However, you may want to look at [the D2IQ's installation instructions][link-ig-ingress-nginx-d2iq].  
-    
-    *   The NGINX Plus Ingress Controller with Integrated Wallarm Services ([installation instructions][link-ig-ingress-nginxplus])
-*   The cloud platforms:
-    *   Amazon AWS ([installation instructions][link-ig-aws])
-    *   Google Cloud ([installation instructions][link-ig-gcloud])
-    *   Heroku with the Heroku-16 or Heroku-18 stack ([installation instructions][link-ig-heroku])
-*   Kong ([installation instructions][link-ig-kong])
+<div class="navigation platforms">
 
-    !!! info "Supported Operating Systems"
-        The Kong platform must be version 1.4.3 or lower and must be installed on one of the following operating systems:
-        
-        *   Debian 9.x (stretch)
-        *   Ubuntu 16.04 LTS (xenial)
-        *   Ubuntu 18.04 LTS (bionic)
-        *   CentOS 6.x
-        *   CentOS 7.x
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="aws" class="platform-card-button" onClick="platformClicked(event, 'aws')">
+        <img class="platform-icon" src="../../images/platform-icons/aws.svg">
+        <h3>AWS
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="awsId" class="options-list" style="display: none;">
+            <a href="../../admin-en/installation-ami-en/" onClick="noAction(event)">AWS Marketplace image</a>
+            <a href="../../waf-installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Docker container</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="gcp" class="platform-card-button" onClick="platformClicked(event, 'gcp')">
+        <img class="platform-icon" src="../../images/platform-icons/gcp.svg">
+        <h3>Google Cloud<br>Platform
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="gcpId" class="options-list" style="display: none;">
+            <a href="../../admin-en/installation-gcp-en/" onClick="noAction(event)">GCP Marketplace image</a>
+            <a href="../../waf-installation/cloud-platforms/gcp/docker-container/" onClick="noAction(event)">Docker container</a>
+        </div>    
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="yandex" class="platform-card-button" onClick="platformClicked(event, 'yandex')">
+        <img class="platform-icon" src="../../images/platform-icons/yandex-cloud.svg">
+        <h3>Yandex.Cloud
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="yandexId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/cloud-platforms/yandex-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
+        </div>    
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="azure" class="platform-card-button" onClick="platformClicked(event, 'azure')">
+        <img class="platform-icon" src="../../images/platform-icons/azure-cloud.svg">
+        <h3>Microsoft Azure
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="azureId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/cloud-platforms/azure/docker-container/" onClick="noAction(event)">Docker container</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="alibaba" class="platform-card-button" onClick="platformClicked(event, 'alibaba')">
+        <img class="platform-icon" src="../../images/platform-icons/alibaba-cloud.svg">
+        <h3>Alibaba Cloud
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="alibabaId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/cloud-platforms/alibaba-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="privateCloud" class="platform-card-button" onClick="platformClicked(event, 'privateCloud')">
+        <img class="platform-icon" src="../../images/platform-icons/private-cloud.svg">
+        <h3>Private clouds
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>                    
+        </h3>
+        <p>Deploy WAF node distributed as...</p>
+        <div id="privateCloudId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/cloud-platforms/private-cloud/#principles-of-deploying-the-waf-node-docker-container-to-the-private-cloud" onClick="noAction(event)">Docker container</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+
+## Docker images
+
+<div class="navigation platforms">
+
+    <a href="../../admin-en/installation-docker-en/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+            <svg xmlns="http://www.w3.org/2000/svg" style="height: 72px;" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 32 32"><defs><clipPath id="A"><path d="M76 2v46H54v23H35.58l-.206 2c-1.15 12.53 1.036 24.088 6.063 33.97l1.688 3.03c1 1.817 2.2 3.523 3.438 5.188s1.686 2.583 2.47 3.688C62.32 133.8 82.13 141 105 141c50.648 0 93.633-22.438 112.656-72.844C231.153 69.54 244.1 66.08 250 54.563c-9.4-5.424-21.478-3.685-28.437-.187L240 2l-72 46h-23V2z"/></clipPath></defs><g transform="matrix(.679423 0 0 .679423 -2.086149 13.781817)"><path d="M30.305-3.553h4.222V.763h2.135a9.26 9.26 0 0 0 2.934-.492c.46-.156.974-.372 1.426-.644-.596-.778-.9-1.76-1-2.73-.122-1.317.144-3.032 1.036-4.063l.444-.513.53.425c1.332 1.07 2.452 2.565 2.65 4.27 1.603-.472 3.486-.36 4.9.456l.58.335-.305.596c-1.187 2.33-3.687 3.053-6.13 2.925-3.656 9.105-11.615 13.416-21.265 13.416-4.986 0-9.56-1.864-12.164-6.287-.153-.275-.283-.562-.422-.844-.88-1.947-1.173-4.08-.975-6.2l.06-.638h3.6V-3.55h4.222v-4.222h8.445v-4.222h5.067v8.445" fill="#394d54"/><g transform="matrix(.184659 0 0 .184659 3.070472 -11.997864)" clip-path="url(#A)"><g id="B"><g id="C" transform="translate(0 -22.866)"><path d="M123.86 3.8h19.818v19.817H123.86z" fill="#00acd3"/><path d="M123.86 26.676h19.818v19.818H123.86z" fill="#20c2ef"/><path id="D" d="M126.292 21.977V5.46m2.972 16.516V5.46m3.002 16.516V5.46m3.003 16.516V5.46m3.003 16.516V5.46m2.97 16.516V5.46" stroke="#394d54" stroke-width="1.56"/><use xlink:href="#D" y="22.866"/></g><use xlink:href="#C" transform="matrix(1 0 0 -1 22.866 4.572651)"/></g><use xlink:href="#B" x="-91.464" y="45.732"/><use xlink:href="#B" x="-45.732" y="45.732"/><use xlink:href="#B" y="45.732"/><path d="M221.57 54.38c1.533-11.915-7.384-21.275-12.914-25.718-6.373 7.368-7.363 26.678 2.635 34.807-5.58 4.956-17.337 9.448-29.376 9.448H34C32.83 85.484 34 146 34 146h217l-.987-91.424c-9.4-5.424-21.484-3.694-28.443-.197" fill="#17b5eb"/><path d="M34 89v57h217V89" fill-opacity=".17"/><path d="M111.237 140.9c-13.54-6.425-20.972-15.16-25.107-24.694L45 118l21 28 45.237-5.1" fill="#d4edf1"/><path d="M222.5 53.938v.03c-20.86 26.9-50.783 50.38-82.906 62.72-28.655 11.008-53.638 11.06-70.875 2.22-1.856-1.048-3.676-2.212-5.5-3.312-12.637-8.832-19.754-23.44-19.156-42.687H34V146h217V50h-25z" fill-opacity=".085"/></g><path d="M11.496 9.613c2.616.143 5.407.17 7.842-.594" fill="none" stroke="#394d54" stroke-width=".628" stroke-linecap="round"/><path d="M21.937 7.753a1.01 1.01 0 0 1-1.009 1.009 1.01 1.01 0 0 1-1.01-1.009 1.01 1.01 0 0 1 1.01-1.01 1.01 1.01 0 0 1 1.009 1.01z" fill="#d4edf1"/><path d="M21.2 7.08c-.088.05-.148.146-.148.256 0 .163.132.295.295.295.112 0 .2-.062.26-.154a.73.73 0 0 1 .055.277c0 .4-.324.723-.723.723s-.723-.324-.723-.723.324-.723.723-.723a.72.72 0 0 1 .262.049zM3.07 4.65h46.964c-1.023-.26-3.235-.6-2.87-1.95-1.86 2.152-6.344 1.5-7.475.448-1.26 1.828-8.597 1.133-9.108-.3-1.58 1.854-6.475 1.854-8.055 0-.512 1.424-7.848 2.12-9.1.3C12.284 4.2 7.8 4.853 5.94 2.7c.365 1.34-1.848 1.7-2.87 1.95" fill="#394d54"/></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" style="height: 72px;" viewBox="-35.5 26 32 32" width="64" height="64"><path d="M-33.442 42.023v-7.637a.68.68 0 0 1 .385-.651l13.173-7.608c.237-.148.503-.178.74-.03l13.232 7.637a.71.71 0 0 1 .355.651V49.63a.71.71 0 0 1-.355.651l-11.367 6.57a56.27 56.27 0 0 1-1.806 1.036c-.266.148-.533.148-.8 0l-13.202-7.608c-.237-.148-.355-.326-.355-.622v-7.637z" fill="#009438"/><path d="M-24.118 39.18v8.9c0 1.006-.8 1.894-1.865 1.865-.65-.03-1.154-.296-1.5-.858-.178-.266-.237-.562-.237-.888V35.836c0-.83.503-1.42 1.154-1.687s1.302-.207 1.954 0c.622.178 1.095.562 1.5 1.036l7.874 9.443c.03.03.06.09.118.148v-9c0-.947.65-1.687 1.57-1.776 1.154-.148 1.924.68 2.042 1.54v12.6c0 .7-.326 1.214-.918 1.54-.444.237-.918.296-1.42.266a3.23 3.23 0 0 1-1.954-.829c-.296-.266-.503-.592-.77-.888l-7.49-8.97c0-.03-.03-.06-.06-.09z" fill="#fefefe"/></svg>
+            <h3>Docker image (NGINX)</h3>
+            <p>Deploy the NGINX-based WAF node as a Docker container</p>
+    </a>
+
+</div>
+
+
+## Kubernetes
+
+<div class="navigation platforms">
+
+    <a href="../../admin-en/installation-kubernetes-en/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 64px;" viewBox="0 0 32 32" width="64" height="64"><path d="M15.9.476a2.14 2.14 0 0 0-.823.218L3.932 6.01c-.582.277-1.005.804-1.15 1.432L.054 19.373c-.13.56-.025 1.147.3 1.627q.057.087.12.168l7.7 9.574c.407.5 1.018.787 1.662.784h12.35c.646.001 1.258-.3 1.664-.793l7.696-9.576c.404-.5.555-1.16.4-1.786L29.2 7.43c-.145-.628-.57-1.155-1.15-1.432L16.923.695A2.14 2.14 0 0 0 15.89.476z" fill="#326ce5"/><path d="M16.002 4.542c-.384.027-.675.356-.655.74v.188c.018.213.05.424.092.633a6.22 6.22 0 0 1 .066 1.21c-.038.133-.114.253-.218.345l-.015.282c-.405.034-.807.096-1.203.186-1.666.376-3.183 1.24-4.354 2.485l-.24-.17c-.132.04-.274.025-.395-.04a6.22 6.22 0 0 1-.897-.81 5.55 5.55 0 0 0-.437-.465l-.148-.118c-.132-.106-.294-.167-.463-.175a.64.64 0 0 0-.531.236c-.226.317-.152.756.164.983l.138.11a5.55 5.55 0 0 0 .552.323c.354.197.688.428.998.7a.74.74 0 0 1 .133.384l.218.2c-1.177 1.766-1.66 3.905-1.358 6.006l-.28.08c-.073.116-.17.215-.286.288a6.22 6.22 0 0 1-1.194.197 5.57 5.57 0 0 0-.64.05l-.177.04h-.02a.67.67 0 0 0-.387 1.132.67.67 0 0 0 .684.165h.013l.18-.02c.203-.06.403-.134.598-.218.375-.15.764-.265 1.162-.34.138.008.27.055.382.135l.3-.05c.65 2.017 2.016 3.726 3.84 4.803l-.122.255c.056.117.077.247.06.376-.165.382-.367.748-.603 1.092a5.58 5.58 0 0 0-.358.533l-.085.18a.67.67 0 0 0 .65 1.001.67.67 0 0 0 .553-.432l.083-.17c.076-.2.14-.404.192-.61.177-.437.273-.906.515-1.196a.54.54 0 0 1 .286-.14l.15-.273a8.62 8.62 0 0 0 6.146.015l.133.255c.136.02.258.095.34.205.188.358.34.733.456 1.12a5.57 5.57 0 0 0 .194.611l.083.17a.67.67 0 0 0 1.187.131.67.67 0 0 0 .016-.701l-.087-.18a5.55 5.55 0 0 0-.358-.531c-.23-.332-.428-.686-.6-1.057a.52.52 0 0 1 .068-.4 2.29 2.29 0 0 1-.111-.269c1.82-1.085 3.18-2.8 3.823-4.82l.284.05c.102-.093.236-.142.373-.138.397.076.786.2 1.162.34.195.09.395.166.598.23.048.013.118.024.172.037h.013a.67.67 0 0 0 .841-.851.67.67 0 0 0-.544-.446l-.194-.046a5.57 5.57 0 0 0-.64-.05c-.404-.026-.804-.092-1.194-.197-.12-.067-.22-.167-.288-.288l-.27-.08a8.65 8.65 0 0 0-1.386-5.993l.236-.218c-.01-.137.035-.273.124-.378.307-.264.64-.497.99-.696a5.57 5.57 0 0 0 .552-.323l.146-.118a.67.67 0 0 0-.133-1.202.67.67 0 0 0-.696.161l-.148.118a5.57 5.57 0 0 0-.437.465c-.264.302-.556.577-.873.823a.74.74 0 0 1-.404.044l-.253.18c-1.46-1.53-3.427-2.48-5.535-2.67 0-.1-.013-.25-.015-.297-.113-.078-.192-.197-.218-.332a6.23 6.23 0 0 1 .076-1.207c.043-.21.073-.42.092-.633v-.2c.02-.384-.27-.713-.655-.74zm-.834 5.166l-.2 3.493h-.015c-.01.216-.137.4-.332.504s-.426.073-.6-.054l-2.865-2.03a6.86 6.86 0 0 1 3.303-1.799c.234-.05.47-.088.707-.114zm1.668 0c1.505.187 2.906.863 3.99 1.924l-2.838 2.017c-.175.14-.415.168-.618.072s-.333-.3-.336-.524zm-6.72 3.227l2.62 2.338v.015c.163.142.234.363.186.574s-.21.378-.417.435v.01l-3.362.967a6.86 6.86 0 0 1 .974-4.34zm11.753 0c.796 1.295 1.148 2.814 1.002 4.327l-3.367-.97v-.013c-.21-.057-.37-.224-.417-.435s.023-.43.186-.574l2.6-2.327zm-6.404 2.52h1.072l.655.832-.238 1.04-.963.463-.965-.463-.227-1.04zm3.434 2.838c.045-.005.1-.005.135 0l3.467.585c-.5 1.44-1.487 2.67-2.775 3.493l-1.34-3.244a.59.59 0 0 1 .509-.819zm-5.823.015c.196.003.377.104.484.268s.124.37.047.55v.013l-1.332 3.218C11 21.54 10.032 20.325 9.517 18.9l3.437-.583c.038-.004.077-.004.116 0zm2.904 1.4a.59.59 0 0 1 .537.308h.013l1.694 3.057-.677.2c-1.246.285-2.547.218-3.758-.194l1.7-3.057c.103-.18.293-.29.5-.295z" fill="#fff" stroke="#fff" stroke-width=".055"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 64px;" viewBox="-35.5 26 32 32" width="64" height="64"><path d="M-33.442 42.023v-7.637a.68.68 0 0 1 .385-.651l13.173-7.608c.237-.148.503-.178.74-.03l13.232 7.637a.71.71 0 0 1 .355.651V49.63a.71.71 0 0 1-.355.651l-11.367 6.57a56.27 56.27 0 0 1-1.806 1.036c-.266.148-.533.148-.8 0l-13.202-7.608c-.237-.148-.355-.326-.355-.622v-7.637z" fill="#009438"/><path d="M-24.118 39.18v8.9c0 1.006-.8 1.894-1.865 1.865-.65-.03-1.154-.296-1.5-.858-.178-.266-.237-.562-.237-.888V35.836c0-.83.503-1.42 1.154-1.687s1.302-.207 1.954 0c.622.178 1.095.562 1.5 1.036l7.874 9.443c.03.03.06.09.118.148v-9c0-.947.65-1.687 1.57-1.776 1.154-.148 1.924.68 2.042 1.54v12.6c0 .7-.326 1.214-.918 1.54-.444.237-.918.296-1.42.266a3.23 3.23 0 0 1-1.954-.829c-.296-.266-.503-.592-.77-.888l-7.49-8.97c0-.03-.03-.06-.06-.09z" fill="#fefefe"/></svg>
+        <h3>K8s Ingress controller (NGINX)</h3>
+        <p>Deploy the Wallarm Ingress controller based on the official NGINX Ingress controller</p>
+    </a>
+
+    <a href="../../admin-en/installation-guides/ingress-plus/introduction/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 64px;" viewBox="0 0 32 32" width="64" height="64"><path d="M15.9.476a2.14 2.14 0 0 0-.823.218L3.932 6.01c-.582.277-1.005.804-1.15 1.432L.054 19.373c-.13.56-.025 1.147.3 1.627q.057.087.12.168l7.7 9.574c.407.5 1.018.787 1.662.784h12.35c.646.001 1.258-.3 1.664-.793l7.696-9.576c.404-.5.555-1.16.4-1.786L29.2 7.43c-.145-.628-.57-1.155-1.15-1.432L16.923.695A2.14 2.14 0 0 0 15.89.476z" fill="#326ce5"/><path d="M16.002 4.542c-.384.027-.675.356-.655.74v.188c.018.213.05.424.092.633a6.22 6.22 0 0 1 .066 1.21c-.038.133-.114.253-.218.345l-.015.282c-.405.034-.807.096-1.203.186-1.666.376-3.183 1.24-4.354 2.485l-.24-.17c-.132.04-.274.025-.395-.04a6.22 6.22 0 0 1-.897-.81 5.55 5.55 0 0 0-.437-.465l-.148-.118c-.132-.106-.294-.167-.463-.175a.64.64 0 0 0-.531.236c-.226.317-.152.756.164.983l.138.11a5.55 5.55 0 0 0 .552.323c.354.197.688.428.998.7a.74.74 0 0 1 .133.384l.218.2c-1.177 1.766-1.66 3.905-1.358 6.006l-.28.08c-.073.116-.17.215-.286.288a6.22 6.22 0 0 1-1.194.197 5.57 5.57 0 0 0-.64.05l-.177.04h-.02a.67.67 0 0 0-.387 1.132.67.67 0 0 0 .684.165h.013l.18-.02c.203-.06.403-.134.598-.218.375-.15.764-.265 1.162-.34.138.008.27.055.382.135l.3-.05c.65 2.017 2.016 3.726 3.84 4.803l-.122.255c.056.117.077.247.06.376-.165.382-.367.748-.603 1.092a5.58 5.58 0 0 0-.358.533l-.085.18a.67.67 0 0 0 .65 1.001.67.67 0 0 0 .553-.432l.083-.17c.076-.2.14-.404.192-.61.177-.437.273-.906.515-1.196a.54.54 0 0 1 .286-.14l.15-.273a8.62 8.62 0 0 0 6.146.015l.133.255c.136.02.258.095.34.205.188.358.34.733.456 1.12a5.57 5.57 0 0 0 .194.611l.083.17a.67.67 0 0 0 1.187.131.67.67 0 0 0 .016-.701l-.087-.18a5.55 5.55 0 0 0-.358-.531c-.23-.332-.428-.686-.6-1.057a.52.52 0 0 1 .068-.4 2.29 2.29 0 0 1-.111-.269c1.82-1.085 3.18-2.8 3.823-4.82l.284.05c.102-.093.236-.142.373-.138.397.076.786.2 1.162.34.195.09.395.166.598.23.048.013.118.024.172.037h.013a.67.67 0 0 0 .841-.851.67.67 0 0 0-.544-.446l-.194-.046a5.57 5.57 0 0 0-.64-.05c-.404-.026-.804-.092-1.194-.197-.12-.067-.22-.167-.288-.288l-.27-.08a8.65 8.65 0 0 0-1.386-5.993l.236-.218c-.01-.137.035-.273.124-.378.307-.264.64-.497.99-.696a5.57 5.57 0 0 0 .552-.323l.146-.118a.67.67 0 0 0-.133-1.202.67.67 0 0 0-.696.161l-.148.118a5.57 5.57 0 0 0-.437.465c-.264.302-.556.577-.873.823a.74.74 0 0 1-.404.044l-.253.18c-1.46-1.53-3.427-2.48-5.535-2.67 0-.1-.013-.25-.015-.297-.113-.078-.192-.197-.218-.332a6.23 6.23 0 0 1 .076-1.207c.043-.21.073-.42.092-.633v-.2c.02-.384-.27-.713-.655-.74zm-.834 5.166l-.2 3.493h-.015c-.01.216-.137.4-.332.504s-.426.073-.6-.054l-2.865-2.03a6.86 6.86 0 0 1 3.303-1.799c.234-.05.47-.088.707-.114zm1.668 0c1.505.187 2.906.863 3.99 1.924l-2.838 2.017c-.175.14-.415.168-.618.072s-.333-.3-.336-.524zm-6.72 3.227l2.62 2.338v.015c.163.142.234.363.186.574s-.21.378-.417.435v.01l-3.362.967a6.86 6.86 0 0 1 .974-4.34zm11.753 0c.796 1.295 1.148 2.814 1.002 4.327l-3.367-.97v-.013c-.21-.057-.37-.224-.417-.435s.023-.43.186-.574l2.6-2.327zm-6.404 2.52h1.072l.655.832-.238 1.04-.963.463-.965-.463-.227-1.04zm3.434 2.838c.045-.005.1-.005.135 0l3.467.585c-.5 1.44-1.487 2.67-2.775 3.493l-1.34-3.244a.59.59 0 0 1 .509-.819zm-5.823.015c.196.003.377.104.484.268s.124.37.047.55v.013l-1.332 3.218C11 21.54 10.032 20.325 9.517 18.9l3.437-.583c.038-.004.077-.004.116 0zm2.904 1.4a.59.59 0 0 1 .537.308h.013l1.694 3.057-.677.2c-1.246.285-2.547.218-3.758-.194l1.7-3.057c.103-.18.293-.29.5-.295z" fill="#fff" stroke="#fff" stroke-width=".055"/></svg>
+        <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="3" width="58" height="66">
+        <path d="M34.2125 4.03201C35.3186 3.3934 36.6814 3.3934 37.7875 4.03201L62.7913 18.468C63.8974 19.1066 64.5788 20.2868 64.5788 21.564V50.436C64.5788 51.7132 63.8974 52.8934 62.7913 53.532L37.7875 67.968C36.6814 68.6066 35.3186 68.6066 34.2125 67.968L9.20866 53.532C8.10255 52.8934 7.42116 51.7132 7.42116 50.436V21.564C7.42116 20.2868 8.10255 19.1066 9.20866 18.468L34.2125 4.03201Z" fill="#C4C4C4"/>
+        </mask>
+        <g mask="url(#mask0)">
+        <rect x="7.39999" y="2.7251" width="57.475" height="66.55" fill="url(#pattern0)"/>
+        </g>
+        <defs>
+        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <use xlink:href="#image0" transform="scale(0.00478469 0.00413223)"/>
+        </pattern>
+        <image id="image0" width="209" height="242" xlink:href="data:image/png;base64,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"/>
+        </defs>
+        </svg>
+        <h3>K8s Ingress controller (NGINX Plus)</h3>
+        <p>Deploy the Wallarm Ingress controller based on the official NGINX Plus Ingress controller</p>
+    </a>
+
+    <a href="../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 64px;" viewBox="0 0 32 32" width="64" height="64"><path d="M15.9.476a2.14 2.14 0 0 0-.823.218L3.932 6.01c-.582.277-1.005.804-1.15 1.432L.054 19.373c-.13.56-.025 1.147.3 1.627q.057.087.12.168l7.7 9.574c.407.5 1.018.787 1.662.784h12.35c.646.001 1.258-.3 1.664-.793l7.696-9.576c.404-.5.555-1.16.4-1.786L29.2 7.43c-.145-.628-.57-1.155-1.15-1.432L16.923.695A2.14 2.14 0 0 0 15.89.476z" fill="#326ce5"/><path d="M16.002 4.542c-.384.027-.675.356-.655.74v.188c.018.213.05.424.092.633a6.22 6.22 0 0 1 .066 1.21c-.038.133-.114.253-.218.345l-.015.282c-.405.034-.807.096-1.203.186-1.666.376-3.183 1.24-4.354 2.485l-.24-.17c-.132.04-.274.025-.395-.04a6.22 6.22 0 0 1-.897-.81 5.55 5.55 0 0 0-.437-.465l-.148-.118c-.132-.106-.294-.167-.463-.175a.64.64 0 0 0-.531.236c-.226.317-.152.756.164.983l.138.11a5.55 5.55 0 0 0 .552.323c.354.197.688.428.998.7a.74.74 0 0 1 .133.384l.218.2c-1.177 1.766-1.66 3.905-1.358 6.006l-.28.08c-.073.116-.17.215-.286.288a6.22 6.22 0 0 1-1.194.197 5.57 5.57 0 0 0-.64.05l-.177.04h-.02a.67.67 0 0 0-.387 1.132.67.67 0 0 0 .684.165h.013l.18-.02c.203-.06.403-.134.598-.218.375-.15.764-.265 1.162-.34.138.008.27.055.382.135l.3-.05c.65 2.017 2.016 3.726 3.84 4.803l-.122.255c.056.117.077.247.06.376-.165.382-.367.748-.603 1.092a5.58 5.58 0 0 0-.358.533l-.085.18a.67.67 0 0 0 .65 1.001.67.67 0 0 0 .553-.432l.083-.17c.076-.2.14-.404.192-.61.177-.437.273-.906.515-1.196a.54.54 0 0 1 .286-.14l.15-.273a8.62 8.62 0 0 0 6.146.015l.133.255c.136.02.258.095.34.205.188.358.34.733.456 1.12a5.57 5.57 0 0 0 .194.611l.083.17a.67.67 0 0 0 1.187.131.67.67 0 0 0 .016-.701l-.087-.18a5.55 5.55 0 0 0-.358-.531c-.23-.332-.428-.686-.6-1.057a.52.52 0 0 1 .068-.4 2.29 2.29 0 0 1-.111-.269c1.82-1.085 3.18-2.8 3.823-4.82l.284.05c.102-.093.236-.142.373-.138.397.076.786.2 1.162.34.195.09.395.166.598.23.048.013.118.024.172.037h.013a.67.67 0 0 0 .841-.851.67.67 0 0 0-.544-.446l-.194-.046a5.57 5.57 0 0 0-.64-.05c-.404-.026-.804-.092-1.194-.197-.12-.067-.22-.167-.288-.288l-.27-.08a8.65 8.65 0 0 0-1.386-5.993l.236-.218c-.01-.137.035-.273.124-.378.307-.264.64-.497.99-.696a5.57 5.57 0 0 0 .552-.323l.146-.118a.67.67 0 0 0-.133-1.202.67.67 0 0 0-.696.161l-.148.118a5.57 5.57 0 0 0-.437.465c-.264.302-.556.577-.873.823a.74.74 0 0 1-.404.044l-.253.18c-1.46-1.53-3.427-2.48-5.535-2.67 0-.1-.013-.25-.015-.297-.113-.078-.192-.197-.218-.332a6.23 6.23 0 0 1 .076-1.207c.043-.21.073-.42.092-.633v-.2c.02-.384-.27-.713-.655-.74zm-.834 5.166l-.2 3.493h-.015c-.01.216-.137.4-.332.504s-.426.073-.6-.054l-2.865-2.03a6.86 6.86 0 0 1 3.303-1.799c.234-.05.47-.088.707-.114zm1.668 0c1.505.187 2.906.863 3.99 1.924l-2.838 2.017c-.175.14-.415.168-.618.072s-.333-.3-.336-.524zm-6.72 3.227l2.62 2.338v.015c.163.142.234.363.186.574s-.21.378-.417.435v.01l-3.362.967a6.86 6.86 0 0 1 .974-4.34zm11.753 0c.796 1.295 1.148 2.814 1.002 4.327l-3.367-.97v-.013c-.21-.057-.37-.224-.417-.435s.023-.43.186-.574l2.6-2.327zm-6.404 2.52h1.072l.655.832-.238 1.04-.963.463-.965-.463-.227-1.04zm3.434 2.838c.045-.005.1-.005.135 0l3.467.585c-.5 1.44-1.487 2.67-2.775 3.493l-1.34-3.244a.59.59 0 0 1 .509-.819zm-5.823.015c.196.003.377.104.484.268s.124.37.047.55v.013l-1.332 3.218C11 21.54 10.032 20.325 9.517 18.9l3.437-.583c.038-.004.077-.004.116 0zm2.904 1.4a.59.59 0 0 1 .537.308h.013l1.694 3.057-.677.2c-1.246.285-2.547.218-3.758-.194l1.7-3.057c.103-.18.293-.29.5-.295z" fill="#fff" stroke="#fff" stroke-width=".055"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 64px;" viewBox="-35.5 26 32 32" width="64" height="64"><path d="M-33.442 42.023v-7.637a.68.68 0 0 1 .385-.651l13.173-7.608c.237-.148.503-.178.74-.03l13.232 7.637a.71.71 0 0 1 .355.651V49.63a.71.71 0 0 1-.355.651l-11.367 6.57a56.27 56.27 0 0 1-1.806 1.036c-.266.148-.533.148-.8 0l-13.202-7.608c-.237-.148-.355-.326-.355-.622v-7.637z" fill="#009438"/><path d="M-24.118 39.18v8.9c0 1.006-.8 1.894-1.865 1.865-.65-.03-1.154-.296-1.5-.858-.178-.266-.237-.562-.237-.888V35.836c0-.83.503-1.42 1.154-1.687s1.302-.207 1.954 0c.622.178 1.095.562 1.5 1.036l7.874 9.443c.03.03.06.09.118.148v-9c0-.947.65-1.687 1.57-1.776 1.154-.148 1.924.68 2.042 1.54v12.6c0 .7-.326 1.214-.918 1.54-.444.237-.918.296-1.42.266a3.23 3.23 0 0 1-1.954-.829c-.296-.266-.503-.592-.77-.888l-7.49-8.97c0-.03-.03-.06-.06-.09z" fill="#fefefe"/></svg>
+        <h3>K8s Sidecar container</h3>
+        <p>Run the NGINX-based WAF node as the K8s sidecar container</p>
+    </a>
+</div>
+
+
+## DEB and RPM packages
+
+<div class="navigation platforms">
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="debian8back" class="platform-card-button" onClick="platformClicked(event, 'debian8back')">
+    <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <h3>Debian 8.x Jessie (backports)
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="debian8backId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+        </div>
+    </div>
+</div>
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="debian9" class="platform-card-button" onClick="platformClicked(event, 'debian9')">
+    <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <h3>Debian 9.x Stretch
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="debian9Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="debian9back" onClick="platformClicked(event, 'debian9back')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <h3>Debian 9.x Stretch (backports)
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="debian9backId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="debian10" onClick="platformClicked(event, 'debian10')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <h3>Debian 10.x Buster
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="debian10Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+<div class="navigation platforms" style="padding-top: 16px;">
+    <div id="deployOptionsDiv" class="navigation-card platform-card">
+        <div type="button" id="ubuntu16" onClick="platformClicked(event, 'ubuntu16')" class="platform-card-button">
+            <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
+            <h3>Ubuntu 16.04 Xenial
+                <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+            </h3>
+            <p>Install the WAF module for...</p>
+            <div id="ubuntu16Id" class="options-list" style="display: none;">
+                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+                <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+            </div>
+        </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="ubuntu18" onClick="platformClicked(event, 'ubuntu18')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
+        <h3>Ubuntu 18.04 Bionic
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="ubuntu18Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+        </div>
+    </div>
+</div> 
+</div>
+
+<div class="navigation platforms" style="padding-top: 16px;">
+
+    <div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="centos6" onClick="platformClicked(event, 'centos6')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+        <h3>CentOS 6.x
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the WAF module for...</p>
+        <div id="centos6Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+        </div>
+    </div>
+</div> 
+
+    <div id="deployOptionsDiv" class="navigation-card platform-card">
+        <div type="button" id="centos7" onClick="platformClicked(event, 'centos7')" class="platform-card-button">
+            <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+            <h3>CentOS 7.x
+                <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+            </h3>
+            <p>Install the WAF module for...</p>
+            <div id="centos7Id" class="options-list" style="display: none;">
+                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+                <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+                <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+            </div>
+    </div>
+</div> 
+</div>
+
+<div class="navigation platforms" style="padding-top: 16px;">
+    <div id="deployOptionsDiv" class="navigation-card platform-card">
+        <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
+            <img class="platform-icon" src="../../images/platform-icons/amazon-linux.svg">
+            <h3>Amazon Linux 2
+                <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+                </svg>
+            </h3>
+            <p>Install the WAF module for...</p>
+            <div id="alinux2Id" class="options-list" style="display: none;">
+                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            </div>
+        </div>
+    </div> 
+</div>

@@ -1,0 +1,1 @@
+--8<-- "latest/waf-installation/cloud-platforms/yandex-cloud/docker-container.md"
