@@ -24,7 +24,7 @@ After logging in to the Wallarm portal, you will be presented with the following
 
     Use these tabs to navigate from one component of the Wallarm solution to another.
     
-    Some component's pages contain their own tabs, horizontally aligned.
+    Some components' pages contain their own tabs, horizontally aligned.
     
     The *Help & Docs* button is located at the bottom of the sidebar. Upon clicking this button, the *Quick Help* sidebar will be opened on the right side of the portal, allowing you to explore various product information and submit a message to the support team.
     
