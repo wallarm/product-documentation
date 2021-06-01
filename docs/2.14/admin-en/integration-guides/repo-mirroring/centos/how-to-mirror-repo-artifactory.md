@@ -61,7 +61,7 @@ To create a local copy of the Wallarm repository, do the following:
     reposync -r wallarm-node -p .
     ```
 
-If the `reposync` command finishes successfully, then the Wallarm packages will be placed in the `wallarm‑node/Packages` subdirectory of your temporary directory (e.g., `/tmp/wallarm‑node/Packages`). 
+If the `reposync` command finishes successfully, then the Wallarm packages will be placed in the `wallarm-node/Packages` subdirectory of your temporary directory (e.g., `/tmp/wallarm-node/Packages`). 
 
 
 ##  2.  Creating a Local RPM Repository in JFrog Artifactory

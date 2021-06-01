@@ -96,7 +96,7 @@ To open the file in the editing mode, please use the command:
 
 The postanalytics module uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory.
 
-The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm‑tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm-tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
 
 ```bash
 SLAB_ALLOC_ARENA=24

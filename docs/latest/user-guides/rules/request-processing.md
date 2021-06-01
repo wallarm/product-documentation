@@ -137,7 +137,7 @@ Filters:
 * **xml_tag_array** or **array** for an array of tag values
 * **xml_attr** for an associative array of attributes; can only be used after the **xml_tag** filter
 
-The XML parser does not differentiate between the contents of the tag and the first element in the array of values for the tag. That is, the parameters `[..., xml, xml_tag, 't1']` and `[..., xml, xml_tag, 't1', array, 0]` are identical and interchangeable.
+The XML parser does not differentiate between the contents of the tag and the first element in the array of values for the tag. That is, the parameters `[..., xml, xml_tag, 't1']` and `[..., xml, xml_tag, 't1', array, 0]` are identical and interchangeable.
 
 Example:
 
@@ -263,7 +263,7 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, multipart, 'p4', array, 1]` — `7`
 * `[post, multipart, 'p4', pollution]` — `6,7`
 
-If a file name is specified in the `Content‑Disposition` header, then the file is considered to be loaded in this parameter. The parameter will look like this:
+If a file name is specified in the `Content-Disposition` header, then the file is considered to be loaded in this parameter. The parameter will look like this:
 
 * `[post, multipart, 'someparam', file]` — file contents
 

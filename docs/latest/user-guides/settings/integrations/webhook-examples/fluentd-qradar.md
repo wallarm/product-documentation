@@ -10,7 +10,7 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 
 ## Used resources
 
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd‑example‑domain.com`
+* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
@@ -60,7 +60,7 @@ A more detailed description of configuration files is available in the [official
 
     **Request example:**
     ```curl
-    curl -X POST 'https://fluentd‑example‑domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
+    curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
     **Fluentd logs:**

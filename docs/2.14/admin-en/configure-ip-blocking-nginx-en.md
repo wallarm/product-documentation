@@ -33,7 +33,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     }
     ```
     
-    In the configuration above, `<path‑to‑wallarm‑acl‑folder>` is a path to an empty directory, in which the `nginx` user can create subdirectories and files for storing access control lists.
+    In the configuration above, `<path-to-wallarm-acl-folder>` is a path to an empty directory, in which the `nginx` user can create subdirectories and files for storing access control lists.
     
     !!! info "Checking the `nginx` user rights"
         Run the following command to check whether the `nginx` user has rights to perform actions on the directory:
@@ -41,11 +41,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
         sudo -u nginx [ -r <path-to-directory> ] && [ -w <path-to-directory> ] && echo "ОК"
         ```
 
-        In this command, `<path‑to‑directory>` is the path to the directory, access to which you need to check.
+        In this command, `<path-to-directory>` is the path to the directory, access to which you need to check.
          
         Due to the `sudo -u nginx` prefix, this command is executed using the `nginx` user.
         
-        The command first checks whether the user has permission to read the directory (the `[ ‑r <path‑to‑directory> ]` part). Next, it checks whether the user has permission to write into the directory (the `[ ‑w <path‑to‑directory> ]` part).   
+        The command first checks whether the user has permission to read the directory (the `[ -r <path-to-directory> ]` part). Next, it checks whether the user has permission to write into the directory (the `[ -w <path-to-directory> ]` part).   
         
         If the `nginx` user has permission to read and write into the directory specified in the command, the terminal outputs the `OK` message. The specified directory can be used as a `wallarm_acl_path` value.
         
@@ -172,7 +172,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 
 6.  Activate the blacklist synchronization. 
 
-    One way to do this is to uncomment the line containing `sync‑blacklist` as a substring in the `/etc/cron.d/wallarm‑node‑nginx` file by removing the `#` symbol at the beginning of the line. 
+    One way to do this is to uncomment the line containing `sync-blacklist` as a substring in the `/etc/cron.d/wallarm-node-nginx` file by removing the `#` symbol at the beginning of the line. 
     
     You can also do this by running the following command:
     
@@ -192,11 +192,11 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             * The second non‑option parameter will be used as an input file. 
         * The `-E` option means that the script following this option uses the [extended regular expression syntax](https://www.gnu.org/software/sed/manual/sed.html#ERE-syntax).
         
-        The script that follows the options replaces the lines that satisfy the `^#(.*sync‑blacklist.*)` regular expression with the string that satisfies the subexpression in parenthesis in the `/etc/cron.d/wallarm‑node‑nginx` file. The `\1` back‑reference of the sed command means that the subexpression in the first parenthesis should be used as a replacement.
+        The script that follows the options replaces the lines that satisfy the `^#(.*sync-blacklist.*)` regular expression with the string that satisfies the subexpression in parenthesis in the `/etc/cron.d/wallarm-node-nginx` file. The `\1` back‑reference of the sed command means that the subexpression in the first parenthesis should be used as a replacement.
         
-        The line that satisfies the `^#(.*sync‑blacklist.*)` regular expression
+        The line that satisfies the `^#(.*sync-blacklist.*)` regular expression
         * starts with the `#` symbol.
-        * contains `sync‑blacklist` as a substring.
+        * contains `sync-blacklist` as a substring.
         
         The replacement for the described line is the substring of this line without the `#` symbol at the beginning of the line. 
         

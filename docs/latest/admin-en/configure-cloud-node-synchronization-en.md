@@ -18,7 +18,7 @@ The set of parameters and the method of its configuration depend on the deployed
 
 The `/etc/wallarm/syncnode` file contains environment variables that define the way the cloud WAF node will synchronize with the Wallarm Cloud. The `/etc/wallarm/syncnode` file containing the variable `WALLARM_API_TOKEN` with the cloud WAF node token is created after running the `addcloudnode` script.
 
-The `wallarm‑synccloud` service applies the changes made to the `/etc/wallarm/syncnode` file to the synchronization process and runs the synchronization with the new configuration.
+The `wallarm-synccloud` service applies the changes made to the `/etc/wallarm/syncnode` file to the synchronization process and runs the synchronization with the new configuration.
 
 ### Available environment variables
 
@@ -45,7 +45,7 @@ The list of environment variables available for the cloud WAF node and Wallarm C
 | `WALLARM_SYNCNODE_MODE`       | Access rights to the files needed for the cloud WAF node operation. Default value is `0640`.                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 !!! warning "Configuration of the access rights to the files needed for the cloud WAF node operation"
-    Make sure that after configuring access rights using the `WALLARM_SYNCNODE_OWNER`, `WALLARM_SYNCNODE_GROUP`, and `WALLARM_SYNCNODE_MODE` variables, the `wallarm‑worker` and `nginx` services can read content of the files needed for the cloud WAF node operation.
+    Make sure that after configuring access rights using the `WALLARM_SYNCNODE_OWNER`, `WALLARM_SYNCNODE_GROUP`, and `WALLARM_SYNCNODE_MODE` variables, the `wallarm-worker` and `nginx` services can read content of the files needed for the cloud WAF node operation.
 
 ### Configuring synchronization parameters
 

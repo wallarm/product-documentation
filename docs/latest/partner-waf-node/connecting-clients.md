@@ -26,8 +26,8 @@ At this step, a partner client account will be created and linked to the partner
     `vuln_prefix` | Vulnerability prefix that Wallarm will use for vulnerability tracking and association with the client. The prefix must contain four capital letters or numbers and be related to a client name. For example: `CLNT` for the client `Client`. | Body | Yes
     `partner_uuid` | [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-waf-node-configuration). | Body | Yes
     `language` | Language for the client account in the Wallarm Console interface: `en` or `ru`. By default, the language specififed when switching the account to the partner status is used. | Body | No
-    `X‑WallarmAPI‑UUID` | [User UUID](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
-    `X‑WallarmAPI‑Secret` | [Secret key](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
+    `X-WallarmAPI-UUID` | [User UUID](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
+    `X-WallarmAPI-Secret` | [Secret key](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
 
     ??? info "Show an example of the request sent from own client"
         === "EU Cloud"
@@ -56,8 +56,8 @@ At this step, ID will be set for a partner-client application link. One client m
     `partnerid` | The `partnerid` value obtained after the client was created. | Path | Yes
     `clientid` | Client ID obtained after client creation (`id`).  | Body | Yes
     `id` | ID for the partner-client link. Can be an arbitrary positive integer. | Body | Yes
-    `X‑WallarmAPI‑UUID` | [User UUID](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
-    `X‑WallarmAPI‑Secret` | [Secret key](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
+    `X-WallarmAPI-UUID` | [User UUID](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
+    `X-WallarmAPI-Secret` | [Secret key](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
 
     ??? info "Show an example of the request sent from own client"
         === "EU Cloud"

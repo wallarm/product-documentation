@@ -142,10 +142,10 @@ The number of situations when the virtual memory limit was exceeded.
     * `curl_json-wallarm_nginx/gauge-softmemfaults` if the limit for proton.db +lom was exceeded ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)) 
 * **Metric value:** `0`
 * **Rate of change:**
-    * `curl_json-wallarm_nginx/derive-memfaults` for `curl_json‑wallarm_nginx/gauge‑memfaults`
-    * `curl_json-wallarm_nginx/derive-softmemfaults` for `curl_json‑wallarm_nginx/gauge‑softmemfaults`
+    * `curl_json-wallarm_nginx/derive-memfaults` for `curl_json-wallarm_nginx/gauge-memfaults`
+    * `curl_json-wallarm_nginx/derive-softmemfaults` for `curl_json-wallarm_nginx/gauge-softmemfaults`
 * **Troubleshooting recommendations:**
-    1. Collect data about the current state using the `/usr/share/wallarm‑common/collect‑info.sh` script.
+    1. Collect data about the current state using the `/usr/share/wallarm-common/collect-info.sh` script.
     2. Provide the generated file to the [Wallarm support team](mailto:support@wallarm.com) for investigation.
 
 ### Request Analysis Time (in Seconds)

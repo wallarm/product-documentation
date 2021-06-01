@@ -24,7 +24,7 @@ To create and apply the rule:
         * `b:<name>` for the rule **Define brute-force attacks counter**
 
     !!! info "Message about inherited counter"
-        If you have a **Default rule** defining attack counter, you can get a message `Inherited counter: <name>` when creating a rule with defined conditions that will trigger this rule. **Default rule** is applied to all incoming requests as it does not have defined conditions that trigger the rule.
+        If you have a **Default rule** defining attack counter, you can get a message `Inherited counter: <name>` when creating a rule with defined conditions that will trigger this rule. **Default rule** is applied to all incoming requests as it does not have defined conditions that trigger the rule.
         
         The message is for informational purposes only. Operation of the rule with defined trigger conditions will not be affected as it has a higher priority than the **Default rule**.
 

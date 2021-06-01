@@ -53,7 +53,7 @@ The module **Attack rechecker** is disabled by default. It should be enabled and
 
 #### How it works
 
-Vulnerability scanner checks all elements of the company scope for typical vulnerabilities. The scanner sends requests to application addresses from fixed IP addresses and adds the header `X‑Wallarm‑Scanner‑Info` to the requests.
+Vulnerability scanner checks all elements of the company scope for typical vulnerabilities. The scanner sends requests to application addresses from fixed IP addresses and adds the header `X-Wallarm-Scanner-Info` to the requests.
 
 #### Configuration
 

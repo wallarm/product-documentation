@@ -25,8 +25,13 @@ Detailed directive description is available in the [official NGINX documentation
 
 If GPG keys for Wallarm RPM packages are expired, you may get the following error messages:
 
-* `https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/repodata/repomd.xml: [Errno -1] repomd.xml signature could not be verified for wallarm-node_2.18`
-* `One of the configured repositories failed (Wallarm Node for CentOS 7 - 2.18), and yum doesn't have enough cached data to continue.`
+```
+https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/repodata/repomd.xml:
+[Errno -1] repomd.xml signature could not be verified for wallarm-node_2.18
+
+One of the configured repositories failed (Wallarm Node for CentOS 7 - 2.18),
+and yum doesn't have enough cached data to continue.
+```
 
 To fix the problem, please follow the steps:
 
