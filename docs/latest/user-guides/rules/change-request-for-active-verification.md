@@ -65,8 +65,8 @@ To set several conditions for the original request modification or to replace th
 
     ![!Example of the rule modifying COOKIE](../../images/user-guides/rules/rewrite-request-example-cookie.png)
 
-* Replay attacks originally sent to `example.com` on the test environment `example‑test.env.srv.loc`. The load balancer on `example.com` must be configured to forward requests to the address passed in `HOST`.
+* Replay attacks originally sent to `example.com` on the test environment `example-test.env.srv.loc`. The load balancer on `example.com` must be configured to forward requests to the address passed in `HOST`.
 
-    The format of the address is `{{'example‑test.env.srv.loc'}}`.
+    The format of the address is `{{'example-test.env.srv.loc'}}`.
 
      ![!Example of the rule modyfying HOST](../../images/user-guides/rules/rewrite-request-example-host.png)

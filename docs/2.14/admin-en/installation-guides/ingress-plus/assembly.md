@@ -74,7 +74,7 @@ You should gather the following information to continue:
     *   `gcr.io` for Google Container Registry,
     *   `<your repository name>.azurecr.io` for Microsoft Azure Container Registry.
     
-    The Docker’s registry name is a part of the path to the repository. For example, if you are using Docker Hub, the path to access the repository `example‑repository` created by user `john` will be as follows: `docker.io/john/example‑repository`.
+    The Docker’s registry name is a part of the path to the repository. For example, if you are using Docker Hub, the path to access the repository `example-repository` created by user `john` will be as follows: `docker.io/john/example-repository`.
 
 ##  Building the Ingress Controller
 1.  Log in to your Docker registry by executing the following command:

@@ -4,7 +4,7 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 * `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm‑status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtering mode

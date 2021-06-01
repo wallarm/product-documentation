@@ -10,7 +10,7 @@ To enable blocking, use the directives:
 
 Configuring blocking of a part of a website:
 
-1. Open for editing the configuration file in the `/etc/nginx‑wallarm` directory.
+1. Open for editing the configuration file in the `/etc/nginx-wallarm` directory.
 2. Set the blocking rules in the `$wallarm_mode_real` variable and the location to apply the rules in the `location` block:
 
 	```

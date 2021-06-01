@@ -17,7 +17,7 @@ In a WAF node there are two main memory consumers:
 
 ### Allocating Resources in Other Deployment Options
 
-The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/etc/default/wallarm‑tarantool` configuration file. To allocate memory:
+The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attribute in the `/etc/default/wallarm-tarantool` configuration file. To allocate memory:
 
 <ol start="1"><li>Open for editing the configuration file of Tarantool:</li></ol>
 
@@ -87,7 +87,7 @@ SLAB_ALLOC_ARENA=10.4
     sudo systemctl restart wallarm-tarantool
     ```
 
-To learn how long a Tarantool instance is capable of keeping traffic details with the current level of WAF node load, you can use the [`wallarm‑tarantool/gauge‑timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds) monitoring metric.
+To learn how long a Tarantool instance is capable of keeping traffic details with the current level of WAF node load, you can use the [`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds) monitoring metric.
 
 ## NGINX
 

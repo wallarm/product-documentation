@@ -53,7 +53,7 @@ The search field accepts queries with attributes and modifiers similar to human 
 When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
 
 !!! info "Setting the attribute value to NOT"
-    To negate the attribute value, please use `!` before the attribute or modifier name. For example: `attacks !ip:111.111.111.111` to show all attacks originated from any IP address excluding `111.111.111.111`.
+    To negate the attribute value, please use `!` before the attribute or modifier name. For example: `attacks !ip:111.111.111.111` to show all attacks originated from any IP address excluding `111.111.111.111`.
 
 Below you will find the list of attributes and modifiers available for use in search queries.
 

@@ -62,8 +62,8 @@ Your UUID and secret key are used.
         * Reuse the stored `secret` value in all requests to Wallarm API.
         * If you generated a new `secret` value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
 5. Send the required request from your client passing the following values:
-    * `uuid` in the `X‑WallarmAPI‑UUID` header parameter.
-    * `secret` in the `X‑WallarmAPI‑Secret` header parameter.
+    * `uuid` in the `X-WallarmAPI-UUID` header parameter.
+    * `secret` in the `X-WallarmAPI-Secret` header parameter.
 
 <!-- ## API restrictions
 

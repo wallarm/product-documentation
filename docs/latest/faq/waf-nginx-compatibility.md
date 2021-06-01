@@ -24,4 +24,4 @@ Yes, Wallarm WAF module can be connected to the custom build of NGINX after rebu
       * [NGINX official build](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
       * NGINX custom build: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
 
-* The user (and the user's group) who is running the NGINX worker processes: `grep ‑w 'user' <path‑to‑the‑NGINX‑configuration‑files/nginx.conf>`
+* The user (and the user's group) who is running the NGINX worker processes: `grep -w 'user' <path-to-the-NGINX-configuration-files/nginx.conf>`
