@@ -300,10 +300,10 @@ Used to get values of all elements, parameters, or objects. For example:
 
 Used to get default values of elements, parameters, or objects. For example:
 
-* **get_all** for default values of GET parameters
-* **header_all** for default values of headers
-* **array_all** for default values of array elements
-* **hash_all** for default values of JSON objects or XML attributes
+* **get_default** for default values of GET parameters
+* **header_default** for default values of headers
+* **array_default** for default values of array elements
+* **hash_default** for default values of JSON objects or XML attributes
 
 #### name
 
