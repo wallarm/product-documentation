@@ -428,6 +428,11 @@ img {
   background-color: #FAFAFB;
   border-radius: 8px;
   border: 1px solid rgba(149, 157, 172, 0.24);
+  white-space: nowrap;
+}
+
+.md-typeset pre>code {
+  white-space: pre;
 }
 
 .md-typeset .admonition .highlight code {
