@@ -33,7 +33,7 @@ By default, replayed attacks are sent to the application address and path passed
 
 * Replace the path of the original request with the path to the test environment or staging, or to the path to the target server to bypass the proxy server when replaying the attack.
 
-Te replace both the value of the `HOST` header and the path or the original request, you may create two separate corresponding rules with the action type **Rewrite request before attack replaying**.
+To replace both the value of the `HOST` header and the path of the original request, you'll need to create two separate rules with the action type **Rewrite request before attack replaying**.
 
 ## Creating and applying the rule
 
