@@ -128,7 +128,7 @@ The command does the following:
 * Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with WAF node UUID and secret key
     * `license.key` with Wallarm license key
-* Protects the resource `http://NGINX_BACKEND:80`.
+* Protects the resource `http://example.com`.
 
 !!! info "Mounting other configuration files"
     The container directories used by NGINX:
