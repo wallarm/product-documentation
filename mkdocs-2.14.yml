@@ -324,6 +324,7 @@ nav:
       - Glossary: glossary-en.md
   - API Firewall guides:
     - Wallarm API Firewall overview: api-firewall/overview.md
+    - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
   - Wallarm API:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
