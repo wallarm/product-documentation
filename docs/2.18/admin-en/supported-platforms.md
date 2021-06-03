@@ -48,6 +48,7 @@
         </h3>
         <p>Deploy WAF node compatible to Kong with...</p>
         <div id="kongId" class="options-list" style="display: none;">
+            <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
             <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
@@ -86,6 +87,7 @@
         <div id="awsId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-ami-en/" onClick="noAction(event)">AWS Marketplace image</a>
             <a href="../../waf-installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/aws/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -102,6 +104,7 @@
         <div id="gcpId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-gcp-en/" onClick="noAction(event)">GCP Marketplace image</a>
             <a href="../../waf-installation/cloud-platforms/gcp/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/gcp/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -118,6 +121,7 @@
         <div id="yandexId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-guides/install-in-yandex-cloud/" onClick="noAction(event)">Yandex.Cloud Marketplace image</a>
             <a href="../../waf-installation/cloud-platforms/yandex-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -133,6 +137,7 @@
         <p>Deploy WAF node distributed as...</p>
         <div id="azureId" class="options-list" style="display: none;">
             <a href="../../waf-installation/cloud-platforms/azure/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/azure/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -148,6 +153,7 @@
         <p>Deploy WAF node distributed as...</p>
         <div id="alibabaId" class="options-list" style="display: none;">
             <a href="../../waf-installation/cloud-platforms/alibaba-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -163,6 +169,7 @@
         <p>Deploy WAF node distributed as...</p>
         <div id="privateCloudId" class="options-list" style="display: none;">
             <a href="../../waf-installation/cloud-platforms/private-cloud/#principles-of-deploying-the-waf-node-docker-container-to-the-private-cloud" onClick="noAction(event)">Docker container</a>
+            <a href="../../waf-installation/cloud-platforms/private-cloud/#principles-of-installing-the-waf-node-from-deb-and-rpm-packages-on-the-private-cloud" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
