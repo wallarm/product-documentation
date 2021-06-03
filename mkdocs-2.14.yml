@@ -151,6 +151,7 @@ nav:
             - Installation of the WAF node from DEB or RPM packages on Azure: waf-installation/cloud-platforms/azure/deb-rpm-packages.md
           - Alibaba Cloud:
             - Deployment of the WAF node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
+            - Installation of the WAF node from DEB or RPM packages on Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
           - Yandex.Cloud:
             - Deployment of the WAF node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
             - Installation of the WAF node from DEB or RPM packages on Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages.md
