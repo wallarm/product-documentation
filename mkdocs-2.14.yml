@@ -153,6 +153,7 @@ nav:
             - Deployment of the WAF node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
           - Yandex.Cloud:
             - Deployment of the WAF node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
+            - Installation of the WAF node from DEB or RPM packages on Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages.md
           - Deployment of the WAF node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
           - Installing on Heroku: admin-en/installation-heroku-en.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
