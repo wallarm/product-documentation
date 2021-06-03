@@ -12,3 +12,18 @@ Depending on the private cloud platform architecture and your application deploy
 * Using the standard `docker run` command in the instance based on any operating system
 
 Before deploying the WAF node Docker container to the private cloud, it is recommended to review the container deployment methods described in the documentation of this cloud and select the most suitable one. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](#link-to-supported-cloud-deployments).
+
+## Principles of installing the WAF node from DEB and RPM packages on the private cloud
+
+One of the methods of installing the WAF node on the private cloud is installing from source DEB or RPM packages. Since the WAF node operates as the web server or API gateway module, web server or API gateway packages should be installed on the operating system along with the WAF node packages.
+
+You can install the WAF node from DEB and RPM packages on the private cloud as follows:
+
+1. On the private cloud, create an instance from the [supported operating system](../../admin-en/supported-platforms.md#deb-and-rpm-packages) image.
+2. In the instance, install the packages of the WAF node and of the web server or API gateway suitable for your application architecture and supported by Wallarm. You can use one of the following instructions:
+
+      * [Installing the WAF node as the NGINX Stable module](../../waf-installation/nginx/dynamic-module.md)
+      * [Installing the WAF node as the NGINX Plus module](../../waf-installation/nginx-plus.md)
+      * [Installing the WAF node as the Kong module](../../admin-en/installation-kong-en.md)
+
+Before installing the WAF node on the private cloud, it is recommended to review the instructions on creating and managing instances on the deployed cloud. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](../../admin-en/supported-platforms.md#cloud-platforms).
