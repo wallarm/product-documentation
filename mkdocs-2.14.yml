@@ -134,6 +134,7 @@ nav:
                 - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
                 - Setting Up Incoming Request Balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
             - Deployment of the WAF node Docker image to AWS: waf-installation/cloud-platforms/aws/docker-container.md
+            - Installation of the WAF node from DEB or RPM packages on AWS: waf-installation/cloud-platforms/aws/deb-rpm-packages.md
           - Google Cloud Platform:
             - GCP Marketplace image deployment:
               - Creating and Configuring a GCP Instance with the WAF Node: admin-en/installation-gcp-en.md
