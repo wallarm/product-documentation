@@ -81,7 +81,7 @@ site_dir: site/2.16
 edit_uri: ../product-docs-en/edit/master/docs/2.16/
 
 nav:
-  - Guides:
+  - WAF guides:
     - Home: index.md
     - About Wallarm WAF:
         - How Wallarm WAF works: about-wallarm-waf/overview.md
@@ -317,6 +317,9 @@ nav:
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
+  - API Firewall guides:
+    - Wallarm API Firewall overview: api-firewall/overview.md
+    - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
   - Wallarm API:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
