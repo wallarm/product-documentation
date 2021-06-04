@@ -60,7 +60,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 1. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     ```
-    kubectl get po -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
     ```
 
     Each pod should display the following: "STATUS: Running" and "READY: N/N". For example:

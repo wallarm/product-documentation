@@ -39,7 +39,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
-    kubectl get po -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
     ```
 
     Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
