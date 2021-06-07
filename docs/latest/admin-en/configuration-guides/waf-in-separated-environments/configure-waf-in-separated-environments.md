@@ -29,7 +29,7 @@ The following approaches are recommended to test and gradually change the config
 
 Low-level configuration of filtering nodes is performed via Docker environment variables, provided NGINX configuration file, Kubernetes Ingress controller parameters, etc. The way of configuration depends on the [deployment option](../../supported-platforms.md). 
 
-Low-level configuration can easily be seperately managed for different customer environments using your existing change management processes for infrastructure resources.
+Low-level configuration can easily be separately managed for different customer environments using your existing change management processes for infrastructure resources.
 
 ### Configuration of Wallarm WAF Node Rules
 
