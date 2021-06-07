@@ -44,7 +44,7 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
 ## Partial Disabling of a New Detection Rule
 
-If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Ignore regular expression* with the following fields:
+If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable attack detection by the regular expressions* with the following fields:
 
 - *Regex ID*: identifiers of the previously created regular expressions that must be ignored.
 - *in this part of request*: indicates the parameter that requires setting up an exception.
@@ -68,7 +68,7 @@ To create the relevant rule:
 
 1. Go to the *Rules* tab
 1. Find or create the branch for `example.com/test.php` and click *Add rule*
-1. Choose *Ignore regular expressions*
+1. Choose *Disable attack detection by the regular expressions*
 1. Enter the ID of the rule that you want to disable into the *Regex ID* field
 1. Set the point `Header X-AUTHENTICATION`
 1. Click *Create*

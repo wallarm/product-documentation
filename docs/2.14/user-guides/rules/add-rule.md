@@ -256,7 +256,7 @@ The following rules are supported:
 
 * [Set the filter mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
-* [Define forced browsing / brute-force attacks counter](define-counters.md)
-* [Rewrite request before attack replaying](change-request-for-active-verification.md)
+* [Tag requests as a brute-force / forced browsing attack](define-counters.md)
+* [Rewrite attack before active verification](change-request-for-active-verification.md)
 * [Apply a virtual patch][link-virtual-patch]
 * [User-defined detection rules][link-regex-rule]

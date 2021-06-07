@@ -31,11 +31,11 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 
 If 31 or more requests were sent to `https://example.com/api/frontend/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
 
-The request URL `https://example.com/api/frontend/login` is specified in the rule **Define brute-force attacks counter**.
+The request URL `https://example.com/api/frontend/login` is specified in the rule **Tag requests as a brute-force attack**.
 
 ![!Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 
-To mark requests as the dirbust (forced browsing) attack, it is required to use the rule **Define forced browsing attacks counter**.
+To mark requests as the dirbust (forced browsing) attack, it is required to use the rule **Tag requests as a forced browsing attack**.
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 

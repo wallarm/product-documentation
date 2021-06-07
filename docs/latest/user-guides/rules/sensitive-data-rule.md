@@ -28,7 +28,7 @@ It can affect the display of attacks, active attack (threat) verification, and t
 
 1. Go to the *Rules* tab
 1. Find the branch for `example.com/**/*.*` and click *Add rule*
-1. Choose *Mark as sensitive data*
+1. Choose *Mask sensitive data*
 1. Select the *Header* parameter and enter its value `COOKIE`; select the *cookie* parameter and enter its value `PHPSESSID` after *in this part of request*
 1. Click *Create*
 
