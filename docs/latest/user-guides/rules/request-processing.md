@@ -83,7 +83,7 @@ The following tags correspond to the parser for HTTP request metadata:
 * **method** for the HTTP request method: `GET`, `POST`, `PUT`, `DELETE`
 * **proto** for the HTTP protocol version
 * **scheme**: http/https
-* **instance** for the application ID
+* **application** for the application ID
 
 ### Additional parsers
 

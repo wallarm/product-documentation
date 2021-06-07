@@ -30,7 +30,7 @@ The *point* field indicates which parameter value should be extracted from the r
 
 The following points are currently supported:
 
-* **instance**: application ID
+* **application**: application ID
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
 * **scheme**: http or https
 * **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
