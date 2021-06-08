@@ -30,7 +30,7 @@ The *point* field indicates which parameter value should be extracted from the r
 
 The following points are currently supported:
 
-* **instance**: application ID
+* **application**: application ID
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
 * **scheme**: http or https
 * **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
@@ -253,7 +253,7 @@ The following rules are supported:
 
 * [Set the filter mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
-* [Define forced browsing / brute-force attacks counter](define-counters.md)
-* [Rewrite request before attack replaying](change-request-for-active-verification.md)
+* [Tag requests as a brute-force / forced browsing attack](define-counters.md)
+* [Rewrite attack before active verification](change-request-for-active-verification.md)
 * [Apply a virtual patch][link-virtual-patch]
 * [User-defined detection rules][link-regex-rule]

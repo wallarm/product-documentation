@@ -44,7 +44,7 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
 ## Partial Disabling of a New Detection Rule
 
-If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Ignore regular expression* with the following fields:
+If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable attack detection by the regular expressions* with the following fields:
 
 - *Regex ID*: identifiers of the previously created regular expressions that must be ignored.
 - *in this part of request*: indicates the parameter that requires setting up an exception.
@@ -52,11 +52,9 @@ If the created rule should be partially disabled for a particular branch, this c
 ### Getting an ID of a Regular Expression
 
 Identifier is generated automatically when you add a new regular expression rule. To get an ID of a regular expression, proceed to the following steps:
-1. In the *Rules* tab click the button *All rules* and select *Define a request as an attack based on a regular expression* from the drop-down list.
-1. Select the branch which the desired regular expression was set for.
-1. Select the group of rules which contains the desired regular expression.
-1. Click the desired regular expression entry.
-1. The *Regex ID* field on the appeared panel contains the desired regular expression identifier. Click the button next to the field to copy it to the clipboard.
+1. In the *Rules* tab, welect the branch which the desired regular expression was set for.
+2. Select the group of rules which contains the desired regular expression.
+3. Click the desired regular expression entry and copy a regular expression ID.
 
 ![!Getting an ID of a regular expression][img-regex-id]
 
@@ -68,7 +66,7 @@ To create the relevant rule:
 
 1. Go to the *Rules* tab
 1. Find or create the branch for `example.com/test.php` and click *Add rule*
-1. Choose *Ignore regular expressions*
+1. Choose *Disable attack detection by the regular expressions*
 1. Enter the ID of the rule that you want to disable into the *Regex ID* field
 1. Set the point `Header X-AUTHENTICATION`
 1. Click *Create*

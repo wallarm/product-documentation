@@ -2,13 +2,13 @@
 
 ## Rules overview
 
-Rules **Define forced browsing attacks counter** and **Define brute-force attacks counter** are used to add tags to specific requests. The postanalytics module uses these tags to detect [dirbust (forced browsing)](../../attacks-vulns-list.md#forced-browsing) and [brute‑force](../../attacks-vulns-list.md#bruteforce-attack) attacks respectively.
+Rules **Tag requests as a forced browsing attack** and **Tag requests as a brute-force attack** are used to add tags to specific requests. The postanalytics module uses these tags to detect [dirbust (forced browsing)](../../attacks-vulns-list.md#forced-browsing) and [brute‑force](../../attacks-vulns-list.md#bruteforce-attack) attacks respectively.
 
 !!! info "Applying the rule to real traffic"
     To apply the rule to real traffic, you need to set a threshold to trigger the rule:
 
-     * Number of 404 responses for the rule **Define forced browsing attacks counter**
-     * Number of requests for the rule **Define brute-force attacks counter**
+     * Number of 404 responses for the rule **Tag requests as a forced browsing attack**
+     * Number of requests for the rule **Tag requests as a brute-force attack**
 
      Thresholds are configured via triggers. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
 
@@ -16,12 +16,12 @@ Rules **Define forced browsing attacks counter** and **Define brute-force attack
 
 To create and apply the rule:
 
-1. Create the rule **Define forced browsing attacks counter** or **Define brute-force attacks counter** in the **Profile & Rules** section of the Wallarm Console. The rule consists of the following components:
+1. Create the rule **Tag requests as a forced browsing attack** or **Tag requests as a brute-force attack** in the **Profile & Rules** section of the Wallarm Console. The rule consists of the following components:
 
     * **Condition** describes the request to add the brute‑force or forced browsing tags to.
     * **Counter name** defines the name of the tag which will be added to the request. The name should correspond to the following format:
-        * `d:<name>` for the rule **Define forced browsing attacks counter**
-        * `b:<name>` for the rule **Define brute-force attacks counter**
+        * `d:<name>` for the rule **Tag requests as a forced browsing attack**
+        * `b:<name>` for the rule **Tag requests as a brute-force attack**
 
     !!! info "Message about inherited counter"
         If you have a **Default rule** defining attack counter, you can get a message `Inherited counter: <name>` when creating a rule with defined conditions that will trigger this rule. **Default rule** is applied to all incoming requests as it does not have defined conditions that trigger the rule.
