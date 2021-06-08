@@ -111,7 +111,9 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 
 #### Request filtering mode
 
-By default, the WAF node is in the status `monitoring` and does not block requests. To block requests, change the filtering mode within the NGINX settings by following these instructions:
+By default, the WAF node is in the status `monitoring` and searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
+
+To change the `monitoring` mode to `block`:
 
 1. Open the file `/etc/nginx/conf.d/wallarm.conf`:
 
@@ -124,7 +126,7 @@ By default, the WAF node is in the status `monitoring` and does not block reques
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-4. Add the line `wallarm_mode block;` to the `http` block:
+4. Add the line `wallarm_mode block;` to the `http`, `server` or `location` block:
 
 ??? "Example of the file `/etc/nginx/nginx.conf`"
 
@@ -225,32 +227,12 @@ sudo systemctl restart nginx
 
 ### 6. Test Wallarm WAF operation
 
-1. Get the WAF node statistics:
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status
-    ```
-
-    The request will return statistics about analyzed requests. The response format is provided below. A more detailed description of parameters is available [here](../configure-statistics-service.md).
-    ```
-    { "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
-    "requests_lost":0,"segfaults":0,"memfaults":0,"softmemfaults":0,"time_detect":0,"db_id":46,
-    "lom_id":16767,"proton_instances": { "total":1,"success":1,"fallback":0,"failed":0 },
-    "stalled_workers_count":0,"stalled_workers":[] }
-    ```
-2. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the external IP address:
+1. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the external IP address:
 
     ```
     curl http://84.201.148.210/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
-
-    If the WAF node mode is `block`, then the request will be blocked with the response `403 Forbidden` returned.
-3. Send the request to `wallarm-status` and ensure the parameter values of `requests` and `attacks` has increased:
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status
-    ```
-4. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../images/admin-guides/test-attacks.png)
 
 ## Settings customization

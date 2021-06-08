@@ -23,6 +23,7 @@
 [separate-postanalytics-update-docs]:   ../../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../../2.16/admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../updating-migrating/versioning-policy.md
+[waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 
 # Installing dynamic WAF module for NGINX Plus
 

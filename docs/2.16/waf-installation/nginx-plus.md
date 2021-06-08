@@ -22,6 +22,7 @@
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../updating-migrating/versioning-policy.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 
 # Installing dynamic WAF module for NGINX Plus
 
