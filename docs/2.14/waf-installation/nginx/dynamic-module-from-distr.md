@@ -190,14 +190,14 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 
 #### Request filtering mode
 
-By default, WAF node is in the status `off` and does not filter requests. Change the filtering mode within the NGINX settings to block requests by:
+By default, the WAF node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
 
 1. Open the file `/etc/nginx/conf.d/default.conf`:
 
     ```bash
     sudo vim /etc/nginx/conf.d/default.conf
     ```
-2. Add the line `wallarm_mode block;` to the `server` block:
+2. Add the line `wallarm_mode monitoring;` to the `https`, `server` or `location` block:
 
 ??? "Example of the file `/etc/nginx/conf.d/default.conf`"
 
@@ -208,7 +208,7 @@ By default, WAF node is in the status `off` and does not filter requests. Change
         # domain for which requests are filtered
         server_name  localhost;
         # WAF node mode
-        wallarm_mode block;
+        wallarm_mode monitoring;
 
         location / {
             root   /usr/share/nginx/html;
@@ -221,6 +221,8 @@ By default, WAF node is in the status `off` and does not filter requests. Change
         }
     }
     ```
+
+When operating in the `monitoring` mode, the WAF node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
 
 #### Memory
 
