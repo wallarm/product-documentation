@@ -17,6 +17,8 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 * [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://192.168.1.65:9880`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+Since the links to the ArcSight Logger and Fluentd services are cited as examples, they do not respond.
+
 ### ArcSight Logger configuration
 
 ArcSight Logger has logs receiver `Wallarm Fluentd logs` configured as follows:

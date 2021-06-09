@@ -14,6 +14,8 @@ In the provided example, events are sent via webhooks to the Logstash log collec
 * [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+Since the links to the Splunk Enterprise and Logstash services are cited as examples, they do not respond.
+
 ### Splunk Enterprise configuration
 
 Logstash logs are sent to Splunk HTTP Event Controller with the name `Wallarm Logstash logs` and other default settings:
