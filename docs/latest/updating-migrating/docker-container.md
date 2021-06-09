@@ -23,7 +23,7 @@ These instructions describe the steps to update the running Docker NGINX- or Env
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:2.18.1-2
+    docker pull wallarm/node:2.18.1-3
     ```
 === "Envoy-based image"
     ``` bash
