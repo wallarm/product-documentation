@@ -35,20 +35,23 @@ To get a more detailed description of the receiver configuration, please downloa
 Logstash is configured in the `logstash-sample.conf` file:
 
 * Incoming webhook processing is configured in the `input` section:
-    * All HTTP and HTTPS traffic is sent to 5044 Logstash port
-    * SSL certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
+    * Traffic is sent to port 5044
+    * Logstash is configured to accept only HTTPS connections
+    * Logstash TLS certificate signed by a publicly trusted CA is located within the file `/etc/server.crt`
+    * Private key for TLS certificate is located within the file `/etc/server.key`
 * Forwarding logs to ArcSight Logger and log output are configured in the `output` section:
     * All event logs are forwarded from Logstash to ArcSight Logger at the IP address `https://192.168.1.73:514`
     * Logs are forwarded from Logstash to ArcSight Logger in the JSON format according to the [Syslog](https://en.wikipedia.org/wiki/Syslog) standard
     * Connection with ArcSight Logger is established via UDP
-    * Logstash logs are additionally printed on the command line (15 code line). The setting is used to verify that events are logged via Logstash
+    * Logstash logs are additionally printed on the command line (15th code line). The setting is used to verify that events are logged via Logstash
 
 ```bash linenums="1"
 input {
   http { # input plugin for HTTP and HTTPS traffic
     port => 5044 # port for incoming requests
     ssl => true # HTTPS traffic processing
-    ssl_certificate => "/etc/pki/ca.pem" # certificate for HTTPS connection
+    ssl_certificate => "/etc/server.crt" # Logstash TLS certificate
+    ssl_key => "/etc/server.key" # private key for TLS certificate
   }
 }
 output {
