@@ -17,6 +17,8 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 * [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://192.168.1.65:9880`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+Since the links to the ArcSight Logger and Fluentd services are cited as examples, they do not respond.
+
 ### ArcSight Logger configuration
 
 ArcSight Logger has logs receiver `Wallarm Fluentd logs` configured as follows:
@@ -35,8 +37,10 @@ To get a more detailed description of the receiver configuration, please downloa
 Fluentd is configured in the `td-agent.conf` file:
 
 * Incoming webhook processing is configured in the `source` directive:
-    * All HTTP and HTTPS traffic is sent to 9880 Fluentd port
-    * TLS certificate for HTTPS connection is located within the file `/etc/pki/ca.pem`
+    * Traffic is sent to port 9880
+    * Fluentd is configured to accept only HTTPS connections
+    * Fluentd TLS certificate signed by a publicly trusted CA is located within the file `/etc/ssl/certs/fluentd.crt`
+    * Private key for TLS certificate is located within the file `/etc/ssl/private/fluentd.key`
 * Forwarding logs to ArcSight Logger and log output are configured in the `match` directive:
     * All event logs are copied from Fluentd and forwarded to ArcSight Logger at the IP address `https://192.168.1.73:514`
     * Logs are forwarded from Fluentd to ArcSight Logger in the JSON format according to the [Syslog](https://en.wikipedia.org/wiki/Syslog) standard
@@ -47,8 +51,9 @@ Fluentd is configured in the `td-agent.conf` file:
 <source>
   @type http # input plugin for HTTP and HTTPS traffic
   port 9880 # port for incoming requests
-  <transport tls> # certificates for HTTPS connection
-    ca_path /etc/pki/ca.pem
+  <transport tls> # configuration for connections handling
+    cert_path /etc/ssl/certs/fluentd.crt
+    private_key_path /etc/ssl/private/fluentd.key
   </transport>
 </source>
 <match **>
