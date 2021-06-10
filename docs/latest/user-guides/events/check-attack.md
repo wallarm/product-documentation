@@ -31,7 +31,12 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
      * The **VPN** tag if IP address belongs to VPN (if it was found in the Wallarm databases)
      * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server (if it was found in the Wallarm databases)
 * **Domain / Path**: The domain, path and the application ID that the request targeted.
-* **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed.
+* Color indicator displays the status of attack blocking:
+
+     * Orange indicator if all hits of the attack were recorded but not blocked by the WAF node because the WAF node operates in the monitoring [mode](../../admin-en/configure-wallarm-mode.md). If your application blocked the attack (for example, the application returned `403 Forbidden`), the indicator would be still orange and the **Code** column would display the code returned by the application.
+     * Red indicator if all hits of the attack were blocked by the WAF node.
+     * Red with a white indicator if some hits of the attack were blocked and others were only recorded ([filtering mode](../../admin-en/configure-wallarm-mode.md) for some hits is set to monitoring).
+* **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed. If the WAF node blocked the request, the code would be `403`.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
 * **Verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below or specify the action in the search string as described [here][search-by-attack-status].
     ![!Filter for false positive][img-show-falsepositive]
