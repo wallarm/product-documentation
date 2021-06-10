@@ -26,7 +26,7 @@ You can also start the chat with [@WallarmBot](https://t.me/WallarmBot) or [@Wal
 
 --8<-- "../include/integrations/test-integration.md"
 
-Test Telegram message:
+The integration with Telegram can be tested only if this integration is already created. Test Telegram message:
 
 ```
 [Test message] [Test partner] Network perimeter has changed
