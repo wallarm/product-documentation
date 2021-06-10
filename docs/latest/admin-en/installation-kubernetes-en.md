@@ -30,7 +30,7 @@
     ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Clone the repository of Wallarm Helm chart:
     ```
-    git clone https://github.com/wallarm/ingress-chart --branch 2.18.1-6 --single-branch
+    git clone https://github.com/wallarm/ingress-chart --branch 2.18.1-7 --single-branch
     ```
 4. Install the Wallarm Ingress controller:
 
