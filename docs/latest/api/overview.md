@@ -26,7 +26,8 @@ API requests are sent to the following URL:
 
 ## Authentication of API requests
 
-The method of API requests authentication depends on the client sending the request:
+You must be a verified user to make Wallarm API requests. The method of API requests authentication depends on the client sending the request:
+
 * [API Reference UI](#api-reference-ui)
 * [Your own client](#your-own-client)
 
@@ -44,26 +45,26 @@ A token is used for request authentication. The token is generated after success
 
 ### Your own client
 
-Your UUID and secret key are used.
+Your UUID and secret key are used for request authentication.
 
-1. Sign in to your Wallarm account using the link:
-    * https://my.wallarm.com/ for the EU cloud,
-    * https://us1.my.wallarm.com/ for the US cloud.
-2. Refresh the API Reference page using the link:
-    * https://apiconsole.eu1.wallarm.com/ for the EU cloud,
-    * https://apiconsole.us1.wallarm.com/ for the US cloud.
-3. Send the `POST /v1/user` request without the parameters from the API Reference UI and copy the `uuid` value from the response.
-4. Send the `POST /v1/user/renew_secret` request without the parameters from the API Reference UI and copy the `secret` value from the response.
+1. Sign in to your Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/) → **Settings** → **API credentials**.
+2. Copy the **UUID** value.
+3. Get the **Secret key** value:
 
-    !!! warning "Reusing the `secret` value"
-        The request `POST /v1/user/renew_secret` generates a new value of the secret key and invalidates the previous value. To use the secret key securely:
+    * If you know the secret key value, then you can continue using the known value. The Wallarm Console displays the encrypted value of your active secret key.
+    * If you do not know the secret key value or it was lost, generate the new secret key by the button **Renew secret key** and copy its value. The secret key value will not be shown again.
 
-        * Write down the `secret` value from the first `POST /v1/user/renew_secret` call in a secure place. The secret key value will not be shown again.
-        * Reuse the stored `secret` value in all requests to Wallarm API.
-        * If you generated a new `secret` value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
-5. Send the required request from your client passing the following values:
-    * `uuid` in the `X-WallarmAPI-UUID` header parameter.
-    * `secret` in the `X-WallarmAPI-Secret` header parameter.
+    !!! warning "Reusing the secret key value"
+        The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:
+
+        * Write down the key value in a secure place. The secret key value will not be shown again.
+        * Reuse the stored key value in all requests to Wallarm API.
+        * If you generated the new key value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
+4. Send the required API request passing the following values:
+    * **UUID** in the `X-WallarmAPI-UUID` header parameter
+    * **Secret key** in the `X-WallarmAPI-Secret` header parameter
+
+![!Wallarm API credentials](../images/wallarm-api-credentials.png)
 
 <!-- ## API restrictions
 
