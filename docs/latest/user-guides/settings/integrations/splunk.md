@@ -33,15 +33,46 @@ In Wallarm UI:
 
 Test Splunk notification in the JSON format:
 
-```bash
+```json
 {
-    "title": "Test",
-    "source": "Wallarm",
-    "type": "Info",
-    "domain": "example.com",
-    "threat": "Medium",
-    "link": "https://my.wallarm.com/object/555",
-    "summary": "[Test Message] New vulnerability identified"
+    summary:"[Test message] [Test partner(US)] New vulnerability detected",
+    description:"Notification type: vuln
+
+                New vulnerability was detected in your system.
+
+                ID: 
+                Title: Test
+                Domain: example.com
+                Path: 
+                Method: 
+                Discovered by: 
+                Parameter: 
+                Type: Info
+                Threat: Medium
+
+                More details: https://us1.my.wallarm.com/object/555
+
+
+                Client: TestCompany
+                Cloud: US
+                ",
+    details:{
+        client_name:"TestCompany",
+        cloud:"US",
+        notification_type:"vuln",
+        vuln_link:"https://us1.my.wallarm.com/object/555",
+        vuln:{
+            domain:"example.com",
+            id:null,
+            method:null,
+            parameter:null,
+            path:null,
+            title:"Test",
+            discovered_by:null,
+            threat:"Medium",
+            type:"Info"
+        }
+    }
 }
 ```
 

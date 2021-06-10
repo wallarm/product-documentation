@@ -73,10 +73,26 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected re
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
-    Please make attention! Notification about SQLi hits is triggered: The number of hits for the sqli type in 1 minute exceeds 1
+    [Wallarm] Trigger: The number of detected hits exceeded the threshold
+    
+    Notification type: attacks_exceeded
+    
+    The number of detected hits exceeded 1 in 1 minute.
+    This notification was triggered by the "Notification about SQLi hits" trigger.
+    
+    Additional trigger’s clauses:
+    Attack type: SQLi.
+    
+    View events:
+    https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+    
+    Client: TestCompany
+    Cloud: EU
     ```
 
     * `Notification about SQLi hits` is the trigger name
+    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `EU` is the Wallarm Cloud where your company account is registered
 
 ## Slack and email notification if new user is added to the account
 
@@ -95,13 +111,23 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
-    Please make attention! Added user is triggered: New user johnsmith@example.com was created by John Doe. New user role is Analyst.
+    [Wallarm] Trigger: New user was added to the company account
+    
+    Notification type: create_user
+    
+    A new user John Smith <johnsmith@example.com> with the role Analyst was added to the company account by John Doe <johndoe@example.com>.
+    This notification was triggered by the "Added user" trigger.
+
+    Client: TestCompany
+    Cloud: EU
     ```
 
-    * `Added user` is the trigger name
-    * `johnsmith@example.com` if the email address of the added user
+    * `John Smith` and `johnsmith@example.com` is information about the added user
     * `Analyst` is the role of the added user
-    * `John Doe` is the user who added a new user
+    * `John Doe` and `johndoe@example.com` is information about the user who added a new user
+    * `Added user` is the trigger name
+    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `EU` is the Wallarm Cloud where your company account is registered
 
 ## Opsgenie notification if 2 or more incidents were detected in one second
 
@@ -114,10 +140,26 @@ If 2 or more incidents with the application server or database were detected in 
 If the attack example is sent to the protected resource, Wallarm will record the incident. Two or more recorded incidents will trigger sending the following notification to Opsgenie:
 
 ```
-Please make attention! Notification about incidents is triggered: The number of incidents for the server, database in 1 second exceeds 1
+[Wallarm] Trigger: The number of incidents exceeded the threshold
+
+Notification type: incidents_exceeded
+
+The number of detected incidents exceeded 1 in 1 second.
+This notification was triggered by the "Notification about incidents" trigger.
+
+Additional trigger’s clauses:
+Target: server, database.
+
+View events:
+https://my.wallarm.com/search?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+
+Client: TestCompany
+Cloud: EU
 ```
 
 * `Notification about incidents` is the trigger name
+* `TestCompany` is the name of your company account in the Wallarm Console
+* `EU` is the Wallarm Cloud where your company account is registered
 
 !!! info "Protecting the resource from active vulnerability exploitation"
     To protect the resource from active vulnerability exploitation, we recommend to patch the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
@@ -136,9 +178,22 @@ If an IP address was added to the blacklist, the webhook about this event will b
 2. Check that the following webhook was sent to the Webhook URL:
 
     ```
-    {
-        "summary": "Please make attention! Notification about blacklisted IP is triggered: IP 1.1.1.1 was blocked until 2020-11-10 11:48:22 +0300"
-    }
+    [
+        {
+            "summary": "[Wallarm] Trigger: New IP address was blacklisted",
+            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was blacklisted until 2021-06-10 02:27:15 +0300. You can review blocked IP addresses in the \"Blacklist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about blacklisted IP\" trigger.\n\nClient: TestCompany\nCloud: EU\n",
+            "details": {
+            "client_name": "TestCompany",
+            "cloud": "EU",
+            "notification_type": "ip_blocked",
+            "trigger_name": "Notification about blacklisted IP",
+            "expire_at": "2021-06-10 02:27:15 +0300",
+            "ip": "1.1.1.1"
+            }
+        }
+    ]
     ```
 
     * `Notification about blacklisted IP` is the trigger name
+    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `EU` is the Wallarm Cloud where your company account is registered

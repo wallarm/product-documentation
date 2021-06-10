@@ -26,15 +26,18 @@ You can also start the chat with [@WallarmBot](https://t.me/WallarmBot) or [@Wal
 
 --8<-- "../include/integrations/test-integration.md"
 
-Test Telegram message:
+The integration with Telegram can be tested only if this integration is already created. Test Telegram message:
 
 ```
-[Test Message]
-New IPs were identified in company’s Scope:
+[Test message] [Test partner] Network perimeter has changed
+
+Notification type: new_scope_object_ips
+
+New IP addresses were discovered in the network perimeter:
 8.8.8.8
-New linked IPs identified for domain www.example2.com: 80.80.81.81
-Domains were deleted from the company’s Scope:
-example1.com
+
+Client: TestCompany
+Cloud: EU
 ```
 
 ## Updating integration

@@ -12,61 +12,98 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
 
     ```json
     [
-    {
-        "anomality": 0.9806949806949808,
-        "domain": "example.com",
-        "heur_distance": 36.28571421111111,
-        "method": "GET",
-        "parameter": "GET_id_value",
-        "path": "/",
-        "payloads": [
-        "'or 1=1--"
-        ],
-        "point": [
-        "get",
-        "id"
-        ],
-        "probability": 36.11111118571429,
-        "remote_country": null,
-        "remote_port": 41616,
-        "remote_addr4": "111.17.1.1",
-        "remote_addr6": null,
-        "datacenter": "unknown",
-        "tor": "none",
-        "request_time": 1591261367,
-        "create_time": 1591261381,
-        "response_len": 345,
-        "response_status": 404,
-        "response_time": 257,
-        "stamps": [
-        1173
-        ],
-        "regex": [],
-        "stamps_hash": -1888294073,
-        "regex_hash": -2147483648,
-        "type": "sqli",
-        "block_status": "monitored",
-        "id": [
-        "hits_production_6396_202006_v_1",
-        "vpuRfnIBVc0URvOZ6ALA"
-        ],
-        "object_type": "hit"
-    }
+        {
+            "summary": "[Wallarm] New hit detected",
+            "details": {
+            "client_name": "TestCompany",
+            "cloud": "EU",
+            "notification_type": "new_hits",
+            "hit": {
+                "domain": "www.example.com",
+                "heur_distance": 0.01111,
+                "method": "POST",
+                "parameter": "SOME_value",
+                "path": "/news/some_path",
+                "payloads": [
+                    "say ni"
+                ],
+                "point": [
+                    "post"
+                ],
+                "probability": 0.01,
+                "remote_country": "PL",
+                "remote_port": 0,
+                "remote_addr4": "8.8.8.8",
+                "remote_addr6": "",
+                "tor": "none",
+                "request_time": 1603834606,
+                "create_time": 1603834608,
+                "response_len": 14,
+                "response_status": 200,
+                "response_time": 5,
+                "stamps": [
+                    1111
+                ],
+                "regex": [],
+                "stamps_hash": -22222,
+                "regex_hash": -33333,
+                "type": "sqli",
+                "block_status": "monitored",
+                "id": [
+                    "hits_production_999_202010_v_1",
+                    "c2dd33831a13be0d_AC9"
+                ],
+                "object_type": "hit",
+                "anomaly": 0
+                }
+            }
+        }
     ]
     ```
 * Vulnerability detected
 
     ```json
     [
-    {
-        "title": "Missing \"Strict-Transport-Security\" header in server's response at '93.184.216.34:443'",
-        "source": "93.184.216.34:443",
-        "type": "Info",
-        "domain": "www.example.com",
-        "threat": "Low",
-        "link": "https://my.wallarm.com/object/282157",
-        "summary": "New vulnerability identified"
-    }
+        {
+            summary:"[Wallarm] New vulnerability detected",
+            description:"Notification type: vuln
+
+                        New vulnerability was detected in your system.
+
+                        ID: 
+                        Title: Test
+                        Domain: example.com
+                        Path: 
+                        Method: 
+                        Discovered by: 
+                        Parameter: 
+                        Type: Info
+                        Threat: Medium
+
+                        More details: https://us1.my.wallarm.com/object/555
+
+
+                        Client: TestCompany
+                        Cloud: US
+                        ",
+            details:{
+                client_name:"TestCompany",
+                cloud:"US",
+                notification_type:"vuln",
+                vuln_link:"https://us1.my.wallarm.com/object/555",
+                vuln:{
+                    domain:"example.com",
+                    id:null,
+                    method:null,
+                    parameter:null,
+                    path:null,
+                    title:"Test",
+                    discovered_by:null,
+                    threat:"Medium",
+                    type:"Info"
+                }
+            }
+        }
     ]
     ```
 
@@ -106,17 +143,48 @@ We described some examples of how to configure the integration with the popular 
 
 Test webhook example:
 
-```bash
+```json
 [
-  {
-    "title": "Test",
-    "source": "Wallarm",
-    "type": "Info",
-    "domain": "example.com",
-    "threat": "Medium",
-    "link": "https://my.wallarm.com/object/555",
-    "summary": "[Test Message] New vulnerability identified"
-  }
+    {
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
+
+                    New vulnerability was detected in your system.
+
+                    ID: 
+                    Title: Test
+                    Domain: example.com
+                    Path: 
+                    Method: 
+                    Discovered by: 
+                    Parameter: 
+                    Type: Info
+                    Threat: Medium
+
+                    More details: https://us1.my.wallarm.com/object/555
+
+
+                    Client: TestCompany
+                    Cloud: US
+                    ",
+        details:{
+            client_name:"TestCompany",
+            cloud:"US",
+            notification_type:"vuln",
+            vuln_link:"https://us1.my.wallarm.com/object/555",
+            vuln:{
+                domain:"example.com",
+                id:null,
+                method:null,
+                parameter:null,
+                path:null,
+                title:"Test",
+                discovered_by:null,
+                threat:"Medium",
+                type:"Info"
+            }
+        }
+    }
 ]
 ```
 
