@@ -80,7 +80,7 @@ Notifications are sent in JSON format. The set of JSON objects depend on the eve
 
     * **Request method**: `POST` or `PUT`. By default, POST requests are sent.
     * **Request header** and its value if the server requires a non-standard header to execute the request. The number of headers is not limited.
-    * **CA certificate**: add a self-signed certificate of your own CA that signed a server certificate (only if the webhook server uses a self-signed TLS certificate).
+    * **CA certificate**: add a self-signed certificate of your own CA that signed a server certificate (only if the webhook server uses a self-signed TLS certificate). If the webhook server uses a TLS certificate signed by a trusted CA, you can optionally add a trusted CA certificate.
     * **Verify the certificate**: this setting allows to disable verification of the webhook server certificate. By default, Wallarm verifies whether a webhook server certificate is signed by a publicly trusted CA. We do not recommend disabling the verification of production server certificates. If your webhook server uses a self-signed TLS certificate, you can specify a self-signed CA certificate in the appropriate field to allow sending requests to this server.
     * **Request timeout, in seconds**: if the server does not respond to the request within the specified time, the request fails. By default: 15 seconds.
     * **Connection timeout, in seconds**: if the connection to the server cannot be established during the specified time, the request fails. By default: 20 seconds.
