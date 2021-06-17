@@ -1,0 +1,1 @@
+--8<-- "latest/waf-installation/cloud-platforms/alibaba-cloud/docker-container.md"
