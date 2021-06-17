@@ -81,7 +81,7 @@ site_dir: site/2.14
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:
-  - Guides:
+  - WAF guides:
     - Home: index.md
   - Wallarm API:
     - Wallarm API overview: api/overview.md
