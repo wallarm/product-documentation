@@ -66,10 +66,47 @@ These are the following options to install NGINX `stable` from the NGINX reposit
         sudo apt install nginx
         ```
     === "CentOS or Amazon Linux 2"
-        ```bash
-        echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
-        sudo yum install nginx
-        ```
+
+        1. If an EPEL repository is added in CentOS 7.x, please disable installation of NGINX stable from this repository by adding `exclude=nginx*` to the file `/etc/yum.repos.d/epel.repo`.
+
+            Example of the changed file `/etc/yum.repos.d/epel.repo`:
+
+            ```bash
+            [epel]
+            name=Extra Packages for Enterprise Linux 7 - $basearch
+            #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
+            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+            failovermethod=priority
+            enabled=1
+            gpgcheck=1
+            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+            exclude=nginx*
+
+            [epel-debuginfo]
+            name=Extra Packages for Enterprise Linux 7 - $basearch - Debug
+            #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug
+            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&arch=$basearch
+            failovermethod=priority
+            enabled=0
+            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+            gpgcheck=1
+
+            [epel-source]
+            name=Extra Packages for Enterprise Linux 7 - $basearch - Source
+            #baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS
+            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&arch=$basearch
+            failovermethod=priority
+            enabled=0
+            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+            gpgcheck=1
+            ```
+        
+        2. Install NGINX stable from the official repository:
+
+            ```bash
+            echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
+            sudo yum install nginx
+            ```
 
 * Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options
 
