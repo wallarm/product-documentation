@@ -49,6 +49,21 @@ To run the demo code:
 
 By default, this demo is running with the original **httpbin** OpenAPI 3.0 specification. To test this demo option, you can use the following requests:
 
+* Check that API Firewall blocks requests sent to unexposed path:
+
+    ```bash
+    curl -sD - http://localhost:8080/unexposed/path
+    ```
+
+    Expected response:
+
+    ```bash
+    HTTP/1.1 403 Forbidden
+    Date: Mon, 31 May 2021 06:58:29 GMT
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 0
+    Apifw-Request-Id: 0000000200000001
+    ```
 * Check that API Firewall blocks request with string value passed in the parameter that requires integer data type:
 
     ```bash
@@ -181,6 +196,17 @@ Then, to test this demo option, you can use the following methods:
     # Request with the str parameter value that does not match the defined regular expression
     curl -sD - "http://localhost:8080/get?int=15&str=fasxxx.xxxawe-6354"
 
+    # Expected response
+    HTTP/1.1 403 Forbidden
+    Date: Mon, 31 May 2021 07:10:42 GMT
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 0
+    Apifw-Request-Id: 0000000700000001
+
+
+    # Request with the str parameter value that does not match the defined regular expression
+    curl -sD - "http://localhost:8080/get?int=15&str=faswerffa-63sss54"
+    
     # Expected response
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:10:42 GMT
