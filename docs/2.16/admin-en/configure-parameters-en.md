@@ -146,7 +146,6 @@ secret: <some secret>
 api:
   host: api.wallarm.com
   port: 444
-  use_ssl: true
   ca_verify: true
 ```
 
