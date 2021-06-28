@@ -108,12 +108,6 @@ Depending on your operating system, run one of the following commands:
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node xenial/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
@@ -136,10 +130,6 @@ To install the filter node and postanalytics on the same server, run the command
     ```bash
     sudo apt install --no-install-recommends wallarm-node kong-module-wallarm
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node kong-module-wallarm
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     sudo apt install --no-install-recommends wallarm-node kong-module-wallarm
@@ -152,10 +142,6 @@ To install the filter node and postanalytics on the same server, run the command
 To install the filter node alone, run the command:
 
 === "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node-nginx kong-module-wallarm
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
     ```bash
     sudo apt install --no-install-recommends wallarm-node-nginx kong-module-wallarm
     ```
@@ -185,10 +171,6 @@ Open for editing the configuration file of Tarantool:
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ``` bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
@@ -211,10 +193,6 @@ SLAB_ALLOC_ARENA=24
 === "Debian 9.x (stretch)"
     ``` bash
     sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ``` bash
-    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ``` bash

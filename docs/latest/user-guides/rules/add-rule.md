@@ -150,13 +150,6 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
-    === "Ubuntu 16.04 LTS (xenial)"
-        ```bash
-        sudo apt update
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node xenial/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         sudo apt update

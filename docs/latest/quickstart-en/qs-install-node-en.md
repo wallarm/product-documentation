@@ -24,7 +24,6 @@ These instructions describe the installation of the NGINX-Wallarm and postanalyt
 
     * Debian 9.x (stretch)
     * Debian 10.x (buster)
-    * Ubuntu 16.04 LTS (xenial)
     * Ubuntu 18.04 LTS (bionic)
     * Ubuntu 20.04 LTS (focal)
     * CentOS 7.x
@@ -73,7 +72,7 @@ More detailed information about installation is available in the [official NGINX
 
 Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos-2.18.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-3.0.md"
 
 ### 3. Install Wallarm WAF packages
 

@@ -57,7 +57,7 @@ Partner WAF node has the following characteristics:
 
 * Can be installed on the same platforms and according to the same instructions as a regular WAF node:
 
-    --8<-- "../include/waf/installation/supported-platforms-218.md"
+    --8<-- "../include/waf/installation/supported-platforms-30.md"
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to the Wallarm Console, the WAF node must be installed at the corresponding partner client level.
 * Can be configured according to the same instructions as a regular WAF node, except for:
     * The directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) is used to split settings by the client applications.

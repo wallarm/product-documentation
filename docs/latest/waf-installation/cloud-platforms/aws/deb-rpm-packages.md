@@ -28,7 +28,6 @@ To install the WAF node as the NGINX Stable module in the Amazon EC2 instance:
 
     * Debian 9.x Stretch
     * Debian 10.x Buster
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
@@ -47,7 +46,6 @@ To install the WAF node as the NGINX Plus module in the Amazon EC2 instance:
 
     * Debian 9.x Stretch
     * Debian 10.x Buster
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
@@ -65,7 +63,6 @@ To install the WAF node as the Kong module in the Amazon EC2 instance:
 1. Create an Amazon EC2 instance from the operating system image supported by Wallarm following the [AWS instructions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance):
 
     * Debian 9.x Stretch
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * CentOS 7.x
 2. Connect to the created instance following the [AWS instructions](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html).

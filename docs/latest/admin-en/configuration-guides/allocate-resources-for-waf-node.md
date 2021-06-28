@@ -29,10 +29,6 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     sudo vim /etc/default/wallarm-tarantool
@@ -69,10 +65,6 @@ SLAB_ALLOC_ARENA=10.4
 === "Debian 10.x (buster)"
     ```bash
     sudo systemctl restart wallarm-tarantool
-    ```
-=== "Ubuntu 16.04 LTS (xenial)"
-    ```bash
-    sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
