@@ -272,22 +272,6 @@
 </div>
 
 <div class="navigation platforms" style="padding-top: 16px;">
-    <div id="deployOptionsDiv" class="navigation-card platform-card">
-        <div type="button" id="ubuntu16" onClick="platformClicked(event, 'ubuntu16')" class="platform-card-button">
-            <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
-            <h3>Ubuntu 16.04 Xenial
-                <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
-                </svg>
-            </h3>
-            <p>Install the WAF module for...</p>
-            <div id="ubuntu16Id" class="options-list" style="display: none;">
-                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-                <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
-            </div>
-        </div>
-</div> 
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="ubuntu18" onClick="platformClicked(event, 'ubuntu18')" class="platform-card-button">

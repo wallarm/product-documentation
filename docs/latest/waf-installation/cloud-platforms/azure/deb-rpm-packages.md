@@ -28,7 +28,6 @@ To install the WAF node as the NGINX Stable module in the Azure instance:
 
     * Debian 9.x Stretch
     * Debian 10.x Buster
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
@@ -46,7 +45,6 @@ To install the WAF node as the NGINX Plus module in the Azure instance:
 
     * Debian 9.x Stretch
     * Debian 10.x Buster
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
@@ -63,7 +61,6 @@ To install the WAF node as the Kong module in the Azure instance:
 1. Create an Azure instance from the operating system image supported by Wallarm following the [Azure instructions](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal):
 
     * Debian 9.x Stretch
-    * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * CentOS 7.x
 2. Connect to the created instance following the [Azure instructions](https://docs.microsoft.com/en-us/azure/bastion/bastion-connect-vm-ssh).
