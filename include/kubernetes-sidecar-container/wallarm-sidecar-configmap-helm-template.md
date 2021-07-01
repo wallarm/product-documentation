@@ -20,9 +20,6 @@ data:
         index index.html index.htm;
         wallarm_mode $wallarm_mode_real;
         # wallarm_instance 1;
-        {{ if eq .Values.wallarm.enable_ip_blocking "true" }}
-        wallarm_acl default;
-        {{ end }}
         set_real_ip_from 0.0.0.0/0;
         real_ip_header X-Forwarded-For;
         location / {

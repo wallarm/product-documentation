@@ -5,7 +5,6 @@
 [logging-instr]:                    configure-logging.md
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
-[wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
@@ -93,7 +92,6 @@ You can mount the prepared configuration file to the Docker container via the `-
 
         wallarm_mode monitoring;
         # wallarm_instance 1;
-        # wallarm_acl default;
 
         location / {
                 proxy_pass http://example.com;

@@ -2,7 +2,6 @@
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
