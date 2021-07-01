@@ -9,14 +9,18 @@ The WAF node can process incoming requests in the following modes (from the mild
 * **Disabled** (`off`) → the WAF node:
 
     * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
 * **Monitoring** (`monitoring`) → the WAF node:
     * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
+* **Safe blocking** (`safe_blocking`) → the WAF node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
+    * Blocks requests containing malicious payloads if they are originated from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
 * **Blocking** (`block`) → the WAF node:
     * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
     * Blocks requests containing malicious payloads.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
 
 ## Methods of the filtration mode configuration
 
@@ -65,6 +69,10 @@ http {
         location /main/login {
             wallarm_mode block;
         }
+
+        location /main/reset-password {
+            wallarm_mode safe_blocking;
+        }
     }
 }
 ```
@@ -74,9 +82,10 @@ In this example, the filtration modes are defined for the resources as follows:
 1. The `monitoring` mode is applied to the requests sent to the HTTP server.
 2. The `monitoring` mode is applied to the requests sent to the virtual server `SERVER_A`.
 3. The `off` mode is applied to the requests sent to the virtual server `SERVER_B`.
-4. The `off` mode is applied to the requests sent to the virtual server `SERVER_C`, except for the requests that contain the `/main/content`, or the `/main/login` path.
+4. The `off` mode is applied to the requests sent to the virtual server `SERVER_C`, except for the requests that contain the `/main/content`, `/main/login`, or the `/main/reset-password` path.
       1. The `monitoring` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/content` path.
       2. The `block` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/login` path.
+      3. The `safe_blocking` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/reset-password` path.
 
 ### Setting up the general filtration rule in the Wallarm Console
 
@@ -88,9 +97,10 @@ On the **General** tab, you can specify one of the following filtration modes:
 
 * **Local settings (default)**: filtration mode defined using the [`wallarm_mode` directive](#specifying-the-filtering-mode-in-the-wallarm_mode-directive) is applied
 * [**Monitoring**](#available-filtration-modes)
+* [**Safe blocking**](#available-filtration-modes)
 * [**Blocking**](#available-filtration-modes)
     
-![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page.png)
+![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 !!! info "The Wallarm Cloud and WAF node synchronization"
     The rules defined in the Wallarm Console are applied during the Wallarm Cloud and WAF node synchronization process, which is conducted once every 2‑4 minutes.
