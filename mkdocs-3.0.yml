@@ -173,7 +173,6 @@ nav:
         - Configuration of Filter Node for Separated Customer Environments:
           - How WAF Filter Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
           - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md
-        - Blocking Part of a Website: admin-en/block-part-en.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Settings for Using a Balancer or Proxy: admin-en/using-proxy-or-balancer-en.md
         - WAF node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
