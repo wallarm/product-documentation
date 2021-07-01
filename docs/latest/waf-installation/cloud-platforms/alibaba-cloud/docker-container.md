@@ -1,4 +1,3 @@
-[default-ip-blocking-settings]:     ../../../admin-en/configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            ../../../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [mount-config-instr]:               #deploying-the-waf-node-docker-container-configured-through-the-mounted-file

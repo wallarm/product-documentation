@@ -168,3 +168,6 @@
 /2.14/admin-en/installation-guides/clouds-intro/ /2.14/admin-en/supported-platforms/#cloud-platforms
 
 /user-guides/blacklist/ /user-guides/ip-lists/blacklist/
+/admin-en/configure-ip-blocking-en/ /user-guides/ip-lists/blacklist/
+/admin-en/configure-ip-blocking-iptables-en/ /user-guides/ip-lists/blacklist/
+/admin-en/configure-ip-blocking-nginx-en/ /user-guides/ip-lists/blacklist/

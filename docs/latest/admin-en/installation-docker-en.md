@@ -1,4 +1,3 @@
-[doc-ip-blocking]:            configure-ip-blocking-en.md
 [doc-wallarm-mode]:           configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          configure-parameters-en.md
 [doc-monitoring]:             monitoring/intro.md
@@ -7,7 +6,6 @@
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [scanner-whitelisting-instr]:       scanner-ips-whitelisting.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
-[default-ip-blocking-settings]:     configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
