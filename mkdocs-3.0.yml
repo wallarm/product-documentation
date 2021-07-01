@@ -157,7 +157,7 @@ nav:
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
-        - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
+        - Filtration mode configuration: admin-en/configure-wallarm-mode.md
         - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md

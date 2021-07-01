@@ -157,7 +157,7 @@ nav:
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
-        - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
+        - Filtration mode configuration: admin-en/configure-wallarm-mode.md
         - Blocking by IP Address:
           - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
           - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
