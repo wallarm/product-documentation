@@ -85,6 +85,7 @@ A reaction is an action that should be performed if the specified condition and 
 
 * Mark the requests as brute‑force or forced browsing (dirbust) attack. Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: blacklist IP address.
 * Add IP to the blacklist.
+* Add IP to the [greylist](../ip-lists/greylist.md).
 * Send a notification to the messenger, SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 
 Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:

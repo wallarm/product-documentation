@@ -1,5 +1,31 @@
 # Trigger examples
 
+## Greylist IP if 4 or more attack vectors were detected in 1 hour
+
+If 4 or more different attack vectors were sent to the protected resource from one IP address, this IP address will be greylisted for 1 hour. This trigger will be run only if the WAF node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
+
+If you have recently created the Wallarm account, this trigger is already created but is in a disabled state.
+
+![!Greylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
+
+**To test the trigger:**
+
+1. Ensure that the WAF node filters requests in [safe blocking](../../admin-en/configure-wallarm-mode.md) mode.
+2. Send the following requests to the protected resource:
+
+    ```bash
+    curl http://localhost/instructions.php/etc/passwd
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+
+    There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
+3. Open the Wallarm Console → **IP lists** → **Greylist** and check that IP address from which the requests were originated is greylisted for 1 hour.
+4. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
+
+    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+
+    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
+
 ## Blacklist IP if 4 or more attack vectors were detected in 1 hour (default trigger)
 
 The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different attack vectors were sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.

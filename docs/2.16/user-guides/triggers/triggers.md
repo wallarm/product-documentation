@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/triggers/triggers.md"
+--8<-- "2.18/user-guides/triggers/triggers.md"
