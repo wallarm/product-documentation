@@ -108,7 +108,7 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 * `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. A detailed description is available within this [link](../configure-statistics-service.md)
 * `/etc/default/wallarm-tarantool` with the Tarantool database settings
 
-#### Request filtering mode
+#### Request filtration mode
 
 By default, the WAF node is in the status `monitoring` and searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
 

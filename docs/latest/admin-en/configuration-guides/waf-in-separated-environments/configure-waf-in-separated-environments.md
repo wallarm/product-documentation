@@ -6,16 +6,16 @@ If you perform the initial rollout of WAF protection for environments, it is rec
 
 1. Learn about available WAF node deployment options [here](../../supported-platforms.md).
 2. If necessary, learn about available options to separately manage the WAF node configuration for your environments. You can find this information [here](how-waf-in-separated-environments-works.md#relevant-wallarm-features).
-3. Deploy WAF nodes in your non-production environments with the filtering mode set to `monitoring`.
+3. Deploy WAF nodes in your non-production environments with the filtration mode set to `monitoring`.
 4. Learn about how to operate, scale, and monitor the WAF solution; confirm the stability of the new network component.
-5. Deploy WAF nodes in your production environment with the filtering mode set to `monitoring`.
+5. Deploy WAF nodes in your production environment with the filtration mode set to `monitoring`.
 6. Implement proper configuration management and monitoring processes for the new WAF component.
 7. Keep the traffic flowing via the WAF nodes in all your environments, including testing and production, for 7-14 days to give the WAF cloud‑based backend some time to learn about your application.
-8. Enable the `blocking` filtering mode in all your non-production environments and use automated or manual tests to confirm the protected application is working as expected.
-9. Enable the `blocking` filtering mode in the production environment. Using available methods, confirm that the application is working as expected.
+8. Enable the `blocking` filtration mode in all your non-production environments and use automated or manual tests to confirm the protected application is working as expected.
+9. Enable the `blocking` filtration mode in the production environment. Using available methods, confirm that the application is working as expected.
 
 !!! info
-    To set up the filtering mode, please use these [instructions](../../configure-wallarm-mode.md).
+    To set up the filtration mode, please use these [instructions](../../configure-wallarm-mode.md).
 
 ## Gradual Rollout of New WAF Changes
 
@@ -40,6 +40,6 @@ Since each rule record can be associated with a [different set](how-waf-in-separ
 
     ![!Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
-* Use the `Set traffic filtration mode` rule to control the WAF filtering mode for specific environments and requests. This rule provides additional flexibility in the way WAF protection can be gradually rolled out to protect new end-points and other resources in different environments. By default, the [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) value is used depending on the [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override) setting.
+* Use the `Set traffic filtration mode` rule to control the WAF filtration mode for specific environments and requests. This rule provides additional flexibility in the way WAF protection can be gradually rolled out to protect new end-points and other resources in different environments. By default, the [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) value is used depending on the [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override) setting.
 
-    ![!Creating a rule to overwrite the filtering mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)
+    ![!Creating a rule to overwrite the filtration mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)

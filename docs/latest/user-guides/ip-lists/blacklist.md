@@ -1,6 +1,6 @@
 # IP addresses blacklist
 
-**Blacklist** is a list of IP addresses that are not allowed to access your applications. In any [filtering mode](../../admin-en/configure-wallarm-mode.md), the WAF node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
+**Blacklist** is a list of IP addresses that are not allowed to access your applications. In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the WAF node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
 
 In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocked IP addresses as follows:
 

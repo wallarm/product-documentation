@@ -16,7 +16,7 @@ In the **IP lists** section of the Wallarm Console, you can control access to yo
 
 ## Algorithm of IP lists processing
 
-In any [filtering mode](../../admin-en/configure-wallarm-mode.md), the WAF node inspects whether source IPs of incoming requests matches entries of IP lists as follows:
+In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the WAF node inspects whether source IPs of incoming requests matches entries of IP lists as follows:
 
 * Request filtering is **disabled** or performed in **monitoring mode**:
 

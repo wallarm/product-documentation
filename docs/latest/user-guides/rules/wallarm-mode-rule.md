@@ -2,13 +2,13 @@
 
 [img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule.png
 
-# Filter Mode Rule
+# Filtration mode rule
 
-The filter mode allows you to enable and disable the blocking of requests to various parts of a web application.
+The filtration mode allows you to enable and disable the blocking of requests to various parts of a web application.
 
-To set a filter mode, create a *Set traffic filtration mode* rule and select the appropriate mode.
+To set a filtration mode, create a *Set traffic filtration mode* rule and select the appropriate mode.
 
-The filter mode can take one of the following values:
+The filtration mode can take one of the following values:
 
 * **default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
 * **off**: the analysis and filtration of requests are disabled completely.

@@ -69,11 +69,11 @@ To fix the problem, please follow the steps:
 
 ## Why does not the WAF node block attacks when operating in blocking mode (`wallarm_mode block`)?
 
-Using the `wallarm_mode` directive is only one of several methods of traffic filtering mode configuration. Some of these configuration methods have a higher priority than the `wallarm_mode` directive value.
+Using the `wallarm_mode` directive is only one of several methods of traffic filtration mode configuration. Some of these configuration methods have a higher priority than the `wallarm_mode` directive value.
 
-If you have configured blocking mode via `wallarm_mode block` but WAF node does not block attacks, please ensure that filtering mode is not overridden using other configuration methods:
+If you have configured blocking mode via `wallarm_mode block` but WAF node does not block attacks, please ensure that filtration mode is not overridden using other configuration methods:
 
 * Using the [rule **Set traffic filtration mode**](../user-guides/rules/wallarm-mode-rule.md)
 * In the [**General** section of the Wallarm Console](../user-guides/settings/general.md)
 
-[More details on filtering mode configuration methods →](../admin-en/configure-parameters-en.md)
+[More details on filtration mode configuration methods →](../admin-en/configure-parameters-en.md)

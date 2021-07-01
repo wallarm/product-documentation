@@ -7,7 +7,7 @@ Main configuration files of NGINX and Wallarm WAF node are located in the direct
 * `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
 
-#### Request filtering mode
+#### Request filtration mode
 
 By default, the WAF node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
 

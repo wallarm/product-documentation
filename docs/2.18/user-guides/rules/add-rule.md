@@ -251,7 +251,7 @@ The added request processing rule is described in the *Then* section.
 
 The following rules are supported:
 
-* [Set the filter mode][link-filter-mode-rule]
+* [Set the filtration mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
 * [Tag requests as a brute-force / forced browsing attack](define-counters.md)
 * [Rewrite attack before active verification](change-request-for-active-verification.md)

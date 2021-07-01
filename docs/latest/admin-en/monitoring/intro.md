@@ -58,7 +58,7 @@ You can monitor both the Wallarm module and the postanalytics module even if the
 
 For monitoring to work, it is required that:
 * NGINX returns the statistics to the filter node (`wallarm_status on`),
-* the filter mode is in the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
+* the filtration mode is in the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
   
 By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
 

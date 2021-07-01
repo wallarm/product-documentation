@@ -260,7 +260,7 @@ nav:
         - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
         - Building and unloading of a custom ruleset: user-guides/rules/compiling.md
         - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
-        - Filter Mode Rule: user-guides/rules/wallarm-mode-rule.md
+        - Filtration mode rule: user-guides/rules/wallarm-mode-rule.md
         - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
         - Rules defining attack counters: user-guides/rules/define-counters.md
         - Rewriting the request before attack replaying: user-guides/rules/change-request-for-active-verification.md
