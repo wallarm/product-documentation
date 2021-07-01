@@ -282,7 +282,6 @@ nav:
         - IP addresses whitelist: user-guides/ip-lists/whitelist.md
         - IP addresses greylist: user-guides/ip-lists/greylist.md
         - IP addresses blacklist: user-guides/ip-lists/blacklist.md
-      - IP Address Blacklist: user-guides/blacklist.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md
