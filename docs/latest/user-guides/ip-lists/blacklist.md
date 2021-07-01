@@ -15,7 +15,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 
 * Block IP addresses from which several consecutive attacks were originated.
 
-    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour).
+    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 * Block behavioral-based attacks.
 
     The WAF node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.
@@ -29,7 +29,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
     
     For example:
 
-    1. IP address was automatically added to the greylist for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [trigger](add-link)).
+    1. IP address was automatically added to the greylist for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [trigger](../triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)).
     2. User deleted this IP address from the greylist via the Wallarm Console.
     3. If 4 different attack vectors are sent from this IP address within 30 minutes, then this IP address will not be added to the greylist.
 

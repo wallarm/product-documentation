@@ -67,7 +67,7 @@ To unblock IP addresses, use **Unblock** on the entry with a blocked IP or selec
 
     For example:
 
-    1. IP address was automatically blocked for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [default trigger](triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-3-hours-default-trigger)).
+    1. IP address was automatically blocked for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [default trigger](triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-3-hours-default-trigger)).
     2. User unblocked this IP address via the Wallarm Console.
     3. If 4 different attack vectors are sent from this IP address within 30 minutes of the IP address unblocking, then this IP address will not be added to the blacklist.
 

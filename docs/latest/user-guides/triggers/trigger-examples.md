@@ -1,12 +1,36 @@
 # Trigger examples
 
-## Blacklist IP if 4 or more attack vectors were detected in 1 hour (default trigger)
+## Greylist IP if 4 or more attack vectors are detected in 1 hour
 
-The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different attack vectors were sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.
+If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be greylisted for 1 hour. This trigger will be run only if the WAF node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
+
+If you have recently created the Wallarm account, this trigger is already created but is in a disabled state.
+
+![!Greylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
+
+**To test the trigger:**
+
+1. Ensure that the WAF node filters requests in [safe blocking](../../admin-en/configure-wallarm-mode.md) mode.
+2. Send the following requests to the protected resource:
+
+    ```bash
+    curl http://localhost/instructions.php/etc/passwd
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+
+    There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
+3. Open the Wallarm Console → **IP lists** → **Greylist** and check that IP address from which the requests were originated is greylisted for 1 hour.
+4. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
+
+    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+
+    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
+
+## Blacklist IP if 4 or more attack vectors are detected in 1 hour
+
+If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.
 
 ![!Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
-
-You can perform all available trigger actions: edit, disable, delete, or copy the trigger.
 
 **To test the trigger:**
 
@@ -25,11 +49,13 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
 
-## Mark requests as a brute‑force or dirbust attack if 31 or more requests were sent to the protected resource
+If an IP address was blacklisted by this trigger, the WAF node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [greylisting trigger](#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+
+## Mark requests as a brute‑force or dirbust attack if 31 or more requests are sent to the protected resource
 
 ### With the filter by the counter name
 
-If 31 or more requests were sent to `https://example.com/api/frontend/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
+If 31 or more requests are sent to `https://example.com/api/frontend/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
 
 The request URL `https://example.com/api/frontend/login` is specified in the rule **Tag requests as a brute-force attack**.
 
@@ -41,7 +67,7 @@ To mark requests as the dirbust (forced browsing) attack, it is required to use 
 
 ### With the filter by URL
 
-If 31 or more requests were sent to `example.com:8888/api/frontend/login` in 30 seconds:
+If 31 or more requests are sent to `example.com:8888/api/frontend/login` in 30 seconds:
 
 * These requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
 * If the code 404 was returned in the response to all requests, these requests will be marked as [dirbust (forced browsing) attack](../../attacks-vulns-list.md#forced-browsing) and the IP address from which requests were originated will be added to the blacklist.
@@ -53,9 +79,9 @@ If 31 or more requests were sent to `example.com:8888/api/frontend/login` in 30 
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## Slack notification if 2 or more SQLi hits were detected in one minute
+## Slack notification if 2 or more SQLi hits are detected in one minute
 
-If 2 or more SQLi [hits](../../glossary-en.md#hit) were sent to the protected resource, then a notification about this event will be sent to the Slack channel.
+If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
 ![!Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
 
@@ -129,9 +155,9 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
     * `TestCompany` is the name of your company account in the Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered
 
-## Opsgenie notification if 2 or more incidents were detected in one second
+## Opsgenie notification if 2 or more incidents are detected in one second
 
-If 2 or more incidents with the application server or database were detected in one second, the notification about this event will be sent to Opsgenie.
+If 2 or more incidents with the application server or database are detected in one second, the notification about this event will be sent to Opsgenie.
 
 ![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
 
@@ -164,7 +190,7 @@ Cloud: EU
 !!! info "Protecting the resource from active vulnerability exploitation"
     To protect the resource from active vulnerability exploitation, we recommend to patch the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
 
-## Notification to Webhook URL if IP address was added to the blacklist
+## Notification to Webhook URL if IP address is added to the blacklist
 
 If an IP address was added to the blacklist, the webhook about this event will be sent to Webhook URL.
 

@@ -55,7 +55,7 @@ Example of a configured rule defining attack counter and trigger:
 
 ![!Brute force/dirbust trigger example](../../images/user-guides/triggers/trigger-example6.png)
 
-Description of the provided example and other trigger examples used for brute force protection is available within this [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+Description of the provided example and other trigger examples used for brute force protection is available within this [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
 You can configure several triggers for brute force protection.
 
