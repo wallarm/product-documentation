@@ -91,7 +91,7 @@ Use the following guides to enable the blocking of IP addresses:
 
 After enabling the IP blocking functionality on the WAF nodes you can use the following [triggers](../user-guides/triggers/triggers.md) to control the WAF behavior:
 
-* [Blocking of users sending too many attacks in a time period](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)
+* [Blocking of users sending too many attacks in a time period](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)
 * [Protection against brute-force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ## Learn how to perform gradual rollout of WAF configuration changes
@@ -119,9 +119,9 @@ Depending on your specific environment we recommend you configure the following 
 
     * You are under attack and the WAF is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually blacklist (block) reported attacker IP addresses.
     * You have an increased level of false positive attacks detected by the WAF. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/false-attack.md).
-    * If you have the IP blocking functionality enabled on your WAF nodes and have the [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger) active but still receive alerts about an increased level of attacks, then the alert may signal that the IP blocking functionality or the trigger is not working as expected.
+    * If you have the IP blocking functionality enabled on your WAF nodes and have the [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger) active but still receive alerts about an increased level of attacks, then the alert may signal that the IP blocking functionality or the trigger is not working as expected.
 
-    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-were-detected-in-one-minute)
+    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
 * Notify that a new user was added to your company account in the Wallarm Console
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-and-email-notification-if-new-user-is-added-to-the-account)
@@ -130,7 +130,7 @@ Depending on your specific environment we recommend you configure the following 
     [Instructions on configuring brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * Notify that new IP addresses were blocked
 
-    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-was-added-to-the-blacklist)
+    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-blacklist)
 
 ## Enable SAML SSO for your account in the Wallarm Console
 
@@ -149,7 +149,7 @@ Wallarm is constantly working to improve the WAF node software, with new release
 ## Learn known caveats
 
 * All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
+* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
 
 ## Follow the best practices for the Active threat verification feature
 

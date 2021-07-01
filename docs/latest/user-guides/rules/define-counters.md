@@ -10,7 +10,7 @@ Rules **Tag requests as a forced browsing attack** and **Tag requests as a brute
      * Number of 404 responses for the rule **Tag requests as a forced browsing attack**
      * Number of requests for the rule **Tag requests as a brute-force attack**
 
-     Thresholds are configured via triggers. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+     Thresholds are configured via triggers. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
 ## Creating and applying the rule
 
@@ -31,7 +31,7 @@ To create and apply the rule:
     !!! warning "Number of tags created for one condition"
         * Only one tag of any type (`b:` or `d:`) can be created for one condition.
         * One tag cannot be reused with several conditions.
-2. Create a trigger with the filter by the tag and a threshold for request blocking. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-were-sent-to-the-protected-resource).
+2. Create a trigger with the filter by the tag and a threshold for request blocking. Examples of triggers are available at this [link](../triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
 ## Rule examples
 
