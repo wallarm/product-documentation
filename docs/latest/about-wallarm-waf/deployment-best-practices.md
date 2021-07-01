@@ -45,20 +45,10 @@ Analyzing requests with the [**libdetection** library](protecting-against-attack
 
 ## Configure proper reporting of end-user IP addresses
 
-For WAF nodes located behind a load balancer or CDN please make sure to configure your WAF nodes to properly report end-user IP addresses (otherwise the [IP blocking functionality](../admin-en/configure-ip-blocking-en.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
+For WAF nodes located behind a load balancer or CDN please make sure to configure your WAF nodes to properly report end-user IP addresses (otherwise the [IP lists functionality](../user-guides/ip-lists/overview.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
 * [Instructions for NGINX-based WAF nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-
-## Enable the whitelisting of the Wallarm Scanner IPs
-
-This configuration is required for the [Attack rechecker](detecting-vulnerabilities.md#active-threat-verification) and [Vulnerability scanner](detecting-vulnerabilities.md#vulnerability-scanner) modules to reach the tested application without getting their requests blocked by the WAF nodes.
-
-* [Instructions for NGINX-based WAF nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
-* Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
-
-The [Active threat verification](detecting-vulnerabilities.md#active-threat-verification) feature will not work if the scanner's IP addresses are not properly white-listed.
 
 ## Enable proper monitoring of the WAF nodes
 
@@ -77,22 +67,11 @@ Like with every other critical component in your production environment, WAF nod
 * [Instructions for NGINX-based WAF nodes](../admin-en/configure-backup-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
-## Enable the IP blocking functionality
+## Learn how to use IP addresses whitelist, blacklist, and greylist
 
-In addition to blocking individual malicious requests, Wallarm WAF nodes can also block individual end-user IP addresses. The feature is not enabled by default.
+In addition to blocking individual malicious requests, Wallarm WAF nodes can also block individual end-user IP addresses. Rules for IPs blocking are configured using whitelists, blacklists and greylists.
 
-It is recommended to enable the feature after completing the WAF application profile learning stage and switching the WAF from monitoring to blocking mode.
-
-Use the following guides to enable the blocking of IP addresses:
-
-* [Instructions for NGINX-based WAF nodes](../admin-en/configure-ip-blocking-nginx-en.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
-* For the NGINX-based Docker container please pass the environment variable `WALLARM_ACL_ENABLE=true` when running the container (more details are described in the [document](../admin-en/installation-docker-en.md))
-
-After enabling the IP blocking functionality on the WAF nodes you can use the following [triggers](../user-guides/triggers/triggers.md) to control the WAF behavior:
-
-* [Blocking of users sending too many attacks in a time period](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)
-* [Protection against brute-force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+[More details on using IP lists →](../user-guides/ip-lists/overview.md)
 
 ## Learn how to perform gradual rollout of WAF configuration changes
 
@@ -149,7 +128,7 @@ Wallarm is constantly working to improve the WAF node software, with new release
 ## Learn known caveats
 
 * All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
+* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-were-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account.
 
 ## Follow the best practices for the Active threat verification feature
 
