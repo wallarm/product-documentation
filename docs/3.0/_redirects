@@ -171,3 +171,4 @@
 /admin-en/configure-ip-blocking-en/ /user-guides/ip-lists/blacklist/
 /admin-en/configure-ip-blocking-iptables-en/ /user-guides/ip-lists/blacklist/
 /admin-en/configure-ip-blocking-nginx-en/ /user-guides/ip-lists/blacklist/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses/ /user-guides/ip-lists/blacklist/
