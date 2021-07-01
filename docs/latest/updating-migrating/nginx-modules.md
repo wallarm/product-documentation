@@ -5,7 +5,6 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
-[scanner-whitelisting-instr]:       ../admin-en/scanner-ips-whitelisting.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
@@ -126,4 +125,4 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 Wallarm WAF modules are updated to version 2.18. Previous WAF node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx-216.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx.md"

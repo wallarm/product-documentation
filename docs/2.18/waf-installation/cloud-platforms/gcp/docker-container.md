@@ -66,7 +66,7 @@ To deploy the containerized WAF node configured only through environment variabl
     * `--container-image`: link to the Docker image of the WAF node.
     * `--container-env`: environment variables with the WAF node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-218.md"
     
     * All parameters of the `gcloud compute instances create-with-container` command are described in the [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container).
 3. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list.

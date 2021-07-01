@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/configure-ip-blocking-iptables-en.md"

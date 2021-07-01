@@ -6,11 +6,7 @@ metadata:
 data:
   default: |
     geo $remote_addr $wallarm_mode_real {
-      # Please replace <WALLARM_MODE> below by the request filtering mode: 
-      # off to disable request processing
-      # monitoring to process but not block requests
-      # block to process all requests and block the malicious ones
-      default <WALLARM_MODE>;
+      default {{ .Values.wallarm.mode | quote }};
       # IP addresses and rules for US cloud scanners
       50.116.11.251 off;45.79.143.18 off;172.104.21.210 off;74.207.237.202 off;45.79.186.159 off;45.79.216.187 off;45.33.16.32 off;96.126.127.23 off;172.104.208.113 off;192.81.135.28 off;104.237.155.105 off;45.56.71.221 off;45.79.194.128 off;104.237.151.202 off;45.33.15.249 off;45.33.43.225 off;45.79.10.15 off;45.33.79.18 off;45.79.75.59 off;23.239.30.236 off;172.104.22.150 off;45.33.86.254 off;45.56.72.191 off;45.79.75.91 off;192.155.92.134 off;23.239.4.41 off;45.79.93.164 off;45.56.122.184 off;96.126.124.141 off;45.79.115.178 off;66.228.36.28 off;192.81.134.116 off;45.79.138.122 off;45.56.68.241 off;69.164.216.244 off;104.237.139.12 off;23.239.18.250 off;45.56.123.144 off;50.116.35.43 off;50.116.43.110 off;72.14.181.105 off;45.56.102.9 off;173.255.192.83 off;173.255.200.80 off;173.230.156.200 off;173.255.214.180 off;45.33.81.109 off;173.230.158.207 off;50.116.42.181 off;72.14.184.100 off;66.175.222.237 off;69.164.202.55 off;45.56.113.41 off;192.155.82.205 off;23.92.30.204 off;45.33.65.37 off;45.56.114.24 off;173.255.193.92 off;45.33.64.71 off;104.200.29.36 off;45.56.119.39 off;45.33.105.35 off;45.33.73.43 off;45.33.72.81 off;45.33.80.65 off;104.237.151.23 off;45.33.88.42 off;72.14.191.76 off;45.33.98.89 off;173.230.130.253 off;45.33.97.86 off;23.92.18.13 off;45.33.33.19 off;23.239.11.21 off;45.33.41.31 off;173.230.138.206 off;66.228.58.101 off;45.56.104.7 off;50.116.23.110 off;45.33.115.7 off;45.79.16.240 off;45.56.69.211 off;34.94.100.64 off;35.235.101.133 off;34.94.16.235 off;35.236.51.79 off;35.236.55.214 off;35.236.127.211 off;35.236.126.84 off;35.236.3.158 off;34.94.218.5 off;35.236.118.146 off;35.236.1.4 off;35.236.20.89 off;
       # IP addresses and rules for European cloud scanners
@@ -24,14 +20,13 @@ data:
         index index.html index.htm;
         wallarm_mode $wallarm_mode_real;
         # wallarm_instance 1;
+        {{ if eq .Values.wallarm.enable_ip_blocking "true" }}
+        wallarm_acl default;
+        {{ end }}
         set_real_ip_from 0.0.0.0/0;
         real_ip_header X-Forwarded-For;
         location / {
-                # Please replace <APP_CONTAINER_PORT> below by the port number
-                # on which the container accepts incoming requests,
-                # the value must be identical to ports.containerPort
-                # in definition of your main app container
-                proxy_pass http://localhost:<APP_CONTAINER_PORT>;
+                proxy_pass http://localhost:{{ .Values.wallarm.app_container_port }};
                 include proxy_params;
         }
     }

@@ -55,7 +55,7 @@ To deploy the containerized WAF node configured only through environment variabl
     * `-p`: port the WAF node listens to. The value should be the same as the instance port.
     * `-e`: environment variables with the WAF node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-218.md"
 7. [Test the WAF node operation](#testing-the-waf-node-operation).
 
 ## Deploying the WAF node Docker container configured through the mounted file

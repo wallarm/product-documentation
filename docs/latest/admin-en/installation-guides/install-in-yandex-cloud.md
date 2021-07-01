@@ -1,7 +1,6 @@
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
-[scanner-whitelisting-instr]:       ../../admin-en/scanner-ips-whitelisting.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
@@ -239,4 +238,4 @@ sudo systemctl restart nginx
 
 The WAF node with default settings is deployed in Yandex.Cloud. To customize Wallarm WAF settings, use the [available directives](../configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-216.md"
+--8<-- "../include/waf/installation/common-customization-options.md"

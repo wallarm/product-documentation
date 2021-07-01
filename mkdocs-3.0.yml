@@ -158,10 +158,6 @@ nav:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
         - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
-        - Blocking by IP Address:
-          - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
-          - Blocking with iptables: admin-en/configure-ip-blocking-iptables-en.md
-          - Blocking with NGINX: admin-en/configure-ip-blocking-nginx-en.md
         - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
@@ -169,8 +165,6 @@ nav:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
           - Best Practices in Wallarm Ingress Controller Configuration:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
-            - Management of IP Addresses Blocking: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md
-            - Configuration of IP Whitelisting for Wallarm Scanner: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
         - Allocating Resources for WAF Node: admin-en/configuration-guides/allocate-resources-for-waf-node.md
@@ -178,7 +172,6 @@ nav:
         - Configuration of Filter Node for Separated Customer Environments:
           - How WAF Filter Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
           - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md
-        - Blocking Part of a Website: admin-en/block-part-en.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Settings for Using a Balancer or Proxy: admin-en/using-proxy-or-balancer-en.md
         - WAF node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
@@ -226,7 +219,6 @@ nav:
         - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md
       - Support of the Scanner Operation:
         - Best practices for configuring the Active threat verification feature: admin-en/attack-rechecker-best-practices.md
-        - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-whitelisting.md 
         - Scanner Addresses:
           - Scanner Addresses for EU Cloud: admin-en/scanner-address-en.md
           - Scanner Addresses for US Cloud: admin-en/scanner-address-us-en.md

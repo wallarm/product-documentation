@@ -1,5 +1,3 @@
-[default-ip-blocking-settings]:     ../../../admin-en/configure-ip-blocking-nginx-en.md
-[wallarm-acl-directive]:            ../../../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [mount-config-instr]:               #deploying-the-waf-node-docker-container-configured-through-the-mounted-file
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
@@ -106,7 +104,6 @@ To deploy the containerized WAF node configured through environment variables an
 
         wallarm_mode monitoring;
         # wallarm_instance 1;
-        # wallarm_acl default;
 
         location / {
                 proxy_pass http://example.com;

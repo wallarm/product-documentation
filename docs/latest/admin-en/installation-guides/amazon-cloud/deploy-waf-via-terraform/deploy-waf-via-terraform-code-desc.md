@@ -6,18 +6,16 @@ The Terraform code should be pretty self-explanatory. Only parts performing the 
 
 Deployment settings are performed in the `wallarm_launch_config` object of the `main.tf` file. In the current example the code performs the following operations on a freshly started WAF node:
 
-1. Create local file `/etc/nginx/conf.d/wallarm-acl.conf` with configuration of [IP blocking](../../../configure-ip-blocking-nginx-en.md).
-2. Create local files `/etc/nginx/key.pem` and `/etc/nginx/cert.pem` holding a self-signed SSL certificate and its private key. In production use, the files should be replaced with real SSL certificate and private key data.
-3. Create local file `/etc/nginx/sites-available/default` with the configuration of web resources to be protected. In this example the system will define for the following properties:
+1. Create local files `/etc/nginx/key.pem` and `/etc/nginx/cert.pem` holding a self-signed SSL certificate and its private key. In production use, the files should be replaced with real SSL certificate and private key data.
+2. Create local file `/etc/nginx/sites-available/default` with the configuration of web resources to be protected. In this example the system will define for the following properties:
 
   * HTTP and HTTPS server configuration blocks as the default proxy servers for all incoming requests,
   * a health check endpoint defined as `/healthcheck` and it always returns an HTTP status code 200,
   * proxy all incoming HTTP and HTTPS requests to the DNS name of the Wordpress ELB instance as defined in Terraform variable `${aws_elb.wp_elb.dns_name}`.
 
-4. Run a set of commands to configure the WAF node (described in the `runcmd` block):
+3. Run a set of commands to configure the WAF node (described in the `runcmd` block):
 
   * add the new node to the Wallarm cloud,  
-  * add two lines to local file `/etc/wallarm/node.yaml` and modify file `/etc/cron.d/wallarm-node-nginx` as required for [IP blocking](../../../configure-ip-blocking-nginx-en.md) functionality,
   * test the configuration and start a local NGINX instance.
 
 ## Configuration of Wallarm WAF Node Autoscaling

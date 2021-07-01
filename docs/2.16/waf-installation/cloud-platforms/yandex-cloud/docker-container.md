@@ -63,7 +63,7 @@ To deploy the containerized WAF node configured only through environment variabl
     * `--container-image`: link to the Docker image of the WAF node.
     * `--container-env`: environment variables with the WAF node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-218.md"
     
     * All parameters of the `yc compute instance create-with-container` command are described in the [Yandex.Cloud documentation](https://cloud.yandex.com/en/docs/cli/cli-ref/managed-services/compute/instance/create-with-container).
 3. Open the Yandex.Cloud management console → **Compute Cloud** → **Virtual machines** and ensure the instance is displayed in the list.

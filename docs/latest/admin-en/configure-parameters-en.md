@@ -260,14 +260,12 @@ geo $wallarm_mode_real {
 wallarm_mode $wallarm_mode_real;
 ```
 
-You can see the detailed example of filtration mode configuration by proceeding to this [link](block-part-en.md).
+You can see the detailed example of filtration mode configuration by proceeding to this [link](configure-wallarm-mode.md).
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `off`
-
---8<-- "../include/scanner-whitelist-warning.md"
 
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 

@@ -1,5 +1,3 @@
-[whitelist-scanner-addresses]: ../admin-en/attack-rechecker-best-practices.md#configure-proper-white-listing-rules-for-scanner-ip-addresses
-
 # Detecting vulnerabilities
 
 ## What is a vulnerability?
@@ -57,10 +55,15 @@ Vulnerability scanner checks all elements of the company scope for typical vulne
 
 #### Configuration
 
-* The scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, the scanner is enabled
-* The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by the scanner can be configured in the Wallarm Console → **Scanner** section. By default, vulnerability scanner detects all available vulnerabilities
-* The [limit of requests sent from the scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section
-* If the WAF node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which the scanner sends requests
+* The scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, the scanner is enabled.
+* The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by the scanner can be configured in the Wallarm Console → **Scanner** section. By default, vulnerability scanner detects all available vulnerabilities.
+* The [limit of requests sent from the scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section.
+* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure a whitelist with the IP addresses for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+
+    * [Scanner IP address registered in Wallarm EU Cloud](../admin-en/scanner-address-en.md)
+    * [Scanner IP address registered in Wallarm US Cloud](../admin-en/scanner-address-us-en.md)
+
+    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually whitelist Scanner IP addresses. Starting with WAF node 3.0, Scanner IP addresses are automatically whitelisted.
 
 ## False positives
 

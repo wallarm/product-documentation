@@ -44,7 +44,7 @@
 
 <ol start="2"><li>Copy the following elements to the template:<ul><li>the <code>wallarm</code> sidecar container definition to the <code>spec.template.spec.containers</code> section,</li><li>the <code>wallarm-nginx-conf</code> volume definition to the <code>spec.template.spec.volumes</code> section.</li></ul>An example of the template with added elements is provided below. Elements for copying are indicated by the <code>Wallarm element</code> comment.</li></li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-2.18.md"
+--8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-3.0.md"
 
 <ol start="3"><li>Update parameter values following the code comments.</li></ol>
 
