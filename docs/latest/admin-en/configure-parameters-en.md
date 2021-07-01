@@ -112,15 +112,6 @@ Specifies the directory that will be used to save the state of the ACL.
 !!! info
     The parameter can only be configured inside the `wallarm_acl_db` block.
 
-### wallarm_acl_block_page
-
-Lets you set up the response to the request originated from a [blocked IP address](configure-ip-blocking-en.md).
-
-[More details on the blocking page and error code configuration →](configuration-guides/configure-block-page-and-code.md)
-
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-
 ### wallarm_api_conf
 
 A path to the `node.yaml` file, which contains access requirements for the Wallarm API.
@@ -152,7 +143,7 @@ api:
 
 ### wallarm_block_page
 
-Lets you set up the response to the request [blocked](configure-wallarm-mode.md) by the WAF node due to detected attack signs.
+Lets you set up the response to the blocked request.
 
 [More details on the blocking page and error code configuration →](configuration-guides/configure-block-page-and-code.md)
 
