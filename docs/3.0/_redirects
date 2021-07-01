@@ -174,3 +174,4 @@
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses/ /user-guides/ip-lists/blacklist/
 /admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
 /admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
