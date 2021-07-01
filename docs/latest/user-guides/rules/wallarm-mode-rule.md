@@ -1,6 +1,6 @@
 [link-wallarm-mode-override]:       ../../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 
-[img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule.png
+[img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
 # Filtration mode rule
 
@@ -10,10 +10,11 @@ To set a filtration mode, create a *Set traffic filtration mode* rule and select
 
 The filtration mode can take one of the following values:
 
-* **default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
-* **off**: the analysis and filtration of requests are disabled completely.
-* **monitoring**: the requests are analyzed and displayed in the interface but they are not blocked.
-* **blocking**: malicious requests are blocked and displayed in the interface.
+* **Default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
+* **Disable**: the analysis and filtration of requests are disabled completely.
+* **Monitorig**: the requests are analyzed and displayed in the interface but they are not blocked.
+* **Safe blocking**: malicious requests are blocked only if they are originated from [greylisted IPs](../ip-lists/greylist.md).
+* **Blocking**: malicious requests are blocked and displayed in the interface.
 
 To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].
 
