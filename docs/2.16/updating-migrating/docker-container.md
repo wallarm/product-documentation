@@ -45,7 +45,7 @@ When running the container using the updated image, you can pass the same config
 
 You can pass the following basic WAF node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-218.md"
 
 To run the image, use the command:
 
