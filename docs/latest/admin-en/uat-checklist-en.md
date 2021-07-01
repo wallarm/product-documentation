@@ -9,9 +9,8 @@ This section provides you with a checklist to ensure your Wallarm instance opera
 | [Wallarm interface shows requests per second](#wallarm-interface-shows-requests-per-second)                                       | You see the requests stats          |        |
 | [Wallarm marks requests as false and stops blocking them](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarm does not block the requests |        |
 | [Wallarm detects vulnerabilities and creates security incidents](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | Security incidents are created      |        |
-| [Attack verification works](#attack-verification-works)                                                                           | Attacks are verified                |        |
 | [Wallarm detects perimeter](#wallarm-detects-perimeter)                                                                                   | Scope is discovered                 |        |
-| [Blacklisting works](#blacklisting-works)                                                                                         | IP addresses are blocked            |        |
+| [IP whitelisting, blacklisting, and greylisting work](#ip-whitelisting-blacklisting-and-greylisting-work)                                                                                         | IP addresses are blocked            |        |
 | [Users can be configured and have proper access rights](#users-can-be-configured-and-have-proper-access-rights)                   | Users can be created and updated    |        |
 | [User activity log has records](#user-activity-log-has-records)                                                                   | The log has records                 |        |
 | [Reporting works](#reporting-works)                                                                                               | You receive reports                 |        | |
@@ -82,13 +81,6 @@ See also [Working with false attacks](../user-guides/events/false-attack.md).
 
 See also [Checking attacks and incidents](../user-guides/events/check-attack.md).
 
-## Attack Verification Works
-
-1. On the *Attacks* tab, check the detected malicious request from the previous step.
-2. Check the status in the *Verification* column.
-
-See also [Verifying attacks](../user-guides/events/verify-attack.md).
-
 ## Wallarm Detects Perimeter
 
 1. On the *Scanner* tab, add your resource's domain.
@@ -96,13 +88,11 @@ See also [Verifying attacks](../user-guides/events/verify-attack.md).
 
 See also [Working with the scanner](../user-guides/scanner/intro.md).
 
-## Blacklisting Works
+## IP whitelisting, blacklisting, and greylisting work
 
-1. Set up IP address blocking as described in [Blocking by IP address](../admin-en/configure-ip-blocking-en.md).
-2. On the *Settings* -> *Blacklist* tab, add the blocked IP address.
-3. Check if the IP address is blocked and the Wallarm interface displays the IP address as blocked.
-
-See also [IP Blacklist](../user-guides/blacklist.md).
+1. Learn[ core logic of IP lists](../user-guides/ip-lists/overview.md).
+2. Add IP addresses to the [whitelist](../user-guides/ip-lists/whitelist.md), [blacklist](../user-guides/ip-lists/blacklist.md), and [greylist](../user-guides/ip-lists/greylist.md).
+3. Check that the WAF node correctly processes requests originated from IPs added to the lists.
 
 ## Users Can Be Configured and Have Proper Access Rights
 

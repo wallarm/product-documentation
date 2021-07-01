@@ -7,7 +7,7 @@
 
 [doc-setup-app]:            ../settings/applications.md
 [doc-events-tab]:           ../events/check-attack.md
-[doc-blacklist-tab]:        ../blacklist.md
+[doc-blacklist-tab]:        ../ip-lists/blacklist.md
 [doc-scanner]:              ../scanner/intro.md
 
 [gl-hit]:                   ../../glossary-en.md#hit

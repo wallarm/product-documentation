@@ -5,7 +5,7 @@
 After enabling the [IP blocking functionality](../../../configure-ip-blocking-en.md) the WAF will provide the following additional features:
 
 * If the WAF detects at least three different attack vectors from an IP address the address is automatically added to the blacklist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
-* Ability to [manage the blacklist of IPs](../../../../user-guides/blacklist.md) from your Wallarm account UI.
+* Ability to [manage blocked IPs](../../../../user-guides/ip-lists/overview.md) from your Wallarm account UI.
 * Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../../../../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../../../../attacks-vulns-list.md#path-traversal) or [forced browsing](../../../../attacks-vulns-list.md#forced-browsing).
 
 To enable the IP blocking functionality in the Ingress controller, please follow the instructions below:

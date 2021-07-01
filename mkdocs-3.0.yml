@@ -277,7 +277,11 @@ nav:
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
-      - IP Address Blacklist: user-guides/blacklist.md
+      - IP lists:
+        - Types and core logic of IP lists: user-guides/ip-lists/overview.md
+        - IP addresses whitelist: user-guides/ip-lists/whitelist.md
+        - IP addresses greylist: user-guides/ip-lists/greylist.md
+        - IP addresses blacklist: user-guides/ip-lists/blacklist.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md

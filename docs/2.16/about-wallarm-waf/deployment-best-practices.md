@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm-waf/deployment-best-practices.md"
+--8<-- "2.18/about-wallarm-waf/deployment-best-practices.md"

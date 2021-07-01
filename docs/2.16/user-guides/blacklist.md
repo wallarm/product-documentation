@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/blacklist.md"
+--8<-- "2.18/user-guides/blacklist.md"
