@@ -1,6 +1,6 @@
 Common customization options:
 
-* [Configuration of the filtering mode][waf-mode-instr]
+* [Configuration of the filtration mode][waf-mode-instr]
 * [Logging WAF node variables][logging-instr]
 * [Using the balancer of the proxy server behind the WAF node][proxy-balancer-instr]
 * [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]

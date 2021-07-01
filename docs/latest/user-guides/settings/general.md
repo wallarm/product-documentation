@@ -1,13 +1,13 @@
-[link-config-parameters]:       ../../admin-en/configure-parameters-en.md#wallarm_mode
+[link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/user-guides/settings/general.png
+[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # General Settings
 
 The *General* tab of the *Settings* section allows users to switch between different Wallarm operation modes:
 
-* **Default**: this mode exploits settings from a filter node
-configuration file. 
+* **Local settings (default)**: this mode exploits settings from a filter node configuration file.
+* **Safe blocking**: all malicious requests originated from [greylisted IPs](../ip-lists/greylist.md) are blocked.
 * **Monitoring**: all requests are processed, but none of them are blocked even if an attack is detected.
 * **Blocking**: all requests where an attack was detected are blocked.
 

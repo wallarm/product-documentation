@@ -16,7 +16,7 @@ wallarm:
   # the value must be identical to ports.containerPort
   # in definition of your main app container
   app_container_port: 80
-  # Request filtering mode:
+  # Request filtration mode:
   # "off" to disable request processing
   # "monitoring" to process but not block requests
   # "block" to process all requests and block the malicious ones

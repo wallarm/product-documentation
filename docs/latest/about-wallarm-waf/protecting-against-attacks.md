@@ -158,9 +158,9 @@ Wallarm WAF can process attacks in the following modes:
 
 Wallarm WAF ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm WAF in the monitoring mode before enabling the blocking mode.
 
-To control the filtering mode, the directive `wallarm_mode` is used. More detailed information about filtering mode configuration is available within the [link](../admin-en/configure-wallarm-mode.md).
+To control the filtration mode, the directive `wallarm_mode` is used. More detailed information about filtration mode configuration is available within the [link](../admin-en/configure-wallarm-mode.md).
 
-The filtering mode for behavioral attacks is configured separately via the particular [trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md).
+The filtration mode for behavioral attacks is configured separately via the particular [trigger](../admin-en/configuration-guides/protecting-against-bruteforce.md).
 
 ## False positives
 

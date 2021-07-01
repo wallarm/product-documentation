@@ -9,6 +9,8 @@
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
+[greylist-docs]:                    ../user-guides/ip-lists/greylist.md
+[filtration-modes-docs]:            configure-wallarm-mode.md
 
 # Running Docker NGINX‑based image
 

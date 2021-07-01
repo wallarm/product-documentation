@@ -157,7 +157,7 @@ nav:
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
-        - Filtering Mode Configuration: admin-en/configure-wallarm-mode.md
+        - Filtration mode configuration: admin-en/configure-wallarm-mode.md
         - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
@@ -260,7 +260,7 @@ nav:
         - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
         - Building and unloading of a custom ruleset: user-guides/rules/compiling.md
         - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
-        - Filter Mode Rule: user-guides/rules/wallarm-mode-rule.md
+        - Filtration mode rule: user-guides/rules/wallarm-mode-rule.md
         - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
         - Rules defining attack counters: user-guides/rules/define-counters.md
         - Rewriting the request before attack replaying: user-guides/rules/change-request-for-active-verification.md

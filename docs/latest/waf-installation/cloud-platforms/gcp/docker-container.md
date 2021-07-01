@@ -1,6 +1,8 @@
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [mount-config-instr]:               #deploying-the-waf-node-docker-container-configured-through-the-mounted-file
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
+[greylist-docs]:                    ../../../user-guides/ip-lists/greylist.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 
 # Deployment of the WAF node Docker image to GCP
 

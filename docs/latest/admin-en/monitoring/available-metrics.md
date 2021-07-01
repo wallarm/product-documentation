@@ -45,8 +45,8 @@ The number of requests processed by the filter node since installation.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-requests`
 * **Metric value:**
-    * `0` for the `off` [mode](../configure-wallarm-mode.md#available-filtering-modes)
-    * `>0` for the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtering-modes)
+    * `0` for the `off` [mode](../configure-wallarm-mode.md#available-filtration-modes)
+    * `>0` for the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
 * **Rate of change:** `curl_json-wallarm_nginx/derive-requests`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
@@ -58,8 +58,8 @@ The number of attacks detected by the filter node since installation.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-attacks`
 * **Metric value:**
-    * `0` for the `off` [mode](../configure-wallarm-mode.md#available-filtering-modes)
-    * `>0` for the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtering-modes)
+    * `0` for the `off` [mode](../configure-wallarm-mode.md#available-filtration-modes)
+    * `>0` for the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
 * **Rate of change:** `curl_json-wallarm_nginx/derive-attacks`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
@@ -67,12 +67,12 @@ The number of attacks detected by the filter node since installation.
 
 ### Number of Blocked Requests
 
-The number of requests blocked by the filter node since installation. This metric is collected if  the filter node is in the `block` [mode](../configure-wallarm-mode.md#available-filtering-modes).
+The number of requests blocked by the filter node since installation. This metric is collected if  the filter node is in the `block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-blocked`
 * **Metric value:**
-    * `0` for the `off`/`monitoring` [mode](../configure-wallarm-mode.md#available-filtering-modes)
-    * `>0` for the `block` [mode](../configure-wallarm-mode.md#available-filtering-modes)
+    * `0` for the `off`/`monitoring` [mode](../configure-wallarm-mode.md#available-filtration-modes)
+    * `>0` for the `block` [mode](../configure-wallarm-mode.md#available-filtration-modes)
 * **Rate of change:** `curl_json-wallarm_nginx/derive-blocked`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct and make sure the filter node is in the `block` mode.

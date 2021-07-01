@@ -243,42 +243,42 @@ A path to the [LOM](../glossary-en.md#lom) file that contains information on the
 
 Traffic processing mode:
 
-- **off**: requests are not processed.
-- **monitoring**: all requests are processed, but none of them are blocked even if an attack is detected.
-- **block**: all requests where an attack was detected are blocked.
+* `off` → the WAF node:
 
-The value can include variables that are available after receiving a request string and headers. This can be used for applying various policies for various clients:
+    * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
+* `monitoring` → the WAF node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
+* `safe_blocking` → the WAF node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
+    * Blocks requests containing malicious payloads if they are originated from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
+* `block` → the WAF node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+    * Blocks requests containing malicious payloads.
+    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
 
-```
-geo $wallarm_mode_real {
-    default block;
-    1.1.1.1/24 monitoring;
-    2.2.2.2 off;
-}
-...
+Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 
-wallarm_mode $wallarm_mode_real;
-```
-
-You can see the detailed example of filtration mode configuration by proceeding to this [link](configure-wallarm-mode.md).
+[Detailed instructions on filtration mode configuration →](configure-wallarm-mode.md)
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value**: `off`
-
-Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
-
+    **Default value** depends on the WAF node deployment method (can be `off` or `monitoring`)
 
 ### wallarm_mode_allow_override
 
-Manages the ability to override the `wallarm_mode` values via filtering rules downloaded from the Wallarm cloud (LOM):
+Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm cloud (LOM):
 
 - **off**: the rules set in LOM are ignored.
 - **strict**: LOM can only strengthen the operation mode.
 - **on**: it is possible to both strengthen and soften the operation mode.
 
-For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, the Wallarm cloud can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
+For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, the Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
+
+[Detailed instructions on filtration mode configuration →](configure-wallarm-mode.md)
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

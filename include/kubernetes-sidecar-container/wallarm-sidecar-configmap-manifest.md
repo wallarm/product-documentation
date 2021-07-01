@@ -10,9 +10,10 @@ data:
         server_name localhost;
         root /usr/share/nginx/html;
         index index.html index.htm;
-        # Please replace <WALLARM_MODE> below by the request filtering mode: 
+        # Please replace <WALLARM_MODE> below by the request filtration mode: 
         # off to disable request processing
         # monitoring to process but not block requests
+        # safe_blocking to block only those malicious requests originated from greylisted IPs
         # block to process all requests and block the malicious ones
         wallarm_mode <WALLARM_MODE>;
         # wallarm_instance 1;
