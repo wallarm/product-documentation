@@ -9,7 +9,6 @@ This section provides you with a checklist to ensure your Wallarm instance opera
 | [Wallarm interface shows requests per second](#wallarm-interface-shows-requests-per-second)                                       | You see the requests stats          |        |
 | [Wallarm marks requests as false and stops blocking them](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarm does not block the requests |        |
 | [Wallarm detects vulnerabilities and creates security incidents](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | Security incidents are created      |        |
-| [Attack verification works](#attack-verification-works)                                                                           | Attacks are verified                |        |
 | [Wallarm detects perimeter](#wallarm-detects-perimeter)                                                                                   | Scope is discovered                 |        |
 | [Blacklisting works](#blacklisting-works)                                                                                         | IP addresses are blocked            |        |
 | [Users can be configured and have proper access rights](#users-can-be-configured-and-have-proper-access-rights)                   | Users can be created and updated    |        |
@@ -81,13 +80,6 @@ See also [Working with false attacks](../user-guides/events/false-attack.md).
 3. Check if there is an incident detected in the Wallarm interface.
 
 See also [Checking attacks and incidents](../user-guides/events/check-attack.md).
-
-## Attack Verification Works
-
-1. On the *Attacks* tab, check the detected malicious request from the previous step.
-2. Check the status in the *Verification* column.
-
-See also [Verifying attacks](../user-guides/events/verify-attack.md).
 
 ## Wallarm Detects Perimeter
 
