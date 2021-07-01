@@ -162,7 +162,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### Variable and error code
 
-This example shows settings to return to the client different blocking pages depending on the `User-Agent` header value:
+This example shows settings to return to the client code 445 and different blocking pages depending on the `User-Agent` header value:
 
 * By default, the default Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
 * For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html`:
@@ -195,7 +195,7 @@ map $http_user_agent $block_page {
   default     &/usr/share/nginx/html/wallarm_blocked.html;
 }
 
-wallarm_block_page $block_page;
+wallarm_block_page $block_page response_code=445;
 ```
 
 * To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container. If configuring the custom blocking page, this page should also be mounted to the container. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
@@ -207,10 +207,10 @@ wallarm_block_page $block_page;
 
     ```bash
     config: {
-        http-snippet: 'wallarm_block_page_add_dynamic_path /usr/test-block-page/blocked.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/test-block-page/blocked.html; "~Chrome" &/usr/test-block-page/blocked-2.html; default &/usr/share/nginx/html/wallarm_blocked.html;}'
+        http-snippet: 'wallarm_block_page_add_dynamic_path /usr/test-block-page/blocked.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/share/nginx/html/block_page_firefox.html; "~Chrome" &/usr/share/nginx/html/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}'
     }
     ```
-2. Execute the command `helm install` as described in the step 4 of the [installation instructions](../installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller).
+2. Execute the command `helm install` as described in step 4 of the [installation instructions](../installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller).
 3. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `block_page_firefox.html` and `block_page_chrome.html`.
 4. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
 
@@ -219,5 +219,5 @@ wallarm_block_page $block_page;
 5. Add the following annotation to the Ingress:
 
     ```bash
-    kubectl annotate ingress dummy-ingress nginx.ingress.kubernetes.io/wallarm-block-page='$block_page'
+    kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445'
     ```
