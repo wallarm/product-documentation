@@ -10,7 +10,7 @@
 
 Wallarm can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.
 
-Wallarm can block bots and behavioral‑based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the blacklist. Administrators can also manually add IP addresses and subnets for blocking.
+Wallarm can block bots and behavioral‑based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the blacklist. Administrators can also manually add IP addresses for blocking.
 
 ![!Blacklist tab overview][img-blacklist]
 
@@ -18,7 +18,7 @@ The blacklist is available in the **Blacklist** section of your Wallarm account.
 
 * Review the list of blocked IP addresses and the reasons they were blocked
 * Instantly unblock any IP address or set the time to unblock
-* Add an IP address or a whole subnet to the blacklist
+* Add an IP address to the blacklist
 
 !!! warning "Enable IP address blacklisting on the WAF node"
     For the blacklisting to take effect, please enable it on the WAF node.
@@ -87,10 +87,8 @@ You can filter the history by:
 
 To start blocking IP addresses:
 
-1. Click the **Block IP or Subnet** button.
-2. Enter a value in the field **IP, range, or subnet**.
-
-    Entering an IP address with a subnet mask will list every blocked IP address in the expanded table. For example, entering `a.b.c.0/24` will expand the table to list 256 IP addresses.
+1. Click the **Add object** button.
+2. Enter a value in the field **IP**.
 3. Pick a date or use the calendar to specify the blocking time. The minimum blocking time period is 60 minutes.
 4. Provide a comment on the blocking reason.
 5. Click **Add to blacklist**.
@@ -101,16 +99,3 @@ To start blocking IP addresses:
     You can select the application the IP blacklist is applied to. To select the application, please set the directive [`wallarm_acl`](../admin-en/configure-parameters-en.md#wallarm_acl) inside the required server or location block in the NGINX configuration file.
 
 ![!Adding to blacklist][img-blacklist-add]
-
-## Exporting Blacklist Entries
-
-To export the blocking data, use the **Export list** button.
-
-Wallarm will export a CSV file based on the date range currently selected in the UI with the following fields:
-
-* **IP**: IP address
-* **Application**: ID of the application for which IP address is blocked
-* **Type**: the action type (**block** or **unblock**)
-* **Time**: the date and time of the action
-* **Country**: the blocked IP address' country
-* **Reason**: automatically generated or manually inserted reason for blacklisting
