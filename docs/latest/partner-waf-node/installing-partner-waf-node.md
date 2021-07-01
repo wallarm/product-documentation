@@ -1,7 +1,6 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
-[scanner-whitelisting-instr]:       ../admin-en/scanner-ips-whitelisting.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
@@ -87,4 +86,4 @@ Partner WAF node has the following characteristics:
 
 To customize the WAF node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx-216.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx.md"

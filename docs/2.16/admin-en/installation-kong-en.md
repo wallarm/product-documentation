@@ -263,4 +263,4 @@ kong start --nginx-conf /etc/kong/nginx-wallarm.template
 
 --8<-- "../include/filter-node-defaults.md"
 
---8<-- "../include/installation-extra-steps.md"
+--8<-- "../include/installation-extra-steps-218.md"

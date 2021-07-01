@@ -267,8 +267,6 @@ You can see the detailed example of filtration mode configuration by proceeding 
     
     **Default value**: `off`
 
---8<-- "../include/scanner-whitelist-warning.md"
-
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 
 

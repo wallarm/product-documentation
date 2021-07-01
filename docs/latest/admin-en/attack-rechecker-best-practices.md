@@ -1,5 +1,3 @@
-[whitelist-scanner-addresses]: #configure-proper-white-listing-rules-for-scanner-ip-addresses
-
 # Best practices for configuring the Active threat verification feature
 
 ## What is the Active threat verification feature
@@ -34,16 +32,6 @@ If your application uses non-standard types of authentication (for example, requ
 ### Know how to control the Attack rechecker
 
 The global on/off switch of the **Attack rechecker** module is located in the Wallarm Console → [**Scanner** section](../user-guides/scanner/configure-scanner-modules.md). By default this module is disabled.
-
-### Configure proper white-listing rules for scanner IP addresses
-
-The configuration is required for the **Attack rechecker** module to reach the tested application without getting their requests blocked by the WAF nodes.
-
-* [Instructions for NGINX-based WAF nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
-* Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
-
-The **Attack rechecker** functionality will not work if its IP addresses are not properly white-listed.
 
 ### Configure proper notification and escalation rules for detected security incidents
 

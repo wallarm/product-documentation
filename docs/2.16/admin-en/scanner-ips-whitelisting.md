@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/scanner-ips-whitelisting.md"
+--8<-- "2.18/admin-en/scanner-ips-whitelisting.md"

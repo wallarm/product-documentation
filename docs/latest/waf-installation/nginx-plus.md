@@ -8,7 +8,6 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
-[scanner-whitelisting-instr]:       ../admin-en/scanner-ips-whitelisting.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
@@ -149,4 +148,4 @@ To run postanalytics and process the requests on different servers, the followin
 
 Dynamic Wallarm WAF module with default settings is installed for NGINX Plus. To customize Wallarm WAF settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-216.md"
+--8<-- "../include/waf/installation/common-customization-options.md"
