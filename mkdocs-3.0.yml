@@ -316,6 +316,7 @@ nav:
         - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
         - Updating the cloud WAF node image: updating-migrating/cloud-image.md
+      - Migrating whitelists and blacklists from previous WAF node versions to 3.0: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - API Firewall guides:
