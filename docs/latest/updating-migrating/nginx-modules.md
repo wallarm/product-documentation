@@ -21,12 +21,20 @@ These instructions describe the steps to update Linux WAF packages to version 3.
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Update procedure
 
 * If WAF node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
 * If WAF node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
 
-## Step 1: Add new Wallarm WAF repository
+## Step 1: Inform Wallarm technical support that you are updating WAF node modules
+
+Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating WAF node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+
+## Step 2: Add new Wallarm WAF repository
 
 Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version package. Please use the commands for the appropriate platform.
 
@@ -71,7 +79,11 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/
         ```
 
-## Step 2: Update Wallarm WAF packages
+## Step 3: Migrate whitelists and blacklists from previous WAF node version to 3.0
+
+Migrate whitelists and blacklists configuration from previous WAF node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+
+## Step 4: Update Wallarm WAF packages
 
 ### WAF node and postanalytics on the same server
 
@@ -113,11 +125,11 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
         sudo yum update
         ```
 
-## Step 3: Restart NGINX
+## Step 5: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 4: Test Wallarm WAF operation
+## Step 6: Test Wallarm WAF operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 

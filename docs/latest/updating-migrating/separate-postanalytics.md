@@ -4,6 +4,10 @@
 
 These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux WAF packages][docs-module-update].
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Step 1: Add new Wallarm WAF repository
 
 Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version packages. Please use the commands for the appropriate platform.
