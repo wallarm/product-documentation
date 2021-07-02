@@ -2,6 +2,10 @@
 
 This document describes recommendations and associated risks for a safe update of Wallarm WAF node up to 3.0.
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Common recommendations
 
 * Carefully plan and monitor the WAF node update process. Estimated release dates for new versions of WAF nodes are published in the [WAF node versioning policy](versioning-policy.md).
@@ -16,16 +20,7 @@ Below are the risks that may occur when updating the WAF node. To reduce the imp
 
 ### Changed functionality
 
-A new minor version of the WAF node may contain the following changes:
-
-* Support for new installation options
-* Dropped support for unclaimed installation options
-* New WAF node features
-* Optimization of work of the WAF node
-
-The configuration of the previous version is automatically applied to the new version and does not require additional changes. When updating the cloud image, you should manually transfer the configuration files to the new version. Most of the new features are configured via the directives in configuration files.
-
-Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change when planning the upgrade.
+WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
 
 ??? "Set of changes in WAF node 3.0"
     **Changes in supported installation platforms**
@@ -98,3 +93,4 @@ The WAF node update process depends on the platform and installation forms. Plea
 * [Docker container with the modules for NGINX](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm WAF](ingress-controller.md)
 * [Cloud WAF node image](cloud-image.md)
+* [Migrating whitelists and blacklists from previous WAF node versions to 3.0](migrate-ip-lists-to-node-3.md)
