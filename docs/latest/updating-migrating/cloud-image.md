@@ -17,13 +17,18 @@ These instructions describe the steps to update the cloud WAF node image deploye
 
 To update the version of the WAF node deployed in the cloud:
 
-1. Launch a new virtual machine based on the WAF node 3.0 image.
-2. Copy the WAF node settings from the previous version to the new version.
-3. Delete the previous WAF node instance.
+1. Inform Wallarm technical support that you are updating WAF node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account.
+2. Launch a new virtual machine based on the WAF node 3.0 image.
+3. Copy the WAF node settings from the previous version to the new version.
+4. Delete the previous WAF node instance.
 
 A more detailed description of the upgrade steps is provided below.
 
-## Step 1: Launch a new instance with the WAF node 3.0
+## Step 1: Inform Wallarm technical support that you are updating WAF node modules
+
+Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating WAF node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+
+## Step 2: Launch a new instance with the WAF node 3.0
 
 1. Open the Wallarm WAF node image on the cloud platform marketplace and proceed to the image launch:
       * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
@@ -37,7 +42,7 @@ A more detailed description of the upgrade steps is provided below.
 3. Confirm the instance launch.
 4. For GCP, configure the instance following these [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filter-node-instance).
 
-## Step 2: Connect the WAF node to Wallarm Cloud
+## Step 3: Connect the WAF node to Wallarm Cloud
 
 1. Connect to the WAF node instance via SSH. More detailed instructions for connecting to the instances are available in the cloud platform documentation:
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
@@ -48,7 +53,7 @@ A more detailed description of the upgrade steps is provided below.
       * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filter-node-to-the-wallarm-cloud)
       * [Yandex.Cloud](../admin-en/installation-guides/install-in-yandex-cloud.md#3-connect-the-waf-node-to-wallarm-cloud)
 
-## Step 3: Copy the WAF node settings from the previous version to the new version
+## Step 4: Copy the WAF node settings from the previous version to the new version
 
 1. Copy the settings for processing and proxying requests from the following configuration files of the previous WAF node version to the files of the WAF node 3.0:
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
@@ -57,7 +62,8 @@ A more detailed description of the upgrade steps is provided below.
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests
-2. Restart NGINX to apply the settings: 
+2. Migrate whitelists and blacklists configuration from previous WAF node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+3. Restart NGINX to apply the settings: 
 
     ```bash
     sudo systemctl restart nginx
@@ -67,14 +73,14 @@ Detailed information about working with NGINX configuration files is available i
 
 The list of WAF node directives is available [here](../admin-en/configure-parameters-en.md).
 
-## Step 4: Test WAF node operation
+## Step 5: Test WAF node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 5: Creating the virtual machine image based on the WAF node 3.0 in AWS or GCP
+## Step 6: Creating the virtual machine image based on the WAF node 3.0 in AWS or GCP
 
 To create the virtual machine image based on the WAF node 3.0, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../admin-en/installation-guides/google-cloud/create-image.md).
 
-## Step 6: Delete the previous WAF node instance
+## Step 7: Delete the previous WAF node instance
 
 If the new version of the WAF node is successfully configured and tested, remove the instance and virtual machine image with the previous version of the WAF node using the AWS, GCP, or Yandex.Cloud management console.

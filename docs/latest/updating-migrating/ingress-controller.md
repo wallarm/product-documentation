@@ -11,12 +11,13 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 
 ## Updating
 
-1. Clone new Helm chart version from the Wallarm repository:
+1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating WAF node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+2. Clone new Helm chart version from the Wallarm repository:
 
     ```bash
     git clone https://github.com/wallarm/ingress-chart --branch 3.0.0-2 --single-branch
     ```
-2. Update the previous Helm chart:
+3. Update the previous Helm chart:
 
     === "EU Cloud"
         ``` bash
@@ -30,6 +31,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud WAF node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller to update
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
+4. Migrate whitelists and blacklists configuration from previous WAF node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Testing
 
