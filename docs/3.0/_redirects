@@ -48,6 +48,10 @@
 /2.16/api/* /api/:splat 301!
 /2.16/faq/* /faq/:splat 301!
 /2.16/demo-videos/* /demo-videos/:splat 301!
+/2.18/api/* /api/:splat 301!
+/2.18/faq/* /faq/:splat 301!
+/2.18/demo-videos/* /demo-videos/:splat 301!
+/2.18/api-firewall/* /api-firewall/:splat 301!
 /2.12/admin-en/* /2.12
 /2.12/quickstart-en/* /2.12
 /2.12/updating-migrating/* /2.12
@@ -175,3 +179,8 @@
 /admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
 /admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
+
+/partner-waf-node/overview/ /2.18/partner-waf-node/overview/
+/partner-waf-node/creating-partner-account/ /2.18/partner-waf-node/creating-partner-account/
+/partner-waf-node/connecting-clients/ /2.18/partner-waf-node/connecting-clients/
+/partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/
