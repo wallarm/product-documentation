@@ -32,6 +32,7 @@ These instructions describe the installation of the NGINX-Wallarm and postanalyt
 * SELinux disabled or configured upon the [instructions](../admin-en/configure-selinux.md)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
 * Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions](qs-setup-proxy-en.md)
+* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../user-guides/ip-lists/overview.md) countries or data centers
 * Installed text editor **vim**, **nano**, or any other. In these instructions, **vim** is used
 
 ## Installation
