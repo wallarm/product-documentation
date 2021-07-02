@@ -12,6 +12,10 @@ These instructions describe the steps to update the running Docker NGINX- or Env
 !!! warning "Using credentials of already existing WAF node"
     We do not recommend to use the already existing WAF node of the previous version. Please follow these instructions to create a new WAF node of the version 3.0 and deploy it as the Docker container.
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Requirements
 
 --8<-- "../include/waf/installation/requirements-docker.md"

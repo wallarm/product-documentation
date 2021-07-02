@@ -5,6 +5,10 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 * To update Wallarm Ingress controller, you need to clone new Helm chart version and apply updates to the installed version.
 * Current Ingress controller settings and Ingress annotations will be saved and applied to a new version automatically.
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Updating
 
 1. Clone new Helm chart version from the Wallarm repository:

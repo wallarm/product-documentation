@@ -9,6 +9,10 @@
 
 These instructions describe the steps to update the cloud WAF node image deployed on AWS, GCP, or Yandex.Cloud up to 3.0.
 
+!!! warning "Breaking changes and skipping partner WAF node update"
+    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+
 ## Update procedure
 
 To update the version of the WAF node deployed in the cloud:
