@@ -9,6 +9,15 @@
 
 ## Wallarm Directives
 
+### disable_acl
+
+Allows disabling analysis of requests origins. If disabled (`on`), the WAF node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+    Default value is `off`.
+
 ### wallarm_enable_libdetection
 
 Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
