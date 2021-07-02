@@ -99,27 +99,6 @@ max_packets | Limit of the number of serialized requests to be sent to Tarantool
 max_packets_mem | Limit of the total volume (in bytes) of serialized requests to be sent to Tarantool. | `0` (the volume is not limited)
 reconnect_interval | Interval (in seconds) between attempts to reconnect to the Tarantool. A value of `0` means that the WAF node will try to reconnect to the server as quickly as possible if the server renders unavailable (not recommended). | `1`
 
-## IP blacklisting settings
-
-The `acls` section of the file contains the parameters related to the IP blacklisting settings:
-
-```
-acls:
-  - name: acl0
-    path: acl0
-    mapsize: 1000000
-    ...
-  - name: aclN
-...
-```
-
-The `acl0` ... `aclN` entries are one or more parameter groups. The groups can have any name (so that they can be referred to later via the `acl` parameter in the `conf` section).
-
-Parameter | Description | Default value
---- | ---- | -----
-path | Directory that will be used to save the state of the ACL.  | -
-mapsize | Initial memory size to be allocated for the corresponding ACL. When the limit is reached, the memory will automatically be reallocated, but the API request that attempted to change the ACL and caused the overflow will produce an error, and should be repeated. | -
-
 ##  Basic settings
 
 The `conf` section of the Wallarm WAF contains the parameters that influence WAF node's basic operations:
@@ -135,7 +114,6 @@ conf:
   request_memory_limit: 104857600
   wallarm_status: "off"
   wallarm_status_format: "json"
-  acl: acl0
 ```
 
 !!! info "Definition level"
@@ -174,4 +152,3 @@ process_time_limit | Limit on the processing time of a single request (in millis
 process_time_limit_block | Action to take when the request processing time exceeds the limit set via the `process_time_limit` parameter:<ul><li>`off`: the requests are always ignored</li><li>`on`: the requests are always blocked</li><li>`attack`: depends on the attack blocking mode set via the `mode` parameter:<ul><li>`off`: the requests are not processed</li><li>`monitoring`: the requests are ignored</li><li>`block`: the requests are blocked</li></ul></li></ul> | `attack`
 wallarm_status | Whether to enable the [WAF node statistics service](../../configure-statistics-service.md). | `false`
 wallarm_status_format | Format of the [WAF node statistics](../../configure-statistics-service.md): `json` or `prometheus`. | `json`
-acl | One of the parameter groups that is defined in the `acls` section. This parameter group sets the IP blocking configuration.<br>If this parameter is omitted from the `conf` section of the WAF node, then it should be present in the `conf` section overridden on the route or virtual host level. | -

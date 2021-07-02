@@ -52,9 +52,6 @@ controller:
       resources: {}
     collectd:
       resources: {}
-    acl:
-      enabled: false
-      resources: {}
 ```
 
 A description of the main parameters you can set up is provided below. Other parameters come with default value and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
@@ -109,8 +106,6 @@ Besides the standard ones, the following additional parameters are supported:
 * [wallarm-process-time-limit](configure-parameters-en.md#wallarm_process_time_limit)
 * [wallarm-process-time-limit-block](configure-parameters-en.md#wallarm_process_time_limit_block)
 * [wallarm-request-memory-limit](configure-parameters-en.md#wallarm_request_memory_limit)
-* `enable-wallarm-acl` - enables blocking by IP addresses [specified](../user-guides/blacklist.md) in your Wallarm account
-* [wallarm-acl-mapsize](configure-parameters-en.md#wallarm_acl_mapsize)
 
 ## Ingress Annotations
 
@@ -127,7 +122,6 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-parse-websocket](configure-parameters-en.md#wallarm_parse_websocket)
 * [nginx.ingress.kubernetes.io/wallarm-unpack-response](configure-parameters-en.md#wallarm_unpack_response)
 * [nginx.ingress.kubernetes.io/wallarm-parser-disable](configure-parameters-en.md#wallarm_parser_disable)
-* [nginx.ingress.kubernetes.io/wallarm-acl](configure-parameters-en.md#wallarm_acl)
 
 ### Applying annotation to the Ingress resource
 
@@ -142,14 +136,6 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
 * `VALUE` is the value of the annotation from the list above.
 
 ### Annotation examples
-
-#### Enabling IP blocking
-
-To enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
-
-```
-kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on
-```
 
 #### Configuring the blocking page and error code
 
