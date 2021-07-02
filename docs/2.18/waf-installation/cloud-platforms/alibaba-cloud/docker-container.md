@@ -45,11 +45,11 @@ To deploy the containerized WAF node configured only through environment variabl
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -p 80:80 wallarm/node:2.18.1-3
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -p 80:80 wallarm/node:2.18.1-4
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:2.18.1-3
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:2.18.1-4
         ```
         
     * `-p`: port the WAF node listens to. The value should be the same as the instance port.
@@ -112,11 +112,11 @@ To deploy the containerized WAF node configured through environment variables an
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:2.18.1-3
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:2.18.1-4
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:2.18.1-3
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:2.18.1-4
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
