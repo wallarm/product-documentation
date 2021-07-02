@@ -14,7 +14,7 @@
 
 # Updating Linux WAF packages
 
-These instructions describe the steps to update Linux WAF packages to version 2.18. Linux WAF packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to update Linux WAF packages to version 3.0. Linux WAF packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -35,12 +35,12 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.0/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -55,20 +55,20 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.0/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.0/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/
         ```
 
 ## Step 2: Update Wallarm WAF packages
@@ -123,6 +123,6 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 ## Settings customization
 
-Wallarm WAF modules are updated to version 2.18. Previous WAF node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm WAF modules are updated to version 3.0. Previous WAF node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

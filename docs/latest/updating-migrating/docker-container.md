@@ -7,10 +7,10 @@
 
 # Updating the running Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to update the running Docker NGINX- or Envoy-based image to the version 2.18.
+These instructions describe the steps to update the running Docker NGINX- or Envoy-based image to the version 3.0.
 
 !!! warning "Using credentials of already existing WAF node"
-    We do not recommend to use the already existing WAF node of the previous version. Please follow these instructions to create a new WAF node of the version 2.18 and deploy it as the Docker container.
+    We do not recommend to use the already existing WAF node of the previous version. Please follow these instructions to create a new WAF node of the version 3.0 and deploy it as the Docker container.
 
 ## Requirements
 
@@ -20,11 +20,11 @@ These instructions describe the steps to update the running Docker NGINX- or Env
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:2.18.1-3
+    docker pull wallarm/node:3.0.0-2
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:2.18.1-3
+    docker pull wallarm/envoy:3.0.0-1
     ```
 
 ## Step 2: Stop the running container
@@ -52,4 +52,4 @@ There are two options for running the container using the updated image:
 
 ## Step 5: Delete the WAF node of the previous version
 
-If the deployed image of the version 2.18 operates correctly, you can delete the WAF node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 3.0 operates correctly, you can delete the WAF node of the previous version in the Wallarm Console → **Nodes** section.

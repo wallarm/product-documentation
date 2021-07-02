@@ -15,7 +15,7 @@ spec:
       containers:
       # Wallarm element: definition of Wallarm sidecar container
       - name: wallarm
-        image: wallarm/node:2.16.0-9
+        image: wallarm/node:3.0.0-2
         imagePullPolicy: Always
         env:
         # Wallarm API endpoint: 
