@@ -42,21 +42,16 @@ To fix the problem, please follow the steps:
 	```
 2. Add a new repository using the command for appropriate CentOS and WAF node versions:
 
-	=== "CentOS 6.x"
-		```bash
-		# WAF node and postanalytics module of the 2.14 version
-		sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/6/2.14/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
-		```
 	=== "CentOS 7.x или Amazon Linux"
 		```bash
-		# WAF node and postanalytics module of the 2.14 version
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
-		
 		# WAF node and postanalytics module of the 2.16 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.16/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
 		
 		# WAF node and postanalytics module of the 2.18 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+		
+		# WAF node and postanalytics module of the 3.0 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
 		```
 	=== "CentOS 8.x"
 		```bash
@@ -65,6 +60,9 @@ To fix the problem, please follow the steps:
 		
 		# WAF node and postanalytics module of the 2.18 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+
+		# WAF node and postanalytics module of the 3.0 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.0/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
 		```
 
 ## Why does not the WAF node block attacks when operating in blocking mode (`wallarm_mode block`)?

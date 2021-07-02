@@ -77,7 +77,7 @@ To deploy the containerized WAF node configured only through environment variabl
                     }
                 ],
                 "name": "waf-container",
-                "image": "registry-1.docker.io/wallarm/node:2.18.1-3"
+                "image": "registry-1.docker.io/wallarm/node:3.0.0-2"
                 }
             ],
             "family": "wallarm-waf-node"
@@ -119,7 +119,7 @@ To deploy the containerized WAF node configured only through environment variabl
                     }
                 ],
                 "name": "waf-container",
-                "image": "registry-1.docker.io/wallarm/node:2.18.1-3"
+                "image": "registry-1.docker.io/wallarm/node:3.0.0-2"
                 }
             ],
             "family": "wallarm-waf-node"
@@ -248,7 +248,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "waf-container",
-                "image": "registry-1.docker.io/wallarm/node:2.18.1-3"
+                "image": "registry-1.docker.io/wallarm/node:3.0.0-2"
                 }
             ],
             "volumes": [
@@ -301,7 +301,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "waf-container",
-                "image": "registry-1.docker.io/wallarm/node:2.18.1-3"
+                "image": "registry-1.docker.io/wallarm/node:3.0.0-2"
                 }
             ],
             "volumes": [

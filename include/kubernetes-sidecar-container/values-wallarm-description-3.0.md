@@ -2,7 +2,7 @@
 wallarm:
   image:
      repository: wallarm/node
-     tag: 2.12
+     tag: 3.0.0-2
      pullPolicy: Always
   # Wallarm API endpoint: 
   # "api.wallarm.com" for the EU cloud
@@ -19,11 +19,10 @@ wallarm:
   # Request filtration mode:
   # "off" to disable request processing
   # "monitoring" to process but not block requests
+  # "safe_blocking" to block malicious requests originated from greylisted IPs
   # "block" to process all requests and block the malicious ones
   mode: "block"
   # Amount of memory in GB for request analytics data,
   # recommended value is 75% of the total server memory
   tarantool_memory_gb: 2
-  # Set to "true" to enable the WAF IP Blocking functionality
-  enable_ip_blocking: "false"
 ```

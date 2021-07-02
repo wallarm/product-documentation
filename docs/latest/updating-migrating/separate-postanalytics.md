@@ -13,12 +13,12 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.0/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -33,20 +33,20 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.0/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/2.18/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.0/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/
         ```
 
 ## Step 2: Update the Tarantool packages

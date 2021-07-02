@@ -139,7 +139,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Debian 10.x (buster)"
@@ -147,21 +147,21 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
 2. Install the **cpire** utility:
