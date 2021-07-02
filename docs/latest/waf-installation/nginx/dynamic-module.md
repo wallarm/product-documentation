@@ -22,6 +22,7 @@
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
@@ -31,7 +32,7 @@ These instructions describe the steps to install Wallarm WAF as a dynamic module
 
 ## Requirements
 
---8<-- "../include/waf/installation/nginx-requirements.md"
+--8<-- "../include/waf/installation/nginx-requirements-3.0.md"
 
 ## Installation options
 
