@@ -9,108 +9,14 @@
 
 ## Wallarm Directives
 
-### wallarm_enable_libdetection
+### disable_acl
 
-Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
-
-Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
-
-[More details on **libdetection** →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
-
-To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
-
-**Example:**
-
-```
-wallarm_enable_libdetection on;
-proxy_request_buffering on;
-```
-
-!!! warning "Memory consumption increase"
-    When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
+Allows disabling analysis of requests origins. If disabled (`on`), the WAF node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
-    To enable libdetection in the Wallarm Ingresss controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
-
     Default value is `off`.
-
-### wallarm_acl
-
-Allows you to restrict access to resources when a request IP address is in the specified ACL (Access Control List). 
-
-The specified ACL must be declared with the directive `wallarm_acl_db`.
-
-You can use the `satisfy` directive to set constraints from both the ACL and other NGINX modules, such as ngx_http_access_module.
-
-Setting directive to **off** disables the ACL check.
-
-**Example:**
-
-```
-satisfy any;
-
-wallarm_acl wapi;
-
-allow 1.2.3.4/0;
-deny all;
-```
-
-!!! info
-    This parameter can be set inside the http, server, and/or location blocks.
-
-### wallarm_acl_api
-
-If this directive is applied within the location block, then this location can be used to manage ACL content.
-
-**Example:**
-```
-location / wallarm-acl {
-  allow 127.0.0.1;
-  deny all;
-
-  wallarm_acl wapi;
-  wallarm_acl_api on;
-}
-```
-
-!!! info
-    This parameter can be set inside the http, server, and/or location blocks.
-
-### wallarm_acl_db
-
-Allows you to declare and configure an ACL database to restrict access by IP addresses.
-
-**Example**
-
-```
-wallarm_acl_db wapi {
-  wallarm_acl_path /var/cache/nginx/wallarm/acl/wapi;
-}
-```
-
-
-!!! info
-    The parameter can only be configured at the main level.
-
-
-### wallarm_acl_mapsize
-
-Allows you to set the initial memory size to be allocated for the corresponding ACL.
-
-When the limit is reached, the memory will be automatically reallocated. However, the API request that attempted to change the ACL and caused the overflow, will produce an error and should be repeated.
-
-!!! info
-    The parameter can only be configured inside the `wallarm_acl_db` block.
-
-
-### wallarm_acl_path
-
-Specifies the directory that will be used to save the state of the ACL.
-
-!!! info
-    The parameter can only be configured inside the `wallarm_acl_db` block.
 
 ### wallarm_api_conf
 
@@ -166,6 +72,32 @@ A directory in which the backup catalog for the proton.db and [LOM](../glossary-
 !!! info
     This parameter is configured inside the http block only.
 
+### wallarm_enable_libdetection
+
+Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+
+Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
+
+[More details on **libdetection** →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+
+To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
+
+**Example:**
+
+```
+wallarm_enable_libdetection on;
+proxy_request_buffering on;
+```
+
+!!! warning "Memory consumption increase"
+    When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+    To enable libdetection in the Wallarm Ingresss controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
+
+    Default value is `off`.
 
 ### wallarm_fallback
 
