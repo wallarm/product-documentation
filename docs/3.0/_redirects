@@ -179,7 +179,7 @@
 /admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
 /admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
-/partner-waf-node/overview/ /2.18/partner-waf-node/overview/
+/partner-waf-node/overview/ /2.18/partner-waf-node/overview/ 301!
 /partner-waf-node/creating-partner-account/ /2.18/partner-waf-node/creating-partner-account/
 /partner-waf-node/connecting-clients/ /2.18/partner-waf-node/connecting-clients/
 /partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/
