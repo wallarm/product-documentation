@@ -78,7 +78,7 @@ google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
 docs_dir: docs/2.18
 site_dir: site/2.18
-edit_uri: ../product-docs-en/edit/master/docs/latest/
+edit_uri: ../product-docs-en/edit/master/docs/2.18/
 
 nav:
   - WAF guides:
