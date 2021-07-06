@@ -22,8 +22,9 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
     yum list wallarm-node
     ```
 
-    * If the version `2.18.x` is installed, then follow the current instructions.
-    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../../../2.16/admin-en/installation-guides/envoy/envoy-docker) or [update the packages to 2.18](../../../updating-migrating/docker-container.md) in all deployments.
+    * If the version `3.0.x` is installed, then follow the current instructions.
+    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](/2.18/admin-en/installation-guides/envoy/envoy-docker/) or [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments.
+    * If the version `2.16.x` is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
 
     More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
 

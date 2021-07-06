@@ -13,23 +13,21 @@
 [configure-selinux-instr]:          ../../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
-[2.16-install-postanalytics-instr]: ../../admin-en/installation-postanalytics-en.md
-[2.18-install-postanalytics-instr]: ../../../../admin-en/installation-postanalytics-en/
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
-[2.18-installation-instr]:          ../../../../waf-installation/nginx/dynamic-module/
-[nginx-modules-update-docs]:        ../../../../updating-migrating/nginx-modules/
-[separate-postanalytics-update-docs]:   ../../../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../../updating-migrating/versioning-policy.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[waf-installation-instr-latest]:             /waf-installation/nginx/dynamic-module/
+[waf-installation-instr-middle]:             /2.18/waf-installation/nginx/dynamic-module/
+[versioning-policy]:                         ../../updating-migrating/versioning-policy.md
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
 These instructions describe the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
---8<-- "../include/waf/installation/already-installed-waf-2.16.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-deprecation.md"
 
 ## Requirements
 

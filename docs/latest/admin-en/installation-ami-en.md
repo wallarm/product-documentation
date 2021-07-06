@@ -6,6 +6,8 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
+[installation-instr-middle]:    /2.18/admin-en/installation-ami-en/
+[versioning-policy]:            ../updating-migrating/versioning-policy.md
 
 # Deploying as an Amazon Machine Image (AMI)
 
@@ -65,20 +67,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 ## 4. Launch a Filter Node Instance
 
-!!! info "If Wallarm WAF instance is already launched"
-    If you launch Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the instance in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
-
-    To check the launched version, run the following command:
-
-    ```
-    apt list wallarm-node
-    ```
-
-    * If the version `2.18.x` is installed, then follow the current instructions.
-    * If the version `2.16.x` is installed, then follow the [instructions for 2.16](../../2.16/admin-en/installation-ami-en/) or update all Wallarm WAF instances to 2.18.
-    * If the version `2.14.x` or lower is installed, then please update all Wallarm WAF instances to 2.18.
-
-    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+--8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
 To launch an instance with the WAF node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the WAF node 3.0.0.
 

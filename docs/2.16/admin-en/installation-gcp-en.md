@@ -1,7 +1,9 @@
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
-
+[installation-instr-latest]:    /admin-en/installation-gcp-en/
+[installation-instr-middle]:    /2.18/admin-en/installation-gcp-en/
+[versioning-policy]:            ../updating-migrating/versioning-policy.md
 
 # Deploying on Google Cloud Platform (GCP)
 
@@ -24,20 +26,7 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ## 2. Launch a Filter Node Instance
 
-!!! info "If Wallarm WAF instance is already launched"
-    If you launch Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the instance in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
-
-    To check the launched version, run the following command:
-
-    ```
-    apt list wallarm-node
-    ```
-
-    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](../../../admin-en/installation-gcp-en/).
-    * If the version `2.16.x` is installed,  then follow the current instructions or update all Wallarm WAF instances to 2.18.
-    * If the version `2.14.x` or lower is installed, then please update all Wallarm WAF instances to 2.18.
-
-    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
 
 ### Launch the instance via the Google Cloud UI
 
