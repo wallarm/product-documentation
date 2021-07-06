@@ -12,22 +12,18 @@
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [configure-selinux-instr]:          ../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
-[2.16-install-postanalytics-instr]: ../../2.16/admin-en/installation-postanalytics-en/
 [update-instr]:                     ../updating-migrating/nginx-modules.md
-[2.16-installation-instr]:          ../../2.16/waf-installation/nginx-plus/
-[nginx-modules-update-docs]:        ../../updating-migrating/nginx-modules/
-[separate-postanalytics-update-docs]:   ../../updating-migrating/separate-postanalytics/
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../updating-migrating/versioning-policy.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[waf-installation-instr-latest]:    /waf-installation/nginx-plus/
 
 # Installing dynamic WAF module for NGINX Plus
 
 These instructions describe the steps to install Wallarm WAF as a dynamic module for the official commercial version of NGINX Plus.
 
---8<-- "../include/waf/installation/already-installed-waf-2.18.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-middle.md"
 
 ## Requirements
 

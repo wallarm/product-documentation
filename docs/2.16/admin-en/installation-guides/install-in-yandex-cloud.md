@@ -4,6 +4,9 @@
 [scanner-whitelisting-instr]:       ../../admin-en/scanner-ips-whitelisting.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[installation-instr-latest]:        /admin-en/installation-guides/install-in-yandex-cloud/
+[installation-instr-middle]:        /2.18/admin-en/installation-guides/install-in-yandex-cloud/
+[versioning-policy]:                ../../updating-migrating/versioning-policy.md
 
 # Installing on Yandex.Cloud
 
@@ -32,19 +35,7 @@ Before starting WAF node installation, please check that you meet all these requ
 
 ### 1. Create a virtual machine with the WAF node
 
-!!! info "If a virtual machine with the WAF node is already created"
-    If you create a virtual machine instead of already existing virtual machine or need to duplicate the virtual machine in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
-
-    To check the launched version, run the following command:
-
-    ```
-    apt list wallarm-node
-    ```
-
-    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](../../../../admin-en/installation-guides/install-in-yandex-cloud/).
-    * If the version `2.16.x` is installed, then follow the current instructions or update all Wallarm WAF virtual machines to 2.18.
-
-    More information about WAF node versioning is available in the [WAF node versioning policy](../../updating-migrating/versioning-policy.md).
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
 
 1. Log in to the [management console](https://console.cloud.yandex.com/) and select the folder where the virtual machine will be created.
 2. Select **Compute Cloud** from the list of services.
