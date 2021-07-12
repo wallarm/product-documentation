@@ -24,6 +24,9 @@ async function getPageHTML({ id, href, path }) {
         let $section = document.querySelector('.md-content');
 
         [...document.querySelectorAll('a')].forEach($a => { $a.dataset.dir = path; });
+        let $header = document.getElementById('demo-videos');
+        if ($header) $header.style.display='none';
+        [...document.getElementsByClassName('video-wrapper')].forEach($video => { $video.style.display='none'; });
         [...document.querySelectorAll('[id]')].forEach($node => {
             let anchor = $node.getAttribute('id');
             $node.setAttribute('id', `${id}---${anchor}`)
@@ -90,14 +93,21 @@ async function collectData(toc) {
 
     for (let i = 0; i < toc.length; i++) {
         let item = toc[i];
+        var demoVid=new RegExp("demo-videos");
+        var apiFir=new RegExp("api-firewall");
 
-        if (!item.id) continue;
+        if (demoVid.test(item.href) || apiFir.test(item.href)) {
+            write('Demo videos or API Firewall docs skipped\n', 1);
+        }
+        else {
+            if (!item.id) continue;
 
-        let p = Math.round(i / (toc.length - 1) * 100);
+            let p = Math.round(i / (toc.length - 1) * 100);
 
-        write(`• Collecting data... ${p}%\n  ${item.path}`, 2);
+            write(`• Collecting data... ${p}%\n  ${item.path}\n  ${item.title}`, 2);
 
-        item.html = await getPageHTML(item);
+            item.html = await getPageHTML(item);
+        }
     }
 }
 
@@ -105,22 +115,32 @@ async function generateHTML(toc, parts) {
     write('✔ Data is collected\n• Preparing a ToC...', 2);
 
     let html = '';
+    var demoVid=new RegExp("demo-videos");
+    var apiFir=new RegExp("api-firewall");
 
     html += '<h1>Table of contents</h1><ul id="toc">';
 
     toc.forEach(item => {
-        if (item.type === 'header') {
-            html += `<li><h3>${item.title}</h3></li>\n`;
-            
+        if (demoVid.test(item.href) || apiFir.test(item.href)) {
+            write('Demo videos or API Firewall docs skipped\n', 1);
         }
-
-        if (item.type === 'chapter') {
-            if (item.id) {
-                html += `<li class="depth depth-${item.depth}"><a href="#${item.id}">${item.title}</a></li>\n`;
-            } else {
-                html += `<li class="chapter depth depth-${item.depth}">${item.title}</li>\n`;
+        else {
+            if (item.type === 'header') {
+                html += `<li><h3>${item.title}</h3></li>\n`;
+                
             }
-        }
+
+            if (item.type === 'chapter' && item.title != 'Demo videos' && item.title != 'API Firewall guides' && item.title != 'Demos') {
+                if (item.id) {
+                    html += `<li class="depth depth-${item.depth}"><a href="#${item.id}">${item.title}</a></li>\n`;
+                } else {
+                    html += `<li class="chapter depth depth-${item.depth}">${item.title}</li>\n`;
+                }
+            }
+            // else {
+            //     write('djdj');
+            // }
+    }
     });
 
     html += '</ul>' + pageBreak;
@@ -218,16 +238,6 @@ async function generateIndexPDF(parts) {
     });
 }
 
-async function mergePDF() {
-    write('✔ PDF is done!\n• Merging PDFs...', 2);
-    var merger = new PDFMerger();
-    merger.add('tmp/index.pdf');
-    merger.add('tmp/docs.pdf'); 
-    
-    await merger.save('tmp/en-waf-documentation.pdf');
-    write('✔ Merge is done!\n', 1);
-}
-
 module.exports.generatePDF = async ({ origin }) => {
     if (!origin) throw new Error('Origin is required!');
 
@@ -248,7 +258,7 @@ module.exports.generatePDF = async ({ origin }) => {
     await collectData(toc);
     let html = await generateHTML(toc, parts);
     await generatePDF(docsUrl, html, origin, parts);
-    await mergePDF();
+    write ('PDF is done!\n', 1)
 
     browser.close();
 };
