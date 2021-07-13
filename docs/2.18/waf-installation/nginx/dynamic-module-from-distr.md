@@ -17,6 +17,7 @@
 [versioning-policy]:               ../../updating-migrating/versioning-policy.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 
 # Installing dynamic WAF module for NGINX from Debian/CentOS repositories
 

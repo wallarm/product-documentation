@@ -20,6 +20,7 @@
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [waf-installation-instr-middle]:     /2.18/waf-installation/nginx/dynamic-module/
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 
 # Installing dynamic WAF module for NGINX stable from NGINX repository
 
