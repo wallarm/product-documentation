@@ -49,6 +49,9 @@ The WAF node downloads an actual list of IP addresses registered in whitelisted,
 * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
 
     [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
+* New module **API Discovery** that automatically identifies the application API structure.
+
+    [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
 
 ## Update process
 
