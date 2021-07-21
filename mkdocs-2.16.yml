@@ -326,6 +326,7 @@ nav:
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
+      - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
   - Wallarm API:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
