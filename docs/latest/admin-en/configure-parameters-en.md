@@ -312,9 +312,10 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - **on**: the requests are always blocked
 - **off**: the requests are always ignored
 - **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
-    - **off**: the requests are not processed
-    - **monitoring**: the requests are ignored
-    - **block**: the requests are blocked
+    - **off**: the requests are not processed.
+    - **monitoring**: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in the Wallarm Console.
+    - **safe_blocking**: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in the Wallarm Console.
+    - **block**: the requests are blocked.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
