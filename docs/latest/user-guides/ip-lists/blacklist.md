@@ -32,9 +32,3 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
     1. IP address was automatically added to the greylist for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [trigger](../triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)).
     2. User deleted this IP address from the greylist via the Wallarm Console.
     3. If 4 different attack vectors are sent from this IP address within 30 minutes, then this IP address will not be added to the greylist.
-
-## Statistics on the blacklisted IP addresses
-
-Using the data of the [WAF dashboard **Blacklist** section](../dashboard/waf.md#blacklisted-ip-addresses), you can analyze the statistics on blacklist changes and currently blocked objects.
-
-![!Blacklisted IP addresses dashboard](../../images/user-guides/dashboard/waf-blacklist-stats.png)
