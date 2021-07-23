@@ -16,12 +16,12 @@
 
 ## Image overview
 
-The WAF node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the WAF node.
+The Wallarm filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
 
-The functionality of the WAF node installed inside the Docker container is completely identical to the functionality of the other deployment options.
+The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
-!!! info "If the Wallarm WAF image is already deployed in your environment"
-    If you deploy the Wallarm WAF image instead of the already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
+!!! info "If the Wallarm filtering node image is already deployed in your environment"
+    If you deploy the Wallarm filtering node image instead of the already deployed image or need to duplicate the deployment, please keep the same node version as currently used or update the version of all images to the latest.
 
     To check the installed version, run the following command in the container:
 
@@ -33,7 +33,7 @@ The functionality of the WAF node installed inside the Docker container is compl
     * If the version `2.18.x` is installed, then follow the [instructions for 2.18](/2.18/admin-en/installation-docker-en/) or [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments.
     * If the version `2.16.x` or lower is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
 
-    More information about WAF node versioning is available in the [WAF node versioning policy](../updating-migrating/versioning-policy.md).
+    More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../updating-migrating/versioning-policy.md).
 
 ## Requirements
 
@@ -45,7 +45,7 @@ The functionality of the WAF node installed inside the Docker container is compl
 
 ## Run the container passing the environment variables
 
-You can pass the following basic WAF node settings to the container via the option `-e`:
+You can pass the following basic filtering node settings to the container via the option `-e`:
 
 --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
 
@@ -62,10 +62,10 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
-* Creates the file `default` with minimal NGINX configuration and passes WAF node configuration in the `/etc/nginx/sites-enabled` container directory.
-* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
-    * `node.yaml` with WAF node UUID and secret key
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
+* Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
+* Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with filtering node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://NGINX_BACKEND:80`.
 
@@ -73,7 +73,7 @@ The command does the following:
 
 You can mount the prepared configuration file to the Docker container via the `-v` option. The file must contain the following settings:
 
-* [WAF node directives](configure-parameters-en.md)
+* [Filtering node directives](configure-parameters-en.md)
 * [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
 
 ??? info "See an example of the mounted file with minimal settings"
@@ -121,10 +121,10 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new WAF node in Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
-* Creates files with WAF node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
-    * `node.yaml` with WAF node UUID and secret key
+* Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with filtering node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://example.com`.
 
@@ -135,22 +135,22 @@ The command does the following:
     * `/etc/nginx/sites-enabled` — virtual host settings
     * `/var/www/html` — static files
 
-    If required, you can mount any files to the listed container directories. The WAF node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+    If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
 
 ## Logging configuration
 
 The logging is enabled by default. The log directories are:
 
 * `/var/log/nginx` — NGINX logs
-* `/var/log/wallarm` — Wallarm WAF logs
+* `/var/log/wallarm` — Wallarm node logs
 
-To configure extended logging of the WAF node variables, please use these [instructions](configure-logging.md).
+To configure extended logging of the filtering node variables, please use these [instructions](configure-logging.md).
 
 By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
 
 ## Monitoring configuration
 
-To monitor the WAF node, there are Nagios‑compatible scripts inside the container. See details in [Monitoring the WAF node][doc-monitoring].
+To monitor the filtering node, there are Nagios‑compatible scripts inside the container. See details in [Monitoring the filtering node][doc-monitoring].
 
 Example of running the scripts:
 
@@ -162,12 +162,12 @@ docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_tarantool_tim
 docker exec -it wallarm-node /usr/lib/nagios-plugins/check_wallarm_export_delay -w 120 -c 300
 ```
 
-## Testing WAF node operation
+## Testing Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Configuring the use cases
 
-The configuration file mounted to the Docker container should describe the WAF node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used WAF node configuration options:
+The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used filtering node configuration options:
 
 --8<-- "../include/waf/installation/common-customization-options-docker.md"

@@ -14,7 +14,7 @@ By default **Active threat verification** is disabled. To enable the module, [kn
 
 ## Potential risks from the Attack rechecker activity
 
-* In rare cases when a legitimate request is detected by the WAF as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
+* In rare cases when a legitimate request is detected by Wallarm as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
 
     To minimize the risk of the described situation, **Attack rechecker** will automatically strip the following HTTP headers from the replayed requests:
 
@@ -27,7 +27,7 @@ By default **Active threat verification** is disabled. To enable the module, [kn
 
 ### Configure proper data masking rules
 
-If your application uses non-standard types of authentication (for example, request string token or custom HTTP request header or JSON attribute in POST body), then you should configure a proper [data masking rule](../user-guides/rules/sensitive-data-rule.md) to prevent the WAF nodes from sending the information to the Wallarm Cloud. In this case, the replayed **Attack rechecker** requests will be not authorized by the application and not cause any harm to the system.
+If your application uses non-standard types of authentication (for example, request string token or custom HTTP request header or JSON attribute in POST body), then you should configure a proper [data masking rule](../user-guides/rules/sensitive-data-rule.md) to prevent the filtering nodes from sending the information to the Wallarm Cloud. In this case, the replayed **Attack rechecker** requests will be not authorized by the application and not cause any harm to the system.
 
 ### Know how to control the Attack rechecker
 
@@ -37,9 +37,9 @@ The global on/off switch of the **Attack rechecker** module is located in the Wa
 
 Wallarm provides [integrations with third-party messaging and incident management services](../user-guides/settings/integrations/integrations-intro.md) like Slack, Telegram, PagerDuty, Opsgenie and others. It is highly recommended to configure your Wallarm Cloud instance to use the integrations to dispatch notifications about discovered security incidents to your information security team.
 
-### Know how to handle potential leaks of sensitive data from WAF nodes to the Wallarm Cloud
+### Know how to handle potential leaks of sensitive data from filtering nodes to the Wallarm Cloud
 
-If you discover that your WAF nodes have dispatched some detected false positive requests with included sensitive information such as authentication tokens or username/password credentials to the Wallarm Cloud, you can ask the [Wallarm technical support](mailto:support@wallarm.com) to delete the requests from the Wallarm Cloud storage. Also, you can configure proper [data masking rules](../user-guides/rules/sensitive-data-rule.md). It is not possible to modify already stored data.
+If you discover that your filtering nodes have dispatched some detected false positive requests with included sensitive information such as authentication tokens or username/password credentials to the Wallarm Cloud, you can ask the [Wallarm technical support](mailto:support@wallarm.com) to delete the requests from the Wallarm Cloud storage. Also, you can configure proper [data masking rules](../user-guides/rules/sensitive-data-rule.md). It is not possible to modify already stored data.
 
 ### Optional: Enable/disable Attack rechecker tests for specific applications, domains or URLs
 

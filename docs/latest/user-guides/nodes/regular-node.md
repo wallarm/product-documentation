@@ -1,10 +1,10 @@
-# Regular WAF nodes
+# Regular filtering nodes
 
-The regular WAF node is used in Linux‑based, Kubernetes sidecar and Docker‑based deployments.
+The regular filtering node is used in Linux‑based, Kubernetes sidecar and Docker‑based deployments.
 
-## Creating WAF node
+## Creating a node
 
-The regular WAF node is created while setting up integration with the platform:
+The regular filtering node is created while setting up integration with the platform:
 
 * [NGINX](../../waf-installation/nginx/dynamic-module.md)
 * [NGINX Plus](../..//waf-installation/nginx-plus.md)
@@ -12,11 +12,11 @@ The regular WAF node is created while setting up integration with the platform:
 * [Kubernetes sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
 * [Kong](../../admin-en/installation-kong-en.md)
 
-If the integration is successfully finished, then the created WAF node will be displayed in the list of nodes in Wallarm UI.
+If the integration is successfully finished, then the created node will be displayed in the list of nodes in Wallarm UI.
 
-## Viewing details of WAF node
+## Viewing details of a node
 
-The details of the installed WAF node are displayed in the table and card of each WAF node. To open the card, click the appropriate table record.
+The details of the installed node are displayed in the table and card of each node. To open the card, click the appropriate table record.
 
 The following node properties and metrics are available:
 
@@ -24,21 +24,21 @@ The following node properties and metrics are available:
 * The average number of requests per second (RPS)
 * Node IP address
 * Unique node identifier (UUID)
-* Time of the last synchronization of the WAF node and Wallarm cloud
-* Date of the WAF node creation
+* Time of the last synchronization of the filtering node and Wallarm cloud
+* Date of the filtering node creation
 * Number of requests processed by the node in the current month
 * Versions of used LOM and proton.db
-* Versions of installed Wallarm WAF packages, NGINX, and Envoy (if any)
+* Versions of installed Wallarm API Security packages, NGINX, and Envoy (if any)
 * Indicator of available component updates
 
-![!Regular WAF node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![!Regular node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
-## Deleting WAF node
+## Deleting a node
 
-When the WAF node is deleted, filtration of requests to your application will be stopped. The deleting of the WAF node cannot be undone. The WAF node will be deleted from the list of nodes permanently.
+When the filtering node is deleted, filtration of requests to your application will be stopped. The deleting of the filtering node cannot be undone. The Wallarm node will be deleted from the list of nodes permanently.
 
 1. Open Wallarm UI → **Nodes**.
-2. Select one or more WAF nodes and click **Delete**. You can also delete the WAF node by selecting a button off the node menu or node card.
+2. Select one or more nodes and click **Delete**. You can also delete the filtering node by selecting a button off the node menu or node card.
 3. Confirm the action.
 
 ![!Deleting the node](../../images/user-guides/nodes/delete-node.png)

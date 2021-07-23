@@ -1,8 +1,8 @@
-# Wallarm WAF subscription plans
+# Wallarm API Security subscription plans
 
-The subscription plan outlines the access conditions to Wallarm WAF: subscription period, the set of available modules, and features.
+The subscription plan outlines the access conditions to Wallarm API Security: subscription period, the set of available modules, and features.
 
-This document describes the components of the Wallarm WAF subscription plan and how to configure it.
+This document describes the components of the Wallarm API Security subscription plan and how to configure it.
 
 ## Subscription plans
 
@@ -10,12 +10,12 @@ The subscription plan includes a set of modules and features. You can select and
 
 ### Modules
 
-The set of all Wallarm WAF modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
+The set of all Wallarm API Security modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
 
 * **WAF** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
 * **Brute-force protection** automatically blacklists IP addresses from which brute-force attacks are sent.
-* **Active threat verification** detects open application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the WAF node and looks for vulnerabilities in the corresponding parts of the application.
-* **Rules configuration** allows you to manually add request processing rules: block malicious requests if the WAF node is working in the `monitoring` mode or if any known attack vector is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
+* **Active threat verification** detects open application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the filtering node and looks for vulnerabilities in the corresponding parts of the application.
+* **Rules configuration** allows you to manually add request processing rules: block malicious requests if the filtering node is working in the `monitoring` mode or if any known attack vector is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
 * **Scope** scans the company's network perimeter: discovering new domains, IP addresses, services, and notification of new objects.
 * **Vulnerability scanner** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
 
@@ -39,11 +39,11 @@ When a new user is registered in the Wallarm Console, a new client account with 
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm WAF trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm WAF.
+* Wallarm API Security trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm API Security.
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
-* If the trial period expired, the client account is blocked. When a paid subscription to Wallarm WAF is activated, access to the client account is restored for all users.
+* If the trial period expired, the client account is blocked. When a paid subscription to Wallarm API Security is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 

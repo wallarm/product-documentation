@@ -1,28 +1,28 @@
 [allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
-[mount-config-instr]:               #deploying-the-waf-node-docker-container-configured-through-the-mounted-file
+[mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
 [greylist-docs]:                    ../../../user-guides/ip-lists/greylist.md
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 
-# Deployment of the WAF node Docker image to Alibaba Cloud
+# Deployment of the Wallarm node Docker image to Alibaba Cloud
 
-This quick guide provides the steps to deploy the [Docker image of the NGINX-based WAF node](https://hub.docker.com/r/wallarm/node) to the Alibaba Cloud platform using the [Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs).
+This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Alibaba Cloud platform using the [Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs).
 
 !!! warning "The instructions limitations"
-    These instructions do not cover the configuration of load balancing and WAF node autoscaling. If setting up these components yourself, we recommend that you read the appropriate [Alibaba Cloud documentation](https://www.alibabacloud.com/help/product/27537.htm?spm=a2c63.m28257.a1.82.dfbf5922VNtjka).
+    These instructions do not cover the configuration of load balancing and node autoscaling. If setting up these components yourself, we recommend that you read the appropriate [Alibaba Cloud documentation](https://www.alibabacloud.com/help/product/27537.htm?spm=a2c63.m28257.a1.82.dfbf5922VNtjka).
 
 ## Requirements
 
 * Access to the [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)
 * Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
-## Options for the WAF node Docker container configuration
+## Options for the Wallarm node Docker container configuration
 
 --8<-- "../include/waf/installation/docker-running-options.md"
 
-## Deploying the WAF node Docker container configured through environment variables
+## Deploying the Wallarm node Docker container configured through environment variables
 
-To deploy the containerized WAF node configured only through environment variables, you should create the Alibaba Cloud instance and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
+To deploy the containerized Wallarm filtering node configured only through environment variables, you should create the Alibaba Cloud instance and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 2. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
@@ -41,26 +41,26 @@ To deploy the containerized WAF node configured only through environment variabl
 
     * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
     * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
-6. Run the WAF node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
+6. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -p 80:80 wallarm/node:3.0.0-2
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:3.0.0-2
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WAF> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.0.0-2
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.0.0-2
         ```
         
-    * `-p`: port the WAF node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the WAF node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `-p`: port the filtering node listens to. The value should be the same as the instance port.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
-7. [Test the WAF node operation](#testing-the-waf-node-operation).
+7. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
-## Deploying the WAF node Docker container configured through the mounted file
+## Deploying the Wallarm node Docker container configured through the mounted file
 
-To deploy the containerized WAF node configured through environment variables and mounted file, you should create the Alibaba Cloud instance, locate the WAF node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
+To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the Alibaba Cloud instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 2. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
@@ -79,7 +79,7 @@ To deploy the containerized WAF node configured through environment variables an
 
     * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
     * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
-6. In the instance, create the directory with the file `default` containing the WAF node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
+6. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
     ```bash
     server {
@@ -106,8 +106,8 @@ To deploy the containerized WAF node configured through environment variables an
     }
     ```
 
-    [Set of WAF node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
-7. Run the WAF node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
+    [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
+7. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
@@ -125,15 +125,15 @@ To deploy the containerized WAF node configured through environment variables an
         * `/etc/nginx/sites-enabled` — virtual host settings
         * `/var/www/html` — static files
 
-        The WAF node directives should be described in the `/etc/nginx/sites-enabled/default` file.
+        The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
-    * `-p`: port the WAF node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the WAF node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `-p`: port the filtering node listens to. The value should be the same as the instance port.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
-8. [Test the WAF node operation](#testing-the-waf-node-operation).
+8. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
-## Testing the WAF node operation
+## Testing the filtering node operation
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances** and copy the public IP address of the instance from the **IP address** column.
 
@@ -149,4 +149,4 @@ To deploy the containerized WAF node configured through environment variables an
 3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks.png)
 
-To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs](../../../admin-en/configure-logging.md). If the instance is unavailable, please ensure required WAF node parameters with correct values are passed to the container.
+To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs](../../../admin-en/configure-logging.md). If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

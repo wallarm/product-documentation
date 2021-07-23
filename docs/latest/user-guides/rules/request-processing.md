@@ -2,18 +2,18 @@
 
 ## Principles of analyzing and parsing requests
 
-For an effective request analysis, Wallarm WAF uses the principles:
+For an effective request analysis, Wallarm uses the principles:
 
 * Work with the same data as the protected application. For example:
-    If an application provides a JSON API, then the processed parameters will be also encoded in JSON format. To get parameter values, Wallarm WAF uses JSON parser. There are also more complex cases where the data is encoded several times — for example, JSON to Base64 to JSON. Such cases require decoding with several parsers.
+    If an application provides a JSON API, then the processed parameters will be also encoded in JSON format. To get parameter values, Wallarm uses JSON parser. There are also more complex cases where the data is encoded several times — for example, JSON to Base64 to JSON. Such cases require decoding with several parsers.
 
 * Consider the context of data processing. For example:
 
-    The parameter `name` can be passed in creation requests both as the product name and as a username. However, the processing code for such requests can be different. To define the method of analyzing such parameters, Wallarm WAF may use the URL from which the requests were sent to or other parameters.
+    The parameter `name` can be passed in creation requests both as the product name and as a username. However, the processing code for such requests can be different. To define the method of analyzing such parameters, Wallarm may use the URL from which the requests were sent to or other parameters.
 
 ## Identifying and parsing the request parts
 
-Starting from the top level of the HTTP request, the WAF node attempts to sequentially apply each of the suitable parsers to each part. The list of applied parsers depends on the nature of the data and the results of the previous training of the system.
+Starting from the top level of the HTTP request, the filtering node attempts to sequentially apply each of the suitable parsers to each part. The list of applied parsers depends on the nature of the data and the results of the previous training of the system.
 
 The output from the parsers becomes an additional set of parameters that has to be analyzed in a similar way. Parser output sometimes becomes a complex structure like JSON, array, or associative array.
 
@@ -26,7 +26,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
 ### URL
 
-Each HTTP request contains an URL. To find attacks, the WAF node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **get**.
+Each HTTP request contains an URL. To find attacks, the filtering node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **get**.
 
 The following tags correspond to the URL parser:
 

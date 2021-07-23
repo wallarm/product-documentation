@@ -1,20 +1,20 @@
 [img-wl-console-users]:             ../images/check-users.png 
 [memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 
-# Installing the WAF node (NGINX)
+# Installing the filtering node (NGINX)
 
 ## Installation overview
 
-The processing of requests in the WAF is divided into two stages:
+The processing of requests by Wallarm is divided into two stages:
 
 * Primary processing in the NGINX-Wallarm module
 * Statistical analysis of the processed requests in the postanalytics module
 
 Depending on the system architecture, the NGINX-Wallarm and postanalytics modules can be installed on the **same server** or on **different servers**.
 
-These instructions describe the installation of the NGINX-Wallarm and postanalytics modules on the **same server**. The WAF node will be installed as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
+These instructions describe the installation of the NGINX-Wallarm and postanalytics modules on the **same server**. The Wallarm node will be installed as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
-[The list of all WAF node installation forms →](../admin-en/supported-platforms.md)
+[The list of all Wallarm node installation forms →](../admin-en/supported-platforms.md)
 
 ## Requirements
 
@@ -68,19 +68,19 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
 More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
-### 2. Add Wallarm WAF repositories
+### 2. Add Wallarm repositories
 
-Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+Wallarm node is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
 
-### 3. Install Wallarm WAF packages
+### 3. Install Wallarm API Security packages
 
 Depending on your operating system, run one of the commands:
 
 --8<-- "../include/waf/installation/nginx-postanalytics.md"
 
-### 4. Connect the Wallarm WAF module
+### 4. Connect the Wallarm API Security module
 
 1. Open the file `/etc/nginx/nginx.conf`:
 
@@ -111,13 +111,13 @@ Depending on your operating system, run one of the commands:
     sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-### 5. Connect the WAF node to Wallarm Cloud
+### 5. Connect the filtering node to Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud.md"
 
 ### 6. Allocate resources for the postanalytics module
 
-The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
@@ -161,6 +161,6 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 
 ## Next steps
 
-Installation is completed. Now you need to configure the WAF node to filter traffic.
+Installation is completed. Now you need to configure the filtering node to filter traffic.
 
 See [Configure the proxying and filtering rules →](qs-setup-proxy-en.md)

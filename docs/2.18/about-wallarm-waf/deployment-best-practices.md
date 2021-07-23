@@ -1,10 +1,10 @@
-# Wallarm WAF deployment and maintenance best practices
+# Wallarm API Security deployment and maintenance best practices
 
-This article formulates best practices for deployment and maintenance of Wallarm WAF and API protection service.
+This article formulates best practices for deployment and maintenance of Wallarm API Security service.
 
 ## Understand the power of NGINX
 
-The majority of Wallarm WAF node deployment options use NGINX as the reverse proxy server (the foundation for the Wallarm WAF module), which provides a large range of functionality, modules, and performance/security guides. The following is a collection of helpful Internet articles:
+The majority of Wallarm filtering node deployment options use NGINX as the reverse proxy server (the foundation for the Wallarm API Security module), which provides a large range of functionality, modules, and performance/security guides. The following is a collection of helpful Internet articles:
 
 * [Awesome NGINX](https://github.com/agile6v/awesome-nginx)
 * [NGINX: Basics and Best Practices slide show](https://www.slideshare.net/Nginx/nginx-basics-and-best-practices-103340015)
@@ -20,86 +20,86 @@ The majority of Wallarm WAF node deployment options use NGINX as the reverse pro
 
 ## Follow recommended onboarding steps
 
-1. Learn about available [WAF node deployment options](../admin-en/supported-platforms.md).
-2. Learn about available options to [separately manage the WAF configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
-3. Deploy WAF nodes in your non-production environments with the [WAF operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
-4. Learn about how to operate, scale and monitor the WAF solution, and confirm the stability of the new network component.
-5. Deploy WAF nodes in your production environment with the [WAF operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
-6. Implement proper configuration management and [monitoring processes](#enable-proper-monitoring-of-the-waf-nodes) for the new WAF component.
-7. Keep the traffic flowing via the WAF nodes in all your environments (including testing and production) for 7‑14 days to give the WAF cloud-based backend some time to learn about your application.
-8. Enable WAF `block` [mode](../admin-en/configure-wallarm-mode.md) in all your non-production environments and use automated or manual tests to confirm that the protected application is working as expected.
-9. Enable WAF `block` [mode](../admin-en/configure-wallarm-mode.md) in the production environment and use available methods to confirm that the application is working as expected.
+1. Learn about available [Wallarm node deployment options](../admin-en/supported-platforms.md).
+2. Learn about available options to [separately manage the Wallarm nodes configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
+3. Deploy Wallarm filtering nodes in your non-production environments with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
+4. Learn about how to operate, scale and monitor the Wallarm API Security solution, and confirm the stability of the new network component.
+5. Deploy Wallarm filtering nodes in your production environment with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
+6. Implement proper configuration management and [monitoring processes](#enable-proper-monitoring-of-the-filtering-nodes) for the new Wallarm component.
+7. Keep the traffic flowing via the filtering nodes in all your environments (including testing and production) for 7‑14 days to give the Wallarm API Security cloud-based backend some time to learn about your application.
+8. Enable Wallarm `block` [mode](../admin-en/configure-wallarm-mode.md) in all your non-production environments and use automated or manual tests to confirm that the protected application is working as expected.
+9. Enable Wallarm `block` [mode](../admin-en/configure-wallarm-mode.md) in the production environment and use available methods to confirm that the application is working as expected.
 
-## Deploy the WAF nodes not just in the production environment but also in testing and staging
+## Deploy the filtering nodes not just in the production environment but also in testing and staging
 
-The majority of Wallarm service contracts do not limit the number of WAF nodes deployed by the customer, so there is no reason to not deploy the WAF nodes across all your environments, including development, testing, staging, etc.
+The majority of Wallarm service contracts do not limit the number of Wallarm nodes deployed by the customer, so there is no reason to not deploy the filtering nodes across all your environments, including development, testing, staging, etc.
 
-By deploying and using the WAF nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected situations in your critical production environment.
+By deploying and using the filtering nodes in all stages of your software development and/or service operation activities you have a better chance of properly testing the whole data flow and minimizing the risk of any unexpected situations in your critical production environment.
 
-## Enable the libdetection WAF node library
+## Enable the libdetection library
 
-Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) (available starting from WAF node version 2.16) significantly improves the WAF node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the WAF node software and enable the **libdetection** library as follows:
+Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) (available starting from Wallarm node version 2.16) significantly improves the filtering node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the filtering node software and enable the **libdetection** library as follows:
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
 
 ## Configure proper reporting of end-user IP addresses
 
-For WAF nodes located behind a load balancer or CDN please make sure to configure your WAF nodes to properly report end-user IP addresses (otherwise the [IP blocking functionality](../admin-en/configure-ip-blocking-en.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
+For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP blocking functionality](../admin-en/configure-ip-blocking-en.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 ## Enable the whitelisting of the Wallarm Scanner IPs
 
-This configuration is required for the [Attack rechecker](detecting-vulnerabilities.md#active-threat-verification) and [Vulnerability scanner](detecting-vulnerabilities.md#vulnerability-scanner) modules to reach the tested application without getting their requests blocked by the WAF nodes.
+This configuration is required for the [Attack rechecker](detecting-vulnerabilities.md#active-threat-verification) and [Vulnerability scanner](detecting-vulnerabilities.md#vulnerability-scanner) modules to reach the tested application without getting their requests blocked by the filtering nodes.
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
 * Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
 
 The [Active threat verification](detecting-vulnerabilities.md#active-threat-verification) feature will not work if the scanner's IP addresses are not properly white-listed.
 
-## Enable proper monitoring of the WAF nodes
+## Enable proper monitoring of the filtering nodes
 
-It is highly recommended to enable proper monitoring of Wallarm WAF nodes. The `collectd` service installed with every Wallarm WAF node collects the metrics listed within the [link](../admin-en/monitoring/available-metrics.md).
+It is highly recommended to enable proper monitoring of Wallarm filtering nodes. The `collectd` service installed with every Wallarm filtering node collects the metrics listed within the [link](../admin-en/monitoring/available-metrics.md).
 
-The method for setting up the WAF node monitoring depends on its deployment option:
+The method for setting up the filtering node monitoring depends on its deployment option:
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/monitoring/intro.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/monitoring/intro.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [Instructions for the NGINX-based Docker image](../admin-en/installation-docker-en.md#monitoring-configuration)
 
 ## Implement proper redundancy and automatic failover functionality
 
-Like with every other critical component in your production environment, WAF nodes should be architected, deployed, and operated with the proper level of redundancy and automatic failover. You should have **at least two active WAF nodes** handling critical end-user requests. The following articles provide relevant information about the topic:
+Like with every other critical component in your production environment, Wallarm nodes should be architected, deployed, and operated with the proper level of redundancy and automatic failover. You should have **at least two active Wallarm filtering nodes** handling critical end-user requests. The following articles provide relevant information about the topic:
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/configure-backup-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
 ## Enable the IP blocking functionality
 
-In addition to blocking individual malicious requests, Wallarm WAF nodes can also block individual end-user IP addresses. The feature is not enabled by default.
+In addition to blocking individual malicious requests, Wallarm filtering nodes can also block individual end-user IP addresses. The feature is not enabled by default.
 
-It is recommended to enable the feature after completing the WAF application profile learning stage and switching the WAF from monitoring to blocking mode.
+It is recommended to enable the feature after completing the application profile learning stage and switching the Wallarm node from monitoring to blocking mode.
 
 Use the following guides to enable the blocking of IP addresses:
 
-* [Instructions for NGINX-based WAF nodes](../admin-en/configure-ip-blocking-nginx-en.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
-* [Instructions for the WAF nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-ip-blocking-nginx-en.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
 * For the NGINX-based Docker container please pass the environment variable `WALLARM_ACL_ENABLE=true` when running the container (more details are described in the [document](../admin-en/installation-docker-en.md))
 
-After enabling the IP blocking functionality on the WAF nodes you can use the following [triggers](../user-guides/triggers/triggers.md) to control the WAF behavior:
+After enabling the IP blocking functionality on the filtering nodes you can use the following [triggers](../user-guides/triggers/triggers.md) to control the API Security behavior:
 
 * [Blocking of users sending too many attacks in a time period](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)
 * [Protection against brute-force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## Learn how to perform gradual rollout of WAF configuration changes
+## Learn how to perform gradual rollout of Wallarm API Security configuration changes
 
-* Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm WAF nodes in all form-factors.
-* For WAF rules, use a different set of application instance [IDs](../admin-en/configure-parameters-en.md#wallarm_instance) or `Host` request headers.
-* For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) WAF rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the WAF is running in blocking mode.
-* The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) WAF rule allows the control of the WAF operation mode (`monitoring` or `block`) from the Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
+* Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
+* For traffic filtration rules, use a different set of application instance [IDs](../admin-en/configure-parameters-en.md#wallarm_instance) or `Host` request headers.
+* For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
+* The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring` or `block`) from the Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
 
 ## Configure available integrations to receive notifications from the system
 
@@ -115,11 +115,11 @@ You can also use the [Triggers](../user-guides/triggers/triggers.md) functionali
 
 Depending on your specific environment we recommend you configure the following [triggers](../user-guides/triggers/triggers.md):
 
-* Monitoring for the increased level of malicious requests detected by the WAF. This trigger may signal one of the following potential problems:
+* Monitoring for the increased level of malicious requests detected by the Wallarm nodes. This trigger may signal one of the following potential problems:
 
-    * You are under attack and the WAF is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually blacklist (block) reported attacker IP addresses.
-    * You have an increased level of false positive attacks detected by the WAF. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/false-attack.md).
-    * If you have the IP blocking functionality enabled on your WAF nodes and have the [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger) active but still receive alerts about an increased level of attacks, then the alert may signal that the IP blocking functionality or the trigger is not working as expected.
+    * You are under attack and the Wallarm node is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually blacklist (block) reported attacker IP addresses.
+    * You have an increased level of false positive attacks detected by the Wallarm nodes. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/false-attack.md).
+    * If you have the IP blocking functionality enabled on your Wallarm nodes and have the [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger) active but still receive alerts about an increased level of attacks, then the alert may signal that the IP blocking functionality or the trigger is not working as expected.
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
 * Notify that a new user was added to your company account in the Wallarm Console
@@ -142,14 +142,14 @@ Please reach out to your Wallarm account manager or the technical support team t
 
 [Wallarm's official Terraform provider](https://registry.terraform.io/providers/wallarm/wallarm/latest) allows you to manage your Wallarm Cloud configuration (users, applications, rules, integrations, etc) using the modern Infrastructure as Code (IaC) approach.
 
-## Have a plan to promptly update to newly released WAF node versions
+## Have a plan to promptly update to newly released Wallarm node versions
 
-Wallarm is constantly working to improve the WAF node software, with new releases available about once a quarter. Please read [this document](../updating-migrating/general-recommendations.md) for information about the recommended approach to perform the upgrades, with associated risks and relevant upgrade procedures.
+Wallarm is constantly working to improve the filtering node software, with new releases available about once a quarter. Please read [this document](../updating-migrating/general-recommendations.md) for information about the recommended approach to perform the upgrades, with associated risks and relevant upgrade procedures.
 
 ## Learn known caveats
 
-* All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If the WAF has the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per WAF node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
+* All Wallarm nodes connected to the same Wallarm account will receive the same set of traffic filtering rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
+* If you have the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per filtering node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
 
 ## Follow the best practices for the Active threat verification feature
 

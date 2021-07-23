@@ -8,22 +8,22 @@
 
 # Installing on Yandex.Cloud
 
-These instructions describe how to configure a virtual machine with [Wallarm WAF](https://cloud.yandex.com/marketplace/products/f2emrc60s1nh9356v1rq) on Yandex.Cloud.
+These instructions describe how to configure a virtual machine with [Wallarm node](https://cloud.yandex.com/marketplace/products/f2emrc60s1nh9356v1rq) on Yandex.Cloud.
 
 ## Requirements
 
 ### Yandex.Cloud configuration
 
-Before starting WAF node installation, please check that you meet all these requirements:
+Before starting Wallarm node installation, please check that you meet all these requirements:
 
 * Have access to the [Yandex.Cloud management console](https://console.cloud.yandex.com/)
 * Have a payment account in the status of `ACTIVE` or `TRIAL_ACTIVE` displayed on the [billing page](https://console.cloud.yandex.com/billing)
 * Created folder. By default, the folder `default` will be created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
 * Created 2048‑bit RSA key pair for SSH connection. To create a key pair, please follow these [instructions](https://cloud.yandex.com/docs/compute/operations/vm-connect/ssh#creating-ssh-keys)
 
-### Wallarm WAF configuration
+### Wallarm node configuration
 
-Before starting WAF node installation, please check that you meet all these requirements:
+Before starting Wallarm node installation, please check that you meet all these requirements:
 
 * Have access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Have access to `https://api.wallarm.com:444` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com:444` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
@@ -31,31 +31,31 @@ Before starting WAF node installation, please check that you meet all these requ
 
 ## Installation
 
-### 1. Create a virtual machine with the WAF node
+### 1. Create a virtual machine with the filtering node
 
 --8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
 1. Log in to the [management console](https://console.cloud.yandex.com/) and select the folder where the virtual machine will be created.
 2. Select **Compute Cloud** from the list of services.
 3. Click the **Create VM** button.
-4. Select Wallarm WAF from the list of images in the **Image/boot disk selection** → **Cloud Marketplace** block.
+4. Select Wallarm node from the list of images in the **Image/boot disk selection** → **Cloud Marketplace** block.
 5. Configure other virtual machine parameters following these [instructions](https://cloud.yandex.com/docs/compute/quickstart/quick-create-linux#create-vm).
 
 ![!Example of VM settings](../../images/admin-guides/yandex-cloud/vm-settings.png)
 
-### 2. Connect to the virtual machine with the WAF node
+### 2. Connect to the virtual machine with the filtering node
 
 1. Ensure the virtual machine is in the `RUNNING` status.
 2. Connect to the virtual machine via SSH following these [instructions](https://cloud.yandex.com/docs/compute/quickstart/quick-create-linux#connect-to-vm).
 
-### 3. Connect the WAF node to Wallarm Cloud
+### 3. Connect the filtering node to Wallarm Cloud
 
-Connect the WAF node to the Wallarm Cloud using the **cloud WAF node token** or Wallarm Console account **login and password**.
+Connect the filtering node to the Wallarm Cloud using the **cloud node token** or Wallarm Console account **login and password**.
 
-#### Using the cloud WAF node token
+#### Using the cloud node token
 
-1. Open the Wallarm Console → **Nodes** section and create a cloud WAF node.
-2. Open the card of the created cloud WAF node and copy the **Node token**.
+1. Open the Wallarm Console → **Nodes** section and create a cloud node.
+2. Open the card of the created cloud node and copy the **Node token**.
 3. On the virtual machine, run the `addcloudnode` script: 
 
     === "EU Cloud"
@@ -68,7 +68,7 @@ Connect the WAF node to the Wallarm Cloud using the **cloud WAF node token** or 
         ```
 4. Paste the copied token value.
 
-The WAF node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#cloud-waf-node-and-wallarm-cloud-synchronization)
+The node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
 
 #### Using the administrator login and password
 
@@ -83,24 +83,24 @@ The WAF node will now synchronize with the cloud every 2‑4 minutes according t
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```    
 2. Provide your Wallarm administrator account's login and password.
-3. Enter the name of the new WAF node or press Enter to use the virtual machine name.
+3. Enter the name of the new filtering node or press Enter to use the virtual machine name.
 
-The WAF node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-waf-node-and-wallarm-cloud-synchronization)
+The node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
 
-### 4. Update Wallarm WAF configuration
+### 4. Update Wallarm node configuration
 
-Main configuration files of NGINX and Wallarm WAF node are located in the directories:
+Main configuration files of NGINX and Wallarm filtering node are located in the directories:
 
 * `/etc/nginx/nginx.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. A detailed description is available within this [link](../configure-statistics-service.md)
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. A detailed description is available within this [link](../configure-statistics-service.md)
 * `/etc/default/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtration mode
 
-By default, the WAF node is in the status `monitoring` and searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
+By default, the filtering node is in the status `monitoring` and searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
 
 To change the `monitoring` mode to `block`:
 
@@ -184,7 +184,7 @@ To change the `monitoring` mode to `block`:
 
 #### Memory
 
-The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 40% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 40% of the total server memory. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
@@ -204,7 +204,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 
 #### Other configurations
 
-To update other NGINX and Wallarm WAF configurations, use the NGINX documentation and the list of [available Wallarm WAF directives](../configure-parameters-en.md).
+To update other NGINX and Wallarm node configurations, use the NGINX documentation and the list of [available Wallarm node directives](../configure-parameters-en.md).
 
 ### 5. Restart NGINX
 
@@ -214,7 +214,7 @@ To apply changes, restart NGINX:
 sudo systemctl restart nginx
 ```
 
-### 6. Test Wallarm WAF operation
+### 6. Test Wallarm node operation
 
 1. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the external IP address:
 
@@ -226,6 +226,6 @@ sudo systemctl restart nginx
 
 ## Settings customization
 
-The WAF node with default settings is deployed in Yandex.Cloud. To customize Wallarm WAF settings, use the [available directives](../configure-parameters-en.md).
+The Wallarm node with default settings is deployed in Yandex.Cloud. To customize Wallarm node settings, use the [available directives](../configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options.md"

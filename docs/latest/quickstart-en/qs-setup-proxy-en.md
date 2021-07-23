@@ -68,4 +68,4 @@ After saving the edited configuration file, restart NGINX:
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-Perform the checking to see that the WAF node is operational and filters traffic. See [Check the WAF node operation →](qs-check-operation-en.md)
+Perform the checking to see that the filtering node is operational and filters traffic. See [Check the filtering node operation →](qs-check-operation-en.md)

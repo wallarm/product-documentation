@@ -5,7 +5,7 @@ However, there are a number of cases when you need to block by IP address:
 
 *   To reduce the traffic that the attacker requests generate.
 *   To handle asynchronous traffic.
-*   In the presence of additional resources not protected by WAF.
+*   In the presence of additional resources not protected by Wallarm.
 
 To block by IP address, use the `block_with_iptables.rb` script, which is modifiable.
 

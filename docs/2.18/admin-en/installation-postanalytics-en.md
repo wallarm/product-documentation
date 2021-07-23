@@ -21,9 +21,9 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ## Installation
 
-### 1. Add Wallarm WAF repositories
+### 1. Add Wallarm repositories
 
-The postanalytics module, like other Wallarm WAF modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+The postanalytics module, like other Wallarm API Security modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-2.18.md"
 
@@ -46,9 +46,9 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
 
 ### 3. Connect the postanalytics module to Wallarm Cloud
 
-The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create a separate WAF node for the postanalytics module. Created WAF node will get the security rules from the Cloud and upload attacks data to the Cloud.
+The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create a separate Wallarm node for the postanalytics module. Created node will get the security rules from the Cloud and upload attacks data to the Cloud.
 
-To create the WAF node and connect the postanalytics module to the Cloud:
+To create the filtering node and connect the postanalytics module to the Cloud:
 
 1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in the Wallarm Console.
      
@@ -67,8 +67,8 @@ To create the WAF node and connect the postanalytics module to the Cloud:
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
         ```
 3. Input the email and password for your account in the Wallarm Console.
-4. Input the postanalytics WAF node name or click Enter to use automatically generated name.
-5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new WAF node is added to the list.
+4. Input the postanalytics node name or click Enter to use automatically generated name.
+5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new node is added to the list.
 
 ### 4. Update postanalytics module configuration
 
@@ -118,9 +118,9 @@ To set the address of the separate postanalytics server:
 2. If the configuration file of Tarantool is set up to accept connections on the IP addresses different from `0.0.0.0` or `127.0.0.1`, then please provide the addresses in `/etc/wallarm/node.yaml`:
 
     ```bash
-    hostname: <name of postanalytics WAF node>
-    uuid: <UUID of postanalytics WAF node>
-    secret: <secret key of postanalytics WAF node>
+    hostname: <name of postanalytics node>
+    uuid: <UUID of postanalytics node>
+    secret: <secret key of postanalytics node>
     tarantool:
         host: '<IP address of Tarantool>'
         port: 3313
@@ -131,7 +131,7 @@ To set the address of the separate postanalytics server:
     * [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
     * [NGINX Plus](../waf-installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
 
-### 5. Restart Wallarm WAF services
+### 5. Restart Wallarm services
 
 To apply the settings to the postanalytics and NGINX‑Wallarm modules:
 
@@ -222,4 +222,4 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
         *   `api.wallarm.com:444` is the API server in the EU Wallarm Cloud
         *   `us1.api.wallarm.com:444` is the API server in the US Wallarm Cloud
-    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm WAF nodes.
+    *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.

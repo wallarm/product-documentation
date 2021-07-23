@@ -2,11 +2,11 @@
 
 #   Updating the Separately Installed Postanalytics Module  
 
-These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux WAF packages][docs-module-update].
+These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
 
-## Step 1: Add new Wallarm WAF repository
+## Step 1: Add new Wallarm repository
 
-Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version packages. Please use the commands for the appropriate platform.
+Delete the previous Wallarm repository address and add a repository with a new Wallarm node version packages. Please use the commands for the appropriate platform.
 
 **CentOS and Amazon Linux 2**
 
@@ -23,7 +23,7 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 **Debian and Ubuntu**
 
-1. Open the file with the Wallarm WAF repository address in the installed text editor. In this instruction, **vim** is used.
+1. Open the file with the Wallarm repository address in the installed text editor. In this instruction, **vim** is used.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list

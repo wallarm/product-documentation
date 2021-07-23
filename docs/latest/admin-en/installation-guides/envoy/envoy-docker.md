@@ -2,19 +2,19 @@
 
 ## Image overview
 
-These instructions describe the steps to run the WAF Docker image based on [Envoy 1.15.0](https://www.envoyproxy.io/docs/envoy/v1.15.0/). The image contains all systems required for correct WAF operation:
+These instructions describe the steps to run the Wallarm Docker image based on [Envoy 1.15.0](https://www.envoyproxy.io/docs/envoy/v1.15.0/). The image contains all systems required for correct Wallarm node operation:
 
-* Envoy proxy services with embedded Wallarm WAF module
+* Envoy proxy services with embedded Wallarm API Security module
 * Tarantool modules for postanalytics
 * Other services and scripts
 
-Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
+Wallarm API Security module is designed as an Envoy HTTP filter for requests proxying.
 
 !!! warning "Supported configuration parameters"
-    Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based WAF node configuration are not supported for the Envoy‑based WAF node configuration. See the list of parameters available for the [Envoy‑based WAF node configuration →](../../configuration-guides/envoy/fine-tuning.md)
+    Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. See the list of parameters available for the [Envoy‑based filtering node configuration →](../../configuration-guides/envoy/fine-tuning.md)
 
-!!! info "If the Wallarm WAF image is already deployed in your environment"
-    If you deploy the Wallarm WAF image instead of the already deployed image or need to duplicate the deployment, please keep the same WAF version as currently used or update the version of all images to the latest.
+!!! info "If the Wallarm filtering node image is already deployed in your environment"
+    If you deploy the Wallarm filtering node image instead of the already deployed image or need to duplicate the deployment, please keep the same node version as currently used or update the version of all images to the latest.
 
     To check the installed version, run the following command in the container:
 
@@ -26,7 +26,7 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
     * If the version `2.18.x` is installed, then follow the [instructions for 2.18](/2.18/admin-en/installation-guides/envoy/envoy-docker/) or [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments.
     * If the version `2.16.x` is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
 
-    More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+    More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 
 ## Requirements
 
@@ -35,24 +35,24 @@ Wallarm WAF module is designed as an Envoy HTTP filter for requests proxying.
 
 ## Options for running the container
 
-The WAF node configuration parameters can be passed to the `docker run` command in the following ways:
+The filtering node configuration parameters can be passed to the `docker run` command in the following ways:
 
-* **In the environment variables**. This option allows for configuration of only basic WAF node parameters, the most [parameters](../../configuration-guides/envoy/fine-tuning.md) cannot be changed through environment variables.
-* **In the mounted configuration file**. This option allows for configuration of all the WAF node [parameters](../../configuration-guides/envoy/fine-tuning.md).
+* **In the environment variables**. This option allows for configuration of only basic filtering node parameters, the most [parameters](../../configuration-guides/envoy/fine-tuning.md) cannot be changed through environment variables.
+* **In the mounted configuration file**. This option allows for configuration of all the filtering node [parameters](../../configuration-guides/envoy/fine-tuning.md).
 
 ## Run the container passing the environment variables
 
-You can pass the following basic WAF node settings to the container via the option `-e`:
+You can pass the following basic filtering node settings to the container via the option `-e`:
 
 Environment variable | Description| Required
 --- | ---- | ----
 `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
 `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
-`ENVOY_BACKEND` | Domain or IP address of the resource to protect with WAF. | Yes
+`ENVOY_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
-`WALLARM_MODE` | WAF node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses](../../../user-guides/ip-lists/greylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
+`WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses](../../../user-guides/ip-lists/greylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
-`DEPLOY_FORCE` | Replaces an existing WAF node with a new one if an existing WAF node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the WAF node</li><li>`false` to disable the replacement of the WAF node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The WAF node name always matches the identifier of the container you are running. WAF node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the WAF node (for example, a container with a new version of the image). If in this case the variable value is `false`, the WAF node creation process will fail. | No
+`DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
 
 To run the image, use the command:
 
@@ -67,10 +67,10 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
 * Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
-* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
-    * `node.yaml` with WAF node UUID and secret key
+* Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with filtering node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://ENVOY_BACKEND:80`.
 
@@ -78,7 +78,7 @@ The command does the following:
 
 You can mount the prepared file `envoy.yaml` to the Docker container via the `-v` option. The file must contain the following settings:
 
-* WAF node settings as described in the [instructions](../../configuration-guides/envoy/fine-tuning.md)
+* Filtering node settings as described in the [instructions](../../configuration-guides/envoy/fine-tuning.md)
 * Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
 To run the image:
@@ -90,7 +90,7 @@ To run the image:
     `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
     `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
-    `DEPLOY_FORCE` | Replaces an existing WAF node with a new one if an existing WAF node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the WAF node</li><li>`false` to disable the replacement of the WAF node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The WAF node name always matches the identifier of the container you are running. WAF node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the WAF node (for example, a container with a new version of the image). If in this case the variable value is `false`, the WAF node creation process will fail. | No
+    `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
 
 2. Mount the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory via the `-v` option.
 
@@ -105,10 +105,10 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new WAF node in the Wallarm Cloud. Created WAF node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
 * Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
-* Creates files with WAF node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
-    * `node.yaml` with WAF node UUID and secret key
+* Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
+    * `node.yaml` with filtering node UUID and secret key
     * `license.key` with Wallarm license key
 * Protects the resource `http://ENVOY_BACKEND:80`.
 
@@ -116,7 +116,7 @@ The command does the following:
 
 The log file rotation is preconfigured and enabled by default. You can adjust the rotation settings if necessary. These settings are located in the `/etc/logrotate.d` directory of the container.
 
-## Testing WAF node operation
+## Testing Wallarm node operation
 
 1. Send the request with test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the protected resource address:
 

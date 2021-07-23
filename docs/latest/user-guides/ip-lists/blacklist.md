@@ -1,6 +1,6 @@
 # IP addresses blacklist
 
-**Blacklist** is a list of IP addresses that are not allowed to access your applications. In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the WAF node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
+**Blacklist** is a list of IP addresses that are not allowed to access your applications. In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the filtering node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
 
 In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocked IP addresses as follows:
 
@@ -8,8 +8,8 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 
 <!-- Blacklist screenshot (DOCS-1269) -->
 
-!!! warning "Using the blacklist with the partner WAF node"
-    This document describes the IP blacklist configuration for the regular (client) WAF node 3.0. As for the partner WAF node, we recommend to skip updating modules up to 3.0 and keep using the [IP blacklist page available in version 2.18](/2.18/admin-en/configure-ip-blocking-en/).
+!!! warning "Using the blacklist with the partner node"
+    This document describes the IP blacklist configuration for the regular (client) Wallarm node 3.0. As for the partner node, we recommend to skip updating modules up to 3.0 and keep using the [IP blacklist page available in version 2.18](/2.18/admin-en/configure-ip-blocking-en/).
 
 ## Examples of IP blacklist usage
 
@@ -18,7 +18,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
     An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 * Block behavioral-based attacks.
 
-    The WAF node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.
+    The Wallarm filtering node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.
 
     By default, automatic blocking of behavioral attacks source is disabled. [Instructions on configuring brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
 

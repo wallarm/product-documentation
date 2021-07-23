@@ -24,6 +24,6 @@ wallarm:
   # Amount of memory in GB for request analytics data,
   # recommended value is 75% of the total server memory
   tarantool_memory_gb: 2
-  # Set to "true" to enable the WAF IP Blocking functionality
+  # Set to "true" to enable the IP Blocking functionality
   enable_ip_blocking: "false"
 ```

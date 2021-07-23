@@ -19,14 +19,14 @@
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 
-# Installing dynamic WAF module for NGINX from Debian/CentOS repositories
+# Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
 
-These instructions describe the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
+These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 
-!!! info "If Wallarm WAF is already installed in your environment"
-    If you install Wallarm WAF instead of an already existing Wallarm WAF or need to duplicate the installation in the same environment, then please keep the same WAF version as currently used or update all installations to the latest version. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
+!!! info "If Wallarm node is already installed in your environment"
+    If you install Wallarm node instead of an already existing Wallarm node or need to duplicate the installation in the same environment, then please keep the same node version as currently used or update all installations to the latest version. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
 
-    To check the installed version of WAF node and postanalytics installed on the same server:
+    To check the installed version of filtering node and postanalytics installed on the same server:
 
     === "Debian"
         ```bash
@@ -37,28 +37,28 @@ These instructions describe the steps to install Wallarm WAF as a dynamic module
         yum list wallarm-node
         ```
 
-    To check the versions of WAF node and postanalytics installed on different servers:
+    To check the versions of filtering node and postanalytics installed on different servers:
 
     === "Debian"
         ```bash
-        # run from the server with installed WAF node
+        # run from the server with installed Wallarm filtering node
         apt list wallarm-node-nginx
         # run from the server with installed postanalytics
         apt list wallarm-node-tarantool
         ```
     === "CentOS"
         ```bash
-        # run from the server with installed WAF node
+        # run from the server with installed Wallarm filtering node
         yum list wallarm-node-nginx
         # run from the server with installed postanalytics
         yum list wallarm-node-tarantool
         ```
 
-    * If the version `3.0.x` is installed, then follow the instructions for the [WAF node 3.0](/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.0](/admin-en/installation-postanalytics-en/).
-    * If the version `2.18.x` is installed, then follow the current instructions for the WAF node and for [separate postanalytics 2.18](/2.18/admin-en/installation-postanalytics-en/) or update [WAF node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations.
-    * If the version `2.16.x` or lower is installed, then please update the [WAF node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
+    * If the version `3.0.x` is installed, then follow the instructions for the [Wallarm node 3.0](/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.0](/admin-en/installation-postanalytics-en/).
+    * If the version `2.18.x` is installed, then follow the current instructions for the filtering node and for [separate postanalytics 2.18](/2.18/admin-en/installation-postanalytics-en/) or update [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations.
+    * If the version `2.16.x` or lower is installed, then please update the [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
 
-    More information about WAF node versioning is available in the [WAF node versioning policy][versioning-policy].
+    More information about Wallarm node versioning is available in the [Wallarm node versioning policy][versioning-policy].
 
 ## Requirements
 
@@ -87,7 +87,7 @@ Installation commands for both options are described in the further instructions
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/2.18/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/2.18/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
-    # for correct WAF operation, uncomment the following line in /etc/apt/sources.list`:
+    # for correct Wallarm node operation, uncomment the following line in /etc/apt/sources.list`:
     # deb http://deb.debian.org/debian stretch-backports main contrib non-free
     sudo apt update
     ```
@@ -109,7 +109,7 @@ Installation commands for both options are described in the further instructions
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/2.18/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
-### 2. Install NGINX with Wallarm WAF packages
+### 2. Install NGINX with Wallarm API Security packages
 
 #### Request processing and postanalytics on the same server
 
@@ -171,7 +171,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 
-### 3. Connect the Wallarm WAF module
+### 3. Connect the Wallarm API Security module
 
 Copy the configuration files for the system setup:
 
@@ -184,24 +184,24 @@ Copy the configuration files for the system setup:
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-### 4. Connect the WAF node to Wallarm Cloud
+### 4. Connect the filtering node to Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud.md"
 
-### 5. Update Wallarm WAF configuration
+### 5. Update Wallarm node configuration
 
-Main configuration files of NGINX and Wallarm WAF node are located in the directories:
+Main configuration files of NGINX and Wallarm filtering node are located in the directories:
 
 * `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtration mode
 
-By default, the WAF node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
+By default, the filtering node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
 
 1. Open the file `/etc/nginx/conf.d/default.conf`:
 
@@ -218,7 +218,7 @@ By default, the WAF node is in the status `off` and does not analyze incoming re
         listen       80;
         # domain for which requests are filtered
         server_name  localhost;
-        # WAF node mode
+        # Filtering node mode
         wallarm_mode monitoring;
 
         location / {
@@ -233,14 +233,14 @@ By default, the WAF node is in the status `off` and does not analyze incoming re
     }
     ```
 
-When operating in the `monitoring` mode, the WAF node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
+When operating in the `monitoring` mode, the filtering node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
 
 #### Memory
 
 !!! info "Postanalytics on the separate server"
     If you installed postanalytics on a separate server, then skip this step as you already have your postanalytics configured.
 
-The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
@@ -279,7 +279,7 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 
 #### Other configurations
 
-To update other NGINX and Wallarm WAF configurations, use the NGINX documentation and the list of [available Wallarm WAF directives][waf-directives-instr].
+To update other NGINX and Wallarm node configurations, use the NGINX documentation and the list of [available Wallarm node directives][waf-directives-instr].
 
 ### 6. Restart NGINX
 
@@ -294,12 +294,12 @@ To update other NGINX and Wallarm WAF configurations, use the NGINX documentatio
     sudo systemctl restart nginx
     ```
 
-### 7. Test Wallarm WAF operation
+### 7. Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
 ## Settings customization
 
-Dynamic Wallarm WAF module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm WAF settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Dynamic Wallarm API Security module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-216.md"

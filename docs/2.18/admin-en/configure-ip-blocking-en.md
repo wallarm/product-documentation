@@ -6,7 +6,7 @@ IP blacklists should be used in the following cases:
 
 * There is a need to reduce system load that was caused by the analysis of malicious requests.
 * Traffic processing is performed asynchronously.
-* There are extra resources that are not protected with WAF.
+* There are extra resources that are not protected with Wallarm.
 
 ## Blocking Methods
 

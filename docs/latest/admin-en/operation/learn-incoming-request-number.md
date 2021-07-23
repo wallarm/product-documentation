@@ -1,6 +1,6 @@
 # Learning the number of requests per month handled by the application
 
-Wallarm's primary licensing/billing methods are based on the level of requests served by Wallarm WAF nodes deployed in your environment. This document explains how to easily learn the number of requests handled by the application.
+Wallarm's primary licensing/billing methods are based on the level of requests served by Wallarm filtering nodes deployed in your environment. This document explains how to easily learn the number of requests handled by the application.
 
 ## Teams having an access to the information
 

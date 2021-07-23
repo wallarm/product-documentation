@@ -12,7 +12,7 @@ Behavioral attacks are characterized by a large number of requests with differen
 [Detailed brute force description →](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)
 
 !!! warning "Brute force protection restrictions"
-    When searching for brute‑force attack signs, Wallarm WAF analyzes only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
+    When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
 
     * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
@@ -21,8 +21,8 @@ These instructions provide steps to configure brute force protection.
 
 ## Configuration steps
 
-1. Add the [module](../../about-wallarm-waf/subscription-plans.md#modules) **Brute-force protection** to the Wallarm WAF subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-2. If the WAF node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
+1. Add the [module](../../about-wallarm-waf/subscription-plans.md#modules) **Brute-force protection** to the Wallarm API Security subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+2. If the filtering node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
 3. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Mark as brute force/dirbust**.
 4. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
 
@@ -49,7 +49,7 @@ These instructions provide steps to configure brute force protection.
 5. Select trigger reactions:
 
     * **Mark as brute force/dirbust** to mark requests sent after the threshold was exceeded as the brute‑force or dirbust attack. Requests will be marked as an attack but will not be blocked. To block requests, it is required to select one more reaction **Blacklist IP address**.
-    * **Blacklist IP address** and the period for IP address blocking to add IP addresses from which malicious requests were originated to the blacklist. All requests sent after the threshold was exceeded will be blocked by the WAF node.
+    * **Blacklist IP address** and the period for IP address blocking to add IP addresses from which malicious requests were originated to the blacklist. All requests sent after the threshold was exceeded will be blocked by the filtering node.
 
 Example of a configured rule defining attack counter and trigger:
 

@@ -1,6 +1,6 @@
-# Notifications and reactions to events detected by Wallarm WAF
+# Notifications and reactions to events detected by Wallarm
 
-## Integrating Wallarm WAF with existing DevOps tools
+## Integrating Wallarm API Security with existing DevOps tools
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/DVfoXYuBy-Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -1,8 +1,8 @@
-# Cloud WAF nodes
+# Cloud filtering nodes
 
-The cloud WAF node is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, and in Kubernetes Ingress controller deployments.
+The cloud filtering node is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, and in Kubernetes Ingress controller deployments.
 
-## Creating WAF node
+## Creating filtering node
 
 You can create a cloud node while setting up integration with the platform or using the following instructions:
 
@@ -19,9 +19,9 @@ You can create a cloud node while setting up integration with the platform or us
     * [Yandex.Cloud](../../admin-en/installation-guides/install-in-yandex-cloud.md)
     * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
 
-## Viewing details of WAF node
+## Viewing details of filtering node
 
-Details of installed the WAF node are displayed in the table and card of each WAF node. To open the card, click the appropriate table record.
+Details of installed the filtering node are displayed in the table and card of each filtering node. To open the card, click the appropriate table record.
 
 The following node properties and metrics are available:
 
@@ -29,16 +29,16 @@ The following node properties and metrics are available:
 * The average number of requests per second (RPS)
 * Node IP address
 * Unique node identifier (UUID)
-* Token of the cloud WAF node
-* Time of the last synchronization of the WAF node and Wallarm cloud
-* Date of the WAF node creation
+* Token of the cloud node
+* Time of the last synchronization of the filtering node and Wallarm cloud
+* Date of the filtering node creation
 * Number of requests processed by the node in the current month
 
-![!Cloud WAF node card](../../images/user-guides/nodes/view-cloud-node.png)
+![!Cloud node card](../../images/user-guides/nodes/view-cloud-node.png)
 
-If one cloud WAF node is installed for multiple instances, then the corresponding number of WAF nodes is grouped into one record in the table. Properties and metrics will be available for each instance.
+If one cloud filtering node is installed for multiple instances, then the corresponding number of filtering nodes is grouped into one record in the table. Properties and metrics will be available for each instance.
 
-## Regenerating the token for cloud WAF node
+## Regenerating the token for cloud filtering node
 
 Token regeneration creates a new token for the node. 
 
@@ -48,12 +48,12 @@ Token regeneration creates a new token for the node.
 
 ![!Regenerating cloud node token](../../images/user-guides/nodes/generate-new-token.png)
 
-## Deleting WAF node
+## Deleting filtering node
 
-When the WAF node is deleted, filtration of requests to your application will be stopped. Deleting the WAF node cannot be undone. The WAF node will be deleted from the list of nodes permanently.
+When the filtering node is deleted, filtration of requests to your application will be stopped. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
 
 1. Open Wallarm UI → **Nodes**.
-2. Select one or more WAF nodes and click **Delete**. You can also delete the WAF node by selecting a button off the node menu or node card.
+2. Select one or more filtering nodes and click **Delete**. You can also delete the filtering node by selecting a button off the node menu or node card.
 3. Confirm the action.
 
 ![!Deleting the node](../../images/user-guides/nodes/delete-node.png)

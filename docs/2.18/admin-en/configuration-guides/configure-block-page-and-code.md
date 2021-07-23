@@ -6,7 +6,7 @@ These instructions describe the method to customize the blocking page and error 
 
 The blocking page and error code are configured via NGINX directives. The set of directives depends on the reason and method of request blocking:
 
-* If the request has attack signs and the WAF node operates in blocking [mode](../configure-wallarm-mode.md) → directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`
+* If the request has attack signs and the filtering node operates in blocking [mode](../configure-wallarm-mode.md) → directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`
 * If the request is originated from a [blocked IP address](../configure-ip-blocking-en.md) → directives `wallarm_acl_block_page` and `wallarm_block_page_add_dynamic_path`
 
 By default, the response code 403 and default NGINX blocking page are returned to the client.
@@ -15,7 +15,7 @@ By default, the response code 403 and default NGINX blocking page are returned t
 
 ### wallarm_block_page
 
-The directive `wallarm_block_page` lets you set up the response to the request [blocked](../configure-wallarm-mode.md) by the WAF node due to detected attack signs.
+The directive `wallarm_block_page` lets you set up the response to the request [blocked](../configure-wallarm-mode.md) by the filtering node due to detected attack signs.
 
 This directive value should correspond to the following format:
 
@@ -74,7 +74,7 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 ## Configuration examples
 
-Below are examples of configuring the blocking page and error code via the directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`. Example settings are applied to requests [blocked](../configure-wallarm-mode.md) by the WAF node due to detected attack signs.
+Below are examples of configuring the blocking page and error code via the directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`. Example settings are applied to requests [blocked](../configure-wallarm-mode.md) by the filtering node due to detected attack signs.
 
 When configuring the response to requests originated from [blocked IP addresses](../configure-ip-blocking-en.md), please replace the directive `wallarm_block_page` with `wallarm_acl_block_page`.
 

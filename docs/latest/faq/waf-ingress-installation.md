@@ -1,4 +1,4 @@
-# Installing Wallarm WAF Ingress controller
+# Installing Wallarm Ingress controller
 
 ## How to check which clients' IP addresses are detected/used by the Ingress controller?
 

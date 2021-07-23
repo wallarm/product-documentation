@@ -1,6 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: Wallarm Advanced WAF protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+site_description: Wallarm API Security protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
@@ -81,26 +81,26 @@ site_dir: site/2.16
 edit_uri: ../product-docs-en/edit/master/docs/2.16/
 
 nav:
-  - WAF guides:
+  - API Security guides:
     - Home: index.md
-    - About Wallarm WAF:
-        - How Wallarm WAF works: about-wallarm-waf/overview.md
+    - About Wallarm:
+        - How Wallarm API Security works: about-wallarm-waf/overview.md
         - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
         - Attack and Vulnerability Types: attacks-vulns-list.md
         - Data management policies:
           - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
-        - Wallarm WAF subscription plans: about-wallarm-waf/subscription-plans.md
-        - Wallarm WAF deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
+        - Wallarm API Security subscription plans: about-wallarm-waf/subscription-plans.md
+        - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
     - Quick Start:
-      - Install the WAF node (NGINX): quickstart-en/qs-install-node-en.md
+      - Install the filtering node (NGINX): quickstart-en/qs-install-node-en.md
       - Configure traffic proxying: quickstart-en/qs-setup-proxy-en.md
-      - Check the WAF node operation: quickstart-en/qs-check-operation-en.md
+      - Check the filtering node operation: quickstart-en/qs-check-operation-en.md
     - Administrator Guide:
       - Introduction to the Administrator Guide: admin-en/admin-intro-en.md
       - Installation:
-        - Wallarm WAF deployment options: admin-en/supported-platforms.md
+        - Deployment options: admin-en/supported-platforms.md
         - NGINX:
           - NGINX Installation Options Overview: admin-en/installation-nginx-overview.md
           - Installing as a Dynamic Module for NGINX stable: waf-installation/nginx/dynamic-module.md
@@ -116,47 +116,47 @@ nav:
         - Cloud Platforms:
           - Amazon AWS:
             - AWS Marketplace image deployment:
-              - Creating and Configuring an AMI with the WAF Node: admin-en/installation-ami-en.md
+              - Creating and Configuring an AMI with the Wallarm Node: admin-en/installation-ami-en.md
               - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-              - Deploying WAF Node Using Terraform:
-                - Introduction to using Terraform for the WAF node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
+              - Deploying Wallarm Node Using Terraform:
+                - Introduction to using Terraform for the filtering node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
                 - Quick Start with Provided Example: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
                 - Description of Example Terraform Code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
               - Setting Up Filter Node Auto Scaling:
-                - Overview of the WAF node Auto Scaling Configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+                - Overview of the filtering node Auto Scaling Configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
                 - Setting Up Filter Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
                 - Setting Up Incoming Request Balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-            - Deployment of the WAF node Docker image to AWS: waf-installation/cloud-platforms/aws/docker-container.md
-            - Installation of the WAF node from DEB or RPM packages on AWS: waf-installation/cloud-platforms/aws/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to AWS: waf-installation/cloud-platforms/aws/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on AWS: waf-installation/cloud-platforms/aws/deb-rpm-packages.md
           - Google Cloud Platform:
             - GCP Marketplace image deployment:
-              - Creating and Configuring a GCP Instance with the WAF Node: admin-en/installation-gcp-en.md
+              - Creating and Configuring a GCP Instance with the Wallarm Node: admin-en/installation-gcp-en.md
               - Creating an Image with the Wallarm Filter Node: admin-en/installation-guides/google-cloud/create-image.md
               - Setting Up Filter Node Auto Scaling:
-                - Overview of the WAF node Auto Scaling Configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+                - Overview of the filtering node Auto Scaling Configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
                 - Creating a Filter Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
                 - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
                 - Setting up Incoming Request Balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-            - Deployment of the WAF node Docker image to GCP: waf-installation/cloud-platforms/gcp/docker-container.md
-            - Installation of the WAF node from DEB or RPM packages on GCP: waf-installation/cloud-platforms/gcp/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to GCP: waf-installation/cloud-platforms/gcp/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on GCP: waf-installation/cloud-platforms/gcp/deb-rpm-packages.md
           - Microsoft Azure:
-            - Deployment of the WAF node Docker image to Azure: waf-installation/cloud-platforms/azure/docker-container.md
-            - Installation of the WAF node from DEB or RPM packages on Azure: waf-installation/cloud-platforms/azure/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to Azure: waf-installation/cloud-platforms/azure/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on Azure: waf-installation/cloud-platforms/azure/deb-rpm-packages.md
           - Alibaba Cloud:
-            - Deployment of the WAF node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
-            - Installation of the WAF node from DEB or RPM packages on Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
           - Yandex.Cloud:
             - Yandex.Cloud Marketplace image deployment: admin-en/installation-guides/install-in-yandex-cloud.md
-            - Deployment of the WAF node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
-            - Installation of the WAF node from DEB or RPM packages on Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages.md
-          - Deployment of the WAF node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
+            - Deployment of the Wallarm node Docker image to Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on Yandex.Cloud: waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages.md
+          - Deployment of the filtering node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
         - Installing on the Kong Platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
-        - Configuration options for the Envoy‑based WAF node: admin-en/configuration-guides/envoy/fine-tuning.md
+        - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
         - Filtration mode configuration: admin-en/configure-wallarm-mode.md
         - Blocking by IP Address:
           - Methods of Blocking by IP Address: admin-en/configure-ip-blocking-en.md
@@ -173,14 +173,14 @@ nav:
             - Configuration of IP Whitelisting for Wallarm Scanner: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-        - Allocating Resources for WAF Node: admin-en/configuration-guides/allocate-resources-for-waf-node.md
+        - Allocating Resources for Wallarm Node: admin-en/configuration-guides/allocate-resources-for-waf-node.md
         - Analyzing Mirrored Traffic with NGINX: admin-en/mirror-traffic-en.md
         - Configuration of Filter Node for Separated Customer Environments:
-          - How WAF Filter Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
+          - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
           - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Settings for Using a Balancer or Proxy: admin-en/using-proxy-or-balancer-en.md
-        - WAF node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
+        - Filtering node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
         - Working with Filter Node Logs: admin-en/configure-logging.md
         - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
         - Using Single Sign‑On (SSO):
@@ -205,7 +205,7 @@ nav:
           - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
           - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
         - Monitoring the Filter Node:
-          - Introduction to the WAF node monitoring: admin-en/monitoring/intro.md
+          - Introduction to the filtering node monitoring: admin-en/monitoring/intro.md
           - How to Fetch Metrics: admin-en/monitoring/fetching-metrics.md
           - Available Metrics: admin-en/monitoring/available-metrics.md
           - Examples of Exporting and Working with Metrics:
@@ -258,9 +258,9 @@ nav:
           - General Scanner Settings: user-guides/scanner/configure-scanner.md
           - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
       - Nodes:
-        - WAF nodes overview: user-guides/nodes/nodes.md
-        - Regular WAF nodes: user-guides/nodes/regular-node.md
-        - Cloud WAF nodes: user-guides/nodes/cloud-node.md
+        - Filtering nodes overview: user-guides/nodes/nodes.md
+        - Regular filtering nodes: user-guides/nodes/regular-node.md
+        - Cloud filtering nodes: user-guides/nodes/cloud-node.md
       - Rules:
         - Application Profile Rules: user-guides/rules/intro.md
         - Inspecting Application Profile Rules: user-guides/rules/view.md
@@ -304,21 +304,21 @@ nav:
               - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
               - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
-    - Working with the Partner WAF Node:
+    - Working with the Partner Node:
       - Partner scheme overview: partner-waf-node/overview.md
       - Creating and configuring a partner account: partner-waf-node/creating-partner-account.md
       - Creating and linking clients: partner-waf-node/connecting-clients.md
-      - Installing and configuring a partner WAF node: partner-waf-node/installing-partner-waf-node.md
+      - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
-      - What is new in WAF node 2.16: updating-migrating/what-is-new.md
-      - WAF node versioning policy: updating-migrating/versioning-policy.md
-      - Recommendations for a safe WAF node update process: updating-migrating/general-recommendations.md
-      - WAF node update instructions:
-        - Updating Linux WAF packages: updating-migrating/nginx-modules.md
+      - What is new in Wallarm node 2.16: updating-migrating/what-is-new.md
+      - Filtering node versioning policy: updating-migrating/versioning-policy.md
+      - Recommendations for a safe node update process: updating-migrating/general-recommendations.md
+      - Filtering node update instructions:
+        - Updating Linux node packages: updating-migrating/nginx-modules.md
         - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
         - Updating the running Docker NGINX‑based image: updating-migrating/docker-container.md
-        - Updating NGINX Ingress controller with integrated Wallarm WAF: updating-migrating/ingress-controller.md
-        - Updating the cloud WAF node image: updating-migrating/cloud-image.md
+        - Updating NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
+        - Updating the cloud node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
   - API Firewall guides:
@@ -331,14 +331,14 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm WAF with NGINX versions: faq/waf-nginx-compatibility.md
-    - Deploying WAF Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
-    - Installing Wallarm WAF Ingress controller: faq/waf-ingress-installation.md
-    - Errors after Wallarm WAF installation: faq/common-errors-after-waf-installation.md
+    - Compatibility of Wallarm filtering node with NGINX versions: faq/waf-nginx-compatibility.md
+    - Deploying Wallarm Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
+    - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
+    - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
     - Wallarm service status page: faq/wallarm-status-page.md
   - Demo videos:
-    - Wallarm WAF overview and deployment options: demo-videos/waf-overview.md
-    - Inspecting events detected by the Wallarm WAF node: demo-videos/waf-events-inspection.md
+    - Wallarm API Security overview and deployment options: demo-videos/waf-overview.md
+    - Inspecting events detected by the Wallarm filtering node: demo-videos/waf-events-inspection.md
     - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Notifications and reactions to events detected by Wallarm WAF: demo-videos/notifications.md
+    - Notifications and reactions to events detected by Wallarm: demo-videos/notifications.md
     - Wallarm FAST overview and integration options: demo-videos/fast-overview.md

@@ -25,7 +25,7 @@ Assign the `<scheme>://<proxy_user>:<proxy_pass>@<host>:<port>` string values to
 
 To the `no_proxy` variable, assign the array of IP addresses and/or domains of the resources which proxy should not be used for:
 
-* `127.0.0.1`, `127.0.0.8`, `127.0.0.9` and `localhost` for correct WAF node operation
+* `127.0.0.1`, `127.0.0.8`, `127.0.0.9` and `localhost` for correct Wallarm node operation
 * additional addresses in the format: `"<res_1>, <res_2>, <res_3>, <res_4>, ..."` where `<res_1>`, `<res_2>`, `<res_3>`, and `<res_4>` are the IP addresses and/or domains
 
 ## Example of the file /etc/environment

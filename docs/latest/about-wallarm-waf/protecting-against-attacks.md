@@ -4,24 +4,24 @@
 
 **Attack** is a single hit or multiple hits that have the same attack type, parameter with the attack vector, and the address they are sent to. Hits may come from the same or different IP addresses and have different value of the attack vector within one attack type.
 
-**Hit** is a serialized malicious request (original malicious request and metadata added by the WAF node).
+**Hit** is a serialized malicious request (original malicious request and metadata added by the filtering node).
 
 **Attack vector** is a part of a malicious request containing the attack sign.
 
 ## Attack types
 
-[All attacks](../attacks-vulns-list.md) that can be detected by Wallarm WAF are divided into groups:
+[All attacks](../attacks-vulns-list.md) that can be detected by Wallarm are divided into groups:
 
 * Input validation attacks
 * Behavioral attacks
 
-Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm WAF configuration is required.
+Attack detection method depends on the attack group. To detect behavioral attacks, additional Wallarm node configuration is required.
 
 ### Input validation attacks
 
 Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type are characterized by specific symbol (token) combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse requests in order to detect specific symbol combinations.
 
-Input validation attacks are detected by the WAF node using the listed [tools](#tools-for-attack-detection).
+Input validation attacks are detected by the filtering node using the listed [tools](#tools-for-attack-detection).
 
 Detection of input validation attacks is enabled for all clients by default.
 
@@ -37,7 +37,7 @@ https://example.com/login/?username=admin&password=123456
 
 To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
 
-* Correlation analysis is conducted by the Wallarm WAF postanalytics module.
+* Correlation analysis is conducted by the Wallarm postanalytics module.
 * Comparison of the received requests number and the threshold for the requests number, and blocking of requests is conducted in the Wallarm Cloud.
 
 When behavioral attack is detected, requests sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
@@ -47,27 +47,27 @@ To protect the resource against behavioral attacks, it is required to set the th
 [Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 !!! warning "Brute force protection restrictions"
-    When searching for brute‑force attack signs, Wallarm WAF analyzes only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
+    When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
 
     * These requests contain signs of [input validation attacks](#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Types of protected resources
 
-Wallarm WAF analyzes HTTP and WebSocket traffic sent to the protected resources:
+Wallarm nodes analyze HTTP and WebSocket traffic sent to the protected resources:
 
 * HTTP traffic analysis is enabled by default.
 
-    Wallarm WAF analyzes HTTP traffic for [input validation attacks](#input-validation-attacks) and [behavioral attacks](#behavioral-attacks).
+    Wallarm nodes analyze HTTP traffic for [input validation attacks](#input-validation-attacks) and [behavioral attacks](#behavioral-attacks).
 * WebSocket traffic analysis should be enabled additionally via the directive [`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket).
 
-    Wallarm WAF analyzes WebSocket traffic only for [input validation attacks](#input-validation-attacks).
+    Wallarm nodes analyze WebSocket traffic only for [input validation attacks](#input-validation-attacks).
 
 Protected resource API can be designed on the basis of REST, gRPC, or GraphQL technologies.
 
 ## Attack detection process
 
-To detect attacks, Wallarm WAF uses the following process:
+To detect attacks, Wallarm uses the following process:
 
 1. Determine the request format and parse every request part as described in the [document about request parsing](../user-guides/rules/request-processing.md).
 2. Determine the endpoint the request is addressed to.
@@ -76,7 +76,7 @@ To detect attacks, Wallarm WAF uses the following process:
 
 ## Tools for attack detection
 
-To detect malicious requests, Wallarm WAF analyzes all requests sent to the protected resource using the following tools:
+To detect malicious requests, Wallarm nodes analyze all requests sent to the protected resource using the following tools:
 
 * Library **libproton**
 * Library **libdetection**
@@ -94,8 +94,8 @@ Wallarm regularly updates **proton.db** with token sequences for new attack type
 
 The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
 
-* If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the WAF node is working in the `block` mode).
-* If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the WAF node is working in the `block` mode).
+* If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the filtering node is working in the `block` mode).
+* If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the filtering node is working in the `block` mode).
 
 Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
@@ -112,7 +112,7 @@ The library contains the character strings of different attack type syntaxes (SQ
 SELECT example FROM table WHERE id=
 ```
 
-The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious request and will not be blocked (if the WAF node is working in the `block` mode).
+The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious request and will not be blocked (if the filtering node is working in the `block` mode).
 
 #### Enabling libdetection
 
@@ -135,7 +135,7 @@ curl "http://localhost/?id=1' UNION SELECT"
 ```
 
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
-* If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the WAF node is working in the `block` mode).
+* If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
 
 ### Custom detection rules
 
@@ -151,12 +151,12 @@ Custom detection rules and other [rules](../user-guides/rules/intro.md) are comp
 
 ## Monitoring and blocking attacks
 
-Wallarm WAF can process attacks in the following modes:
+Wallarm can process attacks in the following modes:
 
 * Monitoring mode: detects attacks and displays information about attacks in the Wallarm Console.
 * Blocking mode: detects, blocks attacks and displays information about attacks in the Wallarm Console.
 
-Wallarm WAF ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm WAF in the monitoring mode before enabling the blocking mode.
+Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
 
 To control the filtration mode, the directive `wallarm_mode` is used. More detailed information about filtration mode configuration is available within the [link](../admin-en/configure-wallarm-mode.md).
 
@@ -166,11 +166,11 @@ The filtration mode for behavioral attacks is configured separately via the part
 
 **False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in vulnerability scanning →](detecting-vulnerabilities.md#false-positives)
 
-When analyzing requests for attacks, Wallarm WAF uses the standard rule set that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
+When analyzing requests for attacks, Wallarm uses the standard rule set that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
 
 In such cases, standard rules need to be adjusted to accommodate protected application specificities by disabling detection of certain attack signs in the requests with certain address, parameters or other elements. These rules has the action type **Ignore tokens**. The rule **Ignore tokens** is created automatically if an attack or a hit is marked as a false positive in the Wallarm Console. [More details on managing false positives via the Wallarm Console →](../user-guides/events/false-attack.md)
 
-Identifying and handling false positives is a part of fine‑uning Wallarm WAF to protect your applications. We recommend to deploy the first WAF node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the WAF node to blocking mode.
+Identifying and handling false positives is a part of fine‑tuning Wallarm API Security to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
 ## Managing detected attacks
 

@@ -17,16 +17,16 @@
 5. [Deploy](#step-4-deploying-the-manifest-to-the-kubernetes-cluster) the manifest to the Kubernetes cluster.
 6. [Test](#step-5-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
 
-!!! info "If Wallarm WAF is already installed in your environment"
-    If you install Wallarm WAF instead of already existing Wallarm WAF or need to duplicate the installation in the same environment, please keep the same WAF version as currently used or update the version of all installations to the latest.
+!!! info "If Wallarm node is already installed in your environment"
+    If you install Wallarm node instead of already existing Wallarm node or need to duplicate the installation in the same environment, please keep the same node version as currently used or update the version of all installations to the latest.
 
-    The version of deployed Wallarm WAF image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
+    The version of deployed Wallarm filtering node image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
     * If the version `3.0.x` is specified, follow the [instructions for 3.0](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
     * If the version `2.18.x` is specified, follow the current instructions or increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions.
     * If the version `2.16.x` or lower is specified, please increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
 
-    More information about WAF node versioning is available in the [WAF node versioning policy](../../../updating-migrating/versioning-policy.md).
+    More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 
 ### Step 1: Creating Wallarm ConfigMap
 

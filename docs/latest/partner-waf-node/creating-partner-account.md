@@ -5,7 +5,7 @@
 To create a partner account:
 
 1. Sign up for the Wallarm Console and send a request for switching your account to partner status to Wallarm technical support.
-2. Get access to the technical client's account and obtain the parameters required to install partner WAF nodes from the Wallarm technical support.
+2. Get access to the technical client's account and obtain the parameters required to install partner nodes from the Wallarm technical support.
 
 ### Step 1: Sign up and send a request to enable partner status
 
@@ -25,7 +25,7 @@ To create a partner account:
     * Custom domain for the Wallarm Console, certificate and encryption key for the domain
     * Your technical support email address
 
-### Step 2: Access the partner account and get parameters for the WAF node configuration
+### Step 2: Access the partner account and get parameters for the filtering node configuration
 
 After switching your account to partner status and creating a [technical client account](overview.md#partner-account-components), Wallarm technical support staff will:
 
@@ -35,7 +35,7 @@ After switching your account to partner status and creating a [technical client 
 
 ## Providing employees with access to a technical client account
 
-To manage partner WAF nodes with your team, you can provide your employees with access to the [technical client account](overview.md#partner-account-components). Employees can be added to the account with the following user roles:
+To manage partner nodes with your team, you can provide your employees with access to the [technical client account](overview.md#partner-account-components). Employees can be added to the account with the following user roles:
 
 * Regular roles provide access only to the technical client account
 * Global roles provide access to the technical client account and to the accounts of all partner clients linked to the partner account

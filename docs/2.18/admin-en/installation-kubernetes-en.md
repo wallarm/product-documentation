@@ -26,7 +26,7 @@
 1. Go to the Wallarm Console → the **Nodes** tab via the link below:
     * https://my.wallarm.com/nodes for the EU cloud
     * https://us1.my.wallarm.com/nodes for the US cloud
-2. Create a WAF node with the **Cloud** type and copy the token.
+2. Create a filtering node with the **Cloud** type and copy the token.
     ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Clone the repository of Wallarm Helm chart:
     ```
@@ -43,7 +43,7 @@
         helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-    * `<YOUR_CLOUD_NODE_TOKEN>` is the cloud WAF node token
+    * `<YOUR_CLOUD_NODE_TOKEN>` is the cloud node token
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 
@@ -77,7 +77,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the WAF node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
 
 ## Configuration
 

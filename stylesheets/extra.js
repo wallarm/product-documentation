@@ -103,10 +103,10 @@ var sf14gv = 27823;
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sf14g, s);
   })();
 
-// Show version selector only for WAF guides
+// Show version selector only for API Security guides
 var rootVersion = '3.0';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
-if (activeLinks[0].text === ' WAF guides ') {
+if (activeLinks[0].text === ' API Security guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
 }
 else {

@@ -51,7 +51,7 @@ module.exports = {
         index: `
             <div class="pdf-index">
                 <div class="pdf-index-logo">${logoRu}</div>
-                Wallarm WAF Documentation
+                Wallarm API Security Documentation
             </div>
         `,
         header,

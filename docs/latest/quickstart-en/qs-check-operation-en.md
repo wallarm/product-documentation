@@ -1,4 +1,4 @@
-# Checking the WAF node operation
+# Checking the filtering node operation
 
 [doc-stat-service]:    ../admin-en/configure-statistics-service.md
 

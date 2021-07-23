@@ -4,7 +4,7 @@ Based on the initial detected attacks, **Attack rechecker** creates a lot of new
 
 The **Attack rechecker** process uses the following logic to check the protected application for possible Web and API security vulnerabilities:
 
-1. For every group of malicious request (every attack) detected by a Wallarm WAF node and uploaded to the connected Wallarm Cloud, the system analyzes which specific endpoint (URL, request string parameter, JSON attribute, XML field, etc) was attacked and which specific kind of vulnerability (SQLi, RCE, XSS, etc) the attacker was trying to exploit. For example, let's take a look at the following malicious GET request:
+1. For every group of malicious request (every attack) detected by a Wallarm filtering node and uploaded to the connected Wallarm Cloud, the system analyzes which specific endpoint (URL, request string parameter, JSON attribute, XML field, etc) was attacked and which specific kind of vulnerability (SQLi, RCE, XSS, etc) the attacker was trying to exploit. For example, let's take a look at the following malicious GET request:
 
     ```bash
     https://example.com/login?token=IyEvYmluL3NoCg&user=UNION SELECT username, password
@@ -29,7 +29,7 @@ The **Attack rechecker** process uses the following logic to check the protected
     https://example.com/login?token=IyEvYmluL3NoCg&user=1%27%29+OR+SLEEP%280%29+AND+%28%27wlrm%27%3D%27wlrm
     https://example.com/login?token=IyEvYmluL3NoCg&user=SLEEP(10)/*'XOR(SLEEP(10))OR'|\x22XOR(SLEEP(10))OR\x22*/
     ```
-3. The **Attack rechecker** module will send generated test requests to the application bypassing the WAF protection (using the [white-listing feature][whitelist-scanner-addresses]) and verify that the application at the specific endpoint is not vulnerable to the specific attack type. If **Attack rechecker** suspects that the application has an actual security vulnerability, it will create an event with type [incident](../user-guides/events/check-attack.md#incidents).
+3. The **Attack rechecker** module will send generated test requests to the application bypassing the Wallarm API Security protection (using the [white-listing feature][whitelist-scanner-addresses]) and verify that the application at the specific endpoint is not vulnerable to the specific attack type. If **Attack rechecker** suspects that the application has an actual security vulnerability, it will create an event with type [incident](../user-guides/events/check-attack.md#incidents).
 
     !!! info "`User-Agent` HTTPS header value in Attack rechecker requests"
         The `User-Agent` HTTP header in **Attack rechecker** requests will have the value `Wallarm attack-rechecker (v1.x)`.
