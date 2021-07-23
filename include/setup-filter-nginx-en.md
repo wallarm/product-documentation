@@ -1,8 +1,8 @@
-The following files contain NGINX and WAF node settings:
+The following files contain NGINX and filtering node settings:
 
 * `/etc/nginx/nginx.conf` defines the configuration of NGINX
-* `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm WAF node
-* `/etc/nginx/conf.d/wallarm-status.conf` defines the WAF node monitoring service configuration
+* `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm filtering node
+* `/etc/nginx/conf.d/wallarm-status.conf` defines the filtering node monitoring service configuration
 
 You can create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
 

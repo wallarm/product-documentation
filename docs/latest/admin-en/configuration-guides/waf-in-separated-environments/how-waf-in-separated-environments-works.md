@@ -1,4 +1,4 @@
-# How WAF Filter Node Works in Separated Environments
+# How Filtering Node Works in Separated Environments
 
 The application may be deployed to a few different environments: production, staging, testing, development, etc. These instructions provides information about suggested ways to manage a filter node for different environments.
 
@@ -7,7 +7,7 @@ The definition of an environment may differ from company to company, and for the
 
 An **environment** is an isolated set or subset of computing resources serving different purposes (like production, staging, testing, development, etc) and managed using the same or different set of policies (in terms of network/software configurations, software versions, monitoring, change management, etc) by the same or different teams (SRE, QA, Development, etc) of a company.
 
-From the best practices perspective, it is recommended to keep the WAF configuration synchronized across all environments used in a single product vertical (development, testing, staging and production stages).
+From the best practices perspective, it is recommended to keep the Wallarm nodes configuration synchronized across all environments used in a single product vertical (development, testing, staging and production stages).
 
 ## Relevant Wallarm Features
 
@@ -61,5 +61,5 @@ To activate a `master` account and sub-accounts, please contact [Wallarm's Techn
 </div>
 
 !!! warning "Known limitations"
-    * All WAF nodes connected to the same Wallarm account will receive the same set of WAF rules. You still can apply different rules for different applications by using proper [application instance IDs or unique HTTP request headers](#resource-identification).
-    * If the WAF node decides to automatically block an IP address (for example, because of three or more detected attack vectors from the IP address) the system will block the IP for all application instances in a Wallarm account.
+    * All filtering nodes connected to the same Wallarm account will receive the same set of traffic filtration rules. You still can apply different rules for different applications by using proper [application instance IDs or unique HTTP request headers](#resource-identification).
+    * If the filtering node decides to automatically block an IP address (for example, because of three or more detected attack vectors from the IP address) the system will block the IP for all application instances in a Wallarm account.

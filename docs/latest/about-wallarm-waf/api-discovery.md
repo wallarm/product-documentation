@@ -1,6 +1,6 @@
 # Discovering API structure
 
-The **API Discovery** module of Wallarm WAF identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of requests from the real traffic and builds the API structure based on the analysis results.
+The **API Discovery** module of Wallarm API Security identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of requests from the real traffic and builds the API structure based on the analysis results.
 
 API Discovery may help with the following issues:
 
@@ -38,11 +38,11 @@ Other data is not hashed before uploading to the Wallarm Cloud since it does not
 
 ## Enabling and configuring API Discovery
 
-The API Discovery package `wallarm-appstructure` is delivered with all forms of the [WAF node 3.0 and later](../admin-en/supported-platforms.md). The API Discovery module is installed from the `wallarm-appstructure` package automatically during the WAF node deployment process. By default, the module does not analyze the traffic.
+The API Discovery package `wallarm-appstructure` is delivered with all forms of the [Wallarm node 3.0 and later](../admin-en/supported-platforms.md). The API Discovery module is installed from the `wallarm-appstructure` package automatically during the filtering node deployment process. By default, the module does not analyze the traffic.
 
 To run API Discovery correctly:
 
-1. If one or more WAF nodes filter the traffic of several applications or environments in your infrastructure, please ensure that each application or environment is assigned with the unique value of the [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) directive.
+1. If one or more Wallarm nodes filter the traffic of several applications or environments in your infrastructure, please ensure that each application or environment is assigned with the unique value of the [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) directive.
 
     API Discovery uses the `wallarm_instance` value to identify the application the traffic is flowing to and build a separate API structure for each application. If the `wallarm_instance` directive is not configured, structures of all APIs are grouped in one tree.
 2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). The request should include the following data:
@@ -78,7 +78,7 @@ A [custom ruleset](../user-guides/rules/intro.md) created in the **Profile & Rul
 
 ## API Discovery debugging
 
-To get and analyze the API Discovery logs, you can use the standard utility **journalctl** inside the instance with the installed WAF node:
+To get and analyze the API Discovery logs, you can use the standard utility **journalctl** inside the instance with the installed Wallarm node:
 
 ```bash
 journalctl -u wallarm-appstructure

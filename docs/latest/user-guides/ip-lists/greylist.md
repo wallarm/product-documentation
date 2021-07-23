@@ -6,7 +6,7 @@
 * [Attacks of the vpatch type](../rules/vpatch-rule.md)
 * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 
-The WAF node blocks requests with malicious payloads that originated from greylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the WAF node forwards them to your applications. Behavior of the WAF node may differ if greylisted IP addresses are also whitelisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
+The Wallarm node blocks requests with malicious payloads that originated from greylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the filtering node forwards them to your applications. Behavior of the filtering node may differ if greylisted IP addresses are also whitelisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
 
 In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylisted IP addresses as follows:
 
@@ -15,10 +15,10 @@ In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylis
 <!-- screen with greylist (DOCS-1269) -->
 
 !!! warning "IP greylisting support"
-    IP greylisting is supported starting with the regular (client) WAF node of version 3.0.
+    IP greylisting is supported starting with the regular (client) Wallarm node of version 3.0.
 
-    * If you have already deployed the [partner WAF node](../../partner-waf-node/overview.md) of version 2.18 or lower, we recommend to skip updating modules till [WAF node 3.2](../../updating-migrating/versioning-policy.md#version-list) is released. In WAF node 3.2, IP lists will be fully supported by the partner WAF node. At present, the partner WAF node still supports only [blacklist of IP addresses](/2.18/admin-en/configure-ip-blocking-en/).
-    * If you have already deployed the regular (client) WAF node of version 2.18 or lower, before setting up IP lists, please [update deployed modules](../../updating-migrating/general-recommendations.md) and [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    * If you have already deployed the [partner node](../../partner-waf-node/overview.md) of version 2.18 or lower, we recommend to skip updating modules till [Wallarm node 3.2](../../updating-migrating/versioning-policy.md#version-list) is released. In Wallarm node 3.2, IP lists will be fully supported by the partner node. At present, the partner node still supports only [blacklist of IP addresses](/2.18/admin-en/configure-ip-blocking-en/).
+    * If you have already deployed the regular (client) Wallarm node of version 2.18 or lower, before setting up IP lists, please [update deployed modules](../../updating-migrating/general-recommendations.md) and [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP greylist usage
 
@@ -27,7 +27,7 @@ In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylis
     An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to greylist this IP. You can configure automatic source IP greylisting by configuring the threshold for source IP greylisting and appropriate reaction in the [trigger](../triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 
     Source IP greylisting can significantly reduce the number of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
-* Greylist IP addresses, countries, data centers, networks (for example, Tor) that usually produce harmful traffic. The WAF node will allow legitimate requests produced by greylisted objects and block malicious requests.
+* Greylist IP addresses, countries, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by greylisted objects and block malicious requests.
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists.md"
 

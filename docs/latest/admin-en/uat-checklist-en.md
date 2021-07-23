@@ -92,7 +92,7 @@ See also [Working with the scanner](../user-guides/scanner/intro.md).
 
 1. Learn[ core logic of IP lists](../user-guides/ip-lists/overview.md).
 2. Add IP addresses to the [whitelist](../user-guides/ip-lists/whitelist.md), [blacklist](../user-guides/ip-lists/blacklist.md), and [greylist](../user-guides/ip-lists/greylist.md).
-3. Check that the WAF node correctly processes requests originated from IPs added to the lists.
+3. Check that the filtering node correctly processes requests originated from IPs added to the lists.
 
 ## Users Can Be Configured and Have Proper Access Rights
 

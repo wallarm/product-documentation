@@ -1,6 +1,6 @@
 # How Wallarm Sidecar Container Works
 
-Wallarm WAF node installs as a sidecar container to the same pod as the main application container. The WAF node filters incoming requests and forwards valid requests to the application container.
+Wallarm filtering node installs as a sidecar container to the same pod as the main application container. The Wallarm node filters incoming requests and forwards valid requests to the application container.
 
 Kubernetes runs the sidecar container alongside the main container image. The sidecar container also shares the same lifecycle as the main application container, being created and retired alongside it.
 
@@ -23,7 +23,7 @@ An application container accepts incoming requests on port `8080/TCP` and the `S
 
 ![!Scheme of the traffic flow with Wallarm sidecar container](../../../images/admin-guides/kubernetes/requests-scheme-with-wallarm-sidecar.png)
 
-When a Wallarm WAF node sidecar container is added to a Kubernetes pod it is necessary to change the flow of HTTP requests hitting the pod. A detailed description of changing this flow is provided in the instructions.
+When a Wallarm filtering node sidecar container is added to a Kubernetes pod it is necessary to change the flow of HTTP requests hitting the pod. A detailed description of changing this flow is provided in the instructions.
 
 ## Wallarm Sidecar Container Installation
 

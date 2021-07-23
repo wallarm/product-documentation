@@ -1,19 +1,19 @@
 # Building and unloading of a custom ruleset
 
-A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The WAF node relies on the custom ruleset during incoming requests analysis.
+A custom ruleset defines specifics of processing particular client traffic (for example, allows setting up custom attack detection rules or masking sensitive data). The Wallarm node relies on the custom ruleset during incoming requests analysis.
 
-Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the WAF node** are finished.
+Changes of custom rules do NOT take effect instantly. Changes are applied to the request analysis process only after the custom ruleset **building** and **unloading to the filtering node** are finished.
 
 ## Custom ruleset building
 
-Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Proile&Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the WAF node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
+Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Proile&Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
 Custom ruleset build status and expected completion time are displayed in the Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
 
 ![!Build status](../../images/user-guides/rules/build-rules-status.png)
 
-## Unloading a custom ruleset to the WAF node
+## Unloading a custom ruleset to the filtering node
 
-Custom ruleset build is unloaded to the WAF node during the WAF node and Wallarm Cloud synchronization. By default, synchronization of the WAF node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the WAF node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
+Custom ruleset build is unloaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
 
-The status of unloading a custom ruleset to the WAF node is logged to the file `/var/log/wallarm/syncnode.log`.
+The status of unloading a custom ruleset to the filtering node is logged to the file `/var/log/wallarm/syncnode.log`.

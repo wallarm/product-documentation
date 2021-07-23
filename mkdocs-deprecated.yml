@@ -1,6 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: Wallarm Advanced WAF protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+site_description: Wallarm API Security protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
@@ -81,7 +81,7 @@ site_dir: site/2.14
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:
-  - WAF guides:
+  - API Security guides:
     - Home: index.md
   - API Firewall guides:
     - Wallarm API Firewall overview: api-firewall/overview.md
@@ -93,14 +93,14 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm WAF with NGINX versions: faq/waf-nginx-compatibility.md
-    - Deploying WAF Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
-    - Installing Wallarm WAF Ingress controller: faq/waf-ingress-installation.md
-    - Errors after Wallarm WAF installation: faq/common-errors-after-waf-installation.md
+    - Compatibility of Wallarm filtering node with NGINX versions: faq/waf-nginx-compatibility.md
+    - Deploying Wallarm Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
+    - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
+    - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
     - Wallarm service status page: faq/wallarm-status-page.md
   - Demo videos:
-    - Wallarm WAF overview and deployment options: demo-videos/waf-overview.md
-    - Inspecting events detected by the Wallarm WAF node: demo-videos/waf-events-inspection.md
+    - Wallarm API Security overview and deployment options: demo-videos/waf-overview.md
+    - Inspecting events detected by the Wallarm filtering node: demo-videos/waf-events-inspection.md
     - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Notifications and reactions to events detected by Wallarm WAF: demo-videos/notifications.md
+    - Notifications and reactions to events detected by Wallarm: demo-videos/notifications.md
     - Wallarm FAST overview and integration options: demo-videos/fast-overview.md

@@ -29,20 +29,20 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ### Launch the instance via the Google Cloud UI
 
-To launch the WAF node instance via the Google Cloud UI, please open the [WAF node image on the Google Cloud Marketplace](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) and click **LAUNCH**.
+To launch the filtering node instance via the Google Cloud UI, please open the [Wallarm node image on the Google Cloud Marketplace](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) and click **LAUNCH**.
 
-The instance will launch with a preinstalled WAF node. To see detailed information on launching instances in the Google Cloud, please proceed to the [official Google Cloud Platform documentation][link-launch-instance].
+The instance will launch with a preinstalled filtering node. To see detailed information on launching instances in the Google Cloud, please proceed to the [official Google Cloud Platform documentation][link-launch-instance].
 
 ### Launch the instance via Terraform or other tools
 
-When using a tool like Terraform to launch the WAF node instance using Wallarm GCP image, you may need to provide the name of this image in the Terraform configuration.
+When using a tool like Terraform to launch the filtering node instance using Wallarm GCP image, you may need to provide the name of this image in the Terraform configuration.
 
 * Image name has the following format:
 
     ```bash
     wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
     ```
-* To launch the instance with the WAF node version 3.0, please use the following image name:
+* To launch the instance with the filtering node version 3.0, please use the following image name:
 
     ```bash
     wallarm-node-195710/wallarm-node-3-0-20210628-090819
@@ -56,7 +56,7 @@ To get the image name, you can also follow these steps:
     ```bash
     gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-3-0-*'" --no-standard-images
     ```
-3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the WAF node version 3.0 image will have the following name:
+3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the filtering node version 3.0 image will have the following name:
 
     ```bash
     wallarm-node-195710/wallarm-node-3-0-20210628-090819

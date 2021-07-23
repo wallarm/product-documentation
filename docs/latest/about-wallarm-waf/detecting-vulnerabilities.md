@@ -10,11 +10,11 @@ A vulnerability is an error made due to negligence or inadequate information whe
 
 ## Vulnerability detection methods
 
-When scanning the application for open vulnerabilities, Wallarm WAF sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm WAF records open vulnerability.
+When scanning the application for open vulnerabilities, Wallarm sends requests with attack signs to the protected application address and analyzes application responses. If the response matches one or more pre‑defined vulnerability signs, Wallarm records open vulnerability.
 
-For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm WAF will record the vulnerability with an appropriate type.
+For example: if the response to the request sent to read the `/etc/passwd` contents returns the `/etc/passwd` contents, protected application is vulnerable to the Path Traversal attacks. Wallarm will record the vulnerability with an appropriate type.
 
-To detect vulnerabilities in the application, Wallarm WAF sends requests with attack signs using the following methods:
+To detect vulnerabilities in the application, Wallarm sends requests with attack signs using the following methods:
 
 * **Passive detection**: the vulnerability was found due to the security incident that occurred.
 * **Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
@@ -22,7 +22,7 @@ To detect vulnerabilities in the application, Wallarm WAF sends requests with at
 
 ### Passive detection
 
-With passive detection, Wallarm WAF detects a vulnerability due to the security incident that occurred. If an application vulnerability has been exploited during an attack, Wallarm WAF records the security incident and the exploited vulnerability.
+With passive detection, Wallarm detects a vulnerability due to the security incident that occurred. If an application vulnerability has been exploited during an attack, Wallarm records the security incident and the exploited vulnerability.
 
 Passive vulnerability detection is enabled by default.
 
@@ -34,7 +34,7 @@ Passive vulnerability detection is enabled by default.
 
 #### Potential risks from the Attack rechecker activity
 
-* In rare cases when a legitimate request is detected by the WAF as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
+* In rare cases when a legitimate request is detected by Wallarm as an attack, the request will be replayed by **Attack rechecker**. If the request is not idempotent (for example, an authenticated request creating a new object in the application), then the **Attack rechecker** requests may create many new unwanted objects in the user account or perform other unexpected operations.
 
     To minimize the risk of the described situation, **Attack rechecker** will automatically strip the following HTTP headers from the replayed requests:
 
@@ -63,7 +63,7 @@ Vulnerability scanner checks all elements of the company scope for typical vulne
     * [Scanner IP address registered in Wallarm EU Cloud](../admin-en/scanner-address-en.md)
     * [Scanner IP address registered in Wallarm US Cloud](../admin-en/scanner-address-us-en.md)
 
-    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually whitelist Scanner IP addresses. Starting with WAF node 3.0, Scanner IP addresses are automatically whitelisted.
+    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually whitelist Scanner IP addresses. Starting with Wallarm node 3.0, Scanner IP addresses are automatically whitelisted.
 
 ## False positives
 

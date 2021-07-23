@@ -11,7 +11,7 @@
 
 ### disable_acl
 
-Allows disabling analysis of requests origins. If disabled (`on`), the WAF node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis.
+Allows disabling analysis of requests origins. If disabled (`on`), the filtering node does not download [IP lists](../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -166,19 +166,19 @@ A path to the [LOM](../glossary-en.md#lom) file that contains information on the
 
 Traffic processing mode:
 
-* `off` → the WAF node:
+* `off` → the filtering node:
 
     * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-* `monitoring` → the WAF node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+* `monitoring` → the filtering node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-* `safe_blocking` → the WAF node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+* `safe_blocking` → the filtering node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
     * Blocks requests containing malicious payloads if they are originated from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
-* `block` → the WAF node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+* `block` → the filtering node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks requests containing malicious payloads.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
 
@@ -189,7 +189,7 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value** depends on the WAF node deployment method (can be `off` or `monitoring`)
+    **Default value** depends on the filtering node deployment method (can be `off` or `monitoring`)
 
 ### wallarm_mode_allow_override
 

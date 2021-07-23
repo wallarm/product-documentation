@@ -20,11 +20,11 @@ The blacklist is available in the **Blacklist** section of your Wallarm account.
 * Instantly unblock any IP address or set the time to unblock
 * Add an IP address to the blacklist
 
-!!! warning "Enable IP address blacklisting on the WAF node"
-    For the blacklisting to take effect, please enable it on the WAF node.
+!!! warning "Enable IP address blacklisting on the filtering node"
+    For the blacklisting to take effect, please enable it on the filtering node.
     
-    * [Instructions for the regular WAF node][link-ip-blocking]
-    * To enable IP address blacklisting on the [partner WAF node](../partner-waf-node/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
+    * [Instructions for the regular filtering node][link-ip-blocking]
+    * To enable IP address blacklisting on the [partner node](../partner-waf-node/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Review the Active Blacklist
 
@@ -82,8 +82,8 @@ You can filter the history by:
 
 ## Block Manually
 
-!!! info "Blocking the IP address on the partner WAF node"
-    If you have installed the [partner WAF node](../partner-waf-node/overview.md), please switch to the [account of a client](../partner-waf-node/overview.md#partner-account-components) for which the IP address is blocked before adding the IP address to the blacklist.
+!!! info "Blocking the IP address on the partner node"
+    If you have installed the [partner node](../partner-waf-node/overview.md), please switch to the [account of a client](../partner-waf-node/overview.md#partner-account-components) for which the IP address is blocked before adding the IP address to the blacklist.
 
 To start blocking IP addresses:
 

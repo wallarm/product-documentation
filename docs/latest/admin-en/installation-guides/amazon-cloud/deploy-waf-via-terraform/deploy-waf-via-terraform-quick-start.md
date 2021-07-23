@@ -16,7 +16,7 @@
 1. [Download](#step-1-downloading-terraform-code-example) Terraform code example.
 2. [Prepare](#step-2-preparing-terraform-environment-and-variables) Terraform environment and variables.
 3. [Deploy](#step-3-deploying-described-stack) described stack.
-4. [Test](#step-4-testing-waf-node-operation) WAF node operation.
+4. [Test](#step-4-testing-wallarm-node-operation) Wallarm node operation.
 
 ### Step 1: Downloading Terraform Code Example
 
@@ -53,7 +53,7 @@ Configuration files are located in the `terraform` folder of the repository:
     * `aws_region` (you can find the list of AWS regions [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html))
     * `az_a`
     * `az_b`
-    * `wallarm_node_ami_id` with the used AWS EC2 Wallarm WAF node image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:
+    * `wallarm_node_ami_id` with the used AWS EC2 Wallarm filtering node image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:
     ```
     aws ec2 describe-images --filters "Name=name,Values=*Wallarm Node-3.0*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
     ```
@@ -89,15 +89,15 @@ waf_nlb_dns_name = [
 ]
 ```
 
-The DNS name can be used to access the freshly installed Wordpress service with Wallarm WAF cluster deployed in front of it.
+The DNS name can be used to access the freshly installed Wordpress service with Wallarm cluster deployed in front of it.
 
 ![!Installed Wordpress service](../../../../images/admin-guides/configuration-guides/terraform-guide/opened-dns-wordress.png)
 
-### Step 4: Testing WAF Node Operation
+### Step 4: Testing Wallarm Node Operation
 
-The WAF cluster is configured with a self-signed SSL certificate so it should be possible to access the same DNS name using HTTPS protocol but the browser will show a security warning.
+The Wallarm cluster is configured with a self-signed SSL certificate so it should be possible to access the same DNS name using HTTPS protocol but the browser will show a security warning.
 
-You can simulate a web attack by adding `/?id='or+1=1--a-<script>prompt(1)</script>'` to the web request - the request should be blocked by the WAF with response code 403:
+You can simulate a web attack by adding `/?id='or+1=1--a-<script>prompt(1)</script>'` to the web request - the request should be blocked by Wallarm with response code 403:
 
 ![!403 error code after sending an attack](../../../../images/admin-guides/configuration-guides/terraform-guide/attacked-source.png)
 
@@ -105,7 +105,7 @@ A few minutes after simulating a web attack it should be possible to see two blo
 
 ![!Sent attacks displayed in the Wallarm account](../../../../images/admin-guides/configuration-guides/terraform-guide/wallarm-account-with-attacks.png)
 
-WAF node deployment settings are performed in the `wallarm_launch_config` object of the `main.tf` file. To change settings to your own, please use directive description available by the [link](../../../configure-parameters-en.md).
+Wallarm node deployment settings are performed in the `wallarm_launch_config` object of the `main.tf` file. To change settings to your own, please use directive description available by the [link](../../../configure-parameters-en.md).
 
 !!! info
     To remove the demonstration environment, please use the `terraform destroy` command.

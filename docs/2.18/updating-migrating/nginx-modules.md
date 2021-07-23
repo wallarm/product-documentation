@@ -13,9 +13,9 @@
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
-# Updating Linux WAF packages
+# Updating Linux node packages
 
-These instructions describe the steps to update Linux WAF packages to version 2.18. Linux WAF packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to update Linux node packages to version 2.18. Linux node packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -24,12 +24,12 @@ These instructions describe the steps to update Linux WAF packages to version 2.
 
 ## Update procedure
 
-* If WAF node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
-* If WAF node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for WAF node modules.
+* If filtering node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
+* If filtering node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for filtering node modules.
 
-## Step 1: Add new Wallarm WAF repository
+## Step 1: Add new Wallarm repository
 
-Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version package. Please use the commands for the appropriate platform.
+Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
 **CentOS and Amazon Linux 2**
 
@@ -46,7 +46,7 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 **Debian and Ubuntu**
 
-1. Open the file with the Wallarm WAF repository address in the installed text editor. In these instructions, **vim** is used.
+1. Open the file with the Wallarm repository address in the installed text editor. In these instructions, **vim** is used.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list
@@ -76,9 +76,9 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/
         ```
 
-## Step 2: Update Wallarm WAF packages
+## Step 2: Update Wallarm API Security packages
 
-### WAF node and postanalytics on the same server
+### Filtering node and postanalytics on the same server
 
 === "Debian"
     ```bash
@@ -95,13 +95,13 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
     sudo yum update
     ```
 
-### WAF node and postanalytics on different servers
+### Filtering node and postanalytics on different servers
 
-!!! warning "Sequence of steps to update the WAF node and postanalytics modules"
-    If the WAF node and postanalytics modules are installed on different servers, then it is required to update the postanalytics packages before updating the WAF node packages.
+!!! warning "Sequence of steps to update the filtering node and postanalytics modules"
+    If the filtering node and postanalytics modules are installed on different servers, then it is required to update the postanalytics packages before updating the filtering node packages.
 
 1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
-2. Update WAF node packages:
+2. Update Wallarm node packages:
 
     === "Debian"
         ```bash
@@ -122,12 +122,12 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 4: Test Wallarm WAF operation
+## Step 4: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
 ## Settings customization
 
-Wallarm WAF modules are updated to version 2.18. Previous WAF node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 2.18. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-216.md"

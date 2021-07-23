@@ -11,7 +11,7 @@ On the **Settings** → **Activity log** tab of the Wallarm Console, you can che
 * [Two‑factor authentication](account.md#enabling-two-factor-authentication)
 * [Users](users.md)
 * Traffic processing [rules](../rules/intro.md)
-* [Cloud WAF nodes](../nodes/cloud-node.md)
+* [Cloud nodes](../nodes/cloud-node.md)
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
 * [Blocked IP address](../ip-lists/blacklist.md)

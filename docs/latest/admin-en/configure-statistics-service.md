@@ -45,7 +45,7 @@ server {
 !!! info "Changing the `listen` directive"
     Note that if you change the IP address of the `listen` directive (in the example above, `127.0.0.8`), you will also need to change the following settings:
     
-    * Adjust the [monitoring](monitoring/intro.md) settings of the WAF node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`
+    * Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`
     * Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses)
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
@@ -81,7 +81,7 @@ The following response parameters are available:
 *   `blocked`: the number of blocked requests.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
-*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the WAF node.
+*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `segfaults`: the number of issues that led to the emergency termination of the worker process.
@@ -108,6 +108,6 @@ The following response parameters are available:
     *   `size`: proton.db file size in bytes.
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
-* `startid`: randomly-generated unique ID of the WAF node.
+* `startid`: randomly-generated unique ID of the filtering node.
 
 The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start Wallarm.

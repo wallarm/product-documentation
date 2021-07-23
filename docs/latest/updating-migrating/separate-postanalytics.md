@@ -2,15 +2,15 @@
 
 #   Updating the Separately Installed Postanalytics Module  
 
-These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux WAF packages][docs-module-update].
+These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
 
-!!! warning "Breaking changes and skipping partner WAF node update"
-    * The WAF node 3.0 is **totally incompatible with previous WAF node versions**. Before updating the modules up to 3.0, please carefully review the list of [WAF node 3.0 changes](what-is-new.md) and consider a possible configuration change.
-    * We do NOT recommend updating [partner WAF node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner WAF node [3.2](versioning-policy.md#version-list).
+!!! warning "Breaking changes and skipping partner node update"
+    * The Wallarm node 3.0 is **totally incompatible with previous Wallarm node versions**. Before updating the modules up to 3.0, please carefully review the list of [Wallarm node 3.0 changes](what-is-new.md) and consider a possible configuration change.
+    * We do NOT recommend updating [partner node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner node [3.2](versioning-policy.md#version-list).
 
-## Step 1: Add new Wallarm WAF repository
+## Step 1: Add new Wallarm repository
 
-Delete the previous Wallarm WAF repository address and add a repository with a new WAF node version packages. Please use the commands for the appropriate platform.
+Delete the previous Wallarm repository address and add a repository with a new Wallarm node version packages. Please use the commands for the appropriate platform.
 
 **CentOS and Amazon Linux 2**
 
@@ -27,7 +27,7 @@ Delete the previous Wallarm WAF repository address and add a repository with a n
 
 **Debian and Ubuntu**
 
-1. Open the file with the Wallarm WAF repository address in the installed text editor. In this instruction, **vim** is used.
+1. Open the file with the Wallarm repository address in the installed text editor. In this instruction, **vim** is used.
 
     ```bash
     sudo vim /etc/apt/sources.list.d/wallarm.list

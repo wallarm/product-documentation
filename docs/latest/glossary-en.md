@@ -2,7 +2,7 @@
 
 ## Hit
 
-A hit is a serialized malicious request (original malicious request and metadata added by the WAF node). For example:
+A hit is a serialized malicious request (original malicious request and metadata added by the filtering node). For example:
 
 ![!Hit example](images/glossary/hit-example.png)
 

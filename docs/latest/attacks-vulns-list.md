@@ -64,7 +64,7 @@ Most of the vulnerabilities and attacks on this list are also accompanied by one
 
 Additionally, the Wallarm filter node employs several special attack and vulnerability types for the internal purpose of marking processed traffic. Such entities are not accompanied by CWE codes but are [listed separately][anchor-special-list]. 
 
-??? info "Watch Wallarm video about how WAF protects against OWASP Top 10"
+??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -118,7 +118,7 @@ You may follow these recommendations:
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
 *   Restrict a web application from accessing any files or directories on the server it runs on, except those within the scope of the application. 
 
-[How to configure Wallarm WAF to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ??? info "Watch Wallarm video about brute‑force attacks"
     <div class="video-wrapper">
@@ -298,7 +298,7 @@ You may follow these recommendations:
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
 *   Set necessary and sufficient access rights for the web application's files and directories.
 
-[How to configure Wallarm WAF to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ??? info "Watch Wallarm video about brute‑force attacks"
     <div class="video-wrapper">

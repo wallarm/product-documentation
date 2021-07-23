@@ -3,12 +3,12 @@
 These instructions describe the method to customize the blocking page and error code returned in the response to the request blocked for the following reasons:
 
 * Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
-* Request containing malicious payloads from the list above is originated from [greylisted IP address](../../user-guides/ip-lists/greylist.md) and the WAF node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
+* Request containing malicious payloads from the list above is originated from [greylisted IP address](../../user-guides/ip-lists/greylist.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
 * Request is originated from the [blacklisted IP address](../../user-guides/ip-lists/blacklist.md).
 
 ## Configuration limitations
 
-Configuration of the blocking page and error code is supported in NGINX-based WAF node deployments but is not supported in Envoy-based WAF node deployments. Envoy-based WAF node always returns code `403` in the response to the blocked request.
+Configuration of the blocking page and error code is supported in NGINX-based Wallarm node deployments but is not supported in Envoy-based Wallarm node deployments. Envoy-based Wallarm node always returns code `403` in the response to the blocked request.
 
 ## Configuration methods
 
@@ -28,7 +28,7 @@ You can configure the blocking page and error code passing the following paramet
 * `response_code`: response code.
 * `type`: the type of the blocked request in response to which the specified configuration must be returned. The parameter accepts one or several values (separated by commas) from the list:
 
-    * `attack` (by default): for requests blocked by the WAF node when filtering requests in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
+    * `attack` (by default): for requests blocked by the filtering node when filtering requests in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
     * `acl_ip`: for requests originated from IP addresses that are added to the [blacklist](../../user-guides/ip-lists/blacklist.md) as a single object or a subnet.
     * `acl_source`: for requests originated from IP addresses that are registered in [blacklisted](../../user-guides/ip-lists/blacklist.md) countries or data centers.
 
@@ -90,13 +90,13 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 Below are examples of configuring the blocking page and error code via the directives `wallarm_block_page` and `wallarm_block_page_add_dynamic_path`.
 
-The `type` parameter of the `wallarm_block_page` directive is explicitly specified in each example. If you remove the `type` parameter, then configured block page, message, etc will be returned only in the response to the request blocked by the WAF node in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
+The `type` parameter of the `wallarm_block_page` directive is explicitly specified in each example. If you remove the `type` parameter, then configured block page, message, etc will be returned only in the response to the request blocked by the filtering node in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
 
 ### Path to the HTM or HTML file with the blocking page and error code
 
 This example shows the following response settings:
 
-* Default Wallarm blocking page and the error code 445 returned if the request is blocked by the WAF node in the blocking or safe blocking mode.
+* Default Wallarm blocking page and the error code 445 returned if the request is blocked by the filtering node in the blocking or safe blocking mode.
 * Custom blocking page `/usr/share/nginx/html/block.html` and the error code 445 returned if the request is originated from any blacklisted IP address.
 
 #### NGINX configuration file
@@ -127,7 +127,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### URL for the client redirection
 
-This example shows settings to redirect the client to the page `host/err445` if the WAF node blocks the request originated from blacklisted countries or data centers.
+This example shows settings to redirect the client to the page `host/err445` if the filtering node blocks the request originated from blacklisted countries or data centers.
 
 #### NGINX configuration file
 
@@ -169,7 +169,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### Variable and error code
 
-This configuration is returned to the client if the request is originated from the source blacklisted as a single IP or subnet. The WAF node returns the code 445 and the blocking page with the content that depends on the `User-Agent` header value:
+This configuration is returned to the client if the request is originated from the source blacklisted as a single IP or subnet. The Wallarm node returns the code 445 and the blocking page with the content that depends on the `User-Agent` header value:
 
 * By default, the default Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
 * For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html`:

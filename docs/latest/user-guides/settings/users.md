@@ -27,18 +27,18 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 
 Users of Wallarm clients can have the following roles:
 
-* **Administrator** with access to all Wallarm WAF settings
-* **Analyst** with access to view main Wallarm WAF settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
-* **Read Only** with access to view main Wallarm WAF settings
-* **Deploy** with access to create WAF nodes using the `addnode` script and with no access to Wallarm Console
+* **Administrator** with access to all Wallarm settings
+* **Analyst** with access to view main Wallarm settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Read Only** with access to view main Wallarm settings
+* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
 For Wallarm partners, global roles **Global Administrator**, **Global Analyst**, **Global Read Only** are also available. Global roles provide users with access to the partner account and linked client accounts, regular roles provide users with access only to the partner account.
 
-More detailed information about access of different user roles to Wallarm WAF entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
+More detailed information about access of different user roles to Wallarm entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
 
 | Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | Deploy                            |
 |---------------------|--------------------------------------|--------------------------|------------------------------|-----------------------------------|
-| **WAF nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` and `addcloudnode` scripts |
+| **Filtering nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` and `addcloudnode` scripts |
 | **Dashboard**       | View                                 | View                     | View                         | -                                 |
 | **Events**          | View and manage                      | View and manage          | View                         | -                                 |
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
@@ -46,7 +46,7 @@ More detailed information about access of different user roles to Wallarm WAF en
 | **Triggers**        | View and manage                      | -                        | -                            | -                                 |
 | **Blacklist**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
 | **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
-| **WAF mode**        | View and manage                      | View                     | View                         | -                                 |
+| **Filtration mode**        | View and manage                      | View                     | View                         | -                                 |
 | **Applications**    | View and manage                      | View                     | View                         | -                                 |
 | **Integrations**    | View and manage                      | -                        | -                            | -                                 |
 | **Users**           | View and manage                      | -                        | View                         | -                                 |

@@ -1,6 +1,6 @@
-# Updating NGINX Ingress controller with integrated Wallarm WAF
+# Updating NGINX Ingress controller with integrated Wallarm API Security modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with WAF node 2.16.
+These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 2.16.
 
 * To update Wallarm Ingress controller, you need to clone new Helm chart version and apply updates to the installed version.
 * Current Ingress controller settings and Ingress annotations will be saved and applied to a new version automatically.
@@ -23,7 +23,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
         helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-    * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud WAF node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
+    * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller to update
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 
@@ -57,7 +57,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the WAF node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in the Wallarm Console → **Nodes**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in the Wallarm Console → **Nodes**.
 
 ## Configuring
 

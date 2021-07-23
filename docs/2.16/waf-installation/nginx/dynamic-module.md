@@ -23,9 +23,9 @@
 [waf-installation-instr-middle]:             /2.18/waf-installation/nginx/dynamic-module/
 [versioning-policy]:                         ../../updating-migrating/versioning-policy.md
 
-# Installing dynamic WAF module for NGINX stable from NGINX repository
+# Installing dynamic Wallarm module for NGINX stable from NGINX repository
 
-These instructions describe the steps to install Wallarm WAF as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
+These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
 --8<-- "../include/waf/installation/already-installed-waf-postanalytics-deprecation.md"
 
@@ -113,13 +113,13 @@ More detailed information about installation is available in the [official NGINX
 !!! info "Installing on Amazon Linux 2"
     To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instructions.
 
-### 2. Add Wallarm WAF repositories
+### 2. Add Wallarm repositories
 
-Wallarm WAF is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+Wallarm node is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-2.16.md"
 
-### 3. Install Wallarm WAF packages
+### 3. Install Wallarm API Security packages
 
 #### Request processing and postanalytics on the same server
 
@@ -151,7 +151,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 * `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../../admin-en/installation-postanalytics-en.md))
 
-### 4. Connect the Wallarm WAF module
+### 4. Connect the Wallarm API Security module
 
 1. Open the file `/etc/nginx/nginx.conf`:
 
@@ -182,11 +182,11 @@ To run postanalytics and process the requests on different servers, the followin
     sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-### 5. Connect the WAF node to Wallarm Cloud
+### 5. Connect the filtering node to Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud.md"
 
-### 6. Update Wallarm WAF configuration
+### 6. Update Wallarm node configuration
 
 --8<-- "../include/waf/installation/nginx-waf-min-configuration-2.16.md"
 
@@ -196,12 +196,12 @@ To run postanalytics and process the requests on different servers, the followin
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-### 8. Test Wallarm WAF operation
+### 8. Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
 ## Settings customization
 
-Dynamic Wallarm WAF module with default settings is installed for NGINX `stable`. To customize Wallarm WAF settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Dynamic Wallarm API Security module with default settings is installed for NGINX `stable`. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-216.md"

@@ -156,7 +156,7 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.
 
 Annotations used for the blocking page and error code configuration depend on the reason and method of blocking the requests:
 
-* `nginx.ingress.kubernetes.io/wallarm-block-page` is used if the request is [blocked](configure-wallarm-mode.md) by the WAF node due to detected attack signs
+* `nginx.ingress.kubernetes.io/wallarm-block-page` is used if the request is [blocked](configure-wallarm-mode.md) by the filtering node due to detected attack signs
 * `nginx.ingress.kubernetes.io/wallarm-acl-block-page` is used if the request is originated from a [blocked IP address](configure-ip-blocking-en.md)
 
 For example, to return the default Wallarm blocking page and the error code 445 in the response to the blocked request:

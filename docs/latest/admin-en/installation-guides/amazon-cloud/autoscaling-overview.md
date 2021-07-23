@@ -11,7 +11,7 @@
 [link-doc-set-up-asg]:      load-balancing-guide.md#2-setting-up-an-auto-scaling-group-for-using-the-created-balancer
 
 
-# Overview of the WAF node Auto Scaling Configuration on AWS
+# Overview of the filtering node Auto Scaling Configuration on AWS
 
 You can set up Wallarm filter node auto scaling to make sure that filter nodes are capable of handling traffic fluctuations, if there are any. Enabling auto scaling allows processing the incoming requests to the application using the filter nodes even when traffic soars significantly.
 

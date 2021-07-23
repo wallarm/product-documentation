@@ -1,20 +1,20 @@
 # Filtration mode configuration
 
-Filtration mode defines the WAF node behavior when processing incoming requests. These instructions describe available filtration modes and their configuration methods.
+Filtration mode defines the filtering node behavior when processing incoming requests. These instructions describe available filtration modes and their configuration methods.
 
 ## Available filtration modes
 
-The WAF node can process incoming requests in the following modes (from the mildest to the strictest):
+The Wallarm filtering node can process incoming requests in the following modes (from the mildest to the strictest):
 
-* **Disabled** (`off`) → the WAF node:
+* **Disabled** (`off`) → the filtering node:
 
     * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
-* **Monitoring** (`monitoring`) → the WAF node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+* **Monitoring** (`monitoring`) → the filtering node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
-* **Blocking** (`block`) → the WAF node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the WAF node uploads them to the Wallarm Cloud.
+* **Blocking** (`block`) → the filtering node:
+    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks requests containing malicious payloads.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/blacklist.md).
 
@@ -22,7 +22,7 @@ The WAF node can process incoming requests in the following modes (from the mild
 
 The filtration mode can be configured in the following ways:
 
-* Assign a value to the `wallarm_mode` directive in the WAF node configuration file
+* Assign a value to the `wallarm_mode` directive in the filtering node configuration file
 * Define the general filtration rule in the Wallarm Console
 * Create a filtration mode rule in the **Rules** section of the Wallarm Console
 
@@ -30,7 +30,7 @@ Priorities of the filtration mode configuration methods are determined in the [`
 
 ### Specifying the filtration mode in the `wallarm_mode` directive
 
-Using the `wallarm_mode` directive in the WAF node configuration file, you can define filtration modes for different contexts. These contexts are ordered from the most global to the most local in the following list:
+Using the `wallarm_mode` directive in the filtering node configuration file, you can define filtration modes for different contexts. These contexts are ordered from the most global to the most local in the following list:
 
 * `http`: the directives inside the `http` block are applied to the requests sent to the HTTP server.
 * `server`: the directives inside the `server` block are applied to the requests sent to the virtual server.
@@ -92,10 +92,10 @@ On the **General** tab, you can specify one of the following filtration modes:
     
 ![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page.png)
 
-!!! info "The Wallarm Cloud and WAF node synchronization"
-    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and WAF node synchronization process, which is conducted once every 2‑4 minutes.
+!!! info "The Wallarm Cloud and filtering node synchronization"
+    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
 
-    [More details on the WAF node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
+    [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ### Setting up the filtration rules on the "Rules" tab
 
@@ -104,14 +104,14 @@ You can fine-tune the filtration mode for processing requests that meet your cus
 * [Details on working with rules on the **Rules** tab →](../user-guides/rules/intro.md)
 * [Step-by-step guide for creating a rule that manages the filtration mode →](../user-guides/rules/wallarm-mode-rule.md)
 
-!!! info "The Wallarm Cloud and WAF node synchronization"
-    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and WAF node synchronization process, which is conducted once every 2‑4 minutes.
+!!! info "The Wallarm Cloud and filtering node synchronization"
+    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
 
-    [More details on the WAF node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
+    [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ### Setting up priorities of the filtration mode configuration methods using `wallarm_mode_allow_override`
 
-The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on the Wallarm Console instead of using the `wallarm_mode` directive values from the WAF node configuration file.
+The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on the Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 
 The following values are valid for the `wallarm_mode_allow_override` directive:
 
@@ -163,7 +163,7 @@ This configuration example results in the following applications of the filtrati
 
 Let us consider the example of a filtration mode configuration that uses all of the methods mentioned above.
 
-### Setting up filtration mode in the WAF node configuration file
+### Setting up filtration mode in the filtering node configuration file
 
 ```bash
 http {
@@ -216,7 +216,7 @@ http {
 
 ### Examples of requests sent to the server `SERVER_A`
 
-Examples of the requests sent to the configured server `SERVER_A` and the actions that the Wallarm WAF node applies to them are the following:
+Examples of the requests sent to the configured server `SERVER_A` and the actions that the Wallarm filtering node applies to them are the following:
 
 * The malicious request with the `/news` path is processed but not blocked due to the `wallarm_mode monitoring;` setting for the server `SERVER_A`.
 
@@ -226,8 +226,8 @@ Examples of the requests sent to the configured server `SERVER_A` and the action
 
 * The malicious request with the `/main/login` path is blocked due to the `wallarm_mode block;` setting for the requests with the `/main/login` path.
 
-    The **Monitoring** rule defined in the Wallarm Console is not applied to it due to the `wallarm_mode_allow_override strict;` setting in the WAF node configuration file.
+    The **Monitoring** rule defined in the Wallarm Console is not applied to it due to the `wallarm_mode_allow_override strict;` setting in the filtering node configuration file.
 
 * The malicious request with the `/main/signup` path is blocked due to the `wallarm_mode_allow_override strict;` setting for the requests with the `/main/signup` path and the **Blocking** rule defined in the Wallarm Console for the requests with the `/main` path.
 * The malicious request with the `/main/apply` path and the `GET` method is blocked due to the `wallarm_mode_allow_override on;` setting for the requests with the `/main/apply` path and the **Blocking** rule defined in the Wallarm Console for the requests with the `/main` path.
-* The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in the Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the WAF node configuration file.
+* The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in the Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the filtering node configuration file.

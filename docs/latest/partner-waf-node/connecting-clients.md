@@ -3,7 +3,7 @@
 ## Requirements
 
 * Access to the [technical client account](creating-partner-account.md) with the **Global administrator** user role and disabled two‑factor authentication in the Wallarm Console
-* [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-waf-node-configuration)
+* [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-filtering-node-configuration)
 
 ## Procedure for creating and linking clients
 
@@ -24,7 +24,7 @@ At this step, a partner client account will be created and linked to the partner
     --------- | -------- | ------------- | ---------
     `name` | Client name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix that Wallarm will use for vulnerability tracking and association with the client. The prefix must contain four capital letters or numbers and be related to a client name. For example: `CLNT` for the client `Client`. | Body | Yes
-    `partner_uuid` | [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-waf-node-configuration). | Body | Yes
+    `partner_uuid` | [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-filtering-node-configuration). | Body | Yes
     `language` | Language for the client account in the Wallarm Console interface: `en` or `ru`. By default, the language specififed when switching the account to the partner status is used. | Body | No
     `X-WallarmAPI-UUID` | [User UUID](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
     `X-WallarmAPI-Secret` | [Secret key](../api/overview.md#your-own-client). | Header | Yes, when sending a request from own client
@@ -71,13 +71,13 @@ At this step, ID will be set for a partner-client application link. One client m
 
 2. Copy and save the `id` value you passed in the request. This ID will be used in NGINX configuration (`wallarm_instance`) for splitting several clients traffic.
 
-If you configure the WAF node for several applications of the client, send the API request for each application passing different `id` value.
+If you configure the filtering node for several applications of the client, send the API request for each application passing different `id` value.
 
 When the client resource gets the traffic, the configured `id` will be displayed in the Wallarm Console → **Settings** → **Applications** for an appropriate partner client account.
 
 ## Providing clients with access to the Wallarm Console
 
-You can provide your clients with access to their accounts in the Wallarm Console. Clients will be able to track blocked requests, analyze discovered vulnerabilities, and perform additional configuration of the WAF node via the Wallarm Console.
+You can provide your clients with access to their accounts in the Wallarm Console. Clients will be able to track blocked requests, analyze discovered vulnerabilities, and perform additional configuration of the filtering node via the Wallarm Console.
 
 To provide a client with access to an account, go to the appropriate partner client account via the client selector → section **Settings** → **Users** and add users with the required roles. Only regular roles can be set for users of the partner client account. Reqular roles give access to only one partner client account.
 

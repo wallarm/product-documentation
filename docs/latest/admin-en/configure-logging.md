@@ -15,8 +15,8 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `export-counters.log`: the log of exporting the counters' data (see [“Monitoring the Filter Node”][doc-monitor-node]).
 *   `syncnode.log`: the log of syncing the filter node with the Wallarm cloud (this includes fetching the [LOM][doc-lom] and proton.db files from the cloud).
 *   `tarantool.log`: the log of the postanalytics module operations.
-*   `sync-blacklist.log`: the log of syncing the WAF node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
-*   `sync-mmdb.log`: the log of syncing the WAF node with IP addresses registered in countries and data centers from [IP lists](../user-guides/ip-lists/overview.md).
+*   `sync-blacklist.log`: the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
+*   `sync-mmdb.log`: the log of syncing the filtering node with IP addresses registered in countries and data centers from [IP lists](../user-guides/ip-lists/overview.md).
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 

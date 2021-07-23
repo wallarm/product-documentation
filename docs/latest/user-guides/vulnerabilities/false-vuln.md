@@ -30,4 +30,4 @@ The vulnerability marked as a false positive, will be displayed on the **Closed*
 
 ![!False vulnerability](../../images/user-guides/vulnerabilities/discard-false-vuln.png)
 
-The vulnerability will be switched to the status **Open** and will be rechecked with Wallarm WAF tools.
+The vulnerability will be switched to the status **Open** and will be rechecked with Wallarm tools.

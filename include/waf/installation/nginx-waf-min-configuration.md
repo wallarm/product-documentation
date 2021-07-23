@@ -1,15 +1,15 @@
-Main configuration files of NGINX and Wallarm WAF node are located in the directories:
+Main configuration files of NGINX and Wallarm filtering node are located in the directories:
 
 * `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global WAF node settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
 
     The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` with WAF node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
 * `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
 
 #### Request filtration mode
 
-By default, the WAF node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
+By default, the filtering node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
 
 1. Open the file `/etc/nginx/conf.d/default.conf`:
 
@@ -26,7 +26,7 @@ By default, the WAF node is in the status `off` and does not analyze incoming re
         listen       80;
         # domain for which requests are filtered
         server_name  localhost;
-        # WAF node mode
+        # Filtering node mode
         wallarm_mode monitoring;
 
         location / {
@@ -41,14 +41,14 @@ By default, the WAF node is in the status `off` and does not analyze incoming re
     }
     ```
 
-When operating in the `monitoring` mode, the WAF node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the WAF node in the `monitoring` mode for several days after the WAF node deployment and only then enable the `block` mode. [Learn recommendations on the WAF node operation mode setup →][waf-mode-recommendations]
+When operating in the `monitoring` mode, the filtering node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →][waf-mode-recommendations]
 
 #### Memory
 
 !!! info "Postanalytics on the separate server"
     If you installed postanalytics on a separate server, then skip this step as you already have your postanalytics configured.
 
-The WAF node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
@@ -99,4 +99,4 @@ The WAF node uses the in-memory storage Tarantool. The recommended memory size f
 
 #### Other configurations
 
-To update other NGINX and Wallarm WAF configurations, use the NGINX documentation and the list of [available Wallarm WAF directives][waf-directives-instr].
+To update other NGINX and Wallarm node configurations, use the NGINX documentation and the list of [available Wallarm node directives][waf-directives-instr].
