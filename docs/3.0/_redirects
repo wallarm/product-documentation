@@ -45,9 +45,11 @@
 /2.14/api/* /api/:splat 301!
 /2.14/faq/* /faq/:splat 301!
 /2.14/demo-videos/* /demo-videos/:splat 301!
+/2.14/api-firewall/* /api-firewall/:splat 301!
 /2.16/api/* /api/:splat 301!
 /2.16/faq/* /faq/:splat 301!
 /2.16/demo-videos/* /demo-videos/:splat 301!
+/2.16/api-firewall/* /api-firewall/:splat 301!
 /2.18/api/* /api/:splat 301!
 /2.18/faq/* /faq/:splat 301!
 /2.18/demo-videos/* /demo-videos/:splat 301!
