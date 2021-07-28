@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 'API Firewall demo docs sync'
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  sync:
+    name: 'API Firewall demo docs sync'
+    runs-on: ubuntu-latest
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.FIREWALL_DOCS_TOKEN }}
+        submodules: true
+
+    # Update references
+    - name: Update api-firewall submodule
+      run: |
+        git pull --recurse-submodules
+        git submodule update --remote --recursive
+
+    - name: Commit api-firewall demo docs changes
+      run: |
+        git config --global user.name 'API Firewall demo docs bot'
+        git config --global user.email 'bot@noreply.github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.FIREWALL_DOCS_TOKEN }}@github.com/${{ github.repository }}
+        git commit -am "Update api-firewall demo docs" && git push || echo "No changes to commit"
