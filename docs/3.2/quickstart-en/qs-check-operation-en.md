@@ -1,0 +1,1 @@
+--8<-- "latest/quickstart-en/qs-check-operation-en.md"
