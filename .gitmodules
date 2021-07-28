@@ -1,0 +1,3 @@
+[submodule "docs/latest/api-firewall/api-firewall"]
+	path = docs/latest/api-firewall/api-firewall
+	url = https://github.com/wallarm/api-firewall
