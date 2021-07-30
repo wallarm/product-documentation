@@ -97,6 +97,7 @@ nav:
     - Deploying Wallarm Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
     - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
+    - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
   - Demo videos:
     - Wallarm API Security overview and deployment options: demo-videos/waf-overview.md
