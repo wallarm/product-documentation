@@ -1,22 +1,22 @@
 # Discovering API structure
 
-The **API Discovery** module of Wallarm API Security identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of requests from the real traffic and builds the API structure based on the analysis results.
+The **API Discovery** module of Wallarm API Security identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of real traffic requests and builds the API structure based on the analysis results.
 
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
-## Issues solved by API Discovery
+## Issues addressed by API Discovery
 
-The main issue the API Discovery module solves is **building an actual and complete API structure**.
+**Building an actual and complete API structure** is the main issue the API Discovery module is addressing.
 
-Complex systems may use several APIs, each of which is maintained by a particular team using different approaches. Tools for some approaches automatically generate API structure based on the API code (for example, tools analyzing code annotations). In some approaches, no tools allow automated API structure generation, which is why teams build API structure manually.
+Complex systems may use several APIs each maintained by a particular team using different approaches. Tools for some approaches automatically generate API structure based on the API code (for example, tools analyzing code annotations). In some approaches, no tools allow automated API structure generation, which is why teams build API structure manually.
 
-In both cases, the built API structure may be outdated or incomplete. For example, if a part of endpoints was not annotated or a part of API code was not manually processed.
+In both cases, the built API structure may be outdated or incomplete, e.g. if a part of endpoints was not annotated or a part of API code was not manually processed.
 
-Since the API Discovery module uses the real traffic as a data source, it helps to avoid the irrelevance and incompleteness of the API structure by including to the API structure all endpoints actually processing the requests.
+Since the API Discovery module uses the real traffic as a data source, it helps to avoid the irrelevance and incompleteness of the API structure by including all endpoints actually processing the requests to the API structure.
 
 ## How API Discovery works?
 
-API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of requests from the real traffic.
+API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
 
 The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](#api-structure-visualization) it in the Wallarm Console.
 
@@ -26,7 +26,7 @@ The API structure includes the following elements:
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters
 
-API discovery is a continuous process that is why the time required for complete API structure discovery depends on the traffic variety and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
+API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 ## Security of data uploaded to the Wallarm Cloud
 

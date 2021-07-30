@@ -13,7 +13,7 @@ Click the *Configure* link under the scanner toggle to configure the scanner.
 
 ## Configuring the Vulnerabilities Detection List
 
-The scanner consists of multiple modules, each of which is responsible for detecting a certain type of vulnerability. The full modules list is specified in the “Configure Scanner” menu.
+The scanner consists of multiple modules each responsible for detecting a certain type of vulnerability. The full modules list is specified in the “Configure Scanner” menu.
 
 ![!Configuring scanner modules][img-scanner-modules]
 
