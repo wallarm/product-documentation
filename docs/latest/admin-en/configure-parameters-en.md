@@ -164,6 +164,17 @@ A path to the [LOM](../glossary-en.md#lom) file that contains information on the
 
 ### wallarm_mode
 
+!!! warning "Changes in the `off` and `monitoring` filtration mode logic"
+    Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
+
+    * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
+    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
+
+    During the [Wallarm module upgrade](../updating-migrating/general-recommendations.md), please ensure that the expected behavior of the `wallarm_mode` directive in version 3.2 corresponds to released changes or adjust filtration mode settings to the released changes.
+
+    If you have already updated modules, please adjust the filtration mode settings to changes released in version 3.2 (if necessary). [Details on filtration mode configuration](configure-wallarm-mode.md)
+
 Traffic processing mode:
 
 * `off` → the filtering node:
