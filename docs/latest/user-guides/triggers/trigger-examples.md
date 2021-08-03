@@ -42,7 +42,7 @@ If 4 or more different attack vectors are sent to the protected resource from on
     ```
 
     There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
-2. Open the Wallarm Console → **Blacklist** and check that IP address from which the requests were originated is blocked for 1 hour.
+2. Open the Wallarm Console → **IP lists** → **Blacklist** and check that IP address from which the requests were originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
     ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
@@ -198,7 +198,7 @@ If an IP address was added to the blacklist, the webhook about this event will b
 
 **To test the trigger:**
 
-1. Open the Wallarm Console → **Blacklist** and add the IP address to the blacklist. For example:
+1. Open the Wallarm Console → **IP lists** → **Blacklist** and add the IP address to the blacklist. For example:
 
     ![!Adding IP to the blacklist](../../images/user-guides/triggers/test-ip-blocking.png)
 2. Check that the following webhook was sent to the Webhook URL:

@@ -44,7 +44,7 @@ More detailed information about access of different user roles to Wallarm entiti
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
 | **Scanner**         | View and manage                      | View and manage          | View                         | -                                 |
 | **Triggers**        | View and manage                      | -                        | -                            | -                                 |
-| **Blacklist**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
+| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
 | **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
 | **Filtration mode**        | View and manage                      | View                     | View                         | -                                 |
 | **Applications**    | View and manage                      | View                     | View                         | -                                 |

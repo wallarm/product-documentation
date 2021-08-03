@@ -66,7 +66,7 @@ You can configure several triggers for brute force protection.
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/api/frontend/login ; done
     ```
-2. Open the Wallarm Console → section **Blacklist** and check that IP address from which the requests were originated is blocked for the period configured in the trigger.
+2. Open the Wallarm Console → section **IP lists** → **Blacklist** and check that IP address from which the requests were originated is blocked for the period configured in the trigger.
 3. Open the section **Events** and check that requests are displayed in the list as the brute‑force or dirbust attack.
 
     ![!Dirbust attack in the interface](../../images/user-guides/events/dirbust-attack.png)
