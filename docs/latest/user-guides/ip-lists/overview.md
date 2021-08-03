@@ -19,13 +19,19 @@ In the **IP lists** section of the Wallarm Console, you can control access to yo
 
 ## Algorithm of IP lists processing
 
-In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the filtering node inspects whether source IPs of incoming requests matches entries of IP lists as follows:
+!!! warning "Changes in IP lists processing in the `off` and `monitoring` filtration modes"
+    Starting with version 3.2, the logic of IP lists processing has been changed as follows:
 
-* Request filtering is **disabled** or performed in **monitoring mode**:
+    * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
+    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](blacklist.md) IP, it does not block this request.
+    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
 
-    1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    2. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    3. If a source IP of an incoming request is neither in the blacklist nor in the whitelist, the filtering node forwards an incoming request to your application event if it contains attack signs.
+    During the [Wallarm module upgrade](../../updating-migrating/general-recommendations.md), please ensure that deployed Wallarm node 3.2 processes IP lists as expected or adjust filtration mode settings to the released changes.
+
+    If you have already updated modules, please adjust the filtration mode settings to changes released in version 3.2 (if necessary). [Details on filtration mode configuration](../../admin-en/configure-wallarm-mode.md)
+
+The filtering node inspects whether source IPs of incoming requests matches entries of IP lists only in the **safe blocking** and **blocking** [modes](../../admin-en/configure-wallarm-mode.md):
+
 * Request filtering is performed in **safe blocking mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
