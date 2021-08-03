@@ -128,7 +128,7 @@ Wallarm is constantly working to improve the filtering node software, with new r
 ## Learn known caveats
 
 * All Wallarm nodes connected to the same Wallarm account will receive the same set of traffic filtering rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all application instances in a Wallarm account. Similarly for other methods of changing any of the IP lists.
+* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all application instances in a Wallarm account.
 
 ## Follow the best practices for the Active threat verification feature
 
