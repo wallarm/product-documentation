@@ -1,10 +1,10 @@
 # Migrating whitelists and blacklists from previous Wallarm node versions to 3.x
 
-Starting with Wallarm node 3.x, the method of IP addresses whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists and blacklists configured in Wallarm node 2.18 or lower to Wallarm node 3.x.
+Starting with Wallarm node 3.x, the method of IP address whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists and blacklists configured in Wallarm node 2.18 or lower to Wallarm node 3.x.
 
 ## What has changed?
 
-Configuration of IP addresses whitelist and blacklist has been changed as follows:
+Configuration of IP address whitelist and blacklist has been changed as follows:
 
 * The [`wallarm_acl_*`](/2.18/admin-en/configure-parameters-en/#wallarm_acl) NGINX directives, [`acl`](/2.18/admin-en/configuration-guides/envoy/fine-tuning/#ip-blacklisting-settings) Envoy parameters, and `WALLARM_ACL_*` environment variables have been deprecated. Now, IP lists are configured as follows:
 

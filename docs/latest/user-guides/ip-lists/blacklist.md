@@ -1,4 +1,4 @@
-# IP addresses blacklist
+# IP address blacklist
 
 **Blacklist** is a list of IP addresses that are not allowed to access your applications. In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the filtering node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
 

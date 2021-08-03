@@ -1,4 +1,4 @@
-# IP addresses greylist
+# IP address greylist
 
 **Greylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
 

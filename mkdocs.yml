@@ -272,9 +272,9 @@ nav:
         - Trigger examples: user-guides/triggers/trigger-examples.md
       - IP lists:
         - Types and core logic of IP lists: user-guides/ip-lists/overview.md
-        - IP addresses whitelist: user-guides/ip-lists/whitelist.md
-        - IP addresses greylist: user-guides/ip-lists/greylist.md
-        - IP addresses blacklist: user-guides/ip-lists/blacklist.md
+        - IP address whitelist: user-guides/ip-lists/whitelist.md
+        - IP address greylist: user-guides/ip-lists/greylist.md
+        - IP address blacklist: user-guides/ip-lists/blacklist.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md

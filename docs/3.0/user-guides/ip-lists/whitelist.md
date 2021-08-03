@@ -1,4 +1,4 @@
-# IP addresses whitelist
+# IP address whitelist
 
 **Whitelist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs. Since the whitelist has the highest priority among other lists, the filtering node in any [filtration mode](../../admin-en/configure-wallarm-mode.md) will not block requests originated from whitelisted IP addresses.
 

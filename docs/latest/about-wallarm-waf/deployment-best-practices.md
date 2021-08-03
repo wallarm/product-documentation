@@ -67,7 +67,7 @@ Like with every other critical component in your production environment, Wallarm
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
-## Learn how to use IP addresses whitelist, blacklist, and greylist
+## Learn how to use IP address whitelist, blacklist, and greylist
 
 In addition to blocking individual malicious requests, Wallarm filtering nodes can also block individual end-user IP addresses. Rules for IPs blocking are configured using whitelists, blacklists and greylists.
 

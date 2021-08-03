@@ -19,7 +19,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
 ### Changes in supported filtering node configuration parameters
 
-* Dropped support for all `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP addresses blacklist. Manual configuration of IP blacklisting is no longer required.
+* Dropped support for all `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address blacklist. Manual configuration of IP blacklisting is no longer required.
 
     [Details on migrating blacklist configuration →](migrate-ip-lists-to-node-3.md)
 
@@ -48,13 +48,13 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ### New features
 
-* Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP addresses greylist](../user-guides/ip-lists/greylist.md).
+* Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address greylist](../user-guides/ip-lists/greylist.md).
 
     The Wallarm node operating in `safe_blocking` mode blocks only those malicious requests originated from greylisted IP addresses that allow a significant reduction of [false positives](../about-wallarm-waf/protecting-against-attacks.md#false-positives) numbers.
 * New reaction of triggers **Add to greyist** allowing to automatically greylist IP addresses originated a specific number of malicious requests.
 
     [Example of the trigger that greylists IP addresses →](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
-* Management of [IP addresses whitelist](../user-guides/ip-lists/whitelist.md) via the Wallarm Console.
+* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via the Wallarm Console.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
 * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
 
