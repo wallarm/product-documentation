@@ -1,23 +1,31 @@
 # Updating NGINX Ingress controller with integrated Wallarm API Security modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.0.
+These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.2.
 
 * To update Wallarm Ingress controller, you need to clone new Helm chart version and apply updates to the installed version.
 * Current Ingress controller settings and Ingress annotations will be saved and applied to a new version automatically.
 
-!!! warning "Breaking changes and skipping partner node update"
-    * The Wallarm node 3.0 is **totally incompatible with previous Wallarm node versions**. Before updating the modules up to 3.0, please carefully review the list of [Wallarm node 3.0 changes](what-is-new.md) and consider a possible configuration change.
-    * We do NOT recommend updating [partner node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner node [3.2](versioning-policy.md#version-list).
+!!! warning "Breaking changes and recommendations for different node type update"
+    * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
+    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
 
 ## Updating
 
-1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
-2. Clone new Helm chart version from the Wallarm repository:
+1. If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account.
+
+    When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
+      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+
+    If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
+3. Clone new Helm chart version from the Wallarm repository:
 
     ```bash
-    git clone https://github.com/wallarm/ingress-chart --branch 3.0.0-3 --single-branch
+    git clone https://github.com/wallarm/ingress-chart --branch 3.2.0-1  --single-branch
     ```
-3. Update the previous Helm chart:
+4. Update the previous Helm chart:
 
     === "EU Cloud"
         ``` bash
@@ -31,7 +39,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller to update
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
-4. Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+5. If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.2 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Testing
 
