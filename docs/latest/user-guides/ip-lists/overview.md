@@ -9,10 +9,13 @@ In the **IP lists** section of the Wallarm Console, you can control access to yo
 ![!All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 !!! warning "IP lists support"
-    Controlling access to your applications by whitelisted, blacklisted and greylisted IP addresses is supported starting with the regular (client) Wallarm node of version 3.0.
 
-    * If you have already deployed the [partner node](../../partner-waf-node/overview.md) of version 2.18 or lower, we recommend to skip updating modules till [Wallarm node 3.2](../../updating-migrating/versioning-policy.md#version-list) is released. In Wallarm node 3.2, IP lists will be fully supported by the partner node. At present, the partner node still supports only [blacklist of IP addresses](/2.18/admin-en/configure-ip-blocking-en/).
-    * If you have already deployed the regular (client) Wallarm node of version 2.18 or lower, before setting up IP lists, please [update deployed modules](../../updating-migrating/general-recommendations.md) and [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    Controlling access to your applications by whitelisted, blacklisted and greylisted IP addresses is supported starting with the regular (client) and partner Wallarm node of version 3.2.
+    
+    If you have already deployed the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, before IP address list setup, please perform the following steps:
+
+    1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
+    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Algorithm of IP lists processing
 

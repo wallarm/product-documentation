@@ -8,8 +8,13 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 
 ![!IP blacklist](../../images/user-guides/ip-lists/blacklist-apps.png)
 
-!!! warning "Using the blacklist with the partner node"
-    This document describes the IP blacklist configuration for the regular (client) Wallarm node 3.0. As for the partner node, we recommend to skip updating modules up to 3.0 and keep using the [IP blacklist page available in version 2.18](/2.18/admin-en/configure-ip-blocking-en/).
+!!! warning "IP blacklisting support"
+    This document describes the IP blacklist configuration for the regular (client) and partner Wallarm node of version 3.2. In version 3.2, there are [new IP blacklisting features](../../updating-migrating/what-is-new.md).
+    
+    If you have already deployed the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, before configuring updated IP blacklist, please perform the following steps:
+
+    1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
+    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP blacklist usage
 
