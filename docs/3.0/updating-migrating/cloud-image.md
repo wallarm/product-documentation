@@ -62,7 +62,7 @@ Please inform [Wallarm technical support](mailto:support@wallarm.com) that you a
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests
-2. Migrate whitelists and blacklists configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+2. Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
 3. Restart NGINX to apply the settings: 
 
     ```bash

@@ -81,7 +81,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ## Step 3: Migrate whitelists and blacklists from previous Wallarm node version to 3.0
 
-Migrate whitelists and blacklists configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Step 4: Update Wallarm API Security packages
 
