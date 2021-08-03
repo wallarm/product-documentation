@@ -18,7 +18,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
 4. Specify the reason for adding an IP address or a group of IP addresses to the list.
 5. Confirm adding an IP address or a group of IP addresses to the list.
 
-<!-- screenshot with adding form (DOCS-1269) -->
+![!Add IP to the list (without app)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## Analyzing objects added to the list
 
@@ -50,10 +50,8 @@ You can filter the objects in the list by:
 To change the time that an IP address is on the list:
 
 1. Select an object from the list.
-2. Click **Change time period**.
+2. In the selected object menu, click **Change time period**.
 3. Select a new date for removing an object from the list and confirm the action.
-
-<!-- screen with button to change time period (DOCS-1269) -->
 
 ## Deleting an object from the list
 
@@ -61,5 +59,3 @@ To delete an object from the list:
 
 1. Select one or several objects from the list.
 2. Click **Delete**.
-
-<!-- screen with button to delete object (DOCS-1269) -->
