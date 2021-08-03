@@ -26,7 +26,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "3.2"
+  version: "3.0"
 
 extra:
   social:
@@ -76,8 +76,8 @@ markdown_extensions:
 
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
-docs_dir: docs/3.2
-site_dir: site
+docs_dir: docs/3.0
+site_dir: site/3.0
 edit_uri: ../product-docs-en/edit/master/docs/latest/
 
 nav:
@@ -308,7 +308,7 @@ nav:
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
-      - What is new in Wallarm node 3.2: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 3.0: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node update process: updating-migrating/general-recommendations.md
       - Filtering node update instructions:
@@ -317,7 +317,7 @@ nav:
         - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
         - Updating the cloud node image: updating-migrating/cloud-image.md
-      - Migrating whitelists and blacklists from previous Wallarm node versions to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
+      - Migrating whitelists and blacklists from previous Wallarm node versions to 3.0: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - API Firewall guides:
