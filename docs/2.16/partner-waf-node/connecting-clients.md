@@ -1,1 +1,1 @@
---8<-- "latest/partner-waf-node/connecting-clients.md"
+--8<-- "2.18/partner-waf-node/connecting-clients.md"
