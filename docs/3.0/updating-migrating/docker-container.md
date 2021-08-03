@@ -28,7 +28,7 @@ Please inform [Wallarm technical support](mailto:support@wallarm.com) that you a
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.0.0-2
+    docker pull wallarm/node:3.0.0-3
     ```
 === "Envoy-based image"
     ``` bash
