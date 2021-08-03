@@ -1,6 +1,6 @@
 # Migrating whitelists and blacklists from previous Wallarm node versions to 3.0
 
-Starting with Wallarm node 3.0, the method of IP addresses whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists ad blacklists configured in Wallarm node 2.18 or lower to Wallarm node 3.0.
+Starting with Wallarm node 3.0, the method of IP addresses whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists and blacklists configured in Wallarm node 2.18 or lower to Wallarm node 3.0.
 
 ## What has changed?
 
@@ -13,7 +13,7 @@ Configuration of IP addresses whitelist and blacklist has been changed as follow
 * Whitelisted and blacklisted IP addresses are managed via the Wallarm Console.
 * IP addresses of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner) are whitelisted by default. Manual whitelisting of Scanner IP addresses is no longer required.
 
-## Procedure for whitelists and blacklists configuration migration
+## Procedure for whitelist and blacklist configuration migration
 
 1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 2. Update the filtering node modules up to version 3.0 following [appropriate instructions](general-recommendations.md#update-process).

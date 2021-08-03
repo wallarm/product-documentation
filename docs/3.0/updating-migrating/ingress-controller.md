@@ -31,7 +31,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller to update
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
-4. Migrate whitelists and blacklists configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+4. Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Testing
 

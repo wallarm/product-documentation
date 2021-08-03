@@ -63,7 +63,7 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
       * [Updating the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Updating NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](migrate-ip-lists-to-node-3.md) whitelists and blacklists configuration from previous Wallarm node versions to 3.0
+3. [Migrate](migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.0
 
 ----------
 
