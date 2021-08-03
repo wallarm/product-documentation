@@ -71,6 +71,9 @@
 /2.12/* /2.14
 /2.12/ /2.14
 /2.12 /2.14
+/2.14/* /2.16
+/2.14/ /2.16
+/2.14 /2.16
 /2.14/admin-en/* /2.14
 /2.14/quickstart-en/* /2.14
 /2.14/updating-migrating/* /2.14
@@ -82,6 +85,17 @@
 /2.14/attacks-vulns-list/ /2.14
 /2.14/glossary-en /2.14
 /2.14/glossary-en/ /2.14
+/2.16/admin-en/* /2.16
+/2.16/quickstart-en/* /2.16
+/2.16/updating-migrating/* /2.16
+/2.16/user-guides/* /2.16
+/2.16/waf-installation/* /2.16
+/2.16/about-wallarm-waf/* /2.16
+/2.16/partner-waf-node/* /2.16
+/2.16/attacks-vulns-list /2.16
+/2.16/attacks-vulns-list/ /2.16
+/2.16/glossary-en /2.16
+/2.16/glossary-en/ /2.16
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/

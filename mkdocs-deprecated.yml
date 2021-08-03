@@ -26,7 +26,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "2.14"
+  version: "2.16"
 
 extra:
   social:
@@ -77,7 +77,7 @@ markdown_extensions:
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
 docs_dir: docs/deprecated
-site_dir: site/2.14
+site_dir: site/2.16
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:

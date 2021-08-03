@@ -1,1 +1,0 @@
---8<-- "2.18/about-wallarm-waf/data-retention-policy.md"
