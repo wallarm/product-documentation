@@ -29,7 +29,7 @@ In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylis
     Source IP greylisting can significantly reduce the number of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
 * Greylist IP addresses, countries, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by greylisted objects and block malicious requests.
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
 
 !!! warning "Re-adding deleted IP address"
     After manually deleting the IP address added to the list by the [trigger](../triggers/triggers.md), the trigger will run again only after half of the previous time the IP address was in the list.

@@ -21,4 +21,4 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
     Starting with Wallarm node 3.0, Wallarm automatically whitelists Scanner IP addresses.
 * If you use other trusted tools that originate potentially malicious requests, it is necessary to manually add source IPs of these tools to the whitelist.
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

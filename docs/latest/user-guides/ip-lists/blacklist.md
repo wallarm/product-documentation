@@ -22,7 +22,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 
     By default, automatic blocking of behavioral attacks source is disabled. [Instructions on configuring brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
 
 !!! warning "Re-adding deleted IP address"
     After manually deleting the IP address added to the list by the [trigger](../triggers/triggers.md), the trigger will run again only after half of the previous time the IP address was in the list.
