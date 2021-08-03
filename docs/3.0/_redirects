@@ -54,6 +54,10 @@
 /2.18/faq/* /faq/:splat 301!
 /2.18/demo-videos/* /demo-videos/:splat 301!
 /2.18/api-firewall/* /api-firewall/:splat 301!
+/3.0/api/* /api/:splat 301!
+/3.0/faq/* /faq/:splat 301!
+/3.0/demo-videos/* /demo-videos/:splat 301!
+/3.0/api-firewall/* /api-firewall/:splat 301!
 /2.12/admin-en/* /2.12
 /2.12/quickstart-en/* /2.12
 /2.12/updating-migrating/* /2.12
@@ -195,7 +199,7 @@
 /admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
 /admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
-/partner-waf-node/overview/ /2.18/partner-waf-node/overview/ 301!
-/partner-waf-node/creating-partner-account/ /2.18/partner-waf-node/creating-partner-account/ 301!
-/partner-waf-node/connecting-clients/ /2.18/partner-waf-node/connecting-clients/ 301!
-/partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/ 301!
+/3.0/partner-waf-node/overview/ /2.18/partner-waf-node/overview/ 301!
+/3.0/partner-waf-node/creating-partner-account/ /2.18/partner-waf-node/creating-partner-account/ 301!
+/3.0/partner-waf-node/connecting-clients/ /2.18/partner-waf-node/connecting-clients/ 301!
+/3.0/partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/ 301!
