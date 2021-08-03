@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-<!-- Blacklist screenshot (DOCS-1269) -->
+![!IP blacklist](../../images/user-guides/ip-lists/blacklist-apps.png)
 
 !!! warning "Using the blacklist with the partner node"
     This document describes the IP blacklist configuration for the regular (client) Wallarm node 3.0. As for the partner node, we recommend to skip updating modules up to 3.0 and keep using the [IP blacklist page available in version 2.18](/2.18/admin-en/configure-ip-blocking-en/).

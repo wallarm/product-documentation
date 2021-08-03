@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-<!-- screen with whitelist (DOCS-1269) -->
+![!IP whitelist](../../images/user-guides/ip-lists/whitelist-apps.png)
 
 !!! warning "IP whitelisting support"
     IP whitelisting is supported starting with the regular (client) Wallarm node of version 3.0.

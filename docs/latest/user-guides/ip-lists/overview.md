@@ -6,7 +6,7 @@ In the **IP lists** section of the Wallarm Console, you can control access to yo
 * **Blacklist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from blacklisted IP addresses.
 * **Greylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs.
 
-<!-- IP lists screen (DOCS-1269) -->
+![!All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 !!! warning "IP lists support"
     Controlling access to your applications by whitelisted, blacklisted and greylisted IP addresses is supported starting with the regular (client) Wallarm node of version 3.0.
