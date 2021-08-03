@@ -21,9 +21,7 @@ Partner node has the following characteristics:
 
 * Can be installed on the same [platforms](../admin-en/supported-platforms.md) and according to the same instructions as a regular filtering node.
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to the Wallarm Console, the filtering node must be installed at the corresponding partner client level.
-* Can be configured according to the same instructions as a regular filtering node, except for:
-    * The directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) is used to split settings by the client applications.
-    * To enable blocking of requests by IP addresses, please send a request to [Wallarm technical support](mailto:support@wallarm.com). After blocking is enabled, to block IP addresses, you need to add them to the blacklist at an appropriate partner client account level.
+* Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance). In the partner node, this directive is used to split settings by the client applications.
 
 ## Recommendations for a partner node installation
 
