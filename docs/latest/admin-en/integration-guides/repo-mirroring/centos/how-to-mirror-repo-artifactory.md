@@ -47,7 +47,7 @@ To create a local copy of the Wallarm repository, do the following:
 1.  Add the Wallarm repository by executing the following command:
 
     ```bash
-    sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 
 2.  Navigate to a temporary directory (e.g., `/tmp`) and synchronize the Wallarm repository to this directory by executing the following command:

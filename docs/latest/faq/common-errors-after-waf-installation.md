@@ -52,6 +52,9 @@ To fix the problem, please follow the steps:
 		
 		# Filtering node and postanalytics module of the 3.0 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+
+		# Filtering node and postanalytics module of the 3.2 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
 		```
 	=== "CentOS 8.x"
 		```bash
@@ -63,6 +66,9 @@ To fix the problem, please follow the steps:
 
 		# Filtering node and postanalytics module of the 3.0 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.0/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+
+		# Filtering node and postanalytics module of the 3.2 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.2/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
 		```
 
 ## Why does not the filtering node block attacks when operating in blocking mode (`wallarm_mode block`)?

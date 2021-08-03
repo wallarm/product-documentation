@@ -23,8 +23,8 @@
     The version of deployed Wallarm filtering node image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
     * If the version `3.0.x` is specified, follow the current instructions.
-    * If the version `2.18.x` is specified, follow the [instructions for 2.18](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions.
-    * If the version `2.16.x` or lower is specified, please increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
+    * If the version `2.18.x` is specified, follow the [instructions for 2.18](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.2.0-1` in all deployments and follow the current instructions.
+    * If the version `2.16.x` or lower is specified, please increase the version of the image to `3.2.0-1` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 
@@ -44,7 +44,7 @@
 
 <ol start="2"><li>Copy the following elements to the template:<ul><li>the <code>wallarm</code> sidecar container definition to the <code>spec.template.spec.containers</code> section,</li><li>the <code>wallarm-nginx-conf</code> volume definition to the <code>spec.template.spec.volumes</code> section.</li></ul>An example of the template with added elements is provided below. Elements for copying are indicated by the <code>Wallarm element</code> comment.</li></li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-3.0.md"
+--8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-3.2.md"
 
 <ol start="3"><li>Update parameter values following the code comments.</li></ol>
 
