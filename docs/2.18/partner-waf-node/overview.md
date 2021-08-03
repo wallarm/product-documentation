@@ -4,7 +4,7 @@
 
 **Partner** is an organization that installs a filtering node within its system infrastructure and distributes the system with a filtering node to its own clients.
 
-**Partnerfiltering node is a filtering node installed by the partner.
+**Partner filtering node** is a filtering node installed by the partner.
 
 ## Scheme of traffic processing by a partner node
 
