@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/protecting-against-bruteforce.md"
+--8<-- "2.18/admin-en/configuration-guides/protecting-against-bruteforce.md"

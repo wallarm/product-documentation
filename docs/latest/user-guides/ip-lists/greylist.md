@@ -12,13 +12,15 @@ In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylis
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-<!-- screen with greylist (DOCS-1269) -->
+![!IP greylist](../../images/user-guides/ip-lists/greylist.png)
 
 !!! warning "IP greylisting support"
-    IP greylisting is supported starting with the regular (client) Wallarm node of version 3.0.
+    IP greylisting for specific applications is supported starting with the regular (client) and partner Wallarm node of version 3.2.
+    
+    If you have already deployed the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, before IP address greylist setup, please perform the following steps:
 
-    * If you have already deployed the [partner node](../../partner-waf-node/overview.md) of version 2.18 or lower, we recommend to skip updating modules till [Wallarm node 3.2](../../updating-migrating/versioning-policy.md#version-list) is released. In Wallarm node 3.2, IP lists will be fully supported by the partner node. At present, the partner node still supports only [blacklist of IP addresses](/2.18/admin-en/configure-ip-blocking-en/).
-    * If you have already deployed the regular (client) Wallarm node of version 2.18 or lower, before setting up IP lists, please [update deployed modules](../../updating-migrating/general-recommendations.md) and [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
+    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP greylist usage
 
@@ -29,7 +31,7 @@ In the Wallarm Console → **IP lists** → **Greylist**, you can manage greylis
     Source IP greylisting can significantly reduce the number of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
 * Greylist IP addresses, countries, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by greylisted objects and block malicious requests.
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
 
 !!! warning "Re-adding deleted IP address"
     After manually deleting the IP address added to the list by the [trigger](../triggers/triggers.md), the trigger will run again only after half of the previous time the IP address was in the list.

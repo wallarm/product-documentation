@@ -1,5 +1,8 @@
 ## Adding an object to the list
 
+!!! info "Adding an IP address to the list on the partner node"
+    If you have installed the [partner node](../../partner-waf-node/overview.md), please firstly switch to the [account of a client](../../partner-waf-node/overview.md#partner-account-components) for which the IP address is added to the list.
+
 To add an IP address, subnet, or group of IP addresses to the list:
 
 1. Click the **Add object** button.
@@ -14,18 +17,19 @@ To add an IP address, subnet, or group of IP addresses to the list:
         * **AWS** for IP addresses registered in Amazon AWS
         * **Azure** for IP addresses registered in Microsoft Azure
         * **GCP** for IP addresses registered in Google Cloud Platform
-3. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
-4. Specify the reason for adding an IP address or a group of IP addresses to the list.
-5. Confirm adding an IP address or a group of IP addresses to the list.
+3. Select the applications to which you allow or restrict access for the specified IP addresses.
+4. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
+5. Specify the reason for adding an IP address or a group of IP addresses to the list.
+6. Confirm adding an IP address or a group of IP addresses to the list.
 
-![!Add IP to the list (without app)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![!Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ## Analyzing objects added to the list
 
 The Wallarm Console displays the following data on each object added to the list:
 
 * **Object** - IP address, subnet, country or IP source added to the list.
-* **Application** - application to which access configuration of the object is applied. Since applying the [object access configuration to specific applications is limited](overview.md#known-caveats-of-ip-lists-configuration), this column always displays the value **All**.
+* **Application** - application to which access configuration of the object is applied.
 * **Source** - source of a single IP address or subnet:
     * Country (geolocation) where a single IP address or subnet is registered
     * Data center where a single IP address or subnet is registered: **AWS** for Amazon, **GCP** for Google Cloud Platform, **Azure** for Microsoft Azure
