@@ -1,19 +1,23 @@
-# What is new in Wallarm node 3.0
+# What is new in Wallarm node 3.2
 
-We have released Wallarm node 3.0 that is **totally incompatible with previous Wallarm node versions**. Before updating the modules up to 3.0, please carefully review the list of Wallarm node 3.0 changes listed below and [general recommendations](general-recommendations.md).
+We have released Wallarm node 3.x that is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.x, please carefully review the list of changes and [general recommendations](general-recommendations.md).
 
 ## Which Wallarm nodes are recommended to be updated?
 
-* We do NOT recommend updating [partner node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported in partner node [3.2](versioning-policy.md#version-list).
-* Regular (client) Wallarm node can be updated up to version 3.0. Before updating the modules, we recommend to carefully review the list of Wallarm node 3.0 changes listed below and [other recommendations](general-recommendations.md).
+* Regular (client) and partner Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-updating-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
+* Regular (client) Wallarm node of version 3.0. [Changes](#changes-available-when-updating-wallarm-node-of-version-30) available in Wallarm node 3.2 stabilizes the node of version 3.0. 
 
-## Changes in supported installation platforms
+## Changes available when updating Wallarm node of version 2.18 and lower
+
+Listed changes are available for both the regular (client) and partner Wallarm node 3.2.
+
+### Changes in supported installation platforms
 
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 
 [See the full list of supported platforms →](../admin-en/supported-platforms.md)
 
-## Changes in supported filtering node configuration parameters
+### Changes in supported filtering node configuration parameters
 
 * Dropped support for all `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP addresses blacklist. Manual configuration of IP blacklisting is no longer required.
 
@@ -25,15 +29,24 @@ We have released Wallarm node 3.0 that is **totally incompatible with previous W
 
     [Details on the `disable_acl` Envoy parameter →](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
-## Changes in system requirements for the filtering node installation
+### Changes in system requirements for the filtering node installation
 
-Starting with version 3.0, the filtering node supports IP addresses [whitelists, blacklists, and greylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+Starting with version 3.x, the filtering node supports IP addresses [whitelists, blacklists, and greylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
 The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
 
 [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 
-## New features
+### Changes in filtration mode logic
+
+Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
+
+* Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
+* If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+
+[More details on Wallarm node 3.2 modes →](../admin-en/configure-wallarm-mode.md)
+
+### New features
 
 * Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP addresses greylist](../user-guides/ip-lists/greylist.md).
 
@@ -43,15 +56,36 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
     [Example of the trigger that greylists IP addresses →](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
 * Management of [IP addresses whitelist](../user-guides/ip-lists/whitelist.md) via the Wallarm Console.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* New parameters of the file `node.yaml` for configuring the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface through which requests to Wallarm API are sent.
-
-    [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
 * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
 
     [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
+* Ability to whitelist, blacklist, or greylist request sources for specific applications.
+
+    [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
+* New parameters of the file `node.yaml` for configuring the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface through which requests to Wallarm API are sent.
+
+    [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
 * New module **API Discovery** that automatically identifies the application API structure.
 
     [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
+
+## Changes available when updating Wallarm node of version 3.0
+
+### Breaking change
+
+Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
+
+* Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
+* If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+* If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
+
+[Details on Wallarm node 3.2 modes →](../admin-en/configure-wallarm-mode.md)
+
+### New features
+
+Using the Wallarm node 3.2, you can whitelist, blacklist, or greylist request sources for specific applications.
+
+[Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
 
 ## Update process
 
@@ -63,7 +97,7 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
       * [Updating the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Updating NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](migrate-ip-lists-to-node-3.md) whitelists and blacklists configuration from previous Wallarm node versions to 3.0
+3. If updating the Wallarm node 2.18 or lower to version 3.2, [migrate](migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.2.
 
 ----------
 
