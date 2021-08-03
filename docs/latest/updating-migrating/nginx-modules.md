@@ -14,16 +14,16 @@
 
 # Updating Linux node packages
 
-These instructions describe the steps to update Linux node packages to version 3.0. Linux node packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to update Linux node packages to version 3.2. Linux node packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
-!!! warning "Breaking changes and skipping partner node update"
-    * The Wallarm node 3.0 is **totally incompatible with previous Wallarm node versions**. Before updating the modules up to 3.0, please carefully review the list of [Wallarm node 3.0 changes](what-is-new.md) and consider a possible configuration change.
-    * We do NOT recommend updating [partner node](../partner-waf-node/overview.md) up to version 3.0, since most changes will be fully supported only in partner node [3.2](versioning-policy.md#version-list).
+!!! warning "Breaking changes and recommendations for different node type update"
+    * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
+    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
 
 ## Update procedure
 
@@ -32,9 +32,17 @@ These instructions describe the steps to update Linux node packages to version 3
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Add new Wallarm repository
+## Step 2: Adjust Wallarm node filtration mode settings to changes released in version 3.2
+
+1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
+      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
+
+## Step 3: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
@@ -43,12 +51,12 @@ Delete the previous Wallarm repository address and add a repository with a new W
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.0/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.0/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.2/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -63,27 +71,27 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.0/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.0/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.2/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.0/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.2/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.2/
         ```
 
-## Step 3: Migrate whitelists and blacklists from previous Wallarm node version to 3.0
+## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.2
 
-Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
+If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.2 following the [instructions](migrate-ip-lists-to-node-3.md).
 
-## Step 4: Update Wallarm API Security packages
+## Step 5: Update Wallarm API Security packages
 
 ### Filtering node and postanalytics on the same server
 
@@ -125,16 +133,16 @@ Migrate whitelist and blacklist configuration from previous Wallarm node version
         sudo yum update
         ```
 
-## Step 5: Restart NGINX
+## Step 6: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 6: Test Wallarm node operation
+## Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.0. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 3.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

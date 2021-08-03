@@ -23,8 +23,8 @@
     The version of deployed Wallarm filtering node image is specified in the Helm chart configuration file → `wallarm.image.tag`.
 
     * If the version `3.0.x` is specified, follow the current instructions.
-    * If the version `2.18.x` is specified, follow the [instructions for 2.18](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions.
-    * If the version `2.16.x` or lower is specified, please increase the version of the image to `3.0.0-2` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
+    * If the version `2.18.x` is specified, follow the [instructions for 2.18](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `3.2.0-1` in all deployments and follow the current instructions.
+    * If the version `2.16.x` or lower is specified, please increase the version of the image to `3.2.0-1` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 
@@ -62,7 +62,7 @@ Go to the Helm chart directory > the `templates` folder and create a `wallarm-si
 
 <ol start="2"><li>Copy the <code>wallarm</code> object definition provided below to <code>values.yaml</code> and update parameter values following the code comments.</li></ol>
 
---8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-3.0.md"
+--8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-3.2.md"
 
 <ol start="3"><li>Make sure the <code>values.yaml</code> file is valid using the following command:</li></ol>
 

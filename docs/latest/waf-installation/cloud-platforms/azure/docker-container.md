@@ -61,7 +61,7 @@ In these instructions, the container is deployed using the Azure CLI as follows:
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:3.0.0-2 \
+            --image registry-1.docker.io/wallarm/node:3.2.0-1 \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com'
          ```
     === "Command for the Wallarm US Cloud"
@@ -71,7 +71,7 @@ In these instructions, the container is deployed using the Azure CLI as follows:
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:3.0.0-2 \
+            --image registry-1.docker.io/wallarm/node:3.2.0-1 \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
          ```
         
@@ -151,7 +151,7 @@ To deploy the container with environment variables and mounted configuration fil
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:3.0.0-2 \
+            --image registry-1.docker.io/wallarm/node:3.2.0-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD}
@@ -163,7 +163,7 @@ To deploy the container with environment variables and mounted configuration fil
             --name waf-node \
             --dns-name-label wallarm-waf \
             --ports 80 \
-            --image registry-1.docker.io/wallarm/node:3.0.0-2 \
+            --image registry-1.docker.io/wallarm/node:3.2.0-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} WALLARM_API_HOST='us1.api.wallarm.com'

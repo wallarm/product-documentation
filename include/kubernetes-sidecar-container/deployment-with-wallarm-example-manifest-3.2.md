@@ -15,7 +15,7 @@ spec:
       containers:
         # Wallarm element: definition of Wallarm sidecar container
         - name: wallarm
-          image: wallarm/node:2.18.1-5
+          image: wallarm/node:3.2.0-1
           imagePullPolicy: Always
           env:
           # Wallarm API endpoint: 
@@ -30,9 +30,6 @@ spec:
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
-            value: "true"
-          # Whether to enable the IP blocking functionality
-          - name: WALLARM_ACL_ENABLE
             value: "true"
           # Amount of memory in GB for request analytics data, 
           # recommended value is 75% of the total server memory

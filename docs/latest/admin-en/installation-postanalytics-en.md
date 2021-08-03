@@ -26,7 +26,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 The postanalytics module, like other Wallarm API Security modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos-3.0.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-3.2.md"
 
 ### 2. Install packages for the postanalytics module
 
