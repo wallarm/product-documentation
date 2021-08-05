@@ -40,7 +40,7 @@ To detect behavioral attacks, it is required to conduct syntax analysis of reque
 * Correlation analysis is conducted by the Wallarm postanalytics module.
 * Comparison of the received requests number and the threshold for the requests number, and blocking of requests is conducted in the Wallarm Cloud.
 
-When behavioral attack is detected, requests sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
+When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
 
 To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
 
