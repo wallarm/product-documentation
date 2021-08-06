@@ -97,8 +97,11 @@ A [custom ruleset](../user-guides/rules/intro.md) created in the **Profile & Rul
 
 ## API Discovery debugging
 
-To get and analyze the API Discovery logs, you can use the standard utility **journalctl** inside the instance with the installed Wallarm node:
+To get and analyze the API Discovery logs, you can use the following methods:
 
-```bash
-journalctl -u wallarm-appstructure
-```
+* Run the standard utility **journalctl** inside the instance with the Wallarm node installed from source packages:
+
+    ```bash
+    journalctl -u wallarm-appstructure
+    ```
+* Read the log file `/var/log/wallarm/appstructure.log` inside the Wallarm Docker container.
