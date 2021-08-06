@@ -76,9 +76,9 @@ As a result, you will get a response of the type:
 ```
 
 The following response parameters are available:
-*   `requests`: the number of requests that have been processed by the filter node.
+*   `requests`: the number of requests that have been processed by the filter node except for those originated from [blacklisted](../user-guides/blacklist.md) IPs.
 *   `attacks`: the number of recorded attacks.
-*   `blocked`: the number of blocked requests.
+*   `blocked`: the number of blocked requests except for those originated from [blacklisted](../user-guides/blacklist.md) IPs.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
