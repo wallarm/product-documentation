@@ -29,9 +29,9 @@ The functionality of the filtering node installed inside the Docker container is
     apt list wallarm-node
     ```
 
-    * If the version `3.0.x` is installed, then follow the current instructions.
-    * If the version `2.18.x` is installed, then follow the [instructions for 2.18](/2.18/admin-en/installation-docker-en/) or [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments.
-    * If the version `2.16.x` or lower is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
+    * If the version `3.2.x` is installed, then follow the current instructions.
+    * If the version `3.0.x` is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. We recommend upgrading modules 3.0 to the [latest version](/updating-migrating/what-is-new/) since it enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
+    * If the version `2.18.x` or lower is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../updating-migrating/versioning-policy.md).
 

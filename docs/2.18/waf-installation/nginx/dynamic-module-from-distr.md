@@ -54,9 +54,9 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
         yum list wallarm-node-tarantool
         ```
 
-    * If the version `3.0.x` is installed, then follow the instructions for the [Wallarm node 3.0](/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.0](/admin-en/installation-postanalytics-en/).
-    * If the version `2.18.x` is installed, then follow the current instructions for the filtering node and for [separate postanalytics 2.18](/2.18/admin-en/installation-postanalytics-en/) or update [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations.
-    * If the version `2.16.x` or lower is installed, then please update the [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
+    * If the version `3.2.x` is installed, then follow the instructions for the [Wallarm node 3.2](/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.2](/admin-en/installation-postanalytics-en/).
+    * If the version `3.0.x` is installed, then please update the [filtering node](/updating-migrating/nginx-modules/) and [separate postanalytics](/updating-migrating/separate-postanalytics/) packages to the latest version in all deployments. We recommend upgrading modules 3.0 to the [latest version](/updating-migrating/what-is-new/) since it enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
+    * If the version `2.18.x` or lower is installed, then please update the [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy][versioning-policy].
 

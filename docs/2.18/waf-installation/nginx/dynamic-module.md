@@ -25,7 +25,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics-middle.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-deprecation.md"
 
 ## Requirements
 

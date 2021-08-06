@@ -67,7 +67,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 ## 4. Launch a Filter Node Instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
 
 To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 2.18.0.
 

@@ -34,7 +34,7 @@ Before starting Wallarm node installation, please check that you meet all these 
 
 ### 1. Create a virtual machine with the filtering node
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
 
 1. Log in to the [management console](https://console.cloud.yandex.com/) and select the folder where the virtual machine will be created.
 2. Select **Compute Cloud** from the list of services.
