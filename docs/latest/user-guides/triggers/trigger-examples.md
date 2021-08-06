@@ -4,7 +4,7 @@
 
 If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be greylisted for 1 hour. This trigger will be run only if the node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
 
-If you have recently created the Wallarm account, this trigger is already created but is in a disabled state.
+If you have recently created the Wallarm account, this trigger is already created and enabled. You can perform all available actions with the trigger: edit, disable, delete, or copy.
 
 ![!Greylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
 
