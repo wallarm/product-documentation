@@ -68,6 +68,9 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * New module **API Discovery** that automatically identifies the application API structure.
 
     [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
+* The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
+
+    [Details on the statistic service →](../admin-en/configure-statistics-service.md)
 
 ## Changes available when updating Wallarm node of version 3.0
 
@@ -83,9 +86,12 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ### New features
 
-Using the Wallarm node 3.2, you can whitelist, blacklist, or greylist request sources for specific applications.
+* Ability to whitelist, blacklist, or greylist request sources for specific applications.
 
-[Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
+    [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
+* The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
+
+    [Details on the statistic service →](../admin-en/configure-statistics-service.md)
 
 ## Update process
 

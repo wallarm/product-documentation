@@ -66,19 +66,20 @@ curl http://127.0.0.8/wallarm-status
 As a result, you will get a response of the type:
 
 ```
-{ "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
-"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,"softmemfaults":0,
-"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"db_apply_time":1598525865,
-"lom_apply_time":1598525870,"proton_instances": { "total":3,"success":3,"fallback":0,
-"failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":[{"id":102,
-"size":12624136,"mod_time":1598525870,"fname":"\/etc\/wallarm\/lom"}],"db_files":
-[{"id":73,"size":139094,"mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}] }
+{ "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"abnormal":0,"tnt_errors":0,
+"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
+"softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,
+"db_apply_time":1598525865,"lom_apply_time":1598525870,"proton_instances": { "total":3,
+"success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,"stalled_workers":[],
+"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,"fname":"\/etc\/wallarm\/lom"}],
+"db_files":[{"id":73,"size":139094,"mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}] }
 ```
 
 The following response parameters are available:
 *   `requests`: the number of requests that have been processed by the filter node.
 *   `attacks`: the number of recorded attacks.
-*   `blocked`: the number of blocked requests.
+*   `blocked`: the number of blocked requests including those originated from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs.
+*   `blocked_by_acl`: the number of requests blocked due to [blacklisted](../user-guides/ip-lists/blacklist.md) request sources.
 *   `abnormal`: the number of requests the application deems abnormal.
 *   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
 *   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
