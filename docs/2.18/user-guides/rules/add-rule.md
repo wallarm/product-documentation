@@ -60,7 +60,7 @@ The point value must match the regular expression.
 
 **Regular expression syntax**
 
-To match requests with regular expressions, the Pire library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [Pire repository][link-regex].
+To match requests with regular expressions, the PIRE library is used. Mostly, the syntax of expressions is standard but has some specifics as described below and in the README file of [PIRE repository][link-regex].
 
 ??? info "Show regular expression syntax"
     Characters that can be used as‑is:
