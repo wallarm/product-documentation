@@ -12,7 +12,7 @@ The Wallarm node sends the following data to the Wallarm Cloud:
 
 Some data should not be transferred outside of the server on which it is processed. Typically, this category includes authorization (cookies, tokens, passwords), personal data and payment credentials.
 
-Wallarm Node supports data masking in requests. This rule deletes the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.
+Wallarm Node supports data masking in requests. This rule cuts the original value of the specified request point before sending the request to the postanalytics module and Wallarm Cloud. This method ensures that sensitive data cannot leak outside the trusted environment.
 
 It can affect the display of attacks, active attack (threat) verification, and the detection of brute force attacks.
 
