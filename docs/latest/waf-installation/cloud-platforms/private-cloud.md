@@ -11,7 +11,7 @@ Depending on the private cloud platform architecture and your application deploy
 * Using a separate container deployment service provided by the cloud
 * Using the standard `docker run` command in the instance based on any operating system
 
-Before deploying the Wallarm node Docker container to the private cloud, it is recommended to review the container deployment methods described in the documentation of this cloud and select the most suitable one. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](#link-to-supported-cloud-deployments).
+Before deploying the Wallarm node Docker container to the private cloud, it is recommended to review the container deployment methods described in the documentation of this cloud and select the most suitable one. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](../../admin-en/supported-platforms.md#cloud-platforms).
 
 ## Principles of installing the Wallarm node from DEB and RPM packages on the private cloud
 
