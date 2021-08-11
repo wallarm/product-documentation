@@ -5,6 +5,7 @@
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [installation-instr-middle]:        /2.18/admin-en/installation-guides/install-in-yandex-cloud/
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md
+[installation-instr-latest]:        /admin-en/installation-guides/install-in-yandex-cloud/
 
 # Installing on Yandex.Cloud
 
@@ -33,7 +34,7 @@ Before starting Wallarm node installation, please check that you meet all these 
 
 ### 1. Create a virtual machine with the filtering node
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
 
 1. Log in to the [management console](https://console.cloud.yandex.com/) and select the folder where the virtual machine will be created.
 2. Select **Compute Cloud** from the list of services.

@@ -18,6 +18,9 @@ To add an IP address, subnet, or group of IP addresses to the list:
 4. Specify the reason for adding an IP address or a group of IP addresses to the list.
 5. Confirm adding an IP address or a group of IP addresses to the list.
 
+!!! warning "Application selector"
+    The form for adding an IP address to the list may display the application selector. Please note that this application selector does not work if you use Wallarm node 3.0 or lower. To configure access by IP address to a specific application, please [upgrade](/updating-migrating/general-recommendations/) the installed modules to the latest version first (recommended).
+
 ![!Add IP to the list (without app)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## Analyzing objects added to the list

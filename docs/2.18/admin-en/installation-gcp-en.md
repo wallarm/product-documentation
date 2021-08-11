@@ -25,7 +25,7 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ## 2. Launch a Filter Node Instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
 
 ### Launch the instance via the Google Cloud UI
 

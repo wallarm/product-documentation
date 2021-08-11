@@ -181,11 +181,11 @@ Traffic processing mode:
 
     * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
     * Does not block requests containing malicious payloads.
-    * Does not analyze requests sources.
+    * Does not analyze request sources.
 * `monitoring` → the filtering node:
     * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Does not block requests containing malicious payloads.
-    * Does not analyze requests sources.
+    * Does not analyze request sources.
 * `safe_blocking` → the filtering node:
     * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
     * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).

@@ -52,6 +52,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
         ```bash
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.2/
         ```
+    === "Ubuntu 20.04 LTS (focal)"
+        ```bash
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.2/
+        ```
 
 ## Step 2: Update the Tarantool packages
 
