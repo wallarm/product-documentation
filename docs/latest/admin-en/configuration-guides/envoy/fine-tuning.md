@@ -55,6 +55,7 @@ tsets:
   lom: /etc/wallarm/lom
   key: /etc/wallarm/license.key
   ts_request_memory_limit: 0
+  enable_libdetection: "on"
   ...
 - name: tsN:
   ...
@@ -73,6 +74,7 @@ pdb | Path to the `proton.db` file. This file contains the global settings for r
 lom | Path to the [LOM][link-lom] file that contains information about the protected application and the filtering node settings. | `/etc/wallarm/lom`
 key | Path to the file with the Wallarm license key. | `/etc/wallarm/license.key`
 ts_request_memory_limit | Limit for the maximum amount of memory that can be used by one instance of proton.db and LOM. If the memory limit is exceeded while processing some request, the user will get the 500 error. The following suffixes can be used in this parameter:<ul><li>`k` or `K` for kilobytes</li><li>`m` or `M` for megabytes</li><li>`g` or `G` for gigabyte</li></ul>Value of `0` turns the limit off. | `0`
+enable_libdetection | Whether to enable additional validation of the SQL Injection attacks with the [**libdetection** library](../../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection). If the library does not confirm the malicious payload, the request is considered to be legitimate. Using the **libdetection** library allows reducing the number of false positives among the SQL Injection attacks.<br><br>By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling the library by specifying `on` in the parameter value.<br><br>Please note, for **libdetection** to operate correctly, buffering of a client request body should be enabled by adding the filter `envoy.buffer` to the Envoy configuration.<br><br>When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%. | `off`
 
 ##  Postanalytics module settings
 

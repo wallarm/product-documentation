@@ -89,6 +89,12 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
         [Details on the statistic service →](../admin-en/configure-statistics-service.md)
+    
+    * The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
+
+        By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+
+        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
 ??? "Set of changes in Wallarm node updated from version 3.0 to version 3.2"
     **Breaking change**
@@ -110,6 +116,12 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
         [Details on the statistic service →](../admin-en/configure-statistics-service.md)
+    
+    * The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
+
+        By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+
+        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
 ### New false positives
 

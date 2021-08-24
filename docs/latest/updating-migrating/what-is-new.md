@@ -71,6 +71,11 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
     [Details on the statistic service →](../admin-en/configure-statistics-service.md)
+* The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
+
+    By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+
+    [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
 ## Changes available when updating Wallarm node of version 3.0
 
@@ -92,6 +97,11 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
     [Details on the statistic service →](../admin-en/configure-statistics-service.md)
+* The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
+
+    By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+
+    [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
 ## Update process
 
