@@ -1,114 +1,262 @@
-[img-events]:               ../images/admin-guides/using-proxy-or-balancer/events-en.png
-[img-using-balancer]:       ../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png
-[img-using-haproxy]:        ../images/admin-guides/using-proxy-or-balancer/using-haproxy-en.png
+# Identifying an original client IP address if using an HTTP proxy or a load balancer (NGINX)
 
-[link-haproxy-docs]:        https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor
-[link-nginx-directives]:    https://nginx.org/en/docs/http/ngx_http_realip_module.html
-[link-test-attack]:         ../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack
+These instructions describe the NGINX configuration required to identify an originating IP address of a client connecting to your servers through an HTTP proxy or load balancer.
 
-[anchor-configuring-proxy]: #configuring-a-proxy-server-or-load-balancer
-[anchor-configuring-node]:  #configuring-the-filter-node
+* If the Wallarm node is installed from the DEB / RPM packages, AWS / GCP / Yandex.Cloud images or the NGINX-based Docker image, please use the **current instructions**.
+* If the Wallarm node is deployed as the K8s Ingress controller, please use [these instructions](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
+* If the Wallarm node is deployed as the K8s sidecar container, please use the instructions for deployment based on [Helm Charts](installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Kubernetes manifests](installation-guides/kubernetes/wallarm-sidecar-container-manifest.md).
 
-# Settings for Using a Balancer or Proxy in Front of the Filter Node
+## How Wallarm node identifies an IP address of a request
 
-!!! info "Who's this document for?"
-	This document contains information for users who have a proxy server or balancer installed that receives requests and proxies them to the Wallarm filter nodes. 
-	
-	If your system does not have such a balancer, you can skip this configuration step.
+The Wallarm node reads a request source IP address from the NGINX variable `$remote_addr`. If the request passed through a proxy server or load balancer before being sent to the node, the variable `$remote_addr` retains the proxy server or load balancer IP address.
 
-By default, the Wallarm filter node considers the IP address from which the request originated to be the IP address of the request source. If the request passed through a proxy server or load balancer before being sent to the node, the IP address of the balancer will be displayed in the web interface as the IP address of the request source.
+![!Using balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-![!Using balancer][img-using-balancer]
+The request source IP address identified by the Wallarm node is displayed in the [attack details](../user-guides/events/check-attack.md#attacks) in the Wallarm Console.
 
-To correctly display the IP address of the request source in the Wallarm web interface, configure the balancer and the filter node to transmit the IP address of the source in the request header.
+## Possible problems of using a proxy server or load balancer IP address as a request source address
 
-The figure below shows an example using the `X-Client-IP` header by the HAProxy server to send the client IP address.
+If the Wallarm node considers the proxy server or load balancer IP address to be the IP address of the request source, the following Wallarm features may work incorrectly:
 
-![!Using HAProxy][img-using-haproxy]
+* [Controlling access to applications by IP addresses](../user-guides/ip-lists/overview.md), for example:
 
-To configure sending a client IP address in the request header by a proxy server or a balancer, follow the steps described in the following sections:
-1.  [Configuring a proxy server or load balancer][anchor-configuring-proxy]
-2.  [Configuring the filter node][anchor-configuring-node]
+	If original client IP addresses were blacklisted, the Wallarm node still would not block requests originated from them since it considers the load balancer IP address to be the IP address of the request source.
+* [Brute force protection](configuration-guides/protecting-against-bruteforce.md), for example:
 
-## Configuring a Proxy Server or Load Balancer
+	If requests passed through the load balancer have brute force attack signs, Wallarm will blacklist this load balancer IP address and therefore will block all further requests passed through this load balancer.
+* The [Active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module and [Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner), for example:
 
-Configure a proxy server or load balancer to write the IP address from which the request was received to the header of this request and send the request with the header to the filter node.
+	Wallarm will consider the load balancer IP address to be the IP address originating test attacks generated by the Active threat verification module and Vulnerability Scanner. Thus, test attacks will be displayed in Wallarm Console as attacks originated from the load balancer IP address and will be additionally checked by Wallarm which will create an extra load on the application.
 
-To learn how to configure your proxy server or balancer, refer to its official documentation. The example below demonstrates how to configure the `X-Client-IP` header for the HAProxy balancer.
+If the Wallarm node is connected via an [IPC socket](https://en.wikipedia.org/wiki/Unix_domain_socket), then `0.0.0.0` will be considered as a request source.
 
-### HAProxy Balancer Setup Example
+## Configuration for an original client IP address identification
 
-The `option forwardfor` directive tells the HAProxy balancer that a header must be added to the request with the IP address of the client. 
-You can use the `X-Client-IP` header for this purpose.
+To configure an original client IP address identification, you can use the [NGINX module **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html). This module allows redefining the value of `$remote_addr` [used](#how-wallarm-node-identifies-an-ip-address-of-a-request) by the Wallarm node to get a client IP address.
 
-In the `/etc/haproxy/haproxy.cfg` configuration file, insert the `option forwardfor` header `X-Client-IP` line into the `backend` directive block, which is responsible for connecting HAProxy to the Wallarm filter node.
+You can use the NGINX module **ngx_http_realip_module** in one of the following ways:
 
-!!! info "Details of the directive"
-	You can find detailed information about the option forwardfor directive in the official [HAProxy documentation][link-haproxy-docs].
+* To read an original client IP address from a specific header (usually, [`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)) added to the request by a load balancer or proxy server.
+* If a load balancer or proxy server supports the [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt), to read an original client IP address from the header `PROXY`.
 
-An example fragment of the `/etc/haproxy/haproxy.cfg` configuration file is given below:
-``` bash
-# Public IP address for receiving requests
-frontend my_frontend
-	bind <haproxy-ip>
-	mode http
-	default_backend my_backend
+### Configuring NGINX to read the header `X-Forwarded-For` (`X-Real-IP` or a similar)
 
-# Backend with the Wallarm filter node
-backend my_backend
-	mode http
-option forwardfor header X-Client-IP
-server wallarm-node <node-ip>
+If a load balancer or proxy server appends a header `X-Forwarded-For` (`X-Real-IP` or a similar) containing an original client IP address, please configure the NGINX module  **ngx_http_realip_module** to read this header as follows:
+
+1. Open the following configuration file of NGINX installed with the Wallarm node:
+
+    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages.
+    * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP / Yandex.Cloud image.
+    * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+2. In the NGINX context `location` or higher, add the directive `set_real_ip_from` with a proxy server or load balancer IP address. If a proxy server or load balancer has several IP addresses, please add an appropriate number of separate directives. For example:
+
+    ```bash
+    ...
+    location / {
+        wallarm_mode block;
+
+        set_real_ip_from 1.2.3.4;
+        set_real_ip_from 192.0.2.0/24;
+    }
+    ...
+    ```
+2. In the documentation on a load balancer being used, find the name of the header appended by this load balancer to pass an original client IP address. Most frequently, the header is called `X-Forwarded-For`.
+3. In the NGINX context `location` or higher, add the directive `real_ip_header` with the header name found in the previous step. For example:
+
+    ```bash
+    ...
+    location / {
+        wallarm_mode block;
+
+        set_real_ip_from 1.2.3.4;
+        set_real_ip_from 192.0.2.0/24;
+        real_ip_header X-Forwarded-For;
+    }
+    ...
+    ```
+4. Restart NGINX:
+
+    --8<-- "../include/waf/restart-nginx-2.16.md"
+
+    NGINX will assign the value of the header specified in the `real_ip_header` directive to the `$remote_addr` variable, so the Wallarm node will read original client IP addresses from this variable.
+5. [Test the configuration](#testing-the-configuration).
+
+### Configuring NGINX to read the header `PROXY`
+
+If a load balancer or proxy server supports the [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt), you can configure the NGINX module  **ngx_http_realip_module** to read the header `PROXY` as follows:
+
+1. Open the following configuration file of NGINX installed with the Wallarm node:
+
+    * `/etc/nginx/conf.d/default.conf` if the Wallarm node is installed from the DEB / RPM packages.
+    * `/etc/nginx/nginx.conf` if the Wallarm node is deployed from the AWS / GCP / Yandex.Cloud image.
+    * If the Wallarm node is deployed from the NGINX-based Docker image, you should create and edit the NGINX configuration file locally and mount it to the Docker container at the path `/etc/nginx/sites-enabled/default`. You can copy an initial NGINX configuration file and get the instructions on mounting the file to the container from the [instructions on the Wallarm NGINX-based Docker instructions](installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+2. In the NGINX context `server`, add the parameter `proxy_protocol` to the directive `listen`.
+3. In the NGINX context `location` or higher, add the directive `set_real_ip_from` with a proxy server or load balancer IP address. If a proxy server or load balancer has several IP addresses, please add an appropriate number of separate directives. For example:
+4. In the NGINX context `location` or higher, add the directive `real_ip_header` with the value of `proxy_protocol`.
+
+    An example NGINX configuration file with all directives added:
+
+    ```bash
+    server {
+        listen 80 proxy_protocol;
+        server_name localhost;
+
+        set_real_ip_from <IP_ADDRESS_OF_YOUR_PROXY>;
+        real_ip_header proxy_protocol;
+
+        ...
+    }
+    ```
+
+    * NGINX listens for incoming connections on port 80.
+    * If the header `PROXY` is not passed in the incoming request, NGINX does not accept this request as it is considered not valid.
+    * For requests originated from the address `<IP_ADDRESS_OF_YOUR_PROXY>`, NGINX assigns the source address passed in the header `PROXY` to the variable `$remote_addr`, so the Wallarm node will read original client IP addresses from this variable.
+5. Restart NGINX:
+
+    --8<-- "../include/waf/restart-nginx-2.16.md"
+6. [Test the configuration](#testing-the-configuration).
+
+To include an original client IP address in the logs, you should add the directive `proxy_set_header` and edit the list of variables in the `log_format` directive in the NGINX configuration as described in the [NGINX logging instructions](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address).
+
+More details on identifying an original client IP address based on the `PROXY` header are available in the [NGINX documentation](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address).
+
+### Testing the configuration
+
+1. Send the test attack to the protected application address:
+
+    === "Using cURL"
+        ```bash
+        curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+        ```
+    === "Using printf and Netcat (for the header `PROXY`)"
+        ```bash
+        printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /?id=or+1=1--a-<script>prompt(1)</script>\r\n\r\n" | nc localhost 80
+        ```
+2. Open Wallarm Console and ensure that the original client IP address is displayed in the attack details:
+
+    ![!IP address originated the request](../images/request-ip-address.png)
+
+    If NGINX read the original address from the header `X-Forwarded-For` (`X-Real-IP` or a similar), the header value would also be displayed in the raw attack.
+
+    ![!Header X-Forwarded-For](../images/x-forwarded-for-header.png)
+
+## Configuration examples
+
+Below you will find examples of the NGINX configuration required to identify an originating IP address of a client connecting to your servers through popular load balancers.
+
+### Cloudflare CDN
+
+If using Cloudflare CDN, you can [configure the NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) to identify original client IP addresses.
+
+```bash
+...
+set_real_ip_from 103.21.244.0/22;
+set_real_ip_from 103.22.200.0/22;
+set_real_ip_from 103.31.4.0/22;
+set_real_ip_from 104.16.0.0/12;
+set_real_ip_from 108.162.192.0/18;
+set_real_ip_from 131.0.72.0/22;
+set_real_ip_from 141.101.64.0/18;
+set_real_ip_from 162.158.0.0/15;
+set_real_ip_from 172.64.0.0/13;
+set_real_ip_from 173.245.48.0/20;
+set_real_ip_from 188.114.96.0/20;
+set_real_ip_from 190.93.240.0/20;
+set_real_ip_from 197.234.240.0/22;
+set_real_ip_from 198.41.128.0/17;
+set_real_ip_from 2400:cb00::/32;
+set_real_ip_from 2606:4700::/32;
+set_real_ip_from 2803:f800::/32;
+set_real_ip_from 2405:b500::/32;
+set_real_ip_from 2405:8100::/32;
+set_real_ip_from 2c0f:f248::/32;
+set_real_ip_from 2a06:98c0::/29;
+
+real_ip_header CF-Connecting-IP;
+#real_ip_header X-Forwarded-For;
+real_ip_recursive on;
+...
 ```
 
-In the example above
-*   `<haproxy-ip>` is the IP address of the HAProxy server to receive client requests;
-*   `<node-ip>` is the IP address of the Wallarm filter node to receive requests from the HAProxy server.
+* Before saving the configuration, please ensure that Cloudflare IP addresses specified in the configuration above match those in the [Cloudflare documentation](https://www.cloudflare.com/ips/). 
+* In the `real_ip_header` directive value, you can specify either `CF-Connecting-IP` or `X-Forwarded-For`. Cloudflare CDN appends both headers and you can configure NGINX to read any of them. [More details in the Cloudflare CDN](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)
 
-## Configuring the Filter Node
+### Fastly CDN
 
-For the Wallarm filter node to recognize the value of the `X-Client-IP` header as the request source address, add the `set_real_ip_from` and `real_ip_header` directives to the NGINX configuration file.
+If using Fastly CDN, you can [configure the NGINX module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) to identify original client IP addresses.
 
-The `real_ip_header` directive reports that the real IP address of the client that sent the request is transmitted in the `X-Client-IP` header.
+```bash
+...
+set_real_ip_from 23.235.32.0/20;
+set_real_ip_from 43.249.72.0/22;
+set_real_ip_from 103.244.50.0/24;
+set_real_ip_from 103.245.222.0/23;
+set_real_ip_from 103.245.224.0/24;
+set_real_ip_from 104.156.80.0/20;
+set_real_ip_from 146.75.0.0/16;
+set_real_ip_from 151.101.0.0/16;
+set_real_ip_from 157.52.64.0/18;
+set_real_ip_from 167.82.0.0/17;
+set_real_ip_from 167.82.128.0/20;
+set_real_ip_from 167.82.160.0/20;
+set_real_ip_from 167.82.224.0/20;
+set_real_ip_from 172.111.64.0/18;
+set_real_ip_from 185.31.16.0/22;
+set_real_ip_from 199.27.72.0/21;
+set_real_ip_from 199.232.0.0/16;
+set_real_ip_from 2a04:4e40::/32;
+set_real_ip_from 2a04:4e42::/32;
 
-The `set_real_ip_from` directive specifies the IP address of your proxy server or a balancer from which requests with the `X-Client-IP` header are sent.  
-
-If your system has several proxies or balancers, specify several `set_real_ip_from` directives with their IP addresses. 
-You can also specify IP address ranges (for example, `1.2.3.0/24`).
-
-!!! info "Details of the directives"
-	You can find detailed information about the `set_real_ip_from` and `real_ip_header` directives in the [NGINX official documentation][link-nginx-directives].
-
-An example fragment of the `/etc/nginx/conf.d/default.conf` configuration file is given below:
-```
-location / {
-	# Setting of proxy and filtration mode of the node
-	wallarm_mode block;
-	
-	# Settings of proxying requests to the protected application
-	proxy_pass http://<app-ip>;
-	proxy_set_header Host $host;
-	proxy_set_header X-Real-IP $remote_addr;
-	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	
-     # Settings of determining the true source IP address of requests
-	set_real_ip_from <proxy-ip1>;
-	set_real_ip_from <proxy-ip2>;
-	real_ip_header X-Client-IP;
-}
+real_ip_header X-Forwarded-For;
+real_ip_recursive on;
+...
 ```
 
-In the example above
-*   `<app-ip>` is the IP address of the protected application for requests from the filter node;
-*   `<proxy-ip1>`, `<proxy-ip2>` is the IP addresses of proxies that pass requests to the Wallarm filter node.
+Before saving the configuration, please ensure that Fastly IP addresses specified in the configuration above match those in the [Fastly documentation](https://api.fastly.com/public-ip-list). 
 
-After you save the modified NGINX configuration file, restart NGINX:
-``` bash
-service nginx restart
-```
+### HAProxy
 
-## Checking results
+If using HAProxy, both HAProxy and Wallarm node sides should be properly configured to identify original client IP addresses:
 
-Perform a [test attack][link-test-attack] and verify that the IP address of the request source is correctly displayed in the Wallarm web interface:
+* In the `/etc/haproxy/haproxy.cfg` configuration file, insert the `option forwardfor header X-Client-IP` line into the `backend` directive block responsible for connecting HAProxy to the Wallarm node.
 
-![!Events][img-events]
+	The `option forwardfor` directive tells the HAProxy balancer that a header with the IP address of the client must be added to the request. [More details in the HAProxy documentation](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
+
+	Configuration example:
+
+    ```
+    ...
+    # Public IP address for receiving requests
+    frontend my_frontend
+        bind <HAPROXY_IP>
+        mode http
+        default_backend my_backend
+
+    # Backend with the Wallarm node
+    backend my_backend
+        mode http
+    option forwardfor header X-Client-IP
+    server wallarm-node <WALLARM_NODE_IP>
+    ...
+    ```
+
+    *   `<HAPROXY_IP>` is the IP address of the HAProxy server to receive client requests.
+    *   `<WALLARM_NODE_IP>` is the IP address of the Wallarm node to receive requests from the HAProxy server.
+
+* In the configuration file of NGINX installed with the Wallarm node, configure the [module **ngx_http_realip_module**](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) as follows:
+    
+    ```bash
+    ...
+    location / {
+        wallarm_mode block;
+        
+        proxy_pass http://<APPLICATION_IP>;        
+        set_real_ip_from <HAPROXY_IP1>;
+        set_real_ip_from <HAPROXY_IP2>;
+        real_ip_header X-Client-IP;
+    }
+    ...
+    ```
+
+    *   `<APPLICATION_IP>` is the IP address of the protected application for requests from the Wallarm node.
+    *   `<HAPROXY_IP1>` and `<HAPROXY_IP2>` are IP addresses of HAProxy balancers that pass requests to the Wallarm node.
