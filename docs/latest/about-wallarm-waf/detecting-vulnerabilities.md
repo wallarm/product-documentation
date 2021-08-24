@@ -1,3 +1,5 @@
+[whitelist-scanner-addresses]: ../user-guides/ip-lists/whitelist.md
+
 # Detecting vulnerabilities
 
 ## What is a vulnerability?
