@@ -185,18 +185,29 @@ To change the `monitoring` mode to `block`:
 
 #### Memory
 
-The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 40% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. By default, the amount of RAM allocated to Tarantool is 40% of the total instance memory. 
+
+You can change the amount of RAM allocated for Tarantool as follows:
 
 1. Open the Tarantool configuration file in the editing mode:
 
     ```bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
+
+    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough (e.g. 25% of the total memory).
+
+    For example:
     
-    ```bash
-    SLAB_ALLOC_ARENA=24
-    ```
+    === "If testing the node"
+        ```bash
+        SLAB_ALLOC_ARENA=0.5
+        ```
+    === "If deploying the node to the production environment"
+        ```bash
+        SLAB_ALLOC_ARENA=24
+        ```
 3. To apply changes, restart Tarantool:
 
     ```bash
