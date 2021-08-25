@@ -254,7 +254,7 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ```
 2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
     
-    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough.
+    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough (e.g. 25% of the total memory).
 
     For example:
     
