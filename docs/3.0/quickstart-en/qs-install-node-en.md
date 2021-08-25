@@ -134,11 +134,20 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
+
+    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough.
+
+    For example:
     
-    ```bash
-    SLAB_ALLOC_ARENA=24
-    ```
+    === "If testing the node"
+        ```bash
+        SLAB_ALLOC_ARENA=0.5
+        ```
+    === "If deploying the node to the production environment"
+        ```bash
+        SLAB_ALLOC_ARENA=24
+        ```
 
     Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:

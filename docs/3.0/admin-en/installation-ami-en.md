@@ -124,10 +124,20 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
     sudo vim /etc/default/wallarm-tarantool
     ```
 
-2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator). For example, to set 24 GB:
-    ```
-    SLAB_ALLOC_ARENA=24
-    ```
+2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator).
+
+    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough.
+
+    For example:
+    
+    === "If testing the node"
+        ```bash
+        SLAB_ALLOC_ARENA=0.5
+        ```
+    === "If deploying the node to the production environment"
+        ```bash
+        SLAB_ALLOC_ARENA=24
+        ```
 
 3. To apply changes, restart the Tarantool daemon:
 

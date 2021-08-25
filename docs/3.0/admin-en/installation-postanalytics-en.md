@@ -95,13 +95,18 @@ To open the file in the editing mode, please use the command:
 
 #### Memory
 
-The postanalytics module uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory.
+The postanalytics module uses the in-memory storage Tarantool. For production environments, the recommended amount of RAM allocated for Tarantool is 75% of the total server memory. If testing the Wallarm node or having a small server size, the lower amount can be enough.
 
-The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm-tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example, 24 GB:
+The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm-tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example:
 
-```bash
-SLAB_ALLOC_ARENA=24
-```
+=== "If testing the node"
+    ```bash
+    SLAB_ALLOC_ARENA=0.5
+    ```
+=== "If deploying the node to the production environment"
+    ```bash
+    SLAB_ALLOC_ARENA=24
+    ```
 
 Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-waf-node.md).
 

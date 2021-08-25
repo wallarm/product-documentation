@@ -177,7 +177,7 @@ To install the filter node alone, run the command:
 
 The amount of memory determines the quality of work of the statistical algorithms.
 
-The recommended value is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB.
+For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB. If testing the Wallarm node or having a small server size, the lower amount can be enough.
 
 **Allocate the operating memory size for Tarantool:**
 
@@ -204,9 +204,14 @@ Set the allocated memory size in the configuration file of Tarantool via the `SL
 
 For example:
 
-```
-SLAB_ALLOC_ARENA=24
-```
+=== "If testing the node"
+    ```bash
+    SLAB_ALLOC_ARENA=0.5
+    ```
+=== "If deploying the node to the production environment"
+    ```bash
+    SLAB_ALLOC_ARENA=24
+    ```
 
 **Restart Tarantool:**
 
