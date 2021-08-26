@@ -84,7 +84,7 @@ nav:
   - API Security guides:
     - Home: index.md
   - API Firewall guides:
-    - Wallarm API Firewall overview: api-firewall/overview.md
+    - API Firewall overview: api-firewall/overview.md
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
