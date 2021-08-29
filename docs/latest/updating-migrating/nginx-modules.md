@@ -99,20 +99,30 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
 
 ### Filtering node and postanalytics on the same server
 
-=== "Debian"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
-=== "Ubuntu"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
-=== "CentOS или Amazon Linux 2"
-    ```bash
-    sudo yum update
-    ```
+1. Execute the following command to upgrade the filtering node and postanalytics modules:
+
+    === "Debian"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
+    === "CentOS или Amazon Linux 2"
+        ```bash
+        sudo yum update
+        ```
+2. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
+
+    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
+    2. Confirm the file rewrite by using the option `Y`.
+
+        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.2, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
+
+        By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
 
 ### Filtering node and postanalytics on different servers
 
@@ -136,6 +146,14 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
         ```bash
         sudo yum update
         ```
+3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
+
+    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
+    2. Confirm the file rewrite by using the option `Y`.
+
+        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.2, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
+
+        By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
 
 ## Step 6: Restart NGINX
 
