@@ -87,7 +87,7 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
 
 To test API Firewall operation, send the request that does not match the mounted Open API 3.0 specification to the API Firewall Docker container address. For example, you can pass the string value in the parameter that requires the integer value.
 
-If the request does not match the providded API schema, the appropriate ERROR message will be added to the API Firewall Docker container logs.
+If the request does not match the provided API schema, the appropriate ERROR message will be added to the API Firewall Docker container logs.
 
 ## Step 6. Enable traffic on API Firewall
 
