@@ -46,7 +46,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --container-env DEPLOY_USER=${DEPLOY_USER} \
             --container-env DEPLOY_PASSWORD=${DEPLOY_PASSWORD} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM>
-            --container-image registry-1.docker.io/wallarm/node:3.2.0-2
+            --container-image registry-1.docker.io/wallarm/node:3.2.1-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
@@ -57,7 +57,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --container-env DEPLOY_PASSWORD=${DEPLOY_PASSWORD} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
-            --container-image registry-1.docker.io/wallarm/node:3.2.0-2
+            --container-image registry-1.docker.io/wallarm/node:3.2.1-1
         ```
 
     * `<INSTANCE_NAME>`: name of the instance, for example: `wallarm-node`.
@@ -134,11 +134,11 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.2.0-2
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.2.1-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.2.0-2
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.2.1-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.

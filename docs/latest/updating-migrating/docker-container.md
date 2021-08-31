@@ -37,11 +37,11 @@ If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.2.0-2
+    docker pull wallarm/node:3.2.1-1
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:3.2.0-1
+    docker pull wallarm/envoy:3.2.0-2
     ```
 
 ## Step 4: Stop the running container
