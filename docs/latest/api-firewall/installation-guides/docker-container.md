@@ -29,15 +29,7 @@ docker run --rm -it --network api-firewall-network \
     --network-alias backend -p 8090:8090 kennethreitz/httpbin
 ```
 
-## Step 3. Pull the Docker image of API Firewall
-
-Pull the following API Firewall Docker image:
-
-```bash
-docker pull wallarm/api-firewall
-```
-
-## Step 4. Start API Firewall
+## Step 3. Start API Firewall
 
 Start the pulled API Firewall image by using the command `docker run` and passing API Firewall configuration in the environment variables as described below.
 
@@ -48,7 +40,7 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
     -v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC> -e APIFW_API_SPECS=<PATH_TO_MOUNTED_SPEC> \
     -e APIFW_URL=<API_FIREWALL_URL> -e APIFW_SERVER_URL=<PROTECTED_APP_URL> \
     -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
-    -p 8088:8088 wallarm/api-firewall
+    -p 8088:8088 wallarm/api-firewall:v0.6.4
 ```
 
 **With the `-v` option**, please mount the [OpenAPI 3.0 specification](https://swagger.io/specification/) to the API Firewall container directory:
@@ -83,12 +75,12 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
 | `APIFW_SERVER_WRITE_TIMEOUT`      | The timeout for API Firewall to write the full request (including body) to the application. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | No        |
 | `APIFW_SERVER_DIAL_TIMEOUT`       | The timeout for API Firewall to connect to the application. The default value is `200ms`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | No        |
 
-## Step 5. Test API Firewall operation
+## Step 4. Test API Firewall operation
 
 To test API Firewall operation, send the request that does not match the mounted Open API 3.0 specification to the API Firewall Docker container address. For example, you can pass the string value in the parameter that requires the integer value.
 
 If the request does not match the provided API schema, the appropriate ERROR message will be added to the API Firewall Docker container logs.
 
-## Step 6. Enable traffic on API Firewall
+## Step 5. Enable traffic on API Firewall
 
 To finalize the API Firewall configuration, please enable incoming traffic on API Firewall by updating your application deployment scheme configuration. For example, this would require updating the Ingress, NGINX, or load balancer settings.
