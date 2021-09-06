@@ -1,6 +1,41 @@
-# Rewriting the request before attack replaying
+# Customizing the module for active threat verification
 
-## Rule overview
+Custom ruleset allows changing the following configurations of the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module:
+
+* Disable the module for the whole application or its part (only if the module is enabled for all applications in Wallarm Console → **Scanner**).
+* Rewrite the request before attack replaying.
+
+## Disabling / Enabling the Active threat verification module
+
+### Rule overview
+
+The rule **Disable/Enable active threat verification** is used to change the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
+
+### Creating and applying the rule
+
+To create and apply the rule:
+
+1. Create the rule **Disable/Enable active threat verification** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+
+      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
+      * **Disable / Enable** sets the mode of the **Active threat verification** module for attacks sent to the specified endpoints.
+
+        Please use the mode **Enable** only to configure exceptions for the rule disabling the module (e.g. to enable the module for `https://example.com/module/user/create` if it is already disabled for `https://example.com/module/user/*`).
+2. Wait for the [custom ruleset compilation to complete](compiling.md).
+
+### Rule example
+
+The rule **Disable/Enable active threat verification** disabling the **Active threat verification** module for `https://example.com/module/user/*` looks as follows:
+
+![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-example.png)
+
+If the rule above is already configured, the following rule will enable the **Active threat verification** module for `https://example.com/module/user/create`:
+
+![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
+
+## Rewriting the request before attack replaying
+
+### Rule overview
 
 The rule **Rewrite attack before active verification** is used to modify the original request elements before the [attack replaying](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). The following elements can be modified:
 
@@ -13,7 +48,7 @@ The rule **Rewrite attack before active verification** is used to modify the ori
 
     Since the rule allows modifying of only those request elements that were originally passed, the application IP address cannot be modified.
 
-### Replacing original authentication data with test data
+#### Replacing original authentication data with test data
 
 If authentication parameters were passed in the original request, the module **Attack rechecker** deletes these parameters and replays the attack without them. If authentication parameters are required to access protected application API, the code `401` or other code will be returned in the response to the replayed attack. Since returned code shows no vulnerability signs, the module **Attack rechecker** will not detect the vulnerability that could be actually detected with authentication parameters passed in the request.
 
@@ -22,7 +57,7 @@ To replay the original requests with required authentication parameters, you may
 !!! info "Reusing test authentication data"
     It is recommended to generate test authentication credentials that will only be used by the Wallarm module **Attack rechecker**.
 
-### Modifying the application address for attack replaying
+#### Modifying the application address for attack replaying
 
 By default, replayed attacks are sent to the application address and path passed in the original request. You may replace the original address and path with other values that will be used when replaying the attack. Values are replaced using the **Rewrite attack before active verification** rule in the following way:
 
@@ -35,7 +70,7 @@ By default, replayed attacks are sent to the application address and path passed
 
 To replace both the value of the `HOST` header and the path of the original request, you'll need to create two separate rules with the action type **Rewrite attack before active verification**.
 
-## Creating and applying the rule
+### Creating and applying the rule
 
 To create and apply the rule:
 
@@ -57,7 +92,7 @@ To create and apply the rule:
 
 To set several conditions for the original request modification or to replace the values of several request elements, you may create several rules.
 
-## Rule examples
+### Rule examples
 
 * When replaying the attacks sent to `example.com`, pass the value `PHPSESSID=mntdtbgt87j3auaq60iori2i63; security=low` in the `COOKIE` header.
 
