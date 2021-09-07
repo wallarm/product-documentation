@@ -18,7 +18,7 @@ To create and apply the rule:
 
 1. Create the rule **Tag requests as a forced browsing attack** or **Tag requests as a brute-force attack** in the **Profile & Rules** section of the Wallarm Console. The rule consists of the following components:
 
-    * **Condition** describes the request to add the brute‑force or forced browsing tags to.
+    * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
     * **Counter name** defines the name of the tag which will be added to the request. The name should correspond to the following format:
         * `d:<name>` for the rule **Tag requests as a forced browsing attack**
         * `b:<name>` for the rule **Tag requests as a brute-force attack**

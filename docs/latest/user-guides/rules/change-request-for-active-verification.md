@@ -76,7 +76,7 @@ To create and apply the rule:
 
 1. Create the rule **Rewrite attack before active verification** in the **Profile & Rules** section of the Wallarm Console. The rule consists of the following components:
 
-      * **Condition** describes the request that should be modified before attack replaying.
+      * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * **Rules** sets the new value for the parameter selected in the **Part of request** field. A set value will be used when replaying the attack.
 
         The value must be decoded and set using the [template language Liquid](https://shopify.github.io/liquid/) as follows: placed in double curly braces `{{}}` and single quotes `''`. For example: `{{'example.com'}}`.
