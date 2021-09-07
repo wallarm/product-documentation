@@ -275,6 +275,7 @@ nav:
         - Virtual Patching: user-guides/rules/vpatch-rule.md
         - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
         - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md
+        - Ignoring attack signs in the binary data: user-guides/rules/ignore-attacks-in-binary-data.md
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
