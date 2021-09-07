@@ -40,13 +40,11 @@ If the rule above is already configured, the following rule will enable the **Ac
 The rule **Rewrite attack before active verification** is used to modify the original request elements before the [attack replaying](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). The following elements can be modified:
 
 * Header with the request authentication data to replace [original authentication data with test data](#replacing-original-authentication-data-with-test-data).
-* Header `HOST` if your infrastructure has the load balancer forwarding the requests to different application instances depending on the `HOST` header value. For example, the header `HOST` could be modified to replay the attack on [staging or test environment](#modifying-the-application-address-for-attack-replaying).
+* Header `HOST`. For example, the header `HOST` could be modified to replay the attack on [staging or test environment](#modifying-the-application-address-for-attack-replaying).
 * Path to [rewrite the application address used for the attack replaying](#modifying-the-application-address-for-attack-replaying).
 
 !!! warning "Modification of any original request element"
     The rule **Rewrite attack before active verification** allows modifying of only headers (`header`) and paths (`uri`) of the original requests. Other request elements cannot be modified or added.
-
-    Since the rule allows modifying of only those request elements that were originally passed, the application IP address cannot be modified.
 
 #### Replacing original authentication data with test data
 
@@ -61,11 +59,7 @@ To replay the original requests with required authentication parameters, you may
 
 By default, replayed attacks are sent to the application address and path passed in the original request. You may replace the original address and path with other values that will be used when replaying the attack. Values are replaced using the **Rewrite attack before active verification** rule in the following way:
 
-* If your infrastructure has the load balancer forwarding the requests to different application instances depending on the `HOST` header value, you may replace the original value of the header `HOST` with a different application instance address. For example, a separate application instance could be a staging or test environment.
-
-    !!! warning "Specifics of replacing the HOST value"
-        After the `HOST` header value is replaced with a new value, requests will still be sent to the original application IP address. The request will be forwarded to the address specified in the `HOST` header if the appropriate configuration is implemented on the load balancer for the original IP address.
-
+* Replace the original value of the header `HOST` with a different application instance address. For example, a separate application instance could be a staging or test environment.
 * Replace the path of the original request with the path to the test environment or staging, or to the path to the target server to bypass the proxy server when replaying the attack.
 
 To replace both the value of the `HOST` header and the path of the original request, you'll need to create two separate rules with the action type **Rewrite attack before active verification**.
@@ -100,7 +94,7 @@ To set several conditions for the original request modification or to replace th
 
     ![!Example of the rule modifying COOKIE](../../images/user-guides/rules/rewrite-request-example-cookie.png)
 
-* Replay attacks originally sent to `example.com` on the test environment `example-test.env.srv.loc`. The load balancer on `example.com` must be configured to forward requests to the address passed in `HOST`.
+* Replay attacks originally sent to `example.com` on the test environment `example-test.env.srv.loc`.
 
     The format of the address is `{{'example-test.env.srv.loc'}}`.
 
