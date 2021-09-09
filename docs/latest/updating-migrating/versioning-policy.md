@@ -47,7 +47,7 @@ Wallarm supports only 3 latest versions of the filtering node in the following w
 * For the previous version (e.g. 3.0): allows package download and releases bug fixes.
 * For the third available version (e.g. 2.18): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
-When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same minor version in all installations for full compatibility.
+When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same version in all installations for full compatibility.
 
 ## Version update
 
@@ -55,7 +55,7 @@ It is assumed that you are using the latest available version of the filtering n
 
 ### New version notification
 
-Wallarm publishes information about the new minor version in the following sources:
+Wallarm publishes information about the new major and minor versions in the following sources:
 
 * Public Documentation
 * [News portal](https://changelog.wallarm.com/)
@@ -63,12 +63,12 @@ Wallarm publishes information about the new minor version in the following sourc
 
     ![!Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
 
-Information about available updates for minor Wallarm node versions and for Wallarm node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the filtering node with the latest component versions installed looks like:
+Information about available updates for major and minor Wallarm node versions and for Wallarm node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the filtering node with the latest component versions installed looks like:
 
 ![!Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### Update procedure
 
-Along with the release of the new filtering node minor version, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
+Along with the release of the new filtering node major and minor versions, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
 
 After updating to a new minor version or patch version, all previous filtering node settings will be saved and applied to the new version.
