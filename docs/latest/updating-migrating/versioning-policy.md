@@ -41,11 +41,11 @@ Versions of Wallarm nodes packages may differ within the same artifact. For exam
 
 ## Version support
 
-Wallarm supports 3 latest versions of the filtering node in the following ways:
+Wallarm supports only 3 latest versions of the filtering node in the following ways:
 
-* In the latest version, releases bug fixes. May release new features after a special request.
-* In the previous version, releases bug fixes.
-* In the third available version, releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
+* For the latest version (e.g. 3.2): allows package download, releases bug fixes and closes detected vulnerabilities. May release new features after a special request.
+* For the previous version (e.g. 3.0): allows package download and releases bug fixes.
+* For the third available version (e.g. 2.18): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
 When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same minor version in all installations for full compatibility.
 
