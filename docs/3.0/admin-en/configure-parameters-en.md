@@ -211,12 +211,9 @@ For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override str
 
 ### wallarm_parse_response
 
-The mode of processing web server responses; by default, only the client's request to the web server can be processed.
+Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm-waf/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). 
 
-Possible values:
-
-- **on**: analysis of web server responses by a passive [vulnerability](../glossary-en.md#vulnerability) scanner without sending requests from the Wallarm cloud).
-- **off**: responses are not analyzed.
+Possible values are `on` (response analysis is enabled) and `off` (response analysis is disabled).
 
 !!! info
     This parameter can be set inside http, server, and location blocks.
@@ -276,9 +273,9 @@ location /zy {
 
 ### wallarm_parse_html_response
 
-Lets you enable and disable an HTML parser for responses to requests. Can be:
-* `on`
-* `off`
+Whether to apply the HTML parsers to HTML code received in the application response. Possible values are `on` (HTML parser is applied) and `off` (HTML parser is not applied).
+
+This parameter is effective only if `wallarm_parse_response on`.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -447,7 +444,9 @@ Value of **0** turns the limit off.
 
 ### wallarm_unpack_response
 
-If the backend sends compressed data, the value `on` decompresses the data before processing. The value `off` turns off the decompressing.
+Whether to decompress compressed data returned in the application response. Possible values are `on` (decompression is enabled) and `off` (decompression is disabled).
+
+This parameter is effective only if `wallarm_parse_response on`.
 
 !!! info
     **Default value**: `on`.
