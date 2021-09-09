@@ -70,5 +70,3 @@ Information about available updates for major and minor Wallarm node versions an
 ### Update procedure
 
 Along with the release of the new filtering node major and minor versions, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
-
-After updating to a new minor version or patch version, all previous filtering node settings will be saved and applied to the new version.
