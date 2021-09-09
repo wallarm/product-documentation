@@ -43,7 +43,7 @@ Versions of Wallarm nodes packages may differ within the same artifact. For exam
 
 Wallarm supports only 3 latest versions of the filtering node in the following ways:
 
-* For the latest version (e.g. 3.2): allows package download, releases bug fixes and closes detected vulnerabilities. May release new features after a special request.
+* For the latest version (e.g. 3.2): allows package download, releases bug fixes and updates third‑party components if detecting vulnerabilities in the used version. May release new features after a special request.
 * For the previous version (e.g. 3.0): allows package download and releases bug fixes.
 * For the third available version (e.g. 2.18): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
