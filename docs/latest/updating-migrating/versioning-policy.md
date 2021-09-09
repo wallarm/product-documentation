@@ -11,9 +11,9 @@ This policy describes the method of versioning of different Wallarm filtering no
 |------------------|----------------|---------------|
 | 2.16 and lower   |                | July 2021     |
 | 2.18             | February 2021  | November 2021 |
-| 3.0              | July 2021      |               |
+| 3.0              | July 2021      | January 2022  |
 | 3.2              | August 2021    |               |
-| 4.0              |4th quarter 2021|               |
+| 3.4              | October 2021   |               |
 
 ## Version format
 
