@@ -230,10 +230,7 @@
         </h3>
         <p>Install the API Security module for...</p>
         <div id="debian9Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
             <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
-            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
         </div>
     </div>
 </div> 

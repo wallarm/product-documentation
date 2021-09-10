@@ -27,7 +27,6 @@ To install the filtering node as the NGINX Stable module in the Google Engine in
 
 1. Create a Google Engine instance from the operating system image supported by Wallarm following the [GCP instructions](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
@@ -44,7 +43,6 @@ To install the filtering node as the NGINX Plus module in the Google Engine inst
 
 1. Create a Google Engine instance from the operating system image supported by Wallarm following the [GCP instructions](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
@@ -61,7 +59,6 @@ To install the filtering node as the Kong module in the Google Engine instance:
 
 1. Create a Google Engine instance from the operating system image supported by Wallarm following the [GCP instructions](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage):
 
-    * Debian 9.x Stretch
     * Ubuntu 18.04 Bionic
     * CentOS 7.x
 2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
