@@ -57,7 +57,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 
     *   Dynamic NGINX module:
     
-        === "Debian 9.x (stretch)"
+        === "Debian 9.x (stretch/stretch-backports)"
             ```basn
             /var/cache/nginx/wallarm_acl_default
             ```
@@ -92,7 +92,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 
     *   Dynamic NGINX module from OS repositories:
     
-        === "Debian 9.x (stretch)"
+        === "Debian 9.x (stretch/stretch-backports)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
@@ -127,7 +127,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 
     *   NGINX Plus module:
     
-        === "Debian 9.x (stretch)"
+        === "Debian 9.x (stretch/stretch-backports)"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```

@@ -103,13 +103,6 @@ The filter node installs and updates from the Wallarm repositories.
 
 Depending on your operating system, run one of the following commands:
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
@@ -128,10 +121,6 @@ Depending on your operating system, run one of the following commands:
 
 To install the filter node and postanalytics on the same server, run the command:
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node kong-module-wallarm
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     sudo apt install --no-install-recommends wallarm-node kong-module-wallarm
@@ -143,10 +132,6 @@ To install the filter node and postanalytics on the same server, run the command
 
 To install the filter node alone, run the command:
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install --no-install-recommends wallarm-node-nginx kong-module-wallarm
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     sudo apt install --no-install-recommends wallarm-node-nginx kong-module-wallarm
@@ -169,10 +154,6 @@ For production environments, the recommended amount of RAM allocated for the pos
 
 Open for editing the configuration file of Tarantool:
 
-=== "Debian 9.x (stretch)"
-    ``` bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
@@ -197,10 +178,6 @@ For example:
 
 **Restart Tarantool:**
 
-=== "Debian 9.x (stretch)"
-    ``` bash
-    sudo systemctl restart wallarm-tarantool
-    ```
 === "Ubuntu 18.04 LTS (bionic)"
     ``` bash
     sudo service wallarm-tarantool restart

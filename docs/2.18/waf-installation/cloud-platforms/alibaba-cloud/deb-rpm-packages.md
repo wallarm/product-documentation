@@ -26,7 +26,6 @@ To install the filtering node as the NGINX Stable module in the Alibaba Cloud in
 
 1. Create an Alibaba Cloud instance from the operating system image supported by Wallarm following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
@@ -44,7 +43,6 @@ To install the filtering node as the NGINX Plus module in the Alibaba Cloud inst
 
 1. Create an Alibaba Cloud instance from the operating system image supported by Wallarm following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
@@ -62,7 +60,6 @@ To install the filtering node as the Kong module in the Alibaba Cloud instance:
 
 1. Create an Alibaba Cloud instance from the operating system image supported by Wallarm following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm):
 
-    * Debian 9.x Stretch
     * Ubuntu 16.04 Xenial
     * Ubuntu 18.04 Bionic
     * CentOS 7.x

@@ -23,7 +23,7 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
     Run the command:
 
-    === "Debian 9.x (stretch)"
+    === "Debian 9.x (stretch/stretch-backports)"
         ```bash
         sudo apt install wallarm-extra-scripts
         ```
@@ -72,8 +72,7 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
     
     1.  Open the `root` user's `crontab` file for editing:
     
-        ```
-            ```bash
+        ```bash
         crontab -e
         ```
     

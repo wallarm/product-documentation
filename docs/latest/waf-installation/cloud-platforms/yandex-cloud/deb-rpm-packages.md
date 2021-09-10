@@ -28,7 +28,6 @@ To install the filtering node as the NGINX Stable module in the Yandex Compute C
 
 1. Create a Yandex.Cloud instance from the operating system image supported by Wallarm following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
@@ -45,7 +44,6 @@ To install the filtering node as the NGINX Plus module in the Yandex Compute Clo
 
 1. Create a Yandex.Cloud instance from the operating system image supported by Wallarm following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux):
 
-    * Debian 9.x Stretch
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
@@ -62,7 +60,6 @@ To install the filtering node as the Kong module in the Yandex Compute Cloud ins
 
 1. Create a Yandex.Cloud instance from the operating system image supported by Wallarm following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux):
 
-    * Debian 9.x Stretch
     * Ubuntu 18.04 Bionic
     * CentOS 7.x
 2. Connect to the created instance following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux#connect-to-vm).
