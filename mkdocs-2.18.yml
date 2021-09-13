@@ -93,10 +93,7 @@ nav:
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
         - Wallarm API Security subscription plans: about-wallarm-waf/subscription-plans.md
         - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
-    - Quick Start:
-      - Install the filtering node (NGINX): quickstart-en/qs-install-node-en.md
-      - Configure traffic proxying: quickstart-en/qs-setup-proxy-en.md
-      - Check the filtering node operation: quickstart-en/qs-check-operation-en.md
+    - Quick start: quickstart.md
     - Administrator Guide:
       - Introduction to the Administrator Guide: admin-en/admin-intro-en.md
       - Installation:
