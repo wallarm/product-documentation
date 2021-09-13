@@ -1,7 +1,7 @@
 [link-docs-gcp-autoscaling]:        autoscaling-overview.md
 [link-docs-gcp-node-setup]:         ../../installation-gcp-en.md
 [link-cloud-connect-guide]:         ../../installation-gcp-en.md#5-connect-the-filter-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../quickstart-en/qs-setup-proxy-en.md
+[link-docs-reverse-proxy-setup]:    ../../installation-gcp-en.md#7-set-up-filtering-and-proxying-rules
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
 [img-vm-instance-poweroff]:     ../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png

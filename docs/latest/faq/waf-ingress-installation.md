@@ -11,7 +11,7 @@
 
     ![!IP address from which the request was sent](../images/request-ip-address.png)
 
-    If the list of attacks is empty, you can send a [test attack](../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.
+    If the list of attacks is empty, you can send a [test attack](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.
     
 ## How to check that the Ingress controller is receiving the X-FORWARDED-FOR request header?
 
@@ -19,4 +19,4 @@ Please go to Wallarm Console for the [US cloud](https://us1.my.wallarm.com) or f
 
 ![!The X-FORWARDED-FOR header of the request](../images/x-forwarded-for-header.png)
 
-If the list of attacks is empty, you can send a [test attack](../quickstart-en/qs-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.
+If the list of attacks is empty, you can send a [test attack](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.

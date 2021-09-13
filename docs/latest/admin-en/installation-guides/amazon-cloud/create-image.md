@@ -3,7 +3,7 @@
 [link-ssh-keys-guide]:              ../../installation-ami-en.md#2-create-a-pair-of-ssh-keys
 [link-security-group-guide]:        ../../installation-ami-en.md#3-create-a-security-group
 [link-cloud-connect-guide]:         ../../installation-ami-en.md#6-connect-the-filter-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../quickstart-en/qs-setup-proxy-en.md
+[link-docs-reverse-proxy-setup]:    ../../installation-ami-en.md#8-set-up-filtering-and-proxying-rules
 [link-docs-check-operation]:        ../../installation-check-operation-en.md
 
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 

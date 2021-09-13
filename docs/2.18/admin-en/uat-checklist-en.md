@@ -30,7 +30,7 @@ This section provides you with a checklist to ensure your Wallarm instance opera
    curl http://127.0.0.8/wallarm-status
    ```
 
-See also [Checking the filter node operation](../quickstart-en/qs-check-operation-en.md)
+See also [Checking the filter node operation](installation-check-operation-en.md)
 
 ## You Can Log into the Wallarm Interface
 
