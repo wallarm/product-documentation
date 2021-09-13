@@ -11,9 +11,9 @@ This policy describes the method of versioning of different Wallarm filtering no
 |------------------|----------------|---------------|
 | 2.16 and lower   |                | July 2021     |
 | 2.18             | February 2021  | November 2021 |
-| 3.0              | July 2021      |               |
+| 3.0              | July 2021      | January 2022  |
 | 3.2              | August 2021    |               |
-| 4.0              |4th quarter 2021|               |
+| 3.4              | October 2021   |               |
 
 ## Version format
 
@@ -41,13 +41,13 @@ Versions of Wallarm nodes packages may differ within the same artifact. For exam
 
 ## Version support
 
-Wallarm supports 3 latest versions of the filtering node in the following ways:
+Wallarm supports only 3 latest versions of the filtering node in the following ways:
 
-* In the latest version, releases bug fixes. May release new features after a special request.
-* In the previous version, releases bug fixes.
-* In the third available version, releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
+* For the latest version (e.g. 3.2): allows package download, releases bug fixes and updates third‑party components if detecting vulnerabilities in the used version. May release new features after a special request.
+* For the previous version (e.g. 3.0): allows package download and releases bug fixes.
+* For the third available version (e.g. 2.18): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
-When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same minor version in all installations for full compatibility.
+When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same version in all installations for full compatibility.
 
 ## Version update
 
@@ -55,7 +55,7 @@ It is assumed that you are using the latest available version of the filtering n
 
 ### New version notification
 
-Wallarm publishes information about the new minor version in the following sources:
+Wallarm publishes information about the new major and minor versions in the following sources:
 
 * Public Documentation
 * [News portal](https://changelog.wallarm.com/)
@@ -63,12 +63,10 @@ Wallarm publishes information about the new minor version in the following sourc
 
     ![!Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
 
-Information about available updates for minor Wallarm node versions and for Wallarm node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the filtering node with the latest component versions installed looks like:
+Information about available updates for major and minor Wallarm node versions and for Wallarm node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the filtering node with the latest component versions installed looks like:
 
 ![!Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### Update procedure
 
-Along with the release of the new filtering node minor version, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
-
-After updating to a new minor version or patch version, all previous filtering node settings will be saved and applied to the new version.
+Along with the release of the new filtering node major and minor versions, installation instructions are also published. To access instructions regarding how to update installed artifacts, please use the appropriate instructions from the **Updating and Migrating** section.
