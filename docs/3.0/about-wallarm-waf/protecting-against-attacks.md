@@ -168,7 +168,12 @@ The filtration mode for behavioral attacks is configured separately via the part
 
 When analyzing requests for attacks, Wallarm uses the standard rule set that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
 
-In such cases, standard rules need to be adjusted to accommodate protected application specificities by disabling detection of certain attack signs in the requests with certain address, parameters or other elements. These rules has the action type **Ignore tokens**. The rule **Ignore tokens** is created automatically if an attack or a hit is marked as a false positive in the Wallarm Console. [More details on managing false positives via the Wallarm Console →](../user-guides/events/false-attack.md)
+In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
+
+* Analyze attacks detected by Wallarm and [mark](../user-guides/events/false-attack.md) particular attacks or hits as false positives. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
+* [Disable detection of certain attack types](../user-guides/rules/ignore-attack-types.md) in particular requests.
+* [Disable detection of certain attack signs in binary data](../user-guides/rules/ignore-attacks-in-binary-data.md).
+* [Disable parsers mistakenly applied to the requests](../user-guides/rules/disable-request-parsers.md).
 
 Identifying and handling false positives is a part of fine‑tuning Wallarm API Security to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
