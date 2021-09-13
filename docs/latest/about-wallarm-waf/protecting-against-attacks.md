@@ -149,7 +149,9 @@ Wallarm clients can set custom detection rules based on protected application sp
 * [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
 * [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
 * [Disable attack detection by the regular expressions](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
-* **Ignore tokens** disables detection of specified attack signs ([tokens](#library-libproton)) in certain requests. This rule is created automatically when adding a [false positive](#false-positives) marks and is not displayed in the Wallarm Console.
+* [Ignore certain attack signs](../user-guides/rules/ignore-attack-types.md)
+* [Allow binary data and file uploading](../user-guides/rules/ignore-attacks-in-binary-data.md)
+* [Disable/Enable request parsers](../user-guides/rules/disable-request-parsers.md)
 
 Custom detection rules and other [rules](../user-guides/rules/intro.md) are compiled into Local Objective Model (LOM) and applied along with the standard rules from **proton.db** when analyzing requests. [More details on LOM building →](../user-guides/rules/compiling.md)
 
