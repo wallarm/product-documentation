@@ -2,10 +2,10 @@
 
 Custom ruleset allows changing the following configurations of the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module:
 
-<!-- * Disable the module for the whole application or its part (only if the module is enabled for all applications in Wallarm Console → **Scanner**). -->
+* Disable the module for the whole application or its part (only if the module is enabled for all applications in Wallarm Console → **Scanner**).
 * Rewrite the request before attack replaying.
 
-<!-- ## Disabling / Enabling the Active threat verification module
+## Disabling / Enabling the Active threat verification module
 
 ### Rule overview
 
@@ -31,7 +31,7 @@ The rule **Disable/Enable active threat verification** disabling the **Active th
 
 If the rule above is already configured, the following rule will enable the **Active threat verification** module for `https://example.com/module/user/create`:
 
-![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png) -->
+![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
 
 ## Rewriting the request before attack replaying
 
