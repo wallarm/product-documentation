@@ -205,3 +205,15 @@
 /3.0/partner-waf-node/installing-partner-waf-node/ /2.18/partner-waf-node/installing-partner-waf-node/ 301!
 
 /en/admin-en/installation-ami-en.html /admin-en/installation-ami-en/
+
+/quickstart-en/qs-install-node-en/ /quickstart/
+/quickstart-en/qs-setup-proxy-en/ /quickstart/
+/quickstart-en/qs-check-operation-en/ /admin-en/installation-check-operation-en/
+
+/3.0/quickstart-en/qs-install-node-en/ /3.0/quickstart/
+/3.0/quickstart-en/qs-setup-proxy-en/ /3.0/quickstart/
+/3.0/quickstart-en/qs-check-operation-en/ /3.0/admin-en/installation-check-operation-en/
+
+/2.18/quickstart-en/qs-install-node-en/ /2.18/quickstart/
+/2.18/quickstart-en/qs-setup-proxy-en/ /2.18/quickstart/
+/2.18/quickstart-en/qs-check-operation-en/ /2.18/admin-en/installation-check-operation-en/

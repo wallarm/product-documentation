@@ -1,1 +1,0 @@
---8<-- "latest/quickstart-en/qs-setup-proxy-en.md"

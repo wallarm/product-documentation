@@ -5,7 +5,7 @@
 [link-backup-resource]:             https://cloud.google.com/load-balancing/docs/target-pools#backupPool
 [link-health-check]:                https://cloud.google.com/load-balancing/docs/health-checks
 [link-session-affinity]:            https://cloud.google.com/load-balancing/docs/target-pools#sessionaffinity
-[link-test-attack]:                 ../../../quickstart-en/qs-check-operation-en.md
+[link-test-attack]:                 ../../installation-check-operation-en.md
 [link-network-service-tier]:        https://cloud.google.com/network-tiers/docs/
 
 [img-backend-configuration]:        ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/backend-configuration.png
