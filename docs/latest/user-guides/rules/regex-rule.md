@@ -14,6 +14,11 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
 *Regex*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#regex).
 
+    !!! warning "Changing the regular expression specified in the rule"
+        Changing the regular expression specified in the existing rule of the type **Define a request as an attack based on a regular expression** results in automatic deletion of the rules [**Disable attack detection by the regular expressions**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.
+
+        To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
+
 *Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
 *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method. They can be accessed using search query `experimental attacks`.
@@ -57,6 +62,11 @@ Identifier is generated automatically when you add a new regular expression rule
 3. Click the desired regular expression entry and copy a regular expression ID.
 
 ![!Getting an ID of a regular expression][img-regex-id]
+
+!!! warning "Behavior of the rule if the regular expression was changed"
+    Changing the regular expression specified in the existing rule of the type [**Define a request as an attack based on a regular expression**](#adding-a-new-detection-rule) results in automatic deletion of the rules **Disable attack detection by the regular expressions** that use the previous expression.
+
+    To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
 
 ### Example: Permit an Incorrect X-Authentication Header for a Designated URL.
 
