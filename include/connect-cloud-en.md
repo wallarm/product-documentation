@@ -44,6 +44,6 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
     
-    To specify the name of the created node, use the `-n <node name>` option.
+    To specify the name of the created node, use the `-n <node name>` option. Also, the node name can be changed in Wallarm Console → **Nodes**.
 
 3.  Provide your Wallarm account’s login and password when prompted.

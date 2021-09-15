@@ -86,6 +86,8 @@ The node will now synchronize with the cloud every 2‑4 minutes according to th
 2. Provide your Wallarm administrator account's login and password.
 3. Enter the name of the new filtering node or press Enter to use the virtual machine name.
 
+    The specified name can be changed in Wallarm Console → **Nodes** later.
+
 The node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
 
 ### 4. Update Wallarm node configuration

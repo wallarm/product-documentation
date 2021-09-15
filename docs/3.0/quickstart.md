@@ -65,7 +65,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
     | `<YOUR_WALLARM_USERNAME>` | Email to the **Deploy** or **Administrator** [user](user-guides/settings/users.md) account in Wallarm Console. | Yes	
     | `<YOUR_WALLARM_PASSWORD>` | Password to the **Deploy** or **Administrator** [user](user-guides/settings/users.md) account in Wallarm Console. | Yes
     | `<WALLARM_CLOUD>` | Wallarm Cloud name being used. Possible values are `eu` (by default) and `us1`. | No
-    | `<WALLARM_NODE_NAME>` | Wallarm node name. By default, the script assigns the host name to the node. | No
+    | `<WALLARM_NODE_NAME>` | Wallarm node name. By default, the script assigns the host name to the node.<br><br>The specified name can be changed in Wallarm Console → **Nodes** later. | No
     | `<DOMAIN_NAME>` | The Wallarm filtering node will be configured to handle traffic for this domain. The value can be your company website or public API endpoint. If not sure about which domain name to use, you can always experiment with any public site (e.g. `example.com`).<br><br>Default value is `localhost`. | No
     | `<ORIGIN_SERVER>` | The Wallarm filtering node will be configured to send upstream requests to the specified IP address or domain name. If this parameter is not specified explicitly, the script uses the value of `<DOMAIN_NAME>`. | No
 6. Ensure the script returned the message `We've completed the Wallarm node deployment process`.

@@ -4,6 +4,7 @@ The **Nodes** section of Wallarm UI allows you to manage filtering nodes:
 
 * View properties and metrics of installed nodes
 * Regenerate the token for cloud nodes
+* Rename nodes
 * Delete nodes
 * Create new nodes
 

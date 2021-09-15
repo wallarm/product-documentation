@@ -18,4 +18,6 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
         ```
 3. Input the email and password for your account in the Wallarm Console.
 4. Input the filtering node name or click Enter to use an automatically generated name.
+
+    The specified name can be changed in Wallarm Console → **Nodes** later.
 5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new filtering node is added to the list.

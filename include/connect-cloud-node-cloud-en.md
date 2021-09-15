@@ -28,7 +28,10 @@ To connect the node to the cloud using the token, proceed with the following ste
 
 1. Create a new node on the *Nodes* tab of Wallarm web interface.
     1. Click the *Create new node* button.
-    2. In the form that appears, enter the node name into the corresponding field and select the “Cloud” type of installation from the drop-down list.
+    2. In the form that appears, select the “Cloud node” tab and input the node name.
+
+        The specified name can be changed later.
+    
     3. Click the *Create* button.
 2. In the window that appears, click the *Copy* button next to the field with the token to add the token of the newly created filter node to your clipboard.
 3. On the virtual machine run the `addcloudnode` script:
