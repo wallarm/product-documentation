@@ -218,3 +218,13 @@ function noAction(event) {
   event.stopImmediatePropagation();
   return false;
 }
+
+// Highlight the search string if URL contains ?search
+
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('search');
+var searchBar = document.getElementsByClassName('md-search__input');
+
+if(myParam !== null) {
+  document.getElementById("__search").checked = true;
+}
