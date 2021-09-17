@@ -12,13 +12,18 @@ In some cases, it may prove useful to add a signature for attack detection manua
 
 To do this, you need to create the rule *Define a request as an attack based on a regular expression* and fill in the fields:
 
-*Regex*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#regex).
+* *Regular expression*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#regex).
 
-*Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
+    !!! warning "Changing the regular expression specified in the rule"
+        Changing the regular expression specified in the existing rule of the type **Define a request as an attack based on a regular expression** results in automatic deletion of the rules [**Disable attack detection by the regular expressions**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.
 
-*Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method. They can be accessed using search query `experimental attacks`.
+        To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
 
-*in this part of request*: determines a point in the request, where the system should detect the corresponding attacks.
+* *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method. They can be accessed using search query `experimental attacks`.
+
+* *Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
+
+* *in this part of request*: determines a point in the request, where the system should detect the corresponding attacks.
 
 
 ### Example: Blocking All Headers with an Incorrect X-Authentication Header
@@ -46,19 +51,16 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
 If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable attack detection by the regular expressions* with the following fields:
 
-- *Regex ID*: identifiers of the previously created regular expressions that must be ignored.
+- *Regular expression*: previously created regular expressions that must be ignored.
+
+    !!! warning "Behavior of the rule if the regular expression was changed"
+        Changing the regular expression specified in the existing rule of the type [**Define a request as an attack based on a regular expression**](#adding-a-new-detection-rule) results in automatic deletion of the rules **Disable attack detection by the regular expressions** that use the previous expression.
+
+        To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
+
 - *in this part of request*: indicates the parameter that requires setting up an exception.
 
-### Getting an ID of a Regular Expression
-
-Identifier is generated automatically when you add a new regular expression rule. To get an ID of a regular expression, proceed to the following steps:
-1. In the *Rules* tab, welect the branch which the desired regular expression was set for.
-2. Select the group of rules which contains the desired regular expression.
-3. Click the desired regular expression entry and copy a regular expression ID.
-
-![!Getting an ID of a regular expression][img-regex-id]
-
-### Example: Permit an Incorrect X-Authentication Header for a Designated URL.
+**Example: Permit an Incorrect X-Authentication Header for a Designated URL**
 
 Let's say you have a script at `example.com/test.php`, and you want to change the format of the tokens for it.
 
@@ -67,7 +69,7 @@ To create the relevant rule:
 1. Go to the *Rules* tab
 1. Find or create the branch for `example.com/test.php` and click *Add rule*
 1. Choose *Disable attack detection by the regular expressions*
-1. Enter the ID of the rule that you want to disable into the *Regex ID* field
+1. Select the regular expression that you want to disable
 1. Set the point `Header X-AUTHENTICATION`
 1. Click *Create*
 
