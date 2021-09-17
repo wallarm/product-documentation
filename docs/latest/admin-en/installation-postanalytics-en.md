@@ -119,6 +119,8 @@ To create the filtering node and connect the postanalytics module to the Cloud:
         ```
 3. Input the email and password for your account in the Wallarm Console.
 4. Input the postanalytics node name or click Enter to use automatically generated name.
+
+    The specified name can be changed in Wallarm Console → **Nodes** later.
 5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new node is added to the list.
 
 ### 4. Update postanalytics module configuration
