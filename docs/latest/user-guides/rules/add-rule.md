@@ -74,9 +74,7 @@ The following points are currently supported:
 * **header**: request headers
 * **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
-#### Condition types
-
-##### EQUAL
+#### Condition type: EQUAL (`=`)
 
 The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
 
@@ -85,11 +83,11 @@ The point value must match precisely with the comparison argument. For example, 
     
     If you have previously used the EQUAL type, it will be automatically replaced with the IEQUAL type.
 
-##### IEQUAL
+#### Condition type: IEQUAL (`Aa`)
 
 The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
 
-##### REGEX
+#### Condition type: REGEX (`.*`)
 
 The point value must match the regular expression. 
 
@@ -279,7 +277,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ^(python-requests/|PostmanRuntime/|okhttp/3.14.0|node-fetch/1.0)
     ```
 
-##### ABSENT
+#### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated point. In this case, the comparison argument is not used.
 

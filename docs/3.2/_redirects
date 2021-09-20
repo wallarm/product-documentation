@@ -217,3 +217,8 @@
 /2.18/quickstart-en/qs-install-node-en/ /2.18/quickstart/
 /2.18/quickstart-en/qs-setup-proxy-en/ /2.18/quickstart/
 /2.18/quickstart-en/qs-check-operation-en/ /2.18/admin-en/installation-check-operation-en/
+
+/user-guides/rules/add-rule/#equal /user-guides/rules/add-rule/#condition-type-equal
+/user-guides/rules/add-rule/#iequal /user-guides/rules/add-rule/#condition-type-iequal-aa
+/user-guides/rules/add-rule/#regex /user-guides/rules/add-rule/#condition-type-regex
+/user-guides/rules/add-rule/#absent /user-guides/rules/add-rule/#condition-type-absent
