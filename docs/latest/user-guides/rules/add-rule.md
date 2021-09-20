@@ -24,7 +24,38 @@ If necessary, it is possible to modify the branch to which a rule will be added.
 
 A branch description consists of a set of conditions for various parameters that an HTTP request must fulfill; otherwise, the rules associated with this branch will not be applied. Each line in the *If request is* section of the rule-adding form refers to a separate condition comprised of three fields: point, type, and comparison argument. The rules described in the branch are only applied to the request if all the conditions are fulfilled.
 
-### Points
+To configure the set of conditions, both the **URI constructor** and the **advanced edit form** can be used.
+
+### URI constructor
+
+URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
+
+* For the request method, the URI constructor provides the particular selector. If the method is not selected, the rule will be applied to requests with any method.
+* For the request endpoint, the URI constructor provides the particular field accepting the following value formats:
+
+    | Format | Examples and request point values |
+    | ------ | ------ |
+    | Full URI including the following components:<ul><li>Scheme (the value is ignored, you can explicitly specify the scheme by using the advanced form)</li><li>Domain</li><li>Port</li><li>Path</li><li>Query parameters</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[get, 'q']` - `action`</li><li>`[get, 'w']` - `delete`</li></ul>|
+    | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[get, 'q']` - `action`</li><li>`[get, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
+    | URI with `*` meaning any non‑empty value of the component | `example.com/*/create/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - any non‑empty value</li><li>`[path, 1]` - `create`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php`<br>and does not match `example.com/create/user.php` and `example.com/api/create`.</ul>|
+    | URI with `**` meaning any number of components except for its absence | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/api/create/user` and `example.com/api/user`.<br>The value does not match `example.com/user`, `example.com/api/user/index.php` and `example.com/api/user/?w=delete`.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php` and `example.com/api/user/create/index.php`<br>and does not match `example.com/api`, `example.com/api/user` and `example.com/api/create/user.php?w=delete`.</ul> |
+    | URI with the [regular expression](#condition-type-regexp) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
+
+The string specified in the URI constructor is automatically parsed into the set of conditions for the following [request points](#points):
+
+* `method`
+* `header`. The URI constructor allows specifying only the header `HOST`.
+* `path`, `action_name`, `action_ext`. Before confirming the rule creation, please ensure the values of these request points are parsed in one of the following ways:
+    * Explicit value of certain `path` number + `action_name` + `action_ext` (optional)
+    * Explicit value of `action_name` + `action_ext` (optional)
+    * Explicit value of certain `path` number without `action_name` and without `action_ext`
+* `get`
+
+The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
+
+### Advanced edit form
+
+#### Points
 
 The *point* field indicates which parameter value should be extracted from the request for comparison. At present, not all of the points that can be analyzed by the filter node, are supported.
 
@@ -34,14 +65,16 @@ The following points are currently supported:
 * **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
 * **scheme**: http or https
 * **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
-* **path**, **action_name**, **action_ext**: URL elements (recommended format for URL describing). More details are provided in the [request analysis description][link-request-processing]
+* **path**, **action_name**, **action_ext** is hierarchical URI component sequence where: 
+
+    * **path**: an array with URI parts separated by the `/` symbol (the last URI part is not included in the array). If there is only one part in the URI, the array will be empty.
+    * **action_name**: the last part of the URI after the `/` symbol and before the first period (`.`). This part of the URI is always presented in the request, even if its value is an empty string.
+    * **action_ext**: the part of the URI after the last period (`.`). It may be missing in the request.
 * **get**: GET parameters in the request
 * **header**: request headers
-* **method**: request methods
+* **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
-### Condition types
-
-#### EQUAL
+#### Condition type: EQUAL (`=`)
 
 The point value must match precisely with the comparison argument. For example, only `example` matches with the point value `example`.
 
@@ -50,11 +83,11 @@ The point value must match precisely with the comparison argument. For example, 
     
     If you have previously used the EQUAL type, it will be automatically replaced with the IEQUAL type.
 
-#### IEQUAL
+#### Condition type: IEQUAL (`Aa`)
 
 The point value must match with the comparison argument in any case. For example: `example`, `ExAmple`, `exampLe` match with the point value `example`.
 
-#### REGEX
+#### Condition type: REGEX (`.*`)
 
 The point value must match the regular expression. 
 
@@ -244,7 +277,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ^(python-requests/|PostmanRuntime/|okhttp/3.14.0|node-fetch/1.0)
     ```
 
-#### ABSENT
+#### Condition type: ABSENT (`∅`)
 
 The request should not contain the designated point. In this case, the comparison argument is not used.
 
