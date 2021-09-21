@@ -172,7 +172,7 @@ When analyzing requests for attacks, Wallarm uses the standard rule set that pro
 
 In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
 
-* Analyze attacks detected by Wallarm and [mark](../user-guides/events/false-attack.md) particular attacks or hits as false positives. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
+* Analyze potential false positives (by filtering all attacks by the [tag `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)) and if confirming false positives, [mark](../user-guides/events/false-attack.md) particular attacks or hits appropriately. Wallarm will automatically create the rules disabling analysis of the same requests for detected attack signs.
 * [Disable detection of certain attack types](../user-guides/rules/ignore-attack-types.md) in particular requests.
 * [Disable detection of certain attack signs in binary data](../user-guides/rules/ignore-attacks-in-binary-data.md).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/disable-request-parsers.md).
