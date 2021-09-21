@@ -36,7 +36,7 @@ Triggers are configured in the **Triggers** section of the Wallarm Console. The 
 A condition is a system event to be notified about. The following conditions are available for notification:
 
 * Number of requests
-* Number of [attack vectors](../../glossary-en.md#attack-vector)
+* Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload)
 * Number of [attacks](../../glossary-en.md#attack)
 * Number of [hits](../../glossary-en.md#hit)
 * Number of incidents

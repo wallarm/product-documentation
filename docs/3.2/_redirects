@@ -222,3 +222,5 @@
 /user-guides/rules/add-rule/#iequal /user-guides/rules/add-rule/#condition-type-iequal-aa
 /user-guides/rules/add-rule/#regex /user-guides/rules/add-rule/#condition-type-regex
 /user-guides/rules/add-rule/#absent /user-guides/rules/add-rule/#condition-type-absent
+
+/glossary-en/#attack-vector /glossary-en/#malicious-payload
