@@ -88,6 +88,15 @@ Specify in the search string:
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
+### Search by known attacks (CVE and well‑known exploits)
+
+* `known`: to search for requests that precisely attack since they exploit CVE vulnerabilities or other well‑known vulnerability types.
+
+    To filter attacks by certain CVE or another well‑known vulnerability type, you can pass the appropriate tag in addition to the tag `known` or separate from it. For example: `known:CVE-2004-2402 CVE-2018-6008` or `CVE-2004-2402 CVE-2018-6008` to search for attacks exploiting the [CVE-2004-2402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2402) and [CVE-2018-6008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6008) vulnerabilities.
+* `!known`: potential false positives. These requests may contain little‑known exploits or the context turning the exploits into legitimate parameter values.
+
+To filter attacks by CVE and well‑known exploits, quick filters by event types and **CVE and exploits** can be used.
+
 ### Search by the attack target or the vulnerability target
 
 Specify in the search string:
