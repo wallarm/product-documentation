@@ -22,7 +22,7 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
     * If several requests of the same type were detected at short intervals, the attack duration appears under the date. Duration is the time period between the first request of a certain type and the last request of the same type in the specified timeframe. 
     * If the attack is happening at the current moment, an appropriate [label](#events-that-are-currently-happening) is displayed.
 * **Requests (hits)**: The number of requests (hits) in the attack in the specified time frame. 
-* **Payloads**: Attack type and the number of unique [attack vectors](../../glossary-en.md#attack-vector). 
+* **Payloads**: Attack type and the number of unique [malicious payload](../../glossary-en.md#malicious-payload). 
 * **Top IP / Source**: The IP address from which the malicious requests originated. When the malicious requests originate from several IP addresses, the interface shows the IP address responsible for the most requests. There is also the following data displayed for the IP address:
      * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
      * The country in which the IP address is registered (if it was found in the Wallarm databases)
