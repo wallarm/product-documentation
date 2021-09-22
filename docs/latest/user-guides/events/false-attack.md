@@ -23,9 +23,10 @@ Created rule is applied when analyzing requests to the protected application. Th
 
 To mark one request (hit) as a false positive:
 
-1. In Wallarm Console → **Events**, filter the attacks by potential false positives using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
-2. Expand the list of requests in this attack.
-3. Define a valid request and click **False** in the **Actions** column.
+1. In Wallarm Console → **Events**, expand the list of requests in the attack seemed to be a false positive.
+
+    To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
+2. Define a valid request and click **False** in the **Actions** column.
 
     ![!False hit][img-false-attack]
 
@@ -33,8 +34,9 @@ To mark one request (hit) as a false positive:
 
 To mark all requests (hits) in the attack as false positives:
 
-1. In Wallarm Console → **Events**, filter the attacks by potential false positives using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
-2. Select an attack with valid requests.
+1. In Wallarm Console → **Events**, select an attack with valid requests.
+
+    To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Click **Report attack as false positive**.
 
     ![!False attack](../../images/user-guides/events/analyze-attack.png)
