@@ -18,58 +18,58 @@ controller:
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
 
 ```
-# HELP nginx_wallarm_requests requests count
-# TYPE nginx_wallarm_requests gauge
-nginx_wallarm_requests 5
-# HELP nginx_wallarm_attacks attack requests count
-# TYPE nginx_wallarm_attacks gauge
-nginx_wallarm_attacks 5
-# HELP nginx_wallarm_blocked blocked requests count
-# TYPE nginx_wallarm_blocked gauge
-nginx_wallarm_blocked 5
-# HELP nginx_wallarm_abnormal abnormal requests count
-# TYPE nginx_wallarm_abnormal gauge
-nginx_wallarm_abnormal 5
-# HELP nginx_wallarm_tnt_errors tarantool write errors count
-# TYPE nginx_wallarm_tnt_errors gauge
-nginx_wallarm_tnt_errors 0
-# HELP nginx_wallarm_api_errors API write errors count
-# TYPE nginx_wallarm_api_errors gauge
-nginx_wallarm_api_errors 0
-# HELP nginx_wallarm_requests_lost lost requests count
-# TYPE nginx_wallarm_requests_lost gauge
-nginx_wallarm_requests_lost 0
-# HELP nginx_wallarm_overlimits_time overlimits_time count
-# TYPE nginx_wallarm_overlimits_time gauge
-nginx_wallarm_overlimits_time 0
-# HELP nginx_wallarm_segfaults segmentation faults count
-# TYPE nginx_wallarm_segfaults gauge
-nginx_wallarm_segfaults 0
-# HELP nginx_wallarm_memfaults vmem limit reached events count
-# TYPE nginx_wallarm_memfaults gauge
-nginx_wallarm_memfaults 0
-# HELP nginx_wallarm_softmemfaults request memory limit reached events count
-# TYPE nginx_wallarm_softmemfaults gauge
-nginx_wallarm_softmemfaults 0
-# HELP nginx_wallarm_proton_errors libproton non-memory related libproton faults events count
-# TYPE nginx_wallarm_proton_errors gauge
-nginx_wallarm_proton_errors 0
-# HELP nginx_wallarm_time_detect_seconds time spent for detection
-# TYPE nginx_wallarm_time_detect_seconds gauge
-nginx_wallarm_time_detect_seconds 0
-# HELP nginx_wallarm_db_id proton.db file id
-# TYPE nginx_wallarm_db_id gauge
-nginx_wallarm_db_id 9
-# HELP nginx_wallarm_lom_id LOM file id
-# TYPE nginx_wallarm_lom_id gauge
-nginx_wallarm_lom_id 38
-# HELP nginx_wallarm_proton_instances proton instances count
-# TYPE nginx_wallarm_proton_instances gauge
-nginx_wallarm_proton_instances{status="success"} 4
-nginx_wallarm_proton_instances{status="fallback"} 0
-nginx_wallarm_proton_instances{status="failed"} 0
-# HELP nginx_wallarm_stalled_worker_time_seconds time a worker stalled in libproton
-# TYPE nginx_wallarm_stalled_worker_time_seconds gauge
+# HELP wallarm_requests requests count
+# TYPE wallarm_requests gauge
+wallarm_requests 5
+# HELP wallarm_attacks attack requests count
+# TYPE wallarm_attacks gauge
+wallarm_attacks 5
+# HELP wallarm_blocked blocked requests count
+# TYPE wallarm_blocked gauge
+wallarm_blocked 5
+# HELP wallarm_abnormal abnormal requests count
+# TYPE wallarm_abnormal gauge
+wallarm_abnormal 5
+# HELP wallarm_tnt_errors tarantool write errors count
+# TYPE wallarm_tnt_errors gauge
+wallarm_tnt_errors 0
+# HELP wallarm_api_errors API write errors count
+# TYPE wallarm_api_errors gauge
+wallarm_api_errors 0
+# HELP wallarm_requests_lost lost requests count
+# TYPE wallarm_requests_lost gauge
+wallarm_requests_lost 0
+# HELP wallarm_overlimits_time overlimits_time count
+# TYPE wallarm_overlimits_time gauge
+wallarm_overlimits_time 0
+# HELP wallarm_segfaults segmentation faults count
+# TYPE wallarm_segfaults gauge
+wallarm_segfaults 0
+# HELP wallarm_memfaults vmem limit reached events count
+# TYPE wallarm_memfaults gauge
+wallarm_memfaults 0
+# HELP wallarm_softmemfaults request memory limit reached events count
+# TYPE wallarm_softmemfaults gauge
+wallarm_softmemfaults 0
+# HELP wallarm_proton_errors libproton non-memory related libproton faults events count
+# TYPE wallarm_proton_errors gauge
+wallarm_proton_errors 0
+# HELP wallarm_time_detect_seconds time spent for detection
+# TYPE wallarm_time_detect_seconds gauge
+wallarm_time_detect_seconds 0
+# HELP wallarm_db_id proton.db file id
+# TYPE wallarm_db_id gauge
+wallarm_db_id 9
+# HELP wallarm_lom_id LOM file id
+# TYPE wallarm_lom_id gauge
+wallarm_lom_id 38
+# HELP wallarm_proton_instances proton instances count
+# TYPE wallarm_proton_instances gauge
+wallarm_proton_instances{status="success"} 4
+wallarm_proton_instances{status="fallback"} 0
+wallarm_proton_instances{status="failed"} 0
+# HELP wallarm_stalled_worker_time_seconds time a worker stalled in libproton
+# TYPE wallarm_stalled_worker_time_seconds gauge
 ```
 
 Detailed information about monitoring setup and the list of available metrics is provided in this [documentation](../../../monitoring/intro.md).
