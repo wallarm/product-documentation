@@ -57,7 +57,7 @@ Partner node has the following characteristics:
 
 * Can be installed on the same platforms and according to the same instructions as a regular filtering node:
 
-    --8<-- "../include/waf/installation/supported-platforms-30.md"
+    --8<-- "../include/waf/installation/supported-platforms-32.md"
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to the Wallarm Console, the filtering node must be installed at the corresponding partner client level.
 * Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance). In the partner node, this directive is used to split settings by the client applications.
 
