@@ -17,6 +17,7 @@
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
 [invalid_xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 
 # Using search and filters
 
@@ -81,6 +82,7 @@ Specify in the search string:
 * `redir`: to search for [open redirect][al-open-redirect] vulnerabilities.
 * `nosqli`: to search for [NoSQL injection][al-nosqli] attacks/vulnerabilities.
 * `data_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
+* `ssti`: to search for [Server‑Side Template Injections][ssti-injection].
 * `invalid_xml`: to search for [usage of unsafe XML header][invalid-xml].
 * `overlimit_res`: to search for attacks aimed at [overlimiting of computational resources][al-overlimit].
 * `xxe`: to search for [XML External Entity][al-xxe] attacks.
