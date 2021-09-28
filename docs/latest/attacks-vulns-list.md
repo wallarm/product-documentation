@@ -20,6 +20,7 @@
 [cwe-288]:  https://cwe.mitre.org/data/definitions/288.html
 [cwe-307]:  https://cwe.mitre.org/data/definitions/307.html
 [cwe-352]:  https://cwe.mitre.org/data/definitions/352.html
+[cwe-409]:  https://cwe.mitre.org/data/definitions/409.html
 [cwe-425]:  https://cwe.mitre.org/data/definitions/425.html
 [cwe-444]:  https://cwe.mitre.org/data/definitions/444.html
 [cwe-511]:  https://cwe.mitre.org/data/definitions/511.html
@@ -29,6 +30,7 @@
 [cwe-548]:  https://cwe.mitre.org/data/definitions/548.html
 [cwe-601]:  https://cwe.mitre.org/data/definitions/601.html
 [cwe-611]:  https://cwe.mitre.org/data/definitions/611.html
+[cwe-776]:  https://cwe.mitre.org/data/definitions/776.html
 [cwe-799]:  https://cwe.mitre.org/data/definitions/799.html
 [cwe-639]:  https://cwe.mitre.org/data/definitions/639.html
 [cwe-918]:  https://cwe.mitre.org/data/definitions/918.html
@@ -177,24 +179,22 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
 
 
-### Logic Bomb
+### Data Bomb
 
 **Attack**<br>
-**CWE code:** [CWE-511][cwe-511]<br>
+**CWE code:** [CWE-409][cwe-409], [CWE-776][cwe-776]<br>
 **Wallarm code:** `data_bomb`
 
 **Description:**
 
-A logic bomb is a piece of malicious code that runs under certain conditions to perform some malicious actions. A “time bomb” is a variety of logic bomb that goes off at a certain time or date.
+Wallarm marks a request as the Data Bomb attack if it contains the Zip or XML bomb:
 
-An example of a logic bomb is a program that is in control of a company's salary calculation system and which attacks the company if a particular employee gets fired.
+* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb) is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
+* [XML bomb (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack) is the DoS attack type that is aimed at parsers of XML documents. An attacker sends malicious payloads in XML entities.
 
 **Remediation:**
 
-You may follow these recommendations:
-*   Use both static and dynamic code analyzers to inspect the produced code.
-*   Meticulously audit all code that is not covered by tests. 
-*   Validate the integrity of any software being installed (e.g., check the software's digital signature).
+Limit the size of incoming requests so it could not harm the system.
 
 ### Cross‑site Scripting (XSS)
 

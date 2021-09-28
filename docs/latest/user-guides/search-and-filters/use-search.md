@@ -6,7 +6,7 @@
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
 [al-nosqli]:              ../../attacks-vulns-list.md#nosql-injection
-[al-logic-bomb]:          ../../attacks-vulns-list.md#logic-bomb
+[al-logic-bomb]:          ../../attacks-vulns-list.md#data-bomb
 [al-xxe]:                 ../../attacks-vulns-list.md#attack-on-xml-external-entity-xxe
 [al-virtual-patch]:       ../../attacks-vulns-list.md#virtual-patch
 [al-forced-browsing]:     ../../attacks-vulns-list.md#forced-browsing
