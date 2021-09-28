@@ -15,6 +15,7 @@
 [al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
 [al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
+[ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
 
 # Using search and filters
 
@@ -87,6 +88,7 @@ Specify in the search string:
 * `scanner`: to search for [port scanner][al-port-scanner] attacks/vulnerabilities.
 * `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
 * `mail_injection`: to search for [Email Injections][email-injection].
+* `ssi`: to search for [SSI Injections][ssi-injection].
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

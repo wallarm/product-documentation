@@ -10,6 +10,8 @@
 [cwe-93]:   https://cwe.mitre.org/data/definitions/93.html
 [cwe-94]:   https://cwe.mitre.org/data/definitions/94.html
 [cwe-113]:  https://cwe.mitre.org/data/definitions/113.html
+[cwe-96]:   https://cwe.mitre.org/data/definitions/96.html
+[cwe-97]:   https://cwe.mitre.org/data/definitions/97.html
 [cwe-150]:  https://cwe.mitre.org/data/definitions/150.html
 [cwe-159]:  https://cwe.mitre.org/data/definitions/159.html
 [cwe-200]:  https://cwe.mitre.org/data/definitions/200.html
@@ -57,6 +59,7 @@
 
 [link-imap-wiki]:                                https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol
 [link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
+[ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 
 The Wallarm filter node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
@@ -481,6 +484,23 @@ You may follow these recommendations:
 Email Injection is a malicious [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] expression usually sent via the web application contact form to change standard email server behavior.
 
 Vulnerability to this attack occurs due to poor validation of the data inputted in the contact form. Email Injection allows bypassing email client restrictions, stealing user data and sending spam.
+
+**Remediation:**
+
+* Sanitize and filter all user input to prevent malicious entities in the input from being executed.
+* Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+
+### SSI Injection
+
+**Vulnerability/Attack**<br>
+**CWE code:** [CWE-96][cwe-96], [CWE-97][cwe-97]<br>
+**Wallarm code:** `ssi`
+
+**Description:**
+
+[SSI (Server Side Includes)][ssi-wiki] is a simple interpreted server-side scripting language most useful for including the contents of one or more files into a web page on a web server. It is supported by the web servers Apache and NGINX.
+
+SSI Injection allows the exploitation of a web application by injecting malicious payloads in HTML pages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI in use in the application or force its use through user input fields.
 
 **Remediation:**
 
