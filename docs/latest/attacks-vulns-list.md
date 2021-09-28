@@ -522,11 +522,11 @@ A request is marked as a `vpatch` if it is part of an attack that was mitigated 
 ### Unsafe XML Header
 
 **Attack**<br>
-**Wallarm code:** `xml_unsafe_header`
+**Wallarm code:** `invalid_xml`
 
 **Description:**  
 
-A request is marked as an `xml_unsafe_header` if its body contains an XML document and the document encoding differs from the encoding stated in the XML header.
+A request is marked as an `invalid_xml` if its body contains an XML document and the document encoding differs from the encoding stated in the XML header.
 
 ### Overlimiting of Computational Resources
 
