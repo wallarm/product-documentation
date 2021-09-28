@@ -79,7 +79,7 @@ Specify in the search string:
 * `crlf`: to search for [CRLF injection][al-crlf] attacks/vulnerabilities.
 * `redir`: to search for [open redirect][al-open-redirect] vulnerabilities.
 * `nosqli`: to search for [NoSQL injection][al-nosqli] attacks/vulnerabilities.
-* `logic_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
+* `data_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
 * `overlimit_res`: to search for attacks aimed at [overlimiting of computational resources][al-overlimit].
 * `xxe`: to search for [XML External Entity][al-xxe] attacks.
 * `vpatch`: to search for [virtual patches][al-virtual-patch].

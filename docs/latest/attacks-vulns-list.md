@@ -181,7 +181,7 @@ You may follow the recommendation to sanitize and filter all user input to preve
 
 **Attack**<br>
 **CWE code:** [CWE-511][cwe-511]<br>
-**Wallarm code:** `logic_bomb`
+**Wallarm code:** `data_bomb`
 
 **Description:**
 
