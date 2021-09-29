@@ -13,6 +13,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
 ### Changes in supported installation platforms
 
+* Added support for CloudLinux OS 6.x (CentOS 6.x)
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 
 [See the full list of supported platforms →](../admin-en/supported-platforms.md)
@@ -88,6 +89,12 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
 
 [Details on Wallarm node 3.2 modes →](../admin-en/configure-wallarm-mode.md)
+
+### Changes in supported installation platforms
+
+* Added support for CloudLinux OS 6.x (CentOS 6.x)
+
+[See the full list of supported platforms →](../admin-en/supported-platforms.md)
 
 ### New features
 

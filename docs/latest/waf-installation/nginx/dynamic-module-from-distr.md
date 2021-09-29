@@ -98,6 +98,11 @@ Installation commands for both options are described in the further instructions
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
+=== "CloudLinux OS 6.x (CentOS 6.x)"
+    ```bash
+    sudo yum install -y epel-release
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.2/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
+    ```
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
@@ -131,6 +136,10 @@ The command installs the following packages:
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
+=== "CloudLinux OS 6.x (CentOS 6.x)"
+    ```bash
+    sudo yum install nginx wallarm-node nginx-mod-http-wallarm
+    ```
 === "CentOS 7.x"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
@@ -161,6 +170,10 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
 === "Debian 10.x (buster)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
+    ```
+=== "CloudLinux OS 6.x (CentOS 6.x)"
+    ```bash
+    sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 === "CentOS 7.x"
     ```bash
@@ -274,7 +287,7 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ``` bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === " CentOS 7.x"
+    === "CentOS"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
@@ -298,7 +311,7 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
     ```bash
     sudo systemctl restart nginx
     ```
-=== "CentOS 7.x"
+=== "CentOS"
     ```bash
     sudo systemctl restart nginx
     ```

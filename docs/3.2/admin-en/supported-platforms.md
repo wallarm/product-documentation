@@ -305,21 +305,38 @@
 </div>
 
 <div class="navigation platforms" style="padding-top: 16px;">
-    <div id="deployOptionsDiv" class="navigation-card platform-card">
-        <div type="button" id="centos7" onClick="platformClicked(event, 'centos7')" class="platform-card-button">
-            <img class="platform-icon" src="../../images/platform-icons/centos.svg">
-            <h3>CentOS 7.x
-                <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
-                </svg>
-            </h3>
-            <p>Install the API Security module for...</p>
-            <div id="centos7Id" class="options-list" style="display: none;">
-                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-                <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
-                <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
-            </div>
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="centos6" onClick="platformClicked(event, 'centos6')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+        <h3>CloudLinux OS 6.x (CentOS 6.x)
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the API Security module for...</p>
+        <div id="centos6Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+        </div>
+    </div>
+</div>
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="centos7" onClick="platformClicked(event, 'centos7')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+        <h3>CentOS 7.x
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the API Security module for...</p>
+        <div id="centos7Id" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
+        </div>
     </div>
 </div> 
 
