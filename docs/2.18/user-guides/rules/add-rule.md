@@ -35,7 +35,7 @@ The following points are currently supported:
 * **scheme**: http or https
 * **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
 * **path**, **action_name**, **action_ext**: URL elements (recommended format for URL describing). More details are provided in the [request analysis description][link-request-processing]
-* **get**: GET parameters in the request
+* **query**: query string parameters in the request
 * **header**: request headers
 * **method**: request methods
 

@@ -35,8 +35,8 @@ URI constructor allows configuring the rule conditions by specifying the request
 
     | Format | Examples and request point values |
     | ------ | ------ |
-    | Full URI including the following components:<ul><li>Scheme (the value is ignored, you can explicitly specify the scheme by using the advanced form)</li><li>Domain</li><li>Port</li><li>Path</li><li>Query parameters</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[get, 'q']` - `action`</li><li>`[get, 'w']` - `delete`</li></ul>|
-    | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[get, 'q']` - `action`</li><li>`[get, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
+    | Full URI including the following components:<ul><li>Scheme (the value is ignored, you can explicitly specify the scheme by using the advanced form)</li><li>Domain</li><li>Port</li><li>Path</li><li>Query string parameters</ul> | `https://example.com:3000/api/user.php?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com:3000`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `php`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul>|
+    | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
     | URI with `*` meaning any non‑empty value of the component | `example.com/*/create/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - any non‑empty value</li><li>`[path, 1]` - `create`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php`<br>and does not match `example.com/create/user.php` and `example.com/api/create`.</ul>|
     | URI with `**` meaning any number of components including its absence | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/api/create/user` and `example.com/api/user`.<br>The value does not match `example.com/user`, `example.com/api/user/index.php` and `example.com/api/user/?w=delete`.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php` and `example.com/api/user/create/index.php`<br>and does not match `example.com/api`, `example.com/api/user` and `example.com/api/create/user.php?w=delete`.</ul> |
     | URI with the [regular expression](#condition-type-regexp) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
@@ -49,7 +49,7 @@ The string specified in the URI constructor is automatically parsed into the set
     * Explicit value of certain `path` number + `action_name` + `action_ext` (optional)
     * Explicit value of `action_name` + `action_ext` (optional)
     * Explicit value of certain `path` number without `action_name` and without `action_ext`
-* `get`
+* `query`
 
 The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
 
@@ -70,7 +70,7 @@ The following points are currently supported:
     * **path**: an array with URI parts separated by the `/` symbol (the last URI part is not included in the array). If there is only one part in the URI, the array will be empty.
     * **action_name**: the last part of the URI after the `/` symbol and before the first period (`.`). This part of the URI is always presented in the request, even if its value is an empty string.
     * **action_ext**: the part of the URI after the last period (`.`). It may be missing in the request.
-* **get**: GET parameters in the request
+* **query**: query string parameters
 * **header**: request headers
 * **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
