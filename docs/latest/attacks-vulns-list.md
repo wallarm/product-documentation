@@ -1,13 +1,18 @@
 #   Attack and Vulnerability Types 
 
+[cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
 [cwe-78]:   https://cwe.mitre.org/data/definitions/78.html
 [cwe-79]:   https://cwe.mitre.org/data/definitions/79.html
+[cwe-88]:   https://cwe.mitre.org/data/definitions/88.html
 [cwe-89]:   https://cwe.mitre.org/data/definitions/89.html
 [cwe-90]:   https://cwe.mitre.org/data/definitions/90.html
 [cwe-93]:   https://cwe.mitre.org/data/definitions/93.html
 [cwe-94]:   https://cwe.mitre.org/data/definitions/94.html
 [cwe-113]:  https://cwe.mitre.org/data/definitions/113.html
+[cwe-96]:   https://cwe.mitre.org/data/definitions/96.html
+[cwe-97]:   https://cwe.mitre.org/data/definitions/97.html
+[cwe-150]:  https://cwe.mitre.org/data/definitions/150.html
 [cwe-159]:  https://cwe.mitre.org/data/definitions/159.html
 [cwe-200]:  https://cwe.mitre.org/data/definitions/200.html
 [cwe-209]:  https://cwe.mitre.org/data/definitions/209.html
@@ -15,6 +20,7 @@
 [cwe-288]:  https://cwe.mitre.org/data/definitions/288.html
 [cwe-307]:  https://cwe.mitre.org/data/definitions/307.html
 [cwe-352]:  https://cwe.mitre.org/data/definitions/352.html
+[cwe-409]:  https://cwe.mitre.org/data/definitions/409.html
 [cwe-425]:  https://cwe.mitre.org/data/definitions/425.html
 [cwe-444]:  https://cwe.mitre.org/data/definitions/444.html
 [cwe-511]:  https://cwe.mitre.org/data/definitions/511.html
@@ -24,6 +30,7 @@
 [cwe-548]:  https://cwe.mitre.org/data/definitions/548.html
 [cwe-601]:  https://cwe.mitre.org/data/definitions/601.html
 [cwe-611]:  https://cwe.mitre.org/data/definitions/611.html
+[cwe-776]:  https://cwe.mitre.org/data/definitions/776.html
 [cwe-799]:  https://cwe.mitre.org/data/definitions/799.html
 [cwe-639]:  https://cwe.mitre.org/data/definitions/639.html
 [cwe-918]:  https://cwe.mitre.org/data/definitions/918.html
@@ -38,6 +45,7 @@
 [link-owasp-auth-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
 [link-owasp-ldapi-cheatsheet]:              https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html
 [link-owasp-sqli-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+[link-owasp-inputval-cheatsheet]:           https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
 
 [link-ptrav-mitigation]:                    https://www.checkmarx.com/knowledge/knowledgebase/path-traversal
 [link-wl-process-time-limit-directive]:     admin-en/configure-parameters-en.md#wallarm_process_time_limit
@@ -50,6 +58,10 @@
 [anchor-brute]: #bruteforce-attack
 [anchor-rce]:   #remote-code-execution-rce
 [anchor-ssrf]:  #server-side-request-forgery-ssrf
+
+[link-imap-wiki]:                                https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol
+[link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
+[ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 
 The Wallarm filter node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
@@ -167,24 +179,22 @@ This vulnerability arises from the incorrect validation and parsing of user inpu
 You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
 
 
-### Logic Bomb
+### Data Bomb
 
 **Attack**<br>
-**CWE code:** [CWE-511][cwe-511]<br>
-**Wallarm code:** `logic_bomb`
+**CWE code:** [CWE-409][cwe-409], [CWE-776][cwe-776]<br>
+**Wallarm code:** `data_bomb`
 
 **Description:**
 
-A logic bomb is a piece of malicious code that runs under certain conditions to perform some malicious actions. A “time bomb” is a variety of logic bomb that goes off at a certain time or date.
+Wallarm marks a request as the Data Bomb attack if it contains the Zip or XML bomb:
 
-An example of a logic bomb is a program that is in control of a company's salary calculation system and which attacks the company if a particular employee gets fired.
+* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb) is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
+* [XML bomb (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack) is the DoS attack type that is aimed at parsers of XML documents. An attacker sends malicious payloads in XML entities.
 
 **Remediation:**
 
-You may follow these recommendations:
-*   Use both static and dynamic code analyzers to inspect the produced code.
-*   Meticulously audit all code that is not covered by tests. 
-*   Validate the integrity of any software being installed (e.g., check the software's digital signature).
+Limit the size of incoming requests so it could not harm the system.
 
 ### Cross‑site Scripting (XSS)
 
@@ -463,7 +473,39 @@ You may follow these recommendations:
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].
 
+### Email Injection
 
+**Vulnerability/Attack**<br>
+**CWE code:** [CWE-20][cwe-20], [CWE-150][cwe-150], [CWE-88][cwe-88]<br>
+**Wallarm code:** `mail_injection`
+
+**Description:**
+
+Email Injection is a malicious [IMAP][link-imap-wiki]/[SMTP][link-smtp-wiki] expression usually sent via the web application contact form to change standard email server behavior.
+
+Vulnerability to this attack occurs due to poor validation of the data inputted in the contact form. Email Injection allows bypassing email client restrictions, stealing user data and sending spam.
+
+**Remediation:**
+
+* Sanitize and filter all user input to prevent malicious entities in the input from being executed.
+* Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+
+### SSI Injection
+
+**Vulnerability/Attack**<br>
+**CWE code:** [CWE-96][cwe-96], [CWE-97][cwe-97]<br>
+**Wallarm code:** `ssi`
+
+**Description:**
+
+[SSI (Server Side Includes)][ssi-wiki] is a simple interpreted server-side scripting language most useful for including the contents of one or more files into a web page on a web server. It is supported by the web servers Apache and NGINX.
+
+SSI Injection allows the exploitation of a web application by injecting malicious payloads in HTML pages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI in use in the application or force its use through user input fields.
+
+**Remediation:**
+
+* Sanitize and filter all user input to prevent malicious entities in the input from being executed.
+* Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
 
 ##  The List of Special Attacks and Vulnerabilities
 
@@ -480,11 +522,11 @@ A request is marked as a `vpatch` if it is part of an attack that was mitigated 
 ### Unsafe XML Header
 
 **Attack**<br>
-**Wallarm code:** `xml_unsafe_header`
+**Wallarm code:** `invalid_xml`
 
 **Description:**  
 
-A request is marked as an `xml_unsafe_header` if its body contains an XML document and the document encoding differs from the encoding stated in the XML header.
+A request is marked as an `invalid_xml` if its body contains an XML document and the document encoding differs from the encoding stated in the XML header.
 
 ### Overlimiting of Computational Resources
 

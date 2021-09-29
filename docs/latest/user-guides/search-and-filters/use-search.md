@@ -6,7 +6,7 @@
 [al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
 [al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
 [al-nosqli]:              ../../attacks-vulns-list.md#nosql-injection
-[al-logic-bomb]:          ../../attacks-vulns-list.md#logic-bomb
+[al-logic-bomb]:          ../../attacks-vulns-list.md#data-bomb
 [al-xxe]:                 ../../attacks-vulns-list.md#attack-on-xml-external-entity-xxe
 [al-virtual-patch]:       ../../attacks-vulns-list.md#virtual-patch
 [al-forced-browsing]:     ../../attacks-vulns-list.md#forced-browsing
@@ -14,6 +14,10 @@
 [al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
 [al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
 [al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[email-injection]:        ../../attacks-vulns-list.md#email-injection
+[ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
+[invalid_xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 
 # Using search and filters
 
@@ -77,7 +81,9 @@ Specify in the search string:
 * `crlf`: to search for [CRLF injection][al-crlf] attacks/vulnerabilities.
 * `redir`: to search for [open redirect][al-open-redirect] vulnerabilities.
 * `nosqli`: to search for [NoSQL injection][al-nosqli] attacks/vulnerabilities.
-* `logic_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
+* `data_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
+* `ssti`: to search for [Server‑Side Template Injections][ssti-injection].
+* `invalid_xml`: to search for [usage of unsafe XML header][invalid-xml].
 * `overlimit_res`: to search for attacks aimed at [overlimiting of computational resources][al-overlimit].
 * `xxe`: to search for [XML External Entity][al-xxe] attacks.
 * `vpatch`: to search for [virtual patches][al-virtual-patch].
@@ -85,6 +91,8 @@ Specify in the search string:
 * `ldapi`: to search for [LDAP injection][al-ldapi] attacks/vulnerabilities.
 * `scanner`: to search for [port scanner][al-port-scanner] attacks/vulnerabilities.
 * `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
+* `mail_injection`: to search for [Email Injections][email-injection].
+* `ssi`: to search for [SSI Injections][ssi-injection].
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
