@@ -15,6 +15,17 @@ controller:
           prometheus.io/port: "18080"
 ```
 
+To set the attribute, it is recommended to use the `--set` option of the commands `helm install` or `helm upgrade`, for example:
+
+=== "Ingress controller installation"
+    ```bash
+    helm install --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+=== "Ingress controller update or upgrade"
+    ```bash
+    helm upgrade --reuse-values --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
 
 ```

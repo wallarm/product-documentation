@@ -118,7 +118,7 @@ The NGINX memory consumption can be estimated as follows:
 
 **To allocate the amount of memory:**
 
-* for the NGINX Ingress controller pod (`ingress-controller`), use the following sections in the `values.yaml` file:
+* for the NGINX Ingress controller pod (`ingress-controller`), configure the following sections in the `values.yaml` file by using the `--set` option of `helm install` or `helm upgrade`:
     ```
     controller:
       resources:
@@ -129,6 +129,18 @@ The NGINX memory consumption can be estimated as follows:
           cpu: 1000m
           memory: 1640Mi
     ```
+
+    Example of commands changing the parameters:
+
+    === "Ingress controller installation"
+        ```bash
+        helm install --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        ```
+    === "Ingress controller update or upgrade"
+        ```bash
+        helm upgrade --reuse-values --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        ```
+
 * for other deployment options, use the NGINX configuration files.
 
 !!! info "Recommendations from the CPU utilization perspective"

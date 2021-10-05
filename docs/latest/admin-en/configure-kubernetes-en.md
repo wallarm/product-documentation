@@ -7,7 +7,7 @@
 
 ## Additional Settings for Helm Chart
 
-The settings are performed via the `values.yaml` file. By default, the file looks as follows:
+The settings are defined in the [`values.yaml`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml) file. By default, the file looks as follows:
 
 ```
 controller:
@@ -54,15 +54,26 @@ controller:
       resources: {}
 ```
 
+To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress contoller) or `helm upgrade` (if updating/upgrading the installed Ingress controller). For example:
+
+=== "Ingress controller installation"
+    ```bash
+    helm install --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+=== "Ingress controller update or upgrade"
+    ```bash
+    helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+
 A description of the main parameters you can set up is provided below. Other parameters come with default value and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
 
-### wallarm.enabled
+### controller.wallarm.enabled
 
 Allows you to enable or disable Wallarm functions.
 
 **Default value**: `false`
 
-### wallarm.apiHost
+### controller.wallarm.apiHost
 
 Wallarm API endpoint. Can be:
 * `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
@@ -70,25 +81,25 @@ Wallarm API endpoint. Can be:
 
 **Default value**: `api.wallarm.com`
 
-### wallarm.token
+### controller.wallarm.token
 
 The *Cloud Node* token is created on the Wallarm portal in the [EU](https://my.wallarm.com/nodes) or [US](https://us1.my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
 
 **Default value**: `not specified`
 
-### wallarm.tarantool.replicaCount
+### controller.wallarm.tarantool.replicaCount
 
 The number of running pods for postanalytics. Postanalytics is used for the behavior‑based attack detection.
 
 **Default value**: `1`
 
-### wallarm.tarantool.arena
+### controller.wallarm.tarantool.arena
 
 Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store requests data for the last 5-15 minutes.
 
 **Default value**: `0.2`
 
-### wallarm.metrics.enabled
+### controller.wallarm.metrics.enabled
 
 This switch toggles information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required.
 
@@ -166,10 +177,13 @@ There are two options to enable attack analysis with **libdetection**:
     ```bash
     kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
     ```
-* Adding the following snippet to the [`config`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml#L20) object in **values.yaml** of the [cloned Wallarm Helm chart repository](installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller):
+* Pass the parameter `controller.config.server-snippet` to the Helm chart:
 
-    ```bash
-    config: {
-        server-snippet: 'wallarm_enable_libdetection on; proxy_request_buffering on;'
-    }
-    ```
+    === "Ingress controller installation"
+        ```bash
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        ```
+    === "Ingress controller update or upgrade"
+        ```bash
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        ```
