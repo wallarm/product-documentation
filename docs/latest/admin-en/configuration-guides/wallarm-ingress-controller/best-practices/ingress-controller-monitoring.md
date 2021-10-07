@@ -21,7 +21,7 @@ To set the attribute, it is recommended to use the `--set` option of the command
     ```bash
     helm install --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-=== "Ingress controller update or upgrade"
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
