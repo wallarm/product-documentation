@@ -21,3 +21,14 @@ Tarantool memory is configured for the `ingress-controller-wallarm-tarantool` po
               cpu: 1000m
               memory: 1640Mi
     ```
+
+Listed parameters are set by using the `--set` option of the commands `helm install` and `helm upgrade`, for example:
+
+=== "Ingress controller installation"
+    ```bash
+    helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+=== "Ingress controller update or upgrade"
+    ```bash
+    helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```

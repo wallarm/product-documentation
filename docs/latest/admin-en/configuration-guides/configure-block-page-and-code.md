@@ -172,7 +172,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 This configuration is returned to the client if the request is originated from the source blacklisted as a single IP or subnet. The Wallarm node returns the code 445 and the blocking page with the content that depends on the `User-Agent` header value:
 
 * By default, the default Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
-* For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html`:
+* For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html` (if deploying Wallarm Ingress controller, it is recommended to create a separate directory for custom block page files, i.e. `/usr/custom-block-pages/block_page_firefox.html`):
 
     ```bash
     You are blocked!
@@ -183,7 +183,7 @@ This configuration is returned to the client if the request is originated from t
     ```
 
     Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
-* For users of Chrome — `/usr/share/nginx/html/block_page_chrome.html`:
+* For users of Chrome — `/usr/share/nginx/html/block_page_chrome.html` (if deploying Wallarm Ingress controller, it is recommended to create a separate directory for custom block page files, i.e. `/usr/custom-block-pages/block_page_chrome.html`):
 
     ```bash
     You are blocked!
@@ -210,20 +210,17 @@ wallarm_block_page $block_page response_code=445 type=acl_ip;
 
 #### Ingress controller
 
-1. Add the following parameter to the [`config`](https://github.com/wallarm/ingress-chart/blob/master/wallarm-ingress/values.yaml#L20) object in **values.yaml** of the [cloned Wallarm Helm chart repository](../installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller):
+1. Pass the parameter `controller.config.http-snippet` to the deployed Helm chart by using the command [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/):
 
     ```bash
-    config: {
-        http-snippet: 'wallarm_block_page_add_dynamic_path /usr/test-block-page/blocked.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/share/nginx/html/block_page_firefox.html; "~Chrome" &/usr/share/nginx/html/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}'
-    }
+    helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-2. Execute the command `helm install` as described in step 4 of the [installation instructions](../installation-kubernetes-en.md#step-1-installing-the-wallarm-ingress-controller).
-3. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `block_page_firefox.html` and `block_page_chrome.html`.
-4. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
+2. [Create ConfigMap from the files](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `block_page_firefox.html` and `block_page_chrome.html`.
+3. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
 
     !!! info "Directory for mounted ConfigMap"
         Since existing files in the directory used to mount ConfigMap can be deleted, it is recommended to create a new directory for the files mounted via ConfigMap.
-5. Add the following annotation to the Ingress:
+4. Add the following annotation to the Ingress:
 
     ```bash
     kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'

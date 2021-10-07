@@ -317,7 +317,7 @@ nav:
         - Updating Linux node packages: updating-migrating/nginx-modules.md
         - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
         - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
-        - Updating NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
+        - Upgrading NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
         - Updating the cloud node image: updating-migrating/cloud-image.md
       - Migrating whitelists and blacklists from previous Wallarm node versions to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:

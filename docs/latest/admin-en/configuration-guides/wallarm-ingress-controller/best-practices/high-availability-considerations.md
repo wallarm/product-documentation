@@ -2,6 +2,8 @@
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
+## Configuration recommendations
+
 The following recommendations are relevant for missing-critical (production) environments.
 
 * Use more than one Ingress controller pod instances. The behavior is controlled using the attribute `controller.replicaCount` in the `values.yaml` file. For example:
@@ -39,4 +41,17 @@ The following recommendations are relevant for missing-critical (production) env
       wallarm:
         tarantool:
           replicaCount: 2
+    ```
+
+## Configuration procedure
+
+To set listed configurations, it is recommended to use the option `--set` of the commands `helm install` and `helm upgrade`, for example:
+
+=== "Ingress controller installation"
+    ```bash
+    helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    ```
+=== "Ingress controller update or upgrade"
+    ```bash
+    helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
