@@ -28,7 +28,9 @@ Listed parameters are set by using the `--set` option of the commands `helm inst
     ```bash
     helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-=== "Ingress controller update or upgrade"
+
+    There are also [other parameters](../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

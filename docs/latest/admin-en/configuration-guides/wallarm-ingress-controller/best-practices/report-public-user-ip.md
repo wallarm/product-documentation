@@ -14,7 +14,9 @@ This feature is highly dependent on the cloud platform being used; in majority o
     ```bash
     helm install --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-=== "Ingress controller update or upgrade"
+
+    There are also [other parameters](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
@@ -30,7 +32,9 @@ This option is more relevant when a customer is using an external CDN service li
         ```bash
         helm install --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
-    === "Ingress controller update or upgrade"
+
+        There are also [other parameters](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+    === "Updating Ingress controller parameters"
         ```bash
         helm upgrade --reuse-values --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

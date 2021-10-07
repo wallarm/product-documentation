@@ -54,13 +54,13 @@ controller:
       resources: {}
 ```
 
-To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress contoller) or `helm upgrade` (if updating/upgrading the installed Ingress controller). For example:
+To change this setting, we recommend using the option `--set` of `helm install` (if installing the Ingress controller) or `helm upgrade` (if updating the installed Ingress controller parameters). For example:
 
 === "Ingress controller installation"
     ```bash
     helm install --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-=== "Ingress controller update or upgrade"
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
@@ -183,7 +183,9 @@ There are two options to enable attack analysis with **libdetection**:
         ```bash
         helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
-    === "Ingress controller update or upgrade"
+
+        There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+    === "Updating Ingress controller parameters"
         ```bash
         helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

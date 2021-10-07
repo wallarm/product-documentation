@@ -51,7 +51,9 @@ To set listed configurations, it is recommended to use the option `--set` of the
     ```bash
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
-=== "Ingress controller update or upgrade"
+
+    There are also [other parameters](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
+=== "Updating Ingress controller parameters"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```

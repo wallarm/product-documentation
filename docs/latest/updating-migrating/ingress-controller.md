@@ -20,30 +20,44 @@ git clone https://github.com/wallarm/ingress-chart --branch 3.2.1-1  --single-br
 
 ## Step 3: Upgrade the previous Helm chart
 
-1. If updating Wallarm node 2.18 or lower with configured IP whitelists and blacklists, [define the changes](migrate-ip-lists-to-node-3.md) of IP list configuration required for its correct operation.
+```bash
+helm upgrade <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+```
 
-    Since IP list core logic has been significantly changed in Wallarm node 3.2, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations. For example, you may need to replace the parameter `wallarm_acl_block_page` with `wallarm_block_page`.
-2. If some Ingress controller parameters has been configured via **values.yaml** cloned from the Wallarm Helm Chart repository, please copy them and pass to a new chart by using the option `--set` with the command from the next step.
-3. Upgrade the previous Helm chart by using the command [`helm upgrade`](https://helm.sh/docs/helm/helm_upgrade/):
+* `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
+* `<KUBERNETES_NAMESPACE>` is the namespace of deployed Ingress and Ingress controller
 
-    ``` bash
-    helm upgrade --reuse-values <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-    ```
+Parameters specified with the option `--set` during the [Ingress controller deployment](../admin-en/installation-kubernetes-en.md) will not be changed.
 
-    * `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
-    * `<KUBERNETES_NAMESPACE>` is the namespace of deployed Ingress and Ingress controller
+To add or update the parameters of the upgraded Helm chart, use one more command `helm upgrade` with the options `--set` and `--reuse-values`. To delete parameters, edit Wallarm ConfigMap.
 
-    Parameters specified with the option `--set` during the [Ingress controller deployment](../admin-en/installation-kubernetes-en.md) will not be changed. To add or update the parameters, use the option `--set` with the command `helm upgrade`. To delete parameters, edit Wallarm ConfigMap.
+## Step 4: Adjust the Ingress and Helm chart configuration to changes released in version 3.2
 
-## Step 4: Adjust Wallarm node filtration mode settings to changes released in version 3.2
+If you have upgraded the Helm chart of version 2.18 or lower, adjust the following configurations to changes released in version 3.2:
 
-1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
+1. IP address lists. If you have configured IP whitelists and blacklists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
+
+    Since IP list core logic has been significantly changed in Wallarm node 3.2, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
+2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
       * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
       * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
-2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../admin-en/configure-kubernetes-en.md#ingress-annotations) to released changes.
 
-## Step 5: Test the upgraded Ingress controller
+      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../admin-en/configure-wallarm-mode.md) to released changes.
+
+## Step 5: Move custom configuration specified in the `values.yaml` file to the `--set` option of `helm upgrade`
+
+If some Ingress controller parameters have been configured via **values.yaml** cloned from the Wallarm Helm Chart repository, please copy and pass them to a new chart by using the option `--set` of the command `helm upgrade --reuse-values`.
+
+For example, if the parameter [`wallarm_block_page_add_dynamic_path`](../admin-en/configure-parameters-en.md#wallarm_block_page_add_dynamic_path) has been set via the file **values.yaml**, you can move this parameter to the new version of the Helm chart by using the following command:
+
+```bash
+helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+```
+
+The option `--reuse-values` allows keeping intact already configured Helm chart parameters that not passed in the `--set` option. The option `--set` specifies the Helm chart parameters to be changed or added.
+
+## Step 6: Test the upgraded Ingress controller
 
 1. Check that the version of the Helm chart was updated:
 
