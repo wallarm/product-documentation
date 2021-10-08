@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/nodes/regular-node.md"
