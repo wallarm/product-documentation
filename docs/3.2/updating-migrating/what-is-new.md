@@ -24,7 +24,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
     [Details on migrating blacklist configuration →](migrate-ip-lists-to-node-3.md)
 
-* Added new NGINX directive and Envoy parameter `disable_acl`. This parameter allows to disabled request origin analysis.
+* Added new NGINX directive and Envoy parameter `disable_acl`. This parameter allows to disable request origin analysis.
 
     [Details on the `disable_acl` NGINX directive →](../admin-en/configure-parameters-en.md#disable_acl)
 
