@@ -1,22 +1,25 @@
-# What is new in Wallarm node 3.2
+# What is new in Wallarm node 3.4
 
-We have released Wallarm node 3.x that is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.x, please carefully review the list of changes and [general recommendations](general-recommendations.md).
+This page lists the changes released in Wallarm node 3.4 and other minor versions of Wallarm node 3.x.
 
-## Which Wallarm nodes are recommended to be updated?
+If upgrading Wallarm node 2.18 or lower, please note that version 3.x contains **breaking changes**. Before upgrading the modules up to 3.x, please carefully review the list of changes and [general recommendations](general-recommendations.md) for upgrade.
 
-* Regular (client) and partner Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-updating-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
-* Regular (client) Wallarm node of version 3.0. [Changes](#changes-available-when-updating-wallarm-node-of-version-30) available in Wallarm node 3.2 enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
+## Which Wallarm nodes are recommended to be upgraded?
 
-## Changes available when updating Wallarm node of version 2.18 and lower
+* Regular (client) and partner Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-upgrading-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
+* Regular (client) Wallarm node of version 3.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
 
-Listed changes are available for both the regular (client) and partner Wallarm node 3.2.
+## Changes available when upgrading Wallarm node of version 2.18 and lower
+ 
+Listed changes are available for both the regular (client) and partner Wallarm node 3.4.
 
-### Changes in supported installation platforms
+### Changes in supported installation options
 
 * Added support for CloudLinux OS 6.x (CentOS 6.x)
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
+* Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-[See the full list of supported platforms →](../admin-en/supported-platforms.md)
+[See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
 ### Changes in supported filtering node configuration parameters
 
@@ -24,7 +27,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
     [Details on migrating blacklist configuration →](migrate-ip-lists-to-node-3.md)
 
-* Added new NGINX directive and Envoy parameter `disable_acl`. This parameter allows to disabled request origin analysis.
+* Added new NGINX directive and Envoy parameter `disable_acl`. This parameter allows to disable request origin analysis.
 
     [Details on the `disable_acl` NGINX directive →](../admin-en/configure-parameters-en.md#disable_acl)
 
@@ -45,7 +48,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
 * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
 
-[More details on Wallarm node 3.2 modes →](../admin-en/configure-wallarm-mode.md)
+[More details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
 
 ### New features
 
@@ -78,7 +81,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
     [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-## Changes available when updating Wallarm node of version 3.0
+## Changes available when upgrading Wallarm node of version 3.0
 
 ### Breaking change
 
@@ -88,13 +91,14 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
 * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
 
-[Details on Wallarm node 3.2 modes →](../admin-en/configure-wallarm-mode.md)
+[Details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
 
-### Changes in supported installation platforms
+### Changes in supported installation options
 
 * Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-[See the full list of supported platforms →](../admin-en/supported-platforms.md)
+[See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
 ### New features
 
@@ -110,17 +114,24 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
     [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-## Update process
+## Changes available when upgrading Wallarm node of version 3.2
 
-1. Review [recommendations for the modules update](general-recommendations.md).
-2. Update installed modules following the instructions for your Wallarm node deployment option:
+* Added support for CloudLinux OS 6.x (CentOS 6.x)
 
-      * [General recommendations for a safe node update process](general-recommendations.md)
-      * [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
-      * [Updating the Docker container with the modules for NGINX or Envoy](docker-container.md)
-      * [Updating NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
+    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+* Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
+
+## Upgrade process
+
+1. Review [recommendations for the modules upgrade](general-recommendations.md).
+2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
+
+      * [General recommendations for a safe node upgrade process](general-recommendations.md)
+      * [Upgrading modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
+      * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
+      * [Upgrading NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. If updating the Wallarm node 2.18 or lower to version 3.2, [migrate](migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.2.
+3. If upgrading the Wallarm node 2.18 or lower to version 3.4, [migrate](migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.4.
 
 ----------
 
