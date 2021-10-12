@@ -22,13 +22,13 @@ In any [filtration mode](../../admin-en/configure-wallarm-mode.md), the filterin
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
     2. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    3. If a source IP of an incoming request is neither in the blacklist nor in the whitelist, the filtering node forwards an incoming request to your application event if it contains attack signs.
+    3. If a source IP of an incoming request is neither in the blacklist nor in the whitelist, the filtering node forwards an incoming request to your application even if it contains attack signs.
 * Request filtering is performed in **safe blocking mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
     2. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
     3. If a source IP of an incoming request is added to the greylist and an incoming request contains attack signs, the filtering node blocks an incoming request. If an incoming request does not contain attack signs, the filtering node forwards it to your application. If an IP address is not in the list, the next step is performed.
-    4. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application event if it contains attack signs.
+    4. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
 * Request filtering is performed in **blocking mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
