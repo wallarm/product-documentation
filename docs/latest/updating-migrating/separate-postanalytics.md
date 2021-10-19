@@ -4,9 +4,7 @@
 
 These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
 
-!!! warning "Breaking changes and recommendations for different node type update"
-    * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
-    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
 ## Step 1: Add new Wallarm repository
 
@@ -14,15 +12,20 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 **CentOS and Amazon Linux 2**
 
+=== "CloudLinux OS 6.x (CentOS 6.x)"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
+    ```
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.2/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.4/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -37,24 +40,24 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.4/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/
         ```
 
 ## Step 2: Update the Tarantool packages
