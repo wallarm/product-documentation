@@ -12,7 +12,7 @@ If attack types are selected, the request will be blocked only if the filter nod
 If the setting *Any request* is selected, the system will block the requests with the defined parameter, even if it does not contain an attack vector.
 
 
-## Example: Blocking SQLi Attack in the GET Parameter `id`
+## Example: Blocking SQLi Attack in the Query String Parameter `id`
 
 **If** the following conditions take place:
 
@@ -27,18 +27,18 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Find the branch `example.com/**/*.*` and click *Add rule*
 1. Choose *Create a virtual patch*
 1. Choose *SQLi* as the type of attack
-1. Select the *GET* parameter and enter its value `id` after *in this part of request*
+1. Select the *QUERY* parameter and enter its value `id` after *in this part of request*
 1. Click *Create*
 
 ![!Virtual patch for a certain request type][img-vpatch-example1]
 
 
-## Example: Block All Requests With the GET Parameter `refresh`
+## Example: Block All Requests With the Query String Parameter `refresh`
 
 **If** the following conditions take place:
 
 * the application is accessible at the domain *example.com*
-* the application crashes upon processing the GET parameter `refresh`
+* the application crashes upon processing the query string parameter `refresh`
 * attempts at vulnerability exploitation must be blocked
 
 **Then**, to create a virtual patch
@@ -47,7 +47,7 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Find the branch `example.com/**/*.*` and click *Add rule*
 1. Choose *Create a virtual patch*
 1. Choose *Any request*
-1. Select the *GET* parameter and enter its value `refresh` after *in this part of request*
+1. Select the *QUERY* parameter and enter its value `refresh` after *in this part of request*
 1. Click *Create*
 
 ![!Virtual patch for any request type][img-vpatch-example2]

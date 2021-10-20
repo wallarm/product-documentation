@@ -26,7 +26,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
 ### URL
 
-Each HTTP request contains an URL. To find attacks, the filtering node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **get**.
+Each HTTP request contains an URL. To find attacks, the filtering node analyzes both the original value and its individual components: **path**, **action_name**, **action_ext**, **query**.
 
 The following tags correspond to the URL parser:
 
@@ -34,7 +34,7 @@ The following tags correspond to the URL parser:
 * **path** for an array with URL parts separated by the `/` symbol (the last URL part is not included in the array). If there is only one part in the URL, the array will be empty.
 * **action_name** for the last part of the URL after the `/` symbol and before the first period (`.`). This part of the URL is always present in the request, even if its value is an empty string.
 * **action_ext** for the part of the URL after the last period (`.`). It may be missing in the request.
-* **get** for [GET parameters](#get-parameters) after the `?` symbol. 
+* **query** for [query string parameters](#query-string-parameters) after the `?` symbol. 
 
 Example:
 
@@ -45,17 +45,17 @@ Example:
 * `[path, 1]` — `123`
 * `[action_name]` — `index`
 * `[action_ext]` — `php`
-* `[get, 'q']` — `aaa`
+* `[query, 'q']` — `aaa`
 
-### GET parameters
+### Query string parameters
 
-GET parameters are passed to the application in the request URL after the character `?` in the `key=value` format. The **get** tag corresponds to the parser.
+Query string parameters are passed to the application in the request URL after the character `?` in the `key=value` format. The **query** tag corresponds to the parser.
 
-Request example | GET parameters and values
+Request example | Query string parameters and values
 ---- | -----
-`/?q=some+text&check=yes` | <ul><li>`[get, 'q']` — `some text`</li><li>`[get, 'check']` — `yes`</li></ul>
-`/?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb` | <ul><li>`[get, 'p1', hash, 'x']` — `1`</li><li>`[get, 'p1', hash, 'y']` — `2`</li><li>`[get, 'p2', array, 0]` — `aaa`</li><li>`[get, 'p2', array, 1]` — `bbb`</li></ul>
-`/?p3=1&p3=2` | <ul><li>`[get, 'p3', array, 0]` — `1`</li><li>`[get, 'p3', array, 1]` — `2`</li><li>`[get, 'p3', pollution]` — `1,2`</li></ul>
+`/?q=some+text&check=yes` | <ul><li>`[query, 'q']` — `some text`</li><li>`[query, 'check']` — `yes`</li></ul>
+`/?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb` | <ul><li>`[query, 'p1', hash, 'x']` — `1`</li><li>`[query, 'p1', hash, 'y']` — `2`</li><li>`[query, 'p2', array, 0]` — `aaa`</li><li>`[query, 'p2', array, 1]` — `bbb`</li></ul>
+`/?p3=1&p3=2` | <ul><li>`[query, 'p3', array, 0]` — `1`</li><li>`[query, 'p3', array, 1]` — `2`</li><li>`[query, 'p3', pollution]` — `1,2`</li></ul>
 
 ### Headers
 
@@ -171,8 +171,8 @@ Example:
 /?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb
 ```
 
-* `[get, 'p2', array, 0]` — `aaa`
-* `[get, 'p2', array, 1]` — `bbb`
+* `[query, 'p2', array, 0]` — `aaa`
+* `[query, 'p2', array, 1]` — `bbb`
 
 #### hash
 
@@ -184,8 +184,8 @@ Example:
 /?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb
 ```
 
-* `[get, 'p1', hash, 'x']` — `1`
-* `[get, 'p1', hash, 'y']` — `2`
+* `[query, 'p1', hash, 'x']` — `1`
+* `[query, 'p1', hash, 'y']` — `2`
 
 #### pollution
 
@@ -197,7 +197,7 @@ Example:
 /?p3=1&p3=2
 ```
 
-* `[get, 'p3', pollution]` — `1,2`
+* `[query, 'p3', pollution]` — `1,2`
 
 #### percent
 
@@ -291,7 +291,7 @@ If the norm is not specified, then the identifier of the entity that requires pr
 
 Used to get values of all elements, parameters, or objects. For example:
 
-* **get_all** for all GET parameter values
+* **query_all** for all query string parameter values
 * **header_all** for all header values
 * **array_all** for all array element values
 * **hash_all** for all JSON object or XML attribute values
@@ -300,7 +300,7 @@ Used to get values of all elements, parameters, or objects. For example:
 
 Used to get default values of elements, parameters, or objects. For example:
 
-* **get_default** for default values of GET parameters
+* **query_default** for default values of query string parameters
 * **header_default** for default values of headers
 * **array_default** for default values of array elements
 * **hash_default** for default values of JSON objects or XML attributes
@@ -309,6 +309,6 @@ Used to get default values of elements, parameters, or objects. For example:
 
 Used to get names of all elements, parameters, or objects. For example:
 
-* **get_name** for all GET parameter names
+* **query_name** for all query string parameter names
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names

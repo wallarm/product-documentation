@@ -14,7 +14,7 @@ The **Attack rechecker** process uses the following logic to check the protected
     
     * The attacked URL is `https://example.com/login`
     * The type of used attack is SQLi (according to the `UNION SELECT username, password` payload)
-    * The attacked GET request parameter is `user`
+    * The attacked query string parameter is `user`
     * Additional piece of information provided in the request is the request string parameter `token=IyEvYmluL3NoCg` (it is probably used by the application to authenticate the user)
 2. Using the collected information the **Attack rechecker** module will create a list of about 100-150 test requests to the originally targeted endpoint but with different types of malicious payloads for the same type of attack (like SQLi). For example:
 
