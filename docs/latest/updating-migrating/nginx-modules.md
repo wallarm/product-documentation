@@ -14,16 +14,14 @@
 
 # Updating Linux node packages
 
-These instructions describe the steps to update Linux node packages to version 3.2. Linux node packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to update Linux node packages to version 3.4. Linux node packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
-!!! warning "Breaking changes and recommendations for different node type update"
-    * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
-    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
 ## Update procedure
 
@@ -32,9 +30,11 @@ These instructions describe the steps to update Linux node packages to version 3
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Adjust Wallarm node filtration mode settings to changes released in version 3.2
+
+If upgrading Wallarm node 3.0 or lower:
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
@@ -48,15 +48,20 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 **CentOS and Amazon Linux 2**
 
+=== "CloudLinux OS 6.x (CentOS 6.x)"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
+    ```
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.2/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.4/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -71,29 +76,29 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.2/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.4/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.2/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/
         ```
 
-## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.2
+## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.4
 
-If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.2 following the [instructions](migrate-ip-lists-to-node-3.md).
+If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Step 5: Update Wallarm API Security packages
 
@@ -120,7 +125,7 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
     1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
-        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.2, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
+        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
 
         By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
 
@@ -151,7 +156,7 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
     1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
-        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.2, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
+        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
 
         By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
 
@@ -165,6 +170,6 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 3.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

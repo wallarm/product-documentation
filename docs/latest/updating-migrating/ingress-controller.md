@@ -1,21 +1,19 @@
 # Upgrading NGINX Ingress controller with integrated Wallarm API Security modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.2.
+These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.4.
 
-!!! warning "Breaking changes and recommendations for different node type update"
-    * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
-    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account.
+If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account.
 
 When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Clone new Helm chart version from the Wallarm repository
 
 ```bash
-git clone https://github.com/wallarm/ingress-chart --branch 3.2.1-1  --single-branch
+git clone https://github.com/wallarm/ingress-chart --branch 3.4.0  --single-branch
 ```
 
 ## Step 3: Upgrade the previous Helm chart
@@ -31,13 +29,13 @@ Parameters specified with the option `--set` during the [Ingress controller depl
 
 To add or update the parameters of the upgraded Helm chart, use one more command `helm upgrade` with the options `--set` and `--reuse-values`. To delete parameters, edit Wallarm ConfigMap.
 
-## Step 4: Adjust the Ingress and Helm chart configuration to changes released in version 3.2
+## Step 4: Adjust the Ingress and Helm chart configuration to changes released in version 3.x
 
-If you have upgraded the Helm chart of version 2.18 or lower, adjust the following configurations to changes released in version 3.2:
+If you have upgraded the Helm chart of version 3.0 or lower, adjust the following configurations to changes released in version 3.x:
 
-1. IP address lists. If you have configured IP whitelists and blacklists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
+1. If you have upgraded the Helm chart of version 2.18 or lower, IP address lists. If you have configured IP whitelists and blacklists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
 
-    Since IP list core logic has been significantly changed in Wallarm node 3.2, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
+    Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
 2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
       * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
@@ -65,7 +63,7 @@ The option `--reuse-values` allows keeping intact already configured Helm chart 
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-3.2.1-1`.
+    The chart version should correspond to `wallarm-ingress-3.4.0`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
