@@ -22,9 +22,9 @@
 
     The version of deployed Wallarm filtering node image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
-    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
-    * If the version `3.0.x` is specified, then please increase the version of the image to `3.2.1-1` in all deployments and follow the [instructions for 3.2](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/). We recommend upgrading modules 3.0 to the [latest version](/updating-migrating/what-is-new/) since it enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
-    * If the version `2.18.x` or lower is specified, please increase the version of the image to `3.2.1-1` in all deployments and follow the [instructions for 3.2](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/). Support for installed versions will be deprecated soon.
+    * If the version `3.4.x` is specified, follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.4.0-1` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
+    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.0-1` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/). Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 

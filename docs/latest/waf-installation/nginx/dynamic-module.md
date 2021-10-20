@@ -18,9 +18,10 @@
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
-[waf-installation-instr-middle]:     /2.18/waf-installation/nginx/dynamic-module/
+[waf-installation-instr-middle]:     /3.2/waf-installation/nginx/dynamic-module/
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[waf-installation-instr-latest]:     /waf-installation/nginx/dynamic-module/
 
 # Installing dynamic Wallarm module for NGINX stable from NGINX repository
 

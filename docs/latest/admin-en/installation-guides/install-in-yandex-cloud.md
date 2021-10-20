@@ -3,8 +3,9 @@
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[installation-instr-middle]:        /2.18/admin-en/installation-guides/install-in-yandex-cloud/
+[installation-instr-middle]:        /3.2/admin-en/installation-guides/install-in-yandex-cloud/
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md
+[installation-instr-latest]:        /admin-en/installation-guides/install-in-yandex-cloud/
 
 # Installing on Yandex.Cloud
 
