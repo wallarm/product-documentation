@@ -6,8 +6,9 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
-[installation-instr-middle]:    /2.18/admin-en/installation-ami-en/
+[installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md
+[installation-instr-latest]:    /admin-en/installation-ami-en/
 
 # Deploying as an Amazon Machine Image (AMI)
 

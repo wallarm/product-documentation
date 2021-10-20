@@ -6,8 +6,9 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
-[installation-instr-middle]:    /2.18/admin-en/installation-ami-en/
+[installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md
+[installation-instr-latest]:    /admin-en/installation-ami-en/
 
 # Deploying as an Amazon Machine Image (AMI)
 
@@ -67,7 +68,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 ## 4. Launch a Filter Node Instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
 
 To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 3.2.0.
 

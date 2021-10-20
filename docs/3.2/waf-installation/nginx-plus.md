@@ -17,15 +17,16 @@
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
-[waf-installation-instr-middle]:     /2.18/waf-installation/nginx-plus/
+[waf-installation-instr-middle]:     /3.2/waf-installation/nginx-plus/
 [versioning-policy]:                ../updating-migrating/versioning-policy.md
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
+[waf-installation-instr-latest]:     /waf-installation/nginx-plus/
 
 # Installing dynamic Wallarm module for NGINX Plus
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-middle.md"
 
 ## Requirements
 

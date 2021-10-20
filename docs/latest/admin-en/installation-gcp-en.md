@@ -1,8 +1,9 @@
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
-[installation-instr-middle]:    /2.18/admin-en/installation-gcp-en/
+[installation-instr-middle]:    /3.2/admin-en/installation-gcp-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md
+[installation-instr-latest]:    /admin-en/installation-gcp-en/
 
 # Deploying on Google Cloud Platform (GCP)
 
