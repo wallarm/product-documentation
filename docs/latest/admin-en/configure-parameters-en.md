@@ -171,9 +171,7 @@ A path to the [LOM](../glossary-en.md#lom) file that contains information on the
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
     * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
 
-    During the [Wallarm module upgrade](../updating-migrating/general-recommendations.md), please ensure that the expected behavior of the `wallarm_mode` directive in version 3.2 corresponds to released changes or adjust filtration mode settings to the released changes.
-
-    If you have already updated modules, please adjust the filtration mode settings to changes released in version 3.2 (if necessary). [Details on filtration mode configuration](configure-wallarm-mode.md)
+    When [upgrading](../updating-migrating/general-recommendations.md#update-process) Wallarm modules 3.0 or lower up to version 3.4, please ensure that the expected behavior of the `wallarm_mode` directive in version 3.4 corresponds to released changes or adjust filtration mode settings to the released changes. [Details on filtration mode configuration](configure-wallarm-mode.md)
 
 Traffic processing mode:
 

@@ -10,7 +10,7 @@ Wallarm API Security quick start is performed using the provided Shell script to
 
 ## How the quick start script works
 
-The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/3.2/getwallarm.sh) used for Wallarm API Security quick start performs the following steps:
+The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/3.4/getwallarm.sh) used for Wallarm API Security quick start performs the following steps:
 
 1. Disable the [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) mechanism if it is installed on the OS. Wallarm quick deployment is not compatible with active SELinux.
 2. Install the latest stable version of NGINX from the NGINX official repository.
@@ -49,11 +49,11 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 
     === "If the curl command is available"
         ```bash
-        curl -o getwallarm.sh https://raw.githubusercontent.com/wallarm/quick-start/stable/3.2/getwallarm.sh
+        curl -o getwallarm.sh https://raw.githubusercontent.com/wallarm/quick-start/stable/3.4/getwallarm.sh
         ```
     === "If the wget command is available"
         ```bash
-        wget -O getwallarm.sh https://raw.githubusercontent.com/wallarm/quick-start/stable/3.2/getwallarm.sh
+        wget -O getwallarm.sh https://raw.githubusercontent.com/wallarm/quick-start/stable/3.4/getwallarm.sh
         ```
 5. Run the script passing the proper parameters:
 
