@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /docs
 COPY . .
 RUN mkdocs build
+RUN mkdocs build -f mkdocs-3.2.yml
 RUN mkdocs build -f mkdocs-3.0.yml
-RUN mkdocs build -f mkdocs-2.18.yml
 RUN mkdocs build -f mkdocs-deprecated.yml -q
 
 # production stage

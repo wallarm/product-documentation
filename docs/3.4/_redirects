@@ -100,6 +100,23 @@
 /2.16/attacks-vulns-list/ /2.16
 /2.16/glossary-en /2.16
 /2.16/glossary-en/ /2.16
+/2.16/* /2.18
+/2.18/admin-en/* /2.18
+/2.18/quickstart/ /2.18
+/2.18/quickstart /2.18
+/2.18/updating-migrating/* /2.18
+/2.18/user-guides/* /2.18
+/2.18/waf-installation/* /2.18
+/2.18/about-wallarm-waf/* /2.18
+/2.18/partner-waf-node/* /2.18
+/2.18/attacks-vulns-list /2.18
+/2.18/attacks-vulns-list/ /2.18
+/2.18/glossary-en /2.18
+/2.18/glossary-en/ /2.18
+/3.2/api/* /api/:splat 301!
+/3.2/faq/* /faq/:splat 301!
+/3.2/demo-videos/* /demo-videos/:splat 301!
+/3.2/api-firewall/* /api-firewall/:splat 301!
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/

@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md"
