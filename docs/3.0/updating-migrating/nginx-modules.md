@@ -34,7 +34,13 @@ These instructions describe the steps to update Linux node packages to version 3
 
 Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Add new Wallarm repository
+## Step 2: Update NGINX to the latest stable version
+
+Update [NGINX](http://nginx.org/en/download.html) / [NGINX Plus](https://docs.nginx.com/nginx/releases/) to the latest stable release from the official NGINX repository.
+
+If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
+
+## Step 3: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
@@ -79,11 +85,11 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.0/
         ```
 
-## Step 3: Migrate whitelists and blacklists from previous Wallarm node version to 3.0
+## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.0
 
 Migrate whitelist and blacklist configuration from previous Wallarm node version to 3.0 following the [instructions](migrate-ip-lists-to-node-3.md).
 
-## Step 4: Update Wallarm API Security packages
+## Step 5: Update Wallarm API Security packages
 
 ### Filtering node and postanalytics on the same server
 
@@ -125,11 +131,11 @@ Migrate whitelist and blacklist configuration from previous Wallarm node version
         sudo yum update
         ```
 
-## Step 5: Restart NGINX
+## Step 6: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 6: Test Wallarm node operation
+## Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
