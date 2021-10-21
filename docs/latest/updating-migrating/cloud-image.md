@@ -27,17 +27,7 @@ A more detailed description of the upgrade steps is provided below.
 
 If upgrading Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Adjust Wallarm node filtration mode settings to changes released in version 3.2
-
-If upgrading Wallarm node 3.0 or lower:
-
-1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
-      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
-2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
-
-## Step 3: Launch a new instance with the filtering node 3.4
+## Step 2: Launch a new instance with the filtering node 3.4
 
 1. Open the Wallarm filtering node image on the cloud platform marketplace and proceed to the image launch:
       * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
@@ -50,6 +40,16 @@ If upgrading Wallarm node 3.0 or lower:
       * For AWS, select the name of the [created key pair](../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.
 4. For GCP, configure the instance following these [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filter-node-instance).
+
+## Step 3: Adjust Wallarm node filtration mode settings to changes released in version 3.2
+
+If upgrading Wallarm node 3.0 or lower:
+
+1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
+      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
 
 ## Step 4: Connect the filtering node to Wallarm Cloud
 
