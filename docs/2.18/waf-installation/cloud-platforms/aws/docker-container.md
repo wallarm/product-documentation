@@ -15,7 +15,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 * AWS account and user with the **admin** permissions
 * AWS CLI 1 or AWS CLI 2 properly [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -33,8 +33,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
       4. Save the cluster.
 3. Save the sensitive data used for the filtering node and Wallarm Cloud connection setup in the [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) or [AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html). Sensitive data includes the following environment variables:
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 
     In these instructions, sensitive data is stored in the AWS Secrets Manager.
 
@@ -205,8 +205,8 @@ To deploy the container with environment variables and configuration file mounte
     [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
 5. Save the sensitive data used for the filtering node and Wallarm Cloud connection setup in the [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) or [AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html). Sensitive data includes the following environment variables:
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 
     In these instructions, sensitive data is stored in the AWS Secrets Manager.
 

@@ -30,7 +30,7 @@ Wallarm API Security module is designed as an Envoy HTTP filter for requests pro
 
 ## Requirements
 
-* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in the Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
@@ -46,8 +46,8 @@ You can pass the following basic filtering node settings to the container via th
 
 Environment variable | Description| Required
 --- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses](../../../user-guides/ip-lists/greylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
@@ -67,7 +67,7 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
@@ -87,8 +87,8 @@ To run the image:
 
     Environment variable | Description| Required
     --- | ---- | ----
-    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
-    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
+    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
     `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
 
@@ -105,7 +105,7 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key

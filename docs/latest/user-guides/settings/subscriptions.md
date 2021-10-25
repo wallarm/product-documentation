@@ -1,6 +1,6 @@
 # Subscriptions
 
-The section **Settings** → **Subscriptions** of the Wallarm Console displays your Wallarm API Security [subscription plan](../../about-wallarm-waf/subscription-plans.md) details.
+The section **Settings** → **Subscriptions** of Wallarm Console displays your Wallarm API Security [subscription plan](../../about-wallarm-waf/subscription-plans.md) details.
 
 ## Paid subscription plan
 
@@ -17,7 +17,7 @@ To activate, cancel, or change a subscription, please send a request to [sales@w
 
 ## Trial period
 
-If you have recently registered in the Wallarm Console and are using the [trial version](../../about-wallarm-waf/subscription-plans.md#trial-period) of Wallarm API Security, the subscription card displays the following information:
+If you have recently registered in Wallarm Console and are using the [trial version](../../about-wallarm-waf/subscription-plans.md#trial-period) of Wallarm API Security, the subscription card displays the following information:
 
 * Subscription name and status
 * Subscription expiration date

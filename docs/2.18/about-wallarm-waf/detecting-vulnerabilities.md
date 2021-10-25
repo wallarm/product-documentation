@@ -68,7 +68,7 @@ Vulnerability scanner checks all elements of the company scope for typical vulne
 
 False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an open vulnerability in one protected application and be expected behavior for another protected application.
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in the Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be rechecked. [More about managing false positives via the Wallarm Console →](../user-guides/vulnerabilities/false-vuln.md)
+If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be rechecked. [More about managing false positives via Wallarm Console →](../user-guides/vulnerabilities/false-vuln.md)
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 

@@ -12,7 +12,7 @@ These instructions provide the steps to install the postanalytics module on a se
 ## Requirements
 
 * NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../waf-installation/nginx-plus.md)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
@@ -106,7 +106,7 @@ The postanalytics module interacts with the Wallarm Cloud. To connect the postan
 
 To create the filtering node and connect the postanalytics module to the Cloud:
 
-1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in the Wallarm Console.
+1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
@@ -122,7 +122,7 @@ To create the filtering node and connect the postanalytics module to the Cloud:
         ``` bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
         ```
-3. Input the email and password for your account in the Wallarm Console.
+3. Input the email and password for your account in Wallarm Console.
 4. Input the postanalytics node name or click Enter to use automatically generated name.
 
     The specified name can be changed in Wallarm Console → **Nodes** later.
@@ -235,7 +235,7 @@ To check the NGINX‑Wallarm and separate postanalytics modules interaction, you
 curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
 ```
 
-If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of the Wallarm Console:
+If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
 ![!Attacks in the interface](../images/admin-guides/test-attacks.png)
 

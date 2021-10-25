@@ -21,7 +21,7 @@
 
 # Using search and filters
 
-Wallarm provides convenient methods for searching detected attacks, incidents and vulnerabilities. In the **Events** section of the Wallarm Console, there are the following search methods available:
+Wallarm provides convenient methods for searching detected attacks, incidents and vulnerabilities. In the **Events** section of Wallarm Console, there are the following search methods available:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
@@ -32,7 +32,7 @@ Any search query or a filter combination can be saved by clicking **Save a query
 
 ## Filters
 
-Available filters are presented in the Wallarm Console in multiple forms:
+Available filters are presented in Wallarm Console in multiple forms:
 
 * Filters panel that is expanded and collapsed using the **Filter** button
 * Quick filters for excluding or showing only events with the specific parameter values

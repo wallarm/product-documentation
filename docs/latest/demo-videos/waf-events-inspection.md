@@ -24,7 +24,7 @@
 
 **Related documentation articles**
 
-* [Checking events in the Wallarm Console](../user-guides/events/check-attack.md)
+* [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
 * [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md)
 
@@ -42,6 +42,6 @@
 
 **Related documentation articles**
 
-* [Checking events in the Wallarm Console](../user-guides/events/check-attack.md)
+* [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
 * [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md)

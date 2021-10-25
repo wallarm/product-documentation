@@ -26,7 +26,7 @@ A more detailed description of the upgrade steps is provided below.
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Launch a new instance with the filtering node 3.0
 
@@ -48,7 +48,7 @@ Please inform [Wallarm technical support](mailto:support@wallarm.com) that you a
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
       * [Yandex.Cloud documentation](https://cloud.yandex.com/docs/compute/quickstart/quick-create-linux#connect-to-vm)
-2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to the Wallarm Console as described in the instructions for the cloud platform:
+2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to Wallarm Console as described in the instructions for the cloud platform:
       * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filter-node-to-the-wallarm-cloud)
       * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filter-node-to-the-wallarm-cloud)
       * [Yandex.Cloud](../admin-en/installation-guides/install-in-yandex-cloud.md#3-connect-the-filtering-node-to-wallarm-cloud)

@@ -25,7 +25,7 @@ A more detailed description of the upgrade steps is provided below.
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
-If upgrading Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If upgrading Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Launch a new instance with the filtering node 3.4
 
@@ -47,8 +47,8 @@ If upgrading Wallarm node 3.0 or lower:
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
 
 ## Step 4: Connect the filtering node to Wallarm Cloud
@@ -57,7 +57,7 @@ If upgrading Wallarm node 3.0 or lower:
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
       * [Yandex.Cloud documentation](https://cloud.yandex.com/docs/compute/quickstart/quick-create-linux#connect-to-vm)
-2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to the Wallarm Console as described in the instructions for the cloud platform:
+2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to Wallarm Console as described in the instructions for the cloud platform:
       * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filter-node-to-the-wallarm-cloud)
       * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filter-node-to-the-wallarm-cloud)
       * [Yandex.Cloud](../admin-en/installation-guides/install-in-yandex-cloud.md#3-connect-the-filtering-node-to-wallarm-cloud)

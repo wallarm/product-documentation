@@ -68,7 +68,7 @@ To replace both the value of the `HOST` header and the path of the original requ
 
 To create and apply the rule:
 
-1. Create the rule **Rewrite attack before active verification** in the **Profile & Rules** section of the Wallarm Console. The rule consists of the following components:
+1. Create the rule **Rewrite attack before active verification** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * **Rules** sets the new value for the parameter selected in the **Part of request** field. A set value will be used when replaying the attack.

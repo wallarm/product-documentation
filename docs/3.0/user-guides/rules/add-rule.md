@@ -191,7 +191,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     !!! warning "Specifics of handling the `\` character"
         If the expression includes `\`, please escape it with `[]` and `\` (for example, `[\\]`).
 
-**Examples of regular expressions added via the Wallarm Console**
+**Examples of regular expressions added via Wallarm Console**
 
 * To match any string that includes <code>/.git</code>
 

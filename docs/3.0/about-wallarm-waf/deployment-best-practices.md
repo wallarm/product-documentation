@@ -78,7 +78,7 @@ In addition to blocking individual malicious requests, Wallarm filtering nodes c
 * Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
 * For traffic filtration rules, use a different set of application instance [IDs](../admin-en/configure-parameters-en.md#wallarm_instance) or `Host` request headers.
 * For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
-* The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring` or `block`) from the Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
+* The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
 
 ## Configure available integrations to receive notifications from the system
 
@@ -86,7 +86,7 @@ Wallarm provides convenient [native integrations](../user-guides/settings/integr
 
 * Newly discovered security vulnerabilities
 * Changes in the company network perimeter
-* Users newly added to the company account via the Wallarm Console, etc
+* Users newly added to the company account via Wallarm Console, etc
 
 You can also use the [Triggers](../user-guides/triggers/triggers.md) functionality to set up custom alerts about different events happening in the system.
 
@@ -101,7 +101,7 @@ Depending on your specific environment we recommend you configure the following 
     * If you have have the [blacklisting trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) active but still receive alerts about an increased level of attacks, then the alert may signal that the trigger is not working as expected.
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
-* Notify that a new user was added to your company account in the Wallarm Console
+* Notify that a new user was added to your company account in Wallarm Console
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-and-email-notification-if-new-user-is-added-to-the-account)
 * Mark the requests as the brute-force or dirbust attack and block the IP addresses the requests were originated from
@@ -111,7 +111,7 @@ Depending on your specific environment we recommend you configure the following 
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-blacklist)
 
-## Enable SAML SSO for your account in the Wallarm Console
+## Enable SAML SSO for your account in Wallarm Console
 
 You can use a SAML SSO provider like G Suite, Okta, or OneLogin to centralize the authentication of users in your Wallarm Console account.
 

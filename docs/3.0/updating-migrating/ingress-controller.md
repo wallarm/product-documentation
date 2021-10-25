@@ -11,7 +11,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 
 ## Updating
 
-1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 2. Clone new Helm chart version from the Wallarm repository:
 
     ```bash
@@ -63,7 +63,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in the Wallarm Console → **Nodes**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
 
 ## Configuring
 

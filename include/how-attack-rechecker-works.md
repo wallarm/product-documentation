@@ -33,4 +33,4 @@ The **Attack rechecker** process uses the following logic to check the protected
 
     !!! info "`User-Agent` HTTPS header value in Attack rechecker requests"
         The `User-Agent` HTTP header in **Attack rechecker** requests will have the value `Wallarm attack-rechecker (v1.x)`.
-4. Detected security incidents are reported in the Wallarm Console and are able to be dispatched to your security team via available third-party [Integrations](../user-guides/settings/integrations/integrations-intro.md) and [Triggers](../user-guides/triggers/triggers.md).
+4. Detected security incidents are reported in Wallarm Console and are able to be dispatched to your security team via available third-party [Integrations](../user-guides/settings/integrations/integrations-intro.md) and [Triggers](../user-guides/triggers/triggers.md).

@@ -2,7 +2,7 @@
 
 ## Activity log overview
 
-On the **Settings** → **Activity log** tab of the Wallarm Console, you can check the history of user actions in the Wallarm system. The logs include information about creating, updating and deleting the following objects:
+On the **Settings** → **Activity log** tab of Wallarm Console, you can check the history of user actions in the Wallarm system. The logs include information about creating, updating and deleting the following objects:
 
 * IP address or subnet from the [network perimeter](../scanner/check-scope.md)
 * Domains from the network perimeter

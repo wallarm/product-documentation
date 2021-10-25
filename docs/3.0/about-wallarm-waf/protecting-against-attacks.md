@@ -155,8 +155,8 @@ Custom detection rules and other [rules](../user-guides/rules/intro.md) are comp
 
 Wallarm can process attacks in the following modes:
 
-* Monitoring mode: detects attacks and displays information about attacks in the Wallarm Console.
-* Blocking mode: detects, blocks attacks and displays information about attacks in the Wallarm Console.
+* Monitoring mode: detects attacks and displays information about attacks in Wallarm Console.
+* Blocking mode: detects, blocks attacks and displays information about attacks in Wallarm Console.
 
 Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
 

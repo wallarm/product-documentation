@@ -1,6 +1,6 @@
 # Types and core logic of IP lists
 
-In the **IP lists** section of the Wallarm Console, you can control access to your applications by whitelisting, blacklisting, and greylisting IP addresses.
+In the **IP lists** section of Wallarm Console, you can control access to your applications by whitelisting, blacklisting, and greylisting IP addresses.
 
 * **Whitelist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs.
 * **Blacklist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from blacklisted IP addresses.

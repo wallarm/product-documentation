@@ -58,7 +58,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * New reaction of triggers **Add to greyist** allowing to automatically greylist IP addresses originated a specific number of malicious requests.
 
     [Example of the trigger that greylists IP addresses →](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
-* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via the Wallarm Console.
+* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
 * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
 
@@ -89,7 +89,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
 * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
-* If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
+* If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
 
 [Details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
 

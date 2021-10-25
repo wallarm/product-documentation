@@ -35,7 +35,7 @@ To define features that should be included to your subscription plan, please sen
 
 ## Trial period
 
-When a new user is registered in the Wallarm Console, a new client account with an active trial period is automatically created in the Wallarm system.
+When a new user is registered in Wallarm Console, a new client account with an active trial period is automatically created in the Wallarm system.
 
 * The trial period is free.
 * The trial period lasts 14 days.
@@ -50,5 +50,5 @@ Information about the trial period is displayed in the Wallarm Console → **Set
 ## Subscription management
 
 * To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-* Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+* Information about active subscription is displayed in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 * Subscription cost is determined based on [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md), subscription period, the set of connected modules, and features.

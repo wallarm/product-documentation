@@ -20,7 +20,7 @@ These instructions describe the steps to update the running Docker NGINX- or Env
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Download the updated filtering node image
 
@@ -60,8 +60,8 @@ If upgrading Wallarm node 3.0 or lower:
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * Environment variable [`WALLARM_MODE`](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
       * Environment variable [`WALLARM_MODE`](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables) or the directive [`mode`](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) of the Envoy‑based Docker container
-      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
 
 ## Step 6: Test the filtering node operation

@@ -1,7 +1,7 @@
 Environment variable | Description| Required
 --- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in the Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in the Wallarm Console. | Yes
+`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
+`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
 `NGINX_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses][greylist-docs]</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →][filtration-modes-docs] | No
