@@ -30,7 +30,7 @@ To install the filtering node as the NGINX Stable module in the Google Engine in
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
-    * CloudLinux OS 6.x (CentOS 6.x)
+    * CloudLinux OS 6.x
     * CentOS 7.x
     * CentOS 8.x
 2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).

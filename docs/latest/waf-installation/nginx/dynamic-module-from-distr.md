@@ -98,7 +98,7 @@ Installation commands for both options are described in the further instructions
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "CloudLinux OS 6.x (CentOS 6.x)"
+=== "CloudLinux OS 6.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
@@ -136,7 +136,7 @@ The command installs the following packages:
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
-=== "CloudLinux OS 6.x (CentOS 6.x)"
+=== "CloudLinux OS 6.x"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -171,7 +171,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
     ```
-=== "CloudLinux OS 6.x (CentOS 6.x)"
+=== "CloudLinux OS 6.x"
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```

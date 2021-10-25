@@ -15,7 +15,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
 ### Changes in supported installation options
 
-* Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Added support for CloudLinux OS 6.x
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
@@ -95,7 +95,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ### Changes in supported installation options
 
-* Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Added support for CloudLinux OS 6.x
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
 [See the full list of supported installation options →](../admin-en/supported-platforms.md)
@@ -116,7 +116,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ## Changes available when upgrading Wallarm node of version 3.2
 
-* Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Added support for CloudLinux OS 6.x
 
     [See the full list of supported platforms →](../admin-en/supported-platforms.md)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)

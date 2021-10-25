@@ -13,7 +13,7 @@ Listed changes are available for both the regular (client) and partner Wallarm n
 
 ### Changes in supported installation platforms
 
-* Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Added support for CloudLinux OS 6.x
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 
 [See the full list of supported platforms →](../admin-en/supported-platforms.md)
@@ -92,7 +92,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ### Changes in supported installation platforms
 
-* Added support for CloudLinux OS 6.x (CentOS 6.x)
+* Added support for CloudLinux OS 6.x
 
 [See the full list of supported platforms →](../admin-en/supported-platforms.md)
 

@@ -17,7 +17,7 @@
     sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
-=== "CloudLinux OS 6.x (CentOS 6.x)"
+=== "CloudLinux OS 6.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm

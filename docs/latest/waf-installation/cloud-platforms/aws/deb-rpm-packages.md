@@ -29,7 +29,7 @@ To install the filtering node as the NGINX Stable module in the Amazon EC2 insta
     * Debian 10.x Buster
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
-    * CloudLinux OS 6.x (CentOS 6.x)
+    * CloudLinux OS 6.x
     * CentOS 7.x
     * CentOS 8.x
     * Amazon Linux 2

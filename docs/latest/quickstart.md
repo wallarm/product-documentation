@@ -41,7 +41,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
     * Debian 10.x (buster)
     * Ubuntu 18.04 LTS (bionic)
     * Ubuntu 20.04 LTS (focal)
-    * CloudLinux OS 6.x (CentOS 6.x)
+    * CloudLinux OS 6.x
     * CentOS 7.x
     * CentOS 8.x
 3. Connect to the server and become root user (e.g. by using command `sudo -i`).

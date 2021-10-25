@@ -23,7 +23,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 ??? "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.4"
     **Changes in supported installation options**
 
-    * Added support for CloudLinux OS 6.x (CentOS 6.x)
+    * Added support for CloudLinux OS 6.x
     * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
     * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
@@ -109,7 +109,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     **Changes in supported installation options**
 
-    * Added support for CloudLinux OS 6.x (CentOS 6.x)
+    * Added support for CloudLinux OS 6.x
     * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
     [See the full list of supported installation options →](../admin-en/supported-platforms.md)
@@ -131,7 +131,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
 ??? "Set of changes in Wallarm node updated from version 3.2 to version 3.4"
-    * Added support for CloudLinux OS 6.x (CentOS 6.x)
+    * Added support for CloudLinux OS 6.x
 
         [See the full list of supported platforms →](../admin-en/supported-platforms.md)
     
