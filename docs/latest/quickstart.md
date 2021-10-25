@@ -21,7 +21,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 
     * GET request to `http://127.0.0.8/wallarm-status` to check the accessibility of the [Wallarm statistics service](admin-en/configure-statistics-service.md).
     * GET request to the NGINX instance address (port 80/TCP) to check the accessibility of the domain protected by Wallarm.
-    * GET request containing signs of the [SQLi](attacks-vulns-list.md#sql-injection) and [XSS](attacks-vulns-list.md#crosssite-scripting-xss) attacks to the NGINX instance address:
+    * GET request containing malicious payloads of the [SQLi](attacks-vulns-list.md#sql-injection) and [XSS](attacks-vulns-list.md#crosssite-scripting-xss) types to the NGINX instance address:
 
         ```bash
         curl -H "Host: $DOMAIN_NAME" http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
