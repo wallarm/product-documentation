@@ -1,11 +1,9 @@
 # Wallarm Overview
 
-Wallarm API Security is uniquely suited to protect your cloud applications and APIs.
-
-Wallarm's hybrid architecture safeguards your resources by offering:
+Wallarm API Security is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
 
 * Protection from hacker attacks.
-* Automatic detection of vulnerabilities.
+* Automatic detection of [vulnerabilities](../glossary-en.md#vulnerability).
 
 Wallarm does the following:
 

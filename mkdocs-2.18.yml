@@ -87,9 +87,9 @@ nav:
         - How Wallarm API Security works: about-wallarm-waf/overview.md
         - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
-        - Attack and Vulnerability Types: attacks-vulns-list.md
+        - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
-          - Security Model of Shared Responsibility for Customer Data: about-wallarm-waf/shared-responsibility.md
+          - Security model of shared responsibility for clients' data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
         - Wallarm API Security subscription plans: about-wallarm-waf/subscription-plans.md
         - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md

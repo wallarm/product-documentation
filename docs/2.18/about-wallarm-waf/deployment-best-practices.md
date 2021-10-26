@@ -1,6 +1,6 @@
 # Wallarm API Security deployment and maintenance best practices
 
-This article formulates best practices for deployment and maintenance of Wallarm API Security service.
+This article formulates best practices for deployment and maintenance of the Wallarm API Security service.
 
 ## Understand the power of NGINX
 
@@ -21,7 +21,7 @@ The majority of Wallarm filtering node deployment options use NGINX as the rever
 ## Follow recommended onboarding steps
 
 1. Learn about available [Wallarm node deployment options](../admin-en/supported-platforms.md).
-2. Learn about available options to [separately manage the Wallarm nodes configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
+2. Learn about available options to [separately manage the Wallarm node configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
 3. Deploy Wallarm filtering nodes in your non-production environments with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
 4. Learn about how to operate, scale and monitor the Wallarm API Security solution, and confirm the stability of the new network component.
 5. Deploy Wallarm filtering nodes in your production environment with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
@@ -125,7 +125,7 @@ Depending on your specific environment we recommend you configure the following 
 * Notify that a new user was added to your company account in Wallarm Console
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-and-email-notification-if-new-user-is-added-to-the-account)
-* Mark the requests as the brute-force or dirbust attack and block the IP addresses the requests were originated from
+* Mark the requests as the brute-force or forced browsing attack and block the IP addresses the requests were originated from
 
     [Instructions on configuring brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * Notify that new IP addresses were blocked
@@ -148,13 +148,13 @@ Wallarm is constantly working to improve the filtering node software, with new r
 
 ## Learn known caveats
 
-* All Wallarm nodes connected to the same Wallarm account will receive the same set of traffic filtering rules. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
+* All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
 * If you have the trigger configured to automatically block an IP address (for example, [default trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour-default-trigger)), the system will block the IP for all application instances in a Wallarm account. The IP blocking (blacklisting) functionality is controlled by the customer per filtering node and web/API resource using a local [configuration setting](../admin-en/configure-ip-blocking-nginx-en.md).
 
 ## Follow the best practices for the Active threat verification feature
 
 One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecting-vulnerabilities.md) is **Active threat verification**.
 
-**Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
+**Active threat verification** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 
-[Learn the best practices for **Attack rechecker** configuration →](../admin-en/attack-rechecker-best-practices.md)
+[Learn the best practices for the **Active threat verification** module configuration →](../admin-en/attack-rechecker-best-practices.md)

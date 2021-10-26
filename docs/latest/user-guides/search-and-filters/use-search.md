@@ -109,7 +109,7 @@ To filter attacks by CVE and well‑known exploits, quick filters by event types
 
 Specify in the search string:
 
-* `client`: to search for client data attacks/vulnerabilities.
+* `client`: to search for clients' data attacks/vulnerabilities.
 * `database`: to search for database attacks/vulnerabilities.
 * `server`: to search for app server attacks/vulnerabilities.
 
