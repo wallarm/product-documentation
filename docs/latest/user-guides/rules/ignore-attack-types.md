@@ -10,7 +10,7 @@ If the Wallarm node marks the standard payload of the request as the malicious o
 
 To create and apply the rule:
 
-1. Create the rule **Ignore certain attack types** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+1. Create the rule **Ignore certain attack types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * Attack types to be ignored in the specified request element.

@@ -13,11 +13,11 @@ Using the rules **Allow binary data** and **Allow certain file types**, you can 
 
 To create and apply the rule:
 
-1. To adjust the attack detection rules for the binary data passed in the specified request element in any way, create the rule **Allow binary data** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+1. To adjust the attack detection rules for the binary data passed in the specified request element in any way, create the rule **Allow binary data** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * **Part of request** points to the original request element containing the binary data.
-2. To adjust the attack detection rules for certain file types passed in the specified request element, create the rule **Allow certain file types** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+2. To adjust the attack detection rules for certain file types passed in the specified request element, create the rule **Allow certain file types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
       
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * File types to ignore the attack signs in.

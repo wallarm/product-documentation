@@ -12,7 +12,7 @@ To prevent false positives in such cases, you can disable the parsers mistakenly
 
 To create and apply the rule:
 
-1. Create the rule **Disable/Enable request parser** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * Parsers to be disabled / enabled for the specified request element.      

@@ -19,7 +19,7 @@ The rule **Add or replace server response header** can also be used to address a
 
 To create and apply the rule:
 
-1. Create the rule **Add or replace server response header** in the **Profile & Rules** section of Wallarm Console. The rule consists of the following components:
+1. Create the rule **Add or replace server response header** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * Name of the header to be added or to replace its value.

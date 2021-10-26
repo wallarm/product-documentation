@@ -4,7 +4,7 @@
 
 # Application Profile Rules
 
-On the *Profile & Rules* tab you may review and change the rules for handling requests enabled for the current application profile.
+On the *Rules* tab you may review and change the rules for handling requests enabled for the current application profile.
 
 The application profile is a collection of known information about protected applications. It is used to fine-tune the behavior of the system during the analysis of requests and their further processing in the post-analysis module as well as in the cloud.
 
