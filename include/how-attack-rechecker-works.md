@@ -32,5 +32,5 @@ The **Active threat verification** process uses the following logic to check the
 3. The **Active threat verification** module will send generated test requests to the application bypassing the Wallarm API Security protection (using the [whitelisting feature][whitelist-scanner-addresses]) and verify that the application at the specific endpoint is not vulnerable to the specific attack type. If the module suspects that the application has an actual security vulnerability, it will create an event with type [incident](../user-guides/events/check-attack.md#incidents).
 
     !!! info "`User-Agent` HTTPS header value in the requests"
-        The `User-Agent` HTTP header in the **Active threat verification** module requests will have the value `Wallarm attack-rechecker (v1.x)`.
+        The `User-Agent` HTTP header in the **Active threat verification** module requests will have the value `Wallarm Threat-Verification (v1.x)`.
 4. Detected security incidents are reported in Wallarm Console and are able to be dispatched to your security team via available third-party [Integrations](../user-guides/settings/integrations/integrations-intro.md) and [Triggers](../user-guides/triggers/triggers.md).
