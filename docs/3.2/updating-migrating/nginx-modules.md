@@ -1,7 +1,7 @@
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks.png
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md

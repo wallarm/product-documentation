@@ -236,7 +236,7 @@ sudo systemctl restart nginx
     curl http://84.201.148.210/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
-    ![!Attacks in the interface](../../images/admin-guides/test-attacks.png)
+    ![!Attacks in the interface](../../images/admin-guides/test-attacks-quickstart.png)
 
 ## Settings customization
 
