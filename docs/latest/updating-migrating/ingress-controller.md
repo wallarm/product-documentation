@@ -8,7 +8,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 
 If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account.
 
-When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Clone new Helm chart version from the Wallarm repository
 
@@ -38,8 +38,8 @@ If you have upgraded the Helm chart of version 3.0 or lower, adjust the followin
     Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
 2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
 
       If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../admin-en/configure-wallarm-mode.md) to released changes.
 
@@ -85,4 +85,4 @@ The option `--reuse-values` allows keeping intact already configured Helm chart 
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in the Wallarm Console → **Nodes**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.

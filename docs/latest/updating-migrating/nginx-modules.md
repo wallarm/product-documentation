@@ -30,7 +30,7 @@ These instructions describe the steps to update Linux node packages to version 3
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Update NGINX to the latest stable version
 
@@ -162,8 +162,8 @@ If upgrading Wallarm node 3.0 or lower:
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
       * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in the Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in the Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
+      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
 
 ## Step 7: Restart NGINX

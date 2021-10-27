@@ -14,7 +14,7 @@ You can configure all the trigger components:
 * **Filters**: condition details. For example: attack types.
 * **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
-Triggers are configured in the **Triggers** section of the Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
+Triggers are configured in the **Triggers** section of Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
 
 ![!Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 

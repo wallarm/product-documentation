@@ -199,7 +199,7 @@ Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via f
 - **strict**: LOM can only strengthen the operation mode.
 - **on**: it is possible to both strengthen and soften the operation mode.
 
-For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, the Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
+For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
 
 [Detailed instructions on filtration mode configuration →](configure-wallarm-mode.md)
 
@@ -310,8 +310,8 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - **off**: the requests are always ignored
 - **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
     - **off**: the requests are not processed.
-    - **monitoring**: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in the Wallarm Console.
-    - **safe_blocking**: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in the Wallarm Console.
+    - **monitoring**: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
+    - **safe_blocking**: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - **block**: the requests are blocked.
 
 !!! info

@@ -2,11 +2,16 @@
 
 ## What is attack and what are attack components?
 
-**Attack** is a single hit or multiple hits that have the same attack type, parameter with the attack vector, and the address they are sent to. Hits may come from the same or different IP addresses and have different value of the attack vector within one attack type.
+**Attack** is a single hit or multiple hits that have the same attack type, parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different value of the malicious payload within one attack type.
 
-**Hit** is a serialized malicious request (original malicious request and metadata added by the filtering node).
+**Hit** is a serialized malicious request (original malicious request and metadata added by the Wallarm node). If Wallarm detects several malicious payloads of different types in one request, Wallarm records several hits with payloads of one type in each.
 
-**Attack vector** is a part of a malicious request containing the attack sign.
+**Malicious payload** is a part of an original request containing the following elements:
+
+* Attack signs detected in a request. If several attack signs characterizing the same attack type are detected in a request, only the first sign will be recorded to a payload.
+* Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.
+
+    Since attack signs are not used to detect [behavioral attacks](#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
 
 ## Attack types
 
@@ -19,7 +24,7 @@ Attack detection method depends on the attack group. To detect behavioral attack
 
 ### Input validation attacks
 
-Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type are characterized by specific symbol (token) combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse requests in order to detect specific symbol combinations.
+Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse requests in order to detect specific symbol combinations.
 
 Input validation attacks are detected by the filtering node using the listed [tools](#tools-for-attack-detection).
 
@@ -27,7 +32,7 @@ Detection of input validation attacks is enabled for all clients by default.
 
 ### Behavioral attacks
 
-Behavioral attacks include classes of brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing (dirbust), credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
+Behavioral attacks include classes of brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
 
 For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
 
@@ -38,7 +43,7 @@ https://example.com/login/?username=admin&password=123456
 To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
 
 * Correlation analysis is conducted by the Wallarm postanalytics module.
-* Comparison of the received requests number and the threshold for the requests number, and blocking of requests is conducted in the Wallarm Cloud.
+* Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
 
 When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
 
@@ -71,8 +76,8 @@ To detect attacks, Wallarm uses the following process:
 
 1. Determine the request format and parse every request part as described in the [document about request parsing](../user-guides/rules/request-processing.md).
 2. Determine the endpoint the request is addressed to.
-3. Apply [custom detection rules](#custom-detection-rules) determined in the LOM file.
-4. Make a decision whether the request is malicious or not based on rules determined in [proton.db and LOM](#tools-for-attack-detection).
+3. Apply [custom rules for request analysis](#custom-rules-for-request-analysis) configured in Wallarm Console.
+4. Make a decision whether the request is malicious or not based on [default and custom detection rules](#tools-for-attack-detection).
 
 ## Tools for attack detection
 
@@ -80,11 +85,11 @@ To detect malicious requests, Wallarm nodes analyze all requests sent to the pro
 
 * Library **libproton**
 * Library **libdetection**
-* Custom detection rules
+* Custom rules for request analysis
 
 ### Library libproton
 
-The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the SQL injection attack type. If the request contains a token sequence that matches the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the SQL injection attack type. If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
 
 Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
 
@@ -112,7 +117,7 @@ The library contains the character strings of different attack type syntaxes (SQ
 SELECT example FROM table WHERE id=
 ```
 
-The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious request and will not be blocked (if the filtering node is working in the `block` mode).
+The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious one and will not be blocked (if the filtering node is working in the `block` mode).
 
 #### Enabling libdetection
 
@@ -137,26 +142,27 @@ curl "http://localhost/?id=1' UNION SELECT"
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
 * If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
 
-### Custom detection rules
+### Custom rules for request analysis
 
-Wallarm clients can set custom detection rules based on protected application specificities. There are the following types of custom detection rules:
+To adjust default Wallarm request analysis to protected application specificities, Wallarm clients can use custom rules of the following types:
 
 * [Tag requests as a brute-force or forced browsing attack](../user-guides/rules/define-counters.md)
 * [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
 * [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
 * [Disable attack detection by the regular expressions](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
-* [Ignore certain attack signs](../user-guides/rules/ignore-attack-types.md)
+* [Ignore certain attack types](../user-guides/rules/ignore-attack-types.md)
 * [Allow binary data and file uploading](../user-guides/rules/ignore-attacks-in-binary-data.md)
 * [Disable/Enable request parsers](../user-guides/rules/disable-request-parsers.md)
 
-Custom detection rules and other [rules](../user-guides/rules/intro.md) are compiled into Local Objective Model (LOM) and applied along with the standard rules from **proton.db** when analyzing requests. [More details on LOM building →](../user-guides/rules/compiling.md)
+[Compiled](../user-guides/rules/compiling.md) custom ruleset is applied along with the standard rules from **proton.db** when analyzing requests.
 
 ## Monitoring and blocking attacks
 
 Wallarm can process attacks in the following modes:
 
-* Monitoring mode: detects attacks and displays information about attacks in the Wallarm Console.
-* Blocking mode: detects, blocks attacks and displays information about attacks in the Wallarm Console.
+* Monitoring mode: detects attacks and displays information about them in Wallarm Console.
+* Safe blocking mode: detects attacks and displays information about them in Wallarm Console but blocks only those attacks originated from greylisted IP addresses.
+* Blocking mode: detects and blocks attacks and displays information about them in Wallarm Console.
 
 Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
 
@@ -168,7 +174,7 @@ The filtration mode for behavioral attacks is configured separately via the part
 
 **False positive** occurs when attack signs are detected in the legitimate request or when legitimate entity is qualified as a vulnerability. [More details on false positives in vulnerability scanning →](detecting-vulnerabilities.md#false-positives)
 
-When analyzing requests for attacks, Wallarm uses the standard rule set that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
+When analyzing requests for attacks, Wallarm uses the standard ruleset that provides optimal application protection with ultra‑low false positives. Due to protected application specificities, standard rules may mistakenly recognize attack signs in legitimate requests. For example: SQL injection attack may be detected in the request adding a post with malicious SQL query description to the Database Administrator Forum.
 
 In such cases, standard rules need to be adjusted to accommodate protected application specificities by using the following methods:
 

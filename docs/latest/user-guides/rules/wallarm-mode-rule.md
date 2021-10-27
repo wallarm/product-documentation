@@ -23,7 +23,7 @@ To implement this rule, the NGINX configuration files must permit [centralized m
 
     * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../ip-lists/blacklist.md) IP, it does not block this request.
-    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
+    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
 
     During the [Wallarm module upgrade](../../updating-migrating/general-recommendations.md), please ensure that deployed Wallarm node processes requests as expected or adjust filtration mode settings to the released changes.
 

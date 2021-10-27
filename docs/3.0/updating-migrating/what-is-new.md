@@ -41,7 +41,7 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
 * New reaction of triggers **Add to greyist** allowing to automatically greylist IP addresses originated a specific number of malicious requests.
 
     [Example of the trigger that greylists IP addresses →](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
-* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via the Wallarm Console.
+* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
 * New parameters of the file `node.yaml` for configuring the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface through which requests to Wallarm API are sent.
 

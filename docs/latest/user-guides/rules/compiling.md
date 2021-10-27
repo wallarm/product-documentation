@@ -8,7 +8,7 @@ Changes of custom rules do NOT take effect instantly. Changes are applied to the
 
 Adding a new rule, deleting or changing existing rules in the Wallarm Console → **Proile&Rules** launch a custom ruleset build. During the building process, rules are optimized and compiled into a format adopted for the filtering node. The process of building a custom ruleset typically takes from a few seconds for a small number of rules to up to an hour for complex rule trees.
 
-Custom ruleset build status and expected completion time are displayed in the Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
+Custom ruleset build status and expected completion time are displayed in Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
 
 ![!Build status](../../images/user-guides/rules/build-rules-status.png)
 

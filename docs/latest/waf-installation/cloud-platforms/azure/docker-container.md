@@ -15,7 +15,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 * Active Azure subscription
 * [Azure CLI installed](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -50,8 +50,8 @@ In these instructions, the container is deployed using the Azure CLI as follows:
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 4. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
     === "Command for the Wallarm EU Cloud"
@@ -140,8 +140,8 @@ To deploy the container with environment variables and mounted configuration fil
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 6. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
     === "Command for the Wallarm EU Cloud"

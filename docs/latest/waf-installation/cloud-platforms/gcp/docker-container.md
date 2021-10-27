@@ -17,7 +17,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 * [GCP project created](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
 * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d) enabled
 * [Google Cloud SDK (gcloud CLI) installed and configured](https://cloud.google.com/sdk/docs/quickstart)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -34,8 +34,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 2. Create the instance with the running Docker container by using the [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) command:
 
     === "Command for the Wallarm EU Cloud"
@@ -100,8 +100,8 @@ To deploy the containerized Wallarm filtering node configured through environmen
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 6. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
     ```bash

@@ -27,10 +27,10 @@ The Wallarm filtering node can process incoming requests in the following modes 
 The filtration mode can be configured in the following ways:
 
 * Assign a value to the `wallarm_mode` directive in the filtering node configuration file
-* Define the general filtration rule in the Wallarm Console
-* Create a filtration mode rule in the **Rules** section of the Wallarm Console
+* Define the general filtration rule in Wallarm Console
+* Create a filtration mode rule in the **Rules** section of Wallarm Console
 
-Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in the Wallarm Console have a higher priority than the `walalrm_mode` directive regardless of its value  severity.
+Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `walalrm_mode` directive regardless of its value  severity.
 
 ### Specifying the filtration mode in the `wallarm_mode` directive
 
@@ -87,11 +87,11 @@ In this example, the filtration modes are defined for the resources as follows:
       2. The `block` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/login` path.
       3. The `safe_blocking` mode is applied to the requests sent to the virtual server `SERVER_C` that contain the `/main/reset-password` path.
 
-### Setting up the general filtration rule in the Wallarm Console
+### Setting up the general filtration rule in Wallarm Console
 
-The radio buttons on the **General** tab of the Wallarm Console settings in the [EU Wallarm Cloud](https://my.wallarm.com/settings/general) or [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) define the general filtration mode for all incoming requests. The `wallarm_mode` directive value defined in the `http` block in the configuration file has the same action scope as these buttons.
+The radio buttons on the **General** tab of Wallarm Console settings in the [EU Wallarm Cloud](https://my.wallarm.com/settings/general) or [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) define the general filtration mode for all incoming requests. The `wallarm_mode` directive value defined in the `http` block in the configuration file has the same action scope as these buttons.
 
-The local filtration mode settings on the **Rules** tab of the Wallarm Console have higher priority than the global settings on the **Global** tab.
+The local filtration mode settings on the **Rules** tab of Wallarm Console have higher priority than the global settings on the **Global** tab.
 
 On the **General** tab, you can specify one of the following filtration modes:
 
@@ -103,34 +103,34 @@ On the **General** tab, you can specify one of the following filtration modes:
 ![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 !!! info "The Wallarm Cloud and filtering node synchronization"
-    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
+    The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
 
     [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ### Setting up the filtration rules on the "Rules" tab
 
-You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of the Wallarm Console. These rules have higher priority than the [general filtration rule set in the Wallarm Console](#setting-up-the-general-filtration-rule-in-the-wallarm-console).
+You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-the-wallarm-console).
 
 * [Details on working with rules on the **Rules** tab →](../user-guides/rules/intro.md)
 * [Step-by-step guide for creating a rule that manages the filtration mode →](../user-guides/rules/wallarm-mode-rule.md)
 
 !!! info "The Wallarm Cloud and filtering node synchronization"
-    The rules defined in the Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
+    The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.
 
     [More details on the filtering node and Wallarm Cloud synchronization configuration →](configure-cloud-node-synchronization-en.md)
 
 ### Setting up priorities of the filtration mode configuration methods using `wallarm_mode_allow_override`
 
-The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on the Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
+The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 
 The following values are valid for the `wallarm_mode_allow_override` directive:
 
-* `off`: rules specified in the Wallarm Console are ignored. Rules specified by the `wallarm_mode` directive in the configuration file are applied.
+* `off`: rules specified in Wallarm Console are ignored. Rules specified by the `wallarm_mode` directive in the configuration file are applied.
 * `strict`: only the rules specified in the Wallarm Cloud that define stricter filtration modes than those defined by the `wallarm_mode` directive in the configuration file are applied.
 
     The available filtration modes ordered from the mildest to the strictest are listed [above](#available-filtration-modes).
 
-* `on` (by default): rules specified in the Wallarm Console are applied. Rules specified by the `wallarm_mode` directive in the configuration file are ignored.
+* `on` (by default): rules specified in Wallarm Console are applied. Rules specified by the `wallarm_mode` directive in the configuration file are ignored.
 
 The contexts in which the `wallarm_mode_allow_override` directive value can be defined, in order from the most global to the most local, are presented in the following list:
 
@@ -163,11 +163,11 @@ http {
 }
 ```
 
-This configuration example results in the following applications of the filtration mode rules from the Wallarm Console:
+This configuration example results in the following applications of the filtration mode rules from Wallarm Console:
 
-1. The filtration mode rules defined in the Wallarm Console are ignored for requests sent to the virtual server `SERVER_A`. There is no `wallarm_mode` directive specified in the `server` block that corresponds to the `SERVER_A` server, which is why the `monitoring` filtration mode specified in the `http` block is applied for such requests.
-2. The filtration mode rules defined in the Wallarm Console are applied to the requests sent to the virtual server `SERVER_B` except for the requests that contain the `/main/login` path.
-3. For those requests that are sent to the virtual server `SERVER_B` and contain the `/main/login` path, the filtration mode rules defined in the Wallarm Console are only applied if they define a filtration mode that is stricter than the `monitoring` mode.
+1. The filtration mode rules defined in Wallarm Console are ignored for requests sent to the virtual server `SERVER_A`. There is no `wallarm_mode` directive specified in the `server` block that corresponds to the `SERVER_A` server, which is why the `monitoring` filtration mode specified in the `http` block is applied for such requests.
+2. The filtration mode rules defined in Wallarm Console are applied to the requests sent to the virtual server `SERVER_B` except for the requests that contain the `/main/login` path.
+3. For those requests that are sent to the virtual server `SERVER_B` and contain the `/main/login` path, the filtration mode rules defined in Wallarm Console are only applied if they define a filtration mode that is stricter than the `monitoring` mode.
 
 ## Filtration mode configuration example
 
@@ -202,7 +202,7 @@ http {
 }
 ```
 
-### Setting up filtration mode in the Wallarm Console
+### Setting up filtration mode in Wallarm Console
 
 * [General filtration rule](#setting-up-the-general-filtration-rule-in-the-wallarm-console): **Monitoring**.
 * [Filtration rules](#setting-up-the-filtration-rules-on-the-rules-tab):
@@ -232,12 +232,12 @@ Examples of the requests sent to the configured server `SERVER_A` and the action
 
 * The malicious request with the `/main` path is processed but not blocked due to the `wallarm_mode monitoring;` setting for the server `SERVER_A`.
 
-    The **Blocking** rule defined in the Wallarm Console is not applied to it due to the `wallarm_mode_allow_override off;` setting for the server `SERVER_A`.
+    The **Blocking** rule defined in Wallarm Console is not applied to it due to the `wallarm_mode_allow_override off;` setting for the server `SERVER_A`.
 
 * The malicious request with the `/main/login` path is blocked due to the `wallarm_mode block;` setting for the requests with the `/main/login` path.
 
-    The **Monitoring** rule defined in the Wallarm Console is not applied to it due to the `wallarm_mode_allow_override strict;` setting in the filtering node configuration file.
+    The **Monitoring** rule defined in Wallarm Console is not applied to it due to the `wallarm_mode_allow_override strict;` setting in the filtering node configuration file.
 
-* The malicious request with the `/main/signup` path is blocked due to the `wallarm_mode_allow_override strict;` setting for the requests with the `/main/signup` path and the **Blocking** rule defined in the Wallarm Console for the requests with the `/main` path.
-* The malicious request with the `/main/apply` path and the `GET` method is blocked due to the `wallarm_mode_allow_override on;` setting for the requests with the `/main/apply` path and the **Blocking** rule defined in the Wallarm Console for the requests with the `/main` path.
-* The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in the Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the filtering node configuration file.
+* The malicious request with the `/main/signup` path is blocked due to the `wallarm_mode_allow_override strict;` setting for the requests with the `/main/signup` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
+* The malicious request with the `/main/apply` path and the `GET` method is blocked due to the `wallarm_mode_allow_override on;` setting for the requests with the `/main/apply` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
+* The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the filtering node configuration file.

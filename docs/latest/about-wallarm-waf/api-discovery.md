@@ -18,7 +18,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
 
-The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](#api-structure-visualization) it in the Wallarm Console.
+The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](#api-structure-visualization) it in Wallarm Console.
 
 The API structure includes the following elements:
 
@@ -32,7 +32,7 @@ API discovery is a continuous process therefore so the time required for complet
 
 Before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm. On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
 
-Other data (endpoint values, request methods, and parameter names) is not hashed before uploading to the Wallarm Cloud.
+Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud.
 
 ## Enabling and configuring API Discovery
 
@@ -66,21 +66,21 @@ To run API Discovery correctly:
     API Discovery uses the `wallarm_instance` value to identify the application the traffic is flowing to and build a separate API structure for each application. If the `wallarm_instance` directive is not configured, structures of all APIs are grouped in one tree.
 2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). The request should include the following data:
 
-    * Name of your company account registered in the Wallarm Console.
-    * Name of the used [Wallarm Cloud](overview.md#cloud).
-    * IDs of applications that should be discovered by API Discovery. Application ID is the value of `wallarm_instance`. To enable API Discovery for all applications, you do not need to send IDs of each application.
+    * Name of your company account registered in Wallarm Console.
+    * Name of the [Wallarm Cloud](overview.md#cloud) being used.
+    * IDs of applications to be discovered by API Discovery. Application ID is the value of `wallarm_instance`. Enabling API Discovery for all applications does not require sending each application's ID.
 
-        Wallarm technical support will duplicate the applications records in the Wallarm Console → **Settings** → **Applications**. Each duplicate record will have the prefix `[API Discovery]`, application name, and a unique ID. For example, if enabling API Discovery for all applications, the list of applications in the Wallarm Console will look as follows:
+        Wallarm technical support will duplicate the application records in Wallarm Console → **Settings** → **Applications**. Each duplicate record will have the prefix `[API Discovery]`, application name, and a unique ID. For example, if enabling API Discovery for all applications, the list of applications in Wallarm Console will look as follows:
 
         ![!Applications for API Discovery](../images/about-wallarm-waf/api-discovery/apps-for-api-discovery.png)
 
-        Duplicate applications are used to split the API structure tree by applications and separate the API structure and custom ruleset trees in the **Profile & Rules** section.
+        Duplicate applications are used to split the API structure tree by applications and to separate the API structure and custom ruleset trees in the **Rules** section.
 
-Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **Profile & Rules** section of the Wallarm Console.
+Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **Rules** section of Wallarm Console.
 
 ## API structure visualization
 
-The structure of each application API is displayed as a separate tree in the **Profile & Rules** section of the Wallarm Console.
+The structure of each application API is displayed as a separate tree in the **Rules** section of Wallarm Console.
 
 In the title of each tree, the record name duplicating the application that uses the presented API structure is displayed. The name of the duplicating record has the format of `[API Discovery] <YOUR_APP_NAME>`. The API structure tree includes the following elements:
 
@@ -93,7 +93,7 @@ By clicking the endpoint, you can also find the set of required and optional par
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-A [custom ruleset](../user-guides/rules/intro.md) created in the **Profile & Rules** section is displayed as a separate tree. The rules and API structure are not linked to each other.
+A [custom ruleset](../user-guides/rules/intro.md) created in the **Rules** section is displayed as a separate tree. The rules and API structure are not linked to each other.
 
 ## API Discovery debugging
 

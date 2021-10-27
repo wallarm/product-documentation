@@ -1,15 +1,15 @@
-# Security Model of Shared Responsibility for Customer Data
+# Security model of shared responsibility for clients' data
 
 Wallarm relies on a shared responsibility security model. In this model, all parties (Wallarm and its clients) have different areas of responsibilities when it comes to the security of clients' data, including any Personally Identifiable Information (PII) and Cardholder Data.
 
 Wallarm API Security is a hybrid solution (part software and part SaaS) with two major components in different areas of responsibilities:
 
-* **Wallarm filtering node** software, deployed in your infrastructure and managed by you. The Wallarm node component is responsible for filtering end user requests, sending safe requests to your application and blocking malicious requests. The Wallarm node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm cloud for analysis.
-* **Wallarm cloud**, a cloud component managed by Wallarm, is responsible for receiving meta-information about processed requests and detected attacks from the filtering nodes; as well as generating application-specific filtration rules and making them available for the nodes to download. The console UI and public API provide you with the ability to see security reports and individual events; manage traffic filtration rules, console users, external integrations, etc.
+* **Wallarm filtering node** software, deployed in your infrastructure and managed by you. The Wallarm node component is responsible for filtering end user requests, sending safe requests to your application and blocking malicious requests. The Wallarm node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm Cloud for analysis.
+* **Wallarm Cloud**, a cloud component managed by Wallarm, is responsible for receiving meta-information about processed requests and detected attacks from the filtering nodes; as well as generating application-specific filtration rules and making them available for the nodes to download. Wallarm Console and public API provide you with the ability to see security reports and individual events; manage traffic filtration rules, Wallarm Console users, external integrations, etc.
 
 ![!Responsibilities scheme](../images/shared-responsibility.png)
 
-## Wallarm Responsibilities
+## Wallarm responsibilities
 
 Wallarm is responsible for the following points:
 
@@ -21,15 +21,15 @@ Wallarm is responsible for the following points:
 
 * Providing you with a copy of the latest Wallarm SOC 2 Type II audit report if requested.
 
-## Client Responsibilities
+## Client responsibilities
 
 Wallarm clients are responsible for the following points:
 
-* Implementing sound and consistent internal controls regarding general IT system access and system usage appropriateness for all internal components associated with Wallarm, including Wallarm filtering node and Wallarm cloud.
+* Implementing sound and consistent internal controls regarding general IT system access and system usage appropriateness for all internal components associated with Wallarm, including Wallarm filtering node and Wallarm Cloud.
 
 * Practicing removal of user accounts for any users who have been terminated and were previously involved in any material functions or activities associated with Wallarm’s services.
 
-* Configuring proper [data masking rules](../user-guides/rules/sensitive-data-rule.md) for any sensitive data which may leave the client’s security perimeter and is sent to the Wallarm cloud as a part of reporting of detected malicious requests.
+* Configuring proper [data masking rules](../user-guides/rules/sensitive-data-rule.md) for any sensitive data which may leave the client’s security perimeter and is sent to the Wallarm Cloud as a part of reporting of detected malicious requests.
 
 * Ensuring that transactions for client organizations relating to Wallarm’s services are appropriately authorized, and transactions are secure, timely, and complete.
 
@@ -39,7 +39,7 @@ Wallarm clients are responsible for the following points:
 
 * Developing, and if necessary, implementing a business continuity and disaster recovery plan (BCDRP) that will aid in the continuation of services provided by Wallarm.
 
-## Masking of Sensitive Data
+## Masking of sensitive data
 
 As with any third-party service, it’s important for a Wallarm client to understand what client data is sent to Wallarm, and be assured that sensitive data will never reach Wallarm Cloud. Wallarm clients with PCI DSS, GDPR and other requirements are recommended to mask sensitive data using special rules.
 

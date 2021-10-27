@@ -13,7 +13,7 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `export-attacks.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.
 *   `export-clusterization-data.log`: the log of exporting the filter node cluster's data.
 *   `export-counters.log`: the log of exporting the counters' data (see [“Monitoring the Filter Node”][doc-monitor-node]).
-*   `export-environment.log`: the log of collecting the installed Wallarm package versions and uploading this data to the Wallarm Cloud to be displayed in the filtering node details in the Wallarm Console. These processes are run once per hour. 
+*   `export-environment.log`: the log of collecting the installed Wallarm package versions and uploading this data to the Wallarm Cloud to be displayed in the filtering node details in Wallarm Console. These processes are run once per hour. 
 *   `syncnode.log`: the log of syncing the filter node with the Wallarm cloud (this includes fetching the [LOM][doc-lom] and proton.db files from the cloud).
 *   `tarantool.log`: the log of the postanalytics module operations.
 *   `sync-blacklist.log`: the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.

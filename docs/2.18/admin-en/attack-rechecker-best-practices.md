@@ -6,7 +6,7 @@
 
 One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecting-vulnerabilities.md) is **Active threat verification**.
 
-**Active threat verification** with the main component **Attack rechecker** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. The module **Attack rechecker** finds possible vulnerabilities by probing application endpoints using real attack data from the traffic.
+**Active threat verification** lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. By default this method is disabled.
 
 By default **Active threat verification** is disabled. To enable the module, [know how to control the Attack rechecker](#know-how-to-control-the-attack-rechecker).
 

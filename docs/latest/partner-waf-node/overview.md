@@ -26,9 +26,9 @@ If several partner nodes are installed within the partner infrastructure, client
 Wallarm supports particular partner accounts to work with partners. A partner account allows the partner to:
 
 * Install one or several partner nodes within its system infrastructure and define settings for client traffic processing
-* Create separate accounts for clients in the Wallarm Console and provide clients with access to these accounts
-* Brand the Wallarm Console and select the language of the Wallarm Console interface (English or Russian)
-* Host the Wallarm Console on its own domain
+* Create separate accounts for clients in Wallarm Console and provide clients with access to these accounts
+* Brand Wallarm Console and select the language of the Wallarm Console interface (English or Russian)
+* Host Wallarm Console on its own domain
 * Brand client emails and reports
 * Set the email address of own technical support to recieve messages from clients
 
@@ -38,14 +38,14 @@ Depending on the Wallarm API Security subscription plan, some features may not b
 
 **Partner account** includes several components:
 
-* **Technical client account** for access of partner users to the Wallarm Console, for adding [global partner users](../user-guides/settings/users.md#user-roles).
-* **Partner client accounts** for access of [global partner users](../user-guides/settings/users.md#user-roles) and client users to the Wallarm Console, for setting ID for the partner-client link.
+* **Technical client account** for access of partner users to Wallarm Console, for adding [global partner users](../user-guides/settings/users.md#user-roles).
+* **Partner client accounts** for access of [global partner users](../user-guides/settings/users.md#user-roles) and client users to Wallarm Console, for setting ID for the partner-client link.
 
 ![!Acconts on the partner scheme](../images/partner-waf-node/accounts-scheme.png)
 
-All partner account components are visually presented in the Wallarm Console for the [global partner users](../user-guides/settings/users.md#user-roles). For example:
+All partner account components are visually presented in Wallarm Console for the [global partner users](../user-guides/settings/users.md#user-roles). For example:
 
-![!Selector of clients in the Wallarm Console](../images/partner-waf-node/clients-selector-in-console.png)
+![!Selector of clients in Wallarm Console](../images/partner-waf-node/clients-selector-in-console.png)
 
 * `Demo partner` is a partner account
 * `Technical client` is a technical client account
@@ -58,7 +58,7 @@ Partner node has the following characteristics:
 * Can be installed on the same platforms and according to the same instructions as a regular filtering node:
 
     --8<-- "../include/waf/installation/supported-platforms-32.md"
-* Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to the Wallarm Console, the filtering node must be installed at the corresponding partner client level.
+* Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to Wallarm Console, the filtering node must be installed at the corresponding partner client level.
 * Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance). In the partner node, this directive is used to split settings by the client applications.
 
 ## How to become a partner and install a partner node

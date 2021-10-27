@@ -2,14 +2,14 @@
 
 ## Requirements
 
-* Access to the [technical client account](creating-partner-account.md) with the **Global administrator** user role and disabled two‑factor authentication in the Wallarm Console
+* Access to the [technical client account](creating-partner-account.md) with the **Global administrator** user role and disabled two‑factor authentication in Wallarm Console
 * [Partner UUID](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-filtering-node-configuration)
 
 ## Procedure for creating and linking clients
 
 Clients are created and linked to the partner account via the Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI. The method of request authentication depends on the client sending the request:
 
-* For requests sent from the **API Reference UI**, it is required to sign in to the Wallarm Console with the **Global administrator** user role and update the API Reference by the link:
+* For requests sent from the **API Reference UI**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the API Reference by the link:
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
 * For requests sent from the **own client**, it is required to pass in the request the [user UUID and secret key](../api/overview.md#your-own-client)
@@ -41,9 +41,9 @@ At this step, a partner client account will be created and linked to the partner
 
 2. Copy the values of the `id` and `partnerid` parameters from the response to the request. The parameters will be used when linking a client to a partner account.
 
-Created clients will be visually presented in the Wallarm Console for the [global partner users](../user-guides/settings/users.md#user-roles). For example, `Client 1` and `Client 2`:
+Created clients will be visually presented in Wallarm Console for the [global partner users](../user-guides/settings/users.md#user-roles). For example, `Client 1` and `Client 2`:
 
-![!Selector of clients in the Wallarm Console](../images/partner-waf-node/clients-selector-in-console.png)
+![!Selector of clients in Wallarm Console](../images/partner-waf-node/clients-selector-in-console.png)
 
 ### Step 2: Link the client to a partner account via the Wallarm API
 
@@ -75,9 +75,9 @@ If you configure the filtering node for several applications of the client, send
 
 When the client resource gets the traffic, the configured `id` will be displayed in the Wallarm Console → **Settings** → **Applications** for an appropriate partner client account.
 
-## Providing clients with access to the Wallarm Console
+## Providing clients with access to Wallarm Console
 
-You can provide your clients with access to their accounts in the Wallarm Console. Clients will be able to track blocked requests, analyze discovered vulnerabilities, and perform additional configuration of the filtering node via the Wallarm Console.
+You can provide your clients with access to their accounts in Wallarm Console. Clients will be able to track blocked requests, analyze discovered vulnerabilities, and perform additional configuration of the filtering node via Wallarm Console.
 
 To provide a client with access to an account, go to the appropriate partner client account via the client selector → section **Settings** → **Users** and add users with the required roles. Only regular roles can be set for users of the partner client account. Reqular roles give access to only one partner client account.
 

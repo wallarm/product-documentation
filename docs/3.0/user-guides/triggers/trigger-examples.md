@@ -95,7 +95,7 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected res
     ```
 2. Open the Wallarm Console → **Events** and check that 3 [SQLi](../../attacks-vulns-list.md#sql-injection) attacks are displayed in the list of events. The attack was detected in the second request twice, before and after the parser [`percent`](../rules/request-processing.md#percent) was applied.
 
-    ![!3 SQLi hits in the Wallarm Console](../../images/user-guides/triggers/test-3-sqli-hits.png)
+    ![!3 SQLi hits in Wallarm Console](../../images/user-guides/triggers/test-3-sqli-hits.png)
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
@@ -117,12 +117,12 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected res
     ```
 
     * `Notification about SQLi hits` is the trigger name
-    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `TestCompany` is the name of your company account in Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered
 
 ## Slack and email notification if new user is added to the account
 
-If a new user with the **Administrator** or **Analyst** role is added to the company account in the Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
+If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
 ![!Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
 
@@ -152,7 +152,7 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
     * `Analyst` is the role of the added user
     * `John Doe` and `johndoe@example.com` is information about the user who added a new user
     * `Added user` is the trigger name
-    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `TestCompany` is the name of your company account in Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered
 
 ## Opsgenie notification if 2 or more incidents are detected in one second
@@ -184,7 +184,7 @@ Cloud: EU
 ```
 
 * `Notification about incidents` is the trigger name
-* `TestCompany` is the name of your company account in the Wallarm Console
+* `TestCompany` is the name of your company account in Wallarm Console
 * `EU` is the Wallarm Cloud where your company account is registered
 
 !!! info "Protecting the resource from active vulnerability exploitation"
@@ -221,5 +221,5 @@ If an IP address was added to the blacklist, the webhook about this event will b
     ```
 
     * `Notification about blacklisted IP` is the trigger name
-    * `TestCompany` is the name of your company account in the Wallarm Console
+    * `TestCompany` is the name of your company account in Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered

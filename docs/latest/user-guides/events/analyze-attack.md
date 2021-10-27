@@ -58,7 +58,7 @@ The Wallarm interface will display the request in its raw format.
 
 ## Sampling of hits
 
-The attack may consist of a large number of identical hits (more than 100). Storing all hits may increase the Wallarm Cloud load and require a considerable amount of time to analyze and search for attacks via the Wallarm Console.
+The attack may consist of a large number of identical hits (more than 100). Storing all hits may increase the Wallarm Cloud load and require a considerable amount of time to analyze and search for attacks via Wallarm Console.
 
 To optimize the data storage and analysis, we apply the sampling algorithm to hits:
 
@@ -77,7 +77,7 @@ To optimize the data storage and analysis, we apply the sampling algorithm to hi
     When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
 * For all [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), the sampling algorithm is enabled by default.
 
-If hits sampling is enabled for your traffic, the appropriate status, the sample of saved hits, and the number of other hits are displayed in the **Events** section of the Wallarm Console. For example:
+If hits sampling is enabled for your traffic, the appropriate status, the sample of saved hits, and the number of other hits are displayed in the **Events** section of Wallarm Console. For example:
 
 ![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 

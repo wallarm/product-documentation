@@ -1,4 +1,4 @@
-#   Attack and Vulnerability Types 
+#   Attack and vulnerability types 
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -63,7 +63,7 @@
 [link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
 
-The Wallarm filter node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
+The Wallarm filtering node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
 Each entity in the list
 *   is tagged with either “Attack,” “Vulnerability,” or both.
@@ -74,14 +74,14 @@ Each entity in the list
 
 Most of the vulnerabilities and attacks on this list are also accompanied by one or more codes from the list of software weakness types, also known as the [Common Weakness Enumeration][link-cwe] or CWE.
 
-Additionally, the Wallarm filter node employs several special attack and vulnerability types for the internal purpose of marking processed traffic. Such entities are not accompanied by CWE codes but are [listed separately][anchor-special-list]. 
+Additionally, the Wallarm filtering node employs several special attack and vulnerability types for the internal purpose of marking processed traffic. Such entities are not accompanied by CWE codes but are [listed separately][anchor-special-list]. 
 
 ??? info "Watch video about how Wallarm protects against OWASP Top 10"
     <div class="video-wrapper">
     <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-##  The Main List of Attacks and Vulnerabilities
+##  The main list of attacks and vulnerabilities
 
 
 ### Attack on XML External Entity (XXE)
@@ -507,7 +507,7 @@ SSI Injection allows the exploitation of a web application by injecting maliciou
 * Sanitize and filter all user input to prevent malicious entities in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
 
-##  The List of Special Attacks and Vulnerabilities
+##  The list of special attacks and vulnerabilities
 
 ### Virtual Patch
 

@@ -1,6 +1,6 @@
 The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node to the Cloud, proceed with the following steps:
 
-1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in the Wallarm Console.
+1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
@@ -16,7 +16,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
         ``` bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```
-3. Input the email and password for your account in the Wallarm Console.
+3. Input the email and password for your account in Wallarm Console.
 4. Input the filtering node name or click Enter to use an automatically generated name.
 
     The specified name can be changed in Wallarm Console → **Nodes** later.

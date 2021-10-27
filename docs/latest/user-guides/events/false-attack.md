@@ -17,7 +17,7 @@ After analyzing an attack, you may conclude that all or some requests in this at
 * If a false positive mark is added for the attack of the type different from [Information Exposure](../../attacks-vulns-list.md#information-exposure), the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm-waf/protecting-against-attacks.md#library-libproton)) is automatically created.
 * If a false positive mark is added for the incident with the [Information Exposure](../../attacks-vulns-list.md#information-exposure) attack type, the rule disabling analysis of the same requests for detected [vulnerability signs](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-detection-methods) is automatically created.
 
-Created rule is applied when analyzing requests to the protected application. The rule is not displayed in the Wallarm Console and can be changed or removed only by the request sent to [Wallarm technical support](mailto: support@wallarm.com).
+Created rule is applied when analyzing requests to the protected application. The rule is not displayed in Wallarm Console and can be changed or removed only by the request sent to [Wallarm technical support](mailto: support@wallarm.com).
 
 ## Mark a hit as a false positive
 
@@ -47,4 +47,4 @@ If all the requests in the attack are marked as false positives, then the inform
 
 ## Remove a false positive mark
 
-To remove a false positive mark from the hit or attack, please send a request to [Wallarm technical support](mailto: support@wallarm.com). Also, you can undo a false positive mark in the dialog box in the Wallarm Console within a few seconds after the mark was applied.
+To remove a false positive mark from the hit or attack, please send a request to [Wallarm technical support](mailto: support@wallarm.com). Also, you can undo a false positive mark in the dialog box in Wallarm Console within a few seconds after the mark was applied.

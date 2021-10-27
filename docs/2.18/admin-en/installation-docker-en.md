@@ -64,7 +64,7 @@ To run the image, use the command:
 
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
@@ -124,7 +124,7 @@ To run the image:
 
 The command does the following:
 
-* Automatically creates new filtering node in Wallarm Cloud. Created filtering node will be displayed in the Wallarm Console → **Nodes**.
+* Automatically creates new filtering node in Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key

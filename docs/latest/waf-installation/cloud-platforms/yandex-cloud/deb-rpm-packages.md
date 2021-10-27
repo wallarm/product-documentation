@@ -10,7 +10,7 @@ This quick guide provides the steps to install the filtering node from the sourc
 * Access to the [Yandex.Cloud management console](https://console.cloud.yandex.com/)
 * Payment account in the `ACTIVE` or `TRIAL_ACTIVE` status displayed on the [billing page](https://console.cloud.yandex.com/billing)
 * Folder created. By default, the folder `default` will be created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Filtering node installation options
 

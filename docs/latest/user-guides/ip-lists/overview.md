@@ -1,6 +1,6 @@
 # Types and core logic of IP lists
 
-In the **IP lists** section of the Wallarm Console, you can control access to your applications by whitelisting, blacklisting, and greylisting IP addresses.
+In the **IP lists** section of Wallarm Console, you can control access to your applications by whitelisting, blacklisting, and greylisting IP addresses.
 
 * **Whitelist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs.
 * **Blacklist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from blacklisted IP addresses.
@@ -23,7 +23,7 @@ In the **IP lists** section of the Wallarm Console, you can control access to yo
 
     * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](blacklist.md) IP, it does not block this request.
-    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of the Wallarm Console.
+    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
 
     If required, you can adjust the filtration mode settings to these changes. [Details on filtration mode configuration](../../admin-en/configure-wallarm-mode.md)
 

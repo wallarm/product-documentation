@@ -287,7 +287,7 @@ Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via f
 - **strict**: LOM can only strengthen the operation mode.
 - **on**: it is possible to both strengthen and soften the operation mode.
 
-For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, the Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
+For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
 
 [Detailed instructions on filtration mode configuration →](configure-wallarm-mode.md)
 

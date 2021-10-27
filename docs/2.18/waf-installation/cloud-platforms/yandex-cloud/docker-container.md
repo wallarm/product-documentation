@@ -17,7 +17,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 * Payment account in the `ACTIVE` or `TRIAL_ACTIVE` status displayed on the [billing page](https://console.cloud.yandex.com/billing)
 * Folder created. By default, the folder `default` will be created. To create a new folder, please follow these [instructions](https://cloud.yandex.com/docs/resource-manager/operations/folder/create)
 * If you deploy the Docker container with the filtering node configured only through environment variables, [Yandex.Cloud CLI installed and configured](https://cloud.yandex.com/en/docs/cli/quickstart)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in the Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -34,8 +34,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 2. Create the instance with the running Docker container by using the [`yc compute instance create-with-container`](https://cloud.yandex.com/en/docs/cli/cli-ref/managed-services/compute/instance/create-with-container) command:
 
     === "Command for the Wallarm EU Cloud"
@@ -85,8 +85,8 @@ To deploy the containerized Wallarm filtering node configured through environmen
     export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
     ```
 
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in the Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in the Wallarm Console.
+    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
+    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
 5. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
     ```bash
