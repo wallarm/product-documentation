@@ -5,6 +5,7 @@
 [email-notifications]:          ./email.md
 [slack-notifications]:          ./slack.md
 [telegram-notifications]:       ./telegram.md
+[ms-teams-notifications]:       ./microsoft-teams.md
 [opsgenie-notifications]:       ./opsgenie.md
 [insightconnect-notifications]: ./insightconnect.md
 [pagerduty-notifications]:      ./pagerduty.md
@@ -35,6 +36,7 @@ The systems available for integration are grouped in the following blocks: **Ema
 * [Email report][email-notifications]
 * [Slack][slack-notifications]
 * [Telegram][telegram-notifications]
+* [Microsoft Teams][ms-teams-notifications]
 
 ### Incident management and SIEM systems
 
