@@ -232,7 +232,7 @@ curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
-![!Attacks in the interface](../images/admin-guides/test-attacks.png)
+![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 

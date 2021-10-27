@@ -38,7 +38,7 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
      * Red with a white indicator if some hits of the attack were blocked and others were only recorded ([filtration mode](../../admin-en/configure-wallarm-mode.md) for some hits is set to monitoring).
 * **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed. If the filtering node blocked the request, the code would be `403`.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
-* **Verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below or specify the action in the search string as described [here][search-by-attack-status].
+* **Active verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below
     ![!Filter for false positive][img-show-falsepositive]
 
 To sort attacks by the time of the last request, you can use the **Sort by latest hit** switch.

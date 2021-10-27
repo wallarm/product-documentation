@@ -3,7 +3,7 @@
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks.png
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
 # Updating the cloud node image
 
