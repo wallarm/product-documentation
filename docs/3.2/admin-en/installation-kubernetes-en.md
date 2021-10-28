@@ -2,7 +2,7 @@
 
 ## System Requirements
 
-* Kubernetes platform version 1.20 and lower
+* Kubernetes platform version 1.21 and lower
 * [Helm](https://helm.sh/) package manager
 * Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 0.26.2
 
