@@ -229,3 +229,5 @@
 /user-guides/rules/add-rule/#absent /user-guides/rules/add-rule/#condition-type-absent
 
 /glossary-en/#attack-vector /glossary-en/#malicious-payload
+/en/admin-en/configure-backup-en.html /admin-en/configure-backup-en/
+/ru/admin-ru/configure-backup-ru.html https://docs.wallarm.ru/admin-ru/configure-backup-ru/
