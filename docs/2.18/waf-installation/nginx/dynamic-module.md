@@ -156,7 +156,7 @@ To run postanalytics and process the requests on different servers, the followin
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. Ensure that the `include /etc/nginx/conf.d/*` line is added to the file. If there is no such line, add it.
+2. Ensure that the `include /etc/nginx/conf.d/*;` line is added to the file. If there is no such line, add it.
 3. Add the following directive right after the `worker_processes` directive:
 
     ```bash
