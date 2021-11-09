@@ -28,7 +28,7 @@ NGINX writes logs of the processed requests (access logs) into a separate log fi
 ```
 log_format combined '$remote_addr - $remote_user [$time_local] '
                     '"$request" $request_id $status $body_bytes_sent '
-                    '"$http_referer" "$http_user_agent"';
+                    '"$http_referer" "$http_user_agent" ';
 ```
 
 You can define and use a custom logging format by including one or several filter node variables (as well as other NGINX variables if needed). The NGINX log file will allow for much faster filter node diagnostics.
@@ -59,7 +59,7 @@ To do this, perform the following actions:
     ```
     log_format wallarm_combined '$remote_addr - $remote_user [$time_local] '
                                 '"$request" $request_id $status $body_bytes_sent '
-                                '"$http_referer" "$http_user_agent"'
+                                '"$http_referer" "$http_user_agent" '
                                 '$wallarm_request_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list';
     ```
 
