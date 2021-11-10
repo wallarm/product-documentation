@@ -84,3 +84,57 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerab
 For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities/check-vuln.md).
 
 ![!Vulnerabilities section](../images/about-wallarm-waf/vulnerabilities-list.png)
+
+## Notifications about discovered vulnerabilities
+
+Wallarm can send you notifications on discovered vulnerabilities. It allows you to be aware of newly discovered vulnerabilities of your applications and respond to them promptly. Responding to vulnerabilities includes fixing them on the application side, reporting false positives and applying virtual patches.
+
+To configure notifications:
+
+1. Create the [native integration](../user-guides/settings/integrations/integrations-intro.md) with the system to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. In the integration card, select the **Vulnerabilities detected** in the list of available events.
+
+Example of the Splunk notification about detected vulnerability:
+
+```json
+{
+    summary:"[Test message] [Test partner(US)] New vulnerability detected",
+    description:"Notification type: vuln
+
+                New vulnerability was detected in your system.
+
+                ID: 
+                Title: Test
+                Domain: example.com
+                Path: 
+                Method: 
+                Discovered by: 
+                Parameter: 
+                Type: Info
+                Threat: Medium
+
+                More details: https://us1.my.wallarm.com/object/555
+
+
+                Client: TestCompany
+                Cloud: US
+                ",
+    details:{
+        client_name:"TestCompany",
+        cloud:"US",
+        notification_type:"vuln",
+        vuln_link:"https://us1.my.wallarm.com/object/555",
+        vuln:{
+            domain:"example.com",
+            id:null,
+            method:null,
+            parameter:null,
+            path:null,
+            title:"Test",
+            discovered_by:null,
+            threat:"Medium",
+            type:"Info"
+        }
+    }
+}
+```
