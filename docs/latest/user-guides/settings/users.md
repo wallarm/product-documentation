@@ -83,7 +83,9 @@ You can use the search field above the table to search users by name, email, or 
 
 4.  Click the *Add user* button.
 
-The new user will receive an automatic email with a link to login and set a new password.
+    The new user will receive an automatic email with a link to login and set a new password.
+
+To be notified about newly added users, you can configure the appropriate [trigger](../triggers/triggers.md). Notifications will be sent to the messengers and SOAP systems (e.g. Slack, Microsoft Teams, OpsGenie).
 
 ## Change the User Info
 
