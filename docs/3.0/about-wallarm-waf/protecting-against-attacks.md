@@ -198,6 +198,73 @@ For more information on managing attacks, see the instructions on [working with 
 
 ![!Attacks view](../images/user-guides/events/check-attack.png)
 
+## Notifications about detected attacks, hits and malicious payloads
+
+Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, whitelisting IPs originating legitimate requests and blacklisting IPs of attack sources.
+
+To configure notifications:
+
+1. Configure [native integrations](../user-guides/settings/integrations/integrations-intro.md) with the systems to send notifications (e.g. PagerDuty, Opsgenie, Splunk, Slack, Telegram).
+2. Set the conditions for sending notifications:
+
+    * To get notifications on each detected hit, select the appropriate option in the integration settings.
+
+        ??? info "See the example of the notification about detected hit in the JSON format"
+            ```json
+            [
+                {
+                    "summary": "[Wallarm] New hit detected",
+                    "details": {
+                    "client_name": "TestCompany",
+                    "cloud": "EU",
+                    "notification_type": "new_hits",
+                    "hit": {
+                        "domain": "www.example.com",
+                        "heur_distance": 0.01111,
+                        "method": "POST",
+                        "parameter": "SOME_value",
+                        "path": "/news/some_path",
+                        "payloads": [
+                            "say ni"
+                        ],
+                        "point": [
+                            "post"
+                        ],
+                        "probability": 0.01,
+                        "remote_country": "PL",
+                        "remote_port": 0,
+                        "remote_addr4": "8.8.8.8",
+                        "remote_addr6": "",
+                        "tor": "none",
+                        "request_time": 1603834606,
+                        "create_time": 1603834608,
+                        "response_len": 14,
+                        "response_status": 200,
+                        "response_time": 5,
+                        "stamps": [
+                            1111
+                        ],
+                        "regex": [],
+                        "stamps_hash": -22222,
+                        "regex_hash": -33333,
+                        "type": "sqli",
+                        "block_status": "monitored",
+                        "id": [
+                            "hits_production_999_202010_v_1",
+                            "c2dd33831a13be0d_AC9"
+                        ],
+                        "object_type": "hit",
+                        "anomaly": 0
+                        }
+                    }
+                }
+            ]
+            ```
+    
+    * To set the threshold of attack, hit or malicious payload number and get notifications when the threshold is exceeded, configure appropriate [triggers](../user-guides/triggers/triggers.md).
+
+        [See the example of configured trigger and notification →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
+
 ## Demo videos
 
 <div class="video-wrapper">
