@@ -1,6 +1,6 @@
 [doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-en.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-en.md
+[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
+[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 
 # Configuration Options for the NGINX‑Based Filter Node
 

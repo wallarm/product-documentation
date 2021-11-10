@@ -39,5 +39,5 @@ This method does not create any load on the server but requires additional integ
     
     Lists of the IP addresses of the scanner:
     
-    * [for the EU cloud](scanner-address-en.md)
-    * [for the US cloud](scanner-address-us-en.md).
+    * [for the EU cloud](scanner-address-eu-cloud.md)
+    * [for the US cloud](scanner-address-us-cloud.md).

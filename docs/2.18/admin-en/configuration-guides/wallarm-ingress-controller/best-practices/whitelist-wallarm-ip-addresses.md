@@ -6,8 +6,8 @@ To ensure proper functionality of the [Wallarm vulnerability scanner](../../../.
 
 The list of Wallarm IP addresses is available at the following links:
 
-* [Scanners for the European Cloud](../../../scanner-address-en.md)
-* [Scanners for the US Cloud](../../../scanner-address-us-en.md)
+* [Scanners for the European Cloud](../../../scanner-address-eu-cloud.md)
+* [Scanners for the US Cloud](../../../scanner-address-us-cloud.md)
 
 To whitelist the scanner nodes, please use the following instructions:
 
