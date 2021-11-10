@@ -5,7 +5,7 @@
 !!! info
     This list only works for users who use the EU Cloud <https://my.wallarm.com>.
     
-    If you are using the US Cloud <https://us1.my.wallarm.com>, proceed to the [list of scanner addresses for US Cloud](scanner-address-us-en.md).
+    If you are using the US Cloud <https://us1.my.wallarm.com>, proceed to the [list of scanner addresses for US Cloud](scanner-address-us-cloud.md).
 
 The list of IP addresses for EU Cloud from which Wallarm scans company resources for [vulnerabilities](../glossary-en.md#vulnerability) and rechecks attacks and vulnerabilities:
 

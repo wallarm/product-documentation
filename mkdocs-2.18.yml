@@ -224,8 +224,8 @@ nav:
         - Best practices for configuring the Active threat verification feature: admin-en/attack-rechecker-best-practices.md
         - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-whitelisting.md 
         - Scanner Addresses:
-          - Scanner Addresses for EU Cloud: admin-en/scanner-address-en.md
-          - Scanner Addresses for US Cloud: admin-en/scanner-address-us-en.md
+          - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
+          - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
         - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md

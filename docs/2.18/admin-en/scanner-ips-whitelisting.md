@@ -23,8 +23,8 @@ The `off` directive is used keep each IP address reserved for the Wallarm scanne
 !!! info "The Wallarm Scanner IP Addresses"
     Lists of the IP addresses for the scanner:
     
-    * [for the EU cloud](scanner-address-en.md)
-    * [for the US cloud](scanner-address-us-en.md).
+    * [for the EU cloud](scanner-address-eu-cloud.md)
+    * [for the US cloud](scanner-address-us-cloud.md).
 
 To avoid overloading the NGINX configuration file, you can make a list of the IP addresses for the scanner in a separate file and then add its contents to the configuration file using the `include` directive.
 
