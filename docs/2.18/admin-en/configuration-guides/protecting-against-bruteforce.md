@@ -65,7 +65,7 @@ Example of the **Brute force** trigger to block the regular brute‑force attack
 
 ![!Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
 
-Description of the provided example and other trigger examples used for brute force protection are available within this [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-or-dirbust-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
+Description of the provided example and other trigger examples used for brute force protection are available within this [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
 You can configure several triggers for brute force protection.
 

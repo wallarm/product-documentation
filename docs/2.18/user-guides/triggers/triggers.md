@@ -6,7 +6,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 * Receive alerts on major events via the tools you use for your day-to-day workflow, for example via corporate messengers or incident management systems.
 * Block IP addresses from which a certain number of requests or attack vectors were sent.
-* Identify brute‑force and dirbust attacks by the number of requests sent to the application addresses.
+* Identify brute‑force and forced browsing attacks by the number of requests sent to the application addresses.
 
 You can configure all the trigger components:
 
@@ -35,7 +35,8 @@ Triggers are configured in the **Triggers** section of Wallarm Console. The sect
 
 A condition is a system event to be notified about. The following conditions are available for notification:
 
-* Number of requests
+* [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload)
 * Number of [attacks](../../glossary-en.md#attack)
 * Number of [hits](../../glossary-en.md#hit)
@@ -53,20 +54,7 @@ Filters are used for condition detailing. For example, you can set up reactions 
 
 The following filters are available:
 
-* **URL** (only for the number of requests): full URL to which the request was sent. This filter is used if the protected resource listens for incoming requests on port other than 80 or 443. If the resource listens for incoming requests on port 80 orr 443, please configure the URL via the **Counter name** filter.
-
-    URL format is `host:port/path`. The scheme should be omitted. The `port` value must contain a non‑standard port (to specify 80 or 443 port, please configure the URL via the **Counter name** filter).
-    
-    For example: `example.com:8888/login` or `255.255.255.255:8888/login`. [Trigger example with the URL filter →](trigger-examples.md#with-the-filter-by-url)
-
-    !!! warning "Compatibility with other filters"
-        This filter can be used with all available filters except **Counter name**.
-* **Counter name** (only for the number of requests): counter name created in the [rule defining a counter](../rules/define-counters.md).
-
-    [Trigger example with the counter name filter →](trigger-examples.md#with-the-filter-by-the-counter-name)
-
-    !!! warning "Compatibility with other filters"
-        This filter can be used with all available filters except **URL**.
+* **URI** (only for the conditions **Brute force** and **Forced browsing**): full URI to which the request was sent. URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form).
 * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
 * **Application** is the [application](../settings/applications.md) that receives the request or in which an incident is detected.
 * **IP** is the IP address from which the request is sent.
@@ -83,7 +71,7 @@ Choose one or more filters in the Wallarm Console interface and set values for t
 
 A reaction is an action that should be performed if the specified condition and filters are met. The set of available reactions depends on the selected condition. Reactions can be of the following types:
 
-* Mark the requests as brute‑force or forced browsing (dirbust) attack. Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../blacklist.md) IP address.
+* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../blacklist.md) IP address.
 * Add IP to the [blacklist](../blacklist.md).
 * Send a notification to the messenger, SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 
