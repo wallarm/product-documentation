@@ -265,7 +265,6 @@ The following rules are supported:
 * [Add or replace server response header](add-replace-response-header.md)
 * [Set the filtration mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
-* [Tag requests as a brute-force / forced browsing attack](define-counters.md)
 * [Disable/Enable active threat verification](change-request-for-active-verification.md#disabling-enabling-the-active-threat-verification-module)
 * [Rewrite attack before active verification](change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)
 * [Apply a virtual patch][link-virtual-patch]

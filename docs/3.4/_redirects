@@ -249,3 +249,12 @@
 /3.2/admin-en/scanner-address-en/ /3.2/admin-en/scanner-address-eu-cloud/
 /admin-en/scanner-address-en /admin-en/scanner-address-eu-cloud/
 /admin-en/scanner-address-en/ /admin-en/scanner-address-eu-cloud/
+
+/user-guides/rules/define-counters /admin-en/configuration-guides/protecting-against-bruteforce/
+/user-guides/rules/define-counters/ /admin-en/configuration-guides/protecting-against-bruteforce/
+/3.2/user-guides/rules/define-counters /3.2/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.2/user-guides/rules/define-counters/ /3.2/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.0/user-guides/rules/define-counters /3.0/admin-en/configuration-guides/protecting-against-bruteforce/
+/3.0/user-guides/rules/define-counters/ /3.0/admin-en/configuration-guides/protecting-against-bruteforce/
+/2.18/user-guides/rules/define-counters /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
+/2.18/user-guides/rules/define-counters/ /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
