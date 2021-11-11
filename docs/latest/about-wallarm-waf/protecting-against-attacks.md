@@ -150,7 +150,6 @@ curl "http://localhost/?id=1' UNION SELECT"
 
 To adjust default Wallarm request analysis to protected application specificities, Wallarm clients can use custom rules of the following types:
 
-* [Tag requests as a brute-force or forced browsing attack](../user-guides/rules/define-counters.md)
 * [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
 * [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
 * [Disable attack detection by the regular expressions](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)

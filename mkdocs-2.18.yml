@@ -269,7 +269,6 @@ nav:
           - Setting response headers: user-guides/rules/add-replace-response-header.md
           - Filtration mode rule: user-guides/rules/wallarm-mode-rule.md
           - Rules for Data Masking: user-guides/rules/sensitive-data-rule.md
-          - Rules defining attack counters: user-guides/rules/define-counters.md
           - Customizing the module for active threat verification: user-guides/rules/change-request-for-active-verification.md
           - Virtual Patching: user-guides/rules/vpatch-rule.md
           - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
