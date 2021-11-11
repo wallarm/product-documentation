@@ -27,9 +27,9 @@ These instructions provide steps to configure brute force protection.
 ## Configuring the trigger to identify brute force
 
 !!! info "Triggers for the number of requests"
-    Below is the description of simplified configuration of brute force protection. Trigger condition **Number of requests** is now replaced with two conditions for different brute‑force attack class detection. Also, setting up the rules **Tag requests as a forced browsing / brute‑force attack** is no longer required.
+    Below is the description of the simplified configuration of brute force protection. Trigger condition **Number of requests** is now replaced with two conditions for different brute‑force attack class detection. Also, setting up the rules **Tag requests as a forced browsing / brute‑force attack** is no longer required.
     
-    If the trigger for **Number of requests** and the rules for tagging attacks are configured, they still work but rules cannot be updated or re-created. Nevertheless, we recommend you to simplify current configuration as described below and disable old triggers.
+    If the trigger for **Number of requests** and the rules for tagging attacks are configured, they still work but rules cannot be updated or re-created. Nevertheless, we recommend you simplify the current configuration as described below and disable old triggers.
 
 Triggers set the conditions for brute‑force attack detection. Depending on the brute‑force attack class to be detected, you can set up the following conditions:
 
@@ -42,13 +42,13 @@ The steps to configure the trigger are:
 2. Select the condition **Brute force** or **Forced browsing** depending on the brute‑force attack class to be detected.
 3. Set the threshold:
    
-    * If the trigger condition is **Brute force** - the threshold is for the the number of requests originated from the same IP address for a period of time.
-    * If the trigger condition is **Forced browsing** - the threshold is for the the number of the 404 response codes returned to the requests having the same origin IP requests.
+    * If the trigger condition is **Brute force** - the threshold is for the number of requests originated from the same IP address for a period of time.
+    * If the trigger condition is **Forced browsing** - the threshold is for the number of the 404 response codes returned to the requests having the same origin IP requests.
 4. If required, specify **URI** to activate the trigger only for requests sent to certain endpoints, for example:
     
     * If you configure password brute‑forcing protection, then specify the URI used for authentication.
-    * If you configure protection against the forced browsing attacks, then specify the URI of resource file directory.
-    * If the URI is not specified, trigger will be activated at any endpoint with the request number exceeded the threshold.
+    * If you configure protection against the forced browsing attacks, then specify the URI of the resource file directory.
+    * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
 
     URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
 5. If required, set other trigger filters:
@@ -86,7 +86,7 @@ You can configure several triggers for brute force protection.
 
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
-    To search for attacks, you can use the filters, for example: `dirbust` for the forced browsing attacks, `brute` for the brute‑force attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
+    To search for attacks, you can use the filters, for example: `dirbust` for the forced browsing attacks, `brute` for the brute‑force attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
 ## Demo videos
 

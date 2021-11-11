@@ -23,7 +23,7 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 
     ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search using](../../user-guides/search-and-filters/use-search.md).
+    To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 
