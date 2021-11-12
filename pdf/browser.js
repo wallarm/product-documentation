@@ -130,7 +130,7 @@ async function generateHTML(toc, parts) {
                 
             }
 
-            if (item.type === 'chapter' && item.title != 'Demo videos' && item.title != 'API Firewall guides' && item.title != 'Demos') {
+            if (item.type === 'chapter' && item.title != 'Demo videos' && item.title != 'Free tool: API Firewall' && item.title != 'Demos') {
                 if (item.id) {
                     html += `<li class="depth depth-${item.depth}"><a href="#${item.id}">${item.title}</a></li>\n`;
                 } else {

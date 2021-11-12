@@ -81,7 +81,7 @@ site_dir: site/2.18
 edit_uri: ../product-docs-en/edit/master/docs/2.18/
 
 nav:
-  - API Security guides:
+  - Product guides:
     - Home: index.md
     - About Wallarm:
         - How Wallarm API Security works: about-wallarm-waf/overview.md
@@ -323,14 +323,14 @@ nav:
         - Updating the cloud node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
-  - API Firewall guides:
+  - "Free tool: API Firewall":
     - API Firewall overview: api-firewall/overview.md
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
       - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
     - API Firewall changelog: api-firewall/release-notes.md
-  - Wallarm API:
+  - API docs:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
