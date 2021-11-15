@@ -99,9 +99,25 @@ A [custom ruleset](../user-guides/rules/intro.md) created in the **Rules** secti
 
 To get and analyze the API Discovery logs, you can use the following methods:
 
-* Run the standard utility **journalctl** inside the instance with the Wallarm node installed from source packages:
+* If the Wallarm node is installed from source packages: run the standard utility **journalctl** or **systemctl** inside the instance.
+
+    === "journalctl"
+        ```bash
+        journalctl -u wallarm-appstructure
+        ```
+    === "systemctl"
+        ```bash
+        systemctl status wallarm-appstructure
+        ```
+* If the Wallarm node is deployed from the Docker container: read the log file `/var/log/wallarm/appstructure.log` inside the container.
+* If the Wallarm node is deployed as the Kubernetes Ingress controller: check the status of the pod running the Tarantool and `wallarm-appstructure` containers. The pod status must be **Running**.
 
     ```bash
-    journalctl -u wallarm-appstructure
+    kubectl get po -l app=nginx-ingress,component=controller-wallarm-tarantool
     ```
-* Read the log file `/var/log/wallarm/appstructure.log` inside the Wallarm Docker container.
+
+    Read the logs of the `wallarm-appstructure` container:
+
+    ```bash
+    kubectl logs -l app=nginx-ingress,component=controller-wallarm-tarantool -c wallarm-appstructure
+    ```
