@@ -23,8 +23,8 @@
     The version of deployed Wallarm filtering node image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
 
     * If the version `3.4.x` is specified, follow the current instructions.
-    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.4.0-1` in all deployments and follow the current instructions.
-    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.0-1` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
+    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.4.0-3` in all deployments and follow the current instructions.
+    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.0-3` in all deployments and follow the current instructions. Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 
