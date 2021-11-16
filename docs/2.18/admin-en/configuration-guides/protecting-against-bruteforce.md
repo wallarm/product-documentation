@@ -1,11 +1,13 @@
 # Configuration of brute force protection
 
+Behavioral attack (brute‑force attack) is one of the attack types that can be detected by Wallarm if it is appropriately configured. These instructions provide steps to configure the Wallarm node to protect your applications against brute‑force attacks. By default, Wallarm node does not detect brute‑force attacks.
+
 There are the following classes of brute‑force attacks:
 
-* Regular brute‑force attacks: password brute‑forcing, session identifier brute‑forcing, credential stuffing
-* Forced browsing
-
-Behavioral attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
+* [Regular brute‑force attacks](../../attacks-vulns-list.md#bruteforce-attack): password brute‑forcing, session identifier brute‑forcing, credential stuffing. These attacks are characterized by a large number of requests with different forced parameter values sent to a typical URI for a limited timeframe.
+* [Forced browsing](../../attacks-vulns-list.md#forced-browsing). These attacks are characterized by a large number of response codes 404 returned to requests to different URIs for a limited timeframe. 
+    
+    The aim of this attack is to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect the information about application and then perform other attack types by exploiting this information.
 
 [Detailed brute force description →](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)
 
@@ -14,8 +16,6 @@ Behavioral attacks are characterized by a large number of requests with differen
 
     * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
-
-These instructions provide steps to configure brute force protection.
 
 ## Configuration steps
 
