@@ -132,7 +132,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
         It is recommended to pass the variables `DEPLOY_USER` and `DEPLOY_PASSWORD` in the `secrets` object.
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
     
     * All configuration file parameters are described in the [AWS documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html).
 5. Register the task definition based on the JSON configuration file by using the [`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) command:
