@@ -96,6 +96,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
+
 ??? "Set of changes in Wallarm node updated from version 3.0 to version 3.4"
     **Breaking change**
 
@@ -130,12 +134,22 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
+
 ??? "Set of changes in Wallarm node updated from version 3.2 to version 3.4"
     * Added support for CloudLinux OS 6.x
 
         [See the full list of supported platforms →](../admin-en/supported-platforms.md)
     
     * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
+
+        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
 ### New false positives
 
