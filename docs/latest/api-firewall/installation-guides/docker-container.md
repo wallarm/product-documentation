@@ -40,7 +40,7 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
     -v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC> -e APIFW_API_SPECS=<PATH_TO_MOUNTED_SPEC> \
     -e APIFW_URL=<API_FIREWALL_URL> -e APIFW_SERVER_URL=<PROTECTED_APP_URL> \
     -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
-    -p 8088:8088 wallarm/api-firewall:v0.6.4
+    -p 8088:8088 wallarm/api-firewall:v0.6.5
 ```
 
 **With the `-v` option**, please mount the [OpenAPI 3.0 specification](https://swagger.io/specification/) to the API Firewall container directory:
