@@ -129,4 +129,4 @@ To return to the default settings, use an empty value or enter `0`.
 
 Wallarm can send you notifications about changes in the exposed asset list: newly discovered exposed assets, disabled and deleted ones.
 
-To get the notifications, configure appropriate [native integrations](../settings/integrations/integrations-intro.md) with the messengers or SOAP systems (e.g. PagerDuty, Opsgenie, Slack, Telegram).
+To get the notifications, configure appropriate [native integrations](../settings/integrations/integrations-intro.md) with the messengers or SOAR systems (e.g. PagerDuty, Opsgenie, Slack, Telegram).
