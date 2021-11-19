@@ -210,15 +210,78 @@ Defines an interval between checking new data in proton.db and [LOM](../glossary
 
 ### wallarm_instance
 
-An application identifier. The directive is used to visually separate the data of different applications on the *Dashboard*. Numeric values only.
+Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
-The application identifiers are used solely for the convenience of data presentation. To correctly separate the data of different applications, the same application identifiers must be set in the Wallarm interface.
+Unique identifiers can be set for both the application domains and the domain paths, for example:
 
-Any filter node will filter traffic for any number of applications without additional configuration.
+=== "Identifiers for domains"
+    Configuration file for the domain **example.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_instance 1;
+        location / {
+                proxy_pass http://example.com;
+                include proxy_params;
+        }
+    }
+    ```
+
+    Configuration file for the domain **test.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_instance 2;
+        location / {
+                proxy_pass http://test.com;
+                include proxy_params;
+        }
+    }
+    ```
+=== "Identifiers for domain paths"
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+        
+        wallarm_mode monitoring;
+        location /login {
+                proxy_pass http://example.com/login;
+                include proxy_params;
+                wallarm_instance 3;
+        }
+        
+        location /users {
+                proxy_pass http://example.com/users;
+                include proxy_params;
+                wallarm_instance 4;
+        }
+    }
+    ```
+
+[More details on setting up applications →](../user-guides/settings/applications.md)
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
+    **Default value**: `-1`.
 
 ### wallarm_key_path
 

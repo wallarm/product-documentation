@@ -11,6 +11,7 @@
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 [greylist-docs]:                    ../user-guides/ip-lists/greylist.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
+[application-configuration]:        ../user-guides/settings/applications.md
 
 # Running Docker NGINX‑based image
 
