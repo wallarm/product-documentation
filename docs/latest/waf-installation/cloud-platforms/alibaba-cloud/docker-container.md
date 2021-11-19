@@ -3,6 +3,7 @@
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
 [greylist-docs]:                    ../../../user-guides/ip-lists/greylist.md
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
+[application-configuration]:        ../../../user-guides/settings/applications.md
 
 # Deployment of the Wallarm node Docker image to Alibaba Cloud
 
