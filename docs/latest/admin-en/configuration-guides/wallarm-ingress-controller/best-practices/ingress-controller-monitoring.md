@@ -19,11 +19,11 @@ To set the attribute, it is recommended to use the `--set` option of the command
 
 === "Ingress controller installation"
     ```bash
-    helm install --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm install --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 === "Updating Ingress controller parameters"
     ```bash
-    helm upgrade --reuse-values --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm upgrade --reuse-values --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:

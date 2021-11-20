@@ -34,7 +34,8 @@ Wallarm filtering node artifact versions have the following format:
 We recommend using different Wallarm node version format when downloading the packages or images. The format depends on the [Wallarm node installation form](../admin-en/supported-platforms.md):
 
 * `<MAJOR_VERSION>.<MINOR_VERSION>` for Linux packages
-* `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>[-<BUILD_NUMBER>]` for Docker and cloud images, and Helm charts
+* `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>` for Helm charts
+* `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>[-<BUILD_NUMBER>]` for Docker and cloud images
 
     When pulling Wallarm Docker images, you can also specify the version of the filtering node in the format `<MAJOR_VERSION>.<MINOR_VERSION>`. Since pulled version of the filtering node contains changes of the latest available patch version, behavior of the same `<MAJOR_VERSION>.<MINOR_VERSION>` image version pulled in different time periods may differ.
 

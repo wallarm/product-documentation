@@ -12,16 +12,23 @@ If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailt
 
 When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Clone new Helm chart version from the Wallarm repository
+## Step 2: Update the repository containing Wallarm Helm charts
 
-```bash
-git clone https://github.com/wallarm/ingress-chart --branch 3.2.1-1  --single-branch
-```
+=== "If using the Helm repository"
+    ```bash
+    helm repo update wallarm
+    ```
+=== "If using the cloned GitHub repository"
+    Add the [Wallarm Helm repository](https://charts.wallarm.com/) containing all chart versions by using the command below. Please use the Helm repository for further work with the Wallarm Ingress controller.
+
+    ```bash
+    helm repo add wallarm https://charts.wallarm.com
+    ```
 
 ## Step 3: Upgrade the previous Helm chart
 
 ```bash
-helm upgrade <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+helm upgrade --reuse-values --version 3.2.1-1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
 ```
 
 * `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
@@ -52,7 +59,7 @@ If some Ingress controller parameters have been configured via **values.yaml** c
 For example, if the parameter [`wallarm_block_page_add_dynamic_path`](../admin-en/configure-parameters-en.md#wallarm_block_page_add_dynamic_path) has been set via the file **values.yaml**, you can move this parameter to the new version of the Helm chart by using the following command:
 
 ```bash
-helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
 ```
 
 The option `--reuse-values` allows keeping intact already configured Helm chart parameters that not passed in the `--set` option. The option `--set` specifies the Helm chart parameters to be changed or added.

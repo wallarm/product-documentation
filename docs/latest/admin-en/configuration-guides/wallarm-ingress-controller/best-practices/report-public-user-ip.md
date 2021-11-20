@@ -12,13 +12,13 @@ This feature is highly dependent on the cloud platform being used; in majority o
 
 === "Ingress controller installation"
     ```bash
-    helm install --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm install --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
     There are also [other parameters](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
 === "Updating Ingress controller parameters"
     ```bash
-    helm upgrade --reuse-values --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm upgrade --reuse-values --set controller.service.externalTrafficPolicy=Local <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
 #### Enable Ingress Controller to Take the Value from the X-FORWARDED-FOR HTTP Request Header
@@ -30,11 +30,11 @@ This option is more relevant when a customer is using an external CDN service li
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.use-forwarded-headers=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

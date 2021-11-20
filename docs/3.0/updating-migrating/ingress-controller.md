@@ -12,20 +12,27 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 ## Updating
 
 1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
-2. Clone new Helm chart version from the Wallarm repository:
+2. Update the repository containing Wallarm Helm charts:
 
-    ```bash
-    git clone https://github.com/wallarm/ingress-chart --branch 3.0.0-3 --single-branch
-    ```
+    === "If using the Helm repository"
+        ```bash
+        helm repo update wallarm
+        ```
+    === "If using the cloned GitHub repository"
+        Add the [Wallarm Helm repository](https://charts.wallarm.com/) containing all chart versions by using the command below. Please use the Helm repository for further work with the Wallarm Ingress controller.
+
+        ```bash
+        helm repo add wallarm https://charts.wallarm.com
+        ```
 3. Update the previous Helm chart:
 
     === "EU Cloud"
         ``` bash
-        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN> --version 3.0.0-3 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
     === "US Cloud"
         ``` bash
-        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com --version 3.0.0-3 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
     * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)

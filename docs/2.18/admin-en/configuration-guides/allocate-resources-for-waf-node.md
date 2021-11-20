@@ -13,7 +13,7 @@ In a filtering node there are two main memory consumers:
 
 ### Allocating Resources in Kubernetes Ingress Controller
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller-2.18.md"
 
 ### Allocating Resources in Other Deployment Options
 

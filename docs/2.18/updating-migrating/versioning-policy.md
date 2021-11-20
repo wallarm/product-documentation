@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/versioning-policy.md"
+--8<-- "3.2/updating-migrating/versioning-policy.md"
