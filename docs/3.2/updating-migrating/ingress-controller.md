@@ -23,6 +23,7 @@ When new IP lists logic is enabled, please open the Wallarm Console and ensure t
 
     ```bash
     helm repo add wallarm https://charts.wallarm.com
+    helm repo update wallarm
     ```
 
 ## Step 3: Upgrade the previous Helm chart
