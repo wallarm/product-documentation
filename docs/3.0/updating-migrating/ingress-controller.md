@@ -23,6 +23,7 @@ These instructions describe the steps to update deployed Wallarm Ingress Control
 
         ```bash
         helm repo add wallarm https://charts.wallarm.com
+        helm repo update wallarm
         ```
 3. Update the previous Helm chart:
 
