@@ -1,6 +1,6 @@
 # Setting up applications
 
-If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic and vulnerabilities but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
+If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
 
 Using applications enables you to:
 
