@@ -238,3 +238,15 @@ if (paths[1] == '2.18') {
     announceBar[i].innerHTML = 'Wallarm node 2.18 and lower is not supported. We recommend <a href="/updating-migrating/what-is-new/" style="color:white; font-weight: bold;">upgrading</a> Wallarm API Security modules to the latest version.';
  }
 }
+
+// ZoomInfo script
+
+(function() {
+    var zi = document.createElement('script');
+    zi.type = 'text/javascript';
+    zi.async = true;
+    zi.referrerPolicy = 'unsafe-url';
+    zi.src = 'https://ws.zoominfo.com/pixel/612ca1c28ffa1e00155b2895';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(zi, s);
+})();
