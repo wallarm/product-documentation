@@ -8,6 +8,14 @@ for(var i = 0; i < links.length; i++) {
   } 
 }
 
+function injectScript(src, cb) {
+  let script = document.createElement('script');
+
+  script.src = src;
+  cb && (script.onload = cb);
+  document.body.append(script);
+}
+
 // Add LeadFeeder
 window.ldfdr = window.ldfdr || {};
 injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js');
