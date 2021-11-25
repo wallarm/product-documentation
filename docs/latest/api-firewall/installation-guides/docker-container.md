@@ -7,7 +7,6 @@ This guide walks through downloading, installing, and starting Wallarm API Firew
 * [Installed and configured Docker](https://docs.docker.com/get-docker/)
 * [OpenAPI 3.0 specification](https://swagger.io/specification/) developed for the REST API of the application that should be protected with Wallarm API Firewall
 
-
 ## Step 1. Create the Docker network
 
 To allow the containerized application and API Firewall communication without manual linking, create a separate [Docker network](https://docs.docker.com/network/) by using the command `docker network create`. The application and API Firewall containers will be linked to this network.
@@ -45,7 +44,7 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
 
 **With the `-v` option**, please mount the [OpenAPI 3.0 specification](https://swagger.io/specification/) to the API Firewall container directory:
     
-* `HOST_PATH_TO_SPEC`: the path to the OpenAPI 3.0 specification for your application REST API located on the host machine. The accepted file formats are YAML and JSON (`.yaml`, `.yml`, `.json` file extensions). For example: `/opt/my-api/openapi3/swagger.json`.
+* `<HOST_PATH_TO_SPEC>`: the path to the OpenAPI 3.0 specification for your application REST API located on the host machine. The accepted file formats are YAML and JSON (`.yaml`, `.yml`, `.json` file extensions). For example: `/opt/my-api/openapi3/swagger.json`.
 * `<CONTAINER_PATH_TO_SPEC>`: the path to the container directory to mount the OpenAPI 3.0 specification to. For example: `/api-firewall/resources/swagger.json`.
 
 **With the `-e` option**, please set the API Firewall configuration through the following environment variables:
@@ -84,3 +83,65 @@ If the request does not match the provided API schema, the appropriate ERROR mes
 ## Step 5. Enable traffic on API Firewall
 
 To finalize the API Firewall configuration, please enable incoming traffic on API Firewall by updating your application deployment scheme configuration. For example, this would require updating the Ingress, NGINX, or load balancer settings.
+
+## Using Docker Compose to start API Firewall
+
+To start API Firewall on Docker, you can also use [Docker Compose](https://docs.docker.com/compose/). The following `docker-compose.yml` defines the same configuration as described in steps 1-3:
+
+```yml
+version: '3.8'
+
+networks:
+  api-firewall-network:
+    name: api-firewall-network
+
+services:
+  api-firewall:
+    container_name: api-firewall
+    image: wallarm/api-firewall:v0.6.5
+    restart: on-failure
+    volumes:
+      - <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>
+    environment:
+      APIFW_API_SPECS: <PATH_TO_MOUNTED_SPEC>
+      APIFW_URL: <API_FIREWALL_URL>
+      APIFW_SERVER_URL: <PROTECTED_APP_URL>
+      APIFW_REQUEST_VALIDATION: <REQUEST_VALIDATION_MODE>
+      APIFW_RESPONSE_VALIDATION: <RESPONSE_VALIDATION_MODE>
+    ports:
+      - "8088:8088"
+    stop_grace_period: 1s
+    networks:
+      - api-firewall-network
+  backend:
+    container_name: api-firewall-backend
+    image: kennethreitz/httpbin
+    restart: on-failure
+    ports:
+      - 8090:8090
+    stop_grace_period: 1s
+    networks:
+      - api-firewall-network
+```
+
+To start API Firewall using Docker Compose:
+
+1. Create the file `docker-compose.yml` with the content above on your machine.
+2. Change the copied configuration using steps 1-3 in the current instructions.
+3. Build and start the API Firewall container using the following command:
+
+    ```bash
+    docker-compose up -d --force-recreate
+    ```
+
+To check the log output:
+
+```bash
+docker-compose logs -f
+```
+
+To stop the deployed environment:
+
+```bash
+docker-compose down
+```
