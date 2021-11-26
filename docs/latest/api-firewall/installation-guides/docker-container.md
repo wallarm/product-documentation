@@ -7,48 +7,78 @@ This guide walks through downloading, installing, and starting Wallarm API Firew
 * [Installed and configured Docker](https://docs.docker.com/get-docker/)
 * [OpenAPI 3.0 specification](https://swagger.io/specification/) developed for the REST API of the application that should be protected with Wallarm API Firewall
 
+## Methods to run API Firewall on Docker
 
-## Step 1. Create the Docker network
+The fastest method to deploy API Firewall on Docker is [Docker Compose](https://docs.docker.com/compose/). The steps below rely on using this method.
 
-To allow the containerized application and API Firewall communication without manual linking, create a separate [Docker network](https://docs.docker.com/network/) by using the command `docker network create`. The application and API Firewall containers will be linked to this network.
+If required, you can also use `docker run`. We have provided proper `docker run` commands to deploy the same environment in [this section](#using-docker-run-to-start-api-firewall).
 
-For example, to create the Docker network named `api-firewall-network`:
+## Step 1. Create the `docker-compose.yml` file
 
-```bash
-docker network create api-firewall-network
+To deploy API Firewall and proper environment using Docker Compose, create the **docker-compose.yml** with the following content first:
+
+```yml
+version: '3.8'
+
+networks:
+  api-firewall-network:
+    name: api-firewall-network
+
+services:
+  api-firewall:
+    container_name: api-firewall
+    image: wallarm/api-firewall:v0.6.5
+    restart: on-failure
+    volumes:
+      - <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>
+    environment:
+      APIFW_API_SPECS: <PATH_TO_MOUNTED_SPEC>
+      APIFW_URL: <API_FIREWALL_URL>
+      APIFW_SERVER_URL: <PROTECTED_APP_URL>
+      APIFW_REQUEST_VALIDATION: <REQUEST_VALIDATION_MODE>
+      APIFW_RESPONSE_VALIDATION: <RESPONSE_VALIDATION_MODE>
+    ports:
+      - "8088:8088"
+    stop_grace_period: 1s
+    networks:
+      - api-firewall-network
+  backend:
+    container_name: api-firewall-backend
+    image: kennethreitz/httpbin
+    restart: on-failure
+    ports:
+      - 8090:8090
+    stop_grace_period: 1s
+    networks:
+      - api-firewall-network
 ```
 
-## Step 2. Start the containerized application
+## Step 2. Configure the Docker network
 
-Start the containerized application that should be protected with API Firewall by using the command `docker run` and passing the created network name in the option `--network`.
+If required, change the [Docker network](https://docs.docker.com/network/) configuration defined in **docker-compose.yml** → `networks`.
 
-For example, to start the [kennethreitz/httpbin](https://hub.docker.com/r/kennethreitz/httpbin/) Docker container connected to the `api-firewall-network` and assigned with the `backend` [network alias](https://docs.docker.com/config/containers/container-networking/#ip-address-and-hostname) on the port 8090:
+The provided **docker-compose.yml** instructs Docker to create the network `api-firewall-network` and link the application and API Firewall containers to it.
 
-```bash
-docker run --rm -it --network api-firewall-network \
-    --network-alias backend -p 8090:8090 kennethreitz/httpbin
-```
+It is recommended to use a separate Docker network to allow the containerized application and API Firewall communication without manual linking.
 
-## Step 3. Start API Firewall
+## Step 3. Configure the application to be protected with API Firewall
 
-Start the pulled API Firewall image by using the command `docker run` and passing API Firewall configuration in the environment variables as described below.
+Change the configuration of the containerized application to be protected with API Firewall. This configuration is defined in **docker-compose.yml** → `services.backend`.
 
-For example, to start API Firewall connected to the `api-firewall-network` [network](https://docs.docker.com/network/) and assigned with the `api-firewall` [network alias](https://docs.docker.com/config/containers/container-networking/#ip-address-and-hostname) on the port 8088:
+The provided **docker-compose.yml** instructs Docker to start the [kennethreitz/httpbin](https://hub.docker.com/r/kennethreitz/httpbin/) Docker container connected to the `api-firewall-network` and assigned with the `backend` [network alias](https://docs.docker.com/config/containers/container-networking/#ip-address-and-hostname). The container port is 8090.
 
-```bash
-docker run --rm -it --network api-firewall-network --network-alias api-firewall \
-    -v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC> -e APIFW_API_SPECS=<PATH_TO_MOUNTED_SPEC> \
-    -e APIFW_URL=<API_FIREWALL_URL> -e APIFW_SERVER_URL=<PROTECTED_APP_URL> \
-    -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
-    -p 8088:8088 wallarm/api-firewall:v0.6.5
-```
+If configuring your own application, define only settings required for the correct application container start. No specific configuration for API Firewall is required.
 
-**With the `-v` option**, please mount the [OpenAPI 3.0 specification](https://swagger.io/specification/) to the API Firewall container directory:
+## Step 4. Configure API Firewall
+
+Pass API Firewall configuration in **docker-compose.yml** → `services.api-firewall` as follows:
+
+**With `services.api-firewall.volumes`**, please mount the [OpenAPI 3.0 specification](https://swagger.io/specification/) to the API Firewall container directory:
     
-* `HOST_PATH_TO_SPEC`: the path to the OpenAPI 3.0 specification for your application REST API located on the host machine. The accepted file formats are YAML and JSON (`.yaml`, `.yml`, `.json` file extensions). For example: `/opt/my-api/openapi3/swagger.json`.
+* `<HOST_PATH_TO_SPEC>`: the path to the OpenAPI 3.0 specification for your application REST API located on the host machine. The accepted file formats are YAML and JSON (`.yaml`, `.yml`, `.json` file extensions). For example: `/opt/my-api/openapi3/swagger.json`.
 * `<CONTAINER_PATH_TO_SPEC>`: the path to the container directory to mount the OpenAPI 3.0 specification to. For example: `/api-firewall/resources/swagger.json`.
 
-**With the `-e` option**, please set the API Firewall configuration through the following environment variables:
+**With `services.api-firewall.environment`**, please set the API Firewall configuration through the following environment variables:
 
 | Environment variable              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Required? |
 |-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
@@ -58,7 +88,7 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
 | `APIFW_SERVER_URL`                | URL of the application described in the mounted OpenAPI specification that should be protected with API Firewall. For example: `http://backend:80`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Yes       |
 | `APIFW_REQUEST_VALIDATION`        | API Firewall mode when validating requests sent to the application URL:<ul><li>`BLOCK` to block and log the requests that do not match the schema provided in the mounted OpenAPI 3.0 specification (the `403 Forbidden` response will be returned to the blocked requests). Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`LOG_ONLY` to log but not block the requests that do not match the schema provided in the mounted OpenAPI 3.0 specification. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`DISABLE` to disable request validation.</li></ul>                                                                                                                           | Yes       |
 | `APIFW_RESPONSE_VALIDATION`       | API Firewall mode when validating application responses to incoming requests:<ul><li>`BLOCK` to block and log the request if the application response to this request does not match the schema provided in the mounted OpenAPI 3.0 specification. This request will be proxied to the application URL but the client will receive the `403 Forbidden` response. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`LOG_ONLY` to log but not block the request if the application response to this request does not match the schema provided in the mounted OpenAPI 3.0 specification. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`DISABLE` to disable request validation.</li></ul> | Yes       |
-| `APIFW_LOG_LEVEL`                 | API Firewall logging level. Possible values:<ul><li>`DEBUG` to log events of any type (INFO, ERROR, WARNING, and DEBUG).</li><li>`INFO` to log events of the INFO, WARNING, and ERROR types.</li><li>`WARNING` to log events of the WARNING and ERROR types.</li><li>`ERROR` to log events of only the ERROR type.</li></ul> Default value is `DEBUG`. Logs on requests and responses that do not match the provided schema have the ERROR type.                                                                                                                                                                                                                                       | No        |
+| `APIFW_LOG_LEVEL`                 | API Firewall logging level. Possible values:<ul><li>`DEBUG` to log events of any type (INFO, ERROR, WARNING, and DEBUG).</li><li>`INFO` to log events of the INFO, WARNING, and ERROR types.</li><li>`WARNING` to log events of the WARNING and ERROR types.</li><li>`ERROR` to log events of only the ERROR type.</li></ul> The default value is `DEBUG`. Logs on requests and responses that do not match the provided schema have the ERROR type.                                                                                                                                                                                                                                       | No        |
 | `APIFW_CUSTOM_BLOCK_STATUS_CODE` | [HTTP response status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) returned by API Firewall operating in the `BLOCK` mode if the request or response does not match the schema provided in the mounted OpenAPI 3.0 specification. The default value is `403`. | No 
 | `APIFW_ADD_VALIDATION_STATUS_HEADER`<br>(EXPERIMENTAL) | Whether to return the header `Apifw-Validation-Status` containing the reason for the request blocking in the response to this request. The value can be `true` or `false`. The default value is `false`.| No
 | `APIFW_LOG_FORMAT` | The format of API Firewall logs. The value can be `TEXT` or `JSON`. The default value is `TEXT`. | No |
@@ -68,19 +98,70 @@ docker run --rm -it --network api-firewall-network --network-alias api-firewall 
 | `APIFW_TLS_CERT_FILE`             | The name of the file with the SSL/TLS certificate generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | No        |
 | `APIFW_TLS_CERT_KEY`              | The name of the file with the SSL/TLS private key generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | No        |
 | **Timeout settings**              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |           |
-| `APIFW_READ_TIMEOUT`              | The timeout for API Firewall to read the full request (including body) sent to the application URL. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | No        |
+| `APIFW_READ_TIMEOUT`              | The timeout for API Firewall to read the full request (including the body) sent to the application URL. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | No        |
 | `APIFW_WRITE_TIMEOUT`             | The timeout for API Firewall to return the response to the request sent to the application URL. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | No        |
 | `APIFW_SERVER_MAX_CONNS_PER_HOST` | The maximum number of connections that API Firewall can handle simultaneously. The default value is `512`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | No        |
-| `APIFW_SERVER_READ_TIMEOUT`       | The timeout for API Firewall to read the full response (including body) returned to the request by the application. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | No        |
-| `APIFW_SERVER_WRITE_TIMEOUT`      | The timeout for API Firewall to write the full request (including body) to the application. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | No        |
+| `APIFW_SERVER_READ_TIMEOUT`       | The timeout for API Firewall to read the full response (including the body) returned to the request by the application. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | No        |
+| `APIFW_SERVER_WRITE_TIMEOUT`      | The timeout for API Firewall to write the full request (including the body) to the application. The default value is `5s`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | No        |
 | `APIFW_SERVER_DIAL_TIMEOUT`       | The timeout for API Firewall to connect to the application. The default value is `200ms`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | No        |
+| `APIFW_SERVER_CLIENT_POOL_CAPACITY`       | Maximum number of the fasthttp clients. The default value is `1000`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | No        |
+| `HEALTH_HOST`       | The host of the health check service. The default value is `0.0.0.0:9667`. The liveness probe service path is `/v1/liveness` and the readiness service path is `/v1/readiness`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | No        |
 
-## Step 4. Test API Firewall operation
+**With `services.api-firewall.ports` and `services.api-firewall.networks`**, set the API Firewall container port and connect the container to the created network. The provided **docker-compose.yml** instructs Docker to start API Firewall connected to the `api-firewall-network` [network](https://docs.docker.com/network/) on the port 8088.
+
+## Step 5. Deploy the configured environment
+
+To build and start the configured environment, run the following command:
+
+```bash
+docker-compose up -d --force-recreate
+```
+
+To check the log output:
+
+```bash
+docker-compose logs -f
+```
+
+## Step 6. Test API Firewall operation
 
 To test API Firewall operation, send the request that does not match the mounted Open API 3.0 specification to the API Firewall Docker container address. For example, you can pass the string value in the parameter that requires the integer value.
 
 If the request does not match the provided API schema, the appropriate ERROR message will be added to the API Firewall Docker container logs.
 
-## Step 5. Enable traffic on API Firewall
+## Step 7. Enable traffic on API Firewall
 
 To finalize the API Firewall configuration, please enable incoming traffic on API Firewall by updating your application deployment scheme configuration. For example, this would require updating the Ingress, NGINX, or load balancer settings.
+
+## Stopping the deployed environment
+
+To stop the environment deployed using Docker Compose, run the following command:
+
+```bash
+docker-compose down
+```
+
+## Using `docker run` to start API Firewall
+
+To start API Firewall on Docker, you can also use regular Docker commands as in the examples below:
+
+1. [To create a separate Docker network](#step-2-configure-the-docker-network) to allow the containerized application and API Firewall communication without manual linking:
+
+    ```bash
+    docker network create api-firewall-network
+    ```
+2. [To start the containerized application](#step-3-configure-the-application-to-be-protected-with-api-firewall) to be protected with API Firewall:
+
+    ```bash
+    docker run --rm -it --network api-firewall-network \
+        --network-alias backend -p 8090:8090 kennethreitz/httpbin
+    ```
+3. [To start API Firewall](#step-4-configure-api-firewall):
+
+    ```bash
+    docker run --rm -it --network api-firewall-network --network-alias api-firewall \
+        -v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC> -e APIFW_API_SPECS=<PATH_TO_MOUNTED_SPEC> \
+        -e APIFW_URL=<API_FIREWALL_URL> -e APIFW_SERVER_URL=<PROTECTED_APP_URL> \
+        -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
+        -p 8088:8088 wallarm/api-firewall:v0.6.5
+    ```

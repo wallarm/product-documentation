@@ -2,6 +2,20 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.5 (2021-10-12)
+
+### New features
+
+* Configuration of the maximum number of the fasthttp clients (via the environment variable `APIFW_SERVER_CLIENT_POOL_CAPACITY`).
+* Health checks on the 9667 port of the API Firewall container (the port can be changed via the environment variable `HEALTH_HOST`).
+
+[Instructions on running the API Firewall with new environment variables](installation-guides/docker-container.md)
+
+### Bug fixes
+
+* https://github.com/wallarm/api-firewall/issues/15
+* Some other bugs
+
 ## v0.6.4 (2021-08-18)
 
 ### New features
