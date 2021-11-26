@@ -165,3 +165,4 @@ To start API Firewall on Docker, you can also use regular Docker commands as in 
         -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
         -p 8088:8088 wallarm/api-firewall:v0.6.5
     ```
+4. When the environment is started, test it and enable traffic on API Firewall following steps 6 and 7.
