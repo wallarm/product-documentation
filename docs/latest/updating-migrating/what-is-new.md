@@ -80,7 +80,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
     By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
     [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
-* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
@@ -116,7 +116,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
     By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
     [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
-* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
@@ -128,7 +128,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
     [See the full list of supported platforms →](../admin-en/supported-platforms.md)
-* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+* New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 

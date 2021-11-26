@@ -23,8 +23,8 @@
     The version of deployed Wallarm filtering node image is specified in the Helm chart configuration file → `wallarm.image.tag`.
 
     * If the version `3.4.x` is specified, follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `3.4.0-3` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
-    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.0-3` in all deployments and follow [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/). Support for installed versions will be deprecated soon.
+    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/) or increase the version of the image to `3.4.1-1` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/).
+    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.1-1` in all deployments and follow [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/). Support for installed versions will be deprecated soon.
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
 

@@ -26,7 +26,7 @@ If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.4.0-3
+    docker pull wallarm/node:3.4.1-1
     ```
 === "Envoy-based image"
     ``` bash

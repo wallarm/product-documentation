@@ -96,7 +96,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
@@ -134,7 +134,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
@@ -147,7 +147,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [See the full list of supported platforms →](../admin-en/supported-platforms.md)
 
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.0-3` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
