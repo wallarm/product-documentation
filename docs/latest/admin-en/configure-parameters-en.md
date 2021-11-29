@@ -384,6 +384,14 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 
 - **on**: the requests are always blocked
 - **off**: the requests are always ignored
+
+    !!! warning "Protection bypass risk"
+        The `off` value should be used carefully as this value disables protection from the `overlimit_res` attacks.
+        
+        It is recommended to use the `off` value only in the strictly specific locations where it is really necessary, for example where the upload of the large files is performed, and where there is no risk of protection bypass and vulnerability exploit.
+        
+        **It is strongly not recommended** to set `wallarm_process_time_limit_block` to `off` globally for http or server blocks.
+    
 - **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
     - **off**: the requests are not processed.
     - **monitoring**: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
