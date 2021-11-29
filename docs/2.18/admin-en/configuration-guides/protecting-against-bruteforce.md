@@ -51,6 +51,18 @@ The steps to configure the trigger are:
     * If the URI is not specified, the trigger will be activated at any endpoint with the request number exceeding the threshold.
 
     URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form) in the trigger creation window.
+
+    !!! warning "Triggers with nested URIs"
+        If nested URIs are specified in the triggers with identical conditions, requests to lower nesting level URI will be counted only in the trigger with the filter by the lower nesting level URI. Same for 404 response codes.
+
+        Triggers without URI in the conditions are considered to be the higher nesting level one.
+
+        **Example:**
+
+        * The first trigger with the **Brute force** condition has no filter by the URI (requests to any application or its part are counted by this trigger).
+        * The second trigger with the **Brute force** condition has the filter by the URI `example.com/api`.
+
+        Requests to `example.com/api` are counted only by the second trigger with the filter by `example.com/api`.
 5. If required, set other trigger filters:
 
     * **Application** the requests are addressed to.
