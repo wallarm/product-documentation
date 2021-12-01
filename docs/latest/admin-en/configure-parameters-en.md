@@ -27,7 +27,7 @@ A path to the `node.yaml` file, which contains access requirements for the Walla
 wallarm_api_conf /etc/wallarm/node.yaml
 ```
 
-Used to upload serialized requests from the filtering node directly to the Wallarm API (cloud) instead of uploading into the postanalytics module (Tarantool).
+Used to upload serialized requests from the filtering node directly to the Wallarm API (Cloud) instead of uploading into the postanalytics module (Tarantool).
 **Only requests with attacks are sent to the API.** Requests without attacks are not saved.
 
 **Example of the node.yaml file content:**
@@ -67,7 +67,7 @@ This directive is used to initialize the blocking page that has NGINX variables 
 
 ### wallarm_cache_path
 
-A directory in which the backup catalog for the proton.db and [LOM](../glossary-en.md#lom) copy storage is created when the server starts. This directory must be writable for the client that runs NGINX.
+A directory in which the backup catalog for the proton.db and [custom ruleset](../user-guides/rules/intro.md) copy storage is created when the server starts. This directory must be writable for the client that runs NGINX.
 
 !!! info
     This parameter is configured inside the http block only.
@@ -95,13 +95,13 @@ proxy_request_buffering on;
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
-    To enable libdetection in the Wallarm Ingresss controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
+    To enable libdetection in the Wallarm Ingress controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
 
     Default value is `off`.
 
 ### wallarm_fallback
 
-With the value set to **on**, NGINX has the ability to enter an emergency mode; if proton.db or LOM cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
+With the value set to **on**, NGINX has the ability to enter an emergency mode; if proton.db or custom ruleset cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -109,7 +109,7 @@ With the value set to **on**, NGINX has the ability to enter an emergency mode; 
 
 ### wallarm_force
 
-Sets the requests' analysis and LOM rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
+Sets the requests' analysis and custom rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
 
 ### wallarm_global_trainingset_path
 
@@ -122,7 +122,7 @@ A path to the proton.db file that has the global settings for request filtering,
 
 ### wallarm_file_check_interval
 
-Defines an interval between checking new data in proton.db and [LOM](../glossary-en.md#lom). The unit of measure is specified in the suffix as follows:
+Defines an interval between checking new data in proton.db and [custom ruleset](../user-guides/rules/intro.md). The unit of measure is specified in the suffix as follows:
 * no suffix for minutes,
 * `s` for seconds,
 * `ms` for milliseconds.
@@ -217,7 +217,7 @@ A path to the Wallarm license key.
 
 ### wallarm_local_trainingset_path
 
-A path to the [LOM](../glossary-en.md#lom) file that contains information on the protected application and the filter node settings.
+A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filter node settings.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -269,10 +269,10 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 
 ### wallarm_mode_allow_override
 
-Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm cloud (LOM):
+Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm Cloud (custom ruleset):
 
-- **off**: the rules set in LOM are ignored.
-- **strict**: LOM can only strengthen the operation mode.
+- **off**: the rules set in custom ruleset are ignored.
+- **strict**: custom ruleset can only strengthen the operation mode.
 - **on**: it is possible to both strengthen and soften the operation mode.
 
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
@@ -304,6 +304,7 @@ Possible values are `on` (response analysis is enabled) and `off` (response anal
 Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use the `wallarm_parse_websocket` directive.
 
 Possible values:
+
 - **on**: message analyses is enabled
 - **off**: message analyses is disabled.
 
@@ -487,7 +488,7 @@ See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_ht
 !!! warning "Required conditions"
     It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
 
-    * The value of the `keepalive` parameter must not be lower than the number of the tarantool servers.
+    * The value of the `keepalive` parameter must not be lower than the number of the Tarantool servers.
     * The value of the `max_conns` parameter must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
 
 !!! info
@@ -510,7 +511,7 @@ You can use time intervals suffixes that are described in the [nginx documentati
 
 ### wallarm_ts_request_memory_limit
 
-Set a limit for the maximum amount of memory that can be used by one instance of proton.db and LOM.
+Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.
 
 If the memory limit is exceeded while processing some request, the user will get a 500 error.
 
