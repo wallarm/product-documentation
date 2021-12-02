@@ -346,9 +346,9 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 
 Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm Cloud (custom ruleset):
 
-- **off**: the rules set in custom ruleset are ignored.
-- **strict**: custom ruleset can only strengthen the operation mode.
-- **on**: it is possible to both strengthen and soften the operation mode.
+- `off`: the rules set in custom ruleset are ignored.
+- `strict`: custom ruleset can only strengthen the operation mode.
+- `on`: it is possible to both strengthen and soften the operation mode.
 
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
 
@@ -379,8 +379,8 @@ Possible values are `on` (response analysis is enabled) and `off` (response anal
 Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use the `wallarm_parse_websocket` directive.
 
 Possible values:
-- **on**: message analyses is enabled
-- **off**: message analyses is disabled.
+- `on`: message analyses is enabled
+- `off`: message analyses is disabled.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -457,8 +457,8 @@ Sets the time limit of a single request processing in milliseconds. If the time 
 
 The ability to manage the blocking of requests, which exceed the time limit set in the `wallarm_process_time_limit` directive:
 
-- **on**: the requests are always blocked
-- **off**: the requests are always ignored
+- `on`: the requests are always blocked
+- `off`: the requests are always ignored
 
     !!! warning "Protection bypass risk"
         The `off` value should be used carefully as this value disables protection from the `overlimit_res` attacks.
@@ -467,10 +467,10 @@ The ability to manage the blocking of requests, which exceed the time limit set 
         
         **It is strongly not recommended** to set `wallarm_process_time_limit_block` to `off` globally for http or server blocks.
     
-- **attack**: depends on the attack blocking mode set in the `wallarm-mode` directive:
-    - **off**: the requests are not processed
-    - **monitoring**: the requests are ignored
-    - **block**: the requests are blocked
+- `attack`: depends on the attack blocking mode set in the `wallarm-mode` directive:
+    - `off`: the requests are not processed
+    - `monitoring`: the requests are ignored
+    - `block`: the requests are blocked
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
