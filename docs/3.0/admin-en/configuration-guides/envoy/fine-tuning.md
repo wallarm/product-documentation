@@ -1,6 +1,6 @@
 # Configuration options for the Envoy‑based Wallarm node
 
-[link-lom]:                     ../../../glossary-en.md#lom
+[link-lom]:                     ../../../user-guides/rules/intro.md
 [link-dashboard]:               ../../../user-guides/dashboard/waf.md
 
 [anchor-process-time-limit]:    #processtimelimit
@@ -70,9 +70,9 @@ This section has no default values. You need to explicitly specify values in the
 Parameter | Description | Default value
 --- | ---- | -----
 pdb | Path to the `proton.db` file. This file contains the global settings for request filtering, which do not depend on the application structure. | `/etc/wallarm/proton.db`
-lom | Path to the [LOM][link-lom] file that contains information about the protected application and the filtering node settings. | `/etc/wallarm/lom`
+lom | Path to the [custom ruleset][link-lom] file that contains information about the protected application and the filtering node settings. | `/etc/wallarm/lom`
 key | Path to the file with the Wallarm license key. | `/etc/wallarm/license.key`
-ts_request_memory_limit | Limit for the maximum amount of memory that can be used by one instance of proton.db and LOM. If the memory limit is exceeded while processing some request, the user will get the 500 error. The following suffixes can be used in this parameter:<ul><li>`k` or `K` for kilobytes</li><li>`m` or `M` for megabytes</li><li>`g` or `G` for gigabyte</li></ul>Value of `0` turns the limit off. | `0`
+ts_request_memory_limit | Limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset. If the memory limit is exceeded while processing some request, the user will get the 500 error. The following suffixes can be used in this parameter:<ul><li>`k` or `K` for kilobytes</li><li>`m` or `M` for megabytes</li><li>`g` or `G` for gigabyte</li></ul>Value of `0` turns the limit off. | `0`
 
 ##  Postanalytics module settings
 
@@ -149,7 +149,7 @@ Parameter | Description | Default value
 --- | ---- | -----
 ts | One of the parameter groups that is defined in the `tsets` section. This parameter group sets the request filtering rules to be used.<br>If this parameter is omitted from the `conf` section of the filtering node, then it should be present in the `conf` section overridden on the route or virtual host level.  | -
 mode | Node mode:<ul><li>`block` to block malicious requests</li><li>`monitoring` to analyze but not block requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses](../../../user-guides/ip-lists/greylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul><br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | `block`
-mode_allow_override | Allows overriding the filtering node mode that is set via the `mode` parameter with the [LOM][link-lom] rules:<ul><li>`off`: the LOM rule set is ignored</li><li>`strict`: LOM can only strengthen the operation mode.</li><li>`on`: it is possible to both strengthen and soften the operation mode</li></ul>For example, if the `mode` parameter is set to the `monitoring` value and the `mode_allow_override` parameter is set to the `strict` value, then it will be possible to block some requests (`block`) but not to fully disable the filtering node (`off`). | `off`
+mode_allow_override | Allows overriding the filtering node mode that is set via the `mode` parameter with the [custom ruleset][link-lom] rules:<ul><li>`off`: the custom ruleset is ignored</li><li>`strict`: custom ruleset can only strengthen the operation mode.</li><li>`on`: it is possible to both strengthen and soften the operation mode</li></ul>For example, if the `mode` parameter is set to the `monitoring` value and the `mode_allow_override` parameter is set to the `strict` value, then it will be possible to block some requests (`block`) but not to fully disable the filtering node (`off`). | `off`
 instance | Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.<br><br>[More details on setting up applications →](../../../user-guides/settings/applications.md)| `-1`
 process_time_limit | Limit on the processing time of a single request (in milliseconds). If the request cannot be processed in the defined amount of time, then an error message is recorded to the log file and the request is marked as an `overlimit_res` attack. | `1000`
 process_time_limit_block | Action to take when the request processing time exceeds the limit set via the `process_time_limit` parameter:<ul><li>`off`: the requests are always ignored</li><li>`on`: the requests are always blocked</li><li>`attack`: depends on the attack blocking mode set via the `mode` parameter:<ul><li>`off`: the requests are not processed</li><li>`monitoring`: the requests are ignored</li><li>`block`: the requests are blocked</li></ul></li></ul> | `attack`
