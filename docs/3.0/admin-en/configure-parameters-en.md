@@ -217,7 +217,7 @@ A path to the Wallarm license key.
 
 ### wallarm_local_trainingset_path
 
-A path to the [LOM](../glossary-en.md#lom) file that contains information on the protected application and the filter node settings.
+A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filter node settings.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -256,10 +256,10 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 
 ### wallarm_mode_allow_override
 
-Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm cloud (LOM):
+Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm Cloud (custom ruleset):
 
-- **off**: the rules set in LOM are ignored.
-- **strict**: LOM can only strengthen the operation mode.
+- **off**: the rules set in custom ruleset are ignored.
+- **strict**: custom ruleset can only strengthen the operation mode.
 - **on**: it is possible to both strengthen and soften the operation mode.
 
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
@@ -474,7 +474,7 @@ See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_ht
 !!! warning "Required conditions"
     It is required that the following conditions are satisfied for the `max_conns` and the `keepalive` parameters:
 
-    * The value of the `keepalive` parameter must not be lower than the number of the tarantool servers.
+    * The value of the `keepalive` parameter must not be lower than the number of the Tarantool servers.
     * The value of the `max_conns` parameter must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
 
 !!! info
@@ -497,7 +497,7 @@ You can use time intervals suffixes that are described in the [nginx documentati
 
 ### wallarm_ts_request_memory_limit
 
-Set a limit for the maximum amount of memory that can be used by one instance of proton.db and LOM.
+Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.
 
 If the memory limit is exceeded while processing some request, the user will get a 500 error.
 
