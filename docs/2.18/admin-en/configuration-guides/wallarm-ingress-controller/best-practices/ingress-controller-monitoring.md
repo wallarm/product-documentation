@@ -8,6 +8,7 @@ controller:
   wallarm:
     metrics:
       enabled: true
+      
       service:
         annotations:
           prometheus.io/scrape: "true"

@@ -17,13 +17,13 @@ The following recommendations are relevant for missing-critical (production) env
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - nginx-ingress
-          topologyKey: "kubernetes.io/hostname"
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - nginx-ingress
+            topologyKey: "kubernetes.io/hostname"
     ```
 * In clusters that are subject to unexpected traffic spikes or other conditions that may justify the use of [Kubernetes's horizontal pod autoscaling (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) feature it can enabled in the `values.yaml` file using the following example:
     ```
