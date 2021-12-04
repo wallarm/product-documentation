@@ -151,7 +151,7 @@ nav:
         - Installing on the Kong platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
-        - Checking the Filter Node Operation: admin-en/installation-check-operation-en.md
+        - Checking the filtering node operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration Options (NGINX): admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
