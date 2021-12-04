@@ -80,6 +80,6 @@ Ingress controller settings and Ingress annotations will be automatically moved 
 Configuration use cases:
 
 * [Proper Reporting of End User Public IP Address](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-* [Management of IP Addresses Blocking](../user-guides/ip-lists/overview.md)
+* [Management of IP addresses blocking](../user-guides/ip-lists/overview.md)
 * [High Availability Considerations](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 * [Ingress Controller Monitoring](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)

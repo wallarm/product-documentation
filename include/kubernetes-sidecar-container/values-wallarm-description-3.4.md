@@ -5,8 +5,8 @@ wallarm:
      tag: 3.4.1-1
      pullPolicy: Always
   # Wallarm API endpoint: 
-  # "api.wallarm.com" for the EU cloud
-  # "us1.api.wallarm.com" for the US cloud
+  # "api.wallarm.com" for the EU Cloud
+  # "us1.api.wallarm.com" for the US Cloud
   wallarm_host_api: "api.wallarm.com"
   # Username of the user with the Deploy role
   deploy_username: "username"

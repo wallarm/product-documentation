@@ -105,11 +105,11 @@ nav:
           - Installing as a dynamic module for NGINX Plus: waf-installation/nginx-plus.md
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
-          - Installing NGINX Ingress Controller with Integrated Wallarm Services: admin-en/installation-kubernetes-en.md
-          - Installing Wallarm Sidecar Container:
-            - How It Works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
-            - Kubernetes Deployment Based on Helm Charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
-            - Kubernetes Deployment Based on Manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
+          - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
+          - Installing Wallarm as the sidecar container:
+            - How it works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
+            - Kubernetes deployment based on Helm charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
+            - Kubernetes deployment based on manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud Platforms:
           - Amazon AWS:
             - AWS Marketplace image deployment:

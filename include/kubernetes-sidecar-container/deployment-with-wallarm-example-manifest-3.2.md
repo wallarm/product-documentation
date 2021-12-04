@@ -19,8 +19,8 @@ spec:
           imagePullPolicy: Always
           env:
           # Wallarm API endpoint: 
-          # "api.wallarm.com" for the EU cloud
-          # "us1.api.wallarm.com" for the US cloud
+          # "api.wallarm.com" for the EU Cloud
+          # "us1.api.wallarm.com" for the US Cloud
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
           # Username of the user with the Deploy role

@@ -1,13 +1,13 @@
-# Kubernetes Deployment Based on Manifests
+# Kubernetes deployment based on manifests
 
 ## Prerequisites
 
 * Local or cloud (EKS, GKE, AKE, etc) cluster running any version of Kubernetes
 * Application defined in plain Kubernetes manifest files
 * Pod exposed to the public Internet or other potential sources of malicious web and API attacks
-* Kubernetes ingress controller or external load balancer (like AWS ELB or ALB) to add the HTTP request header `X-Forwarded-For`, which contains the real public IP address of the connecting client
-* Wallarm account in the [EU cloud](https://my.wallarm.com/) or [US cloud](https://us1.my.wallarm.com/)
-* Username and password of the user with the **Deploy** role added to your Wallarm account. To add a new user, please follow these [instructions](../../../user-guides/settings/users.md#create-a-user)
+* Kubernetes Ingress controller or external load balancer (like AWS ELB or ALB) to add the HTTP request header `X-Forwarded-For`, which contains the real public IP address of the connecting client
+* Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Username and password of the user with the **Deploy** role added to your company's Wallarm account. To add a new user, please follow these [instructions](../../../user-guides/settings/users.md#create-a-user)
 
 ## Installation
 
@@ -30,41 +30,46 @@
 
 ### Step 1: Creating Wallarm ConfigMap
 
-<ol start="1"><li>Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:</li></ol>
+1. Create a new manifest file or add a new object to the existing manifest for a new Kubernetes ConfigMap object that will hold the NGINX configuration file for the Wallarm sidecar container:
 
---8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest-218.md"
+    --8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-manifest-218.md"
 
-<ol start="2"><li>Update parameter values following the code comments.</li></ol>
+2. Update parameter values following the code comments.
 
-### Step 2: Updating the Deployment Object in Kubernetes
+### Step 2: Updating the Deployment object in Kubernetes
 
-<ol start="1"><li>Go to the Kubernetes manifests and open the template that defines the <code>Deployment</code> object for the application. A complex application can have several <code>Deployment</code> objects for different components of the application - please find an object which defines pods which are actually exposed to the Internet. For example:</li></ol>
+1. Go to the Kubernetes manifests and open the template that defines the `Deployment` object for the application. A complex application can have several `Deployment` objects for different components of the application - please find an object which defines pods which are actually exposed to the Internet. For example:
 
---8<-- "../include/kubernetes-sidecar-container/deployment-template.md"
+    --8<-- "../include/kubernetes-sidecar-container/deployment-template.md"
 
-<ol start="2"><li>Copy the following elements to the template:<ul><li>the <code>wallarm</code> sidecar container definition to the <code>spec.template.spec.containers</code> section,</li><li>the <code>wallarm-nginx-conf</code> volume definition to the <code>spec.template.spec.volumes</code> section.</li></ul>An example of the template with added elements is provided below. Elements for copying are indicated by the <code>Wallarm element</code> comment.</li></li></ol>
+2. Copy the following elements to the template:
 
---8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-2.18.md"
+    * The `wallarm` sidecar container definition to the `spec.template.spec.containers` section
+    * The `wallarm-nginx-conf` volume definition to the `spec.template.spec.volumes` section
+    
+    An example of the template with added elements is provided below. Elements for copying are indicated by the `Wallarm element` comment.
 
-<ol start="3"><li>Update parameter values following the code comments.</li></ol>
+    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-2.18.md"
 
-### Step 3: Updating the Service Object in Kubernetes
+3. Update parameter values following the code comments.
 
-<ol start="1"><li>Return to the Kubernetes manifests and open the template that defines the <code>Service</code> object that points to <code>Deployment</code> modified in the previous step. For example:</li></ol>
+### Step 3: Updating the Service object in Kubernetes
 
---8<-- "../include/kubernetes-sidecar-container/service-template-manifest.md"
+1. Return to the Kubernetes manifests and open the template that defines the `Service` object that points to `Deployment` modified in the previous step. For example:
 
-<ol start="2"><li>Change the <code>ports.targetPort</code> value to point to the Wallarm sidecar container port (<code>ports.containerPort</code> defined in the Wallarm sidecar container). For example:</li></ol>
+    --8<-- "../include/kubernetes-sidecar-container/service-template-manifest.md"
 
---8<-- "../include/kubernetes-sidecar-container/service-template-sidecar-port-manifest.md"
+2. Change the `ports.targetPort` value to point to the Wallarm sidecar container port (`ports.containerPort` defined in the Wallarm sidecar container). For example:
 
-### Step 4: Deploying the Manifest to the Kubernetes Cluster
+    --8<-- "../include/kubernetes-sidecar-container/service-template-sidecar-port-manifest.md"
+
+### Step 4: Deploying the manifest to the Kubernetes cluster
 
 Update or deploy the new application manifest in the Kubernetes cluster.
 
-!!! warning "NetworkPolicy Object in Kubernetes"
+!!! warning "NetworkPolicy object in Kubernetes"
     If the application also uses the `NetworkPolicy` object it should be updated to reflect the Wallarm sidecar container port specified above.
 
-### Step 5: Testing the Wallarm Sidecar Container
+### Step 5: Testing the Wallarm sidecar container
 
 --8<-- "../include/kubernetes-sidecar-container/test-sidecar-container-in-kubernetes.md"

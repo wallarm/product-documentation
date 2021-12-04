@@ -30,7 +30,7 @@ The Applications concept allows you to assign different IDs to different protect
 
 When configuring a filter node you can add Wallarm IDs for your environments using the Applications concept. To set up IDs:
 
-1. Add environment names and its IDs in your Wallarm account > **Settings** > **Applications** section.
+1. Add environment names and its IDs in your Wallarm account → **Settings** → **Applications** section.
 
     ![!Added environments](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. Specify ID configuration in a filter node:
