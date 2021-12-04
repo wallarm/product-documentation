@@ -95,7 +95,7 @@ nav:
         - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
     - Quick start: quickstart.md
     - Administrator Guide:
-      - Introduction to the Administrator Guide: admin-en/admin-intro-en.md
+      - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Installation:
         - Deployment options: admin-en/supported-platforms.md
         - NGINX:
