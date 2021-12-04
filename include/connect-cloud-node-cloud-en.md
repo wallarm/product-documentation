@@ -6,7 +6,7 @@
 [link-wl-console-users-eu]:        https://my.wallarm.com/settings/users
 [link-syncnode]:               ../admin-en/configure-cloud-node-synchronization-en.md
 
-[anchor-token]:                      #connecting-using-the-filter-node-token
+[anchor-token]:                      #connecting-using-the-filtering-node-token
 [anchor-credentials]:                      #connecting-using-your-cloud-account-login-and-password
 
 The filter node interacts with the Wallarm cloud. There are two ways of connecting the node to the cloud:
@@ -16,7 +16,7 @@ The filter node interacts with the Wallarm cloud. There are two ways of connecti
 !!! info "Required access rights"
     Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled, therefore allowing you to connect a filter node to the cloud.
 
-    You can check the aforementioned parameters by navigating to the user account list in the Wallarm console.
+    You can check the aforementioned parameters by navigating to the user account list in Wallarm Console.
     
     * If you are using <https://my.wallarm.com/>, proceed to the [following link][link-wl-console-users-eu] to check your user settings.
     * If you are using <https://us1.my.wallarm.com/>, proceed to the [following link][link-wl-console-users-us] to check your user settings.

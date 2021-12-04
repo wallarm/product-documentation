@@ -20,7 +20,7 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
 
 1.  Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled, therefore allowing you to connect a filter node to the cloud. 
      
-    You can check the above mentioned parameters by navigating to the user account list in the Wallarm console.
+    You can check the above mentioned parameters by navigating to the user account list in Wallarm Console.
     
     * If you are using <https://my.wallarm.com/>, proceed to the [following link][link-wl-console-users-eu] to check your user settings.
     * If you are using <https://us1.my.wallarm.com/>, proceed to the [following link][link-wl-console-users-us] to check your user settings.

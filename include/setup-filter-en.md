@@ -4,9 +4,9 @@ You can create your own configuration files to define the operation of NGINX-Wal
 
 To see detailed information about configuring NGINX-Wallarm, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
 
-Wallarm directives define the operation logic of the Wallarm filter node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](../admin-en/configure-parameters-en.md) page.
+Wallarm directives define the operation logic of the Wallarm filtering node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](../admin-en/configure-parameters-en.md) page.
 
-#### A Configuration File Example
+**Configuration file example**
 
 Let us suppose that you need to configure the server to work in the following conditions:
 * Only HTTP traffic is processed. There are no HTTPS requests processed.
@@ -15,7 +15,7 @@ Let us suppose that you need to configure the server to work in the following co
 * All incoming requests are considered less than 1MB in size (default setting).
 * The processing of a request takes no more than 60 seconds (default setting).
 * Wallarm must operate in the monitor mode.
-* Clients access the filter node directly, without an intermediate HTTP load balancer.
+* Clients access the filtering node directly, without an intermediate HTTP load balancer.
 
 !!! info "Creating a configuration file"
     You can create a custom NGINX-Wallarm configuration file (e.g. `example.com.conf`) or modify the default NGINX-Wallarm configuration file (`default.conf`).
