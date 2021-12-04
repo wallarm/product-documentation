@@ -1,9 +1,9 @@
-# Quick Start with Provided Example
+# Quick start with Terraform example code
 
 ## Prerequisites
 
-* Wallarm account in the [EU cloud](https://my.wallarm.com/) or [US cloud](https://us1.my.wallarm.com/)
-* Username and password of the user with the **Deploy** role added to your Wallarm account. To add a new user, please follow the [instructions](../../../../user-guides/settings/users.md#create-a-user)
+* Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Username and password of the user with the **Deploy** role added to your company's Wallarm account. To add a new user, please follow the [instructions](../../../../user-guides/settings/users.md#create-a-user)
 * AWS account and user with the **admin** permissions
 * Accepted Terms for the [WordPress Certified by Bitnami and Automattic](https://aws.amazon.com/marketplace/server/procurement?productId=7d426cb7-9522-4dd7-a56b-55dd8cc1c8d0) and [Wallarm Node (AI‑based NG-WAF instance) by Wallarm](https://aws.amazon.com/marketplace/server/procurement?productId=34faafd7-601d-43ac-8d22-3f2d839028c5) products on AWS Marketplace
 * Installed [`terraform`](https://learn.hashicorp.com/terraform/getting-started/install.html) CLI tools version 0.12.18 or later
@@ -18,7 +18,7 @@
 3. [Deploy](#step-3-deploying-described-stack) described stack.
 4. [Test](#step-4-testing-wallarm-node-operation) Wallarm node operation.
 
-### Step 1: Downloading Terraform Code Example
+### Step 1: Downloading Terraform code example
 
 Terraform code used in this example can be cloned from the [GitHub repository](https://github.com/wallarm/terraform-example) using the following command:
 
@@ -31,14 +31,14 @@ Configuration files are located in the `terraform` folder of the repository:
 * `variables.tf` is used to define necessary Terraform variables which describe the managed environment
 * `main.tf` holds the Terraform code which performed the actual AWS provisioning
 
-### Step 2: Preparing Terraform Environment and Variables
+### Step 2: Preparing Terraform environment and variables
 
 1. Set environment variables with credentials for the Wallarm user with the **Deploy** role:
     ```
     export TF_VAR_deploy_username='DEPLOY_USERNAME'
     export TF_VAR_deploy_password='DEPLOY_PASSWORD'
     ```
-    * `DEPLOY_USERNAME` is the username of the user with the **Deploy** role
+    * `DEPLOY_USERNAME` is the email of the user with the **Deploy** role
     * `DEPLOY_PASSWORD` is the password of the user with the **Deploy** role
 2. Set environment variables with your [AWS access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys):
     ```
@@ -48,7 +48,7 @@ Configuration files are located in the `terraform` folder of the repository:
     * `YOUR_ACCESS_KEY_ID` is your access key ID
     * `YOUR_SECRET_ACCESS_KEY` is your secret access key
 3. (Optional) Specify your public SSH key in the `key_pair` variable in the `variables.tf` file, if you plan to access the employed EC2 instances using SSH.
-4. (Optional) Specify the `api.wallarm.com` API endpoint in the `wallarm_api_domain` variable in the `variables.tf` file, if you use the [EU cloud](../../../../about-wallarm-waf/overview.md#eu-cloud). If you use the [US cloud](../../../../about-wallarm-waf/overview.md#us-cloud), please leave an existing value.
+4. (Optional) Specify the `api.wallarm.com` API endpoint in the `wallarm_api_domain` variable in the `variables.tf` file, if you use the [EU Cloud](../../../../about-wallarm-waf/overview.md#eu-cloud). If you use the [US Cloud](../../../../about-wallarm-waf/overview.md#us-cloud), please leave an existing value.
 5. (Optional) Set AWS region data in the variables listed below in the `variables.tf` file. The provided example is configured for AWS region `us-west-1` (North California).
     * `aws_region` (you can find the list of AWS regions [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html))
     * `az_a`
@@ -63,7 +63,7 @@ Configuration files are located in the `terraform` folder of the repository:
     aws ec2 describe-images --filters "Name=name,Values=*bitnami-wordpress-5.3.2-3-linux-ubuntu-16.04*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
     ```
 
-### Step 3: Deploying Described Stack
+### Step 3: Deploying described stack
 
 1. Go to the `terraform` folder of the cloned repository:
     ```
@@ -93,7 +93,7 @@ The DNS name can be used to access the freshly installed Wordpress service with 
 
 ![!Installed Wordpress service](../../../../images/admin-guides/configuration-guides/terraform-guide/opened-dns-wordress.png)
 
-### Step 4: Testing Wallarm Node Operation
+### Step 4: Testing Wallarm node operation
 
 The Wallarm cluster is configured with a self-signed SSL certificate so it should be possible to access the same DNS name using HTTPS protocol but the browser will show a security warning.
 
@@ -101,7 +101,7 @@ You can simulate a web attack by adding `/?id='or+1=1--a-<script>prompt(1)</scri
 
 ![!403 error code after sending an attack](../../../../images/admin-guides/configuration-guides/terraform-guide/attacked-source.png)
 
-A few minutes after simulating a web attack it should be possible to see two blocked attacks - SQLI and XSS - in your Wallarm account > **Events**:
+A few minutes after simulating a web attack it should be possible to see two blocked attacks - SQLI and XSS - in Wallarm Console → **Events**:
 
 ![!Sent attacks displayed in the Wallarm account](../../../../images/admin-guides/configuration-guides/terraform-guide/wallarm-account-with-attacks.png)
 

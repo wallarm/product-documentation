@@ -21,7 +21,7 @@ Assign a `"<res_1>, <res_2>, <res_3>, <res_4>, ..."` array value, where `<res_1>
 
 !!! warning "Resources that need to be addressed without a proxy"
     Add the following IP addresses and domain to the list of the resources that have to be addressed without a proxy for the system to operate correctly: `127.0.0.1`, `127.0.0.8`, `127.0.0.9`, and `localhost`.
-    The `127.0.0.8` and `127.0.0.9` IP addresses are used for the operation of the Wallarm filter node.
+    The `127.0.0.8` and `127.0.0.9` IP addresses are used for the operation of the Wallarm filtering node.
 
 The example of the correct `/etc/environment` file contents below demonstrates the following configuration:
 *   HTTPS and HTTP requests are proxied to the `1.2.3.4` host with the `1234` port, using the `admin` username and the `01234` password for authorization on the proxy server.

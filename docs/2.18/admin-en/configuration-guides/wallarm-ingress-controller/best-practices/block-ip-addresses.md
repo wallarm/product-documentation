@@ -1,4 +1,4 @@
-# Management of IP Addresses Blocking
+# Management of IP addresses blocking
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 

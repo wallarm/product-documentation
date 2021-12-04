@@ -228,7 +228,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="debian9Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
@@ -243,7 +243,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="debian9backId" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
@@ -258,7 +258,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="debian10Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
@@ -278,7 +278,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="ubuntu18Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
@@ -295,7 +295,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="ubuntu20Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
@@ -313,7 +313,7 @@
                     <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
                 </svg>
             </h3>
-            <p>Install the API Security module for...</p>
+            <p>Install the Wallarm module for...</p>
             <div id="centos7Id" class="options-list" style="display: none;">
                 <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
                 <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
@@ -331,7 +331,7 @@
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
             </svg>
         </h3>
-        <p>Install the API Security module for...</p>
+        <p>Install the Wallarm module for...</p>
         <div id="centos8Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
@@ -350,7 +350,7 @@
                     <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
                 </svg>
             </h3>
-            <p>Install the API Security module for...</p>
+            <p>Install the Wallarm module for...</p>
             <div id="alinux2Id" class="options-list" style="display: none;">
                 <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
                 <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>

@@ -1,6 +1,6 @@
-# Installation in the Kubernetes Cluster
+# Installation in the Kubernetes cluster
 
-## System Requirements
+## System requirements
 
 * Kubernetes platform version 1.21 and lower
 * [Helm](https://helm.sh/) package manager
@@ -10,10 +10,10 @@
     * [What is Ingress?](https://kubernetes.io/docs/concepts/services-networking/ingress/)
     * [Installation of Helm](https://helm.sh/docs/intro/install/)
 
-## Known Restrictions
+## Known restrictions
 
-* Operation without the postanalytics service is not supported. 
-* Scaling down postanalytics service may result in a partial loss of attack data.
+* Operation without the postanalytics module is not supported. 
+* Scaling down postanalytics module may result in a partial loss of attack data.
 
 ## Installation
 
@@ -23,9 +23,9 @@
 
 ### Step 1: Installing the Wallarm Ingress Controller
 
-1. Go to the Wallarm Console → the **Nodes** tab via the link below:
-    * https://my.wallarm.com/nodes for the EU cloud
-    * https://us1.my.wallarm.com/nodes for the US cloud
+1. Go to Wallarm Console → **Nodes** via the link below:
+    * https://my.wallarm.com/nodes for the EU Cloud
+    * https://us1.my.wallarm.com/nodes for the US Cloud
 2. Create a filtering node with the **Cloud** type and copy the token.
     ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
 3. Add the [Wallarm chart repository](https://charts.wallarm.com/):
@@ -47,23 +47,23 @@
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 
-### Step 2: Enabling Traffic Analysis for Your Ingress
+### Step 2: Enabling traffic analysis for your Ingress
 
 ``` bash
 kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
 kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-instance=<INSTANCE>
 ```
 * `<YOUR_INGRESS_NAME>` is the name of your Ingress
-* `<INSTANCE>` is a positive number that is unique to each of your applications or application groups. This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
+* `<INSTANCE>` is a positive number that is unique to each of [your applications or application groups](../user-guides/settings/applications.md). This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
 
-### Step 3: Checking the Wallarm Ingress Controller Operation
+### Step 3: Checking the Wallarm Ingress Controller operation
 
 1. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     ```
     kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
     ```
 
-    Each pod should display the following: "STATUS: Running" and "READY: N/N". For example:
+    Each pod should display the following: **STATUS: Running** and **READY: N/N**. For example:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
@@ -83,9 +83,9 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 After the Wallarm Ingress controller is successfully installed and checked, you can make advanced configurations to the solution such as:
 
-* [Proper Reporting of End User Public IP Address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-* [Management of IP Addresses Blocking](../user-guides/ip-lists/overview.md)
-* [High Availability Considerations](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
-* [Ingress Controller Monitoring](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [Proper reporting of end user public IP address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+* [Management of IP addresses blocking](../user-guides/ip-lists/overview.md)
+* [High availability considerations](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
+* [Ingress Controller monitoring](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 
 To find parameters used for advanced configuration and appropriate instructions, please follow the [link](configure-kubernetes-en.md).

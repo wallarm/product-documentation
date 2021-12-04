@@ -237,8 +237,8 @@ When operating in the `monitoring` mode, the filtering node searches attack sign
 
 #### Memory
 
-!!! info "Postanalytics on the separate server"
-    If you installed postanalytics on a separate server, then skip this step as you already have your postanalytics configured.
+!!! info "Postanalytics module on the separate server"
+    If you installed the postanalytics module on a separate server, then skip this step as you already have the module configured.
 
 The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
 

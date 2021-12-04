@@ -1,4 +1,4 @@
-#   Installation Options Overview
+#   Installation options overview
 
 [img-postanalytics-options]:    ../images/installation-nginx-overview/postanalytics-options.png
 [img-nginx-options]:            ../images/installation-nginx-overview/nginx-options.png
@@ -13,32 +13,33 @@
 [link-ig-nginx-distr]:              ../waf-installation/nginx/dynamic-module-from-distr.md
 [link-ig-nginxplus]:                ../waf-installation/nginx-plus.md
 
-The filter node that is used with NGINX or NGINX Plus consists of the following modules:
+The Wallarm filtering node that is used with NGINX or NGINX Plus consists of the following modules:
 *   The module that connects to NGINX (NGINX Plus)
 *   The postanalytics module
 
 The modules installation and configuration order depends on the way you install NGINX or NGINX Plus.
 
 This document contains the following sections:
-*   [Modules Overview][anchor-mod-overview]
-*   [Links][anchor-mod-installation] to particular module installation and configuration documents
 
-##  Modules Overview
+*   [Modules overview][anchor-mod-overview]
+*   [Links][anchor-mod-installation] to particular module installation and configuration instructions
 
-When the filter node is used to process requests, incoming traffic sequentially proceeds through initial processing and then processing by Wallarm modules.
+##  Modules overview
+
+When the filtering node is used to process requests, incoming traffic sequentially proceeds through initial processing and then processing by Wallarm modules.
+
 1.  The initial traffic processing is performed by the module that connects to [NGINX][anchor-mod-inst-nginx] or [NGINX Plus][anchor-mod-inst-nginxplus] that is already installed in the system.
-
 2.  Further traffic processing is conducted by the [postanalytics module][anchor-mod-inst-postanalytics], which requires a significant amount of memory to work properly. Therefore, you can pick one of the following installation options:
     *   Installed on the same servers as NGINX/NGINX Plus (if server configurations allow this)
     *   Installed on a group of servers separate from NGINX/NGINX Plus
 
 ![!Postanalytics Module Installation Options][img-postanalytics-options]
 
-##  Installing and Configuring the Modules
+##  Installing and configuring the modules
 
 ### Module for NGINX
 
-!!! warning "Selecting the Module to Install"
+!!! warning "Selecting the module to install"
     The Wallarm module installation and connection procedures depend on the NGINX installation method you are using.
 
 The Wallarm module for NGINX can be connected by one of the following installation methods (links to instructions for each of the installation options are listed in the parenthesis):
@@ -54,6 +55,6 @@ The Wallarm module for NGINX can be connected by one of the following installati
 
 [These][link-ig-nginxplus] instructions describe how to connect Wallarm to an NGINX Plus module.
 
-### Postanalytics Module
+### Postanalytics module
 
 Instructions on the postanalytics module installation and configuration (either on the same server with NGINX/NGINX Plus or on a separate server) are located in the [NGINX][anchor-mod-inst-nginx] module installation and the [NGINX Plus][anchor-mod-inst-nginxplus] module installation sections.

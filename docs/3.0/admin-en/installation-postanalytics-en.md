@@ -270,8 +270,8 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 !!! warning "Protect installed postanalytics module"
     We **highly recommend** to protect a newly installed Wallarm postanalytics module with a firewall. Otherwise, there is a risk of getting unauthorized access to the service that may result in:
     
-    *   disclosure of information about processed requests
-    *   possibility of executing arbitrary Lua code and operating system commands
+    *   Disclosure of information about processed requests
+    *   Possibility of executing arbitrary Lua code and operating system commands
    
     Please note that no such risk exists if you are deploying the postanalytics module alongside with the NGINX-Wallarm module on the same server. This holds true because the postanalytics module will listen to the port `3313`.
     

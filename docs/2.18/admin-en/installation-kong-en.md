@@ -18,8 +18,8 @@
     
     One of the following points is required for proper Kong operation:
     
-    * prepared configuration files,
-    * configured database.
+    * Prepared configuration files
+    * Configured database
     
     Please make sure that the installed Kong meets the prerequisites before proceeding with Wallarm installation.
     
@@ -41,8 +41,8 @@ To install the Wallarm module with Kong, you need to:
 1. Add Wallarm repositories.
 2. Install Wallarm packages.
 3. Configure postanalytics.
-4. Set up the filter node for using a proxy server.
-5. Connect the filter node to the Wallarm cloud.
+4. Set up the filtering node for using a proxy server.
+5. Connect the filtering node to the Wallarm Cloud.
 6. Configure the postanalytics server addresses.
 7. Configure the filtration mode.
 8. Configure logging.
@@ -97,9 +97,9 @@ To install the Wallarm module with Kong, you need to:
 
     More information about Wallarm node versioning is available in the [Wallarm node versioning policy][versioning-policy].
 
-## 1. Add Wallarm Repositories
+## 1. Add Wallarm repositories
 
-The filter node installs and updates from the Wallarm repositories.
+The filtering node installs and updates from the Wallarm repositories.
 
 Depending on your operating system, run one of the following commands:
 
@@ -125,7 +125,7 @@ Depending on your operating system, run one of the following commands:
 
 ## 2. Install Wallarm Packages
 
-To install the filter node and postanalytics on the same server, run the command:
+To install the filtering node and postanalytics on the same server, run the command:
 
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
@@ -140,7 +140,7 @@ To install the filter node and postanalytics on the same server, run the command
     sudo yum install wallarm-node kong-module-wallarm
     ```
 
-To install the filter node alone, run the command:
+To install the filtering node alone, run the command:
 
 === "Ubuntu 16.04 LTS (xenial)"
     ```bash
@@ -155,7 +155,7 @@ To install the filter node alone, run the command:
     sudo yum install wallarm-node-nginx kong-module-wallarm
     ```
 
-## 3. Configure Postanalytics 
+## 3. Configure postanalytics 
 
 !!! info
     Skip this step if you installed postanalytics on a separate server as you already have your postanalytics configured.
@@ -209,27 +209,27 @@ For example:
     sudo systemctl restart wallarm-tarantool
     ```
 
-## 4. Set up the Filter Node for Using a Proxy Server
+## 4. Set up the filtering node for using a proxy server
 
 --8<-- "../include/setup-proxy.md"
 
-## 5. Connect the Filter Node to the Wallarm Cloud
+## 5. Connect the filtering node to the Wallarm Cloud
 
 --8<-- "../include/connect-cloud-en.md"
 
-## 6. Configure the Postanalytics Server Addresses
+## 6. Configure the postanalytics server addresses
 
 !!! info
-    * Skip this step if you installed postanalytics and the filter node on the same server.
-    * Do this step if you installed postanalytics and the filter node on separate servers.
+    * Skip this step if you installed postanalytics and the filtering node on the same server.
+    * Do this step if you installed postanalytics and the filtering node on separate servers.
 
 --8<-- "../include/configure-postanalytics-address-kong-en.md"
 
-## 7. Set up the Filtration Mode
+## 7. Set up the filtration mode
 
 --8<-- "../include/setup-filter-kong-en.md"
 
-## 8. Configure Logging
+## 8. Configure logging
 
 --8<-- "../include/installation-step-logging.md"
 
@@ -241,7 +241,7 @@ To start Kong with the installed Wallarm module, run the command:
 kong start --nginx-conf /etc/kong/nginx-wallarm.template
 ```
 
-## The Installation Is Complete
+## The installation is complete
 
 --8<-- "../include/check-setup-installation-en.md"
 

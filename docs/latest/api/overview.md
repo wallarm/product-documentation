@@ -41,7 +41,7 @@ A token is used for request authentication. The token is generated after success
 2. Refresh the API Reference page using the link:
     * https://apiconsole.eu1.wallarm.com/ for the EU cloud,
     * https://apiconsole.us1.wallarm.com/ for the US cloud.
-3. Go to the required API method > the **Try it out** section, input parameter values, and **Execute** the request.
+3. Go to the required API method → the **Try it out** section, input parameter values, and **Execute** the request.
 
 ### Your own client
 

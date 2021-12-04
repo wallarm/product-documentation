@@ -1,4 +1,4 @@
-# Deploying Wallarm Node Using Terraform
+# Deploying Wallarm node using Terraform
 
 Terraform is a tool to describe an infrastructure via configuration files and run a single application or your entire datacenter on the basis of these configuration files. To get more information, please use [Terraform official documentation](https://www.terraform.io/intro/index.html).
 
@@ -8,7 +8,7 @@ Wallarm filtering node can be also deployed via Terraform. These instructions pr
     * [Managing auto scaling groups and load balancers](https://hands-on.cloud/terraform-recipe-managing-auto-scaling-groups-and-load-balancers/) to better understand provided Terraform code
     * [Cloud config examples](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) to better understand provided Terraform code
 
-## Used Resources
+## Used resources
 
 The example uses the following resources:
 
@@ -19,7 +19,7 @@ The example uses the following resources:
 
 While the document is based on the Official Wallarm Node AMI the same approach can be used for a custom Wallarm filtering node AMI built by you.
 
-## Deployed Network Architecture
+## Deployed network architecture
 
 The provided Terraform code deploys the following network architecture:
 

@@ -49,7 +49,7 @@ If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support
       * For AWS, select the [created security group](../admin-en/installation-ami-en.md#3-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.
-4. For GCP, configure the instance following these [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filter-node-instance).
+4. For GCP, configure the instance following these [instructions](../admin-en/installation-gcp-en.md#3-configure-the-filtering-node-instance).
 
 ## Step 4: Connect the filtering node to Wallarm Cloud
 
@@ -58,8 +58,8 @@ If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
       * [Yandex.Cloud documentation](https://cloud.yandex.com/docs/compute/quickstart/quick-create-linux#connect-to-vm)
 2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to the Wallarm Console as described in the instructions for the cloud platform:
-      * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filter-node-to-the-wallarm-cloud)
-      * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filter-node-to-the-wallarm-cloud)
+      * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
       * [Yandex.Cloud](../admin-en/installation-guides/install-in-yandex-cloud.md#3-connect-the-filtering-node-to-wallarm-cloud)
 
 ## Step 5: Copy the filtering node settings from the previous version to the new version

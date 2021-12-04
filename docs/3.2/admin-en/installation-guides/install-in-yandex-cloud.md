@@ -51,7 +51,7 @@ Before starting Wallarm node installation, please check that you meet all these 
 
 ### 3. Connect the filtering node to Wallarm Cloud
 
-Connect the filtering node to the Wallarm Cloud using the **cloud node token** or Wallarm Console account **login and password**.
+Connect the filtering node to the Wallarm Cloud using the **cloud node token** or Wallarm Console account **email and password**.
 
 #### Using the cloud node token
 
@@ -69,9 +69,9 @@ Connect the filtering node to the Wallarm Cloud using the **cloud node token** o
         ```
 4. Paste the copied token value.
 
-The node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
+The node will now synchronize with the Cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
 
-#### Using the administrator login and password
+#### Using the administrator email and password
 
 1. On the virtual machine, run the `addnode` script:
     
@@ -83,12 +83,12 @@ The node will now synchronize with the cloud every 2‑4 minutes according to th
         ```bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
         ```    
-2. Provide your Wallarm administrator account's login and password.
+2. Provide your Wallarm administrator account's email and password.
 3. Enter the name of the new filtering node or press Enter to use the virtual machine name.
 
     The specified name can be changed in Wallarm Console → **Nodes** later.
 
-The node will now synchronize with the cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
+The node will now synchronize with the Cloud every 2‑4 minutes according to the default synchronization configuration. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
 
 ### 4. Update Wallarm node configuration
 
