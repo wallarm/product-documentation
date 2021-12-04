@@ -27,7 +27,7 @@ When new IP lists logic is enabled, please open Wallarm Console and ensure that 
 ## Step 3: Upgrade the previous Helm chart
 
 ```bash
-helm upgrade --version 3.4.0 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+helm upgrade --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
 ```
 
 * `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
@@ -71,7 +71,7 @@ The option `--reuse-values` allows keeping intact already configured Helm chart 
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-3.4.0`.
+    The chart version should correspond to `wallarm-ingress-3.4.1`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
