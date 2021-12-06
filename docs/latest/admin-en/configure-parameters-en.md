@@ -2,12 +2,12 @@
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 
-# Configuration Options for the NGINX‑Based Filter Node
+# Configuration options for the NGINX‑based filtering node
 
 !!! info "NGINX official documentation"
     The Wallarm configuration is very similar to the NGINX configuration. [See the official NGINX documentation](https://www.nginx.com/resources/admin-guide/). Along with the Wallarm specific configuration options, you have the full capabilities of the NGINX configuration.
 
-## Wallarm Directives
+## Wallarm directives
 
 ### disable_acl
 
@@ -67,7 +67,7 @@ This directive is used to initialize the blocking page that has NGINX variables 
 
 ### wallarm_cache_path
 
-A directory in which the backup catalog for the proton.db and [custom ruleset](../user-guides/rules/intro.md) copy storage is created when the server starts. This directory must be writable for the client that runs NGINX.
+A directory in which the backup catalog for the proton.db and custom ruleset file copy storage is created when the server starts. This directory must be writable for the client that runs NGINX.
 
 !!! info
     This parameter is configured inside the http block only.
@@ -101,7 +101,7 @@ proxy_request_buffering on;
 
 ### wallarm_fallback
 
-With the value set to **on**, NGINX has the ability to enter an emergency mode; if proton.db or custom ruleset cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
+With the value set to `on`, NGINX has the ability to enter an emergency mode; if proton.db or custom ruleset cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -113,7 +113,7 @@ Sets the requests' analysis and custom rules generation based on the NGINX mirro
 
 ### wallarm_global_trainingset_path
 
-A path to the proton.db file that has the global settings for request filtering, which do not depend on the application structure.
+A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -122,10 +122,10 @@ A path to the proton.db file that has the global settings for request filtering,
 
 ### wallarm_file_check_interval
 
-Defines an interval between checking new data in proton.db and [custom ruleset](../user-guides/rules/intro.md). The unit of measure is specified in the suffix as follows:
-* no suffix for minutes,
-* `s` for seconds,
-* `ms` for milliseconds.
+Defines an interval between checking new data in proton.db and custom ruleset file. The unit of measure is specified in the suffix as follows:
+* no suffix for minutes
+* `s` for seconds
+* `ms` for milliseconds
 
 !!! info
     This parameter is configured only inside the http block.
@@ -217,7 +217,7 @@ A path to the Wallarm license key.
 
 ### wallarm_local_trainingset_path
 
-A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filter node settings.
+A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -271,8 +271,8 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 
 Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm Cloud (custom ruleset):
 
-- `off`: the rules set in custom ruleset are ignored.
-- `strict`: custom ruleset can only strengthen the operation mode.
+- `off`: the custom rules are ignored.
+- `strict`: custom rules can only strengthen the operation mode.
 - `on`: it is possible to both strengthen and soften the operation mode.
 
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
@@ -305,8 +305,8 @@ Wallarm has full WebSockets support. By default, the WebSockets' messages are no
 
 Possible values:
 
-- `on`: message analyses is enabled
-- `off`: message analyses is disabled.
+- `on`: message analysis is enabled.
+- `off`: message analysis is disabled.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -315,19 +315,19 @@ Possible values:
 
 ### wallarm_parser_disable
 
-Allows to disable parsers.
+Allows to disable parsers. The directive values corresponds to the name of the parser to be disabled:
 
 The following parsers are currently supported:
 
-- cookie
-- zlib
-- htmljs
-- json
-- multipart
-- base64
-- percent
-- urlenc
-- xml
+- `cookie`
+- `zlib`
+- `htmljs`
+- `json`
+- `multipart`
+- `base64`
+- `percent`
+- `urlenc`
+- `xml`
 
 **Example**
 
@@ -372,7 +372,7 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 ### wallarm_process_time_limit
 
-Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the *blocking* mode (`wallarm_mode block;`) and ignored in the *monitoring* mode (`wallarm_mode monitoring;`).
+Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the **blocking** mode (`wallarm_mode block;`) and ignored in the **monitoring** mode (`wallarm_mode monitoring;`).
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -415,7 +415,7 @@ The following suffixes can be used in this parameter:
 * `m` or `M` for megabytes
 * `g` or `G` for gigabytes
 
-Value of 0 turns the limit off.
+Value of `0` turns the limit off.
 
 By default, limits are off. 
 
@@ -496,9 +496,9 @@ See also [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_ht
 
 ### wallarm_timeslice
 
-A limit on the time that a filter node spends on one iteration of processing a request before it switches to the next request. Upon reaching the time limit, the filter node proceeds to process the next request in the queue. After performing one iteration on each of the requests in the queue, the node performs the second iteration of processing on the first request in the queue.
+A limit on the time that a filtering node spends on one iteration of processing a request before it switches to the next request. Upon reaching the time limit, the filtering node proceeds to process the next request in the queue. After performing one iteration on each of the requests in the queue, the node performs the second iteration of processing on the first request in the queue.
 
-You can use time intervals suffixes that are described in the [nginx documentation](https://nginx.org/en/docs/syntax.html) to assign different time unit values to the directive.
+You can use time intervals suffixes that are described in the [NGINX documentation](https://nginx.org/en/docs/syntax.html) to assign different time unit values to the directive.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -539,18 +539,18 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_upstream_backend
 
-A method for sending serialized requests. Requests can be sent either to the Tarantool or to the API.
+A method for sending serialized requests. Requests can be sent either to Tarantool or to the API.
 
 Possible values of the directive:
 *   `tarantool`
 *   `api`
 
 Depending on the other directives, the default value will be assigned as follows:
-*   `tarantool`—if there is no `wallarm_api_conf` directive in the configuration.
-*   `api`—if there is a `wallarm_api_conf` directive, but there is no `wallarm_tarantool_upstream` directive in the configuration.
+*   `tarantool`— if there is no `wallarm_api_conf` directive in the configuration.
+*   `api`— if there is a `wallarm_api_conf` directive, but there is no `wallarm_tarantool_upstream` directive in the configuration.
 
     !!! note
-        If the `wallarm_api_conf` and `wallarm_tarantool_upstream` directives are present simultaneously in the configuration, a configuration error of the *directive ambiguous wallarm upstream backend* form will occur.
+        If the `wallarm_api_conf` and `wallarm_tarantool_upstream` directives are present simultaneously in the configuration, a configuration error of the **directive ambiguous wallarm upstream backend** form will occur.
 
 !!! info
     This parameter can be set inside the http block only.
