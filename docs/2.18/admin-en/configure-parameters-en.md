@@ -391,8 +391,6 @@ Possible values:
 
 Allows to disable parsers. The directive values corresponds to the name of the parser to be disabled:
 
-The following parsers are currently supported:
-
 - `cookie`
 - `zlib`
 - `htmljs`
@@ -619,8 +617,8 @@ Possible values of the directive:
 *   `api`
 
 Depending on the other directives, the default value will be assigned as follows:
-*   `tarantool`— if there is no `wallarm_api_conf` directive in the configuration.
-*   `api`— if there is a `wallarm_api_conf` directive, but there is no `wallarm_tarantool_upstream` directive in the configuration.
+*   `tarantool` - if there is no `wallarm_api_conf` directive in the configuration.
+*   `api` - if there is a `wallarm_api_conf` directive, but there is no `wallarm_tarantool_upstream` directive in the configuration.
 
     !!! note
         If the `wallarm_api_conf` and `wallarm_tarantool_upstream` directives are present simultaneously in the configuration, a configuration error of the **directive ambiguous wallarm upstream backend** form will occur.
