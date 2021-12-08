@@ -125,6 +125,26 @@ To finalize the API Firewall configuration, please enable incoming traffic on AP
 
 To address more business issues by API Firewall, you can fine-tune the tool operation. Supported fine-tuning options are listed below. Please pass them as environment variables when [configuring the API Firewall Docker container](#step-4-configure-api-firewall).
 
+### Validation of request authentication tokens
+
+If using OAuth 2.0 protocol-based authentication, you can configure API Firewall to validate the access tokens before proxying requests to the application's server.
+
+API Firewall considers the token to be valid if the scopes defined in the [specification](https://swagger.io/docs/specification/authentication/oauth2/) and in the token meta information are the same.
+
+The following optional environment variables allow configuration of the token validation flow:
+
+| Environment variable | Description |
+| -------------------- | ----------- |
+| `APIFW_SERVER_OAUTH_VALIDATION_TYPE` | The type of authentication token validation:<ul><li>`JWT` if using JWT for request authentication. Perform further configuration via the `APIFW_SERVER_OAUTH_JWT_*` variables.</li><li>`INTROSPECTION` if using other token types that can be validated by the particular token introspection service. Perform further configuration via the `APIFW_SERVER_OAUTH_INTROSPECTION_*` variables.</li></ul> |
+| `APIFW_SERVER_OAUTH_JWT_SIGNATURE_ALGORITHM` | The algorithm being used to sign JWTs: `RS256`, `RS384`, `RS512`, `HS256`, `HS384` or `HS512`. |
+| `APIFW_SERVER_OAUTH_JWT_PUB_CERT_FILE` | If JWTs are signed using the RS256, RS384 or RS512 algorithm, the path to the file with the RSA public key (`*.pem`). This file must be mounted to the API Firewall Docker container. |
+| `APIFW_SERVER_OAUTH_JWT_SECRET_KEY` | If JWTs are signed using the HS256, HS384 or HS512 algorithm, the path to the file with the secret key. This file must be mounted to the API Firewall Docker container. |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT` | [Token introspection endpoint](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/). Endpoint examples:<ul><li>`https://www.googleapis.com/oauth2/v1/tokeninfo` if using Google OAuth</li><li>`http://sample.com/restv1/introspection` for Gluu OAuth 2.0 tokens</li></ul> |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT_METHOD` | The method of the requests to the token introspection endpoint. Can be `GET` or `POST`.<br><br>The default value is `GET`. |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_TOKEN_PARAM_NAME` | Name of the request parameter containing the token. By default, Wallarm considers the `token` query parameter value to be the token. |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_CLIENT_AUTH_BEARER_TOKEN` | The Bearer token value to authenticate the requests to the introspection endpoint. |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_REFRESH_INTERVAL` | Time-to-live of token metadata received from the token inspection endpoint. |
+
 ### Protected application SSL/TLS settings
 
 To facilitate the connection between API Firewall and the protected application's server signed with the custom CA certificates or insecure connection, use the following optional environment variables:
