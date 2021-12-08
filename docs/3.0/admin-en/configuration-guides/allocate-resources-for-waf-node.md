@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/allocate-resources-for-waf-node.md"
+--8<-- "3.2/admin-en/configuration-guides/allocate-resources-for-waf-node.md"

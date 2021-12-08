@@ -39,6 +39,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 2. Install one of the supported OS listed below on your server. For the Wallarm node deployment to be completed successfully, please install the OS from the image/distributive with the basic package set and do not apply any additional configurations to the installed OS. The quick start script may not be able to handle the OS customizations (e.g. security hardening or additional configurations fitting your internal server management standards).
 
     * Debian 10.x (buster)
+    * Debian 11.x (bullseye)
     * Ubuntu 18.04 LTS (bionic)
     * Ubuntu 20.04 LTS (focal)
     * CloudLinux OS 6.x

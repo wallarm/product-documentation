@@ -98,6 +98,13 @@ Installation commands for both options are described in the further instructions
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
+=== "Debian 11.x (bullseye)"
+    ```bash
+    sudo apt install dirmngr
+    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sudo apt update
+    ```
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum install -y epel-release
@@ -136,6 +143,10 @@ The command installs the following packages:
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
+=== "Debian 11.x (bullseye)"
+    ```bash
+    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
+    ```
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
@@ -168,6 +179,10 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm -t stretch-backports
     ```
 === "Debian 10.x (buster)"
+    ```bash
+    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
+    ```
+=== "Debian 11.x (bullseye)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
     ```
