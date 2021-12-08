@@ -193,6 +193,14 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
+    === "Debian 11.x (bullseye)"
+        ```bash
+        sudo apt update
+        sudo apt install dirmngr
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/3.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sudo apt update
+        ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         sudo apt update
