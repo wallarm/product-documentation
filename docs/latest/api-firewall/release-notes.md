@@ -2,6 +2,17 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.6 (2021-12-09)
+
+### New features
+
+* Support for [OAuth 2.0 token validation](installation-guides/docker-container.md#validation-of-request-authentication-tokens).
+* [Connection](installation-guides/docker-container.md#protected-application-ssltls-settings) to the servers signed with the custom CA certificates and support for insecure connection flag.
+
+### Bug fixes
+
+* https://github.com/wallarm/api-firewall/issues/27
+
 ## v0.6.5 (2021-10-12)
 
 ### New features
