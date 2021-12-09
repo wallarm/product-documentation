@@ -204,8 +204,10 @@ You may follow the recommendation to sanitize and filter all user input to preve
 
 Wallarm marks a request as the Data bomb attack if it contains the Zip or XML bomb:
 
-* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb) is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
+* [Zip bomb](https://en.wikipedia.org/wiki/Zip_bomb)  is a malicious archive file designed to crash or render useless the program or system reading it. Zip bomb allows the program to work as intended, but the archive is crafted so that unpacking it requires inordinate amounts of time, disk space and/or memory.
 * [XML bomb (billion laughs attack)](https://en.wikipedia.org/wiki/Billion_laughs_attack) is the DoS attack type that is aimed at parsers of XML documents. An attacker sends malicious payloads in XML entities.
+
+    For example, `entityOne` can be defined as 20 `entityTwo`, which themselves can be defined as 20 `entityThree`. If the same pattern is continued until `entityEight`, the XML parser will unfold a single occurrence of `entityOne` to 1 280 000 000 `entityEight` — taking up 5 GB of memory.
 
 **Remediation:**
 
