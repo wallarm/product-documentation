@@ -70,11 +70,11 @@ This section has no default values. You need to explicitly specify values in the
 
 Parameter | Description | Default value
 --- | ---- | -----
-pdb | Path to the `proton.db` file. This file contains the global settings for request filtering, which do not depend on the application structure. | `/etc/wallarm/proton.db`
-lom | Path to the [custom ruleset][link-lom] file that contains information about the protected application and the filtering node settings. | `/etc/wallarm/lom`
-key | Path to the file with the Wallarm license key. | `/etc/wallarm/license.key`
-ts_request_memory_limit | Limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset. If the memory limit is exceeded while processing some request, the user will get the 500 error. The following suffixes can be used in this parameter:<ul><li>`k` or `K` for kilobytes</li><li>`m` or `M` for megabytes</li><li>`g` or `G` for gigabyte</li></ul>Value of `0` turns the limit off. | `0`
-enable_libdetection | Whether to enable additional validation of the SQL Injection attacks with the [**libdetection** library](../../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection). If the library does not confirm the malicious payload, the request is considered to be legitimate. Using the **libdetection** library allows reducing the number of false positives among the SQL Injection attacks.<br><br>By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling the library by specifying `on` in the parameter value.<br><br>Please note, for **libdetection** to operate correctly, buffering of a client request body should be enabled by adding the filter `envoy.buffer` to the Envoy configuration.<br><br>When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%. | `off`
+`pdb` | Path to the `proton.db` file. This file contains the global settings for request filtering, which do not depend on the application structure. | `/etc/wallarm/proton.db`
+`lom` | Path to the [custom ruleset][link-lom] file that contains information about the protected application and the filtering node settings. | `/etc/wallarm/lom`
+`key` | Path to the file with the Wallarm license key. | `/etc/wallarm/license.key`
+`ts_request_memory_limit` | Limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset. If the memory limit is exceeded while processing some request, the user will get the 500 error. The following suffixes can be used in this parameter:<ul><li>`k` or `K` for kilobytes</li><li>`m` or `M` for megabytes</li><li>`g` or `G` for gigabyte</li></ul>Value of `0` turns the limit off. | `0`
+`enable_libdetection` | Whether to enable additional validation of the SQL Injection attacks with the [**libdetection** library](../../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection). If the library does not confirm the malicious payload, the request is considered to be legitimate. Using the **libdetection** library allows reducing the number of false positives among the SQL Injection attacks.<br><br>By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling the library by specifying `on` in the parameter value.<br><br>Please note, for **libdetection** to operate correctly, buffering of a client request body should be enabled by adding the filter `envoy.buffer` to the Envoy configuration.<br><br>When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%. | `off`
 
 ##  Postanalytics module settings
 
@@ -96,10 +96,10 @@ The `server` entry is a parameter group that describes the settings for the Tara
 
 Parameter | Description | Default value
 --- | ---- | -----
-uri | String with the credentials used to connect to the Tarantool server. The string format is `IP address` or `domain name:port`. | `localhost:3313`
-max_packets | Limit of the number of serialized requests to be sent to Tarantool. To remove the limit, set `0` as the parameter value. | `512`
-max_packets_mem | Limit of the total volume (in bytes) of serialized requests to be sent to Tarantool. | `0` (the volume is not limited)
-reconnect_interval | Interval (in seconds) between attempts to reconnect to the Tarantool. A value of `0` means that the filtering node will try to reconnect to the server as quickly as possible if the server renders unavailable (not recommended). | `1`
+`uri` | String with the credentials used to connect to the Tarantool server. The string format is `IP address` or `domain name:port`. | `localhost:3313`
+`max_packets` | Limit of the number of serialized requests to be sent to Tarantool. To remove the limit, set `0` as the parameter value. | `512`
+`max_packets_mem` | Limit of the total volume (in bytes) of serialized requests to be sent to Tarantool. | `0` (the volume is not limited)
+`reconnect_interval` | Interval (in seconds) between attempts to reconnect to the Tarantool. A value of `0` means that the filtering node will try to reconnect to the server as quickly as possible if the server renders unavailable (not recommended). | `1`
 
 ##  Basic settings
 
@@ -124,7 +124,7 @@ conf:
 !!! info "Definition level"
     For more flexible protection level, this section can be overridden on the route or virtual host level:
 
-    * on the route level
+    * On the route level:
 
         ```
         routes:
@@ -135,7 +135,7 @@ conf:
               <the section parameters>
         ```
         
-    * on the virtual host level
+    * On the virtual host level:
         ```
         virtual_hosts:
         - name: <the name of the virtual host>
@@ -153,7 +153,7 @@ Parameter | Description | Default value
 `mode_allow_override` | Allows overriding the filtering node mode that is set via the `mode` parameter with the [custom ruleset][link-lom]:<ul><li>`off` - custom ruleset is ignored.</li><li>`strict` - custom ruleset can only strengthen the operation mode.</li><li>`on` - it is possible to both strengthen and soften the operation mode.</li></ul>For example, if the `mode` parameter is set to the `monitoring` value and the `mode_allow_override` parameter is set to the `strict` value, then it will be possible to block some requests (`block`) but not to fully disable the filtering node (`off`). | `off`
 `instance` | Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.<br><br>[More details on setting up applications →](../../../user-guides/settings/applications.md)| `-1`
 `process_time_limit` | Limit on the processing time of a single request (in milliseconds). If the request cannot be processed in the defined amount of time, then an error message is recorded to the log file and the request is marked as an `overlimit_res` attack. | `1000`
-`process_time_limit_block` | Action to take when the request processing time exceeds the limit set via the `process_time_limit` parameter:<ul><li>`off`: the requests are always ignored</li><li>`on`: the requests are always blocked</li><li>`attack`: depends on the attack blocking mode set via the `mode` parameter:<ul><li>`off`: the requests are not processed</li><li>`monitoring`: the requests are ignored</li><li>`block`: the requests are blocked</li></ul></li></ul> | `attack`
+`process_time_limit_block` | Action to take when the request processing time exceeds the limit set via the `process_time_limit` parameter:<ul><li>`off` - the requests are always ignored.</li><li>`on` - the requests are always blocked.</li><li>`attack` - depends on the attack blocking mode set via the `mode` parameter:<ul><li>`off` - the requests are not processed.</li><li>`monitoring` - the requests are ignored.</li><li>`block` - the requests are blocked.</li></ul></li></ul> | `attack`
 `wallarm_status` | Whether to enable the [filtering node statistics service](../../configure-statistics-service.md). | `false`
 `wallarm_status_format` | Format of the [filtering node statistics](../../configure-statistics-service.md): `json` or `prometheus`. | `json`
 `disable_acl` | Allows disabling analysis of requests origins. If disabled (`on`), the filtering node does not download [IP lists](../../../user-guides/ip-lists/overview.md) from the Wallarm Cloud and skips request source IPs analysis. | `off`

@@ -271,9 +271,9 @@ Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` d
 
 Manages the ability to override the [`wallarm_mode`](#wallarm_mode) values via filtering rules downloaded from the Wallarm Cloud (custom ruleset):
 
-- `off`: the custom rules are ignored.
-- `strict`: custom rules can only strengthen the operation mode.
-- `on`: it is possible to both strengthen and soften the operation mode.
+- `off` - the custom rules are ignored.
+- `strict` - custom rules can only strengthen the operation mode.
+- `on` - it is possible to both strengthen and soften the operation mode.
 
 For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override strict` set, Wallarm Console can be used to enable blocking of some requests, but the attack analysis cannot be fully disabled.
 
