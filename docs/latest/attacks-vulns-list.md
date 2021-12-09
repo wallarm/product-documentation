@@ -558,6 +558,14 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 SSI Injection allows the exploitation of a web application by injecting malicious payloads in HTML pages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI in use in the application or force its use through user input fields.
 
+**Example:**
+
+An attacker can change the message output and change the user behavior. SSI Injection example:
+
+```bash
+<!--#config errmsg="Access denied, please enter your username and password"-->
+```
+
 **Remediation:**
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
