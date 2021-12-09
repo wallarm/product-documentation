@@ -10,10 +10,10 @@ This policy describes the method of versioning of different Wallarm filtering no
 | Node version | Release date   | Support until |
 |------------------|----------------|---------------|
 | 2.18 and lower   |                | November 2021 |
-| 3.0              | July 2021      | January 2022  |
+| 3.0              | July 2021      | February 2022 |
 | 3.2              | August 2021    |               |
 | 3.4              | October 2021   |               |
-| 3.6              | February 2022  |               |
+| Next version     | February 2022  |               |
 
 ## Version format
 
@@ -47,6 +47,8 @@ Wallarm supports only 3 latest versions of the filtering node in the following w
 * For the latest version (e.g. 3.4): allows package download, releases bug fixes and updates third‑party components if detecting vulnerabilities in the used version. May release new features after a special request.
 * For the previous version (e.g. 3.2): allows package download and releases bug fixes.
 * For the third available version (e.g. 3.0): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
+
+Node artifacts of deprecated versions are available for download and installation, but bug fixes and new features are not released in deprecated versions.
 
 When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same version in all installations for full compatibility.
 
