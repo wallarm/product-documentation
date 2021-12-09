@@ -153,7 +153,7 @@ nav:
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
       - Configuration:
-        - Configuration Options (NGINX): admin-en/configure-parameters-en.md
+        - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
         - Filtration mode configuration: admin-en/configure-wallarm-mode.md
         - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
