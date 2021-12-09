@@ -2,7 +2,7 @@
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 
-# Configuration options for the NGINX‑based filtering node
+# Configuration options for the NGINX‑based Wallarm node
 
 !!! info "NGINX official documentation"
     The Wallarm configuration is very similar to the NGINX configuration. [See the official NGINX documentation](https://www.nginx.com/resources/admin-guide/). Along with the Wallarm specific configuration options, you have the full capabilities of the NGINX configuration.
