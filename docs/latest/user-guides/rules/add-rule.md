@@ -28,6 +28,8 @@ To configure the set of conditions, both the **URI constructor** and the **advan
 
 ### URI constructor
 
+#### Working with URI constructor
+
 URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
 
 * For the request method, the URI constructor provides the particular selector. If the method is not selected, the rule will be applied to requests with any method.
@@ -39,7 +41,7 @@ URI constructor allows configuring the rule conditions by specifying the request
     | URI with some components omitted | `example.com/api/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul><br>`http://example.com/api/clients/user/?q=action&w=delete`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `clients`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[query, 'q']` - `action`</li><li>`[query, 'w']` - `delete`</li></ul><br>`/api/user`<br><ul><li>``[header, 'HOST']` - any value</li><li>`[path, 0]` - `api`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li></ul>|
     | URI with `*` meaning any non‑empty value of the component | `example.com/*/create/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - any non‑empty value</li><li>`[path, 1]` - `create`</li><li>`[path, 2]` - `∅`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php`<br>and does not match `example.com/create/user.php` and `example.com/api/create`.</ul>|
     | URI with `**` meaning any number of components including its absence | `example.com/**/user`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[action_name]` - `user`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/api/create/user` and `example.com/api/user`.<br>The value does not match `example.com/user`, `example.com/api/user/index.php` and `example.com/api/user/?w=delete`.</ul><br>`example.com/api/**/*.*`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `api`</li><li>`[action_name]` - any non‑empty value</li><li>`[action_ext]` - any non‑empty value</li>The value matches `example.com/api/create/user.php` and `example.com/api/user/create/index.php`<br>and does not match `example.com/api`, `example.com/api/user` and `example.com/api/create/user.php?w=delete`.</ul> |
-    | URI with the [regular expression](#condition-type-regexp) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
+    | URI with the [regular expression](#condition-type-regex) to match certain component values (regexp must be wrapped in `{{}}`) | `example.com/user/{{[0-9]}}`<br><ul><li>`[header, 'HOST']` - `example.com`</li><li>`[path, 0]` - `user`</li><li>`[path, 1]` - `∅`</li><li>`[action_name]` - `[0-9]`</li><li>`[action_ext]` - `∅`</li>The value matches `example.com/user/3445`<br>and does not match `example.com/user/3445/888` and `example.com/user/3445/index.php`.</ul> |
 
 The string specified in the URI constructor is automatically parsed into the set of conditions for the following [request points](#points):
 
@@ -52,6 +54,49 @@ The string specified in the URI constructor is automatically parsed into the set
 * `query`
 
 The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
+
+#### Using wildcards
+
+Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them classically, "yes" means you can achieve the same result acting like this:
+
+* Within parsed components of your URI, instead of wildcards, use [regular expressions](#condition-type-regex).
+* Place `*` or `**` symbol into the **URI** field itself to replace one or any number of components (see examples in the section [above](#working-with-uri-constructor)).
+
+**Some details**
+
+The syntax of the regular expression is different from the classical wildcards, but the same results can be achieved. For example, you want to get a mask corresponding to:
+
+* `something-1.example.com/user/create.com` and
+* `anything.something-2.example.com/user/create.com`
+
+...which in classical wildcards you would try to get by typing something like:
+
+* `*.example.com/user/create.com`
+
+But in Wallarm, your `something-1.example.com/user/create.com` will be parsed into:
+
+![!Example of parsing URI into components](../../../images/user-guides/rules/something-parsed.png)
+
+...where `something-1.example.com` is a `header`-`HOST` component. We mentioned that wildcard cannot be used within the component, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Walarm [specific syntax](#condition-type-regex):
+
+1. Do not use `*` in a meaning "any number of symbols".
+
+1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets: 
+
+    `something-1[.]example[.]com`.
+
+1. Use `.` without brackets as replacement of "any symbol" and `*` after it as quantifier "0 or more repetitions of the preceding", so `.*` and:
+
+    `.*[.]example[.]com`
+
+1. Add `$` in the end of the expression to say that what we created must end our component:
+
+    `.*[.]example[.]com$`.
+
+    !!! info "The simpler way"
+        As anything you type within regular expression is searched using the "find it wherever it is in the string", we can omit `.*` leaving only `[.]example[.]com$`.
+
+    ![!Using regular expression in header component](../../../images/user-guides/rules/wildcard-regex.png)
 
 ### Advanced edit form
 
