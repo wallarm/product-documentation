@@ -2,9 +2,9 @@
 
 ## How does Wallarm node operate if Wallarm Cloud is down?
 
-The Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
+Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
 
-However, if in rare cases the Wallarm Cloud temporarily goes down (for example, on pausing for maintenance), a Wallarm node continues operating although with some limitations.
+However, if in rare cases Wallarm Cloud temporarily goes down (for example, on pausing for maintenance), a Wallarm node continues operating although with some limitations.
 
 !!! info "Checking Wallarm Cloud status"
     To check Wallarm Cloud status, visit [status.wallarm.com](https://status.wallarm.com/). To stay informed, subscribe to updates.
@@ -14,7 +14,7 @@ What continues to work:
 * Traffic processing in the configured [mode](../admin-en/configure-wallarm-mode.md#available-filtration-modes) using the rules uploaded to the node during last successful [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) between the Cloud and the node. The node can continue to work as the latest versions of the following elements are uploaded from the Cloud according to the schedule and stored on the node locally:
 
     * [Custom ruleset](../user-guides/rules/compiling.md)
-    * [Proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
+    * [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
 
 * The [IP lists](../user-guides/ip-lists/overview.md) are also uploaded to the node and stored within it. The uploaded addresses will continue to be handled but only until expiration date/time.
 
@@ -24,10 +24,10 @@ What continues to work:
 
 What stops working:
 
-* The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-nginx-overview.md#modules-overview) has an in-memory storage ([Tarantool](../admin-en/configuration-guides/allocate-resources-for-waf-node.md#tarantool)) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
+* The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-nginx-overview.md#modules-overview) has an in-memory storage (Tarantool) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
 
     !!! warning "Node in-memory storage limitation"
-        The size of the buffer is limited and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
+        The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-waf-node.md#tarantool) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
 * The node collects but cannot send [metrics](../admin-en/monitoring/intro.md) for processed traffic to the Cloud.
 * [Scanning](../user-guides/scanner/intro.md) for the exposed assets and typical vulnerabilities will stop.
@@ -49,7 +49,7 @@ Note that besides the entire down state described above, sometimes only particul
 
 After Cloud restoration:
 
-* Access to the Wallarm Console is restored.
+* Access to Wallarm Console is restored.
 * The node sends buffered information to the Cloud (consider limitations above).
 * Triggers react to the new data by sending notifications and updating IPs.
 * If any changes in IPs, they are sent to the node during next synchronization.
@@ -58,14 +58,19 @@ After Cloud restoration:
 
 ## Is there a case when node did not get settings saved in Wallarm Console before Wallarm Cloud is down?
 
-Yes, this is possible. For example, let us consider that the synchronization interval is 3 minutes and:
+Yes, this is possible. For example, let us consider that the [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) interval is 3 minutes and:
 
 1. The last build of the custom ruleset was finished on the Cloud 21 minutes ago and it was uploaded to the node 20 minutes ago.
-1. During the next 6 synchronizations nothing was taken from the Cloud as there was nothing new.
-1. Then the rules were changed on the Cloud and a new build started - the build needed 15 minutes to finish but in 10 minutes the Cloud went down.
-1. A node only takes the finished build, so within 10 minutes synchronizations will give nothing to upload to the node.
-1. In 1 more minute, the node comes with the new synchronization request but Cloud does not respond.
-1. The node will continue to filter according to the custom ruleset with an age of 32 minutes and this age will grow while Cloud is down.
+
+2. During the next 6 synchronizations nothing was taken from the Cloud as there was nothing new.
+
+3. Then the rules were changed on the Cloud and a new build started - the build needed 15 minutes to finish but in 10 minutes the Cloud went down.
+
+4. A node only takes the finished build, so within 10 minutes synchronizations will give nothing to upload to the node.
+
+5. In 1 more minute, the node comes with the new synchronization request but Cloud does not respond.
+
+6. The node will continue to filter according to the custom ruleset with an age of 32 minutes and this age will grow while Cloud is down.
 
 ## How does Wallarm protect its Cloud data from loss?
 
@@ -81,4 +86,4 @@ To deal with the low chance that the hard drives storing actual data of Wallarm 
     * **RPO (recovery point objective)** is used for determining the frequency of data backup: defines the maximum amount of time for which the data can be lost.
     * **RTO (recovery time objective)** is the amount of real time a business has to restore its processes at an acceptable service level after a disaster to avoid intolerable consequences associated with the disruption.
 
-For further information on the Wallarm disaster recovery (DR) plan and its peculiarities for your company, contact Wallarm support.
+For further information on Wallarm disaster recovery (DR) plan and its peculiarities for your company, [contact Wallarm support](mailto:support@wallarm.com).
