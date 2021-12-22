@@ -2,12 +2,12 @@
 
 ## How does Wallarm node operate if Wallarm Cloud is down?
 
-Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
+The Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
 
-However, if in rare cases Wallarm Cloud temporarily goes down (for example, on pausing for maintenance), a Wallarm node continues operating although with some limitations.
+However, if in rare cases the Wallarm Cloud temporarily goes down (for example, on pausing for maintenance), a Wallarm node continues operating although with some limitations.
 
 !!! info "Checking Wallarm Cloud status"
-    To check Wallarm Cloud status, visit [status.wallarm.com](https://status.wallarm.com/). To stay informed, subscribe to updates.
+    To check the Wallarm Cloud status, visit [status.wallarm.com](https://status.wallarm.com/). To stay informed, subscribe to updates.
 
 What continues to work:
 
@@ -61,22 +61,17 @@ After Cloud restoration:
 Yes, this is possible. For example, let us consider that the [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) interval is 3 minutes and:
 
 1. The last build of the custom ruleset was finished on the Cloud 21 minutes ago and it was uploaded to the node 20 minutes ago.
-
 2. During the next 6 synchronizations nothing was taken from the Cloud as there was nothing new.
-
 3. Then the rules were changed on the Cloud and a new build started - the build needed 15 minutes to finish but in 10 minutes the Cloud went down.
-
 4. A node only takes the finished build, so within 10 minutes synchronizations will give nothing to upload to the node.
-
 5. In 1 more minute, the node comes with the new synchronization request but Cloud does not respond.
-
 6. The node will continue to filter according to the custom ruleset with an age of 32 minutes and this age will grow while Cloud is down.
 
 ## How does Wallarm protect its Cloud data from loss?
 
-Wallarm Cloud saves **all the data** submitted by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, Wallarm Cloud temporarily going down is an extremely rare case. But if this happens the chance is significantly low that down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
+The Wallarm Cloud saves **all the data** submitted by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, the Wallarm Cloud temporarily going down is an extremely rare case. But if this happens the chance is significantly low that down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
 
-To deal with the low chance that the hard drives storing actual data of Wallarm Cloud are destroyed, Wallarm automatically creates backups and restores from them if necessary:
+To deal with the low chance that the hard drives storing actual data of the Wallarm Cloud are destroyed, Wallarm automatically creates backups and restores from them if necessary:
 
 * RPO: backup is created every 24 hours
 * RTO: the system will be available again no more than in 48 hours
