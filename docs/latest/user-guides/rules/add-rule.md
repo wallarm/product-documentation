@@ -57,10 +57,10 @@ The value specified in the URI constructor can be completed by other request poi
 
 #### Using wildcards
 
-Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them classically, "yes" means you can achieve the same result acting like this:
+Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them [classically](https://en.wikipedia.org/wiki/Wildcard_character), "yes" means you can achieve the same result acting like this:
 
-* Within parsed components of your URI, instead of wildcards, use [regular expressions](#condition-type-regex).
-* Place `*` or `**` symbol into the **URI** field itself to replace one or any number of components (see examples in the section [above](#working-with-uri-constructor)).
+* Within parsed components of your URI, instead of wildcards, use regular expressions.
+* Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#working-with-uri-constructor)).
 
 **Some details**
 
@@ -80,21 +80,20 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 ...where `something-1.example.com` is a `header`-`HOST` component. We mentioned that wildcard cannot be used within the component, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Walarm [specific syntax](#condition-type-regex):
 
 1. Do not use `*` in a meaning "any number of symbols".
+1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
 
-1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets: 
-
-    `something-1[.]example[.]com`.
+    `something-1[.]example[.]com`
 
 1. Use `.` without brackets as replacement of "any symbol" and `*` after it as quantifier "0 or more repetitions of the preceding", so `.*` and:
-
+    
     `.*[.]example[.]com`
 
 1. Add `$` in the end of the expression to say that what we created must end our component:
-
-    `.*[.]example[.]com$`.
+    
+    `.*[.]example[.]com$`
 
     !!! info "The simpler way"
-        As anything you type within regular expression is searched using the "find it wherever it is in the string", we can omit `.*` leaving only `[.]example[.]com$`.
+        As anything you type within a regular expression is searched using the "find it wherever it is in the string", we can omit `.*` leaving only `[.]example[.]com$`.
 
     ![!Using regular expression in header component](../../../images/user-guides/rules/wildcard-regex.png)
 
