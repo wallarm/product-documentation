@@ -62,10 +62,10 @@ Yes, this is possible. For example, let us consider that the [synchronization](.
 
 1. The last build of the custom ruleset was finished on the Cloud 21 minutes ago and it was uploaded to the node 20 minutes ago.
 2. During the next 6 synchronizations nothing was taken from the Cloud as there was nothing new.
-3. Then the rules were changed on the Cloud and a new build started - the build needed 15 minutes to finish but in 10 minutes the Cloud went down.
-4. A node only takes the finished build, so within 10 minutes synchronizations will give nothing to upload to the node.
+3. Then the rules were changed on the Cloud and a new build started - the build needed 4 minutes to finish but in 2 minutes the Cloud went down.
+4. A node only takes the finished build, so within 2 minutes synchronizations will give nothing to upload to the node.
 5. In 1 more minute, the node comes with the new synchronization request but Cloud does not respond.
-6. The node will continue to filter according to the custom ruleset with an age of 32 minutes and this age will grow while Cloud is down.
+6. The node will continue to filter according to the custom ruleset with an age of 24 minutes and this age will grow while Cloud is down.
 
 ## How does Wallarm protect its Cloud data from loss?
 
