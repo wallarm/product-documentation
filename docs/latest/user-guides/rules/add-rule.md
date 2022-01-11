@@ -93,7 +93,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     `.*[.]example[.]com$`
 
     !!! info "The simpler way"
-        As anything you type within a regular expression is searched using the "find it wherever it is in the string", we can omit `.*` leaving only `[.]example[.]com$`.
+        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Walarm will assume that any character can appear before `[.]example[.]com$` any number of times.
 
     ![!Using regular expression in header component](../../../images/user-guides/rules/wildcard-regex.png)
 
