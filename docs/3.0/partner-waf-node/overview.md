@@ -25,12 +25,12 @@ If several partner nodes are installed within the partner infrastructure, client
 
 Wallarm supports particular partner accounts to work with partners. A partner account allows the partner to:
 
-* Install one or several partner nodes within its system infrastructure and define settings for client traffic processing
-* Create separate accounts for clients in Wallarm Console and provide clients with access to these accounts
+* Install one or several partner nodes within their system infrastructure and define settings for client traffic processing
+* Create separate accounts for their clients in Wallarm Console and provide the clients with access to these accounts
 * Brand Wallarm Console and select the language of the Wallarm Console interface (English or Russian)
-* Host Wallarm Console on its own domain
+* Host Wallarm Console on their own domain
 * Brand client emails and reports
-* Set the email address of own technical support to recieve messages from clients
+* Set the email address for their technical support to recieve messages from clients
 
 Depending on the Wallarm API Security subscription plan, some features may not be available.
 
