@@ -9,7 +9,7 @@
 
 # Adding Rules in the Application Profile
 
-To add a new rule, go to the *Profile & Rules* tab.
+To add a new rule, go to the *Rules* tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
 
@@ -27,6 +27,8 @@ A branch description consists of a set of conditions for various parameters that
 To configure the set of conditions, both the **URI constructor** and the **advanced edit form** can be used.
 
 ### URI constructor
+
+#### Working with URI constructor
 
 URI constructor allows configuring the rule conditions by specifying the request method and endpoint in only one string:
 
@@ -52,6 +54,48 @@ The string specified in the URI constructor is automatically parsed into the set
 * `get`
 
 The value specified in the URI constructor can be completed by other request points available only in the [advanced edit form](#advanced-edit-form).
+
+#### Using wildcards
+
+Can you use wildcards when working with URI constructor in Wallarm? No and yes. "No" means you cannot use them [classically](https://en.wikipedia.org/wiki/Wildcard_character), "yes" means you can achieve the same result acting like this:
+
+* Within parsed components of your URI, instead of wildcards, use regular expressions.
+* Place `*` or `**` symbol into the URI field itself to replace one or any number of components (see examples in the section [above](#working-with-uri-constructor)).
+
+**Some details**
+
+The syntax of the regular expression is different from the classical wildcards, but the same results can be achieved. For example, you want to get a mask corresponding to:
+
+* `something-1.example.com/user/create.com` and
+* `anything.something-2.example.com/user/create.com`
+
+...which in classical wildcards you would try to get by typing something like:
+
+* `*.example.com/user/create.com`
+
+But in Wallarm, your `something-1.example.com/user/create.com` will be parsed into:
+
+![!Example of parsing URI into components](../../../images/user-guides/rules/something-parsed.png)
+
+...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Walarm [specific syntax](#condition-type-regex):
+
+1. Do not use `*` in a meaning "any number of symbols".
+1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
+
+    `something-1[.]example[.]com`
+
+1. Use `.` without brackets as replacement of "any symbol" and `*` after it as quantifier "0 or more repetitions of the preceding", so `.*` and:
+    
+    `.*[.]example[.]com`
+
+1. Add `$` in the end of the expression to say that what we created must end our component:
+    
+    `.*[.]example[.]com$`
+
+    !!! info "The simpler way"
+        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Walarm will assume that any character can appear before `[.]example[.]com$` any number of times.
+
+    ![!Using regular expression in header component](../../../images/user-guides/rules/wildcard-regex.png)
 
 ### Advanced edit form
 
@@ -236,7 +280,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     ```
     [.]example[.]com
     ```
-* To match any string ending with <code>/.example.*.com</code>
+* To match any string ending with <code>/.example.*.com</code> where `*` can be any symbol repeated any number of times
 
     ```
     /[.]example[.].*[.]com$
