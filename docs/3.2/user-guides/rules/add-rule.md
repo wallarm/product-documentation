@@ -9,7 +9,7 @@
 
 # Adding Rules in the Application Profile
 
-To add a new rule, go to the *Profile & Rules* tab.
+To add a new rule, go to the *Rules* tab.
 
 Rules can be added to both existing and new branches. They can be created from scratch or based on one of the existing branches.
 
