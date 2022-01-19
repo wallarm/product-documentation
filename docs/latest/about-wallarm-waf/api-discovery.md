@@ -68,21 +68,19 @@ To run API Discovery correctly:
 
     * Name of your company account registered in Wallarm Console.
     * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * IDs of applications to be discovered by API Discovery. Application ID is the value of `wallarm_instance`. Enabling API Discovery for all applications does not require sending each application's ID.
 
-        Wallarm technical support will duplicate the application records in Wallarm Console → **Settings** → **Applications**. Each duplicate record will have the prefix `[API Discovery]`, application name, and a unique ID. For example, if enabling API Discovery for all applications, the list of applications in Wallarm Console will look as follows:
-
-        ![!Applications for API Discovery](../images/about-wallarm-waf/api-discovery/apps-for-api-discovery.png)
-
-        Duplicate applications are used to split the API structure tree by applications and to separate the API structure and custom ruleset trees in the **Rules** section.
-
-Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **Rules** section of Wallarm Console.
+Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
 ## API structure visualization
 
-The structure of each application API is displayed as a separate tree in the **Rules** section of Wallarm Console.
+The structure of each application API is displayed as a separate tree in the **API Discovery** section of Wallarm Console. Each application tree is organized like follows:
 
-In the title of each tree, the record name duplicating the application that uses the presented API structure is displayed. The name of the duplicating record has the format of `[API Discovery] <YOUR_APP_NAME>`. The API structure tree includes the following elements:
+* `Application name`
+    * `Domain 01`
+    * ...
+    * `Domain XX`
+
+The API structure includes the following elements (grouped by domain):
 
 * The set of API endpoints discovered by API Discovery
 * Methods of requests processed at API endpoints
@@ -93,7 +91,26 @@ By clicking the endpoint, you can also find the set of required and optional par
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-A [custom ruleset](../user-guides/rules/intro.md) created in the **Rules** section is displayed as a separate tree. The rules and API structure are not linked to each other.
+You can filter the discovered API structure:
+
+* Type in the search string.
+* Use **Application**, **Domain** and **Method** filters.
+* In the **Domain** list, click application or domain.
+
+If you need some endpoint URL, in this endpoint string, click down arrow and then from the menu select **Copy URL**.
+
+## API structure and rules
+
+Currently API structure tree and a [custom ruleset](../user-guides/rules/intro.md) tree created in the **Rules** section are not linked to each other.
+
+You can create new rule from any endpoint of API structure: 
+
+1. In the endpoint string, click down arrow and then from the menu select **Create rule**. The create rule dialog is displayed. The endpoint address is parsed into the dialog automatically.
+1. In the create rule dialog, specify rule information and then click **Create**.
+
+## Download OpenAPI Specification (OAS) for your API structure
+
+Click **Download OAS** to get a `swagger.json` file with your API structure description. The description will be in the OpenAPI v3 format.
 
 ## API Discovery debugging
 
