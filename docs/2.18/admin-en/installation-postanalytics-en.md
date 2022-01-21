@@ -154,7 +154,7 @@ To open the file in the editing mode, please use the command:
 
 The postanalytics module uses the in-memory storage Tarantool. For production environments, the recommended amount of RAM allocated for Tarantool is 75% of the total server memory. If testing the Wallarm node or having a small server size, the lower amount can be enough (e.g. 25% of the total memory).
 
-The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the `wallarm-tarantool` configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example:
+The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in the [`/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool`](#4-update-postanalytics-module-configuration) configuration file. The value can be an integer or a float (a dot `.` is a decimal separator). For example:
 
 === "If testing the node"
     ```bash
@@ -171,14 +171,28 @@ Detailed recommendations about allocating memory for Tarantool are described in 
 
 To set the address of the separate postanalytics server:
 
-1. Uncomment the `HOST` and `PORT` variables in the `wallarm-tarantool` configuration file and set them the following values:
+1. Open the Tarantool file in the editing mode:
+
+    === "Debian"
+        ``` bash
+        sudo vim /etc/default/wallarm-tarantool
+        ```
+    === "Ubuntu"
+        ``` bash
+        sudo vim /etc/default/wallarm-tarantool
+        ```
+    === "CentOS or Amazon Linux 2"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
+2. Uncomment the `HOST` and `PORT` variables and set them the following values:
 
     ```bash
     # address and port for bind
     HOST='0.0.0.0'
     PORT=3313
     ```
-2. If the configuration file of Tarantool is set up to accept connections on the IP addresses different from `0.0.0.0` or `127.0.0.1`, then please provide the addresses in `/etc/wallarm/node.yaml`:
+3. If the configuration file of Tarantool is set up to accept connections on the IP addresses different from `0.0.0.0` or `127.0.0.1`, then please provide the addresses in `/etc/wallarm/node.yaml`:
 
     ```bash
     hostname: <name of postanalytics node>
@@ -188,7 +202,7 @@ To set the address of the separate postanalytics server:
         host: '<IP address of Tarantool>'
         port: 3313
     ```
-3. Add the address of the postanalytics module server to the configuration files on the server with the NGINX‑Wallarm package as described in the instructions for proper installation forms:
+4. Add the address of the postanalytics module server to the configuration files on the server with the NGINX‑Wallarm package as described in the instructions for proper installation forms:
 
     * [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
     * [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
