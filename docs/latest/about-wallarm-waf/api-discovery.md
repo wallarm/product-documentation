@@ -64,53 +64,49 @@ To run API Discovery correctly:
     }
     ```
     API Discovery uses the `wallarm_instance` value to identify the application the traffic is flowing to and build a separate API structure for each application. If the `wallarm_instance` directive is not configured, structures of all APIs are grouped in one tree.
-2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). The request should include the following data:
+2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling entire API Discovery (all applications) or only for selected applications. The request should include the following data:
 
     * Name of your company account registered in Wallarm Console.
     * Name of the [Wallarm Cloud](overview.md#cloud) being used.
+    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is the value of `wallarm_instance`.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
 ## API structure visualization
 
-The structure of each application API is displayed as a separate tree in the **API Discovery** section of Wallarm Console. Each application tree is organized like follows:
+To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **swagger-like manner**.
 
-* `Application name`
-    * `Domain 01`
-    * ...
-    * `Domain XX`
-
-The API structure includes the following elements (grouped by domain):
+The API structure includes the following elements (grouped by application and domain):
 
 * The set of API endpoints discovered by API Discovery
 * Methods of requests processed at API endpoints
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
+You can filter the discovered API structure:
+
+* Type in the search string for endpoint search.
+* Use **Application**, **Domain** and **Method** filters.
+* In the **Domains** panel, click application or domain.
+
 By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-You can filter the discovered API structure:
-
-* Type in the search string.
-* Use **Application**, **Domain** and **Method** filters.
-* In the **Domain** list, click application or domain.
-
-If you need some endpoint URL, in this endpoint string, click down arrow and then from the menu select **Copy URL**.
+If you need some endpoint URL, in this endpoint string, click down arrow and then from the menu select **Copy URL**. You can use copied URL to use in filters in the **Events** section of Wallarm Console.
 
 ## API structure and rules
 
-Currently API structure tree and a [custom ruleset](../user-guides/rules/intro.md) tree created in the **Rules** section are not linked to each other.
+You can quickly create a new [rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
 
-You can create new rule from any endpoint of API structure: 
+1. In the endpoint string, click down arrow and then from the menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
+1. In the create rule window, specify rule information and then click **Create**.
 
-1. In the endpoint string, click down arrow and then from the menu select **Create rule**. The create rule dialog is displayed. The endpoint address is parsed into the dialog automatically.
-1. In the create rule dialog, specify rule information and then click **Create**.
+![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## Download OpenAPI Specification (OAS) for your API structure
 
-Click **Download OAS** to get a `swagger.json` file with your API structure description. The description will be in the OpenAPI v3 format.
+Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
 
 ## API Discovery debugging
 
