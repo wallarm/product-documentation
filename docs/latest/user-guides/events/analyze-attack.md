@@ -36,7 +36,7 @@ Each request displays the associated information in the following columns:
     * The **Tor** tag if the attack's source is the Tor network
     * The **VPN** tag if IP address belongs to VPN
     * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server
-* *Status*: The server's response status code from the request.
+* *Code*: The server's response status code from the request. If the filtering node blocked the request, the code would be `403` or another [custom value](../../admin-en/configuration-guides/configure-block-page-and-code.md).
 * *Size*: The server's response size.
 * *Time*: The server's response time.
 
