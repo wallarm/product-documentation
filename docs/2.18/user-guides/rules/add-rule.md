@@ -30,14 +30,18 @@ The *point* field indicates which parameter value should be extracted from the r
 
 The following points are currently supported:
 
-* **application**: application ID
-* **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...)
-* **scheme**: http or https
-* **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`)
-* **path**, **action_name**, **action_ext**: URL elements (recommended format for URL describing). More details are provided in the [request analysis description][link-request-processing]
-* **get**: GET parameters in the request
+* **application**: application ID.
+* **proto**: HTTP protocol version (1.0, 1.1, 2.0, ...).
+* **scheme**: http or https.
+* **uri**: part of the request URL without the domain (for example, `/blogs/123/index.php?q=aaa` for the request sent to `http://example.com/blogs/123/index.php?q=aaa`).
+* **path**, **action_name**, **action_ext** is hierarchical URI component sequence where: 
+
+    * **path**: an array with URI parts separated by the `/` symbol (the last URI part is not included in the array). If there is only one part in the URI, the array will be empty.
+    * **action_name**: the last part of the URI after the `/` symbol and before the first period (`.`). This part of the URI is always presented in the request, even if its value is an empty string.
+    * **action_ext**: the part of the URI after the last period (`.`). It may be missing in the request.
+* **query**: query string parameters.
 * **header**: request headers. When you enter a header name, the most common values are displayed in a drop-down list. For example: `HOST`, `USER-AGENT`, `COOKIE`, `X-FORWARDED-FOR`, `AUTHORIZATION`, `REFERER`, `CONTENT-TYPE`.
-* **method**: request methods
+* **method**: request methods. If the value is not explicitly specified, the rule will be applied to requests with any method.
 
 ### Condition types
 
