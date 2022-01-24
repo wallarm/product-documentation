@@ -17,7 +17,9 @@ The rule **Add or replace server response header** can also be used to address a
 
 ## Creating and applying the rule
 
-To create and apply the rule:
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Add or replace server response header** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 

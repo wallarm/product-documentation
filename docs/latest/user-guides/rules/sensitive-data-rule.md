@@ -16,6 +16,10 @@ Wallarm Node supports data masking in requests. This rule cuts the original valu
 
 It can affect the display of attacks, active attack (threat) verification, and the detection of brute force attacks.
 
+## Creating and applying the rule
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
 ## Example: Masking of a Cookie Value
 
 **If** the following conditions take place:

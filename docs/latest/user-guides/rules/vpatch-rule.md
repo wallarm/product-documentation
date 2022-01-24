@@ -11,6 +11,9 @@ If attack types are selected, the request will be blocked only if the filter nod
 
 If the setting *Any request* is selected, the system will block the requests with the defined parameter, even if it does not contain an attack vector.
 
+## Creating and applying the rule
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
 
 ## Example: Blocking SQLi Attack in the Query String Parameter `id`
 

@@ -29,6 +29,10 @@ To implement this rule, the NGINX configuration files must permit [centralized m
 
     If you have already updated modules, please adjust the filtration mode settings to changes released in version 3.2 (if necessary). [Details on filtration mode configuration](../../admin-en/configure-wallarm-mode.md)
 
+## Creating and applying the rule
+
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
 ## Example: Disabling Request Blocking During User Registration
 
 **If** the following conditions take place:
