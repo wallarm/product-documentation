@@ -46,13 +46,9 @@ If the attack is happening at the current moment, the *“now”* label is shown
 
 ## Analyze a Request in Raw Format
 
-The raw format of a request is the maximum possible level of detail. 
+The raw format of a request is the maximum possible level of detail. Raw format view in Wallarm Console also enables copying of a request in a cURL format.
 
-1. Select an attack.
-2. Click the number in the *Requests* column.
-3. Click the arrow next to the date of the request.
-
-The Wallarm interface will display the request in its raw format.
+To view a request in a raw format, expand a required attack and then the request within it.
 
 ![!Raw format of the request][img-analyze-attack-raw]
 
