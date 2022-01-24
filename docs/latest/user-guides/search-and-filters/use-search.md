@@ -93,6 +93,7 @@ Specify in the search string:
 * `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
 * `mail_injection`: to search for [Email Injections][email-injection].
 * `ssi`: to search for [SSI Injections][ssi-injection].
+* * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
