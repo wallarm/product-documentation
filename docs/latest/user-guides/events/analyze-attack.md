@@ -44,6 +44,16 @@ If the attack is happening at the current moment, the *“now”* label is shown
 
 ![!A currently happening attack][img-current-attack]
 
+Request view provides the following options for Wallarm behavior fine-tuning:
+
+* [**Mark as false positive** and **False**](false-attack.md) to report legitimate requests flagged as attacks.
+* **Disable base64** to indicate the base64 parser incorrectly applied to the request element.
+
+    The button opens a pre-filled form for setting up the [rule disabling the parser](../rules/disable-request-parsers.md).
+* **Rule** to create [any individual rule](../rules/add-rule.md#rule) to handle certain requests.
+
+    The button opens a rule setup form pre-filled with the request data.
+
 ## Analyze a Request in Raw Format
 
 The raw format of a request is the maximum possible level of detail. Raw format view in Wallarm Console also enables copying of a request in a cURL format.
