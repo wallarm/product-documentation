@@ -66,7 +66,9 @@ To replace both the value of the `HOST` header and the path of the original requ
 
 ### Creating and applying the rule
 
-To create and apply the rule:
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Rewrite attack before active verification** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 

@@ -11,7 +11,9 @@ Using the rules **Allow binary data** and **Allow certain file types**, you can 
 
 ## Creating and applying the rule
 
-To create and apply the rule:
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
 
 1. To adjust the attack detection rules for the binary data passed in the specified request element in any way, create the rule **Allow binary data** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 

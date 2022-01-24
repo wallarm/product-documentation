@@ -19,14 +19,14 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
         To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
 
-* *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method. They can be accessed using search query `experimental attacks`.
+* *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
 
 * *Attack*: the type of attack that will be detected when the parameter value in the request matches the regular expression.
 
 * *in this part of request*: determines a point in the request, where the system should detect the corresponding attacks.
 
 
-### Example: Blocking All Headers with an Incorrect X-Authentication Header
+### Example: Blocking All Requests with an Incorrect X-Authentication Header
 
 **If** the following conditions take place:
 

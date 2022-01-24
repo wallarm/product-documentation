@@ -32,9 +32,12 @@ A condition is a system event to be notified about. The following conditions are
 
 * [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload)
-* Number of [attacks](../../glossary-en.md#attack)
-* Number of [hits](../../glossary-en.md#hit)
+* Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
+* Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
+* Number of [hits](../../glossary-en.md#hit) except for:
+
+    * Experimental hits detected based on the [custom regular expression](../rules/regex-rule.md). Non-experimental hits are counted.
+    * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Blacklisted IP
 * User added

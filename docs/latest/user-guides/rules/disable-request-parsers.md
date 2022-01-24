@@ -10,7 +10,9 @@ To prevent false positives in such cases, you can disable the parsers mistakenly
 
 ## Creating and applying the rule
 
-To create and apply the rule:
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
+
+To create and apply the rule in the **Rules** section:
 
 1. Create the rule **Disable/Enable request parser** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 

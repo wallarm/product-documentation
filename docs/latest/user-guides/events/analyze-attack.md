@@ -36,7 +36,7 @@ Each request displays the associated information in the following columns:
     * The **Tor** tag if the attack's source is the Tor network
     * The **VPN** tag if IP address belongs to VPN
     * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server
-* *Status*: The server's response status code from the request.
+* *Code*: The server's response status code from the request. If the filtering node blocked the request, the code would be `403` or another [custom value](../../admin-en/configuration-guides/configure-block-page-and-code.md).
 * *Size*: The server's response size.
 * *Time*: The server's response time.
 
@@ -44,15 +44,21 @@ If the attack is happening at the current moment, the *“now”* label is shown
 
 ![!A currently happening attack][img-current-attack]
 
+Request view provides the following options for Wallarm behavior fine-tuning:
+
+* [**Mark as false positive** and **False**](false-attack.md) to report legitimate requests flagged as attacks.
+* **Disable base64** to indicate the base64 parser incorrectly applied to the request element.
+
+    The button opens a pre-filled form for setting up the [rule disabling the parser](../rules/disable-request-parsers.md).
+* **Rule** to create [any individual rule](../rules/add-rule.md#rule) to handle certain requests.
+
+    The button opens a rule setup form pre-filled with the request data.
+
 ## Analyze a Request in Raw Format
 
-The raw format of a request is the maximum possible level of detail. 
+The raw format of a request is the maximum possible level of detail. Raw format view in Wallarm Console also enables copying of a request in a cURL format.
 
-1. Select an attack.
-2. Click the number in the *Requests* column.
-3. Click the arrow next to the date of the request.
-
-The Wallarm interface will display the request in its raw format.
+To view a request in a raw format, expand a required attack and then the request within it.
 
 ![!Raw format of the request][img-analyze-attack-raw]
 

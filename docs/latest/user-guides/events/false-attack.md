@@ -48,3 +48,13 @@ If all the requests in the attack are marked as false positives, then the inform
 ## Remove a false positive mark
 
 To remove a false positive mark from the hit or attack, please send a request to [Wallarm technical support](mailto: support@wallarm.com). Also, you can undo a false positive mark in the dialog box in Wallarm Console within a few seconds after the mark was applied.
+
+## Displaying false positives in the attack list
+
+Wallarm Console enables controlling the display of false positives in the attack list via the separate filter. There are the following filter options:
+
+* **Default view**: only actual attacks
+* **With false positives**: actual attacks and false positives
+* **Only false positives**
+
+![!False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
