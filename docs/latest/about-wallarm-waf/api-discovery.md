@@ -40,35 +40,15 @@ The API Discovery package `wallarm-appstructure` is delivered with all forms of 
 
 To run API Discovery correctly:
 
-1. Ensure that the unique value of the [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) directive is assigned to each application or environment for which you want to build the API structure.
+1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
-    For example, to enable the API Discovery module for `example.com` and `test.com`, the `wallarm_istance` directives should be added in the appropriate `server` blocks of NGINX configuration:
+    If the applications are not configured, structures of all APIs are grouped in one tree.
 
-    ```bash
-    server {
-        listen       80;
-        server_name  example.com;
-        wallarm_mode block;
-        wallarm_instance 13;
-        
-        ...
-    }
-    
-    server {
-        listen       80;
-        server_name  test.com;
-        wallarm_mode monitoring;
-        wallarm_instance 14;
-        
-        ...
-    }
-    ```
-    API Discovery uses the `wallarm_instance` value to identify the application the traffic is flowing to and build a separate API structure for each application. If the `wallarm_instance` directive is not configured, structures of all APIs are grouped in one tree.
-2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling entire API Discovery (all applications) or only for selected applications. The request should include the following data:
+2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling API Discovery for all applications or only for selected applications. The request should include the following data:
 
     * Name of your company account registered in Wallarm Console.
     * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is the value of `wallarm_instance`.
+    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_instance` at the same time.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
@@ -93,13 +73,13 @@ By clicking the endpoint, you can also find the set of required and optional par
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-If you need some endpoint URL, in this endpoint string, click down arrow and then from the menu select **Copy URL**. You can use copied URL to use in filters in the **Events** section of Wallarm Console.
+If you need some endpoint URL, in this endpoint menu select **Copy URL**. You can use copied URL to use in filters in the **[Events](../user-guides/events/check-attack.md)** section of Wallarm Console.
 
 ## API structure and rules
 
-You can quickly create a new [rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
+You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
 
-1. In the endpoint string, click down arrow and then from the menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
+1. If you need some endpoint URL, in this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
 ![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
