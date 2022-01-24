@@ -269,13 +269,23 @@ To search by the application to which the attack was sent or in which a vulnerab
 
 The attribute value is the application name set on the **Applications** tab in the **Settings** section. For example: `pool:'Example application'`.
 
-### Search by parameter
+### Search by parameter or parser
 
-To search by parameter, use the `p:`, `param:`, or `parameter:` prefix and also the `=` suffix.
+To search by parameter or parser, use the `p:`, `param:`, or `parameter:` prefix, or the `=` suffix. If using the suffix, a string that does not start with `/` is considered to be a parameter (wherein the ending `=` character is not included in the value).
 
-For example, if you need to find attacks aimed at the `xss` parameter but not at XSS-attacks (for instance, SQL-injection attack having `xss` in the GET-parameter), then specify `attacks p:xss` in the search string.
+Possible attribute values:
 
-A string that does not start with `/` and ends with `=` is considered to be a parameter (wherein the ending `=` character is not included in the value). Any string can be specified with a prefix.
+* Name of the aimed parameter.
+
+    For example, if you need to find attacks aimed at the `xss` parameter but not at XSS-attacks (for instance, SQL-injection attack having `xss` in the GET-parameter), then specify `attacks sqli p:xss` in the search string.
+* Name of the [parser](../rules/request-processing.md) used by Wallarm node to read the parameter value. The name must be in uppercase.
+
+    For example, `attacks p:*BASE64` to find attacks aimed at any parameter parsed by the base64 parser.
+* Sequence of parameters and parsers.
+
+    For example: `attacks p:"POST_JSON_DOC_HASH_from"` to find attacks sent in the `from` parameter in the JSON body of a request.
+
+You may use masks within a value. The symbol `*` replaces any number of characters, the symbol `?` replaces any single character.
 
 ### Search for anomalies in attacks
 
