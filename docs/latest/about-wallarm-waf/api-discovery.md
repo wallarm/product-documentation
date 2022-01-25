@@ -40,60 +40,57 @@ The API Discovery package `wallarm-appstructure` is delivered with all forms of 
 
 To run API Discovery correctly:
 
-1. Ensure that the unique value of the [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance) directive is assigned to each application or environment for which you want to build the API structure.
+1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
-    For example, to enable the API Discovery module for `example.com` and `test.com`, the `wallarm_istance` directives should be added in the appropriate `server` blocks of NGINX configuration:
+    If the applications are not configured, structures of all APIs are grouped in one tree.
 
-    ```bash
-    server {
-        listen       80;
-        server_name  example.com;
-        wallarm_mode block;
-        wallarm_instance 13;
-        
-        ...
-    }
-    
-    server {
-        listen       80;
-        server_name  test.com;
-        wallarm_mode monitoring;
-        wallarm_instance 14;
-        
-        ...
-    }
-    ```
-    API Discovery uses the `wallarm_instance` value to identify the application the traffic is flowing to and build a separate API structure for each application. If the `wallarm_instance` directive is not configured, structures of all APIs are grouped in one tree.
-2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). The request should include the following data:
+2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling API Discovery for all applications or only for selected applications. The request should include the following data:
 
     * Name of your company account registered in Wallarm Console.
     * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * IDs of applications to be discovered by API Discovery. Application ID is the value of `wallarm_instance`. Enabling API Discovery for all applications does not require sending each application's ID.
+    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_instance` at the same time.
 
-        Wallarm technical support will duplicate the application records in Wallarm Console → **Settings** → **Applications**. Each duplicate record will have the prefix `[API Discovery]`, application name, and a unique ID. For example, if enabling API Discovery for all applications, the list of applications in Wallarm Console will look as follows:
-
-        ![!Applications for API Discovery](../images/about-wallarm-waf/api-discovery/apps-for-api-discovery.png)
-
-        Duplicate applications are used to split the API structure tree by applications and to separate the API structure and custom ruleset trees in the **Rules** section.
-
-Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **Rules** section of Wallarm Console.
+Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
 ## API structure visualization
 
-The structure of each application API is displayed as a separate tree in the **Rules** section of Wallarm Console.
+To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **swagger-like manner**.
 
-In the title of each tree, the record name duplicating the application that uses the presented API structure is displayed. The name of the duplicating record has the format of `[API Discovery] <YOUR_APP_NAME>`. The API structure tree includes the following elements:
+The API structure includes the following elements (grouped by application and domain):
 
 * The set of API endpoints discovered by API Discovery
 * Methods of requests processed at API endpoints
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
+You can filter the discovered API structure:
+
+* Type in the search string for endpoint search.
+* Use **Application**, **Domain** and **Method** filters.
+* In the **Domains** panel, click application or domain.
+
 By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-A [custom ruleset](../user-guides/rules/intro.md) created in the **Rules** section is displayed as a separate tree. The rules and API structure are not linked to each other.
+If you need some endpoint URL, in this endpoint menu select **Copy URL**. You can use copied URL to use in filters in the **[Events](../user-guides/events/check-attack.md)** section of Wallarm Console.
+
+## API structure and rules
+
+You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
+
+1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
+1. In the create rule window, specify rule information and then click **Create**.
+
+![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+
+## Download OpenAPI Specification (OAS) for your API structure
+
+Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
+
+!!! info "Domain information in downloaded swagger file"
+    If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded swagger file. Currently, the domain information is not included in the file.
+
 
 ## API Discovery debugging
 
