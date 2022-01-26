@@ -323,7 +323,7 @@ nav:
         - Updating the cloud node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
-  - "Free tool: API Firewall":
+  - "Open source: API Firewall":
     - API Firewall overview: api-firewall/overview.md
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:
