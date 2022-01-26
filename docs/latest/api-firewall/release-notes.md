@@ -2,6 +2,13 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.7 (2022-01-25)
+
+Wallarm API Firewall is now open source. There are the following related changes in [this release](https://github.com/wallarm/api-firewall/releases/tag/v0.6.7):
+
+* API Firewall source code and related open source license are published
+* GitHub workflow for binary, Helm chart and Docker image building is implemented
+
 ## v0.6.6 (2021-12-09)
 
 ### New features

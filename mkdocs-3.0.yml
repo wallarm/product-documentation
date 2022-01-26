@@ -322,7 +322,7 @@ nav:
       - Migrating whitelists and blacklists from previous Wallarm node versions to 3.0: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
-  - "Free tool: API Firewall":
+  - "Open source: API Firewall":
     - API Firewall overview: api-firewall/overview.md
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:

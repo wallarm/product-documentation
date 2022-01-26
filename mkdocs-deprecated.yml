@@ -83,7 +83,7 @@ edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 nav:
   - Product guides:
     - Home: index.md
-  - "Free tool: API Firewall":
+  - "Open source: API Firewall":
     - API Firewall overview: api-firewall/overview.md
     - Running API Firewall on Docker: api-firewall/installation-guides/docker-container.md
     - Demos:
