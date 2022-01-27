@@ -4,10 +4,6 @@ These instructions describe how to quickly deploy the first Wallarm NGINX‑base
 
 Wallarm API Security quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
 
-<div class="video-wrapper">
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/QUaFqbdku5Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
 ## How the quick start script works
 
 The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/3.4/getwallarm.sh) used for Wallarm API Security quick start performs the following steps:
