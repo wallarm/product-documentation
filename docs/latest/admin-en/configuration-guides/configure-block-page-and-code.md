@@ -21,8 +21,7 @@ By default, the response code 403 and default NGINX blocking page are returned t
 
 You can configure the blocking page and error code passing the following parameters in the `wallarm_block_page` NGINX directive:
 
-* Path to the HTM or HTML file of the blocking page. You can specify the path either to a custom blocking page or the default blocking page provided by Wallarm. The Wallarm blocking page located in the file `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
-    ![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm.png)
+* Path to the HTM or HTML file of the blocking page. You can specify the path either to a custom blocking page or the [default blocking page](#customizing-default-blocking-page) provided by Wallarm.
 * The text of the message to be returned in response to a blocked request.
 * URL for the client redirection.
 * `response_code`: response code.
@@ -85,6 +84,45 @@ The directive `wallarm_block_page` can be set inside the `http`, `server`, `loca
 The directive `wallarm_block_page_add_dynamic_path` is used to initialize the blocking page that has NGINX variables in its code and the path to this blocking page is also set using a variable. Otherwise, the directive is not used.
 
 The directive  can be set inside the `http` block of the NGINX configuration file.
+
+### Customizing default blocking page
+
+ The default blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
+
+![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm.png)
+
+You can customize this page:
+
+* add your company logo
+* add your company support email
+* change any other HTML elements or add your own
+
+!!! info "Default vs custom blocking page"
+    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used via the `path` property of the [wallarm_block_page](#nginx-directive-wallarm_block_page) directive.
+
+To add your company logo, in the `wallarm_blocked.html` file, modify and uncomment:
+
+```html
+    <div class="content">
+        <div id="logo" class="logo">
+            <!--
+                Place you logo here.
+                You can use an external image:
+                <img src="https://example.com/logo.png" width="160" alt="Company Name" />
+                Or put your logo source code (like svg) right here:
+                <svg width="160" height="80"> ... </svg>
+            -->
+        </div>
+```
+
+To add your company support email, in the `wallarm_blocked.html` file, modify the `SUPPORT_EMAIL` variable:
+
+```html
+    <script>
+        // Place your support email here
+        const SUPPORT_EMAIL = "support@company.com";
+    </script>
+```
 
 ## Configuration examples
 
