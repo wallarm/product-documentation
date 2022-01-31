@@ -52,7 +52,7 @@ The `tsets` section of the file contains the parameters related to request filte
 tsets:
 - name: ts0
   pdb: /etc/wallarm/proton.db
-  lom: /etc/wallarm/lom
+  custom_ruleset: /etc/wallarm/custom_ruleset
   key: /etc/wallarm/license.key
   ts_request_memory_limit: 0
   enable_libdetection: "on"

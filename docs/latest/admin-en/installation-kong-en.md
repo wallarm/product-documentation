@@ -205,7 +205,7 @@ For example:
 
 ## 7. Set up the filtration mode
 
---8<-- "../include/setup-filter-kong-en.md"
+--8<-- "../include/setup-filter-kong-en-latest.md"
 
 ## 8. Configure logging
 

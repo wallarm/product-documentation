@@ -1,10 +1,14 @@
-The filtering and proxying rules are configured in the `/etc/nginx-wallarm/conf.d/wallarm.conf` file.
+The following files contain NGINX and filtering node settings:
 
-You can create your own configuration files to define the operation of NGINX-Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
+* `/etc/nginx/nginx.conf` defines the configuration of NGINX
+* `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm filtering node
+* `/etc/nginx/conf.d/wallarm-status.conf` defines the filtering node monitoring service configuration
 
-To see detailed information about configuring NGINX-Wallarm, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+You can create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
 
-Wallarm directives define the operation logic of the Wallarm filtering node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](../admin-en/configure-parameters-en.md) page.
+To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+
+Wallarm directives define the operation logic of the Wallarm filtering node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](configure-parameters-en.md) page.
 
 **Configuration file example**
 
@@ -18,9 +22,9 @@ Let us suppose that you need to configure the server to work in the following co
 * Clients access the filtering node directly, without an intermediate HTTP load balancer.
 
 !!! info "Creating a configuration file"
-    You can create a custom NGINX-Wallarm configuration file (e.g. `example.com.conf`) or modify the default NGINX-Wallarm configuration file (`default.conf`).
+    You can create a custom NGINX configuration file (e.g. `example.com.conf`) or modify the default NGINX configuration file (`default.conf`).
     
-    When creating a custom configuration file, make sure that NGINX-Wallarm listens to the incoming connections on the free port.
+    When creating a custom configuration file, make sure that NGINX listens to the incoming connections on the free port.
 
 
 To meet the listed conditions, the contents of the configuration file must be the following:
@@ -37,7 +41,7 @@ To meet the listed conditions, the contents of the configuration file must be th
 
       # turn on the monitoring mode of traffic processing
       wallarm_mode monitoring; 
-      # wallarm_instance 1;
+      # wallarm_application 1;
 
       location / {
         # setting the address for request forwarding

@@ -113,7 +113,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 ## 8. Set up filtering and proxying rules
 
---8<-- "../include/setup-filter-nginx-en.md"
+--8<-- "../include/setup-filter-nginx-en-latest.md"
 
 ## 9. Instance memory allocation for the Wallarm node
 
