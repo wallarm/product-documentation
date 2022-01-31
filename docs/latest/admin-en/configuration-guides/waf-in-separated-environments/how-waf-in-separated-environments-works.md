@@ -35,8 +35,8 @@ When configuring a filter node you can add Wallarm IDs for your environments usi
     ![!Added environments](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. Specify ID configuration in a filter node:
 
-    * using the [`wallarm_instance`](../../configure-parameters-en.md#wallarm_instance) directive for Linux‑based, Kubernetes sidecar and Docker‑based deployments;
-    * using the [`nginx.ingress.kubernetes.io/wallarm-instance`](../../configure-kubernetes-en.md#ingress-annotations) annotation for Kubernetes NGINX Ingress controller deployments. Now, when creating a new filter node rule it is possible to specify that the rule will be assigned to a set of specific instance IDs. Without the attribute, a new rule will be automatically applied to all protected resources in a Wallarm account.
+    * using the [`wallarm_application`](../../configure-parameters-en.md#wallarm_application) directive for Linux‑based, Kubernetes sidecar and Docker‑based deployments;
+    * using the [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.md#ingress-annotations) annotation for Kubernetes NGINX Ingress controller deployments. Now, when creating a new filter node rule it is possible to specify that the rule will be assigned to a set of specific application IDs. Without the attribute, a new rule will be automatically applied to all protected resources in a Wallarm account.
 
 ![!Creating rule for ID](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 
@@ -61,5 +61,5 @@ To activate a `master` account and sub-accounts, please contact [Wallarm's Techn
 </div>
 
 !!! warning "Known limitations"
-    * All filtering nodes connected to the same Wallarm account will receive the same set of traffic filtration rules. You still can apply different rules for different applications by using proper [application instance IDs or unique HTTP request headers](#resource-identification).
-    * If the filtering node decides to automatically block an IP address (for example, because of three or more detected attack vectors from the IP address) the system will block the IP for all application instances in a Wallarm account.
+    * All filtering nodes connected to the same Wallarm account will receive the same set of traffic filtration rules. You still can apply different rules for different applications by using proper [application IDs or unique HTTP request headers](#resource-identification).
+    * If the filtering node decides to automatically block an IP address (for example, because of three or more detected attack vectors from the IP address) the system will block the IP for all applications in a Wallarm account.
