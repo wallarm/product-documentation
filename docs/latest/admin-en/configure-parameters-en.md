@@ -46,6 +46,83 @@ api:
   ca_verify: true
 ```
 
+### wallarm_application
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_instance`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_instance` directive will be deprecated soon. The directive logic has not changed.
+
+Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
+
+Unique identifiers can be set for both the application domains and the domain paths, for example:
+
+=== "Identifiers for domains"
+    Configuration file for the domain **example.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_application 1;
+        location / {
+                proxy_pass http://example.com;
+                include proxy_params;
+        }
+    }
+    ```
+
+    Configuration file for the domain **test.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_application 2;
+        location / {
+                proxy_pass http://test.com;
+                include proxy_params;
+        }
+    }
+    ```
+=== "Identifiers for domain paths"
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+        
+        wallarm_mode monitoring;
+        location /login {
+                proxy_pass http://example.com/login;
+                include proxy_params;
+                wallarm_application 3;
+        }
+        
+        location /users {
+                proxy_pass http://example.com/users;
+                include proxy_params;
+                wallarm_application 4;
+        }
+    }
+    ```
+
+[More details on setting up applications →](../user-guides/settings/applications.md)
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+    **Default value**: `-1`.
 
 ### wallarm_block_page
 
@@ -134,78 +211,10 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 
 ### wallarm_instance
 
-Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_application`](#wallarm_application) directive instead.
 
-Unique identifiers can be set for both the application domains and the domain paths, for example:
-
-=== "Identifiers for domains"
-    Configuration file for the domain **example.com**:
-
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-
-        wallarm_mode monitoring;
-        wallarm_instance 1;
-        location / {
-                proxy_pass http://example.com;
-                include proxy_params;
-        }
-    }
-    ```
-
-    Configuration file for the domain **test.com**:
-
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-
-        wallarm_mode monitoring;
-        wallarm_instance 2;
-        location / {
-                proxy_pass http://test.com;
-                include proxy_params;
-        }
-    }
-    ```
-=== "Identifiers for domain paths"
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-        
-        wallarm_mode monitoring;
-        location /login {
-                proxy_pass http://example.com/login;
-                include proxy_params;
-                wallarm_instance 3;
-        }
-        
-        location /users {
-                proxy_pass http://example.com/users;
-                include proxy_params;
-                wallarm_instance 4;
-        }
-    }
-    ```
-
-[More details on setting up applications →](../user-guides/settings/applications.md)
-
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-
-    **Default value**: `-1`.
+    The `wallarm_instance` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_key_path
 
