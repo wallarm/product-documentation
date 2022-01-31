@@ -94,7 +94,7 @@ You can mount the prepared configuration file to the Docker container via the `-
         index index.html index.htm;
 
         wallarm_mode monitoring;
-        # wallarm_instance 1;
+        # wallarm_application 1;
 
         location / {
                 proxy_pass http://example.com;
