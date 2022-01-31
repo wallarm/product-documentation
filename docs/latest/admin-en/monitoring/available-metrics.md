@@ -184,7 +184,7 @@ The number of proton.db and [LOM][doc-lom] pairs in use.
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of Successfully Downloaded proton.db and LOM Pairs
 
@@ -195,7 +195,7 @@ The number of proton.db and [LOM][doc-lom] pairs that were successfully download
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of proton.db and LOM Pairs Downloaded from the Last Saved Files
 
@@ -206,7 +206,7 @@ The number of proton.db and [LOM][doc-lom] pairs downloaded from the last saved 
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of Inactive proton.db and LOM Pairs
 
@@ -217,7 +217,7 @@ The number of connected proton.db and [LOM][doc-lom] pairs that could not be rea
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
     2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 ##  Postanalytics Module Metrics
 

@@ -149,6 +149,18 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 !!! info
     This parameter is configured inside the http block only.
 
+### wallarm_custom_ruleset_path
+
+A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+    
+    **Default value**: `/etc/wallarm/lom`
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_local_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_local_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
+
 ### wallarm_enable_libdetection
 
 Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
@@ -226,13 +238,10 @@ A path to the Wallarm license key.
 
 ### wallarm_local_trainingset_path
 
-A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead.
 
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-    
-    **Default value**: `/etc/wallarm/lom`
-
+    The `wallarm_local_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_mode
 
