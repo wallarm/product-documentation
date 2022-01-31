@@ -156,7 +156,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value**: `/etc/wallarm/lom`
+    **Default value**: `/etc/wallarm/custom_ruleset` (in Wallarm node 3.4 and lower, `/etc/wallarm/lom`)
 
 !!! warning "Previous name of the directive"
     In Wallarm node 3.4 and lower, this directive is named `wallarm_local_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_local_trainingset_path` directive will be deprecated soon. The directive logic has not changed.

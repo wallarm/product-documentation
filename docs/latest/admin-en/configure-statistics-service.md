@@ -68,10 +68,10 @@ As a result, you will get a response of the type:
 ```
 { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"abnormal":0,"tnt_errors":0,
 "api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
-"softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,
-"db_apply_time":1598525865,"lom_apply_time":1598525870,"proton_instances": { "total":3,
+"softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"custom_ruleset_id":102,
+"db_apply_time":1598525865,"custom_ruleset_apply_time":1598525870,"proton_instances": { "total":3,
 "success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,"stalled_workers":[],
-"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,"fname":"\/etc\/wallarm\/lom"}],
+"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,"fname":"\/etc\/wallarm\/custom_ruleset"}],
 "db_files":[{"id":73,"size":139094,"mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}] }
 ```
 
@@ -89,9 +89,9 @@ The following response parameters are available:
 *   `memfaults`: the number of issues where the virtual memory limits were reached.
 *   `time_detect`: the total time of requests analysis.
 *   `db_id`: proton.db version.
-*   `lom_id`: [LOM][gl-lom] version.
+*   `custom_ruleset_id` (in Wallarm node 3.4 and lower, `lom_id`): version of the [custom ruleset][gl-lom] build.
 *   `db_apply_time`: Unix time of the last update of the proton.db file.
-*   `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file.
+*   `custom_ruleset_apply_time` (in Wallarm node 3.4 and lower, `lom_apply_time`): Unix time of the last update of the [custom ruleset](../glossary-en.md#lom) file.
 *   `proton_instances`: information about proton.db + LOM pairs:
     *   `total`: the number of proton.db + LOM pairs.
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.

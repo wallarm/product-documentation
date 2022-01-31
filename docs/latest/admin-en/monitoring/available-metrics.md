@@ -170,7 +170,7 @@ The version of proton.db in use.
 
 The version of [LOM][doc-lom] in use.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-lom_id`
+* **Metric:** ``curl_json-wallarm_nginx/gauge-custom_ruleset_id`
 * **Metric value:** no limits
 
 ### proton.db and LOM Pairs

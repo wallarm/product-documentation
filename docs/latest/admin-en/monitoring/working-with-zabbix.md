@@ -58,7 +58,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
 4.  Check the monitoring operation: 
     1.  Make sure that the current number of attacks in the Zabbix widget matches the output of `wallarm-status` on the filter node.
     
-        --8<-- "../include/monitoring/wallarm-status-check-padded.md"
+        --8<-- "../include/monitoring/wallarm-status-check-padded-latest.md"
 
         ![!Viewing the metric value][img-global-view-0]
 
@@ -68,7 +68,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
         
     3.  Make sure that the attack counter has increased in both the `wallarm-status` output and the Zabbix widget:
     
-        --8<-- "../include/monitoring/wallarm-status-output-padded.md"
+        --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
         ![!Viewing the changed metric value][img-global-view-16]
 
