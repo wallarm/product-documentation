@@ -193,7 +193,7 @@ To deploy the container with environment variables and configuration file mounte
         index index.html index.htm;
 
         wallarm_mode monitoring;
-        # wallarm_instance 1;
+        # wallarm_application 1;
 
         location / {
                 proxy_pass http://example.com;
