@@ -48,7 +48,7 @@ To run API Discovery correctly:
 
     * Name of your company account registered in Wallarm Console.
     * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_instance` at the same time.
+    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_application` at the same time.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
