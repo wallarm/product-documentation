@@ -170,7 +170,9 @@ The version of proton.db in use.
 
 The version of [LOM][doc-lom] in use.
 
-* **Metric:** `curl_json-wallarm_nginx/gauge-lom_id`
+* **Metric:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
+
+    (in Wallarm node 3.4 and lower, `curl_json-wallarm_nginx/gauge-lom_id`)
 * **Metric value:** no limits
 
 ### proton.db and LOM Pairs
@@ -183,8 +185,8 @@ The number of proton.db and [LOM][doc-lom] pairs in use.
 * **Metric value:** `>0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    2. Check if the path to the proton.db file is specified correctly ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of Successfully Downloaded proton.db and LOM Pairs
 
@@ -194,8 +196,8 @@ The number of proton.db and [LOM][doc-lom] pairs that were successfully download
 * **Metric value:** is equal to [`proton_instances-total`](#number-of-protondb-and-lom-pairs)
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    2. Check if the path to the proton.db file is specified correctly ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of proton.db and LOM Pairs Downloaded from the Last Saved Files
 
@@ -205,8 +207,8 @@ The number of proton.db and [LOM][doc-lom] pairs downloaded from the last saved 
 * **Metric value:** `>0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    2. Check if the path to the proton.db file is specified correctly ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 #### Number of Inactive proton.db and LOM Pairs
 
@@ -216,8 +218,8 @@ The number of connected proton.db and [LOM][doc-lom] pairs that could not be rea
 * **Metric value:** `0`
 * **Troubleshooting recommendations:**
     1. Check if the filter node settings are correct.
-    2. Check if the path to the proton.db file is specified correctly ([`wallarm_global_trainingset_path`](../configure-parameters-en.md#wallarm_global_trainingset_path)).
-    3. Check if the path to the LOM file is specified correctly ([`wallarm_local_trainingset_path`](../configure-parameters-en.md#wallarm_local_trainingset_path)).
+    2. Check if the path to the proton.db file is specified correctly ([`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)).
+    3. Check if the path to the LOM file is specified correctly ([`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)).
 
 ##  Postanalytics Module Metrics
 

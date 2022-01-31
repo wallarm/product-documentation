@@ -525,18 +525,6 @@ Limits the size of the part of the request that is processed during one iteratio
     This parameter can be set inside the http, server, and location blocks.
     **Default value**: `8k` (8 kilobytes).
 
-### wallarm_tarantool_connect_attempts
-
-!!! warning "Deprecated"
-    Use the [`wallarm_upstream_connect_attempts`](#wallarm_upstream_connect_attempts) directive instead.
-
-
-### wallarm_tarantool_connect_interval
-
-!!! warning "Deprecated"
-    Use the [`wallarm_upstream_reconnect_interval`](#wallarm_upstream_reconnect_interval) directive instead.
-
-
 ### wallarm_tarantool_upstream
 
 With the `wallarm_tarantool_upstream`, you can balance the requests between several postanalytics servers.
@@ -672,9 +660,3 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
     **Default value:** `100m`.
     
     This parameter can be set inside the http block only.
-
-
-### wallarm_worker_rlimit_vmem
-
-!!! warning "Deprecated"
-    It is now an alias for the [wallarm_ts_request_memory_limit](#wallarm_ts_request_memory_limit) directive.

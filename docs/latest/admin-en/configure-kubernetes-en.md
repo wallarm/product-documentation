@@ -127,7 +127,7 @@ These annotations are used for setting up parameters for processing individual i
 * [nginx.ingress.kubernetes.io/wallarm-mode](configure-parameters-en.md#wallarm_mode), default: off
 * [nginx.ingress.kubernetes.io/wallarm-mode-allow-override](configure-parameters-en.md#wallarm_mode_allow_override)
 * [nginx.ingress.kubernetes.io/wallarm-fallback](configure-parameters-en.md#wallarm_fallback)
-* [nginx.ingress.kubernetes.io/wallarm-instance](configure-parameters-en.md#wallarm_instance)
+* [nginx.ingress.kubernetes.io/wallarm-application](configure-parameters-en.md#wallarm_application)
 * [nginx.ingress.kubernetes.io/wallarm-block-page](configure-parameters-en.md#wallarm_block_page)
 * [nginx.ingress.kubernetes.io/wallarm-parse-response](configure-parameters-en.md#wallarm_parse_response)
 * [nginx.ingress.kubernetes.io/wallarm-parse-websocket](configure-parameters-en.md#wallarm_parse_websocket)

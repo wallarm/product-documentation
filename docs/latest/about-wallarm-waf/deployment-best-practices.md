@@ -76,8 +76,8 @@ In addition to blocking individual malicious requests, Wallarm filtering nodes c
 ## Learn how to perform gradual rollout of Wallarm API Security configuration changes
 
 * Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
-* For traffic filtration rules, use a different set of application instance [IDs](../admin-en/configure-parameters-en.md#wallarm_instance) or `Host` request headers.
-* For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
+* For traffic filtration rules, use a different set of application [IDs](../admin-en/configure-parameters-en.md#wallarm_application) or `Host` request headers.
+* For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
 * The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring`, `safe_blocking` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
 
 ## Configure available integrations to receive notifications from the system
@@ -127,8 +127,8 @@ Wallarm is constantly working to improve the filtering node software, with new r
 
 ## Learn known caveats
 
-* All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application instance IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all application instances in a Wallarm account.
+* All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
+* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all applications in a Wallarm account.
 
 ## Follow the best practices for the Active threat verification feature
 

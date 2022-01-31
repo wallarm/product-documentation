@@ -22,10 +22,10 @@ By default, Wallarm considers each application to be the `default` application w
         Only users with the **Administrator** role can access the section **Settings** → **Applications**.
 2. Assign an application the unique ID in the node configuration via:
 
-    * The directive [`wallarm_instance`](../../admin-en/configure-parameters-en.md#wallarm_instance) if Wallarm is installed as NGINX module, cloud marketplace image, NGINX-based Docker container with a mounted configuration file, sidecar container, Kong module.
+    * The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) if Wallarm is installed as NGINX module, cloud marketplace image, NGINX-based Docker container with a mounted configuration file, sidecar container, Kong module.
     * The [environment variable](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION` if Wallarm is installed as NGINX-based Docker container.
-    * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-instance` if Wallarm is installed as the Ingress controller.
-    * The parameter [`instance`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
+    * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` if Wallarm is installed as the Ingress controller.
+    * The parameter [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
 
     The value can be a positive integer except for `0`.
 

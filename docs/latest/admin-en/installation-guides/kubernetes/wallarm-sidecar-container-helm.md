@@ -32,7 +32,7 @@
 
 Go to the Helm chart directory → the `templates` folder and create a `wallarm-sidecar-configmap.yaml` template with the following content:
 
---8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-helm-template.md"
+--8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-helm-template-latest.md"
 
 ### Step 2: Updating the Deployment object in Kubernetes
 

@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-kubernetes-en.md"
+--8<-- "3.4/admin-en/configure-kubernetes-en.md"

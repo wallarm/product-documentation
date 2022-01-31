@@ -46,6 +46,83 @@ api:
   ca_verify: true
 ```
 
+### wallarm_application
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_instance`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_instance` directive will be deprecated soon. The directive logic has not changed.
+
+Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
+
+Unique identifiers can be set for both the application domains and the domain paths, for example:
+
+=== "Identifiers for domains"
+    Configuration file for the domain **example.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_application 1;
+        location / {
+                proxy_pass http://example.com;
+                include proxy_params;
+        }
+    }
+    ```
+
+    Configuration file for the domain **test.com**:
+
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+
+        wallarm_mode monitoring;
+        wallarm_application 2;
+        location / {
+                proxy_pass http://test.com;
+                include proxy_params;
+        }
+    }
+    ```
+=== "Identifiers for domain paths"
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
+
+        ...
+        
+        wallarm_mode monitoring;
+        location /login {
+                proxy_pass http://example.com/login;
+                include proxy_params;
+                wallarm_application 3;
+        }
+        
+        location /users {
+                proxy_pass http://example.com/users;
+                include proxy_params;
+                wallarm_application 4;
+        }
+    }
+    ```
+
+[More details on setting up applications →](../user-guides/settings/applications.md)
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+
+    **Default value**: `-1`.
 
 ### wallarm_block_page
 
@@ -71,6 +148,18 @@ A directory in which the backup catalog for the proton.db and custom ruleset fil
 
 !!! info
     This parameter is configured inside the http block only.
+
+### wallarm_custom_ruleset_path
+
+A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+    
+    **Default value**: `/etc/wallarm/custom_ruleset` (in Wallarm node 3.4 and lower, `/etc/wallarm/lom`)
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_local_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_local_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
 
 ### wallarm_enable_libdetection
 
@@ -113,12 +202,10 @@ Sets the requests' analysis and custom rules generation based on the NGINX mirro
 
 ### wallarm_global_trainingset_path
 
-A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_protondb_path`](#wallarm_protondb_path) directive instead.
 
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-    
-    **Default value**: `/etc/wallarm/proton.db`
+    The `wallarm_global_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_file_check_interval
 
@@ -134,78 +221,10 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 
 ### wallarm_instance
 
-Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_application`](#wallarm_application) directive instead.
 
-Unique identifiers can be set for both the application domains and the domain paths, for example:
-
-=== "Identifiers for domains"
-    Configuration file for the domain **example.com**:
-
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-
-        wallarm_mode monitoring;
-        wallarm_instance 1;
-        location / {
-                proxy_pass http://example.com;
-                include proxy_params;
-        }
-    }
-    ```
-
-    Configuration file for the domain **test.com**:
-
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-
-        wallarm_mode monitoring;
-        wallarm_instance 2;
-        location / {
-                proxy_pass http://test.com;
-                include proxy_params;
-        }
-    }
-    ```
-=== "Identifiers for domain paths"
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        listen 443 ssl;
-
-        ...
-        
-        wallarm_mode monitoring;
-        location /login {
-                proxy_pass http://example.com/login;
-                include proxy_params;
-                wallarm_instance 3;
-        }
-        
-        location /users {
-                proxy_pass http://example.com/users;
-                include proxy_params;
-                wallarm_instance 4;
-        }
-    }
-    ```
-
-[More details on setting up applications →](../user-guides/settings/applications.md)
-
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-
-    **Default value**: `-1`.
+    The `wallarm_instance` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_key_path
 
@@ -217,13 +236,10 @@ A path to the Wallarm license key.
 
 ### wallarm_local_trainingset_path
 
-A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains information on the protected application and the filtering node settings.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead.
 
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-    
-    **Default value**: `/etc/wallarm/lom`
-
+    The `wallarm_local_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_mode
 
@@ -441,6 +457,18 @@ Settings of the debug logging for a NGINX worker process.
 !!! info
     The parameter can only be configured at the main level.
 
+### wallarm_protondb_path
+
+A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+    
+    **Default value**: `/etc/wallarm/proton.db`
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_global_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_global_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
+
 ### wallarm_request_chunk_size
 
 Limits the size of the part of the request that is processed during one iteration. You can set up a custom value of the `wallarm_request_chunk_size` directive in bytes by assigning an integer to it. The directive also supports the following postfixes:
@@ -451,18 +479,6 @@ Limits the size of the part of the request that is processed during one iteratio
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     **Default value**: `8k` (8 kilobytes).
-
-### wallarm_tarantool_connect_attempts
-
-!!! warning "Deprecated"
-    Use the [`wallarm_upstream_connect_attempts`](#wallarm_upstream_connect_attempts) directive instead.
-
-
-### wallarm_tarantool_connect_interval
-
-!!! warning "Deprecated"
-    Use the [`wallarm_upstream_reconnect_interval`](#wallarm_upstream_reconnect_interval) directive instead.
-
 
 ### wallarm_tarantool_upstream
 
@@ -599,9 +615,3 @@ Simultaneously setting the `wallarm_upstream_queue_memory_limit` parameter and n
     **Default value:** `100m`.
     
     This parameter can be set inside the http block only.
-
-
-### wallarm_worker_rlimit_vmem
-
-!!! warning "Deprecated"
-    It is now an alias for the [wallarm_ts_request_memory_limit](#wallarm_ts_request_memory_limit) directive.

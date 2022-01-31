@@ -145,7 +145,7 @@ After you have connected one of the data sources and configured the query and vi
 1.  Enable automatic metric updates at five-second intervals (select a value from the drop-down list in the upper right corner of the Grafana console).
 2.  Make sure that the current number of attacks on the Grafana dashboard matches the output from `wallarm-status` on the filter node:
 
-    --8<-- "../include/monitoring/wallarm-status-check.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
     
     ![!Checking the attack counter][img-grafana-0-attacks]
     
@@ -155,7 +155,7 @@ After you have connected one of the data sources and configured the query and vi
     
 4.  Make sure that the attack counter has increased both in the `wallarm-status` output and on the Grafana dashboard:
 
-    --8<-- "../include/monitoring/wallarm-status-output-padded.md"
+    --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
     ![!Checking the attack counter][img-grafana-16-attacks]
 

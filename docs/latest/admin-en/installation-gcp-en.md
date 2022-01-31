@@ -97,7 +97,7 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 ## 7. Set up filtering and proxying rules
 
---8<-- "../include/setup-filter-nginx-en.md"
+--8<-- "../include/setup-filter-nginx-en-latest.md"
 
 ## 8. Allocate more memory for the Wallarm node
 

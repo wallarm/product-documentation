@@ -13,7 +13,7 @@ If one partner node is installed within the partner infrastructure, client traff
 ![!Traffic flow for a partner scheme](../images/partner-waf-node/partner-traffic-processing.png)
 
 * One Wallarm node processes traffic of several clients (Client 1, Client 2).
-* The Wallarm node identifies the client that receives the traffic by the partner-client link ID (`wallarm_instance`).
+* The Wallarm node identifies the client that receives the traffic by the partner-client link ID (`wallarm_application`).
 * For the domains `https://client1.com` and `https://client2.com`, the DNS A records with the partner IP address `225.130.128.241` are configured. This setting is shown as an example, a different setting can be used on the partner and client side.
 * On the partner's side, proxying of legitimate requests to the addresses of clients Client 1 (`http://upstream1:8080`) and Client 2 (`http://upstream2:8080`) is configured. This setting is shown as an example, a different setting can be used on the partner and client side.
 
@@ -59,7 +59,7 @@ Partner node has the following characteristics:
 
     --8<-- "../include/waf/installation/supported-platforms-32.md"
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to Wallarm Console, the filtering node must be installed at the corresponding partner client level.
-* Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance). In the partner node, this directive is used to split settings by the client applications.
+* Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application). In the partner node, this directive is used to split settings by the client applications.
 
 ## How to become a partner and install a partner node
 
