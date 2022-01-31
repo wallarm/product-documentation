@@ -21,7 +21,7 @@ Partner node has the following characteristics:
 
 * Can be installed on the same [platforms](../admin-en/supported-platforms.md) and according to the same instructions as a regular filtering node.
 * Can be installed on the **technical client** or **partner client** level. If you want to provide a client with access to Wallarm Console, the filtering node must be installed at the corresponding partner client level.
-* Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_instance`](../admin-en/configure-parameters-en.md#wallarm_instance). In the partner node, this directive is used to split settings by the client applications.
+* Can be configured according to the same instructions as a regular filtering node, except for the directive [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application). In the partner node, this directive is used to split settings by the client applications.
 
 ## Recommendations for a partner node installation
 
@@ -48,7 +48,7 @@ Partner node has the following characteristics:
     * Name of the partner account
     * Partner UUID obtained when [creating a partner account](creating-partner-account.md#step-2-access-the-partner-account-and-get-parameters-for-the-filtering-node-configuration)
     * Installed filtering node UUID displayed in the Wallarm Console → section **Nodes**
-3. Open the client's NGINX configuration file and specify the partner-client link ID in the `wallarm_instance` directive.
+3. Open the client's NGINX configuration file and specify the partner-client link ID in the `wallarm_application` directive.
 
     Example of the client's NGINX configuration file:
 
@@ -57,7 +57,7 @@ Partner node has the following characteristics:
         listen       80;
         server_name  client1.com;
         wallarm_mode block;
-        wallarm_instance 13;
+        wallarm_application 13;
         
         location / {
             proxy_pass      http://upstream1:8080;
@@ -68,7 +68,7 @@ Partner node has the following characteristics:
         listen       80;
         server_name  client2.com;
         wallarm_mode monitoring;
-        wallarm_instance 14;
+        wallarm_application 14;
         
         location / {
             proxy_pass      http://upstream2:8080;

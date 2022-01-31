@@ -47,7 +47,7 @@ Created clients will be visually presented in Wallarm Console for the [global pa
 
 ### Step 2: Link the client to a partner account via the Wallarm API
 
-At this step, ID will be set for a partner-client application link. One client might have several applications and several IDs, respectively. This ID will be used in NGINX configuration (`wallarm_instance`) for splitting the traffic by client applications.
+At this step, ID will be set for a partner-client application link. One client might have several applications and several IDs, respectively. This ID will be used in NGINX configuration (`wallarm_application`) for splitting the traffic by client applications.
 
 1. Send the POST request to the route `/v2/partner/<partnerid>/partner_client` with the following parameters:
 
@@ -69,7 +69,7 @@ At this step, ID will be set for a partner-client application link. One client m
             curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
             ```
 
-2. Copy and save the `id` value you passed in the request. This ID will be used in NGINX configuration (`wallarm_instance`) for splitting several clients traffic.
+2. Copy and save the `id` value you passed in the request. This ID will be used in NGINX configuration (`wallarm_application`) for splitting several clients traffic.
 
 If you configure the filtering node for several applications of the client, send the API request for each application passing different `id` value.
 
