@@ -75,6 +75,9 @@ wallarm_db_id 9
 # HELP wallarm_lom_id LOM file id
 # TYPE wallarm_lom_id gauge
 wallarm_lom_id 38
+# HELP wallarm_custom_ruleset_id Custom Ruleset file id
+# TYPE wallarm_custom_ruleset_id gauge
+wallarm_custom_ruleset_id 38
 # HELP wallarm_proton_instances proton instances count
 # TYPE wallarm_proton_instances gauge
 wallarm_proton_instances{status="success"} 4
