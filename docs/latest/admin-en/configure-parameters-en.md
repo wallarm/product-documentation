@@ -202,12 +202,10 @@ Sets the requests' analysis and custom rules generation based on the NGINX mirro
 
 ### wallarm_global_trainingset_path
 
-A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 3.6, please use the [`wallarm_protondb_path`](#wallarm_protondb_path) directive instead.
 
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-    
-    **Default value**: `/etc/wallarm/proton.db`
+    The `wallarm_global_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_file_check_interval
 
@@ -458,6 +456,18 @@ Settings of the debug logging for a NGINX worker process.
 
 !!! info
     The parameter can only be configured at the main level.
+
+### wallarm_protondb_path
+
+A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+    
+    **Default value**: `/etc/wallarm/proton.db`
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.4 and lower, this directive is named `wallarm_global_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_global_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
 
 ### wallarm_request_chunk_size
 
