@@ -85,20 +85,20 @@ The directive `wallarm_block_page_add_dynamic_path` is used to initialize the bl
 
 The directive  can be set inside the `http` block of the NGINX configuration file.
 
-### Customizing default blocking page
+## Customizing default blocking page
 
  The default blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
 
 ![!Wallarm blocking page](images/blocking-page-provided-by-wallarm.png)
 
-You can customize this page:
+You can use the default page without customization or enhance it by:
 
-* add your company logo
-* add your company support email
-* change any other HTML elements or add your own
+* Adding your company logo
+* Adding your company support email
+* Changing any other HTML elements or add your own
 
 !!! info "Default vs custom blocking page"
-    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used via the `path` property of the [wallarm_block_page](#nginx-directive-wallarm_block_page) directive.
+    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used by specifying path to it in the [wallarm_block_page](#nginx-directive-wallarm_block_page) directive.
 
 To add your company logo, in the `wallarm_blocked.html` file, modify and uncomment:
 
