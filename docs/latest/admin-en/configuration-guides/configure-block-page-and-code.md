@@ -93,12 +93,12 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 You can use the default page without customization or enhance it by:
 
-* Adding your company logo
-* Adding your company support email
-* Changing any other HTML elements or add your own
+* Adding your company logo – by default, no logo is presented on the page).
+* Adding your company support email – by default, no email links are used and the `contact us` phrase is the simple text without any link.
+* Changing any other HTML elements or adding your own.
 
 !!! info "Default vs custom blocking page"
-    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used by specifying path to it in the [wallarm_block_page](#nginx-directive-wallarm_block_page) directive.
+    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used by specifying path to it via the [wallarm_block_page](#nginx-directive-wallarm_block_page) or the [wallarm_block_page_add_dynamic_path](#nginx-directive-wallarm_block_page_add_dynamic_path) directive.
 
 To add your company logo, in the `wallarm_blocked.html` file, modify and uncomment:
 
