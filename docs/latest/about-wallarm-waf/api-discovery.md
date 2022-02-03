@@ -54,7 +54,7 @@ Once the API Discovery module is enabled, it will start the traffic analysis and
 
 ## API structure visualization
 
-To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **swagger-like manner**.
+To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
 
 The API structure includes the following elements (grouped by application and domain):
 
@@ -88,8 +88,8 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
 
-!!! info "Domain information in downloaded swagger file"
-    If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded swagger file. Currently, the domain information is not included in the file.
+!!! info "Domain information in downloaded Swagger file"
+    If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded Swagger file. Currently, the domain information is not included in the file.
 
 
 ## API Discovery debugging
