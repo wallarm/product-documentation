@@ -93,7 +93,7 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 You can use the default page without customization or enhance it by:
 
-* Adding your company logo – by default, no logo is presented on the page).
+* Adding your company logo – by default, no logo is presented on the page.
 * Adding your company support email – by default, no email links are used and the `contact us` phrase is the simple text without any link.
 * Changing any other HTML elements or adding your own.
 
