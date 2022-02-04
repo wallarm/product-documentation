@@ -73,7 +73,7 @@ By clicking the endpoint, you can also find the set of required and optional par
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to use in filters in the **[Events](../user-guides/events/check-attack.md)** section of Wallarm Console - to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
+To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
 
 ## API structure and rules
 
