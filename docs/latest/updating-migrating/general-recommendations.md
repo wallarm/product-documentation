@@ -1,8 +1,8 @@
 # Recommendations for a safe node update process
 
-This document describes recommendations and associated risks for a safe update of Wallarm filtering node up to 3.4.
+This document describes recommendations and associated risks for a safe update of Wallarm filtering node up to 3.6.
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.6.md"
 
 ## Common recommendations
 
@@ -18,10 +18,81 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.x, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
+Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. If upgrading the node 2.x, please consider possible configuration changes.
 
-??? "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.4"
-    **Changes in supported installation options**
+??? "Set of changes in Wallarm node upgraded from version 3.4 or 3.2 to version 3.6"
+
+    [Open the list on a separate page](what-is-new.md)
+
+    **When upgrading node 3.4**
+
+    There are the following changes available in Wallarm node 3.6:
+
+    * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
+        
+        [More details on the blocking page setup →](TBD)
+
+    * The following NGINX directives and Envoy parameters have been renamed:
+
+        * NGINX: `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
+
+        * NGINX: `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+
+        * NGINX: `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+
+        * Envoy: `lom` → [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+
+        * Envoy: `instance` → [`application`](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
+
+        Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
+
+    * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
+
+        Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
+
+    * The following node statistics parameters have been renamed:
+
+        * `lom_apply_time` → `custom_ruleset_apply_time`
+
+        * `lom_id` → `custom_ruleset_id`
+
+        In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
+
+        [More details on the statistics service →](../admin-en/configure-statistics-service.md)
+
+    * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
+
+        In new node versions, the collectd service does not return the metric with deprecated names.
+
+        [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
+
+    * (TBD) New environment variable
+
+    **When upgrading node 3.2**
+
+    Wallarm node 3.6 provides **all changes listed above** as well as the following:
+
+    * Support for CloudLinux OS 6.x
+
+        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+
+    * Support for Debian 11 Bullseye
+
+        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    
+    * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
+
+        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    
+    * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
+
+??? "Set of changes in Wallarm node upgraded from version 2.18 or lower to version 3.6"
+
+    [Open the list on a separate page](what-is-new-for-older-versions.md)
+
+    **Supported installation options**
 
     * Added support for CloudLinux OS 6.x
     * Added support for Debian 11 Bullseye
@@ -30,133 +101,130 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     [See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
-    **Changes in supported filtering node configuration parameters**
+    **System requirements for the filtering node installation**
 
-    * Dropped support for all `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address blacklist. Manual configuration of IP blacklisting is no longer required.
+    Starting with version 3.x, the filtering node supports IP address [whitelisting, blacklisting, and greylisting](../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+
+    [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
+
+    **Filtration modes**
+
+    * New **safe blocking** filtration mode.
+
+        This mode enables a significant reduction of [false positive](../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
+    
+    * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
+        
+        * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+        
+        * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [whitelisted IP addresses](../user-guides/ip-lists/whitelist.md) to the Wallarm Cloud.
+
+    [More details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
+
+    **Request source control**
+
+    The following parameters for request source control have been deprecated:
+
+    * All `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address blacklist. Manual configuration of IP blacklisting is no longer required.
 
         [Details on migrating blacklist configuration →](migrate-ip-lists-to-node-3.md)
 
-    * Added new NGINX directive and Envoy parameter `disable_acl`. This parameter allows to disable request origin analysis.
+    There are the following new features for request source control:
+
+    * Wallarm Console section for full IP address whitelist, blacklist and greylist control.
+    
+    * Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address greylists](../user-guides/ip-lists/greylist.md).
+
+        The **safe blocking** mode enables a significant reduction of [false positive](../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from greylisted IP addresses.
+
+        For automatic IP address greylisting there is a new [trigger **Add to greyist**](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
+    
+    * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
+    
+    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
+    
+    * Ability to whitelist, blacklist, or greylist request sources for specific applications.
+    
+    * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
 
         [Details on the `disable_acl` NGINX directive →](../admin-en/configure-parameters-en.md#disable_acl)
 
         [Details on the `disable_acl` Envoy parameter →](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
-    **Changes in system requirements for the filtering node installation**
+    [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
 
-    Starting with version 3.x, the filtering node supports IP addresses [whitelists, blacklists, and greylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+    **New module for API structure discovery**
 
-    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
+    New Wallarm nodes are distributed with the module **API Discovery** automatically identifiyng the application API structure. The module is disabled by default.
 
-    [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
+    [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
 
-    **Changes in filtration mode logic**
+    **Support of the libdetection library in the Envoy-based nodes**
 
-    Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
+    The **libdetection** library is now supported in the Envoy-based Wallarm nodes. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. This library reduces the number of false positives among the SQL Injection attacks.
 
-    * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+    By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
-    [More details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
+    [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-    **New features**
+    **New blocking page**
 
-    * Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address greylist](../user-guides/ip-lists/greylist.md).
+    The blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node versions, it has new layout and supports the logo and support email customization.
+        
+    [More details on the blocking page setup →](TBD)
 
-        The Wallarm node operating in `safe_blocking` mode blocks only those malicious requests originated from greylisted IP addresses that allow a significant reduction of [false positives](../about-wallarm-waf/protecting-against-attacks.md#false-positives) numbers.
+    **New parameters for basic node setup**
+
+    * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
     
-    * New reaction of triggers **Add to greyist** allowing to automatically greylist IP addresses originated a specific number of malicious requests.
-
-        [Example of the trigger that greylists IP addresses →](../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
-    
-    * Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
-    * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
-
-        [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
-    
-    * Ability to whitelist, blacklist, or greylist request sources for specific applications.
-
-        [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
-    
-    * New parameters of the file `node.yaml` for configuring the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface through which requests to Wallarm API are sent.
+    * New parameters of the file `node.yaml` to configure the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface to send requests to Wallarm API through.
 
         [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
     
-    * New module **API Discovery** that automatically identifies the application API structure.
+    * (TBD) New environment variable
 
-        [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
+    **Renamed parameters, files and metrics**
+
+    * The following NGINX directives and Envoy parameters have been renamed:
+
+        * NGINX: `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
+        
+        * NGINX: `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+        
+        * NGINX: `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+        
+        * Envoy: `lom` → [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+        
+        * Envoy: `instance` → [`application`](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
+
+        Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
     
-    * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
+    * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
-        [Details on the statistic service →](../admin-en/configure-statistics-service.md)
+        Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
     
-    * The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
+    * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
-        By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+        In new node versions, the collectd service does not return the metric with deprecated names.
 
-        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+        [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
+    ## Parameters of the statistics service
 
-        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
+    * The number of requests originating from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
+    * The following node statistics parameters have been renamed:
 
-??? "Set of changes in Wallarm node updated from version 3.0 to version 3.4"
-    **Breaking change**
+        * `lom_apply_time` → `custom_ruleset_apply_time`
+        
+        * `lom_id` → `custom_ruleset_id`
 
-    Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
+        In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
 
-    * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
-    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
-
-    [Details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
-
-    **Changes in supported installation options**
-
-    * Added support for CloudLinux OS 6.x
-    * Added support for Debian 11 Bullseye
-    * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
-
-    [See the full list of supported installation options →](../admin-en/supported-platforms.md)
-
-    **New features**
-
-    * Ability to whitelist, blacklist, or greylist request sources for specific applications.
-
-        [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
-    
-    * The number of requests originated from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
-
-        [Details on the statistic service →](../admin-en/configure-statistics-service.md)
-    
-    * The **libdetection** library is now supported in the Envoy-based Wallarm node. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. Using this library allows reducing the number of false positives among the SQL Injection attacks.
-
-        By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
-
-        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
-
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
-
-        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
-
-??? "Set of changes in Wallarm node updated from version 3.2 to version 3.4"
-    * Added support for CloudLinux OS 6.x
-
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
-    
-    * Added support for Debian 11 Bullseye
-
-
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
-
-    * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
-
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
-
-    * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
-
-        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
+    [Details on the statistics service →](../admin-en/configure-statistics-service.md)
 
 ### New false positives
 
