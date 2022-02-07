@@ -311,6 +311,7 @@ nav:
       - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
     - Updating and Migrating:
       - What is new in Wallarm node 3.6: updating-migrating/what-is-new.md
+      - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/what-is-new-for-older-versions.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node update process: updating-migrating/general-recommendations.md
       - Filtering node update instructions:
