@@ -14,6 +14,15 @@ In both cases, the built API structure may be outdated or incomplete, e.g. if a 
 
 Since the API Discovery module uses the real traffic as a data source, it helps to avoid the irrelevance and incompleteness of the API structure by including all endpoints actually processing the requests to the API structure.
 
+**As you have your API structure discovered by Wallarm, you can**:
+
+* [Download](#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
+    * The list of endpoints that were discovered by Wallarm, but absent in your specification (missing endpoints).
+    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use).
+* Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
+* Use [copied URLs](#copyurl) of the discovered endpoints to search for the events related to this endpoint.
+* Check [the list of header and body parameters](#params) can be sent for the selected endpoint.
+
 ## How API Discovery works?
 
 API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
@@ -69,11 +78,11 @@ You can filter the discovered API structure:
 * Use **Application**, **Domain** and **Method** filters.
 * In the **Domains** panel, click application or domain.
 
-By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
+<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
+<a name="copyurl"></a>To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
 
 ## API structure and rules
 
