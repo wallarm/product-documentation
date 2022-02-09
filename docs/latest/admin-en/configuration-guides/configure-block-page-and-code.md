@@ -103,25 +103,25 @@ You can use the default page without customization or enhance it by:
 To add your company logo, in the `wallarm_blocked.html` file, modify and uncomment:
 
 ```html
-    <div class="content">
-        <div id="logo" class="logo">
-            <!--
-                Place you logo here.
-                You can use an external image:
-                <img src="https://example.com/logo.png" width="160" alt="Company Name" />
-                Or put your logo source code (like svg) right here:
-                <svg width="160" height="80"> ... </svg>
-            -->
-        </div>
+<div class="content">
+    <div id="logo" class="logo">
+        <!--
+            Place you logo here.
+            You can use an external image:
+            <img src="https://example.com/logo.png" width="160" alt="Company Name" />
+            Or put your logo source code (like svg) right here:
+            <svg width="160" height="80"> ... </svg>
+        -->
+    </div>
 ```
 
 To add your company support email, in the `wallarm_blocked.html` file, modify the `SUPPORT_EMAIL` variable:
 
 ```html
-    <script>
-        // Place your support email here
-        const SUPPORT_EMAIL = "support@company.com";
-    </script>
+<script>
+    // Place your support email here
+    const SUPPORT_EMAIL = "support@company.com";
+</script>
 ```
 
 ## Configuration examples
