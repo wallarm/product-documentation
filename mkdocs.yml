@@ -76,7 +76,7 @@ markdown_extensions:
 
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
-docs_dir: docs/3.6
+docs_dir: docs/3.4
 site_dir: site
 edit_uri: ../product-docs-en/edit/master/docs/latest/
 
