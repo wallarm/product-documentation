@@ -5,7 +5,7 @@ site_description: Wallarm API Security protects websites, APIs and microservices
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
 
-copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2021 © Wallarm Inc.'
+copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2022 © Wallarm Inc.'
 
 plugins:
   - search
