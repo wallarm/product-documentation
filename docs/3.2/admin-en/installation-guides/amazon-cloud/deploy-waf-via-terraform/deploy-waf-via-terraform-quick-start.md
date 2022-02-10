@@ -23,7 +23,7 @@
 Terraform code used in this example can be cloned from the [GitHub repository](https://github.com/wallarm/terraform-example) using the following command:
 
 ``` bash
-git clone https://github.com/wallarm/terraform-example.git
+git clone -b stable/3.2 --single-branch https://github.com/wallarm/terraform-example.git
 ```
 
 Configuration files are located in the `terraform` folder of the repository:

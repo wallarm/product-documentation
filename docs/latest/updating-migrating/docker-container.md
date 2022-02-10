@@ -7,12 +7,12 @@
 
 # Updating the running Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to update the running Docker NGINX- or Envoy-based image to the version 3.4.
+These instructions describe the steps to update the running Docker NGINX- or Envoy-based image to the version 3.6.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend to use the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 3.4 and deploy it as the Docker container.
+    We do not recommend to use the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 3.6 and deploy it as the Docker container.
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.6.md"
 
 ## Requirements
 
@@ -20,13 +20,13 @@ These instructions describe the steps to update the running Docker NGINX- or Env
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.6 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Download the updated filtering node image
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.4.1-1
+    docker pull wallarm/node:3.6.0-1
     ```
 === "Envoy-based image"
     ``` bash
@@ -41,7 +41,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 4: Run the container using the updated image
 
-1. If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
+1. If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.6 following the [instructions](migrate-ip-lists-to-node-3.md).
 2. Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the `WALLARM_ACL_ENABLE` variable.
 
     There are two options for running the container using the updated image:
@@ -70,4 +70,4 @@ If upgrading Wallarm node 3.0 or lower:
 
 ## Step 7: Delete the filtering node of the previous version
 
-If the deployed image of the version 3.4 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 3.6 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.

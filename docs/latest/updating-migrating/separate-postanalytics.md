@@ -4,7 +4,7 @@
 
 These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.6.md"
 
 ## Step 1: Add new Wallarm repository
 
