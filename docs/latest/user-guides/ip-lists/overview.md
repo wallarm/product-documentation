@@ -19,7 +19,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 ## Algorithm of IP lists processing
 
 !!! warning "Changes in IP list processing in the `off` and `monitoring` filtration modes"
-    If you have upgraded the Wallarm modules from version 3.0 or lower up to 3.6, you can see the following differences in IP list logic:
+    If you have upgraded the Wallarm modules from version 3.0 or lower up to 3.4, you can see the following differences in IP list logic:
 
     * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](blacklist.md) IP, it does not block this request.
