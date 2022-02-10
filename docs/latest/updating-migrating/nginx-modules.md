@@ -14,14 +14,14 @@
 
 # Updating Linux node packages
 
-These instructions describe the steps to update Linux node packages to version 3.6. Linux node packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to update Linux node packages to version 3.4. Linux node packages are packages installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.6.md"
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
 ## Update procedure
 
@@ -30,7 +30,7 @@ These instructions describe the steps to update Linux node packages to version 3
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.6 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
+If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Update NGINX to the latest stable version
 
@@ -92,9 +92,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
         ```
 
-## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.6
+## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.4
 
-If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.6 following the [instructions](migrate-ip-lists-to-node-3.md).
+If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
 
 ## Step 5: Update Wallarm API Security packages
 
@@ -176,6 +176,6 @@ If upgrading Wallarm node 3.0 or lower:
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 3.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

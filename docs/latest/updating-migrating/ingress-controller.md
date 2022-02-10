@@ -1,12 +1,12 @@
 # Upgrading NGINX Ingress controller with integrated Wallarm API Security modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.6.
+These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.4.
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.6.md"
+--8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
 ## Step 1: Inform Wallarm technical support that you are updating filtering node modules
 
-If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.6 and ask to enable new IP lists logic for your Wallarm account.
+If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account.
 
 When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
@@ -27,7 +27,7 @@ When new IP lists logic is enabled, please open Wallarm Console and ensure that 
 ## Step 3: Upgrade the previous Helm chart
 
 ```bash
-helm upgrade --version 3.6.0 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+helm upgrade --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
 ```
 
 * `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
