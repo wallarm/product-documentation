@@ -23,7 +23,7 @@
 Terraform code used in this example can be cloned from the [GitHub repository](https://github.com/wallarm/terraform-example) using the following command:
 
 ``` bash
-git clone https://github.com/wallarm/terraform-example.git
+git clone -b stable/3.6 --single-branch https://github.com/wallarm/terraform-example.git
 ```
 
 Configuration files are located in the `terraform` folder of the repository:
@@ -55,7 +55,7 @@ Configuration files are located in the `terraform` folder of the repository:
     * `az_b`
     * `wallarm_node_ami_id` with the used AWS EC2 Wallarm filtering node image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:
     ```
-    aws ec2 describe-images --filters "Name=name,Values=*Wallarm Node-3.4*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
+    aws ec2 describe-images --filters "Name=name,Values=*Wallarm Node-3.6*" --region REGION_CODE | jq -r '.Images[] | "\(.ImageId)"'
     ```
 
     * `wordpress_ami_id` with the used AWS EC2 Wordpress image ID got by the command below. Please replace `REGION_CODE` by `aws-region` value:

@@ -49,7 +49,7 @@
     
     An example of the template with added elements is provided below. Elements for copying are indicated by the `Wallarm element` comment.
 
-    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-3.4.md"
+    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-3.6.md"
 
 3. Update parameter values following the code comments.
 

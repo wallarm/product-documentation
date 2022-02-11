@@ -68,7 +68,7 @@ Go to the Helm chart directory → the `templates` folder and create a `wallar
 
 2. Copy the `wallarm` object definition provided below to `values.yaml` and update parameter values following the code comments.
 
-    --8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-3.4.md"
+    --8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-3.6.md"
 
 3. Make sure the `values.yaml` file is valid using the following command:
 

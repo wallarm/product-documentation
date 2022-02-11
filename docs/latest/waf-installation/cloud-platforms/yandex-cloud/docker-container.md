@@ -45,7 +45,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --name <INSTANCE_NAME> \
             --zone=<DEPLOYMENT_ZONE> \
             --public-ip \
-            --container-image=wallarm/node:3.4.1-1 \
+            --container-image=wallarm/node:3.6.0-1 \
             --container-env=DEPLOY_USER=${DEPLOY_USER},DEPLOY_PASSWORD=${DEPLOY_PASSWORD},NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM>
         ```
     === "Command for the Wallarm US Cloud"
@@ -54,7 +54,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --name <INSTANCE_NAME> \
             --zone=<DEPLOYMENT_ZONE> \
             --public-ip \
-            --container-image=wallarm/node:3.4.1-1 \
+            --container-image=wallarm/node:3.6.0-1 \
             --container-env=DEPLOY_USER=${DEPLOY_USER},DEPLOY_PASSWORD=${DEPLOY_PASSWORD},NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM>,WALLARM_API_HOST=us1.api.wallarm.com
         ```
 
@@ -120,11 +120,11 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.4.1-1
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.0-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.4.1-1
+        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.0-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
