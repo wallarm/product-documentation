@@ -8,6 +8,9 @@ If upgrading Wallarm node 2.18 or lower, learn available changes from the [separ
 
 There are the following changes available in Wallarm node 3.6:
 
+* Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
+
+    Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
     
     The blocking page with the new layout looks as follows by default:

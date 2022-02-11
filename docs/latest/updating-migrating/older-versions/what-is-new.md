@@ -9,6 +9,9 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
 ## Supported installation options
 
+* Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
+
+    Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 * Added support for CloudLinux OS 6.x
 * Added support for Debian 11 Bullseye
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)

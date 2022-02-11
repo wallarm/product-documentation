@@ -28,6 +28,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     There are the following changes available in Wallarm node 3.6:
 
+    * Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
+
+        Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
+
     * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
         
         [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
@@ -101,6 +105,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     [Open the list on a separate page](older-versions/what-is-new.md)
 
     **Supported installation options**
+
+    * Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
+
+        Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 
     * Added support for CloudLinux OS 6.x
     * Added support for Debian 11 Bullseye
@@ -188,7 +196,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     * New environment variables to be passed to the Wallarm NGINX‑based Docker container:
 
         * `WALLARM_APPLICATION` to set the identifier of the protected application to be used in the Wallarm Cloud.
-        
+
         * `NGINX_PORT` to set a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
