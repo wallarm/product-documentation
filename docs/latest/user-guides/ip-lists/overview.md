@@ -11,21 +11,12 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 !!! warning "IP list support"
     Controlling access to your applications by whitelisted, blacklisted and greylisted IP addresses is supported starting with the regular (client) and partner Wallarm node of version 3.2.
     
-    If you are using the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, please perform the following steps before IP address list setup:
+    If you are using the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 2.18 or lower, please perform the following steps before IP address list setup:
 
-    1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
+    1. [Update deployed modules](/updating-migrating/older-versions/what-is-new/).
     2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Algorithm of IP lists processing
-
-!!! warning "Changes in IP list processing in the `off` and `monitoring` filtration modes"
-    If you have upgraded the Wallarm modules from version 3.0 or lower up to 3.4, you can see the following differences in IP list logic:
-
-    * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](blacklist.md) IP, it does not block this request.
-    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
-
-    If required, you can adjust the filtration mode settings to these changes. [Details on filtration mode configuration](../../admin-en/configure-wallarm-mode.md)
 
 The filtering node inspects whether source IPs of incoming requests matches entries of IP lists only in the **safe blocking** and **blocking** [modes](../../admin-en/configure-wallarm-mode.md):
 

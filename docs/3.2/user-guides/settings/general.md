@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/general.md"
+--8<-- "3.4/user-guides/settings/general.md"

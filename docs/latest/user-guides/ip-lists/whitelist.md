@@ -9,16 +9,15 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 ![!IP whitelist](../../images/user-guides/ip-lists/whitelist-apps.png)
 
 !!! warning "IP whitelisting support"
-    * IP whitelisting for specific applications is supported starting with the regular (client) and partner Wallarm node of version 3.2.
-    * If the Wallarm node 3.2 or higher operating in the `monitoring` mode detects the attack originated from the whitelisted IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
+    IP whitelisting for specific applications is supported starting with the regular (client) and partner Wallarm node of version 3.2.
     
-    If you are using the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, please perform the following steps before IP address whitelist setup:
+    If you are using the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 2.18 or lower, please perform the following steps before IP address whitelist setup:
 
-    1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
+    1. [Update deployed modules](/updating-migrating/older-versions/what-is-new/).
 
         During the module upgrade, please ensure that Wallarm node processes requests originated from whitelisted IP addresses as expected or adjust filtration mode settings to the released changes.
 
-    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    2. [Migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP whitelist usage
 
