@@ -13,7 +13,7 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[versioning-policy]:               ../../updating-migrating/versioning-policy.md
+[versioning-policy]:               ../../updating-migrating/versioning-policy.md#version-list
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
@@ -23,42 +23,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 
-!!! info "If Wallarm node is already installed in your environment"
-    If you install Wallarm node instead of an already existing Wallarm node or need to duplicate the installation in the same environment, then please keep the same node version as currently used or update all installations to the latest version. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
-
-    To check the installed version of filtering node and postanalytics installed on the same server:
-
-    === "Debian"
-        ```bash
-        apt list wallarm-node
-        ```
-    === "CentOS"
-        ```bash
-        yum list wallarm-node
-        ```
-
-    To check the versions of filtering node and postanalytics installed on different servers:
-
-    === "Debian"
-        ```bash
-        # run from the server with installed Wallarm filtering node
-        apt list wallarm-node-nginx
-        # run from the server with installed postanalytics
-        apt list wallarm-node-tarantool
-        ```
-    === "CentOS"
-        ```bash
-        # run from the server with installed Wallarm filtering node
-        yum list wallarm-node-nginx
-        # run from the server with installed postanalytics
-        yum list wallarm-node-tarantool
-        ```
-
-    * If the version `3.4.x` is installed, then follow the current instructions for the filtering node and [these instructions for separate postanalytics 3.4](/admin-en/installation-postanalytics-en/).
-    * If the version `3.2.x` is installed, then follow the instructions for the [Wallarm node 3.2](/3.2/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.2](/3.2/admin-en/installation-postanalytics-en/) or update the [filtering node](/updating-migrating/nginx-modules/) and [separate postanalytics](/updating-migrating/separate-postanalytics/) packages to the latest version in all deployments.
-    * If the version `3.0.x` or lower is installed, then please update the [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
-
-    More information about Wallarm node versioning is available in the [Wallarm node versioning policy][versioning-policy].
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-distr-36.md"
 
 ## Requirements
 
@@ -115,7 +80,7 @@ Installation commands for both options are described in the further instructions
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -155,7 +120,7 @@ The command installs the following packages:
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -194,7 +159,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
@@ -208,6 +173,10 @@ Copy the configuration files for the system setup:
     sudo cp /usr/share/doc/libnginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 === "CentOS"
+    ```bash
+    sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
+    ```
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -280,6 +249,10 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
+    === "AlmaLinux or Rocky Linux"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
 2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
     For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough (e.g. 25% of the total memory).
@@ -306,6 +279,10 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
+    === "AlmaLinux or Rocky Linux"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
 
 #### Address of the separate postanalytics server
 
@@ -327,6 +304,10 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
     sudo systemctl restart nginx
     ```
 === "CentOS"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo systemctl restart nginx
     ```

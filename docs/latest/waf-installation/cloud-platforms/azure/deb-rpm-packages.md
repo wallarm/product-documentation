@@ -31,8 +31,8 @@ To install the filtering node as the NGINX Stable module in the Azure instance:
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CloudLinux OS 6.x
-    * CentOS 7.x
-    * CentOS 8.x
+    * AlmaLinux
+    * Rocky Linux
 2. Connect to the created instance following the [Azure instructions](https://docs.microsoft.com/en-us/azure/bastion/bastion-connect-vm-ssh).
 3. In the instance, install the packages of NGINX Stable and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 
@@ -49,7 +49,8 @@ To install the filtering node as the NGINX Plus module in the Azure instance:
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
-    * CentOS 8.x
+    * AlmaLinux
+    * Rocky Linux
 2. Connect to the created instance following the [Azure instructions](https://docs.microsoft.com/en-us/azure/bastion/bastion-connect-vm-ssh).
 3. In the instance, install the packages of NGINX Plus and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 

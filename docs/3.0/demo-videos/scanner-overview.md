@@ -1,1 +1,0 @@
---8<-- "latest/demo-videos/scanner-overview.md"

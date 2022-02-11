@@ -14,7 +14,7 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[versioning-policy]:               ../../updating-migrating/versioning-policy.md
+[versioning-policy]:               ../../updating-migrating/versioning-policy.md#version-list
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
@@ -23,42 +23,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 
-!!! info "If Wallarm node is already installed in your environment"
-    If you install Wallarm node instead of an already existing Wallarm node or need to duplicate the installation in the same environment, then please keep the same node version as currently used or update all installations to the latest version. For the postanalytics installed separately, versions of substite or duplicate installations must be the same as already installed postanalytics too.
-
-    To check the installed version of filtering node and postanalytics installed on the same server:
-
-    === "Debian"
-        ```bash
-        apt list wallarm-node
-        ```
-    === "CentOS"
-        ```bash
-        yum list wallarm-node
-        ```
-
-    To check the versions of filtering node and postanalytics installed on different servers:
-
-    === "Debian"
-        ```bash
-        # run from the server with installed Wallarm filtering node
-        apt list wallarm-node-nginx
-        # run from the server with installed postanalytics
-        apt list wallarm-node-tarantool
-        ```
-    === "CentOS"
-        ```bash
-        # run from the server with installed Wallarm filtering node
-        yum list wallarm-node-nginx
-        # run from the server with installed postanalytics
-        yum list wallarm-node-tarantool
-        ```
-
-    * If the version `3.2.x` is installed, then follow the instructions for the [Wallarm node 3.2](/waf-installation/nginx/dynamic-module-from-distr/) and for [separate postanalytics 3.2](/admin-en/installation-postanalytics-en/).
-    * If the version `3.0.x` is installed, then please update the [filtering node](/updating-migrating/nginx-modules/) and [separate postanalytics](/updating-migrating/separate-postanalytics/) packages to the latest version in all deployments. We recommend upgrading modules 3.0 to the [latest version](/updating-migrating/what-is-new/) since it enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
-    * If the version `2.18.x` or lower is installed, then please update the [filtering node packages](/updating-migrating/nginx-modules/) and [separate postanalytics packages](/updating-migrating/separate-postanalytics/) to the latest version in all installations. Support for installed versions will be deprecated soon.
-
-    More information about Wallarm node versioning is available in the [Wallarm node versioning policy][versioning-policy].
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-distr.md"
 
 ## Requirements
 

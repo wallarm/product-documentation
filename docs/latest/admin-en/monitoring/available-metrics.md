@@ -172,7 +172,7 @@ The version of [LOM][doc-lom] in use.
 
 * **Metric:** `curl_json-wallarm_nginx/gauge-custom_ruleset_id`
 
-    (in Wallarm node 3.4 and lower, `curl_json-wallarm_nginx/gauge-lom_id`)
+    (In Wallarm node 3.4 and lower, `curl_json-wallarm_nginx/gauge-lom_id`. The metric with the former name is still collected but will be deprecated soon.)
 * **Metric value:** no limits
 
 ### proton.db and LOM Pairs

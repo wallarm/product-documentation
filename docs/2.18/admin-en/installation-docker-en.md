@@ -16,6 +16,7 @@
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 
 # Running Docker NGINX‑based image
 
@@ -25,20 +26,7 @@ The Wallarm filtering node can be deployed as a Docker container. The Docker con
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
-!!! info "If the Wallarm filtering node image is already deployed in your environment"
-    If you deploy the Wallarm filtering node image instead of the already deployed image or need to duplicate the deployment, please keep the same node version as currently used or update the version of all images to the latest.
-
-    To check the installed version, run the following command in the container:
-
-    ```bash
-    apt list wallarm-node
-    ```
-
-    * If the version `3.2.x` is installed, then follow the [instructions for 3.2](/admin-en/installation-docker-en/).
-    * If the version `3.0.x` is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. We recommend upgrading modules 3.0 to the [latest version](/updating-migrating/what-is-new/) since it enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
-    * If the version `2.18.x` or lower is installed, then please [update the packages to the latest version](/updating-migrating/docker-container/) in all deployments. Support for installed versions will be deprecated soon.
-
-    More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../updating-migrating/versioning-policy.md).
+--8<-- "../include/waf/installation/already-deployed-nginx-docker-image.md"
 
 ## Requirements
 

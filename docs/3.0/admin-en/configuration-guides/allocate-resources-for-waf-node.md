@@ -1,1 +1,0 @@
---8<-- "3.2/admin-en/configuration-guides/allocate-resources-for-waf-node.md"

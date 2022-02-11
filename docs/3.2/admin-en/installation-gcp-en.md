@@ -2,7 +2,7 @@
 
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
 [installation-instr-middle]:    /3.2/admin-en/installation-gcp-en/
-[versioning-policy]:            ../updating-migrating/versioning-policy.md
+[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-gcp-en/
 
 # Deploying on Google Cloud Platform (GCP)
@@ -26,7 +26,7 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ## 2. Launch a filtering node instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance-middle.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
 ### Launch the instance via the Google Cloud UI
 

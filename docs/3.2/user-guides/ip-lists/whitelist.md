@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/ip-lists/whitelist.md"
+--8<-- "3.4/user-guides/ip-lists/whitelist.md"

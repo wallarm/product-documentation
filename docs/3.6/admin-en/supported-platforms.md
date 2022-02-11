@@ -357,25 +357,6 @@
     </div>
 </div> 
 
-<div id="deployOptionsDiv" class="navigation-card platform-card">
-    <div type="button" id="centos8" onClick="platformClicked(event, 'centos8')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
-        <h3>CentOS 8.x
-            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
-            </svg>
-        </h3>
-        <p>Install the Wallarm module for...</p>
-        <div id="centos8Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
-        </div>
-    </div>
-</div> 
-</div>
-
-<div class="navigation platforms" style="padding-top: 16px;">
     <div id="deployOptionsDiv" class="navigation-card platform-card">
         <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
             <img class="platform-icon" src="../../images/platform-icons/amazon-linux.svg">
@@ -391,4 +372,43 @@
             </div>
         </div>
     </div> 
+
+</div>
+
+<div class="navigation platforms" style="padding-top: 16px;">
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="almalinux" onClick="platformClicked(event, 'almalinux')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/almalinux.svg">
+        <h3>AlmaLinux
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the Wallarm module for...</p>
+        <div id="almalinuxId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+        </div>
+    </div>
+</div> 
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="rockylinux" onClick="platformClicked(event, 'rockylinux')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/rockylinux.svg">
+        <h3>Rocky Linux
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the Wallarm module for...</p>
+        <div id="rockylinuxId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+        </div>
+    </div>
+</div> 
+
 </div>

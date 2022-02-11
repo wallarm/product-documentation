@@ -2,7 +2,7 @@
 
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
 [installation-instr-middle]:    /3.2/admin-en/installation-gcp-en/
-[versioning-policy]:            ../updating-migrating/versioning-policy.md
+[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-gcp-en/
 
 # Deploying on Google Cloud Platform (GCP)

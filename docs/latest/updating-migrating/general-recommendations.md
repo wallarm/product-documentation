@@ -30,7 +30,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
         
-        [More details on the blocking page setup →](TBD)
+        [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
 
     * The following NGINX directives and Envoy parameters have been renamed:
 
@@ -46,6 +46,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
 
+    * The Ingress [annotation](../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+
+        The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
+
     * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
         Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
@@ -56,17 +60,21 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         * `lom_id` → `custom_ruleset_id`
 
-        In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
+        In new node versions, the `http://127.0.0.8/wallarm-status` endpoint temporarily returns both the deprecated and new parameters. The deprecated parameters will be removed from the service output in future releases.
 
         [More details on the statistics service →](../admin-en/configure-statistics-service.md)
 
     * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
-        In new node versions, the collectd service does not return the metric with deprecated names.
+        In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
         [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 
-    * (TBD) New environment variable
+    * New environment variable `NGINX_PORT` to be passed to the Wallarm NGINX‑based Docker container.
+
+        This variable sets a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
     **When upgrading node 3.2**
 
@@ -173,20 +181,22 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     The blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node versions, it has new layout and supports the logo and support email customization.
         
-    [More details on the blocking page setup →](TBD)
+    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
 
     **New parameters for basic node setup**
 
-    * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
+    * New environment variables to be passed to the Wallarm NGINX‑based Docker container:
+
+        * `WALLARM_APPLICATION` to set the identifier of the protected application to be used in the Wallarm Cloud.
+        
+        * `NGINX_PORT` to set a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
-    
+
     * New parameters of the file `node.yaml` to configure the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface to send requests to Wallarm API through.
 
         [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
     
-    * (TBD) New environment variable
-
     **Renamed parameters, files and metrics**
 
     * The following NGINX directives and Envoy parameters have been renamed:
@@ -203,13 +213,17 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
     
+    * The Ingress [annotation](../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+
+        The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
+
     * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
         Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
     
     * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
-        In new node versions, the collectd service does not return the metric with deprecated names.
+        In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
         [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 
@@ -222,7 +236,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
         
         * `lom_id` → `custom_ruleset_id`
 
-        In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
+        In new node versions, the `http://127.0.0.8/wallarm-status` endpoint temporarily returns both the deprecated and new parameters. The deprecated parameters will be removed from the service output in future releases.
 
     [Details on the statistics service →](../admin-en/configure-statistics-service.md)
 

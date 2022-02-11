@@ -7,7 +7,7 @@
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
 [installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
-[versioning-policy]:            ../updating-migrating/versioning-policy.md
+[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 
 # Deploying as an Amazon Machine Image (AMI)

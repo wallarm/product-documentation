@@ -7,16 +7,6 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![!IP blacklist](../../images/user-guides/ip-lists/blacklist-apps.png)
-
-!!! warning "IP blacklisting support"
-    This document describes the IP blacklist configuration for the regular (client) and partner Wallarm node of version 3.4. For the Wallarm modules upgraded from version 3.2 up to 3.4, there is no difference in IP blacklist configuration.
-    
-    If you have upgraded the Wallarm modules from version 3.0 or lower up to 3.4, you can see the following differences in IP list logic:
-    
-    * [New IP blacklisting features](../../updating-migrating/what-is-new.md)
-    * If operating in the `off` or `monitoring` mode, Wallarm node does not block requests originated from the blacklisted IP addresses
-
-    If you still use Wallarm modules of version 3.2 or lower, we recommend [upgrading](../../updating-migrating/general-recommendations.md#update-process) them up to the latest version.
     
 ## Examples of IP blacklist usage
 
