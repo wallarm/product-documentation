@@ -70,7 +70,11 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 
-    * (TBD) New environment variable
+    * New environment variable `NGINX_PORT` to be passed to the Wallarm NGINX‑based Docker container.
+
+        This variable sets a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
+
+        [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
     **When upgrading node 3.2**
 
@@ -181,16 +185,18 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     **New parameters for basic node setup**
 
-    * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
+    * New environment variables to be passed to the Wallarm NGINX‑based Docker container:
+
+        * `WALLARM_APPLICATION` to set the identifier of the protected application to be used in the Wallarm Cloud.
+        
+        * `NGINX_PORT` to set a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
-    
+
     * New parameters of the file `node.yaml` to configure the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface to send requests to Wallarm API through.
 
         [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
     
-    * (TBD) New environment variable
-
     **Renamed parameters, files and metrics**
 
     * The following NGINX directives and Envoy parameters have been renamed:

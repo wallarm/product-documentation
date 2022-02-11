@@ -43,7 +43,11 @@ There are the following changes available in Wallarm node 3.6:
     In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
     [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
-* (TBD) New environment variable
+* New environment variable `NGINX_PORT` to be passed to the Wallarm NGINX‑based Docker container.
+
+    This variable sets a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
+
+    [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
 ## When upgrading node 3.2
 
