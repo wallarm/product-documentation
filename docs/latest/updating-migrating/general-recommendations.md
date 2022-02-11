@@ -46,6 +46,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
 
+    * The Ingress [annotation](../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+
+        The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
+
     * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
         Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
@@ -203,6 +207,10 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
     
+    * The Ingress [annotation](../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
+
+        The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.
+
     * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
         Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
