@@ -53,7 +53,7 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
@@ -98,7 +98,7 @@ SLAB_ALLOC_ARENA=10.4
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

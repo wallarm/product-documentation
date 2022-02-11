@@ -26,7 +26,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-36.md"
 
 ## Requirements
 
@@ -105,7 +105,10 @@ These are the following options to install NGINX `stable` from the NGINX reposit
             sudo yum install nginx
             ```
 
-* Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options
+* Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options.
+
+    !!! info "NGINX for AlmaLinux or Rocky Linux"
+        This is the only option to install NGINX on AlmaLinux or Rocky Linux.
 
 More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
@@ -127,7 +130,22 @@ To run postanalytics and process the requests on the same server, the following 
 * `nginx-module-wallarm` for the NGINX-Wallarm module
 * `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
---8<-- "../include/waf/installation/nginx-postanalytics.md"
+=== "Debian"
+    ```bash
+    sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
+    ```
+=== "CentOS or Amazon Linux 2"
+    ```bash
+    sudo yum install wallarm-node nginx-module-wallarm
+    ```
+=== "AlmaLinux or Rocky Linux"
+    ```bash
+    sudo yum install wallarm-node nginx-module-wallarm
+    ```
 
 #### Request processing and postanalytics on different servers
 
@@ -144,6 +162,10 @@ To run postanalytics and process the requests on different servers, the followin
         sudo apt install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
         ```
     === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo yum install wallarm-node-nginx nginx-module-wallarm
+        ```
+    === "AlmaLinux or Rocky Linux"
         ```bash
         sudo yum install wallarm-node-nginx nginx-module-wallarm
         ```
@@ -187,13 +209,13 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 6. Update Wallarm node configuration
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration-2.16.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.md"
 
 ### 7. Restart NGINX
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-2.16.md"
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
 ### 8. Test Wallarm node operation
 

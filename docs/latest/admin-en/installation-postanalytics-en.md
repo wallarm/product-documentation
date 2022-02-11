@@ -84,7 +84,7 @@ The postanalytics module, like other Wallarm API Security modules, is installed 
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -103,6 +103,10 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
 === "CentOS or Amazon Linux 2"
+    ```bash
+    sudo yum install wallarm-node-tarantool
+    ```
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
@@ -156,6 +160,10 @@ To open the file in the editing mode, please use the command:
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
+=== "AlmaLinux or Rocky Linux"
+    ``` bash
+    sudo vim /etc/sysconfig/wallarm-tarantool
+    ```
 
 #### Memory
 
@@ -189,6 +197,10 @@ To set the address of the separate postanalytics server:
         sudo vim /etc/default/wallarm-tarantool
         ```
     === "CentOS or Amazon Linux 2"
+        ``` bash
+        sudo vim /etc/sysconfig/wallarm-tarantool
+        ```
+    === "AlmaLinux or Rocky Linux"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -233,6 +245,10 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
+    === "AlmaLinux or Rocky Linux"
+        ```bash
+        sudo systemctl restart wallarm-tarantool
+        ```
 2. Restart the NGINX service on the server with the NGINX‑Wallarm module:
 
     === "Debian"
@@ -244,6 +260,10 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         sudo service nginx restart
         ```
     === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo systemctl restart nginx
+        ```
+    === "AlmaLinux or Rocky Linux"
         ```bash
         sudo systemctl restart nginx
         ```

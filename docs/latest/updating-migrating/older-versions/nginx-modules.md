@@ -61,10 +61,12 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
-    ```bash
-    sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
-    ```
+    !!! warning "Support for CentOS 8.x has been deprecated"
+        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node 3.6 on the AlmaLinux or Rocky Linux operating system insted.
+
+        * [Installation instructions for NGINX `stable`](../../waf-installation/nginx/dynamic-module.md)
+        * [Installation instructions for NGINX from CentOS/Debian repositories](../../waf-installation/nginx/dynamic-module-from-distr.md)
+        * [Installation instructions for NGINX Plus](../../waf-installation/nginx-plus.md)
 
 **Debian and Ubuntu**
 
@@ -118,7 +120,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt update
         sudo apt dist-upgrade
         ```
-    === "CentOS или Amazon Linux 2"
+    === "CentOS or Amazon Linux 2"
         ```bash
         sudo yum update
         ```
@@ -149,7 +151,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt update
         sudo apt dist-upgrade
         ```
-    === "CentOS или Amazon Linux 2"
+    === "CentOS or Amazon Linux 2"
         ```bash
         sudo yum update
         ```

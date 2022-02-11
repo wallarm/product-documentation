@@ -76,7 +76,7 @@ If a load balancer or proxy server appends a header `X-Forwarded-For` (`X-Real-I
     ```
 4. Restart NGINX:
 
-    --8<-- "../include/waf/restart-nginx-2.16.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 
     NGINX will assign the value of the header specified in the `real_ip_header` directive to the `$remote_addr` variable, so the Wallarm node will read original client IP addresses from this variable.
 5. [Test the configuration](#testing-the-configuration).
@@ -113,7 +113,7 @@ If a load balancer or proxy server supports the [PROXY protocol](https://www.hap
     * For requests originated from the address `<IP_ADDRESS_OF_YOUR_PROXY>`, NGINX assigns the source address passed in the header `PROXY` to the variable `$remote_addr`, so the Wallarm node will read original client IP addresses from this variable.
 5. Restart NGINX:
 
-    --8<-- "../include/waf/restart-nginx-2.16.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 6. [Test the configuration](#testing-the-configuration).
 
 To include an original client IP address in the logs, you should add the directive `proxy_set_header` and edit the list of variables in the `log_format` directive in the NGINX configuration as described in the [NGINX logging instructions](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address).

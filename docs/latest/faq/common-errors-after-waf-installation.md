@@ -42,7 +42,7 @@ To fix the problem, please follow the steps:
 	```
 2. Add a new repository using the command for appropriate CentOS and Wallarm node versions:
 
-	=== "CentOS 7.x или Amazon Linux"
+	=== "CentOS 7.x or Amazon Linux"
 		```bash
 		# Filtering node and postanalytics module of the 3.2 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm

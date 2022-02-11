@@ -34,7 +34,8 @@ To install the filtering node as the NGINX Stable module in the Yandex Compute C
     * Ubuntu 20.04 Focal
     * CloudLinux OS 6.x
     * CentOS 7.x
-    * CentOS 8.x
+    * AlmaLinux
+    * Rocky Linux
 2. Connect to the created instance following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux#connect-to-vm).
 3. In the instance, install the packages of NGINX Stable and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 
@@ -51,7 +52,8 @@ To install the filtering node as the NGINX Plus module in the Yandex Compute Clo
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
     * CentOS 7.x
-    * CentOS 8.x
+    * AlmaLinux
+    * Rocky Linux
 2. Connect to the created instance following the [Yandex.Cloud instructions](https://cloud.yandex.com/en/docs/compute/quickstart/quick-create-linux#connect-to-vm).
 3. In the instance, install the packages of NGINX Plus and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 

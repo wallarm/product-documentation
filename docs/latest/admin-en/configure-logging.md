@@ -79,7 +79,7 @@ To do this, perform the following actions:
         
 3.  Restart NGINX by running one of the following commands depending on the OS you are using:
 
-    --8<-- "../include/waf/restart-nginx-2.16.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 
 !!! info "Detailed information"
     To see detailed information about configuring logging in NGINX, proceed to this [link][link-nginx-logging-docs].

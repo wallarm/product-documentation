@@ -117,7 +117,7 @@ To change synchronization parameters, proceed with the following steps:
     ```
 2. Restart NGINX to apply updated settings to the synchronization process:
 
-    --8<-- "../include/waf/restart-nginx-2.16.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 
 ### Interval between filtering node and Wallarm Cloud synchronizations
 

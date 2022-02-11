@@ -25,7 +25,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics-36.md"
 
 ## Requirements
 
@@ -86,7 +86,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "CentOS 8.x"
+=== "AlmaLinux or Rocky Linux"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -113,6 +113,10 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install wallarm-node nginx-plus-module-wallarm
     ```
+=== "AlmaLinux or Rocky Linux"
+    ```bash
+    sudo yum install wallarm-node nginx-plus-module-wallarm
+    ```
 
 #### Request processing and postanalytics on different servers
 
@@ -129,6 +133,10 @@ To run postanalytics and process the requests on different servers, the followin
         sudo apt install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
         ```
     === "CentOS or Amazon Linux 2"
+        ```bash
+        sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
+        ```
+    === "AlmaLinux or Rocky Linux"
         ```bash
         sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
         ```
@@ -171,13 +179,13 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 6. Update Wallarm node configuration
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration-2.16.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.md"
 
 ### 7. Restart NGINX Plus
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-2.16.md"
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
 ### 8. Test Wallarm node operation
 
