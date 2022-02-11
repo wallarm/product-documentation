@@ -7,7 +7,7 @@
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
 [installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
-[versioning-policy]:            ../updating-migrating/versioning-policy.md
+[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 
 # Deploying as an Amazon Machine Image (AMI)
@@ -71,7 +71,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 ## 4. Launch a filtering node instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance-deprecation.md"
+--8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
 To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 3.0.0.
 

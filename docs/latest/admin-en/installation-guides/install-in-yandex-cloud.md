@@ -4,7 +4,7 @@
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [installation-instr-middle]:        /3.2/admin-en/installation-guides/install-in-yandex-cloud/
-[versioning-policy]:                ../../updating-migrating/versioning-policy.md
+[versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:        /admin-en/installation-guides/install-in-yandex-cloud/
 
 # Installing on Yandex.Cloud

@@ -3,7 +3,7 @@
 
     Before installation of the additional node, please ensure its version matches the version of already deployed modules. If the deployed module version is [deprecated or will be deprecated soon (`3.2` or lower)][versioning-policy], upgrade all modules to the latest version.
 
-    To check the installed version of filtering node and postanalytics installed on the same server:
+    To check the version of the filtering node and the postanalytics module deployed on the same server:
 
     === "Debian"
         ```bash
@@ -13,12 +13,12 @@
         ```bash
         apt list wallarm-node
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS"
         ```bash
         yum list wallarm-node
         ```
 
-    To check the versions of filtering node and postanalytics installed on different servers:
+    To check the version of the filtering node and the postanalytics module deployed on different servers:
 
     === "Debian"
         ```bash
@@ -34,7 +34,7 @@
         # run from the server with installed postanalytics
         apt list wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS"
         ```bash
         # run from the server with installed Wallarm filtering node
         yum list wallarm-node-nginx

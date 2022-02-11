@@ -13,12 +13,11 @@
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
-[versioning-policy]:               ../updating-migrating/versioning-policy.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [waf-installation-instr-middle]:     /3.2/waf-installation/nginx-plus/
-[versioning-policy]:                ../updating-migrating/versioning-policy.md
+[versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [waf-installation-instr-latest]:    /waf-installation/nginx-plus/
 
@@ -26,7 +25,7 @@
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics-deprecation.md"
+--8<-- "../include/waf/installation/already-installed-waf-postanalytics.md"
 
 ## Requirements
 

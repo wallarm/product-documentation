@@ -1,3 +1,5 @@
+[versioning-policy]:          ../../../updating-migrating/versioning-policy.md#version-list
+
 # Kubernetes deployment based on manifests
 
 ## Prerequisites
@@ -17,16 +19,7 @@
 5. [Deploy](#step-4-deploying-the-manifest-to-the-kubernetes-cluster) the manifest to the Kubernetes cluster.
 6. [Test](#step-5-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
 
-!!! info "If Wallarm node is already installed in your environment"
-    If you install Wallarm node instead of already existing Wallarm node or need to duplicate the installation in the same environment, please keep the same node version as currently used or update the version of all installations to the latest.
-
-    The version of deployed Wallarm filtering node image is specified in the Deployment template → `spec.template.spec.containers` section → `image` of the Wallarm container.
-
-    * If the version `3.4.x` is specified, follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
-    * If the version `3.2.x` is specified, follow the [instructions for 3.2](/3.2/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/) or increase the version of the image to `3.4.1-1` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/).
-    * If the version `3.0.x` or lower is specified, please increase the version of the image to `3.4.1-1` in all deployments and follow the [instructions for 3.4](/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/). Support for installed versions will be deprecated soon.
-
-    More information about Wallarm node versioning is available in the [Wallarm node versioning policy](../../../updating-migrating/versioning-policy.md).
+--8<-- "../include/waf/installation/already-deployed-sidecar-manifests.md"
 
 ### Step 1: Creating Wallarm ConfigMap
 

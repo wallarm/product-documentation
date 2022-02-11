@@ -13,13 +13,12 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[versioning-policy]:               ../../updating-migrating/versioning-policy.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [waf-installation-instr-middle]:     /3.2/waf-installation/nginx/dynamic-module/
-[versioning-policy]:                ../../updating-migrating/versioning-policy.md
+[versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [waf-installation-instr-latest]:     /waf-installation/nginx/dynamic-module/
 
