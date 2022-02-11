@@ -30,7 +30,7 @@ If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:3.4.0-1
+    docker pull wallarm/envoy:3.6.0-1
     ```
 
 ## Step 3: Stop the running container
