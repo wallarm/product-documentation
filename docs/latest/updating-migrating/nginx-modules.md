@@ -12,33 +12,29 @@
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
-# Updating Linux node packages
+# Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to update Linux node packages to version 3.4. Linux node packages are packages installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 3.4 or 3.2 to version 3.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/nginx-modules.md).
 
-## Update procedure
+## Upgrade procedure
 
-* If filtering node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
-* If filtering node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for filtering node modules.
+* If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
+* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
-
-If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
-
-## Step 2: Update NGINX to the latest stable version
+## Step 1: Upgrade NGINX to the latest stable version
 
 Update [NGINX](http://nginx.org/en/download.html) / [NGINX Plus](https://docs.nginx.com/nginx/releases/) to the latest stable release from the official NGINX repository.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
 
-## Step 3: Add new Wallarm repository
+## Step 2: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
@@ -92,46 +88,34 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/
         ```
 
-## Step 4: Migrate whitelists and blacklists from previous Wallarm node version to 3.4
-
-If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
-
-## Step 5: Update Wallarm API Security packages
+## Step 3: Upgrade Wallarm API Security packages
 
 ### Filtering node and postanalytics on the same server
 
-1. Execute the following command to upgrade the filtering node and postanalytics modules:
+Execute the following command to upgrade the filtering node and postanalytics modules:
 
-    === "Debian"
-        ```bash
-        sudo apt update
-        sudo apt dist-upgrade
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo apt update
-        sudo apt dist-upgrade
-        ```
-    === "CentOS или Amazon Linux 2"
-        ```bash
-        sudo yum update
-        ```
-2. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
-
-    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
-    2. Confirm the file rewrite by using the option `Y`.
-
-        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
-
-        By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
+=== "Debian"
+    ```bash
+    sudo apt update
+    sudo apt dist-upgrade
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt update
+    sudo apt dist-upgrade
+    ```
+=== "CentOS или Amazon Linux 2"
+    ```bash
+    sudo yum update
+    ```
 
 ### Filtering node and postanalytics on different servers
 
-!!! warning "Sequence of steps to update the filtering node and postanalytics modules"
-    If the filtering node and postanalytics modules are installed on different servers, then it is required to update the postanalytics packages before updating the filtering node packages.
+!!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
+    If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
 
-1. Update postanalytics packages following these [instructions](separate-postanalytics.md).
-2. Update Wallarm node packages:
+1. Upgrade postanalytics packages following these [instructions](separate-postanalytics.md).
+2. Upgrade Wallarm node packages:
 
     === "Debian"
         ```bash
@@ -147,30 +131,28 @@ If updating Wallarm node 2.18 or lower, migrate whitelist and blacklist configur
         ```bash
         sudo yum update
         ```
-3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
 
-    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-32) is completed.
-    2. Confirm the file rewrite by using the option `Y`.
+## Step 4: Update the Wallarm blocking page
 
-        The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
+In new node versions, the Wallarm blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 
-        By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address blacklist operation in Wallarm node 3.x.
+If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) its new version.
 
-## Step 6: Adjust Wallarm node filtration mode settings to changes released in version 3.2
+## Step 5: Rename deprecated NGINX directives
 
-If upgrading Wallarm node 3.0 or lower:
+Rename the following NGINX directives if they are explicitly specified in configuration files:
 
-1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
-      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
-2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
+* `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
+* `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+* `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 
-## Step 7: Restart NGINX
+We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+
+## Step 6: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 8: Test Wallarm node operation
+## Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 

@@ -1,10 +1,10 @@
 [docs-module-update]:   nginx-modules.md
 
-#   Updating the Separately Installed Postanalytics Module  
+#   Upgrading the postanalytics module
 
-These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
+These instructions describe the steps to upgrade the postanalytics module 3.4 or 3.2 installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+To upgrade the module 2.18 or lower, please use the [different instructions](older-versions/separate-postanalytics.md).
 
 ## Step 1: Add new Wallarm repository
 
@@ -60,7 +60,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/
         ```
 
-## Step 2: Update the Tarantool packages
+## Step 2: Upgrade the Tarantool packages
 
 === "Debian"
     ```bash
