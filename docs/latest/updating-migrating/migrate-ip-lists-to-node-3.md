@@ -1,4 +1,4 @@
-# Migrating whitelists and blacklists from previous Wallarm node versions to 3.x
+# Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x
 
 Starting with Wallarm node 3.x, the method of IP address whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists and blacklists configured in Wallarm node 2.18 or lower to Wallarm node 3.x.
 

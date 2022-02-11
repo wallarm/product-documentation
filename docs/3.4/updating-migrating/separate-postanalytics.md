@@ -1,8 +1,8 @@
 [docs-module-update]:   nginx-modules.md
 
-#   Updating the Separately Installed Postanalytics Module  
+#   Upgrading the postanalytics module  
 
-These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
+These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [Upgrading Wallarm NGINX modules][docs-module-update].
 
 --8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 

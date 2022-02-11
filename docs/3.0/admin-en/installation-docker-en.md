@@ -11,6 +11,9 @@
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 [greylist-docs]:                    ../user-guides/ip-lists/greylist.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
+[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
 # Running Docker NGINX‑based image
 

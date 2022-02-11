@@ -1,4 +1,4 @@
-# Recommendations for a safe node update process
+# Recommendations for a safe node upgrade process
 
 This document describes recommendations and associated risks for a safe update of Wallarm filtering node up to 2.18.
 

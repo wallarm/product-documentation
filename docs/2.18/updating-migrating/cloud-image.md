@@ -5,7 +5,7 @@
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
-# Updating the cloud node image
+# Upgrading the cloud node image
 
 These instructions describe the steps to update the cloud node image deployed on AWS, GCP, or Yandex.Cloud up to 2.18.
 

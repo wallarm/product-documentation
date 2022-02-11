@@ -311,16 +311,16 @@ nav:
       - Creating and configuring a partner account: partner-waf-node/creating-partner-account.md
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
-    - Updating and Migrating:
+    - Upgrading and Migrating:
       - What is new in Wallarm node 2.18: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
-      - Recommendations for a safe node update process: updating-migrating/general-recommendations.md
-      - Filtering node update instructions:
-        - Updating Linux node packages: updating-migrating/nginx-modules.md
-        - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
-        - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
+      - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
+      - Filtering node upgrade instructions:
+        - Upgrading Wallarm NGINX modules: updating-migrating/nginx-modules.md
+        - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
+        - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Updating NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
-        - Updating the cloud node image: updating-migrating/cloud-image.md
+        - Upgrading the cloud node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":

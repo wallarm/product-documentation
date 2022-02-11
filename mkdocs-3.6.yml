@@ -309,18 +309,24 @@ nav:
       - Creating and configuring a partner account: partner-waf-node/creating-partner-account.md
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
-    - Updating and Migrating:
+    - Upgrading and Migrating:
       - What is new in Wallarm node 3.6: updating-migrating/what-is-new.md
-      - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/what-is-new-for-older-versions.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
-      - Recommendations for a safe node update process: updating-migrating/general-recommendations.md
-      - Filtering node update instructions:
-        - Updating Linux node packages: updating-migrating/nginx-modules.md
-        - Updating the separately installed postanalytics module: updating-migrating/separate-postanalytics.md
-        - Updating the running Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
-        - Upgrading NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
-        - Updating the cloud node image: updating-migrating/cloud-image.md
-      - Migrating whitelists and blacklists from previous Wallarm node versions to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
+      - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
+      - Filtering node upgrade instructions:
+        - Upgrading Wallarm NGINX modules: updating-migrating/nginx-modules.md
+        - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
+        - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
+        - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
+        - Upgrading the cloud node image: updating-migrating/cloud-image.md
+      - Upgrading Wallarm node 2.18 and lower:
+        - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
+        - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
+        - Upgrading the postanalytics module 2.18 or lower: updating-migrating/older-versions/separate-postanalytics.md
+        - Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower: updating-migrating/older-versions/docker-container.md
+        - Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower: updating-migrating/older-versions/ingress-controller.md
+        - Upgrading the cloud node image 2.18 or lower: updating-migrating/older-versions/cloud-image.md
+        - Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":

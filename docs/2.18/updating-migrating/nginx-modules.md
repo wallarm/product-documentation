@@ -13,7 +13,7 @@
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
-# Updating Linux node packages
+# Upgrading Wallarm NGINX modules
 
 These instructions describe the steps to update Linux node packages to version 2.18. Linux node packages are packages installed in accordance with one of the following instructions:
 

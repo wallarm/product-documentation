@@ -1,12 +1,12 @@
-# Upgrading NGINX Ingress controller with integrated Wallarm API Security modules
+# Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.2.
+These instructions describe the steps to upgrade deployed Wallarm Ingress Controller to the new version with Wallarm node 3.2.
 
 !!! warning "Breaking changes and recommendations for different node type update"
     * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
     * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
 If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account.
 

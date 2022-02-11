@@ -1,4 +1,4 @@
-# Recommendations for a safe node update process
+# Recommendations for a safe node upgrade process
 
 This document describes recommendations and associated risks for a safe update of Wallarm filtering node up to 3.6.
 
@@ -90,7 +90,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
 ??? "Set of changes in Wallarm node upgraded from version 2.18 or lower to version 3.6"
 
-    [Open the list on a separate page](what-is-new-for-older-versions.md)
+    [Open the list on a separate page](older-versions/what-is-new.md)
 
     **Supported installation options**
 
@@ -250,4 +250,4 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Docker container with the modules for NGINX](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
 * [Cloud node image](cloud-image.md)
-* [Migrating whitelists and blacklists from previous Wallarm node versions to 3.x](migrate-ip-lists-to-node-3.md)
+* [Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x](migrate-ip-lists-to-node-3.md)

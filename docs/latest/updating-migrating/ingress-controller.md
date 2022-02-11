@@ -1,16 +1,10 @@
-# Upgrading NGINX Ingress controller with integrated Wallarm API Security modules
+# Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.4.
+These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 3.4 or 3.2 to the new version with Wallarm node 3.6.
 
---8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
+To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/ingress-controller.md).
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
-
-If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account.
-
-When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
-
-## Step 2: Update the repository containing Wallarm Helm charts
+## Step 1: Update the repository containing Wallarm Helm charts
 
 === "If using the Helm repository"
     ```bash
@@ -24,7 +18,7 @@ When new IP lists logic is enabled, please open Wallarm Console and ensure that 
     helm repo update wallarm
     ```
 
-## Step 3: Upgrade the previous Helm chart
+## Step 2: Upgrade the previous Helm chart
 
 ```bash
 helm upgrade --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
@@ -37,21 +31,16 @@ Parameters specified with the option `--set` during the [Ingress controller depl
 
 To add or update the parameters of the upgraded Helm chart, use one more command `helm upgrade` with the options `--set` and `--reuse-values`. To delete parameters, edit Wallarm ConfigMap.
 
-## Step 4: Adjust the Ingress and Helm chart configuration to changes released in version 3.x
+## Step 3: Adjust the Ingress and Helm chart configuration to released changes
 
-If you have upgraded the Helm chart of version 3.0 or lower, adjust the following configurations to changes released in version 3.x:
+1. If there is the annotation `nginx.ingress.kubernetes.io/wallarm-instance` explicitly passed to the Helm chart, rename it to `nginx.ingress.kubernetes.io/wallarm-application`.
 
-1. If you have upgraded the Helm chart of version 2.18 or lower, IP address lists. If you have configured IP whitelists and blacklists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
+    Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename its before.
+2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
 
-    Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
-2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):
-      * [Directive `wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [General filtration rule configured in Wallarm Console](../user-guides/settings/general.md)
-      * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
-
-      If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../admin-en/configure-wallarm-mode.md) to released changes.
-
-## Step 5: Move custom configuration specified in the `values.yaml` file to the `--set` option of `helm upgrade`
+    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email are specified on the page by default.
+    
+## Step 4: Move the custom configuration specified in the `values.yaml` file to the `--set` option of `helm upgrade`
 
 If some Ingress controller parameters have been configured via **values.yaml** cloned from the Wallarm Helm Chart repository, please copy and pass them to a new chart by using the option `--set` of the command `helm upgrade --reuse-values`.
 
@@ -63,7 +52,7 @@ helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_
 
 The option `--reuse-values` allows keeping intact already configured Helm chart parameters that not passed in the `--set` option. The option `--set` specifies the Helm chart parameters to be changed or added.
 
-## Step 6: Test the upgraded Ingress controller
+## Step 5: Test the upgraded Ingress controller
 
 1. Check that the version of the Helm chart was updated:
 

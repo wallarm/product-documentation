@@ -7,8 +7,11 @@
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
-# Updating the running Docker NGINX- or Envoy-based image
+# Upgrading the Wallarm Docker NGINX- or Envoy-based image
 
 These instructions describe the steps to update the running Docker NGINX- or Envoy-based image to the version 2.18.
 

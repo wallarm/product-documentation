@@ -145,7 +145,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
       * [General recommendations for a safe node upgrade process](general-recommendations.md)
       * [Upgrading modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
-      * [Upgrading NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
+      * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
 3. If upgrading the Wallarm node 2.18 or lower to version 3.4, [migrate](migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.4.
 

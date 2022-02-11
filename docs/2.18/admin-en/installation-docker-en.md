@@ -13,6 +13,9 @@
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
+[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
 # Running Docker NGINX‑based image
 

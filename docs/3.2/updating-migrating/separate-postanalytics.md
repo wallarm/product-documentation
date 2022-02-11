@@ -1,8 +1,8 @@
 [docs-module-update]:   nginx-modules.md
 
-#   Updating the Separately Installed Postanalytics Module  
+#   Upgrading the postanalytics module  
 
-These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [updating Linux node packages][docs-module-update].
+These instructions describe the steps to update the postanalytics module installed on a separate server. Postanalytics module must be updated before [Upgrading Wallarm NGINX modules][docs-module-update].
 
 !!! warning "Breaking changes and recommendations for different node type update"
     * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
