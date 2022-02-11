@@ -14,7 +14,7 @@ There are the following changes available in Wallarm node 3.6:
 
     ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-    [More details on the blocking page setup →](TBD)
+    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
 * The following NGINX directives and Envoy parameters have been renamed:
 
     * NGINX: `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
