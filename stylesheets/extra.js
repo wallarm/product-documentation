@@ -33,7 +33,7 @@ var sf14gv = 27823;
   })();
 
 // Show version selector only for Product guides
-var rootVersion = '3.4';
+var rootVersion = '3.6';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
 if (activeLinks[0].text === ' Product guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'

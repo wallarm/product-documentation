@@ -1,3 +1,3 @@
 ---
-template: overrides/home-middle.html
+template: overrides/home-deprecate-soon.html
 ---

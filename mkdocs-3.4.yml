@@ -26,7 +26,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "3.6"
+  version: "3.4"
 
 extra:
   social:
@@ -76,8 +76,8 @@ markdown_extensions:
 
 google_analytics: ['UA-45499521-1', 'docs.wallarm.com']
 
-docs_dir: docs/3.6
-site_dir: site
+docs_dir: docs/3.4
+site_dir: site/3.4
 edit_uri: ../product-docs-en/edit/master/docs/latest/
 
 nav:
@@ -310,7 +310,7 @@ nav:
       - Creating and linking clients: partner-waf-node/connecting-clients.md
       - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 3.6: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 3.4: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
@@ -319,14 +319,7 @@ nav:
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
         - Upgrading the cloud node image: updating-migrating/cloud-image.md
-      - Upgrading Wallarm node 2.18 and lower:
-        - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
-        - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
-        - Upgrading the postanalytics module 2.18 or lower: updating-migrating/older-versions/separate-postanalytics.md
-        - Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower: updating-migrating/older-versions/docker-container.md
-        - Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower: updating-migrating/older-versions/ingress-controller.md
-        - Upgrading the cloud node image 2.18 or lower: updating-migrating/older-versions/cloud-image.md
-        - Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
+      - Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":
