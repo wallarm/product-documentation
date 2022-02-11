@@ -19,7 +19,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
       * [Yandex.Cloud marketplace](https://cloud.yandex.com/marketplace/products/f2emrc60s1nh9356v1rq)
 2. At the launch step, set the following settings:
 
-      * Select the image version `3.4.x`
+      * Select the image version `3.6.x`
       * For AWS, select the [created security group](../admin-en/installation-ami-en.md#3-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.

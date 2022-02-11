@@ -35,11 +35,11 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.4.1-1
+    docker pull wallarm/node:3.6.0-1
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:3.4.0-1
+    docker pull wallarm/envoy:3.6.0-1
     ```
 
 ## Step 4: Stop the running container

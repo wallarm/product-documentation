@@ -53,17 +53,17 @@ Delete the previous Wallarm repository address and add a repository with a new W
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.6/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
     ```
 === "CentOS 7 and Amazon Linux 2"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
     ```bash
     sudo yum remove wallarm-node-repo
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.4/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -78,24 +78,24 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.4/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.4/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.4/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/3.6/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.4/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.4/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
         ```
 
 ## Step 5: Migrate whitelists and blacklists from the previous Wallarm node version to 3.6
