@@ -1,1 +1,0 @@
---8<-- "3.2/user-guides/settings/applications.md"

@@ -1,1 +1,0 @@
---8<-- "3.4/admin-en/monitoring/working-with-zabbix.md"

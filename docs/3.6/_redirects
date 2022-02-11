@@ -109,6 +109,18 @@
 /3.4/faq/* /faq/:splat 301!
 /3.4/demo-videos/* /demo-videos/:splat 301!
 /3.4/api-firewall/* /api-firewall/:splat 301!
+/3.0/admin-en/* /2.18
+/3.0/quickstart-en/* /2.18
+/3.0/updating-migrating/* /2.18
+/3.0/user-guides/* /2.18
+/3.0/waf-installation/* /2.18
+/3.0/about-wallarm-waf/* /2.18
+/3.0/partner-waf-node/* /2.18
+/3.0/attacks-vulns-list /2.18
+/3.0/attacks-vulns-list/ /2.18
+/3.0/glossary-en /2.18
+/3.0/glossary-en/ /2.18
+/3.0/* /2.18
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/
