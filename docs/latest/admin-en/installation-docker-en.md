@@ -15,6 +15,7 @@
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[about-sidecar-container]:          installation-guides/kubernetes/wallarm-sidecar-container.md
 
 # Running Docker NGINX‑based image
 
