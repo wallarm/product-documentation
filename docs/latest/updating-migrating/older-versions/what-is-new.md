@@ -116,7 +116,7 @@ New blocking page with the new layout looks as follows by default:
     Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
 * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
-    In new node versions, the collectd service does not return the metric with deprecated names.
+    In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
     [All collectd metrics →](../../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 
@@ -128,7 +128,7 @@ New blocking page with the new layout looks as follows by default:
     * `lom_apply_time` → `custom_ruleset_apply_time`
     * `lom_id` → `custom_ruleset_id`
 
-    In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
+    In new node versions, the `http://127.0.0.8/wallarm-status` endpoint temporarily returns both the deprecated and new parameters. The deprecated parameters will be removed from the service output in future releases.
 
 [Details on the statistics service →](../../admin-en/configure-statistics-service.md)
 

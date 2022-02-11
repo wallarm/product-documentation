@@ -35,12 +35,12 @@ There are the following changes available in Wallarm node 3.6:
     * `lom_apply_time` → `custom_ruleset_apply_time`
     * `lom_id` → `custom_ruleset_id`
 
-    In new node versions, the endpoint `http://127.0.0.8/wallarm-status` does not return parameters with deprecated names.
+    In new node versions, the `http://127.0.0.8/wallarm-status` endpoint temporarily returns both the deprecated and new parameters. The deprecated parameters will be removed from the service output in future releases.
 
     [More details on the statistics service →](../admin-en/configure-statistics-service.md)
 * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
-    In new node versions, the collectd service does not return the metric with deprecated names.
+    In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
     [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 * (TBD) New environment variable
