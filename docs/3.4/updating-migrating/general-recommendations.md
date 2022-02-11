@@ -1,4 +1,4 @@
-# Recommendations for a safe node update process
+# Recommendations for a safe node upgrade process
 
 This document describes recommendations and associated risks for a safe update of Wallarm filtering node up to 3.4.
 
@@ -182,4 +182,4 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Docker container with the modules for NGINX](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
 * [Cloud node image](cloud-image.md)
-* [Migrating whitelists and blacklists from previous Wallarm node versions to 3.x](migrate-ip-lists-to-node-3.md)
+* [Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 3.x](migrate-ip-lists-to-node-3.md)

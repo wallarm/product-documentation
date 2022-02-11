@@ -5,7 +5,7 @@
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 
-# Updating the cloud node image
+# Upgrading the cloud node image
 
 These instructions describe the steps to update the cloud node image deployed on AWS, GCP, or Yandex.Cloud up to 3.0.
 
@@ -24,7 +24,7 @@ To update the version of the filtering node deployed in the cloud:
 
 A more detailed description of the upgrade steps is provided below.
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
 Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 

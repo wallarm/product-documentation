@@ -12,7 +12,7 @@
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
-# Updating Linux node packages
+# Upgrading Wallarm NGINX modules
 
 These instructions describe the steps to update Linux node packages to version 3.2. Linux node packages are packages installed in accordance with one of the following instructions:
 
@@ -30,7 +30,7 @@ These instructions describe the steps to update Linux node packages to version 3
 * If filtering node and postanalytics modules are installed on the same server, then follow the instrutions below to update all packages.
 * If filtering node and postanalytics modules are installed on different servers, then first update the postanalytics module following these [instructions](separate-postanalytics.md) and perform the steps below for filtering node modules.
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
 If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.2 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open the Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 

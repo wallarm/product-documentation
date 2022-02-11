@@ -2,7 +2,7 @@
 
 This page lists the changes available when upgrading the node 3.4 or 3.2 up to version 3.6. Listed changes are available for both the regular (client) and partner Wallarm nodes. Before upgrading the modules, please carefully review the list of changes and [general recommendations](general-recommendations.md).
 
-If upgrading Wallarm node 2.18 or lower, learn available changes from the [separate list](what-is-new-for-older-versions.md).
+If upgrading Wallarm node 2.18 or lower, learn available changes from the [separate list](older-versions/what-is-new.md).
 
 ## When upgrading node 3.4
 
@@ -62,7 +62,7 @@ Wallarm node 3.6 provides **all changes listed above** as well as the following:
 ## Which Wallarm nodes are recommended to be upgraded?
 
 * Regular (client) Wallarm node of version 3.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Regular (client) and partner Wallarm nodes of the [deprecated](versioning-policy.md#version-list) versions (2.18 and lower). [Changes](what-is-new-for-older-versions.md) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration. Please note that some settings of node 3.x are **incompatible** with the node of older versions.
+* Regular (client) and partner Wallarm nodes of the [deprecated](versioning-policy.md#version-list) versions (2.18 and lower). [Changes](older-versions/what-is-new.md) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration. Please note that some settings of node 3.x are **incompatible** with the node of older versions.
 
 ## Upgrade process
 
@@ -71,7 +71,7 @@ Wallarm node 3.6 provides **all changes listed above** as well as the following:
 
       * [Upgrading modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
-      * [Upgrading NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
+      * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
 
 ----------

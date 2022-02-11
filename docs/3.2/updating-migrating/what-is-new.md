@@ -115,7 +115,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 1. Review [recommendations for the modules update](general-recommendations.md).
 2. Update installed modules following the instructions for your Wallarm node deployment option:
 
-      * [General recommendations for a safe node update process](general-recommendations.md)
+      * [General recommendations for a safe node upgrade process](general-recommendations.md)
       * [Updating modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
       * [Updating the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Updating NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)

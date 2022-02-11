@@ -1,10 +1,10 @@
-# Upgrading NGINX Ingress controller with integrated Wallarm API Security modules
+# Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to update deployed Wallarm Ingress Controller to the new version with Wallarm node 3.4.
+These instructions describe the steps to upgrade deployed Wallarm Ingress Controller to the new version with Wallarm node 3.4.
 
 --8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
 
-## Step 1: Inform Wallarm technical support that you are updating filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
 If updating Wallarm node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account.
 
