@@ -64,28 +64,62 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Sampling of hits
 
-The attack may consist of a large number of identical hits (more than 100). Storing all hits may increase the Wallarm Cloud load and require a considerable amount of time to analyze and search for attacks via Wallarm Console.
+Malicious traffic often consists of comparable and identical [hits](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
 
-To optimize the data storage and analysis, we apply the sampling algorithm to hits:
+Hit sampling optimizes the data storage and analysis by dropping non-unique hits from being uploaded to the Wallarm Cloud.
 
-* The first 5 identical hits for each hour are saved in the sample in the Wallarm Cloud. If several samples are the part of the same attack, these samples are grouped (for example, the hits in the samples may differ only in the IP addresses).
-* The rest of the hits are not saved in the sample, but their number is recorded in a separate parameter for each attack.
+!!! warning "How dropped hits affect RPS"
+    Dropped hits affect the following measures:
 
-**Examples**
+    * The average number of requests processed by the Wallarm node per second (RPS). The RPS limits in the subscription are also affected.
+    * The number of processed requests displayed on the [dashboard](../dashboard/waf.md).
 
-* If the attack consists of 20 hits (10 identical hits each originated from different IP addresses), data on the first 5 hits from each IP address will be saved in the sample in the Wallarm Cloud and the number of the rest hits (10) will be recorded in a separate variable.
-* If the attack consists of 10 hits originated from different IP addresses, data on all hits will be saved in the Wallarm Cloud.
+Hit sampling does not affect the quality of attack detection and only helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 
-**Enabling the sampling algorithm**
+### Enabling the sampling algorithm
 
-* For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), the sampling algorithm is enabled if Wallarm detects a high percentage of attacks in your traffic.
+* For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
+* For [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 
-    When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) added to your company account will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
-* For all [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), the sampling algorithm is enabled by default.
+When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
 
-If hits sampling is enabled for your traffic, the appropriate status, the sample of saved hits, and the number of other hits are displayed in the **Events** section of Wallarm Console. For example:
+Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
+
+### Core logic of hit sampling
+
+Hit sampling is performed in two sequential stages: **extreme** and **regular**.
+
+Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [brute force, forced browsing](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
+
+**Extreme sampling**
+
+The extreme sampling algorithm has the following core logic:
+
+* If hits are of the [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
+* If hits are of the [brute force, forced browsing](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
+
+**Regular sampling**
+
+The regular sampling algorithm has the following core logic:
+
+1. The first 5 identical hits for each hour are saved in the sample in the Wallarm Cloud. The rest of the hits are not saved in the sample, but their number is recorded in a separate parameter.
+
+    The hits are identical if all of the following parameters have the same values:
+
+    * Attack type
+    * Parameter with the malicious payload
+    * Target address
+    * Request method
+    * Response code
+    * Originating IP address
+2. Hit samples are grouped into [attacks](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the event list.
+
+Grouped hits are displayed in the **Events** section of Wallarm Console as follows:
 
 ![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+
+!!! info "Displaying dropped hits in the event list"
+    Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of events.
 
 ## Demo videos
 
