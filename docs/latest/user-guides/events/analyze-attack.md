@@ -68,11 +68,10 @@ Malicious traffic often consists of comparable and identical [hits](../../about-
 
 Hit sampling optimizes the data storage and analysis by dropping non-unique hits from being uploaded to the Wallarm Cloud.
 
-!!! warning "How dropped hits affect RPS"
-    Dropped hits affect the following measures:
+!!! warning "Dropped hits in the number of RPS"
+    Since dropped requests are still requests processed by the Wallarm node, the RPS value increases with each dropped request. Accordingly, the RPS limit in the subscription is the number of all requests processed by the node including the dropped ones.
 
-    * The average number of requests processed by the Wallarm node per second (RPS). The RPS limits in the subscription are also affected.
-    * The number of processed requests displayed on the [dashboard](../dashboard/waf.md).
+    The number of requests and hits on the [dashboard](../dashboard/waf.md) also includes the number of dropped hits.
 
 Hit sampling does not affect the quality of attack detection and only helps to avoid its slowdown. Wallarm node continues attack detection and [blocking](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) even with hit sampling enabled.
 
