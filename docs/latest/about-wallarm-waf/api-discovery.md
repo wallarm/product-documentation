@@ -16,10 +16,12 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API structure discovered by Wallarm, you can**:
 
-* Check [the list of parameters](#params) that can be sent for the selected endpoint.
+* Check [the list of parameters](#params) that are sent for the selected endpoint, including the following information:
+    * Type of data sent in each parameter.
+    * Date and time when parameter information was last updated.
 * [Download](#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
-    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints).
-    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use).
+    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints also known as "Shadow API").
+    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
 * Use [copied URLs](#copyurl) of the discovered endpoints to search for the events related to this endpoint.
 
@@ -78,7 +80,9 @@ You can filter the discovered API structure:
 * Use **Application**, **Domain** and **Method** filters.
 * In the **Domains** panel, click application or domain.
 
-<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
+<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters that are sent in a particular request part, including the following information:
+    * Type of data sent in each parameter.
+    * Date and time when parameter information was last updated.
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
