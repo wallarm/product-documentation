@@ -16,12 +16,12 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API structure discovered by Wallarm, you can**:
 
+* Check [the list of parameters](#params) that can be sent for the selected endpoint.
 * [Download](#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
-    * The list of endpoints that were discovered by Wallarm, but absent in your specification (missing endpoints).
+    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints).
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use).
 * Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
 * Use [copied URLs](#copyurl) of the discovered endpoints to search for the events related to this endpoint.
-* Check [the list of header and body parameters](#params) can be sent for the selected endpoint.
 
 ## How API Discovery works?
 
@@ -100,6 +100,9 @@ Click **Download OAS** to get a `swagger.json` file with the description of the 
 !!! info "Domain information in downloaded Swagger file"
     If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded Swagger file. Currently, the domain information is not included in the file.
 
+Using the downloaded data, you can discover:
+    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints).
+    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use).
 
 ## API Discovery debugging
 
