@@ -18,8 +18,8 @@ You can [enable][anchor-enable] or [disable][anchor-disable] SSO authentication 
 ##   Enabling SSO Authentication for Users
 
 !!! warning
-    *   When enabling SSO authentication for users with any non-administrator roles (*Admin* or *Super Admin*), a login/password log in mechanism and the two-factor authentication will not be available. When SSO authentication is enabled, the user's password is erased and two-factor authentication is disabled.
-        The *Admin* and *Super Admin* roles can use login/password pair, two-factor authentication, and SSO authentication simultaneously.
+    *   When enabling SSO authentication for users with any role different from *Admin*, a login/password log in mechanism and the two-factor authentication will not be available. When SSO authentication is enabled, the user's password is erased and two-factor authentication is disabled.
+        The *Admin* role can use login/password pair, two-factor authentication, and SSO authentication simultaneously.
     *   It is assumed that you have already given the required group of users access to the configured Wallarm application on the [Okta][doc-allow-access-okta] or [G Suite][doc-allow-access-gsuite] side.
 
 
