@@ -35,7 +35,9 @@ The API structure includes the following elements:
 
 * API endpoints
 * Request methods (GET, POST, and others)
-* Required and optional GET, POST, and header parameters
+* Required and optional GET, POST, and header parameters including:
+    * Type of data sent in each parameter
+    * Date and time when parameter information was last updated
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
@@ -104,8 +106,8 @@ Click **Download OAS** to get a `swagger.json` file with the description of the 
 
 Using the downloaded data, you can discover:
 
-   * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
-   * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+* The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
+* The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 
 ## API Discovery debugging
 
