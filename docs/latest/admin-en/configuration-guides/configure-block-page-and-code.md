@@ -21,7 +21,7 @@ By default, the response code 403 and default NGINX blocking page are returned t
 
 You can configure the blocking page and error code passing the following parameters in the `wallarm_block_page` NGINX directive:
 
-* Path to the HTM or HTML file of the blocking page. You can specify the path either to a custom blocking page or the [default blocking page](#customizing-default-blocking-page) provided by Wallarm.
+* Path to the HTM or HTML file of the blocking page. You can specify the path either to a custom blocking page or the [sample blocking page](#customizing-sample-blocking-page) provided by Wallarm.
 * The text of the message to be returned in response to a blocked request.
 * URL for the client redirection.
 * `response_code`: response code.
@@ -41,7 +41,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code. For example, `${remote_addr}` displays the IP address from which the blocked request was originated.
 
-    Wallarm provides the default blocking page. To use this page, please specify the path `&/usr/share/nginx/html/wallarm_blocked.html` in the directive value.
+    Wallarm provides the sample blocking page. To use this page, please specify the path `&/usr/share/nginx/html/wallarm_blocked.html` in the directive value.
 
     !!! warning "Important information for Debian and CentOS users"
         If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../waf-installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
@@ -85,20 +85,276 @@ The directive `wallarm_block_page_add_dynamic_path` is used to initialize the bl
 
 The directive  can be set inside the `http` block of the NGINX configuration file.
 
-## Customizing default blocking page
+## Customizing sample blocking page
 
- The default blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
+ The sample blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
 
 ![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-You can use the default page without customization or enhance it by:
+You can use the sample page without customization or enhance it by:
 
 * Adding your company logo – by default, no logo is presented on the page.
 * Adding your company support email – by default, no email links are used and the `contact us` phrase is the simple text without any link.
 * Changing any other HTML elements or adding your own.
 
-!!! info "Default vs custom blocking page"
-    Instead of modifying the default page provided by Wallarm, you can create your own custom one and then set it to be used by specifying path to it via the [wallarm_block_page](#nginx-directive-wallarm_block_page) or the [wallarm_block_page_add_dynamic_path](#nginx-directive-wallarm_block_page_add_dynamic_path) directive.
+!!! info "Sample vs custom blocking page"
+    Instead of modifying the sample page provided by Wallarm, you can create your own custom one and then set it to be used by specifying path to it via the [wallarm_block_page](#nginx-directive-wallarm_block_page) or the [wallarm_block_page_add_dynamic_path](#nginx-directive-wallarm_block_page_add_dynamic_path) directive.
+
+### General procedure
+
+If you modify the sample page itself, your modifications may be lost on Wallarm components update. Therefore it is recommended to copy sample page, give it new name and only then modify. Act depending on your installation type as described in the sections below.
+
+**<a name="copy"></a>Sample page for copying**
+
+You can make copy of the `/usr/share/nginx/html/wallarm_blocked.html` located in the environment where your filtering node is installed. Alternatively, copy the code below and save it as your new file:
+
+??? info "Show sample page code"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>You are blocked</title>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:700|Roboto|Roboto+Mono&display=swap" rel="stylesheet">
+        <style>
+            html {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            body {
+                margin: 0;
+                height: 100vh;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 100%;
+            }
+
+            .logo {
+                margin-top: 32px;
+            }
+
+            .message {
+                display: flex;
+                margin-bottom: 100px;
+            }
+
+            .alert {
+                padding-top: 20px;
+                width: 246px;
+                text-align: center;
+            }
+
+            .alert-title {
+                font-family: 'Poppins', sans-serif;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .alert-desc {
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .info {
+                margin-left: 76px;
+                border-left: 1px solid rgba(149, 157, 172, 0.24);
+                padding: 20px 0 20px 80px;
+                width: 340px;
+            }
+
+            .info-title {
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .info-text {
+                margin-top: 8px;
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .info-divider {
+                margin-top: 16px;
+            }
+
+            .info-data {
+                margin-top: 12px;
+                border: 1px solid rgba(149, 157, 172, 0.24);
+                border-radius: 4px;
+                padding: 9px 12px;
+                font-size: 14px;
+                line-height: 20px;
+                font-family: 'Roboto Mono', monospace;
+            }
+
+            .info-copy {
+                margin-top: 12px;
+
+                padding: 6px 12px;
+                border: none;
+                outline: none;
+                background: rgba(149, 157, 172, 0.08);
+                cursor: pointer;
+                transition: 0.24s cubic-bezier(0.24, 0.1, 0.24, 1);
+                border-radius: 4px;
+
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .info-copy:hover {
+                background-color: rgba(149, 157, 172, 0.24);
+            }
+
+            .info-copy:active {
+                background-color: rgba(149, 157, 172, 0.08);
+            }
+
+            .info-mailto,
+            .info-mailto:visited {
+                color: #fc7303;
+            }
+        </style>
+        <script>
+            // Place your support email here
+            const SUPPORT_EMAIL = "";
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <div id="logo" class="logo">
+                <!--
+                    Place you logo here.
+                    You can use an external image:
+                    <img src="https://example.com/logo.png" width="160" alt="Company Name" />
+                    Or put your logo source code (like svg) right here:
+                    <svg width="160" height="80"> ... </svg>
+                -->
+            </div>
+
+            <div class="message">
+                <div class="alert">
+                    <svg width="207" height="207" viewBox="0 0 207 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M88.7512 33.2924L15.6975 155.25C14.1913 157.858 13.3943 160.816 13.3859 163.828C13.3775 166.84 14.1579 169.801 15.6494 172.418C17.141 175.035 19.2918 177.216 21.8877 178.743C24.4837 180.271 27.4344 181.092 30.4462 181.125H176.554C179.566 181.092 182.516 180.271 185.112 178.743C187.708 177.216 189.859 175.035 191.351 172.418C192.842 169.801 193.623 166.84 193.614 163.828C193.606 160.816 192.809 157.858 191.303 155.25L118.249 33.2924C116.711 30.7576 114.546 28.6618 111.963 27.2074C109.379 25.7529 106.465 24.9888 103.5 24.9888C100.535 24.9888 97.6206 25.7529 95.0372 27.2074C92.4538 28.6618 90.2888 30.7576 88.7512 33.2924V33.2924Z"
+                            stroke="#F24444" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M103.5 77.625V120.75" stroke="#F24444" stroke-width="16" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M103.5 146.625V146.668" stroke="#F24444" stroke-width="16" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <div class="alert-title">Malicious activity blocked</div>
+                    <div class="alert-desc">Your request is blocked since it was identified as a malicious one.</div>
+                </div>
+                <div class="info">
+                    <div class="info-title">Why it happened</div>
+                    <div class="info-text">
+                        You might have used symbols similar to a malicious code sequence, or uploaded a specific file.
+                    </div>
+
+                    <div class="info-divider"></div>
+
+                    <div class="info-title">What to do</div>
+                    <div class="info-text">
+                        If your request is considered to be legitimate, please <a id="mailto" href="" class="info-mailto">contact us</a> and provide your last action description and the following data:
+                    </div>
+
+                    <div id="data" class="info-data">
+                        IP ${remote_addr}<br />
+                        Blocked on ${time_iso8601}<br />
+                        UUID ${request_id}
+                    </div>
+
+                    <button id="copy-btn" class="info-copy">
+                        Copy details
+                    </button>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <script>
+            // Warning: ES5 code only
+
+            function writeText(str) {
+                const range = document.createRange();
+
+                function listener(e) {
+                    e.clipboardData.setData('text/plain', str);
+                    e.preventDefault();
+                }
+
+                range.selectNodeContents(document.body);
+                document.getSelection().addRange(range);
+                document.addEventListener('copy', listener);
+                document.execCommand('copy');
+                document.removeEventListener('copy', listener);
+                document.getSelection().removeAllRanges();
+            }
+
+            function copy() {
+                const text = document.querySelector('#data').innerText;
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
+                }
+
+                return writeText(text);
+            }
+
+            document.querySelector('#copy-btn').addEventListener('click', copy);
+
+            const mailto = document.getElementById('mailto');
+            if (SUPPORT_EMAIL) mailto.href = `mailto:${wallarm_dollar}{SUPPORT_EMAIL}`;
+            else mailto.replaceWith(mailto.textContent);
+        </script>
+    </body>
+    ```
+
+**Common file system**
+
+You can make copy of the `/usr/share/nginx/html/wallarm_blocked.html` under a new name wherever you want (NGINX should have read permission there) including the same folder.
+
+**Docker container**
+
+To modify sample blocking page or provide your own custom from scratch, you can use Docker's [bind mount](https://docs.docker.com/storage/bind-mounts/) functionality. When using it, your page and NGINX configuration file from your host machine are copied to the container and then referenced with the originals, so that if you change files on the host machine, their copies will be synchronized and vise versa.
+
+Therefore, to modify sample blocking page or provide your own, do the following:
+
+1. Before first run, [prepare](#copy) your modified `wallarm_blocked-renamed.html`.
+1. Prepare NGINX configuration file with the path to your blocking page. See [Configuration examples →](#configuration-examples)
+1. Run the container [mounting](../installation-docker-en.md#run-the-container-mounting-the-configuration-file) the prepared blocking page and configuration file.
+1. If you need later to update your blocking page in a running container, on the host machine, change the referenced `wallarm_blocked-renamed.html` then restart NGINX in the container.
+
+**Ingress controller**
+
+To modify sample blocking page or provide your own, do the following:
+
+1. [Prepare](#copy) your modified `wallarm_blocked-renamed.html`.
+1. [Create ConfigMap from the file](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) `wallarm_blocked-renamed.html`.
+1. Mount created ConfigMap to the pod with Wallarm Ingress controller. For this, please update the Deployment object relevant for Wallarm Ingress controller following the [instructions](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap).
+
+    !!! info "Directory for mounted ConfigMap"
+        Existing files in the directory used to mount ConfigMap will be deleted.
+
+1. Instruct pod to use your modified or custom page by providing Ingress annotation:
+
+    ```bash
+    kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
+    ```
+
+### Frequent modifications
 
 To add your company logo, in the `wallarm_blocked.html` file, modify and uncomment:
 
@@ -134,7 +390,7 @@ The `type` parameter of the `wallarm_block_page` directive is explicitly specifi
 
 This example shows the following response settings:
 
-* Default Wallarm blocking page and the error code 445 returned if the request is blocked by the filtering node in the blocking or safe blocking mode.
+* Sample Wallarm blocking page and the error code 445 returned if the request is blocked by the filtering node in the blocking or safe blocking mode.
 * Custom blocking page `/usr/share/nginx/html/block.html` and the error code 445 returned if the request is originated from any blacklisted IP address.
 
 #### NGINX configuration file
@@ -209,7 +465,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 This configuration is returned to the client if the request is originated from the source blacklisted as a single IP or subnet. The Wallarm node returns the code 445 and the blocking page with the content that depends on the `User-Agent` header value:
 
-* By default, the default Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
+* By default, the sample Wallarm blocking page `/usr/share/nginx/html/wallarm_blocked.html` is returned. Since NGINX variables are used in the blocking page code, this page should be initialized via the directive `wallarm_block_page_add_dynamic_path`.
 * For users of Firefox — `/usr/share/nginx/html/block_page_firefox.html` (if deploying Wallarm Ingress controller, it is recommended to create a separate directory for custom block page files, i.e. `/usr/custom-block-pages/block_page_firefox.html`):
 
     ```bash
