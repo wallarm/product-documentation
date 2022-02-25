@@ -52,6 +52,13 @@ Node artifacts of deprecated versions are available for download and installatio
 
 When installing a filtering node for the first time, it is recommended to use the latest available version. When installing an additional filtering node in the environment with already installed nodes, it is recommended to use the same version in all installations for full compatibility.
 
+## NGINX upgrade
+
+Most Wallarm modules are distributed with NGINX components of their own versions. To keep Wallarm modules working with the latest versions of NGINX components, we update them as follows:
+
+* Wallarm DEB and RPM packages are based on the official NGINX and NGINX Plus modules. Once the new version of NGINX / NGINX Plus is released, Wallarm is committed to providing an update of its version in 1 day. Wallarm publishes this update as the new minor/patch version of supported node versions.
+* Wallarm Ingress Controller is based on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). Once the new version of Community Ingress NGINX Controller is released, Wallarm is committed to providing an update of its version in the following 30 days. Wallarm publishes this update as the new minor version of the latest Ingress controller.
+
 ## Version update
 
 It is assumed that you are using the latest available version of the filtering node when installing, updating, or configuring the product. The Wallarm node instructions describe commands that automatically install the latest available patch and build.
