@@ -1,10 +1,12 @@
-# Installation in the Kubernetes cluster
+# Installing NGINX Ingress Controller with integrated Wallarm services
+
+These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm.
 
 ## Requirements
 
-* Kubernetes platform version 1.21 and lower
+* Kubernetes platform version 1.19-1.23
 * [Helm](https://helm.sh/) package manager
-* Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 0.26.2
+* Compatibility of your services with the [Community NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 1.1.1 or lower
 * Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
@@ -36,20 +38,36 @@
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-4. Install the Wallarm packages:
+4. Create the `values.yaml` file with the [Wallarm configuration](configure-kubernetes-en.md).
+
+    Example of the file with the minimun configuration:
 
     === "EU Cloud"
         ```bash
-        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN> --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-        ```
-    === "US Cloud"
+        controller:
+          wallarm:
+            enabled: "true"
+            token: "<YOUR_CLOUD_NODE_TOKEN>"
+        ```    
+    === "RU Cloud"
         ```bash
-        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        controller:
+          wallarm:
+            enabled: "true"
+            token: "<YOUR_CLOUD_NODE_TOKEN>"
+            apiHost: "us1.api.wallarm.com"
         ```
+    
+    `<YOUR_CLOUD_NODE_TOKEN>` is the cloud node token.
+5. Install the Wallarm packages:
 
-    * `<YOUR_CLOUD_NODE_TOKEN>` is the cloud node token
-    * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller
-    * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
+    ``` bash
+    helm install --version 3.6.3 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    ```
+
+    * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
+    * `<KUBERNETES_NAMESPACE>` is the namespace to deploy the Wallarm Ingress controller to
+    * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
 ### Step 2: Enabling traffic analysis for your Ingress
 
