@@ -44,7 +44,7 @@ To migrate to Wallarm Ingress controller 3.6, update the following configuration
 
 There are the following setting probably to be changed:
 
-* [Proper reporting of end user public IP address](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
+* [Proper reporting of end user public IP address](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
 
     ```diff
     controller:
@@ -139,7 +139,7 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 
       If the expected behavior does not correspond to the changed filtration mode logic, please adjust the [Ingress annotations](../../admin-en/configure-kubernetes-en.md#ingress-annotations) and [other settings](../../admin-en/configure-wallarm-mode.md) to released changes.
-* Get rid of the explicit [monitoring service configuration](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
+* Get rid of the explicit [monitoring service configuration](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
 
     ```diff
     controller:
@@ -152,9 +152,9 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     -    service:
     -      annotations: {}
     ```
-* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
+    In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
 ## Step 5: Check out all coming K8s manifest changes
 
@@ -263,7 +263,7 @@ There are three ways of upgrading the Wallarm Ingress controller. Depending on w
 !!! warning "Using the staging environment or minikube"
     If the Wallarm Ingress controller is deployed to your staging environment, it is recommended to upgrade it first. With all services operating correctly in the staging environment, you can proceed to the upgrade procedure in the production environment.
 
-    Unless it is recommended to [deploy the Wallarm Ingress controller 3.6](../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
+    Unless it is recommended to [deploy the Wallarm Ingress controller 3.6](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
 
     This approach helps to avoid downtime of the services in the production environment.
 
@@ -430,9 +430,9 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 1. If the Ingress is annotated with `nginx.ingress.kubernetes.io/wallarm-instance`, rename this annotation to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
-1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
+    In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
 ## Step 9: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
