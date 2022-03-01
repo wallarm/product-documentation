@@ -208,14 +208,14 @@ Please note the changes of the following configuration:
 * Configuration of Prometheus with new labels, e.g.:
 
     ```diff
-    - job_name: 'kubernetes-ingress'
-      kubernetes_sd_configs:
-      - role: pod
-        namespaces:
-          names:
-            - kube-system # ${NAMESPACE}
-      relabel_configs: # RELEASE_NAME=waf-ingress
-        # Selectors
+     - job_name: 'kubernetes-ingress'
+       kubernetes_sd_configs:
+       - role: pod
+         namespaces:
+           names:
+             - kube-system # ${NAMESPACE}
+       relabel_configs: # RELEASE_NAME=waf-ingress
+         # Selectors
     -    - source_labels: [__meta_kubernetes_pod_label_app]
     +    - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
            action: keep
@@ -229,26 +229,26 @@ Please note the changes of the following configuration:
            action: keep
     -      regex: waf-ingress
     +      regex: controller
-        - source_labels: [__meta_kubernetes_pod_container_port_number]
-          action: keep
-          regex: "10254|18080"
-          # Replacers
-        - action: replace
-          target_label: __metrics_path__
-          regex: /metrics
-        - action: labelmap
-          regex: __meta_kubernetes_pod_label_(.+)
-        - source_labels: [__meta_kubernetes_namespace]
-          action: replace
-          target_label: kubernetes_namespace
-        - source_labels: [__meta_kubernetes_pod_name]
-          action: replace
-          target_label: kubernetes_pod_name
-        - source_labels: [__meta_kubernetes_pod_name]
-          regex: (.*)
-          action: replace
-          target_label: instance
-          replacement: "$1"
+         - source_labels: [__meta_kubernetes_pod_container_port_number]
+           action: keep
+           regex: "10254|18080"
+           # Replacers
+         - action: replace
+           target_label: __metrics_path__
+           regex: /metrics
+         - action: labelmap
+           regex: __meta_kubernetes_pod_label_(.+)
+         - source_labels: [__meta_kubernetes_namespace]
+           action: replace
+           target_label: kubernetes_namespace
+         - source_labels: [__meta_kubernetes_pod_name]
+           action: replace
+           target_label: kubernetes_pod_name
+         - source_labels: [__meta_kubernetes_pod_name]
+           regex: (.*)
+           action: replace
+           target_label: instance
+           replacement: "$1"
     ```
 * Analyze all other changes.
 
