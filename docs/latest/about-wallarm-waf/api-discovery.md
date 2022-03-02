@@ -73,6 +73,8 @@ By clicking the endpoint, you can also find the set of required and optional par
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
+## API structure and related events
+
 To see all events related to some endpoint, click the icon:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
