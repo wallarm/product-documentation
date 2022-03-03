@@ -14,6 +14,18 @@ In both cases, the built API structure may be outdated or incomplete, e.g. if a 
 
 Since the API Discovery module uses the real traffic as a data source, it helps to avoid the irrelevance and incompleteness of the API structure by including all endpoints actually processing the requests to the API structure.
 
+**As you have your API structure discovered by Wallarm, you can**:
+
+* Check [the list of parameters](#params) that are sent for the selected endpoint, including the following information:
+    * Type of data sent in each parameter.
+    * Date and time when parameter information was last updated.
+* [Download](#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
+    * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
+    * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+* Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
+* See events related to some endpoint in one click.
+* [Copy URLs](#copyurl) of the discovered endpoints.
+
 ## How API Discovery works?
 
 API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
@@ -24,7 +36,9 @@ The API structure includes the following elements:
 
 * API endpoints
 * Request methods (GET, POST, and others)
-* Required and optional GET, POST, and header parameters
+* Required and optional GET, POST, and header parameters including:
+    * Type of data sent in each parameter
+    * Date and time when parameter information was last updated
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
@@ -69,11 +83,11 @@ You can filter the discovered API structure:
 * Use **Application**, **Domain** and **Method** filters.
 * In the **Domains** panel, click application or domain.
 
-By clicking the endpoint, you can also find the set of required and optional parameters that can be sent in a particular request part.
+<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters that are sent in a particular request part:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
+<a name="copyurl"></a>To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
 
 ## API structure and rules
 
