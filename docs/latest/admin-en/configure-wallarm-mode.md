@@ -100,7 +100,7 @@ On the **General** tab, you can specify one of the following filtration modes:
 
 ### Setting up the filtration rules on the "Rules" tab
 
-You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-the-wallarm-console).
+You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-wallarm-console).
 
 * [Details on working with rules on the **Rules** tab →](../user-guides/rules/intro.md)
 * [Step-by-step guide for creating a rule that manages the filtration mode →](../user-guides/rules/wallarm-mode-rule.md)
@@ -195,7 +195,7 @@ http {
 
 ### Setting up filtration mode in Wallarm Console
 
-* [General filtration rule](#setting-up-the-general-filtration-rule-in-the-wallarm-console): **Monitoring**.
+* [General filtration rule](#setting-up-the-general-filtration-rule-in-wallarm-console): **Monitoring**.
 * [Filtration rules](#setting-up-the-filtration-rules-on-the-rules-tab):
     * If the request meets the following conditions:
         * Method: `POST`
