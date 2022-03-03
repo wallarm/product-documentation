@@ -23,8 +23,8 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
-* Use [copied URLs](#copyurl) of the discovered endpoints to search for the events related to this endpoint.
-* See all events related to some endpoint in one click.
+* See events related to some endpoint in one click.
+* [Copy URLs](#copyurl) of the discovered endpoints.
 
 ## How API Discovery works?
 
