@@ -15,9 +15,9 @@
         <p>Deploy Wallarm node compatible to NGINX Stable with...</p>
         <div id="nginxId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#docker-images" onClick="noAction(event)">Docker container</a>
+            <a href="../../admin-en/installation-docker-en/" onClick="noAction(event)">Docker container</a>
             <a href="#kubernetes" onClick="noAction(event)">Kubernetes</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -33,7 +33,7 @@
         <p>Deploy Wallarm node compatible to NGINX Plus with...</p>
         <div id="nginxPlusId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -49,7 +49,7 @@
         <p>Deploy Wallarm node compatible to Kong with...</p>
         <div id="kongId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
