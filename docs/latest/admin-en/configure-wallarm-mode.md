@@ -6,25 +6,12 @@ Filtration mode defines the filtering node behavior when processing incoming req
 
 The Wallarm filtering node can process incoming requests in the following modes (from the mildest to the strictest):
 
-* **Disabled** (`off`) → the filtering node:
+* **Disabled** (`off`)
+* **Monitoring** (`monitoring`)
+* **Safe blocking** (`safe_blocking`)
+* **Blocking** (`block`)
 
-    * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
-    * Does not block requests containing malicious payloads.
-    * Does not analyze request sources (does not use [IP address lists](../user-guides/ip-lists/overview.md)).  
-* **Monitoring** (`monitoring`) → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Does not block requests containing malicious payloads.
-    * Does not analyze request sources (does not use [IP address lists](../user-guides/ip-lists/overview.md)).
-* **Safe blocking** (`safe_blocking`) → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-    * Blocks requests containing malicious payloads if they are originated from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
-    * Allows requests originated from [whitelisted](../user-guides/ip-lists/whitelist.md) IP addresses even those containing attack signs. If the whitelisted IP address is duplicated in the blacklist or greylist, the node still allows the request.
-* **Blocking** (`block`) → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Blocks requests containing malicious payloads.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-    * Allows requests originated from [whitelisted](../user-guides/ip-lists/whitelist.md) IP addresses even those containing attack signs. If the whitelisted IP address is duplicated in the blacklist or greylist, the node still allows the request.
+--8<-- "../include/wallarm-modes-description.md"
 
 ## Methods of the filtration mode configuration
 
@@ -113,7 +100,7 @@ On the **General** tab, you can specify one of the following filtration modes:
 
 ### Setting up the filtration rules on the "Rules" tab
 
-You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-the-wallarm-console).
+You can fine-tune the filtration mode for processing requests that meet your custom conditions on the **Rules** tab of Wallarm Console. These rules have higher priority than the [general filtration rule set in Wallarm Console](#setting-up-the-general-filtration-rule-in-wallarm-console).
 
 * [Details on working with rules on the **Rules** tab →](../user-guides/rules/intro.md)
 * [Step-by-step guide for creating a rule that manages the filtration mode →](../user-guides/rules/wallarm-mode-rule.md)
@@ -208,7 +195,7 @@ http {
 
 ### Setting up filtration mode in Wallarm Console
 
-* [General filtration rule](#setting-up-the-general-filtration-rule-in-the-wallarm-console): **Monitoring**.
+* [General filtration rule](#setting-up-the-general-filtration-rule-in-wallarm-console): **Monitoring**.
 * [Filtration rules](#setting-up-the-filtration-rules-on-the-rules-tab):
     * If the request meets the following conditions:
         * Method: `POST`
