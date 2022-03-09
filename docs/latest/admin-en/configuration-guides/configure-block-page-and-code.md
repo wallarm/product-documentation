@@ -41,15 +41,13 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     
     You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code. For example, `${remote_addr}` displays the IP address from which the blocked request was originated.
 
-    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html`. You can use this page as is or use it as a start point for your [customization](#customizing-sample-blocking-page).
+    Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html`. You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
 
     !!! warning "Important information for Debian and CentOS users"
         If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../waf-installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
         ```
         UUID ${request_id}
         ```
-
-        This applies to both `wallarm_blocked.html` and to the custom block page.
 
     [Example of configuration →](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)
 * URL for the client redirection and blocked request type (optional)
@@ -371,7 +369,7 @@ To add your company logo, in the `wallarm_blocked-renamed.html` file, modify and
     </div>
 ```
 
-To add your company support email, in the `wallarm_blocked.html` file, modify the `SUPPORT_EMAIL` variable:
+To add your company support email, in the `wallarm_blocked-renamed.html` file, modify the `SUPPORT_EMAIL` variable:
 
 ```html
 <script>
