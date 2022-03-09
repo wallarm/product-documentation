@@ -24,7 +24,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
 * See events related to some endpoint in one click.
-* [Copy URLs](#copyurl) of the discovered endpoints.
+* Copy URLs of the discovered endpoints.
 
 ## How API Discovery works?
 
@@ -87,7 +87,20 @@ You can filter the discovered API structure:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-<a name="copyurl"></a>To copy some endpoint URL to the clipboard, in this endpoint menu select **Copy URL**. You can use copied URL to [search for the events](../user-guides/search-and-filters/use-search.md) related to this endpoint.
+
+## API structure and related events
+
+To see attacks and incidents for the last 7 days related to some endpoint, click the icon:
+
+![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+
+The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
+
+```
+attacks incidents last 7 days d:<YOUR_DOMAIN> u:<YOUR_ENDPOINT>
+```
+
+You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
 
 ## API structure and rules
 
