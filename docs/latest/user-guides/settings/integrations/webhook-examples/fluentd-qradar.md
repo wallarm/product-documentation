@@ -109,3 +109,7 @@ Fluentd will log the event as follows:
 The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"

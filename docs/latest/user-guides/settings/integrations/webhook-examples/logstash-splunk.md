@@ -93,3 +93,7 @@ Logstash will log the event as follows:
 The following entry will be displayed in Splunk events:
 
 ![!New user card in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"

@@ -100,3 +100,7 @@ Logstash will log the event as follows:
 The following entry will be displayed in ArcSight Logger events:
 
 ![!New user card in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"

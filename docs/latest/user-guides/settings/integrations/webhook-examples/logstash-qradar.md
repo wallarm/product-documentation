@@ -102,3 +102,7 @@ Logstash will log the event as follows:
 The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"

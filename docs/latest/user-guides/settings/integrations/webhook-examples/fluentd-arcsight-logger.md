@@ -107,3 +107,7 @@ Fluentd will log the event as follows:
 The following entry will be displayed in ArcSight Logger events:
 
 ![!Events in ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"

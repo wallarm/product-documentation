@@ -87,3 +87,7 @@ Test Splunk notification in the JSON format:
 ## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
+
+## List of Wallarm Cloud public IP addresses
+
+--8<-- "../include/cloud-ip-by-request.md"
