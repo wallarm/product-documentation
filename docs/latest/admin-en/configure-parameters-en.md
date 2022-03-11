@@ -364,7 +364,9 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 ### wallarm_process_time_limit
 
-Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the **blocking** mode (`wallarm_mode block;`) and ignored in the **monitoring** mode (`wallarm_mode monitoring;`).
+Sets the time limit of a single request processing by the Wallarm node. The limit is specified in milliseconds.
+
+If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -373,7 +375,7 @@ Sets the time limit of a single request processing in milliseconds. If the time 
 
 ### wallarm_process_time_limit_block
 
-The ability to manage the blocking of requests, which exceed the time limit set in the `wallarm_process_time_limit` directive:
+The ability to manage the blocking of requests, which exceed the time limit set in the [`wallarm_process_time_limit`](#wallarm_process_time_limit) directive:
 
 - `on`: the requests are always blocked unless `wallarm_mode off`
 - `off`: the requests are always ignored
