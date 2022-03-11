@@ -470,6 +470,8 @@ The ability to manage the blocking of requests, which exceed the time limit set 
     - `monitoring`: the requests are ignored
     - `block`: the requests are blocked
 
+Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).
+
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
