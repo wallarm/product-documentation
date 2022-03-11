@@ -3,9 +3,9 @@
 These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 3.4 or 3.2 to the new version with Wallarm node 3.6.
 
 !!! warning "New version of Community Ingress NGINX Controller"
-    The version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.1.1.
+    The version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.1.2.
     
-    Since the operation of Community Ingress NGINX Controller 1.1.1 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
+    Since the operation of Community Ingress NGINX Controller 1.1.2 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
 
     These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
 
@@ -146,7 +146,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
@@ -253,7 +253,7 @@ By using this method, you can deploy Ingress Controller 3.6 as an additional ent
 2. Deploy the Ingress controller 3.6:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.3 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -289,7 +289,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 3.6:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.3 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -341,7 +341,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.3 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -367,7 +367,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-3.6.3`.
+    The chart version should correspond to `wallarm-ingress-3.6.4`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
