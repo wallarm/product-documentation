@@ -28,7 +28,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     There are the following changes available in Wallarm node 3.6:
 
-    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.1.
+    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
 
         [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
 
@@ -110,7 +110,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     **Supported installation options**
 
-    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.1.
+    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
 
         [Instructions on migrating to the Wallarm Ingress controller 3.6 →](older-versions/ingress-controller.md)
 
