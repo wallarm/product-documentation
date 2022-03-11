@@ -47,7 +47,7 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         ```bash
         sudo yum install wallarm-extra-scripts
         ```
-    === "Amazon Linux 2"
+    === "Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum install wallarm-extra-scripts
         ```

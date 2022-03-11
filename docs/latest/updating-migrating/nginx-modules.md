@@ -38,14 +38,14 @@ If your infrastructure needs to use a specific version of NGINX, please contact 
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
-**CentOS and Amazon Linux 2**
+**CentOS and Amazon Linux 2.0.2021x and lower**
 
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.6/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
     ```
-=== "CentOS 7 and Amazon Linux 2"
+=== "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
@@ -106,7 +106,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt update
     sudo apt dist-upgrade
     ```
-=== "CentOS or Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
     ```
@@ -129,7 +129,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt update
         sudo apt dist-upgrade
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
         ```

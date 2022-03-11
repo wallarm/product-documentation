@@ -79,7 +79,7 @@ The postanalytics module, like other Wallarm API Security modules, is installed 
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "Amazon Linux 2"
+=== "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
@@ -102,7 +102,7 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     ```bash
     sudo apt install --no-install-recommends wallarm-node-tarantool
     ```
-=== "CentOS or Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
@@ -140,7 +140,7 @@ To create the filtering node and connect the postanalytics module to the Cloud:
 The configuration files of the postanalytics module are located in the paths:
 
 * `/etc/default/wallarm-tarantool` for Debian and Ubuntu operating systems
-* `/etc/sysconfig/wallarm-tarantool` for CentOS and Amazon Linux 2 operating systems
+* `/etc/sysconfig/wallarm-tarantool` for CentOS and Amazon Linux 2.0.2021x and lower operating systems
 
 To open the file in the editing mode, please use the command:
 
@@ -152,7 +152,7 @@ To open the file in the editing mode, please use the command:
     ``` bash
     sudo vim /etc/default/wallarm-tarantool
     ```
-=== "CentOS or Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
@@ -188,7 +188,7 @@ To set the address of the separate postanalytics server:
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -229,7 +229,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
@@ -243,7 +243,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         ```bash
         sudo service nginx restart
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo systemctl restart nginx
         ```

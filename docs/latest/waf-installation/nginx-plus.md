@@ -43,8 +43,8 @@ Installation commands for both options are described in the further instructions
 
 Install NGINX Plus and its dependencies using these [official NGINX instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
 
-!!! info "Installing on Amazon Linux 2"
-    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instructions.
+!!! info "Installing on Amazon Linux 2.0.2021x and lower"
+    To install NGINX Plus on Amazon Linux 2.0.2021x and lower, use the CentOS 7 instructions.
 
 ### 2. Add Wallarm repositories
 
@@ -81,7 +81,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "Amazon Linux 2"
+=== "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
@@ -109,7 +109,7 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo apt install --no-install-recommends wallarm-node nginx-plus-module-wallarm
     ```
-=== "CentOS or Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install wallarm-node nginx-plus-module-wallarm
     ```
@@ -132,7 +132,7 @@ To run postanalytics and process the requests on different servers, the followin
         ```bash
         sudo apt install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
         ```
