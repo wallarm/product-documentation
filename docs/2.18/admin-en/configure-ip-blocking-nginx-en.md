@@ -81,7 +81,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-        === "Amazon Linux 2"
+        === "Amazon Linux 2.0.2021x and lower"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
@@ -116,7 +116,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-        === "Amazon Linux 2"
+        === "Amazon Linux 2.0.2021x and lower"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
@@ -151,7 +151,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```
-        === "Amazon Linux 2"
+        === "Amazon Linux 2.0.2021x and lower"
             ```basn
             /var/lib/nginx/wallarm_acl_default
             ```

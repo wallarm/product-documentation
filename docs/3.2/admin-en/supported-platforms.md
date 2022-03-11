@@ -362,7 +362,7 @@
     <div id="deployOptionsDiv" class="navigation-card platform-card">
         <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
             <img class="platform-icon" src="../../images/platform-icons/amazon-linux.svg">
-            <h3>Amazon Linux 2
+            <h3>Amazon Linux 2.0.2021x and lower
                 <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
                 </svg>

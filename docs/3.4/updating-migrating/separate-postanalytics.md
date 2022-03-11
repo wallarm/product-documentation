@@ -10,14 +10,14 @@ These instructions describe the steps to update the postanalytics module install
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version packages. Please use the commands for the appropriate platform.
 
-**CentOS and Amazon Linux 2**
+**CentOS and Amazon Linux 2.0.2021x and lower**
 
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.4/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
     ```
-=== "CentOS 7 and Amazon Linux 2"
+=== "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
@@ -72,7 +72,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt update
     sudo apt dist-upgrade
     ```
-=== "CentOS или Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
     ```
@@ -87,7 +87,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo service wallarm-tarantool restart
     ```
-=== "CentOS 7.x или Amazon Linux 2"
+=== "CentOS 7.x or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

@@ -31,9 +31,9 @@ These instructions describe the steps to update Linux node packages to version 2
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
-**CentOS and Amazon Linux 2**
+**CentOS and Amazon Linux 2.0.2021x and lower**
 
-=== "CentOS 7 and Amazon Linux 2"
+=== "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
@@ -90,7 +90,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt update
     sudo apt dist-upgrade
     ```
-=== "CentOS или Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
     ```
@@ -113,7 +113,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt update
         sudo apt dist-upgrade
         ```
-    === "CentOS или Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
         ```

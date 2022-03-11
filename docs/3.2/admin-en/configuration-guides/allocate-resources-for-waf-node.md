@@ -45,7 +45,7 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
-=== "Amazon Linux 2"
+=== "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
@@ -86,7 +86,7 @@ SLAB_ALLOC_ARENA=10.4
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
-=== "Amazon Linux 2"
+=== "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```

@@ -62,7 +62,7 @@ To allocate memory for Tarantool:
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -90,7 +90,7 @@ To allocate memory for Tarantool:
         ``` bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
