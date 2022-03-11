@@ -444,7 +444,9 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 ### wallarm_process_time_limit
 
-Sets the time limit of a single request processing by the Wallarm node. If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
+Sets the time limit of a single request processing by the Wallarm node. The limit is specified in milliseconds.
+
+If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -466,10 +468,9 @@ The ability to manage the blocking of requests, which exceed the time limit set 
         **It is strongly not recommended** to set `wallarm_process_time_limit_block` to `off` globally for http or server blocks.
     
 - `attack`: depends on the attack blocking mode set in the `wallarm_mode` directive:
-    - `off`: the requests are not processed.
-    - `monitoring`: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
-    - `safe_blocking`: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
-    - `block`: the requests are blocked.
+    - `off`: the requests are not processed
+    - `monitoring`: the requests are ignored
+    - `block`: the requests are blocked
 
 Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).
 
