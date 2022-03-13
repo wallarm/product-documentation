@@ -15,9 +15,9 @@ There are the following changes available in Wallarm node 3.6:
     
     The sample blocking page with the new layout looks as follows:
 
-    ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+    ![!Wallarm sample blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
+    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 * The following NGINX directives and Envoy parameters have been renamed:
 
     * NGINX: `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)

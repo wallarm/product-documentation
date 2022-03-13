@@ -36,9 +36,11 @@ To add or update the parameters of the upgraded Helm chart, use one more command
 1. If there is the annotation `nginx.ingress.kubernetes.io/wallarm-instance` explicitly passed to the Helm chart, rename it to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename its before.
-2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+2. Optionally, update the page returned in response to the blocked requests by [copying or customizing](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email are specified on the page by default.
+    In the new node versions, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+
+    Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
     
 ## Step 4: Move the custom configuration specified in the `values.yaml` file to the `--set` option of `helm upgrade`
 

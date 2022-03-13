@@ -136,9 +136,11 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
 ## Step 4: Update the Wallarm blocking page
 
-In new node versions, the Wallarm blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 
-If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) its new version.
+If some specific page was configured to be returned in response to the blocked requests, optionally [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+    Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
 
 ## Step 5: Rename deprecated NGINX directives
 

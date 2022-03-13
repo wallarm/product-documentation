@@ -62,13 +62,17 @@ There are the following deprecated configuration options:
 
 ## Step 4: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
-In new node versions, the Wallarm blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 
-If the Docker container 2.18 or lower is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
+If your Docker container was configured to return some specific page in response to the blocked requests, transfer this configuration as follows:
 
-1. Copy the blocking page file contents from the new Docker image file system.
-2. [Customize](..//admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) the copied page.
-3. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
+1. Optionally, [copy and customize](..//admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+      In the new node versions, the Wallarm blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+    
+    Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
+
+1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the new customized or previously used page and the NGINX configuration file to a new Docker container in the next step.
 
 ## Step 5: Run the container using the updated image
 
