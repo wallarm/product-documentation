@@ -364,9 +364,16 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 ### wallarm_process_time_limit
 
-Sets the time limit of a single request processing by the Wallarm node. The limit is specified in milliseconds.
+Sets the time limit of a single request processing by the Wallarm node.
 
 If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
+
+The value is specified in milliseconds without units, e.g.:
+
+```bash
+wallarm_process_time_limit 1200; # 1200 milliseconds
+wallarm_process_time_limit 2000; # 2000 milliseconds
+```
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
