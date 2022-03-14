@@ -14,6 +14,8 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 Since the links to the Fluentd and QRadar services are cited as examples, they do not respond.
 
 ### Fluentd configuration
@@ -109,7 +111,3 @@ Fluentd will log the event as follows:
 The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
-
-## List of Wallarm Cloud public IP addresses
-
---8<-- "../include/cloud-ip-by-request.md"

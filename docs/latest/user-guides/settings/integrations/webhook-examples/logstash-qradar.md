@@ -14,6 +14,8 @@ In the provided example, events are sent via webhooks to the Logstash log collec
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 Since the links to the Logstash and QRadar services are cited as examples, they do not respond.
 
 ### Logstash configuration
@@ -102,7 +104,3 @@ Logstash will log the event as follows:
 The following data in JSON format will be displayed in the QRadar log payload:
 
 ![!New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
-
-## List of Wallarm Cloud public IP addresses
-
---8<-- "../include/cloud-ip-by-request.md"

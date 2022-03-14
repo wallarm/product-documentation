@@ -87,8 +87,6 @@ If the percentage of unsuccessful requests reaches 60% in 12 hours, the integrat
 
 You can identify incorrectness of integration parameters by **testing** the integration. The appropriate button is available in the integration setup window. If the test request failed, Wallarm Console would display the appropriate message.
 
-## List of Wallarm Cloud public IP addresses
-
 --8<-- "../include/cloud-ip-by-request.md"
 
 ## Demo videos
