@@ -60,6 +60,8 @@ To add a new integration, click the icon of the unconfigured system on the **All
 
 The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Filtering integrations
 
 To filter displayed integrations, you can use the tabs:
@@ -86,8 +88,6 @@ If the system responds to Wallarm request with any code other than `2xx`, Wallar
 If the percentage of unsuccessful requests reaches 60% in 12 hours, the integration is automatically disabled. If you receive system notifications, messages about automatically disabled integration will be sent to the [configured system](#integration-types).
 
 You can identify incorrectness of integration parameters by **testing** the integration. The appropriate button is available in the integration setup window. If the test request failed, Wallarm Console would display the appropriate message.
-
---8<-- "../include/cloud-ip-by-request.md"
 
 ## Demo videos
 
