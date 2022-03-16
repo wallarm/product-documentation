@@ -60,6 +60,8 @@ To add a new integration, click the icon of the unconfigured system on the **All
 
 The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Filtering integrations
 
 To filter displayed integrations, you can use the tabs:
