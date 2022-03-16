@@ -8,7 +8,7 @@ You can create a cloud node while setting up integration with the platform or us
 
 1. Open Wallarm UI → **Nodes**.
 2. Click **Create node** and select **Cloud node**.
-3. Enter node name and click **Create WAF node**.
+3. Enter node name and click **Create node**.
 
     ![!Creating cloud node](../../images/user-guides/nodes/create-cloud-node.png)
 4. Copy the token of the created cloud node. You can also copy the token from the node card.
