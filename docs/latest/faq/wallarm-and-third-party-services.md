@@ -9,9 +9,9 @@ Wallarm API Security interacts with the following third-party services:
     Before installing Wallarm API Security, we recommend to ensure your machine has access to [GCP storage IP addresses](https://www.gstatic.com/ipranges/goog.json).
 * Tarantool feedback server (`https://feedback.tarantool.io`) to upload standard Tarantool instance data to.
 
-    The in-memory storage Tarantool is used by the Wallarm WAF postanalytics module deployed to your machine from the `wallarm-tarantool` package. The Tarantool storage is deployed as two instances, custom (`wallarm-tarantool`) and standard (`tarantool`). A standard instance is deployed along with a custom one by default and is not used by the Wallarm WAF components.
+    The in-memory storage Tarantool is used by the Wallarm postanalytics module deployed to your machine from the `wallarm-tarantool` package. The Tarantool storage is deployed as two instances, custom (`wallarm-tarantool`) and standard (`tarantool`). A standard instance is deployed along with a custom one by default and is not used by the Wallarm components.
     
-    Wallarm WAF uses only a custom Tarantool instance which does not send any data to `https://feedback.tarantool.io`. However, a default instance can send the data to the Tarantool feedback server once per hour ([more details](https://www.tarantool.io/en/doc/latest/reference/configuration/#feedback)).
+    Wallarm uses only a custom Tarantool instance which does not send any data to `https://feedback.tarantool.io`. However, a default instance can send the data to the Tarantool feedback server once per hour ([more details](https://www.tarantool.io/en/doc/latest/reference/configuration/#feedback)).
 
 ## Can I disable sending the standard Tarantool instance data to `https://feedback.tarantool.io`?
 

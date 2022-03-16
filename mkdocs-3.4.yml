@@ -225,7 +225,7 @@ nav:
       - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboards:
         - Dashboards Overview: user-guides/dashboard/intro.md
-        - WAF Dashboard: user-guides/dashboard/waf.md
+        - API Security Dashboard: user-guides/dashboard/waf.md
         - Scanner Dashboard: user-guides/dashboard/scanner.md
       - Events:
         - Checking Events: user-guides/events/check-attack.md

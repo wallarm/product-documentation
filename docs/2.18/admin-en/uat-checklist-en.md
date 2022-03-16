@@ -62,7 +62,7 @@ See also [Dashboard overview](../user-guides/dashboard/intro.md).
 
 2. Check if the Wallarm interface shows detected requests per second.
 
-See also [The "WAF" Dashboard](../user-guides/dashboard/waf.md).
+See also [The "API Security" Dashboard](../user-guides/dashboard/waf.md).
 
 ## Wallarm Marks Requests as False and Stops Blocking them
 
