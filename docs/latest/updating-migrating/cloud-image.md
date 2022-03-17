@@ -52,7 +52,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 
     We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
-1. Optionally, update the page returned in response to the blocked requests by [copying or customizing](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+1. Optionally, update the page returned in response to the blocked requests by [copying and customizing](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
       In the new node versions, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 

@@ -140,7 +140,7 @@ In the new node version, the Wallarm sample blocking page has [been changed](wha
 
 If some specific page was configured to be returned in response to the blocked requests, optionally [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-    Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
+Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
 
 ## Step 5: Rename deprecated NGINX directives
 
