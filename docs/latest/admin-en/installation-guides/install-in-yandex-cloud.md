@@ -120,7 +120,7 @@ To change the `monitoring` mode to `block`:
     ```
 4. Add the line `wallarm_mode block;` to the `http`, `server` or `location` block:
 
-??? "Example of the file `/etc/nginx/nginx.conf`"
+??? note "Example of the file `/etc/nginx/nginx.conf`"
 
     ```bash
     user www-data;

@@ -161,7 +161,7 @@ if(myParam !== null) {
 // Show warning about deprecated version if it is opened
 
 let paths = window.location.pathname.split('/');
-var announceBar = document.getElementsByClassName("md-announce__inner");
+var announceBar = document.getElementsByClassName("md-banner__inner");
 if (paths[1] == '2.18') {
   for (var i = 0; i < announceBar.length; i++) {
     announceBar[i].innerHTML = 'Wallarm node 2.18 and lower is not supported. We recommend <a href="/updating-migrating/what-is-new/" style="color:white; font-weight: bold;">upgrading</a> Wallarm API Security modules to the latest version.';

@@ -27,7 +27,7 @@ The configuration of the previous version is automatically applied to the new ve
 
 Before upgrading, please check the [set of changes](what-is-new.md) and consider a possible configuration change when planning the upgrade.
 
-??? "Set of changes in Wallarm node 2.18"
+??? note "Set of changes in Wallarm node 2.18"
 
     **Changes in supported installation platforms**
 

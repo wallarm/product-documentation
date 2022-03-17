@@ -18,18 +18,12 @@
       </div>
 
       <!-- Social links -->
-      {% block social %}
+      {% if config.extra.social %}
         {% include "partials/social.html" %}
-      {% endblock %}
+      {% endif %}
 
       <!-- Copyright -->
-      <div class="md-footer-copyright">
-        {% if config.copyright %}
-          <div class="md-footer-copyright__highlight">
-            {{ config.copyright }}
-          </div>
-        {% endif %}
-      </div>
+      {% include "partials/copyright.html" %}
 
     </div>
   </div>
