@@ -2,12 +2,12 @@
 <header class="md-header" data-md-component="header">
 
     <!-- Top-level navigation -->
-    <nav class="md-header-nav md-grid" aria-label="{{ lang.t('header.title') }}">
+    <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header.title') }}">
   
       <!-- Link to home -->
       <a
         href="https://wallarm.com"
-        class="md-header-nav__button md-logo"
+        class="md-header__button md-logo"
         aria-label="{{ config.site_name }}"
       >
         {% include "partials/logo.html" %}
@@ -16,22 +16,22 @@
       <div class="back-wallarmcom">Open wallarm.com</div>
   
       <!-- Button to open drawer -->
-      <label class="md-header-nav__button md-icon" for="__drawer">
+      <label class="md-header__button md-icon" for="__drawer">
         {% include ".icons/material/menu" ~ ".svg" %}
       </label>
   
       <!-- Header title -->
-      <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header__title" data-md-component="header-title">
         {% if config.site_name == page.title %}
-          <div class="md-header-nav__ellipsis md-ellipsis">
+          <div class="md-header__ellipsis md-ellipsis">
             {{ config.site_name }}
           </div>
         {% else %}
-          <div class="md-header-nav__ellipsis">
-            <span class="md-header-nav__topic md-ellipsis">
+          <div class="md-header__ellipsis">
+            <span class="md-header__topic md-ellipsis">
               {{ config.site_name }}
             </span>
-            <span class="md-header-nav__topic md-ellipsis">
+            <span class="md-header__topic md-ellipsis">
               {% if page and page.meta and page.meta.title %}
                 {{ page.meta.title }}
               {% else %}
@@ -44,7 +44,7 @@
 
       <!-- Button to open search dialogue -->
       {% if "search" in config["plugins"] %}
-      <label class="md-header-nav__button md-icon" for="__search">
+      <label class="md-header__button md-icon" for="__search">
         {% include ".icons/material/magnify.svg" %}
       </label>
       

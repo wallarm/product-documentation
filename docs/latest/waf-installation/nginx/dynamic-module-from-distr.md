@@ -207,7 +207,7 @@ By default, the filtering node is in the status `off` and does not analyze incom
     ```
 2. Add the line `wallarm_mode monitoring;` to the `https`, `server` or `location` block:
 
-??? "Example of the file `/etc/nginx/conf.d/default.conf`"
+??? note "Example of the file `/etc/nginx/conf.d/default.conf`"
 
     ```bash
     server {
