@@ -22,7 +22,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.x, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
 
-??? "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.2"
+??? note "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.2"
     **Changes in supported installation platforms**
 
     * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
@@ -96,7 +96,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
 
-??? "Set of changes in Wallarm node updated from version 3.0 to version 3.2"
+??? note "Set of changes in Wallarm node updated from version 3.0 to version 3.2"
     **Breaking change**
 
     Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:

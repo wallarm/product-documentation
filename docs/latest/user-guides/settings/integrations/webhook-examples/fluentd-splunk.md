@@ -14,6 +14,8 @@ In the provided example, events are sent via webhooks to the Fluentd log collect
 * [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 Since the links to the Splunk Enterprise and Fluentd services are cited as examples, they do not respond.
 
 ### Splunk Enterprise configuration

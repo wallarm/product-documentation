@@ -20,7 +20,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.x, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
 
-??? "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.4"
+??? note "Set of changes in Wallarm node updated from version 2.18 or lower to version 3.4"
     **Changes in supported installation options**
 
     * Added support for CloudLinux OS 6.x
@@ -101,7 +101,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
-??? "Set of changes in Wallarm node updated from version 3.0 to version 3.4"
+??? note "Set of changes in Wallarm node updated from version 3.0 to version 3.4"
     **Breaking change**
 
     Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
@@ -140,7 +140,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
-??? "Set of changes in Wallarm node updated from version 3.2 to version 3.4"
+??? note "Set of changes in Wallarm node updated from version 3.2 to version 3.4"
     * Added support for CloudLinux OS 6.x
 
         [See the full list of supported platforms →](../admin-en/supported-platforms.md)

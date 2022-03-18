@@ -13,7 +13,7 @@
         ```bash
         apt list wallarm-node
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         yum list wallarm-node
         ```
@@ -38,7 +38,7 @@
         # run from the server with installed postanalytics
         apt list wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         # run from the server with installed Wallarm filtering node
         yum list wallarm-node-nginx

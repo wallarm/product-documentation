@@ -2,30 +2,14 @@
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics that should be enabled and monitored in a mission-critical environment. The `controller.wallarm.metrics` attribute of `values.yaml` enables the `/wallarm-metrics` metrics endpoint of the Ingress controller: 
+The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics that should be monitored in a mission-critical environment. The `/wallarm-metrics` metrics service is enabled by default: 
+
 ```
 controller:
   wallarm:
     metrics:
       enabled: true
-      
-      service:
-        annotations:
-          prometheus.io/scrape: "true"
-          prometheus.io/path: /wallarm-metrics
-          prometheus.io/port: "18080"
 ```
-
-To set the attribute, it is recommended to use the `--set` option of the commands `helm install` or `helm upgrade`, for example:
-
-=== "Ingress controller installation"
-    ```bash
-    helm install --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-    ```
-=== "Updating Ingress controller parameters"
-    ```bash
-    helm upgrade --reuse-values --set controller.wallarm.metrics.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-    ```
 
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
 

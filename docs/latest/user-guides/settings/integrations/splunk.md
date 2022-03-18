@@ -27,6 +27,8 @@ In Wallarm UI:
 
 ![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
+--8<-- "../include/cloud-ip-by-request.md"
+
 ## Testing integration
 
 --8<-- "../include/integrations/test-integration.md"

@@ -20,13 +20,17 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. If upgrading the node 2.x, please consider possible configuration changes.
 
-??? "Set of changes in Wallarm node upgraded from version 3.4 or 3.2 to version 3.6"
+??? note "Set of changes in Wallarm node upgraded from version 3.4 or 3.2 to version 3.6"
 
     [Open the list on a separate page](what-is-new.md)
 
     **When upgrading node 3.4**
 
     There are the following changes available in Wallarm node 3.6:
+
+    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
+
+        [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
 
     * Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
@@ -100,11 +104,15 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 
-??? "Set of changes in Wallarm node upgraded from version 2.18 or lower to version 3.6"
+??? note "Set of changes in Wallarm node upgraded from version 2.18 or lower to version 3.6"
 
     [Open the list on a separate page](older-versions/what-is-new.md)
 
     **Supported installation options**
+
+    * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
+
+        [Instructions on migrating to the Wallarm Ingress controller 3.6 →](older-versions/ingress-controller.md)
 
     * Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 

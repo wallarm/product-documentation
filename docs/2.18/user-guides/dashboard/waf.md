@@ -12,9 +12,9 @@
 
 [gl-hit]:                   ../../glossary-en.md#hit
 
-# WAF Dashboard
+# API Security Dashboard
 
-The WAF dashboard consists of the following data blocks:
+The API Security dashboard consists of the following data blocks:
 
 * Statistics for the current month and the speed of request encountering
 * Normal and malicious traffic

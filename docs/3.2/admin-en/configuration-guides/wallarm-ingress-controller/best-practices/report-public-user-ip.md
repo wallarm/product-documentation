@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md"
+--8<-- "3.4/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md"

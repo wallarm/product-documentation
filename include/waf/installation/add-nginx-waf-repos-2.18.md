@@ -28,7 +28,7 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "Amazon Linux 2"
+=== "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/2.18/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm

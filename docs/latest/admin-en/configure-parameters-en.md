@@ -245,25 +245,12 @@ A path to the Wallarm license key.
 
 Traffic processing mode:
 
-* `off` → the filtering node:
+* `off`
+* `monitoring`
+* `safe_blocking`
+* `block`
 
-    * Does not analyze whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
-    * Does not block requests containing malicious payloads.
-    * Does not analyze request sources (does not use [IP address lists](../user-guides/ip-lists/overview.md)).
-* `monitoring` → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Does not block requests containing malicious payloads.
-    * Does not analyze request sources (does not use [IP address lists](../user-guides/ip-lists/overview.md)).
-* `safe_blocking` → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-    * Blocks requests containing malicious payloads if they are originated from [greylisted IP addresses](../user-guides/ip-lists/greylist.md).
-    * Allows requests originated from [whitelisted](../user-guides/ip-lists/whitelist.md) IP addresses even those containing attack signs. If the whitelisted IP address is duplicated in the blacklist or greylist, the node still allows the request.
-* `block` → the filtering node:
-    * Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md). If malicious requests are detected, the filtering node uploads them to the Wallarm Cloud.
-    * Blocks requests containing malicious payloads.
-    * Blocks all requests originated from [blacklisted IP addresses](../user-guides/ip-lists/blacklist.md).
-    * Allows requests originated from [whitelisted](../user-guides/ip-lists/whitelist.md) IP addresses even those containing attack signs. If the whitelisted IP address is duplicated in the blacklist or greylist, the node still allows the request.
+--8<-- "../include/wallarm-modes-description.md"
 
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 
@@ -377,7 +364,16 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
 
 ### wallarm_process_time_limit
 
-Sets the time limit of a single request processing in milliseconds. If the time exceeds the limit, an error is recorded into the log and the request is marked as an `overlimit_res` attack. The requests are blocked in the **blocking** mode (`wallarm_mode block;`) and ignored in the **monitoring** mode (`wallarm_mode monitoring;`).
+Sets the time limit of a single request processing by the Wallarm node.
+
+If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
+
+The value is specified in milliseconds without units, e.g.:
+
+```bash
+wallarm_process_time_limit 1200; # 1200 milliseconds
+wallarm_process_time_limit 2000; # 2000 milliseconds
+```
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -386,7 +382,7 @@ Sets the time limit of a single request processing in milliseconds. If the time 
 
 ### wallarm_process_time_limit_block
 
-The ability to manage the blocking of requests, which exceed the time limit set in the `wallarm_process_time_limit` directive:
+The ability to manage the blocking of requests, which exceed the time limit set in the [`wallarm_process_time_limit`](#wallarm_process_time_limit) directive:
 
 - `on`: the requests are always blocked unless `wallarm_mode off`
 - `off`: the requests are always ignored
@@ -403,6 +399,8 @@ The ability to manage the blocking of requests, which exceed the time limit set 
     - `monitoring`: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - `safe_blocking`: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - `block`: the requests are blocked.
+
+Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

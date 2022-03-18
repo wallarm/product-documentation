@@ -18,7 +18,7 @@ By default, the filtering node is in the status `off` and does not analyze incom
     ```
 2. Add the line `wallarm_mode monitoring;` to the `https`, `server` or `location` block:
 
-??? "Example of the file `/etc/nginx/conf.d/default.conf`"
+??? note "Example of the file `/etc/nginx/conf.d/default.conf`"
 
     ```bash
     server {
@@ -62,7 +62,7 @@ To allocate memory for Tarantool:
         ``` bash
         sudo vim /etc/default/wallarm-tarantool
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -94,7 +94,7 @@ To allocate memory for Tarantool:
         ```bash
         sudo service wallarm-tarantool restart
         ```
-    === " CentOS 7.x or Amazon Linux 2"
+    === " CentOS 7.x or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```

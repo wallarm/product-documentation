@@ -6,7 +6,7 @@
     ```bash
     sudo service nginx restart
     ```
-=== "CentOS or Amazon Linux 2"
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo systemctl restart nginx
     ```

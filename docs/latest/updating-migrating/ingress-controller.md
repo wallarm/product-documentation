@@ -2,6 +2,13 @@
 
 These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 3.4 or 3.2 to the new version with Wallarm node 3.6.
 
+!!! warning "New version of Community Ingress NGINX Controller"
+    The version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.1.2.
+    
+    Since the operation of Community Ingress NGINX Controller 1.1.2 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
+
+    These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
+
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/ingress-controller.md).
 
 ## Step 1: Update the repository containing Wallarm Helm charts
@@ -18,41 +25,339 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
     helm repo update wallarm
     ```
 
-## Step 2: Upgrade the previous Helm chart
+## Step 2: Update the `values.yaml` configuration
 
-```bash
-helm upgrade --version 3.4.1 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-```
+To migrate to Wallarm Ingress controller 3.6, update the following configuration specified in the `values.yaml` file:
 
-* `<INGRESS_CONTROLLER_NAME>` is the name of the deployed Wallarm Ingress controller
-* `<KUBERNETES_NAMESPACE>` is the namespace of deployed Ingress and Ingress controller
+* Standard configuration of Community Ingress NGINX Controller
+* Wallarm module configuration
 
-Parameters specified with the option `--set` during the [Ingress controller deployment](../admin-en/installation-kubernetes-en.md) will not be changed.
+### Standard configuration of Community Ingress NGINX Controller
 
-To add or update the parameters of the upgraded Helm chart, use one more command `helm upgrade` with the options `--set` and `--reuse-values`. To delete parameters, edit Wallarm ConfigMap.
+1. Check out the [release notes on Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) 0.27.0 and higher and define the settings to be changed in the `values.yaml` file.
+2. Update the defined settings in the `values.yaml` file.
 
-## Step 3: Adjust the Ingress and Helm chart configuration to released changes
+There are the following setting probably to be changed:
 
-1. If there is the annotation `nginx.ingress.kubernetes.io/wallarm-instance` explicitly passed to the Helm chart, rename it to `nginx.ingress.kubernetes.io/wallarm-application`.
+* [Proper reporting of end user public IP address](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) if requests are passed through a load balancer before being sent to the Wallarm Ingress controller.
 
-    Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename its before.
-2. Optionally, update the page returned in response to the blocked requests by [copying and customizing](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+    ```diff
+    controller:
+      config:
+    -    use-forwarded-headers: "true"
+    +    enable-real-ip: "true"
+    +    forwarded-for-header: "X-Forwarded-For"
+    ```
+* [IngressClasses configuration](https://kubernetes.github.io/ingress-nginx/user-guide/multiple-ingress/). The version of used Kubernetes API has been upgraded in the new Ingress controller that requires IngressClasses to be configured via the `.controller.ingressClass`, `.controller.ingressClassResource` and `.controller.watchIngressWithoutClass` parameters.
 
-    In the new node versions, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+    ```diff
+    controller:
+    +  ingressClass: waf-ingress
+    +  ingressClassResource:
+    +    name: waf-ingress
+    +    default: true
+    +  watchIngressWithoutClass: true
+    ```
+* [ConfigMap (`.controller.config`) parameter set](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/), e.g.: 
 
-    Note that you can also continue using your previous custom page or build a new one from scratch, not using the sample.
+    ```diff
+    controller:
+    config:
+    +  allow-backend-server-header: "false"
+      enable-brotli: "true"
+      gzip-level: "3"
+      hide-headers: Server
+      server-snippet: |
+        proxy_request_buffering on;
+        wallarm_enable_libdetection on;
+    ```
+* [Validation of Ingress syntax via "admission webhook"](https://kubernetes.github.io/ingress-nginx/how-it-works/#avoiding-outage-from-wrong-configuration) is now enabled by default.
+
+    ```diff
+    controller:
+    +  admissionWebhooks:
+    +    enabled: true
+    ```
+
+    !!! warning "Disabling the Ingress syntax validation"
+        It is recommended to disable the Ingress syntax validation only if it destabilizes the operation of Ingress objects. 
+* [Label](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/) format. If the `values.yaml` file sets pod affinity rules, change the label format in these rules, e.g.:
+
+    ```diff
+    controller:
+      affinity:
+        podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+                matchExpressions:
+    -            - key: app
+    +            - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - waf-ingress
+    -            - key: component
+    +            - key: app.kubernetes.io/component
+                operator: In
+                values:
+    -              - waf-ingress
+    +              - controller
+    -            - key: release
+    +            - key: app.kubernetes.io/instance
+                operator: In
+                values:
+                - waf-ingress-ingress
+            topologyKey: kubernetes.io/hostname
+            weight: 100
+    ```
+
+### Wallarm module configuration
+
+Change the Wallarm module configuration set in the `values.yaml` file as follows:
+
+* Get rid of the explicit [monitoring service configuration](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md). In the new Wallarm Ingress controller version, the monitoring service is enabled by default and does not require any additional configuration.
+
+    ```diff
+    controller:
+    wallarm:
+      enabled: true
+      tarantool:
+        resources: {}
+    -  metrics:
+    -    enabled: true
+    -    service:
+    -      annotations: {}
+    ```
+* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+
+    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
+
+## Step 3: Check out all coming K8s manifest changes
+
+To avoid unexpectedly changed Ingress controller behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Ingress controller version and of the new one.
+
+To install and run the plugin:
+
+1. Install the plugin:
+
+    ```bash
+    helm plugin install https://github.com/databus23/helm-diff
+    ```
+2. Run the plugin:
+
+    ```bash
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
+    ```
+
+    * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+    * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 3.6 settings](#step-2-update-the-valuesyaml-configuration)
+3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
+
+    If stdout is empty, ensure the `values.yaml` file is valid.
+
+Please note the changes of the following configuration:
+
+* Immutable field, e.g. the Deployment and/or StatefulSet selectors.
+* Pod labels. The changes can lead to the NetworkPolicy operation termination, e.g.:
+
+    ```diff
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    spec:
+      egress:
+      - to:
+        - namespaceSelector:
+            matchExpressions:
+            - key: name
+              operator: In
+              values:
+              - kube-system # ${NAMESPACE}
+          podSelector:
+            matchLabels: # RELEASE_NAME=waf-ingress
+    -         app: waf-ingress
+    +         app.kubernetes.io/component: "controller"
+    +         app.kubernetes.io/instance: "waf-ingress"
+    +         app.kubernetes.io/name: "waf-ingress"
+    -         component: waf-ingress
+    ```
+* Configuration of Prometheus with new labels, e.g.:
+
+    ```diff
+     - job_name: 'kubernetes-ingress'
+       kubernetes_sd_configs:
+       - role: pod
+         namespaces:
+           names:
+             - kube-system # ${NAMESPACE}
+       relabel_configs: # RELEASE_NAME=waf-ingress
+         # Selectors
+    -    - source_labels: [__meta_kubernetes_pod_label_app]
+    +    - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+           action: keep
+           regex: waf-ingress
+    -    - source_labels: [__meta_kubernetes_pod_label_release]
+    +    - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_instance]
+           action: keep
+           regex: waf-ingress
+    -    - source_labels: [__meta_kubernetes_pod_label_component]
+    +    - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+           action: keep
+    -      regex: waf-ingress
+    +      regex: controller
+         - source_labels: [__meta_kubernetes_pod_container_port_number]
+           action: keep
+           regex: "10254|18080"
+           # Replacers
+         - action: replace
+           target_label: __metrics_path__
+           regex: /metrics
+         - action: labelmap
+           regex: __meta_kubernetes_pod_label_(.+)
+         - source_labels: [__meta_kubernetes_namespace]
+           action: replace
+           target_label: kubernetes_namespace
+         - source_labels: [__meta_kubernetes_pod_name]
+           action: replace
+           target_label: kubernetes_pod_name
+         - source_labels: [__meta_kubernetes_pod_name]
+           regex: (.*)
+           action: replace
+           target_label: instance
+           replacement: "$1"
+    ```
+* Analyze all other changes.
+
+## Step 4: Upgrade the Ingress controller
+
+There are three ways of upgrading the Wallarm Ingress controller. Depending on whether there is a load balancer deployed to your environment, select the upgrade method:
+
+* Deployment of the temporary Ingress controller
+* Regular re‑creation of the Ingress controller release
+* Ingress controller release re‑creation without affecting the load balancer
+
+!!! warning "Using the staging environment or minikube"
+    If the Wallarm Ingress controller is deployed to your staging environment, it is recommended to upgrade it first. With all services operating correctly in the staging environment, you can proceed to the upgrade procedure in the production environment.
+
+    Unless it is recommended to [deploy the Wallarm Ingress controller 3.6](../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
+
+    This approach helps to avoid downtime of the services in the production environment.
+
+### Method 1: Deployment of the temporary Ingress controller
+
+By using this method, you can deploy Ingress Controller 3.6 as an additional entity in your environment and switch the traffic to it gradually. It helps to avoid even temporary downtime of services and ensures safe migration.
+
+1. Copy the IngressClass configuration from the `values.yaml` file of the previous version to the `values.yaml` file for the Ingress controller 3.6.
+
+    With this configuration, the Ingress controller will identify the Ingress objects but will not process their traffic.
+2. Deploy the Ingress controller 3.6:
+
+    ```bash
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
+    ```
+
+    * `<RELEASE_NAME>`: the name for the Ingress controller release
+    * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 3.6 settings](#step-2-update-the-valuesyaml-configuration)
+3. Ensure all services operate correctly.
+4. Switch the load to the new Ingress controller gradually.
+
+### Method 2: Regular re‑creation of the Ingress controller release
+
+**If the load balancer and Ingress controller are NOT described in the same Helm chart**, you can just re‑create the Helm release. It will take several minutes and the Ingress controller will be unavailable for this time.
+
+!!! warning "If Helm chart sets the configuration of a load balancer"
+    If Helm chart sets the configuration of a load balancer along with the Ingress controller, release re‑creation can lead to a long load balancer downtime (depends on the cloud provider). The load balancer IP address can be changed after the upgrade if the constant address was not assigned.
+
+    Please analyze all possible risks if using this method.
+
+To re‑create the Ingress controller release:
+
+=== "Helm CLI"
+    1. Delete the previous release:
+
+        ```bash
+        helm delete <RELEASE_NAME> -n <NAMESPACE>
+        ```
+
+        * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+
+        * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
+
+        Please do not use the `--wait` option when executing the command since it can increase the upgrade time.
+
+    2. Create a new release with Ingress controller 3.6:
+
+        ```bash
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f <PATH_TO_VALUES>
+        ```
+
+        * `<RELEASE_NAME>`: the name for the Ingress controller release
+
+        * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
+
+        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 3.6 settings](#step-2-update-the-valuesyaml-configuration)
+=== "Terraform CLI"
+    1. Set the `wait = false` option in the Terraform configuration to decrease the upgrade time:
+        
+        ```diff
+        resource "helm_release" "release" {
+          ...
+
+        + wait = false
+
+          ...
+        }
+        ```
     
-## Step 4: Move the custom configuration specified in the `values.yaml` file to the `--set` option of `helm upgrade`
+    2. Delete the previous release:
 
-If some Ingress controller parameters have been configured via **values.yaml** cloned from the Wallarm Helm Chart repository, please copy and pass them to a new chart by using the option `--set` of the command `helm upgrade --reuse-values`.
+        ```bash
+        terraform taint helm_release.release
+        ```
+    
+    3. Create the new release with the Ingress controller 3.6:
 
-For example, if the parameter [`wallarm_block_page_add_dynamic_path`](../admin-en/configure-parameters-en.md#wallarm_block_page_add_dynamic_path) has been set via the file **values.yaml**, you can move this parameter to the new version of the Helm chart by using the following command:
+        ```bash
+        terraform apply -target=helm_release.release
+        ```
 
-```bash
-helm upgrade --reuse-values --set controller.config.http-snippet='wallarm_block_page_add_dynamic_path /usr/custom-block-pages/block_page_firefox.html /usr/share/nginx/html/wallarm_blocked.html; map $http_user_agent $block_page { "~Firefox" &/usr/custom-block-pages/block_page_firefox.html; "~Chrome" &/usr/custom-block-pages/block_page_chrome.html; default &/usr/share/nginx/html/wallarm_blocked.html;}' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
-```
+### Method 3: Ingress controller release re‑creation without affecting the load balancer
 
-The option `--reuse-values` allows keeping intact already configured Helm chart parameters that not passed in the `--set` option. The option `--set` specifies the Helm chart parameters to be changed or added.
+When using the load balancer configured by the cloud provider, it is recommended to upgrade the Ingress controller with this method because it does not affect the load balancer.
+
+Release re‑creation will take several minutes and the Ingress controller will be unavailable for this time.
+
+1. Get objects to be deleted (except for the load balancer):
+
+    ```bash
+    helm get manifest <RELEASE_NAME> -n <NAMESPACE> | yq -r '. | select(.spec.type != "LoadBalancer") | .kind + "/" + .metadata.name' | tr 'A-Z' 'a-z' > objects-to-remove.txt
+    ```
+
+    To install the utility `yq`, please use the [instructions](https://pypi.org/project/yq/).
+
+    Objects to be deleted will be output to the `objects-to-remove.txt` file.
+2. Delete listed objects and re‑create the relese:
+
+    ```bash
+    cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 3.6.4 -f `<PATH_TO_VALUES>`
+    ```
+
+    To decrease service downtime, it is NOT recommended to execute commands separately.
+3. Ensure all objects are created:
+
+    ```bash
+    helm get manifest <RELEASE_NAME> -n <NAMESPACE> | kubectl create -f -
+    ```
+
+    The output should say that all objects already exist.
+
+There are the following parameters passed in the commands:
+
+* `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+* `<NAMESPACE>`: the namespace the Ingress controller is deployed to
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 3.6 settings](#step-2-update-the-valuesyaml-configuration)
 
 ## Step 5: Test the upgraded Ingress controller
 
@@ -62,7 +367,7 @@ The option `--reuse-values` allows keeping intact already configured Helm chart 
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-3.4.1`.
+    The chart version should correspond to `wallarm-ingress-3.6.4`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
@@ -85,3 +390,14 @@ The option `--reuse-values` allows keeping intact already configured Helm chart 
     ```
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
+
+## Step 6: Adjust the Ingress annotations to released changes
+
+Adjust the following Ingress annotations to the changes released in Ingress controller 3.6:
+
+1. If the Ingress is annotated with `nginx.ingress.kubernetes.io/wallarm-instance`, rename this annotation to `nginx.ingress.kubernetes.io/wallarm-application`.
+
+    Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
+2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+
+    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.

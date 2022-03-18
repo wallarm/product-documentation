@@ -62,7 +62,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
         sudo apt update
         sudo apt install nginx
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
 
         1. If an EPEL repository is added in CentOS 7.x, please disable installation of NGINX stable from this repository by adding `exclude=nginx*` to the file `/etc/yum.repos.d/epel.repo`.
 
@@ -109,8 +109,8 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
 More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
-!!! info "Installing on Amazon Linux 2"
-    To install NGINX Plus on Amazon Linux 2, use the CentOS 7 instructions.
+!!! info "Installing on Amazon Linux 2.0.2021x and lower"
+    To install NGINX Plus on Amazon Linux 2.0.2021x and lower, use the CentOS 7 instructions.
 
 ### 2. Add Wallarm repositories
 
@@ -143,7 +143,7 @@ To run postanalytics and process the requests on different servers, the followin
         ```bash
         sudo apt install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
         ```
-    === "CentOS or Amazon Linux 2"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum install wallarm-node-nginx nginx-module-wallarm
         ```

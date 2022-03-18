@@ -163,9 +163,9 @@ To adjust default Wallarm request analysis to protected application specificitie
 
 Wallarm can process attacks in the following modes:
 
-* Monitoring mode: detects attacks and displays information about them in Wallarm Console.
-* Safe blocking mode: detects attacks and displays information about them in Wallarm Console but blocks only those attacks originated from greylisted IP addresses.
-* Blocking mode: detects and blocks attacks and displays information about them in Wallarm Console.
+* Monitoring mode: detects but does not block attacks.
+* Safe blocking mode: detects attacks but blocks only those originated from [greylisted IPs](../user-guides/ip-lists/greylist.md). Legitimate requests originated from greylisted IPs are not blocked.
+* Blocking mode: detects and blocks attacks.
 
 Wallarm ensures quality request analysis and low level of false positives. However each protected application has its own specificities, so we recommend analyzing the work of the Wallarm in the monitoring mode before enabling the blocking mode.
 

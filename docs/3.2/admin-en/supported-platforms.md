@@ -15,9 +15,9 @@
         <p>Deploy Wallarm node compatible to NGINX Stable with...</p>
         <div id="nginxId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#docker-images" onClick="noAction(event)">Docker container</a>
+            <a href="../../admin-en/installation-docker-en/" onClick="noAction(event)">Docker container</a>
             <a href="#kubernetes" onClick="noAction(event)">Kubernetes</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -33,7 +33,7 @@
         <p>Deploy Wallarm node compatible to NGINX Plus with...</p>
         <div id="nginxPlusId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -49,7 +49,7 @@
         <p>Deploy Wallarm node compatible to Kong with...</p>
         <div id="kongId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="#deb-and-rpm-packages" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -362,7 +362,7 @@
     <div id="deployOptionsDiv" class="navigation-card platform-card">
         <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
             <img class="platform-icon" src="../../images/platform-icons/amazon-linux.svg">
-            <h3>Amazon Linux 2
+            <h3>Amazon Linux 2.0.2021x and lower
                 <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
                 </svg>

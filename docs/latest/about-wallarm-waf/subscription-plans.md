@@ -12,7 +12,7 @@ The subscription plan includes a set of modules and features. You can select and
 
 The set of all Wallarm API Security modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
 
-* **WAF** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
+* **API Threat Prevention / Web Application Firewall** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
 * **Brute-force protection** automatically blacklists IP addresses from which brute-force attacks are sent.
 * **Active threat verification** detects active application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the filtering node and looks for vulnerabilities in the corresponding parts of the application.
 * **Custom ruleset setup** allows you to manually add request processing rules: block malicious requests if the filtering node is working in the `monitoring` mode or if any known malicious payload is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
