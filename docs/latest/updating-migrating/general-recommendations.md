@@ -195,7 +195,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     **New blocking page**
 
-    The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node versions, it has new layout and supports the logo and support email customization.
+    The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has new layout and supports the logo and support email customization.
         
     [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
