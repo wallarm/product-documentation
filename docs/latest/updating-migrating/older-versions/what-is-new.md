@@ -85,7 +85,7 @@ By default, the library **libdetection** is disabled. To improve the attack dete
 
 ## New blocking page
 
-The blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has new layout and supports the logo and support email customization.
+The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has new layout and supports the logo and support email customization.
     
 New blocking page with the new layout looks as follows by default:
 

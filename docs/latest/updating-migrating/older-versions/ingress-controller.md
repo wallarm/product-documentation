@@ -152,9 +152,9 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     -    service:
     -      annotations: {}
     ```
-* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap was returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
+    In new node version, the Wallarm sample blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
 ## Step 5: Check out all coming K8s manifest changes
 

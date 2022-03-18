@@ -77,13 +77,13 @@ There are the following deprecated configuration options:
 
 ## Step 7: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
-In new node versions, the Wallarm blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
-If the Docker container 2.18 or lower is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
+If the Docker container 2.18 or lower was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
 
-1. Copy the blocking page file contents from the new Docker image file system.
-2. [Customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) the copied page.
-3. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
+1. [Copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+1. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
 
 ## Step 8: Run the container using the updated image
 
