@@ -186,5 +186,5 @@ if (window.location.href.indexOf("channeltivity-content") > -1) {
   document.getElementsByClassName('md-banner')[0].style.display = 'none';
   document.getElementsByClassName('md-header')[0].style.display = 'none';
   document.getElementsByClassName('md-footer')[0].style.display = 'none';
-  document.getElementsByClassName('hubspot')[0].style.display = 'none';
+  document.getElementById('hubspot-messages-iframe-container').style.display = 'none';
 }
