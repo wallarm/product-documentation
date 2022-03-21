@@ -179,3 +179,12 @@ if (paths[1] == '2.18') {
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(zi, s);
 })();
+
+// iframe for Partner Portal
+
+if (window.location.href.indexOf("channeltivity-content") > -1) {
+  document.getElementsByClassName('md-banner')[0].style.display = 'none';
+  document.getElementsByClassName('md-header')[0].style.display = 'none';
+  document.getElementsByClassName('md-footer')[0].style.display = 'none';
+  document.getElementsByClassName('hubspot')[0].style.display = 'none';
+}
