@@ -8,7 +8,18 @@ A hit is a serialized malicious request (original malicious request and metadata
 
 ## Attack
 
-An attack is a single hit or multiple hits that have the same attack type, parameter with the attack vector, and the address they are sent to. Hits may come from the same or different IP addresses and have different value of the attack vector within one attack type.
+An attack is a single hit or multiple hits grouped by the following characteristics:
+
+* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
+
+    This hit grouping method is basic and applied to all hits.
+* The same source IP address if the appropriate [trigger](user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
+
+    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types.
+
+    If hits are grouped by this method, the [**Mark as false positive**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
+
+The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
 
 An example of an attack including a single hit:
 
