@@ -41,6 +41,9 @@ To mark all requests (hits) in the attack as false positives:
 
     ![!False attack](../../images/user-guides/events/analyze-attack.png)
 
+!!! warning "If an attack is hits grouped by IPs"
+    If an attack consists of hits [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) by IP addresses, the **Mark as false positive** button is unavailable. You can [mark certain hits](#mark-a-hit-as-a-false-positive) as false positives.
+
 If all the requests in the attack are marked as false positives, then the information about that attack will look like this:
 
 ![!The whole attack is marked as false one][img-removed-attack-info]
