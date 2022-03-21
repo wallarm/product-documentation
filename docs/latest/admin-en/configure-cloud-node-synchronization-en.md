@@ -39,12 +39,7 @@ The list of environment variables available for the cloud node and Wallarm Cloud
 | `WALLARM_SYNCNODE_INTERVAL`   | Interval between filtering node and Wallarm Cloud synchronizations in seconds. The value cannot be less than the default value. Default value is `120`.                                                                                                                                                                                                                                                                                                                                                      |
 | `WALLARM_SYNCNODE_RAND_DELAY` | Synchronization delay jitter in seconds. Default value is `120`.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `WALLARM_SYNCNODE_TIMEOUT`    | Synchronization duration limit. This limit allows interrupting the synchronization if any issues occur during the process of downloading the files for the cloud node operation. For example, such issues can be caused by network outages. Default value is `900`.                                                                                                                                                                                                                                |
-| `WALLARM_SYNCNODE_OWNER`      | Owner for the files needed for the cloud node operation. Default value is `root`.                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `WALLARM_SYNCNODE_GROUP`      | Group for the files needed for the cloud node operation. Default value is `wallarm`.                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `WALLARM_SYNCNODE_MODE`       | Access rights to the files needed for the cloud node operation. Default value is `0640`.                                                                                                                                                                                                                                                                                                                                                                                                           |
-
-!!! warning "Configuration of the access rights to the files needed for the cloud node operation"
-    Make sure that after configuring access rights using the `WALLARM_SYNCNODE_OWNER`, `WALLARM_SYNCNODE_GROUP`, and `WALLARM_SYNCNODE_MODE` variables, the `wallarm-worker` and `nginx` services can read content of the files needed for the cloud node operation.
+| `WALLARM_SYNCNODE_OWNER`<br>`WALLARM_SYNCNODE_GROUP`<br>`WALLARM_SYNCNODE_GROUP` | See [Access rights to files needed for node operation](#access-rights-to-files-needed-for-node-operation).  |
 
 ### Configuring synchronization parameters
 
@@ -90,9 +85,7 @@ The `node.yaml` file may contain the following parameters for accessing the regu
 | `api.ca_verify`  | Whether to enable/disable Wallarm API server certificate verification. Can be:<ul><li>`true` to enable verification</li><li>`false` to disable verification</li></ul>Default value is `true`. |
 | `api.local_host` | Local IP address of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed).
 | `api.local_port` | Port of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed).
-| `syncnode.owner` | Owner for the files needed for the regular filtering node operation. Default value is `root`.                                                                                                                                                                                           |
-| `syncnode.group` | Group for the files needed for the regular filtering node operation. Default value is `wallarm`.                                                                                                                                                                                          |
-| `syncnode.mode`  | Access rights to the files needed for the regular filtering node operation. Default value is `0640`.                                                                                                                                                                                      |
+| `syncnode.owner`<br>`syncnode.group`<br>`syncnode.mode` | See [Access rights to files needed for node operation](#access-rights-to-files-needed-for-node-operation). |
 
 To change synchronization parameters, proceed with the following steps:
 
@@ -132,3 +125,48 @@ To change the interval between regular filtering node and Wallarm Cloud synchron
     WALLARM_SYNCNODE_INTERVAL=800
     ```
 3. Save the changed file `/etc/environment`. New interval value will be applied to the synchronization process automatically.
+
+## Access rights to files needed for node operation
+
+This section describes the configuration approach used to provide the `wallarm-worker` and `nginx` services with the permission to read content of the files needed for the cloud node operation such as proton.db and custom ruleset file.
+
+The file access parameters are:
+
+| Parameter    | Description | Environment variable in `/etc/wallarm/syncnode` file <br> (cloud node) | Parameter in `node.yaml` file <br> (regular node) |
+|--------------|-------------| -------------| -------------|
+| `owner`      | Owner for the files needed for the cloud node operation. | `WALLARM_SYNCNODE_OWNER` | `syncnode.owner` |
+| `group`      | Group for the files needed for the cloud node operation. | `WALLARM_SYNCNODE_GROUP` | `syncnode.group` |
+| `mode`       | Access rights to the files needed for the cloud node operation. | `WALLARM_SYNCNODE_MODE` | `syncnode.mode`  |
+
+The algorithm searches for the file permissions performing the following steps (goes to the next step only if the previous one did not give the result):
+
+1. Explicitly configured variables/parameters:
+
+    === "For cloud node"
+
+        1. The `WALLARM_SYNCNODE_(OWNER,GROUP,MODE)` environment variables in the `/etc/wallarm/syncnode` file
+
+    === "For regular node"
+
+        1. The `syncnode.(TYPE).(user,group,mode)` parameters in the `node.yaml` file.
+        (TYPE) allows to specify specific file the parameter is set for, for example `proton.db` or `lom`.
+
+        1. The `syncnode.(user,group,mode)` parameters in the `node.yaml` file.
+
+1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/<NAME>` file.
+
+    !!! info "Engine packages nginx_group"
+        All installed engine packages provide the file `/usr/share/wallarm-common/engine/<NAME>` containing `nginx_group=<VALUE>`.
+
+1. Defaults:
+    * `owner`: `root`
+    * `group`: `wallarm`
+    * `mode`: `0640`
+
+For NGINX-based installation, the logic described above leads to the process where each package with the module sets the value for the `group` parameter depending on the NGINX for which it was intended:
+
+* The modules for NGINX from nginx.org set `group` to `nginx`.
+* The modules for NGINX distributives set `group` to `www-data`.
+* The custom modules use values provided by a client.
+
+Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read content of the files needed for the cloud node operation.
