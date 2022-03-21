@@ -7,6 +7,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 * Receive alerts on major events via the tools you use for your day-to-day workflow, for example via corporate messengers or incident management systems.
 * Block IP addresses from which a certain number of requests or attack vectors were sent.
 * Identify brute‑force and forced browsing attacks by the number of requests sent to the application addresses.
+* Optimize the event list by [grouping](../../about-wallarm-waf/protecting-against-attacks.md#attack) hits originating from the same IP address into one attack
 
 You can configure all the trigger components:
 
@@ -40,6 +41,7 @@ A condition is a system event to be notified about. The following conditions are
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Blacklisted IP
+* Hits from the same IP, except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
 ![!Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
@@ -73,6 +75,9 @@ A reaction is an action that should be performed if the specified condition and 
 * Add IP to the [blacklist](../ip-lists/blacklist.md).
 * Add IP to the [greylist](../ip-lists/greylist.md).
 * Send a notification to the messenger, SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
+* [Group next hits into one attack](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) if the trigger condition is **Hits from the same IP**.
+
+    The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.
 
 Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:
 

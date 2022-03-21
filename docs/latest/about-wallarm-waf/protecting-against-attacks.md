@@ -2,11 +2,22 @@
 
 ## What is attack and what are attack components?
 
-**Attack** is a single hit or multiple hits that have the same attack type, parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different value of the malicious payload within one attack type.
+<a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the following characteristics:
 
-**Hit** is a serialized malicious request (original malicious request and metadata added by the Wallarm node). If Wallarm detects several malicious payloads of different types in one request, Wallarm records several hits with payloads of one type in each.
+* The same attack type, the parameter with the malicious payload, and the address the hits were sent to. Hits may come from the same or different IP addresses and have different values of the malicious payloads within one attack type.
 
-**Malicious payload** is a part of an original request containing the following elements:
+    This hit grouping method is basic and applied to all hits.
+* The same source IP address if the appropriate [trigger](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
+
+    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types.
+
+    If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
+
+The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
+
+<a name="hit"></a>**Hit** is a serialized malicious request (original malicious request and metadata added by the Wallarm node). If Wallarm detects several malicious payloads of different types in one request, Wallarm records several hits with payloads of one type in each.
+
+<a name="malicious-payload"></a>**Malicious payload** is a part of an original request containing the following elements:
 
 * Attack signs detected in a request. If several attack signs characterizing the same attack type are detected in a request, only the first sign will be recorded to a payload.
 * Context of the attack sign. Context is a set of symbols preceding and closing detected attack signs. Since a payload length is limited, the context can be omitted if an attack sign is of full payload length.

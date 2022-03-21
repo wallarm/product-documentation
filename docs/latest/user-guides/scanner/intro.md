@@ -52,7 +52,7 @@ After collecting the network scope, the scanner checks all IP addresses and doma
 
 ## Active Threat Verification
 
-The scanner will automatically reproduce each attack from the traffic. This mechanism allows the detection of vulnerabilities that could have been exploited during the attack.
+The scanner will automatically [reproduce each attack](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) from the traffic. This mechanism allows the detection of vulnerabilities that could have been exploited during the attack.
 
 For safety reasons, when reproducing attacks from requests, the authentication data (cookies, basic-auth, viewstate) is deleted. Correct operation of this functionality may require additional configuration from the application side.
 

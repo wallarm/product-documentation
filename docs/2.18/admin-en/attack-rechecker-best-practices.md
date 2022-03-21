@@ -10,6 +10,9 @@ One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecti
 
 By default **Active threat verification** is disabled. To enable the module, [know how to control the Attack rechecker](#know-how-to-control-the-attack-rechecker).
 
+!!! warning "Active threat verification if hits are grouped by IP"
+    If an attack is hits [grouped](../about-wallarm-waf/protecting-against-attacks.md#attack) by originating IPs, active verification of this attack is unavailable.
+
 ## How the Active threat verification feature works
 
 --8<-- "../include/how-attack-rechecker-works.md"
