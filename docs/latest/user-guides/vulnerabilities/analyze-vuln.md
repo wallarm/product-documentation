@@ -41,7 +41,7 @@ Clicking the link displays the associated security incidents.
 ## Vulnerability Detection Method
 
 Vulnerabilities can be detected in the protected applications by the following methods:
-*   **Active Threat Verification**: the vulnerability was found during the attack verification process.
+*   **Active Threat Verification**: the vulnerability was found during the [attack verification process](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification).
 *   **Passive Detection**: the vulnerability was found due to the security incident that occurred.
 *   **Vulnerability Scanner**: the vulnerability was found during the scope scanning process.
 *   **Test Run**: the vulnerability was found during the test run conducted by FAST.
