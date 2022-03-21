@@ -44,9 +44,9 @@ There are the following deprecated configuration options:
 
 * The following NGINX directives have been renamed:
 
-    * `wallarm_instance` → [`wallarm_application`](..//admin-en/configure-parameters-en.md#wallarm_application)
-    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](..//admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
-    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](..//admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
+    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
 
     We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
     
@@ -66,8 +66,7 @@ In the new node version, the Wallarm sample blocking page has [been changed](wha
 
 If your Docker container was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page in response to the blocked requests, transfer this configuration as follows:
 
-1. [Copy and customize](..//admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
-
+1. [Copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the new customized or previously used page and the NGINX configuration file to a new Docker container in the next step.
 
 ## Step 5: Run the container using the updated image

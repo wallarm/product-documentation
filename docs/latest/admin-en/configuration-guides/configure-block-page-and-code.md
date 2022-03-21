@@ -331,7 +331,7 @@ To modify the sample blocking page or provide your own custom from scratch, you 
 Therefore, to modify the sample blocking page or provide your own, do the following:
 
 1. Before the first run, [prepare](#copy) your modified `wallarm_blocked_renamed.html`.
-1. Prepare NGINX configuration file with the path to your blocking page. See [configuration example](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) below.
+1. Prepare NGINX configuration file with the path to your blocking page. See [configuration example](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code).
 1. Run the container [mounting](../installation-docker-en.md#run-the-container-mounting-the-configuration-file) the prepared blocking page and configuration file.
 1. If you need later to update your blocking page in a running container, on the host machine, change the referenced `wallarm_blocked_renamed.html` then restart NGINX in the container.
 
