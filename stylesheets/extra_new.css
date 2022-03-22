@@ -791,3 +791,15 @@ a.navigation-card:hover {
 .channeltivity .hubspot {
   display: none;
 }
+
+.channeltivity .md-top {
+  display: none;
+}
+
+.channeltivity .headerlink {
+  display: none;
+}
+
+.channeltivity .md-content__button {
+  display: none;
+}
