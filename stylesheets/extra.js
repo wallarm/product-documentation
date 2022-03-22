@@ -22,7 +22,9 @@ injectScript('https://lftracker.leadfeeder.com/lftracker_v1_kn9Eq4Rwz5KaRlvP.js'
 
 // Add HubSpot
 
-injectScript('https://js.hs-scripts.com/3989912.js');
+if (window.location.href.indexOf("channeltivity-content") <= -1) {
+  injectScript('https://js.hs-scripts.com/3989912.js');
+}
 
 // Add LeadLander
 var sf14gv = 27823;
