@@ -184,4 +184,5 @@ if (paths[1] == '2.18') {
 
 if (window.location.href.indexOf("channeltivity-content") > -1) {
   document.body.classList.add("channeltivity");
+  document.write('<link rel="stylesheet" type="text/css" href="iframe.css" />');
 }
