@@ -49,6 +49,8 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
         UUID ${request_id}
         ```
 
+        This applies to both `wallarm_blocked.html` and to the custom block page.
+
     [Example of configuration →](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)
 * URL for the client redirection and blocked request type (optional)
 
@@ -345,7 +347,6 @@ To modify the sample blocking page or provide your own, do the following:
 
     !!! info "Directory for mounted ConfigMap"
         Existing files in the directory used to mount ConfigMap will be deleted.
-
 1. Instruct pod to use your custom page by providing Ingress annotation:
 
     ```bash
