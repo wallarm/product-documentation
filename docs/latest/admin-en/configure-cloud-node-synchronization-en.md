@@ -128,7 +128,7 @@ To change the interval between regular filtering node and Wallarm Cloud synchron
 
 ## Access rights to files needed for node operation
 
-This section describes the configuration approach used to provide the `wallarm-worker` and `nginx` services with the permission to read content of the files needed for the cloud node operation such as proton.db and custom ruleset file.
+The `wallarm-worker` and `nginx` services are usually automatically provided with the permission to read the content of the files needed for the cloud node operation, such as proton.db and custom ruleset file. However, if testing shows no access, to fix the problem, in this section, read the description of how the permissions are provided and how they can be configured manually.
 
 The file access parameters are:
 
@@ -144,20 +144,18 @@ The algorithm searches for the file permissions performing the following steps (
 
     === "For cloud node"
 
-        1. The `WALLARM_SYNCNODE_(OWNER,GROUP,MODE)` environment variables in the `/etc/wallarm/syncnode` file
+        1. The `WALLARM_SYNCNODE_(OWNER,GROUP,MODE)` environment variables in the `/etc/wallarm/syncnode` file.
 
     === "For regular node"
 
         1. The `syncnode.(TYPE).(user,group,mode)` parameters in the `node.yaml` file.
-        (TYPE) allows to specify specific file the parameter is set for, for example `proton.db` or `lom`.
 
+            `(TYPE)` allows you to specify the particular file the parameter is set for, for example, `proton.db` or `lom`.
         1. The `syncnode.(user,group,mode)` parameters in the `node.yaml` file.
-
-1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/<NAME>` file.
+1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/*` file.
 
     !!! info "Engine packages nginx_group"
-        All installed engine packages provide the file `/usr/share/wallarm-common/engine/<NAME>` containing `nginx_group=<VALUE>`.
-
+        All installed engine packages provide the file `/usr/share/wallarm-common/engine/*` containing `nginx_group=<VALUE>`.
 1. Defaults:
     * `owner`: `root`
     * `group`: `wallarm`
@@ -169,4 +167,4 @@ For NGINX-based installation, the logic described above leads to the process whe
 * The modules for NGINX distributives set `group` to `www-data`.
 * The custom modules use values provided by a client.
 
-Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read content of the files needed for the cloud node operation.
+Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read the content of the files needed for the cloud node operation.
