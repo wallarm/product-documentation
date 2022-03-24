@@ -9,6 +9,10 @@ To add an IP address, subnet, or group of IP addresses to the list:
 2. Specify an IP address or group of IP addresses in one of the following ways:
 
     * Input a single **IP address** or a **subnet**
+
+        !!! info "Supported subnet masks"
+            The supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
+    
     * Select a **country** (geolocation) to add all IP addresses registered in this country
     * Select a **source** to add all IP addresses that belong to this source:
         * **Tor** for IP addresses of the Tor network
