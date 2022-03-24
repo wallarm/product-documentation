@@ -151,6 +151,9 @@ The algorithm searches for the file permissions performing the following steps (
         1. The `syncnode.(TYPE).(user,group,mode)` parameters in the `node.yaml` file.
 
             `(TYPE)` allows you to specify the particular file the parameter is set for, for example, `proton.db` or `lom`.
+
+            !!! warning
+                Pay your attention that the `lom` value points to the [custom ruleset](../user-guides/rules/compiling.md) file `/etc/wallarm/custom_ruleset`.
         1. The `syncnode.(user,group,mode)` parameters in the `node.yaml` file.
 1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/*` file.
 
