@@ -128,7 +128,7 @@ To change the interval between regular filtering node and Wallarm Cloud synchron
 
 ## Access rights to files needed for node operation
 
-The `wallarm-worker` and `nginx` services are usually automatically provided with the permission to read the content of the files needed for the cloud node operation, such as proton.db and custom ruleset file. However, if testing shows no access, to fix the problem, in this section, read the description of how the permissions are provided and how they can be configured manually.
+The `wallarm-worker` and `nginx` services are usually automatically provided with the permission to read the content of the files needed for the cloud node operation, such as proton.db and custom ruleset file. However, if testing shows no access, read the description below of how the permissions are provided and how they can be configured manually.
 
 The file access parameters are:
 
@@ -150,7 +150,7 @@ The algorithm searches for the file permissions performing the following steps (
 
         1. The `syncnode.(TYPE).(user,group,mode)` parameters in the `node.yaml` file.
 
-            `(TYPE)` allows you to specify the particular file the parameter is set for, for example, `proton.db` or `lom`.
+            `(TYPE)` allows you to specify the particular file the parameter is set for. Possible values are `proton.db` or `lom`.
 
             !!! warning
                 Pay your attention that the `lom` value points to the [custom ruleset](../user-guides/rules/compiling.md) file `/etc/wallarm/custom_ruleset`.
