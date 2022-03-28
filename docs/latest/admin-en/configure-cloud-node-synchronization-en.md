@@ -128,15 +128,15 @@ To change the interval between regular filtering node and Wallarm Cloud synchron
 
 ## Access rights to files needed for node operation
 
-The `wallarm-worker` and `nginx` services are usually automatically provided with the permission to read the content of the files needed for the cloud node operation, such as proton.db and custom ruleset file. However, if testing shows no access, read the description below of how the permissions are provided and how they can be configured manually.
+The `wallarm-worker` and `nginx` services are usually automatically provided with the permission to read the content of the files needed for the filtering node operation, such as proton.db and custom ruleset file. However, if testing shows no access, read the description below of how the permissions are provided and how they can be configured manually.
 
 The file access parameters are:
 
 | Parameter    | Description | Environment variable in `/etc/wallarm/syncnode` file <br> (cloud node) | Parameter in `node.yaml` file <br> (regular node) |
 |--------------|-------------| -------------| -------------|
-| `owner`      | Owner for the files needed for the cloud node operation. | `WALLARM_SYNCNODE_OWNER` | `syncnode.owner` |
-| `group`      | Group for the files needed for the cloud node operation. | `WALLARM_SYNCNODE_GROUP` | `syncnode.group` |
-| `mode`       | Access rights to the files needed for the cloud node operation. | `WALLARM_SYNCNODE_MODE` | `syncnode.mode`  |
+| `owner`      | Owner for the files needed for the filtering node operation. | `WALLARM_SYNCNODE_OWNER` | `syncnode.owner` |
+| `group`      | Group for the files needed for the filtering node operation. | `WALLARM_SYNCNODE_GROUP` | `syncnode.group` |
+| `mode`       | Access rights to the files needed for the filtering node operation. | `WALLARM_SYNCNODE_MODE` | `syncnode.mode`  |
 
 The algorithm searches for the file permissions performing the following steps (goes to the next step only if the previous one did not give the result):
 
@@ -152,7 +152,7 @@ The algorithm searches for the file permissions performing the following steps (
 
             `(TYPE)` allows you to specify the particular file the parameter is set for. Possible values are `proton.db` or `lom`.
 
-            !!! warning
+            !!! warning "`lom` value meaning"
                 Pay your attention that the `lom` value points to the [custom ruleset](../user-guides/rules/compiling.md) file `/etc/wallarm/custom_ruleset`.
         1. The `syncnode.(user,group,mode)` parameters in the `node.yaml` file.
 1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/*` file.
@@ -170,4 +170,4 @@ For NGINX-based installation, the logic described above leads to the process whe
 * The modules for NGINX distributives set `group` to `www-data`.
 * The custom modules use values provided by a client.
 
-Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read the content of the files needed for the cloud node operation.
+Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read the content of the files needed for the filtering node operation.
