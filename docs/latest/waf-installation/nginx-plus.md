@@ -86,7 +86,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -113,7 +113,7 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install wallarm-node nginx-plus-module-wallarm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install wallarm-node nginx-plus-module-wallarm
     ```
@@ -136,7 +136,7 @@ To run postanalytics and process the requests on different servers, the followin
         ```bash
         sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
         ```

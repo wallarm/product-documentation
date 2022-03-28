@@ -42,6 +42,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux
+    * Oracle Linux 8.x
 3. Connect to the server and become root user (e.g. by using command `sudo -i`).
 4. Download the script **getwallarm.sh** by using one of the following commands:
 

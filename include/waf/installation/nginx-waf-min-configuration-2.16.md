@@ -82,18 +82,9 @@ To allocate memory for Tarantool:
     Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
-    === "Debian"
-        ``` bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "Ubuntu"
-        ``` bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
 
 #### Address of the separate postanalytics server
 

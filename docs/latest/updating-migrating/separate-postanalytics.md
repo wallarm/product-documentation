@@ -24,7 +24,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
-        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can [install](../admin-en/installation-postanalytics-en.md) the postanalytics module 3.6 on the AlmaLinux or Rocky Linux operating system insted.
+        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can [install](../admin-en/installation-postanalytics-en.md) the postanalytics module 3.6 on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
 
 **Debian and Ubuntu**
 

@@ -84,6 +84,8 @@ markdown_extensions:
 docs_dir: docs/3.6
 site_dir: site
 edit_uri: ../product-docs-en/edit/master/docs/latest/
+watch:
+  - docs/latest
 
 nav:
   - Product guides:
