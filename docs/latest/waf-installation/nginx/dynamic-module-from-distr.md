@@ -80,7 +80,7 @@ Installation commands for both options are described in the further instructions
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -120,7 +120,7 @@ The command installs the following packages:
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install nginx wallarm-node nginx-mod-http-wallarm
     ```
@@ -159,7 +159,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
@@ -176,7 +176,7 @@ Copy the configuration files for the system setup:
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
@@ -249,7 +249,7 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -271,18 +271,9 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
     Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
-    === "Debian"
-        ``` bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "CentOS"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "AlmaLinux or Rocky Linux"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
+    ``` bash
+    sudo systemctl restart wallarm-tarantool
+    ```
 
 #### Address of the separate postanalytics server
 
@@ -307,7 +298,7 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

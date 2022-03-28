@@ -34,6 +34,7 @@ To install the filtering node as the NGINX Stable module in the Alibaba Cloud in
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux
+    * Oracle Linux 8.x
 2. Connect to the created instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/71529.htm).
 3. In the instance, install the packages of NGINX Stable and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 
@@ -52,6 +53,7 @@ To install the filtering node as the NGINX Plus module in the Alibaba Cloud inst
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux
+    * Oracle Linux 8.x
 2. Connect to the created instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/71529.htm).
 3. In the instance, install the packages of NGINX Plus and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 

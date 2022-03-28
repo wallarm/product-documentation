@@ -84,7 +84,7 @@ The postanalytics module, like other Wallarm API Security modules, is installed 
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
@@ -106,7 +106,7 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
@@ -160,7 +160,7 @@ To open the file in the editing mode, please use the command:
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ``` bash
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
@@ -200,7 +200,7 @@ To set the address of the separate postanalytics server:
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ``` bash
         sudo vim /etc/sysconfig/wallarm-tarantool
         ```
@@ -245,7 +245,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         sudo systemctl restart wallarm-tarantool
         ```
@@ -263,7 +263,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
         ```bash
         sudo systemctl restart nginx
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         sudo systemctl restart nginx
         ```

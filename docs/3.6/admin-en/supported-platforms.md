@@ -411,4 +411,21 @@
     </div>
 </div> 
 
+<div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="oraclelinux" onClick="platformClicked(event, 'oraclelinux')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/oracle-linux.svg">
+        <h3>Oracle Linux 8.x
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the Wallarm module for...</p>
+        <div id="oraclelinuxId" class="options-list" style="display: none;">
+            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+        </div>
+    </div>
+</div> 
+
 </div>

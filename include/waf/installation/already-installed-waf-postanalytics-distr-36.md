@@ -13,7 +13,7 @@
         ```bash
         yum list wallarm-node
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         yum list wallarm-node
         ```
@@ -34,7 +34,7 @@
         # run from the server with installed postanalytics
         yum list wallarm-node-tarantool
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         # run from the server with installed Wallarm filtering node
         yum list wallarm-node-nginx
