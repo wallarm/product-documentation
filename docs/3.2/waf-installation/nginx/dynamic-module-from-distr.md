@@ -248,14 +248,9 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
     Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
-    === "Debian"
-        ``` bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "CentOS"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
+    ``` bash
+    sudo systemctl restart wallarm-tarantool
+    ```
 
 #### Address of the separate postanalytics server
 
