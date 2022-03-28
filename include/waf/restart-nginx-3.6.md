@@ -10,7 +10,7 @@
     ```bash
     sudo systemctl restart nginx
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo systemctl restart nginx
     ```

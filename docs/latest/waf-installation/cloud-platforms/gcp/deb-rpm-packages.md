@@ -35,6 +35,7 @@ To install the filtering node as the NGINX Stable module in the Google Engine in
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux
+    * Oracle Linux 8.x
 2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
 3. In the instance, install the packages of NGINX Stable and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 
@@ -53,6 +54,7 @@ To install the filtering node as the NGINX Plus module in the Google Engine inst
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux
+    * Oracle Linux 8.x
 2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
 3. In the instance, install the packages of NGINX Plus and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
 

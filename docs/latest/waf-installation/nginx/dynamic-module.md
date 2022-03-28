@@ -107,8 +107,8 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
 * Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options.
 
-    !!! info "NGINX for AlmaLinux or Rocky Linux"
-        This is the only option to install NGINX on AlmaLinux or Rocky Linux.
+    !!! info "NGINX for AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        This is the only option to install NGINX on AlmaLinux, Rocky Linux or Oracle Linux 8.x.
 
 More detailed information about installation is available in the [official NGINX documentation](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/).
 
@@ -142,7 +142,7 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install wallarm-node nginx-module-wallarm
     ```
-=== "AlmaLinux or Rocky Linux"
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install wallarm-node nginx-module-wallarm
     ```
@@ -165,7 +165,7 @@ To run postanalytics and process the requests on different servers, the followin
         ```bash
         sudo yum install wallarm-node-nginx nginx-module-wallarm
         ```
-    === "AlmaLinux or Rocky Linux"
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
         sudo yum install wallarm-node-nginx nginx-module-wallarm
         ```

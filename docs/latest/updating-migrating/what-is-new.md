@@ -11,7 +11,7 @@ There are the following changes available in Wallarm node 3.6:
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
 
     [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
-* Added support for AlmaLinux and Rocky Linux instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
+* Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
