@@ -78,7 +78,11 @@ A reaction is an action that should be performed if the specified condition and 
 
 * [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../blacklist.md) IP address.
 * Add IP to the [blacklist](../blacklist.md).
-* Send a notification to the messenger, SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
+* Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
+* Send a notification to the messenger configured in the [integrations](../settings/integrations/integrations-intro.md).
+
+    !!! warning "Notifying about blacklisted IPs via the messengers"
+        Triggers allow sending notifications on blacklisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Blacklisted IP** trigger condition.
 * [Group next hits into one attack](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) if the trigger condition is **Hits from the same IP**.
 
     The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.

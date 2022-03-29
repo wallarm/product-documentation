@@ -115,7 +115,7 @@ To reset the two-factor authentication settings, perform the following actions:
 
     ![!Disabling 2-factor authentication][img-user-disable-2fa]
 
-The 2-factor authentication function will be disabled for the selected user.
+The 2-factor authentication function will be disabled for the selected user. The user may re‑enable the 2‑factor authentication in the [profile settings](account.md#enabling-two-factor-authentication).
 
 ## Disable Access for a User
 
