@@ -36,9 +36,9 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 
-    * New layout and customization options of the blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
+    * New layout and customization options of the sample blocking page `/usr/share/nginx/html/wallarm_blocked.html`. In the new node version, you can customize the logo and support email displayed on the page.
         
-        [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
+        [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
     * The following NGINX directives and Envoy parameters have been renamed:
 
@@ -195,9 +195,9 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     **New blocking page**
 
-    The blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node versions, it has new layout and supports the logo and support email customization.
+    The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been updated. In the new node version, it has new layout and supports the logo and support email customization.
         
-    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page)
+    [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
     **New parameters for basic node setup**
 

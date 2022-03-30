@@ -128,9 +128,9 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
     -    service:
     -      annotations: {}
     ```
-* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+* If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
-    In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
+    In new node version, the Wallarm sample blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
 
 ## Step 3: Check out all coming K8s manifest changes
 
@@ -398,6 +398,6 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 1. If the Ingress is annotated with `nginx.ingress.kubernetes.io/wallarm-instance`, rename this annotation to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     Only the annotation name has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
-2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-default-blocking-page) to the released changes.
+2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
     In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
