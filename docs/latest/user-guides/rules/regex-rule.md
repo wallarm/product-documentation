@@ -46,6 +46,44 @@ To do this, you need to create the rule *Define a request as an attack based on 
 
 ![!Regex rule first example][img-regex-example1]
 
+### Example: Block all requests with the `class.module.classLoader.*` POST parameters
+
+One of the ways to exploit the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) is to send the request with the following POST parameters:
+
+* `class.module.classLoader.resources.context.parent.pipeline.first.pattern`
+* `class.module.classLoader.resources.context.parent.pipeline.first.suffix`
+* `class.module.classLoader.resources.context.parent.pipeline.first.directory`
+* `class.module.classLoader.resources.context.parent.pipeline.first.prefix`
+* `class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat`
+
+If you use vulnerable Spring Core Framework and the Wallarm node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) is different from blocking, you can prevent vulnerability exploitation using the virtual patch. The following rule will block all requests with listed POST parameters even in the monitoring and safe blocking modes:
+
+![!Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+
+The regular expression field value is:
+
+```bash
+(class[.]module[.]classLoader[.]resources[.]context[.]parent[.]pipeline[.]first[.])(pattern|suffix|directory|prefix|fileDateFormat)
+```
+
+The Wallarm node operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocks such vulnerability exploitation attempts by default.
+
+The Spring Cloud Function component also has the active vulnerability (CVE-2022-22963). If using this component and the Wallarm node mode is different from blocking, create the virtual patch as described [below](#example-block-all-requests-with-the-class-cloud-function-routing-expression-header).
+
+### Example: Block all requests with the `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` header
+
+The Spring Cloud Function component has the active vulnerability (CVE-2022-22963) that can be exploited using the `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` or `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header.
+
+If using this component and the Wallarm node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) is different from blocking, create the virtual patch as follows:
+
+![!Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-header-spring.png)
+
+!!! info "Blocking requests with the `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header"
+    This rule does not block requests with the `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header but NGINX drops requests with this header as invalid ones by default.
+
+The Wallarm node operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocks such vulnerability exploitation attempts by default.
+
+There is also the 0-day vulnerability in [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell). Learn how to block its exploitation attempts with the [reqexp-based virtual patch](#example-block-all-requests-with-the-classmoduleclassloader-post-parameters).
 
 ## Partial Disabling of a New Detection Rule
 
