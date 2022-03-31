@@ -157,17 +157,16 @@ The algorithm searches for the file permissions performing the following steps (
         1. The `syncnode.(user,group,mode)` parameters in the `node.yaml` file.
 1. For NGINX-based installation, value of the `nginx_group` in the `/usr/share/wallarm-common/engine/*` file.
 
-    !!! info "Engine packages nginx_group"
-        All installed engine packages provide the file `/usr/share/wallarm-common/engine/*` containing `nginx_group=<VALUE>`.
+    All installed engine packages provide the file `/usr/share/wallarm-common/engine/*` containing `nginx_group=<VALUE>`.
+
+    Each package with the module sets the value for the `group` parameter depending on the NGINX for which it was intended:
+
+    * The modules for NGINX from nginx.org set `group` to `nginx`.
+    * The modules for NGINX distributives set `group` to `www-data`.
+    * The custom modules use values provided by a client.
 1. Defaults:
     * `owner`: `root`
     * `group`: `wallarm`
     * `mode`: `0640`
-
-For NGINX-based installation, the logic described above leads to the process where each package with the module sets the value for the `group` parameter depending on the NGINX for which it was intended:
-
-* The modules for NGINX from nginx.org set `group` to `nginx`.
-* The modules for NGINX distributives set `group` to `www-data`.
-* The custom modules use values provided by a client.
 
 Note that you only need to configure access rights explicitly if the result achieved by the algorithm automatically does not suit your needs. After configuring access rights, make sure that the `wallarm-worker` and `nginx` services can read the content of the files needed for the filtering node operation.
