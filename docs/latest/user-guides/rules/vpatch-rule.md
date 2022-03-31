@@ -54,15 +54,3 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Click *Create*
 
 ![!Virtual patch for any request type][img-vpatch-example2]
-
-## Example: Block all requests aimed at the `tomcatwar.jsp` file
-
-One of the ways to exploit the 0-day vulnerability in the [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html) (Spring4Shell) is to inject the malicious payload into the `tomcatwar.jsp` file.
-
-If you use vulnerable Spring Core Framework and the Wallarm node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) is different from blocking, you can prevent vulnerability exploitation using the virtual patch. The following rule will block all requests aimed at the `tomcatwar.jsp` file even in the monitoring and safe blocking modes:
-
-![!Virtual patch for tomcatwar.jsp](../../images/user-guides/rules/vpatch-rule-tomcatwar.png)
-
-The Wallarm node operating in the blocking [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) blocks such vulnerability exploitation attempts by default.
-
-There are also other ways of the Spring4Shell and one more Spring vulnerability exploitation. If you use vulnerable Spring components and the Wallarm node mode is different from blocking, create the virtual patch via [another rule](regex-rule.md#example-block-all-requests-with-the-classmoduleclassloader-post-parameters).
