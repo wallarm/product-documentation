@@ -5,7 +5,7 @@ for(var i = 0; i < links.length; i++) {
   if (links[i].hostname != window.location.hostname) {
     links[i].target = '_blank';
     links[i].rel = 'noopener';
-  } 
+  }
 }
 
 function injectScript(src, cb) {
@@ -43,7 +43,7 @@ if (activeLinks[0].text === ' Product guides ') {
 else {
   document.getElementById('versionsDiv').style.display = 'none'
 }
-  
+
 // Show the list of available WAF versions
 function versionClicked (event) {
   if (document.getElementById('versionsList').style.display === 'none') {
@@ -186,6 +186,7 @@ if (paths[1] == '2.18') {
 
 if (window.location.href.indexOf("channeltivity-content") > -1) {
   document.body.classList.add("channeltivity");
+  resizeObserve();
 }
 
 // Google Tag Manager
@@ -202,3 +203,36 @@ if (window.location.href.indexOf("channeltivity-content") > -1) {
 })
 (window,document,'script','dataLayer','GTM-P8GHH8M');
 // End Google Tag Manager
+
+function resizeObserve() {
+  const CONTAINER_CLASS_NAME = ".md-container";
+  const containerNode = document.querySelector(CONTAINER_CLASS_NAME);
+  let latestHeight;
+
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      const cr = entry.contentRect;
+
+      if (latestHeight !== cr.height) {
+        latestHeight = cr.height;
+        resizeMessagePostToParentIframe(cr.height);
+      }
+    }
+  });
+
+  resizeObserver.observe(containerNode)
+}
+
+function resizeMessagePostToParentIframe(height) {
+  const message = {
+    type: 'wallarmDocsContentHeight',
+    result: {
+      height: `${height}px`,
+      url: `${document.location.host}${document.location.pathname}`
+    }
+  };
+
+  console.log('resizeMessagePostToParentIframe', message);
+
+  window.parent.postMessage(message, '*');
+}
