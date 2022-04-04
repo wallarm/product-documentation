@@ -62,7 +62,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 5. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 3.6.8 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 3.6.9 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
