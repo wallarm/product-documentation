@@ -198,7 +198,7 @@ function resizeObserve() {
     return;
   }
 
-  const CONTAINER_CLASS_NAME = ".md-container";
+  const CONTAINER_CLASS_NAME = ".md-content";
   const containerNode = document.querySelector(CONTAINER_CLASS_NAME);
   let latestHeight;
 
