@@ -31,4 +31,33 @@ The rules within a branch are grouped by the *point* field. The rules that affec
 
 For each rule, the system displays the following parameters: last modified time, quantity, types, and point.
 
-By default, only the rules linked to the selected branch are shown. To see the rules inherited from more common branches, click on the *Hidden* button.
+## Default rules
+
+You can create rules that have specified action but are not linked to any endpoint - they are called *default rules*. Such rules are applied to all endpoints.
+
+* To create default rule, click **Add rule**, in **If request is** section, leave URI blank, set rule action in **Then** section, then save. The new rule not linked to any endpoint will be created.
+* To view the list of created default rules, click the **Default rules** button.
+
+Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
+
+## Distinct and inherited rules
+
+The rules are inherited down the rules branch. Principles:
+
+* All branches inherit [default](#default-rules) rules.
+* In a branch, child endpoints inherit rules from parent.
+* Distinct has priority over inherited.
+* Directly specified has priority over regex.
+* Case sensitive has priority over insensitive.
+
+Here are some details of how to work with the rules branch:
+
+* To expand the endpoint, click blue circle.
+* Endpoints that do not have distinct rules, are greyed out and not clickable.
+    
+    ![!Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+
+* To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
+* If necessary, click **Distinct and inherited rules**. Inherited rules will be displayed together with the distinct, they will be greyed out comparing to distinct.
+
+    ![!Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
