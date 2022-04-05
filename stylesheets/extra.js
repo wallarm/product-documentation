@@ -9,7 +9,7 @@ for(var i = 0; i < links.length; i++) {
 }
 
 function injectScript(src, cb) {
-  let script = document.createElement('script');
+  var script = document.createElement('script');
 
   script.src = src;
   cb && (script.onload = cb);
@@ -63,7 +63,7 @@ function goToVersion (event, currentVersion, version) {
     window.location.reload(false);
   }
   else {
-    let tmp = window.location.pathname.split('/');
+    var tmp = window.location.pathname.split('/');
     window.top.location.href = tmp.join('/');
     if (version === rootVersion) {
       window.top.location.href = window.location.pathname.replace('/'+currentVersion+'/','/');
@@ -90,7 +90,7 @@ var navigationElements = document.querySelectorAll(navClassName);
 function getAllNavigationElements(element, selector){
   if(element.parentElement && element.parentElement.parentElement && element.parentElement.parentElement.children){
     var allChildren = element.parentElement.parentElement.children;
-    for (let index = 0; index < allChildren.length; index++) {
+    for (var index = 0; index < allChildren.length; index++) {
       var child = allChildren[index];
       var navigationInput = child.querySelector(selector);
       if(navigationInput && navigationInput !== element){
@@ -115,7 +115,7 @@ function platformClicked (event, platformId) {
   // console.log(this);
 
   if (activeOptions.length != 0) {
-    for (let index = 0; index < activeOptions.length; index++) {
+    for (var index = 0; index < activeOptions.length; index++) {
       if (activeOptions[i].children[0].children[3].id != this.optionsId) {
       document.getElementById(activeOptions[i].children[0].children[3].id).style.display = 'none';
       activeOptions[i].classList.remove("option-active");
@@ -231,8 +231,6 @@ function resizeMessagePostToParentIframe(height) {
       url: `${document.location.host}${document.location.pathname}`
     }
   };
-
-  console.log('resizeMessagePostToParentIframe', message);
 
   window.parent.postMessage(message, '*');
 }
