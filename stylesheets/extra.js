@@ -194,6 +194,10 @@ function toggleChannelTivityClass() {
 }
 
 function resizeObserve() {
+  if (!inIframe()) {
+    return;
+  }
+
   const CONTAINER_CLASS_NAME = ".md-container";
   const containerNode = document.querySelector(CONTAINER_CLASS_NAME);
   let latestHeight;
@@ -210,6 +214,14 @@ function resizeObserve() {
   });
 
   resizeObserver.observe(containerNode)
+}
+
+function inIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
 }
 
 function resizeMessagePostToParentIframe(height) {
