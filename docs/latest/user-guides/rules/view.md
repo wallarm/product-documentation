@@ -33,10 +33,13 @@ For each rule, the system displays the following parameters: last modified time,
 
 ## Default rules
 
-You can create rules that have specified action but are not linked to any endpoint - they are called *default rules*. Such rules are applied to all endpoints.
+You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
 
-* To create default rule, click **Add rule**, in **If request is** section, leave URI blank, set rule action in **Then** section, then save. The new rule not linked to any endpoint will be created.
+* To create default rule, during [rule creation](add-rule.md) leave URI blank. The new rule not linked to any endpoint will be created.
 * To view the list of created default rules, click the **Default rules** button.
+
+??? info "Traffic filtration mode default rule"
+    Wallarm automatically creates the `Set traffic filtration mode` rule for all clients.
 
 Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
 
@@ -45,19 +48,19 @@ Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
 The rules are inherited down the rules branch. Principles:
 
 * All branches inherit [default](#default-rules) rules.
-* In a branch, child endpoints inherit rules from parent.
+* In a branch, child endpoints inherit rules from the parent.
 * Distinct has priority over inherited.
-* Directly specified has priority over regex.
-* Case sensitive has priority over insensitive.
+* Directly specified has priority over [regex](add-rule.md#condition-type-regex).
+* Case [sensitive](add-rule.md#condition-type-equal) has priority over [insensitive](add-rule.md#condition-type-iequal-aa).
 
 Here are some details of how to work with the rules branch:
 
-* To expand the endpoint, click blue circle.
-* Endpoints that do not have distinct rules, are greyed out and not clickable.
+* To expand the endpoint, click the blue circle.
+* Endpoints that do not have distinct rules are greyed out and not clickable.
     
     ![!Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
 
 * To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
-* If necessary, click **Distinct and inherited rules**. Inherited rules will be displayed together with the distinct, they will be greyed out comparing to distinct.
+* To view rules inherited by the endpoint, click **Distinct and inherited rules**. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
 
     ![!Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
