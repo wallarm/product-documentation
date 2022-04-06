@@ -38,8 +38,8 @@ You can create rules with specified action but not linked to any endpoint - they
 * To create default rule, during [rule creation](add-rule.md) leave URI blank. The new rule not linked to any endpoint will be created.
 * To view the list of created default rules, click the **Default rules** button.
 
-??? info "Traffic filtration mode default rule"
-    Wallarm automatically creates the `Set traffic filtration mode` rule for all clients.
+!!! info "Traffic filtration mode default rule"
+    Wallarm automatically [creates](wallarm-mode-rule.md#default-instance-of-rule) the `Set traffic filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
 
 Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
 
@@ -61,6 +61,6 @@ Here are some details of how to work with the rules branch:
     ![!Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
 
 * To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
-* To view rules inherited by the endpoint, click **Distinct and inherited rules**. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
+* When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
 
     ![!Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
