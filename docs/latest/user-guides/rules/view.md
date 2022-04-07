@@ -35,7 +35,7 @@ For each rule, the system displays the following parameters: last modified time,
 
 You can create rules with specified action but not linked to any endpoint - they are called **default rules**. Such rules are applied to all endpoints.
 
-* To create default rule, during [rule creation](add-rule.md) leave URI blank. The new rule not linked to any endpoint will be created.
+* To create default rule, follow the [standard procedure](add-rule.md) but leave URI blank. The new rule not linked to any endpoint will be created.
 * To view the list of created default rules, click the **Default rules** button.
 
 !!! info "Traffic filtration mode default rule"
