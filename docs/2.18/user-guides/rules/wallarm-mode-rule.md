@@ -17,6 +17,15 @@ The filtration mode can take one of the following values:
 
 To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].
 
+
+## Default instance of rule
+
+Wallarm automatically creates the instance of the `Set traffic filtration mode` rule on the [default](../../user-guides/rules/view.md#default-rules) level. The system sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+
+This instance of the rule cannot be deleted. To change its value, modify [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting of the system.
+
+As all the other default rules, the `Set traffic filtration mode` default rule is [inherited](../../user-guides/rules/view.md) by all branches.
+
 ## Example: Disabling Request Blocking During User Registration
 
 **If** the following conditions take place:
