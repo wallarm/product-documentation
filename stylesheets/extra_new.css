@@ -76,6 +76,10 @@ a.md-top.md-icon {
   width: 117px;
 }
 
+.md-header__button.md-logo :is(img, svg) {
+  width: 117px;
+}
+
 .md-header__title {
   font-size: 16px;
 }
@@ -167,6 +171,9 @@ a.md-tabs__link:hover {
     width: 5rem;
   }
   .md-nav__title .md-nav__button.md-logo :-webkit-any(img) {
+    width: 5rem;
+  }
+  .md-nav__title .md-nav__button.md-logo :is(img, svg) {
     width: 5rem;
   }
   .md-nav--primary .md-nav__item--active>.md-nav__link {
