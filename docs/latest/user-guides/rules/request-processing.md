@@ -35,13 +35,14 @@ The following tags correspond to the URL parser:
 * **action_name** for the last part of the URL after the `/` symbol and before the first period (`.`). This part of the URL is always present in the request, even if its value is an empty string.
 * **action_ext** for the part of the URL after the last period (`.`). It may be missing in the request.
 
-    !!! info "Boundary between **action_name** and **action_ext**"
-        For the cases when in the last part of the URL after the `/` symbol there are several periods (`.`), boundary between them is set using the **first** period. For example:
+    !!! info "Boundary between **action_name** and **action_ext** when several periods"
+        If there are several periods (`.`) in the last part of the URL after the `/` symbol, boundary between **action_name** and **action_ext** is set based on the **first** period, for example:
 
         `/modern/static/js/cb-common.ffc63abe.chunk.js.map` →
-        ...
-        `action_name` — `cb-common`
-        `action_ext` — `ffc63abe.chunk.js.map`
+
+        * ...
+        * `action_name` — `cb-common`
+        * `action_ext` — `ffc63abe.chunk.js.map`
 
 * **query** for [query string parameters](#query-string-parameters) after the `?` symbol. 
 
