@@ -260,6 +260,10 @@ svg.navigation-arrow {
   text-decoration: underline;
 }
 
+.md-typeset a:hover>code {
+  background-color: unset;
+}
+
 a.headerlink:hover {
   text-decoration: none;
 }
