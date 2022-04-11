@@ -2,6 +2,14 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.8 (2022-04-11)
+
+### New features
+
+* Ability to specify the URL address of the OpenAPI 3.0 specification instead of mounting the specification file into the Docker container (via the environment variable [`APIFW_API_SPECS`](installation-guides/docker-container.md#apifw-api-specs)).
+* Ability to use the custom `Content-Type` header when sending requests to the token introspection service (via the environment variable [`APIFW_SERVER_OAUTH_INTROSPECTION_CONTENT_TYPE`](installation-guides/docker-container.md#apifw-server-oauth-introspection-content-type)).
+* [Support for the authentication token denylists](installation-guides/docker-container.md#blocking-requests-with-compromised-authentication-tokens).
+
 ## v0.6.7 (2022-01-25)
 
 Wallarm API Firewall is now open source. There are the following related changes in [this release](https://github.com/wallarm/api-firewall/releases/tag/v0.6.7):
