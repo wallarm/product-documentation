@@ -2,7 +2,7 @@
 
 This page describes new releases of Wallarm API Firewall.
 
-## v0.6.8 (??)
+## v0.6.8 (2022-04-11)
 
 ### New features
 

@@ -148,7 +148,7 @@ To configure the OAuth 2.0 token validation flow, use the following optional env
 
 ### Blocking requests with compromised authentication tokens
 
-If an API leak is detected, the Wallarm API Firewall is able to [stop the compromised authentication tokens from being used](https://lab.wallarm.com/oss-api-firewall-unveils-new-feature-blacklist-for-compromised-api-tokens-and-cookies/). API Firewall processes requests containing compromised tokens based on the [`APIFW_CUSTOM_BLOCK_STATUS_CODE`](#apifw-custom-block-status-code) variable value.
+If an API leak is detected, the Wallarm API Firewall is able to [stop the compromised authentication tokens from being used](https://lab.wallarm.com/oss-api-firewall-unveils-new-feature-blacklist-for-compromised-api-tokens-and-cookies/). If the request contains compromised tokens, API Firewall responses to this request with the code configured via [`APIFW_CUSTOM_BLOCK_STATUS_CODE`](#apifw-custom-block-status-code).
 
 To enable the denylist feature:
 
@@ -159,11 +159,6 @@ To enable the denylist feature:
     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZDk5OTk5ODMifQ.BinZ4AcJp_SQz-iFfgKOKPz_jWjEgiVTb9cS8PP4BI0
     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZDk5OTk5ODQifQ.j5Iea7KGm7GqjMGBuEZc2akTIoByUaQc5SSX7w_qjY8
     ```
-
-    !!! warning "The maximum size of the denylist file"
-        By default, the Docker container is configured to hold 10,000,000 denylist records maximum in the cache. The Docker container with 10,000,000 records uploaded requires 4GB of RAM.
-
-        The `APIFW_DENYLIST_CACHE_*` variables are configured for the mentioned maximum by default.
 2. Configure the denylist feature passing the following variables to the Docker container:
 
     | Environment variable | Description |
@@ -172,9 +167,6 @@ To enable the denylist feature:
     | `APIFW_DENYLIST_TOKENS_COOKIE_NAME` | The name of the Cookie used to pass the authentication token. |
     | `APIFW_DENYLIST_TOKENS_HEADER_NAME` | The name of the Header used to pass the authentication token. If both the `APIFW_DENYLIST_TOKENS_COOKIE_NAME` and `APIFW_DENYLIST_TOKENS_HEADER_NAME` variables are specified, API Firewall sequentially checks its values. |
     | `APIFW_DENYLIST_TOKENS_TRIM_BEARER_PREFIX` | Whether to trim the `Bearer` prefix from the authentication header when comparing its value with the denylist contents. If the `Bearer` prefix is passed in the authentication header and tokens in the denylist do not contain this prefix, tokens will not be validated reliably.<br>The value can be `true` or `false`. The default value is `false`. |
-    | `APIFW_DENYLIST_CACHE_NUM_COUNTERS` | The number of 4-bit access counters to keep for admission and eviction. The default value is `10000000`. [See details in the Ristretto library docs](https://github.com/dgraph-io/ristretto#config) |
-    | `APIFW_DENYLIST_CACHE_MAX_COST` | How denylist record eviction decisions are made. For example, if the value is `100` and a new record with a cost of `1` increases the total cache cost to `101`, `1` item will be evicted. The default value is `2147483648`. [See details in the Ristretto library docs](https://github.com/dgraph-io/ristretto#config) | |
-    | `APIFW_DENYLIST_CACHE_BUFFER_ITEMS` | BufferItems is the size of the Get buffers. The default and recommended value is `64`. [See details in the Ristretto library docs](https://github.com/dgraph-io/ristretto#config) | |
 
 ### Protected application SSL/TLS settings
 
