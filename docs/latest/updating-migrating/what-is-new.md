@@ -8,7 +8,7 @@ If upgrading Wallarm node 2.18 or lower, learn available changes from the [separ
 
 There are the following changes available in Wallarm node 3.6:
 
-* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.2.
+* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.3.
 
     [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
