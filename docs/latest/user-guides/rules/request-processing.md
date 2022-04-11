@@ -36,13 +36,22 @@ The following tags correspond to the URL parser:
 * **action_ext** for the part of the URL after the last period (`.`). It may be missing in the request.
 
     !!! info "Boundary between **action_name** and **action_ext** when several periods"
-        If there are several periods (`.`) in the last part of the URL after the `/` symbol, the boundary between **action_name** and **action_ext** is set based on the **first** period, for example:
+        If there are several periods (`.`) in the last part of the URL after the `/` symbol, problems with the boundary between **action_name** and **action_ext** may occur, such as
+        
+        * boundary set based on the **first** period, for example:
 
-        `/modern/static/js/cb-common.ffc63abe.chunk.js.map` →
+            `/modern/static/js/cb-common.ffc63abe.chunk.js.map` →
 
-        * ...
-        * `action_name` — `cb-common`
-        * `action_ext` — `ffc63abe.chunk.js.map`
+            * ...
+            * `action_name` — `cb-common`
+            * `action_ext` — `ffc63abe.chunk.js.map`
+
+        * some elements are missing after parsing, for the example above this could be:
+
+            * `action_name` — `cb-common`
+            * `action_ext` — `ffc63abe`
+        
+        To fix this, manually edit the **action_name** and **action_ext** points in the advanced edit form of the URI constructor.
 
 * **query** for [query string parameters](#query-string-parameters) after the `?` symbol. 
 
