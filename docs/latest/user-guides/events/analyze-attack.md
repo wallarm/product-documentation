@@ -80,9 +80,10 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 * For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 
-When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
+When the sampling algorithm is enabled:
 
-When the sampling is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed to the right of the section name.
+* All users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
+* In the **Events** section, the **Hits sampling is enabled** notification is displayed.
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 
@@ -119,7 +120,7 @@ Grouped hits are displayed in the **Events** section of Wallarm Console as follo
 
 ![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
-To filter list of events so that it only displays the sampled hits, click the **Hits sampling is enabled** notification. The `sampled` attribute will be [added](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field and the list of events will display only the sampled hits.
+To filter the list of events so that it only displays the sampled hits, click the **Hits sampling is enabled** notification. The `sampled` attribute will be [added](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field, and the list of events will display only the sampled hits.
 
 !!! info "Displaying dropped hits in the event list"
     Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of events.
