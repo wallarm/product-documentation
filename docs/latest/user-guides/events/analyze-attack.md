@@ -82,6 +82,8 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 When the sampling algorithm is enabled, all users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
 
+When the sampling is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed to the right of the section name.
+
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
 
 ### Core logic of hit sampling
@@ -116,6 +118,8 @@ The regular sampling algorithm has the following core logic:
 Grouped hits are displayed in the **Events** section of Wallarm Console as follows:
 
 ![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+
+To filter list of events so that it only displays the sampled hits, click the **Hits sampling is enabled** notification. The `sampled` attribute will be [added](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field and the list of events will display only the sampled hits.
 
 !!! info "Displaying dropped hits in the event list"
     Since dropped hits are not uploaded to the Wallarm Cloud, certain hits or whole attacks can be absent in the list of events.
