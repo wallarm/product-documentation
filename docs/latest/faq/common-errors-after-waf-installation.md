@@ -21,7 +21,7 @@ Change the value in `client_max_body_size`:
 
 Detailed directive description is available in the [official NGINX documentation](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size).
 
-## How to fix the errors "signature could not be verified for wallarm-node", "yum doesn't have enough cached data to continue", "signatures couldn't be verified?"?
+## How to fix the errors "signature could not be verified for wallarm-node", "yum doesn't have enough cached data to continue", "signatures couldn't be verified"?
 
 If GPG keys for Wallarm RPM or DEB packages are expired, you may get the following error messages:
 
