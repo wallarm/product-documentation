@@ -840,3 +840,7 @@ a.navigation-card:hover {
 .channeltivity .md-content__button {
   display: none;
 }
+
+.tabbed-content .highlight .md-clipboard {
+  top: .7em;
+}
