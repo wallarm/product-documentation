@@ -16,7 +16,9 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 
 
 !!! info "Getting started with Wallarm"
-    The dashboard section also includes the **Get Started** button for new users. When you click the button, you will get a list of basic steps for installing and configuring a filtering node.
+    The dashboard section also includes the **Get tarted** button for new users. When you click the button, you will get the list of options useful for the product discovery.
+    
+    The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
 
 ----------
 
