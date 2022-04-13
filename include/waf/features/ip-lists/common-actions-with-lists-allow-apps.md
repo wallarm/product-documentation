@@ -6,6 +6,7 @@
 To add an IP address, subnet, or group of IP addresses to the list:
 
 1. Click the **Add object** button.
+1. From the drop-down list, select the list to add the new object to.
 2. Specify an IP address or group of IP addresses in one of the following ways:
 
     * Input a single **IP address** or a **subnet**
@@ -17,6 +18,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
     * Select a **source** to add all IP addresses that belong to this source:
         * **Tor** for IP addresses of the Tor network
         * **Proxy** for IP addresses of public or web proxy servers
+        * **Search Engine Spiders** for IP addresses of search engine spiders
         * **VPN** for IP addresses of virtual private networks
         * **AWS** for IP addresses registered in Amazon AWS
         * **Azure** for IP addresses registered in Microsoft Azure
