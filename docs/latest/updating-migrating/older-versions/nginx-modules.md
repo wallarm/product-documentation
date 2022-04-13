@@ -53,11 +53,13 @@ Delete the previous Wallarm repository address and add a repository with a new W
 === "CloudLinux OS 6.x"
     ```bash
     sudo yum remove wallarm-node-repo
+    sudo yum clean all
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.6/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
     ```
 === "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
+    sudo yum clean all
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
     ```
 === "CentOS 8"
@@ -115,11 +117,15 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt update
         sudo apt dist-upgrade
         ```
+
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
+
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
@@ -146,11 +152,15 @@ Delete the previous Wallarm repository address and add a repository with a new W
         sudo apt update
         sudo apt dist-upgrade
         ```
+
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
+
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
