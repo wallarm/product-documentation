@@ -82,7 +82,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 When the sampling algorithm is enabled:
 
-* All users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive a corresponding email. Emails are sent once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
+* All users of the [**Administrator** or **Global Administrator** role](../settings/users.md#user-roles) will receive emails about enabling the sampling algorithm. Emails are sent no more than once per 8 hours if the sampling algorithm is enabled / disabled due to the attack percentage change.
 * In the **Events** section, the **Hits sampling is enabled** notification is displayed.
 
 Sampling will be automatically disabled once the percentage of attacks in the traffic decreases.
