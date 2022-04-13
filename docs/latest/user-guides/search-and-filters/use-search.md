@@ -315,3 +315,7 @@ Examples:
 *   `attacks incidents !request_id:<requestId>`: to search for attacks and incidents with the `request_id` not equal to `<requestId>`.
 *   `attacks incidents request_id`: to search for attacks and incidents with any `request_id`.
 *   `attacks incidents !request_id`: to search for attacks and incidents without any `request_id`.
+
+### Search for sampled hits
+
+To search for the [sampled hits](../events/analyze-attack.md#sampling-of-hits), add `sampled` to the search string.
