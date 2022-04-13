@@ -18,7 +18,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
     * Select a **source** to add all IP addresses that belong to this source:
         * **Tor** for IP addresses of the Tor network
         * **Proxy** for IP addresses of public or web proxy servers
-        * **Search Engine Spiders** for IP addresses of search engine spiders (SES)
+        * **Search Engine Spiders** for IP addresses of search engine spiders
         * **VPN** for IP addresses of virtual private networks
         * **AWS** for IP addresses registered in Amazon AWS
         * **Azure** for IP addresses registered in Microsoft Azure
