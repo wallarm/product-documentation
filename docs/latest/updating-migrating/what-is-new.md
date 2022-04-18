@@ -8,7 +8,7 @@ If upgrading Wallarm node 2.18 or lower, learn available changes from the [separ
 
 There are the following changes available in Wallarm node 4.0:
 
-* The upgraded [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) provides the better attack detection.
+* The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
 
 ## When upgrading node 3.4
 
