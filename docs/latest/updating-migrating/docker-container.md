@@ -69,7 +69,11 @@ If your Docker container was configured to return the `&/usr/share/nginx/html/wa
 1. [Copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the new customized or previously used page and the NGINX configuration file to a new Docker container in the next step.
 
-## Step 5: Run the container using the updated image
+## Step 5: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+## Step 6: Run the container using the updated image
 
 Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones [listed in the previous step](#step-3-switch-from-deprecated-configuration-options).
 
@@ -82,10 +86,10 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 6: Test the filtering node operation
+## Step 7: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 7: Delete the filtering node of the previous version
+## Step 8: Delete the filtering node of the previous version
 
 If the deployed image of the version 3.6 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.

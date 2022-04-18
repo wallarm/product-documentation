@@ -160,11 +160,15 @@ Rename the following NGINX directives if they are explicitly specified in config
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
-## Step 6: Restart NGINX
+## Step 6: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+## Step 7: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 7: Test Wallarm node operation
+## Step 8: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
