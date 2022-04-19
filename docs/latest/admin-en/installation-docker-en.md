@@ -59,7 +59,7 @@ The command does the following:
 * Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://NGINX_BACKEND:80`.
 
 ## Run the container mounting the configuration file
@@ -118,7 +118,7 @@ The command does the following:
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://example.com`.
 
 !!! info "Mounting other configuration files"

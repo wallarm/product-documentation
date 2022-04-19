@@ -4,6 +4,20 @@ This page lists the changes available when upgrading the node 3.4 or 3.2 up to v
 
 If upgrading Wallarm node 2.18 or lower, learn available changes from the [separate list](older-versions/what-is-new.md).
 
+## When upgrading node 3.6
+
+There are the following changes available in Wallarm node 4.0:
+
+* The following NGINX directives and Envoy parameters have been renamed:
+
+    * NGINX: `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
+    * Envoy: `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
+    * Envoy: `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+    * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+
+    Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
+* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
+
 ## When upgrading node 3.4
 
 There are the following changes available in Wallarm node 3.6:
