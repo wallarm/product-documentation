@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/separate-postanalytics.md"

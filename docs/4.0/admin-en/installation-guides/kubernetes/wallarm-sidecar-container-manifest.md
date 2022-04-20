@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md"
