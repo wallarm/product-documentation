@@ -9,10 +9,10 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 ![!IP whitelist](../../images/user-guides/ip-lists/whitelist-apps.png)
 
 !!! warning "IP whitelisting support"
-    * IP whitelisting for specific applications is supported starting with the regular (client) and partner Wallarm node of version 3.2.
+    * IP whitelisting for specific applications is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
     * If the Wallarm node 3.2 or higher operating in the `monitoring` mode detects the attack originated from the whitelisted IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
     
-    If you are using the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, please perform the following steps before IP address whitelist setup:
+    If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address whitelist setup:
 
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
 

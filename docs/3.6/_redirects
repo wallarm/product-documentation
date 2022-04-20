@@ -274,3 +274,20 @@
 /3.0/user-guides/rules/define-counters/ /3.0/admin-en/configuration-guides/protecting-against-bruteforce/
 /2.18/user-guides/rules/define-counters /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
 /2.18/user-guides/rules/define-counters/ /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
+
+/partner-waf-node/overview /waf-installation/multi-tenant/overview/
+/partner-waf-node/creating-partner-account /waf-installation/multi-tenant/configure-accounts
+/partner-waf-node/connecting-clients /waf-installation/multi-tenant/configure-accounts
+/partner-waf-node/installing-partner-waf-node /waf-installation/multi-tenant/deploy-multi-tenant-node
+/3.4/partner-waf-node/overview /3.4/waf-installation/multi-tenant/overview/
+/3.4/partner-waf-node/creating-partner-account /3.4/waf-installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/connecting-clients /3.4/waf-installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/installing-partner-waf-node /3.4/waf-installation/multi-tenant/deploy-multi-tenant-node
+/3.2/partner-waf-node/overview /3.2/waf-installation/multi-tenant/overview/
+/3.2/partner-waf-node/creating-partner-account /3.2/waf-installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/connecting-clients /3.2/waf-installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/installing-partner-waf-node /3.2/waf-installation/multi-tenant/deploy-multi-tenant-node
+/2.18/partner-waf-node/overview /2.18/waf-installation/multi-tenant/overview/
+/2.18/partner-waf-node/creating-partner-account /2.18/waf-installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/connecting-clients /2.18/waf-installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/installing-partner-waf-node /2.18/waf-installation/multi-tenant/deploy-multi-tenant-node

@@ -32,7 +32,7 @@ Users of Wallarm clients can have the following roles:
 * **Read Only** with access to view main Wallarm settings
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
-For Wallarm partners, global roles **Global Administrator**, **Global Analyst**, **Global Read Only** are also available. Global roles provide users with access to the partner account and linked client accounts, regular roles provide users with access only to the partner account.
+The [multitenancy](../../waf-installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
 More detailed information about access of different user roles to Wallarm entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
 

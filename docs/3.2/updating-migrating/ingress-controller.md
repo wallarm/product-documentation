@@ -4,7 +4,7 @@ These instructions describe the steps to upgrade deployed Wallarm Ingress Contro
 
 !!! warning "Breaking changes and recommendations for different node type update"
     * The Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and lower**. Before updating the modules up to 3.2, please carefully review the list of [Wallarm node changes](what-is-new.md) and consider a possible configuration change.
-    * We recommend to update both the regular (client) and [partner](../partner-waf-node/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
+    * We recommend to update both the regular (client) and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes of version 3.0 or lower up to version 3.2. This release enables IP greylists and other new features and stabilizes Wallarm node operation.
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
