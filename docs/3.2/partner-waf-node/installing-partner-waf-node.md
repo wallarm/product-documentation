@@ -1,1 +1,0 @@
---8<-- "3.4/partner-waf-node/installing-partner-waf-node.md"

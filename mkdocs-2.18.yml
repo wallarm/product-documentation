@@ -156,6 +156,10 @@ nav:
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
+        - Deploying the multi‑tenant node:
+          - Multitenancy overview: waf-installation/multi-tenant/overview.md
+          - Creating tenant accounts in Wallarm Console: waf-installation/multi-tenant/configure-accounts.md
+          - Deploying and configuring multi-tenant node: waf-installation/multi-tenant/deploy-multi-tenant-node.md        
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -311,11 +315,6 @@ nav:
               - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
               - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
-    - Working with the Partner Node:
-      - Partner scheme overview: partner-waf-node/overview.md
-      - Creating and configuring a partner account: partner-waf-node/creating-partner-account.md
-      - Creating and linking clients: partner-waf-node/connecting-clients.md
-      - Installing and configuring a partner node: partner-waf-node/installing-partner-waf-node.md
     - Upgrading and Migrating:
       - What is new in Wallarm node 2.18: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
