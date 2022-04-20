@@ -24,7 +24,7 @@ The blacklist is available in the **Blacklist** section of your Wallarm account.
     For the blacklisting to take effect, please enable it on the filtering node.
     
     * [Instructions for the regular filtering node][link-ip-blocking]
-    * To enable IP address blacklisting on the [partner node](../partner-waf-node/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
+    * To enable IP address blacklisting on the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Review the Active Blacklist
 
@@ -83,7 +83,7 @@ You can filter the history by:
 ## Block Manually
 
 !!! info "Blocking the IP address on the partner node"
-    If you have installed the [partner node](../partner-waf-node/overview.md), please switch to the [account of a client](../partner-waf-node/overview.md#partner-account-components) for which the IP address is blocked before adding the IP address to the blacklist.
+    If you have installed the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please switch to the [account of a tenant](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is blocked before adding the IP address to the blacklist.
 
 To start blocking IP addresses:
 

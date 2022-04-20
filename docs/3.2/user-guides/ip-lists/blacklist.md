@@ -14,7 +14,7 @@ In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocke
     * [New IP blacklisting features](../../updating-migrating/what-is-new.md)
     * If operating in the `off` or `monitoring` mode, Wallarm node does not block requests originated from the blacklisted IP addresses
     
-    If you have already deployed the regular (client) or [partner node](../../partner-waf-node/overview.md) of version 3.0 or lower, before configuring updated IP blacklist, please perform the following steps:
+    If you have already deployed the regular (client) or [multi-tenant](../../waf-installation/multi-tenant/overview.md) node of version 3.0 or lower, before configuring updated IP blacklist, please perform the following steps:
 
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
         
