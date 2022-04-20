@@ -9,7 +9,7 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 ![!IP whitelist](../../images/user-guides/ip-lists/whitelist-apps.png)
 
 !!! warning "IP whitelisting support"
-    IP whitelisting for specific applications is supported starting with the regular (client) and partner Wallarm node of version 3.2.
+    IP whitelisting for specific applications is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
     
     If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 2.18 or lower, please perform the following steps before IP address whitelist setup:
 

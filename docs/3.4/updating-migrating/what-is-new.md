@@ -6,12 +6,12 @@ If upgrading Wallarm node 2.18 or lower, please note that version 3.x contains *
 
 ## Which Wallarm nodes are recommended to be upgraded?
 
-* Regular (client) and partner Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-upgrading-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
+* Regular (client) and multi-tenant Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-upgrading-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
 * Regular (client) Wallarm node of version 3.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
 
 ## Changes available when upgrading Wallarm node of version 2.18 and lower
  
-Listed changes are available for both the regular (client) and partner Wallarm node 3.4.
+Listed changes are available for both the regular (client) and multi-tenant Wallarm node 3.4.
 
 ### Changes in supported installation options
 

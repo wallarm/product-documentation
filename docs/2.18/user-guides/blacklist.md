@@ -82,7 +82,7 @@ You can filter the history by:
 
 ## Block Manually
 
-!!! info "Blocking the IP address on the partner node"
+!!! info "Blocking the IP address on the multi-tenant node"
     If you have installed the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please switch to the [account of a tenant](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is blocked before adding the IP address to the blacklist.
 
 To start blocking IP addresses:

@@ -1,6 +1,6 @@
 # What is new in Wallarm node (if upgrading node 2.18 or lower)
 
-This page lists the changes available when upgrading the node 2.18 up to version 3.6. Listed changes are available for both the regular (client) and partner Wallarm nodes. 
+This page lists the changes available when upgrading the node 2.18 up to version 3.6. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 2.18 and lower are deprecated"
     Wallarm nodes 2.18 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).

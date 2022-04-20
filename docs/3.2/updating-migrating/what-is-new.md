@@ -4,12 +4,12 @@ We have released Wallarm node 3.x that is **totally incompatible with Wallarm no
 
 ## Which Wallarm nodes are recommended to be updated?
 
-* Regular (client) and partner Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-updating-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
+* Regular (client) and multi-tenant Wallarm nodes of version 2.18 and lower. [Changes](#changes-available-when-updating-wallarm-node-of-version-218-and-lower) available in Wallarm node 3.x simplifies the node configuration and improves traffic filtration.
 * Regular (client) Wallarm node of version 3.0. [Changes](#changes-available-when-updating-wallarm-node-of-version-30) available in Wallarm node 3.2 enables new features of controlling access to applications by IP addresses and simplifies the logic of some filtration modes.
 
 ## Changes available when updating Wallarm node of version 2.18 and lower
 
-Listed changes are available for both the regular (client) and partner Wallarm node 3.2.
+Listed changes are available for both the regular (client) and multi-tenant Wallarm node 3.2.
 
 ### Changes in supported installation platforms
 
