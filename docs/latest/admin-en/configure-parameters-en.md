@@ -252,7 +252,7 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 A path to the Wallarm private key used for encryption/decryption of proton.db and custom ruleset files.
 
 !!! info
-    **Default value**: `/etc/wallarm/private.key` (до версии 4.0 – `/etc/wallarm/license.key`)
+    **Default value**: `/etc/wallarm/private.key` (in Wallarm node 3.6 and lower, `/etc/wallarm/license.key`)
 
 
 ### wallarm_local_trainingset_path
