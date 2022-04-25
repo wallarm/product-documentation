@@ -8,7 +8,7 @@ These instructions describe the method to customize the blocking page and error 
 
 ## Configuration limitations
 
-Configuration of the blocking page and error code is supported in NGINX-based Wallarm node deployments but is not supported in Envoy-based Wallarm node deployments. Envoy-based Wallarm node always returns code `403` in the response to the blocked request.
+Configuration of the blocking page and error code is supported in NGINX-based Wallarm node deployments but is not supported in Envoy- and CDN- based Wallarm node deployments. Envoy- and CDN-based Wallarm nodes always return code `403` in the response to the blocked request.
 
 ## Configuration methods
 

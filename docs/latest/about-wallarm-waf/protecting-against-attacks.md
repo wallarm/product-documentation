@@ -108,6 +108,9 @@ Wallarm regularly updates **proton.db** with token sequences for new attack type
 
 #### libdetection overview
 
+!!! warning "Support of the libdetection library on the CDN node"
+    Please note that the **libdetection** library is not supported by the [Wallarm CDN nodes](../waf-installation/cdn-node.md).
+
 The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
 
 * If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the filtering node is working in the `block` mode).
