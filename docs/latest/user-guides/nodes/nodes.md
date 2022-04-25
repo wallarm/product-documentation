@@ -19,6 +19,7 @@ The Wallarm node type depends on the platform:
 
 * [Regular node](regular-node.md) is used in Linux‑based, Kubernetes sidecar, and Docker‑based deployments.
 * [Cloud node](cloud-node.md) is used in cloud‑based deployments on Amazon AWS, Google Cloud Platform, and in Kubernetes Ingress controller deployments.
+* [CDN node](cdn-node.md) is used to protect any resource by only changing the DNS records of this domain.
 
 Detailed information regarding working with different node types can be found in the instructions linked above. 
 
