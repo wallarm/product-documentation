@@ -163,6 +163,7 @@ nav:
           - Multitenancy overview: waf-installation/multi-tenant/overview.md
           - Creating tenant accounts in Wallarm Console: waf-installation/multi-tenant/configure-accounts.md
           - Deploying and configuring multi-tenant node: waf-installation/multi-tenant/deploy-multi-tenant-node.md
+        - Deploying Wallarm CDN node: waf-installation/cdn-node.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -263,6 +264,7 @@ nav:
         - Filtering nodes overview: user-guides/nodes/nodes.md
         - Regular filtering nodes: user-guides/nodes/regular-node.md
         - Cloud filtering nodes: user-guides/nodes/cloud-node.md
+        - CDN filtering nodes: user-guides/nodes/cdn-node.md
       - Rules:
         - Application Profile Rules: user-guides/rules/intro.md
         - Inspecting Application Profile Rules: user-guides/rules/view.md
@@ -325,6 +327,7 @@ nav:
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
         - Upgrading the cloud node image: updating-migrating/cloud-image.md
+        - Upgrading Wallarm CDN node: updating-migrating/cdn-node.md
       - Upgrading Wallarm node 2.18 and lower:
         - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
         - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
