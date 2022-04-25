@@ -47,14 +47,3 @@ To continue the product exploration, we recommend learning more about the follow
 ## CDN node troubleshooting
 
 --8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
-
-
-
-
-
-???
-партнерка -- написать в доке про партенрку, какие ноды можно использовать так
-в документе про режимы работы сказать что для cdn ноды настройка делается только через UI 
-не упомянула никак, что для cdn нод будет только мажорная и минорная версии. хз как это сделать
-
-в документе про подписки посмотреть, упомянуто ли там, что для cdn ноды этот набор фич и опций тоже релевантен

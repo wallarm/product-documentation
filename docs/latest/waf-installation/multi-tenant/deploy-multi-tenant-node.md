@@ -32,7 +32,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 Multi-tenant node:
 
-* Can be installed on the same [platforms](../../admin-en/supported-platforms.md) and according to the same instructions as a regular filtering node.
+* Can be installed on the same [platforms](../../admin-en/supported-platforms.md) and according to the same instructions as a regular filtering node (except for the CDN node type).
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) is used to split settings by the tenant applications. There can be several applications.
