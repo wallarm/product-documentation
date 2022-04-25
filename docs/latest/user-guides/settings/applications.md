@@ -2,6 +2,9 @@
 
 If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
 
+!!! warning "Support of the application configuration for the CDN node"
+    Please note that the application configuration is not supported by the [Wallarm CDN nodes](../../waf-installation/cdn-node.md).
+
 Using applications enables you to:
 
 * View events and statistics separately for each application
