@@ -15,7 +15,7 @@
 
 ## Creating a node
 
-To create the CDN node, please follow the [instructions].
+To create the CDN node, please follow the [instructions](../../waf-installation/cdn-node.md)..
 
 ## Viewing details of a node
 
@@ -55,6 +55,11 @@ If you already have a certificate for the protected domain and prefer that to th
 When the filtering node is deleted, the filtration of requests to your domain will be stopped. The deleting of the filtering node cannot be undone. The Wallarm node will be deleted from the list of nodes permanently.
 
 1. Delete the Wallarm CNAME record from the DNS records of the protected domain.
+
+    !!! warning "Malicious request mitigation will be stopped"
+        Once the CNAME record is removed and changes take effect on the Internet, malicious traffic mitigation will be stopped.
+
+        It results in the risk of the protected server vulnerability exploitation when deleted DNS record took effect but the CNAME record generated for the new node version did not take effect yet.
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.
 1. Delete the CDN node from the node list.
 
