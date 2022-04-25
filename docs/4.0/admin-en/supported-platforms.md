@@ -1,5 +1,16 @@
 # Deployment options
 
+## Serverless deployment
+
+<div class="navigation platforms">
+
+    <a href="../../waf-installation/cdn-node/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <img class="platform-icon" width="64px" height="64px" src="../../images/platform-icons/cdn-node.png">
+        <h3>CDN node</h3>
+        <p>Deploy the Wallarm node without placing any third‑party components in the application's infrastructure</p>
+    </a>
+</div>
+
 ## Web servers and API gateways
 
 <div class="navigation platforms">
