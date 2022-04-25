@@ -4,6 +4,12 @@ This page lists the changes available when upgrading the node 3.4 or 3.2 up to v
 
 If upgrading Wallarm node 2.18 or lower, learn available changes from the [separate list](older-versions/what-is-new.md).
 
+## When upgrading node 3.6
+
+There are the following changes available in Wallarm node 4.0:
+
+* The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+
 ## When upgrading node 3.4
 
 There are the following changes available in Wallarm node 3.6:
