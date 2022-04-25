@@ -7,7 +7,13 @@
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  ../settings/users.md
-[update-origin-ip-docs]:            user-guides/nodes/cdn-node.md#updating-the-origin-ip-address-of-the-protected-domain
+[update-origin-ip-docs]:            #updating-the-origin-ip-address-of-the-protected-domain
+[rules-docs]:                       ../rules/intro.md
+[ip-lists-docs]:                    ../ip-lists/overview.md
+[integration-docs]:                 ../settings/integrations/integrations-intro.md
+[trigger-docs]:                     ../triggers/triggers.md
+[application-docs]:                 ../settings/applications.md
+[events-docs]:                      ../events/check-attack.md
 
 # CDN filtering nodes
 
@@ -64,3 +70,7 @@ When the filtering node is deleted, the filtration of requests to your domain wi
 1. Delete the CDN node from the node list.
 
 ![!Deleting the node](../../images/user-guides/nodes/delete-cdn-node.png)
+
+## CDN node troubleshooting
+
+--8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
