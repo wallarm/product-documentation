@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/installation-guides/google-cloud/create-image.md"
+--8<-- "3.6/admin-en/installation-guides/google-cloud/create-image.md"
