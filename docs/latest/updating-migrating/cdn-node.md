@@ -1,6 +1,6 @@
 # Upgrading the CDN node
 
-These instructions describe the steps to upgrade the Wallarm CDN node available starting with version 4.0.
+These instructions describe the steps to upgrade the Wallarm CDN node available starting with version 3.6.
 
 1. Delete the Wallarm CNAME record from the DNS records of the protected domain.
 
