@@ -5,7 +5,7 @@ These instructions describe the steps to upgrade the Wallarm CDN node available 
 1. Delete the Wallarm CNAME record from the DNS records of the protected domain.
 
     !!! warning "Malicious request mitigation will be stopped"
-        Once the CNAME record is removed and changes take effect on the Internet, malicious traffic mitigation will be stopped.
+        Once the CNAME record is removed and changes take effect on the Internet, the Wallarm CDN node will stop request proxying, and legitimate and malicious traffic will go directly to the protected resource.
 
         It results in the risk of the protected server vulnerability exploitation when deleted DNS record took effect but the CNAME record generated for the new node version did not take effect yet.
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.

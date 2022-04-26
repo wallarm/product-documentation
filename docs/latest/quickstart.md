@@ -7,7 +7,7 @@
 [cname-required-modal]:             images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    images/admin-guides/test-attacks-quickstart.png
 [user-roles-docs]:                  user-guides/settings/users.md
-[update-origin-ip-docs]:            user-guides/nodes/cdn-node.md#updating-the-origin-ip-address-of-the-protected-domain
+[update-origin-ip-docs]:            user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resource
 [rules-docs]:                       user-guides/rules/intro.md
 [ip-lists-docs]:                    user-guides/ip-lists/overview.md
 [integration-docs]:                 user-guides/settings/integrations/integrations-intro.md

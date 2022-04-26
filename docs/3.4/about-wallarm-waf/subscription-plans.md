@@ -1,1 +1,1 @@
---8<-- "3.6/about-wallarm-waf/subscription-plans.md"
+--8<-- "latest/about-wallarm-waf/subscription-plans.md"

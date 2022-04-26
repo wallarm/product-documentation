@@ -24,7 +24,7 @@ The set of all Wallarm API Security modules is provided below. Modules can be ad
 The set of features included to the subscription plan is defined individually with each client. Examples of included features:
 
 * Limit for requests processed per month
-* Multi-tenant system (unavailable for the CDN node type)
+* Multi-tenant system
 * Registration of events in the audit log
 * Integration with SIEM / SOAR / DevOps systems
 * Authentication in Wallarm Console with SAML SSO

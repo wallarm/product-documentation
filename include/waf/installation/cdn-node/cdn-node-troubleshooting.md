@@ -12,7 +12,7 @@ The following statuses may appear in Wallarm Console → **Nodes** for CDN nodes
     If changes do not take the effect for more than 24 hours, please check your domain provider successfully updated DNS records. If so but the **Not propagated yet** status is still displayed in Wallarm Console, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
     The next expected status is **Active**.
-* **Configuring**: Wallarm processes changed origin IP address or SSL/TLS certificate.
+* **Configuring**: Wallarm processes changed origin address or SSL/TLS certificate.
 
     Required action: wait for the **Active** status.
 * **Active**: Wallarm CDN node mitigates the malicious traffic.
@@ -47,4 +47,4 @@ If the CDN node is highlighted in red in the **Nodes** section, an error occurre
 
     Required action: make sure the uploaded certificate is valid. If not, upload the valid one.
 
-The CDN node highlighted in red does not mitigate malicious traffic.
+The CDN node highlighted in red does not proxy requests and as a result, does not mitigate malicious traffic.

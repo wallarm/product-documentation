@@ -5,14 +5,14 @@
 1. Input the domain address to be protected, e.g. `example.com`.
 
     The specified address must not contain the scheme and slashes.
-1. Make sure Wallarm correctly identified the IP address associated with the specified domain. Otherwise, please change the automatically discovered origin IP.
+1. Make sure Wallarm correctly identified the origin address associated with the specified domain. Otherwise, please change the automatically discovered origin address.
 
     ![!CDN node creation modal][cdn-node-creation-modal]
 
-    !!! warning "Dynamic update of origin IP addresses"
-        If your hosting provider dynamically updates the IP address associated with the protected domain, please keep the origin IP address specified in the CDN node configuration up to date. Wallarm Console enables you to [change the origin IP address][update-origin-ip-docs] at any time.
+    !!! warning "Dynamic update of origin address"
+        If your hosting provider dynamically updates the origin IP address or domain associated with the protected resource, please keep the origin address specified in the CDN node configuration up to date. Wallarm Console enables you to [change the origin address][update-origin-ip-docs] at any time.
 
-        Otherwise, the CDN node will try to proxy requests to incorrect IP address that may cause the node service downtime.
+        Otherwise, requests will not reach the protected resource since the CDN node will try to proxy them to an incorrect origin address.
 1. Wait for the CDN node registration to finish.
 
     Once the CDN node registration is finished, the CDN node status will be changed to **Requires CNAME**.
@@ -22,7 +22,7 @@
 
     ![!CDN node creation modal][cname-required-modal]
 
-    Depending on your DNS provider, changes to DNS records can take up to 24 hours to propagate and take effect for the Internet. Once the new CNAME record is propagated, the Wallarm CDN node will start blocking malicious traffic.
+    Depending on your DNS provider, changes to DNS records can take up to 24 hours to propagate and take effect on the Internet. Once the new CNAME record is propagated, the Wallarm CDN node will proxy all incoming requests to the protected resource and block malicious ones.
 1. If required, upload the custom SSL/TLS certificate.
 
     Wallarm will generate the Let's Encrypt certificate for the CDN node domain by default.
