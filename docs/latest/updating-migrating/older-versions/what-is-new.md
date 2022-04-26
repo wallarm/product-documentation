@@ -30,6 +30,14 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
 
 [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 
+Starting with version 4.0, the filtering node sends API requests to `api.wallarm.com:443` (EU cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
+
+Your node needs to be granted access to the API endpoint with this new port. Note that the port `443` is the default one in https, so that there is no need to specify it explicitly.
+
+If your server with the filtering node had a limited access to the external resources and the access was granted to each resource separately, then after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop.
+
+To restore the synchronization, in your configuration, change port `444` to `443` for API endpoint for each resource.
+
 ## Filtration modes
 
 * New **safe blocking** filtration mode.
