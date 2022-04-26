@@ -48,8 +48,8 @@ api:
 
 ### wallarm_application
 
-!!! warning "Previous name of the directive"
-    In Wallarm node 3.4 and lower, this directive is named `wallarm_instance`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_instance` directive will be deprecated soon. The directive logic has not changed.
+!!! warning "Changed behavior of the directive"
+    In Wallarm node 3.6 this directive was used both for its main purpose described in this section and for specifying tenants in the multi-tenant nodes. Now the second role went away and transferred to the new [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
 
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
@@ -219,13 +219,6 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
     
     **Default value**: `1` (one minute)
 
-### wallarm_instance
-
-!!! warning "The directive will be deprecated soon"
-    Starting with Wallarm node 3.6, please use the [`wallarm_application`](#wallarm_application) directive instead.
-
-    The `wallarm_instance` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
-
 ### wallarm_key_path
 
 A path to the Wallarm license key.
@@ -361,6 +354,56 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
     This parameter can be set inside the http, server, and location blocks.
     
     **Default value**: `5` (five seconds)
+
+### wallarm_partner_client_uuid
+
+Unique identifier of the [tenant](../waf-installation/multi-tenant/overview.md) for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) `8-4-4-4-12` format, for example:
+
+* `11111111-1111-1111-1111-111111111111`
+* `123e4567-e89b-12d3-a456-426614174000`
+
+Configuration example:
+
+```
+server {
+  server_name  tenant1.com;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  ...
+  location /login {
+     wallarm_application 21;
+     ...
+  }
+  location /users {
+     wallarm_application 22;
+     ...
+  }
+
+server {
+  server_name  tenant1-1.com;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  wallarm_application 23;
+  ...
+}
+
+server {
+  server_name  tenant2.com;
+  wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222;
+  ...
+}
+...
+}
+```
+
+In the configuration above:
+
+* Tenant stands for partner's client. The partner has 2 clients.
+* The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
+* The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
+* The first client also has 3 applications, specified via the [`wallarm_application`](#wallarm_application) directive:
+    * `tenant1.com/login` – wallarm_application `21`
+    * `tenant1.com/users` – wallarm_application `22`
+    * `tenant1-1.com` – wallarm_application `23`
+* The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
 ### wallarm_process_time_limit
 
