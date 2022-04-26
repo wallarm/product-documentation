@@ -67,6 +67,7 @@ Multi-tenant node:
       * [AWS image](../../admin-en/installation-ami-en.md)
       * [Google Cloud Platform image](../../admin-en/installation-gcp-en.md)
       * [Module for Kong](../../admin-en/installation-kong-en.md)
+      * [CDN node](../cdn-node.md)
 2. If one Wallarm node filters the traffic of several clients or isolated environments, send a request for switching the node to the multi-tenant status to the [Wallarm technical support](mailto:support@wallarm.com).
 
     Send the following data with the request:
