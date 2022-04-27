@@ -30,7 +30,7 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 ## Requirements
 
---8<-- "../include/waf/installation/nginx-requirements-3.0.md"
+--8<-- "../include/waf/installation/nginx-requirements-4.0.md"
 
 ## Installation options
 
