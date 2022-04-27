@@ -12,7 +12,7 @@ There are the following changes available in Wallarm node 4.0:
 
 ### Changes in system requirements for the filtering node installation
 
-Starting with version 4.0, the filtering node uploads data to the Cloud using the `api.wallarm.com:443` (EU cloud) and `us1.api.wallarm.com:443` (US Cloud) API endpoints instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
+Starting with version 4.0, the filtering node uploads data to the Cloud using the `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) API endpoints instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
 
 Your node needs to be granted access to the API endpoint with this new port. Note that the port `443` is the default one in https, so that there is no need to specify it explicitly.
 
