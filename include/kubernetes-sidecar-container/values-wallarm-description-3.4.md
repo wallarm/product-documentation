@@ -2,7 +2,7 @@
 wallarm:
   image:
      repository: wallarm/node
-     tag: 3.4.1-1
+     tag: 3.4.2-1
      pullPolicy: Always
   # Wallarm API endpoint: 
   # "api.wallarm.com" for the EU Cloud
