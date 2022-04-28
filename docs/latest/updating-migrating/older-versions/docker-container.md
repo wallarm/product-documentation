@@ -62,6 +62,7 @@ There are the following deprecated configuration options:
     * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
     * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
     
@@ -70,10 +71,12 @@ There are the following deprecated configuration options:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
     * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
+    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → [`rsN`](../../admin-en/configuration-guides/envoy/fine-tuning.md#rs_param)
+    * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
-    We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+    We only changed the names of the parameters, their logic remains the same. Parameters with former names will be deprecated soon, so you are recommended to rename them before.
     
-    Please check if the directives with former names are explicitly specified in the mounted configuration files. If so, rename them.
+    Please check if the parameters with former names are explicitly specified in the mounted configuration files. If so, rename them.
 
 ## Step 7: Update the Wallarm blocking page (if upgrading NGINX-based image)
 
