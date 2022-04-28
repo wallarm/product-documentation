@@ -117,7 +117,7 @@ New blocking page with the new layout looks as follows by default:
     * Envoy: `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
     * Envoy: `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
     * Envoy: `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * Envoy: `ts` → [`rs`](../../admin-en/configuration-guides/envoy/fine-tuning.md#rs_param)
+    * Envoy: `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
 
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
 * The Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.

@@ -71,7 +71,8 @@ There are the following deprecated configuration options:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
     * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
-    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → [`rsN`](../../admin-en/configuration-guides/envoy/fine-tuning.md#rs_param)
+    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
+    * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
     * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
     We only changed the names of the parameters, their logic remains the same. Parameters with former names will be deprecated soon, so you are recommended to rename them before.
