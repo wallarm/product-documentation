@@ -19,7 +19,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Step 1: Download the updated filtering node image
 

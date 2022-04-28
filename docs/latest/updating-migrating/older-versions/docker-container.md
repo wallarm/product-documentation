@@ -19,7 +19,7 @@ These instructions describe the steps to upgrade the running Docker NGINX- or En
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 

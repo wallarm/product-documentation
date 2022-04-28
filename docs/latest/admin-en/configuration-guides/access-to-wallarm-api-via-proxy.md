@@ -2,8 +2,8 @@
 
 These instructions describe the steps to configure access to Wallarm API via the proxy server.
 
-* `https://api.wallarm.com/` for the EU cloud
-* `https://us1.api.wallarm.com/` for the US cloud
+* `https://api.wallarm.com/` for the EU Cloud
+* `https://us1.api.wallarm.com/` for the US Cloud
 
 To configure access, please assign new values to the environment variables defining the proxy server used in the `/etc/environment` file:
 
