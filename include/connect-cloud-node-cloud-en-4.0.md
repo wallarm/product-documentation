@@ -81,8 +81,8 @@ To connect the node to the Wallarm Cloud using your account requisites, proceed 
 !!! info "API access"
     The API choice for your filtering node depends on the Cloud you are using. Please, select the API accordingly:
     
-    * If you are using <https://my.wallarm.com/>, your node requires access to `https://api.wallarm.com:443`.
-    * If you are using <https://us1.my.wallarm.com/>, your node requires access to `https://us1.api.wallarm.com:443`.
+    * If you are using <https://my.wallarm.com/>, your node requires access to `https://api.wallarm.com`.
+    * If you are using <https://us1.my.wallarm.com/>, your node requires access to `https://us1.api.wallarm.com`.
     
     Ensure the access is not blocked by a firewall.
 
