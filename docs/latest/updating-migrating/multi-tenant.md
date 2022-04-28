@@ -29,11 +29,41 @@ Re-write configuration of how traffic is associated with your tenants and their 
     * `tenant1-1.com`
 * The traffic targeting these 3 paths should be associated with the corresponding application, the remaining should be considered to be the generic traffic of the client 1.
 
-In 3.6 this could be configured as follows:
+**In 3.6 this could be configured as follows:**
 
-TBD
+```
+server {
+  server_name  tenant1.com;
+  wallarm_application 20;
+  ...
+  location /login {
+     wallarm_application 21;
+     ...
+  }
+  location /users {
+     wallarm_application 22;
+     ...
+  }
 
-In the 4.0 this should be rewritten as follows:
+server {
+  server_name  tenant1-1.com;
+  wallarm_application 23;
+  ...
+}
+
+server {
+  server_name  tenant2.com;
+  wallarm_application 24;
+  ...
+}
+...
+}
+```
+Notes on the configuration above:
+
+* The `wallarm_application` directive is used for defining both tenants themselves and their applications.
+
+**In the 4.0 this should be rewritten as follows:**
 
 ```
 server {
@@ -64,6 +94,10 @@ server {
 ...
 }
 ```
+
+Notes on the configuration above:
+
+* Tenants and their applications are defined by separate directives - `wallarm_partner_client_uuid` and `wallarm_application` correspondingly.
 
 ## Step 2: Test Wallarm multi-tenant node operation
 
