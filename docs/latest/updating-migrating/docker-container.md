@@ -51,7 +51,7 @@ There are the following deprecated configuration options:
     Please check if the directive with former name is explicitly specified in the mounted configuration files. If so, rename it.
 * The following Envoy parameters have been renamed:
 
-    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → [`rsN`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+    * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
     * `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
     * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
