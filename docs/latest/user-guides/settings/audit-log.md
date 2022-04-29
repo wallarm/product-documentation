@@ -12,6 +12,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * [Users](users.md)
 * Traffic processing [rules](../rules/intro.md)
 * [Cloud nodes](../nodes/cloud-node.md)
+* [CDN nodes](../nodes/cdn-node.md)
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
 * [Blocked IP address](../ip-lists/blacklist.md)
