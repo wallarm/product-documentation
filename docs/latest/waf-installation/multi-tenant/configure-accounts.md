@@ -142,7 +142,7 @@ To link the application to the account:
             ```bash
             curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
             ```
-1. Copy and save the `id` values you passed in the requests. These IDs will be used in NGINX configuration (`wallarm_application`) to splitt several tenants' traffic later.
+1. Copy and save the `id` values you passed in the requests. These IDs will be used in NGINX configuration (`wallarm_application`) to split several tenants' traffic later.
 
 If you are a Wallarm partner and the Wallarm node protects the traffic of several clients, please repeat the steps above for each client.
 
