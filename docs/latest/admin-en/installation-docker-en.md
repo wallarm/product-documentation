@@ -30,7 +30,7 @@ The functionality of the filtering node installed inside the Docker container is
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Options for running the container
 

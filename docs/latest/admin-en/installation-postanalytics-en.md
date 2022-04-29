@@ -16,7 +16,7 @@ These instructions provide the steps to install the postanalytics module on a se
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
+* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` if working with US Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../user-guides/ip-lists/overview.md) countries or data centers
 * Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
 
@@ -324,6 +324,6 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     **Here are the firewall settings that should be applied to the separately installed postanalytics module:**
     
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
-        *   `api.wallarm.com:444` is the API server in the EU Wallarm Cloud
-        *   `us1.api.wallarm.com:444` is the API server in the US Wallarm Cloud
+        *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
+        *   `us1.api.wallarm.com` is the API server in the US Wallarm Cloud
     *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.

@@ -132,6 +132,11 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
 
     In new node version, the Wallarm sample blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
 
+* Revise and fix if necessary access of your node to Wallarm API.
+
+    !!! info "API port for filtering node 4.0"
+        --8<-- "../include/waf/upgrade/api-port-443.md"
+
 ## Step 3: Check out all coming K8s manifest changes
 
 To avoid unexpectedly changed Ingress controller behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Ingress controller version and of the new one.

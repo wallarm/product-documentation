@@ -198,15 +198,19 @@ We only changed the names of the directives, their logic remains the same. Direc
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 10: Restart NGINX
+## Step 10: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+## Step 11: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 11: Test Wallarm node operation
+## Step 12: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 12: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 13: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

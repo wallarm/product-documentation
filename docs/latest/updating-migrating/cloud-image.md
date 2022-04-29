@@ -56,6 +56,11 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
       In the new node version, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 
+1. Revise and fix if necessary access of your node to Wallarm API.
+
+    !!! info "API port for filtering node 4.0"
+        --8<-- "../include/waf/upgrade/api-port-443.md"
+
 1. Restart NGINX to apply the settings: 
 
     ```bash

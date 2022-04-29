@@ -42,7 +42,7 @@ secret: <some secret>
 
 api:
   host: api.wallarm.com
-  port: 444
+  port: 443
   ca_verify: true
 ```
 

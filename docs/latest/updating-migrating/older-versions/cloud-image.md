@@ -74,6 +74,10 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+1. Revise and fix if necessary access of your node to Wallarm API.
+
+    !!! info "API port for filtering node 4.0"
+        --8<-- "../include/waf/upgrade/api-port-443.md"
 1. Restart NGINX to apply the settings: 
 
     ```bash

@@ -27,7 +27,7 @@ Before starting Wallarm node installation, please check that you meet all these 
 Before starting Wallarm node installation, please check that you meet all these requirements:
 
 * Have access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Have access to `https://api.wallarm.com:444` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com:444` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Have access to `https://api.wallarm.com` when working with the EU Wallarm Cloud or `https://us1.api.wallarm.com` when working with the US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 * Execute all commands as a superuser (e.g. `root`)
 
 ## Installation

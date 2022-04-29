@@ -52,8 +52,8 @@ A Security Group defines allowed and forbidden incoming and outgoing connections
 !!! warning "Rules for outgoing connections from the security group"
     When creating a security group, all of the outgoing connections are allowed by default. If you restrict outgoing connections from the filtering node, make sure that it is granted access to a Wallarm API server. The choice of a Wallarm API server depends on the Wallarm Cloud you are using:
 
-    *   If you are using the EU Cloud, your node needs to be granted access to `api.wallarm.com:444`.
-    *   If you are using the US Cloud, your node needs to be granted access to `us1.api.wallarm.com:444`.
+    *   If you are using the EU Cloud, your node needs to be granted access to `api.wallarm.com`.
+    *   If you are using the US Cloud, your node needs to be granted access to `us1.api.wallarm.com`.
     
     The filtering node requires access to a Wallarm API server for proper operation.
 
@@ -105,7 +105,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 ## 6. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/connect-cloud-node-cloud-en-2.16.md"
+--8<-- "../include/connect-cloud-node-cloud-en-4.0.md"
 
 ## 7. Set up the filtering node for using a proxy server
 

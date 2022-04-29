@@ -147,7 +147,7 @@ For example:
 
 ## 5. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/connect-cloud-en.md"
+--8<-- "../include/connect-cloud-en-4.0.md"
 
 ## 6. Configure the postanalytics server addresses
 

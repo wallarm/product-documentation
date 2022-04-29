@@ -20,7 +20,7 @@ Wallarm API Security module is designed as an Envoy HTTP filter for requests pro
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
