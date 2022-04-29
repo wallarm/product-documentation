@@ -38,7 +38,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     !!! info "Checking the `nginx` user rights"
         Run the following command to check whether the `nginx` user has rights to perform actions on the directory:
         ```bash
-        sudo -u nginx [ -r <path-to-directory> ] && [ -w <path-to-directory> ] && echo "ОК"
+        sudo -u nginx [ -r <path-to-directory> ] && [ -w <path-to-directory> ] && echo "OK"
         ```
 
         In this command, `<path-to-directory>` is the path to the directory, access to which you need to check.

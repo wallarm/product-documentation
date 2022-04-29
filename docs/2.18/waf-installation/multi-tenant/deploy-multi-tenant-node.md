@@ -56,7 +56,7 @@ Multi-tenant node:
 
 1. Select a filtering node deployment form and follow the appropriate instructions:
       * [Module for NGINX `stable` from the NGINX repository](../nginx/dynamic-module.md)
-      * [Модуль для NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
+      * [Module for NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
       * [Module for NGINX Plus](../nginx-plus.md)
       * [Docker container with NGINX modules](../../admin-en/installation-docker-en.md)
       * [Docker container with Envoy modules](../../admin-en/installation-guides/envoy/envoy-docker.md)
