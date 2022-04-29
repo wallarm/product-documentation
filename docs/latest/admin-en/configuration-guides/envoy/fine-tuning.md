@@ -106,7 +106,7 @@ The `conf` section of the Wallarm API Security configuration contains the parame
 
 ```
 conf:
-  rs: rs0
+  ruleset: rs0
   mode: "monitoring"
   mode_allow_override: "off"
   application: 42
