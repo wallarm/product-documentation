@@ -27,8 +27,8 @@ Before creating an image, you need to perform an initial configuration of a sing
     !!! warning "Provide the filtering node with an internet connection"
         The filtering node requires access to a Wallarm API server for proper operation. The choice of Wallarm API server depends on the Wallarm Cloud you are using:
         
-        * If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com:443`.
-        * If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com:443`.
+        * If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
+        * If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com`.
     
     --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
