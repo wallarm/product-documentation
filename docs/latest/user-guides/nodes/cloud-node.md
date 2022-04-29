@@ -16,7 +16,6 @@ You can create a cloud node while setting up integration with the platform or us
 5. To complete the node installation, follow the instructions for your respective platfrom:
     * [Amazon AWS](../../admin-en/installation-ami-en.md)
     * [Google Cloud Platfrom](../../admin-en/installation-gcp-en.md)
-    * [Yandex.Cloud](../../admin-en/installation-guides/install-in-yandex-cloud.md)
     * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
 
 ## Viewing details of filtering node

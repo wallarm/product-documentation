@@ -42,7 +42,7 @@ The global on/off switch of the **Attack rechecker** module is located in the Wa
 
 The configuration is required for the **Attack rechecker** module to reach the tested application without getting their requests blocked by the filtering nodes.
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP images, Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
 * Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
 

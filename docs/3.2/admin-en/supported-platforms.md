@@ -110,23 +110,6 @@
 </div> 
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
-    <div type="button" id="yandex" class="platform-card-button" onClick="platformClicked(event, 'yandex')">
-        <img class="platform-icon" src="../../images/platform-icons/yandex-cloud.svg">
-        <h3>Yandex.Cloud
-            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
-            </svg>                    
-        </h3>
-        <p>Deploy Wallarm node distributed as...</p>
-        <div id="yandexId" class="options-list" style="display: none;">
-            <a href="../../admin-en/installation-guides/install-in-yandex-cloud/" onClick="noAction(event)">Yandex.Cloud Marketplace image</a>
-            <a href="../../waf-installation/cloud-platforms/yandex-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/yandex-cloud/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
-        </div>    
-    </div>
-</div> 
-
-<div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="azure" class="platform-card-button" onClick="platformClicked(event, 'azure')">
         <img class="platform-icon" src="../../images/platform-icons/azure-cloud.svg">
         <h3>Microsoft Azure
