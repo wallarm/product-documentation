@@ -45,13 +45,11 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests
-1. Rename the following NGINX directives if they are explicitly specified in configuration files:
+1. Rename the following NGINX directive if it is explicitly specified in configuration files:
 
-    * `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
-    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
-    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-    We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+    We only changed the name of the directive, its logic remains the same. Directive with former name will be deprecated soon, so you are recommended to rename it before.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.

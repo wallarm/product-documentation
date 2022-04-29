@@ -152,13 +152,11 @@ If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be r
 
 ## Step 5: Rename deprecated NGINX directives
 
-Rename the following NGINX directives if they are explicitly specified in configuration files:
+Rename the following NGINX directive if it is explicitly specified in configuration files:
 
-* `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
-* `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
-* `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+* `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
-We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+We only changed the name of the directive, its logic remains the same. Directive with former name will be deprecated soon, so you are recommended to rename it before.
 
 ## Step 6: Update API port
 

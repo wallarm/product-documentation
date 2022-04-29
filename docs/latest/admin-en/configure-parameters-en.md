@@ -200,6 +200,27 @@ With the value set to `on`, NGINX has the ability to enter an emergency mode; if
 
 Sets the requests' analysis and custom rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
 
+### wallarm_general_ruleset_memory_limit
+
+!!! warning "Previous name of the directive"
+    In Wallarm node 3.6 and lower, this directive is named `wallarm_ts_request_memory_limit`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_ts_request_memory_limit` directive will be deprecated soon. The directive logic has not changed.
+
+Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.
+
+If the memory limit is exceeded while processing some request, the user will get a 500 error.
+
+The following suffixes can be used in this parameter:
+* `k` or `K` for kilobytes
+* `m` or `M` for megabytes
+* `g` or `G` for gigabyte
+
+Value of **0** turns the limit off.
+
+!!! info
+    This parameter can be set inside the http, server, and/or location blocks.
+    
+    **Default value**: `1` GB
+
 ### wallarm_global_trainingset_path
 
 !!! warning "The directive will be deprecated soon"
@@ -228,10 +249,10 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 
 ### wallarm_key_path
 
-A path to the Wallarm license key.
+A path to the Wallarm private key used for encryption/decryption of proton.db and custom ruleset files.
 
 !!! info
-    **Default value**: `/etc/wallarm/license.key`
+    **Default value**: `/etc/wallarm/private.key` (in Wallarm node 3.6 and lower, `/etc/wallarm/license.key`)
 
 
 ### wallarm_local_trainingset_path
@@ -514,21 +535,10 @@ You can use time intervals suffixes that are described in the [NGINX documentati
 
 ### wallarm_ts_request_memory_limit
 
-Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.
+!!! warning "The directive will be deprecated soon"
+    Starting with Wallarm node 4.0, please use the [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) directive instead.
 
-If the memory limit is exceeded while processing some request, the user will get a 500 error.
-
-The following suffixes can be used in this parameter:
-* `k` or `K` for kilobytes
-* `m` or `M` for megabytes
-* `g` or `G` for gigabyte
-
-Value of **0** turns the limit off.
-
-!!! info
-    This parameter can be set inside the http, server, and/or location blocks.
-    
-    **Default value**: `1` GB
+    The `wallarm_ts_request_memory_limit` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
 
 ### wallarm_unpack_response
 
