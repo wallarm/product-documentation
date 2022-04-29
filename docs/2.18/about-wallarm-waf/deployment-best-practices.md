@@ -40,21 +40,21 @@ By deploying and using the filtering nodes in all stages of your software develo
 
 Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) (available starting from Wallarm node version 2.16) significantly improves the filtering node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the filtering node software and enable the **libdetection** library as follows:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
 
 ## Configure proper reporting of end-user IP addresses
 
 For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP blocking functionality](../admin-en/configure-ip-blocking-en.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 ## Enable the whitelisting of the Wallarm Scanner IPs
 
 This configuration is required for the [Attack rechecker](detecting-vulnerabilities.md#active-threat-verification) and [Vulnerability scanner](detecting-vulnerabilities.md#vulnerability-scanner) modules to reach the tested application without getting their requests blocked by the filtering nodes.
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP / Yandex.Cloud images, Docker node container)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP images, Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
 * Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
 
@@ -66,7 +66,7 @@ It is highly recommended to enable proper monitoring of Wallarm filtering nodes.
 
 The method for setting up the filtering node monitoring depends on its deployment option:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/monitoring/intro.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/monitoring/intro.md) (including AWS / GCP images and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 * [Instructions for the NGINX-based Docker image](../admin-en/installation-docker-en.md#monitoring-configuration)
 
@@ -74,7 +74,7 @@ The method for setting up the filtering node monitoring depends on its deploymen
 
 Like with every other critical component in your production environment, Wallarm nodes should be architected, deployed, and operated with the proper level of redundancy and automatic failover. You should have **at least two active Wallarm filtering nodes** handling critical end-user requests. The following articles provide relevant information about the topic:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP / Yandex.Cloud images, Docker node container, and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
 ## Enable the IP blocking functionality
@@ -85,7 +85,7 @@ It is recommended to enable the feature after completing the application profile
 
 Use the following guides to enable the blocking of IP addresses:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-ip-blocking-nginx-en.md) (including AWS / GCP / Yandex.Cloud images and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-ip-blocking-nginx-en.md) (including AWS / GCP images and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
 * For the NGINX-based Docker container please pass the environment variable `WALLARM_ACL_ENABLE=true` when running the container (more details are described in the [document](../admin-en/installation-docker-en.md))
 

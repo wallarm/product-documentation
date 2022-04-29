@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/installation-guides/install-in-yandex-cloud.md"
