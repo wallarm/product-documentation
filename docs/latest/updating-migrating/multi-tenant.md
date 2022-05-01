@@ -63,6 +63,7 @@ server {
 Notes on the configuration above:
 
 * The `wallarm_application` directive is used for defining both tenants themselves and their applications.
+* Specifying these directives is only a part of how tenants and their applications are defined [in node version 3.6](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/).
 
 **In the 4.0 this should be rewritten as follows:**
 
@@ -99,6 +100,7 @@ server {
 Notes on the configuration above:
 
 * Tenants and their applications are defined by separate directives - `wallarm_partner_client_uuid` and `wallarm_application` correspondingly.
+* Get values for the `wallarm_partner_client_uuid` directives as described [here](../waf-installation/multi-tenant/configure-accounts.md#step-4-associate-specific-traffic-with-tenants-and-their-applications).
 
 ## Step 2: Test Wallarm multi-tenant node operation
 
