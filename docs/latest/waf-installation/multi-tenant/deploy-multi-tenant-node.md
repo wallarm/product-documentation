@@ -21,7 +21,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
         --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
         
-    * The Wallarm node identifies the tenant that receives the traffic by the tenant ID ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)).
+    * The Wallarm node identifies the tenant that receives the traffic by the unique identifier of a tenant ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)).
     * For the domains `https://tenant1.com` and `https://tenant2.com`, the DNS A records with the partner or client IP address `225.130.128.241` are configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
     * On the partner's side, proxying of legitimate requests to the addresses of tenant Tenant 1 (`http://upstream1:8080`) and Tenant 2 (`http://upstream2:8080`) is configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
 * Deploy several Wallarm nodes each filtering the traffic of a particular tenant.
@@ -36,6 +36,7 @@ Multi-tenant node:
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The directive [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) is used to split traffic by the tenants.
+* The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) is used to split settings by the applications.
 
 ## Deployment requirements
 
@@ -73,7 +74,8 @@ Multi-tenant node:
     * Name of the [global account](configure-accounts.md#tenant-account-structure)
     * Main tenant UUID obtained when [creating a global account](configure-accounts.md#step-2-get-access-to-the-tenant-account-creation)
     * Filtering node UUID displayed in Wallarm Console → **Nodes**
-3. Open the tenant's NGINX configuration file and specify the tenant IDs using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
+3. Open the tenant's NGINX configuration file and specify the unique identifier of a tenant using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
+4. If necessary, specify IDs of tenant's applications using the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive.
 
     Example of the NGINX configuration file for the filtering node processing the traffic of two clients:
 
@@ -102,8 +104,8 @@ Multi-tenant node:
     ```
 
     * On the tenant side, the DNS A records with the partner IP address are configured
-    * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid` `11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid` `22222222-2222-2222-2222-222222222222`) is configured
-    * All incoming requests are processed on the partner address, legitimate requests are proxied to `http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid` `11111111-1111-1111-1111-111111111111` and to `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid` `22222222-2222-2222-2222-222222222222`
+    * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
+    * All incoming requests are processed on the partner address, legitimate requests are proxied to `http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and to `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`
 
 ## Configuring a multi-tenant node
 

@@ -38,7 +38,6 @@ To configure tenant accounts:
 1. Sign up for Wallarm Console and send a request for activating the multitenancy feature for your account to Wallarm technical support.
 1. Get access to the tenant account creation from the Wallarm technical support.
 1. Create a tenant account.
-1. Link tenant's applications to the tenant account.
 
 ### Step 1: Sign up and send a request to activate the multitenancy feature
 
@@ -72,7 +71,7 @@ After getting your request, the Wallarm technical support will:
 
 ### Step 3: Create the tenant via the Wallarm API
 
-To create the tenant and [link tenant's applications to the account](#step-4-link-tenants-applications-to-the-appropriate-tenant-account), it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI that defines the authentication method:
+To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI that defines the authentication method:
 
 * For requests to be sent from the **API Reference UI**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the API Reference by the link:
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
@@ -107,46 +106,122 @@ Created tenants will be displayed in Wallarm Console for [global users](../../us
 
 ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Step 4: Link tenant's applications to the appropriate tenant account
+### Step 4: Associate specific traffic with tenants and their applications
 
-!!! info "Perform this step only if..."
-    ... traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
+To differentiate the traffic of different tenants and the tenant's different applications' traffic, do the following:
 
-    If a separate node processes each tenant's traffic, please skip this step and proceed to [node deployment and configuration](deploy-multi-tenant-node.md).
+1. Get UUIDs of your tenants and include them in the configuration.
+1. In the configuration, set IDs for applications and relation of these applications to your tenants.
 
-An "application" is any tenants' network application protected by the Wallarm node. One tenant may have one or more applications.
+**Get UUIDs of your tenants**
 
-Each tenant's application must be linked to the appropriate tenant account by sending the corresponding request to Wallarm API and setting the `wallarm_application` directive in the node configuration accordingly.
+1. To get the list of tenants, send the GET request to the route `/v2/partner_client`:
 
-To link the application to the account:
+    !!! info "Request example"
+        ```https://api.wallarm.com/v2/partner_client?partnerid={partnerid}```
+        
+        Where `partnerid` is the one from the response obtained on **Step 3**.
 
-1. Define the number of applications based on the tenant's application structure and requirements to the [event management in Wallarm Console](../../user-guides/settings/applications.md).
+    Response example:
 
-    It can be only one application, e.g.: the Wallarm node protects one domain of a tenant and it is not required to split the traffic by endpoints. If so, it is still required to perform the further steps.
-1. For each application, send the POST request to the route `/v2/partner/<partnerid>/partner_client` with the following parameters:
+    ```
+    {
+    "body": [
+        {
+            "id": 1,
+            "partnerid": {PARTNER_ID},
+            "clientid": {CLIENT_1_ID},
+            "params": null
+        },
+        {
+            "id": 3,
+            "partnerid": {PARTNER_ID},
+            "clientid": {CLIENT_2_ID},
+            "params": null
+        }]}
+    ```
 
-    Parameter | Description | Request part | Required
-    --------- | -------- | ------------- | ------
-    `partnerid` | The `partnerid` value obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api). | Path | Yes
-    `clientid` | Tenant ID obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api) (`id`).  | Body | Yes
-    `id` | Unique ID for the link between the tenant and the application. The value can be an arbitrary positive integer. | Body | Yes
-    `X-WallarmAPI-UUID` | The Global administrator [user UUID](../../api/overview.md#your-own-client). | Header | Yes, when sending a request from your own client
-    `X-WallarmAPI-Secret` | [Secret key](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
+1. From the response, copy `clientid`(s).
+1. To get the UUID of each tenant, send the GET request to the route: `v1/objects/client`:
 
-    ??? info "Show an example of the request sent from your own client"
-        === "EU Cloud"
-            ``` bash
-            curl -v -X POST "https://api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"13\"}"
-            ```
-        === "US Cloud"
-            ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
-            ```
-1. Copy and save the `id` values you passed in the requests. These IDs will be used in NGINX configuration (`wallarm_application`) to splitt several tenants' traffic later.
+    !!! info "Request example"
+        ```
+        https://api.wallarm.com/v1/objects/client
+        { "filter": 
+        { "id": [{CLIENT_1_ID}, {CLIENT_2_ID}]}, 
+        "offset": 0, "limit": 100500}
+        ```
 
-If you are a Wallarm partner and the Wallarm node protects the traffic of several clients, please repeat the steps above for each client.
+    Response example:
 
-When the tenant resource gets the traffic, the configured `id` will be displayed in Wallarm Console → **Settings** → **Applications** for an appropriate tenant account.
+    ```
+    {
+    "status": 200,
+    "body": [
+        {
+            "id": {CLIENT_1_ID},
+            "name": "{CLIENT_1_NAME}",
+            ...
+            "uuid": "{CLIENT_1_UUID}",
+            ...
+        },
+        {
+            "id": {CLIENT_2_ID},
+            "name": "{CLIENT_2_NAME}",
+            ...
+            "uuid": "{CLIENT_2_UUID}",
+            ...
+        }
+    ]
+    }
+    ```
+
+1. From the response, copy `uuid`(s).
+
+**Include tenants and set their applications in configuration**
+
+Use the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. For example:
+
+```
+server {
+  server_name  tenant1.com;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  ...
+  location /login {
+     wallarm_application 21;
+     ...
+  }
+  location /users {
+     wallarm_application 22;
+     ...
+  }
+
+server {
+  server_name  tenant1-1.com;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  wallarm_application 23;
+  ...
+}
+
+server {
+  server_name  tenant2.com;
+  wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222;
+  ...
+}
+...
+}
+```
+
+In the configuration above:
+
+* Tenant stands for partner's client. The partner has 2 clients.
+* The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
+* The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
+* The first client also has 3 applications, specified via the [`wallarm_application`](#wallarm_application) directive:
+    * `tenant1.com/login` – `wallarm_application 21`
+    * `tenant1.com/users` – `wallarm_application 22`
+    * `tenant1-1.com` – `wallarm_application 23`
+* The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
 ## Providing users with access to accounts
 

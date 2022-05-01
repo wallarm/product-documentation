@@ -1,6 +1,6 @@
 # Upgrading the multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node 3.6 up to 4.0.
+These instructions describe the steps to upgrade the multi-tenant node 3.6 or lower up to 4.0.
 
 ## Step 1: Upgrade Wallarm multi-tenant node
 
@@ -59,6 +59,7 @@ server {
 ...
 }
 ```
+
 Notes on the configuration above:
 
 * The `wallarm_application` directive is used for defining both tenants themselves and their applications.

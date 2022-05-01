@@ -48,7 +48,9 @@ api:
 
 ### wallarm_application
 
-!!! warning "Changed behavior of the directive"
+!!! warning "Predecessors and changed behavior of the directive"
+    In Wallarm node 3.4 and lower, role of this directive was performed by the `wallarm_instance` directive (now deprecated).
+    
     In Wallarm node 3.6 this directive was used both for its main purpose described in this section and for specifying tenants in the multi-tenant nodes. Now the second role went away and transferred to the new [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
 
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
@@ -219,6 +221,11 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
     
     **Default value**: `1` (one minute)
 
+### wallarm_instance
+
+!!! warning "The directive is deprecated"
+    Starting with Wallarm node 4.0, please use the [`wallarm_application`](#wallarm_application) and [wallarm_partner_client_uuid](#wallarm_partner_client_uuid) directives instead.
+
 ### wallarm_key_path
 
 A path to the Wallarm license key.
@@ -344,20 +351,12 @@ This parameter is effective only if `wallarm_parse_response on`.
     
     **Default value**: `on`
 
-### wallarm_stalled_worker_timeout
-
-Sets the time limit for processing a single request for an NGINX worker in seconds.
-
-If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) parameters.
-
-!!! info
-    This parameter can be set inside the http, server, and location blocks.
-    
-    **Default value**: `5` (five seconds)
-
 ### wallarm_partner_client_uuid
 
-Unique identifier of the [tenant](../waf-installation/multi-tenant/overview.md) for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) `8-4-4-4-12` format, for example:
+!!! warning "Predecessors of the directive"
+    In Wallarm node 3.4 and lower, role of this directive was performed by the `wallarm_instance` directive (now deprecated), in 3.6 – by the [`wallarm_application`](#wallarm_application) directive (now is used for different purpose).
+
+Unique identifier of the [tenant](../waf-installation/multi-tenant/overview.md) for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
@@ -400,9 +399,9 @@ In the configuration above:
 * The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
 * The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
 * The first client also has 3 applications, specified via the [`wallarm_application`](#wallarm_application) directive:
-    * `tenant1.com/login` – wallarm_application `21`
-    * `tenant1.com/users` – wallarm_application `22`
-    * `tenant1-1.com` – wallarm_application `23`
+    * `tenant1.com/login` – `wallarm_application 21`
+    * `tenant1.com/users` – `wallarm_application 22`
+    * `tenant1-1.com` – `wallarm_application 23`
 * The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
 ### wallarm_process_time_limit
@@ -450,24 +449,6 @@ Regardless of the directive value, requests of the `overlimit_res` attack type a
     
     **Default value**: `wallarm_process_time_limit_block attack`
 
-### wallarm_request_memory_limit
-
-Set a limit for the maximum amount of memory that can be used for processing of a single request.
-
-If the limit is exceeded, the request processing will be interrupted and a user will get a 500 error.
-
-The following suffixes can be used in this parameter:
-* `k` or `K` for kilobytes
-* `m` or `M` for megabytes
-* `g` or `G` for gigabytes
-
-Value of `0` turns the limit off.
-
-By default, limits are off. 
-
-!!! info
-    This parameter can be set inside the http, server, and/or location blocks.
-
 ### wallarm_proton_log_mask_master
 
 Settings for the debug logging of the NGINX master process. 
@@ -511,6 +492,37 @@ Limits the size of the part of the request that is processed during one iteratio
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     **Default value**: `8k` (8 kilobytes).
+
+### wallarm_request_memory_limit
+
+Set a limit for the maximum amount of memory that can be used for processing of a single request.
+
+If the limit is exceeded, the request processing will be interrupted and a user will get a 500 error.
+
+The following suffixes can be used in this parameter:
+* `k` or `K` for kilobytes
+* `m` or `M` for megabytes
+* `g` or `G` for gigabytes
+
+Value of `0` turns the limit off.
+
+By default, limits are off. 
+
+!!! info
+    This parameter can be set inside the http, server, and/or location blocks.
+
+
+### wallarm_stalled_worker_timeout
+
+Sets the time limit for processing a single request for an NGINX worker in seconds.
+
+If the time exceeds the limit, data about NGINX workers is written to the `stalled_workers_count` and `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) parameters.
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
+    
+    **Default value**: `5` (five seconds)
+
 
 ### wallarm_tarantool_upstream
 
