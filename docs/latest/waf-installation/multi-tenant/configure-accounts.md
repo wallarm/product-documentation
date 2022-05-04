@@ -38,6 +38,7 @@ To configure tenant accounts:
 1. Sign up for Wallarm Console and send a request for activating the multitenancy feature for your account to Wallarm technical support.
 1. Get access to the tenant account creation from the Wallarm technical support.
 1. Create a tenant account.
+1. Associate specific traffic with the tenant and its applications.
 
 ### Step 1: Sign up and send a request to activate the multitenancy feature
 
@@ -217,7 +218,7 @@ In the configuration above:
 * Tenant stands for partner's client. The partner has 2 clients.
 * The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
 * The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
-* The first client also has 3 applications, specified via the [`wallarm_application`](#wallarm_application) directive:
+* The first client also has 3 applications, specified via the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive:
     * `tenant1.com/login` – `wallarm_application 21`
     * `tenant1.com/users` – `wallarm_application 22`
     * `tenant1-1.com` – `wallarm_application 23`

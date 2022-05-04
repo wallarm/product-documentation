@@ -9,7 +9,7 @@ If upgrading Wallarm node 2.18 or lower, learn available changes from the [separ
 There are the following changes available in Wallarm node 4.0:
 
 * Tenants and applications are now defined each with its own directive and thus:
-    * NGINX: the `wallarm_instance` directive has been deleted.
+    * NGINX: the `wallarm_instance` directive is not used now.
     * NGINX: the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directive has changed its behavior: now it is **only** used to configure an application ID.
     * NGINX: the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive has been added to configure the unique identifier of a tenant for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm nodes.
 * The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
