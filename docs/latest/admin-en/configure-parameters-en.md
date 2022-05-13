@@ -51,7 +51,12 @@ api:
 !!! warning "Predecessors and changed behavior of the directive"
     In Wallarm node 3.4 and lower, role of this directive was performed by the `wallarm_instance` directive (now deprecated).
     
-    In Wallarm node 3.6 this directive was used both for its main purpose described in this section and for specifying tenants in the multi-tenant nodes. Now the second role went away and transferred to the new [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
+    In Wallarm node 3.6 this directive was used both for its main purpose described in this section and for specifying tenants in the multi-tenant nodes. Now the second role went away and transferred to the new [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive. The first role remains unchanged.
+
+    When updating configuration you used for your filtering node of the version before 4.0:
+
+    * If you have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
+    * If you have any `wallarm_application` used to set unique identifier of the tenant for the multi-tenant nodes, re-write configuration using the [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
 
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
@@ -224,7 +229,8 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 ### wallarm_instance
 
 !!! warning "The directive is deprecated"
-    Starting with Wallarm node 4.0, please use the [`wallarm_application`](#wallarm_application) and [wallarm_partner_client_uuid](#wallarm_partner_client_uuid) directives instead.
+    * If the directive was used to set unique identifier of the protected application, just rename it to [`wallarm_application`](#wallarm_application).
+    * To set unique identifier of the tenant for the multi-tenant nodes, instead of the `wallarm_instance`, use the [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
 
 ### wallarm_key_path
 

@@ -109,19 +109,29 @@ Created tenants will be displayed in Wallarm Console for [global users](../../us
 
 ### Step 4: Associate specific traffic with tenants and their applications
 
-To differentiate the traffic of different tenants and the tenant's different applications' traffic, do the following:
+To differentiate the traffic of different tenants and the tenant's different applications, do the following:
 
-1. Get UUIDs of your tenants and include them in the configuration.
-1. In the configuration, set IDs for applications and relation of these applications to your tenants.
+1. Get UUIDs of your tenants.
+1. Include tenants and set their applications in configuration.
 
 **Get UUIDs of your tenants**
 
-1. To get the list of tenants, send the GET request to the route `/v2/partner_client`:
+To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as used in the **Step 3**. `PARTNER_ID` is the one obtained at **Step 3**.
 
-    !!! info "Request example"
-        ```https://api.wallarm.com/v2/partner_client?partnerid={partnerid}```
-        
-        Where `partnerid` is the one from the response obtained on **Step 3**.
+1. Send the GET request to the route `/v2/partner_client`.
+
+    !!! info "Example of the request sent from your own client"
+        ``` bash
+        curl -X GET \
+        'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+        -H 'accept: application/json' \
+        -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+        -H 'x-wallarmapi-uuid: YOUR_UUID'
+        ```
+
+    ??? info "Alternative way: obtaining clientid(s) via Console"
+        Alternatively to sending request, you can find the `clientid`(s) via Wallarm Console user interface: 
+        ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
     Response example:
 
@@ -130,28 +140,34 @@ To differentiate the traffic of different tenants and the tenant's different app
     "body": [
         {
             "id": 1,
-            "partnerid": {PARTNER_ID},
-            "clientid": {CLIENT_1_ID},
+            "partnerid": <PARTNER_ID>,
+            "clientid": <CLIENT_1_ID>,
             "params": null
         },
         {
             "id": 3,
-            "partnerid": {PARTNER_ID},
-            "clientid": {CLIENT_2_ID},
+            "partnerid": <PARTNER_ID>,
+            "clientid": <CLIENT_2_ID>,
             "params": null
-        }]}
+        }
+        ]
+        }
     ```
 
 1. From the response, copy `clientid`(s).
-1. To get the UUID of each tenant, send the GET request to the route: `v1/objects/client`:
+1. To get the UUID of each tenant, send the POST request to the route: `v1/objects/client`:
 
-    !!! info "Request example"
-        ```
-        https://api.wallarm.com/v1/objects/client
-        { "filter": 
-        { "id": [{CLIENT_1_ID}, {CLIENT_2_ID}]}, 
-        "offset": 0, "limit": 100500}
-        ```
+    !!! info "Example of the request sent from your own client"
+        ``` bash
+        curl -X POST \
+        https://api.wallarm.com/v1/objects/client \
+        -H 'content-type: application/json' \
+        -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+        -H 'x-wallarmapi-uuid: YOUR_UUID' \
+        -d '{ "filter": 
+        { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}, 
+        "offset": OFFSET_NUM, "limit": LIMIT_NUM}'
+        ```        
 
     Response example:
 
@@ -160,17 +176,17 @@ To differentiate the traffic of different tenants and the tenant's different app
     "status": 200,
     "body": [
         {
-            "id": {CLIENT_1_ID},
-            "name": "{CLIENT_1_NAME}",
+            "id": <CLIENT_1_ID>,
+            "name": "<CLIENT_1_NAME>",
             ...
-            "uuid": "{CLIENT_1_UUID}",
+            "uuid": "<CLIENT_1_UUID>",
             ...
         },
         {
-            "id": {CLIENT_2_ID},
-            "name": "{CLIENT_2_NAME}",
+            "id": <CLIENT_2_ID>,
+            "name": "<CLIENT_2_NAME>",
             ...
-            "uuid": "{CLIENT_2_UUID}",
+            "uuid": "<CLIENT_2_UUID>",
             ...
         }
     ]
@@ -180,6 +196,9 @@ To differentiate the traffic of different tenants and the tenant's different app
 1. From the response, copy `uuid`(s).
 
 **Include tenants and set their applications in configuration**
+
+!!! info "When to configure?"
+    This configuration is performed during the [node deployment](deploy-multi-tenant-node.md).
 
 Use the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. For example:
 

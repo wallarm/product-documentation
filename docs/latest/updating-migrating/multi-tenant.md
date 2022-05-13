@@ -1,3 +1,7 @@
+[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+
 # Upgrading the multi-tenant node
 
 These instructions describe the steps to upgrade the multi-tenant node 3.6 or lower up to 4.0.
