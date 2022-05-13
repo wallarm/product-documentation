@@ -21,10 +21,9 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
         --8<-- "../include/waf/features/multi-tenancy/partner-client-term.md"
         
-    * The Wallarm node identifies the tenant that receives the traffic by the unique identifier of a tenant ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)).
+    * The Wallarm node identifies the tenant that receives the traffic by the unique identifier of a tenant ([`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) or [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoy‑based-wallarm-node) in Envoy installation).
     * For the domains `https://tenant1.com` and `https://tenant2.com`, the DNS A records with the partner or client IP address `225.130.128.241` are configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
     * On the partner's side, proxying of legitimate requests to the addresses of tenant Tenant 1 (`http://upstream1:8080`) and Tenant 2 (`http://upstream2:8080`) is configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
-    * In Envoy installation, the role of the `wallarm_partner_client_uuid` directive is performed by the [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoy‑based-wallarm-node) parameter.
 * Deploy several Wallarm nodes each filtering the traffic of a particular tenant.
 
     Tenant traffic will be processed similarly to the option above but on several servers of a partner or tenants.
@@ -43,7 +42,6 @@ Multi-tenant node:
 
 * [Configured tenant accounts](configure-accounts.md)
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](configure-accounts.md#tenant-account-structure)
-* Disabled two‑factor authentication for the user executing the commands
 * [Supported platform for the filtering node installation](../../admin-en/supported-platforms.md)
 
 ## Recommendations for a multi-tenant node deployment
@@ -57,18 +55,7 @@ Multi-tenant node:
 1. Select the **Multi-tenant node** option.
 1. Set node name and click **Create**.
 1. Copy the created token.
-1. Depending on a filtering node deployment form, perform steps from the appropriate instructions:
-      * [Module for NGINX `stable` from the NGINX repository](../nginx/dynamic-module.md)
-      * [Модуль для NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
-      * [Module for NGINX Plus](../nginx-plus.md)
-      * [Docker container with NGINX modules](../../admin-en/installation-docker-en.md)
-      * [Docker container with Envoy modules](../../admin-en/installation-guides/envoy/envoy-docker.md)
-      * [NGINX Ingress controller](../../admin-en/installation-kubernetes-en.md)
-      * [Sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
-      * [AWS image](../../admin-en/installation-ami-en.md)
-      * [Google Cloud Platform image](../../admin-en/installation-gcp-en.md)
-      * [Yandex.Cloud image](../../admin-en/installation-guides/install-in-yandex-cloud.md)
-      * [Module for Kong](../../admin-en/installation-kong-en.md)
+1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../admin-en/supported-platforms.md).
 1. Open the tenant's NGINX configuration file and specify the unique identifier of a tenant using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
 
     Example of the NGINX configuration file for the filtering node processing the traffic of two clients:
