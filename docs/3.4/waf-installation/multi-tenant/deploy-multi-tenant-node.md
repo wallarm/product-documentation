@@ -55,7 +55,7 @@ Multi-tenant node:
 
 1. Select a filtering node deployment form and follow the appropriate instructions:
       * [Module for NGINX `stable` from the NGINX repository](../nginx/dynamic-module.md)
-      * [Модуль для NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
+      * [Module for NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
       * [Module for NGINX Plus](../nginx-plus.md)
       * [Docker container with NGINX modules](../../admin-en/installation-docker-en.md)
       * [Docker container with Envoy modules](../../admin-en/installation-guides/envoy/envoy-docker.md)
@@ -63,7 +63,6 @@ Multi-tenant node:
       * [Sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
       * [AWS image](../../admin-en/installation-ami-en.md)
       * [Google Cloud Platform image](../../admin-en/installation-gcp-en.md)
-      * [Yandex.Cloud image](../../admin-en/installation-guides/install-in-yandex-cloud.md)
       * [Module for Kong](../../admin-en/installation-kong-en.md)
 2. If one Wallarm node filters the traffic of several clients or isolated environments, send a request for switching the node to the multi-tenant status to the [Wallarm technical support](mailto:support@wallarm.com).
 

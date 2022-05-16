@@ -25,7 +25,7 @@ The following approaches are recommended to test and gradually change the config
 * [Low-level configuration of Wallarm filtering nodes in all form-factors](#low-level-onfiguration-of-wallarm-filtering-nodes-in-all-form-factors)
 * [Configuration of Wallarm node rules](#configuration-of-wallarm-node-rules)
 
-### Low-level Сonfiguration of Wallarm Filtering Nodes in All Form-factors
+### Low-level Configuration of Wallarm Filtering Nodes in All Form-factors
 
 Low-level configuration of filtering nodes is performed via Docker environment variables, provided NGINX configuration file, Kubernetes Ingress controller parameters, etc. The way of configuration depends on the [deployment option](../../supported-platforms.md). 
 

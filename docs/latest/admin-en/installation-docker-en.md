@@ -30,7 +30,7 @@ The functionality of the filtering node installed inside the Docker container is
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Options for running the container
 
@@ -46,11 +46,11 @@ To run the image, use the command:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:3.6.1-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:3.6.2-1
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.1-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.2-1
     ```
 
 The command does the following:
@@ -59,7 +59,7 @@ The command does the following:
 * Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://NGINX_BACKEND:80`.
 
 ## Run the container mounting the configuration file
@@ -105,11 +105,11 @@ To run the image:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.1-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.1-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
         ```
 
 The command does the following:
@@ -118,7 +118,7 @@ The command does the following:
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://example.com`.
 
 !!! info "Mounting other configuration files"

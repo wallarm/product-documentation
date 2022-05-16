@@ -49,7 +49,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
             enabled: "true"
             token: "<YOUR_CLOUD_NODE_TOKEN>"
         ```    
-    === "RU Cloud"
+    === "US Cloud"
         ```bash
         controller:
           wallarm:

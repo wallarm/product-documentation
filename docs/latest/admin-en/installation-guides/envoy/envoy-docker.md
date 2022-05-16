@@ -20,7 +20,7 @@ Wallarm API Security module is designed as an Envoy HTTP filter for requests pro
 ## Requirements
 
 * Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com:444` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com:444` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
@@ -47,11 +47,11 @@ To run the image, use the command:
 
 === "EU Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:3.6.0-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:3.6.1-1
     ```
 === "US Cloud"
     ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:3.6.0-1
+    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:3.6.1-1
     ```
 
 The command does the following:
@@ -60,7 +60,7 @@ The command does the following:
 * Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://ENVOY_BACKEND:80`.
 
 ## Run the container mounting envoy.yaml
@@ -85,11 +85,11 @@ To run the image:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.0-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.0-1
+        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
         ```
 
 The command does the following:
@@ -98,7 +98,7 @@ The command does the following:
 * Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
-    * `license.key` with Wallarm license key
+    * `private.key` with Wallarm private key
 * Protects the resource `http://ENVOY_BACKEND:80`.
 
 ## Configuration of log rotation (optional)

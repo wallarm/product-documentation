@@ -13,6 +13,25 @@ There are the following changes available in Wallarm node 4.0:
     * NGINX: the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directive has changed its behavior: now it is **only** used to configure an application ID.
     * NGINX: the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive has been added to configure the unique identifier of a tenant for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm nodes.
 * The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+* The following NGINX directives and Envoy parameters have been renamed:
+
+    * NGINX: `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
+    * Envoy: `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
+    * Envoy: `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+    * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+
+    Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
+* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
+
+### Changes in system requirements for the filtering node installation
+
+Starting with version 4.0, the filtering node uploads data to the Cloud using the `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) API endpoints instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
+
+Your node needs to be granted access to the API endpoint with this new port. Note that the port `443` is the default one in https, so that there is no need to specify it explicitly.
+
+If your server with the filtering node had a limited access to the external resources and the access was granted to each resource separately, then after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop.
+
+To restore the synchronization, in your configuration, change port `444` to `443` for API endpoint for each resource.
 
 ## When upgrading node 3.4
 

@@ -187,6 +187,7 @@ Rename the following NGINX directives if they are explicitly specified in config
 * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
 * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
 * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+* `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
@@ -198,15 +199,19 @@ We only changed the names of the directives, their logic remains the same. Direc
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 10: Restart NGINX
+## Step 10: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+## Step 11: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 11: Test Wallarm node operation
+## Step 12: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 12: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 13: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

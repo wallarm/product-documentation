@@ -210,7 +210,7 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 
 ### wallarm_instance
 
-Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
+Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer.
 
 Unique identifiers can be set for both the application domains and the domain paths, for example:
 

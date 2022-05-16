@@ -14,7 +14,7 @@ controller:
   wallarm:
     enabled: false
     apiHost: api.wallarm.com
-    apiPort: 444
+    apiPort: 443
     apiSSL: true
     token: ""
     tarantool:

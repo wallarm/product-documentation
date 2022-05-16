@@ -23,7 +23,7 @@ Configuration of IP address whitelist and blacklist has been changed as follows:
 4. Remove the whitelist of Wallarm Scanner IP addresses from filtering node configuration files. Starting with the filtering node 3.x, Scanner IP addresses are whitelisted by default. In previous Wallarm node versions, the whitelist could be configured by the following methods:
 
     * Disabled filtration mode for Scanner IP addresses (for example: [NGINX configuration](/2.18/admin-en/scanner-ips-whitelisting/), [K8s sidecar container](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap), [K8s Ingress controller](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/)).
-    * NGINX directive [`allow`](http://nginx.org/ru/docs/http/ngx_http_access_module.html#allow).
+    * NGINX directive [`allow`](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow).
 5. If listed methods are used to whitelist other IP addresses that should not be blocked by the filtering node, please move them to the [whitelist in Wallarm Console](../user-guides/ip-lists/whitelist.md).
 6. If you have used the directive `wallarm_acl_block_page` to configure the blocking page and error code returned when the blacklisted IP originated the request, please replace the directive name by `wallarm_block_page` and update its value following the [instructions](../admin-en/configuration-guides/configure-block-page-and-code.md).
 7. Remove the [NGINX](../admin-en/installation-docker-en.md) and [Envoy](../admin-en/installation-guides/envoy/envoy-docker.md) environment variables `WALLARM_ACL_*` from the `docker run` commands.
