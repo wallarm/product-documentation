@@ -22,7 +22,7 @@ Tenant accounts are created according to the following structure:
 * **Tenant accounts** are used to:
 
     * Provide tenants with access to the data on detected attacks and to the traffic filtration settings.
-    * Provide users with with access to certain tenant account's data.
+    * Provide users with access to certain tenant account's data.
 
 [Global users](../../user-guides/settings/users.md#user-roles) can switch between accounts in Wallarm Console:
 
@@ -101,147 +101,33 @@ At this step, a tenant account linked to a global account will be created.
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
-2. Copy the values of the `id` and `partnerid` parameters from the response to the request. The parameters will be used when linking tenant's applications to the tenant account.
+    ??? info "Show an example of the response"
+        ``` bash
+        {"status":200,"body":{"id":10110,"name":"Tenant 1","components":["waf"],"vuln_prefix":"TNTST","support_plan":"trial","date_format":"ddmmyy","blocking_type":"incidents","scanner_mode":"classic","qrator_blacklists":false,"notifications":{"report_daily":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"report_weekly":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"report_monthly":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"system":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"vuln":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"scope":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"siem":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]}},"last_scan":null,"scanner_cluster":"default","scanner_scope_cluster":"default","scanner_state":{"last_scan":null,"last_vuln":null,"last_vuln_check":null,"last_wapi":null},"language":"en","attack_rechecker_mode":"off","vuln_rechecker_mode":"on","validated":true,"enabled":true,"create_at":1652443263,"partnerid":51,"can_enable_blacklist":false,"blacklist_disabled_at":1652443263,"hidden_vulns":false,"scanner_priority":"normal","mark_false_mode":"default","is_technical":false,"comment":"","blacklist_mode":"new","blacklist_hints":true,"appstructure_enabled":false,"api_discovery_internal_enabled":false,"api_discovery_enabled":true,"entire_session_ttl":null,"inactive_session_ttl":null,"uuid":"11111111-1111-1111-1111-111111111111","cdn_nodes_enabled":true}}
+        ```
+
+2. Copy the value of the `uuid` parameter from the response to the request. The parameter will be used when linking tenant's traffic to the tenant account.
 
 Created tenants will be displayed in Wallarm Console for [global users](../../user-guides/settings/users.md#user-roles). For example, `Tenant 1` and `Tenant 2`:
 
 ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Step 4: Associate specific traffic with tenants and their applications
-
-To differentiate the traffic of different tenants and the tenant's different applications, do the following:
-
-1. Get UUIDs of your tenants.
-1. Include tenants and set their applications in configuration.
-
-**Get UUIDs of your tenants**
-
-To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as used in the **Step 3**. `PARTNER_ID` is the one obtained at **Step 3**.
-
-1. Send the GET request to the route `/v2/partner_client`.
-
-    !!! info "Example of the request sent from your own client"
-        ``` bash
-        curl -X GET \
-        'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
-        -H 'accept: application/json' \
-        -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-        -H 'x-wallarmapi-uuid: YOUR_UUID'
-        ```
-
-    ??? info "Alternative way: obtaining clientid(s) via Console"
-        Alternatively to sending request, you can find the `clientid`(s) via Wallarm Console user interface: 
-        ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
-
-    Response example:
-
-    ```
-    {
-    "body": [
-        {
-            "id": 1,
-            "partnerid": <PARTNER_ID>,
-            "clientid": <CLIENT_1_ID>,
-            "params": null
-        },
-        {
-            "id": 3,
-            "partnerid": <PARTNER_ID>,
-            "clientid": <CLIENT_2_ID>,
-            "params": null
-        }
-        ]
-        }
-    ```
-
-1. From the response, copy `clientid`(s).
-1. To get the UUID of each tenant, send the POST request to the route: `v1/objects/client`:
-
-    !!! info "Example of the request sent from your own client"
-        ``` bash
-        curl -X POST \
-        https://api.wallarm.com/v1/objects/client \
-        -H 'content-type: application/json' \
-        -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-        -H 'x-wallarmapi-uuid: YOUR_UUID' \
-        -d '{ "filter": 
-        { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}, 
-        "offset": OFFSET_NUM, "limit": LIMIT_NUM}'
-        ```        
-
-    Response example:
-
-    ```
-    {
-    "status": 200,
-    "body": [
-        {
-            "id": <CLIENT_1_ID>,
-            "name": "<CLIENT_1_NAME>",
-            ...
-            "uuid": "<CLIENT_1_UUID>",
-            ...
-        },
-        {
-            "id": <CLIENT_2_ID>,
-            "name": "<CLIENT_2_NAME>",
-            ...
-            "uuid": "<CLIENT_2_UUID>",
-            ...
-        }
-    ]
-    }
-    ```
-
-1. From the response, copy `uuid`(s).
-
-**Include tenants and set their applications in configuration**
+### Step 4: Associate specific traffic with your tenant
 
 !!! info "When to configure?"
     This configuration is performed during the [node deployment](deploy-multi-tenant-node.md).
 
-Use the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. For example:
+The tenant's users need to have access only to this tenant's traffic information. Therefore, we need to associate the specific traffic with the created tenant. To do this, include the tenant in the NGINX configuration file using its `uuid` (obtained in **Step 3**) as the value for the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. For example:
 
 ```
 server {
   server_name  tenant1.com;
   wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
   ...
-  location /login {
-     wallarm_application 21;
-     ...
-  }
-  location /users {
-     wallarm_application 22;
-     ...
-  }
-
-server {
-  server_name  tenant1-1.com;
-  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
-  wallarm_application 23;
-  ...
-}
-
-server {
-  server_name  tenant2.com;
-  wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222;
-  ...
-}
-...
 }
 ```
 
-In the configuration above:
-
-* Tenant stands for partner's client. The partner has 2 clients.
-* The traffic targeting `tenant1.com` and `tenant1-1.com` will be associated with the client `11111111-1111-1111-1111-111111111111`.
-* The traffic targeting `tenant2.com` will be associated with the client `22222222-2222-2222-2222-222222222222`.
-* The first client also has 3 applications, specified via the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive:
-    * `tenant1.com/login` – `wallarm_application 21`
-    * `tenant1.com/users` – `wallarm_application 22`
-    * `tenant1-1.com` – `wallarm_application 23`
-* The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
+In the configuration above, the traffic targeting `tenant1.com`  will be associated with the client `11111111-1111-1111-1111-111111111111`.
 
 ## Providing users with access to accounts
 

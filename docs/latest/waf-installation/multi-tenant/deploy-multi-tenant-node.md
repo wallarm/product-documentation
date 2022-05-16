@@ -88,8 +88,8 @@ Multi-tenant node:
     ```
 
     * On the tenant side, the DNS A records with the partner IP address are configured
-    * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
-    * All incoming requests are processed on the partner address, legitimate requests are proxied to `http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and to `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`
+    * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
+    * All incoming requests are processed on the partner address, legitimate requests are proxied to `http://upstream1:8080` for the tenant with `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and to `http://upstream2:8080` for the tenant with `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`
 
 1. If necessary, specify IDs of tenant's applications using the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive.
 
@@ -108,16 +108,18 @@ Multi-tenant node:
 
         location /login {
             wallarm_application 21;
+            ...
         }
         location /users {
             wallarm_application 22;
+            ...
         }
     }
     ```
 
-    * On the tenant side, the DNS A records with the partner IP address are configured
-    * On the partner side, proxying of requests to the addresses of tenants (`http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`) is configured
-    * All incoming requests are processed on the partner address, legitimate requests are proxied to `http://upstream1:8080` for the tenant with the `wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111` and to `http://upstream2:8080` for the tenant with the `wallarm_partner_client_uuid 22222222-2222-2222-2222-222222222222`
+    * Two applications belong to the tenant `11111111-1111-1111-1111-111111111111`:
+        * `tenant1.com/login` is the application `21`
+        * `tenant1.com/users` is the application `22`
 
 ## Configuring a multi-tenant node
 

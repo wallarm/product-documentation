@@ -429,7 +429,8 @@ In the configuration above:
     * `tenant1.com/login` – `wallarm_application 21`
     * `tenant1.com/users` – `wallarm_application 22`
     * `tenant1-1.com` – `wallarm_application 23`
-* The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
+
+    The traffic targeting these 3 paths will be associated with the corresponding application, the remaining will be the generic traffic of the first client.
 
 ### wallarm_process_time_limit
 
