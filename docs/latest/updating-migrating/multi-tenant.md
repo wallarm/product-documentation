@@ -10,6 +10,15 @@ These instructions describe the steps to upgrade the multi-tenant node 3.6 or lo
 
 Follow the standard procedure for your deployment form with one addition: rewrite the configuration of how traffic is associated with your tenants and their applications.
 
+### Upgrade in cooperation with the Wallarm support team
+
+Currently, to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade, request the [Wallarm support team](mailto:support@wallarm.com) assistance.
+
+!!! info "Blocked upgrade"
+    Using incorrect version of the custom ruleset building feature may lead to the upgrade process blocking.
+
+The support team will also help you with answers to all questions related to the multi-tenant node upgrade and necessary reconfiguration.
+
 ### Standard procedures
 
 Standard procedures are the ones for:
