@@ -24,6 +24,9 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
     * The Wallarm node identifies the tenant that receives the traffic by the "tenant-application" link ID (`wallarm_application`).
     * For the domains `https://tenant1.com` and `https://tenant2.com`, the DNS A records with the partner or client IP address `225.130.128.241` are configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
     * On the partner's side, proxying of legitimate requests to the addresses of tenant Tenant 1 (`http://upstream1:8080`) and Tenant 2 (`http://upstream2:8080`) is configured. This setting is shown as an example, a different setting can be used on the partner and tenant side.
+
+    !!! warning "If the Wallarm node is of the CDN type"
+        Since the `wallarm_application` configuration is not supported by the [Wallarm CDN node](../cdn-node.md), this deployment option is not supported by the CDN node type too. If the node type being used is CDN, please deploy several nodes each filtering the traffic of a particular tenant.
 * Deploy several Wallarm nodes each filtering the traffic of a particular tenant.
 
     Tenant traffic will be processed similarly to the option above but on several servers of a partner or tenants.
@@ -55,7 +58,7 @@ Multi-tenant node:
 
 1. Select a filtering node deployment form and follow the appropriate instructions:
       * [Module for NGINX `stable` from the NGINX repository](../nginx/dynamic-module.md)
-      * [Модуль для NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
+      * [Module for NGINX `stable` from the Debian/CentOS repository](../nginx/dynamic-module-from-distr.md)
       * [Module for NGINX Plus](../nginx-plus.md)
       * [Docker container with NGINX modules](../../admin-en/installation-docker-en.md)
       * [Docker container with Envoy modules](../../admin-en/installation-guides/envoy/envoy-docker.md)
@@ -63,8 +66,8 @@ Multi-tenant node:
       * [Sidecar container](../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
       * [AWS image](../../admin-en/installation-ami-en.md)
       * [Google Cloud Platform image](../../admin-en/installation-gcp-en.md)
-      * [Yandex.Cloud image](../../admin-en/installation-guides/install-in-yandex-cloud.md)
       * [Module for Kong](../../admin-en/installation-kong-en.md)
+      * [CDN node](../cdn-node.md)
 2. If one Wallarm node filters the traffic of several clients or isolated environments, send a request for switching the node to the multi-tenant status to the [Wallarm technical support](mailto:support@wallarm.com).
 
     Send the following data with the request:
