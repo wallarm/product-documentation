@@ -4,6 +4,8 @@
 [installation-instr-middle]:    /3.2/admin-en/installation-gcp-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-gcp-en/
+[img-wl-console-users]:         ../images/check-user-no-2fa.png
+[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
 # Deploying on Google Cloud Platform (GCP)
 
@@ -89,7 +91,7 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 ## 5. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/connect-cloud-node-cloud-en-4.0.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
 
 ## 6. Set up the filtering node for using a proxy server
 

@@ -19,7 +19,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 * [GCP project created](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
 * [Compute Engine API](https://console.cloud.google.com/apis/library/compute.googleapis.com?q=compute%20eng&id=a08439d8-80d6-43f1-af2e-6878251f018d) enabled
 * [Google Cloud SDK (gcloud CLI) installed and configured](https://cloud.google.com/sdk/docs/quickstart)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -29,24 +29,23 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, you can use the [GCP Console or gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers). In these instructions, gcloud CLI is used.
 
-1. Set local environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-2. Create the instance with the running Docker container by using the [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) command:
+1. Create the instance with the running Docker container by using the [`gcloud compute instances create-with-container`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container) command:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
         gcloud compute instances create-with-container <INSTANCE_NAME> \
             --zone <DEPLOYMENT_ZONE> \
             --tags http-server \
-            --container-env DEPLOY_USER=${DEPLOY_USER} \
-            --container-env DEPLOY_PASSWORD=${DEPLOY_PASSWORD} \
+            --container-env DEPLOY_TOKEN=${DEPLOY_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM>
             --container-image registry-1.docker.io/wallarm/node:3.6.2-1
         ```
@@ -55,8 +54,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
         gcloud compute instances create-with-container <INSTANCE_NAME> \
             --zone <DEPLOYMENT_ZONE> \
             --tags http-server \
-            --container-env DEPLOY_USER=${DEPLOY_USER} \
-            --container-env DEPLOY_PASSWORD=${DEPLOY_PASSWORD} \
+            --container-env DEPLOY_TOKEN=${DEPLOY_TOKEN} \
             --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-env WALLARM_API_HOST=us1.api.wallarm.com \
             --container-image registry-1.docker.io/wallarm/node:3.6.2-1
@@ -66,18 +64,22 @@ To deploy the containerized Wallarm filtering node configured only through envir
     * `--zone`: [zone](https://cloud.google.com/compute/docs/regions-zones) that will host the instance.
     * `--tags`: instance tags. Tags are used to configure the availability of the instance for other resources. In the present case, the tag `http-server` opening port 80 is assigned to the instance.
     * `--container-image`: link to the Docker image of the filtering node.
-    * `--container-env`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `--container-env`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
     
     * All parameters of the `gcloud compute instances create-with-container` command are described in the [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container).
-3. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list.
-4. [Test the filtering node operation](#testing-the-filtering-node-operation).
+1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list.
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Deploying the Wallarm node Docker container configured through the mounted file
 
 To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the [GCP Console or gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers). In these instructions, gcloud CLI is used.
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 1. Create the instace based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) comand:
 
     ```bash
@@ -92,19 +94,15 @@ To deploy the containerized Wallarm filtering node configured through environmen
     * `--zone`: [zone](https://cloud.google.com/compute/docs/regions-zones) that will host the instance.
     * `--tags`: instance tags. Tags are used to configure the availability of the instance for other resources. In the present case, the tag `http-server` opening port 80 is assigned to the instance.
     * All parameters of the `gcloud compute instances create` command are described in the [GCP documentation](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create).
-2. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list and is in the **RUNNING** status.
-3. Connect to the instance via SSH following the [GCP instructions](https://cloud.google.com/compute/docs/instances/ssh).
-4. Install the Docker packages in the instance following the [instrauctions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
-5. Set instance environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and ensure the instance is displayed in the list and is in the **RUNNING** status.
+1. Connect to the instance via SSH following the [GCP instructions](https://cloud.google.com/compute/docs/instances/ssh).
+1. Install the Docker packages in the instance following the [instrauctions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
+1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-6. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
+1. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
     ```bash
     server {
@@ -132,15 +130,15 @@ To deploy the containerized Wallarm filtering node configured through environmen
     ```
 
     [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
-7. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
+1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
@@ -153,10 +151,10 @@ To deploy the containerized Wallarm filtering node configured through environmen
         The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
-8. [Test the filtering node operation](#testing-the-filtering-node-operation).
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Testing the filtering node operation
 

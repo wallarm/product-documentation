@@ -16,7 +16,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 ## Requirements
 
 * Access to the [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -26,62 +26,62 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, you should create the Alibaba Cloud instance and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
-2. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
+1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
 
     * The instance can be based on the image of any operating system.
     * Since the instance should be available for external resources, public IP address or domain should be configured in the instance settings.
     * The instance settings should reflect the [method used to connect to the instance](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
-3. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
-4. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
-5. Set instance environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
+1. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
+1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-6. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
+1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:3.6.2-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.2-1
         ```
         
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
-7. [Test the filtering node operation](#testing-the-filtering-node-operation).
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Deploying the Wallarm node Docker container configured through the mounted file
 
 To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the Alibaba Cloud instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
-2. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
+1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
 
     * The instance can be based on the image of any operating system.
     * Since the instance should be available for external resources, public IP address or domain should be configured in the instance settings.
     * The instance settings should reflect the [method used to connect to the instance](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
-3. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
-4. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
-5. Set instance environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
+1. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
+1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-6. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
+1. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
     ```bash
     server {
@@ -109,15 +109,15 @@ To deploy the containerized Wallarm filtering node configured through environmen
     ```
 
     [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
-7. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
+1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER=${DEPLOY_USER} -e DEPLOY_PASSWORD=${DEPLOY_PASSWORD} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:3.6.2-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
@@ -130,10 +130,10 @@ To deploy the containerized Wallarm filtering node configured through environmen
         The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
-8. [Test the filtering node operation](#testing-the-filtering-node-operation).
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Testing the filtering node operation
 

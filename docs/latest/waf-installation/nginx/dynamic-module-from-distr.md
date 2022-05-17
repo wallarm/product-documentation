@@ -1,4 +1,4 @@
-[img-wl-console-users]:             ../../images/check-users.png 
+[img-wl-console-users]:             ../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
@@ -18,6 +18,8 @@
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
+[img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 
 # Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
 
@@ -183,7 +185,7 @@ Copy the configuration files for the system setup:
 
 ### 4. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
 
 ### 5. Update Wallarm node configuration
 
