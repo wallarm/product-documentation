@@ -77,8 +77,8 @@ server {
 Notes on the configuration above:
 
 * The `wallarm_application` directive is used for defining both tenants themselves and their applications:
-    * The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with the client 1 via `20` and `23` values, linked to this client via the [api request](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
-    * Alike api requests should have been sent to link other applications to the tenants.
+    * The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with the client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
+    * Alike API requests should have been sent to link other applications to the tenants.
 
 **In version 4.0, to rewrite the configuration, do the following:**
 
@@ -110,7 +110,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             ```
     Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
-    ??? info "Alternative way: obtaining clientid(s) via Console"
+    ??? info "Obtaining clientid(s) via Console"
         Alternatively to sending a request, you can find the `clientid`(s) via the Wallarm Console user interface:
         
         ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)

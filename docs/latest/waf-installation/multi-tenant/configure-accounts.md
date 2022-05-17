@@ -115,7 +115,9 @@ Created tenants will be displayed in Wallarm Console for [global users](../../us
 ### Step 4: Associate specific traffic with your tenant
 
 !!! info "When to configure?"
-    This configuration is performed during the [node deployment](deploy-multi-tenant-node.md).
+    This configuration is performed during the node deployment and only if the traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
+
+    If a separate node processes each tenant's traffic, please skip this step and proceed to [node deployment and configuration](deploy-multi-tenant-node.md).
 
 The tenant's users need to have access only to this tenant's traffic information. Therefore, we need to associate the specific traffic with the created tenant. To do this, include the tenant in the NGINX configuration file using its `uuid` (obtained in **Step 3**) as the value for the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. For example:
 
