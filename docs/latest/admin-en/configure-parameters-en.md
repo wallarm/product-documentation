@@ -55,8 +55,8 @@ api:
 
     When updating configuration you used for your filtering node of the version before 4.0:
 
-    * If you have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you have any `wallarm_application` used to set unique identifier of the tenant for the multi-tenant nodes, re-write configuration using the [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
+    * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#multitenancy-reconfiguration).
 
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
@@ -252,6 +252,11 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
 !!! warning "The directive is deprecated"
     * If the directive was used to set unique identifier of the protected application, just rename it to [`wallarm_application`](#wallarm_application).
     * To set unique identifier of the tenant for the multi-tenant nodes, instead of the `wallarm_instance`, use the [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive.
+
+    When updating configuration you used for your filtering node of the version before 4.0:
+
+    * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#multitenancy-reconfiguration).
 
 ### wallarm_key_path
 
