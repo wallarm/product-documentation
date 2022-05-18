@@ -103,7 +103,18 @@ At this step, a tenant account linked to a global account will be created.
 
     ??? info "Show an example of the response"
         ``` bash
-        {"status":200,"body":{"id":10110,"name":"Tenant 1","components":["waf"],"vuln_prefix":"TNTST","support_plan":"trial","date_format":"ddmmyy","blocking_type":"incidents","scanner_mode":"classic","qrator_blacklists":false,"notifications":{"report_daily":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"report_weekly":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"report_monthly":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"system":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"vuln":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"scope":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]},"siem":{"email":[],"telegram":[],"slack":[],"splunk":[],"pager_duty":[],"sumo_logic":[],"insight_connect":[],"web_hooks":[],"ms_teams":[]}},"last_scan":null,"scanner_cluster":"default","scanner_scope_cluster":"default","scanner_state":{"last_scan":null,"last_vuln":null,"last_vuln_check":null,"last_wapi":null},"language":"en","attack_rechecker_mode":"off","vuln_rechecker_mode":"on","validated":true,"enabled":true,"create_at":1652443263,"partnerid":51,"can_enable_blacklist":false,"blacklist_disabled_at":1652443263,"hidden_vulns":false,"scanner_priority":"normal","mark_false_mode":"default","is_technical":false,"comment":"","blacklist_mode":"new","blacklist_hints":true,"appstructure_enabled":false,"api_discovery_internal_enabled":false,"api_discovery_enabled":true,"entire_session_ttl":null,"inactive_session_ttl":null,"uuid":"11111111-1111-1111-1111-111111111111","cdn_nodes_enabled":true}}
+        {
+        "status":200,
+        "body": {
+            "id":10110,
+            "name":"Tenant 1",
+            "components":["waf"],
+            "vuln_prefix":"TNTST",
+            ...
+            "uuid":"11111111-1111-1111-1111-111111111111",
+            ...
+            }
+        }
         ```
 
 2. Copy the value of the `uuid` parameter from the response to the request. The parameter will be used when linking tenant's traffic to the tenant account.

@@ -117,9 +117,10 @@ Multi-tenant node:
     }
     ```
 
-    * Two applications belong to the tenant `11111111-1111-1111-1111-111111111111`:
-        * `tenant1.com/login` is the application `21`
-        * `tenant1.com/users` is the application `22`
+    Two applications belong to the tenant `11111111-1111-1111-1111-111111111111`:
+    
+    * `tenant1.com/login` is the application `21`
+    * `tenant1.com/users` is the application `22`
 
 ## Configuring a multi-tenant node
 
