@@ -61,7 +61,7 @@ Token regeneration creates a new token for the node.
 2. Click **Regenerate token** in the node menu or card.
 3. If the node is already installed in your infrastructure, copy the new token value and specify it within the installed node settings.
 
-![!Regenerating cloud node token](../../images/user-guides/nodes/generate-new-token.png)
+![!Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
 
 ## Deleting a node
 

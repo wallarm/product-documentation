@@ -32,8 +32,9 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 1. Go to Wallarm Console → **Nodes** via the link below:
     * https://my.wallarm.com/nodes for the EU Cloud
     * https://us1.my.wallarm.com/nodes for the US Cloud
-2. Create a filtering node with the **Cloud** type and copy the token.
-    ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
+2. Create a filtering node with the **Wallarm node** type and copy the generated token.
+
+    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 3. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
@@ -47,18 +48,18 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
         controller:
           wallarm:
             enabled: "true"
-            token: "<YOUR_CLOUD_NODE_TOKEN>"
+            token: "<NODE_TOKEN>"
         ```    
     === "US Cloud"
         ```bash
         controller:
           wallarm:
             enabled: "true"
-            token: "<YOUR_CLOUD_NODE_TOKEN>"
+            token: "<NODE_TOKEN>"
             apiHost: "us1.api.wallarm.com"
         ```
     
-    `<YOUR_CLOUD_NODE_TOKEN>` is the cloud node token.
+    `<NODE_TOKEN>` is the Wallarm node token.
 5. Install the Wallarm packages:
 
     ``` bash
