@@ -6,14 +6,14 @@
 
 These instructions describe the steps to upgrade the multi-tenant node 3.6 or lower up to 4.0.
 
-## Step 1: Contact Wallarm support team
+## Step 1: Contact the Wallarm support team
 
 Currently, to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade, request the [Wallarm support team](mailto:support@wallarm.com) assistance.
 
 !!! info "Blocked upgrade"
-    Using incorrect version of the custom ruleset building feature may lead to the upgrade process blocking.
+    Using an incorrect version of the custom ruleset building feature may block the upgrade process.
 
-The support team will also help you with answers to all questions related to the multi-tenant node upgrade and necessary reconfiguration.
+The support team will also help you answer all questions related to the multi-tenant node upgrade and necessary reconfiguration.
 
 ## Step 2: Follow standard procedure
 
@@ -30,14 +30,14 @@ Standard procedures are the ones for:
 Rewrite the configuration of how traffic is associated with your tenants and their applications. Consider the example below. In the example:
 
 * Tenant stands for partner's client. The partner has two clients.
-* The traffic targeting `tenant1.com` and `tenant1-1.com` should be associated with the client 1.
-* The traffic targeting `tenant2.com` should be associated with the client 2.
-* The client 1 also has 3 applications:
+* The traffic targeting `tenant1.com` and `tenant1-1.com` should be associated with client 1.
+* The traffic targeting `tenant2.com` should be associated with client 2.
+* Client 1 also has three applications:
     * `tenant1.com/login`
     * `tenant1.com/users`
     * `tenant1-1.com`
 
-    The traffic targeting these 3 paths should be associated with the corresponding application; the remaining should be considered to be the generic traffic of the client 1.
+    The traffic targeting these 3 paths should be associated with the corresponding application; the remaining should be considered to be the generic traffic of client 1.
 
 ### Study your previous version configuration
 
@@ -74,8 +74,9 @@ server {
 
 Notes on the configuration above:
 
-* The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with the client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
+* The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
 * Alike API requests should have been sent to link other applications to the tenants.
+* The tenants and the applications are separate entities, so it is logical to configure them with the different directives. Also, it would be convenient to avoid additional API requests. It would be logical to define relations between the tenants and applications via the configuration itself. All this is missing in the current configuration but will become available in the new 4.0 approach described below.
 
 ### Study 4.0 approach
 
@@ -185,8 +186,6 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
 ### Include tenants and set their applications in the NGINX configuration file
 
-The tenants and the applications are the separate entities so they are now logically configured with the different directives and no API requests are required to set relations between the tenants and applications. Instead these relations are easily defined via the configuration itself.
-
 Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. For example:
 
 ```
@@ -221,7 +220,7 @@ server {
 
 In the configuration above:
 
-* Tenants and applications are configured with the different directives.
+* Tenants and applications are configured with different directives.
 * Relations between the tenants and applications are defined via configuration structure and clearly visible in it.
 
 ## Step 4: Test Wallarm multi-tenant node operation
