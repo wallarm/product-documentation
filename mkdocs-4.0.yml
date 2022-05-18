@@ -257,9 +257,7 @@ nav:
           - General Scanner Settings: user-guides/scanner/configure-scanner.md
           - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
       - Nodes:
-        - Filtering nodes overview: user-guides/nodes/nodes.md
-        - Regular filtering nodes: user-guides/nodes/regular-node.md
-        - Cloud filtering nodes: user-guides/nodes/cloud-node.md
+        - Wallarm nodes: user-guides/nodes/nodes.md
         - CDN filtering nodes: user-guides/nodes/cdn-node.md
       - Rules:
         - Application Profile Rules: user-guides/rules/intro.md
