@@ -15,7 +15,7 @@ Currently, to get the latest version of the [custom ruleset building](../user-gu
 
 The support team will also help you answer all questions related to the multi-tenant node upgrade and necessary reconfiguration.
 
-## Step 2: Follow standard procedure
+## Step 2: Follow standard upgrade procedure
 
 Standard procedures are the ones for:
 
@@ -80,7 +80,9 @@ Notes on the configuration above:
 
 ### Study 4.0 approach
 
-In version 4.0, to rewrite the configuration, do the following:
+In version 4.0, UUID is the way to define the tenant in the node configuration.
+
+To rewrite the configuration, do the following:
 
 1. Get the UUIDs of your tenants.
 1. Include tenants and set their applications in the NGINX configuration file.
@@ -110,10 +112,6 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             ```
     Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
-    Alternatively to sending a request, you can find the `clientid`(s) via the Wallarm Console user interface:
-        
-    ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
-
     Response example:
 
     ```
@@ -136,6 +134,10 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
     ```
 
 1. From the response, copy `clientid`(s).
+
+    Alternatively to sending a request, you can find the `clientid`(s) via the Wallarm Console user interface:
+        
+    ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
 1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:
 
     !!! info "Example of the request sent from your own client"
@@ -186,7 +188,11 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
 ### Include tenants and set their applications in the NGINX configuration file
 
-Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. For example:
+Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. 
+
+Note that if you had the application configuration previously, it is only required to specify tenant UUIDs and keep applications unchanged.
+
+Example:
 
 ```
 server {
