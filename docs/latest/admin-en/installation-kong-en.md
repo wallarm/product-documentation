@@ -7,6 +7,7 @@
 [doc-supported-os]:     supported-platforms.md
 [waf-installation-instr-middle]:             /2.18/admin-en/installation-kong-en/
 [versioning-policy]:                         ../updating-migrating/versioning-policy.md#version-list
+[img-wl-console-users]:         ../images/check-user-no-2fa.png
 
 # Installing with Kong
 
@@ -147,7 +148,50 @@ For example:
 
 ## 5. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/connect-cloud-en-4.0.md"
+!!! info "API Access"
+    The API choice for your filtering node depends on the Cloud you are using. Please, select the API accordingly:
+    
+    * If you are using <https://my.wallarm.com/>, your node requires access to `https://api.wallarm.com`.
+    * If you are using <https://us1.my.wallarm.com/>, your node requires access to `https://us1.api.wallarm.com`.
+    
+    Ensure the access is not blocked by a firewall.
+
+!!! info "If the postanalytics module is installed on a separate server"
+    If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
+
+    ![!Node with several instances](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+
+    The Wallarm node has already been created during the [separate postanalytics module installation](installation-postanalytics-en.md). To connect the initial traffic processing module to the Cloud using the same node credentials:
+
+    1. Copy the node token generated during the separate postanalytics module installation.
+    1. Proceed to the 4th step in the list below.
+
+The filtering node interacts with the Wallarm Cloud. To connect the node to the Cloud:
+
+1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
+     
+    You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
+
+    ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the `register-node` script in a system with the filtering node:
+    
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN>
+        ```
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com
+        ```
+    
+    `<NODE_TOKEN>` is the copied token value.
+    
+    !!! info "If the postanalytics module is installed on a separate server"
+        If the postanalytics module is installed on a separate server, it is recommended to use the node token generated during the [separate postanalytics module installation](installation-postanalytics-en.md).
 
 ## 6. Configure the postanalytics server addresses
 

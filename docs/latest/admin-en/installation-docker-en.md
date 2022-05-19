@@ -38,24 +38,29 @@ The functionality of the filtering node installed inside the Docker container is
 
 ## Run the container passing the environment variables
 
+To run the container:
+
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the container with the created node:
+
+    === "EU Cloud"
+        ```bash
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:3.6.2-1
+        ```
+    === "US Cloud"
+        ```bash
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.2-1
+        ```
+
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
 --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
 
-To run the image, use the command:
-
-=== "EU Cloud"
-    ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:3.6.2-1
-    ```
-=== "US Cloud"
-    ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:3.6.2-1
-    ```
-
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Creates the file `default` with minimal NGINX configuration and passes filtering node configuration in the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
@@ -69,66 +74,71 @@ You can mount the prepared configuration file to the Docker container via the `-
 * [Filtering node directives](configure-parameters-en.md)
 * [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
 
-??? info "See an example of the mounted file with minimal settings"
-    ```bash
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
-        #listen 443 ssl;
+To run the container:
 
-        server_name localhost;
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-        #ssl_certificate cert.pem;
-        #ssl_certificate_key cert.key;
-
-        root /usr/share/nginx/html;
-
-        index index.html index.htm;
-
-        wallarm_mode monitoring;
-        # wallarm_application 1;
-
-        location / {
-                proxy_pass http://example.com;
-                include proxy_params;
-        }
-    }
-    ```
-
-To run the image:
-
-1. Pass required environment variables to the container via the `-e` option:
-
-    --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
-
-2. Mount the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory via the `-v` option.
+    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the container with the created node:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:3.6.2-1
         ```
+
+    * The `-e` option passes the following required environment variables to the container:
+
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+    
+    * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
+
+        ??? info "See an example of the mounted file with minimal settings"
+            ```bash
+            server {
+                listen 80 default_server;
+                listen [::]:80 default_server ipv6only=on;
+                #listen 443 ssl;
+
+                server_name localhost;
+
+                #ssl_certificate cert.pem;
+                #ssl_certificate_key cert.key;
+
+                root /usr/share/nginx/html;
+
+                index index.html index.htm;
+
+                wallarm_mode monitoring;
+                # wallarm_application 1;
+
+                location / {
+                        proxy_pass http://example.com;
+                        include proxy_params;
+                }
+            }
+            ```
+
+        !!! info "Mounting other configuration files"
+            The container directories used by NGINX:
+
+            * `/etc/nginx/conf.d` — common settings
+            * `/etc/nginx/sites-enabled` — virtual host settings
+            * `/var/www/html` — static files
+
+            If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
 
 The command does the following:
 
-* Automatically creates new filtering node in Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Mounts the file `default` into the `/etc/nginx/sites-enabled` container directory.
 * Creates files with filtering node credentials to access Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key
 * Protects the resource `http://example.com`.
-
-!!! info "Mounting other configuration files"
-    The container directories used by NGINX:
-
-    * `/etc/nginx/conf.d` — common settings
-    * `/etc/nginx/sites-enabled` — virtual host settings
-    * `/var/www/html` — static files
-
-    If required, you can mount any files to the listed container directories. The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
 
 ## Logging configuration
 

@@ -17,7 +17,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 * Active Azure subscription
 * [Azure CLI installed](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -33,28 +33,28 @@ To deploy the containerized Wallarm filtering node configured only through envir
 * [ARM template](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-quickstart-template)
 * [Docker CLI](https://docs.microsoft.com/en-us/azure/container-instances/quickstart-docker-cli)
 
-In these instructions, the container is deployed using the Azure CLI as follows:
+In these instructions, the container is deployed using the Azure CLI.
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
     ```bash
     az login
     ```
-2. Create a resource group by using the [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) command. For example, create the group `myResourceGroup` in the East US region with the following command:
+1. Create a resource group by using the [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) command. For example, create the group `myResourceGroup` in the East US region with the following command:
 
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-3. Set local environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-4. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
+1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
     === "Command for the Wallarm EU Cloud"
          ```bash
@@ -64,7 +64,7 @@ In these instructions, the container is deployed using the Azure CLI as follows:
             --dns-name-label wallarm-waf \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
-            --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com'
+            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} NGINX_BACKEND='example.com'
          ```
     === "Command for the Wallarm US Cloud"
          ```bash
@@ -74,7 +74,7 @@ In these instructions, the container is deployed using the Azure CLI as follows:
             --dns-name-label wallarm-waf \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
-            --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
+            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
          ```
         
     * `--resource-group`: name of the resource group created in the second step.
@@ -82,11 +82,11 @@ In these instructions, the container is deployed using the Azure CLI as follows:
     * `--dns-name-label`: DNS name label for the container.
     * `--ports`: port on which the filtering node listens.
     * `--image`: name of the Wallarm node Docker image.
-    * `--environment-variables`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD` explicitly.
+    * `--environment-variables`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
-5. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
-6. [Test the filtering node operation](#testing-the-filtering-node-operation).
+1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Deploying the Wallarm node Docker container configured through the mounted file
 
@@ -94,17 +94,21 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 To deploy the container with environment variables and mounted configuration file:
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
     ```bash
     az login
     ```
-2. Create a resource group by using the [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) command. For example, create the group `myResourceGroup` in the East US region with the following command:
+1. Create a resource group by using the [`az group create`](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az_group_create) command. For example, create the group `myResourceGroup` in the East US region with the following command:
 
     ```bash
     az group create --name myResourceGroup --location eastus
     ```
-3. Create a configuration file with the filtering node settings locally. A example of the file with minimal settings:
+1. Create a configuration file with the filtering node settings locally. A example of the file with minimal settings:
 
     ```bash
     server {
@@ -132,19 +136,15 @@ To deploy the container with environment variables and mounted configuration fil
     ```
 
     [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
-4. Locate the configuration file in one of the ways suitable for mounting data volumes in Azure. All methods are described in the [**Mount data volumes** section of the Azure documentation](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files).
+1. Locate the configuration file in one of the ways suitable for mounting data volumes in Azure. All methods are described in the [**Mount data volumes** section of the Azure documentation](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files).
 
     In these instructions, the configuration file is mounted from the Git repository.
-5. Set local environment variables with email and password used for authentication in the Wallarm Cloud:
+1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_USER='<DEPLOY_USER>'
-    export DEPLOY_PASSWORD='<DEPLOY_PASSWORD>'
+    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
     ```
-
-    * `<DEPLOY_USER>`: email to the **Deploy** or **Administrator** user account in Wallarm Console.
-    * `<DEPLOY_PASSWORD>`: password to the **Deploy** or **Administrator** user account in Wallarm Console.
-6. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
+1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
     === "Command for the Wallarm EU Cloud"
          ```bash
@@ -156,7 +156,7 @@ To deploy the container with environment variables and mounted configuration fil
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD}
+            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN}
          ```
     === "Command for the Wallarm US Cloud"
          ```bash
@@ -168,7 +168,7 @@ To deploy the container with environment variables and mounted configuration fil
             --image registry-1.docker.io/wallarm/node:3.6.2-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables DEPLOY_USER=${DEPLOY_USER} DEPLOY_PASSWORD=${DEPLOY_PASSWORD} WALLARM_API_HOST='us1.api.wallarm.com'
+            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com'
          ```
 
     * `--resource-group`: name of the resource group created in the 2nd step.
@@ -185,11 +185,11 @@ To deploy the container with environment variables and mounted configuration fil
 
         The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
-    * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the values of `DEPLOY_USER` and `DEPLOY_PASSWORD`.
+    * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the value of `DEPLOY_TOKEN`.
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount.md"
-7. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
-8. [Test the filtering node operation](#testing-the-filtering-node-operation).
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
+1. [Test the filtering node operation](#testing-the-filtering-node-operation).
 
 ## Testing the filtering node operation
 

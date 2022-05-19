@@ -17,11 +17,13 @@
 
 # CDN filtering nodes
 
+The **Nodes** section of the Wallarm Console UI allows you to manage the nodes of the [**Wallarm node**](nodes.md) and **CDN node** types. This article is about CDN nodes.
+
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## Creating a node
 
-To create the CDN node, please follow the [instructions](../../waf-installation/cdn-node.md)..
+To create the CDN node, please follow the [instructions](../../waf-installation/cdn-node.md).
 
 ## Viewing details of a node
 

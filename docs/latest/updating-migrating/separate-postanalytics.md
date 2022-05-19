@@ -1,10 +1,16 @@
 [docs-module-update]:   nginx-modules.md
+[img-wl-console-users]:             ../images/check-users.png 
+[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
 #   Upgrading the postanalytics module
 
 These instructions describe the steps to upgrade the postanalytics module 3.4 or 3.2 installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
 
 To upgrade the module 2.18 or lower, please use the [different instructions](older-versions/separate-postanalytics.md).
+
+## Requirements
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Step 1: Add new Wallarm repository
 
@@ -81,7 +87,38 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-## Step 3: Restart the postanalytics module
+## Step 3: Update the node type
+
+The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.0. The regular node type will be removed in future releases, please migrate before.
+
+To replace the regular postanalytics node with the Wallarm node:
+
+1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
+     
+    You can check mentioned settings by navigating to the user list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
+
+    ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation][img-create-wallarm-node]
+1. Copy the generated token.
+1. Execute the `register-node` script to run the **Wallarm node**:
+
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
+        ```
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
+        ```
+    
+    * `<NODE_TOKEN>` is the Wallarm node token.
+    * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
+
+## Step 4: Restart the postanalytics module
 
 === "Debian"
     ```bash
