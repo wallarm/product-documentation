@@ -22,7 +22,7 @@ Tenant accounts are created according to the following structure:
 * **Tenant accounts** are used to:
 
     * Provide tenants with access to the data on detected attacks and to the traffic filtration settings.
-    * Provide users with with access to certain tenant account's data.
+    * Provide users with access to certain tenant account's data.
 
 [Global users](../../user-guides/settings/users.md#user-roles) can switch between accounts in Wallarm Console:
 
@@ -38,7 +38,7 @@ To configure tenant accounts:
 1. Sign up for Wallarm Console and send a request for activating the multitenancy feature for your account to Wallarm technical support.
 1. Get access to the tenant account creation from the Wallarm technical support.
 1. Create a tenant account.
-1. Link tenant's applications to the tenant account.
+1. Associate specific traffic with the tenant and its applications.
 
 ### Step 1: Sign up and send a request to activate the multitenancy feature
 
@@ -72,7 +72,7 @@ After getting your request, the Wallarm technical support will:
 
 ### Step 3: Create the tenant via the Wallarm API
 
-To create the tenant and [link tenant's applications to the account](#step-4-link-tenants-applications-to-the-appropriate-tenant-account), it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI that defines the authentication method:
+To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI that defines the authentication method:
 
 * For requests to be sent from the **API Reference UI**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the API Reference by the link:
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
@@ -101,52 +101,46 @@ At this step, a tenant account linked to a global account will be created.
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
-2. Copy the values of the `id` and `partnerid` parameters from the response to the request. The parameters will be used when linking tenant's applications to the tenant account.
+    ??? info "Show an example of the response"
+        ``` bash
+        {
+        "status":200,
+        "body": {
+            "id":10110,
+            "name":"Tenant 1",
+            "components":["waf"],
+            "vuln_prefix":"TNTST",
+            ...
+            "uuid":"11111111-1111-1111-1111-111111111111",
+            ...
+            }
+        }
+        ```
+
+2. Copy the value of the `uuid` parameter from the response to the request. The parameter will be used when linking tenant's traffic to the tenant account.
 
 Created tenants will be displayed in Wallarm Console for [global users](../../user-guides/settings/users.md#user-roles). For example, `Tenant 1` and `Tenant 2`:
 
 ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
-### Step 4: Link tenant's applications to the appropriate tenant account
+### Step 4: Associate specific traffic with your tenant
 
-!!! info "Perform this step only if..."
-    ... traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
+!!! info "When to configure?"
+    This configuration is performed during the node deployment and only if the traffic of all tenants is [processed or will be processed](deploy-multi-tenant-node.md) by only one Wallarm node.
 
     If a separate node processes each tenant's traffic, please skip this step and proceed to [node deployment and configuration](deploy-multi-tenant-node.md).
 
-An "application" is any tenants' network application protected by the Wallarm node. One tenant may have one or more applications.
+To provide Wallarm Cloud with the information about which traffic should be displayed under which tenant account, we need to associate the specific traffic with the created tenant. To do this, include the tenant in the NGINX configuration file using its `uuid` (obtained in **Step 3**) as the value for the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. For example:
 
-Each tenant's application must be linked to the appropriate tenant account by sending the corresponding request to Wallarm API and setting the `wallarm_application` directive in the node configuration accordingly.
+```
+server {
+  server_name  tenant1.com;
+  wallarm_partner_client_uuid 11111111-1111-1111-1111-111111111111;
+  ...
+}
+```
 
-To link the application to the account:
-
-1. Define the number of applications based on the tenant's application structure and requirements to the [event management in Wallarm Console](../../user-guides/settings/applications.md).
-
-    It can be only one application, e.g.: the Wallarm node protects one domain of a tenant and it is not required to split the traffic by endpoints. If so, it is still required to perform the further steps.
-1. For each application, send the POST request to the route `/v2/partner/<partnerid>/partner_client` with the following parameters:
-
-    Parameter | Description | Request part | Required
-    --------- | -------- | ------------- | ------
-    `partnerid` | The `partnerid` value obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api). | Path | Yes
-    `clientid` | Tenant ID obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api) (`id`).  | Body | Yes
-    `id` | Unique ID for the link between the tenant and the application. The value can be an arbitrary positive integer. | Body | Yes
-    `X-WallarmAPI-UUID` | The Global administrator [user UUID](../../api/overview.md#your-own-client). | Header | Yes, when sending a request from your own client
-    `X-WallarmAPI-Secret` | [Secret key](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
-
-    ??? info "Show an example of the request sent from your own client"
-        === "EU Cloud"
-            ``` bash
-            curl -v -X POST "https://api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"13\"}"
-            ```
-        === "US Cloud"
-            ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
-            ```
-1. Copy and save the `id` values you passed in the requests. These IDs will be used in NGINX configuration (`wallarm_application`) to split several tenants' traffic later.
-
-If you are a Wallarm partner and the Wallarm node protects the traffic of several clients, please repeat the steps above for each client.
-
-When the tenant resource gets the traffic, the configured `id` will be displayed in Wallarm Console → **Settings** → **Applications** for an appropriate tenant account.
+In the configuration above, the traffic targeting `tenant1.com`  will be associated with the client `11111111-1111-1111-1111-111111111111`.
 
 ## Providing users with access to accounts
 
