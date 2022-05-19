@@ -91,53 +91,60 @@ To rewrite the configuration, do the following:
 
 To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../waf-installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
-1. Send the GET request to the route `/v2/partner_client`:
+1. Get `clientid`(s) to find later UUIDs related to them:
 
-    !!! info "Example of the request sent from your own client"
-        === "EU Cloud"
-            ``` bash
-            curl -X GET \
-            'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
-            -H 'accept: application/json' \
-            -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-            -H 'x-wallarmapi-uuid: YOUR_UUID'
+    === "By sending request to API"
+        1. Send the GET request to the route `/v2/partner_client`:
+
+            !!! info "Example of the request sent from your own client"
+                === "EU Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+                    -H 'x-wallarmapi-uuid: YOUR_UUID'
+                    ```
+                === "US Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+                    -H 'x-wallarmapi-uuid: YOUR_UUID'
+                    ```
+            Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
+
+            Response example:
+
             ```
-        === "US Cloud"
-            ``` bash
-            curl -X GET \
-            'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
-            -H 'accept: application/json' \
-            -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-            -H 'x-wallarmapi-uuid: YOUR_UUID'
+            {
+            "body": [
+                {
+                    "id": 1,
+                    "partnerid": <PARTNER_ID>,
+                    "clientid": <CLIENT_1_ID>,
+                    "params": null
+                },
+                {
+                    "id": 3,
+                    "partnerid": <PARTNER_ID>,
+                    "clientid": <CLIENT_2_ID>,
+                    "params": null
+                }
+            ]
+            }
             ```
-    Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
-    Response example:
+        1. From the response, copy `clientid`(s).
+    
+    === "Via the Wallarm Console"
 
-    ```
-    {
-    "body": [
-        {
-            "id": 1,
-            "partnerid": <PARTNER_ID>,
-            "clientid": <CLIENT_1_ID>,
-            "params": null
-        },
-        {
-            "id": 3,
-            "partnerid": <PARTNER_ID>,
-            "clientid": <CLIENT_2_ID>,
-            "params": null
-        }
-      ]
-    }
-    ```
-
-1. From the response, copy `clientid`(s).
-
-    Alternatively to sending a request, you can find the `clientid`(s) via the Wallarm Console user interface:
+        1. Find the `clientid`(s) via the Wallarm Console user interface:
         
-    ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+            ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        1. Copy `clientid`(s) from the **ID** column.
+
 1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:
 
     !!! info "Example of the request sent from your own client"
@@ -190,7 +197,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
 Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. 
 
-Note that if you had the application configuration previously, it is only required to specify tenant UUIDs and keep applications unchanged.
+If the NGINX configuration used for the node 3.6 or lower involves application configuration, only specify tenant UUIDs and keep application configuration unchanged.
 
 Example:
 
