@@ -91,7 +91,7 @@ To rewrite the configuration, do the following:
 
 To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../waf-installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
-1. Get `clientid`(s) to find later UUIDs related to them:
+1. Get `clientid`(s) to later find UUIDs related to them:
 
     === "By sending request to API"
         1. Send the GET request to the route `/v2/partner_client`:
@@ -136,9 +136,9 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             }
             ```
 
-        1. From the response, copy `clientid`(s).
+        1. Copy `clientid`(s) from the response.
     
-    === "Via the Wallarm Console"
+    === "Via Wallarm Console"
 
         1. Find the `clientid`(s) via the Wallarm Console user interface:
         
