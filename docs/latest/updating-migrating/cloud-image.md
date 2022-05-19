@@ -11,6 +11,10 @@ These instructions describe the steps to upgrade the cloud node image 3.4 or 3.2
 
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/cloud-image.md).
 
+## Requirements
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
+
 ## Step 1: Launch a new instance with the filtering node 3.6
 
 1. Open the Wallarm filtering node image on the cloud platform marketplace and proceed to the image launch:
@@ -29,7 +33,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 1. Connect to the filtering node instance via SSH. More detailed instructions for connecting to the instances are available in the cloud platform documentation:
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
-2. Connect the filtering node to Wallarm Cloud using a new node token or username and password to Wallarm Console as described in the instructions for the cloud platform:
+2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
       * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filtering-node-to-the-wallarm-cloud)
       * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
 

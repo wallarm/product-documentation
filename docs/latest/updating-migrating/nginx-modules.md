@@ -11,6 +11,8 @@
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[img-wl-console-users]:             ../images/check-users.png 
+[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
 # Upgrading Wallarm NGINX modules
 
@@ -22,6 +24,10 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 3.4 o
 * [Kong module](../admin-en/installation-kong-en.md)
 
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/nginx-modules.md).
+
+## Requirements
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
 ## Upgrade procedure
 
@@ -144,13 +150,70 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo yum update
         ```
 
-## Step 4: Update the Wallarm blocking page
+## Step 4: Update the node type
+
+The deployed node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.0. The regular node type will be removed in future releases, please migrate before.
+
+!!! info "If the postanalytics module is installed on a separate server"
+    If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
+
+    ![!Node with several instances](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+
+    The Wallarm node has already been created during the [separate postanalytics module upgrade](separate-postanalytics.md). To connect the initial traffic processing module to the Cloud using the same node credentials:
+
+    1. Copy the node token generated during the separate postanalytics module upgrade.
+    1. Proceed to the 4th step in the list below.
+
+To replace the regular node with the Wallarm node:
+
+1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
+     
+    You can check mentioned settings by navigating to the user list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
+
+    ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation][img-create-wallarm-node]
+1. Copy the generated token.
+1. Pause the NGINX service on the server with the node of the older version:
+
+    === "Debian"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx stop
+        ```
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+
+    The NGINX service pausing mitigates the risk of incorrect RPS calculation.
+1. Execute the `register-node` script to run the **Wallarm node**:
+
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
+        ```
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
+        ```
+    
+    * `<NODE_TOKEN>` is the Wallarm node token.
+    * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
+
+## Step 5: Update the Wallarm blocking page
 
 In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
 
 If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to the blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-## Step 5: Rename deprecated NGINX directives
+## Step 6: Rename deprecated NGINX directives
 
 Rename the following NGINX directive if it is explicitly specified in configuration files:
 
@@ -158,17 +221,37 @@ Rename the following NGINX directive if it is explicitly specified in configurat
 
 We only changed the name of the directive, its logic remains the same. Directive with former name will be deprecated soon, so you are recommended to rename it before.
 
-## Step 6: Update API port
+## Step 7: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 7: Restart NGINX
+## Step 8: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 8: Test Wallarm node operation
+## Step 9: Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
+
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
+
+    * Blocks the request if the appropriate [filtration mode](../admin-en/configure-wallarm-mode.md) is configured.
+    * Returns the [custom blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
+2. Open Wallarm Console → **Events** in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and make sure that:
+
+    * Attacks are displayed in the list.
+    * Hit details display the Wallarm node UUID.
+
+    ![!Attacks in the interface][img-test-attacks-in-ui]
+
+## Step 10: Delete the node of the previous version
+
+Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
+
+If the postanalytics module is installed on a separate server, please also delete the node instance related to this module.
 
 ## Settings customization
 

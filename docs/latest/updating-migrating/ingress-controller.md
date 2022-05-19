@@ -11,6 +11,10 @@ These instructions describe the steps to upgrade deployed Wallarm Ingress Contro
 
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/ingress-controller.md).
 
+## Requirements
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
+
 ## Step 1: Update the repository containing Wallarm Helm charts
 
 === "If using the Helm repository"
