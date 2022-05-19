@@ -19,6 +19,36 @@ There are the following changes available in Wallarm node 4.0:
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
 
+### Unified registration of nodes in the Wallarm Cloud by tokens
+
+The release 4.0 enables you to register the Wallarm node in the Cloud by the **token** on [any supported platform](../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
+
+Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
+
+* Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
+* Users' data remains securely stored in the Wallarm Cloud.
+* Two-factor authentication enabled for the user accounts does not prevent nodes from being registered in the Wallarm Cloud.
+* The initial traffic processing and request postanalytics modules deployed to separate servers can be registered in the Cloud by one node token.
+
+Changes in node registration methods result in some updates in node types:
+
+* The node supporting the unified registration by token has the **Wallarm node** type. The script to be run on the server to register the node is named `register-node`.
+
+    In versions 3.6 and lower, the Wallarm node was named [**cloud node**](/3.6/user-guides/nodes/cloud-node/). It also supported registration by the token but with the different script named `addcloudnode`.
+
+    The cloud node is not required to be migrated to the new node type.
+* The [**regular node**](/3.6/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
+
+    Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus, Kong module or the Docker container looks as follows:
+
+    1. Create the **Wallarm node** in Wallarm Console and copy the generated token.
+    1. Run the `register-node` script with the node token passed or run the Docker container with the `DEPLOY_TOKEN` variable defined.
+
+    !!! info "Regular node support"
+        The regular node type is deprecated in release 4.0 and will be removed in future releases.
+
+        It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
+
 ### Changes in system requirements for the filtering node installation
 
 Starting with version 4.0, the filtering node uploads data to the Cloud using the `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) API endpoints instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
