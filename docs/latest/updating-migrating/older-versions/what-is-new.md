@@ -22,6 +22,14 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
 [See the full list of supported installation options →](../../admin-en/supported-platforms.md)
 
+## New method for the serverless Wallarm node deployment
+
+The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
+
+[Instructions on the CDN node deployment](../../waf-installation/cdn-node.md)
+
+The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
+
 ## System requirements for the filtering node installation
 
 * The filtering node now supports IP address [whitelisting, blacklisting, and greylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
