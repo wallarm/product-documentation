@@ -38,6 +38,14 @@ Changes in node registration methods result in some updates in node types:
 
         It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
 
+## New method for the serverless Wallarm node deployment
+
+The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
+
+[Instructions on the CDN node deployment](../waf-installation/cdn-node.md)
+
+The [Quickstart guide](../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
+
 ## Simplified multi-tenant node configuration
 
 For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
