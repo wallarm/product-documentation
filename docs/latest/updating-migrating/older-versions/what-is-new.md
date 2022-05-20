@@ -70,6 +70,8 @@ For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), t
 * The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive and [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) Envoy parameter have been added to configure the unique identifier of a tenant.
 * The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive and [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param) Envoy parameter behavior has been changed. Now it is **only** used to configure an application ID.
 
+[Instructions on the multi-tenant node upgrade](../multi-tenant.md)
+
 ## Filtration modes
 
 * New **safe blocking** filtration mode.
