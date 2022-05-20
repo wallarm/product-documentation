@@ -12,7 +12,11 @@ To upgrade the module 2.18 or lower, please use the [different instructions](old
 
 --8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
-## Step 1: Add new Wallarm repository
+## Step 1: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+## Step 2: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version packages. Please use the commands for the appropriate platform.
 
@@ -66,7 +70,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
         ```
 
-## Step 2: Upgrade the Tarantool packages
+## Step 3: Upgrade the Tarantool packages
 
 === "Debian"
     ```bash
@@ -87,7 +91,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-## Step 3: Update the node type
+## Step 4: Update the node type
 
 The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
@@ -118,7 +122,7 @@ To replace the regular postanalytics node with the Wallarm node:
     * `<NODE_TOKEN>` is the Wallarm node token.
     * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
 
-## Step 4: Restart the postanalytics module
+## Step 5: Restart the postanalytics module
 
 === "Debian"
     ```bash
