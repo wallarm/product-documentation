@@ -9,25 +9,33 @@
 * Pod exposed to the public Internet or other potential sources of malicious web and API attacks
 * Kubernetes Ingress controller or external load balancer (like AWS ELB or ALB) to add the HTTP request header `X-Forwarded-For`, which contains the real public IP address of the connecting client
 * Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Username and password of the user with the **Deploy** role added to your company's Wallarm account. To add a new user, please follow these [instructions](../../../user-guides/settings/users.md#create-a-user)
+* Access to the account with the **Administrator** role in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 
 ## Installation
 
-1. [Create](#step-1-creating-wallarm-configmap) Wallarm ConfigMap.
-3. [Update](#step-2-updating-the-deployment-object-in-kubernetes) the definition of the `Deployment` object in Kubernetes.
-4. [Update](#step-3-updating-the-service-object-in-kubernetes) the definition of the `Service` object in Kubernetes.
-5. [Update](#step-4-updating-the-helm-chart-configuration-file) the Helm chart configuration file.
-6. [Test](#step-5-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
+1. [Create](#step-1-creating-the-wallarm-node) the Wallarm node.
+1. [Create](#step-2-creating-wallarm-configmap) Wallarm ConfigMap.
+1. [Update](#step-3-updating-the-deployment-object-in-kubernetes) the definition of the `Deployment` object in Kubernetes.
+1. [Update](#step-4-updating-the-service-object-in-kubernetes) the definition of the `Service` object in Kubernetes.
+1. [Update](#step-5-updating-the-helm-chart-configuration-file) the Helm chart configuration file.
+1. [Test](#step-6-testing-the-wallarm-sidecar-container) the Wallarm sidecar container.
 
 --8<-- "../include/waf/installation/already-deployed-sidecar-helm.md"
 
-### Step 1: Creating Wallarm ConfigMap
+### Step 1: Creating the Wallarm node
+
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token. The value will be required to be specified in the Helm chart configuration.
+
+### Step 2: Creating Wallarm ConfigMap
 
 Go to the Helm chart directory → the `templates` folder and create a `wallarm-sidecar-configmap.yaml` template with the following content:
 
 --8<-- "../include/kubernetes-sidecar-container/wallarm-sidecar-configmap-helm-template-latest.md"
 
-### Step 2: Updating the Deployment object in Kubernetes
+### Step 3: Updating the Deployment object in Kubernetes
 
 1. Return to the Helm chart directory → the `templates` folder and open the template defining the `Deployment` object for the application. A complex application can have several `Deployment` objects for different components of the application - please find an object which defines pods which are actually exposed to the Internet. For example:
 
@@ -41,11 +49,11 @@ Go to the Helm chart directory → the `templates` folder and create a `wallar
     
     An example of the template with added elements is provided below. Elements for copying are indicated by the `Wallarm element` comment.
 
-    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-helm-3.0.md"
+    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-helm-latest.md"
 
 3. Update the `ports.containerPort` value in sidecar container definition following the code comments.
 
-### Step 3: Updating the Service object in Kubernetes
+### Step 4: Updating the Service object in Kubernetes
 
 1. Return to the Helm chart directory → the `templates` folder and open the template defining the `Service` object that points to `Deployment` modified in the previous step. For example:
 
@@ -55,13 +63,13 @@ Go to the Helm chart directory → the `templates` folder and create a `wallar
 
     --8<-- "../include/kubernetes-sidecar-container/service-template-sidecar-port.md"
 
-### Step 4: Updating the Helm chart configuration file
+### Step 5: Updating the Helm chart configuration file
 
 1. Return to the Helm chart directory and open the `values.yaml` file.
 
 2. Copy the `wallarm` object definition provided below to `values.yaml` and update parameter values following the code comments.
 
-    --8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-3.6.md"
+    --8<-- "../include/kubernetes-sidecar-container/values-wallarm-description-4.0.md"
 
 3. Make sure the `values.yaml` file is valid using the following command:
 
@@ -81,6 +89,6 @@ Go to the Helm chart directory → the `templates` folder and create a `wallar
 !!! warning "NetworkPolicy object in Kubernetes"
     If the application also uses the `NetworkPolicy` object it should be updated to reflect the Wallarm sidecar container port specified above.
 
-### Step 5: Testing the Wallarm sidecar container
+### Step 6: Testing the Wallarm sidecar container
 
 --8<-- "../include/kubernetes-sidecar-container/test-sidecar-container-in-kubernetes.md"

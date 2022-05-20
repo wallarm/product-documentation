@@ -83,7 +83,7 @@ Wallarm API endpoint. Can be:
 
 ### controller.wallarm.token
 
-The *Cloud Node* token is created on the Wallarm portal in the [EU](https://my.wallarm.com/nodes) or [US](https://us1.my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
+The *Wallarm Node* token is created on the Wallarm portal in the [EU](https://my.wallarm.com/nodes) or [US](https://us1.my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
 
 **Default value**: `not specified`
 

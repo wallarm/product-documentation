@@ -291,3 +291,6 @@
 /2.18/partner-waf-node/creating-partner-account /2.18/waf-installation/multi-tenant/configure-accounts
 /2.18/partner-waf-node/connecting-clients /2.18/waf-installation/multi-tenant/configure-accounts
 /2.18/partner-waf-node/installing-partner-waf-node /2.18/waf-installation/multi-tenant/deploy-multi-tenant-node
+
+/user-guides/nodes/regular-node/ /user-guides/nodes/nodes/
+/user-guides/nodes/cloud-node/ /user-guides/nodes/nodes/

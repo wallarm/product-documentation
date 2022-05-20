@@ -255,8 +255,8 @@ nav:
           - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
       - Nodes:
         - Filtering nodes overview: user-guides/nodes/nodes.md
+        - Wallarm nodes: user-guides/nodes/cloud-node.md
         - Regular filtering nodes: user-guides/nodes/regular-node.md
-        - Cloud filtering nodes: user-guides/nodes/cloud-node.md
       - Rules:
         - Application Profile Rules: user-guides/rules/intro.md
         - Inspecting Application Profile Rules: user-guides/rules/view.md

@@ -1,4 +1,4 @@
-[img-wl-console-users]:             ../images/check-users.png 
+[img-wl-console-users]:             ../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
@@ -20,6 +20,8 @@
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [waf-installation-instr-latest]:     /waf-installation/nginx-plus/
+[img-node-with-several-instances]:  ../images/user-guides/nodes/wallarm-node-with-two-instances.png
+[img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
 # Installing dynamic Wallarm module for NGINX Plus
 
@@ -175,7 +177,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 5. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
 
 ### 6. Update Wallarm node configuration
 

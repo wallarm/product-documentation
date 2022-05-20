@@ -16,14 +16,14 @@ These instructions describe the steps to upgrade deployed Wallarm Ingress Contro
 
     === "EU Cloud"
         ``` bash
-        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<NODE_TOKEN> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
     === "US Cloud"
         ``` bash
-        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --set controller.wallarm.enabled=true,controller.wallarm.token=<NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-    * `<YOUR_CLOUD_NODE_TOKEN>` is the token of the cloud node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
+    * `<NODE_TOKEN>` is the token of the Wallarm node received when [installing Wallarm Ingress controller](../admin-en/installation-kubernetes-en.md)
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller to update
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 

@@ -27,7 +27,7 @@ To connect the node to the Cloud using the token, proceed with the following ste
 
 1. Create a new node in the **Nodes** section of Wallarm Console.
     1. Click the **Create new node** button.
-    2. Create the cloud node.
+    2. Create the **Wallarm node**.
 2. Copy the node token.
 3. On the virtual machine run the `addcloudnode` script:
     

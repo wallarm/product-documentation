@@ -1,7 +1,7 @@
 [tarantool-status]:           ../images/tarantool-status.png
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
-[img-wl-console-users]:             ../images/check-users.png 
+[img-wl-console-users]:             ../images/check-user-no-2fa.png
 
 # Separate postanalytics module installation
 
@@ -12,7 +12,7 @@ These instructions provide the steps to install the postanalytics module on a se
 ## Requirements
 
 * NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../waf-installation/nginx-plus.md)
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
@@ -113,31 +113,31 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
 
 ### 3. Connect the postanalytics module to Wallarm Cloud
 
-The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create a separate Wallarm node for the postanalytics module. Created node will get the security rules from the Cloud and upload attacks data to the Cloud.
+The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create the Wallarm node for the postanalytics module. Created node will get the security rules from the Cloud and upload attacks data to the Cloud.
 
 To create the filtering node and connect the postanalytics module to the Cloud:
 
-1. Make sure that your Wallarm account has the **Administrator** or **Deploy** role enabled and two-factor authentication disabled in Wallarm Console.
+1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-2.  Run the `addnode` script in a system with the installed postanalytics module packages:
+    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the `register-node` script in a system with the installed postanalytics module packages:
     
     === "EU Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/addnode --no-sync
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync
         ```
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com --no-sync
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --no-sync
         ```
-3. Input the email and password for your account in Wallarm Console.
-4. Input the postanalytics node name or click Enter to use automatically generated name.
 
-    The specified name can be changed in Wallarm Console → **Nodes** later.
-5. Open the Wallarm Console → **Nodes** section in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and ensure a new node is added to the list.
+    `<NODE_TOKEN>` is the copied token value.
 
 ### 4. Update postanalytics module configuration
 

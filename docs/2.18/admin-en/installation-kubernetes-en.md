@@ -5,7 +5,7 @@
 * Kubernetes platform version 1.21 and lower
 * [Helm](https://helm.sh/) package manager
 * Compatibility of your services with the official [NGINX Ingress Controller](https://github.com/kubernetes/ingress-nginx) version 0.26.2
-* Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Access to `https://api.wallarm.com:444` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 
@@ -29,8 +29,9 @@
 1. Go to Wallarm Console → **Nodes** via the link below:
     * https://my.wallarm.com/nodes for the EU Cloud
     * https://us1.my.wallarm.com/nodes for the US Cloud
-2. Create a filtering node with the **Cloud** type and copy the token.
-    ![!Creation of a cloud node](../images/installation-kubernetes/create-cloud-node.png)
+2. Create a filtering node with the **Wallarm node** type and copy the generated token.
+
+    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 3. Clone the repository of Wallarm Helm chart:
     ```
     git clone https://github.com/wallarm/ingress-chart --branch 2.18.1-8 --single-branch
@@ -39,14 +40,14 @@
 
     === "EU Cloud"
         ```bash
-        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<NODE_TOKEN> <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
     === "US Cloud"
         ```bash
-        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<YOUR_CLOUD_NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.wallarm.enabled=true,controller.wallarm.token=<NODE_TOKEN>,controller.wallarm.apiHost=us1.api.wallarm.com <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-    * `<YOUR_CLOUD_NODE_TOKEN>` is the cloud node token
+    * `<NODE_TOKEN>` is the Wallarm node token
     * `<INGRESS_CONTROLLER_NAME>` is the name of the Wallarm Ingress controller
     * `<KUBERNETES_NAMESPACE>` is the namespace of your Ingress
 

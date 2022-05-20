@@ -32,16 +32,23 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
     docker pull wallarm/envoy:3.6.1-1
     ```
 
-## Step 2: Stop the running container
+## Step 2: Create a new Wallarm node
 
-```bash
-docker stop <RUNNING_CONTAINER_NAME>
-```
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
 
 ## Step 3: Switch from deprecated configuration options
 
-There are the following deprecated configuration options:
+The following configuration options have been deprecated:
 
+* The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
+
+    * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
+    * The token-based approach has been included. To connect the container to the Cloud, run the container with the `DEPLOY_TOKEN` variable containing the [Wallarm node token](#step-2-create-a-new-wallarm-node) copied from the Wallarm Console UI.
+
+    It is recommended to use the new approach to run the image 4.0. The "email and password"-based approach will be removed in future releases, please migrate before.
 * The following NGINX directive has been renamed:
 
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
@@ -72,9 +79,15 @@ If your Docker container was configured to return the `&/usr/share/nginx/html/wa
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 6: Run the container using the updated image
+## Step 6: Stop the running container
 
-Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones [listed in the previous step](#step-3-switch-from-deprecated-configuration-options).
+```bash
+docker stop <RUNNING_CONTAINER_NAME>
+```
+
+## Step 7: Run the container using the new image
+
+Run the container using the new image. You can pass the same configuration parameters that were passed when running a previous image version except for the [deprecated ones](#step-3-switch-from-deprecated-configuration-options).
 
 There are two options for running the container using the updated image:
 
@@ -85,10 +98,10 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 7: Test the filtering node operation
+## Step 8: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 8: Delete the filtering node of the previous version
+## Step 9: Delete the filtering node of the previous version
 
-If the deployed image of the version 3.6 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 3.6 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

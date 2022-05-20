@@ -32,25 +32,28 @@ Users of Wallarm clients can have the following roles:
 * **Read Only** with access to view main Wallarm settings
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
+    !!! warning "Using the Deploy role to install the Wallarm node 4.0"
+        The **Deploy** user role is recommended to be used to install only nodes 3.6 and lower since the [`addnode` script is deprecated in the release of version 4.0](../../updating-migrating/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+
 The [multitenancy](../../waf-installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
 More detailed information about access of different user roles to Wallarm entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
 
-| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | Deploy                            |
-|---------------------|--------------------------------------|--------------------------|------------------------------|-----------------------------------|
-| **Filtering nodes**       | View and manage                      | View                     | View                         | Create using the `addnode` and `addcloudnode` scripts |
-| **Dashboard**       | View                                 | View                     | View                         | -                                 |
-| **Events**          | View and manage                      | View and manage          | View                         | -                                 |
-| **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | -                                 |
-| **Scanner**         | View and manage                      | View and manage          | View                         | -                                 |
-| **Triggers**        | View and manage                      | -                        | -                            | -                                 |
-| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
-| **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
-| **Filtration mode**        | View and manage                      | View                     | View                         | -                                 |
-| **Applications**    | View and manage                      | View                     | View                         | -                                 |
-| **Integrations**    | View and manage                      | -                        | -                            | -                                 |
-| **Users**           | View and manage                      | -                        | View                         | -                                 |
-| **Activity log**    | View                                 | -                        | View                         | -                                 |
+| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only |
+|---------------------|--------------------------------------|--------------------------|------------------------------|
+| **Filtering nodes**       | View and manage                      | View                     | View                         |
+| **Dashboard**       | View                                 | View                     | View                         |
+| **Events**          | View and manage                      | View and manage          | View                         |
+| **Vulnerabilities** | View and manage                      | View and manage          | View and manage              |
+| **Scanner**         | View and manage                      | View and manage          | View                         |
+| **Triggers**        | View and manage                      | -                        | -                            |
+| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              |
+| **Rules**           | View and manage                      | View and manage          | View                         |
+| **Filtration mode**        | View and manage                      | View                     | View                         |
+| **Applications**    | View and manage                      | View                     | View                         |
+| **Integrations**    | View and manage                      | -                        | -                            |
+| **Users**           | View and manage                      | -                        | View                         |
+| **Activity log**    | View                                 | -                        | View                         |
 
 ## Viewing Users
 

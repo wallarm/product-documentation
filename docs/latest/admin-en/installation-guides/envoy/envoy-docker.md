@@ -19,7 +19,7 @@ Wallarm API Security module is designed as an Envoy HTTP filter for requests pro
 
 ## Requirements
 
-* Access to the account with the **Deploy** or **Administrator** role and two‑factor authentication disabled in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
@@ -31,32 +31,34 @@ The filtering node configuration parameters can be passed to the `docker run` co
 
 ## Run the container passing the environment variables
 
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the container with the created node:
+
+    === "EU Cloud"
+        ```bash
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:3.6.1-1
+        ```
+    === "US Cloud"
+        ```bash
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:3.6.1-1
+        ```
+
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
 Environment variable | Description| Required
 --- | ---- | ----
-`DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-`DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
+`DEPLOY_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Previous variables configuring access to the Wallarm Cloud</p> <p>Before the release of version 4.0, the variables prior to `DEPLOY_TOKEN` were `DEPLOY_USERNAME` and `DEPLOY_PASSWORD`. Starting from the new release, it is recommended to use the new token-based approach to access the Wallarm Cloud. [More details on migrating to the new node version](/updating-migrating/docker-container/)</p></div> | Yes
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [greylisted IP addresses](../../../user-guides/ip-lists/greylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
 `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
 
-To run the image, use the command:
-
-=== "EU Cloud"
-    ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:3.6.1-1
-    ```
-=== "US Cloud"
-    ```bash
-    docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:3.6.1-1
-    ```
-
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Creates the file `envoy.yaml` with minimal Envoy configuration in the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
@@ -70,31 +72,35 @@ You can mount the prepared file `envoy.yaml` to the Docker container via the `-v
 * Filtering node settings as described in the [instructions](../../configuration-guides/envoy/fine-tuning.md)
 * Envoy settings as described in the [Envoy instructions](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)
 
-To run the image:
+To run the container:
 
-1. Pass required environment variables to the container via the `-e` option:
+1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    Environment variable | Description| Required
-    --- | ---- | ----
-    `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
-    `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
-    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
-    `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
-
-2. Mount the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory via the `-v` option.
+    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+1. Copy the generated token.
+1. Run the container with the created node:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_USER='deploy@example.com' -e DEPLOY_PASSWORD='very_secret' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
         ```
+
+    * The `-e` option passes the following required environment variables to the container:
+
+    Environment variable | Description| Required
+    --- | ---- | ----
+    `DEPLOY_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Previous variables configuring access to the Wallarm Cloud</p> <p>Before the release of version 4.0, the variables prior to `DEPLOY_TOKEN` were `DEPLOY_USERNAME` and `DEPLOY_PASSWORD`. Starting from the new release, it is recommended to use the new token-based approach to access the Wallarm Cloud. [More details on migrating to the new node version](/updating-migrating/docker-container/)</p></div> | Yes
+    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+    `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
+
+    * The `-v` option mounts the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory.
 
 The command does the following:
 
-* Automatically creates new filtering node in the Wallarm Cloud. Created filtering node will be displayed in Wallarm Console → **Nodes**.
 * Mounts the file `envoy.yaml` into the `/etc/envoy` container directory.
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key

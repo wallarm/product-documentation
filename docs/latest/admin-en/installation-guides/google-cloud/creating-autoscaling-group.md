@@ -56,7 +56,7 @@ The specified number of instances will automatically launch upon the successful 
 
 You can check that the auto scaling group was created correctly by viewing the number of launched instances in the group and comparing this data point with the number of filtering nodes connected to the Wallarm Cloud.
 
-You can do this using Wallarm Console. For example, if two instances with filtering nodes are concurrently operating, Wallarm Console will display this number for the corresponding cloud node in the **Nodes** section.
+You can do this using Wallarm Console. For example, if two instances with filtering nodes are concurrently operating, Wallarm Console will display this number for the corresponding Wallarm node in the **Nodes** section.
 
 ![!The **Nodes** nodes tab on the Wallarm web interface][img-checking-nodes-operation]
 

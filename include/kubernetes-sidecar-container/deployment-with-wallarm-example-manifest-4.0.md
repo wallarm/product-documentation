@@ -2,9 +2,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    # Wallarm element: annotation to update running pods after changing Wallarm ConfigMap
-    checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
   name: myapp
 spec:
   selector:
@@ -18,27 +15,31 @@ spec:
       containers:
         # Wallarm element: definition of Wallarm sidecar container
         - name: wallarm
-          image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
-          imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
+          image: wallarm/node:3.6.2-1
+          imagePullPolicy: Always
           env:
+          # Wallarm API endpoint: 
+          # "api.wallarm.com" for the EU Cloud
+          # "us1.api.wallarm.com" for the US Cloud
           - name: WALLARM_API_HOST
-            value: {{ .Values.wallarm.wallarm_host_api | quote }}
-          - name: DEPLOY_USER
-            value: {{ .Values.wallarm.deploy_username | quote }}
-          - name: DEPLOY_PASSWORD
-            value: {{ .Values.wallarm.deploy_password | quote }}
+            value: "api.wallarm.com"
+          # Wallarm node token
+          - name: DEPLOY_TOKEN
+            value: "token"
           - name: DEPLOY_FORCE
             value: "true"
+          # Amount of memory in GB for request analytics data, 
+          # recommended value is 75% of the total server memory
           - name: TARANTOOL_MEMORY_GB
-            value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
+            value: "2"
           ports:
           - name: http
-            # Port on which the Wallarm sidecar container accepts requests
+            # Port on which the Wallarm sidecar container accepts requests 
             # from the Service object
             containerPort: 80
-          volumeMounts:
-          - mountPath: /etc/nginx/sites-enabled
-            readOnly: true
+          volumeMounts:	
+          - mountPath: /etc/nginx/sites-enabled	
+            readOnly: true	
             name: wallarm-nginx-conf
         # Definition of your main app container
         - name: myapp
@@ -49,7 +50,7 @@ spec:
               cpu: "500m"
           ports:
           # Port on which the application container accepts incoming requests
-          - containerPort: 8080 
+          - containerPort: 8080
       volumes:
       # Wallarm element: definition of the wallarm-nginx-conf volume
       - name: wallarm-nginx-conf

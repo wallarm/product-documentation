@@ -40,7 +40,7 @@ The functionality of the filtering node installed inside the Docker container is
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-3.6.md"
 
 To run the image, use the command:
 

@@ -55,7 +55,7 @@ If upgrading Wallarm node 3.0 or lower:
 1. Connect to the filtering node instance via SSH. More detailed instructions for connecting to the instances are available in the cloud platform documentation:
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
-2. Connect the filtering node to Wallarm Cloud using a new cloud node token or username and password to Wallarm Console as described in the instructions for the cloud platform:
+2. Connect the filtering node to Wallarm Cloud using a new node token or username and password to Wallarm Console as described in the instructions for the cloud platform:
       * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filtering-node-to-the-wallarm-cloud)
       * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
 
