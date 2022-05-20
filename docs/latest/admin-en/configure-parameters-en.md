@@ -56,7 +56,7 @@ api:
     When updating configuration you used for your filtering node of the version before 4.0:
 
     * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#multitenancy-reconfiguration).
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy).
 
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
@@ -256,7 +256,7 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
     When updating configuration you used for your filtering node of the version before 4.0:
 
     * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#multitenancy-reconfiguration).
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy).
 
 ### wallarm_key_path
 
@@ -385,13 +385,13 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_partner_client_uuid
 
-!!! warning "Predecessors of the directive"
-    In Wallarm node 3.4 and lower, role of this directive was performed by the `wallarm_instance` directive (now deprecated), in 3.6 – by the [`wallarm_application`](#wallarm_application) directive (now is used for different purpose).
-
 Unique identifier of the [tenant](../waf-installation/multi-tenant/overview.md) for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
+
+!!! info
+    This parameter can be set inside the http, server, and location blocks.
 
 Configuration example:
 
