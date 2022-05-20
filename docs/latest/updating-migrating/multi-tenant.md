@@ -142,7 +142,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
         1. Find the `clientid`(s) via the Wallarm Console user interface:
         
-            ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+            ![!Selector of tenants in Wallarm Console](../images/partner-waf-node/clients-selector-in-console-ann.png)
         1. Copy `clientid`(s) from the **ID** column.
 
 1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:

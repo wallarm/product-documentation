@@ -137,6 +137,8 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo yum update
     ```
 
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+
 ### Filtering node and postanalytics on different servers
 
 !!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
@@ -209,6 +211,10 @@ To replace the regular node with the Wallarm node:
         ```bash
         sudo systemctl stop nginx
         ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl stop nginx
+        ```
 
     The NGINX service pausing mitigates the risk of incorrect RPS calculation.
 1. Execute the `register-node` script to run the **Wallarm node**:
@@ -246,7 +252,7 @@ We only changed directive names, their logic remains the same. The directives wi
 
 ## Step 8: Restart NGINX
 
---8<-- "../include/waf/restart-nginx-2.16.md"
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
 ## Step 9: Test Wallarm node operation
 

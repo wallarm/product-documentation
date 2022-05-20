@@ -327,7 +327,7 @@ To re‑create the Ingress controller release:
         terraform taint helm_release.release
         ```
     
-    3. Create the new release with the Ingress controller 3.6:
+    3. Create the new release with the Ingress controller 4.0:
 
         ```bash
         terraform apply -target=helm_release.release
@@ -408,7 +408,7 @@ If you upgrade the node from version 3.4 or 3.2, adjust the following Ingress an
 
 1. If the Ingress is annotated with `nginx.ingress.kubernetes.io/wallarm-instance`, rename this annotation to `nginx.ingress.kubernetes.io/wallarm-application`.
 
-    It is only annotation name that has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
+    It is annotation name that has changed, its logic remains the same. The annotation with the former name will be deprecated soon, so you are recommended to rename it before.
 2. If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via Ingress annotations is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
     In new node versions, the Wallarm blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and no support email specified by default.

@@ -26,17 +26,27 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/3.6/x86_64/Packages/wallarm-node-repo-1-6.el6.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/4.0/x86_64/wallarm-node-repo-4-0.el6.noarch.rpm
     ```
 === "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
-        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can [install](../admin-en/installation-postanalytics-en.md) the postanalytics module 3.6 on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
+        Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
+
+        * [Installation instructions for NGINX `stable`](../waf-installation/nginx/dynamic-module.md)
+        * [Installation instructions for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
+        * [Installation instructions for NGINX Plus](../waf-installation/nginx-plus.md)
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum remove wallarm-node-repo
+    sudo yum clean all
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
+    ```
 
 **Debian and Ubuntu**
 
@@ -50,24 +60,24 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/
+        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/4.0/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.6/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/
         ```
 
 ## Step 3: Upgrade the Tarantool packages
@@ -90,6 +100,12 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum update
     ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum update
+    ```
+
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
 
 ## Step 4: Update the node type
 
@@ -133,6 +149,10 @@ To replace the regular postanalytics node with the Wallarm node:
     sudo service wallarm-tarantool restart
     ```
 === "CentOS 7.x or Amazon Linux 2.0.2021x and lower"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
