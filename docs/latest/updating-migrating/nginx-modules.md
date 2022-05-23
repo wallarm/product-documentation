@@ -99,6 +99,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
         ```bash
         deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
         ```
+    === "Debian 11.x (bullseye)"
+        ```bash
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.0/
+        ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/
