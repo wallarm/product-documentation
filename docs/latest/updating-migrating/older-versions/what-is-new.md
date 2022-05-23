@@ -43,7 +43,7 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-The release 4.0 enables you to register the Wallarm node in the Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
+The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
 
 Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
 
