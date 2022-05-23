@@ -18,6 +18,15 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
     Default value is `off`.
 
+### wallarm_acl_access_phase
+
+Used to improve Wallarm node performance. You can use it if you have many [blacklisted IPs](../user-guides/ip-lists/blacklist.md) (for example, the whole countries) that send a lot of requests to the node (CPU shows that the working machine with the node is heavily loaded).
+
+When set to `on`, the node will immediately block requests from blacklisted IPs without full processing.
+
+!!! info
+    **Default value**: `off`
+
 ### wallarm_api_conf
 
 A path to the `node.yaml` file, which contains access requirements for the Wallarm API.
