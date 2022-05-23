@@ -1,1 +1,0 @@
---8<-- "latest/attacks-vulns-list.md"

@@ -1,1 +1,0 @@
---8<-- "3.4/user-guides/rules/wallarm-mode-rule.md"

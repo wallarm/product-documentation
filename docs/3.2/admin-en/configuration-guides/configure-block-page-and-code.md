@@ -1,1 +1,0 @@
---8<-- "3.4/admin-en/configuration-guides/configure-block-page-and-code.md"
