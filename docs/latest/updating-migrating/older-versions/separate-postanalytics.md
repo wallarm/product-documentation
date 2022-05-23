@@ -88,14 +88,14 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -105,7 +105,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
 
 ## Step 4: Update the node type
 
