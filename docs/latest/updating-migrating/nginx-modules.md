@@ -141,8 +141,6 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo yum update
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-
 ### Filtering node and postanalytics on different servers
 
 !!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"

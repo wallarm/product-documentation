@@ -109,8 +109,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-
 ## Step 4: Update the node type
 
 The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
