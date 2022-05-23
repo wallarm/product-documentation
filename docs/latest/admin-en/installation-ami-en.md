@@ -6,7 +6,6 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
-[installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
@@ -75,7 +74,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 --8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
-To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 3.6.
+To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 4.0.
 
 When creating an instance, you need to specify the [previously created][anchor1] security group. To do this, perform the following actions:
 

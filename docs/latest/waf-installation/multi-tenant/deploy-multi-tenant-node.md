@@ -56,8 +56,10 @@ Multi-tenant node:
 
 1. In the Wallarm Console → **Nodes** section, click **Create node** and select **Wallarm node**.
 1. Select the **Multi-tenant node** option.
+
+    ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Set node name and click **Create**.
-1. Copy the created token.
+1. Copy the generated token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../admin-en/supported-platforms.md).
 1. Open the tenant's NGINX configuration file and specify the unique identifier of a tenant using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
 

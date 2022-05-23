@@ -1,17 +1,17 @@
 # What is new in Wallarm node (if upgrading node 2.18 or lower)
 
-This page lists the changes available when upgrading the node 2.18 up to version 3.6. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node 2.18 up to version 4.0. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 2.18 and lower are deprecated"
     Wallarm nodes 2.18 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
 
-    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 3.6. Some settings of node 3.6 are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
+    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.0. Some settings of node 4.0 are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
 ## Supported installation options
 
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.3.
 
-    [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
+    [Instructions on migrating to the Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
@@ -22,21 +22,63 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
 [See the full list of supported installation options →](../../admin-en/supported-platforms.md)
 
+## New method for the serverless Wallarm node deployment
+
+The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
+
+[Instructions on the CDN node deployment](../../waf-installation/cdn-node.md)
+
+The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
+
 ## System requirements for the filtering node installation
 
-Starting with version 3.x, the filtering node supports IP address [whitelisting, blacklisting, and greylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+* The filtering node now supports IP address [whitelisting, blacklisting, and greylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
-[Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
+    [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
+* The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
 
-Starting with version 4.0, the filtering node uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
+    If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
-Your node needs to be granted access to the API endpoint with this new port. Note that the port `443` is the default one in https, so that there is no need to specify it explicitly.
+## Unified registration of nodes in the Wallarm Cloud by tokens
 
-If your server with the filtering node had a limited access to the external resources and the access was granted to each resource separately, then after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop.
+The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
 
-To restore the synchronization, in your configuration, change port `444` to `443` for API endpoint for each resource.
+Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
+
+* Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
+* Users' data remains securely stored in the Wallarm Cloud.
+* Two-factor authentication enabled for the user accounts does not prevent nodes from being registered in the Wallarm Cloud.
+* The initial traffic processing and request postanalytics modules deployed to separate servers can be registered in the Cloud by one node token.
+
+Changes in node registration methods result in some updates in node types:
+
+* The node supporting the unified registration by token has the **Wallarm node** type. The script to be run on the server to register the node is named `register-node`.
+
+    Previously, the Wallarm node was named [**cloud node**](/2.18/user-guides/nodes/cloud-node/). It also supported registration by the token but with the different script named `addcloudnode`.
+
+    The cloud node is not required to be migrated to the new node type.
+* The [**regular node**](/2.18/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
+
+    Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus, Kong module or the Docker container looks as follows:
+
+    1. Create the **Wallarm node** in Wallarm Console and copy the generated token.
+    1. Run the `register-node` script with the node token passed or run the Docker container with the `DEPLOY_TOKEN` variable defined.
+
+    !!! info "Regular node support"
+        The regular node type is deprecated in release 4.0 and will be removed in future releases.
+
+        It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
+
+## Simplified multi-tenant node configuration
+
+For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
+
+* The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive and [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) Envoy parameter have been added to configure the unique identifier of a tenant.
+* The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive and [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param) Envoy parameter behavior has been changed. Now it is **only** used to configure an application ID.
+
+[Instructions on the multi-tenant node upgrade](../multi-tenant.md)
 
 ## Filtration modes
 
@@ -153,6 +195,10 @@ New blocking page with the new layout looks as follows by default:
 
 [Details on the statistics service →](../../admin-en/configure-statistics-service.md)
 
+## Improved attack detection
+
+The [libdetection library](../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
@@ -162,7 +208,7 @@ New blocking page with the new layout looks as follows by default:
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 3.6.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 4.0.
 
 ----------
 

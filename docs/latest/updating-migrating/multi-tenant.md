@@ -6,6 +6,11 @@
 
 These instructions describe the steps to upgrade the multi-tenant node 3.6 or lower up to 4.0.
 
+## Requirements
+
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+
 ## Step 1: Contact the Wallarm support team
 
 Currently, to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade, request the [Wallarm support team](mailto:support@wallarm.com) assistance.
@@ -19,11 +24,28 @@ The support team will also help you answer all questions related to the multi-te
 
 Standard procedures are the ones for:
 
-* [Upgrading Wallarm NGINX modules](../updating-migrating/nginx-modules.md)
-* [Upgrading the postanalytics module](../updating-migrating/separate-postanalytics.md)
-* [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/docker-container.md)
-* [Upgrading NGINX Ingress controller with integrated Wallarm modules](../updating-migrating/ingress-controller.md)
-* [Upgrading the cloud node image](../updating-migrating/cloud-image.md)
+=== "If upgrading node 3.x"
+    * [Upgrading Wallarm NGINX modules](../updating-migrating/nginx-modules.md)
+    * [Upgrading the postanalytics module](../updating-migrating/separate-postanalytics.md)
+    * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/docker-container.md)
+    * [Upgrading NGINX Ingress controller with integrated Wallarm modules](../updating-migrating/ingress-controller.md)
+    * [Upgrading the cloud node image](../updating-migrating/cloud-image.md)
+
+    !!! warning "Creating the multi-tenant node"
+        During the Wallarm node creation, please select the **Multi-tenant node** option:
+
+        ![!Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
+=== "If upgrading node 2.18"
+    * [Upgrading Wallarm NGINX modules](../updating-migrating/older-versions/nginx-modules.md)
+    * [Upgrading the postanalytics module](../updating-migrating/older-versions/separate-postanalytics.md)
+    * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/older-versions/docker-container.md)
+    * [Upgrading NGINX Ingress controller with integrated Wallarm modules](../updating-migrating/older-versions/ingress-controller.md)
+    * [Upgrading the cloud node image](../updating-migrating/older-versions/cloud-image.md)
+
+    !!! warning "Creating the multi-tenant node"
+        During the Wallarm node creation, please select the **Multi-tenant node** option:
+
+        ![!Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## Step 3: Reconfigure multitenancy
 
@@ -142,7 +164,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
         1. Find the `clientid`(s) via the Wallarm Console user interface:
         
-            ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+            ![!Selector of tenants in Wallarm Console](../images/partner-waf-node/clients-selector-in-console-ann.png)
         1. Copy `clientid`(s) from the **ID** column.
 
 1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:

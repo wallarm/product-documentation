@@ -312,7 +312,7 @@ nav:
               - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 3.6: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.0: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
@@ -321,8 +321,8 @@ nav:
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
         - Upgrading the cloud node image: updating-migrating/cloud-image.md
-        - Upgrading the multi-tenant node: updating-migrating/multi-tenant.md
         - Upgrading Wallarm CDN node: updating-migrating/cdn-node.md
+      - Upgrading the multi-tenant node: updating-migrating/multi-tenant.md
       - Upgrading Wallarm node 2.18 and lower:
         - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
         - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
