@@ -6,7 +6,6 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
-[installation-instr-middle]:    /3.2/admin-en/installation-ami-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png

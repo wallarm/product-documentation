@@ -1,7 +1,6 @@
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
-[installation-instr-middle]:    /3.2/admin-en/installation-gcp-en/
 [versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
 [installation-instr-latest]:    /admin-en/installation-gcp-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
