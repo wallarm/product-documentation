@@ -68,23 +68,26 @@ To fix the problem on **CentOS**, please follow the steps:
 
 	=== "CentOS 7.x or Amazon Linux 2.0.2021x and lower"
 		```bash
-		# Filtering node and postanalytics module of the 3.2 version
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.2/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
-
 		# Filtering node and postanalytics module of the 3.4 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.4/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
 
 		# Filtering node and postanalytics module of the 3.6 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+
+		# Filtering node and postanalytics module of the 4.0 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
 		```
 	=== "CentOS 8.x (deprecated starting with Wallarm node 3.6)"
 		```bash
-		# Filtering node and postanalytics module of the 3.2 version
-		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.2/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
-
 		# Filtering node and postanalytics module of the 3.4 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.4/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
 		```
+	=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+		```bash
+		# Filtering node and postanalytics module of the 4.0 version
+		
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
+		```		
 4. If required, confirm the action.
 
 ## Why does not the filtering node block attacks when operating in blocking mode (`wallarm_mode block`)?
