@@ -5,7 +5,7 @@ Wallarm API Security protects websites, APIs, and microservices from OWASP Top 1
 !!! warning "Unsupported version"
     Wallarm node 2.18 and lower is not supported. We have significantly simplified the node configuration procedure and made attack mitigation even more powerful and usable in the later releases.
 
-    Please learn [what is new in the later versions](/2.18/updating-migrating/what-is-new/) and plan the upgrade procedure.
+    Please learn [what is new in the later versions](/updating-migrating/older-versions/what-is-new/) and plan the upgrade procedure.
 
 <div class="navigation">
 <a href="../updating-migrating/what-is-new/" class="navigation-card">
