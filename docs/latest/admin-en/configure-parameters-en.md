@@ -385,7 +385,7 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_partner_client_uuid
 
-Unique identifier of the [tenant](../waf-installation/multi-tenant/overview.md) for the [multi-tenant](../waf-installation/multi-tenant/deploy-multi-tenant-node.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
+Unique identifier of the tenant for the [multi-tenant](../waf-installation/multi-tenant/overview.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
