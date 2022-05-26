@@ -1,6 +1,7 @@
 [doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[acl-access-phase]:            #wallarm_acl_access_phase
 
 # Configuration options for the NGINX‑based Wallarm node
 
@@ -22,10 +23,13 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 Used to improve Wallarm node performance. You can use it if you have many [blacklisted IPs](../user-guides/ip-lists/blacklist.md) (for example, the whole countries) that send a lot of requests to the node (CPU shows that the working machine with the node is heavily loaded).
 
-When set to `on`, the node will immediately block requests from blacklisted IPs without full processing.
+When set to `on`, the node will block requests from blacklisted IPs in the separate NGINX phase preceding attack analysis. This significantly reduces the load of the CPU of the node.
 
-!!! info
+!!! info "Default value and interaction with other directives"
     **Default value**: `off`
+
+    * The [`disable_acl`](#disable_acl) directive has priority over `wallarm_acl_access_phase`.
+    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode).
 
 ### wallarm_api_conf
 
