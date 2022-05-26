@@ -8,17 +8,6 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 
 ![!IP whitelist](../../images/user-guides/ip-lists/whitelist-apps.png)
 
-!!! warning "IP whitelisting support"
-    IP whitelisting for specific applications is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
-    
-    If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 2.18 or lower, please perform the following steps before IP address whitelist setup:
-
-    1. [Update deployed modules](/updating-migrating/older-versions/what-is-new/).
-
-        During the module upgrade, please ensure that Wallarm node processes requests originated from whitelisted IP addresses as expected or adjust filtration mode settings to the released changes.
-
-    2. [Migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
-
 ## Examples of IP whitelist usage
 
 * To search for vulnerabilities in the system, you can use [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner). The Scanner sends malicious requests to your application addresses and analyzes application responses. If Scanner IP addresses are not whitelisted, the filtering node can block requests sent by Scanner. To allow Wallarm components to seamlessly scan your resources for vulnerabilities, it is necessary to whitelist Scanner IP addresses.

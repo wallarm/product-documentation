@@ -8,14 +8,6 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 ![!All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
-!!! warning "IP list support"
-    Controlling access to your applications by whitelisted, blacklisted and greylisted IP addresses is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
-    
-    If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 2.18 or lower, please perform the following steps before IP address list setup:
-
-    1. [Update deployed modules](/updating-migrating/older-versions/what-is-new/).
-    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
-
 ## Algorithm of IP lists processing
 
 The filtering node inspects whether source IPs of incoming requests matches entries of IP lists only in the **safe blocking** and **blocking** [modes](../../admin-en/configure-wallarm-mode.md):

@@ -99,6 +99,10 @@ Delete the previous Wallarm repository address and add a repository with a new W
         ```bash
         deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
         ```
+    === "Debian 11.x (bullseye)"
+        ```bash
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.0/
+        ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/
@@ -120,14 +124,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -136,8 +140,6 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     ```bash
     sudo yum update
     ```
-
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
 
 ### Filtering node and postanalytics on different servers
 
@@ -153,14 +155,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update

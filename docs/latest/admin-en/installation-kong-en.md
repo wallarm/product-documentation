@@ -5,7 +5,6 @@
 [doc-wallarmblockpage]: configure-parameters-en.md#wallarm_block_page
 [doc-postanalytics]:    installation-postanalytics-en.md
 [doc-supported-os]:     supported-platforms.md
-[waf-installation-instr-middle]:             /2.18/admin-en/installation-kong-en/
 [versioning-policy]:                         ../updating-migrating/versioning-policy.md#version-list
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
 
@@ -61,13 +60,13 @@ Depending on your operating system, run one of the following commands:
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/Packages/wallarm-node-repo-1-6.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
     ```
 
 --8<-- "../include/access-repo-en.md"
