@@ -217,9 +217,12 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
 ### Include tenants and set their applications in the NGINX configuration file
 
-Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) and the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives in the NGINX configuration file. 
+In the NGINX configuration file:
 
-If the NGINX configuration used for the node 3.6 or lower involves application configuration, only specify tenant UUIDs and keep application configuration unchanged.
+1. Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directives.
+1. Set the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives. 
+
+    If the NGINX configuration used for the node 3.6 or lower involves application configuration, only specify tenant UUIDs and keep application configuration unchanged.
 
 Example:
 
@@ -256,7 +259,7 @@ server {
 In the configuration above:
 
 * Tenants and applications are configured with different directives.
-* Relations between the tenants and applications are defined via configuration structure and clearly visible in it.
+* Relations between the tenants and applications are defined via the `wallarm_application` directives in the corresponding blocks of the NGINX configuration file.
 
 ## Step 4: Test Wallarm multi-tenant node operation
 
