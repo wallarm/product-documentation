@@ -8,4 +8,4 @@
 | Allows requests originated from [whitelisted IPs](../user-guides/ip-lists/whitelist.md) | Does not analyze the whitelist | + | + | + |
 
 !!! info "Exceptions"
-    Blacklisted IPs are blocked with the increased performance in any mode if [`wallarm_acl_access_phase on`][acl-access-phase].
+    Blacklisted IPs are blocked in any mode including `off` and `monitoring` if [`wallarm_acl_access_phase on`][acl-access-phase].
