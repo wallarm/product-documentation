@@ -65,7 +65,7 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
     * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
 
     Parameters with previous names are deprecated and will be removed in future releases. The parameter logic has not changed.
-* The following [filtering node variables](../admin-en/configure-logging.md#filter-node-variables) have been changed:
+* The following [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been changed:
 
     * `wallarm_request_time` → `wallarm_request_cpu_time` meaning time in seconds the CPU spent processing the request (old name is still supported)
     * `wallarm_request_mono_time` metric is added meaning time in seconds the CPU spent processing the request + time in the queue.
