@@ -21,9 +21,9 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 ### wallarm_acl_access_phase
 
-Used to improve Wallarm node performance. You can use it if you have many [blacklisted IPs](../user-guides/ip-lists/blacklist.md) (for example, the whole countries) that send a lot of requests and CPU shows that the working machine with the node is heavily loaded.
+Used to improve Wallarm node performance. You can use it if you have many [blacklisted IPs](../user-guides/ip-lists/blacklist.md) (for example, countries) that send a lot of requests and CPU shows that the working machine with the node is heavily loaded.
 
-When set to `on`, the node will block requests from blacklisted IPs in the separate NGINX phase preceding attack analysis. This significantly reduces the load of the CPU of the node.
+By default the filtering node blocks listed IPs after searching for the attacks. Setting `wallarm_acl_access_phase on` changes the order of these operations, blacklisted IPs are blocked immediately without searching for the attacks. This significantly reduces the load of the CPU of the node.
 
 !!! info "Default value and interaction with other directives"
     **Default value**: `off`
