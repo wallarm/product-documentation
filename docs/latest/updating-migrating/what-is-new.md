@@ -67,6 +67,10 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
     Parameters with previous names are deprecated and will be removed in future releases. The parameter logic has not changed.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
 
+## Increasing the performance by omitting attack search in requests from blacklisted IPs
+
+The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+
 ## Improved attack detection
 
 The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.

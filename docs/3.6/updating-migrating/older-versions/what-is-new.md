@@ -140,6 +140,10 @@ New blocking page with the new layout looks as follows by default:
 
 [Details on the statistics service →](../../admin-en/configure-statistics-service.md)
 
+## Increasing the performance by omitting attack search in requests from blacklisted IPs
+
+The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).

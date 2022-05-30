@@ -208,6 +208,10 @@ The following [node logging variables](../../admin-en/configure-logging.md#filte
 
     This variable means time in seconds the CPU spent processing the request + time in the queue.
 
+## Increasing the performance by omitting attack search in requests from blacklisted IPs
+
+The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).

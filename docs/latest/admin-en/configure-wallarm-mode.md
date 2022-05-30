@@ -1,3 +1,5 @@
+[acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
+
 # Filtration mode configuration
 
 Filtration mode defines the filtering node behavior when processing incoming requests. These instructions describe available filtration modes and their configuration methods.
@@ -11,7 +13,7 @@ The Wallarm filtering node can process incoming requests in the following modes 
 * **Safe blocking** (`safe_blocking`)
 * **Blocking** (`block`)
 
---8<-- "../include/wallarm-modes-description.md"
+--8<-- "../include/wallarm-modes-description-3.6.md"
 
 ## Methods of the filtration mode configuration
 
