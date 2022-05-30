@@ -68,7 +68,7 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
 * The following [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been changed:
 
     * `wallarm_request_time` → `wallarm_request_cpu_time` meaning time in seconds the CPU spent processing the request (old name is still supported)
-    * `wallarm_request_mono_time` metric is added meaning time in seconds the CPU spent processing the request + time in the queue.
+    * `wallarm_request_mono_time` variable is added meaning time in seconds the CPU spent processing the request + time in the queue.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
 
 ## Improved attack detection
