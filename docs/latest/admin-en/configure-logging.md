@@ -40,7 +40,8 @@ You may use the following filter node variables when defining the NGINX logging 
 |Name|Type|Value|
 |---|---|---|
 |`request_id`|String|Request identifier<br>Has the following value form: `a79199bcea606040cc79f913325401fb`|
-|`wallarm_request_time`|Float|Request execution time in seconds|
+|`wallarm_request_cpu_time`|Float|Time in seconds the CPU of the machine with the filtering node spent processing the request.|
+|`wallarm_request_mono_time`|Float|Time in seconds the CPU spent processing the request + time in the queue. For example, if the request was in the queue for 3 seconds and processed by CPU for 1 second, then: <ul><li>`"wallarm_request_cpu_time":1`</li><li>`"wallarm_request_mono_time":4`</li></ul>|
 |`wallarm_serialized_size`|Integer|Size of the serialized request in bytes|
 |`wallarm_is_input_valid`|Integer|Request validity<br>`0`: request is valid. The request has been checked by filter node and matches LOM rules.<br>`1`: request is invalid. The request has been checked by filter node and does not match LOM rules.|
 | `wallarm_attack_type_list` | String | [Attack types][doc-vuln-list] detected in the request with the library [libproton](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Types are presented in text format:<ul><li>xss</li><li>sqli</li><li>rce</li><li>xxe</li><li>ptrav</li><li>crlf</li><li>redir</li><li>nosqli</li><li>infoleak</li><li>overlimit_res</li><li>data_bomb</li><li>vpatch</li><li>ldapi</li><li>scanner</li><li>ssi</li><li>mail_injection</li><li>ssti</li><li>invalid_xml</li></ul>If several attack types are detected in a request, they are listed with the symbol `|`. For example: if XSS and SQLi attacks are detected, the variable value is `xss|sqli`. |
@@ -60,7 +61,7 @@ To do this, perform the following actions:
     log_format wallarm_combined '$remote_addr - $remote_user [$time_local] '
                                 '"$request" $request_id $status $body_bytes_sent '
                                 '"$http_referer" "$http_user_agent" '
-                                '$wallarm_request_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list';
+                                '$wallarm_request_cpu_time $wallarm_request_mono_time $wallarm_serialized_size $wallarm_is_input_valid $wallarm_attack_type $wallarm_attack_type_list';
     ```
 
 2.  Enable the extended logging format by adding the following directive into the same block as in the first step:

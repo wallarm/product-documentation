@@ -252,11 +252,20 @@ Rename the following NGINX directives if they are explicitly specified in config
 
 We only changed directive names, their logic remains the same. The directives with former names will be deleted in future releases, so it is recommended to rename them before.
 
-## Step 8: Restart NGINX
+## Step 8: Update the node logging variables
+
+In the new node version the following changes to the [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been implemented:
+
+* The `wallarm_request_time` variable is renamed to `wallarm_request_cpu_time`
+
+    We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
+* The `wallarm_request_mono_time` variable is added – place it in the configuration of the logging format if you need log information about total time being the sum of: <ul><li>Time in the queue</li><li>Time in seconds the CPU spent processing the request</li></ul>
+
+## Step 9: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 9: Test Wallarm node operation
+## Step 10: Test Wallarm node operation
 
 1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
@@ -274,7 +283,7 @@ We only changed directive names, their logic remains the same. The directives wi
 
     ![!Attacks in the interface][img-test-attacks-in-ui]
 
-## Step 10: Delete the node of the previous version
+## Step 11: Delete the node of the previous version
 
 Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
 

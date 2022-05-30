@@ -61,6 +61,12 @@ The following configuration options have been deprecated:
     We only changed the directive name, its logic remains the same. Directive with former name will be deleted in future releases, so you are recommended to rename it before.
     
     Please check if the directive with former name is explicitly specified in the mounted configuration files. If so, rename it.
+* In the new node version the following changes to the [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been implemented:
+
+    * The `wallarm_request_time` variable is renamed to `wallarm_request_cpu_time`
+
+        We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
+    * The `wallarm_request_mono_time` variable is added – place it in the configuration of the logging format if you need log information about total time being the sum of: <ul><li>Time in the queue</li><li>Time in seconds the CPU spent processing the request</li></ul>
 * The following Envoy parameters have been renamed:
 
     * `tsets` section → `rulesets`, and correspondingly the `tsN` entries in this section → `rsN`
