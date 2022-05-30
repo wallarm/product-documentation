@@ -1,6 +1,7 @@
 [doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[acl-access-phase]:            #wallarm_acl_access_phase
 
 # Configuration options for the NGINX‑based Wallarm node
 
@@ -17,6 +18,18 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
     This parameter can be set inside the http, server, and location blocks.
 
     Default value is `off`.
+
+### wallarm_acl_access_phase
+
+Used to improve Wallarm node performance. You can use it if you have many [blacklisted IPs](../user-guides/ip-lists/blacklist.md) (for example, countries) that send a lot of requests and CPU shows that the working machine with the node is heavily loaded.
+
+By default the filtering node blocks the requests from the blacklisted IPs after searching for the attacks. Setting `wallarm_acl_access_phase on` changes the order of these operations, blacklisted IPs are blocked immediately without searching for the attacks. This significantly reduces the load of the CPU of the node.
+
+!!! info "Default value and interaction with other directives"
+    **Default value**: `off`
+
+    * With the [`disable_acl on`](#disable_acl) the lists are not processed and enabling `wallarm_acl_access_phase` does not make sense.
+    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode) – the blacklisted IPs will be blocked even if the mode of the filtering node is `off` или `monitoring`.
 
 ### wallarm_api_conf
 
@@ -250,7 +263,7 @@ Traffic processing mode:
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description.md"
+--8<-- "../include/wallarm-modes-description-3.6.md"
 
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 
