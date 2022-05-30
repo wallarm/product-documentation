@@ -81,7 +81,7 @@ If upgrading Wallarm node 3.4, in addition to the above, there are the following
 
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.3.
 
-    [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)
+    [Instructions on migrating to the latest Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 

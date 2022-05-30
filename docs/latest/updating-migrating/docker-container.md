@@ -29,11 +29,11 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:3.6.2-1
+    docker pull wallarm/node:4.0.1-1
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:3.6.1-1
+    docker pull wallarm/envoy:4.0.1-1
     ```
 
 ## Step 3: Switch to the token-based connection to the Wallarm Cloud

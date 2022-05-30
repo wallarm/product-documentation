@@ -47,7 +47,7 @@ When using a tool like Terraform to launch the filtering node instance using Wal
 * To launch the instance with the filtering node version 4.0, please use the following image name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-3-6-20220209-074516
+    wallarm-node-195710/wallarm-node-4-0-20220527-031717
     ```
 
 To get the image name, you can also follow these steps:
@@ -61,7 +61,7 @@ To get the image name, you can also follow these steps:
 3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the filtering node version 4.0 image will have the following name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-3-6-20220209-074516
+    wallarm-node-195710/wallarm-node-4-0-20220527-031717
     ```
 
 ## 3. Configure the filtering node instance
