@@ -39,11 +39,11 @@ The filtering node configuration parameters can be passed to the `docker run` co
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:4.0.1-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:4.0.1-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -82,11 +82,11 @@ To run the container:
 
     === "EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.0.1-1
         ```
     === "US Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:3.6.1-1
+        docker run -d -e DEPLOY_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.0.1-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:

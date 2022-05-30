@@ -35,7 +35,7 @@ var sf14gv = 27823;
   })();
 
 // Show version selector only for Product guides
-var rootVersion = '3.6';
+var rootVersion = '4.0';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
 if (activeLinks[0].text === ' Product guides ') {
   document.getElementById('versionsDiv').style.display = 'inline-block'
@@ -166,7 +166,7 @@ let paths = window.location.pathname.split('/');
 var announceBar = document.getElementsByClassName("md-banner__inner");
 if (paths[1] == '2.18') {
   for (var i = 0; i < announceBar.length; i++) {
-    announceBar[i].innerHTML = 'Wallarm node 2.18 and lower is not supported. We recommend <a href="/updating-migrating/what-is-new/" style="color:white; font-weight: bold;">upgrading</a> Wallarm API Security modules to the latest version.';
+    announceBar[i].innerHTML = 'Wallarm node 2.18 and lower is not supported. Please <a href="/updating-migrating/older-versions/what-is-new/" style="color:white; font-weight: bold;">upgrade</a> Wallarm API Security modules to the latest version.';
  }
 }
 

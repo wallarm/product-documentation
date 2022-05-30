@@ -2,10 +2,15 @@
 
 Wallarm API Security protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
-!!! info "Update available"
-    We recommend updating Wallarm API Security modules to the latest product version with supported [new features](../updating-migrating/what-is-new/). To update your version, please follow the [node update process](../updating-migrating/general-recommendations/).
+!!! warning "Wallarm node 3.4 support will end soon"
+    Wallarm node 3.4 support will end [soon](/updating-migrating/versioning-policy/#version-list). Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
 
 <div class="navigation">
+<a href="../updating-migrating/what-is-new/" class="navigation-card">
+    <h3>Upgrading to the latest version</h3>
+    <p>Learn new features in node 4.0 and apply changes to installed components</p>
+</a>
+
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
     <p>Deploy your first Wallarm node with the NGINX module in 20 minutes</p>
@@ -33,10 +38,6 @@ Wallarm API Security protects websites, APIs, and microservices from OWASP Top 1
     <p>Track and operate the system security state and Wallarm node together with your team via Wallarm Console</p>
 </a>  
 
-<a href="./updating-migrating/what-is-new/" class="navigation-card">
-    <h3>Updating and migrating</h3>
-    <p>Learn new Wallarm node features and keep your modules up-to-date</p>
-</a>
 <a href="./attacks-vulns-list/" class="navigation-card">
     <h3>Attack and vulnerability types</h3>
     <p>Learn which attacks and vulnerabilities Wallarm API Security detects</p>

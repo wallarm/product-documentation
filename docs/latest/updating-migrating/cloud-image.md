@@ -61,13 +61,11 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
     * `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
     * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
     * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../admin-en/configure-parameters-en.md#wallarm_protondb_path)
-1. Check and fix if necessary the [logging format configuration](../admin-en/configure-logging.md#filter-node-variables) as the following has changed:
+1. If the [extended logging format](../admin-en/configure-logging.md#filter-node-variables) is configured, please check if the `wallarm_request_time` variable is explicitly specified in the configuration.
 
-      * The `wallarm_request_time` variable is renamed to `wallarm_request_cpu_time`
+      If so, please rename it to `wallarm_request_cpu_time`.
 
-        We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
-      
-      * The `wallarm_request_mono_time` variable is added – place it in the configuration of the logging format if you need log information about total time being the sum of: <ul><li>Time in the queue</li><li>Time in seconds the CPU spent processing the request</li></ul>       
+      We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
 1. If you upgrade the node from version 3.4 or lower and the node is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.

@@ -1,1 +1,0 @@
---8<-- "3.4/waf-installation/multi-tenant/deploy-multi-tenant-node.md"
