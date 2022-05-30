@@ -195,10 +195,6 @@ New blocking page with the new layout looks as follows by default:
 
 [Details on the statistics service →](../../admin-en/configure-statistics-service.md)
 
-## Improved attack detection
-
-The [libdetection library](../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
-
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
