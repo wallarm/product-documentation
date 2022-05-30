@@ -81,6 +81,9 @@ There are the following deprecated configuration options:
     We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
     
     Please check if the directives with former names are explicitly specified in the mounted configuration files. If so, rename them.
+* The `wallarm_request_time` [logging variable](../../admin-en/configure-logging.md#filter-node-variables) has been renamed to `wallarm_request_cpu_time`.
+
+    We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
 * The following Envoy parameters have been renamed:
 
     * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)

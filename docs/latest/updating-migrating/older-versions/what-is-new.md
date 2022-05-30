@@ -195,6 +195,19 @@ New blocking page with the new layout looks as follows by default:
 
 [Details on the statistics service →](../../admin-en/configure-statistics-service.md)
 
+## New variables to configure the node logging format
+
+The following [node logging variables](../../admin-en/configure-logging.md#filter-node-variables) have been changed:
+
+* `wallarm_request_time` has been renamed to `wallarm_request_cpu_time`
+
+    This variable means time in seconds the CPU spent processing the request.
+
+    The variable with the previous name is deprecated and will be removed in future releases. The variable logic has not changed.
+* `wallarm_request_mono_time` has been added
+
+    This variable means time in seconds the CPU spent processing the request + time in the queue.
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).

@@ -76,6 +76,11 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+1. If the [extended logging format](../../admin-en/configure-logging.md#filter-node-variables) is configured, please check if the `wallarm_request_time` variable is explicitly specified in the configuration.
+
+      If so, please rename it to `wallarm_request_cpu_time`.
+
+      We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
 1. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.0.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 

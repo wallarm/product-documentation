@@ -272,7 +272,19 @@ Rename the following NGINX directives if they are explicitly specified in config
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
-## Step 11: Adjust Wallarm node filtration mode settings to changes released in the latest versions
+## Step 11: Update the node logging variables
+
+In the new node version the following changes to the [node logging variables](../../admin-en/configure-logging.md#filter-node-variables) have been implemented:
+
+* The `wallarm_request_time` variable has been renamed to `wallarm_request_cpu_time`.
+
+    We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
+* The `wallarm_request_mono_time` variable has been added – place it in the configuration of the logging format if you need log information about total time being the sum of:
+
+    * Time in the queue
+    * Time in seconds the CPU spent processing the request
+
+## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
@@ -280,11 +292,11 @@ We only changed the names of the directives, their logic remains the same. Direc
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 12: Restart NGINX
+## Step 13: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 13: Test Wallarm node operation
+## Step 14: Test Wallarm node operation
 
 1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
@@ -302,13 +314,13 @@ We only changed the names of the directives, their logic remains the same. Direc
 
     ![!Attacks in the interface][img-test-attacks-in-ui]
 
-## Step 14: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 15: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
-## Step 15: Delete the node of the previous version
+## Step 16: Delete the node of the previous version
 
 Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
 

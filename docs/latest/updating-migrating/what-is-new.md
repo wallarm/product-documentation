@@ -65,15 +65,24 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
     * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
 
     Parameters with previous names are deprecated and will be removed in future releases. The parameter logic has not changed.
-* The following [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been changed:
-
-    * `wallarm_request_time` → `wallarm_request_cpu_time` meaning time in seconds the CPU spent processing the request (old name is still supported)
-    * `wallarm_request_mono_time` variable is added meaning time in seconds the CPU spent processing the request + time in the queue.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
 
 ## Improved attack detection
 
 The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+
+## New variables to configure the node logging format
+
+The following [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been changed:
+
+* `wallarm_request_time` has been renamed to `wallarm_request_cpu_time`
+
+    This variable means time in seconds the CPU spent processing the request.
+
+    The variable with the previous name is deprecated and will be removed in future releases. The variable logic has not changed.
+* `wallarm_request_mono_time` has been added
+
+    This variable means time in seconds the CPU spent processing the request + time in the queue.
 
 ## When upgrading node 3.4
 

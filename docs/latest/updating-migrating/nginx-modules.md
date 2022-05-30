@@ -256,10 +256,13 @@ We only changed directive names, their logic remains the same. The directives wi
 
 In the new node version the following changes to the [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been implemented:
 
-* The `wallarm_request_time` variable is renamed to `wallarm_request_cpu_time`
+* The `wallarm_request_time` variable has been renamed to `wallarm_request_cpu_time`.
 
     We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
-* The `wallarm_request_mono_time` variable is added – place it in the configuration of the logging format if you need log information about total time being the sum of: <ul><li>Time in the queue</li><li>Time in seconds the CPU spent processing the request</li></ul>
+* The `wallarm_request_mono_time` variable has been added – place it in the configuration of the logging format if you need log information about total time being the sum of:
+
+    * Time in the queue
+    * Time in seconds the CPU spent processing the request
 
 ## Step 9: Restart NGINX
 
