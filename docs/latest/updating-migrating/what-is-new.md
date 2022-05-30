@@ -65,8 +65,11 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
     * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
 
     Parameters with previous names are deprecated and will be removed in future releases. The parameter logic has not changed.
-* The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is added - by default the filtering node blocks the requests from the blacklisted IPs after searching for the attacks. Enabling (`on`) the directive changes the order of these operations, blacklisted IPs are blocked immediately without searching for the attacks. This significantly reduces the load of the CPU of the node.
 * The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
+
+## Increasing the performance by omitting attack search in requests from blacklisted IPs
+
+The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 
 ## Improved attack detection
 

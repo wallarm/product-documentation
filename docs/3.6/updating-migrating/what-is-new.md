@@ -26,6 +26,7 @@ There are the following changes available in Wallarm node 3.6:
     ![!Wallarm sample blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
     [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
+* The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 * The following NGINX directives and Envoy parameters have been renamed:
 
     * NGINX: `wallarm_instance` → [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application)
@@ -35,7 +36,6 @@ There are the following changes available in Wallarm node 3.6:
     * Envoy: `instance` → [`application`](../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
     Parameters with previous names are still supported but will be deprecated in future releases. The parameter logic has not changed.
-* The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is added - by default the filtering node blocks the requests from the blacklisted IPs after searching for the attacks. Enabling (`on`) the directive changes the order of these operations, blacklisted IPs are blocked immediately without searching for the attacks. This significantly reduces the load of the CPU of the node.
 * The Ingress [annotation](../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-instance` has been renamed to `nginx.ingress.kubernetes.io/wallarm-application`.
 
     The annotation with the previous name is still supported but will be deprecated in future releases. The annotation logic has not changed.

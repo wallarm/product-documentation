@@ -7,5 +7,5 @@
 | Blocks requests originated from [greylisted IPs](../user-guides/ip-lists/greylist.md) | Does not analyze the greylist | - | Only those containing malicious payloads | Does not analyze the greylist |
 | Allows requests originated from [whitelisted IPs](../user-guides/ip-lists/whitelist.md) | Does not analyze the whitelist | + | + | + |
 
-!!! info "Exceptions"
-    Blacklisted IPs are blocked in any mode including `off` and `monitoring` if [`wallarm_acl_access_phase on`][acl-access-phase].
+!!! warning "Exceptions"
+    If [`wallarm_acl_access_phase on`][acl-access-phase], requests from blacklisted IPs are blocked in any mode including `off` and `monitoring`
