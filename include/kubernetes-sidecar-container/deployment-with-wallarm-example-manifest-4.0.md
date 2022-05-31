@@ -24,7 +24,7 @@ spec:
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
           # Wallarm node token
-          - name: DEPLOY_TOKEN
+          - name: WALLARM_API_TOKEN
             value: "token"
           - name: DEPLOY_FORCE
             value: "true"

@@ -41,7 +41,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
 
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
-* The token-based approach has been included. To connect the container to the Cloud, run the container with the `DEPLOY_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
+* The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
 
 It is recommended to use the new approach to run the image 4.0. The "email and password"-based approach will be deleted in future releases, please migrate before.
 

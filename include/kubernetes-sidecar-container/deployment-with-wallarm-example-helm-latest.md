@@ -23,8 +23,8 @@ spec:
           env:
           - name: WALLARM_API_HOST
             value: {{ .Values.wallarm.wallarm_host_api | quote }}
-          - name: DEPLOY_TOKEN
-            value: {{ .Values.wallarm.deploy_token | quote }}
+          - name: WALLARM_API_TOKEN
+            value: {{ .Values.wallarm.wallarm_api_token | quote }}
           - name: DEPLOY_FORCE
             value: "true"
           - name: TARANTOOL_MEMORY_GB

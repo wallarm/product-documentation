@@ -9,7 +9,7 @@ wallarm:
   # "us1.api.wallarm.com" for the US Cloud
   wallarm_host_api: "api.wallarm.com"
   # Wallarm node token
-  deploy_token: "token"
+  wallarm_api_token: "token"
   # Port on which the container accepts incoming requests,
   # the value must be identical to ports.containerPort
   # in definition of your main app container
