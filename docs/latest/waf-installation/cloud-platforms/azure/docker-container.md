@@ -52,7 +52,7 @@ In these instructions, the container is deployed using the Azure CLI.
 1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
+    export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
 1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
@@ -64,7 +64,7 @@ In these instructions, the container is deployed using the Azure CLI.
             --dns-name-label wallarm-waf \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.0.1-1 \
-            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} NGINX_BACKEND='example.com'
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
          ```
     === "Command for the Wallarm US Cloud"
          ```bash
@@ -74,7 +74,7 @@ In these instructions, the container is deployed using the Azure CLI.
             --dns-name-label wallarm-waf \
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.0.1-1 \
-            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
          ```
         
     * `--resource-group`: name of the resource group created in the second step.
@@ -82,7 +82,7 @@ In these instructions, the container is deployed using the Azure CLI.
     * `--dns-name-label`: DNS name label for the container.
     * `--ports`: port on which the filtering node listens.
     * `--image`: name of the Wallarm node Docker image.
-    * `--environment-variables`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
+    * `--environment-variables`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
 1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.
@@ -142,7 +142,7 @@ To deploy the container with environment variables and mounted configuration fil
 1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
+    export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
 1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
@@ -156,7 +156,7 @@ To deploy the container with environment variables and mounted configuration fil
             --image registry-1.docker.io/wallarm/node:4.0.1-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN}
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN}
          ```
     === "Command for the Wallarm US Cloud"
          ```bash
@@ -168,7 +168,7 @@ To deploy the container with environment variables and mounted configuration fil
             --image registry-1.docker.io/wallarm/node:4.0.1-1 \
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables DEPLOY_TOKEN=${DEPLOY_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com'
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com'
          ```
 
     * `--resource-group`: name of the resource group created in the 2nd step.
@@ -185,7 +185,7 @@ To deploy the container with environment variables and mounted configuration fil
 
         The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
-    * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the value of `DEPLOY_TOKEN`.
+    * `--environment-variables`: environment variables containing settings for the filtering node and Wallarm Cloud connection (available variables are listed in the table below). Please note that it is not recommended to explicitly pass the value of `WALLARM_API_TOKEN`.
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. Open the [Azure portal](https://portal.azure.com/) and ensure the created resource is displayed in the list of resources.

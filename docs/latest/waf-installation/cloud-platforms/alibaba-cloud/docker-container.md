@@ -41,21 +41,21 @@ To deploy the containerized Wallarm filtering node configured only through envir
 1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
+    export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
 1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:4.0.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:4.0.1-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.0.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.0.1-1
         ```
         
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
 1. [Test the filtering node operation](#testing-the-filtering-node-operation).
@@ -79,7 +79,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
-    export DEPLOY_TOKEN='<DEPLOY_TOKEN>'
+    export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
     ```
 1. In the instance, create the directory with the file `default` containing the filtering node configuration (for example, the directory can be named as `configs`). An example of the file with minimal settings:
 
@@ -113,11 +113,11 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.0.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.0.1-1
         ```
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e DEPLOY_TOKEN=${DEPLOY_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.0.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.0.1-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
@@ -130,7 +130,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
         The filtering node directives should be described in the `/etc/nginx/sites-enabled/default` file.
     
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
-    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `DEPLOY_TOKEN` explicitly.
+    * `-e`: environment variables with the filtering node configuration (available variables are listed in the table below). Please note that it is not recommended to pass the value of `WALLARM_API_TOKEN` explicitly.
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. [Test the filtering node operation](#testing-the-filtering-node-operation).

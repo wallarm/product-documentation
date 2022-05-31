@@ -64,7 +64,7 @@ Changes in node registration methods result in some updates in node types:
     Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus, Kong module or the Docker container looks as follows:
 
     1. Create the **Wallarm node** in Wallarm Console and copy the generated token.
-    1. Run the `register-node` script with the node token passed or run the Docker container with the `DEPLOY_TOKEN` variable defined.
+    1. Run the `register-node` script with the node token passed or run the Docker container with the `WALLARM_API_TOKEN` variable defined.
 
     !!! info "Regular node support"
         The regular node type is deprecated in release 4.0 and will be removed in future releases.

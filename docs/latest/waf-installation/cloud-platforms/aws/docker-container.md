@@ -71,8 +71,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
                 ],
                 "secrets": [
                     {
-                        "name": "DEPLOY_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<DEPLOY_TOKEN_PARAMETER_NAME>::"
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
                     }
                 ],
                 "name": "wallarm-container",
@@ -109,8 +109,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
                 ],
                 "secrets": [
                     {
-                        "name": "DEPLOY_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<DEPLOY_TOKEN_PARAMETER_NAME>::"
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
                     }
                 ],
                 "name": "wallarm-container",
@@ -122,10 +122,10 @@ To deploy the containerized Wallarm filtering node configured only through envir
          ```
 
     * `<AWS_ACCOUNT_ID>`: [your AWS account ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
-    * The `environment` object sets the environment variables that should be passed to the Docker container in a text format. The set of available environment variables is described in the table below. It is recommended to pass the variable `DEPLOY_TOKEN` in the `secrets` object.
+    * The `environment` object sets the environment variables that should be passed to the Docker container in a text format. The set of available environment variables is described in the table below. It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
     * The `secret` object sets the environment variables that should be passed to the Docker container as the links to the sensitive data storage. The format of values depends on the selected storage (see more details in the [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) or [AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html) documentation).
 
-        It is recommended to pass the variable `DEPLOY_TOKEN` in the `secrets` object.
+        It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
 
         --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
     
@@ -235,8 +235,8 @@ To deploy the container with environment variables and configuration file mounte
                 ],
                 "secrets": [
                     {
-                        "name": "DEPLOY_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<DEPLOY_TOKEN_PARAMETER_NAME>::"
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
                     }
                 ],
                 "name": "wallarm-container",
@@ -284,8 +284,8 @@ To deploy the container with environment variables and configuration file mounte
                 ],
                 "secrets": [
                     {
-                        "name": "DEPLOY_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<DEPLOY_TOKEN_PARAMETER_NAME>::"
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
                     }
                 ],
                 "name": "wallarm-container",
@@ -317,10 +317,10 @@ To deploy the container with environment variables and configuration file mounte
     * `<NAME_FROM_VOLUMES_OBJECT>`: name of the `volumes` object containing the configuration of the mounted file AWS EFS storage (the value should be the same as `<VOLUME_NAME>`).
     * `<VOLUME_NAME>`: name of the `volumes` object that contains the configuration of the mounted file AWS EFS storage.
     * `<EFS_FILE_SYSTEM_ID>`: ID of the AWS EFS file system containing the file that should be mounted to the container. ID is displayed in the AWS Management Console → **Services** → **EFS** → **File systems**.
-    * The `environment` object sets the environment variables that should be passed to the Docker container in a text format. The set of available environment variables is described in the table below. It is recommended to pass the variable `DEPLOY_TOKEN` in the `secrets` object.
+    * The `environment` object sets the environment variables that should be passed to the Docker container in a text format. The set of available environment variables is described in the table below. It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
     * The `secret` object sets the environment variables that should be passed to the Docker container as the links to the sensitive data storage. The format of values depends on the selected storage (see more details in the [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) or [AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html) documentation).
 
-        It is recommended to pass the variable `DEPLOY_TOKEN` in the `secrets` object.
+        It is recommended to pass the variable `WALLARM_API_TOKEN` in the `secrets` object.
 
         --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
