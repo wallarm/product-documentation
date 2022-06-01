@@ -34,7 +34,7 @@
 
 /admin-en/troubleshooting/ /faq/common-errors-after-waf-installation/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/waf-ingress-installation/
-/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq/ /faq/waf-aws-via-terraform-installation/
+/faq/waf-aws-via-terraform-installation/ "https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code#troubleshooting"
 /admin-en/troubleshooting /faq/common-errors-after-waf-installation/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
 /admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
