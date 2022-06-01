@@ -410,9 +410,8 @@ There are the following parameters passed in the commands:
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   8/8       Running   0          5m
-    ingress-controller-nginx-ingress-default-backend-584ffc6c7xj5xx   1/1       Running   0          5m
+    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
+    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
 3. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Wallarm Ingress controller address:
