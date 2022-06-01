@@ -34,10 +34,8 @@
 
 /admin-en/troubleshooting/ /faq/common-errors-after-waf-installation/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/waf-ingress-installation/
-/faq/waf-aws-via-terraform-installation/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code#troubleshooting
 /admin-en/troubleshooting /faq/common-errors-after-waf-installation/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
-/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-faq /faq/waf-aws-via-terraform-installation/
 
 /2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
@@ -309,3 +307,17 @@
 
 /user-guides/nodes/regular-node/ /user-guides/nodes/nodes/
 /user-guides/nodes/cloud-node/ /user-guides/nodes/nodes/
+
+/faq/waf-aws-via-terraform-installation/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code#troubleshooting
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/3.6/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/3.4/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
+/2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
