@@ -65,7 +65,7 @@ For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tena
     * Envoy: `ts` → [`ruleset`](../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
 
     Parameters with previous names are deprecated and will be removed in future releases. The parameter logic has not changed.
-* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
+* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. Starting from the node version 4.0 the new name is used by default.
 
 ## Increasing the performance by omitting attack search in requests from blacklisted IPs
 

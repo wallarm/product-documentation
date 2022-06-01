@@ -176,7 +176,7 @@ New blocking page with the new layout looks as follows by default:
 * The file with the custom ruleset build `/etc/wallarm/lom` has been renamed to `/etc/wallarm/custom_ruleset`. In the file system of new node versions, there is only the file with the new name.
 
     Default values of the NGINX directive [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path) and Envoy parameter [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) have been changed appropriately. New default value is `/etc/wallarm/custom_ruleset`.
-* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. In the file system of new node versions, there is only the file with the new name. NGINX directives and Envoy parameters pointing to this file now point to the renamed file by default.
+* The private key file `/etc/wallarm/license.key` has been renamed to `/etc/wallarm/private.key`. Starting from the node version 4.0 the new name is used by default.
 * The collectd metric `gauge-lom_id` has been renamed to `gauge-custom_ruleset_id`.
 
     In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
