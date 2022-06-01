@@ -1,1 +1,0 @@
---8<-- "latest/faq/waf-aws-via-terraform-installation.md"

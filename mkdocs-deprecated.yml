@@ -100,7 +100,6 @@ nav:
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
     - Compatibility of Wallarm filtering node with NGINX versions: faq/waf-nginx-compatibility.md
-    - Deploying Wallarm Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
     - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
     - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md

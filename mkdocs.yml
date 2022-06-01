@@ -123,10 +123,6 @@ nav:
             - AWS Marketplace image deployment:
               - Creating and configuring an AMI with the Wallarm node: admin-en/installation-ami-en.md
               - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-              - Deploying Wallarm node using Terraform:
-                - Introduction to using Terraform for the filtering node deployment: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro.md
-                - Quick start with Terraform example code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start.md
-                - Description of example Terraform code: admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc.md
               - Setting up filtering node auto scaling:
                 - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
                 - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
@@ -345,7 +341,6 @@ nav:
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
     - Compatibility of Wallarm filtering node with NGINX versions: faq/waf-nginx-compatibility.md
-    - Deploying Wallarm Node in AWS Using Terraform: faq/waf-aws-via-terraform-installation.md 
     - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
     - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
