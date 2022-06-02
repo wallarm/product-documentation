@@ -89,8 +89,8 @@ You can filter the discovered API structure:
 
 * Type in the search string for endpoint search.
 * Use **Application**, **Domain** and **Method** filters.
-* In the **Domains** panel, click application or domain.
 * Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters.
+* In the **Domains** panel, click application or domain.
 
 <a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
 
