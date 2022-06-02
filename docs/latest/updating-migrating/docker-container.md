@@ -112,7 +112,21 @@ There are two options for running the container using the updated image:
 
 ## Step 8: Test the filtering node operation
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
+
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
+
+    * Blocks the request if the appropriate [filtration mode](../admin-en/configure-wallarm-mode.md) is configured.
+    * Returns the [custom blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
+2. Open Wallarm Console → **Events** in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and make sure that:
+
+    * Attacks are displayed in the list.
+    * Hit details display the Wallarm node UUID.
+
+    ![!Attacks in the interface][img-test-attacks-in-ui]
 
 ## Step 9: Delete the filtering node of the previous version
 
