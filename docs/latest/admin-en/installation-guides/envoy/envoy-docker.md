@@ -105,7 +105,7 @@ The command does the following:
 * Creates files with filtering node credentials to access the Wallarm Cloud in the `/etc/wallarm` container directory:
     * `node.yaml` with filtering node UUID and secret key
     * `private.key` with Wallarm private key
-* Protects the resource `http://ENVOY_BACKEND:80`.
+* Protects the resource specified in the mounted configuration file.
 
 ## Configuration of log rotation (optional)
 
