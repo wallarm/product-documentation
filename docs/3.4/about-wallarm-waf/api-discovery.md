@@ -38,6 +38,14 @@ The API structure includes the following elements:
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters including:
     * Type of data sent in each parameter
+
+        This includes sensitive data of the following types:
+        
+        * Technical data like IP and MAC addresses
+        * Login credentials like secret keys and passwords
+        * Financial data like bank card numbers
+        * Personally identifiable information (PII) like full name, passport number or SNN
+    
     * Date and time when parameter information was last updated
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
@@ -82,8 +90,9 @@ You can filter the discovered API structure:
 * Type in the search string for endpoint search.
 * Use **Application**, **Domain** and **Method** filters.
 * In the **Domains** panel, click application or domain.
+* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters.
 
-<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters that are sent in a particular request part:
+<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
