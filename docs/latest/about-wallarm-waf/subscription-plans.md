@@ -43,7 +43,13 @@ When a new user is registered in Wallarm Console, a new client account with an a
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
-* If the trial period expired, the client account is blocked. When a paid subscription to Wallarm API Security is activated, access to the client account is restored for all users.
+* If the trial period expired:
+
+    * The account in Wallarm Console will be blocked.
+    * The Wallarm node and Wallarm Cloud synchronization will be stopped.
+    * The Wallarm node will operate locally but will not get any updates from the Wallarm Cloud as well as will not upload data to the Cloud.
+    
+    When a paid subscription to Wallarm API Security is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
