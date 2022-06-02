@@ -16,7 +16,7 @@
 [al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
-[invalid_xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[invalid-xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
 
 # Using search and filters
