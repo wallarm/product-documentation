@@ -1,5 +1,7 @@
 # Installation in the Kubernetes cluster
 
+These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are no other non-NGINX Ingress controllers deployed.
+
 ## Requirements
 
 * Kubernetes platform version 1.21 and lower
