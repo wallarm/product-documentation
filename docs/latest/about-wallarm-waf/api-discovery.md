@@ -62,7 +62,7 @@ The API Discovery package `wallarm-appstructure` is delivered with all forms of 
 
 To run API Discovery correctly:
 
-1. Add the [module](../about-wallarm-waf/subscription-plans.md#modules) **API Discovery** to the Wallarm API Security subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Add the subscription plan for the **API Discovery** [module](../about-wallarm-waf/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
