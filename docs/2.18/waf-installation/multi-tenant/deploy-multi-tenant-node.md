@@ -65,14 +65,7 @@ Multi-tenant node:
       * [AWS image](../../admin-en/installation-ami-en.md)
       * [Google Cloud Platform image](../../admin-en/installation-gcp-en.md)
       * [Module for Kong](../../admin-en/installation-kong-en.md)
-2. If one Wallarm node filters the traffic of several clients or isolated environments, send a request for switching the node to the multi-tenant status to the [Wallarm technical support](mailto:support@wallarm.com).
-
-    Send the following data with the request:
-
-    * Name of the Wallarm Cloud being used (EU Cloud or US Cloud)
-    * Name of the [global account](configure-accounts.md#tenant-account-structure)
-    * Main tenant UUID obtained when [creating a global account](configure-accounts.md#step-2-get-access-to-the-tenant-account-creation)
-    * Filtering node UUID displayed in Wallarm Console → **Nodes**
+2. If one Wallarm node filters the traffic of several clients or isolated environments, under the **Global administrator** user, go to Wallarm Console → **Nodes**, for the created node, open the action menu and select **Make it multi-tenant**.
 3. Open the tenant's NGINX configuration file and specify the application IDs using the [`wallarm_instance`](../../admin-en/configure-parameters-en.md#wallarm_instance) directive.
 
     Example of the NGINX configuration file for the filtering node processing the traffic of two clients:
