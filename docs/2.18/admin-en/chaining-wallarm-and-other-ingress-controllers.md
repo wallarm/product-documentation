@@ -52,7 +52,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     === "EU Cloud"
         ```bash
         helm install <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress \
-        -n wallarm-ingress --version 3.4.1 \
+        -n wallarm-ingress \
         --set controller.wallarm.enabled=true \
         --set controller.wallarm.token=<NODE_TOKEN> \
         --set controller.electionID=wallarm-ingress-controller-leader \
@@ -63,7 +63,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     === "US Cloud"
         ```bash
         helm install <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress \
-        -n wallarm-ingress --version 3.4.1 \
+        -n wallarm-ingress \
         --set controller.wallarm.enabled=true \
         --set controller.wallarm.token=<NODE_TOKEN> \
         --set controller.wallarm.apiHost=us1.api.wallarm.com \
@@ -89,7 +89,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     NAME                                                              READY     STATUS    RESTARTS   AGE
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      3/3       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   8/8       Running   0          5m
-	  ingress-controller-nginx-ingress-default-backend-584ffc6c7xj5xx   1/1       Running   0          5m
+    ingress-controller-nginx-ingress-default-backend-584ffc6c7xj5xx   1/1       Running   0          5m
     ```
 
 ### Step 2: Create the Wallarm-specific Ingress object
