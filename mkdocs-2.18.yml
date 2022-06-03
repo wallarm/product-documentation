@@ -111,6 +111,7 @@ nav:
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
           - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
+          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
           - Installing Wallarm as the sidecar container:
             - How it works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
             - Kubernetes deployment based on Helm charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
