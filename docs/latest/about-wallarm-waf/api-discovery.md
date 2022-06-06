@@ -77,6 +77,11 @@ To run API Discovery correctly:
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
+The **API Discovery** section is available only to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+
+* **Administrator** or **Analyst** for usual Wallarm nodes.
+* **Global Administrator** or **Global Analyst** for the multi-tenant Wallarm nodes.
+
 ## API structure visualization
 
 To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
