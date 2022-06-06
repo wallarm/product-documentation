@@ -48,6 +48,10 @@ The API structure includes the following elements:
     
     * Date and time when parameter information was last updated
 
+Before purchasing the API Discovery subscription plan, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
+
+![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 ## Security of data uploaded to the Wallarm Cloud
