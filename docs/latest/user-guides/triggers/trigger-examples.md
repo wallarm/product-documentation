@@ -201,12 +201,14 @@ If an IP address was added to the blacklist, the webhook about this event will b
     [
         {
             "summary": "[Wallarm] Trigger: New IP address was blacklisted",
-            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was blacklisted until 2021-06-10 02:27:15 +0300. You can review blocked IP addresses in the \"Blacklist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about blacklisted IP\" trigger.\n\nClient: TestCompany\nCloud: EU\n",
+            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was blacklisted until 2021-06-10 02:27:15 +0300 for the reason Produces many attacks. You can review blocked IP addresses in the \"Blacklist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about blacklisted IP\" trigger. The IP is blocked for the application Application #8.\n\nClient: TestCompany\nCloud: EU\n",
             "details": {
             "client_name": "TestCompany",
             "cloud": "EU",
             "notification_type": "ip_blocked",
             "trigger_name": "Notification about blacklisted IP",
+            "application": "Application #8",
+            "reason": "Produces many attacks",
             "expire_at": "2021-06-10 02:27:15 +0300",
             "ip": "1.1.1.1"
             }
