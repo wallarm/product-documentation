@@ -106,7 +106,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 Create the Wallarm-specific Ingress object, e.g.:
 
 ```bash
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -121,8 +121,10 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: myapp
-          servicePort: 80
+          service:
+            name: myapp
+            port:
+              number: 80
         path: /
 ```
 
@@ -131,7 +133,7 @@ spec:
 Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services, e.g.:
 
 ```bash
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -144,8 +146,10 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: wallarm-ingress-controller
-              servicePort: 80
+              service:
+                name: wallarm-ingress-controller
+                port:
+                  number: 80
             path: /
 ```
 
