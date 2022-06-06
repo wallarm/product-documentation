@@ -67,11 +67,9 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling API Discovery for all applications or only for selected applications. The request should include the following data:
+2. Enable traffic analysis with API Discovery in Wallarm Console → **Settings** → **API Discovery**. You may enable API Discovery for all applications or only the selected ones.
 
-    * Name of your company account registered in Wallarm Console.
-    * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_application` at the same time.
+    ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
