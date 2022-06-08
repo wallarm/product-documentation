@@ -130,11 +130,11 @@ To create the filtering node and connect the postanalytics module to the Cloud:
     
     === "EU Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync --no-sync-acl
         ```
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --no-sync
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
 
     `<NODE_TOKEN>` is the copied token value.
