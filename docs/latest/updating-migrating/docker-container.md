@@ -7,6 +7,13 @@
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../user-guides/ip-lists/greylist.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
+[envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
@@ -91,15 +98,19 @@ If you upgrade the node from version 3.4 or lower and the node is configured to 
 1. [Copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the new customized or previously used page and the NGINX configuration file to a new Docker container in the next step.
 
-## Step 6: Stop the running container
+## Step 6: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+
+## Step 7: Stop the running container
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 7: Run the container using the new image
+## Step 8: Run the container using the new image
 
-Run the container using the new image and passing the same configuration parameters as for the previous image version except for the [deprecated ones](#step-4-switch-from-deprecated-configuration-options).
+Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones listed in the previous steps.
 
 There are two options for running the container using the updated image:
 
@@ -110,7 +121,7 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 8: Test the filtering node operation
+## Step 9: Test the filtering node operation
 
 1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
@@ -128,6 +139,6 @@ There are two options for running the container using the updated image:
 
     ![!Attacks in the interface][img-test-attacks-in-ui]
 
-## Step 9: Delete the filtering node of the previous version
+## Step 10: Delete the filtering node of the previous version
 
 If the deployed image of the version 4.0 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
