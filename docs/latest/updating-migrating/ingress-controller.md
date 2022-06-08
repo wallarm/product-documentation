@@ -389,7 +389,7 @@ The following parameters are passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-4.0.1`.
+    The chart version should correspond to `wallarm-ingress-4.0.3`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
