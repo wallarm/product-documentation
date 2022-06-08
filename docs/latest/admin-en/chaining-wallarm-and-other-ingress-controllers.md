@@ -82,7 +82,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.0.2 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n wallarm-ingress -f <PATH_TO_VALUES>
+    helm install --version 4.0.3 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n wallarm-ingress -f <PATH_TO_VALUES>
     ```
 
     * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
