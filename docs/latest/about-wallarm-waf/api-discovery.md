@@ -71,18 +71,21 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-2. Enable traffic analysis with API Discovery in Wallarm Console → **Settings** → **API Discovery**. You may enable API Discovery for all applications or only the selected ones.
+1. Enable traffic analysis with API Discovery in Wallarm Console → **Settings** → **API Discovery**. You may enable API Discovery for all applications or only the selected ones.
 
     ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
+    !!! info "Access to API Discovery settings"
+    Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.
+
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
-The **API Discovery** section is available only to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+## API structure visualization
+
+The built API structure is presented at the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
 * **Administrator** or **Analyst** for usual Wallarm nodes.
 * **Global Administrator** or **Global Analyst** for the multi-tenant Wallarm nodes.
-
-## API structure visualization
 
 To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
 

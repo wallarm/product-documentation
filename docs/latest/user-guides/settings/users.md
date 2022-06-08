@@ -53,7 +53,8 @@ More detailed information about access of different user roles to the Wallarm en
 | **Applications**    | View and manage                      | View                     | View                         |
 | **Integrations**    | View and manage                      | -                        | -                            |
 | **Users**           | View and manage                      | -                        | View                         |
-| **API Discovey**    | View and manage                      | View and manage          | -                            |
+| **API Discovery**   | View and manage                      | View and manage          | -                            |
+| **API Discovery, settings**   | View and manage                      | -          | -                            |
 | **Activity log**    | View                                 | -                        | View                         |
 
 ## Viewing Users
