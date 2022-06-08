@@ -452,6 +452,11 @@ In the configuration above:
 
 ### wallarm_process_time_limit
 
+!!! warning "The directive has been deprecated"
+    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [rule **Fine‑tune the overlimit_res attack detection**](../user-guides/rules/configure-overlimit-res-detection.md).
+    
+    The `wallarm_process_time_limit` directive is temporarily supported but will be removed in future releases.
+
 Sets the time limit of a single request processing by the Wallarm node.
 
 If the time exceeds the limit, an error is recorded into the log and the request is marked as the [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) attack. Depending on the [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) value, the attack can be either blocked, monitored or ignored.
@@ -469,6 +474,11 @@ wallarm_process_time_limit 2000; # 2000 milliseconds
     **Default value**: 1000ms (one second).
 
 ### wallarm_process_time_limit_block
+
+!!! warning "The directive has been deprecated"
+    Starting from the version 3.6, it is recommended to fine-tune the `overlimit_res` attack detection using the [rule **Fine‑tune the overlimit_res attack detection**](../user-guides/rules/configure-overlimit-res-detection.md).
+    
+    The `wallarm_process_time_limit_block` directive is temporarily supported but will be removed in future releases.
 
 The ability to manage the blocking of requests, which exceed the time limit set in the [`wallarm_process_time_limit`](#wallarm_process_time_limit) directive:
 

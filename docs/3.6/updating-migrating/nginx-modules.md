@@ -11,6 +11,10 @@
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../user-guides/ip-lists/greylist.md
 
 # Upgrading Wallarm NGINX modules
 
@@ -160,11 +164,15 @@ Rename the following NGINX directives if they are explicitly specified in config
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
-## Step 6: Restart NGINX
+## Step 6: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+
+## Step 7: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 7: Test Wallarm node operation
+## Step 8: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 

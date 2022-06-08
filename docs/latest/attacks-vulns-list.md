@@ -608,7 +608,7 @@ There are two scenarios the Wallarm node marks a request as the `overlimit_res` 
 
 * The Wallarm node is configured in such a way that it should spend no more than `N` milliseconds on incoming request processing (default value: `1000`). If the request is not processed during the specified timeframe, then the processing of the request will be stopped and the request marked as an `overlimit_res` attack. 
 
-    You can specify the desired timeframe for the request to be processed by using the [`wallarm_process_time_limit`][link-wl-process-time-limit-directive] Wallarm directive.
+    You can specify the custom time limit and change the default node behavior when the limit is exceeded using the [rule **Fine-tune the overlimit_res attack detection**](user-guides/rules/configure-overlimit-res-detection.md).
 
     Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules that lead to long request processing time.
 * The request uploads the gzip file weighing more than 512 MB.
