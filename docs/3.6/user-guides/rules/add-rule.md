@@ -349,3 +349,4 @@ The following rules are supported:
 * [User-defined detection rules][link-regex-rule]
 * [Ignore certain attack types](ignore-attack-types.md)
 * [Ignoring certain attack signs in the binary data](ignore-attacks-in-binary-data.md)
+* [Fine-tune the overlimit_res attack detection](configure-overlimit-res-detection.md)
