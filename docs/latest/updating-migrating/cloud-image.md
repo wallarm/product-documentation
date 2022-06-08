@@ -4,6 +4,11 @@
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../user-guides/ip-lists/greylist.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 
 # Upgrading the cloud node image
 
@@ -69,24 +74,31 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 1. If you upgrade the node from version 3.4 or lower and the node is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
-1. Restart NGINX to apply the settings: 
-
-    ```bash
-    sudo systemctl restart nginx
-    ```
 
 Detailed information about working with NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/docs/beginners_guide.html).
 
 The list of filtering node directives is available [here](../admin-en/configure-parameters-en.md).
 
-## Step 5: Test Wallarm node operation
+## Step 5: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+
+## Step 6: Restart NGINX
+
+Restart NGINX to apply the settings:
+
+```bash
+sudo systemctl restart nginx
+```
+
+## Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 6: Create the virtual machine image based on the filtering node 4.0 in AWS or GCP
+## Step 8: Create the virtual machine image based on the filtering node 4.0 in AWS or GCP
 
 To create the virtual machine image based on the filtering node 4.0, please follow the instructions for [AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../admin-en/installation-guides/google-cloud/create-image.md).
 
-## Step 7: Delete the previous Wallarm node instance
+## Step 9: Delete the previous Wallarm node instance
 
 If the new version of the filtering node is successfully configured and tested, remove the instance and virtual machine image with the previous version of the filtering node using the AWS or GCP management console.

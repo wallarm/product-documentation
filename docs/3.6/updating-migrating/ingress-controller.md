@@ -1,3 +1,9 @@
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../user-guides/ip-lists/greylist.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
 These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 3.4 or 3.2 to the new version with Wallarm node 3.6.
@@ -131,8 +137,13 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
 * If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap is returned to blocked requests, [adjust its configuration](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
     In new node version, the Wallarm sample blocking page [has](what-is-new.md#when-upgrading-node-34) the updated UI with no logo and support email specified by default.
+* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-3-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) this settings to the rule and delete from the `values.yaml` file.
 
-## Step 3: Check out all coming K8s manifest changes
+## Step 3: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
+
+## Step 4: Check out all coming K8s manifest changes
 
 To avoid unexpectedly changed Ingress controller behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Ingress controller version and of the new one.
 
@@ -228,7 +239,7 @@ Please note the changes of the following configuration:
     ```
 * Analyze all other changes.
 
-## Step 4: Upgrade the Ingress controller
+## Step 5: Upgrade the Ingress controller
 
 There are three ways of upgrading the Wallarm Ingress controller. Depending on whether there is a load balancer deployed to your environment, select the upgrade method:
 
@@ -359,7 +370,7 @@ There are the following parameters passed in the commands:
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 3.6 settings](#step-2-update-the-valuesyaml-configuration)
 
-## Step 5: Test the upgraded Ingress controller
+## Step 6: Test the upgraded Ingress controller
 
 1. Check that the version of the Helm chart was updated:
 
@@ -390,7 +401,7 @@ There are the following parameters passed in the commands:
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
 
-## Step 6: Adjust the Ingress annotations to released changes
+## Step 7: Adjust the Ingress annotations to released changes
 
 Adjust the following Ingress annotations to the changes released in Ingress controller 3.6:
 
