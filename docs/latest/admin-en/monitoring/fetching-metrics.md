@@ -83,7 +83,7 @@ To export metrics using this method:
     LoadPlugin unixsock
 
     <Plugin unixsock>
-        SocketFile "/var/run/collectd-unixsock"
+        SocketFile "/var/run/wallarm-collectd-unixsock"
         SocketGroup "root"
         SocketPerms "0770"
         DeleteSocket true
@@ -108,13 +108,13 @@ To export metrics using this method:
 *   To get the value of the `curl_json-wallarm_nginx/gauge-attacks` metric (at the time `collectd-nagios` was called) on the Linux host `node.example.local` with the filter node, run the following command:
   
     ```
-    /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
+    /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
     ```
        
 *   To get the value of the `curl_json-wallarm_nginx/gauge-attacks` metric (at the time `collectd-nagios` was called) for the filter node running in the Docker container with the `wallarm-node` name and the `95d278317794` identifier, run the following command:
   
     ```
-    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H 95d278317794
+    docker exec wallarm-node /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H 95d278317794
     ```
 
 
