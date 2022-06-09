@@ -130,7 +130,7 @@ To do this, perform the following steps on the filter node host:
 2.  Make sure that the `nagios` user can receive metric values from `collectd` by executing the following test command:
     
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
     ```
     
     This command allows the `nagios` user to get the value of the [`curl_json-wallarm_nginx/gauge-attacks`][link-metric] metric (the number of recorded attacks) for the `node.example.local` host.
@@ -152,7 +152,7 @@ To do this, perform the following steps on the filter node host:
 For example, to create a command named `check_wallarm_nginx_attacks` that will receive the `curl_json-wallarm_nginx/gauge-attacks` metric for the filter node with the `node.example.local` fully qualified domain name, add the following line to the NRPE service’s configuration file:
 
 ```
-command[check_wallarm_nginx_attacks]=/usr/bin/collectd-nagios -s /var/run/collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
+command[check_wallarm_nginx_attacks]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
 ```
 
 
