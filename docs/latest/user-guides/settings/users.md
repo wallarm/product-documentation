@@ -45,6 +45,8 @@ More detailed information about access of different user roles to the Wallarm en
 | **Dashboard**       | View                                 | View                     | View                         |
 | **Events**          | View and manage                      | View and manage          | View                         |
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              |
+| **API structure by API Discovery**   | View and manage                      | View and manage          | -                            |
+| **Configuration of API DIscovery**   | View and manage                      | -          | -                            |
 | **Scanner**         | View and manage                      | View and manage          | View                         |
 | **Triggers**        | View and manage                      | -                        | -                            |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              |
@@ -53,8 +55,6 @@ More detailed information about access of different user roles to the Wallarm en
 | **Applications**    | View and manage                      | View                     | View                         |
 | **Integrations**    | View and manage                      | -                        | -                            |
 | **Users**           | View and manage                      | -                        | View                         |
-| **API Discovery**   | View and manage                      | View and manage          | -                            |
-| **API Discovery, settings**   | View and manage                      | -          | -                            |
 | **Activity log**    | View                                 | -                        | View                         |
 
 ## Viewing Users
