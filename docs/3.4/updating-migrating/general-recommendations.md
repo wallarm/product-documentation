@@ -71,7 +71,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     
     * Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
     * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
+    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
 
         [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
     

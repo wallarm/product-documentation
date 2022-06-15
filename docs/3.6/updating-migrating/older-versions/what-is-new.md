@@ -59,7 +59,7 @@ There are the following new features for request source control:
 
     For automatic IP address greylisting there is a new [trigger **Add to greyist**](../../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
+* Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
 * Ability to whitelist, blacklist, or greylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
 
