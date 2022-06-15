@@ -38,7 +38,7 @@ Listed changes are available for both the regular (client) and multi-tenant Wall
 
 Starting with version 3.x, the filtering node supports IP addresses [whitelists, blacklists, and greylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
+The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
 
 [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 

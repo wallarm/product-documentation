@@ -34,7 +34,7 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
 
 * The filtering node now supports IP address [whitelisting, blacklisting, and greylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 * The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.

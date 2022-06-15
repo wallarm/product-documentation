@@ -4,7 +4,7 @@
 
 Wallarm API Security interacts with the following third-party services:
 
-* GCP storage to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../user-guides/ip-lists/overview.md) countries and data centers.
+* GCP storage to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../user-guides/ip-lists/overview.md) countries, regions and data centers.
 
     Before installing Wallarm API Security, we recommend to ensure your machine has access to [GCP storage IP addresses](https://www.gstatic.com/ipranges/goog.json).
 * Tarantool feedback server (`https://feedback.tarantool.io`) to upload standard Tarantool instance data to.
