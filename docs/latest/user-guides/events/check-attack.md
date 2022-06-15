@@ -25,7 +25,7 @@ You can check detected attacks, incidents, and vulnerabilities in the **Events**
 * **Payloads**: Attack type and the number of unique [malicious payload](../../glossary-en.md#malicious-payload). 
 * **Top IP / Source**: The IP address from which the malicious requests originated. When the malicious requests originate from several IP addresses, the interface shows the IP address responsible for the most requests. There is also the following data displayed for the IP address:
      * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
-     * The country in which the IP address is registered (if it was found in the Wallarm databases)
+     * The country/region in which the IP address is registered (if it was found in the Wallarm databases)
      * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers (if it was found in the Wallarm's databases such as IP2Location or others)
      * The **Tor** tag if the attack's source is the Tor network (if it was found in the Wallarm's databases such as IP2Location or others)
      * The **VPN** tag if IP address belongs to VPN (if it was found in the Wallarm's databases such as IP2Location or others)

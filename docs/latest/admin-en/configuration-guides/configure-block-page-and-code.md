@@ -439,7 +439,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### Named NGINX `location`
 
-This example shows settings to return to the client the message `The page is blocked` and the error code 445 regardless of the reason for request blocking (blocking or safe blocking mode, origin blacklisted as a single IP / subnet / country / data center).
+This example shows settings to return to the client the message `The page is blocked` and the error code 445 regardless of the reason for request blocking (blocking or safe blocking mode, origin blacklisted as a single IP / subnet / country or region / data center).
 
 #### NGINX configuration file
 

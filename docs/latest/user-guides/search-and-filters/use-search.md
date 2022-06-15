@@ -219,11 +219,11 @@ This attribute value can be:
 * `azure` for Microsoft Azure
 * `gce` for Google Cloud Platform
 
-### Search by the country in which the IP address is registered
+### Search by the country or region in which the IP address is registered
 
-To search by the country, in which the IP address originated the attacks is registered, use the `country:` prefix.
+To search by the country or the region, in which the IP address originated the attacks is registered, use the `country:` prefix.
 
-The country name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
+The country/region name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
 
 ### Search by server response status
 
