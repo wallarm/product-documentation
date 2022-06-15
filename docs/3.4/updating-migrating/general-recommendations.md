@@ -46,7 +46,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     Starting with version 3.x, the filtering node supports IP addresses [whitelists, blacklists, and greylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
 
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 
@@ -71,7 +71,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     
     * Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
     * Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
+    * Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
 
         [Details on adding IPs to the whitelist, blacklist, and greylist →](../user-guides/ip-lists/overview.md)
     

@@ -10,7 +10,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
         !!! info "Supported subnet masks"
             Maximum supported subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
     
-    * Select a **country** (geolocation) to add all IP addresses registered in this country
+    * Select a **country** or a **region** (geolocation) to add all IP addresses registered in this country/region
     * Select a **source** to add all IP addresses that belong to this source:
         * **Tor** for IP addresses of the Tor network
         * **Proxy** for IP addresses of public or web proxy servers
@@ -28,10 +28,10 @@ To add an IP address, subnet, or group of IP addresses to the list:
 
 The Wallarm Console displays the following data on each object added to the list:
 
-* **Object** - IP address, subnet, country or IP source added to the list.
+* **Object** - IP address, subnet, country/region or IP source added to the list.
 * **Application** - application to which access configuration of the object is applied. Since applying the [object access configuration to specific applications is limited](overview.md#known-caveats-of-ip-lists-configuration), this column always displays the value **All**.
 * **Source** - source of a single IP address or subnet:
-    * Country (geolocation) where a single IP address or subnet is registered
+    * Country/region (geolocation) where a single IP address or subnet is registered
     * Data center where a single IP address or subnet is registered: **AWS** for Amazon, **GCP** for Google Cloud Platform, **Azure** for Microsoft Azure
     * **Tor** for IP address of the Tor network
     * **Proxy** for IP address of public or web proxy servers
@@ -46,7 +46,7 @@ You can filter the objects in the list by:
 
 * IP address or subnet specified in the search string
 * Period for which you want to get a status of the list
-* Country in which an IP address or a subnet is registered
+* Country/region in which an IP address or a subnet is registered
 * Source to which an IP address or a subnet belongs
 
 ## Changing the time that an object is on the list

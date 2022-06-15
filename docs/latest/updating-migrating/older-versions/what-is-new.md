@@ -34,7 +34,7 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
 
 * The filtering node now supports IP address [whitelisting, blacklisting, and greylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or greylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 * The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
@@ -109,7 +109,7 @@ There are the following new features for request source control:
 
     For automatic IP address greylisting there is a new [trigger **Add to greyist**](../../user-guides/triggers/trigger-examples.md#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country or data center.
+* Ability to whitelist, blacklist, or greylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to whitelist, blacklist, or greylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
 

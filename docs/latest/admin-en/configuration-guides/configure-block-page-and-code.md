@@ -29,7 +29,7 @@ You can configure the blocking page and error code passing the following paramet
 
     * `attack` (by default): for requests blocked by the filtering node when filtering requests in the blocking or safe blocking [mode](../configure-wallarm-mode.md).
     * `acl_ip`: for requests originated from IP addresses that are added to the [blacklist](../../user-guides/ip-lists/blacklist.md) as a single object or a subnet.
-    * `acl_source`: for requests originated from IP addresses that are registered in [blacklisted](../../user-guides/ip-lists/blacklist.md) countries or data centers.
+    * `acl_source`: for requests originated from IP addresses that are registered in [blacklisted](../../user-guides/ip-lists/blacklist.md) countries, regions or data centers.
 
 The `wallarm_block_page` directive accepts the listed parameters in the following formats:
 
@@ -420,7 +420,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### URL for the client redirection
 
-This example shows settings to redirect the client to the page `host/err445` if the filtering node blocks the request originated from blacklisted countries or data centers.
+This example shows settings to redirect the client to the page `host/err445` if the filtering node blocks the request originated from blacklisted countries, regions or data centers.
 
 #### NGINX configuration file
 
@@ -439,7 +439,7 @@ kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-bloc
 
 ### Named NGINX `location`
 
-This example shows settings to return to the client the message `The page is blocked` and the error code 445 regardless of the reason for request blocking (blocking or safe blocking mode, origin blacklisted as a single IP / subnet / country / data center).
+This example shows settings to return to the client the message `The page is blocked` and the error code 445 regardless of the reason for request blocking (blocking or safe blocking mode, origin blacklisted as a single IP / subnet / country or region / data center).
 
 #### NGINX configuration file
 

@@ -81,7 +81,7 @@ Clicking the attack type redirects to the [**Events** section][doc-events-tab] w
 
 The block shows statistics on the attack sources for the selected period:
 
-* World map with the attack number distributed by source country
+* World map with the attack number distributed by source country or region
 * Top attack source countries
 * Top attack source resources: statistics on data centers IP addresses from which requests were received
 
