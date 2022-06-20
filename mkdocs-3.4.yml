@@ -288,14 +288,17 @@ nav:
         - Integrations:
           - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
           - Email Report: user-guides/settings/integrations/email.md
+          - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
           - Slack: user-guides/settings/integrations/slack.md
           - Telegram: user-guides/settings/integrations/telegram.md
-          - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-          - Opsgenie: user-guides/settings/integrations/opsgenie.md
           - InsightConnect: user-guides/settings/integrations/insightconnect.md
+          - Opsgenie: user-guides/settings/integrations/opsgenie.md
           - PagerDuty: user-guides/settings/integrations/pagerduty.md
-          - Splunk: user-guides/settings/integrations/splunk.md
           - Sumo Logic: user-guides/settings/integrations/sumologic.md
+          - Splunk: user-guides/settings/integrations/splunk.md
+          - Datadog: user-guides/settings/integrations/datadog.md
+          - Fluentd: user-guides/settings/integrations/fluentd.md
+          - Logstash: user-guides/settings/integrations/logstash.md
           - Webhook:
             - Webhook Integration Overview: user-guides/settings/integrations/webhook.md
             - Examples:
