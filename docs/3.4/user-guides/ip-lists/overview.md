@@ -62,7 +62,3 @@ To configure IP lists:
 
     * [Scanner IP address registered in Wallarm EU Cloud](../../admin-en/scanner-address-eu-cloud.md)
     * [Scanner IP address registered in Wallarm US Cloud](../../admin-en/scanner-address-us-cloud.md)
-
-## Known caveats of IP lists configuration
-
-* If you have the trigger configured to automatically block an IP address (for example, [trigger to add IP addresses to the blacklist](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all application instances in a Wallarm account.

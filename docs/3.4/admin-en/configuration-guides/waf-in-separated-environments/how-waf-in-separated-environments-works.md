@@ -62,4 +62,3 @@ To activate a `master` account and sub-accounts, please contact [Wallarm's Techn
 
 !!! warning "Known limitations"
     * All filtering nodes connected to the same Wallarm account will receive the same set of traffic filtration rules. You still can apply different rules for different applications by using proper [application instance IDs or unique HTTP request headers](#resource-identification).
-    * If the filtering node decides to automatically block an IP address (for example, because of three or more detected attack vectors from the IP address) the system will block the IP for all application instances in a Wallarm account.
