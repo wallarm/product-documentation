@@ -10,7 +10,10 @@
 [pagerduty-notifications]:      ./pagerduty.md
 [splunk-notifications]:         ./splunk.md
 [sumologic-notifications]:      ./sumologic.md
-[webhook-notifications]:      ./webhook.md
+[datadog-notifications]:        ./datadog.md
+[fluentd-notifications]:        ./fluentd.md
+[logstash-notifications]:       ./logstash.md
+[webhook-notifications]:        ./webhook.md
 [account]:                      ../account.md
 
 # Integrations Overview
@@ -25,7 +28,7 @@ The **Settings** → **Integrations** tab allows you to integrate with different
 
 ## Integration types
 
-The systems available for integration are grouped in the following blocks: **Email and messengers**, **Incident management and SIEM systems** and **Other systems**.
+The systems available for integration are grouped by types as follows:
 
 ![!Integrations Overview][integration-pane-img]
 
@@ -37,17 +40,29 @@ The systems available for integration are grouped in the following blocks: **Ema
 * [Telegram][telegram-notifications]
 * [Microsoft Teams][ms-teams-notifications]
 
-### Incident management and SIEM systems
+### Incident and task management systems
 
-* [Opsgenie][opsgenie-notifications]
 * [InsightConnect][insightconnect-notifications]
+* [Opsgenie][opsgenie-notifications]
 * [PagerDuty][pagerduty-notifications]
-* [Splunk][splunk-notifications]
+
+### SIEM and SOAR systems
+
 * [Sumo Logic][sumologic-notifications]
+
+### Log management systems
+
+* [Splunk][splunk-notifications]
+* [Datadog][datadog-notifications]
+
+### Data collectors
+
+* [Fluentd][fluentd-notifications]
+* [Logstash][logstash-notifications]
 
 ### Other systems
 
-* [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol. For example:
+* [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol, e.g.:
     * With Fluentd configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
     * With Logstash configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
 
