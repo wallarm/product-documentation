@@ -84,6 +84,8 @@ A more detailed description of configuration files is available in the [official
 
 ![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/add-webhook-integration.png)
 
+[More details on the webhook integration configuration](../webhook.md)
+
 ## Example testing
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
