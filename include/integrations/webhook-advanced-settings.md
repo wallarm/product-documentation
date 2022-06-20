@@ -1,0 +1,6 @@
+* **Request method**: `POST` or `PUT`. By default, POST requests are sent.
+* **Request header** and its value if the server requires a non-standard header to execute the request. The number of headers is not limited.
+* **CA certificate**: certificate of CA that signed a server certificate. If CA is publicly trusted, this field is optional. If a server certificate is self-signed, this field is required and must contain a certificate of your own CA that signed a server certificate.
+* **Verify TLS certificate**: this setting allows to disable verification of the specified server certificate. By default, Wallarm verifies whether a server certificate is signed by a publicly trusted CA. We do not recommend disabling verification of production server certificates. If your server uses a self-signed TLS certificate, you can add a self-signed CA certificate to allow sending requests to this server.
+* **Request timeout, in seconds**: if the server does not respond to the request within the specified time, the request fails. By default: 15 seconds.
+* **Connection timeout, in seconds**: if the connection to the server cannot be established during the specified time, the request fails. By default: 20 seconds.
