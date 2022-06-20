@@ -99,8 +99,8 @@ You will find more details in the [official Logstash documentation](https://www.
 
     --8<-- "../include/integrations/webhook-advanced-settings.md"
 1. Choose event types to trigger sending notifications to the specified URL. If the events are not chosen, then notifications will not be sent.
-3. [Test the integration](#testing-integration) and make sure the settings are correct.
-4. Click **Add integration**.
+1. [Test the integration](#testing-integration) and make sure the settings are correct.
+1. Click **Add integration**.
 
 ![!Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
