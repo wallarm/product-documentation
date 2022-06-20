@@ -7,6 +7,13 @@
 [sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
 [img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../../user-guides/ip-lists/greylist.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
+[envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 
 # Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower
 
@@ -84,9 +91,13 @@ If the Docker container 2.18 or lower was configured to return the `&/usr/share/
 1. [Copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
 
-## Step 8: Run the container using the updated image
+## Step 8: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
-Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones [listed in the previous step](#step-6-switch-from-deprecated-configuration-options).
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+
+## Step 9: Run the container using the updated image
+
+Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones listed in the previous steps.
 
 There are two options for running the container using the updated image:
 
@@ -97,7 +108,7 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 9: Adjust Wallarm node filtration mode settings to changes released in the latest versions
+## Step 10: Adjust Wallarm node filtration mode settings to changes released in the latest versions
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
@@ -106,15 +117,15 @@ There are two options for running the container using the updated image:
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 10: Test the filtering node operation
+## Step 11: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 11: Delete the filtering node of the previous version
+## Step 12: Delete the filtering node of the previous version
 
 If the deployed image of the version 3.6 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
-## Step 12: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 13: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

@@ -13,6 +13,10 @@
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [img-wl-console-users]:             ../images/check-users.png 
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../user-guides/ip-lists/greylist.md
 
 # Upgrading Wallarm NGINX modules
 
@@ -264,11 +268,15 @@ In the new node version the following changes to the [node logging variables](..
     * Time in the queue
     * Time in seconds the CPU spent processing the request
 
-## Step 9: Restart NGINX
+## Step 9: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+
+## Step 10: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 10: Test Wallarm node operation
+## Step 11: Test Wallarm node operation
 
 1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
@@ -286,7 +294,7 @@ In the new node version the following changes to the [node logging variables](..
 
     ![!Attacks in the interface][img-test-attacks-in-ui]
 
-## Step 11: Delete the node of the previous version
+## Step 12: Delete the node of the previous version
 
 Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
 

@@ -18,6 +18,7 @@
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
 [invalid-xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
 [ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
+[overlimit-res]:          ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 
 # Using search and filters
 
@@ -93,7 +94,8 @@ Specify in the search string:
 * `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
 * `mail_injection`: to search for [Email Injections][email-injection].
 * `ssi`: to search for [SSI Injections][ssi-injection].
-* * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
+* `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
+* `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

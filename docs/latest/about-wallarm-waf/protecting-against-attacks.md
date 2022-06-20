@@ -170,6 +170,7 @@ To adjust default Wallarm request analysis to protected application specificitie
 * [Ignore certain attack types](../user-guides/rules/ignore-attack-types.md)
 * [Allow binary data and file uploading](../user-guides/rules/ignore-attacks-in-binary-data.md)
 * [Disable/Enable request parsers](../user-guides/rules/disable-request-parsers.md)
+* [Fine-tune the overlimit_res attack detection](../user-guides/rules/configure-overlimit-res-detection.md)
 
 [Compiled](../user-guides/rules/compiling.md) custom ruleset is applied along with the standard rules from **proton.db** when analyzing requests.
 

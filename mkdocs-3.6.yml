@@ -97,7 +97,7 @@ nav:
         - Data management policies:
           - Security model of shared responsibility for clients' data: about-wallarm-waf/shared-responsibility.md
           - Data retention policy: about-wallarm-waf/data-retention-policy.md
-        - Wallarm API Security subscription plans: about-wallarm-waf/subscription-plans.md
+        - Wallarm subscription plans: about-wallarm-waf/subscription-plans.md
         - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
     - Quick start: quickstart.md
     - Administrator Guide:
@@ -112,6 +112,7 @@ nav:
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
           - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
+          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
           - Installing Wallarm as the sidecar container:
             - How it works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
             - Kubernetes deployment based on Helm charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
@@ -271,6 +272,7 @@ nav:
           - User‑Defined Detection Rules: user-guides/rules/regex-rule.md
           - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md
           - Ignoring attack signs in the binary data: user-guides/rules/ignore-attacks-in-binary-data.md
+          - The overlimit_res attack detection fine‑tuning: user-guides/rules/configure-overlimit-res-detection.md
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md

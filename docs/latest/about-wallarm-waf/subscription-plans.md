@@ -1,8 +1,13 @@
-# Wallarm API Security subscription plans
+# Wallarm subscription plans
 
-The subscription plan outlines the access conditions to Wallarm API Security: subscription period, the set of available modules, and features.
+The subscription plan outlines the access conditions to the Wallarm products: subscription period, the set of available modules, and features.
 
-This document describes the components of the Wallarm API Security subscription plan and how to configure it.
+Different subscription plans are used for:
+
+* API Security
+* API Discovery
+
+This document describes the components that may be included into the Wallarm subscription plans and how to configure them.
 
 ## Subscription plans
 
@@ -18,7 +23,7 @@ The set of all Wallarm API Security modules is provided below. Modules can be ad
 * **[Custom ruleset setup](../user-guides/rules/compiling.md)** allows you to manually add request processing rules: block malicious requests if the filtering node is working in the `monitoring` mode or if any known malicious payload is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
 * **[Exposed asset Scanner](../user-guides/scanner/check-scope.md)** scans the company's exposed assets: discovering new domains, IP addresses, services, and notification of new objects.
 * **[Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner)** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
-* **[API Discovery](../about-wallarm-waf/api-discovery.md)** identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of real traffic requests and builds the API structure based on the analysis results.
+* **[API Discovery](../about-wallarm-waf/api-discovery.md)** identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of real traffic requests and builds the API structure based on the analysis results. The **API Discovery** module is provided within a separate subscription plan.
 
 ### Features
 
@@ -41,6 +46,7 @@ When a new user is registered in Wallarm Console, a new client account with an a
 * The trial period is free.
 * The trial period lasts 14 days.
 * Wallarm API Security trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm API Security.
+* Wallarm API Security trial also activates API Discovery trial.
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).

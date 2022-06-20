@@ -1,3 +1,9 @@
+[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
+[greylist-docs]:                     ../../user-guides/ip-lists/greylist.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+
 # Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower
 
 These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 2.18 or lower to the new version with Wallarm node 4.0.
@@ -163,8 +169,13 @@ Change the Wallarm module configuration set in the `values.yaml` file as follows
 * If the page `&/usr/share/nginx/html/wallarm_blocked.html` configured via ConfigMap was returned to blocked requests, [adjust its configuration](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) to the released changes.
 
     In new node version, the Wallarm sample blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
+* If you have customized the `overlimit_res` attack detection via the [`wallarm_process_time_limit`][nginx-process-time-limit-docs] and [`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINX directives, please [transfer](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule) this settings to the rule and delete from the `values.yaml` file.
 
-## Step 6: Check out all coming K8s manifest changes
+## Step 6: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
+
+## Step 7: Check out all coming K8s manifest changes
 
 To avoid unexpectedly changed Ingress controller behavior, check out all coming K8s manifest changes using [Helm Diff Plugin](https://github.com/databus23/helm-diff). This plugin outputs the difference between the K8s manifests of the deployed Ingress controller version and of the new one.
 
@@ -178,7 +189,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.2 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.3 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
@@ -260,7 +271,7 @@ Please note the changes of the following configuration:
     ```
 * Analyze all other changes.
 
-## Step 7: Upgrade the Ingress controller
+## Step 8: Upgrade the Ingress controller
 
 There are three ways of upgrading the Wallarm Ingress controller. Depending on whether there is a load balancer deployed to your environment, select the upgrade method:
 
@@ -285,7 +296,7 @@ By using this method, you can deploy Ingress Controller 4.0 as an additional ent
 2. Deploy the Ingress controller 4.0:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.2 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.3 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -321,7 +332,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 4.0:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.2 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.3 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -373,7 +384,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.2 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.0.3 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -391,7 +402,7 @@ There are the following parameters passed in the commands:
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.0 settings](#step-5-update-the-valuesyaml-configuration)
 
-## Step 8: Test the upgraded Ingress controller
+## Step 9: Test the upgraded Ingress controller
 
 1. Check that the version of the Helm chart was updated:
 
@@ -399,7 +410,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-4.0.1`.
+    The chart version should correspond to `wallarm-ingress-4.0.3`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
@@ -422,7 +433,7 @@ There are the following parameters passed in the commands:
 
     If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
 
-## Step 9: Adjust the Ingress annotations to released changes
+## Step 10: Adjust the Ingress annotations to released changes
 
 Adjust the following Ingress annotations to the changes released in Ingress controller 4.0:
 
@@ -441,7 +452,7 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 
     In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
-## Step 10: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 11: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

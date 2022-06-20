@@ -130,11 +130,11 @@ To replace the regular postanalytics node with the Wallarm node:
 
     === "EU Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force --no-sync --no-sync-acl
         ```
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force --no-sync --no-sync-acl
         ```
     
     * `<NODE_TOKEN>` is the Wallarm node token.
