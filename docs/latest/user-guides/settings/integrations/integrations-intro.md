@@ -1,5 +1,4 @@
 [integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
-[add-integration-img]:          ../../../images/user-guides/settings/integrations/add-integration-button.png
 [disable-button]:               ../../../images/user-guides/settings/integrations/disable-button.png
 
 [email-notifications]:          ./email.md
@@ -54,9 +53,10 @@ The systems available for integration are grouped in the following blocks: **Ema
 
 ## Adding an integration
 
-To add a new integration, click the icon of the unconfigured system on the **All** tab or click the **Add integration** button and select the required system. Further steps are described in the selected system instructions.
+To add a new integration:
 
-![!Adding Integrations][add-integration-img]
+* Click the icon of the unconfigured system on the **All** tab, or
+* Click the **Add integration** button in the required system group and select the system. Further steps are described in the selected system instructions.
 
 The number of integrations with one system is not limited. For example: to send security reports to 3 Slack channels, you can create 3 different integrations with Slack.
 
