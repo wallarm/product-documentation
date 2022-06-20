@@ -100,6 +100,8 @@ A more detailed description of QRadar log source setup is available in the [offi
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/add-webhook-integration.png)
 
+[More details on the webhook integration configuration](../webhook.md)
+
 ## Example testing
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"

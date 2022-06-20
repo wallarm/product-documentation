@@ -287,9 +287,9 @@ nav:
         - Integrations:
           - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
           - Email Report: user-guides/settings/integrations/email.md
-          - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
           - Slack: user-guides/settings/integrations/slack.md
           - Telegram: user-guides/settings/integrations/telegram.md
+          - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
           - InsightConnect: user-guides/settings/integrations/insightconnect.md
           - Opsgenie: user-guides/settings/integrations/opsgenie.md
           - PagerDuty: user-guides/settings/integrations/pagerduty.md

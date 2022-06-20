@@ -119,7 +119,7 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
 
     ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. Choose event types to trigger sending notifications to Webhook URL. If the events are not chosen, then notifications will not be sent.
-7. [Test the integration](#testing-integration) and ensure the settings are correct.
+7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
     ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)

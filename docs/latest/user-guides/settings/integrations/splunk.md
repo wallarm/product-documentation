@@ -22,7 +22,7 @@ In Wallarm UI:
 4. Paste the copied token into the **HEC token** field.
 5. Paste HEC URI and the port number of your Splunk instance into the **HEC URI:PORT** field. For example: `https://hec.splunk.com:8088`.
 6. Choose event types to trigger notifications. If the events are not chosen, then Splunk alerts will not be sent.
-7. [Test the integration](#testing-integration) and ensure the settings are correct.
+7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
 ![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
