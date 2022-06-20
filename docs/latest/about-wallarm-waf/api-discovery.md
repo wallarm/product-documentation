@@ -48,6 +48,10 @@ The API structure includes the following elements:
     
     * Date and time when parameter information was last updated
 
+Before purchasing the API Discovery subscription plan, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
+
+![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 ## Security of data uploaded to the Wallarm Cloud
@@ -67,15 +71,21 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-2. Send a request to enable traffic analysis with API Discovery to the [Wallarm technical support](mailto:support@wallarm.com). You may request enabling API Discovery for all applications or only for selected applications. The request should include the following data:
+1. Enable API Discovery for the required applications in Wallarm Console → **Settings** → **API Discovery**.
 
-    * Name of your company account registered in Wallarm Console.
-    * Name of the [Wallarm Cloud](overview.md#cloud) being used.
-    * If you want to enable API Discovery only for the selected applications, mention that requirement and list IDs of applications to be discovered. Application ID is displayed in the **Settings** → **[Applications](../user-guides/settings/applications.md)** section of Wallarm Console and it is the value of `wallarm_application` at the same time.
+    ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+
+    !!! info "Access to API Discovery settings"
+        Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
 ## API structure visualization
+
+The built API structure is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+
+* **Administrator** or **Analyst** for the regular accounts.
+* **Global Administrator** or **Global Analyst** for the accounts with the multitenancy feature.
 
 To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
 

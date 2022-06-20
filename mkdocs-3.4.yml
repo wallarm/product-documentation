@@ -283,8 +283,7 @@ nav:
         - General: user-guides/settings/general.md
         - Subscriptions: user-guides/settings/subscriptions.md
         - Applications: user-guides/settings/applications.md
-        - Users: user-guides/settings/users.md
-        - Activity Log: user-guides/settings/audit-log.md
+        - API Discovery: user-guides/settings/api-discovery.md
         - Integrations:
           - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
           - Email Report: user-guides/settings/integrations/email.md
@@ -305,6 +304,8 @@ nav:
               - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
               - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
               - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+        - Users: user-guides/settings/users.md
+        - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
       - What is new in Wallarm node 3.4: updating-migrating/what-is-new.md
