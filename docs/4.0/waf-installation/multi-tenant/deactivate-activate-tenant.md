@@ -1,1 +1,0 @@
---8<-- "latest/waf-installation/multi-tenant/deactivate-activate-tenant.md"

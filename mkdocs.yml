@@ -155,7 +155,6 @@ nav:
         - Deploying the multi‑tenant node:
           - Multitenancy overview: waf-installation/multi-tenant/overview.md
           - Creating tenant accounts in Wallarm Console: waf-installation/multi-tenant/configure-accounts.md
-          - Deactivating and activating tenant accounts: waf-installation/multi-tenant/deactivate-activate-tenant.md
           - Deploying and configuring multi-tenant node: waf-installation/multi-tenant/deploy-multi-tenant-node.md
         - Deploying Wallarm CDN node: waf-installation/cdn-node.md
       - Configuration:
