@@ -243,6 +243,7 @@ nav:
         - Closing and Opening Vulnerabilities: user-guides/vulnerabilities/close-open-vuln.md
         - Rechecking Vulnerabilities: user-guides/vulnerabilities/recheck-vuln.md
         - Working with False Vulnerabilities: user-guides/vulnerabilities/false-vuln.md
+      - API Discovery: user-guides/api-discovery-ug.md
       - Search and Filters:
         - Using Search and Filters: user-guides/search-and-filters/use-search.md
         - Creating a Custom Report: user-guides/search-and-filters/custom-report.md
