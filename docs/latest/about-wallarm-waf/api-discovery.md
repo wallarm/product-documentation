@@ -16,13 +16,13 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API structure discovered by Wallarm, you can**:
 
-* Check [the list of parameters](#params) that are sent for the selected endpoint, including the following information:
+* Check [the list of parameters](../user-guides/api-discovery-ug.md#params) that are sent for the selected endpoint, including the following information:
     * Type of data sent in each parameter.
     * Date and time when parameter information was last updated.
-* [Download](#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
+* [Download](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
-* Quickly [create a new rule](#api-structure-and-rules) for any discovered endpoint of API structure.
+* Quickly [create a new rule](../user-guides/api-discovery-ug.md#api-structure-and-rules) for any discovered endpoint of API structure.
 * See events related to some endpoint in one click.
 * Copy URLs of the discovered endpoints.
 
@@ -30,7 +30,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
 
-The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](#api-structure-visualization) it in Wallarm Console.
+The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](../user-guides/api-discovery-ug.md#api-structure-visualization) it in Wallarm Console.
 
 The API structure includes the following elements:
 
@@ -54,6 +54,32 @@ Before purchasing the API Discovery subscription plan, you can preview sample da
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
+## Visualization and downloading in Swagger-like manner
+
+To provide users with familiar format of API representation, Wallarm [visualizes](../user-guides/api-discovery-ug.md#api-structure-visualization) the discovered API structure in a **Swagger-like manner**.
+
+![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+
+You can also [download](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) OpenAPI specification (OAS) for your API structure as `swagger.json` file in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
+
+## Variability in paths of endpoints
+
+URLs can include alternating elements, such as ID of user, like:
+
+* `/api/articles/author/author-a-0001`
+* `/api/articles/author/author-a-1401`
+* `/api/articles/author/author-b-1401`
+
+Basing on the statistics, the **API Discovery** module unifies such addresses into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+
+* `/api/articles/author/{parameter_X}`
+
+Click the endpoint to expand its parameters and view which type of pattern was found fot this part of the address.
+
+![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+
+Note that the algorithm analyzes the statistics continuously, so if at some moment you see addresses, that contain the pattern but they are not unified yet, give it a time - as soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
+
 ## Security of data uploaded to the Wallarm Cloud
 
 Before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm. On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
@@ -71,7 +97,7 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-1. Enable API Discovery for the required applications in Wallarm Console → **Settings** → **API Discovery**.
+1. Enable API Discovery for the required applications in Wallarm Console → **Settings** → **API Discovery** (also accessible by clicking **Configure API Discovery** at the built structure page).
 
     ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
@@ -79,68 +105,6 @@ To run API Discovery correctly:
         Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
-
-## API structure visualization
-
-The built API structure is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
-
-* **Administrator** or **Analyst** for the regular accounts.
-* **Global Administrator** or **Global Analyst** for the accounts with the multitenancy feature.
-
-To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
-
-The API structure includes the following elements (grouped by application and domain):
-
-* The set of API endpoints discovered by API Discovery
-* Methods of requests processed at API endpoints
-
-![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
-
-You can filter the discovered API structure:
-
-* Type in the search string for endpoint search.
-* Use **Application**, **Domain** and **Method** filters.
-* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters.
-* In the **Domains** panel, click application or domain.
-
-<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
-
-![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
-
-## API structure and related events
-
-To see attacks and incidents for the last 7 days related to some endpoint, click the icon:
-
-![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
-
-The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
-
-```
-attacks incidents last 7 days d:<YOUR_DOMAIN> u:<YOUR_ENDPOINT>
-```
-
-You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
-
-## API structure and rules
-
-You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
-
-1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
-1. In the create rule window, specify rule information and then click **Create**.
-
-![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
-
-## Download OpenAPI Specification (OAS) for your API structure
-
-Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
-
-!!! info "Domain information in downloaded Swagger file"
-    If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded Swagger file. Currently, the domain information is not included in the file.
-
-Using the downloaded data, you can discover:
-
-* The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
-* The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 
 ## API Discovery debugging
 
