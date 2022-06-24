@@ -54,13 +54,22 @@ Before purchasing the API Discovery subscription plan, you can preview sample da
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
-## Visualization and downloading in Swagger-like manner
+## Using built API structure
 
-To provide users with familiar format of API representation, Wallarm [visualizes](../user-guides/api-discovery-ug.md#api-structure-visualization) the discovered API structure in a **Swagger-like manner**.
+The API Discovery section provides many options for the build API structure usage.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
-You can also [download](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) OpenAPI specification (OAS) for your API structure as `swagger.json` file in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
+These options are:
+
+* Familiar format of API representation in a **Swagger-like manner**.
+* Search and filters.
+* Viewing endpoint parameters.
+* Quick navigation to attacks and incidents related to some endpoint.
+* Custom rule creation for the specific endpoint.
+* [Downloading](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) OpenAPI specification (OAS) for your API structure as `swagger.json` file).
+
+Learn more about available options from the [User guide](../user-guides/api-discovery-ug.md).
 
 ## Variability in paths of endpoints
 
@@ -70,15 +79,15 @@ URLs can include alternating elements, such as ID of user, like:
 * `/api/articles/author/author-a-1401`
 * `/api/articles/author/author-b-1401`
 
-Basing on the statistics, the **API Discovery** module unifies such addresses into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+Based on the statistics, the **API Discovery** module unifies such addresses into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
 
 * `/api/articles/author/{parameter_X}`
 
-Click the endpoint to expand its parameters and view which type of pattern was found fot this part of the address.
+Click the endpoint to expand its parameters and view which type of pattern was found for this part of the address.
 
 ![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
-Note that the algorithm analyzes the statistics continuously, so if at some moment you see addresses, that contain the pattern but they are not unified yet, give it a time - as soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
+Note that the algorithm analyzes the statistics continuously. If at some moment you see addresses, that contain the pattern but they are not unified yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
 
 ## Security of data uploaded to the Wallarm Cloud
 
