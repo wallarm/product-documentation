@@ -1,8 +1,6 @@
-# Using API Discovery
+# Using built API structure
 
-This section describes how to use the [API Discovery](../about-wallarm-waf/api-discovery.md) module.
-
-## API structure visualization
+This section describes how to use the API structure built by the [API Discovery](../about-wallarm-waf/api-discovery.md) module.
 
 The built API structure is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
@@ -18,12 +16,16 @@ The API structure includes the following elements (grouped by application and do
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
+## Filtering endpoints
+
 You can filter the discovered API structure:
 
 * Type in the search string for endpoint search.
 * Use **Application**, **Domain** and **Method** filters.
 * Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters.
 * In the **Domains** panel, click application or domain.
+
+## Viewing endpoint parameters
 
 <a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
 
