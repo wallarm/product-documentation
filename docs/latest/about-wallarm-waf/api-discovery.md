@@ -16,13 +16,13 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API structure discovered by Wallarm, you can**:
 
-* Check [the list of parameters](../user-guides/api-discovery-ug.md#params) that are sent for the selected endpoint, including the following information:
+* Check [the list of parameters](../user-guides/api-discovery.md#params) that are sent for the selected endpoint, including the following information:
     * Type of data sent in each parameter.
     * Date and time when parameter information was last updated.
-* [Download](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
+* [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
-* Quickly [create a new rule](../user-guides/api-discovery-ug.md#api-structure-and-rules) for any discovered endpoint of API structure.
+* Quickly [create a new rule](../user-guides/api-discovery.md#api-structure-and-rules) for any discovered endpoint of API structure.
 * See events related to some endpoint in one click.
 * Copy URLs of the discovered endpoints.
 
@@ -30,7 +30,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
 
-The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](../user-guides/api-discovery-ug.md#api-structure-visualization) it in Wallarm Console.
+The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](../user-guides/api-discovery.md#api-structure-visualization) it in Wallarm Console.
 
 The API structure includes the following elements:
 
@@ -67,9 +67,9 @@ These options are:
 * Viewing endpoint parameters.
 * Quick navigation to attacks and incidents related to some endpoint.
 * Custom rule creation for the specific endpoint.
-* [Downloading](../user-guides/api-discovery-ug.md#download-openapi-specification-oas-for-your-api-structure) OpenAPI specification (OAS) for your API structure as `swagger.json` file).
+* Downloading OpenAPI specification (OAS) for your API structure as `swagger.json` file.
 
-Learn more about available options from the [User guide](../user-guides/api-discovery-ug.md).
+Learn more about available options from the [User guide](../user-guides/api-discovery.md).
 
 ## Variability in paths of endpoints
 
