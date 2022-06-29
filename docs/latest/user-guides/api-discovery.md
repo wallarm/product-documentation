@@ -9,10 +9,10 @@ The built API structure is presented in the **API Discovery** section. The secti
 
 To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
 
-The API structure includes the following elements (grouped by application and domain):
+The API structure includes the following elements:
 
-* The set of API endpoints discovered by API Discovery
-* Methods of requests processed at API endpoints
+* Customers applications with discovered domains in them.
+* Discovered endpoints grouped by domains. For each endpoint, the HTTP method is displayed.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
@@ -20,9 +20,9 @@ The API structure includes the following elements (grouped by application and do
 
 You can filter the discovered API structure:
 
-* Type in the search string for endpoint search.
+* For the endpoint search, in the search string, type what your endpoint path may contain. Regular expressions are not allowed.
 * Use **Application**, **Domain** and **Method** filters.
-* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters.
+* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters. 
 * In the **Domains** panel, click application or domain.
 
 ## Viewing endpoint parameters
@@ -32,6 +32,9 @@ You can filter the discovered API structure:
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
 Click the name of the column to sort. Click again to change the sorting order.
+
+!!! info "Sensitive data (PII) transmitted by endpoint"
+    The **red key** icon marks that the endpoint transmits the PII group. In the endpoint details, you can see which exactly parameter transmits which PII.
 
 ## API structure and related events
 
