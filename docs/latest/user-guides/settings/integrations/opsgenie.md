@@ -2,7 +2,7 @@
 
 You can set up Wallarm to send alerts to Opsgenie when the following events are triggered:
 
-* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected
+--8<-- "../include/integrations/events-for-integrations.md"
 
 ## Setting up integration
 
@@ -21,7 +21,7 @@ In Wallarm UI:
 4. Paste the copied API key to the **API key** field.
 5. If using the [EU instance](https://docs.opsgenie.com/docs/european-service-region) of Opsgenie, select the appropriate Opsgenie API endpoint from the list. By default, the US instance endpoint is set.
 6. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
-7. [Test the integration](#testing-integration) and ensure the settings are correct.
+7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
     ![!Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)

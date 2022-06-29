@@ -91,6 +91,8 @@ A more detailed description of the configuration files is available in the [offi
 
 ![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/add-webhook-integration-ip.png)
 
+[More details on the webhook integration configuration](../webhook.md)
+
 ## Example testing
 
 --8<-- "../include/integrations/webhook-examples/send-test-webhook.md"

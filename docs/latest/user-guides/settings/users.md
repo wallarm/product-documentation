@@ -37,7 +37,7 @@ Users of Wallarm clients can have the following roles:
 
 The [multitenancy](../../waf-installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
-More detailed information about access of different user roles to Wallarm entitites is provided in the table below. Entity management covers entity creating, editing, and deleting.
+More detailed information about access of different user roles to the Wallarm entities is provided in the table below. Entity management covers entity creating, editing, and deleting.
 
 | Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only |
 |---------------------|--------------------------------------|--------------------------|------------------------------|
@@ -45,12 +45,14 @@ More detailed information about access of different user roles to Wallarm entiti
 | **Dashboard**       | View                                 | View                     | View                         |
 | **Events**          | View and manage                      | View and manage          | View                         |
 | **Vulnerabilities** | View and manage                      | View and manage          | View and manage              |
+| **API structure by API Discovery**   | View and manage                      | View and manage          | -                            |
 | **Scanner**         | View and manage                      | View and manage          | View                         |
 | **Triggers**        | View and manage                      | -                        | -                            |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              |
 | **Rules**           | View and manage                      | View and manage          | View                         |
 | **Filtration mode**        | View and manage                      | View                     | View                         |
 | **Applications**    | View and manage                      | View                     | View                         |
+| **Configuration of API Discovery**   | View and manage                      | -          | -                            |
 | **Integrations**    | View and manage                      | -                        | -                            |
 | **Users**           | View and manage                      | -                        | View                         |
 | **Activity log**    | View                                 | -                        | View                         |
