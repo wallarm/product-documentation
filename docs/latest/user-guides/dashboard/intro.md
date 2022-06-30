@@ -16,9 +16,12 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 
 
 !!! info "Getting started with Wallarm"
-    The dashboard section also includes the **Get tarted** button for new users. When you click the button, you will get the list of options useful for the product discovery.
+    Once you have registered the Wallarm account, you will be able to explore core Wallarm features in the **Playground** mode with read-only access to Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment.
     
-    The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
+    The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of useful product discovery options with the following among them:
+    
+    * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
+    * The **Wallarm Playground** option will forward you to the Wallarm Console playground mode with read-only access to its sections.
 
 ----------
 
