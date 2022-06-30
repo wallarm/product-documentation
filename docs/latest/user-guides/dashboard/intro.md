@@ -16,12 +16,12 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 
 
 !!! info "Getting started with Wallarm"
-    Once you have registered the Wallarm account, you will be able to explore core Wallarm features in the **Playground** mode with read-only access to Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment.
+    If you registered the Wallarm account in the US [Cloud](../../about-wallarm-waf/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** mode with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment.
     
-    The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of useful product discovery options with the following among them:
+    The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of helpful product discovery options with the following among them:
     
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
-    * The **Wallarm Playground** option will forward you to the Wallarm Console playground mode with read-only access to its sections.
+    * The **Wallarm Playground** option will forward you to the Wallarm Console playground mode with read-only access to its sections. This option is available only for users of the US Cloud.
 
 ----------
 
