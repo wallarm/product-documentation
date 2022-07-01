@@ -11,7 +11,7 @@ To provide users with familiar format of API representation, Wallarm visualizes 
 
 The API structure includes the following elements:
 
-* Customers applications with discovered domains in them.
+* Customer applications with discovered domains.
 * Discovered endpoints grouped by domains. For each endpoint, the HTTP method is displayed.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
@@ -31,10 +31,22 @@ You can filter the discovered API structure:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-Click the name of the column to sort. Click again to change the sorting order.
+To sort, click the name of the column. To change the sorting order, click again.
 
-!!! info "Sensitive data (PII) transmitted by endpoint"
-    The **red key** icon marks that the endpoint transmits the PII group. In the endpoint details, you can see which exactly parameter transmits which PII.
+Each parameter information includes:
+
+* Parameter name and the part of request this parameter belongs to
+* Presence and type of sensitive data (PII) transmitted by this parameter, including:
+
+    * Technical data like IP and MAC addresses
+    * Login credentials like secret keys and passwords
+    * Financial data like bank card numbers
+    * Personally identifiable information (PII) like full name, passport number or SSN
+
+    Sensitive data presence is marked by the **red key** icon, visible both at the endpoint level and in the endpoint details where you can see which exactly parameter transmits which PII.
+
+* Date and time when parameter information was last updated
+* Type of data sent in this parameter
 
 ## API structure and related events
 

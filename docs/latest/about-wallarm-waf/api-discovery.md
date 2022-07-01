@@ -71,7 +71,7 @@ These options are:
 
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
 
-## Variability in paths of endpoints
+## Variability in endpoints
 
 URLs can include alternating elements, such as ID of user, like:
 
@@ -79,15 +79,15 @@ URLs can include alternating elements, such as ID of user, like:
 * `/api/articles/author/author-a-1401`
 * `/api/articles/author/author-b-1401`
 
-Based on the statistics, the **API Discovery** module unifies such addresses into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
+The **API Discovery** module unifies such elements into the `{parameter_X}` format in the endpoint paths, so for the example above you will not have 3 endpoints, but instead there will be one:
 
 * `/api/articles/author/{parameter_X}`
 
-Click the endpoint to expand its parameters and view which type of pattern was found for this part of the address.
+Click the endpoint to expand its parameters and view which type was automatically detected for the alternating parameter.
 
 ![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
-Note that the algorithm analyzes the statistics continuously. If at some moment you see addresses, that contain the pattern but they are not unified yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
+Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
 
 ## Security of data uploaded to the Wallarm Cloud
 
