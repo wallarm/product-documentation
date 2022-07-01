@@ -148,6 +148,9 @@ nav:
             - Deployment of the Wallarm node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
             - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
           - Deployment of the filtering node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
+        - Deploying Wallarm on AWS using Terraform:
+          - Overview: waf-installation/cloud-platforms/aws/terraform-module/overview.md
+          - Trying Wallarm Terraform Module with examples: waf-installation/cloud-platforms/aws/terraform-module/examples.md
         - Installing on the Kong platform: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md

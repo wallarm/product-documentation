@@ -97,6 +97,7 @@
         <p>Deploy Wallarm node distributed as...</p>
         <div id="awsId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-ami-en/" onClick="noAction(event)">AWS Marketplace image</a>
+            <a href="../../waf-installation/cloud-platforms/aws/terraform-module/overview/" onClick="noAction(event)">Terraform module</a>
             <a href="../../waf-installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Docker container</a>
             <a href="../../waf-installation/cloud-platforms/aws/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
@@ -209,6 +210,17 @@
     </a>
 </div>
 
+## Terraform
+
+<div class="navigation platforms">
+
+    <a href="../../waf-installation/cloud-platforms/aws/terraform-module/overview/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <img class="platform-icon" src="../../images/platform-icons/terraform.svg">
+        <h3>Terraform module</h3>
+        <p>Deploy the Wallarm node to AWS using the Terraform module</p>
+    </a>
+
+</div>
 
 ## DEB and RPM packages
 
