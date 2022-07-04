@@ -50,40 +50,40 @@ To meet the Infrastructure as Code (IaC) approach, we have implemented the [Terr
 
 ```plain
 usage: /usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
-                       [-m {off,monitoring,safe_blocking,block}] [--proxy-pass PROXY_PASS] [--libdetection]
-                       [--global-snippet GLOBAL_SNIPPET_FILE] [--http-snippet HTTP_SNIPPET_FILE]
-                       [--server-snippet SERVER_SNIPPET_FILE] [-l LOG_LEVEL]
+                                                      [-m {off,monitoring,safe_blocking,block}] [--proxy-pass PROXY_PASS]
+                                                      [--libdetection] [--global-snippet GLOBAL_SNIPPET_FILE]
+                                                      [--http-snippet HTTP_SNIPPET_FILE] [--server-snippet SERVER_SNIPPET_FILE]
+                                                      [-l LOG_LEVEL]
 
-Configures Wallarm Node to run in cluster in public cloud providers.
+Runs the Wallarm node with the specified configuration in the PaaS cluster. https://docs.wallarm.com/waf-installation/cloud-
+platforms/cloud-init/
 
-Required arguments:
-  -t TOKEN, --token TOKEN
-                        registration token
-
-Optional arguments:
-  -H HOST, --host HOST  Wallarm API address
-  --skip-register       skips node register stage (but it still required)
-  -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
-                        configuration preset: "proxy" forwards traffic, "mirror" only receives mirrored traffic, "custom"
-                        fully controlled by snippets
-  -m {off,monitoring,safe_blocking,block}, --mode {off,monitoring,safe_blocking,block}
-                        traffic processing mode: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode
-  --proxy-pass PROXY_PASS
-                        default proxy_pass configuration, valid and required for "proxy" mode
-  --libdetection        enables libdetection for Wallarm Node.
-  --global-snippet GLOBAL_SNIPPET_FILE
-                        includes configuration on top level of Nginx configuration
-  --http-snippet HTTP_SNIPPET_FILE
-                        includes configuration into "http" option of Nginx configuration
-  --server-snippet SERVER_SNIPPET_FILE
-                        includes configuration into "server" option of Nginx configuration
-  -l LOG_LEVEL, --log LOG_LEVEL
-                        level of verbosity
-
-Help:
+optional arguments:
   -h, --help            show this help message and exit
+  -t TOKEN, --token TOKEN
+                        Wallarm node token copied from the Wallarm Console UI.
+  -H HOST, --host HOST  Wallarm API server specific for the Wallarm Cloud being used: https://docs.wallarm.com/about-wallarm-
+                        waf/overview/#cloud. By default, api.wallarm.com.
+  --skip-register       Skips the stage of local running the node created in the Wallarm Cloud (skips the register-node script
+                        execution). This stage is crucial for successful node deployment.
+  -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
+                        Wallarm node preset: "proxy" for the node to operate as a proxy server, "mirror" for the node to process
+                        mirrored traffic, "custom" for configuration defined via NGINX snippets only.
+  -m {off,monitoring,safe_blocking,block}, --mode {off,monitoring,safe_blocking,block}
+                        Traffic filtration mode: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
+  --proxy-pass PROXY_PASS
+                        Proxied server protocol and address. Required if "proxy" is specified as a preset.
+  --libdetection        Whether to use the libdetection library during the traffic analysis: https://docs.wallarm.com/about-wallarm-
+                        waf/protecting-against-attacks.md#library-libdetection.
+  --global-snippet GLOBAL_SNIPPET_FILE
+                        Custom configuration to be added to the NGINX global configuration.
+  --http-snippet HTTP_SNIPPET_FILE
+                        Custom configuration to be added to the "http" configuration block of NGINX.
+  --server-snippet SERVER_SNIPPET_FILE
+                        Custom configuration to be added to the "server" configuration block of NGINX.
+  -l LOG_LEVEL, --log LOG_LEVEL
+                        Level of verbosity.
 
-Wallarm Node configuration presets for cloud-init script. This script can cover a few most popular configurations for AWS,
-GCP, Azure and other PaaS. If you need more powerful configuration you are welcome to review Wallarm Node public
-documentation: https://docs.wallarm.com.
+This script covers a few most popular configurations for AWS, GCP, Azure and other PaaS. If you need a more powerful configuration,
+you are welcome to review Wallarm node public documentation: https://docs.wallarm.com.
 ```
