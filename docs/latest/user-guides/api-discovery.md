@@ -43,8 +43,6 @@ Each parameter information includes:
     * Financial data like bank card numbers
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-    Sensitive data presence is marked by the **red key** icon, visible both at the endpoint level and in the endpoint details where you can see which exactly parameter transmits which PII.
-
 * Date and time when parameter information was last updated
 * Type of data sent in this parameter
 
