@@ -47,7 +47,10 @@ location /mirror-test {
         proxy_set_header X-SERVER-PORT $server_port;
         proxy_set_header X-SERVER-ADDR $server_addr;
         proxy_set_header HOST $http_host;
-        proxy_set_header X-REAL-IP  $remote_addr;
+        proxy_set_header X-Forwarded-For $realip_remote_addr;
+        proxy_set_header X-Forwarded-Port $realip_remote_port;
+        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+        proxy_set_header X-Scheme $scheme;
         proxy_set_header X-Request-ID $request_id;
     }
 ```
@@ -65,7 +68,7 @@ wallarm_force server_addr $http_x_server_addr;
 wallarm_force server_port $http_x_server_port;
 #Change 222.222.222.22 to the mirror server address
 set_real_ip_from  222.222.222.22;
-real_ip_header    X-REAL-IP;
+real_ip_header    X-Forwarded-For;
 #real_ip_recursive on;
 wallarm_force response_status 0;
 wallarm_force response_time 0;
