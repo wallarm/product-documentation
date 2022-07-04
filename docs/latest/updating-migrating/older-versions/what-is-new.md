@@ -71,6 +71,16 @@ Changes in node registration methods result in some updates in node types:
 
         It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
 
+## Terraform module to deploy Wallarm on AWS
+
+Starting from release 4.0, you can easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
+
+The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. During its deployment, you can choose either the **proxy** or **mirror** deployment option based on your requirements for the traffic flow.
+
+We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
+
+[Documentation on the Wallarm Terraform module for AWS](../../waf-installation/cloud-platforms/aws/terraform-module/overview.md)
+
 ## Simplified multi-tenant node configuration
 
 For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
