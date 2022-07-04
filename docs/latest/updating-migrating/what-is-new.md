@@ -56,6 +56,12 @@ We have also prepared the usage examples for both deployment options involving b
 
 [Documentation on the Wallarm Terraform module for AWS](../waf-installation/cloud-platforms/aws/terraform-module/overview.md)
 
+## Wallarm AWS image distributed with the ready-to-use `cloud-init.py` script
+
+If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to AWS. Starting from release 4.0, Wallarm distributes its AWS cloud image with the ready‑to‑use `cloud-init.py` script.
+
+[Specification of the Wallarm `cloud-init` script](../waf-installation/cloud-platforms/cloud-init.md)
+
 ## Simplified multi-tenant node configuration
 
 For the [multi-tenant nodes](../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
