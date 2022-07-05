@@ -32,9 +32,29 @@ These instructions describe the steps to update Linux node packages to version 3
 
 If updating Wallarm node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 3.4 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Update NGINX to the latest stable version
+## Step 2: Update NGINX to the latest version
 
-Update [NGINX](http://nginx.org/en/download.html) / [NGINX Plus](https://docs.nginx.com/nginx/releases/) to the latest stable release from the official NGINX repository.
+Upgrade NGINX to the latest version using the relevant instructions:
+
+=== "NGINX stable"
+
+    DEB-based distributions:
+
+    ```bash
+    sudo apt update
+    sudo apt install nginx
+    ```
+
+    RPM-based distributions:
+
+    ```bash
+    sudo yum update
+    sudo yum install nginx
+    ```
+=== "NGINX Plus"
+    For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
+=== "NGINX from Debian/CentOS repository"
+    For NGINX [installed from Debian/CentOS repository](../waf-installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-5-update-wallarm-api-security-packages) along with Wallarm modules.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
 

@@ -154,3 +154,18 @@ In the configuration above, the traffic targeting `tenant1.com`  will be associa
     Users will be able to track blocked requests, analyze discovered vulnerabilities, and perform additional configurations of the filtering node within a certain tenant account. Users will be able to add each other on their own if the roles allow this action.
 
 [Proceed to the multi-tenant node deployment and configuration →](deploy-multi-tenant-node.md)
+
+## Deactivating and activating tenant accounts in Wallarm Console
+
+In Wallarm Console, the user with the **Global administrator** role can deactivate tenant accounts linked to the global account this administrator serves. When the tenant account is deactivated:
+
+* Users of this tenant account has no access to Wallarm Console.
+* Filtering node(s) installed on this [tenant level](deploy-multi-tenant-node.md#multi-tenant-node-characteristics) will stop traffic processing.
+
+Deactivated accounts are not deleted and can be activated again.
+
+To deactivate a tenant account, in the tenant selector, from the tenant menu, select **Deactivate**, then confirm. The tenant account will be deactivated and hidden from the tenant list.
+
+![!Tenant - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
+
+To activate previously deactivated tenant account, in the tenant selector, click **Show deactivated tenants**, then select **Activate** for your tenant.
