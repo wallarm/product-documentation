@@ -46,6 +46,27 @@ Each parameter information includes:
 * Date and time when parameter information was last updated
 * Type of data sent in this parameter
 
+## Tracking changes in API structure
+
+You can check what changes occurred in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
+
+* **New** for the endpoints added to the list within the period.
+* **Changed** for the endpoints that have some changes in their parameter list:
+
+    * Have new parameters - will be marked
+    * Have changed parameters - will be marked and include comparison with the previous version(s)
+    * Have removed parameters - will be marked
+
+* **Removed** for the endpoints that were removed within the period.
+
+Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API Structure** filter where you can select one or several types of changes:
+
+* New endpoints
+* Changed endpoints
+* Removed endpoints
+
+Selecting values from this filter will show only the endpoints correspondingly changed within the specified period.
+
 ## API structure and related events
 
 To see attacks and incidents for the last 7 days related to some endpoint, click the icon:
