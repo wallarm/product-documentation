@@ -7,7 +7,7 @@ If following the Infrastructure as Code (IaC) approach, you may need to use the 
 The Wallarm `cloud-init` script is available under the `/usr/share/wallarm-common/cloud-init.py` path in the [Wallarm AWS cloud image](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe). This script performs both an initial and advanced instance configuration with the following main stages involved:
 
 * Runs the Wallarm node previously created in the Wallarm Cloud by executing the Wallarm `register-node` script 
-* Configures the instance in accordance with either the proxy or mirror approach specified in the `preset` variable
+* Configures the instance in accordance with either the proxy or mirror approach specified in the `preset` variable (if deploying Wallarm using the [Terraform module](aws/terraform-module/overview.md))
 * Fine-tunes the instance in accordance with NGINX snippets
 * Fine-tunes the Wallarm node
 * Performs health checks for the Load Balancer
