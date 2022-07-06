@@ -48,18 +48,24 @@ Each parameter information includes:
 
 ## Tracking changes in API structure
 
+API is constantly changing, which result in outdated API specifications. For example, the development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. Some API changes can negatively affect the company’s business processes: the PII data began to be transferred to the endpoint or the important endpoint is no longer called, etc.
+
+With the **API Discovery** module of Wallarm you can:
+
+* Track changes and check that they do not disrupt current business processes
+* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors
+
 You can check what changes occurred in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have some changes in their parameter list:
 
-    * Have new parameters - will be marked
-    * Have changed parameters - will be marked and include comparison with the previous version(s)
-    * Have removed parameters - will be marked
+    * Have new parameters - these parameters will be marked
+    * Have removed parameters - these parameters will be marked
 
-* **Removed** for the endpoints that were removed within the period.
+* **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different (depending on the number of calls to this endpoint that have been previously seen and their frequency). If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
 
-Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API Structure** filter where you can select one or several types of changes:
+Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API structure** filter where you can select one or several types of changes:
 
 * New endpoints
 * Changed endpoints
