@@ -89,3 +89,7 @@ A reverse proxy is a type of proxy server that retrieves resources on behalf of 
 ## Certificate Authority
 A certificate authority is an entity that issues digital certificates.
 [See Wikipedia](https://en.wikipedia.org/wiki/Certificate_authority).
+
+## Free Tier
+
+The type of Wallarm [subscription](../latest/about-wallarm-waf/subscription-plans.md), where you can use all the services for free without limitations in time, but with limitations ("quotas") for the service ammount per month. Default limitation is 500K requests processed per month.
