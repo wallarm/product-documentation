@@ -268,9 +268,9 @@ Strings that start with `/` are processed without a prefix. Any string can be sp
 
 ### Search by application
 
-To search by the application to which the attack was sent or in which a vulnerability was found, use the `pool:` prefix.
+To search by the application to which the attack was sent or in which a vulnerability was found, use the `application:` or `app:` prefix (the former `pool:` prefix is still supported but not recommended).
 
-The attribute value is the application name set on the **Applications** tab in the **Settings** section. For example: `pool:'Example application'`.
+The attribute value is the application name set on the **Applications** tab in the **Settings** section. For example: `application:'Example application'`.
 
 ### Search by parameter or parser
 
