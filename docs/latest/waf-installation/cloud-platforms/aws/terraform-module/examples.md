@@ -34,6 +34,14 @@ Wallarm proxy advanced solution (as well as a simple proxy) provides an addition
 
 [Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)
 
+## Proxy solution for Amazon API Gateway
+
+[This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway) demonstrates how to protect [Amazon API Gateway](https://aws.amazon.com/api-gateway/) with Wallarm deployed as an inline proxy to AWS Virtual Private Cloud (VPC) using the Terraform module.
+
+Wallarm proxy solution provides an additional functional network layer serving as an advanced HTTP traffic router with the WAF and API security functions. It can route requests to almost any service type including Amazon API Gateway without limiting its capabilities.
+
+[Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)
+
 ## Mirror solution
 
 [This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing mirrored traffic. It is expected that the NGINX, Envoy, Istio and/or Traefik web server already provides traffic mirroring.
