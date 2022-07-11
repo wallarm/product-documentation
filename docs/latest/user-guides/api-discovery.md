@@ -48,7 +48,12 @@ Each parameter information includes:
 
 ## Tracking changes in API structure
 
-API is constantly changing, which result in outdated API specifications. For example, the development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. Some API changes can negatively affect the company’s business processes: the PII data began to be transferred to the endpoint or the important endpoint is no longer called, etc.
+The company may have many small teams, disparate programming languages, and variety of language frameworks. Because of this, the specification is always out of date, which means security officers do not know all their security landscape. This causes some risks, for example:
+
+* The development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack vectors.
+* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+* Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
+* Important endpoint is no longer called.
 
 With the **API Discovery** module of Wallarm you can:
 
@@ -58,12 +63,8 @@ With the **API Discovery** module of Wallarm you can:
 You can check what changes occurred in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
-* **Changed** for the endpoints that have some changes in their parameter list:
-
-    * Have new parameters - these parameters will be marked
-    * Have removed parameters - these parameters will be marked
-
-* **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different (depending on the number of calls to this endpoint that have been previously seen and their frequency). If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
+* **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
+* **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different - calculated based on the statistics of accessing each of the endpoint. If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
 
 Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API structure** filter where you can select one or several types of changes:
 
