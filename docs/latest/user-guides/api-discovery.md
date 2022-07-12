@@ -57,8 +57,9 @@ The company may have many small teams, disparate programming languages, and vari
 
 With the **API Discovery** module of Wallarm you can:
 
-* Track changes and check that they do not disrupt current business processes
-* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors
+* Track changes and check that they do not disrupt current business processes.
+* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
+* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
 
 You can check what changes occurred in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
