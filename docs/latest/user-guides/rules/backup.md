@@ -3,7 +3,7 @@
 To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset. There are two options: 
 
 * Automatic backup creation after each [custom ruleset build](compiling.md).
-* Manual backup creation at any time. Your [subscription](../../about-wallarm-waf/subscription-plans.md) defines the number of available backup slots.
+* Manual backup creation at any time. Your subscription defines the number of available backup slots.
 
 You can:
 
