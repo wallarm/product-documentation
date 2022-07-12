@@ -1,5 +1,7 @@
 # Compatibility of Wallarm filtering node with NGINX versions
 
+If the NGINX version installed in your environment is different from stable, Plus or from the one installed from the Debian/CentOS repository, learn how to install Wallarm from this document.
+
 ## Is Wallarm filtering node compatible with NGINX mainline?
 
 No, Wallarm filtering node is incompatible with NGINX `mainline`. You can install Wallarm node in the following ways:

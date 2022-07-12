@@ -2,6 +2,8 @@
 
 # Detecting vulnerabilities
 
+Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm API Security platform detects application vulnerabilities enabling you to enhance system security.
+
 ## What is a vulnerability?
 
 A vulnerability is an error made due to negligence or inadequate information when building or implementing an application. A vulnerability can be exploited by an attacker to cross privilege boundaries (i.e. perform unauthorized actions) within an application.

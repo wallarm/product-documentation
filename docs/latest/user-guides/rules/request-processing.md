@@ -1,8 +1,6 @@
 # Analyzing and parsing requests
 
-## Principles of analyzing and parsing requests
-
-For an effective request analysis, Wallarm uses the principles:
+For an effective request analysis, Wallarm follows the principles:
 
 * Work with the same data as the protected application. For example:
     If an application provides a JSON API, then the processed parameters will be also encoded in JSON format. To get parameter values, Wallarm uses JSON parser. There are also more complex cases where the data is encoded several times — for example, JSON to Base64 to JSON. Such cases require decoding with several parsers.

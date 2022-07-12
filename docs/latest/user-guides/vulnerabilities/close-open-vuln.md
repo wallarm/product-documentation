@@ -7,11 +7,7 @@
 
 # Closing and Opening Vulnerabilities
 
-You can check [vulnerabilities][glossary-vulnerability] on the *Vulnerabilities* tab of the Wallarm interface.
-
-You can close issues on a fixed vulnerability.
-
-You can reopen a closed vulnerability if you think the vulnerability is not fixed.
+In the **Vulnerabilities** section of Wallarm Console, you can also close [vulnerabilities][glossary-vulnerability] fixed on the application side. If a vulnerability seems to be unfixed, you can reopen the corresponding closed vulnerability.
 
 ## Close a Vulnerability
 

@@ -2,6 +2,8 @@
 
 # Kubernetes deployment based on manifests
 
+These instructions provide you with the steps to deploy Wallarm as the K8s sidecar container in the manifest-based K8s environment.
+
 ## Prerequisites
 
 * Local or cloud (EKS, GKE, AKE, etc) cluster running any version of Kubernetes

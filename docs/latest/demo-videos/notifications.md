@@ -1,5 +1,7 @@
 # Notifications and reactions to events detected by Wallarm
 
+Watch our demo videos to learn more about alerts Wallarm sends if new security events detected.
+
 ## Integrating Wallarm API Security with existing DevOps tools
 
 <div class="video-wrapper">

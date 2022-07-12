@@ -5,9 +5,7 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-Log in to the Wallarm portal using your Admin account and go to the *Settings → Integration* tab.
-
-In the *SSO/SAML Authentication* section, click on the *Okta SSO* block.
+Log in to Wallarm Console using your Administrator account and proceed to the G Suite integration setup following **Settings → Integration → Okta SSO**.
 
 ![!The “Okta SSO” block][img-okta-sso-provider-wl]
 

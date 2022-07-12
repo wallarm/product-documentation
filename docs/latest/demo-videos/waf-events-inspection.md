@@ -1,5 +1,7 @@
 # Inspecting events detected by the Wallarm filtering node
 
+Watch our demo videos to overview how to manage events detected by Wallarm.
+
 ## Viewing statistics on detected events on the dashboards
 
 <div class="video-wrapper">

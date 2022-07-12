@@ -9,7 +9,7 @@
 
 # Checking Vulnerabilities
 
-You can check [vulnerabilities][glossary-vulnerability] on the *Vulnerabilities* tab of the Wallarm interface.
+In the **Vulnerabilities** section of Wallarm Console, you can check [vulnerabilities][glossary-vulnerability] detected by Wallarm in your applications.
 
 By default, all vulnerabilities are divided into groups by the risk level. Lists inside the groups are sorted by the vulnerability discovery date.
 

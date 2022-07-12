@@ -1,10 +1,8 @@
 # Micro Focus ArcSight Logger via Logstash
 
-## Example overview
+These instructions provide you with the example integration of Wallarm with the Logstash log collector to further forward events to the ArcSight Logger system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
-
-In the provided example, events are sent via webhooks to the Logstash log collector and forwarded to the ArcSight Logger system.
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 

@@ -1,5 +1,7 @@
 # Wallarm Scanner overview
 
+Watch our demo videos to learn more about [Wallarm Scanner](../user-guides/scanner/intro.md).
+
 ## Wallarm Scanner overview
 
 <div class="video-wrapper">

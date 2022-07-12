@@ -1,5 +1,7 @@
 # Detecting attacks
 
+The Wallarm API Security platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
+
 ## What is attack and what are attack components?
 
 <a name="attack"></a>**Attack** is a single hit or multiple hits grouped by the following characteristics:

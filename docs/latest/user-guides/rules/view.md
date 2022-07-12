@@ -4,9 +4,7 @@
 
 # Inspecting Application Profile Rules
 
-## Application Structure Display
-
-To view the application structure, go to the *Rules* tab. This section represents branches and endpoints that are already known.
+To view the rules in the application structure, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
 
 ![!Rules tab overview][img-rules-overview]
 

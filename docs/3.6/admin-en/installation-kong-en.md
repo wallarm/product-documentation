@@ -10,6 +10,8 @@
 
 # Installing with Kong
 
+These instructions provide you with the steps to install the Wallarm module with Kong.
+
 !!! info "Prerequisites"
     Requirements for the Kong platform:
 

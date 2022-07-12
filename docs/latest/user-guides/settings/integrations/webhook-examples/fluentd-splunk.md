@@ -1,10 +1,8 @@
 # Splunk Enterprise via Fluentd
 
-## Example overview
+These instructions provide you with the example integration of Wallarm with the Fluentd log collector to further forward events to the Splunk SIEM system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
-
-In the provided example, events are sent via webhooks to the Fluentd log collector and forwarded to the Splunk SIEM system.
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 

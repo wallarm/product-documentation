@@ -1,5 +1,7 @@
 # Recommendations on Configuring the Filter Node for Separated Environments
 
+You have already learned [how Wallarm filtering nodes work in separate environments](how-waf-in-separated-environments-works.md). For the nodes to work as described, learn recommendations on configuring nodes in separated environments from this article.
+
 ## Initial Wallarm Protection Deployment Process
 
 If you perform the initial rollout of Wallarm protection for environments, it is recommended you use the following approach (you are welcome to adjust it as needed):
