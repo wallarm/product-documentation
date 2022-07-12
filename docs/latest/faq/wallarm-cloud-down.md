@@ -1,5 +1,7 @@
 # Wallarm Cloud is down
 
+If the Wallarm Cloud is down, Wallarm nodes continue attack mitigation with some limitations. To learn more, use this troubleshooting guide.
+
 ## How does Wallarm node operate if Wallarm Cloud is down?
 
 The Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).

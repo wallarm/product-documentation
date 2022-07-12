@@ -1,5 +1,7 @@
 # High Availability Considerations
 
+This article provides configuration recommendations for the Wallarm Ingress controller to be highly available and prevented from downtimes.
+
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
 ## Configuration recommendations

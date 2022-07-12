@@ -6,8 +6,6 @@
 
 #   Working with Filter Node Logs
 
-##  Where Filter Node Logs are Stored
-
 A filter node stores the following log files in the `/var/log/wallarm` directory:
 *   `brute-detect.log` and `sync-brute-clusters.log`: the log of fetching the brute force attack-related counters in the filter node cluster.
 *   `export-attacks.log`: the log of exporting the attacks' data from the postanalytics module to the Wallarm cloud.

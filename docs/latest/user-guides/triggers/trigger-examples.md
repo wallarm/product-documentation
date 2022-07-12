@@ -1,5 +1,7 @@
 # Trigger examples
 
+Learn real examples of [Wallarm triggers](triggers.md) to better understand this feature and configure triggers appropriately.
+
 ## Greylist IP if 4 or more attack vectors are detected in 1 hour
 
 If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be greylisted for 1 hour. This trigger will be run only if the node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).

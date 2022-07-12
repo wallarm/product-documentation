@@ -1,7 +1,5 @@
 # Working with triggers
 
-## What are triggers
-
 Triggers are tools that are used to set up custom notifications and reactions to events. Using triggers, you can:
 
 * Receive alerts on major events via the tools you use for your day-to-day workflow, for example via corporate messengers or incident management systems.

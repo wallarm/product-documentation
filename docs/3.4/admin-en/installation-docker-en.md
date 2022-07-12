@@ -19,9 +19,7 @@
 
 # Running Docker NGINX‑based image
 
-## Image overview
-
-The Wallarm filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
+The Wallarm NGINX-based filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 

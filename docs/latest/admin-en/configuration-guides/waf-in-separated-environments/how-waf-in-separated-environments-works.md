@@ -1,6 +1,6 @@
 # How Filtering Node Works in Separated Environments
 
-The application may be deployed to a few different environments: production, staging, testing, development, etc. These instructions provides information about suggested ways to manage a filter node for different environments.
+The application may be deployed to a few different environments: production, staging, testing, development, etc. These instructions provide information about suggested ways to manage a filter node for different environments.
 
 ## What is an Environment
 The definition of an environment may differ from company to company, and for the purpose of this instruction, the definition below is used.

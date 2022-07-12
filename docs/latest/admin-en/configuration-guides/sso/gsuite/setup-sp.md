@@ -5,9 +5,7 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-Log in to the Wallarm portal using your Admin account and go to the *Settings → Integration* tab.
-
-In the *SSO/SAML Authentication* section, click on the *Google SSO* block.
+Log in to Wallarm Console using your Administrator account and proceed to the G Suite integration setup following **Settings → Integration → Google SSO**.
 
 ![!The “Google SSO” block][img-gsuite-sso-provider-wl]
 

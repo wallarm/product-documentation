@@ -8,7 +8,7 @@
 
 [link-metadata]:                    setup-idp.md#downloading-metadata
 
-Return to the SSO Wallarm setup wizard and click *Next* to proceed to the next setup step.
+Return to the Okta SSO setup wizard in Wallarm Console and click *Next* to proceed to the next setup step.
 
 At this step, you need to provide the metadata [generated][link-metadata] by the Okta service.
 

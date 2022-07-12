@@ -1,5 +1,7 @@
 # Errors after Wallarm node installation
 
+If some errors occur after Wallarm node installation, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
+
 ## File Download Scenarios Fail
 
 If your file download scenarios fail after installing a filter node, the issue is in the request size exceeding the limit set in the `client_max_body_size` directive in the Wallarm configuration file.

@@ -1,5 +1,7 @@
 # Wallarm API Security and third-party services interaction
 
+If some issues occur during the Wallarm API Security and third-party services interaction, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
+
 ## What third-party services Wallarm API Security interacts with?
 
 Wallarm API Security interacts with the following third-party services:

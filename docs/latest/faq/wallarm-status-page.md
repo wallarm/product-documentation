@@ -1,5 +1,7 @@
 # Wallarm service status page
 
+This guide contains details on the Wallarm service status page.
+
 ## Does Wallarm have the page which displays the status of Wallarm service availability?
 
 Yes, the Wallarm status page is available at https://status.wallarm.com. The page displays live and historical data on the availability of Wallarm Console and Wallarm API services for each Wallarm Cloud:

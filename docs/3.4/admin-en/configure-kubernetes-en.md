@@ -2,6 +2,8 @@
 
 # Fine‑tuning of Wallarm Ingress Controller
 
+Learn fine-tuning options available for the Wallarm Ingress controller to get the most out of Wallarm API Security.
+
 !!! info "Official documentation for NGINX Ingress Controller"
     The fine‑tuning of Wallarm Ingress Controller is quite similar to that of NGINX Ingress Controller described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/). When working with Wallarm, all options for setting up the original NGINX Ingress Controller are available.
 

@@ -1,5 +1,7 @@
 # Deployment options
 
+Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment without its modification. Learn the Wallarm deployment options and choose the most appropriate one from this document.
+
 ## Serverless deployment
 
 <div class="navigation platforms">

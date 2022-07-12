@@ -1,7 +1,5 @@
 # User activity log
 
-## Activity log overview
-
 On the **Settings** → **Activity log** tab of Wallarm Console, you can check the history of user actions in the Wallarm system. The logs include information about creating, updating and deleting the following objects:
 
 * IP address or subnet from the [network perimeter](../scanner/check-scope.md)
@@ -24,9 +22,7 @@ The logs also include information on the following actions and objects:
 
 ![!Activity log](../../images/user-guides/settings/audit-log.png)
 
-## Filter the activity log records
-
-The following parameters can be used to filter the activity log records:
+**To filter the activity log records**, you can use the following parameters:
 
 * Case sensitive data on the user performed the action
 

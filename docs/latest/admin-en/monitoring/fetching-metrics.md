@@ -16,6 +16,8 @@
 
 #   How to Fetch Metrics
 
+These instructions describe the ways to collect metrics from a filtering node.
+
 ##  Exporting Metrics Directly From `collectd`
 
 You can export the metrics collected by `collectd` directly to the tools that support working with `collectd` data streams.

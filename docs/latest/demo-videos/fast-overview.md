@@ -1,5 +1,7 @@
 # Wallarm FAST overview and integration options
 
+Learn more about [Wallarm FAST](https://docs.fast.wallarm.com/) from our demo videos.
+
 ## FAST overview
 
 <div class="video-wrapper">

@@ -1,5 +1,7 @@
 # Installing Wallarm Ingress controller
 
+This troubleshooting guide lists common issues you can face during the [Wallarm Ingress controller deployment](../admin-en/installation-kubernetes-en.md). If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
+
 ## How to check which clients' IP addresses are detected/used by the Ingress controller?
 
 * Take a look at the controller container’s log and find records about handled requests. In the default logging format the first reported field is the detected client IP address. `25.229.38.234` is the detected IP address in the example below:

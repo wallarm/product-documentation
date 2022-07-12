@@ -1,5 +1,7 @@
 # Wallarm API Security overview and deployment options
 
+Learn more about the Wallarm API Security platform from our demo videos.
+
 ## 30 second Wallarm API Security overview
 
 <div class="video-wrapper">
