@@ -22,7 +22,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
-* [Track changes](../user-guides/api-discovery.md#tracking-changes-in-api-structure) in API structure that took place within the selected period of time.
+* [Track changes](#tracking-changes-in-api-structure) in API structure that took place within the selected period of time.
 * Quickly [create a new rule](../user-guides/api-discovery.md#api-structure-and-rules) for any discovered endpoint of API structure.
 * See events related to some endpoint in one click.
 * Copy URLs of the discovered endpoints.
