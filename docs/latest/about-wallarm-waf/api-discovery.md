@@ -55,23 +55,6 @@ Before purchasing the API Discovery subscription plan, you can preview sample da
 
 API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
-## Tracking changes in API structure
-
-The company may have many small teams, disparate programming languages, and variety of language frameworks. Because of this, the specification is always out of date, which means security officers do not know all their security landscape. This causes some risks, for example:
-
-* The development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack vectors.
-* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
-* Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
-* Important endpoint is no longer called.
-
-With the **API Discovery** module of Wallarm you can:
-
-* Track changes and check that they do not disrupt current business processes.
-* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
-* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
-
-Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
-
 ## Using built API structure
 
 The API Discovery section provides many options for the build API structure usage.
@@ -89,6 +72,23 @@ These options are:
 * Downloading OpenAPI specification (OAS) for your API structure as `swagger.json` file.
 
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
+
+## Tracking changes in API structure
+
+The company may have many small teams, disparate programming languages, and variety of language frameworks. Because of this, the specification is always out of date, which means security officers do not know all their security landscape. This causes some risks, for example:
+
+* The development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack vectors.
+* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+* Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
+* Important endpoint is no longer called.
+
+With the **API Discovery** module of Wallarm you can:
+
+* Track changes and check that they do not disrupt current business processes.
+* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
+* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
+
+Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
 
 ## Variability in endpoints
 
