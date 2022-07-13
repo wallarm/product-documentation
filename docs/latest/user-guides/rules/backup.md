@@ -2,17 +2,20 @@
 
 To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset. There are two options: 
 
-* Automatic backup creation after each [custom ruleset build](compiling.md).
-* Manual backup creation at any time. Your subscription defines the number of available backup slots.
+* Automatic backup creation after each [custom ruleset build](compiling.md). The number of automatic backups is limited to 7: latest backup for the day when you had changes in ruleset is stored.
+* Manual backup creation at any time. The number of manual backups is limited to 5 by default. If you need more, ontact [Wallarm's Technical Support](mailto:support@wallarm.com) team.
 
 You can:
 
 * Access current backups: in the **Rules** section, click **Backups**.
 * Create new backup manually: in the **Backups** window, click **Create backup**.
-* Load from existing backup: click **Load** for the required backup.
+* Set name and description for the manual backup and later edit them at any moment.
 
-    * When loading from backup, your current rule configuration is deleted and replaced with the configuration from the backup.
-    * You cannot create or modify rules until load from backup is complete.
+    !!! info "Naming for automatic backups"
+        The automatic backups are named by the system and cannot be renamed.
 
-* Rename backup and/or change its description. The ruleset itself does not change.
+* Load from existing backup: click **Load** for the required backup. When loading from backup, your current rule configuration is deleted and replaced with the configuration from the backup.
 * Delete backup.
+
+!!! warning "Rule modification restrictions"
+    You cannot create or modify rules until creating backup or load from backup is complete.
