@@ -45,6 +45,9 @@ A token is used for request authentication. The token is generated after success
 
 ### Your own client
 
+!!! info "API credentials and SSO"
+    When SSO is enabled for the user, authentication for requests to Wallarm API via UUID and secret key becomes unavailable for this user. Find detailed information is [SSO configuration](../admin-en/configuration-guides/sso/employ-user-auth.md#sso-and-api-authentication) article.
+
 Your UUID and secret key are used for request authentication.
 
 1. Sign in to your Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/) → **Settings** → **API credentials**.
@@ -52,7 +55,7 @@ Your UUID and secret key are used for request authentication.
 3. Get the **Secret key** value:
 
     * If you know the secret key value, then you can continue using the known value. The Wallarm Console displays the encrypted value of your active secret key.
-    * If you do not know the secret key value or it was lost, generate the new secret key by the button **Renew secret key** and copy its value. The secret key value will not be shown again.
+    * If you do not know the secret key value or it was lost, to generate the new secret key, click **Renew secret key**, then confirm by entering your password. As soon as the new key is generated, copy its value. The secret key value will not be shown again.
 
     !!! warning "Reusing the secret key value"
         The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:

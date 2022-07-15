@@ -1,4 +1,4 @@
-#   Configuring SSO Authentication for Users
+#   Configuring SSO authentication for users
 
 [img-enable-sso-for-user]:  ../../../images/admin-guides/configuration-guides/sso/enable-sso-for-user.png
 [img-disable-sso-for-user]: ../../../images/admin-guides/configuration-guides/sso/disable-sso-for-user.png
@@ -15,11 +15,10 @@
 You can [enable][anchor-enable] or [disable][anchor-disable] SSO authentication to Wallarm portal users.
 
 
-##   Enabling SSO Authentication for Users
+##   Enabling SSO authentication for users
 
 !!! warning
     *   When enabling SSO authentication for users with any role different from *Admin*, a login/password log in mechanism and the two-factor authentication will not be available. When SSO authentication is enabled, the user's password is erased and two-factor authentication is disabled.
-        The *Admin* role can use login/password pair, two-factor authentication, and SSO authentication simultaneously.
     *   It is assumed that you have already given the required group of users access to the configured Wallarm application on the [Okta][doc-allow-access-okta] or [G Suite][doc-allow-access-gsuite] side.
 
 
@@ -32,10 +31,44 @@ In the pop-up window, you will be prompted to send a notification to the user th
 After that, the user [can authenticate][doc-user-sso-guide] through the identity provider.
 
 
-##  Disabling SSO Authentication for Users
+##  Disabling SSO authentication for users
 
 To disable SSO authentication for Wallarm users, go to *Settings → Users*. Find the desired user and open the user action menu by clicking the button on the right of the user's record. Click *Disable SSO*.
 
 ![!Disabling SSO for Wallarm user][img-disable-sso-for-user]
 
 After that, the user will be notified by an email that the login using SSO is disabled with a suggestion (link) to restore the password to log in with the login/password pair. In addition, two-factor authentication becomes available to the user.
+
+## SSO and API authentication
+
+When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-client) becomes unavailable for this user. You can enable API authentication for the SSO users with the **Administrator** role. To do this, from this user menu, select **Enable API access**. The `SSO+API` auth method is enabled for the user.
+
+Later you can disable API authentication for the user by selecting **Disable API access**.
+
+## Strict SSO mode
+
+Wallarm supports the **strict SSO** mode: the mode can be enabled only for the entire company account. Mode characteristics:
+
+* When enabled, the authentication method for all existing users of the account is switched to SSO.
+* All new users get the SSO as the authentication method by default.
+* Authentication method cannot be switched to anything different from SSO for any user.
+* [API access](#sso-and-api-authentication) can be added for the users with the **Administrator** role (`SSO+API` user auth mode).
+
+To enable or disable the strict SSO mode, contact the [Wallarm support team](mailto:support@wallarm.com).
+
+!!! info "How active sessions are treated when enabling strict SSO"
+    If there are any users signed into the company account when it is switched to the strict SSO mode, these sessions remain active. After sign out, the users will be prompted to use SSO.
+
+## SSO authentication troubleshooting
+
+If the user cannot login via SSO, the error message is displayed with one of the following error codes:
+
+| Error code | Description | Who can fix | How to fix |
+|--|--|--|--|
+| `saml_auth_not_found + userid` | User does not have SSO enabled. | Administrator | Enable SSO as described in the section [above](#enabling-sso-authentication-for-users). |
+| `saml_auth_not_found + clientid` | Client does not have an SSO integration in the **Settings** > **Integrations** section. | Administrator  | Follow the instructions in the [integration with the SAML SSO](intro.md) documentation. |
+| `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Administrator | Make changes either on the Wallarm side, in the **Settings** > **Integrations** section, or on the SSO provider side. |
+| `user_not_found` | SSO provider gave a response with an email that Wallarm do not recognize. | Administrator | Create a user with this email in Wallarm Console |
+| `client_not_found` | The company account was not found in Wallarm. | Wallarm support | Contact the [Wallarm support team](mailto:support@wallarm.com). |
+
+ If necessary, administrator can contact the [Wallarm support team](mailto:support@wallarm.com) to get help in fixing any of these errors.
