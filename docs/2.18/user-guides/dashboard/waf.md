@@ -1,7 +1,7 @@
-[img-traffic-stats]:        ../../images/user-guides/dashboard/waf-traffic-stats.png
+[img-traffic-stats]:        ../../images/user-guides/dashboard/traffic-stats.png
 [img-attacks-stats]:        ../../images/user-guides/dashboard/waf-attacks-stats.png
 [img-blacklist-stats]:      ../../images/user-guides/dashboard/waf-blacklist-stats.png
-[img-traffic-cur-month]:    ../../images/user-guides/dashboard/waf-current-month-stats.png
+[img-traffic-cur-month]:    ../../images/user-guides/dashboard/current-month-stats.png
 [img-attacks-type]:         ../../images/user-guides/dashboard/attack-types.png
 [img-attacks-sources]:      ../../images/user-guides/dashboard/attack-sources.png
 
