@@ -75,12 +75,15 @@ Learn more about available options from the [User guide](../user-guides/api-disc
 
 ## Tracking changes in API structure
 
-The company may have many small teams, disparate programming languages, and variety of language frameworks. Because of this, the specification is always out of date, which means security officers do not know all their security landscape. This causes some risks, for example:
+The company may have several teams, disparate programming languages, and variety of language frameworks. Thus changes can come to API structure at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
-* The development team can start using a third-party library that has its own endpoints and the team doesn’t know about them. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack vectors.
-* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+* The development team can start using a third-party library with a separate API and the do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
+* As a result of an unsuccessful application update:
+
+    * The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+    * Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
+
 * Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
-* Important endpoint is no longer called.
 
 With the **API Discovery** module of Wallarm you can:
 
