@@ -10,7 +10,7 @@ Watch our demo videos to overview how to manage events detected by Wallarm.
 
 **Related documentation articles**
 
-* [Dashboards overview](../user-guides/dashboard/intro.md)
+* [Dashboards overview](../user-guides/dashboard.md)
 
 ## Event types overview
 

@@ -226,10 +226,7 @@ nav:
         - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md
-      - Dashboards:
-        - Dashboards Overview: user-guides/dashboard/intro.md
-        - API Security Dashboard: user-guides/dashboard/waf.md
-        - Scanner Dashboard: user-guides/dashboard/scanner.md
+      - Dashboard: user-guides/dashboard.md
       - Events:
         - Checking Events: user-guides/events/check-attack.md
         - Analyzing Attacks: user-guides/events/analyze-attack.md

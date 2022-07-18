@@ -1,4 +1,4 @@
-[img-wallarm-portal-overview]:  ../images/user-guides/portal-overview.png
+[img-wallarm-portal-overview]:  ../images/user-guides/dashboard/dashboard.png
 
 [link-wallarm-console]:     https://my.wallarm.com/settings/users
 [link-admin-guide]:         ../admin-en/admin-intro-en.md
