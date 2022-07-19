@@ -46,7 +46,7 @@ The widget displays the following data:
 
 ## Attack types
 
-This widget displays the [top types of detected attacks](../attacks-vulns-list.md) that makes patterns of malicious traffic and attacker behavior visible.
+This widget displays the [top types of detected attacks](../attacks-vulns-list.md) which helps to analyze the patterns of malicious traffic and attacker behavior.
 
 Using this data, you can analyze the vulnerability of your services to different attack types and take appropriate measures to improve service security.
 
@@ -65,9 +65,7 @@ This widget displays statistics on API protocols used by attackers. Wallarm can 
 * JSON-RPC
 * WebDAV
 
-The **API protocols** widget enables you to identify protocols being attacked most often and makes API protocols implemented in your infrastructure visible.
-
-You can identify the vulnerability of your services to certain protocol exploitation based by analyzing the corresponding typical attacks.
+Using the widget, you can analyze malicious requests sent via certain protocols and assess the vulnerability of your system to such requests.
 
 ![!Attack types](../images/user-guides/dashboard/api-protocols.png)
 
