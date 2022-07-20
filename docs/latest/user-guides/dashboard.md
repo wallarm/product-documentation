@@ -17,12 +17,12 @@ You can filter widget data by [applications](settings/applications.md) and time 
 Any widget allows to open the [event list](events/check-attack.md) the statistics have been collected on.
 
 !!! info "Getting started with Wallarm"
-    If you registered the Wallarm account in the US [Cloud](../about-wallarm-waf/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** mode with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment. 
+    If you registered the Wallarm account in the US [Cloud](../about-wallarm-waf/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment. 
     
     The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of helpful product discovery options with the following among them:
     
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
-    * The **Wallarm Playground** option will forward you to the Wallarm Console playground mode with read-only access to its sections. This option is available only for users of the US Cloud.
+    * The **Wallarm Playground** option will forward you to the Wallarm Console playground with read-only access to its sections. This option is available only for users of the US Cloud.
 
 ## Statistics for the current month and the speed of request encountering
 
