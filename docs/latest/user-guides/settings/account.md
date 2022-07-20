@@ -59,7 +59,7 @@ You can click the *Sign out* button to log out of your Wallarm account.
 You can use Google Authenticator (or similar apps supporting TOTP) to enable two-factor authentication.
 
 !!! info "Unavailable if using SSO"
-    If you are using the SSO authentication, you cannot enable the two-factor authentication. The **Two-factor authentication** section will be unavailable.
+    If you are using the SSO authentication, the two-factor authentication cannot be enabled. The **Two-factor authentication** section will be unavailable.
 
 1. Install the *Google Authenticator* app ([Android][link-2fa-android-app], [iOS][link-2fa-ios-app]) or any compatible one.
 1. Click *Enable* in Two-Factor Authentication setting.
