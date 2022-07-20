@@ -55,14 +55,17 @@ Your UUID and secret key are used for request authentication.
 3. Get the **Secret key** value:
 
     * If you know the secret key value, then you can continue using the known value. The Wallarm Console displays the encrypted value of your active secret key.
-    * If you do not know the secret key value or it was lost, to generate the new secret key, click **Renew secret key**, then confirm by entering your password. As soon as the new key is generated, copy its value. The secret key value will not be shown again.
+    * If you do not know the secret key value or it was lost, to generate the new secret key:
+        1. Click **Renew secret key**.
+        1. Confirm by entering your password. 
+        1. As soon as the new key is generated, copy its value. The secret key value will not be shown again.
 
-    !!! warning "Reusing the secret key value"
-        The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:
+        !!! warning "Reusing the secret key value"
+            The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:
 
-        * Write down the key value in a secure place. The secret key value will not be shown again.
-        * Reuse the stored key value in all requests to Wallarm API.
-        * If you generated the new key value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
+            * Write down the key value in a secure place. The secret key value will not be shown again.
+            * Reuse the stored key value in all requests to Wallarm API.
+            * If you generated the new key value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
 4. Send the required API request passing the following values:
     * **UUID** in the `X-WallarmAPI-UUID` header parameter
     * **Secret key** in the `X-WallarmAPI-Secret` header parameter
