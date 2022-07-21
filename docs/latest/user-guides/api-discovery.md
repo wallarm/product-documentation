@@ -24,6 +24,7 @@ You can filter the discovered API structure:
 * Use **Application**, **Domain** and **Method** filters.
 * Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters. 
 * In the **Domains** panel, click application or domain.
+* Click **External**, **Internal** or go back to the default **All APIs**.
 
 ## Viewing endpoint parameters
 

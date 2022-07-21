@@ -16,6 +16,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 **As you have your API structure discovered by Wallarm, you can**:
 
+* List your [external and internal](#external-and-internal-apis) APIs.
 * Check [the list of parameters](../user-guides/api-discovery.md#params) that are sent for the selected endpoint, including the following information:
     * Type of data sent in each parameter.
     * Date and time when parameter information was last updated.
@@ -65,6 +66,7 @@ These options are:
 
 * Familiar format of API representation in a **Swagger-like manner**.
 * Search and filters.
+* Ability to list internal and external APIs separately.
 * Viewing endpoint parameters.
 * Tracking changes in API structure.
 * Quick navigation to attacks and incidents related to some endpoint.
@@ -89,6 +91,19 @@ With the **API Discovery** module of Wallarm you can:
 * Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
 
 Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
+
+## External and internal APIs
+
+The endpoints accessible from the external network are the main attack directions. Thus, it is important to see what is available from the outside and pay attention to these endpoints in the first place.
+
+The system automatically splits discovered APIs to external and internal. The host with all its endpoints is considered to be internal if it is located on:
+
+* A private IP or local IP address.
+* A domain without a second level (for example: localhost, dashboard, etc.)
+
+In the remaining cases the hosts are considered to be external.
+
+By default, a list with all API hosts (external and internal) is displayed. In the built API structure, you can view your internal and external APIs separately. To do this, click **External** or **Internal**.
 
 ## Variability in endpoints
 
