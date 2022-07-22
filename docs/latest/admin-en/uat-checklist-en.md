@@ -39,7 +39,7 @@ See also [Checking the filter node operation](installation-check-operation-en.md
     *   If you are using the US cloud, proceed to the <https://us1.my.wallarm.com> link.
 2.  See if you can log in successfully.
 
-See also [Dashboard overview](../user-guides/dashboard/intro.md).
+See also [Dashboard overview](../user-guides/dashboard.md).
 
 ## Wallarm Interface Shows Requests per Second
 
@@ -62,7 +62,7 @@ See also [Dashboard overview](../user-guides/dashboard/intro.md).
 
 2. Check if the Wallarm interface shows detected requests per second.
 
-See also [The "API Security" Dashboard](../user-guides/dashboard/waf.md).
+See also [The "API Security" Dashboard](../user-guides/dashboard.md).
 
 ## Wallarm Marks Requests as False and Stops Blocking them
 

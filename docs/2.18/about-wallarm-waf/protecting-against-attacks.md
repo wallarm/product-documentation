@@ -81,7 +81,16 @@ Wallarm nodes analyze HTTP and WebSocket traffic sent to the protected resources
 
     Wallarm nodes analyze WebSocket traffic only for [input validation attacks](#input-validation-attacks).
 
-Protected resource API can be designed on the basis of REST, gRPC, or GraphQL technologies.
+Protected resource API can be designed on the basis of the following technologies:
+
+* GraphQL
+* gRPC
+* WebSocket
+* REST API
+* SOAP
+* XML-RPC
+* WebDAV
+* JSON-RPC
 
 ## Attack detection process
 

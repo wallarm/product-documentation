@@ -1,7 +1,6 @@
 # Configuration options for the Envoy‑based Wallarm node
 
 [link-lom]:                     ../../../user-guides/rules/intro.md
-[link-dashboard]:               ../../../user-guides/dashboard/waf.md
 
 [anchor-process-time-limit]:    #processtimelimit
 [anchor-ts]:                    #ts

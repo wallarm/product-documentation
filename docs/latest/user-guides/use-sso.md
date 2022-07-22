@@ -1,7 +1,7 @@
 [img-basic-auth]:       ../images/user-guides/sso/basic-auth.png
 [img-sso-login-form]:   ../images/user-guides/sso/sso-login-form.png       
 [img-idp-auth-pages]:   ../images/user-guides/sso/idp-auth-pages.png    
-[img-wl-dashboard]:     ../images/user-guides/dashboard/dashboard-waf.png
+[img-wl-dashboard]:     ../images/user-guides/dashboard/dashboard.png
 
 [link-gsuite]:      https://gsuite.google.com/
 [link-okta]:        https://www.okta.com/
