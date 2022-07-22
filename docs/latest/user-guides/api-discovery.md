@@ -54,6 +54,8 @@ You can check what [changes occurred](../about-wallarm-waf/api-discovery.md#trac
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
 * **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different - calculated based on the statistics of accessing each of the endpoint. If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
 
+![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+
 Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API structure** filter where you can select one or several types of changes:
 
 * New endpoints
