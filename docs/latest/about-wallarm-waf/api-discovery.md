@@ -22,6 +22,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+* [Track changes](#tracking-changes-in-api-structure) in API structure that took place within the selected period of time.
 * Quickly [create a new rule](../user-guides/api-discovery.md#api-structure-and-rules) for any discovered endpoint of API structure.
 * See events related to some endpoint in one click.
 * Copy URLs of the discovered endpoints.
@@ -65,11 +66,29 @@ These options are:
 * Familiar format of API representation in a **Swagger-like manner**.
 * Search and filters.
 * Viewing endpoint parameters.
+* Tracking changes in API structure.
 * Quick navigation to attacks and incidents related to some endpoint.
 * Custom rule creation for the specific endpoint.
 * Downloading OpenAPI specification (OAS) for your API structure as `swagger.json` file.
 
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
+
+## Tracking changes in API structure
+
+The company may have several teams, disparate programming languages, and variety of language frameworks. Thus changes can come to API structure at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
+
+* The development team can start using a third-party library with a separate API and the do not notify the security specialists about that. This way the company gets endpoints that are not monitored and not checked for vulnerabilities. They can be potential attack directions.
+* The PII data begin to be transferred to the endpoint. An unplanned transfer of PII can lead to a violation of compliance with the requirements of regulators, as well as lead to reputational risks.
+* Important for the business logic endpoint (for example, `/login`, `/order/{order_id}/payment/`) is no longer called.
+* Other parameters that should not be transferred, for example `is_admin` (someone accesses the endpoint and tries to do it with administrator rights) begin to be transferred to the endpoint.
+
+With the **API Discovery** module of Wallarm you can:
+
+* Track changes and check that they do not disrupt current business processes.
+* Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
+* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
+
+Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
 
 ## Variability in endpoints
 
