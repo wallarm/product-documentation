@@ -15,7 +15,7 @@ There are the following classes of brute‑force attacks:
     When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute‑force attack in the following cases:
 
     * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
-    * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
+    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Configuration steps
 

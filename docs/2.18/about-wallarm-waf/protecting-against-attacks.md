@@ -68,7 +68,7 @@ To protect the resource against behavioral attacks, it is required to set the th
     When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
 
     * These requests contain signs of [input validation attacks](#input-validation-attacks).
-    * These requests match the regular expression specified in the [rule **Define a request as an attack based on a regular expression**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
+    * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Types of protected resources
 
@@ -169,11 +169,11 @@ curl "http://localhost/?id=1' UNION SELECT"
 To adjust default Wallarm request analysis to protected application specificities, Wallarm clients can use custom rules of the following types:
 
 * [Create a virtual patch](../user-guides/rules/vpatch-rule.md)
-* [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
-* [Disable attack detection by the regular expressions](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
+* [Create regexp-based attack indicator](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
+* [Disable regexp-based attack detection](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
 * [Ignore certain attack types](../user-guides/rules/ignore-attack-types.md)
-* [Allow binary data and file uploading](../user-guides/rules/ignore-attacks-in-binary-data.md)
-* [Disable/Enable request parsers](../user-guides/rules/disable-request-parsers.md)
+* [Allow binary data and file types](../user-guides/rules/ignore-attacks-in-binary-data.md)
+* [Disable/Enable parsers](../user-guides/rules/disable-request-parsers.md)
 
 [Compiled](../user-guides/rules/compiling.md) custom ruleset is applied along with the standard rules from **proton.db** when analyzing requests.
 

@@ -98,8 +98,8 @@ After enabling the IP blocking functionality on the filtering nodes you can use 
 
 * Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
 * For traffic filtration rules, use a different set of application instance [IDs](../admin-en/configure-parameters-en.md#wallarm_instance) or `Host` request headers.
-* For the [Define a request as an attack based on a regular expression](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
-* The [Set traffic filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
+* For the [Create regexp-based attack indicator](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) rule, in addition to the above‑mentioned ability to be associated with a specific application instance ID, it can be enabled in monitoring mode (**Experimental** checkbox) even when the Wallarm node is running in blocking mode.
+* The [Set filtration mode](../user-guides/rules/wallarm-mode-rule.md) rule allows the control of the Wallarm node operation mode (`monitoring` or `block`) from Wallarm Console, similar to the [`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) setting in the NGINX configuration (depending on the [`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) setting).
 
 ## Configure available integrations to receive notifications from the system
 
