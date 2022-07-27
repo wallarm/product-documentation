@@ -26,7 +26,7 @@ The filtration mode can be configured in the following ways:
 * Define the general filtration rule in Wallarm Console
 * Create a filtration mode rule in the **Rules** section of Wallarm Console
 
-Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `walalrm_mode` directive regardless of its value  severity.
+Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value  severity.
 
 ### Specifying the filtration mode in the `wallarm_mode` directive
 
