@@ -339,11 +339,11 @@ The added request processing rule is described in the *Then* section.
 
 The following rules are supported:
 
-* [Disable/Enable request parsers](disable-request-parsers.md)
-* [Add or replace server response header](add-replace-response-header.md)
+* [Disable/Enable parsers](disable-request-parsers.md)
+* [Change server response headers](add-replace-response-header.md)
 * [Set the filtration mode][link-filter-mode-rule]
 * [Mask sensitive data][link-sensitive-data-rule]
-* [Disable/Enable active threat verification](change-request-for-active-verification.md#disabling-enabling-the-active-threat-verification-module)
+* [Set mode of active threat verification](change-request-for-active-verification.md#disabling-enabling-the-active-threat-verification-module)
 * [Rewrite attack before active verification](change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)
 * [Apply a virtual patch][link-virtual-patch]
 * [User-defined detection rules][link-regex-rule]

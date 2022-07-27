@@ -10,14 +10,14 @@ In some cases, it may prove useful to add a signature for attack detection manua
 
 ## Adding a New Detection Rule
 
-To do this, you need to create the rule *Define a request as an attack based on a regular expression* and fill in the fields:
+To do this, you need to create the rule *Create regexp-based attack indicator* and fill in the fields:
 
 * *Regular expression*: regular expression (signature). If the value of the following parameter matches the expression, that request is detected as an attack. Syntax and specifics of regular expressions are described in the [instructions on adding rules](add-rule.md#condition-type-regex).
 
     !!! warning "Changing the regular expression specified in the rule"
-        Changing the regular expression specified in the existing rule of the type **Define a request as an attack based on a regular expression** results in automatic deletion of the rules [**Disable attack detection by the regular expressions**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.
+        Changing the regular expression specified in the existing rule of the type **Create regexp-based attack indicator** results in automatic deletion of the rules [**Disable regexp-based attack detection**](#partial-disabling-of-a-new-detection-rule) that use the previous expression.
 
-        To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
+        To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
 
 * *Experimental*: this flag allows you to safely check the triggering of a regular expression without blocking requests. The requests won't be blocked even when the filter node is set to the blocking mode. These requests will be considered as attacks detected by the experimental method and will be hidden from the event list by default. They can be accessed using search query `experimental attacks`.
 
@@ -87,14 +87,14 @@ There is also the 0-day vulnerability in [Spring Core Framework](https://docs.sp
 
 ## Partial Disabling of a New Detection Rule
 
-If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable attack detection by the regular expressions* with the following fields:
+If the created rule should be partially disabled for a particular branch, this can easily be done by creating the rule *Disable regexp-based attack detection* with the following fields:
 
 - *Regular expression*: previously created regular expressions that must be ignored.
 
     !!! warning "Behavior of the rule if the regular expression was changed"
-        Changing the regular expression specified in the existing rule of the type [**Define a request as an attack based on a regular expression**](#adding-a-new-detection-rule) results in automatic deletion of the rules **Disable attack detection by the regular expressions** that use the previous expression.
+        Changing the regular expression specified in the existing rule of the type [**Create regexp-based attack indicator**](#adding-a-new-detection-rule) results in automatic deletion of the rules **Disable regexp-based attack detection** that use the previous expression.
 
-        To disable attack detection by a new regular expression, please create a new rule **Disable attack detection by the regular expressions** with the new regular expression specified.
+        To disable attack detection by a new regular expression, please create a new rule **Disable regexp-based attack detection** with the new regular expression specified.
 
 - *in this part of request*: indicates the parameter that requires setting up an exception.
 
@@ -106,7 +106,7 @@ To create the relevant rule:
 
 1. Go to the *Rules* tab
 1. Find or create the branch for `example.com/test.php` and click *Add rule*
-1. Choose *Disable attack detection by the regular expressions*
+1. Choose *Disable regexp-based attack detection*
 1. Select the regular expression that you want to disable
 1. Set the point `Header X-AUTHENTICATION`
 1. Click *Create*

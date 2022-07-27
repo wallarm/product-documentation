@@ -37,7 +37,7 @@ You can create rules with specified action but not linked to any endpoint - they
 * To view the list of created default rules, click the **Default rules** button.
 
 !!! info "Traffic filtration mode default rule"
-    Wallarm automatically [creates](wallarm-mode-rule.md#default-instance-of-rule) the `Set traffic filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
+    Wallarm automatically [creates](wallarm-mode-rule.md#default-instance-of-rule) the `Set filtration mode` default rule for all clients and sets its value on the basis of [general filtration mode](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console) setting.
 
 Default rules are [inherited](#distinct-and-inherited-rules) by all branches.
 

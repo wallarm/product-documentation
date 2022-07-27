@@ -38,10 +38,10 @@ Low-level configuration can easily be separately managed for different customer 
 Since each rule record can be associated with a [different set](how-waf-in-separated-environments-works.md#resource-identification) of application instance IDs or `HOST` request headers, the following options are recommended:
 
 * First apply a new configuration to a test or development environment, verify the functionality, and then apply the change for the production environment.
-* Use the `Define a request as an attack based on a regular expression` rule in the `Experimental` mode. This mode allows the rule to be deployed directly in the production environment without the risk of mistakenly blocking valid end user requests.
+* Use the `Create regexp-based attack indicator` rule in the `Experimental` mode. This mode allows the rule to be deployed directly in the production environment without the risk of mistakenly blocking valid end user requests.
 
     ![!Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
-* Use the `Set traffic filtration mode` rule to control the Wallarm filtration mode for specific environments and requests. This rule provides additional flexibility in the way Wallarm protection can be gradually rolled out to protect new end-points and other resources in different environments. By default, the [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) value is used depending on the [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override) setting.
+* Use the `Set filtration mode` rule to control the Wallarm filtration mode for specific environments and requests. This rule provides additional flexibility in the way Wallarm protection can be gradually rolled out to protect new end-points and other resources in different environments. By default, the [`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode) value is used depending on the [`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override) setting.
 
     ![!Creating a rule to overwrite the filtration mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)
