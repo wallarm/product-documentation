@@ -5,7 +5,12 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-Log in to Wallarm Console using your Administrator account and proceed to the G Suite integration setup following **Settings → Integration → Okta SSO**.
+!!! warning "Pay your attention"
+    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
+
+    After activating the service you will be able to perform the following SSO connection procedure.
+
+Log in to Wallarm Console using your Administrator account and proceed to the Okta integration setup following **Settings → Integration → Okta SSO**.
 
 ![!The “Okta SSO” block][img-okta-sso-provider-wl]
 
