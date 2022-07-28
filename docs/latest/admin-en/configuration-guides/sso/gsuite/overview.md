@@ -15,7 +15,7 @@
 This guide will cover the process of connecting the [G Suite][link-gsuite] (Google) service as an identity provider to Wallarm, which acts as the service provider.
 
 !!! note
-    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager.
+    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
     
     After activating the service
     

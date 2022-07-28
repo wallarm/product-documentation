@@ -17,6 +17,6 @@ The documents related to the configuration and operation of Wallarm with SSO ass
 More information about roles in SAML SSO can be found here ([PDF][link-saml-sso-roles]).
 
 !!! warning "Enabling the SSO service"
-    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager.
+    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
     
     If no SSO service is activated, then SSO-related blocks will not be visible in the *Integrations* tab of the *Settings* section on the Wallarm portal.

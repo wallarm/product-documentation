@@ -16,7 +16,7 @@ This guide will cover the process of connecting the [Okta][link-okta] service as
 
 !!! note
 
-    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager.
+    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
     
     After activating the service
     
