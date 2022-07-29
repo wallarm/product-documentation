@@ -72,10 +72,6 @@ A security incident is an occurrence of vulnerability exploitation. An incident 
 
 An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object - incident.
 
-## MITM
-A man in the middle (MITM) attack consists of an attacker secretly relaying the communication between two parties who believe they are directly communicating with each other.
-[See OWASP](https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack).
-
 ## Circular Buffer
 A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
 [See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
