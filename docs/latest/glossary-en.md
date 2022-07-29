@@ -4,9 +4,11 @@ The glossary covers the core Wallarm entities to provide you with a better under
 
 ## Hit
 
-A hit is a serialized malicious request (original malicious request and metadata added by the filtering node). For example:
+A hit is a serialized malicious request (original malicious request and metadata added by the filtering node), e.g.:
 
-![!Hit example](images/glossary/hit-example.png)
+![!Hit example](images/user-guides/events/analyze-attack-raw.png)
+
+[Details on hit parameters](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
 
 ## Attack
 
