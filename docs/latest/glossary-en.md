@@ -78,8 +78,18 @@ A man in the middle (MITM) attack consists of an attacker secretly relaying the 
 A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
 [See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
 
-## LOM
-LOM stands for Local Objective Model. LOM is a set of rules for a particular web application. The set of rules is generated based on user requests to the web application and the application's responses.
+## Custom ruleset (the former term is LOM)
+
+Custom rules enable clients to set up individual rules for their traffic processing, e.g.:
+
+* Mask sensitive data before uploading to the Wallarm Cloud
+* Create regexp-based attack indicators
+* Apply a virtual patch blocking requests that exploit an active vulnerability
+* Disable attack detection in certain requests, etc.
+
+A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](user-guides/settings/general.md).
+
+[More details on custom rulesets](user-guides/rules/intro.md)
 
 ## Invalid Request
 A request that was checked by filter node and does not match LOM rules.

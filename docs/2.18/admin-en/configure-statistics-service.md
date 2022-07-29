@@ -1,6 +1,6 @@
 [doc-configure-kubernetes]:     configure-kubernetes-en.md
 [link-prometheus]:              https://prometheus.io/
-[gl-lom]:                       ../glossary-en.md#lom
+[gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 
 # Configuration of the Statistics Service
 
@@ -90,7 +90,7 @@ The following response parameters are available:
 *   `db_id`: proton.db version.
 *   `lom_id`: [LOM][gl-lom] version.
 *   `db_apply_time`: Unix time of the last update of the proton.db file.
-*   `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#lom) file.
+*   `lom_apply_time`: Unix time of the last update of the [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
 *   `proton_instances`: information about proton.db + LOM pairs:
     *   `total`: the number of proton.db + LOM pairs.
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
@@ -98,7 +98,7 @@ The following response parameters are available:
     *   `failed`: the number of proton.db + LOM pairs that were not initialized and run in the “do not analyze” mode.
 *   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive).
 *   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive) and the amount of time spent on request processing.
-*   `ts_files`: information about the [LOM](../glossary-en.md#lom) file:
+*   `ts_files`: information about the [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file:
     *   `id`: used LOM version.
     *   `size`: LOM file size in bytes.
     *   `mod_time`: Unix time of the last update of the LOM file.
