@@ -67,7 +67,8 @@ The information security risks are:
 The Internet traffic can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
 
 ## Security Incident
-A security incident is an occurrence of a vulnerability exploitation. An incident is an attack targeted at a confirmed vulnerability.
+A security incident is an occurrence of a vulnerability exploitation. An incident is an [attack](#attack) targeted at a confirmed vulnerability.
+
 An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object.
 
 ## MITM
