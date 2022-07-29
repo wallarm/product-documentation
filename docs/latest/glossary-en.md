@@ -80,7 +80,9 @@ A circular buffer is a data structure that uses a single, fixed‑size buffer as
 
 ## Custom ruleset (the former term is LOM)
 
-Custom rules enable clients to set up individual rules for their traffic processing, e.g.:
+A custom ruleset is a set of compiled API Security rules downloaded by Wallarm nodes from the Wallarm Cloud.
+
+Custom rules enable you to set up individual rules for the traffic processing, e.g.:
 
 * Mask sensitive data before uploading to the Wallarm Cloud
 * Create regexp-based attack indicators
