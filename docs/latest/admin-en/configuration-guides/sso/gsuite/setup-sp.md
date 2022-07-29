@@ -5,7 +5,7 @@
 
 [doc-setup-idp]:                setup-idp.md
 
-!!! warning "Pay your attention"
+!!! warning "Activate the SSO service on the Wallarm side first"
     By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
 
     After activating the service you will be able to perform the following SSO connection procedure.

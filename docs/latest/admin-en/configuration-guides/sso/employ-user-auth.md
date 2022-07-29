@@ -22,7 +22,10 @@ You can [enable][anchor-enable] or [disable][anchor-disable] SSO authentication 
     *   It is assumed that you have already given the required group of users access to the configured Wallarm application on the [Okta][doc-allow-access-okta] or [G Suite][doc-allow-access-gsuite] side.
 
 
-To enable SSO authentication for Wallarm users go to *Settings → Users*. Find the desired user and open the user action menu by clicking the button on the right of the user's record. Click **Enable SSO login**.
+To enable SSO authentication for Wallarm users:
+
+1. Go to **Settings** → **Users**.
+1. From the user menu, select **Enable SSO login**.
 
 ![!Enabling SSO for Wallarm user][img-enable-sso-for-user]
 
@@ -34,7 +37,10 @@ Note that you can also enable SSO for all company account users using the [Stric
 
 ##  Disabling SSO authentication for users
 
-To disable SSO authentication for Wallarm users, go to *Settings → Users*. Find the desired user and open the user action menu by clicking the button on the right of the user's record. Click *Disable SSO*.
+To disable SSO authentication for Wallarm users:
+
+1. Go to **Settings** → **Users**.
+1. From the user menu, select **Disable SSO**.
 
 ![!Disabling SSO for Wallarm user][img-disable-sso-for-user]
 
@@ -44,12 +50,12 @@ After that, the user will be notified by an email that the login using SSO is di
 
 When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-client) becomes unavailable for this user. To get working API credentials, you have two options: 
 
-* If the **strict SSO** mode is not used, under your company account, create user without SSO option and generate API credentials for this user.
+* If the **strict SSO** mode is not used, under your company account, create user without SSO option and use this user's [API credentials](../../../api/overview.md#your-own-client).
 * If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, from this user menu, select **Enable API access**. The `SSO+API` auth method is enabled for the user. Later you can disable API authentication for the user by selecting **Disable API access**.
 
 ## Strict SSO mode
 
-Wallarm supports the **strict SSO** mode: the mode can be enabled only for the entire company account. Mode characteristics:
+Wallarm supports the **strict SSO** mode that differs from the regular SSO in that it enables SSO authentication for all company account users at once. Other characteristics of the strict SSO mode are:
 
 * The authentication method for all existing users of the account is switched to SSO.
 * All new users get the SSO as the authentication method by default.
@@ -69,8 +75,8 @@ If the user cannot sign in via SSO, the error message is displayed with one of t
 |--|--|--|--|
 | `saml_auth_not_found + userid` | User does not have SSO enabled. | Administrator | Enable SSO as described in the section [above](#enabling-sso-authentication-for-users). |
 | `saml_auth_not_found + clientid` | Client does not have an SSO integration in the **Settings** → **Integrations** section. | Administrator  | Follow the instructions in the [integration with the SAML SSO](intro.md) documentation. |
-| `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Administrator | Either on the Wallarm side, in the **Settings** > **Integrations** section, review the SSO integration configuration and make sure there are no mistakes, or check configuration on the SSO provider side. |
+| `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Administrator | Either on the Wallarm side, in the **Settings** → **Integrations** section, review the SSO integration configuration and make sure there are no mistakes, or check configuration on the SSO provider side. |
 | `user_not_found` | Wallarm did not find the user with the specified email. | Administrator | Create a user with this email in Wallarm Console. |
-| `client_not_found` | The company account was not found in Wallarm. | Wallarm support | To solve that, contact the [Wallarm support team](mailto:support@wallarm.com). |
+| `client_not_found` | The company account was not found in Wallarm. | Wallarm support | To request the account creation, contact the [Wallarm support team](mailto:support@wallarm.com). |
 
  If necessary, administrator can contact the [Wallarm support team](mailto:support@wallarm.com) to get help in fixing any of these errors.
