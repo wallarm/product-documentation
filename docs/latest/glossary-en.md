@@ -4,9 +4,11 @@ The glossary covers the core Wallarm entities to provide you with a better under
 
 ## Hit
 
-A hit is a serialized malicious request (original malicious request and metadata added by the filtering node). For example:
+A hit is a serialized malicious request (original malicious request and metadata added by the filtering node), e.g.:
 
-![!Hit example](images/glossary/hit-example.png)
+![!Hit example](images/user-guides/events/analyze-attack-raw.png)
+
+[Details on hit parameters](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
 
 ## Attack
 
@@ -67,19 +69,29 @@ The information security risks are:
 The Internet traffic can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
 
 ## Security Incident
-A security incident is an occurrence of a vulnerability exploitation. An incident is an attack targeted at a confirmed vulnerability.
-An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object.
 
-## MITM
-A man in the middle (MITM) attack consists of an attacker secretly relaying the communication between two parties who believe they are directly communicating with each other.
-[See OWASP](https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack).
+A security incident is an occurrence of vulnerability exploitation. An incident is an [attack](#attack) targeted at a confirmed vulnerability.
+
+An incident, just like an attack, is an entity external to your system and is a characteristic of the outside Internet, not the system itself. Despite the fact that the attacks targeted at existing vulnerabilities are a minority, they are of the utmost importance in terms of information security. Wallarm automatically detects the attacks targeted at existing vulnerabilities and displays them as a separate object - incident.
 
 ## Circular Buffer
 A circular buffer is a data structure that uses a single, fixed‑size buffer as if it were connected end‑to‑end.
 [See Wikipedia](https://en.wikipedia.org/wiki/Circular_buffer).
 
-## LOM
-LOM stands for Local Objective Model. LOM is a set of rules for a particular web application. The set of rules is generated based on user requests to the web application and the application's responses.
+## Custom ruleset (the former term is LOM)
+
+A custom ruleset is a set of compiled API Security rules downloaded by Wallarm nodes from the Wallarm Cloud.
+
+Custom rules enable you to set up individual rules for the traffic processing, e.g.:
+
+* Mask sensitive data before uploading to the Wallarm Cloud
+* Create regexp-based attack indicators
+* Apply a virtual patch blocking requests that exploit an active vulnerability
+* Disable attack detection in certain requests, etc.
+
+A custom ruleset is not empty by default, it contains the rules created for all clients registered in the Cloud, e.g. the filtration mode rule with the value from the [**Settings → General** tab](user-guides/settings/general.md).
+
+[More details on custom rulesets](user-guides/rules/intro.md)
 
 ## Invalid Request
 A request that was checked by filter node and does not match LOM rules.
