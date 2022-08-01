@@ -6,7 +6,7 @@ The new major version of the Wallarm node has been released! Wallarm node 4.0 ha
 
 Starting with version 4.0, the filtering node uploads data to the Cloud using the `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) API endpoints instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
 
-If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
+If your server with the deployed node has limited access to the external resources and the access is granted to each resource separately, after upgrading to version 4.0 the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
@@ -23,7 +23,7 @@ Changes in node registration methods result in some updates in node types:
 
 * The node supporting the unified registration by token has the **Wallarm node** type. The script to be run on the server to register the node is named `register-node`.
 
-    In versions 3.6 and lower, the Wallarm node was named [**cloud node**](/3.6/user-guides/nodes/cloud-node/). It also supported registration by the token but with the different script named `addcloudnode`.
+    In versions 3.6 and lower, the Wallarm node was named [**cloud node**](/3.6/user-guides/nodes/cloud-node/). It also supported registration by the token but with a different script named `addcloudnode`.
 
     The cloud node is not required to be migrated to the new node type.
 * The [**regular node**](/3.6/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
@@ -89,7 +89,7 @@ The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wall
 
 ## Improved attack detection
 
-The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides better attack detection.
 
 ## New variables to configure the node logging format
 
@@ -179,7 +179,7 @@ If upgrading Wallarm node 2.18 or lower, learn all changes from the [separate li
 
 ## Upgrade process
 
-1. Review [recommendations for the modules upgrade](general-recommendations.md).
+1. Review [recommendations for the module upgrade](general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
       * [Module for NGINX, NGINX Plus or Kong](nginx-modules.md)
