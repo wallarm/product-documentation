@@ -1,13 +1,13 @@
-[img-traffic-stats]:        ../../images/user-guides/dashboard/waf-traffic-stats.png
+[img-traffic-stats]:        ../../images/user-guides/dashboard/traffic-stats.png
 [img-attacks-stats]:        ../../images/user-guides/dashboard/waf-attacks-stats.png
 [img-blacklist-stats]:      ../../images/user-guides/dashboard/waf-blacklist-stats.png
-[img-traffic-cur-month]:    ../../images/user-guides/dashboard/waf-current-month-stats.png
+[img-traffic-cur-month]:    ../../images/user-guides/dashboard/current-month-stats.png
 [img-attacks-type]:         ../../images/user-guides/dashboard/attack-types.png
 [img-attacks-sources]:      ../../images/user-guides/dashboard/attack-sources.png
 
 [doc-setup-app]:            ../settings/applications.md
 [doc-events-tab]:           ../events/check-attack.md
-[doc-blacklist-tab]:        ../blacklist.md
+[doc-blacklist-tab]:        ../ip-lists/blacklist.md
 [doc-scanner]:              ../scanner/intro.md
 
 [gl-hit]:                   ../../glossary-en.md#hit
@@ -81,15 +81,6 @@ Clicking the attack type redirects to the [**Events** section][doc-events-tab] w
 
 The block shows statistics on the attack sources for the selected period:
 
-* World map with the attack number distributed by source country or region
+* World map with the attack number distributed by source country/region
 * Top attack source countries
 * Top attack source resources: statistics on data centers IP addresses from which requests were received
-
-## Blacklisted IP addresses
-
-![!Blacklisted IP addresses][img-blacklist-stats] 
-
-The block shows the following data:
-
-* IP addresses that are currently blacklisted. In addition, a reason for blocking and the time until it will be unblocked are also shown for each entry in the list. To manage the list via the [**Blacklist** section][doc-blacklist-tab] click the **Full list** button.
-* A graph with statistics on IP address blocking events for a selected period.

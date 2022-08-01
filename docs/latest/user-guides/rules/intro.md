@@ -16,7 +16,7 @@ One important thing about making changes to the rules is that these changes don'
 
 #### Point
 
-Each parameter of the HTTP request in the Wallarm system is described with a sequence of filters applied for request processing, e.g., headers, body, URL, Base64, etc. This sequence is called the *point*.
+A point is an HTTP request parameter. A parameter can be described with a sequence of filters applied for request processing, e.g., headers, body, URL, Base64, etc. This sequence is also called the *point*.
 
 Request processing filters are also called parsers.
 

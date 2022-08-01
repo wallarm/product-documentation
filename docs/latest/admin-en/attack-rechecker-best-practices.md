@@ -44,7 +44,7 @@ If you discover that your filtering nodes have dispatched some detected false po
 
 ### Optional: Enable/disable Attack rechecker tests for specific applications, domains or URLs
 
-If some application endpoints are not idempotent and don’t use any request authentication mechanism (for example, the self-registration of a new customer account) it is recommended to disable the **Attack rechecker** feature for the specific endpoints. Wallarm provides the customers with the ability to control which specific customer applications, domains or URLs should have the **Attack rechecker** scanner enabled or disabled by using the [rule **Disable/Enable active threat verification**](../user-guides/rules/change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying).
+If some application endpoints are not idempotent and don’t use any request authentication mechanism (for example, the self-registration of a new customer account) it is recommended to disable the **Attack rechecker** feature for the specific endpoints. Wallarm provides the customers with the ability to control which specific customer applications, domains or URLs should have the **Attack rechecker** scanner enabled or disabled by using the [rule **Set mode of active threat verification**](../user-guides/rules/change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying).
 
 ### Optional: Configure Attack rechecker request rewriting rules (run tests against a copy of the application)
 

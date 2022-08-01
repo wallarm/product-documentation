@@ -9,13 +9,13 @@ Custom ruleset allows changing the following configurations of the [Active threa
 
 ### Rule overview
 
-The rule **Disable/Enable active threat verification** is used to change the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
+The rule **Set mode of active threat verification** is used to change the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
 
 ### Creating and applying the rule
 
 To create and apply the rule:
 
-1. Create the rule **Disable/Enable active threat verification** in the **Rules** section of Wallarm Console. The rule consists of the following components:
+1. Create the rule **Set mode of active threat verification** in the **Rules** section of Wallarm Console. The rule consists of the following components:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * **Disable / Enable** sets the mode of the **Active threat verification** module for attacks sent to the specified endpoints.
@@ -25,13 +25,13 @@ To create and apply the rule:
 
 ### Rule example
 
-The rule **Disable/Enable active threat verification** disabling the **Active threat verification** module for `https://example.com/module/user/*` looks as follows:
+The rule **Set mode of active threat verification** disabling the **Active threat verification** module for `https://example.com/module/user/*` looks as follows:
 
-![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-example.png)
+![!Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-example.png)
 
 If the rule above is already configured, the following rule will enable the **Active threat verification** module for `https://example.com/module/user/create`:
 
-![!Example of the rule "Disable/Enable active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
+![!Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
 
 ## Rewriting the request before attack replaying
 

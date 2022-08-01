@@ -108,6 +108,22 @@ An attack or vulnerability name can be specified in both uppercase and lowercase
 
 To filter attacks by CVE and well‑known exploits, quick filters by event types and **CVE and exploits** can be used.
 
+### Search hits by API protocols
+
+To filter hits by API protocols, use the `proto:` or `protocol:` tag.
+
+This tag allows the following values:
+
+* `proto:graphql`
+* `proto:grpc`
+* `proto:websocket`
+* `proto:rest`
+* `proto:soap`
+* `proto:xml-rpc`
+* `proto:web-form`
+* `proto:webdav`
+* `proto:json-rpc`
+
 ### Search by the attack target or the vulnerability target
 
 Specify in the search string:

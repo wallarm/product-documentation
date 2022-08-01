@@ -321,3 +321,13 @@
 /2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-intro/ https://github.com/wallarm/terraform-example/wiki
 /2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-code-desc/ https://github.com/wallarm/terraform-example/wiki/Description-of-example-Terraform-code
 /2.18/admin-en/installation-guides/amazon-cloud/deploy-waf-via-terraform/deploy-waf-via-terraform-quick-start/ https://github.com/wallarm/terraform-example/wiki/Quick-start-with-Terraform-example-code
+
+/user-guides/dashboard/intro/ /user-guides/dashboard/
+/user-guides/dashboard/waf/ /user-guides/dashboard/
+/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
+/3.6/user-guides/dashboard/intro/ /user-guides/dashboard/
+/3.6/user-guides/dashboard/waf/ /user-guides/dashboard/
+/3.6/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
+/3.4/user-guides/dashboard/intro/ /user-guides/dashboard/
+/3.4/user-guides/dashboard/waf/ /user-guides/dashboard/
+/3.4/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
