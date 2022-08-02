@@ -5,7 +5,7 @@
 
 #   Step 1: Generating Parameters on the Wallarm Side (Okta)
 
-To connect SSO with Okta you will first need to generate some parameters on the Wallarm side.
+To connect SSO with Okta, you will first need to generate some parameters on the Wallarm side.
 
 !!! warning "Activate the SSO service on the Wallarm side first"
     By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).

@@ -50,15 +50,8 @@ After that, the user will be notified by an email that the login using SSO is di
 
 When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-client) becomes unavailable for this user. To get working API credentials, you have two options: 
 
-* If the **strict SSO** mode is not used:
-
-    1. Under your company account, create user without SSO option.
-    1. Use this user's [API credentials](../../../api/overview.md#your-own-client).
-
-* If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this:
-
-    1. From this user menu, select **Enable API access**. The `SSO+API` auth method is enabled for the user.
-    1. Later you can disable API authentication for the user by selecting **Disable API access**.
+* If the **strict SSO** mode is not used, create user without SSO option under your company account, and use this user's [API credentials](../../../api/overview.md#your-own-client).
+* If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user. Later you can disable API authentication for the user by selecting **Disable API access**.
 
 ## Strict SSO mode
 
@@ -76,14 +69,14 @@ To enable or disable the strict SSO mode, contact the [Wallarm support team](mai
 
 ## SSO authentication troubleshooting
 
-If the user cannot sign in via SSO, the error message is displayed with one of the following error codes:
+If the user cannot sign in via SSO, the error message is displayed with one of the error codes described in the table below. In most cases, the company account administrator can fix these errors:
 
-| Error code | Description | Who can fix | How to fix |
-|--|--|--|--|
-| `saml_auth_not_found + userid` | User does not have SSO enabled. | Administrator | Enable SSO as described in the section [above](#enabling-sso-authentication-for-users). |
-| `saml_auth_not_found + clientid` | Client does not have an SSO integration in the **Settings** → **Integrations** section. | Administrator  | Follow the instructions in the [integration with the SAML SSO](intro.md) documentation. |
-| `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Administrator | Do one of the following:<br><ul><li>Make sure there are no mistakes on the Wallarm side, in the SSO integration configuration, in the **Settings** → **Integrations** section.</li><li>Check configuration on the SSO provider side.</li></ul> |
-| `user_not_found` | Wallarm did not find the user with the specified email. | Administrator | Create a user with this email in Wallarm Console. |
-| `client_not_found` | The company account was not found in Wallarm. | Wallarm support | To request the account creation, contact the [Wallarm support team](mailto:support@wallarm.com). |
+| Error code | Description | How to fix |
+|--|--|--|
+| `saml_auth_not_found + userid` | User does not have SSO enabled. | Enable SSO as described in the section [above](#enabling-sso-authentication-for-users). |
+| `saml_auth_not_found + clientid` | Client does not have an SSO integration in the **Settings** → **Integrations** section. | Follow the instructions in the [integration with the SAML SSO](intro.md) documentation. |
+| `invalid_saml_response` or `no_mail_in_saml_response` | The SSO provider gave an unexpected response. It may be a sign of a misconfigured SSO integration. | Do one of the following:<br><ul><li>Make sure there are no mistakes in the SSO integration configured in the **Settings** → **Integrations** section of Wallarm Console.</li><li>Make sure there are no mistakes in the configuration on the SSO provider side.</li></ul> |
+| `user_not_found` | Wallarm did not find the user with the specified email. | Create a user with this email in Wallarm Console. |
+| `client_not_found` | The company account was not found in Wallarm. | Create a user account with an appropriate email domain, which will create the company account immediately. |
 
  If necessary, administrator can contact the [Wallarm support team](mailto:support@wallarm.com) to get help in fixing any of these errors.
