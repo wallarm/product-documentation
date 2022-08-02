@@ -98,7 +98,7 @@ The endpoints accessible from the external network are the main attack direction
 
 The system automatically splits discovered APIs to external and internal. The host with all its endpoints is considered to be internal if it is located on:
 
-* A private IP or local IP address.
+* A private IP or local IP address
 * A domain without a second level (for example: localhost, dashboard, etc.)
 
 In the remaining cases the hosts are considered to be external.
