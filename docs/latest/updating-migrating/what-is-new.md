@@ -10,7 +10,7 @@ If your server with the deployed node has limited access to the external resourc
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
+The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the **email-password** user credentials on some platforms.
 
 Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
 
@@ -26,7 +26,7 @@ Changes in node registration methods result in some updates in node types:
     In versions 3.6 and lower, the Wallarm node was named [**cloud node**](/3.6/user-guides/nodes/cloud-node/). It also supported registration by the token but with a different script named `addcloudnode`.
 
     The cloud node is not required to be migrated to the new node type.
-* The [**regular node**](/3.6/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
+* The [**regular node**](/3.6/user-guides/nodes/regular-node/) supporting the registration by **email-password** passed to the `addnode` script is deprecated.
 
     Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus, Kong module or the Docker container looks as follows:
 
