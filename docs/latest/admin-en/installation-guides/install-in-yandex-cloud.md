@@ -1,1 +1,0 @@
-Documentation on this deployment option is not available. For more details, please contact the [Wallarm technical support](mailto:support@wallarm.com).
