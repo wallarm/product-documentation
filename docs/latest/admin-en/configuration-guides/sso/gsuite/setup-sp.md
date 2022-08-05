@@ -1,9 +1,16 @@
-#   Step 1: Generating Parameters on the Wallarm Side (G Suite)
-
 [img-gsuite-sso-provider-wl]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-sso-provider-wl.png
 [img-sp-metadata]:              ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png
 
 [doc-setup-idp]:                setup-idp.md
+
+#   Step 1: Generating Parameters on the Wallarm Side (G Suite)
+
+To connect SSO with G Suite, you will first need to generate some parameters on the Wallarm side.
+
+!!! warning "Activate the SSO service on the Wallarm side first"
+    By default, SSO connection on Wallarm is not available without activating the appropriate service. To activate the SSO service, please contact your account manager or the [Wallarm support team](mailto:support@wallarm.com).
+
+    After activating the service you will be able to perform the following SSO connection procedure.
 
 Log in to Wallarm Console using your Administrator account and proceed to the G Suite integration setup following **Settings → Integration → Google SSO**.
 
