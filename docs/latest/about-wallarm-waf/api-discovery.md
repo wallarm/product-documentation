@@ -96,10 +96,10 @@ Learn how to work with the track changes feature in [User guide](../user-guides/
 
 The endpoints accessible from the external network are the main attack directions. Thus, it is important to see what is available from the outside and pay attention to these endpoints in the first place.
 
-The system automatically splits discovered APIs to external and internal. The host with all its endpoints is considered to be internal if it is located on:
+Wallarm automatically splits discovered APIs to external and internal. The host with all its endpoints is considered to be internal if it is located on:
 
 * A private IP or local IP address
-* A domain without a second level (for example: localhost, dashboard, etc.)
+* A generic top-level domain (for example: localhost, dashboard, etc.)
 
 In the remaining cases the hosts are considered to be external.
 
