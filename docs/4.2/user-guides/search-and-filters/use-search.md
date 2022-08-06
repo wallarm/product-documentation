@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/search-and-filters/use-search.md"
