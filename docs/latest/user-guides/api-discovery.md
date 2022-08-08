@@ -7,7 +7,7 @@ The built API structure is presented in the **API Discovery** section. The secti
 * **Administrator** or **Analyst** for the regular accounts.
 * **Global Administrator** or **Global Analyst** for the accounts with the multitenancy feature.
 
-To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
+To provide users with familiar format of API representation, Wallarm provides list of discovered APIs and details on them in a **Swagger-like** interface.
 
 The API structure includes the following elements:
 
@@ -20,11 +20,9 @@ The API structure includes the following elements:
 
 You can filter the discovered API structure:
 
-* For the endpoint search, in the search string, type what your endpoint path may contain. Regular expressions are not allowed.
-* Use **Application**, **Domain** and **Method** filters.
-* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters. 
-* In the **Domains** panel, click application or domain.
-* Click **External**, **Internal** or go back to the default **All APIs**.
+* To get a list of all endpoints of a certain version or all endpoints that are associated with clients, in the search string, type what your endpoint path may contain, for example substrings '/v2/' or '/clients/'. Regular expressions are not allowed.
+* To determine the attack vector for the selected domain and understand which endpoints of this domain users can use to upload data to the server (methods PUT and POST), use **Application**, **Domain** and **Method** filters.
+* To get a list of endpoints to which the clients send sensitive data, use the **PII** filter. This is necessary for subsequent verification that PII is correctly processed and stored  (for example, it is not stored in a readable text).
 
 ## Viewing endpoint parameters
 
