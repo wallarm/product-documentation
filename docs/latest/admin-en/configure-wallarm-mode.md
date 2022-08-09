@@ -1,6 +1,6 @@
 [acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
 
-# Filtration mode configuration
+# Configuration of filtration mode
 
 Filtration mode defines the filtering node behavior when processing incoming requests. These instructions describe available filtration modes and their configuration methods.
 
@@ -26,7 +26,7 @@ The filtration mode can be configured in the following ways:
 * Define the general filtration rule in Wallarm Console
 * Create a filtration mode rule in the **Rules** section of Wallarm Console
 
-Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value  severity.
+Priorities of the filtration mode configuration methods are determined in the [`wallarm_mode_allow_override` directive](#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). By default, the settings specified in Wallarm Console have a higher priority than the `wallarm_mode` directive regardless of its value severity.
 
 ### Specifying the filtration mode in the `wallarm_mode` directive
 
@@ -140,7 +140,7 @@ The contexts in which the `wallarm_mode_allow_override` directive value can be d
 * `server`: the directives inside the `server` block are applied to the requests sent to the virtual server.
 * `location`: the directives inside the `location` block are only applied to the requests containing that particular path.
 
-If different `wallarm_mode_allow_override` directive values are defined in the `http`, `server`, and `location` blocks, the most local configuration has the highest priority.
+If different `wallarm_mode_allow_override` directive values are defined in the `http`, `server`, and `location` blocks, then the most local configuration has the highest priority.
 
 **The `wallarm_mode_allow_override` directive usage example:**
 
@@ -171,7 +171,7 @@ This configuration example results in the following applications of the filtrati
 2. The filtration mode rules defined in Wallarm Console are applied to the requests sent to the virtual server `SERVER_B` except for the requests that contain the `/main/login` path.
 3. For those requests that are sent to the virtual server `SERVER_B` and contain the `/main/login` path, the filtration mode rules defined in Wallarm Console are only applied if they define a filtration mode that is stricter than the `monitoring` mode.
 
-## Filtration mode configuration example
+## Configuration of filtration mode example
 
 Let us consider the example of a filtration mode configuration that uses all of the methods mentioned above.
 
@@ -204,7 +204,7 @@ http {
 }
 ```
 
-### Setting up filtration mode in Wallarm Console
+### Setting up the filtration mode in Wallarm Console
 
 * [General filtration rule](#setting-up-the-general-filtration-rule-in-wallarm-console): **Monitoring**.
 * [Filtration rules](#setting-up-the-filtration-rules-on-the-rules-tab):
