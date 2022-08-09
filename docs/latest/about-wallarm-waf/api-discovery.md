@@ -1,6 +1,6 @@
 # Discovering API structure
 
-The **API Discovery** module of Wallarm API Security identifies your application API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
+The **API Discovery** module of Wallarm API Security identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
@@ -30,12 +30,12 @@ API Discovery relies on statistics and uses ML algorithms to generate up-to-date
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the cloud. This approach enables a privacy-first process where request data and sensitive data are kept locally on the customer premise while using the power of the cloud.
 
-Locally, on the Wallarm node, API Discovery analyzes a normal traffic which is the one without requests with attacks. Wallarm analyzes the endpoints to which requests are made and what parameters are passed. According to this data, statistics are made and sent to the Сloud. 
+Locally, on the Wallarm node, API Discovery analyzes a normal traffic which is the one without requests with attacks. Wallarm analyzes the endpoints to which requests are made and what parameters are passed. According to this data, statistics are made and sent to the Сloud. Wallarm analyzes only the requests to which the applications returned the [2xx "success"](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success) code.
 
 !!! warning "Important"
     Wallarm does not send the values that are specified in the parameters. Only the endpoint, parameter names and statistics on them are sent.
 
-In Wallarm Cloud, the received statistics is aggregated and used to build an [API description](../user-guides/api-discovery.md#api-structure-visualization). Note that rare or single requests are determined as noise and not included in the API structure.
+In Wallarm Cloud, the received statistics is aggregated and used to build an [API description](../user-guides/api-discovery.md#api-structure-visualization). Note that rare or single requests are [determined as noise](#noise-detection) and not included in the API structure.
 
 The API structure includes the following elements:
 
@@ -158,6 +158,24 @@ To run API Discovery correctly:
 
 Once the API Discovery module is enabled, it will start the traffic analysis and API structure building. The API structure will be displayed in the **API Discovery** section of Wallarm Console.
 
+## Noise detection
+
+To have a clean and valuable API structure description, you must exclude redundant data clouding the big picture.
+
+The API Discovery module bases noise detection on the two major concepts:
+* Endpoint stability - at least five requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
+* Parameter stability - the probability of a parameter occurrence must be greater than 1 percent.
+
+The API structure will display the endpoints and parameters that exceeded these limits. 
+
+Also, the API Discovery performs filtering of requests relying on the other criteria:
+* Only those requests to which the server responded in the 2xx range are processed.
+* Static is ignored.
+* Some service headers are filtered.
+* etc.
+
+For now, in the postanalytics logs, only statistical information is presented, such as the total number of requests, the number of processed and ignored requests, and the number of the "raw" endpoints and parameters before determining their stability. Data is grouped by the customer applications.
+
 ## API Discovery debugging
 
 To get and analyze the API Discovery logs, you can use the following methods:
@@ -184,3 +202,11 @@ To get and analyze the API Discovery logs, you can use the following methods:
     ```bash
     kubectl logs -l app=nginx-ingress,component=controller-wallarm-tarantool -c wallarm-appstructure
     ```
+
+## Limitations
+
+The **API Discovery** module:
+
+* Fully supports REST API
+* Does not support GraphQL API and alike
+* Variants of JSON APIs may be partially supported if they have hybrid REST-like implementation
