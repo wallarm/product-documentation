@@ -22,12 +22,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 **CentOS and Amazon Linux 2.0.2021x and lower**
 
-=== "CloudLinux OS 6.x"
-    ```bash
-    sudo yum remove wallarm-node-repo
-    sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/6/4.0/x86_64/wallarm-node-repo-4-0.el6.noarch.rpm
-    ```
 === "CentOS 7 and Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum remove wallarm-node-repo
