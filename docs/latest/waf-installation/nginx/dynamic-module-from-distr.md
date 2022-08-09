@@ -41,23 +41,6 @@ Installation commands for both options are described in the further instructions
 
 ### 1. Add Debian/CentOS repositories
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Debian 9.x (stretch-backports)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/4.0/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
-    # for correct Wallarm node operation, uncomment the following line in /etc/apt/sources.list`:
-    # deb http://deb.debian.org/debian stretch-backports main contrib non-free
-    sudo apt update
-    ```
 === "Debian 10.x (buster)"
     ```bash
     sudo apt install dirmngr
@@ -93,14 +76,6 @@ The command installs the following packages:
 * `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
 * `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
-    ```
-=== "Debian 9.x (stretch-backports)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm -t stretch-backports
-    ```
 === "Debian 10.x (buster)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
@@ -128,14 +103,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 The commands install packages for NGINX and for the NGINX-Wallarm module:
 
-=== "Debian 9.x (stretch)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
-    ```
-=== "Debian 9.x (stretch-backports)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm -t stretch-backports
-    ```
 === "Debian 10.x (buster)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm

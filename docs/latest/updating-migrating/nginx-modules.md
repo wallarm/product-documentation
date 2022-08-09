@@ -104,15 +104,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
 2. Comment out or delete the previous repository address.
 3. Add a new repository address:
 
-    === "Debian 9.x (stretch)"
-        ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/
-        ```
-    === "Debian 9.x (stretch-backports)"
-        ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/4.0/
-        ```
     === "Debian 10.x (buster)"
         ```bash
         deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
