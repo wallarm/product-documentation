@@ -17,6 +17,7 @@
 [img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
 [about-sidecar-container]:          installation-guides/kubernetes/wallarm-sidecar-container.md
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
+[node-status-docs]:                 configure-statistics-service.md
 
 # Running Docker NGINX‑based image
 
