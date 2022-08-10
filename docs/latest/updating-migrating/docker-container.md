@@ -36,7 +36,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:4.0.1-1
+    docker pull wallarm/node:4.0.2-1
     ```
 === "Envoy-based image"
     ``` bash
