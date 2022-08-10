@@ -46,6 +46,7 @@ The API structure includes the following elements:
         * Technical data like IP and MAC addresses
         * Login credentials like secret keys and passwords
         * Financial data like bank card numbers
+        * Medical data like license or health service numbers (for different countries)
         * Personally identifiable information (PII) like full name, passport number or SSN
     
     * Date and time when parameter information was last updated
