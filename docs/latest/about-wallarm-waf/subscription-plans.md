@@ -60,6 +60,30 @@ When a new user is registered in Wallarm Console, a new client account with an a
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
+## Free tier subscription plan
+
+!!! warning "Currently available only for US Cloud"
+    For now, the Free Tier subscription plan is activated for the new company accounts only in the US [Cloud](overview.md#cloud) by default.
+
+With the **Free Tier** subscription plan you can:
+
+* Use all Wallarm features for free up to the quota of **500 thousand requests per month**.
+* Have the quota reset on the first day of each month.
+* Have no limitation in time when using this subscription plan.
+
+Free Tier subscription includes both API Security and API Discovery.
+
+**What happens if the quota is exceeded?**
+
+If the company account exceeds the Free Tier monthly quota:
+
+* Access to the company account is temporarily disabled.
+* Integrations are temporarily disabled.
+
+These restrictions will be in effect until the first day of the next month. Contact the Wallarm [sales team](mailto:sales@wallarm.com) to restore service immediately by switching to one of the paid subscription plans.
+
+Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+
 ## Subscription management
 
 * To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).

@@ -35,3 +35,14 @@ If you have recently registered in Wallarm Console and are using the [trial vers
 ![!Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
 To get more information on the subscription to Wallarm API Security or to activate a paid subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+
+## Free tier usage
+
+If you have registered in the US Cloud and are using the [Free Tier](../../about-wallarm-waf/subscription-plans.md#free-tier-subscription-plan) subscription plan, the subscription card displays the following information:
+
+* **Free Tier** subscription tile
+* **API Discovery** subscription tile (included in Free Tier)
+* Statistics on the requests processed by the filtering node
+* The set of enabled [modules](../../about-wallarm-waf/subscription-plans.md#modules) and [features](../../about-wallarm-waf/subscription-plans.md#features)
+
+To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
