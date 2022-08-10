@@ -44,9 +44,17 @@ server {
 
 !!! info "Changing the `listen` directive"
     Note that if you change the IP address of the `listen` directive (in the example above, `127.0.0.8`), you will also need to change the following settings:
-    
-    * Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`
-    * Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses)
+
+    1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
+
+        ```bash
+        hostname: example-node-name
+        uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+        ...
+        status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
+        ```
+    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`.
+    1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses).
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
 

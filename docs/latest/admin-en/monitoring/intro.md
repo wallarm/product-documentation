@@ -65,9 +65,19 @@ For monitoring to work, it is required that:
   
 By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
 
-If you configure the statistics service to be available at a non-standard address, you will need to correct the `URL` parameter accordingly in the `collectd` configuration file. The location of this file depends on the type of operating system distribution you have:
+If you configure the statistics service to be available at a non-standard address:
 
---8<-- "../include/monitoring/collectd-config-location.md"
+1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
+
+    ```bash
+    hostname: example-node-name
+    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+    ...
+    status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
+    ```
+1. Correct the `URL` parameter accordingly in the `collectd` configuration file. The location of this file depends on the type of operating system distribution you have:
+
+    --8<-- "../include/monitoring/collectd-config-location.md"
 
 If a non-standard IP address or port for Tarantool are used, you will need to correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
 
