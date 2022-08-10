@@ -21,10 +21,6 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 
 <ol start="1"><li>Open for editing the configuration file of Tarantool:</li></ol>
 
-=== "Debian 9.x (stretch/stretch-backports)"
-    ```bash
-    sudo vim /etc/default/wallarm-tarantool
-    ```
 === "Debian 10.x (buster)"
     ```bash
     sudo vim /etc/default/wallarm-tarantool
@@ -40,10 +36,6 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
 === "Ubuntu 20.04 LTS (focal)"
     ```bash
     sudo vim /etc/default/wallarm-tarantool
-    ```
-=== "CloudLinux OS 6.x"
-    ```bash
-    sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 === "CentOS 7.x"
     ```bash
@@ -66,10 +58,6 @@ SLAB_ALLOC_ARENA=10.4
 
 <ol start="3"><li>Restart Tarantool:</li></ol>
 
-=== "Debian 9.x (stretch/stretch-backports)"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
-    ```
 === "Debian 10.x (buster)"
     ```bash
     sudo systemctl restart wallarm-tarantool
@@ -85,10 +73,6 @@ SLAB_ALLOC_ARENA=10.4
 === "Ubuntu 20.04 LTS (focal)"
     ```bash
     sudo service wallarm-tarantool restart
-    ```
-=== "CloudLinux OS 6.x"
-    ```bash
-    sudo systemctl restart wallarm-tarantool
     ```
 === "CentOS 7.x"
     ```bash

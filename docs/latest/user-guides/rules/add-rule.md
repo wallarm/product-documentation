@@ -211,24 +211,6 @@ To test the regular expression, you can use the **cpire** utility on supported D
 
 1. Add Wallarm repository:
     
-    === "Debian 9.x (stretch)"
-        ```bash
-        sudo apt update
-        sudo apt install dirmngr
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sudo apt update
-        ```
-    === "Debian 9.x (stretch-backports)"
-        ```bash
-        sudo apt install dirmngr
-        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/4.0/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
-        # for correct Wallarm node operation, uncomment the following line in /etc/apt/sources.list`:
-        # deb http://deb.debian.org/debian stretch-backports main contrib non-free
-        sudo apt update
-        ```
     === "Debian 10.x (buster)"
         ```bash
         sudo apt update

@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm-waf/api-discovery.md"
+--8<-- "4.0/about-wallarm-waf/api-discovery.md"
