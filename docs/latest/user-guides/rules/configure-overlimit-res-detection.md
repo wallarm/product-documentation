@@ -51,7 +51,7 @@ The **Fine-tune the overlimit_res attack detection** rule enables you to change 
 
     If the node is configured to register the attack, it either [blocks the request or forwards it to the application address](#request-blocking) depending on the filtration mode.
 
-    If the node is configured not to register the attack and the request does not contain other attack types, the node forwards the original request to the application address. If the request contains other attack types, the node either blocks the request or forwards it to the application address depending on the filtration mode
+    If the node is not configured to register the attack and the request does not contain other attack types, the node forwards the original request to the application address. If the request contains other attack types, the node either blocks the request or forwards it to the application address depending on the filtration mode
 
 The rule DOES NOT allow to:
 
