@@ -28,7 +28,7 @@ If the time limit is exceeded, the Wallarm node:
     Attacks of the corresponding types will be displayed in the [event list](../events/check-attack.md) in Wallarm Console.
 1. <a name="request-blocking"></a>In the **monitoring** [mode](../../admin-en/configure-wallarm-mode.md), the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
 
-    In the **safe blocking** mode, the node blocks the request if it is originated from the [greylisted](../ip-lists/greylist.md) IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
+    In the **safe blocking** mode, the node blocks the request if it originates from the [greylisted](../ip-lists/greylist.md) IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
 
     In the **block** mode, the node blocks the request.
 
@@ -49,7 +49,7 @@ The **Fine-tune the overlimit_res attack detection** rule enables you to change 
     If the node continues request processing after the time limit has been exceeded, it uploads data on detected attacks to the Cloud only after the request processing is fully completed.
 * Register the `overlimit_res` attack when the request processing time limit is exceeded or not
 
-    In the node is configured to register the attack, it either [blocks the request or forwards it to the application address](#request-blocking) depending on the filtration mode.
+    If the node is configured to register the attack, it either [blocks the request or forwards it to the application address](#request-blocking) depending on the filtration mode.
 
     If the node is configured not to register the attack and the request does not contain other attack types, the node forwards the original request to the application address. If the request contains other attack types, the node either blocks the request or forwards it to the application address depending on the filtration mode
 
