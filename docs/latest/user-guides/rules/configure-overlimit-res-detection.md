@@ -14,7 +14,7 @@ Limiting the request processing time prevents the bypass attacks aimed at the Wa
 
     It is recommended to transfer the `overlimit_res` attack detection configuration from directives to the rule during the Wallarm module upgrade up to the latest version. Relevant instructions are provided for each [node deployment option](../../updating-migrating/general-recommendations.md#update-process).
 
-## Default node behavior
+## Behavior of default node
 
 The Wallarm node is configured to spend no more than **1,000 milliseconds** on a single incoming request processing by default.
 
@@ -35,7 +35,7 @@ If the time limit is exceeded, the Wallarm node:
 !!! info "Request processing in the "Disabled" mode"
     In the **disabled** [mode](../../admin-en/configure-wallarm-mode.md), the node does not analyze incoming traffic and, consequently, does not catch the attacks aimed at resource overlimiting.
 
-## Changing the default node behavior
+## Changing the behavior of default node
 
 !!! warning "Risk of protection bypass or running out of system memory"
     * It is recommended to change the default node behavior only in the strictly specific locations where it is really necessary, e.g. where the upload of the large files is performed, and where there is no risk of protection bypass and vulnerability exploit.
