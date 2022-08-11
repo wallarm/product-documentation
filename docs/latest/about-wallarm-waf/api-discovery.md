@@ -28,22 +28,31 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 API Discovery relies on statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
 
-**Hybrid approach**
+### Hybrid approach
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally on the customer premise while using the power of the Cloud for the statistics analysis:
 
 1. Locally, on the Wallarm node, API Discovery analyzes a legitimate traffic. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
-    
-    !!! info "Requests with 2xx response only"
-        Wallarm analyzes only the requests to which the applications returned the [2xx "success"](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_success) code.
-
 1. According to this data, statistics are made and sent to the Сloud.
 1. In Wallarm Cloud, the received statistics is aggregated and used to build an [API description](../user-guides/api-discovery.md#api-structure-visualization).
 
     !!! info "Noise detection"
         Rare or single requests are [determined as noise](#noise-detection) and not included in the API structure.
 
-**API structure elements**
+### Noise detection
+
+The API Discovery module bases noise detection on the two major concepts:
+* Endpoint stability - at least five requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
+* Parameter stability - the probability of a parameter occurrence must be greater than 1 percent.
+
+The API structure will display the endpoints and parameters that exceeded these limits. 
+
+Also, the API Discovery performs filtering of requests relying on the other criteria:
+* Only those requests to which the server responded in the 2xx range are processed.
+* Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
+* etc.
+
+### API structure elements
 
 The API structure includes the following elements:
 
@@ -62,22 +71,7 @@ The API structure includes the following elements:
     
     * Date and time when parameter information was last updated
 
-<a name="noise-detection"></a>**Noise detection**
-
-The API Discovery module bases noise detection on the two major concepts:
-* Endpoint stability - at least five requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
-* Parameter stability - the probability of a parameter occurrence must be greater than 1 percent.
-
-The API structure will display the endpoints and parameters that exceeded these limits. 
-
-Also, the API Discovery performs filtering of requests relying on the other criteria:
-* Only those requests to which the server responded in the 2xx range are processed.
-* Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
-* etc.
-
-For now, in the [postanalytics logs](#api-discovery-debugging), only statistical information is presented, such as the total number of requests, the number of processed and ignored requests, and the number of the "raw" endpoints and parameters before determining their stability. Data is grouped by the customer applications.
-
-**Sample preview**
+### Sample preview
 
 Before purchasing the API Discovery subscription plan, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
 
