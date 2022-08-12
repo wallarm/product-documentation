@@ -1,17 +1,17 @@
-# Tarantool questions
+# Tarantool troubleshooting
 
-Sections below are related to using Tarantool and solving some problems related to its usage.
+Sections below provides the information about frequent errors in Tarantool operation and their troubleshooting.
 
 ## How can I solve the "readahead limit reached" problem?
 
-In the `tarantool.log` file, you may get errors like:
+In the `/var/log/wallarm/tarantool.log` file, you may get errors like:
 
 ```
 readahead limit reached, stopping input on connection fd 16, 
 aka 127.0.0.1:3313, peer of 127.0.0.1:53218
 ```
 
-In the Tarantool version 1.9.2, this error is not critical. In the earlier versions, if there are too many such errors, there may be some problems with performance, but this is also not critical.
+Although this problem is not critical, if there are too many such errors, there may be some problems with performance.
 
 To solve the problem:
 
@@ -20,9 +20,11 @@ To solve the problem:
     * `readahead = 1*1024*1024`
     * `readahead = 8*1024*1024`
 
+The `readahead` parameter defines the size of the read-ahead buffer associated with a client connection. The larger the buffer, the more memory an active connection consumes and the more requests can be read from the operating system buffer in a single system call. See more details in the Tarantool [documentation](https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-networking-readahead).
+
 ## How can I solve the "net_msg_max limit is reached" problem?
 
-In the `tarantool.log` file, you may get errors like:
+In the `/var/log/wallarm/tarantool.log` file, you may get errors like:
 
 ```
 2020-02-18 12:22:17.420 [26620] iproto iproto.cc:562 W> stopping input on connection fd 21, 
@@ -38,3 +40,5 @@ To solve the problem, increase the value of `net_msg_max` (default value `768`):
     net_msg_max = 6000
     }
     ```
+
+To prevent fiber overhead from affecting the whole system, the `net_msg_max` parameter restricts how many messages the fibers handle. See details on using `net_msg_max` in the Tarantool [documentation](https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-networking-net-msg-max).

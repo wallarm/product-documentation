@@ -340,7 +340,7 @@ nav:
     - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
-    - Tarantool usage: faq/tarantool.md
+    - Tarantool troubleshooting: faq/tarantool.md
   - Demo videos:
     - Wallarm API Security overview and deployment options: demo-videos/waf-overview.md
     - Inspecting events detected by the Wallarm filtering node: demo-videos/waf-events-inspection.md
