@@ -2,13 +2,15 @@
 
 The **API Discovery** module of Wallarm API Security identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 
+The time required to build the complete API structure depends on the traffic diversity and intensity.
+
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
 ## Issues addressed by API Discovery
 
 **Building an actual and complete API structure** is the main issue the API Discovery module is addressing.
 
-Keeping API inventory up-to-date is an extremely difficult task. There are multiple teams that use different APIs and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having an up-to-date API documentation.
+Keeping API inventory up-to-date is a difficult task. There are multiple teams that use different APIs and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having an up-to-date API documentation.
 
 Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including to the API structure all endpoints that actually processing the requests.
 
@@ -26,7 +28,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 
 ## How API Discovery works?
 
-API Discovery relies on statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
+API Discovery relies on request statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
 
 ### Hybrid approach
 
@@ -34,23 +36,22 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 1. Locally, on the Wallarm node, API Discovery analyzes a legitimate traffic. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
-1. In Wallarm Cloud, the received statistics is aggregated and used to build an [API description](../user-guides/api-discovery.md#api-structure-visualization).
+1. Wallarm Cloud, aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
 
     !!! info "Noise detection"
         Rare or single requests are [determined as noise](#noise-detection) and not included in the API structure.
 
 ### Noise detection
 
-The API Discovery module bases noise detection on the two major concepts:
-* Endpoint stability - at least five requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
-* Parameter stability - the probability of a parameter occurrence must be greater than 1 percent.
+The API Discovery module bases noise detection on the two major traffic parameters:
+* Endpoint stability - at least five requests must be recorded within five minutes from the moment of the first request to the endpoint.
+* Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than one percent.
 
 The API structure will display the endpoints and parameters that exceeded these limits. 
 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 * Only those requests to which the server responded in the 2xx range are processed.
 * Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
-* etc.
 
 ### API structure elements
 
@@ -77,8 +78,6 @@ Before purchasing the API Discovery subscription plan, you can preview sample da
 
 ![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
-API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
-
 ## Using built API structure
 
 The API Discovery section provides many options for the build API structure usage.
@@ -99,6 +98,8 @@ These options are:
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
 
 ## Tracking changes in API structure
+
+ If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 The company may have several teams, disparate programming languages, and variety of language frameworks. Thus changes can come to API structure at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -148,14 +149,14 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Security of data uploaded to the Wallarm Cloud
 
-API Discovery analyzes most of the traffic on the Wallarm node, directly in the client's local network. The module sends to the Wallarm Cloud only the discovered endpoint paths, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
+API Discovery analyzes most of the traffic on the Wallarm node, directly in the client's local network. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
 
 On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
 
 Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API structure impossible.
 
 !!! warning "Important"
-    Wallarm does not send the values that are specified in the parameters. Only the endpoint, parameter names and statistics on them are sent.
+    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ## Enabling and configuring API Discovery
 

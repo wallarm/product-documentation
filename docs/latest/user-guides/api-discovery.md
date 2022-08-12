@@ -20,9 +20,10 @@ The API structure includes the following elements:
 
 You can filter the discovered API structure:
 
-* To get a list of all endpoints of a certain version or all endpoints that are associated with clients, in the search string, type what your endpoint path may contain, for example substrings `/v2/` or `/clients/`. Regular expressions are not allowed.
-* To determine the attack vector for the selected API host and understand which endpoints of this API host users can use to upload data to the server (methods PUT and POST), use **Application**, **API host** and **Method** filters.
-* To get a list of endpoints to which the clients send sensitive data, use the **PII** filter. This is necessary for subsequent verification that PII is correctly processed and stored (for example, it is not stored in a readable text).
+* To get a list of endpoints of a certain version or all endpoints that are associated with clients, in the search string, type what your endpoint path may contain, for example substrings `/v2/` or `/clients/`. Regular expressions are not allowed.
+* To determine which endpoints may be attacked within the selected application or API host, use the  **Application** or the **API host** filter.
+* To understand which endpoints of this API host can be used to upload data to the server (methods PUT and POST), use the **Method** filter.
+* To get a list of endpoints to which the clients send sensitive data, use the **PII** filter. This can be used for subsequent verification that PII is correctly processed and stored (for example, it is not stored in a readable text).
 
 ## Viewing endpoint parameters
 
