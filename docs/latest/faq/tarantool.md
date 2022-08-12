@@ -11,7 +11,7 @@ readahead limit reached, stopping input on connection fd 16,
 aka 127.0.0.1:3313, peer of 127.0.0.1:53218
 ```
 
-Although this problem is not critical, if there are too many such errors, there may be some problems with performance.
+This problem is not critical but too many such errors may decrease the service performance.
 
 To solve the problem:
 
@@ -34,11 +34,11 @@ aka 127.0.0.1:3313, peer of 127.0.0.1:44306, net_msg_max limit is reached
 To solve the problem, increase the value of `net_msg_max` (default value `768`):
 
 1. Access the `/usr/share/wallarm-tarantool/init.lua` folder → `box.cfg` file.
-1. Increase value for `net_msg_max`, for example:
+1. Increase the `net_msg_max` value, for example:
 
     ```
     box.cfg {
-    net_msg_max = 6000
+        net_msg_max = 6000
     }
     ```
 
