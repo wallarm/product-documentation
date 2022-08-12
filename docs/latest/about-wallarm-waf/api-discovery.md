@@ -2,8 +2,6 @@
 
 The **API Discovery** module of Wallarm API Security identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 
-The time required to build the complete API structure depends on the traffic diversity and intensity.
-
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
 ## Issues addressed by API Discovery
@@ -32,9 +30,9 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 ### Hybrid approach
 
-API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally on the customer premise while using the power of the Cloud for the statistics analysis:
+API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. Locally, on the Wallarm node, API Discovery analyzes a legitimate traffic. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
+1. API Discovery analyzes a legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
 1. Wallarm Cloud, aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
 
@@ -44,12 +42,13 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 ### Noise detection
 
 The API Discovery module bases noise detection on the two major traffic parameters:
-* Endpoint stability - at least five requests must be recorded within five minutes from the moment of the first request to the endpoint.
-* Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than one percent.
+* Endpoint stability - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
+* Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
 The API structure will display the endpoints and parameters that exceeded these limits. 
 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
+
 * Only those requests to which the server responded in the 2xx range are processed.
 * Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
 
@@ -149,7 +148,7 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Security of data uploaded to the Wallarm Cloud
 
-API Discovery analyzes most of the traffic on the Wallarm node, directly in the client's local network. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
+API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
 
 On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
 
