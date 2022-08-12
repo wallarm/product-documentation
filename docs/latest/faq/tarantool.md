@@ -35,6 +35,7 @@ To solve the problem, increase the value of `net_msg_max` (default value `768`):
 
 1. Access the `/usr/share/wallarm-tarantool/init.lua` folder → `box.cfg` file.
 1. Increase value for `net_msg_max`, for example:
+
     ```
     box.cfg {
     net_msg_max = 6000
