@@ -327,3 +327,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
         *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
         *   `us1.api.wallarm.com` is the API server in the US Wallarm Cloud
     *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.
+
+## Tarantool troubleshooting
+
+[Tarantool troubleshooting](../faq/tarantool.md)
