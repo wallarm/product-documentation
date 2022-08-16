@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/ip-lists/blacklist.md"
+--8<-- "4.0/user-guides/ip-lists/blacklist.md"
