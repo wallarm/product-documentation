@@ -23,15 +23,27 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 ### wallarm_acl_access_phase
 
-Setting `wallarm_acl_access_phase on` increases the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+The directive forces the NGINX-based Wallarm node to block requests originating from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs at the NGINX access phase which means:
 
-By default, the filtering node blocks the requests from the blacklisted IPs only after requests are analyzed for attack signs. Setting `wallarm_acl_access_phase on` changes the order of these stages forcing requests from blacklisted IPs to be blocked immediately without attack sign search. This significantly reduces the load of the CPU of the node.
+* With `wallarm_acl_access_phase on`, the Wallarm node immediately blocks any requests from blacklisted IPs in any [filtration mode](configure-wallarm-mode.md) and does not search attack signs in requests from blacklisted IPs.
+
+    This is the **default and recommended** value since it makes blacklists to work standardly and significantly reduces the load of the CPU of the node.
+
+* With `wallarm_acl_access_phase off`, the Wallarm node immediately blocks any requests from blacklisted IPs only in the `block` and `safe_blocking` filtration modes.
+
+    In the `off` mode, the node does not analyze requests and does not check blacklists.
+
+    In the `monitoring` mode, the node searches for attack signs in all requests but never block them even if the source IP is blacklisted.
+
+    The Walalrm node behavior with `wallarm_acl_access_phase off` significantly increases the load of the CPU of the node.
 
 !!! info "Default value and interaction with other directives"
-    **Default value**: `off`
+    **Default value**: `on` (starting from Wallarm node 4.2)
+
+    The directive can be set only inside the http block of the NGINX configuration file.
 
     * With [`disable_acl on`](#disable_acl), IP lists are not processed and enabling `wallarm_acl_access_phase` does not make sense.
-    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode) which results in blocking requests from blacklisted IPs even if the filtering node mode is `off` or `monitoring`.
+    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode) which results in blocking requests from blacklisted IPs even if the filtering node mode is `off` or `monitoring` (with `wallarm_acl_access_phase on`).
 
 ### wallarm_api_conf
 
