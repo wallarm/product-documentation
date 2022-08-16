@@ -17,7 +17,9 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `sync-ip-lists.log` (named as `sync-blacklist.log` in the previous node versions): the log of syncing the filtering node with IP addresses added to [IP lists](../user-guides/ip-lists/overview.md) as single objects or subnets.
 *   `sync-ip-lists-source.log` (named as `sync-mmdb.log` in the previous node versions): the log of syncing the filtering node with IP addresses registered in countries, regions and data centers from [IP lists](../user-guides/ip-lists/overview.md).
 *   `appstructure.log` (only in the Docker containers): the log of the [API Discovery](../about-wallarm-waf/api-discovery.md) module activity.
-*   `addnode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
+*   `registernode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
+
+    In Wallarm node image 4.0 and lower, the file is named `addnode_loop.log`.
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 
