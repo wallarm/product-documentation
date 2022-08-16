@@ -73,6 +73,7 @@ The steps to configure the trigger are:
     * If the trigger condition is **Forced browsing** - the reaction is **Mark as forced browsing**. Requests received after the threshold exceedance will be marked as the forced browsing attack and displayed in the **Events** section of Wallarm Console.
     * **Blacklist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [blacklist](../../user-guides/ip-lists/blacklist.md). The Wallarm node will block all requests originated from the blacklisted IP after the threshold was exceeded.
     * **Greylist IP address** and the period to [greylist](../../user-guides/ip-lists/greylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the greylisted IPs only if requests contain [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from greylisted IPs are not blocked.
+6. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 Example of the **Brute force** trigger to block the regular brute‑force attacks addressed to `https://example.com/api/v1/login`:
 
