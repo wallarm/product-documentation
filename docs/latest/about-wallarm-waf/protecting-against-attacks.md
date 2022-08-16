@@ -11,7 +11,7 @@ The Wallarm API Security platform continuously analyzes application traffic and 
     This hit grouping method is basic and applied to all hits.
 * The same source IP address if the appropriate [trigger](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
 
-    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb, BOLA (IDOR) and Virtual patch attack types.
+    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
     If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
 

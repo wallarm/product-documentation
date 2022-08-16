@@ -241,7 +241,7 @@ If more than 100 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hi
 * All hits are sent in an hour
 * The IP addresses of the hit sources are the same
 * Hits have different attack types or parameters with malicious payloads or addresses the hits are sent to (so that the hits are not [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) into an attack by the basic method)
-* Attack types are different from Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch
+* Attack types are different from Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch
 
 Example:
 

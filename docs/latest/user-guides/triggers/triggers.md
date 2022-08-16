@@ -40,7 +40,7 @@ A condition is a system event to be notified about. The following conditions are
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Blacklisted IP
-* Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA, Resource overlimit, Data bomb and Virtual patch attack types
+* Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
 ![!Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
