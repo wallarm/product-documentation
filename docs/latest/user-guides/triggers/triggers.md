@@ -4,7 +4,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 * Receive alerts on major events via the tools you use for your day-to-day workflow, for example via corporate messengers or incident management systems.
 * Block IP addresses from which a certain number of requests or attack vectors were sent.
-* Identify brute‑force and forced browsing attacks by the number of requests sent to the application addresses.
+* Identify [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks) by the number of requests sent to the certain API endpoints.
 * Optimize the event list by [grouping](../../about-wallarm-waf/protecting-against-attacks.md#attack) hits originating from the same IP address into one attack
 
 You can configure all the trigger components:
@@ -31,6 +31,7 @@ A condition is a system event to be notified about. The following conditions are
 
 * [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [BOLA](../../admin-en/configuration-guides/protecting-against-bola.md)
 * Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [hits](../../glossary-en.md#hit) except for:
@@ -39,7 +40,7 @@ A condition is a system event to be notified about. The following conditions are
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Blacklisted IP
-* Hits from the same IP, except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types
+* Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA, Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
 ![!Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
@@ -52,7 +53,7 @@ Filters are used for condition detailing. For example, you can set up reactions 
 
 The following filters are available:
 
-* **URI** (only for the conditions **Brute force** and **Forced browsing**): full URI to which the request was sent. URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form).
+* **URI** (only for the conditions **Brute force**, **Forced browsing** and **BOLA**): full URI to which the request was sent. URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form).
 * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
 * **Application** is the [application](../settings/applications.md) that receives the request or in which an incident is detected.
 * **IP** is the IP address from which the request is sent.
@@ -70,6 +71,7 @@ Choose one or more filters in the Wallarm Console interface and set values for t
 A reaction is an action that should be performed if the specified condition and filters are met. The set of available reactions depends on the selected condition. Reactions can be of the following types:
 
 * [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../ip-lists/blacklist.md) IP address.
+* [Mark the requests as BOLA attack](../../admin-en/configuration-guides/protecting-against-bola.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../ip-lists/blacklist.md) IP address.
 * Add IP to the [blacklist](../ip-lists/blacklist.md).
 * Add IP to the [greylist](../ip-lists/greylist.md).
 * Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
