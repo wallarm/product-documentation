@@ -88,14 +88,14 @@ Sampling will be automatically disabled once the percentage of attacks in the tr
 
 Hit sampling is performed in two sequential stages: **extreme** and **regular**.
 
-Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [brute force, forced browsing](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
+Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
 
 **Extreme sampling**
 
 The extreme sampling algorithm has the following core logic:
 
 * If hits are of the [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
-* If hits are of the [brute force, forced browsing](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
+* If hits are of the [behavioral](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
 
 **Regular sampling**
 
