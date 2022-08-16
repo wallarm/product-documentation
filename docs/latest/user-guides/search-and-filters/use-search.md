@@ -96,6 +96,8 @@ Specify in the search string:
 * `ssi`: to search for [SSI Injections][ssi-injection].
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
+* `idor`: to search for vulnerabilities of the [BOLA (IDOR)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) type.
+* `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
