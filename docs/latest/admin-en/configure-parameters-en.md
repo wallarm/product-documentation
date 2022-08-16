@@ -309,7 +309,7 @@ Traffic processing mode:
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-3.6.md"
+--8<-- "../include/wallarm-modes-description-latest.md"
 
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 

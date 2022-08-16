@@ -13,7 +13,7 @@ The Wallarm filtering node can process incoming requests in the following modes 
 * **Safe blocking** (`safe_blocking`)
 * **Blocking** (`block`)
 
---8<-- "../include/wallarm-modes-description-3.6.md"
+--8<-- "../include/wallarm-modes-description-latest.md"
 
 ## Methods of the filtration mode configuration
 
