@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/request-processing.md"
+--8<-- "4.0/user-guides/rules/request-processing.md"
