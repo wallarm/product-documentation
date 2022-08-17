@@ -134,6 +134,10 @@
 /3.2/glossary-en /3.2
 /3.2/glossary-en/ /3.2
 /3.2/quickstart/ /3.2
+/4.0/api/* /api/:splat 301!
+/4.0/faq/* /faq/:splat 301!
+/4.0/demo-videos/* /demo-videos/:splat 301!
+/4.0/api-firewall/* /api-firewall/:splat 301!
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/
