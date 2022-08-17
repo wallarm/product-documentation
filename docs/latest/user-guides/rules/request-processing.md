@@ -308,11 +308,27 @@ The JWT parser returns the result in the following parameters according to the d
 * `jwt_head`: JWT header. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
 * `jwt_payload`: JWT payload. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
 
-When setting up a [rule](add-rule.md) for the JWT part using the `jwt` parser, specify one of the listed parameters as the parser value.
-
 JWTs can be passed in any request part. So, before applying the `jwt` parser Wallarm uses the specific request part parser, e.g. [`query`](#query-string-parameters) or [`header`](#headers).
 
-When setting up a rule, please also choose the parser of the request part containing JWT first.
+Example of the JWT passed in the `Authentication` header:
+
+```bash
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+* `[header, AUTHENTICATION, jwt, 'jwt_prefix']` — `Bearer`
+* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'alg', htmljs]` — `HS256`
+* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'typ', htmljs]` — `JWT`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'sub', htmljs]` — `1234567890`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name', htmljs]` — `John Doe`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat', htmljs]` — `1516239022`
+
+When defining a request element the [rule](add-rule.md) is applied to:
+
+* Choose the parser of the request part containing JWT first
+* Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
+
+![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
 ### Norms
 

@@ -29,13 +29,13 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
     This is the **default and recommended** value since it makes blacklists to work standardly and significantly reduces the load of the CPU of the node.
 
-* With `wallarm_acl_access_phase off`, the Wallarm node immediately blocks any requests from blacklisted IPs only in the `block` and `safe_blocking` filtration modes.
+* With `wallarm_acl_access_phase off`, the Wallarm node analyzes requests for attack signs first and then if operating in the `block` or `safe_blocking` mode blocks requests originating from blacklisted IPs.
 
-    In the `off` mode, the node does not analyze requests and does not check blacklists.
+    In the `off` filtration mode, the node does not analyze requests and does not check blacklists.
 
-    In the `monitoring` mode, the node searches for attack signs in all requests but never block them even if the source IP is blacklisted.
+    In the `monitoring` filtration mode, the node searches for attack signs in all requests but never block them even if the source IP is blacklisted.
 
-    The Walalrm node behavior with `wallarm_acl_access_phase off` significantly increases the load of the CPU of the node.
+    The Wallarm node behavior with `wallarm_acl_access_phase off` significantly increases the load of the CPU of the node.
 
 !!! info "Default value and interaction with other directives"
     **Default value**: `on` (starting from Wallarm node 4.2)

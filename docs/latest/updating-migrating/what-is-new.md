@@ -14,7 +14,9 @@ JSON Web Token (JWT) is one of the most popular authentication methods. This mak
 
 Wallarm node 4.2 finds the JWT anywhere in the request, [decodes](../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
 
-Events about such detected attacks are displayed in Wallarm Console:
+**For example**, an attacker can encode the malicious payload `or+1=1--a-<script>prompt(1)</script>` as a JWT payload part and send the request with this JWT in the `Authorization` header.
+
+Wallarm node will decode received JWT and detect the mentioned payload pointing to the SQLi and XSS attack attempts. Attack attempts will be displayed in Wallarm Console:
 
 ![!JWT attack in the interface](../images/user-guides/events/jwt-attack.png)
 
