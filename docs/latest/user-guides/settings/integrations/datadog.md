@@ -27,6 +27,8 @@ The test Datadog log:
 
 ![!The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
+To find the Wallarm logs among other records, you can use the `source:wallarm_cloud` search tag in Datadog.
+
 ## Updating integration
 
 --8<-- "../include/integrations/update-integration.md"
