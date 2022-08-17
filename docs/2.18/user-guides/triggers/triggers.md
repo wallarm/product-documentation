@@ -38,6 +38,7 @@ A condition is a system event to be notified about. The following conditions are
 
 * [Brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * [Forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [**BOLA** that is supported starting from Wallarm node 4.2](/admin-en/configuration-guides/protecting-against-bola/)
 * Number of [attack vectors (malicious payloads)](../../glossary-en.md#malicious-payload) (experimental payloads based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [attacks](../../glossary-en.md#attack) (experimental attacks based on [custom regular expressions](../rules/regex-rule.md) are not counted)
 * Number of [hits](../../glossary-en.md#hit) except for:
