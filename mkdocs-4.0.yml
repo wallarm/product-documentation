@@ -303,15 +303,15 @@ nav:
           - Datadog: user-guides/settings/integrations/datadog.md
           - Fluentd: user-guides/settings/integrations/fluentd.md
           - Logstash: user-guides/settings/integrations/logstash.md
-          - Webhook:
-            - Webhook Integration Overview: user-guides/settings/integrations/webhook.md
-            - Examples:
-              - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-              - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-              - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-              - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-              - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-              - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+          - Webhook: user-guides/settings/integrations/webhook.md
+          - Examples of integrations via intermediate data collectors:
+            - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+            - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+            - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+            - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+            - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+            - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+            - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
         - Users: user-guides/settings/users.md
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md

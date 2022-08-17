@@ -1,6 +1,6 @@
 # IBM QRadar via Logstash
 
-These instructions provide you with the example integration of Wallarm with the Logstash log collector to further forward events to the QRadar SIEM system.
+These instructions provide you with the example integration of Wallarm with the Logstash data collector to further forward events to the QRadar SIEM system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
@@ -10,13 +10,20 @@ These instructions provide you with the example integration of Wallarm with the 
 
 * [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Logstash integration](#configuration-of-logstash-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
 Since the links to the Logstash and QRadar services are cited as examples, they do not respond.
 
 ### Logstash configuration
+
+Since Wallarm sends logs to the Logstash intermediate data collector via webhooks, the Logstash configuration should meet the following requirements:
+
+* Accept the POST or PUT requests
+* Accept HTTPS requests
+* Have public URL
+* Forward logs to IBM Qradar, this example uses the `syslog` plugin to forward logs
 
 Logstash is configured in the `logstash-sample.conf` file:
 
@@ -85,13 +92,13 @@ A more detailed description of the QRadar log source setup is available in the [
 
 ![!QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
-### Configuration of webhook integration
+### Configuration of Logstash integration
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/add-webhook-integration.png)
+![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[More details on the webhook integration configuration](../webhook.md)
+[More details on the Logstash integration configuration](../logstash.md)
 
 ## Example testing
 

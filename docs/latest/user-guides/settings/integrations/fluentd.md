@@ -169,3 +169,32 @@ The test Fluentd log:
 ## Deleting integration
 
 --8<-- "../include/integrations/remove-integration.md"
+
+## Using Fluentd as an intermediate data collector
+
+--8<-- "../include/integrations/webhook-examples/overview.md"
+
+For example:
+
+![!Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+
+To log Wallarm events using this scheme:
+
+1. Configure data collector to read incoming webhooks and forward logs to the next system. Wallarm sends events to data collectors via webhooks.
+1. Configure a SIEM system to get and read logs from the data collector.
+1. Configure Wallarm to send logs to the data collector.
+
+    Wallarm can send logs to any data collector via webhooks.
+
+    To integrate Wallarm with Fluentd or Logstash, you can use the corresponding integration cards in the Wallarm Console UI.
+
+    To integrate Wallarm with other data collectors, you can use the [webhook integration card](webhook.md) in the Wallarm Console UI.
+
+We described some examples of how to configure the integration with the popular data collectors forwarding logs to the SIEM systems:
+
+* [Wallarm → Fluentd → IBM QRadar](webhook-examples/fluentd-qradar.md)
+* [Wallarm → Fluentd → Splunk Enterprise](webhook-examples/fluentd-splunk.md)
+* [Wallarm → Fluentd → Micro Focus ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
+* [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
+
+    Wallarm also supports the [native integration with Datadog via Datadog API](datadog.md). The native integration does not require the intermediate data collector to be used.
