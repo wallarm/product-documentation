@@ -7,6 +7,18 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.0. Some settings of node 4.0 are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
+## Detection of the new attack type IDOR / BOLA
+
+[Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA), also known as [Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
+
+To prevent exploitation of this vulnerability, Wallarm node contains a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+
+## Checking JSON Web Tokens for attacks
+
+JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
+
+Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
+
 ## Supported installation options
 
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.3.0.
@@ -15,8 +27,9 @@ This page lists the changes available when upgrading the node 2.18 up to version
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
-* Added support for CloudLinux OS 6.x
 * Added support for Debian 11 Bullseye
+* Dropped support for CentOS 6.x (CloudLinux 6.x)
+* Dropped support for Debian 9.x
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
@@ -184,6 +197,10 @@ New blocking page with the new layout looks as follows by default:
 
     [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
 
+## Disabling IPv6 connections for the NGINX-based Wallarm Docker container
+
+The NGINX-based Wallarm Docker image 4.2 and above supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it only can process IPv4 connections.
+
 ## Renamed parameters, files and metrics
 
 * The following NGINX directives and Envoy parameters have been renamed:
@@ -211,6 +228,7 @@ New blocking page with the new layout looks as follows by default:
     In new node versions, the collectd service collects both the deprecated and new metrics. The deprecated metric collection will be stopped in future releases.
 
     [All collectd metrics →](../../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
+* The `/var/log/wallarm/addnode_loop.log` [log file](../../admin-en/configure-logging.md) in the Docker containers has been renamed to `/var/log/wallarm/registernode_loop.log`.
 
 ## Parameters of the statistics service
 
