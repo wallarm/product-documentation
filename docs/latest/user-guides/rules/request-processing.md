@@ -298,6 +298,22 @@ Filters:
 * **viewstate_dict_value** for a string
 * **viewstate_sparse_array** for an associative array
 
+#### jwt
+
+Parses JWT tokens and can be applied to any part of the request.
+
+The JWT parser returns the result in the following parameters according to the detected JWT structure:
+
+* `jwt_prefix`: one of the supported JWT value prefixes - lsapi2, mobapp2, bearer. The parser reads the prefix value in any register.
+* `jwt_head`: JWT header. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
+* `jwt_payload`: JWT payload. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
+
+When setting up a [rule](add-rule.md) for the JWT part using the `jwt` parser, specify one of the listed parameters as the parser value.
+
+JWTs can be passed in any request part. So, before applying the `jwt` parser Wallarm uses the specific request part parser, e.g. [`query`](#query-string-parameters) or [`header`](#headers).
+
+When setting up a rule, please also choose the parser of the request part containing JWT first.
+
 ### Norms
 
 The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_default**, **hash_name**.
@@ -312,6 +328,7 @@ Used to get values of all elements, parameters, or objects. For example:
 * **header_all** for all header values
 * **array_all** for all array element values
 * **hash_all** for all JSON object or XML attribute values
+* **jwt_all** for all JWT values
 
 #### default
 
@@ -321,6 +338,7 @@ Used to get default values of elements, parameters, or objects. For example:
 * **header_default** for default values of headers
 * **array_default** for default values of array elements
 * **hash_default** for default values of JSON objects or XML attributes
+* **jwt_default** for default values of JWT
 
 #### name
 
@@ -329,3 +347,4 @@ Used to get names of all elements, parameters, or objects. For example:
 * **query_name** for all query string parameter names
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names
+* **jwt_name** for nmaes of all parameters with JWT

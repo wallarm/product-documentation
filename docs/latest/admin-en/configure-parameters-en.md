@@ -379,6 +379,7 @@ Allows to disable parsers. The directive values corresponds to the name of the p
 - `percent`
 - `urlenc`
 - `xml`
+- `jwt`
 
 **Example**
 
