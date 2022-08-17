@@ -311,6 +311,7 @@ nav:
             - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
             - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
             - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+            - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
         - Users: user-guides/settings/users.md
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
