@@ -317,11 +317,11 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 ```
 
 * `[header, AUTHENTICATION, jwt, 'jwt_prefix']` — `Bearer`
-* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'alg', htmljs]` — `HS256`
-* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'typ', htmljs]` — `JWT`
-* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'sub', htmljs]` — `1234567890`
-* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name', htmljs]` — `John Doe`
-* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat', htmljs]` — `1516239022`
+* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'alg']` — `HS256`
+* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'typ']` — `JWT`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'sub']` — `1234567890`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
+* `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
 When defining a request element the [rule](add-rule.md) is applied to:
 
