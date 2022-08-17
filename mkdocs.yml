@@ -168,6 +168,7 @@ nav:
         - Configuration of the blocking page and error code: admin-en/configuration-guides/configure-block-page-and-code.md
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
+        - Configuration of BOLA (IDOR) protection: admin-en/configuration-guides/protecting-against-bola.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
           - Best Practices in Wallarm Ingress Controller Configuration:
@@ -316,7 +317,7 @@ nav:
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 4.0: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.2: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
