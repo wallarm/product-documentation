@@ -1,6 +1,6 @@
 # Splunk Enterprise via Logstash
 
-These instructions provide you with the example integration of Wallarm with the Logstash log collector to further forward events to the Splunk SIEM system.
+These instructions provide you with the example integration of Wallarm with the Logstash data collector to further forward events to the Splunk SIEM system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
@@ -10,7 +10,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
 * [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Logstash integration](#configuration-of-logstash-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -27,6 +27,13 @@ To access the HTTP Event Controller, generated token `93eaeba4-97a9-46c7-abf3-4e
 A more detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
 ### Logstash configuration
+
+Since Wallarm sends logs to the Logstash intermediate data collector via webhooks, the Logstash configuration should meet the following requirements:
+
+* Accept the POST or PUT requests
+* Accept HTTPS requests
+* Have public URL
+* Forward logs to Splunk Enterprise, this example uses the `http` plugin to forward logs
 
 Logstash is configured in the `logstash-sample.conf` file:
 
@@ -76,13 +83,13 @@ A more detailed description of configuration files is available in the [official
     **Splunk event:**
     ![!Splunk events](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)
 
-### Configuration of webhook integration
+### Configuration of Logstash integration
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/add-webhook-integration.png)
+![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[More details on the webhook integration configuration](../webhook.md)
+[More details on the Logstash integration configuration](../logstash.md)
 
 ## Example testing
 

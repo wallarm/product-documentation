@@ -1,6 +1,6 @@
 # Splunk Enterprise via Fluentd
 
-These instructions provide you with the example integration of Wallarm with the Fluentd log collector to further forward events to the Splunk SIEM system.
+These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further forward events to the Splunk SIEM system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
@@ -10,7 +10,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
 * [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Fluentd integration](#configuration-of-fluentd-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -27,6 +27,13 @@ To access the HTTP Event Controller, the generated token `f44b3179-91aa-44f5-a6f
 A more detailed description of Splunk HTTP Event Controller setup is available in the [official Splunk documentation](https://docs.splunk.com/Documentation/Splunk/8.0.5/Data/UsetheHTTPEventCollector).
 
 ### Fluentd configuration
+
+Since Wallarm sends logs to the Fluentd intermediate data collector via webhooks, the Fluentd configuration should meet the following requirements:
+
+* Accept the POST or PUT requests
+* Accept HTTPS requests
+* Have public URL
+* Forward logs to Splunk Enterprise, this example uses the `splunk_hec` plugin to forward logs
 
 Fluentd is configured in the `td-agent.conf` file:
 
@@ -82,13 +89,13 @@ A more detailed description of configuration files is available in the [official
     **Splunk logs:**
     ![!Logs in Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
-### Configuration of webhook integration
+### Configuration of Fluentd integration
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/add-webhook-integration.png)
+![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[More details on the webhook integration configuration](../webhook.md)
+[More details on the Fluentd integration configuration](../fluentd.md)
 
 ## Example testing
 
