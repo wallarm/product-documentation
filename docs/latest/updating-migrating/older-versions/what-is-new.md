@@ -1,11 +1,11 @@
 # What is new in Wallarm node (if upgrading node 2.18 or lower)
 
-This page lists the changes available when upgrading the node 2.18 up to version 4.0. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node 2.18 up to version 4.2. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 2.18 and lower are deprecated"
     Wallarm nodes 2.18 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
 
-    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.0. Some settings of node 4.0 are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
+    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
 ## Detection of the new attack type IDOR / BOLA
 
@@ -52,11 +52,11 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 * The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
 
-    If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
+    If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.x the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
+The release 4.x enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
 
 Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
 
@@ -80,7 +80,7 @@ Changes in node registration methods result in some updates in node types:
     1. Run the `register-node` script with the node token passed or run the Docker container with the `WALLARM_API_TOKEN` variable defined.
 
     !!! info "Regular node support"
-        The regular node type is deprecated in release 4.0 and will be removed in future releases.
+        The regular node type is deprecated in release 4.x and will be removed in future releases.
 
         It is recommended to replace the regular node with the **Wallarm node** before the regular type is removed. You will find the appropriate instructions in the node upgrade guides.
 
@@ -268,7 +268,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 4.0.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 4.2.
 
 ----------
 

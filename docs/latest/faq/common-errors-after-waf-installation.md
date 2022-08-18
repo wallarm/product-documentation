@@ -78,6 +78,9 @@ To fix the problem on **CentOS**, please follow the steps:
 
 		# Filtering node and postanalytics module of the 4.0 version
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
+
+		# Filtering node and postanalytics module of the 4.2 version
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
 		```
 	=== "CentOS 8.x (deprecated starting with Wallarm node 3.6)"
 		```bash
@@ -89,6 +92,10 @@ To fix the problem on **CentOS**, please follow the steps:
 		# Filtering node and postanalytics module of the 4.0 version
 		
 		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
+
+		# Filtering node and postanalytics module of the 4.2 version
+		
+		sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
 		```		
 4. If required, confirm the action.
 

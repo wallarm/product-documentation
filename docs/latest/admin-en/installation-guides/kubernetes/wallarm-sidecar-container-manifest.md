@@ -52,7 +52,7 @@ These instructions provide you with the steps to deploy Wallarm as the K8s sidec
     
     An example of the template with added elements is provided below. Elements for copying are indicated by the `Wallarm element` comment.
 
-    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-4.0.md"
+    --8<-- "../include/kubernetes-sidecar-container/deployment-with-wallarm-example-manifest-4.2.md"
 
 3. Update parameter values following the code comments.
 
