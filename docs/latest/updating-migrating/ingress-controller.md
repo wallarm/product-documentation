@@ -41,8 +41,8 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 ## Step 3: Update the `values.yaml` configuration
 
-!!! info "If migrating from Wallarm node 3.6 to 4.2"
-    If you migrate from Wallarm node 3.6 to the latest version, skip this step as the Wallarm Ingress Controller is already based on the newer Community Ingress NGINX Controller version.
+!!! info "If migrating from Wallarm node 3.6 or 4.0 to 4.2"
+    If you migrate from Wallarm node 3.6 or 4.0 to the latest version, skip this step as the Wallarm Ingress Controller is already based on the newer Community Ingress NGINX Controller version.
 
 To migrate from Wallarm Ingress controller 3.4 or 3.2 to the latest version, update the following configuration specified in the `values.yaml` file:
 

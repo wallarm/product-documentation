@@ -24,7 +24,7 @@ The support team will also help you answer all questions related to the multi-te
 
 Standard procedures are the ones for:
 
-=== "If upgrading node 3.x"
+=== "If upgrading node 4.0 or 3.x"
     * [Upgrading Wallarm NGINX modules](../updating-migrating/nginx-modules.md)
     * [Upgrading the postanalytics module](../updating-migrating/separate-postanalytics.md)
     * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/docker-container.md)

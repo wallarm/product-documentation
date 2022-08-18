@@ -50,8 +50,8 @@ If upgrading Wallarm node 2.18 or lower, learn all changes from the [separate li
 
 ## Which Wallarm nodes are recommended to be upgraded?
 
-* Client and multi-tenant Wallarm nodes of version 4.0 and lower to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (3.2 and lower). Changes available in Wallarm node 4.2 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.2 are **incompatible** with the nodes of older versions.
+* Client and multi-tenant Wallarm nodes of version 4.0 and 3.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (2.18 and lower). Changes available in Wallarm node 4.2 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.2 are **incompatible** with the nodes of older versions.
 
 ## Upgrade process
 
