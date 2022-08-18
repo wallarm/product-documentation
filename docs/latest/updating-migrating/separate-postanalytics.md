@@ -98,7 +98,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 If upgrading the node 3.6 or lower, it is recommended to install the new node type instead of the deprecated one during migration to the latest version.
 
-The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](/4.0/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). The regular node type will be removed in future releases, please migrate before.
+The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). The regular node type will be removed in future releases, please migrate before.
 
 To replace the regular postanalytics node with the Wallarm node:
 
