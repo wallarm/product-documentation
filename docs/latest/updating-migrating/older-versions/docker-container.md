@@ -17,10 +17,10 @@
 
 # Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 2.18 or lower to the version 4.0.
+These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 2.18 or lower to the version 4.2.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.0 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.2 and deploy it as the Docker container.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -30,7 +30,7 @@ These instructions describe the steps to upgrade the running Docker NGINX- or En
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
-Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.0 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
+Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.2 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
@@ -60,7 +60,7 @@ The approach to connect the container to the Wallarm Cloud has been upgraded as 
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
 
-It is recommended to use the new approach to run the image 4.0. The "email and password"-based approach will be deleted in future releases, please migrate before.
+It is recommended to use the new approach to run the image 4.2. The "email and password"-based approach will be deleted in future releases, please migrate before.
 
 To create a new Wallarm node and get its token:
 
@@ -69,9 +69,9 @@ To create a new Wallarm node and get its token:
     ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 
-## Step 6: Migrate whitelists and blacklists from the previous Wallarm node version to 4.0
+## Step 6: Migrate whitelists and blacklists from the previous Wallarm node version to 4.2
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.0.
+[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.2.
 
 ## Step 7: Switch from deprecated configuration options
 
@@ -164,7 +164,7 @@ There are two options for running the container using the updated image:
 
 ## Step 14: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.0 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 4.2 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
 ## Step 15: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 

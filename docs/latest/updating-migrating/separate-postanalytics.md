@@ -4,7 +4,7 @@
 
 #   Upgrading the postanalytics module
 
-These instructions describe the steps to upgrade the postanalytics module 3.4 or 3.2 installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
+These instructions describe the steps to upgrade the postanalytics module 4.0 or 3.x installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
 
 To upgrade the module 2.18 or lower, please use the [different instructions](older-versions/separate-postanalytics.md).
 
@@ -96,9 +96,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ## Step 4: Update the node type
 
-The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+If upgrading the node 3.6 or lower, it is recommended to install the new node type instead of the deprecated one during migration to the latest version.
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.0. The regular node type will be removed in future releases, please migrate before.
+The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](/4.0/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). The regular node type will be removed in future releases, please migrate before.
 
 To replace the regular postanalytics node with the Wallarm node:
 

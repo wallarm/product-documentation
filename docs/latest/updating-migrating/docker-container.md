@@ -17,10 +17,10 @@
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 3.x to the version 4.0.
+These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.0 or 3.x to the version 4.2.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.0 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.2 and deploy it as the Docker container.
 
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/docker-container.md).
 
@@ -45,12 +45,12 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 ## Step 3: Switch to the token-based connection to the Wallarm Cloud
 
-The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
+If upgrading the node from the version 3.6 or lower, consider that the approach to connect the container to the Wallarm Cloud has been upgraded:
 
-* [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
+* [The "email and password"-based approach has been deprecated](/4.0/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
 
-It is recommended to use the new approach to run the image 4.0. The "email and password"-based approach will be deleted in future releases, please migrate before.
+It is recommended to use the new approach to run the image 4.x. The "email and password"-based approach will be deleted in future releases, please migrate before.
 
 To create a new Wallarm node and get its token:
 
@@ -61,7 +61,7 @@ To create a new Wallarm node and get its token:
 
 ## Step 4: Switch from deprecated configuration options
 
-The following configuration options have been deprecated:
+If upgrading the node from version 3.6, please consider the following deprecated configuration options:
 
 * The NGINX directive `wallarm_ts_request_memory_limit` has been renamed to [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit).
 
@@ -91,7 +91,7 @@ If you upgrade the node from version 3.4 or lower, there are more renamed direct
 
 ## Step 5: Update the Wallarm blocking page (if upgrading NGINX-based image from version 3.4 or lower)
 
-In node 3.6, the Wallarm sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+In node 3.6, the Wallarm sample blocking page has been changed. The logo and support email on the page are now empty by default.
 
 If you upgrade the node from version 3.4 or lower and the node is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page in response to the blocked requests, transfer this configuration as follows:
 
@@ -141,4 +141,4 @@ There are two options for running the container using the updated image:
 
 ## Step 10: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.0 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 4.2 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.

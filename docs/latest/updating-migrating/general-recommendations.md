@@ -1,11 +1,11 @@
 # Recommendations for a safe node upgrade process
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.0.
+This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.2.
 
 !!! warning "Breaking changes and recommendations for node upgrade"
-    Please note that version 4.x contains **breaking changes**. Please carefully review what has been changed before upgrading the node.
+    If upgrading the node from the version 3.6 or lower, please note that the latest version contains **breaking changes**. Please carefully review what has been changed before upgrading the node.
 
-    We recommend to upgrade both the client and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes up to version 4.0. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+    We recommend to upgrade both the client and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes up to version 4.2. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
 
 ## Common recommendations
 
@@ -21,7 +21,7 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 4.0](what-is-new.md)
+* [What is new in Wallarm node 4.2](what-is-new.md)
 * [What is new if upgrading the node 2.18 or lower](older-versions/what-is-new.md)
 
 ### New false positives
@@ -45,7 +45,7 @@ Also, it is recommended to monitor the filtering node operation: if you find sig
 The Wallarm node update process depends on the platform and installation forms. Please select the installation form and follow the appropriate instructions:
 
 * [Modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
-* [Docker container with the modules for NGINX](docker-container.md)
+* [Docker container with the modules for NGINX or Envoy](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
 * [Cloud node image](cloud-image.md)
-* [Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 4.0](migrate-ip-lists-to-node-3.md)
+* [Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 4.2](migrate-ip-lists-to-node-3.md)
