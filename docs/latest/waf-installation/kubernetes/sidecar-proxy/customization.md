@@ -1,4 +1,4 @@
-# Customizing the Wallarm Kubernetes Sidecar proxy 2.0
+# Customizing Wallarm Sidecar proxy 2.0
 
 This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution 2.0](deployment.md) providing example for some common customization use cases.
 
@@ -90,7 +90,7 @@ Incoming traffic interception is implemented using the init container running ip
 
 If incoming traffic interception is disabled, the Wallarm sidecar proxy container will publish port with name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, specify the `spec.ports.targetPort` setting in your Service manifest as follows:
 
-```yaml hl_lines="34"
+```yaml hl_lines="16-17 34"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
