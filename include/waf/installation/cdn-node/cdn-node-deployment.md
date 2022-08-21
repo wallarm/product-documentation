@@ -5,7 +5,7 @@
 1. Input the domain address to be protected, e.g. `example.com`.
 
     The specified address must not contain the scheme and slashes.
-1. Make sure Wallarm correctly identified the origin address associated with the specified domain. Otherwise, please change the automatically discovered origin address.
+1. Make sure Wallarm correctly identifies the origin address associated with the specified domain. Otherwise, please change the automatically discovered origin address.
 
     ![!CDN node creation modal][cdn-node-creation-modal]
 
