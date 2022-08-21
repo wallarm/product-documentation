@@ -7,9 +7,9 @@ The following statuses may appear in Wallarm Console → **Nodes** for CDN nodes
     Required action: wait for the **Requires CNAME** status to add the Wallarm CNAME record to the protected domain's DNS records.
 * **Requires CNAME**: Wallarm CNAME record is not added to the DNS records of the protected domain or it is added but not propagated yet.
 
-    Required action: add the CNAME record provided by Wallarm to the DNS records of the protected domain or wait for the changes to take the effect on the Internet.
+    Required action: add the CNAME record provided by Wallarm to the DNS records of the protected domain or wait for the changes to take effect on the Internet.
     
-    If changes do not take the effect for more than 24 hours, please check your domain provider successfully updated DNS records. If so but the **Not propagated yet** status is still displayed in Wallarm Console, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+    If changes do not take effect for more than 24 hours, please check that your domain provider successfully updated the DNS records. If so, but the **Not propagated yet** status is still displayed in Wallarm Console, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
     The next expected status is **Active**.
 * **Configuring**: Wallarm processes changed origin address or SSL/TLS certificate.
@@ -34,7 +34,7 @@ curl -v <PROTECTED_DOMAIN>
 
 If the Wallarm CNAME record is propagated, the response will contain the `section-io-*` headers.
 
-If the CNAME record is not propagated for more than 24 hours, please check your domain provider successfully updated DNS records. If so but the **Not propagated yet** status is still displayed in Wallarm Console, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+If the CNAME record is not propagated for more than 24 hours, please check that your domain provider successfully updated the DNS records. If so, but the **Not propagated yet** status is still displayed in Wallarm Console, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
 ### The CDN node is highlighted in red in the **Nodes** section. What does it mean?
 
