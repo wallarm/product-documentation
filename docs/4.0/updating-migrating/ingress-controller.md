@@ -410,7 +410,7 @@ The following parameters are passed in the commands:
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and attacks will be displayed in Wallarm Console → **Nodes**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and attacks will be displayed in Wallarm Console → **Events**.
 
 ## Step 8: Customize the Ingress annotations according to the released changes
 

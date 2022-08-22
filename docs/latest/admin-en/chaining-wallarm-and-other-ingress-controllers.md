@@ -10,7 +10,7 @@ If you already use a non-NGINX Ingress controller, it might be challenging to re
 
 ## Requirements
 
-* Kubernetes platform version 1.19-1.23
+* Kubernetes platform version 1.19-1.24
 * [Helm](https://helm.sh/) package manager
 * Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * Access to `https://api.wallarm.com` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` for working with US Wallarm Cloud
