@@ -227,6 +227,8 @@ proxy_request_buffering on;
 With the value set to `on`, NGINX has the ability to enter an emergency mode; if proton.db or custom ruleset cannot be downloaded, this setting disables the Wallarm module for the http, server, and location blocks, for which the data fails to download. NGINX keeps functioning.
 
 !!! info
+    Default value is `on`.
+
     This parameter can be set inside the http, server, and location blocks.
 
 
