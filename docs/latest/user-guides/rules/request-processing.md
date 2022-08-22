@@ -305,7 +305,7 @@ Parses JWT tokens and can be applied to any part of the request.
 The JWT parser returns the result in the following parameters according to the detected JWT structure:
 
 * `jwt_prefix`: one of the supported JWT value prefixes - lsapi2, mobapp2, bearer. The parser reads the prefix value in any register.
-* `jwt_head`: JWT header. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
+* `jwt_header`: JWT header. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
 * `jwt_payload`: JWT payload. Once getting the value, Wallarm also usually applies the [`base64`](#base64) and [`json_doc`](#json_doc) parsers to it.
 
 JWTs can be passed in any request part. So, before applying the `jwt` parser Wallarm uses the specific request part parser, e.g. [`query`](#query-string-parameters) or [`header`](#headers).
@@ -317,8 +317,8 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 ```
 
 * `[header, AUTHENTICATION, jwt, 'jwt_prefix']` — `Bearer`
-* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'alg']` — `HS256`
-* `[header, AUTHENTICATION, jwt, 'jwt_head', base64,  json_doc, hash, 'typ']` — `JWT`
+* `[header, AUTHENTICATION, jwt, 'jwt_header', base64,  json_doc, hash, 'alg']` — `HS256`
+* `[header, AUTHENTICATION, jwt, 'jwt_header', base64,  json_doc, hash, 'typ']` — `JWT`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'sub']` — `1234567890`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
