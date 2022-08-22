@@ -140,30 +140,35 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ### Filtering node and postanalytics on the same server
 
-Execute the following command to upgrade the filtering node and postanalytics modules:
+1. Execute the following command to upgrade the filtering node and postanalytics modules:
 
-=== "Debian"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+    === "Debian"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-=== "Ubuntu"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+    === "Ubuntu"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo yum update
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum update
-    ```
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo yum update
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum update
+        ```
+2. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`, send the option `Y`.
+
+    The `/etc/cron.d/wallarm-node-nginx` content should be updated for the new script counting RPS to be downloaded.
+
+    By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
 ### Filtering node and postanalytics on different servers
 
@@ -195,6 +200,11 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```bash
         sudo yum update
         ```
+3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`, send the option `Y`.
+
+    The `/etc/cron.d/wallarm-node-nginx` content should be updated for the new script counting RPS to be downloaded.
+
+    By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
 ## Step 5: Update the node type
 
