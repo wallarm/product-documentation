@@ -2,8 +2,18 @@
 
 To secure an application deployed as a Pod in a Kubernetes cluster, you can run Wallarm in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
 
-<!-- ## Traffic flow -->
-<!-- schemes -->
+!!! info "The Wallarm node version used in this solution is 4.0"
+    These instructions guide you on deployment of the container with Wallarm node 4.0. The solution deploying the newer version of the node will be available later. You can smoothly use the available solution version, we will provide you with safe upgrade procedure description once it is ready.
+
+## Traffic flow
+
+Traffic flow without Wallarm Sidecar proxy:
+
+![!Traffic flow without Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-without-wallarm.jpg)
+
+Traffic flow with Wallarm Sidecar proxy:
+
+![!Traffic flow with Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.jpg)
 
 ## Solution acrhitecture
 
