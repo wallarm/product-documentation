@@ -2,6 +2,9 @@
 
 Wallarm filtering node installs as a sidecar container to the same pod as the main application container. The Wallarm node filters incoming requests and forwards legitimate requests to the application container.
 
+!!! warning "This solution has been re-invented"
+    If this sidecar solution is deployed to your infrastructure, we highly recommend you remove it and deploy the [Sidecar proxy 2.0](../../../waf-installation/kubernetes/sidecar-proxy/deployment.md) solution instead. The new solution re-invents this one plugging discovered vulnerabilities and user experience gaps.
+
 Kubernetes runs the sidecar container alongside the main container image. The sidecar container also shares the same lifecycle as the main application container, being created and retired alongside it.
 
 !!! info "See also"
