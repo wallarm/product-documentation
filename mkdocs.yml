@@ -119,10 +119,10 @@ nav:
             - Deploying Wallarm Sidecar proxy 2.0: waf-installation/kubernetes/sidecar-proxy/deployment.md
             - Customizing Wallarm Sidecar proxy 2.0: waf-installation/kubernetes/sidecar-proxy/customization.md
             - Supported per-pod's annotation: waf-installation/kubernetes/sidecar-proxy/pod-annotations.md
-          - Installing Wallarm as the sidecar container:
-            - How it works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
-            - Kubernetes deployment based on Helm charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
-            - Kubernetes deployment based on manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
+          # - Installing Wallarm as the sidecar container:
+          #   - How it works: admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
+          #   - Kubernetes deployment based on Helm charts: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md
+          #   - Kubernetes deployment based on manifests: admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md
         - Cloud platforms:
           - Amazon AWS:
             - AWS Marketplace image deployment:
