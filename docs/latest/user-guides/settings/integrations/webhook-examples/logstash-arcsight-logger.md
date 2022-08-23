@@ -1,6 +1,6 @@
 # Micro Focus ArcSight Logger via Logstash
 
-These instructions provide you with the example integration of Wallarm with the Logstash log collector to further forward events to the ArcSight Logger system.
+These instructions provide you with the example integration of Wallarm with the Logstash data collector to further forward events to the ArcSight Logger system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
@@ -12,8 +12,8 @@ These instructions provide you with the example integration of Wallarm with the 
 ## Used resources
 
 * [ArcSight Logger 7.1](#arcsight-logger-configuration) with the WEB URL `https://192.168.1.73:443` installed on CentOS 7.8
-* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://192.168.1.65:5044`
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
+* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Logstash integration](#configuration-of-logstash-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -33,6 +33,13 @@ ArcSight Logger has logs receiver `Wallarm Logstash logs` configured as follows:
 To get a more detailed description of the receiver configuration, please download the **Logger Installation Guide** of an appropriate version from the [official ArcSight Logger documentation](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
 ### Logstash configuration
+
+Since Wallarm sends logs to the Logstash intermediate data collector via webhooks, the Logstash configuration should meet the following requirements:
+
+* Accept the POST or PUT requests
+* Accept HTTPS requests
+* Have public URL
+* Forward logs to ArcSight Logger, this example uses the `syslog` plugin to forward logs
 
 Logstash is configured in the `logstash-sample.conf` file:
 
@@ -74,7 +81,7 @@ A more detailed description of the configuration files is available in the [offi
 
     **Request example:**
     ```curl
-    curl -X POST 'https://192.168.1.65:5044' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
+    curl -X POST 'https://logstash.example.domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
     **Logstash logs:**
@@ -83,13 +90,13 @@ A more detailed description of the configuration files is available in the [offi
     **Event in ArcSight Logger:**
     ![!ArcSight Logger event](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
-### Configuration of webhook integration
+### Configuration of Logstash integration
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook-ip.md"
+--8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/add-webhook-integration-ip.png)
+![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[More details on the webhook integration configuration](../webhook.md)
+[More details on the Logstash integration configuration](../logstash.md)
 
 ## Example testing
 

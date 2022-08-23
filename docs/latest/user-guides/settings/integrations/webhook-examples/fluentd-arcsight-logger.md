@@ -1,6 +1,6 @@
 # Micro Focus ArcSight Logger via Fluentd
 
-These instructions provide you with the example integration of Wallarm with the Fluentd log collector to further forward events to the ArcSight Logger system.
+These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further forward events to the ArcSight Logger system.
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
@@ -12,8 +12,8 @@ These instructions provide you with the example integration of Wallarm with the 
 ## Used resources
 
 * [ArcSight Logger 7.1](#arcsight-logger-configuration) with the WEB URL `https://192.168.1.73:443` installed on CentOS 7.8
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://192.168.1.65:9880`
-* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the webhook integration](#configuration-of-webhook-integration)
+* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
+* Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Fluentd integration](#configuration-of-fluentd-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"
 
@@ -33,6 +33,13 @@ ArcSight Logger has logs receiver `Wallarm Fluentd logs` configured as follows:
 To get a more detailed description of the receiver configuration, please download the **Logger Installation Guide** of an appropriate version from the [official ArcSight Logger documentation](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
 ### Fluentd configuration
+
+Since Wallarm sends logs to the Fluentd intermediate data collector via webhooks, the Fluentd configuration should meet the following requirements:
+
+* Accept the POST or PUT requests
+* Accept HTTPS requests
+* Have public URL
+* Forward logs to ArcSight Logger, this example uses the `remote_syslog` plugin to forward logs
 
 Fluentd is configured in the `td-agent.conf` file:
 
@@ -81,7 +88,7 @@ A more detailed description of configuration files is available in the [official
 
     **Request example:**
     ```curl
-    curl -X POST 'https://192.168.1.65:9880' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
+    curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
     **Fluentd logs:**
@@ -90,13 +97,13 @@ A more detailed description of configuration files is available in the [official
     **Event in ArcSight Logger:**
     ![!Logs in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
-### Configuration of webhook integration
+### Configuration of Fluentd integration
 
---8<-- "../include/integrations/webhook-examples/create-fluentd-webhook-ip.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/add-webhook-integration-ip.png)
+![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[More details on the webhook integration configuration](../webhook.md)
+[More details on the Fluentd integration configuration](../fluentd.md)
 
 ## Example testing
 

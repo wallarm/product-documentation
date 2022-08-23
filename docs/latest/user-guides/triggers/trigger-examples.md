@@ -75,6 +75,14 @@ Endpoint examples matching the URI value are `https://example.com/config.json`, 
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
+## Mark requests as a the BOLA attack
+
+If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which requests were originated will be added to the blacklist.
+
+![!BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
+
+[Details on configuration of BOLA protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bola.md)
+
 ## Slack notification if 2 or more SQLi hits are detected in one minute
 
 If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
@@ -233,7 +241,7 @@ If more than 100 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hi
 * All hits are sent in an hour
 * The IP addresses of the hit sources are the same
 * Hits have different attack types or parameters with malicious payloads or addresses the hits are sent to (so that the hits are not [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) into an attack by the basic method)
-* Attack types are different from Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch
+* Attack types are different from Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch
 
 Example:
 

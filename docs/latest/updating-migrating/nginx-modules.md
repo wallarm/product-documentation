@@ -20,7 +20,7 @@
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 3.x to version 4.0. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.0 or 3.x to version 4.2. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -78,7 +78,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -91,7 +91,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -106,49 +106,54 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.0/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
         ```
 
 ## Step 4: Upgrade Wallarm API Security packages
 
 ### Filtering node and postanalytics on the same server
 
-Execute the following command to upgrade the filtering node and postanalytics modules:
+1. Execute the following command to upgrade the filtering node and postanalytics modules:
 
-=== "Debian"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+    === "Debian"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-=== "Ubuntu"
-    ```bash
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    === "Ubuntu"
+        ```bash
+        sudo apt update
+        sudo apt dist-upgrade
+        ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo yum update
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum update
-    ```
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo yum update
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum update
+        ```
+2. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`, send the option `Y`.
+
+    The `/etc/cron.d/wallarm-node-nginx` content should be updated for the new script counting RPS to be downloaded.
+
+    By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
 ### Filtering node and postanalytics on different servers
 
@@ -164,14 +169,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
@@ -180,12 +185,17 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```bash
         sudo yum update
         ```
+3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`, send the option `Y`.
+
+    The `/etc/cron.d/wallarm-node-nginx` content should be updated for the new script counting RPS to be downloaded.
+
+    By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
 ## Step 5: Update the node type
 
-The deployed node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+If upgrading the node 3.6 or lower, it is recommended to install the new node type instead of the deprecated one during migration to the latest version.
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.0. The regular node type will be removed in future releases, please migrate before.
+The deployed node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). The regular node type will be removed in future releases, please migrate before.
 
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
@@ -244,13 +254,13 @@ To replace the regular node with the Wallarm node:
 
 ## Step 6: Update the Wallarm blocking page
 
-In node 3.6, the Wallarm sample blocking page has [been changed](what-is-new.md#when-upgrading-node-34). The logo and support email on the page are now empty by default.
+In node 3.6, the Wallarm sample blocking page has been changed. The logo and support email on the page are now empty by default.
 
 If you upgrade the node from version 3.4 or lower and the node is configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page in response to the blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
 ## Step 7: Rename deprecated NGINX directives
 
-Rename the following NGINX directives if they are explicitly specified in configuration files:
+If upgrading the node from version 3.6 or lower, rename the following NGINX directives if they are explicitly specified in configuration files:
 
 * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 * If you upgrade the node from version 3.4 or lower, there are three more renamed directives:
@@ -263,7 +273,7 @@ We only changed directive names, their logic remains the same. The directives wi
 
 ## Step 8: Update the node logging variables
 
-In the new node version the following changes to the [node logging variables](../admin-en/configure-logging.md#filter-node-variables) have been implemented:
+If upgrading the node from version 3.6 or lower, please consider the following changes to the [node logging variables](../admin-en/configure-logging.md#filter-node-variables):
 
 * The `wallarm_request_time` variable has been renamed to `wallarm_request_cpu_time`.
 
@@ -307,6 +317,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 4.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

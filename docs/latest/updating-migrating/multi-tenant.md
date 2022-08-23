@@ -4,7 +4,7 @@
 
 # Upgrading the multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node 3.6 or lower up to 4.0.
+These instructions describe the steps to upgrade the multi-tenant node up to 4.x.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ These instructions describe the steps to upgrade the multi-tenant node 3.6 or lo
 
 ## Step 1: Contact the Wallarm support team
 
-Currently, to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade, request the [Wallarm support team](mailto:support@wallarm.com) assistance.
+If upgrading the node from version 3.x or lower, request the [Wallarm support team](mailto:support@wallarm.com) assistance to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade.
 
 !!! info "Blocked upgrade"
     Using an incorrect version of the custom ruleset building feature may block the upgrade process.
@@ -24,7 +24,7 @@ The support team will also help you answer all questions related to the multi-te
 
 Standard procedures are the ones for:
 
-=== "If upgrading node 3.x"
+=== "If upgrading node 4.0 or 3.x"
     * [Upgrading Wallarm NGINX modules](../updating-migrating/nginx-modules.md)
     * [Upgrading the postanalytics module](../updating-migrating/separate-postanalytics.md)
     * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/docker-container.md)
@@ -49,7 +49,7 @@ Standard procedures are the ones for:
 
 ## Step 3: Reconfigure multitenancy
 
-Rewrite the configuration of how traffic is associated with your tenants and their applications. Consider the example below. In the example:
+If upgrading the node from version 3.x or lower, rewrite the configuration of how traffic is associated with your tenants and their applications. Consider the example below. In the example:
 
 * Tenant stands for partner's client. The partner has two clients.
 * The traffic targeting `tenant1.com` and `tenant1-1.com` should be associated with client 1.

@@ -77,7 +77,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ![!Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
 
-...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Walarm [specific syntax](#condition-type-regex):
+...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
 1. Do not use `*` in a meaning "any number of symbols".
 1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
@@ -93,7 +93,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     `.*[.]example[.]com$`
 
     !!! info "The simpler way"
-        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Walarm will assume that any character can appear before `[.]example[.]com$` any number of times.
+        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Wallarm will assume that any character can appear before `[.]example[.]com$` any number of times.
 
     ![!Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
 
@@ -216,7 +216,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Debian 11.x (bullseye)"
@@ -224,21 +224,21 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
 2. Install the **cpire** utility:

@@ -11,7 +11,7 @@ The Wallarm API Security platform continuously analyzes application traffic and 
     This hit grouping method is basic and applied to all hits.
 * The same source IP address if the appropriate [trigger](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) is enabled. Other hit parameter values can differ.
 
-    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types.
+    This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types.
 
     If hits are grouped by this method, the [**Mark as false positive**](../user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
 
@@ -45,27 +45,46 @@ Detection of input validation attacks is enabled for all clients by default.
 
 ### Behavioral attacks
 
-Behavioral attacks include classes of brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
+Behavioral attacks include the following attack classes:
 
-For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
+* Brute‑force attacks: passwords and session identifiers brute‑forcing, files and directories forced browsing, credential stuffing. Behavioral attacks can be characterized by a large number of requests with different forced parameter values sent to a typical URL for a limited timeframe.
 
-```bash
-https://example.com/login/?username=admin&password=123456
-```
+    For example, if an attacker forces password, many similar requests with different `password` values can be sent to the user authentication URL:
 
-To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests. Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
+    ```bash
+    https://example.com/login/?username=admin&password=123456
+    ```
+
+* The BOLA (IDOR) attacks exploiting the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
+
+    For example, if an attacker forces shop identifiers to find a real identifier and get the corresponding shop financial data:
+
+    ```bash
+    https://example.com/shops/{shop_id}/financial_info
+    ```
+
+    If authorization is not required for such API requests, an attacker can get the real financial data and use it for their own purposes.
+
+#### Behavioral attack detection
+
+To detect behavioral attacks, it is required to conduct syntax analysis of requests and correlation analysis of request number and time between requests.
+
+Correlation analysis is conducted when the threshold of request number sent to user authentication or resource file directory or a specific object URL is exceeded. Request number threshold should be set to reduce the risk of legitimate request blocking (for example, when the user inputs incorrect password to his account several times).
 
 * Correlation analysis is conducted by the Wallarm postanalytics module.
 * Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
 
 When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
 
-To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
+#### Configuration of behavioral attack protection
 
-[Instructions on configuration of brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks:
 
-!!! warning "Brute force protection restrictions"
-    When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute-force attack in the following cases:
+* [Instructions on configuration of brute force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [Instructions on configuration of BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md)
+
+!!! warning "Behavioral attack protection restrictions"
+    When searching for behavioral attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of behavioral attack in the following cases:
 
     * These requests contain signs of [input validation attacks](#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).

@@ -248,32 +248,36 @@ You may follow these recommendations:
 *   While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
 *   Apply the recommendations from the [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
 
+### Broken Object Level Authorization (BOLA)
 
-### Insecure direct object references (IDOR)
-
-**Vulnerability**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-639][cwe-639]
 
-**Wallarm code:** `idor`
+**Wallarm code:** `idor` for vulnerabilities, `bola` for attacks
 
 **Description:**
 
-With the IDOR vulnerability, the authentication and authorization mechanisms of a vulnerable web application do not prevent a user from accessing the data or resources of another user. 
+Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the request. This may lead to unauthorized access to sensitive data.
 
-This vulnerability occurs due to the web application granting the ability to access an object (e.g., a file, a directory, a database entry) by changing part of the request string and not implementing proper access control mechanisms.
+This issue is extremely common in API-based applications because the server component usually does not fully track the client’s state, and instead, relies more on parameters like object IDs, that are sent from the client to decide which objects to access.
 
-To exploit this vulnerability, an attacker manipulates the request string to gain unauthorized access to confidential information that belongs either to the vulnerable web application or to its users. 
+Depending on the API endpoint logic, an attacker can either just read data on web applications, APIs and users or modify them.
+
+This vulnerability is also known as IDOR (Insecure Direct Object Reference).
+
+[More details on the vulnerability](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)
 
 **Remediation:**
 
-You may follow these recommendations:
+* Implement a proper authorization mechanism that relies on the user policies and hierarchy.
+* Prefer to use random and unpredictable values as [GUIDs](https://ru.wikipedia.org/wiki/GUID) for objects' IDs.
+* Write tests to evaluate the authorization mechanism. Do not deploy vulnerable changes that break the tests.
 
-*   Implement proper access control mechanisms for the web application's resources.
-*   Implement role‑based access control mechanisms to grant access to resources based on roles that are assigned to the users.
-*   Use indirect object references.
-*   Apply the recommendations from the [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet].
+**Wallarm behavior:**
 
+* Wallarm automatically discovers vulnerabilities of this type.
+* Wallarm does not detect attacks exploiting this vulnerability by default. To detect and block the BOLA attacks, configure the [**BOLA** trigger](admin-en/configuration-guides/protecting-against-bola.md).
 
 ### Open redirect
 

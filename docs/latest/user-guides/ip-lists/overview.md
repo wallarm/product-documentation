@@ -16,14 +16,14 @@ The filtering node inspects whether source IPs of incoming requests matches entr
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
     1. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request.
-    1. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
+    1. If a source IP of an incoming request is neither in the blacklist nor in the whitelist, the filtering node forwards an incoming request to your application without searching for attacks.
 
     The node does not analyze the greylist.
 * Request filtering is performed in the **monitoring mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
     1. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    1. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
+    1. If a source IP of an incoming request is neither in the blacklist nor in the whitelist, the filtering node forwards an incoming request to your application even if it contains attack signs.
 
     The node does not analyze the greylist.
 * Request filtering is performed in the **safe blocking mode**:

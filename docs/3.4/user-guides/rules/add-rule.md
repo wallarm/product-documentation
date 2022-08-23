@@ -77,7 +77,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
 
 ![!Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
 
-...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Walarm [specific syntax](#condition-type-regex):
+...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
 1. Do not use `*` in a meaning "any number of symbols".
 1. Put all the `.` that we want to be interpreted as "actual dots" in square brackets:
@@ -93,7 +93,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     `.*[.]example[.]com$`
 
     !!! info "The simpler way"
-        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Walarm will assume that any character can appear before `[.]example[.]com$` any number of times.
+        You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Wallarm will assume that any character can appear before `[.]example[.]com$` any number of times.
 
     ![!Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
 

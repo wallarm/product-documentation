@@ -1,4 +1,4 @@
-# Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 4.0
+# Migrating whitelists and blacklists from Wallarm node 2.18 and lower to 4.2
 
 Starting with Wallarm node 3.x, the method of IP address whitelist and blacklist configuration has been changed. This document instructs how to migrate whitelists and blacklists configured in Wallarm node 2.18 or lower to the latest Wallarm node.
 
@@ -15,11 +15,11 @@ Configuration of IP address whitelist and blacklist has been changed as follows:
 
 ## Procedure for whitelist and blacklist configuration migration
 
-1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 4.0 and ask to enable new IP lists logic for your Wallarm account.
+1. Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account.
 
     When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../user-guides/ip-lists/overview.md) is available.
 2. If updating the multi-tenant Wallarm node, please delete the scripts used to synchronize the IP address blacklist and the multi-tenant node 2.18 or lower. Starting with version 3.2, manual integration of [IP lists](../user-guides/ip-lists/overview.md) is no longer required. 
-3. Update the filtering node modules up to version 4.0 following [appropriate instructions](general-recommendations.md#update-process).
+3. Update the filtering node modules up to version 4.2 following [appropriate instructions](general-recommendations.md#update-process).
 4. Remove the whitelist of Wallarm Scanner IP addresses from filtering node configuration files. Starting with the filtering node 3.x, Scanner IP addresses are whitelisted by default. In previous Wallarm node versions, the whitelist could be configured by the following methods:
 
     * Disabled filtration mode for Scanner IP addresses (for example: [NGINX configuration](/2.18/admin-en/scanner-ips-whitelisting/), [K8s sidecar container](/2.18/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/#step-1-creating-wallarm-configmap), [K8s Ingress controller](/2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/)).

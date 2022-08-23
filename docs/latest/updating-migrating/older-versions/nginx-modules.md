@@ -20,7 +20,7 @@
 
 # Upgrading Wallarm NGINX modules 2.18 or lower
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 or lower to version 4.0. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 or lower to version 4.2. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../../waf-installation/nginx/dynamic-module-from-distr.md)
@@ -40,7 +40,7 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
-Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 4.0 and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
+Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
@@ -88,7 +88,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -101,7 +101,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -116,24 +116,24 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.0/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.0/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.0/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
         ```
 
-## Step 6: Migrate whitelists and blacklists from the previous Wallarm node version to 4.0
+## Step 6: Migrate whitelists and blacklists from the previous Wallarm node version to 4.2
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.0.
+[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to the latest version.
 
 ## Step 7: Upgrade Wallarm API Security packages
 
@@ -147,14 +147,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -178,14 +178,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.0.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
@@ -196,7 +196,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```
 3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
 
-    1. Ensure that the [IP lists migration](#step-6-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-40) is completed.
+    1. Ensure that the [IP lists migration](#step-6-migrate-whitelists-and-blacklists-from-previous-wallarm-node-version-to-42) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
         The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address blacklist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
@@ -207,7 +207,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
 The deployed node has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.0. The regular node type will be removed in future releases, please migrate before.
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.2. The regular node type will be removed in future releases, please migrate before.
 
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
@@ -341,6 +341,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 4.0. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 4.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

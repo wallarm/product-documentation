@@ -12,7 +12,7 @@
 
 # Upgrading the cloud node image 2.18 or lower
 
-These instructions describe the steps to upgrade the cloud node image 2.18 or lower deployed on AWS or GCP up to 4.0.
+These instructions describe the steps to upgrade the cloud node image 2.18 or lower deployed on AWS or GCP up to 4.2.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -22,7 +22,7 @@ These instructions describe the steps to upgrade the cloud node image 2.18 or lo
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 
-Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.0 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
+Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to the latest version and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
@@ -34,14 +34,14 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: Launch a new instance with the filtering node 4.0
+## Step 4: Launch a new instance with the filtering node 4.2
 
 1. Open the Wallarm filtering node image on the cloud platform marketplace and proceed to the image launch:
       * [Amazon Marketplace](https://aws.amazon.com/marketplace/pp/B073VRFXSD)
       * [GCP Marketplace](https://console.cloud.google.com/marketplace/details/wallarm-node-195710/wallarm-node)
 2. At the launch step, set the following settings:
 
-      * Select the image version `4.0.x`
+      * Select the image version `4.2.x`
       * For AWS, select the [created security group](../../admin-en/installation-ami-en.md#3-create-a-security-group) in the field **Security Group Settings**
       * For AWS, select the name of the [created key pair](../../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.
@@ -66,7 +66,7 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 
 ## Step 7: Copy the filtering node settings from the previous version to the new version
 
-1. Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 4.0:
+1. Copy the settings for processing and proxying requests from the following configuration files of the previous Wallarm node version to the files of the filtering node 4.2:
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
       * `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
@@ -86,7 +86,7 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
       If so, please rename it to `wallarm_request_cpu_time`.
 
       We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
-1. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.0.
+1. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.2.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
@@ -111,9 +111,9 @@ sudo systemctl restart nginx
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 11: Create the virtual machine image based on the filtering node 4.0 in AWS or GCP
+## Step 11: Create the virtual machine image based on the filtering node 4.2 in AWS or GCP
 
-To create the virtual machine image based on the filtering node 4.0, please follow the instructions for [AWS](../../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../../admin-en/installation-guides/google-cloud/create-image.md).
+To create the virtual machine image based on the filtering node 4.2, please follow the instructions for [AWS](../../admin-en/installation-guides/amazon-cloud/create-image.md) or [GCP](../../admin-en/installation-guides/google-cloud/create-image.md).
 
 ## Step 12: Delete the previous Wallarm node instance
 
