@@ -418,6 +418,38 @@ Ingress annotations:
 kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
 ```
 
+#### Sidecar controller annotations
+
+The block page can be configured on the per-pod basis using the `sidecar.wallarm.io/wallarm-block-page` [annotation](../../waf-installation/kubernetes/sidecar-proxy/pod-annotations.md), e.g.:
+
+```yaml hl_lines="18"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+        wallarm-sidecar: enabled
+      annotations:
+        sidecar.wallarm.io/wallarm-mode: block
+        sidecar.wallarm.io/wallarm-block-page: "&/path/to/block/page1.html response_code=403 type=attack;&/path/to/block/page2.html response_code=403 type=acl_ip,acl_source"
+    spec:
+      containers:
+        - name: application
+          image: kennethreitz/httpbin
+          ports:
+            - name: http
+              containerPort: 80
+```
+
 ### URL for the client redirection
 
 This example shows settings to redirect the client to the page `host/err445` if the filtering node blocks the request originated from blacklisted countries, regions or data centers.
