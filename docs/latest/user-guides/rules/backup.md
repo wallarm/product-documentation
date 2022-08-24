@@ -1,6 +1,11 @@
 # Custom ruleset backup and restore
 
-To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset. There are two options: 
+To protect yourself from accidentally misconfigured or deleted rules, you can backup your current custom ruleset.
+
+!!! info "Access to the ruleset backup"
+    The custom ruleset backup feature is disabled by default. To use it, please send request to [support@wallarm.com](mailto:support@wallarm.com).
+
+There are the following rule backup options: 
 
 * Automatic backup creation after each [custom ruleset build](compiling.md). The number of automatic backups is limited to 7: for each day when you change the rules several times, only the last backup is kept.
 * Manual backup creation at any time. The number of manual backups is limited to 5 by default. If you need more, contact the [Wallarm technical support](mailto:support@wallarm.com) team.
