@@ -1,6 +1,6 @@
-# Customizing Wallarm Sidecar proxy 2.0
+# Customizing Wallarm Sidecar proxy
 
-This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution 2.0](deployment.md) providing example for some common customization use cases.
+This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution](deployment.md) providing example for some common customization use cases.
 
 ## Configuration area
 

@@ -1,4 +1,4 @@
-# Deploying Wallarm Sidecar proxy 2.0
+# Deploying Wallarm Sidecar proxy
 
 To secure an application deployed as a Pod in a Kubernetes cluster, you can run Wallarm in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
 
@@ -10,12 +10,11 @@ The **key features** of the Wallarm Sidecar proxy solution:
 * Minimum service configuration required, just add some annotations and labels for the application pod to secure it
 * Two supported modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
 * Dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the CPU
-* Support for the port forwarding feature implemented with iptables, the configuration options also allow to disable iptables and use the alternative port forwarding option
 
 !!! info "If you use the earlier Wallarm Sidecar solution"
-    If you use the earlier Wallarm Sidecar solution, you are highly recommended to remove it from your infrastructure and deploy this one instead. The new solution re-invents the previous one providing the separate easily integrated security component that does not require significant K8s manifest changes.
+    If you use the earlier Wallarm Sidecar solution, you are highly recommended to replace it with a new one. The new solution re-invents the previous one providing the separate easily integrated security component that does not require significant K8s manifest changes.
 
-    For assistance during migration to Wallarm Sidecar proxy 2.0, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+    For assistance during migration to the upgraded Wallarm Sidecar proxy solution, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Use cases
 
