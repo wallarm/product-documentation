@@ -263,6 +263,7 @@ nav:
         - Inspecting Application Profile Rules: user-guides/rules/view.md
         - Adding Rules in the Application Profile: user-guides/rules/add-rule.md
         - Building and unloading of a custom ruleset: user-guides/rules/compiling.md
+        - Custom ruleset backup and restore: user-guides/rules/backup.md
         - Analyzing and Parsing Requests: user-guides/rules/request-processing.md
         - Available rule types:
           - Managing request parsers: user-guides/rules/disable-request-parsers.md
