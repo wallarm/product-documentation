@@ -164,7 +164,7 @@ If upgrading Wallarm node 3.4, in addition to the above, there are the following
     [All collectd metrics →](../admin-en/monitoring/available-metrics.md#nginx-metrics-and-nginx-wallarm-module-metrics)
 * New environment variable `NGINX_PORT` to be passed to the Wallarm NGINX‑based Docker container.
 
-    This variable sets a port that NGINX will use inside the Docker container. This allows avoiding port collision when using this Docker container as a [sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md) within a pod of Kubernetes cluster.
+    This variable sets a port that NGINX will use inside the Docker container.
 
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)
 

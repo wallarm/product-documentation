@@ -4,7 +4,6 @@ These instructions describe the NGINX configuration required to identify an orig
 
 * If the Wallarm node is installed from the DEB / RPM packages, AWS / GCP images or the NGINX-based Docker image, please use the **current instructions**.
 * If the Wallarm node is deployed as the K8s Ingress controller, please use [these instructions](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md).
-* If the Wallarm node is deployed as the K8s sidecar container, please use the instructions for deployment based on [Helm Charts](installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Kubernetes manifests](installation-guides/kubernetes/wallarm-sidecar-container-manifest.md).
 
 ## How Wallarm node identifies an IP address of a request
 

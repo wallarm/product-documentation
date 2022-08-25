@@ -399,8 +399,7 @@ wallarm_block_page &/usr/share/nginx/html/wallarm_blocked_renamed.html response_
 wallarm_block_page &/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source;
 ```
 
-* To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container along with the `wallarm_blocked_renamed.html` and `block.html` files. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-* To apply the settings to Wallarm sidecar container, the directive should be passed in Wallarm ConfigMap (see the instructions for Kubernetes deployment based on [Helm charts](../installation-guides/kubernetes/wallarm-sidecar-container-helm.md#step-1-creating-wallarm-configmap) or [Manifests](../installation-guides/kubernetes/wallarm-sidecar-container-manifest.md#step-1-creating-wallarm-configmap)).
+To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container along with the `wallarm_blocked_renamed.html` and `block.html` files. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingress annotations
 
@@ -460,8 +459,7 @@ This example shows settings to redirect the client to the page `host/err445` if 
 wallarm_block_page /err445 type=acl_source;
 ```
 
-* To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-* To apply the settings to Wallarm sidecar container, the directive should be passed in Wallarm ConfigMap (see the instructions for Kubernetes deployment based on [Helm charts](../installation-guides/kubernetes/wallarm-sidecar-container-helm.md#step-1-creating-wallarm-configmap) or [Manifests](../installation-guides/kubernetes/wallarm-sidecar-container-manifest.md#step-1-creating-wallarm-configmap)).
+To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingress annotations
 
@@ -482,8 +480,7 @@ location @block {
 }
 ```
 
-* To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-* To apply the settings to Wallarm sidecar container, the directive should be passed in Wallarm ConfigMap (see the instructions for Kubernetes deployment based on [Helm charts](../installation-guides/kubernetes/wallarm-sidecar-container-helm.md#step-1-creating-wallarm-configmap) or [Manifests](../installation-guides/kubernetes/wallarm-sidecar-container-manifest.md#step-1-creating-wallarm-configmap)).
+To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingress annotations
 
@@ -530,8 +527,7 @@ map $http_user_agent $block_page {
 wallarm_block_page $block_page response_code=445 type=acl_ip;
 ```
 
-* To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container along with the `wallarm_blocked_renamed.html`, `block_page_firefox.html`, and `block_page_chrome.html` files. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-* To apply the settings to Wallarm sidecar container, the directives should be passed in Wallarm ConfigMap (see the instructions for Kubernetes deployment based on [Helm charts](../installation-guides/kubernetes/wallarm-sidecar-container-helm.md#step-1-creating-wallarm-configmap) or [Manifests](../installation-guides/kubernetes/wallarm-sidecar-container-manifest.md#step-1-creating-wallarm-configmap)).
+To apply the settings to the Docker container, the NGINX configuration file with appropriate settings should be mounted to the container along with the `wallarm_blocked_renamed.html`, `block_page_firefox.html`, and `block_page_chrome.html` files. [Running the container mounting the configuration file →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingress controller
 
