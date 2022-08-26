@@ -18,12 +18,16 @@ The API structure includes the following elements:
 
 ## Filtering endpoints
 
-You can filter the discovered API structure:
+The **API Discovery** section provides you with many endpoint filters you can use to get a target endpoint group for further analysis. The purpose of the analysis can range from vulnerability search to getting the actual parameter set passed to the endpoint.
 
-* To get a list of endpoints of a certain version or all endpoints that are associated with clients, in the search string, type what your endpoint path may contain, for example substrings `/v2/` or `/clients/`. Regular expressions are not allowed.
-* To get endpoints that belong to the selected application or API host, use the  **Application** or the **API host** filter.
-* To understand which endpoints of this API host can be used to upload data to the server (methods PUT and POST), use the **Method** filter.
-* To get a list of endpoints to which the clients send sensitive data, use the **PII** filter. This can be used for subsequent verification that PII is correctly processed and stored (for example, it is not stored in a readable text).
+Among a wide range of filters, you can choose the ones corresponding to your analysis purpose, e.g.:
+
+* Filter endpoints by API method to get endpoints allowing to change or read some data.
+* Filter endpoints by PII data types they process (e.g. user credentials, financial data).
+* Filter endpoints by discovery date and PII data type processed by them.
+* Use the search bar to get endpoints of a certain version, e.g. `/v2/`.
+
+    Regular expressions are not allowed in the search bar.
 
 ## Viewing endpoint parameters
 
