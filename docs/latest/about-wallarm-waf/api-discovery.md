@@ -1,6 +1,6 @@
 # Discovering API structure
 
-The **API Discovery** module of Wallarm API Security identifies your application API structure based on the actual API usage. The module continuously analyzes the structure and intensity of real traffic requests and builds the API structure based on the analysis results.
+The **API Discovery** module of Wallarm API Security identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
@@ -8,31 +8,52 @@ By default, the API Discovery module is [disabled](#enabling-and-configuring-api
 
 **Building an actual and complete API structure** is the main issue the API Discovery module is addressing.
 
-Complex systems may use several APIs each maintained by a particular team using different approaches. Tools for some approaches automatically generate API structure based on the API code (for example, tools analyzing code annotations). In some approaches, no tools allow automated API structure generation, which is why teams build API structure manually.
+Keeping API inventory up-to-date is a difficult task. There are multiple teams that use different APIs and it is a common case that different tools and processes are used to produce the API documentation. As a result, companies struggle in both understanding what APIs they have, what data they expose and having an up-to-date API documentation.
 
-In both cases, the built API structure may be outdated or incomplete, e.g. if a part of endpoints was not annotated or a part of API code was not manually processed.
-
-Since the API Discovery module uses the real traffic as a data source, it helps to avoid the irrelevance and incompleteness of the API structure by including all endpoints actually processing the requests to the API structure.
+Since the API Discovery module uses the real traffic as a data source, it helps to get up-to-date and complete API documentation by including to the API structure all endpoints that actually processing the requests.
 
 **As you have your API structure discovered by Wallarm, you can**:
 
-* List your [external and internal](#external-and-internal-apis) APIs.
-* Check [the list of parameters](../user-guides/api-discovery.md#params) that are sent for the selected endpoint, including the following information:
-    * Type of data sent in each parameter.
-    * Date and time when parameter information was last updated.
-* [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) the discovered structure as `swagger.json` file in the OpenAPI v3 format and compare it with your own API structure description. You can discover:
+* Have a full visibility into the whole API estate including the list of [external and internal](#external-and-internal-apis) APIs.
+* Understand what data is [going into the APIs](../user-guides/api-discovery.md#params).
+* Filter APIs that consume and carry sensitive data.
+* Have an up-to-data API structure with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) into the OpenAPI v3 to compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * [Track changes](#tracking-changes-in-api-structure) in API structure that took place within the selected period of time.
-* Quickly [create a new rule](../user-guides/api-discovery.md#api-structure-and-rules) for any discovered endpoint of API structure.
-* See events related to some endpoint in one click.
-* Copy URLs of the discovered endpoints.
+* Quickly [create rules](../user-guides/api-discovery.md#api-structure-and-rules) per any given API endpoint.
+* Get full list of the malicious requests per any given API endpoint.
 
 ## How API Discovery works?
 
-API Discovery continuously unloads incoming requests data from the postanalytics module and analyzes the requests structure, intensity, and API responses. Rare or single requests are determined as noise and not included in the API structure. The analysis results in the statistics calculated for the structure, methods, and intensity of real traffic requests.
+API Discovery relies on request statistics and uses sophisticated algorithms to generate up-to-date API specs based on the actual API usage.
 
-The API Discovery module uploads the calculated statistics to the Wallarm Cloud that generates the API structure based on received statistics and [visualizes](../user-guides/api-discovery.md#api-structure-visualization) it in Wallarm Console.
+### Hybrid approach
+
+API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
+
+1. API Discovery analyzes a legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
+1. According to this data, statistics are made and sent to the Сloud.
+1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
+
+    !!! info "Noise detection"
+        Rare or single requests are [determined as noise](#noise-detection) and not included in the API structure.
+
+### Noise detection
+
+The API Discovery module bases noise detection on the two major traffic parameters:
+
+* Endpoint stability - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
+* Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
+
+The API structure will display the endpoints and parameters that exceeded these limits. The time required to build the complete API structure depends on the traffic diversity and intensity. 
+
+Also, the API Discovery performs filtering of requests relying on the other criteria:
+
+* Only those requests to which the server responded in the 2xx range are processed.
+* Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
+
+### API structure elements
 
 The API structure includes the following elements:
 
@@ -51,11 +72,11 @@ The API structure includes the following elements:
     
     * Date and time when parameter information was last updated
 
+### Sample preview
+
 Before purchasing the API Discovery subscription plan, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
 
 ![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
-
-API discovery is a continuous process therefore so the time required for complete API structure discovery depends on the traffic diversity and intensity. If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 ## Using built API structure
 
@@ -77,6 +98,8 @@ These options are:
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
 
 ## Tracking changes in API structure
+
+ If you update the API and the traffic structure is adjusted, API Discovery updates the built API structure.
 
 The company may have several teams, disparate programming languages, and variety of language frameworks. Thus changes can come to API structure at any time from different sources which make them difficult to control. For security officers it is important to detect changes as soon as possible and analyze them. If missed, such changes may hold some risks, for example:
 
@@ -126,9 +149,14 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Security of data uploaded to the Wallarm Cloud
 
-Before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm. On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
+API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
 
-Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud.
+On the Cloud side, hashed data is used for statistical analysis (for example, when quantifying requests with identical parameters).
+
+Other data (endpoint values, request methods, and parameter names) is not hashed before being uploaded to the Wallarm Cloud, because hashes cannot be restored to their original state which would make building API structure impossible.
+
+!!! warning "Important"
+    Wallarm does not send the values that are specified in the parameters to the Cloud. Only the endpoint, parameter names and statistics on them are sent.
 
 ## Enabling and configuring API Discovery
 

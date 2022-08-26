@@ -7,24 +7,25 @@ The built API structure is presented in the **API Discovery** section. The secti
 * **Administrator** or **Analyst** for the regular accounts.
 * **Global Administrator** or **Global Analyst** for the accounts with the multitenancy feature.
 
-To provide users with familiar format of API representation, Wallarm visualizes the discovered API structure in a **Swagger-like manner**.
+To provide users with familiar format of API representation, Wallarm provides list of discovered APIs and details on them in a **Swagger-like** interface.
 
 The API structure includes the following elements:
 
-* Customer applications with discovered domains.
-* Discovered endpoints grouped by domains. For each endpoint, the HTTP method is displayed.
+* Customer applications with discovered API hosts.
+* Discovered endpoints grouped by API hosts. For each endpoint, the HTTP method is displayed.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## Filtering endpoints
 
-You can filter the discovered API structure:
+Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
-* For the endpoint search, in the search string, type what your endpoint path may contain. Regular expressions are not allowed.
-* Use **Application**, **Domain** and **Method** filters.
-* Use the **PII** filter to filter endpoints by the sensitive data types being passed in the parameters. 
-* In the **Domains** panel, click application or domain.
-* Click **External**, **Internal** or go back to the default **All APIs**.
+* Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
+* Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
+* Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
+* Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
+
+All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ## Viewing endpoint parameters
 
@@ -75,7 +76,7 @@ To see attacks and incidents for the last 7 days related to some endpoint, in th
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
-attacks incidents last 7 days d:<YOUR_DOMAIN> u:<YOUR_ENDPOINT>
+attacks incidents last 7 days d:<YOUR_API_HOST> u:<YOUR_ENDPOINT>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
@@ -96,8 +97,8 @@ Click **Download OAS** to get a `swagger.json` file with the description of the 
 !!! warning "Filtered download"
     When downloading the description of the API structure, applied filters are taken into account. Only filtered data is downloaded.
     
-!!! info "Domain information in downloaded Swagger file"
-    If a discovered API structure contains several domains, endpoints from all domains will be included in the downloaded Swagger file. Currently, the domain information is not included in the file.
+!!! info "API host information in downloaded Swagger file"
+    If a discovered API structure contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
 
 Using the downloaded data, you can discover:
 
