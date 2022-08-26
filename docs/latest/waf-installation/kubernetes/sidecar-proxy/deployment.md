@@ -39,15 +39,17 @@ Traffic flow with Wallarm Sidecar proxy:
 
 The Wallarm Sidecar proxy solution is arranged by the following Deployment objects:
 
-* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating webhook admission controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that:
-
-    1. At the **initial** stage, injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
-    1. At the **runtime** stage, proxies/forwards requests and communicates with postanalytics module.
+* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating webhook admission controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 
     Once a new pod (workload) in Kubernetes starts, the controller automatically injects the additional container into the pod. To start traffic analysis going to the pod, just add labels and annotations to the pod.
 * **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar proxy solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
 ![!Wallarm deployment objects](../../../images/waf-installation/kubernetes/sidecar-controller/deployment-objects.png)
+
+The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
+
+1. At the **initial** stage, the controller injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
+1. At the **runtime** stage, the solution analyzes and proxies/forwards requests involving the postanalytics module.
 
 ## Requirements
 
@@ -121,7 +123,7 @@ To deploy the Wallarm Sidecar proxy solution:
 For Wallarm to filter application traffic, add the `wallarm-sidecar: enabled` label to the corresponding application Pod:
 
 ```bash
-kubectl edit deployment -n <KUBERNETES_NAMESPACE> <APP_DEPLOYMENT_NAME>
+kubectl edit deployment -n <KUBERNETES_NAMESPACE> <APP_LABEL_VALUE>
 ```
 
 ```yaml hl_lines="15"
@@ -149,8 +151,8 @@ spec:
               containerPort: 80
 ```
 
-* If the `wallarm-sidecar` application Pod label is either set to `disabled` or not explicitly specified, Wallarm does not filter traffic.
-* If the `wallarm-sidecar` application Pod label is set to `enabled`, Wallarm filters incoming traffic.
+* If the `wallarm-sidecar` application Pod label is either set to `disabled` or not explicitly specified, the Wallarm Sidecar container is not injected into a pod and therefore Wallarm does not filter traffic.
+* If the `wallarm-sidecar` application Pod label is set to `enabled`, the Wallarm Sidecar container is injected into a pod and therefore Wallarm filters incoming traffic.
 
 ### Step 4: Test the Wallarm Sidecar proxy operation
 
@@ -173,7 +175,7 @@ To test that the Wallarm Sidecar proxy operates correctly:
 1. Get the application pod details to check the Wallarm sidecar controller has been successfully injected:
 
     ```bash
-    kubectl get pods --selector app=<APP_DEPLOYMENT_NAME>
+    kubectl get pods --selector app=<APP_LABEL_VALUE>
     ```
 
     The output should display **READY: 2/2** pointing to successful sidecar container injection and **STATUS: Running** pointing to successful connection to the Wallarm Cloud:
