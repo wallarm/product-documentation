@@ -34,7 +34,7 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 1. API Discovery analyzes a legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
-1. Wallarm Cloud, aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
+1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
 
     !!! info "Noise detection"
         Rare or single requests are [determined as noise](#noise-detection) and not included in the API structure.
@@ -42,10 +42,11 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 ### Noise detection
 
 The API Discovery module bases noise detection on the two major traffic parameters:
+
 * Endpoint stability - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
 * Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
-The API structure will display the endpoints and parameters that exceeded these limits. 
+The API structure will display the endpoints and parameters that exceeded these limits. The time required to build the complete API structure depends on the traffic diversity and intensity. 
 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
