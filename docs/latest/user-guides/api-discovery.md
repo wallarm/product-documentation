@@ -18,16 +18,14 @@ The API structure includes the following elements:
 
 ## Filtering endpoints
 
-The **API Discovery** section provides you with many endpoint filters you can use to get a target endpoint group for further analysis. The purpose of the analysis can range from vulnerability search to getting the actual parameter set passed to the endpoint.
+Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
-Among a wide range of filters, you can choose the ones corresponding to your analysis purpose, e.g.:
+* Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
+* Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
+* Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
+* Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
 
-* Filter endpoints by API method to get endpoints allowing to change or read some data.
-* Filter endpoints by PII data types they process (e.g. user credentials, financial data).
-* Filter endpoints by discovery date and PII data type processed by them.
-* Use the search bar to get endpoints of a certain version, e.g. `/v2/`.
-
-    Regular expressions are not allowed in the search bar.
+All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ## Viewing endpoint parameters
 
