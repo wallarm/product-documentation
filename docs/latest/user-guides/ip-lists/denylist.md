@@ -1,18 +1,18 @@
-# IP address blacklist
+# IP address denylist
 
-**Blacklist** is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../../admin-en/configure-wallarm-mode.md) blocks all requests originated from blacklisted IP addresses (unless IPs are duplicated in the [whitelist](whitelist.md)).
+**Denylist** is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [whitelist](whitelist.md)).
 
-In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocked IP addresses as follows:
+In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked IP addresses as follows:
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP blacklist](../../images/user-guides/ip-lists/blacklist-apps.png)
+![!IP denylist](../../images/user-guides/ip-lists/blacklist-apps.png)
     
-## Examples of IP blacklist usage
+## Examples of IP denylist usage
 
 * Block IP addresses from which several consecutive attacks were originated.
 
-    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 * Block behavioral-based attacks.
 
     The Wallarm filtering node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.

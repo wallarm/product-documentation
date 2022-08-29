@@ -4,8 +4,8 @@
 
 After enabling the [IP blocking functionality](../../../configure-ip-blocking-en.md) Wallarm will provide the following additional features:
 
-* If Wallarm detects at least three different attack vectors from an IP address the address is automatically added to the blacklist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
-* Ability to [manage the blacklist of IPs](../../../../user-guides/blacklist.md) from your Wallarm account UI.
+* If Wallarm detects at least three different attack vectors from an IP address the address is automatically added to the denylist and blocked for 1 hour. If a similar behavior from the same IP address is detected again the IP is blocked for 2 hours, etc.
+* Ability to [manage the denylist of IPs](../../../../user-guides/denylist.md) from your Wallarm account UI.
 * Ability to use Wallarm to protect against behavior‑based attacks such as [brute-force](../../../../attacks-vulns-list.md#bruteforce-attack), [path traversal attacks](../../../../attacks-vulns-list.md#path-traversal) or [forced browsing](../../../../attacks-vulns-list.md#forced-browsing).
 
 To enable the IP blocking functionality in the Ingress controller, please follow the instructions below:
@@ -24,7 +24,7 @@ To enable the IP blocking functionality in the Ingress controller, please follow
     * `INGRESS_CONTROLLER_NAME` is the name of an existing Wallarm Ingress controller,
     * `VALUES_YAML_FOLDER` is the path to the folder with the updated `values.yaml` file.
 
-    Synchronization of IP blocking blacklist data between the Ingress controller and Wallarm cloud is enabled.
+    Synchronization of IP blocking denylist data between the Ingress controller and Wallarm cloud is enabled.
 4. Enable the IP blocking functionality for your Ingress using the following command:
     ```
     kubectl annotate ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on

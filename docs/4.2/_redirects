@@ -229,11 +229,11 @@
 /2.14/admin-en/installation-guides/clouds-intro /2.14/admin-en/supported-platforms/#cloud-platforms
 /2.14/admin-en/installation-guides/clouds-intro/ /2.14/admin-en/supported-platforms/#cloud-platforms
 
-/user-guides/blacklist/ /user-guides/ip-lists/blacklist/
-/admin-en/configure-ip-blocking-en/ /user-guides/ip-lists/blacklist/
-/admin-en/configure-ip-blocking-iptables-en/ /user-guides/ip-lists/blacklist/
-/admin-en/configure-ip-blocking-nginx-en/ /user-guides/ip-lists/blacklist/
-/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses/ /user-guides/ip-lists/blacklist/
+/user-guides/blacklist/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-en/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-iptables-en/ /user-guides/ip-lists/denylist/
+/admin-en/configure-ip-blocking-nginx-en/ /user-guides/ip-lists/denylist/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses/ /user-guides/ip-lists/denylist/
 /admin-en/scanner-ips-whitelisting/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
 /admin-en/block-part-en/ /admin-en/configure-wallarm-mode/
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /user-guides/ip-lists/whitelist/#examples-of-ip-whitelist-usage
@@ -347,3 +347,9 @@
 /4.0/user-guides/ip-lists/greylist/ /4.0/user-guides/ip-lists/graylist/
 /3.6/user-guides/ip-lists/greylist/ /3.6/user-guides/ip-lists/graylist/
 /3.4/user-guides/ip-lists/greylist/ /3.4/user-guides/ip-lists/graylist/
+
+/user-guides/ip-lists/blacklist/ /user-guides/ip-lists/denylist/
+/4.0/user-guides/ip-lists/blacklist/ /4.0/user-guides/ip-lists/denylist/
+/3.6/user-guides/ip-lists/blacklist/ /3.6/user-guides/ip-lists/denylist/
+/3.4/user-guides/ip-lists/blacklist/ /3.4/user-guides/ip-lists/denylist/
+/2.18/user-guides/blacklist/ /2.18/user-guides/denylist/

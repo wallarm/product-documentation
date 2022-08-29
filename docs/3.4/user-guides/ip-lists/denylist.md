@@ -1,28 +1,28 @@
-# IP address blacklist
+# IP address denylist
 
-**Blacklist** is a list of IP addresses that are not allowed to access your applications. In the `safe_blocking` and `block` [filtration modes](../../admin-en/configure-wallarm-mode.md), the filtering node blocks all requests originated from blacklisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
+**Denylist** is a list of IP addresses that are not allowed to access your applications. In the `safe_blocking` and `block` [filtration modes](../../admin-en/configure-wallarm-mode.md), the filtering node blocks all requests originated from denylisted IP addresses (if IPs are not duplicated in the [whitelist](whitelist.md)).
 
-In the Wallarm Console → **IP lists** → **Blacklist**, you can manage blocked IP addresses as follows:
+In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked IP addresses as follows:
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP blacklist](../../images/user-guides/ip-lists/blacklist-apps.png)
+![!IP denylist](../../images/user-guides/ip-lists/blacklist-apps.png)
 
-!!! warning "IP blacklisting support"
-    This document describes the IP blacklist configuration for the regular (client) and multi-tenant Wallarm node of version 3.4. For the Wallarm modules upgraded from version 3.2 up to 3.4, there is no difference in IP blacklist configuration.
+!!! warning "IP denylisting support"
+    This document describes the IP denylist configuration for the regular (client) and multi-tenant Wallarm node of version 3.4. For the Wallarm modules upgraded from version 3.2 up to 3.4, there is no difference in IP denylist configuration.
     
     If you have upgraded the Wallarm modules from version 3.0 or lower up to 3.4, you can see the following differences in IP list logic:
     
-    * [New IP blacklisting features](../../updating-migrating/what-is-new.md)
-    * If operating in the `off` or `monitoring` mode, Wallarm node does not block requests originated from the blacklisted IP addresses
+    * [New IP denylisting features](../../updating-migrating/what-is-new.md)
+    * If operating in the `off` or `monitoring` mode, Wallarm node does not block requests originated from the denylisted IP addresses
 
     If you still use Wallarm modules of version 3.2 or lower, we recommend [upgrading](../../updating-migrating/general-recommendations.md#update-process) them up to the latest version.
     
-## Examples of IP blacklist usage
+## Examples of IP denylist usage
 
 * Block IP addresses from which several consecutive attacks were originated.
 
-    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 * Block behavioral-based attacks.
 
     The Wallarm filtering node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.

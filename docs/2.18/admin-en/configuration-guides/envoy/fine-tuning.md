@@ -99,9 +99,9 @@ Parameter | Description | Default value
 `max_packets_mem` | Limit of the total volume (in bytes) of serialized requests to be sent to Tarantool. | `0` (the volume is not limited)
 `reconnect_interval` | Interval (in seconds) between attempts to reconnect to the Tarantool. A value of `0` means that the filtering node will try to reconnect to the server as quickly as possible if the server renders unavailable (not recommended). | `1`
 
-## IP blacklisting settings
+## IP denylisting settings
 
-The `acls` section of the file contains the parameters related to the IP blacklisting settings:
+The `acls` section of the file contains the parameters related to the IP denylisting settings:
 
 ```
 acls:

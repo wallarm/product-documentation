@@ -9,7 +9,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 You can configure all the trigger components:
 
-* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, blacklisted IP address, and new user added to the account.
+* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
 * **Filters**: condition details. For example: attack types.
 * **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
@@ -39,7 +39,7 @@ A condition is a system event to be notified about. The following conditions are
     * Experimental hits detected based on the [custom regular expression](../rules/regex-rule.md). Non-experimental hits are counted.
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
-* Blacklisted IP
+* Denylisted IP
 * Hits from the same IP, except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
@@ -70,14 +70,14 @@ Choose one or more filters in the Wallarm Console interface and set values for t
 
 A reaction is an action that should be performed if the specified condition and filters are met. The set of available reactions depends on the selected condition. Reactions can be of the following types:
 
-* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../ip-lists/blacklist.md) IP address.
-* Add IP to the [blacklist](../ip-lists/blacklist.md).
+* [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [denylist](../ip-lists/denylist.md) IP address.
+* Add IP to the [denylist](../ip-lists/denylist.md).
 * Add IP to the [graylist](../ip-lists/graylist.md).
 * Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 * Send a notification to the messenger configured in the [integrations](../settings/integrations/integrations-intro.md).
 
-    !!! warning "Notifying about blacklisted IPs via the messengers"
-        Triggers allow sending notifications on blacklisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Blacklisted IP** trigger condition.
+    !!! warning "Notifying about denylisted IPs via the messengers"
+        Triggers allow sending notifications on denylisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Denylisted IP** trigger condition.
 * [Group next hits into one attack](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) if the trigger condition is **Hits from the same IP**.
 
     The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.

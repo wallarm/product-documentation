@@ -45,9 +45,9 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
 
 ## System requirements for the filtering node installation
 
-* The filtering node now supports IP address [whitelisting, blacklisting, and graylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+* The filtering node now supports IP address [whitelisting, denylisting, and graylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, blacklisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+    The Wallarm node downloads an actual list of IP addresses registered in whitelisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 * The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
@@ -116,7 +116,7 @@ For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), t
     This mode enables a significant reduction of [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../../user-guides/ip-lists/graylist.md).
 * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
     
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [blacklisted](../../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
+    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/denylist.md) IP, it does not block this request.
     * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [whitelisted IP addresses](../../user-guides/ip-lists/whitelist.md) to the Wallarm Cloud.
 
 [More details on Wallarm node modes →](../../admin-en/configure-wallarm-mode.md)
@@ -125,28 +125,28 @@ For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), t
 
 The following parameters for request source control have been deprecated:
 
-* All `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address blacklist. Manual configuration of IP blacklisting is no longer required.
+* All `acl` NGINX directives, Envoy parameters, and environment variables used to configure IP address denylist. Manual configuration of IP denylisting is no longer required.
 
-    [Details on migrating blacklist configuration →](../migrate-ip-lists-to-node-3.md)
+    [Details on migrating denylist configuration →](../migrate-ip-lists-to-node-3.md)
 
 There are the following new features for request source control:
 
-* Wallarm Console section for full IP address whitelist, blacklist and graylist control.
+* Wallarm Console section for full IP address whitelist, denylist and graylist control.
 * Support for new [filtration mode](../../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../../user-guides/ip-lists/graylist.md).
 
     The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
     For automatic IP address graylisting there is a new [trigger **Add to graylist**](../../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
 * Automated whitelisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* Ability to whitelist, blacklist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
-* Ability to whitelist, blacklist, or graylist request sources for specific applications.
+* Ability to whitelist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
+* Ability to whitelist, denylist, or graylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
 
     [Details on the `disable_acl` NGINX directive →](../../admin-en/configure-parameters-en.md#disable_acl)
 
     [Details on the `disable_acl` Envoy parameter →](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
-[Details on adding IPs to the whitelist, blacklist, and graylist →](../../user-guides/ip-lists/overview.md)
+[Details on adding IPs to the whitelist, denylist, and graylist →](../../user-guides/ip-lists/overview.md)
 
 ## New module for API structure discovery
 
@@ -232,7 +232,7 @@ The NGINX-based Wallarm Docker image 4.2 and above supports the new environment 
 
 ## Parameters of the statistics service
 
-* The number of requests originating from blacklisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
+* The number of requests originating from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 * The following node statistics parameters have been renamed:
 
     * `lom_apply_time` → `custom_ruleset_apply_time`
@@ -255,9 +255,9 @@ The following [node logging variables](../../admin-en/configure-logging.md#filte
 
     This variable means time in seconds the CPU spent processing the request + time in the queue.
 
-## Increasing the performance by omitting attack search in requests from blacklisted IPs
+## Increasing the performance by omitting attack search in requests from denylisted IPs
 
-The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../../user-guides/ip-lists/denylist.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 
 ## Upgrade process
 
@@ -268,7 +268,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node versions to 4.2.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node versions to 4.2.
 
 ----------
 

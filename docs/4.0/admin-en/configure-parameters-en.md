@@ -23,15 +23,15 @@ Allows disabling analysis of requests origins. If disabled (`on`), the filtering
 
 ### wallarm_acl_access_phase
 
-Setting `wallarm_acl_access_phase on` increases the Wallarm node performance by omitting the attack search stage during the analysis of requests from [blacklisted](../user-guides/ip-lists/blacklist.md) IPs. This configuration option is useful if there are many blacklisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
+Setting `wallarm_acl_access_phase on` increases the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../user-guides/ip-lists/denylist.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 
-By default, the filtering node blocks the requests from the blacklisted IPs only after requests are analyzed for attack signs. Setting `wallarm_acl_access_phase on` changes the order of these stages forcing requests from blacklisted IPs to be blocked immediately without attack sign search. This significantly reduces the load of the CPU of the node.
+By default, the filtering node blocks the requests from the denylisted IPs only after requests are analyzed for attack signs. Setting `wallarm_acl_access_phase on` changes the order of these stages forcing requests from denylisted IPs to be blocked immediately without attack sign search. This significantly reduces the load of the CPU of the node.
 
 !!! info "Default value and interaction with other directives"
     **Default value**: `off`
 
     * With [`disable_acl on`](#disable_acl), IP lists are not processed and enabling `wallarm_acl_access_phase` does not make sense.
-    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode) which results in blocking requests from blacklisted IPs even if the filtering node mode is `off` or `monitoring`.
+    * The `wallarm_acl_access_phase` directive has priority over [`wallarm_mode`](#wallarm_mode) which results in blocking requests from denylisted IPs even if the filtering node mode is `off` or `monitoring`.
 
 ### wallarm_api_conf
 

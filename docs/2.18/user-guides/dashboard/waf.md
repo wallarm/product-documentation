@@ -1,13 +1,13 @@
 [img-traffic-stats]:        ../../images/user-guides/dashboard/traffic-stats.png
 [img-attacks-stats]:        ../../images/user-guides/dashboard/waf-attacks-stats.png
-[img-blacklist-stats]:      ../../images/user-guides/dashboard/waf-blacklist-stats.png
+[img-denylist-stats]:      ../../images/user-guides/dashboard/waf-denylist-stats.png
 [img-traffic-cur-month]:    ../../images/user-guides/dashboard/current-month-stats.png
 [img-attacks-type]:         ../../images/user-guides/dashboard/attack-types.png
 [img-attacks-sources]:      ../../images/user-guides/dashboard/attack-sources.png
 
 [doc-setup-app]:            ../settings/applications.md
 [doc-events-tab]:           ../events/check-attack.md
-[doc-blacklist-tab]:        ../ip-lists/blacklist.md
+[doc-denylist-tab]:        ../ip-lists/denylist.md
 [doc-scanner]:              ../scanner/intro.md
 
 [gl-hit]:                   ../../glossary-en.md#hit
@@ -21,7 +21,7 @@ The API Security dashboard consists of the following data blocks:
 * Top targets
 * Attack types
 * Attack sources
-* Blacklisted IP addresses
+* Denylisted IP addresses
 
 You can filter data from the last five blocks by the following parameters:
 

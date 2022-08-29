@@ -3,9 +3,9 @@
 | Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md) | - | + | + | + |
 | Uploads malicious requests to the Wallarm Cloud so that they are displayed in the event list | - | + | + | + |
 | Blocks malicious requests | - | - | Only those originated from [graylisted IPs](../user-guides/ip-lists/graylist.md) | + |
-| Blocks requests originated from [blacklisted IPs](../user-guides/ip-lists/blacklist.md)<sup>see exceptions</sup> | Does not analyze the blacklist | - | + | + |
+| Blocks requests originated from [denylisted IPs](../user-guides/ip-lists/denylist.md)<sup>see exceptions</sup> | Does not analyze the denylist | - | + | + |
 | Blocks requests originated from [graylisted IPs](../user-guides/ip-lists/graylist.md) | Does not analyze the graylist | - | Only those containing malicious payloads | Does not analyze the graylist |
 | Allows requests originated from [whitelisted IPs](../user-guides/ip-lists/whitelist.md) | Does not analyze the whitelist | + | + | + |
 
 !!! warning "Exceptions"
-    If [`wallarm_acl_access_phase on`][acl-access-phase], requests from blacklisted IPs are blocked in any mode including `off` and `monitoring`
+    If [`wallarm_acl_access_phase on`][acl-access-phase], requests from denylisted IPs are blocked in any mode including `off` and `monitoring`

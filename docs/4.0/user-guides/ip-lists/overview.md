@@ -1,9 +1,9 @@
 # Types and core logic of IP lists
 
-In the **IP lists** section of Wallarm Console, you can control access to your applications by whitelisting, blacklisting, and graylisting IP addresses.
+In the **IP lists** section of Wallarm Console, you can control access to your applications by whitelisting, denylisting, and graylisting IP addresses.
 
 * **Whitelist** is a list of trusted IP addresses that are allowed to access your applications even if requests originated from them contain attack signs.
-* **Blacklist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from blacklisted IP addresses.
+* **Denylist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from denylisted IP addresses.
 * **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs.
 
 ![!All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
@@ -17,20 +17,20 @@ The filtering node inspects whether source IPs of incoming requests matches entr
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
     1. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
 
-    The node does not analyze the blacklist and graylist.
+    The node does not analyze the denylist and graylist.
 * Request filtering is performed in **safe blocking mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    2. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
+    2. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
     3. If a source IP of an incoming request is added to the graylist and an incoming request contains attack signs, the filtering node blocks an incoming request. If an incoming request does not contain attack signs, the filtering node forwards it to your application. If an IP address is not in the list, the next step is performed.
     4. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
 * Request filtering is performed in **blocking mode**:
 
     1. If a source IP of an incoming request is added to the whitelist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    2. If a source IP of an incoming request is added to the blacklist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    3. If a source IP of an incoming request is neither in the blacklist nor in the whitelist and an incoming request contains attack signs, the filtering node blocks it. If an incoming request does not contain attack signs, the filtering node forwards it to your application.
+    2. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
+    3. If a source IP of an incoming request is neither in the denylist nor in the whitelist and an incoming request contains attack signs, the filtering node blocks it. If an incoming request does not contain attack signs, the filtering node forwards it to your application.
 
-The filtering node analyzes IP lists starting with whitelists, continuing with blacklists, and ending with graylists. For example, if an IP address is added to both whitelist and blacklist, the filtering node considers this IP address as a trusted source and forwards all requests originated from it to your applications regardless of whether an incoming request contains attack signs.
+The filtering node analyzes IP lists starting with whitelists, continuing with denylists, and ending with graylists. For example, if an IP address is added to both whitelist and denylist, the filtering node considers this IP address as a trusted source and forwards all requests originated from it to your applications regardless of whether an incoming request contains attack signs.
 
 ## IP lists configuration
 
@@ -43,7 +43,7 @@ To configure IP lists:
 2. Add request sources to IP lists:
 
     * [Whitelist](whitelist.md)
-    * [Blacklist](blacklist.md)
+    * [Denylist](denylist.md)
     * [Graylist](graylist.md)
 
 !!! warning "Using additional traffic filtering facilities"

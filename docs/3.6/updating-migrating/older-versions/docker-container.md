@@ -55,9 +55,9 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 5: Migrate whitelists and blacklists from the previous Wallarm node version to 3.6
+## Step 5: Migrate whitelists and denylists from the previous Wallarm node version to 3.6
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 3.6.
+[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node version to 3.6.
 
 ## Step 6: Switch from deprecated configuration options
 

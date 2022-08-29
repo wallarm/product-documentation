@@ -157,7 +157,7 @@ The annotation `nginx.ingress.kubernetes.io/wallarm-block-page` is used to confi
 
 * Request contains malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
 * Request containing malicious payloads from the list above is originated from [graylisted IP address](../user-guides/ip-lists/graylist.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
-* Request is originated from the [blacklisted IP address](../user-guides/ip-lists/blacklist.md).
+* Request is originated from the [denylisted IP address](../user-guides/ip-lists/denylist.md).
 
 For example, to return the default Wallarm blocking page and the error code 445 in the response to any blocked request:
 

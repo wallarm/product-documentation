@@ -160,7 +160,7 @@ The `scanner` code is assigned to an HTTP request if this request is believed to
 
 You may follow these recommendations:
 
-*   Limit the possibility of a network perimeter scan by employing IP address whitelisting and blacklisting along with authentication/authorization mechanisms.
+*   Limit the possibility of a network perimeter scan by employing IP address whitelisting and denylisting along with authentication/authorization mechanisms.
 *   Minimize the scan surface by placing the network perimeter behind a firewall.
 *   Define a necessary and sufficient set of ports to be opened for your services to operate.
 *   Restrict the usage of ICMP protocol on the network level.

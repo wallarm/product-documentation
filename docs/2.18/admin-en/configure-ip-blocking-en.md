@@ -1,8 +1,8 @@
 # Blocking by IP Address
 
-Typically, blocking malicious requests on a request‑by‑request basis is preferable than blocking by IP addresses. However, in some cases, using IP blacklists is necessary.
+Typically, blocking malicious requests on a request‑by‑request basis is preferable than blocking by IP addresses. However, in some cases, using IP denylists is necessary.
 
-IP blacklists should be used in the following cases:
+IP denylists should be used in the following cases:
 
 * There is a need to reduce system load that was caused by the analysis of malicious requests.
 * Traffic processing is performed asynchronously.
@@ -14,9 +14,9 @@ All methods have advantages and disadvantages.
 
 ### Blocking with Wallarm Web Interface
 
-This is the most intuitive method providing the user with a convenient graphical interface to view and modify the blacklist.
+This is the most intuitive method providing the user with a convenient graphical interface to view and modify the denylist.
 
-[Read more...](../user-guides/blacklist.md)
+[Read more...](../user-guides/denylist.md)
 
 ### Blocking with NGINX
 
@@ -32,7 +32,7 @@ This method does not allow you to configure the error message, but it affects se
 
 ### Blocking by External Firewall
 
-This method does not create any load on the server but requires additional integration of blacklist and firewall. 
+This method does not create any load on the server but requires additional integration of denylist and firewall. 
 
 !!! warning "Exclude the IP Address Blocking of the Wallarm Scanner"
     Please note that if you use additional facilities (software or hardware) to automatically filter and block traffic, you should add the IP addresses for the scanner to the whitelist of the corresponding filtering facility in order for the Wallarm scanner to be able to freely check your resources for vulnerabilities.

@@ -280,7 +280,7 @@ nav:
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
-      - IP Address Blacklist: user-guides/blacklist.md
+      - IP Address Denylist: user-guides/denylist.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md

@@ -28,7 +28,7 @@ If you have recently created the Wallarm account, this trigger is already create
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Denylist IP if 4 or more malicious payloads are detected in 1 hour
+## Denylist IP if 4 or more attack vectors are detected in 1 hour
 
 If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
 
@@ -44,20 +44,20 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
     ```
 
     There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
-2. Open the Wallarm Console → **IP lists** → **Blacklist** and check that IP address from which the requests were originated is blocked for 1 hour.
+2. Open the Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
     ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-If an IP address was blacklisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 
 To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
 
-If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the blacklist.
+If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the denylist.
 
 ![!Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 
@@ -186,29 +186,29 @@ Cloud: EU
 !!! info "Protecting the resource from active vulnerability exploitation"
     To protect the resource from active vulnerability exploitation, we recommend to patch the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
 
-## Notification to Webhook URL if IP address is added to the blacklist
+## Notification to Webhook URL if IP address is added to the denylist
 
-If an IP address was added to the blacklist, the webhook about this event will be sent to Webhook URL.
+If an IP address was added to the denylist, the webhook about this event will be sent to Webhook URL.
 
-![!Example of trigger for blacklisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
 **To test the trigger:**
 
-1. Open the Wallarm Console → **IP lists** → **Blacklist** and add the IP address to the blacklist. For example:
+1. Open the Wallarm Console → **IP lists** → **Denylist** and add the IP address to the denylist. For example:
 
-    ![!Adding IP to the blacklist](../../images/user-guides/triggers/test-ip-blocking.png)
+    ![!Adding IP to the denylist](../../images/user-guides/triggers/test-ip-blocking.png)
 2. Check that the following webhook was sent to the Webhook URL:
 
     ```
     [
         {
-            "summary": "[Wallarm] Trigger: New IP address was blacklisted",
-            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was blacklisted until 2021-06-10 02:27:15 +0300 for the reason Produces many attacks. You can review blocked IP addresses in the \"Blacklist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about blacklisted IP\" trigger. The IP is blocked for the application Application #8.\n\nClient: TestCompany\nCloud: EU\n",
+            "summary": "[Wallarm] Trigger: New IP address was denylisted",
+            "description": "Notification type: ip_blocked\n\nIP address 1.1.1.1 was denylisted until 2021-06-10 02:27:15 +0300 for the reason Produces many attacks. You can review blocked IP addresses in the \"Denylist\" section of Wallarm Console.\nThis notification was triggered by the \"Notification about denylisted IP\" trigger. The IP is blocked for the application Application #8.\n\nClient: TestCompany\nCloud: EU\n",
             "details": {
             "client_name": "TestCompany",
             "cloud": "EU",
             "notification_type": "ip_blocked",
-            "trigger_name": "Notification about blacklisted IP",
+            "trigger_name": "Notification about denylisted IP",
             "application": "Application #8",
             "reason": "Produces many attacks",
             "expire_at": "2021-06-10 02:27:15 +0300",
@@ -218,7 +218,7 @@ If an IP address was added to the blacklist, the webhook about this event will b
     ]
     ```
 
-    * `Notification about blacklisted IP` is the trigger name
+    * `Notification about denylisted IP` is the trigger name
     * `TestCompany` is the name of your company account in Wallarm Console
     * `EU` is the Wallarm Cloud where your company account is registered
 

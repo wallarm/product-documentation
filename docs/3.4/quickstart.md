@@ -82,7 +82,7 @@ To continue the product exploring, we recommend learning more about the followin
 * [Configuration of traffic filtration mode](admin-en/configure-wallarm-mode.md)
 * [Blocking page and error code configuration](admin-en/configuration-guides/configure-block-page-and-code.md)
 * [Customizing the traffic filtration rules](user-guides/rules/intro.md)
-* [IP address whitelisting, blacklisting and graylisting](user-guides/ip-lists/overview.md)
+* [IP address whitelisting, denylisting and graylisting](user-guides/ip-lists/overview.md)
 * System event notifications configured via [native integrations with DevOps tools](user-guides/settings/integrations/integrations-intro.md) and [triggers](user-guides/triggers/triggers.md)
 
 ## Wallarm node production deployment

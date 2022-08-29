@@ -77,7 +77,7 @@ This widget displays the statistics on the attack source groups:
 * Source types, e.g. Tor, Proxy, VPN, etc.
 * Service providers, e.g. AWS, GCP, etc.
 
-This data can help to define abusive attack sources and enable the blocking of requests originating from them by using gray or black [lists of IP addresses](ip-lists/overview.md).
+This data can help to define abusive attack sources and enable the blocking of requests originating from them by using gray or deny [lists of IP addresses](ip-lists/overview.md).
 
 You can view data on each source group on separate tabs.
 

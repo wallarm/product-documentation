@@ -58,7 +58,7 @@ To detect behavioral attacks, it is required to conduct syntax analysis of reque
 * Correlation analysis is conducted by the Wallarm postanalytics module.
 * Comparison of the received request number and the threshold for the request number, and blocking of requests is conducted in the Wallarm Cloud.
 
-When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the blacklist.
+When behavioral attack is detected, request sources are blocked, namely the IP addresses the requests were sent from are added to the denylist.
 
 To protect the resource against behavioral attacks, it is required to set the threshold for correlation analysis and URLs that are vulnerable to behavioral attacks.
 
@@ -220,7 +220,7 @@ For more information on managing attacks, see the instructions on [working with 
 
 ## Notifications about detected attacks, hits and malicious payloads
 
-Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, whitelisting IPs originating legitimate requests and blacklisting IPs of attack sources.
+Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, whitelisting IPs originating legitimate requests and denylisting IPs of attack sources.
 
 To configure notifications:
 

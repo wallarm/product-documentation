@@ -18,7 +18,7 @@ In the Wallarm Console → **IP lists** → **Whitelist**, you can manage whitel
 
         During the module upgrade, please ensure that Wallarm node processes requests originated from whitelisted IP addresses as expected or adjust filtration mode settings to the released changes.
 
-    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    2. If the Wallarm node version is 2.18 or lower, [migrate current IP denylists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP whitelist usage
 

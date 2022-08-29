@@ -20,7 +20,7 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
     If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address graylist setup
 
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md) up to the latest version.
-    2. If the Wallarm node version is 2.18 or lower, [migrate current IP blacklists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
+    2. If the Wallarm node version is 2.18 or lower, [migrate current IP denylists and whitelists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
 ## Examples of IP graylist usage
 
