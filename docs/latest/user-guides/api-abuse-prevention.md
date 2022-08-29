@@ -16,8 +16,7 @@ To create a bot protection profile:
 
     For the **API Abuse Prevention** activation, running Wallarm node 4.2 or later is necessary since the module is delivered with the node packages and uses these packages as well.
 1. Add the subscription plan for the **API Abuse Prevention** [module](../about-wallarm-waf/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. If you want to enable API Abuse Prevention only for the selected applications, make sure that the applications are added as described in the [Setting up applications](settings/applications.md) article.
-1. Enable API Abuse Prevention for the required applications by creating the API Abuse profile in Wallarm Console → **API Abuse Prevention**.
+1. Enable API Abuse Prevention for the required [applications](settings/applications.md) by creating the API Abuse profile in Wallarm Console → **API Abuse Prevention**.
 
     TBD image with profile
 
