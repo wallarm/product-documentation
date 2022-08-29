@@ -15,7 +15,7 @@ Before deploying the Wallarm node Docker container to the private cloud, it is r
 
 ## Principles of installing the Wallarm node from DEB and RPM packages on the private cloud
 
-One of the methods of installing the filtering node on the private cloud is installing from source DEB or RPM packages. Since the filtering node operates as the web server or API gateway module, web server or API gateway packages should be installed on the operating system along with the filtering node packages.
+One of the methods of installing the filtering node on the private cloud is installing from source DEB or RPM packages. Since the filtering node operates as the web server or [API gateway](https://www.wallarm.com/what/the-concept-of-an-api-gateway) module, web server or API gateway packages should be installed on the operating system along with the filtering node packages.
 
 You can install the filtering node from DEB and RPM packages on the private cloud as follows:
 

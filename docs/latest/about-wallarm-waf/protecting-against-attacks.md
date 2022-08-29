@@ -130,7 +130,7 @@ To detect malicious requests, Wallarm nodes analyze all requests sent to the pro
 
 ### Library libproton
 
-The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the SQL injection attack type. If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
+The **libproton** library is a primary tool for detecting malicious requests. The library uses the component **proton.db** which determines different attack type signs as token sequences, for example: `union select` for the [SQL injection attack type](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1). If the request contains a token sequence matching the sequence from **proton.db**, this request is considered to be an attack of the corresponding type.
 
 Wallarm regularly updates **proton.db** with token sequences for new attack types and for already described attack types.
 
