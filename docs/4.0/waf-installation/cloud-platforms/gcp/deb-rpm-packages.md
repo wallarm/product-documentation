@@ -13,7 +13,7 @@ This quick guide provides the steps to install the filtering node from the sourc
 
 ## Filtering node installation options
 
-Since the filtering node operates as the web server or API gateway module, web server or API gateway packages should be installed on the operating system along with the filtering node packages.
+Since the filtering node operates as the web server or [API gateway](https://www.wallarm.com/what/the-concept-of-an-api-gateway) module, web server or API gateway packages should be installed on the operating system along with the filtering node packages.
 
 You can select the web server or API gateway that is the most suitable for your application architecture from the following list:
 

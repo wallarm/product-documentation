@@ -68,7 +68,7 @@ To do this, perform the following actions:
         
         You can configure conditional logging to write logs only for the requests that are part of an attack (the `wallarm_attack_type` variable value is not zero for these requests). To do so, add a condition to the aforementioned directive: `access_log /var/log/nginx/access.log wallarm_combined if=$wallarm_attack_type;`
         
-        This may be useful if you want to reduce a log file size, or if you integrate a filter node with one of SIEM solutions.          
+        This may be useful if you want to reduce a log file size, or if you integrate a filter node with one of [SIEM solutions](https://www.wallarm.com/what/siem-whats-security-information-and-event-management-technology-part-1).          
         
 3.  Restart NGINX by running one of the following commands depending on the OS you are using:
 

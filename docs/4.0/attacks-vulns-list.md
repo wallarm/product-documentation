@@ -518,7 +518,7 @@ You may follow these recommendations:
 
 Vulnerability to this attack occurs due to insufficient filtration of user input. An SQL injection attack is performed by injecting a specially crafted query to an SQL database.
 
-An SQL injection attack allows an attacker to inject arbitrary SQL code into an SQL query. This potentially leads to the attacker being granted access to read and modify confidential data as well as to DBMS administrator rights. 
+An SQL injection attack allows an attacker to inject arbitrary SQL code into an [SQL query](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1). This potentially leads to the attacker being granted access to read and modify confidential data as well as to DBMS administrator rights. 
 
 **Remediation:**
 
