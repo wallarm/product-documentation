@@ -502,7 +502,7 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - `attack`: depends on the attack blocking mode set in the `wallarm_mode` directive:
     - `off`: the requests are not processed.
     - `monitoring`: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
-    - `safe_blocking`: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
+    - `safe_blocking`: only requests originated from [graylisted](../user-guides/ip-lists/graylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - `block`: the requests are blocked.
 
 Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).

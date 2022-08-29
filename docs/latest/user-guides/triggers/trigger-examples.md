@@ -2,13 +2,13 @@
 
 Learn real examples of [Wallarm triggers](triggers.md) to better understand this feature and configure triggers appropriately.
 
-## Greylist IP if 4 or more attack vectors are detected in 1 hour
+## Graylist IP if 4 or more attack vectors are detected in 1 hour
 
-If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be greylisted for 1 hour. This trigger will be run only if the node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
+If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour. This trigger will be run only if the node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
 
 If you have recently created the Wallarm account, this trigger is already created and enabled. You can perform all available actions with the trigger: edit, disable, delete, or copy.
 
-![!Greylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
+![!Graylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
 
 **To test the trigger:**
 
@@ -21,7 +21,7 @@ If you have recently created the Wallarm account, this trigger is already create
     ```
 
     There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
-3. Open the Wallarm Console → **IP lists** → **Greylist** and check that IP address from which the requests were originated is greylisted for 1 hour.
+3. Open the Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
 4. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
     ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
@@ -51,7 +51,7 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-If an IP address was blacklisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [greylisting trigger](#greylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+If an IP address was blacklisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
 
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 

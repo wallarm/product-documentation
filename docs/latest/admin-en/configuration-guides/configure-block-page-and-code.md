@@ -3,7 +3,7 @@
 These instructions describe the method to customize the blocking page and error code returned in the response to the request blocked for the following reasons:
 
 * Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
-* Request containing malicious payloads from the list above originated from [greylisted IP address](../../user-guides/ip-lists/greylist.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
+* Request containing malicious payloads from the list above originated from [graylisted IP address](../../user-guides/ip-lists/graylist.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
 * Request originated from the [blacklisted IP address](../../user-guides/ip-lists/blacklist.md).
 
 ## Configuration limitations

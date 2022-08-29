@@ -13,7 +13,7 @@ The filtration mode can take one of the following values:
 * **Default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
 * **Disable**: the analysis and filtration of requests are disabled completely.
 * **Monitorig**: the requests are analyzed and displayed in the interface but they are not blocked even if they are originated from [blacklisted](../ip-lists/blacklist.md) IPs.
-* **Safe blocking**: malicious requests are blocked only if they are originated from [greylisted IPs](../ip-lists/greylist.md).
+* **Safe blocking**: malicious requests are blocked only if they are originated from [graylisted IPs](../ip-lists/graylist.md).
 * **Blocking**: malicious requests are blocked and displayed in the interface.
 
 To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].

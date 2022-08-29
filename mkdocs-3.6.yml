@@ -278,7 +278,7 @@ nav:
       - IP lists:
         - Types and core logic of IP lists: user-guides/ip-lists/overview.md
         - IP address whitelist: user-guides/ip-lists/whitelist.md
-        - IP address greylist: user-guides/ip-lists/greylist.md
+        - IP address graylist: user-guides/ip-lists/graylist.md
         - IP address blacklist: user-guides/ip-lists/blacklist.md
       - Settings:
         - Profile: user-guides/settings/account.md

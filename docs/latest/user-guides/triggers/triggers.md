@@ -73,7 +73,7 @@ A reaction is an action that should be performed if the specified condition and 
 * [Mark the requests as brute‑force or forced browsing attack](../../admin-en/configuration-guides/protecting-against-bruteforce.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../ip-lists/blacklist.md) IP address.
 * [Mark the requests as BOLA attack](../../admin-en/configuration-guides/protecting-against-bola.md). Requests will be marked as attacks in the events list but will not be blocked. To block requests, you can add an additional reaction: [blacklist](../ip-lists/blacklist.md) IP address.
 * Add IP to the [blacklist](../ip-lists/blacklist.md).
-* Add IP to the [greylist](../ip-lists/greylist.md).
+* Add IP to the [graylist](../ip-lists/graylist.md).
 * Send a notification to the SIEM system or Webhook URL configured in the [integrations](../settings/integrations/integrations-intro.md).
 * Send a notification to the messenger configured in the [integrations](../settings/integrations/integrations-intro.md).
 

@@ -14,7 +14,7 @@ data:
           # Please replace <WALLARM_MODE> below by the request filtration mode: 
           # off to disable request processing
           # monitoring to process but not block requests
-          # safe_blocking to block only those malicious requests originated from greylisted IPs
+          # safe_blocking to block only those malicious requests originated from graylisted IPs
           # block to process all requests and block the malicious ones
           wallarm_mode <WALLARM_MODE>;
           # wallarm_application 1;

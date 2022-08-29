@@ -14,7 +14,7 @@
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[greylist-docs]:                     ../../user-guides/ip-lists/greylist.md
+[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 
 # Upgrading Wallarm NGINX modules 2.18 or lower
 

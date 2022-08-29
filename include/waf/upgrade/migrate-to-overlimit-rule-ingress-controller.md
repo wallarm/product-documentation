@@ -21,7 +21,7 @@ If the `overlimit_res` attack detection settings are customized via the listed d
     * The rule does not have the explicit equivalent option for the `wallarm_process_time_limit_block` directive. If the rule sets **Register and display in the events**, the node will either block or pass the `overlimit_res` attack depending on the [node filtration mode][waf-mode-instr]:
 
         * In the **monitoring** mode, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
-        * In the **safe blocking** mode, the node blocks the request if it is originated from the [greylisted][greylist-docs] IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
+        * In the **safe blocking** mode, the node blocks the request if it is originated from the [graylisted][graylist-docs] IP address. Otherwise, the node forwards the original request to the application address. The application has the risk to be exploited by the attacks included in both processed and unprocessed request parts.
         * In the **block** mode, the node blocks the request.
 1. Delete the `wallarm_process_time_limit` and `wallarm_process_time_limit_block` NGINX directives from the `values.yaml` configuration file.
 

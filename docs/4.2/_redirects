@@ -342,3 +342,8 @@
 /admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /waf-installation/kubernetes/sidecar-proxy/deployment/
 /admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /waf-installation/kubernetes/sidecar-proxy/deployment/
 /admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /waf-installation/kubernetes/sidecar-proxy/deployment/
+
+/user-guides/ip-lists/greylist/ /user-guides/ip-lists/graylist/
+/4.0/user-guides/ip-lists/greylist/ /4.0/user-guides/ip-lists/graylist/
+/3.6/user-guides/ip-lists/greylist/ /3.6/user-guides/ip-lists/graylist/
+/3.4/user-guides/ip-lists/greylist/ /3.4/user-guides/ip-lists/graylist/

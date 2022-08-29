@@ -17,7 +17,7 @@ wallarm:
   # Request filtration mode:
   # "off" to disable request processing
   # "monitoring" to process but not block requests
-  # "safe_blocking" to block malicious requests originated from greylisted IPs
+  # "safe_blocking" to block malicious requests originated from graylisted IPs
   # "block" to process all requests and block the malicious ones
   mode: "block"
   # Amount of memory in GB for request analytics data,
