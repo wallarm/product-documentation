@@ -35,7 +35,7 @@ This method does not allow you to configure the error message, but it affects se
 This method does not create any load on the server but requires additional integration of denylist and firewall. 
 
 !!! warning "Exclude the IP Address Blocking of the Wallarm Scanner"
-    Please note that if you use additional facilities (software or hardware) to automatically filter and block traffic, you should add the IP addresses for the scanner to the whitelist of the corresponding filtering facility in order for the Wallarm scanner to be able to freely check your resources for vulnerabilities.
+    Please note that if you use additional facilities (software or hardware) to automatically filter and block traffic, you should add the IP addresses for the scanner to the allowlist of the corresponding filtering facility in order for the Wallarm scanner to be able to freely check your resources for vulnerabilities.
     
     Lists of the IP addresses of the scanner:
     

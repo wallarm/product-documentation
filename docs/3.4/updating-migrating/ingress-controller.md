@@ -41,7 +41,7 @@ To add or update the parameters of the upgraded Helm chart, use one more command
 
 If you have upgraded the Helm chart of version 3.0 or lower, adjust the following configurations to changes released in version 3.x:
 
-1. If you have upgraded the Helm chart of version 2.18 or lower, IP address lists. If you have configured IP whitelists and denylists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
+1. If you have upgraded the Helm chart of version 2.18 or lower, IP address lists. If you have configured IP allowlists and denylists in version 2.18 or lower, adjust the list settings using the [instructions](migrate-ip-lists-to-node-3.md).
 
     Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Wallarm ConfigMap parameters and Ingress annotations.
 2. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md):

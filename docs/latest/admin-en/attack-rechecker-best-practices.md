@@ -1,4 +1,4 @@
-[whitelist-scanner-addresses]: ../user-guides/ip-lists/whitelist.md
+[allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
 # Best practices for configuring the Active threat verification feature
 

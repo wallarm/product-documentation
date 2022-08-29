@@ -341,7 +341,7 @@ wallarm_mode $wallarm_mode_real;
     
     **Default value** depends on the filtering node deployment method (can be `off` or `monitoring`)
 
---8<-- "../include/scanner-whitelist-warning.md"
+--8<-- "../include/scanner-allowlist-warning.md"
 
 Usage of `wallarm_mode` can be restricted by the `wallarm_mode_allow_override` directive.
 

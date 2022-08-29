@@ -247,7 +247,7 @@ For more information on managing attacks, see the instructions on [working with 
 
 ## Notifications about detected attacks, hits and malicious payloads
 
-Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, whitelisting IPs originating legitimate requests and denylisting IPs of attack sources.
+Wallarm can send you notifications on detected attacks, hits and malicious payloads. It allows you to be aware of attempts to attack your system and analyze detected malicious traffic promptly. Analyzing malicious traffic includes reporting false positives, allowlisting IPs originating legitimate requests and denylisting IPs of attack sources.
 
 To configure notifications:
 

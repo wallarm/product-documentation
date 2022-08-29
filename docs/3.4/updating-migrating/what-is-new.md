@@ -36,9 +36,9 @@ Listed changes are available for both the regular (client) and multi-tenant Wall
 
 ### Changes in system requirements for the filtering node installation
 
-Starting with version 3.x, the filtering node supports IP addresses [whitelists, denylists, and graylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+Starting with version 3.x, the filtering node supports IP addresses [allowlists, denylists, and graylists](../user-guides/ip-lists/overview.md). The Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-The Wallarm node downloads an actual list of IP addresses registered in whitelisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
+The Wallarm node downloads an actual list of IP addresses registered in allowlisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine on which the filtering node is installed.
 
 [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 
@@ -59,14 +59,14 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 * New reaction of triggers **Add to graylist** allowing to automatically graylist IP addresses originated a specific number of malicious requests.
 
     [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
-* Management of [IP address whitelist](../user-guides/ip-lists/whitelist.md) via Wallarm Console.
-* Automated whitelisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* Ability to whitelist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
+* Management of [IP address allowlist](../user-guides/ip-lists/allowlist.md) via Wallarm Console.
+* Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+* Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
 
-    [Details on adding IPs to the whitelist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
-* Ability to whitelist, denylist, or graylist request sources for specific applications.
+    [Details on adding IPs to the allowlist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
+* Ability to allowlist, denylist, or graylist request sources for specific applications.
 
-    [Details on adding IPs to the whitelist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
+    [Details on adding IPs to the allowlist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
 * New parameters of the file `node.yaml` for configuring the synchronization of the Wallarm Cloud and filtering nodes: `api.local_host` and `api.local_port`. New parameters allow specifying a local IP address and port of the network interface through which requests to Wallarm API are sent.
 
     [See the full list of `node.yaml` parameters for Wallarm Cloud and filtering node synchronization setup →](../admin-en/configure-cloud-node-synchronization-en.md#credentials-to-access-the-wallarm-cloud)
@@ -93,7 +93,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
 * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [denylisted](../user-guides/ip-lists/denylist.md) IP, it does not block this request.
-* If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
+* If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [allowlisted](../user-guides/ip-lists/allowlist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
 
 [Details on Wallarm node modes →](../admin-en/configure-wallarm-mode.md)
 
@@ -107,9 +107,9 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
 
 ### New features
 
-* Ability to whitelist, denylist, or graylist request sources for specific applications.
+* Ability to allowlist, denylist, or graylist request sources for specific applications.
 
-    [Details on adding IPs to the whitelist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
+    [Details on adding IPs to the allowlist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
 * The number of requests originated from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
     [Details on the statistic service →](../admin-en/configure-statistics-service.md)
@@ -147,7 +147,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. If upgrading the Wallarm node 2.18 or lower to version 3.4, [migrate](migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node versions to 3.4.
+3. If upgrading the Wallarm node 2.18 or lower to version 3.4, [migrate](migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 3.4.
 
 ----------
 

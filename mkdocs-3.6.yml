@@ -277,7 +277,7 @@ nav:
         - Trigger examples: user-guides/triggers/trigger-examples.md
       - IP lists:
         - Types and core logic of IP lists: user-guides/ip-lists/overview.md
-        - IP address whitelist: user-guides/ip-lists/whitelist.md
+        - IP address allowlist: user-guides/ip-lists/allowlist.md
         - IP address graylist: user-guides/ip-lists/graylist.md
         - IP address denylist: user-guides/ip-lists/denylist.md
       - Settings:
@@ -330,7 +330,7 @@ nav:
         - Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower: updating-migrating/older-versions/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower: updating-migrating/older-versions/ingress-controller.md
         - Upgrading the cloud node image 2.18 or lower: updating-migrating/older-versions/cloud-image.md
-        - Migrating whitelists and denylists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
+        - Migrating allowlists and denylists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":

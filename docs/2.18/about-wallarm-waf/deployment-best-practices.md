@@ -50,12 +50,12 @@ For Wallarm filtering nodes located behind a load balancer or CDN please make su
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-## Enable the whitelisting of the Wallarm Scanner IPs
+## Enable the allowlisting of the Wallarm Scanner IPs
 
 This configuration is required for the [Attack rechecker](detecting-vulnerabilities.md#active-threat-verification) and [Vulnerability scanner](detecting-vulnerabilities.md#vulnerability-scanner) modules to reach the tested application without getting their requests blocked by the filtering nodes.
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-whitelisting.md) (including AWS / GCP images, Docker node container)
-* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/scanner-ips-allowlisting.md) (including AWS / GCP images, Docker node container)
+* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses.md)
 * Instructions for Kubernetes sidecar deployments based on [Helm charts](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm.md) or [Manifests](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest.md)
 
 The [Active threat verification](detecting-vulnerabilities.md#active-threat-verification) feature will not work if the scanner's IP addresses are not properly white-listed.

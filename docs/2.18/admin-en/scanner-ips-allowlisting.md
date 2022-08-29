@@ -53,4 +53,4 @@ wallarm_mode $wallarm_mode_real;
 ```
 
 !!! warning "Using Additional Traffic Filtering Facilities"
-    Note that if you use additional facilities (software or hardware) to automatically filter and block traffic, it is also recommended that you configure a whitelist with the IP addresses for the Wallarm scanner.
+    Note that if you use additional facilities (software or hardware) to automatically filter and block traffic, it is also recommended that you configure an allowlist with the IP addresses for the Wallarm scanner.

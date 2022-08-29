@@ -91,7 +91,7 @@ After the Wallarm Ingress controller is successfully installed and checked, you 
 
 * [Proper reporting of end user public IP address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 * [Management of IP addresses blocking](configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md)
-* [Configuration of IP whitelisting for Wallarm Scanner](configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md)
+* [Configuration of IP allowlisting for Wallarm Scanner](configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses.md)
 * [High availability considerations](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 * [Ingress Controller monitoring](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
 

@@ -5,7 +5,7 @@
 | Blocks malicious requests | - | - | Only those originated from [graylisted IPs](../user-guides/ip-lists/graylist.md) | + |
 | Blocks requests originated from [denylisted IPs](../user-guides/ip-lists/denylist.md)<sup>see exceptions</sup> | Does not analyze the denylist | - | + | + |
 | Blocks requests originated from [graylisted IPs](../user-guides/ip-lists/graylist.md) | Does not analyze the graylist | - | Only those containing malicious payloads | Does not analyze the graylist |
-| Allows requests originated from [whitelisted IPs](../user-guides/ip-lists/whitelist.md) | Does not analyze the whitelist | + | + | + |
+| Allows requests originated from [allowlisted IPs](../user-guides/ip-lists/allowlist.md) | Does not analyze the allowlist | + | + | + |
 
 !!! warning "Exceptions"
     If [`wallarm_acl_access_phase on`][acl-access-phase], requests from denylisted IPs are blocked in any mode including `off` and `monitoring`

@@ -24,9 +24,9 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
 ## System requirements for the filtering node installation
 
-Starting with version 3.x, the filtering node supports IP address [whitelisting, denylisting, and graylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
+Starting with version 3.x, the filtering node supports IP address [allowlisting, denylisting, and graylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.
 
-The Wallarm node downloads an actual list of IP addresses registered in whitelisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
+The Wallarm node downloads an actual list of IP addresses registered in allowlisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
 [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
 
@@ -38,7 +38,7 @@ The Wallarm node downloads an actual list of IP addresses registered in whitelis
 * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
     
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/denylist.md) IP, it does not block this request.
-    * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [whitelisted IP addresses](../../user-guides/ip-lists/whitelist.md) to the Wallarm Cloud.
+    * Wallarm node operating in the `monitoring` mode uploads all the attacks originating from the [allowlisted IP addresses](../../user-guides/ip-lists/allowlist.md) to the Wallarm Cloud.
 
 [More details on Wallarm node modes →](../../admin-en/configure-wallarm-mode.md)
 
@@ -52,22 +52,22 @@ The following parameters for request source control have been deprecated:
 
 There are the following new features for request source control:
 
-* Wallarm Console section for full IP address whitelist, denylist and graylist control.
+* Wallarm Console section for full IP address allowlist, denylist and graylist control.
 * Support for new [filtration mode](../../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../../user-guides/ip-lists/graylist.md).
 
     The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
     For automatic IP address graylisting there is a new [trigger **Add to graylist**](../../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
-* Automated whitelisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual whitelisting of Scanner IP addresses is no longer required.
-* Ability to whitelist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
-* Ability to whitelist, denylist, or graylist request sources for specific applications.
+* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+* Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
+* Ability to allowlist, denylist, or graylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
 
     [Details on the `disable_acl` NGINX directive →](../../admin-en/configure-parameters-en.md#disable_acl)
 
     [Details on the `disable_acl` Envoy parameter →](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
 
-[Details on adding IPs to the whitelist, denylist, and graylist →](../../user-guides/ip-lists/overview.md)
+[Details on adding IPs to the allowlist, denylist, and graylist →](../../user-guides/ip-lists/overview.md)
 
 ## New module for API structure discovery
 
@@ -166,7 +166,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node versions to 3.6.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 3.6.
 
 ----------
 

@@ -12,8 +12,8 @@ To block by IP address, use the `block_with_iptables.rb` script, which is modifi
 To effectively use the script, the filter node must regularly download
 from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
-!!! info "Whitelist"
-    You can whitelist an IP address. A whitelisted IP address is allowed to request the web application's server and bypasses the denylist check.
+!!! info "Allowlist"
+    You can allowlist an IP address. An allowlisted IP address is allowed to request the web application's server and bypasses the denylist check.
 
 ##  Set up Blocking by IP Address
 
@@ -91,15 +91,15 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
          
 5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.denylist-sync.last` because it changes every time the script starts successfully.
 
-6.  Whitelisting IP addresses. 
+6.  Allowlisting IP addresses. 
 
-    To whitelist several IP addresses, run the following command for the range of IP addresses. Replace `1.2.3.4/30` with the necessary value:
+    To allowlist several IP addresses, run the following command for the range of IP addresses. Replace `1.2.3.4/30` with the necessary value:
 
     ```
     iptables -I wallarm_check -s 1.2.3.4/30 -j RETURN
     ```
 
-    To whitelist one IP address, replace `1.2.3.4` with the necessary value:
+    To allowlist one IP address, replace `1.2.3.4` with the necessary value:
 
     ```
     iptables -I wallarm_check -s 1.2.3.4 -j RETURN

@@ -14,7 +14,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 4. Register the new Wallarm node in the Wallarm Cloud.
 5. Configure the local NGINX instance to act as a [reverse proxy](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/) for the specified domain with Wallarm node filtering requests in the blocking [mode](admin-en/configure-wallarm-mode.md).
 6. Configure NGINX IP blocking functionality following the [instructions](admin-en/configure-ip-blocking-nginx-en.md).
-7. Configure the whitelist with the Wallarm Scanner IPs following the [instructions](admin-en/scanner-ips-whitelisting.md).
+7. Configure the allowlist with the Wallarm Scanner IPs following the [instructions](admin-en/scanner-ips-allowlisting.md).
 8. Send the following test requests:
 
     * GET request to `http://127.0.0.8/wallarm-status` to check the accessibility of the [Wallarm statistics service](admin-en/configure-statistics-service.md).

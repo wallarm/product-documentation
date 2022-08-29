@@ -169,7 +169,7 @@ nav:
           - Best Practices in Wallarm Ingress Controller Configuration:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
             - Management of IP Addresses Blocking: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md
-            - Configuration of IP Whitelisting for Wallarm Scanner: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses.md
+            - Configuration of IP Allowlisting for Wallarm Scanner: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
         - Allocating Resources for Wallarm Node: admin-en/configuration-guides/allocate-resources-for-waf-node.md
@@ -224,7 +224,7 @@ nav:
         - Learning the amount of requests per month handled by the application: admin-en/operation/learn-incoming-request-number.md
       - Support of the Scanner Operation:
         - Best practices for configuring the Active threat verification feature: admin-en/attack-rechecker-best-practices.md
-        - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-whitelisting.md 
+        - Disabling the IP Address Blocking of the Wallarm Scanner: admin-en/scanner-ips-allowlisting.md 
         - Scanner Addresses:
           - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
           - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md

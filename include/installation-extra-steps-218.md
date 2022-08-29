@@ -12,18 +12,18 @@ If the filtering node is deployed behind a proxy server or load balancer without
 
 In this case, if you want the filtering node to receive the client's IP address as a request source address, you need to perform an [additional configuration](using-proxy-or-balancer-en.md) of the proxy server or the load balancer.
 
-### Adding Wallarm Scanner addresses to the whitelist
+### Adding Wallarm Scanner addresses to the allowlist
 
 The Wallarm Scanner checks the resources of your company for vulnerabilities. Scanning is conducted using IP addresses from one of the following lists (depending on the type of Wallarm Cloud you are using):
 
 * [EU Scanner addresses for EU Cloud users](scanner-address-eu-cloud.md)
 * [US Scanner addresses for US Cloud users](scanner-address-us-cloud.md)
 
-If you are using the Wallarm Scanner, you need to configure the whitelists on your network scope security software (such as firewalls, intrusion detection systems, etc.) to contain Wallarm Scanner IP addresses.
+If you are using the Wallarm Scanner, you need to configure the allowlists on your network scope security software (such as firewalls, intrusion detection systems, etc.) to contain Wallarm Scanner IP addresses.
 
 For example, a Wallarm filtering node with default settings is placed in the blocking mode, thus rendering the Wallarm Scanner unable to scan the resources behind the filtering node.
 
-To make the Scanner operational again, [whitelist the Scanner's IP addresses](scanner-ips-whitelisting.md) on this filtering node.
+To make the Scanner operational again, [allowlist the Scanner's IP addresses](scanner-ips-allowlisting.md) on this filtering node.
 
 ### Limiting the single request processing time
 

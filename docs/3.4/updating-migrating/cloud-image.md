@@ -68,7 +68,7 @@ If upgrading Wallarm node 3.0 or lower:
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests
-2. If upgrading Wallarm node 2.18 or lower, migrate whitelist and denylist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
+2. If upgrading Wallarm node 2.18 or lower, migrate allowlist and denylist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
 3. Restart NGINX to apply the settings: 
 
     ```bash

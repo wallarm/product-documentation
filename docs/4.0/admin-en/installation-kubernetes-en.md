@@ -11,7 +11,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 * Access to `https://api.wallarm.com` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` for working with US Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [whitelisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
+* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
 
 !!! info "See also"
     * [What is Ingress?](https://kubernetes.io/docs/concepts/services-networking/ingress/)

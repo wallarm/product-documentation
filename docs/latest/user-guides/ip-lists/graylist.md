@@ -6,7 +6,7 @@
 * [Attacks of the vpatch type](../rules/vpatch-rule.md)
 * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 
-The Wallarm node blocks requests with malicious payloads that originated from graylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the filtering node forwards them to your applications. Behavior of the filtering node may differ if graylisted IP addresses are also whitelisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
+The Wallarm node blocks requests with malicious payloads that originated from graylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the filtering node forwards them to your applications. Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
 
 In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylisted IP addresses as follows:
 

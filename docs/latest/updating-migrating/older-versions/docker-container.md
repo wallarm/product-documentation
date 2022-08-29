@@ -69,9 +69,9 @@ To create a new Wallarm node and get its token:
     ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 
-## Step 6: Migrate whitelists and denylists from the previous Wallarm node version to 4.2
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.2
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node version to 4.2.
+[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.2.
 
 ## Step 7: Switch from deprecated configuration options
 

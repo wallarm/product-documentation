@@ -216,7 +216,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
         
         You can learn more about sed by proceeding with the [link](https://www.gnu.org/software/sed/manual/sed.html).
     
-7.  You can add IP addresses to the whitelist to skip checking of the denylist upon receiving a request from them. For example, the following lines in the vhost or location configuration file add the `1.2.3.4/32` IP address pool to its whitelist:
+7.  You can add IP addresses to the allowlist to skip checking of the denylist upon receiving a request from them. For example, the following lines in the vhost or location configuration file add the `1.2.3.4/32` IP address pool to its allowlist:
 
     ```
     server {

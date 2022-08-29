@@ -146,9 +146,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/
         ```
 
-## Step 6: Migrate whitelists and denylists from the previous Wallarm node version to 4.0
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.0
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node version to 4.0.
+[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.0.
 
 ## Step 7: Upgrade Wallarm API Security packages
 
@@ -211,7 +211,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```
 3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
 
-    1. Ensure that the [IP lists migration](#step-6-migrate-whitelists-and-denylists-from-previous-wallarm-node-version-to-40) is completed.
+    1. Ensure that the [IP lists migration](#step-6-migrate-allowlists-and-denylists-from-previous-wallarm-node-version-to-40) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
         The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address denylist to operate correctly, the Wallarm node 3.x should use the updated configuration file.

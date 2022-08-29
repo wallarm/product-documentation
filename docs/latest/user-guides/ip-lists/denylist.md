@@ -1,6 +1,6 @@
 # IP address denylist
 
-**Denylist** is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [whitelist](whitelist.md)).
+**Denylist** is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [allowlist](allowlist.md)).
 
 In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked IP addresses as follows:
 

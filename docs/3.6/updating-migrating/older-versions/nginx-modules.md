@@ -126,9 +126,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
         ```
 
-## Step 5: Migrate whitelists and denylists from the previous Wallarm node version to 3.6
+## Step 5: Migrate allowlists and denylists from the previous Wallarm node version to 3.6
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and denylist configuration from previous Wallarm node version to 3.6.
+[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 3.6.
 
 ## Step 6: Upgrade Wallarm API Security packages
 
@@ -156,7 +156,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         ```
 2. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
 
-    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-denylists-from-previous-wallarm-node-version-to-32) is completed.
+    1. Ensure that the [IP lists migration](#step-4-migrate-allowlists-and-denylists-from-previous-wallarm-node-version-to-32) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
         The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address denylist to operate correctly, the Wallarm node 3.x should use the updated configuration file.
@@ -191,7 +191,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         ```
 3. If the package manager asks for confirmation to rewrite the content of the configuration file `/etc/cron.d/wallarm-node-nginx`:
 
-    1. Ensure that the [IP lists migration](#step-4-migrate-whitelists-and-denylists-from-previous-wallarm-node-version-to-32) is completed.
+    1. Ensure that the [IP lists migration](#step-4-migrate-allowlists-and-denylists-from-previous-wallarm-node-version-to-32) is completed.
     2. Confirm the file rewrite by using the option `Y`.
 
         The package manager would ask for the rewrite confirmation if the file `/etc/cron.d/wallarm-node-nginx` had been [changed in the previous Wallarm node versions](/2.18/admin-en/configure-ip-blocking-nginx-en/). Since IP list logic was changed in Wallarm node 3.x, the `/etc/cron.d/wallarm-node-nginx` content was updated accordingly. For the IP address denylist to operate correctly, the Wallarm node 3.x should use the updated configuration file.

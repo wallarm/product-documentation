@@ -10,7 +10,7 @@ This section provides you with a checklist to ensure your Wallarm instance opera
 | [Wallarm marks requests as false and stops blocking them](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarm does not block the requests |        |
 | [Wallarm detects vulnerabilities and creates security incidents](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | Security incidents are created      |        |
 | [Wallarm detects perimeter](#wallarm-detects-perimeter)                                                                                   | Scope is discovered                 |        |
-| [IP whitelisting, denylisting, and graylisting work](#ip-whitelisting-denylisting-and-graylisting-work)                                                                                         | IP addresses are blocked            |        |
+| [IP allowlisting, denylisting, and graylisting work](#ip-allowlisting-denylisting-and-graylisting-work)                                                                                         | IP addresses are blocked            |        |
 | [Users can be configured and have proper access rights](#users-can-be-configured-and-have-proper-access-rights)                   | Users can be created and updated    |        |
 | [User activity log has records](#user-activity-log-has-records)                                                                   | The log has records                 |        |
 | [Reporting works](#reporting-works)                                                                                               | You receive reports                 |        | |
@@ -88,10 +88,10 @@ See also [Checking attacks and incidents](../user-guides/events/check-attack.md)
 
 See also [Working with the scanner](../user-guides/scanner/intro.md).
 
-## IP whitelisting, denylisting, and graylisting work
+## IP allowlisting, denylisting, and graylisting work
 
 1. Learn[ core logic of IP lists](../user-guides/ip-lists/overview.md).
-2. Add IP addresses to the [whitelist](../user-guides/ip-lists/whitelist.md), [denylist](../user-guides/ip-lists/denylist.md), and [graylist](../user-guides/ip-lists/graylist.md).
+2. Add IP addresses to the [allowlist](../user-guides/ip-lists/allowlist.md), [denylist](../user-guides/ip-lists/denylist.md), and [graylist](../user-guides/ip-lists/graylist.md).
 3. Check that the filtering node correctly processes requests originated from IPs added to the lists.
 
 ## Users Can Be Configured and Have Proper Access Rights

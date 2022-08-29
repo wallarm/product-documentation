@@ -44,7 +44,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 4: Run the container using the updated image
 
-1. If updating Wallarm node 2.18 or lower, migrate whitelist and denylist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
+1. If updating Wallarm node 2.18 or lower, migrate allowlist and denylist configuration from previous Wallarm node version to 3.4 following the [instructions](migrate-ip-lists-to-node-3.md).
 2. Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the `WALLARM_ACL_ENABLE` variable.
 
     There are two options for running the container using the updated image:

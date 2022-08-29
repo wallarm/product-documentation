@@ -1,21 +1,21 @@
-# Configuration of IP Whitelisting for Wallarm Scanner
+# Configuration of IP Allowlisting for Wallarm Scanner
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-To ensure proper functionality of the [Wallarm vulnerability scanner](../../../../user-guides/scanner/intro.md), it is necessary to whitelist (disable the Wallarm API Security functionality for) the IP addresses of Wallarm’s scanner nodes. This allows the scanner to reach the protected application in order to validate that detected attacks are not targeting real application vulnerabilities.
+To ensure proper functionality of the [Wallarm vulnerability scanner](../../../../user-guides/scanner/intro.md), it is necessary to allowlist (disable the Wallarm API Security functionality for) the IP addresses of Wallarm’s scanner nodes. This allows the scanner to reach the protected application in order to validate that detected attacks are not targeting real application vulnerabilities.
 
 The list of Wallarm IP addresses is available at the following links:
 
 * [Scanners for the European Cloud](../../../scanner-address-eu-cloud.md)
 * [Scanners for the US Cloud](../../../scanner-address-us-cloud.md)
 
-To whitelist the scanner nodes, please use the following instructions:
+To allowlist the scanner nodes, please use the following instructions:
 
 1. Add the `controller.config.http-snippet` attribute to the `values.yaml` file and define the following options in the `http-snippet` snippet:
 
     * `use-forwarded-headers` option set to `true` to pass the incoming `X-Forwarded-*` correctly.
     * Two `geo` modules with different names and `default` values appropriate for the filtering node operation modes: blocking and monitoring.
-    * Wallarm Scanner IP addresses that should be whitelisted.
+    * Wallarm Scanner IP addresses that should be allowlisted.
 
     For example:
 
