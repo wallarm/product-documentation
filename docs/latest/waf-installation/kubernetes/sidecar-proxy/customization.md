@@ -41,7 +41,7 @@ You can set the container deployment options both on the global and per-pod basi
 * On a per-pod basis by setting the appropriate application Pod's annotation `sidecar.wallarm.io/sidecar-injection-schema` to `"single"` or `"split"`.
 
 !!! info "Postanalytics module"
-    Please note that the postanalytics module container runs [separately](deployment.md#solution-acrhitecture), the described deployment options are related only to other containers.
+    Please note that the postanalytics module container runs [separately](deployment.md#solution-architecture), the described deployment options are related only to other containers.
 
 #### Single deployment (by default)
 

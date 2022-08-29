@@ -35,7 +35,7 @@ Traffic flow with Wallarm Sidecar proxy:
 
 ![!Traffic flow with Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.png)
 
-## Solution acrhitecture
+## Solution architecture
 
 The Wallarm Sidecar proxy solution is arranged by the following Deployment objects:
 
