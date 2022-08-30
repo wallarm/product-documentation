@@ -119,9 +119,6 @@ Wallarm regularly updates **proton.db** with token sequences for new attack type
 
 #### libdetection overview
 
-!!! warning "Support of the libdetection library on the CDN node"
-    Please note that the **libdetection** library is not supported by the [Wallarm CDN nodes](../waf-installation/cdn-node.md).
-
 The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
 
 * If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the filtering node is working in the `block` mode).
@@ -146,9 +143,9 @@ The library conducts the attack syntax analysis for matching the contexts. If th
 
 #### Enabling libdetection
 
-Analyzing requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend enabling analysis. 
+Analyzing requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../waf-installation/cdn-node.md).
 
-To enable the analysis:
+To reduce the number of false positives, we recommend enabling analysis:
 
 === "NGINX-based node"
     1. Set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
@@ -156,6 +153,8 @@ To enable the analysis:
 === "Envoy-based node"
     1. Add the parameter `enable_libdetection on` to the [`rulesets` section](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) of the Envoy configuration file.
     2. Add the filter [`envoy.buffer`](../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoybased-wallarm-node) to the `http_filters` section of the Envoy configuration file.
+=== "CDN node"
+    Analyzing requests with the **libdetection** library is enabled by default.
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
