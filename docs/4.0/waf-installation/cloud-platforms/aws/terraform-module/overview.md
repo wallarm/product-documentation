@@ -35,6 +35,7 @@ To deploy Wallarm for production using the AWS Terraform module:
     ```conf
     module "wallarm" {
       source = "wallarm/wallarm/aws"
+      version = "0.9.6"
 
       instance_type = "..."
 

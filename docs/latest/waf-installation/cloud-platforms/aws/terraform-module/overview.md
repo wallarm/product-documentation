@@ -56,7 +56,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 | `token` | [Wallarm node token](../../../../user-guides/nodes/nodes.md#creating-a-node) copied from the Wallarm Console UI. | string | Yes
 | **Wallarm-specific variables** | | | |
 | `host` | [Wallarm API server](../../../../about-wallarm-waf/overview.md#cloud). Possible values:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default, `api.wallarm.com`. | string | No
-`upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.0`. | string | No
+`upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.2`. | string | No
 | `preset` | Wallarm deployment scheme. Possible values:<ul><li>`proxy`</li><li>`mirror`</li></ul>By default, `proxy`. | string | No
 | `proxy_pass` | Proxied server protocol and address. Wallarm node will process requests sent to the specified address and proxy legitimate ones to. As a protocol, 'http' or 'https' can be specified. The address can be specified as a domain name or IP address, and an optional port. | string | Yes, if `preset` is `proxy`
 | `mode` | [Traffic filtration mode](../../../../admin-en/configure-wallarm-mode.md). Possible values: `off`, `monitoring`, `safe_blocking`, `block`.<br><br>By default, `monitoring`. | string | No
