@@ -40,14 +40,15 @@ By deploying and using the filtering nodes in all stages of your software develo
 
 Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) (available starting from Wallarm node version 2.16) significantly improves the filtering node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the filtering node software and enable the **libdetection** library as follows:
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
+* Add the `sidecar.wallarm.io/wallarm-enable-libdetection: on` [annotation](../waf-installation/kubernetes/sidecar-proxy/pod-annotations.md) for the application pod if using the Wallarm Sidecar proxy solution
 
 ## Configure proper reporting of end-user IP addresses
 
 For Wallarm filtering nodes located behind a load balancer or CDN please make sure to configure your filtering nodes to properly report end-user IP addresses (otherwise the [IP list functionality](../user-guides/ip-lists/overview.md), [Active threat verification](detecting-vulnerabilities.md#active-threat-verification), and some other features will not work):
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
+* [Instructions for NGINX-based Wallarm nodes](../admin-en/using-proxy-or-balancer-en.md) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
 ## Enable proper monitoring of the filtering nodes

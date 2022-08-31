@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md"
+--8<-- "3.6/admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md"

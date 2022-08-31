@@ -4,7 +4,6 @@
 [greylist-docs]:                    ../../../user-guides/ip-lists/greylist.md
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
-[about-sidecar-container]:          ../../../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 
 # Deployment of the Wallarm node Docker image to Alibaba Cloud

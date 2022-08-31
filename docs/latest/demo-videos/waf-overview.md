@@ -50,17 +50,6 @@ Learn more about the Wallarm API Security platform from our demo videos.
 
 * [The list of all plaforms availablle for the filtering node deployment](../admin-en/supported-platforms.md)
 
-## Deploying the filtering node as Kubernetes sidecar container
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/N5mEXPoU2Lw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-**Related documentation articles**
-
-* [Overview of the filtering node deployment as Kubernetes sidecar container](../admin-en/installation-guides/kubernetes/wallarm-sidecar-container.md)
-* [The list of all plaforms availablle for the filtering node deployment](../admin-en/supported-platforms.md)
-
 ## Wallarm Console features overview
 
 <div class="video-wrapper">
