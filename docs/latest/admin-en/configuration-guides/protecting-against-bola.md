@@ -17,7 +17,7 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
 
 ## Configuration steps
 
-1. If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
+1. If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) the display of a real IP address of the client.
 1. [Configure](#configuring-the-trigger-to-identify-the-bola-attacks) the **BOLA** trigger.
 1. [Test](#testing-the-configuration-of-bola-protection) the configuration of BOLA protection.
 
@@ -46,7 +46,7 @@ For the Wallarm node to identify the BOLA attacks:
     * (Optional) One or more **IPs** the requests are sent from.
 6. Select trigger reactions:
 
-    * **Mark as BOLA**. Requests received after the threshold exceedance will be marked as the BOLA attack and displayed in the **Events** section of Wallarm Console. Wallarm node will NOT block these malicious requests.
+    * **Mark as BOLA**. Requests received after the threshold exceedance will be marked as the BOLA attack and displayed in the **Events** section of Wallarm Console. Wallarm nodes will NOT block these malicious requests.
     * **Blacklist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [blacklist](../../user-guides/ip-lists/blacklist.md).
     
         The Wallarm node will block both legitimate and malicious requests (including the BOLA attacks) originating from the blacklisted IP.
@@ -67,7 +67,7 @@ You can configure several triggers with different filters for BOLA protection.
 
 ## Testing the configuration of BOLA protection
 
-1. Send the number of requests that exceeds the configured threshold to the protected URI. For example, 50 requests with different values of `{shop_id}` to the endpoint `https://example.com/shops/{shop_id}/financial_info`:
+1. Send the number of requests that exceed the configured threshold to the protected URI. For example, 50 requests with different values of `{shop_id}` to the endpoint `https://example.com/shops/{shop_id}/financial_info`:
 
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/shops/$i/financial_info ; done
