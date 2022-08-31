@@ -34,7 +34,7 @@ Starting from Wallarm node 4.2, we do not publish Wallarm distributions for Cent
 
 ## Disabling IPv6 connections for the NGINX-based Wallarm Docker container
 
-The NGINX-based Wallarm Docker image 4.2 and above supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it only can process IPv4 connections.
+The NGINX-based Wallarm Docker image 4.2 and above supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it can only process IPv4 connections.
 
 ## Renamed `register-node` script log file
 
