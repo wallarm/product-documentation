@@ -417,7 +417,7 @@ Ingress annotations:
 kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
 ```
 
-#### Sidecar controller annotations
+#### Pod annotations (if using Sidecar controller)
 
 The block page can be configured on the per-pod basis using the `sidecar.wallarm.io/wallarm-block-page` [annotation](../../waf-installation/kubernetes/sidecar-proxy/pod-annotations.md), e.g.:
 
