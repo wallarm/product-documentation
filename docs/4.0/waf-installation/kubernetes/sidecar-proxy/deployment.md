@@ -1,24 +1,24 @@
 # Deploying Wallarm Sidecar proxy
 
-To secure an application deployed as a Pod in a Kubernetes cluster, you can run Wallarm in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
+To secure an application deployed as a Pod in a Kubernetes cluster, you can run the NGINX-based Wallarm node in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
 
 The **key features** of the Wallarm Sidecar proxy solution:
 
-* This security solution has the closest to the application deployment format that makes discrete microservices and their replicas and shards protection easy
-* Wallarm sidecar proxy is fully compatible with any Ingress controller
+* Simplifies protection of discrete microservices and their replicas and shards by providing the deployment format that is similar to applications
+* Fully compatible with any Ingress controller
 * Works stable under high loads that is usually common for the service mesh approach
-* Minimum service configuration required, just add some annotations and labels for the application pod to secure it
-* Two supported modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
-* Dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the CPU
+* Requires minimum service configuration to secure your apps; just add some annotations and labels for the application pod to protect it
+* Supports two modes of the Wallarm container deployment: for medium loads with the Wallarm services running in one container and for high loads with the Wallarm services split into several containers
+* Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the Wallarm sidecar proxy solution consuming most of the CPU
 
-!!! info "If you use the earlier Wallarm Sidecar solution"
-    If you use the earlier Wallarm Sidecar solution, you are highly recommended to replace it with a new one. The new solution re-invents the previous one providing the separate easily integrated security component that does not require significant K8s manifest changes.
+!!! info "If you are using the earlier Wallarm Sidecar solution"
+    If you are using the previous version of the Wallarm Sidecar solution, we recommend you migrate to the new one. With this release, we updated our Sidecar solution to leverage new Kubernetes capabilities and a wealth of customer feedback. The new solution does not require significant Kubernetes manifest changes, to protect an application, just deploy the chart and add labels and annotations to the pod.
 
-    For assistance during migration to the upgraded Wallarm Sidecar proxy solution, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+    For assistance in migrating to the Wallarm Sidecar proxy solution v2.0, please contact [Wallarm technical support](mailto:support@wallarm.com).
 
 ## Use cases
 
-This solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options](../../../admin-en/supported-platforms.md), this solution is the recommended one for the following **use cases**:
 
 * You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from the [Wallarm Ingress controller](../../../admin-en/installation-kubernetes-en.md) deployment
 * Zero-trust environment that requires each microservice (including internal APIs) to be protected by the security solution
@@ -39,9 +39,9 @@ Traffic flow with Wallarm Sidecar proxy:
 
 The Wallarm Sidecar proxy solution is arranged by the following Deployment objects:
 
-* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating webhook admission controller](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) that injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
+* **Sidecar controller** (`wallarm-sidecar-controller`) is the [mutating admission webhook](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#admission-webhooks) that injects Wallarm sidecar proxy resources into the Pod configuring it based on the Helm chart values and pod annotations and connecting the node components to the Wallarm Cloud.
 
-    Once a new pod (workload) in Kubernetes starts, the controller automatically injects the additional container into the pod. To start traffic analysis going to the pod, just add labels and annotations to the pod.
+    Once a new pod with the `wallarm-sidecar: enabled` label in Kubernetes starts, the controller automatically injects the additional container filtering incoming traffic into the pod.
 * **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar proxy solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
 ![!Wallarm deployment objects](../../../images/waf-installation/kubernetes/sidecar-controller/deployment-objects.png)
@@ -56,10 +56,10 @@ The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
 * Kubernetes platform version 1.19-1.24
 * [Helm v3](https://helm.sh/) package manager
 * An application deployed as a Pod in a Kubernetes cluster
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. Make sure the access is not blocked by a firewall
-* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Make sure the access is not blocked by a firewall
-* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../../../user-guides/ip-lists/overview.md) countries, regions or data centers. Make sure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
+* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts
+* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`
+* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [whitelisted, blacklisted, or greylisted](../../../user-guides/ip-lists/overview.md) countries, regions or data centers
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/)
 
 ## Deployment

@@ -4,7 +4,7 @@ This article instructs you on safe and effective customization of the [Wallarm K
 
 ## Configuration area
 
-The Wallarm Sidecar proxy solution can be configured globally and on a per-application pod basis.
+The Wallarm Sidecar proxy solution is based on the standard Kubernetes components, thus the solution configuration is largely similar to the Kubernetes stack configuration. You can configure the Wallarm Sidecar proxy solution globally via `values.yaml` and on a per-application pod basis via annotations.
 
 ### Global settings
 
@@ -12,19 +12,21 @@ Global configuration options apply to all sidecar resources created by the Walla
 
 Global settings are set by the [default Helm chart values](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml). This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
 
-There is no fixed number of available global configuration options. The Wallarm Sidecar proxy solution is based on the standard Kubernetes components, thus the global solution configuration is largely similar to the Kubernetes stack configuration. Care should be taken when customizing the solution since it allows complete change of the resulting Pod and improper solution function as a result. Please rely on the Helm and Kubernetes documentation when changing global settings.
+The number of available global configuration options is unlimited. Care should be taken when customizing the solution since it allows complete change of the resulting Pod and improper solution function as a result. Please rely on the Helm and Kubernetes documentation when changing global settings.
 
 ### Per-pod settings
 
-Per-application pod settings are set via application Pod's annotations.
+Per-pod settings allow customizing the solution behavior for certain applications.
 
-Pod's annotations are available to override the global configuration options on individual pods. Annotations take precedence over global settings. If the same option is specified globally and via the annotation, the value from the annotation will be applied.
+Per-application pod settings are set via application Pod's annotations. Annotations take precedence over global settings. If the same option is specified globally and via the annotation, the value from the annotation will be applied.
+
+The supported annotation set is limited but the `nginx-*-include` and `nginx-*-snippet` annotations allow any [custom NGINX configuration to be used by the solution](#using-custom-nginx-configuration).
 
 [There is the list of supported per-pod's annotations](pod-annotations.md)
 
 ## Configuration use cases
 
-As mentioned above, you can customize the solution in many ways. To make the most common and crucial of them easier to implement, we have prepared more detailed configuration descriptions with examples.
+As mentioned above, you can customize the solution in many ways to fit your infrastructure and requirements to the security solution. To make the most common customization options easier to implement, we have described them considering related best practices.
 
 ### Single and split deployment of containers
 
@@ -262,7 +264,7 @@ Docker image of the Wallarm sidecar proxy is distributed with the following addi
 
 You can enable additional modules only on a per-pod basis by setting Pod's annotation `sidecar.wallarm.io/nginx-extra-modules`.
 
-The format of annotation's value is the JSON array. Example with additional modules enabled:
+The format of annotation's value is an array. Example with additional modules enabled:
 
 ```yaml hl_lines="16-17"
 apiVersion: apps/v1
@@ -293,7 +295,7 @@ spec:
 
 ### Using custom NGINX configuration
 
-You can provide additional configuration into NGINX configuration of the Wallarm sidecar proxy via a per-pod's basis **snippets** and **includes**.
+If there are no dedicated [pod annotations](pod-annotations.md) for some NGINX settings, you can specify them via per-pod **snippets** and **includes**.
 
 #### Snippet
 
@@ -345,20 +347,22 @@ sidecar.wallarm.io/nginx-location-snippet: "disable_acl on;wallarm_timeslice 10"
 
 #### Include
 
-This option allows to mount additional configuration files into the sidecar proxy container from Kubernetes ConfigMap or Secret.
+To mount an additional NGINX configuration file to the Wallarm sidecar container, you can [create ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files) or [Secret resource](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret) from this file and use the created resource in the container.
 
-| NGINX config section | Annotation                                  | Value type |
-|----------------------|---------------------------------------------|------------|
-| http                 | `sidecar.wallarm.io/nginx-http-include`     | JSON array  |
-| server               | `sidecar.wallarm.io/nginx-server-include`   | JSON array  |
-| location             | `sidecar.wallarm.io/nginx-location-include` | JSON array  |
-
-Providing additional configuration files into sidecar proxy container achieves by using extra Volumes and Volumes mounts:
+Once the ConfigMap or Secret resource is created, you can mount it to the container via the [Volume and VolumeMounts components](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap) by using the following per-pod's annotations:
 
 | Item          |  Annotation                                    | Value type  |
 |---------------|------------------------------------------------|-------------|
-| Volumes       | `sidecar.wallarm.io/proxy-extra-volumes`       | JSON object |
-| Volume mounts | `sidecar.wallarm.io/proxy-extra-volume-mounts` | JSON object |
+| Volumes       | `sidecar.wallarm.io/proxy-extra-volumes`       | JSON |
+| Volume mounts | `sidecar.wallarm.io/proxy-extra-volume-mounts` | JSON |
+
+Once the resource is mounted to the container, specify the NGINX context to add the configuration by passing the path to the mounted file in the corresponding annotation:
+
+| NGINX config section | Annotation                                  | Value type |
+|----------------------|---------------------------------------------|------------|
+| http                 | `sidecar.wallarm.io/nginx-http-include`     | Array  |
+| server               | `sidecar.wallarm.io/nginx-server-include`   | Array  |
+| location             | `sidecar.wallarm.io/nginx-location-include` | Array  |
 
 Below is the example with mounted configuration file included on the `http` level of NGINX config. This example assumes that the `nginx-http-include-cm` ConfigMap was created in advance and contains valid NGINX configuration directives.
 
@@ -390,6 +394,12 @@ spec:
             - name: http
               containerPort: 80
 ```
+
+### Configuring Wallarm features
+
+In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration](../../../about-wallarm-waf/deployment-best-practices.md).
+
+This configuration is performed via [annotations](pod-annotations.md) and the Wallarm Console UI.
 
 ## Other configurations via annotations
 
