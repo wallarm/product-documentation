@@ -31,11 +31,8 @@ Each request displays the associated information in the following columns:
 * *Date*: Date and time of the request.
 * *Payload*: [malicious payload][glossary-attack-vector]. Clicking the value in the payload column displays reference information on the attack type.
 * *Source*: The IP address from which the request originated. Clicking the IP address adds the IP address value into the search field. The following information is also displayed if it was found in the Wallarm's databases (IP2Location and others):
-    * The country/region in which the IP address is registered
-    * Which data center the given IP addresses belong to: the **AWS** tag for Amazon, the **GCP** tag for Google, the **Azure** tag for Microsoft data centers, and **DC** for other data centers
-    * The **Tor** tag if the attack's source is the Tor network
-    * The **VPN** tag if IP address belongs to VPN
-    * The **Public proxy** or **Web proxy** tag if the request was sent from the public or web proxy server
+     * The country/region in which the IP address is registered (if it was found in the databases like IP2Location or others)
+     * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
 * *Code*: The server's response status code from the request. If the filtering node blocked the request, the code would be `403` or another [custom value](../../admin-en/configuration-guides/configure-block-page-and-code.md).
 * *Size*: The server's response size.
 * *Time*: The server's response time.
