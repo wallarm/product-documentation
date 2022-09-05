@@ -2,19 +2,24 @@
 
 [link-using-search]:        use-search.md
 
-# Creating a Custom Report
+# Creating a custom report
 
-You can create a PDF report from your customized search results.
+You can search for specific events or filter them and then export the results into a PDF or CSV report. Wallarm will email the custom report to the specified address.
 
-Wallarm will email the custom report to you.
+## Create report
 
-![!Custom report creation window][img-custom-report]
+1. Go to the **Events** tab.
+1. [Filter][link-using-search] events.
+1. Click **Export** and select PDF or CSV.
+1. Check or set the **Send to** email.
 
-## Create a Report
+    ![!Custom report creation window][img-custom-report]
+1. Click **Export**. Wallarm will generate the report and email it.
 
-1. Go to the *Events* tab.
-2. Use the *Search* field to customize your search results.
-3. Click the report button on the right.
-4. Put in your email address and click the report button next to the email field.
+## Download previously created PDF report
 
-Wallarm will generate the report and email it to you.
+3 last PDF reports are saved. If necessary, download them from the export dialog.
+
+## CSV report
+
+CSV report may include several CSV files, one for each type of event - attack, incident, vulnerability - each CSV has a maximum of 10,000 events, sorted by the events with the most hits.
