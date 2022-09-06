@@ -69,6 +69,27 @@ Using the widget, you can analyze malicious requests sent via certain protocols 
 
 ![!Attack types](../images/user-guides/dashboard/api-protocols.png)
 
+## CVEs
+
+The **CVEs** widget displays the top of the vulnerabilities with assigned CVE IDs attackers have exploited during the selected time frame. The more hits exploiting the CVE, the higher position of this CVE in the rating.
+
+Each CVE is accompanied by the details like CVSS v3.0 score, attack complexity, privileges required and others received from the [Vulnerability database](https://vulners.com/). Vulnerabilities registered earlier than 2015 are not provided with the CVSS v3.0 score.
+
+![!CVE](../images/user-guides/dashboard/cves.png)
+
+You can review your system for highlighted vulnerabilities and if found, implement appropriate remediation recommendations to eliminate the risk of vulnerability exploitation. 
+
+## Authentication protocols
+
+This widget displays the top of the authentication protocols attackers have used during the specified time frame, e.g.:
+
+* API Key
+* Basic Auth
+* Bearer Token
+* Cookie Auth, etc.
+
+This information allows you to identify weak authentication methods that attackers can hack.
+
 ## Attack sources
 
 This widget displays the statistics on the attack source groups:
