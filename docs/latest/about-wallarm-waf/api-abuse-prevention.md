@@ -18,7 +18,7 @@ The **API Abuse Prevention** module detects the following automated threats by d
 
 ## How API Abuse Prevention works?
 
-The **API Abuse Prevention** module uses the ML-based bot detection model that self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
+The **API Abuse Prevention** module uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
 
 For the module to identify anomaly traffic as originating from malicious bots, the module relies on many metrics, e.g.:
 
@@ -26,12 +26,11 @@ For the module to identify anomaly traffic as originating from malicious bots, t
 * Rate of API calls originating from an IP per interval
 * Rate of unique API endpoints requested by an IP
 * Response codes
-* Request source reputation
-* Request header and body anomalies, etc
+* Request headers, etc
 
 If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists](../user-guides/ip-lists/blacklist.md) the source of the anomaly traffic for 1 hour.
 
-The solution provides highly accurate bot detection - it deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
+The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
 ## Activating API Abuse Prevention
 
@@ -45,7 +44,7 @@ To activate API Abuse Prevention:
 1. Add the subscription plan for the **API Abuse Prevention** [module](../about-wallarm-waf/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. Enable API Abuse Prevention for the required [applications](../user-guides/settings/applications.md) by creating the API Abuse profile in Wallarm Console → **API Abuse Prevention**.
 
-    TBD image with profile
+    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
     The profile should only point to applications you want to protect from malicious bots, no specific configuration is required.
 
@@ -59,16 +58,3 @@ Once the bot protection profile is configured, the module will start the [traffi
 The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/blacklist.md) for 1 hour. You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist**.
 
 TBD: Denylist image
-
-
-в документе про защиту от атак упомнятуь бота
-
-
-API01 - Broken Object Level Authorization
-
-API02 - Broken User Authentication
-
-API04 -  Lack of Resources & Rate Limiting
-
- надо эти уящвимости добавлять в список атак и уязвимостей?
-

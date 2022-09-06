@@ -18,7 +18,7 @@ To create a bot protection profile:
 1. Add the subscription plan for the **API Abuse Prevention** [module](../about-wallarm-waf/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. Enable API Abuse Prevention for the required [applications](settings/applications.md) by creating the API Abuse profile in Wallarm Console → **API Abuse Prevention**.
 
-    TBD image with profile
+    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
     The profile should only point to applications you want to protect from malicious bots, no specific configuration is required.
 
