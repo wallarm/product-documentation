@@ -60,10 +60,9 @@ The API structure includes the following elements:
 * API endpoints
 * Request methods (GET, POST, and others)
 * Required and optional GET, POST, and header parameters including:
-    * Type of data sent in each parameter
+    * [Type/format](#parameter-types-and-formats) of data sent in each parameter
+    * Presence and type of sensitive data (PII) transmitted by the parameter:
 
-        This includes sensitive data of the following types:
-        
         * Technical data like IP and MAC addresses
         * Login credentials like secret keys and passwords
         * Financial data like bank card numbers
@@ -71,6 +70,39 @@ The API structure includes the following elements:
         * Personally identifiable information (PII) like full name, passport number or SSN
     
     * Date and time when parameter information was last updated
+
+### Parameter types and formats
+
+Wallarm analyzes the values that are passed in each of the endpoint parameters and tries to determine their format:
+
+* Int32
+* Int64
+* Float
+* Double
+* Date
+* Datetime
+* Email
+* IPv4
+* IPv6
+* UUID
+* URI
+* Hostname
+* Byte
+* MAC
+
+If Wallarm has no data to define the format, it sets the generic type:
+
+* Integer
+* Number
+* String
+* Boolean
+
+For each parameter, the **Type** column displays:
+
+* Data format
+* If format is not defined - data type
+
+This data allows checking that values of the expected format are passed in each parameter. For example, you can check that `String` values ​​are not passed to the field with `IP`, or `Double` is not passed to the field where there should be a value no more than `Int32` - this may be an attack buffer overflow or scans of your API.
 
 ### Sample preview
 
