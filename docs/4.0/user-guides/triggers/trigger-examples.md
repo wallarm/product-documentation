@@ -28,9 +28,9 @@ If you have recently created the Wallarm account, this trigger is already create
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Blacklist IP if 4 or more attack vectors are detected in 1 hour
+## Denylist IP if 4 or more malicious payloads are detected in 1 hour
 
-If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.
+If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
 
 ![!Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
 

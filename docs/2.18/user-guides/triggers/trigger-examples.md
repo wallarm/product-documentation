@@ -1,8 +1,8 @@
 # Trigger examples
 
-## Blacklist IP if 4 or more attack vectors are detected in 1 hour (default trigger)
+## Denylist IP if 4 or more malicious payloads are detected in 1 hour (default trigger)
 
-The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be blacklisted for 1 hour.
+The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
 
 ![!Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
 

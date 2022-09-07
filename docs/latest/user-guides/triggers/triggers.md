@@ -101,8 +101,6 @@ If the trigger name and description are not specified, then the trigger is creat
 
 To disable or delete the trigger, please select an appropriate option from the trigger menu and confirm the action if required.
 
-![!Disabling a trigger](../../images/user-guides/triggers/disable-delete-trigger.png)
-
 ## Demo videos
 
 <div class="video-wrapper">
