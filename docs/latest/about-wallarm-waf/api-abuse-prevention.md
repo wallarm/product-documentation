@@ -48,10 +48,10 @@ To activate API Abuse Prevention:
 
     The profile should only point to applications you want to protect from malicious bots, no specific configuration is required.
 
-    !!! info "Access to API Discovery settings"
+    !!! info "Access to API Abuse Prevention settings"
         Only administrators of your company Wallarm account can access the **API Abuse Prevention** section. Contact your administrator if you do not have this access.
 
-Once the bot protection profile is configured, the module will start the [traffic analysis and blocking supported automated threats](#how-api-abuse-prevention-works).
+Once the bot protection profile is configured, the module will start the [traffic analysis and blocking supported automated threats](#automated-threats-blocked-by-api-abuse-prevention).
 
 ## Exploring blocked malicious bots
 
