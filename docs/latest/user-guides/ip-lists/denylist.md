@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP denylist](../../images/user-guides/ip-lists/blacklist-apps.png)
+![!IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
     
 ## Examples of IP denylist usage
 

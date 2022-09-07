@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP denylist](../../images/user-guides/ip-lists/blacklist-apps.png)
+![!IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
 
 !!! warning "IP denylisting support"
     This document describes the IP denylist configuration for the regular (client) and multi-tenant Wallarm node of version 3.4. For the Wallarm modules upgraded from version 3.2 up to 3.4, there is no difference in IP denylist configuration.

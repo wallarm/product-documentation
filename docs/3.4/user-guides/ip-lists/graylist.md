@@ -12,7 +12,7 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP graylist](../../images/user-guides/ip-lists/greylist.png)
+![!IP graylist](../../images/user-guides/ip-lists/graylist.png)
 
 !!! warning "IP graylisting support"
     IP graylisting for specific applications is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.

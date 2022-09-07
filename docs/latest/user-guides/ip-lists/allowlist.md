@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Allowlist**, you can manage allowl
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP allowlist](../../images/user-guides/ip-lists/whitelist-apps.png)
+![!IP allowlist](../../images/user-guides/ip-lists/allowlist-apps.png)
 
 ## Examples of IP allowlist usage
 
