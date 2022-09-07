@@ -90,7 +90,7 @@ Wallarm analyzes the values that are passed in each of the endpoint parameters a
 * Byte
 * MAC
 
-If Wallarm has no data to define the format, it sets the generic type:
+If the value in the parameter does not fit a specific data format, then one of the common data types will be specified:
 
 * Integer
 * Number
