@@ -40,9 +40,7 @@ The **API Abuse Prevention** module in the disabled state is delivered with [all
 To activate API Abuse Prevention:
 
 1. Make sure that your traffic is filtered by the Wallarm node 4.2 or later.
-
-    For the **API Abuse Prevention** activation, running Wallarm node 4.2 or later is necessary since the module is delivered with the node packages and uses these packages as well.
-1. Add the subscription plan for the **API Abuse Prevention** [module](../about-wallarm-waf/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Add the **API Abuse Prevention** [module](../about-wallarm-waf/subscription-plans.md#modules) to your subscription. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. Enable API Abuse Prevention for the required [applications](../user-guides/settings/applications.md) by creating the API Abuse profile in Wallarm Console → **API Abuse Prevention**.
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
