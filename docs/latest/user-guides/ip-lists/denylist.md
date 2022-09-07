@@ -7,7 +7,10 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![!IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
-    
+
+!!! info "Old name of the list"
+    The old name of the IP address denylist is "IP address blacklist".
+
 ## Examples of IP denylist usage
 
 * Block IP addresses from which several consecutive attacks were originated.

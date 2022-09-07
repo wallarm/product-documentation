@@ -14,6 +14,9 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
 
 ![!IP graylist](../../images/user-guides/ip-lists/graylist.png)
 
+!!! info "Old name of the list"
+    The old name of the IP address graylist is "IP address greylist".
+
 ## Examples of IP graylist usage
 
 * Graylist IP addresses from which several consecutive attacks were originated.

@@ -22,6 +22,9 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md) up to the latest version.
     2. If the Wallarm node version is 2.18 or lower, [migrate current IP denylists and allowlists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
+!!! info "Old name of the list"
+    The old name of the IP address graylist is "IP address greylist".
+
 ## Examples of IP graylist usage
 
 * Graylist IP addresses from which several consecutive attacks were originated.

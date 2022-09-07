@@ -26,6 +26,9 @@ The denylist is available in the **Denylist** section of your Wallarm account. T
     * [Instructions for the regular filtering node][link-ip-blocking]
     * To enable IP address denylisting on the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
+!!! info "Old name of the list"
+    The old name of the IP address denylist is "IP address blacklist".
+
 ## Review the Active Denylist
 
 By default, the **Denylist** section is opened on the **Now** tab with the currently denylisted IP addresses.

@@ -20,6 +20,9 @@ In the Wallarm Console → **IP lists** → **Allowlist**, you can manage allowl
 
     2. If the Wallarm node version is 2.18 or lower, [migrate current IP denylists and allowlists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
 
+!!! info "Old name of the list"
+    The old name of the IP address allowlist is "IP address whitelist".
+
 ## Examples of IP allowlist usage
 
 * To search for vulnerabilities in the system, you can use [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner). The Scanner sends malicious requests to your application addresses and analyzes application responses. If Scanner IP addresses are not allowlisted, the filtering node can block requests sent by Scanner. To allow Wallarm components to seamlessly scan your resources for vulnerabilities, it is necessary to allowlist Scanner IP addresses.

@@ -17,7 +17,10 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
     * If operating in the `off` or `monitoring` mode, Wallarm node does not block requests originated from the denylisted IP addresses
 
     If you still use Wallarm modules of version 3.2 or lower, we recommend [upgrading](../../updating-migrating/general-recommendations.md#update-process) them up to the latest version.
-    
+
+!!! info "Old name of the list"
+    The old name of the IP address denylist is "IP address blacklist".
+
 ## Examples of IP denylist usage
 
 * Block IP addresses from which several consecutive attacks were originated.
