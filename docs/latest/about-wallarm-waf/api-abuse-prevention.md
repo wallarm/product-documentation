@@ -28,7 +28,7 @@ For the module to identify anomaly traffic as originating from malicious bots, t
 * Response codes
 * Request headers, etc
 
-If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists](../user-guides/ip-lists/blacklist.md) the source of the anomaly traffic for 1 hour.
+If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists](../user-guides/ip-lists/denylist.md) the source of the anomaly traffic for 1 hour.
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
@@ -55,6 +55,6 @@ Once the bot protection profile is configured, the module will start the [traffi
 
 ## Exploring blocked malicious bots
 
-The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/blacklist.md) for 1 hour. You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist**.
+The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) for 1 hour. You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist**.
 
-TBD: Denylist image
+<!-- TBD: Denylist image -->
