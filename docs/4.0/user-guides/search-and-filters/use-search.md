@@ -235,6 +235,17 @@ This attribute value can be:
 * `aws` for Amazon
 * `azure` for Microsoft Azure
 * `gce` for Google Cloud Platform
+* `ibm` for IBM Cloud
+* `alibaba` for Alibaba Cloud
+* `huawei` for Huawei Cloud
+* `rackspace` for Rackspace Cloud
+* `plusserver` for PlusServer
+* `hetzner` for Hetzner
+* `oracle` for Oracle Cloud
+* `ovh` for OVHcloud
+* `tencent` for Tencent
+* `linode` for Linode
+* `docean` for Digital Ocean
 
 ### Search by the country or region in which the IP address is registered
 

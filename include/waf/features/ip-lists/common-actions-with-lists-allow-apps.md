@@ -15,14 +15,12 @@ To add an IP address, subnet, or group of IP addresses to the list:
             The supported maximum subnet mask is `/32` for IPv6 addresses and `/12` for IPv4 addresses.
     
     * Select a **country** or a **region** (geolocation) to add all IP addresses registered in this country or region
-    * Select a **source** to add all IP addresses that belong to this source:
+    * Select the **source type** to add all IP addresses that belong to this type, e.g.:
         * **Tor** for IP addresses of the Tor network
         * **Proxy** for IP addresses of public or web proxy servers
         * **Search Engine Spiders** for IP addresses of search engine spiders
         * **VPN** for IP addresses of virtual private networks
         * **AWS** for IP addresses registered in Amazon AWS
-        * **Azure** for IP addresses registered in Microsoft Azure
-        * **GCP** for IP addresses registered in Google Cloud Platform
 3. Select the applications to which you allow or restrict access for the specified IP addresses.
 4. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
 5. Specify the reason for adding an IP address or a group of IP addresses to the list.
@@ -37,11 +35,8 @@ The Wallarm Console displays the following data on each object added to the list
 * **Object** - IP address, subnet, country/region or IP source added to the list.
 * **Application** - application to which access configuration of the object is applied.
 * **Source** - source of a single IP address or subnet:
-    * Country/region (geolocation) where a single IP address or subnet is registered
-    * Data center where a single IP address or subnet is registered: **AWS** for Amazon, **GCP** for Google Cloud Platform, **Azure** for Microsoft Azure
-    * **Tor** for IP address of the Tor network
-    * **Proxy** for IP address of public or web proxy servers
-    * **VPN** for IP addresses of virtual private networks
+    * The country/region where a single IP address or subnet is registered (if it was found in the databases like IP2Location or others)
+    * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
 * **Reason** - reason for adding an IP address or a group of IP addresses to the list. The reason is manually specified when adding objects to the list or automatically generated when IPs are added to the list by [triggers](../triggers/triggers.md).
 * **Adding date** - date and time when an object was added to the list.
 * **Remove** - time period after which an object will be deleted from the list.
