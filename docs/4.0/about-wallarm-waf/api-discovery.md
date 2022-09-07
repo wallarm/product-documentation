@@ -102,8 +102,7 @@ For each parameter, the **Type** column displays:
 * Data format
 * If format is not defined - data type
 
-This data allows checking that values of the expected format are passed in each parameter.
-Inconsistencies can be the result of an attack or a scan of your API, for example:
+This data allows checking that values of the expected format are passed in each parameter. Inconsistencies can be the result of an attack or a scan of your API, for example:
 
 * The `String` values ​​are passed to the field with `IP`
 * The `Double` values are passed to the field where there should be a value no more than `Int32`

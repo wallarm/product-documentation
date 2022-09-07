@@ -47,7 +47,7 @@ Each parameter information includes:
     * Personally identifiable information (PII) like full name, passport number or SSN
 
 * Date and time when parameter information was last updated
-* Type of data sent in this parameter
+* [Type/format](../about-wallarm-waf/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
 
 ## Tracking changes in API structure
 
