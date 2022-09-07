@@ -12,7 +12,7 @@
 [img-creating-lb]:                  ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-load-balancer.png
 [img-creating-tcp-lb]:              ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/creating-tcp-load-balancer.png
 [img-new-frontend-ip-and-port]:     ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/frontend-configuration.png
-[img-checking-attacks]:             ../../../images/test-attack.png
+[img-checking-attacks]:             ../../../images/admin-guides/test-attacks-quickstart.png
 
 
 #   Setting up incoming request balancing on GCP
