@@ -8,7 +8,7 @@ If 4 or more different attack vectors are sent to the protected resource from on
 
 If you have recently created the Wallarm account, this trigger is already created and enabled. You can perform all available actions with the trigger: edit, disable, delete, or copy.
 
-![!Graylisting trigger](../../images/user-guides/triggers/trigger-example-greylist.png)
+![!Graylisting trigger](../../images/user-guides/triggers/trigger-example-graylist.png)
 
 **To test the trigger:**
 
