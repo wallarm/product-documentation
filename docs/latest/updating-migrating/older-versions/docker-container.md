@@ -46,7 +46,7 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:4.2.0-1
+    docker pull wallarm/node:4.2.1-1
     ```
 === "Envoy-based image"
     ``` bash
