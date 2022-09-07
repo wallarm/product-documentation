@@ -235,8 +235,8 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
     Starting with version 3.2, the logic of Wallarm node filtration modes has been changed as follows:
 
     * Wallarm node analyzes request source only in the `safe_blocking` and `block` modes now.
-    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [blacklisted](../user-guides/ip-lists/blacklist.md) IP, it does not block this request.
-    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [whitelisted](../user-guides/ip-lists/whitelist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
+    * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originated from the [denylisted](../user-guides/ip-lists/denylist.md) IP, it does not block this request.
+    * If the Wallarm node operating in the `monitoring` mode detects the attack originated from the [allowlisted](../user-guides/ip-lists/allowlist.md) IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
 
     When [upgrading](../updating-migrating/general-recommendations.md#update-process) Wallarm modules 3.0 or lower up to version 3.4, please ensure that the expected behavior of the `wallarm_mode` directive in version 3.4 corresponds to released changes or adjust filtration mode settings to the released changes. [Details on filtration mode configuration](configure-wallarm-mode.md)
 
@@ -394,7 +394,7 @@ The ability to manage the blocking of requests, which exceed the time limit set 
 - `attack`: depends on the attack blocking mode set in the `wallarm_mode` directive:
     - `off`: the requests are not processed.
     - `monitoring`: the requests are ignored but details on the `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
-    - `safe_blocking`: only requests originated from [greylisted](../user-guides/ip-lists/greylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
+    - `safe_blocking`: only requests originated from [graylisted](../user-guides/ip-lists/graylist.md) IP addresses are blocked and details on all `overlimit_res` attacks are uploaded to the Wallarm Cloud and displayed in Wallarm Console.
     - `block`: the requests are blocked.
 
 Regardless of the directive value, requests of the `overlimit_res` attack type are uploaded to the Wallarm Cloud except when [`wallarm_mode off;`](#wallarm_mode).

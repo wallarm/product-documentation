@@ -5,7 +5,7 @@
 [waf-mode-instr]:                   configure-wallarm-mode.md
 [logging-instr]:                    configure-logging.md
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
-[scanner-whitelisting-instr]:       scanner-ips-whitelisting.md
+[scanner-allowlisting-instr]:       scanner-ips-allowlisting.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
 [default-ip-blocking-settings]:     configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            configure-parameters-en.md#wallarm_acl

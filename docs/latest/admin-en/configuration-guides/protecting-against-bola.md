@@ -47,16 +47,16 @@ For the Wallarm node to identify the BOLA attacks:
 6. Select trigger reactions:
 
     * **Mark as BOLA**. Requests received after the threshold exceedance will be marked as the BOLA attack and displayed in the **Events** section of Wallarm Console. Wallarm node will NOT block these malicious requests.
-    * **Blacklist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [blacklist](../../user-guides/ip-lists/blacklist.md).
+    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/denylist.md).
     
-        The Wallarm node will block both legitimate and malicious requests (including the BOLA attacks) originating from the blacklisted IP.
+        The Wallarm node will block both legitimate and malicious requests (including the BOLA attacks) originating from the denylisted IP.
     
-    * **Greylist IP address** and the period to [greylist](../../user-guides/ip-lists/greylist.md) IP addresses of malicious request sources.
+    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources.
     
-        The Wallarm node will block requests originating from the greylisted IPs only if requests contain [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
+        The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
         
-        !!! info "BOLA attack originating from greylisted IPs"
-            The BOLA attacks originating from greylisted IPs are not blocked.
+        !!! info "BOLA attack originating from graylisted IPs"
+            The BOLA attacks originating from graylisted IPs are not blocked.
 1. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 Example of a trigger to detect and block BOLA attacks aimed at shop financial data (the API endpoint is `https://example.com/shops/{shop_id}/financial_info`):
@@ -72,9 +72,9 @@ You can configure several triggers with different filters for BOLA protection.
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/shops/$i/financial_info ; done
     ```
-1. If the trigger reaction is **Blacklist IP address**, open Wallarm Console → **IP lists** → **Blacklist** and check that the source IP address is blocked.
+1. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **IP lists** → **Denylist** and check that the source IP address is blocked.
 
-    If the trigger reaction is **Greylist IP address**, check the section **IP lists** → **Greylist** of Wallarm Console.
+    If the trigger reaction is **Graylist IP address**, check the section **IP lists** → **Graylist** of Wallarm Console.
 1. Open the section **Events** and check that requests are displayed in the list as the BOLA attack.
 
     ![!BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)

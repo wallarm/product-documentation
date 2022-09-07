@@ -10,7 +10,7 @@
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[greylist-docs]:                     ../../user-guides/ip-lists/greylist.md
+[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
@@ -55,9 +55,9 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 5: Migrate whitelists and blacklists from the previous Wallarm node version to 3.6
+## Step 5: Migrate allowlists and denylists from the previous Wallarm node version to 3.6
 
-[Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 3.6.
+[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 3.6.
 
 ## Step 6: Switch from deprecated configuration options
 

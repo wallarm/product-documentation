@@ -9,7 +9,7 @@
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[greylist-docs]:                    ../user-guides/ip-lists/greylist.md
+[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
 [application-configuration]:        ../user-guides/settings/applications.md
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection

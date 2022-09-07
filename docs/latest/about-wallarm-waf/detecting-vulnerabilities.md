@@ -1,4 +1,4 @@
-[whitelist-scanner-addresses]: ../user-guides/ip-lists/whitelist.md
+[allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
 # Detecting vulnerabilities
 
@@ -61,12 +61,12 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 * Scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, Scanner is enabled.
 * The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by Scanner can be configured in the Wallarm Console → **Scanner** section. By default, Vulnerability Scanner detects all available vulnerabilities.
 * The [limit of requests sent from Scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section.
-* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure a whitelist with the IP addresses for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+* If you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the IP addresses for the Wallarm Scanner. This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
 
     * [Scanner IP address registered in Wallarm EU Cloud](../admin-en/scanner-address-eu-cloud.md)
     * [Scanner IP address registered in Wallarm US Cloud](../admin-en/scanner-address-us-cloud.md)
 
-    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually whitelist Scanner IP addresses. Starting with Wallarm node 3.0, Scanner IP addresses are whitelisted automatically.
+    If you do not use additional facilities but use Wallarm Scanner, you do not need to manually allowlist Scanner IP addresses. Starting with Wallarm node 3.0, Scanner IP addresses are allowlisted automatically.
 
 ## False positives
 

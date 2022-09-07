@@ -7,7 +7,7 @@
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[greylist-docs]:                     ../../user-guides/ip-lists/greylist.md
+[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 
 # Upgrading the cloud node image 2.18 or lower
@@ -86,7 +86,7 @@ The module operation can cause [false positives](../../about-wallarm-waf/protect
       If so, please rename it to `wallarm_request_cpu_time`.
 
       We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
-1. [Migrate](../migrate-ip-lists-to-node-3.md) whitelist and blacklist configuration from previous Wallarm node version to 4.0.
+1. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.0.
 1. If the page `&/usr/share/nginx/html/wallarm_blocked.html` is returned to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) its new version.
 
       In the new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.

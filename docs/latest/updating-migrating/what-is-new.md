@@ -20,11 +20,11 @@ Wallarm node will decode received JWT and detect the mentioned payload pointing 
 
 ![!JWT attack in the interface](../images/user-guides/events/jwt-attack.png)
 
-## Blocking requests from blacklisted IPs in any filtration mode
+## Blocking requests from denylisted IPs in any filtration mode
 
-Request source blacklisting enables you to define distrusted IP addresses for the node to block any requests from them in any mode. Wallarm node 4.0 and lower does not meet this standard blacklist behavior.
+Request source denylisting enables you to define distrusted IP addresses for the node to block any requests from them in any mode. Wallarm node 4.0 and lower does not meet this standard denylist behavior.
 
-In Wallarm node 4.2, we improved the [blacklist logic](../user-guides/ip-lists/blacklist.md) to work as expected by default. Now, it blocks any requests originating from blacklisted IPs in any [filtration mode](../admin-en/configure-wallarm-mode.md).
+In Wallarm node 4.2, we improved the [denylist logic](../user-guides/ip-lists/denylist.md) to work as expected by default. Now, it blocks any requests originating from denylisted IPs in any [filtration mode](../admin-en/configure-wallarm-mode.md).
 
 The new behavior has been implemented by setting [`wallarm_acl_access_phase on`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) by default.
 

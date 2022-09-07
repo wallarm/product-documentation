@@ -111,7 +111,7 @@ Besides the standard ones, the following additional parameters are supported:
 * [wallarm-process-time-limit](configure-parameters-en.md#wallarm_process_time_limit)
 * [wallarm-process-time-limit-block](configure-parameters-en.md#wallarm_process_time_limit_block)
 * [wallarm-request-memory-limit](configure-parameters-en.md#wallarm_request_memory_limit)
-* `enable-wallarm-acl` - enables blocking by IP addresses [specified](../user-guides/blacklist.md) in your Wallarm account
+* `enable-wallarm-acl` - enables blocking by IP addresses [specified](../user-guides/denylist.md) in your Wallarm account
 * [wallarm-acl-mapsize](configure-parameters-en.md#wallarm_acl_mapsize)
 
 ## Ingress Annotations
@@ -148,7 +148,7 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
 
 #### Enabling IP blocking
 
-To enable IP blocking, [create](../user-guides/blacklist.md) the addresses list in your Wallarm account and execute the following command:
+To enable IP blocking, [create](../user-guides/denylist.md) the addresses list in your Wallarm account and execute the following command:
 
 ```
 kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-acl=on

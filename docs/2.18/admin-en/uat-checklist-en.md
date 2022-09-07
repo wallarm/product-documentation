@@ -10,7 +10,7 @@ This section provides you with a checklist to ensure your Wallarm instance opera
 | [Wallarm marks requests as false and stops blocking them](#wallarm-marks-requests-as-false-and-stops-blocking-them)               | Wallarm does not block the requests |        |
 | [Wallarm detects vulnerabilities and creates security incidents](#wallarm-detects-vulnerabilities-and-creates-security-incidents) | Security incidents are created      |        |
 | [Wallarm detects perimeter](#wallarm-detects-perimeter)                                                                                   | Scope is discovered                 |        |
-| [Blacklisting works](#blacklisting-works)                                                                                         | IP addresses are blocked            |        |
+| [Denylisting works](#denylisting-works)                                                                                         | IP addresses are blocked            |        |
 | [Users can be configured and have proper access rights](#users-can-be-configured-and-have-proper-access-rights)                   | Users can be created and updated    |        |
 | [User activity log has records](#user-activity-log-has-records)                                                                   | The log has records                 |        |
 | [Reporting works](#reporting-works)                                                                                               | You receive reports                 |        | |
@@ -88,13 +88,13 @@ See also [Checking attacks and incidents](../user-guides/events/check-attack.md)
 
 See also [Working with the scanner](../user-guides/scanner/intro.md).
 
-## Blacklisting Works
+## Denylisting Works
 
 1. Set up IP address blocking as described in [Blocking by IP address](../admin-en/configure-ip-blocking-en.md).
-2. On the *Settings* -> *Blacklist* tab, add the blocked IP address.
+2. On the *Settings* -> *Denylist* tab, add the blocked IP address.
 3. Check if the IP address is blocked and the Wallarm interface displays the IP address as blocked.
 
-See also [IP Blacklist](../user-guides/blacklist.md).
+See also [IP Denylist](../user-guides/denylist.md).
 
 ## Users Can Be Configured and Have Proper Access Rights
 

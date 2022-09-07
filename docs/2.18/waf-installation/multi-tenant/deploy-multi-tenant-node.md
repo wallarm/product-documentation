@@ -36,7 +36,7 @@ Multi-tenant node:
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The directive [`wallarm_instance`](../../admin-en/configure-parameters-en.md#wallarm_instance) is used to split settings by the tenant applications. There can be several applications.
-* To enable [blocking of requests by IP addresses](../../user-guides/blacklist.md), please send a request to [Wallarm technical support](mailto:support@wallarm.com). After blocking is enabled, to block IP addresses, you need to add them to the blacklist at an appropriate tenant account level.
+* To enable [blocking of requests by IP addresses](../../user-guides/denylist.md), please send a request to [Wallarm technical support](mailto:support@wallarm.com). After blocking is enabled, to block IP addresses, you need to add them to the denylist at an appropriate tenant account level.
 
 ## Deployment requirements
 

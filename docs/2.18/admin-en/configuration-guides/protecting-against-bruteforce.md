@@ -71,7 +71,7 @@ The steps to configure the trigger are:
 
     * If the trigger condition is **Brute force** - the reaction is **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Events** section of Wallarm Console.
     * If the trigger condition is **Forced browsing** - the reaction is **Mark as forced browsing**. Requests received after the threshold exceedance will be marked as the forced browsing attack and displayed in the **Events** section of Wallarm Console.
-    * **Blacklist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [blacklist](../../user-guides/blacklist.md). The Wallarm node will block all requests originated from the blacklisted IP after the threshold was exceeded.
+    * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/denylist.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
 
 Example of the **Brute force** trigger to block the regular brute‑force attacks addressed to `https://example.com/api/v1/login`:
 
@@ -88,7 +88,7 @@ You can configure several triggers for brute force protection.
     ```bash
     for (( i=0 ; $i<51 ; i++ )) ; do curl https://example.com/api/v1/login ; done
     ```
-2. If the trigger reaction is **Blacklist IP address**, open Wallarm Console → **Blacklist** and check that source IP address is blocked.
+2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **Denylist** and check that source IP address is blocked.
 3. Open the section **Events** and check that requests are displayed in the list as the brute‑force or forced browsing attack.
 
     ![!Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)

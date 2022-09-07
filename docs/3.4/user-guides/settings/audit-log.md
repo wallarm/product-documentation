@@ -12,7 +12,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * [Wallarm nodes](../nodes/cloud-node.md)
 * [Triggers](../triggers/triggers.md)
 * [Integrations](integrations/integrations-intro.md)
-* [Blocked IP address](../ip-lists/blacklist.md)
+* [Blocked IP address](../ip-lists/denylist.md)
 * [Hit sampling](../events/analyze-attack.md#sampling-of-hits)
 
 The logs also include information on the following actions and objects:

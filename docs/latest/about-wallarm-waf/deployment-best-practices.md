@@ -68,9 +68,9 @@ Like with every other critical component in your production environment, Wallarm
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
-## Learn how to use IP address whitelist, blacklist, and greylist
+## Learn how to use IP address allowlist, denylist, and graylist
 
-In addition to blocking individual malicious requests, Wallarm filtering nodes can also block individual end-user IP addresses. Rules for IPs blocking are configured using whitelists, blacklists and greylists.
+In addition to blocking individual malicious requests, Wallarm filtering nodes can also block individual end-user IP addresses. Rules for IPs blocking are configured using allowlists, denylists and graylists.
 
 [More details on using IP lists →](../user-guides/ip-lists/overview.md)
 
@@ -97,9 +97,9 @@ Depending on your specific environment we recommend you configure the following 
 
 * Monitoring for the increased level of malicious requests detected by the Wallarm nodes. This trigger may signal one of the following potential problems:
 
-    * You are under attack and the Wallarm node is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually blacklist (block) reported attacker IP addresses.
+    * You are under attack and the Wallarm node is successfully blocking malicious requests. You may consider reviewing the detected attacks and manually denylist (block) reported attacker IP addresses.
     * You have an increased level of false positive attacks detected by the Wallarm nodes. You may consider escalating this to the [Wallarm technical support team](mailto:support@wallarm.com) or manually [mark the requests as false positives](../user-guides/events/false-attack.md).
-    * If you have the [blacklisting trigger](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) active but still receive alerts about an increased level of attacks, then the alert may signal that the trigger is not working as expected.
+    * If you have the [denylisting trigger](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) active but still receive alerts about an increased level of attacks, then the alert may signal that the trigger is not working as expected.
 
     [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
 * Notify that a new user was added to your company account in Wallarm Console
@@ -110,7 +110,7 @@ Depending on your specific environment we recommend you configure the following 
     [Instructions on configuring brute force protection →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
 * Notify that new IP addresses were blocked
 
-    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-blacklist)
+    [See the configured trigger example →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-denylist)
 
 ## Enable SAML SSO for your account in Wallarm Console
 
@@ -129,7 +129,7 @@ Wallarm is constantly working to improve the filtering node software, with new r
 ## Learn known caveats
 
 * All Wallarm nodes connected to the same Wallarm account will receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
-* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#blacklist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all applications in a Wallarm account.
+* If you have the trigger configured to automatically block an IP address ([trigger example](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)), the system will block the IP for all applications in a Wallarm account.
 
 ## Follow the best practices for the Active threat verification feature
 

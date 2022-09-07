@@ -7,7 +7,7 @@
 The *General* tab of the *Settings* section allows users to switch between different Wallarm operation modes:
 
 * **Local settings (default)**: this mode exploits settings from a filter node configuration file.
-* **Safe blocking**: all malicious requests originated from [greylisted IPs](../ip-lists/greylist.md) are blocked.
+* **Safe blocking**: all malicious requests originated from [graylisted IPs](../ip-lists/graylist.md) are blocked.
 * **Monitoring**: all requests are processed, but none of them are blocked even if an attack is detected.
 * **Blocking**: all requests where an attack was detected are blocked.
 
@@ -16,4 +16,4 @@ To learn more about available configuration options, proceed to the [link][link-
 ![!General tab overview][img-general-settings]
 
 !!! info "Qrator"
-    Those Wallarm customers plugged in with Qrator traffic filters have the *Blocking with Qrator* setting. This setting enables automatic malicious requests blocking. The blocking is done with the Qrator IP blacklists. Wallarm transfers to Qrator the data on those IP addresses from which the attacks originated.
+    Those Wallarm customers plugged in with Qrator traffic filters have the *Blocking with Qrator* setting. This setting enables automatic malicious requests blocking. The blocking is done with the Qrator IP denylists. Wallarm transfers to Qrator the data on those IP addresses from which the attacks originated.

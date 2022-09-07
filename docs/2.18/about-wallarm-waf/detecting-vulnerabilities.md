@@ -1,4 +1,4 @@
-[whitelist-scanner-addresses]: ../admin-en/attack-rechecker-best-practices.md#configure-proper-white-listing-rules-for-scanner-ip-addresses
+[allowlist-scanner-addresses]: ../admin-en/attack-rechecker-best-practices.md#configure-proper-white-listing-rules-for-scanner-ip-addresses
 
 # Detecting vulnerabilities
 
@@ -61,7 +61,7 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 * Scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, Scanner is enabled	
 * The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by Scanner can be configured in the Wallarm Console → **Scanner** section. By default, Vulnerability Scanner detects all available vulnerabilities	
 * The [limit of requests sent from Scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section	
-* If the filtering node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-whitelisting.md) from which Scanner sends requests
+* If the filtering node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-allowlisting.md) from which Scanner sends requests
 
 ## False positives
 

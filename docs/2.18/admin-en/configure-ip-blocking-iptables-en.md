@@ -12,12 +12,12 @@ To block by IP address, use the `block_with_iptables.rb` script, which is modifi
 To effectively use the script, the filter node must regularly download
 from the Wallarm cloud an updated list of the IP addresses to be blocked.
 
-!!! info "Whitelist"
-    You can whitelist an IP address. A whitelisted IP address is allowed to request the web application's server and bypasses the blacklist check.
+!!! info "Allowlist"
+    You can allowlist an IP address. An allowlisted IP address is allowed to request the web application's server and bypasses the denylist check.
 
 ##  Set up Blocking by IP Address
 
-1.  Contact [Wallarm Support](mailto:support@wallarm.com) and request to create a system user with access to the blacklists.
+1.  Contact [Wallarm Support](mailto:support@wallarm.com) and request to create a system user with access to the denylists.
 
 2.  Install the `wallarm_extra_scripts` package. This package is in the Wallarm repository. 
 
@@ -56,16 +56,16 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         sudo yum install wallarm-extra-scripts
         ```
 
-    The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_blacklist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.
+    The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_denylist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.
 
 3.  Create and configure the `iptables` to specify what traffic must be blocked. For example, to block all traffic on port 80 and port 443, run:
 
     ```
     iptables -N wallarm_check
-    iptables -N wallarm_blacklist
+    iptables -N wallarm_denylist
     iptables -A INPUT -p tcp --dport 80 -j wallarm_check
     iptables -A INPUT -p tcp --dport 443 -j wallarm_check
-    iptables -A wallarm_check -j wallarm_blacklist
+    iptables -A wallarm_check -j wallarm_denylist
     ```
   
 4.  Set up regular execution of the script by using the `cron` utility:
@@ -89,17 +89,17 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         *   If the script does not finish within the 90 second timeout, then its execution will be explicitly terminated.
         *   The script's logs will be written in the specified log file (e.g, `/path/to/log`); the `stderr` error output stream will be redirected to the `stdout` standard output stream.
          
-5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.blacklist-sync.last` because it changes every time the script starts successfully.
+5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.denylist-sync.last` because it changes every time the script starts successfully.
 
-6.  Whitelisting IP addresses. 
+6.  Allowlisting IP addresses. 
 
-    To whitelist several IP addresses, run the following command for the range of IP addresses. Replace `1.2.3.4/30` with the necessary value:
+    To allowlist several IP addresses, run the following command for the range of IP addresses. Replace `1.2.3.4/30` with the necessary value:
 
     ```
     iptables -I wallarm_check -s 1.2.3.4/30 -j RETURN
     ```
 
-    To whitelist one IP address, replace `1.2.3.4` with the necessary value:
+    To allowlist one IP address, replace `1.2.3.4` with the necessary value:
 
     ```
     iptables -I wallarm_check -s 1.2.3.4 -j RETURN

@@ -173,7 +173,7 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
 4.  Add the following lines to the `/etc/wallarm/node.yaml` file:
 
     ```
-    sync_blacklist:
+    sync_denylist:
         nginx_url: http://127.0.0.9/wallarm-acl
     ```
 5.  Restart NGINX:
@@ -182,14 +182,14 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
     sudo service nginx reload
     ```
 
-6.  Activate the blacklist synchronization. 
+6.  Activate the denylist synchronization. 
 
-    One way to do this is to uncomment the line containing `sync-blacklist` as a substring in the `/etc/cron.d/wallarm-node-nginx` file by removing the `#` symbol at the beginning of the line. 
+    One way to do this is to uncomment the line containing `sync-denylist` as a substring in the `/etc/cron.d/wallarm-node-nginx` file by removing the `#` symbol at the beginning of the line. 
     
     You can also do this by running the following command:
     
     ```
-    sed -i -Ee 's/^#(.*sync-blacklist.*)/\1/' /etc/cron.d/wallarm-node-nginx
+    sed -i -Ee 's/^#(.*sync-denylist.*)/\1/' /etc/cron.d/wallarm-node-nginx
     ```
     
     !!! info "Using the `sed` command"
@@ -204,19 +204,19 @@ By default, blocking by IP address is turned off. To activate it, proceed to the
             * The second non‑option parameter will be used as an input file. 
         * The `-E` option means that the script following this option uses the [extended regular expression syntax](https://www.gnu.org/software/sed/manual/sed.html#ERE-syntax).
         
-        The script that follows the options replaces the lines that satisfy the `^#(.*sync-blacklist.*)` regular expression with the string that satisfies the subexpression in parenthesis in the `/etc/cron.d/wallarm-node-nginx` file. The `\1` back‑reference of the sed command means that the subexpression in the first parenthesis should be used as a replacement.
+        The script that follows the options replaces the lines that satisfy the `^#(.*sync-denylist.*)` regular expression with the string that satisfies the subexpression in parenthesis in the `/etc/cron.d/wallarm-node-nginx` file. The `\1` back‑reference of the sed command means that the subexpression in the first parenthesis should be used as a replacement.
         
-        The line that satisfies the `^#(.*sync-blacklist.*)` regular expression
+        The line that satisfies the `^#(.*sync-denylist.*)` regular expression
         * starts with the `#` symbol.
-        * contains `sync-blacklist` as a substring.
+        * contains `sync-denylist` as a substring.
         
         The replacement for the described line is the substring of this line without the `#` symbol at the beginning of the line. 
         
-        This command uncomments the line that enables blacklist synchronization. Thus, the blacklist synchronization will be activated.
+        This command uncomments the line that enables denylist synchronization. Thus, the denylist synchronization will be activated.
         
         You can learn more about sed by proceeding with the [link](https://www.gnu.org/software/sed/manual/sed.html).
     
-7.  You can add IP addresses to the whitelist to skip checking of the blacklist upon receiving a request from them. For example, the following lines in the vhost or location configuration file add the `1.2.3.4/32` IP address pool to its whitelist:
+7.  You can add IP addresses to the allowlist to skip checking of the denylist upon receiving a request from them. For example, the following lines in the vhost or location configuration file add the `1.2.3.4/32` IP address pool to its allowlist:
 
     ```
     server {

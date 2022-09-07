@@ -3,49 +3,28 @@
 
 [img-profile]:              ../../images/user-guides/settings/profile.png
 [img-2fa-page]:             ../../images/user-guides/settings/2fa-page.png
-[img-personal-reports]:     ../../images/user-guides/settings/personal-reports.png
 
 # Checking Your Profile
 
 To see your profile data and settings, proceed to *Settings* → *Profile* tab.
 
-In your profile, you can check your account information.
+In your profile, you can check your account information:
 
-* Your *Email* is shown in large font at the top of the page.
-* Your *Role* in the Wallarm system&nbsp;— **Admin**, **Analyst**, or **Deploy** is shown right below your email.
-* *Name & phone*.
-* *Date & time format*: your preferred date and time format to be used in the Wallarm system.
-* *Email reports*: your preferred reports frequency and reported events.
-* *Security*: your last password data change and Two-Factor authentication status. Some elements may be unavailable if you use SSO authentication.
-* *Recent sign in*: your sign-in history in the Wallarm system.
+* Email
+* Assigned [role](users.md#user-roles) - **Admin**, **Analyst**, or **Read only**
+* Name and phone
+* Preferred date and time format to be used in the Wallarm system
+* Security: your last password data change and two-factor authentication status. Some elements may be unavailable if you use SSO authentication.
+* [API credentials](../../api/overview.md)
+* Sign-in history
 
 You can click the *Sign out* button to log out of your Wallarm account.
 
 ![!Profile overview][img-profile]
 
-## Configuring Your Profile
+If required, you can edit account information on the same page.
 
-### Changing Your Name and Phone Number
-
-1. Click your current name.
-1. In the form that appears, enter your new first name, last name, and phone number.
-1. Click the *Save* button to apply changes.
-
-### Changing Your Date & Time Format
-
-1. Click your current preferred date&time format.
-1. Pick the desired date&time format from the drop-down list.
-1. Select the checkbox *24-hour time* to display time in the 24-hour format.
-
-### Changing Your Personal Reports Settings
-
-1. Click your current personal reports settings.
-1. In the form that appears, select your desired report frequency and reported events.
-1. Click the *Save* button to apply changes.
-
-![!Personal reports settings][img-personal-reports]
-
-### Changing Your Password
+## Changing Your Password
 
 !!! info "Unavailable if using SSO"
     If you are using the SSO authentication, email/password authentication is unavailable and you cannot use or change your password. Changing password section will be unavailable.
@@ -54,7 +33,7 @@ You can click the *Sign out* button to log out of your Wallarm account.
 1. In the form that appears, enter your current password, your new password, and a new password confirmation.
 1. Click the *Change password* button
 
-### Enabling Two-Factor Authentication
+## Enabling Two-Factor Authentication
 
 You can use Google Authenticator (or similar apps supporting TOTP) to enable two-factor authentication.
 
