@@ -140,7 +140,7 @@ Wallarm regularly updates **proton.db** with token sequences for new attack type
 
 The [**libdetection**](https://github.com/wallarm/libdetection) library additionally validates attacks detected by the library **libproton** as follows:
 
-* If **libdetection** confirms the attack signs detected by **libproton**, the attack is uploaded to the Wallarm Cloud and blocked (if the filtering node is working in the `block` mode).
+* If **libdetection** confirms the attack signs detected by **libproton**, the attack is blocked (if the filtering node is working in the `block` mode) and uploaded to the Wallarm Cloud.
 * If **libdetection** does not confirm the attack signs detected by **libproton**, the request is considered legitimate, the attack is not uploaded to the Wallarm Cloud and is not blocked (if the filtering node is working in the `block` mode).
 
 Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
