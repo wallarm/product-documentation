@@ -56,16 +56,16 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         sudo yum install wallarm-extra-scripts
         ```
 
-    The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_denylist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.
+    The `block_with_iptables.rb` script will be installed automatically. On each start, the script creates or updates the `wallarm_blacklist` chain in the table `filter`. Each blocked IP address gets the rule `REJECT`.
 
 3.  Create and configure the `iptables` to specify what traffic must be blocked. For example, to block all traffic on port 80 and port 443, run:
 
     ```
     iptables -N wallarm_check
-    iptables -N wallarm_denylist
+    iptables -N wallarm_blacklist
     iptables -A INPUT -p tcp --dport 80 -j wallarm_check
     iptables -A INPUT -p tcp --dport 443 -j wallarm_check
-    iptables -A wallarm_check -j wallarm_denylist
+    iptables -A wallarm_check -j wallarm_blacklist
     ```
   
 4.  Set up regular execution of the script by using the `cron` utility:
@@ -89,7 +89,7 @@ from the Wallarm cloud an updated list of the IP addresses to be blocked.
         *   If the script does not finish within the 90 second timeout, then its execution will be explicitly terminated.
         *   The script's logs will be written in the specified log file (e.g, `/path/to/log`); the `stderr` error output stream will be redirected to the `stdout` standard output stream.
          
-5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.denylist-sync.last` because it changes every time the script starts successfully.
+5.  If necessary, set up script monitoring. You can monitor the script by checking the modification time `mtime` of the file `/tmp/.wallarm.blacklist-sync.last` because it changes every time the script starts successfully.
 
 6.  Allowlisting IP addresses. 
 
