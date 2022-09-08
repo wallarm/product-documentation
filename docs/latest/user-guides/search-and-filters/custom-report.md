@@ -6,6 +6,8 @@
 
 You can filter events and then export the results into a PDF or CSV report. Wallarm will email the custom report to the specified address.
 
+PDF is a classic report good for the history or presenting to the head of security etc. CSV is good for the analytical purposes. You can use it for creating dashboards, getting unique attacker IPs, the list of attacked API hosts/applications, etc.  
+
 ## Create report
 
 1. At the **Events** tab, [filter][link-using-search] the events.
