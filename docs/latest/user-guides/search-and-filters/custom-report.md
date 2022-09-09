@@ -6,7 +6,13 @@
 
 You can filter events and then export the results into a PDF or CSV report. Wallarm will email the custom report to the specified address.
 
-PDF is a classic report good for the history or presenting to the head of security etc. CSV is good for the analytical purposes. You can use it for creating dashboards, getting unique attacker IPs, the list of attacked API hosts/applications, etc.  
+PDF is a visually rich report, good for data analysis and presenting. This report includes:
+
+* Generic summary on all types of events
+* Separate summaries for attacks, vulnerabilities and incidents
+* Detailed information on the events in each section
+
+CSV is good for the technical purposes. You can use it for creating dashboards, getting unique attacker IPs, the list of attacked API hosts/applications, etc. 
 
 ## Create report
 
@@ -19,7 +25,7 @@ PDF is a classic report good for the history or presenting to the head of securi
 
 ## Download previously created PDF report
 
-3 last PDF reports are saved. If necessary, download them from the export dialog.
+3 last PDF reports are saved. If necessary, download them from the export window.
 
 ## CSV report
 
