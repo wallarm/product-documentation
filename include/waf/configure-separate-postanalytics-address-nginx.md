@@ -15,4 +15,4 @@ wallarm_tarantool_upstream wallarm_tarantool;
 
 * `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
 * `keepalive` value must not be lower than the number of the Tarantool servers.
-* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - do not forget to delete `#`.
+* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
