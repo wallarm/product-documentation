@@ -145,11 +145,11 @@ To monitor the filtering node, there are Nagios‑compatible scripts inside the 
 Example of running the scripts:
 
 ``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios-plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
+docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_tarantool_timeframe -w 1800 -c 900
 ```
 
 ``` bash
-docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios-plugins/check_wallarm_export_delay -w 120 -c 300
+docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallarm_export_delay -w 120 -c 300
 ```
 
 * `<WALLARM_NODE_CONTAINER_ID>` is the ID of the running Wallarm Docker container. To get the ID, run `docker ps` and copy the proper ID.
