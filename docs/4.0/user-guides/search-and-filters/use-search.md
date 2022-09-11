@@ -125,6 +125,26 @@ This tag allows the following values:
 * `proto:webdav`
 * `proto:json-rpc`
 
+### Search hits by authentication protocols
+
+To filter hits by authentication protocols attackers have used, use the `auth:` tag.
+
+This tag allows the following values:
+
+* `auth:none`
+* `auth:api-key`
+* `auth:aws`
+* `auth:basic`
+* `auth:bearer`
+* `auth:cookie`
+* `auth:digest`
+* `auth:hawk`
+* `auth:jwt`
+* `auth:ntlm`
+* `auth:oauth1`
+* `auth:oauth2`
+* `auth:scram`
+
 ### Search by the attack target or the vulnerability target
 
 Specify in the search string:
