@@ -58,7 +58,7 @@ Starting with version 3.2, the logic of Wallarm node filtration modes has been c
     The Wallarm node operating in `safe_blocking` mode blocks only those malicious requests originated from graylisted IP addresses that allow a significant reduction of [false positives](../about-wallarm-waf/protecting-against-attacks.md#false-positives) numbers.
 * New reaction of triggers **Add to graylist** allowing to automatically graylist IP addresses originated a specific number of malicious requests.
 
-    [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
+    [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)
 * Management of [IP address allowlist](../user-guides/ip-lists/allowlist.md) via Wallarm Console.
 * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.

@@ -164,7 +164,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         The **safe blocking** mode enables a significant reduction of [false positive](../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
-        For automatic IP address graylisting there is a new [trigger **Add to graylist**](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour) released.
+        For automatic IP address graylisting there is a new [trigger **Add to graylist**](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) released.
     
     * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
     

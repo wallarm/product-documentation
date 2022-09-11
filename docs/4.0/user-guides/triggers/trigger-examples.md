@@ -2,33 +2,35 @@
 
 Learn real examples of [Wallarm triggers](triggers.md) to better understand this feature and configure triggers appropriately.
 
-## Graylist IP if 4 or more attack vectors are detected in 1 hour
+## Graylist IP if 4 or more malicious payloads are detected in 1 hour
 
-If 4 or more different attack vectors are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour. This trigger will be run only if the node filters requests in safe blocking [mode](../../admin-en/configure-wallarm-mode.md).
+If 4 or more different malicious payloads are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour.
 
-If you have recently created the Wallarm account, this trigger is already created and enabled. You can perform all available actions with the trigger: edit, disable, delete, or copy.
+If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as manually created triggers.
 
 ![!Graylisting trigger](../../images/user-guides/triggers/trigger-example-graylist.png)
 
 **To test the trigger:**
 
-1. Ensure that the node filters requests in [safe blocking](../../admin-en/configure-wallarm-mode.md) mode.
-2. Send the following requests to the protected resource:
+1. Send the following requests to the protected resource:
 
     ```bash
     curl http://localhost/instructions.php/etc/passwd
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://localhost/news.php?news_id=%27123%E2%80%99%20UNION%20SELECT%20login%20FROM%20users--a-%27
     ```
 
-    There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
-3. Open the Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
-4. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
+    There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
+1. Open Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
+1. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
-    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-## Denylist IP if 4 or more attack vectors are detected in 1 hour
+The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode. However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
+
+## Denylist IP if 4 or more malicious payloads are detected in 1 hour
 
 If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
 
@@ -41,17 +43,18 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
     ```bash
     curl http://localhost/instructions.php/etc/passwd
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://localhost/news.php?news_id=%27123%E2%80%99%20UNION%20SELECT%20login%20FROM%20users--a-%27
     ```
 
-    There are 3 attack vectors in these requests: [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal).
-2. Open the Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
+    There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
+2. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
-    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour).
+If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
 
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 
@@ -224,24 +227,26 @@ If an IP address was added to the denylist, the webhook about this event will be
 
 ## Group hits originating from the same IP into one attack
 
-If more than 100 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hit) from the same IP address are detected in an hour, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
+If more than 50 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hit) from the same IP address are detected in 15 minutes, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
+
+If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as manually created triggers.
 
 ![!Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-**To test the trigger**, send 101 or more hits as follows:
+**To test the trigger**, send 51 or more hits as follows:
 
-* All hits are sent in an hour
+* All hits are sent in 15 minutes
 * The IP addresses of the hit sources are the same
 * Hits have different attack types or parameters with malicious payloads or addresses the hits are sent to (so that the hits are not [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) into an attack by the basic method)
 * Attack types are different from Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch
 
 Example:
 
-* 10 hits are sent to `example.com`
-* 50 hits are sent to `test.com`
-* 60 hits are sent to `example-domain.com`
+* 10 hits to `example.com`
+* 20 hits to `test.com`
+* 40 hits to `example-domain.com`
 
-The first 100 hits will appear in the event list as individual hits. All of the following hits will be grouped into one attack, e.g.:
+The first 50 hits will appear in the event list as individual hits. All of the following hits will be grouped into one attack, e.g.:
 
 ![!Hits grouped by IP into one attack](../../images/user-guides/events/attack-from-grouped-hits.png)
 

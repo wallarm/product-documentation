@@ -68,7 +68,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     
     * New reaction of triggers **Add to graylist** allowing to automatically graylist IP addresses originated a specific number of malicious requests.
 
-        [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-attack-vectors-are-detected-in-1-hour)
+        [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)
     
     * Management of [IP address allowlist](../user-guides/ip-lists/allowlist.md) via Wallarm Console.
     * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
