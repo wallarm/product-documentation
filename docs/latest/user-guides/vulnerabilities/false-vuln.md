@@ -1,6 +1,5 @@
 [link-analyzing-vulns]:     analyze-vuln.md
 
-[img-false-vuln]:       ../../images/user-guides/vulnerabilities/false-vuln.png
 [img-false-vuln-page]:       ../../images/user-guides/vulnerabilities/false-vuln-page.png
 
 # Working with false vulnerabilities
@@ -14,11 +13,7 @@ After analyzing a vulnerability, you may conclude that the vulnerability is a fa
 
 ## Mark a vulnerability as a false positive
 
-Click the **Mark as false** button next to the desired vulnerability in the list to mark this vulnerability as a false positive.
-
-![!False positive in the vulnerability list][img-false-vuln]
-
-You can also mark the vulnerability as a false positive by clicking the **Mark as false** button on the page of the desired vulnerability.
+You can mark the vulnerability as a false positive by clicking an appropriate button either in the vulnerability menu or on the page of the desired vulnerability.
 
 ![!False positive on the vulnerability page][img-false-vuln-page]
 

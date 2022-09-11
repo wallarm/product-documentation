@@ -13,7 +13,7 @@ You can recheck vulnerabilities.
 ## Recheck a Vulnerability
 
 1. Click a vulnerability.
-2. Click *Recheck again*.
+2. Click *Verify*.
 
 ![!A vulnerability that can be rechecked][img-recheck-vuln]
 

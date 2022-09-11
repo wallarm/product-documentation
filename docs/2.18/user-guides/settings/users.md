@@ -6,7 +6,7 @@
 [img-configure-user]:       ../../images/user-guides/settings/configure-user.png
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
 [img-search-user]:          ../../images/user-guides/settings/search-users.png
-[img-add-user]:             ../../images/user-guides/settings/add-user.png
+[img-add-user]:             ../../images/user-guides/settings/integrations/webhook-examples/adding-user.png
 [img-user-menu]:            ../../images/user-guides/settings/user-menu.png
 [img-disabled-user-menu]:   ../../images/user-guides/settings/disabled-user-menu.png
 [img-edit-user]:            ../../images/user-guides/settings/edit-user.png
@@ -77,13 +77,13 @@ You can use the search field above the table to search users by name, email, or 
 
 1.  In the *Users* tab of the *Settings* section, click the *Add user* button.
 2.  Select the user role from the dropdown list.
-3.  Enter a first and last name, email, and temporary password for the user.
+3.  Enter a first and last name, and an email for the user.
 
     ![!New user form][img-add-user]
 
 4.  Click the *Add user* button.
 
-The new user will receive an automatic email with a link to login and set a new password.
+The new user will receive an automatic email with a link to login and set a password.
 
 ## Change the User Info
 
