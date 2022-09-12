@@ -360,3 +360,9 @@
 /3.4/user-guides/ip-lists/whitelist/ /3.4/user-guides/ip-lists/allowlist/
 /2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/whitelist-wallarm-ip-addresses/ /2.18/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/
 /2.18/admin-en/scanner-ips-whitelisting/ /2.18/admin-en/scanner-ips-allowlisting/
+
+/admin-en/mirror-traffic-en/ /admin-en/configuration-guides/traffic-mirroring/overview/
+/4.0/admin-en/mirror-traffic-en/ /4.0/admin-en/configuration-guides/traffic-mirroring/overview/
+/3.6/admin-en/mirror-traffic-en/ /3.6/admin-en/configuration-guides/traffic-mirroring/overview/
+/3.4/admin-en/mirror-traffic-en/ /3.4/admin-en/configuration-guides/traffic-mirroring/overview/
+/2.18/admin-en/mirror-traffic-en/ /2.18/admin-en/configuration-guides/traffic-mirroring/overview/
