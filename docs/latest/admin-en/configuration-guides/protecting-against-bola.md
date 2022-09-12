@@ -2,7 +2,12 @@
 
 Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism. This article instructs you on protecting your applications against the BOLA attacks.
 
-By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts. To configure Wallarm to detect and block the BOLA attacks, use the **BOLA** trigger as described below.
+By default, Wallarm automatically discovers only vulnerabilities of the BOLA type (also known as IDOR) but does not detect its exploitation attempts.
+
+You have the following options to detect and block the BOLA attacks with Wallarm:
+
+* [Manual creation of the **BOLA** trigger](#manual-creation-of-bola-trigger)
+* [Using the API Discovery module with the automatic BOLA protection enabled](#using-api-discovery-with-automatic-bola-protection-enabled)
 
 !!! warning "BOLA protection restrictions"
     Only Wallarm node 4.2 and above supports the BOLA attack detection.
@@ -15,13 +20,15 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
         * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
         * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
-## Configuration steps
+## Manual creation of BOLA trigger
+
+### Configuration steps
 
 1. If the filtering node is deployed behind a proxy server or load balancer, [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
 1. [Configure](#configuring-the-trigger-to-identify-the-bola-attacks) the **BOLA** trigger.
 1. [Test](#testing-the-configuration-of-bola-protection) the configuration of BOLA protection.
 
-## Configuring the trigger to identify the BOLA attacks
+### Configuring the trigger to identify the BOLA attacks
 
 For the Wallarm node to identify the BOLA attacks:
 
@@ -64,6 +71,55 @@ Example of a trigger to detect and block BOLA attacks aimed at shop financial da
 ![!BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
 You can configure several triggers with different filters for BOLA protection.
+
+## Using API Discovery with automatic BOLA protection enabled
+
+The API Discovery module is able to automatically create the BOLA triggers.
+
+The module creates the read-only BOLA trigger if all of the following conditions are met:
+
+* The API structure built by the API Discovery module includes the endpoint with the variable PATH parameter.
+* This API endpoint has several nesting path levels, e.g. domain.com/path1/path2/path3/path4 (variable PATH parameters are also considered to be nesting levels, e.g. domain.com/path1/path2/path3/{variative_path4}). The Wallarm support team can configure the minimal number of required nesting layers. Default value is `3`.
+* This API endpoint received more than specified number of requests from the same IP per specified interval of time. The Wallarm support team can configure the minimal number of requests and time interval. Default value is `50` requests per `30` seconds.
+* This API endpoint is within the limit of endpoints for which the BOLA trigger is allowed to be created. The Wallarm support team can configure this number. Default value is `50`. This limitation helps to prevent the Cloud from being down and nodes from performance degradation.
+
+By default the BOLA triggers display the BOLA attack in the **Events** section. If necessary, you can add greylisting or blacklisting reactions.
+
+### Enabling API Discovery automatic BOLA protection
+
+To enable the API Discovery automatic BOLA protection:
+
+1. Make sure you have API Discovery subscription and Wallarm node 4.2 or above.
+1. Contact the [Wallarm support team](mailto:support@wallarm.com) to do one of the following:
+
+    * Request automatic BOLA protection for API Discovery
+    * Discuss or modify automatic BOLA protection configuration. The following may be configured:
+        * Number of nesting path levels
+        * Number of requests per interval of time
+        * Limit of endpoints that can be automatically protected
+        * Greylisting or blacklisting as additional reactions of created triggers
+
+### Viewing list of automatically created BOLA protection triggers
+
+To view the list of automatically created BOLA protection triggers, in the Wallarm Console → **Triggers** section, click the **Automatically generated** tab.
+
+BOLA triggers are read-only.
+
+### Reaction to changes in API Structure
+
+BOLA automatic protection reacts to the changes in API Structure:
+
+* For the new endpoints, if they meet the [conditions](#using-api-discovery-with-automatic-bola-protection-enabled), the new BOLA trigger will be created.
+* If the endpoint with the BOLA protection trigger is removed, the corresponing BOLA trigger is deleted.
+
+### Disabling API Discovery automatic BOLA protection
+
+In the following cases:
+
+* You API Discovery subscription has expired.
+* In response to your request, the Wallarm support team has disabled the automatic BOLA protection for API Discovery.
+
+All the automatically created BOLA protection triggers will be deleted. The automatic API Discovery BOLA protection will stop.
 
 ## Testing the configuration of BOLA protection
 
