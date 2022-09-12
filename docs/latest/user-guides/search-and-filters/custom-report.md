@@ -12,7 +12,7 @@ PDF is a visually rich report, good for data analysis and presenting. This repor
 * Separate summaries for attacks, vulnerabilities and incidents
 * Detailed information on the events in each section
 
-CSV is good for the technical purposes. You can use it for creating dashboards, getting unique attacker IPs, the list of attacked API hosts/applications, etc. 
+CSV includes details on each event matching the filter and is good for the technical purposes. You can use it for creating dashboards, getting unique attacker IPs, the list of attacked API hosts/applications, etc. 
 
 ## Create report
 
