@@ -189,7 +189,7 @@ With the value set to `on`, NGINX has the ability to enter an emergency mode; if
 
 ### wallarm_force
 
-Sets the requests' analysis and custom rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](mirror-traffic-en.md).
+Sets the requests' analysis and custom rules generation based on the NGINX mirrored traffic. See [Analyzing mirrored traffic with NGINX](configuration-guides/traffic-mirroring/nginx-example.md).
 
 ### wallarm_global_trainingset_path
 
