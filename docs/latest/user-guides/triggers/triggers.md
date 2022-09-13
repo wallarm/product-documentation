@@ -126,6 +126,14 @@ New company accounts are featured by the following pre-configured triggers (defa
 
 Triggers work on all traffic within a company account by default but you can change any trigger settings.
 
+## Automatically created triggers
+
+Some Walarm [modules](../../about-wallarm-waf/subscription-plans.md#modules) and [features](../../about-wallarm-waf/subscription-plans.md#features) may automatically create triggers.
+
+To view the list of automatically created triggers, in the Wallarm Console → **Triggers** section, click **Automatically generated**.
+
+For example, the **API Discovery** module may automatically create/delete the read-only [BOLA protection triggers](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled) if this function is enabled for the module.
+
 ## Disabling and deleting triggers
 
 * To temporarily stop sending notifications and reactions to events, you can disable the trigger. A disabled trigger will be displayed in the lists with **All** and **Disabled** triggers. To re‑enable sending notifications and reactions to events, the **Enable** option is used.

@@ -74,7 +74,7 @@ You can configure several triggers with different filters for BOLA protection.
 
 ## Using API Discovery with automatic BOLA protection enabled
 
-The API Discovery module is able to automatically create the BOLA triggers.
+The **[API Discovery](../../about-wallarm-waf/api-discovery.md)** module is able to automatically create the BOLA [triggers](../../user-guides/triggers/triggers.md).
 
 The module creates the read-only BOLA trigger if all of the following conditions are met:
 
@@ -83,7 +83,7 @@ The module creates the read-only BOLA trigger if all of the following conditions
 * This API endpoint received more than specified number of requests from the same IP per specified interval of time. The Wallarm support team can configure the minimal number of requests and time interval. Default value is `50` requests per `30` seconds.
 * This API endpoint is within the limit of endpoints for which the BOLA trigger is allowed to be created. The Wallarm support team can configure this number. Default value is `50`. This limitation helps to prevent the Cloud from being down and nodes from performance degradation.
 
-By default the BOLA triggers display the BOLA attack in the **Events** section. If necessary, you can add greylisting or blacklisting reactions.
+By default the BOLA triggers only add the BOLA attack to the **Events** section. If necessary, you [may request](#enabling-api-discovery-automatic-bola-protection) graylisting or denylisting reactions.
 
 ### Enabling API Discovery automatic BOLA protection
 
@@ -97,26 +97,26 @@ To enable the API Discovery automatic BOLA protection:
         * Number of nesting path levels
         * Number of requests per interval of time
         * Limit of endpoints that can be automatically protected
-        * Greylisting or blacklisting as additional reactions of created triggers
+        * [Graylisting](../../user-guides/ip-lists/graylist.md) or [denylisting](../../user-guides/ip-lists/denylist.md) for the period of time as additional reactions for the created triggers
 
 ### Viewing list of automatically created BOLA protection triggers
 
-To view the list of automatically created BOLA protection triggers, in the Wallarm Console → **Triggers** section, click the **Automatically generated** tab.
+To view the list of automatically created BOLA protection triggers, in the Wallarm Console → **Triggers** section, click **Automatically generated**.
 
 BOLA triggers are read-only.
 
 ### Reaction to changes in API Structure
 
-BOLA automatic protection reacts to the changes in API Structure:
+BOLA automatic protection reacts to the [changes in API Structure](../../user-guides/api-discovery.md#tracking-changes-in-api-structure):
 
 * For the new endpoints, if they meet the [conditions](#using-api-discovery-with-automatic-bola-protection-enabled), the new BOLA trigger will be created.
-* If the endpoint with the BOLA protection trigger is removed, the corresponing BOLA trigger is deleted.
+* If the endpoint with the BOLA protection trigger is removed, the corresponding BOLA trigger is deleted.
 
 ### Disabling API Discovery automatic BOLA protection
 
 In the following cases:
 
-* You API Discovery subscription has expired.
+* You API Discovery [subscription](../../about-wallarm-waf/subscription-plans.md) has expired.
 * In response to your request, the Wallarm support team has disabled the automatic BOLA protection for API Discovery.
 
 All the automatically created BOLA protection triggers will be deleted. The automatic API Discovery BOLA protection will stop.
