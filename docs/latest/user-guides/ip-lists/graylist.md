@@ -8,6 +8,10 @@
 
 The Wallarm node blocks requests with malicious payloads that originated from graylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the filtering node forwards them to your applications. Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
 
+## Managing graylist
+
+### Managing graylist manually
+
 In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylisted IP addresses as follows:
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
@@ -16,6 +20,15 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
 
 !!! info "Old name of the list"
     The old name of the IP address graylist is "IP address greylist".
+
+### Automatic graylist population
+
+Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, you can configure Wallarm to automatically populate the list. You can do that using [triggers](../../user-guides/triggers/triggers.md). Consider the following:
+
+* New company accounts are featured with the [pre-configured (default) graylist trigger](../../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers).
+* To manually create a graylist trigger, add the `Graylist IP address` reaction to this trigger whatever it's condition is.
+* All the triggers, both active and disabled, that are able to populate the graylist are displayed in the Wallarm Console → **Settings** → **General** → **WAF mode** → **Safe blocking**.
+* Some some Walarm modules and features, for example [API Discovery](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled), may automatically create graylist triggers. Such triggers are presented in the Wallarm Console → **Triggers** section → **Automatically generated** list.
 
 ## Examples of IP graylist usage
 
