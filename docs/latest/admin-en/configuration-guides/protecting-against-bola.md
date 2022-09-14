@@ -87,7 +87,7 @@ To enable the API Discovery automatic BOLA protection:
     * Discuss or modify automatic BOLA protection configuration. The following may be configured:
         * Parameters for triggers creation:
         
-            * Number of nesting levels in the endpoint, e.g. `domain.com/path1/path2/path3/path4` (variable PATH parameters are also considered to be nesting levels, e.g. `domain.com/path1/path2/path3/{variative_path4}`). Default value is `3`.
+            * Number of nesting levels in the endpoint, e.g. `domain.com/path1/path2/path3/path4` (variable PATH parameters are also considered to be nesting levels, e.g. `domain.com/path1/path2/path3/{variative_path4}`). From all endpoints  that the API Discovery finds, it will consider only those with a level not lower than the specified and there is at least one variability Default value is `3`.
             * To optimize the operation of the node and maintain a balance of load and protection level, a trigger will be created for the specified number of endpoints that are most likely to be the target of a BOLA. Default value is `50`.
 
         * Parameters to be set within created triggers:
