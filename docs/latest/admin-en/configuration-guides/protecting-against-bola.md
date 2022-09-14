@@ -76,15 +76,6 @@ You can configure several triggers with different filters for BOLA protection.
 
 The **[API Discovery](../../about-wallarm-waf/api-discovery.md)** module is able to automatically create the BOLA [triggers](../../user-guides/triggers/triggers.md).
 
-The module creates the read-only BOLA trigger if all of the following conditions are met:
-
-* The API structure built by the API Discovery module includes the endpoint with the variable PATH parameter.
-* This API endpoint has several nesting path levels, e.g. domain.com/path1/path2/path3/path4 (variable PATH parameters are also considered to be nesting levels, e.g. domain.com/path1/path2/path3/{variative_path4}). The Wallarm support team can configure the minimal number of required nesting layers. Default value is `3`.
-* This API endpoint received more than specified number of requests from the same IP per specified interval of time. The Wallarm support team can configure the minimal number of requests and time interval. Default value is `50` requests per `30` seconds.
-* This API endpoint is within the limit of endpoints for which the BOLA trigger is allowed to be created. The Wallarm support team can configure this number. Default value is `50`. This limitation helps to prevent the Cloud from being down and nodes from performance degradation.
-
-By default the BOLA triggers only add the BOLA attack to the **Events** section. If necessary, you [may request](#enabling-api-discovery-automatic-bola-protection) graylisting or denylisting reactions.
-
 ### Enabling API Discovery automatic BOLA protection
 
 To enable the API Discovery automatic BOLA protection:
@@ -92,18 +83,23 @@ To enable the API Discovery automatic BOLA protection:
 1. Make sure you have API Discovery subscription and Wallarm node 4.2 or above.
 1. Contact the [Wallarm support team](mailto:support@wallarm.com) to do one of the following:
 
-    * Request automatic BOLA protection for API Discovery
+    * Request automatic BOLA protection for API Discovery.
     * Discuss or modify automatic BOLA protection configuration. The following may be configured:
-        * Number of nesting path levels
-        * Number of requests per interval of time
-        * Limit of endpoints that can be automatically protected
-        * [Graylisting](../../user-guides/ip-lists/graylist.md) or [denylisting](../../user-guides/ip-lists/denylist.md) for the period of time as additional reactions for the created triggers
+        * Parameters for triggers creation:
+        
+            * Number of nesting levels in the endpoint, e.g. `domain.com/path1/path2/path3/path4` (variable PATH parameters are also considered to be nesting levels, e.g. `domain.com/path1/path2/path3/{variative_path4}`). Default value is `3`.
+            * To optimize the operation of the node and maintain a balance of load and protection level, a trigger will be created for the specified number of endpoints that are most likely to be the target of a BOLA. Default value is `50`.
+
+        * Parameters to be set within created triggers:
+
+            * Condition: the number of requests per interval of time the endpoint receives. Default value is `50` requests per `30` seconds.
+            * Reaction: default (`Mark as BOLA`) may be extended or replaced with [graylisting](../../user-guides/ip-lists/graylist.md) or [denylisting](../../user-guides/ip-lists/denylist.md) for the period of time.
 
 ### Viewing list of automatically created BOLA protection triggers
 
 To view the list of automatically created BOLA protection triggers, in the Wallarm Console → **Triggers** section, click **Automatically generated**.
 
-BOLA triggers are read-only.
+You cannot change the auto-created BOLA triggers, they are read-only. In contrast, [manually](#manual-creation-of-bola-trigger) created BOLA triggers can be edited.
 
 ### Reaction to changes in API Structure
 
