@@ -26,7 +26,7 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
 Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, you can configure Wallarm to automatically populate the list. You can do that using [triggers](../../user-guides/triggers/triggers.md). Consider the following:
 
 * New company accounts are featured with the [pre-configured (default) graylist trigger](../../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers).
-* To manually create a graylist trigger, add the `Graylist IP address` reaction to the triggers with one of the following [conditions](../../user-guides/triggers/triggers.md#step-1-choosing-a-condition): `Brute force`, `Forced browsing`, `BOLA`, `Number of malicious payloads`.
+* To manually create a graylist trigger, add the `Graylist IP address` reaction to the `Brute force`, `Forced browsing`, `BOLA` or `Number of malicious payloads` triggers.
 * Some Walarm modules and features, for example [API Discovery](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled), may automatically create graylist triggers. Such triggers are presented in the Wallarm Console → **Triggers** section → **Automatically generated** list.
 
 !!! warning "Notification about automatic graylist population for the `Safe blocking` mode"
