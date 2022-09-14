@@ -32,7 +32,7 @@ Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, 
 !!! warning "Notification about automatic graylist population for the `Safe blocking` mode"
     It is **highly recommended** to use the automatic graylist population for the `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md).
     
-    Thus, if the mode is enabled, but you do not have any active triggers for the graylist population, in the Wallarm Console → **Settings** → **General** → **WAF mode** → **Safe blocking** section:
+    Thus, if the mode is enabled, but you do not have any active triggers for the graylist population, in the Wallarm Console → **Settings** → **General** → **Filtration mode** → **Safe blocking** section:
     
     * The list of disabled graylist triggers will be displayed suggesting to enable some of them.
     * If you do not have any graylist triggers, the suggestion to create at least one will be displayed.
