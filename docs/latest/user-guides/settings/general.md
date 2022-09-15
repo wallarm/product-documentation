@@ -11,14 +11,12 @@ On the **General** tab of the **Settings** section you can:
 
 ## Filtration mode
 
-Every Wallarm node can identify and block attacks at the HTTP request level. This [mode of operation][link-config-parameters] is defined by the local or global settings.
+Every Wallarm node can identify and block attacks at the HTTP request level. This [filtration mode][link-config-parameters] is defined by the local or global settings.
 
 * **Local settings (default)**: this mode exploits settings from a filter node configuration file.
 * **Safe blocking**: all malicious requests originated from [graylisted IPs](../ip-lists/graylist.md) are blocked.
 * **Monitoring**: all requests are processed, but none of them are blocked even if an attack is detected.
 * **Blocking**: all requests where an attack was detected are blocked.
-
-To learn more about available configuration options, proceed to the [link][link-config-parameters].
 
 ![!General tab overview][img-general-settings]
 
