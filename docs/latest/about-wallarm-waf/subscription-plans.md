@@ -67,11 +67,14 @@ Information about the trial period is displayed in Wallarm Console → **Setting
 
 With the **Free Tier** subscription plan you can:
 
-* Use all Wallarm features for free up to the quota of **500 thousand requests per month**.
+* Use Wallarm features for free up to the quota of **500 thousand requests per month**.
 * Have the quota reset on the first day of each month.
 * Have no limitation in time when using this subscription plan.
 
-Free Tier subscription includes both API Security and API Discovery.
+Free Tier subscription includes:
+
+* API Security, except Scanner
+* API Discovery
 
 **What happens if the quota is exceeded?**
 
