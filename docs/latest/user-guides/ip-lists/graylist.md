@@ -8,6 +8,10 @@
 
 The Wallarm node blocks requests with malicious payloads that originated from graylisted IP addresses only in the safe blocking [mode](../../admin-en/configure-wallarm-mode.md). If there are no malicious payloads in requests, the filtering node forwards them to your applications. Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](overview.md#algorithm-of-ip-lists-processing).
 
+## Managing graylist
+
+### Managing graylist manually
+
 In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylisted IP addresses as follows:
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
@@ -16,6 +20,22 @@ In the Wallarm Console → **IP lists** → **Graylist**, you can manage graylis
 
 !!! info "Old name of the list"
     The old name of the IP address graylist is "IP address greylist".
+
+### Automatic graylist population
+
+Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, you can configure Wallarm to automatically populate the list. You can do that using [triggers](../../user-guides/triggers/triggers.md). Consider the following:
+
+* New company accounts are featured with the [pre-configured (default) graylist trigger](../../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers).
+* To manually create a graylist trigger, add the `Graylist IP address` reaction to the `Brute force`, `Forced browsing`, `BOLA` or `Number of malicious payloads` triggers.
+* Some Walarm modules and features, for example [API Discovery](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled), may automatically create graylist triggers. Such triggers are presented in the Wallarm Console → **Triggers** section → **Automatically generated** list.
+
+!!! warning "Notification about automatic graylist population for the `Safe blocking` mode"
+    It is **highly recommended** to use the automatic graylist population for the `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md).
+    
+    Thus, if the mode is enabled, but you do not have any active triggers for the graylist population, in the Wallarm Console → **Settings** → **General** → **Filtration mode** → **Safe blocking** section:
+    
+    * The list of disabled graylist triggers will be displayed suggesting to enable some of them.
+    * If you do not have any graylist triggers, the suggestion to create at least one will be displayed.
 
 ## Examples of IP graylist usage
 
