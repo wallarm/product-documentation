@@ -92,7 +92,7 @@ To enable the API Discovery automatic BOLA protection:
 
         * Parameters to be set within created triggers:
 
-            * Condition: the number of requests per interval of time the endpoint receives. Default value is `50` requests per `30` seconds.
+            * Condition: the number of requests from the same IP per interval of time the endpoint receives. Default value is `50` requests per `30` seconds.
             * Reaction: default (`Mark as BOLA`) may be extended or replaced with [graylisting](../../user-guides/ip-lists/graylist.md) or [denylisting](../../user-guides/ip-lists/denylist.md) for the period of time.
 
 ### Viewing list of automatically created BOLA protection triggers
