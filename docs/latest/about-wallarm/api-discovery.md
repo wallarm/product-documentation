@@ -183,6 +183,15 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
 
+## Automatic BOLA protection
+
+The **API Discovery** module may automatically create/delete the read-only [BOLA protection triggers](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled) if this function is enabled for the module.
+
+!!! warning "BOLA protection restrictions"
+    Only Wallarm node 4.2 and above supports the BOLA attack detection.
+
+[More details on using API Discovery with automatic BOLA protection enabled →](../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled)
+
 ## Security of data uploaded to the Wallarm Cloud
 
 API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.
