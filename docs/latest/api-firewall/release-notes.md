@@ -2,6 +2,26 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.9 (2022-09-12)
+
+### New features
+
+* Tests for different modes
+
+### Bug fixes
+
+* Compatibility of Ingress object with Kubernetes 1.22
+* Empty denylist fixed
+
+### Optimizations
+
+* Updated shadow API feature
+* Go upgraded to 1.19
+* `APIFW` request `id` header deleted from the response
+* Updated validation package
+* Updated `chart.yaml`
+* Updated dependencies
+
 ## v0.6.8 (2022-04-11)
 
 ### New features
