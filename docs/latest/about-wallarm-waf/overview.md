@@ -35,18 +35,11 @@ The Wallarm Cloud does the following:
 * Compiles custom resource-specific rules
 * Scans the company's exposed assets to detect vulnerabilities
 
-Wallarm manages [European](#eu-cloud) and [American](#us-cloud) cloud instances with each Cloud being completely separate in terms of databases, API endpoints, client accounts, etc. A client registered in one Wallarm Cloud cannot use other Wallarm Cloud to manage or get access to their data stored in the first Cloud.
+Wallarm manages [American](#us-cloud) and [European](#eu-cloud) cloud instances with each Cloud being completely separate in terms of databases, API endpoints, client accounts, etc. A client registered in one Wallarm Cloud cannot use other Wallarm Cloud to manage or get access to their data stored in the first Cloud.
 
 At the same time you may use both Wallarm Clouds. In this case you will need to use different accounts in Wallarm Console and API endpoints to access and manage your information in individual Clouds.
 
 Endpoints for the Wallarm Clouds are provided below.
-
-### EU Cloud
-
-Physically located in the Netherlands.
-
-* https://my.wallarm.com/ to create Wallarm account
-* `https://api.wallarm.com/` to call API methods
 
 ### US Cloud
 
@@ -54,3 +47,10 @@ Physically located in the USA.
 
 * https://us1.my.wallarm.com/ to create Wallarm account
 * `https://us1.api.wallarm.com/` to call API methods
+
+### EU Cloud
+
+Physically located in the Netherlands.
+
+* https://my.wallarm.com/ to create Wallarm account
+* `https://api.wallarm.com/` to call API methods

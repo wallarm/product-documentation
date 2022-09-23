@@ -35,8 +35,8 @@ See also [Checking the filter node operation](installation-check-operation-en.md
 ## You Can Log into the Wallarm Interface
 
 1.  Proceed to the link that corresponds to the cloud you are using: 
-    *   If you are using the EU cloud, proceed to the <https://my.wallarm.com/> link.
     *   If you are using the US cloud, proceed to the <https://us1.my.wallarm.com> link.
+    *   If you are using the EU cloud, proceed to the <https://my.wallarm.com/> link.
 2.  See if you can log in successfully.
 
 See also [Dashboard overview](../user-guides/dashboard.md).

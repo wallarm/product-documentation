@@ -88,7 +88,7 @@ In this example, the filtration modes are defined for the resources as follows:
 
 ### Setting up the general filtration rule in Wallarm Console
 
-The radio buttons on the **General** tab of Wallarm Console settings in the [EU Wallarm Cloud](https://my.wallarm.com/settings/general) or [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) define the general filtration mode for all incoming requests. The `wallarm_mode` directive value defined in the `http` block in the configuration file has the same action scope as these buttons.
+The radio buttons on the **General** tab of Wallarm Console settings in the [US Wallarm Cloud](https://us1.my.wallarm.com/settings/general) or [EU Wallarm Cloud](https://my.wallarm.com/settings/general) define the general filtration mode for all incoming requests. The `wallarm_mode` directive value defined in the `http` block in the configuration file has the same action scope as these buttons.
 
 The local filtration mode settings on the **Rules** tab of Wallarm Console have higher priority than the global settings on the **Global** tab.
 

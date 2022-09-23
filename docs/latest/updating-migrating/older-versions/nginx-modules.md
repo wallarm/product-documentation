@@ -223,10 +223,10 @@ To replace the regular node with the Wallarm node:
 
 1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
      
-    You can check mentioned settings by navigating to the user list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
+    You can check mentioned settings by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
@@ -252,13 +252,13 @@ To replace the regular node with the Wallarm node:
     The NGINX service pausing mitigates the risk of incorrect RPS calculation.
 1. Execute the `register-node` script to run the **Wallarm node**:
 
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
-        ```
     === "US Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
+        ```
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
         ```
     
     * `<NODE_TOKEN>` is the Wallarm node token.
@@ -320,7 +320,7 @@ In the new node version the following changes to the [node logging variables](..
 
     * Blocks the request if the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md) is configured.
     * Returns the [custom blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
-2. Open Wallarm Console → **Events** in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and make sure that:
+2. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure that:
 
     * Attacks are displayed in the list.
     * Hit details display the Wallarm node UUID.

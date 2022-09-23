@@ -64,7 +64,7 @@ It is recommended to use the new approach to run the image 4.2. The "email and p
 
 To create a new Wallarm node and get its token:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
@@ -155,7 +155,7 @@ There are two options for running the container using the updated image:
 
     * Blocks the request if the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md) is configured.
     * Returns the [custom blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
-2. Open Wallarm Console → **Events** in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and make sure that:
+2. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure that:
 
     * Attacks are displayed in the list.
     * Hit details display the Wallarm node UUID.

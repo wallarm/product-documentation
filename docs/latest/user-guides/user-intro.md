@@ -13,7 +13,7 @@ This guide provides information on Wallarm operation options. All of these opera
 
 !!! info "Required Access Rights"
 
-    You must have analyst access to perform most of the operations described in this guide. You can set analyst access on the *Settings* → *Users* tab on the Wallarm portal in the [EU](https://my.wallarm.com/settings/users) or [US](https://us1.my.wallarm.com/settings/users) cloud.
+    You must have analyst access to perform most of the operations described in this guide. You can set analyst access on the *Settings* → *Users* tab on the Wallarm portal in the [US](https://us1.my.wallarm.com/settings/users) or [EU](https://my.wallarm.com/settings/users) cloud.
 
 ##  Wallarm Portal Overview
 

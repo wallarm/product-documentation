@@ -17,7 +17,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 * AWS account and user with the **admin** permissions
 * AWS CLI 1 or AWS CLI 2 properly [installed](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configured](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -27,7 +27,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, the AWS Management Console and AWS CLI are used.
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
@@ -48,40 +48,6 @@ To deploy the containerized Wallarm filtering node configured only through envir
         * The IAM policy **SecretsManagerReadWrite** is attached to the user specified in the `executionRoleArn` parameter of the task definition. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. Create the following local JSON file with the [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (task definition sets the Docker container operating scenario):
 
-    === "If you use the Wallarm EU Cloud"
-         ```json
-         {
-             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
-             "containerDefinitions": [
-                 {
-                     "memory": 128,
-                     "portMappings": [
-                    {
-                        "hostPort": 80,
-                        "containerPort": 80,
-                        "protocol": "tcp"
-                    }
-                ],
-                "essential": true,
-                "environment": [
-                    {
-                        "name": "NGINX_BACKEND",
-                        "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
-                    }
-                ],
-                "secrets": [
-                    {
-                        "name": "WALLARM_API_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
-                    }
-                ],
-                "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
-                }
-            ],
-            "family": "wallarm-api-security-node"
-            }
-         ```
     === "If you use the Wallarm US Cloud"
          ```json
          {
@@ -102,6 +68,40 @@ To deploy the containerized Wallarm filtering node configured only through envir
                         "name": "WALLARM_API_HOST",
                         "value": "us1.api.wallarm.com"
                     },
+                    {
+                        "name": "NGINX_BACKEND",
+                        "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
+                    }
+                ],
+                "secrets": [
+                    {
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
+                    }
+                ],
+                "name": "wallarm-container",
+                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                }
+            ],
+            "family": "wallarm-api-security-node"
+            }
+         ```
+    === "If you use the Wallarm EU Cloud"
+         ```json
+         {
+             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+             "containerDefinitions": [
+                 {
+                     "memory": 128,
+                     "portMappings": [
+                    {
+                        "hostPort": 80,
+                        "containerPort": 80,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
                     {
                         "name": "NGINX_BACKEND",
                         "value": "<HOST_TO_PROTECT_WITH_WALLARM>"
@@ -157,7 +157,7 @@ In these instructions, the configuration file is mounted from the [AWS EFS](http
 
 To deploy the container with environment variables and configuration file mounted from AWS EFS:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
@@ -212,49 +212,6 @@ To deploy the container with environment variables and configuration file mounte
         * The IAM policy **SecretsManagerReadWrite** is attached to the user specified in the `executionRoleArn` parameter of the task definition. [More details on the IAM policies setup →](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_identity-based-policies.html)
 1. Create the following local JSON file with the [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) (task definition sets the Docker container operating scenario):
 
-    === "If you use the Wallarm EU Cloud"
-         ```json
-         {
-             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
-             "containerDefinitions": [
-                 {
-                     "memory": 128,
-                     "portMappings": [
-                    {
-                        "hostPort": 80,
-                        "containerPort": 80,
-                        "protocol": "tcp"
-                    }
-                ],
-                "essential": true,
-                "mountPoints": [
-                    {
-                        "containerPath": "/etc/nginx/sites-enabled",
-                        "sourceVolume": "default"
-                    }
-                ],
-                "secrets": [
-                    {
-                        "name": "WALLARM_API_TOKEN",
-                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
-                    }
-                ],
-                "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
-                }
-            ],
-            "volumes": [
-                {
-                    "name": "default",
-                    "efsVolumeConfiguration": {
-                        "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
-                        "transitEncryption": "ENABLED"
-                    }
-                }
-            ],
-            "family": "wallarm-api-security-node"
-            }
-         ```
     === "If you use the Wallarm US Cloud"
          ```json
          {
@@ -295,6 +252,49 @@ To deploy the container with environment variables and configuration file mounte
             "volumes": [
                 {
                     "name": "<VOLUME_NAME>",
+                    "efsVolumeConfiguration": {
+                        "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
+                        "transitEncryption": "ENABLED"
+                    }
+                }
+            ],
+            "family": "wallarm-api-security-node"
+            }
+         ```
+    === "If you use the Wallarm EU Cloud"
+         ```json
+         {
+             "executionRoleArn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/ecsTaskExecutionRole",
+             "containerDefinitions": [
+                 {
+                     "memory": 128,
+                     "portMappings": [
+                    {
+                        "hostPort": 80,
+                        "containerPort": 80,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "mountPoints": [
+                    {
+                        "containerPath": "/etc/nginx/sites-enabled",
+                        "sourceVolume": "default"
+                    }
+                ],
+                "secrets": [
+                    {
+                        "name": "WALLARM_API_TOKEN",
+                        "valueFrom": "arn:aws:secretsmanager:<SECRETS_MANAGER_AWS_REGION>:<AWS_ACCOUNT_ID>:secret:<SECRET_NAME>:<WALLARM_API_TOKEN_PARAMETER_NAME>::"
+                    }
+                ],
+                "name": "wallarm-container",
+                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                }
+            ],
+            "volumes": [
+                {
+                    "name": "default",
                     "efsVolumeConfiguration": {
                         "fileSystemId": "<EFS_FILE_SYSTEM_ID>",
                         "transitEncryption": "ENABLED"
@@ -357,7 +357,7 @@ To deploy the container with environment variables and configuration file mounte
     ```
     curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
-3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+3. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors that occurred during the container deployment are displayed in the task details in the AWS Management Console. If the container is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

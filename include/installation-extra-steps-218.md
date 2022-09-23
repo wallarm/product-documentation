@@ -16,8 +16,8 @@ In this case, if you want the filtering node to receive the client's IP address 
 
 The Wallarm Scanner checks the resources of your company for vulnerabilities. Scanning is conducted using IP addresses from one of the following lists (depending on the type of Wallarm Cloud you are using):
 
-* [EU Scanner addresses for EU Cloud users](scanner-address-eu-cloud.md)
 * [US Scanner addresses for US Cloud users](scanner-address-us-cloud.md)
+* [EU Scanner addresses for EU Cloud users](scanner-address-eu-cloud.md)
 
 If you are using the Wallarm Scanner, you need to configure the allowlists on your network scope security software (such as firewalls, intrusion detection systems, etc.) to contain Wallarm Scanner IP addresses.
 

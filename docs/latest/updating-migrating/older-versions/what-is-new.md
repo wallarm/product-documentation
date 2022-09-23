@@ -50,7 +50,7 @@ The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment a
     The Wallarm node downloads an actual list of IP addresses registered in allowlisted, denylisted, or graylisted countries, regions or data centers from GCP storage. By default, access to this storage can be restricted in your system. Allowing access to GCP storage is a new requirement for the virtual machine to install the filtering node.
 
     [Range of GCP IP addresses that should be allowed →](https://www.gstatic.com/ipranges/goog.json)
-* The filtering node now uploads data to the Cloud using `api.wallarm.com:443` (EU Cloud) and `us1.api.wallarm.com:443` (US Cloud) instead of `api.wallarm.com:444` and `us1.api.wallarm.com:444`.
+* The filtering node now uploads data to the Cloud using `us1.api.wallarm.com:443` (US Cloud) and `api.wallarm.com:443` (EU Cloud) instead of `us1.api.wallarm.com:444` and `api.wallarm.com:444`.
 
     If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.x the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 

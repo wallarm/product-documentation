@@ -1,4 +1,4 @@
-1. Create an account in Wallarm Console using the link for the [EU](https://my.wallarm.com/signup) or [US](https://us1.my.wallarm.com/signup) Wallarm Cloud.
+1. Create an account in Wallarm Console using the link for the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud.
 
     [More details on Wallarm Clouds →][wallarm-cloud-docs]
 1. Open Wallarm Console → **Nodes** → **CDN** → **Create node**.

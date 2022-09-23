@@ -10,7 +10,7 @@ You can set up Wallarm to send scheduled reports and instant notifications to Te
 
 1. Open the **Settings** → **Integrations** tab.
 2. Click the **Telegram** block or click the **Add integration** button and choose **Telegram**.
-3. Add [@WallarmBot](https://t.me/WallarmBot) (if you are using the Wallarm EU Cloud) or [@WallarmUSBot](https://t.me/WallarmUSBot) (if you are using the Wallarm US Cloud) to the Telegram group receiving Wallarm notifications and follow the authentication link.
+3. Add [@WallarmUSBot](https://t.me/WallarmUSBot) (if you are using the Wallarm US Cloud) or [@WallarmBot](https://t.me/WallarmBot) (if you are using the Wallarm EU Cloud) to the Telegram group receiving Wallarm notifications and follow the authentication link.
 4. After redirection to Wallarm UI, authenticate the bot.
 5. Enter an integration name.
 6. Choose the frequency of sending security reports. If the frequency is not chosen, then reports will not be sent.
@@ -20,7 +20,7 @@ You can set up Wallarm to send scheduled reports and instant notifications to Te
 
     ![!Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
-You can also start the chat with [@WallarmBot](https://t.me/WallarmBot) or [@WallarmUSBot](https://t.me/WallarmUSBot) directly. The bot will send reports and notifications as well.
+You can also start the chat with [@WallarmUSBot](https://t.me/WallarmUSBot) or [@WallarmBot](https://t.me/WallarmBot) directly. The bot will send reports and notifications as well.
 
 ## Testing integration
 

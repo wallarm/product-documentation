@@ -38,19 +38,19 @@ The functionality of the filtering node installed inside the Docker container is
 
 To run the container:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 
-    === "EU Cloud"
-        ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.2.1-1
-        ```
     === "US Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.1-1
+        ```
+    === "EU Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.2.1-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -74,19 +74,19 @@ You can mount the prepared configuration file to the Docker container via the `-
 
 To run the container:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 
-    === "EU Cloud"
-        ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.2.1-1
-        ```
     === "US Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.2.1-1
+        ```
+    === "EU Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.2.1-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:

@@ -17,7 +17,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 * Active Azure subscription
 * [Azure CLI installed](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 
@@ -35,7 +35,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 In these instructions, the container is deployed using the Azure CLI.
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
@@ -56,16 +56,6 @@ In these instructions, the container is deployed using the Azure CLI.
     ```
 1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
-    === "Command for the Wallarm EU Cloud"
-         ```bash
-         az container create \
-            --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
-            --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.2.1-1 \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
-         ```
     === "Command for the Wallarm US Cloud"
          ```bash
          az container create \
@@ -75,6 +65,16 @@ In these instructions, the container is deployed using the Azure CLI.
             --ports 80 \
             --image registry-1.docker.io/wallarm/node:4.2.1-1 \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com' WALLARM_API_HOST='us1.api.wallarm.com'
+         ```
+    === "Command for the Wallarm EU Cloud"
+         ```bash
+         az container create \
+            --resource-group myResourceGroup \
+            --name waf-node \
+            --dns-name-label wallarm-waf \
+            --ports 80 \
+            --image registry-1.docker.io/wallarm/node:4.2.1-1 \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} NGINX_BACKEND='example.com'
          ```
         
     * `--resource-group`: name of the resource group created in the second step.
@@ -94,7 +94,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 To deploy the container with environment variables and mounted configuration file:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
@@ -146,18 +146,6 @@ To deploy the container with environment variables and mounted configuration fil
     ```
 1. Create an Azure resource from the Wallarm node Docker container by using the [`az container create`](https://docs.microsoft.com/en-us/cli/azure/container?view=azure-cli-latest#az_container_create) command:
 
-    === "Command for the Wallarm EU Cloud"
-         ```bash
-         az container create \
-            --resource-group myResourceGroup \
-            --name waf-node \
-            --dns-name-label wallarm-waf \
-            --ports 80 \
-            --image registry-1.docker.io/wallarm/node:4.2.1-1 \
-            --gitrepo-url <URL_OF_GITREPO> \
-            --gitrepo-mount-path /etc/nginx/sites-enabled \
-            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN}
-         ```
     === "Command for the Wallarm US Cloud"
          ```bash
          az container create \
@@ -169,6 +157,18 @@ To deploy the container with environment variables and mounted configuration fil
             --gitrepo-url <URL_OF_GITREPO> \
             --gitrepo-mount-path /etc/nginx/sites-enabled \
             --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN} WALLARM_API_HOST='us1.api.wallarm.com'
+         ```
+    === "Command for the Wallarm EU Cloud"
+         ```bash
+         az container create \
+            --resource-group myResourceGroup \
+            --name waf-node \
+            --dns-name-label wallarm-waf \
+            --ports 80 \
+            --image registry-1.docker.io/wallarm/node:4.2.1-1 \
+            --gitrepo-url <URL_OF_GITREPO> \
+            --gitrepo-mount-path /etc/nginx/sites-enabled \
+            --environment-variables WALLARM_API_TOKEN=${WALLARM_API_TOKEN}
          ```
 
     * `--resource-group`: name of the resource group created in the 2nd step.
@@ -204,7 +204,7 @@ To deploy the container with environment variables and mounted configuration fil
     ```
     curl http://<COPIED_DOMAIN>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
-3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+3. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
