@@ -35,7 +35,6 @@ Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, 
 
 * New company accounts are featured with the [pre-configured (default) graylist trigger](../../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers).
 * To manually create a graylist trigger, add the `Graylist IP address` reaction to the `Brute force`, `Forced browsing`, `BOLA` or `Number of malicious payloads` triggers.
-* Some Walarm modules and features, for example [API Discovery](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled), may automatically create graylist triggers. Such triggers are presented in the Wallarm Console → **Triggers** section → **Automatically generated** list.
 
 !!! warning "Notification about automatic graylist population for the `Safe blocking` mode"
     It is **highly recommended** to use the automatic graylist population for the `Safe blocking` [mode](../../admin-en/configure-wallarm-mode.md).
