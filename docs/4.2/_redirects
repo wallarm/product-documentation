@@ -366,3 +366,7 @@
 /3.6/admin-en/mirror-traffic-en/ /3.6/admin-en/configuration-guides/traffic-mirroring/overview/
 /3.4/admin-en/mirror-traffic-en/ /3.4/admin-en/configuration-guides/traffic-mirroring/overview/
 /2.18/admin-en/mirror-traffic-en/ /2.18/admin-en/configuration-guides/traffic-mirroring/overview/
+
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/admin-en/scanner-ips-allowlisting/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
+/user-guides/denylist/ /user-guides/ip-lists/denylist/
