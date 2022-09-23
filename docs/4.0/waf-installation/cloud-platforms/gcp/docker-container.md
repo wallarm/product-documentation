@@ -46,7 +46,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
             --zone <DEPLOYMENT_ZONE> \
             --tags http-server \
             --container-env WALLARM_API_TOKEN=${WALLARM_API_TOKEN} \
-            --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM>
+            --container-env NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> \
             --container-image registry-1.docker.io/wallarm/node:4.0.2-1
         ```
     === "Command for the Wallarm US Cloud"

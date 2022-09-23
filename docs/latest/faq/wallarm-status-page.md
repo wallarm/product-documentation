@@ -6,8 +6,8 @@ This guide contains details on the Wallarm service status page.
 
 Yes, the Wallarm status page is available at https://status.wallarm.com. The page displays live and historical data on the availability of Wallarm Console and Wallarm API services for each Wallarm Cloud:
 
-* **Wallarm EU Cloud**
 * **Wallarm US Cloud**
+* **Wallarm EU Cloud**
 
 ![!Wallarm status page](../images/status-page.png)
 

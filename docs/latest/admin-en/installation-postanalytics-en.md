@@ -12,11 +12,11 @@ These instructions provide the steps to install the postanalytics module on a se
 ## Requirements
 
 * NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../waf-installation/nginx-plus.md)
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` if working with US Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
 * Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
 
@@ -97,22 +97,22 @@ To create the filtering node and connect the postanalytics module to the Cloud:
 
 1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
      
-    You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
+    You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the `register-node` script in a system with the installed postanalytics module packages:
     
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync --no-sync-acl
-        ```
     === "US Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --no-sync --no-sync-acl
+        ```
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync --no-sync-acl
         ```
 
     `<NODE_TOKEN>` is the copied token value.
@@ -302,8 +302,8 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     **Here are the firewall settings that should be applied to the separately installed postanalytics module:**
     
     *   Allow the HTTPS traffic to and from the Wallarm API servers, so the postanalytics module can interact with these servers:
-        *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
         *   `us1.api.wallarm.com` is the API server in the US Wallarm Cloud
+        *   `api.wallarm.com` is the API server in the EU Wallarm Cloud
     *   Restrict the access to the `3313` Tarantool port via TCP and UDP protocols by allowing connections only from the IP addresses of the Wallarm filtering nodes.
 
 ## Tarantool troubleshooting

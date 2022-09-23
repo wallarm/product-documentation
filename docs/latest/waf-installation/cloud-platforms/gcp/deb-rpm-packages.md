@@ -9,7 +9,7 @@ This quick guide provides the steps to install the filtering node from the sourc
 
 * Active GCP account
 * [GCP project created](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 
 ## Filtering node installation options
 

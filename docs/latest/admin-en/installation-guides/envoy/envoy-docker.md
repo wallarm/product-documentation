@@ -17,8 +17,8 @@ Wallarm API Security module is designed as an Envoy HTTP filter for requests pro
 
 ## Requirements
 
-* Access to the account with the **Administrator** role in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to the account with the **Administrator** role in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/) 
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Options for running the container
 
@@ -29,19 +29,19 @@ The filtering node configuration parameters can be passed to the `docker run` co
 
 ## Run the container passing the environment variables
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 
-    === "EU Cloud"
-        ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:4.2.0-1
-        ```
     === "US Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/envoy:4.2.0-1
+        ```
+    === "EU Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e ENVOY_BACKEND='example.com' -p 80:80 wallarm/envoy:4.2.0-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -50,7 +50,7 @@ Environment variable | Description| Required
 --- | ---- | ----
 `WALLARM_API_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Previous variables configuring access to the Wallarm Cloud</p> <p>Before the release of version 4.0, the variables prior to `WALLARM_API_TOKEN` were `DEPLOY_USERNAME` and `DEPLOY_PASSWORD`. Starting from the new release, it is recommended to use the new token-based approach to access the Wallarm Cloud. [More details on migrating to the new node version](/updating-migrating/docker-container/)</p></div> | Yes
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
-`WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+`WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses](../../../user-guides/ip-lists/graylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-waf-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
 `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
@@ -72,19 +72,19 @@ You can mount the prepared file `envoy.yaml` to the Docker container via the `-v
 
 To run the container:
 
-1. Open Wallarm Console → **Nodes** in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 
-    === "EU Cloud"
-        ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.2.0-1
-        ```
     === "US Cloud"
         ```bash
         docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.2.0-1
+        ```
+    === "EU Cloud"
+        ```bash
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/envoy.yaml:/etc/envoy/envoy.yaml -p 80:80 wallarm/envoy:4.2.0-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:
@@ -92,7 +92,7 @@ To run the container:
     Environment variable | Description| Required
     --- | ---- | ----
     `WALLARM_API_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Previous variables configuring access to the Wallarm Cloud</p> <p>Before the release of version 4.0, the variables prior to `WALLARM_API_TOKEN` were `DEPLOY_USERNAME` and `DEPLOY_PASSWORD`. Starting from the new release, it is recommended to use the new token-based approach to access the Wallarm Cloud. [More details on migrating to the new node version](/updating-migrating/docker-container/)</p></div> | Yes
-    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
+    `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
     `DEPLOY_FORCE` | Replaces an existing Wallarm node with a new one if an existing Wallarm node name matches the identifier of the container you are running. The following values can be assigned to a variable:<ul><li>`true` to replace the filtering node</li><li>`false` to disable the replacement of the filtering node</li></ul>Default value (if the variable is not passed to the container) is `false`.<br>The Wallarm node name always matches the identifier of the container you are running. Filtering node replacement is helpful if the Docker container identifiers in your environment are static and you are trying to run another Docker container with the filtering node (for example, a container with a new version of the image). If in this case the variable value is `false`, the filtering node creation process will fail. | No
 
     * The `-v` option mounts the directory with the configuration file `envoy.yaml` to the `/etc/envoy` container directory.
@@ -116,5 +116,5 @@ The log file rotation is preconfigured and enabled by default. You can adjust th
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
-2. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
+2. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)

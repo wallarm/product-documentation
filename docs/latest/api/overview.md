@@ -12,8 +12,8 @@ Wallarm API provides interaction between components of the Wallarm system. You c
 
 Description of API methods is given in the API Reference by the link:
 
-* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
 * https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm-waf/overview.md#us-cloud)
+* https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
 
 ![!Wallarm API Reference](../images/wallarm-api-reference.png)
 
@@ -21,8 +21,8 @@ Description of API methods is given in the API Reference by the link:
 
 API requests are sent to the following URL:
 
-* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
 * `https://us1.api.wallarm.com/` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud)
+* `https://api.wallarm.com/` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud)
 
 ## Authentication of API requests
 
@@ -36,11 +36,11 @@ You must be a verified user to make Wallarm API requests. The method of API requ
 A token is used for request authentication. The token is generated after successful authentication in your Wallarm account.
 
 1. Sign in to your Wallarm account using the link:
-    * https://my.wallarm.com/ for the EU cloud,
-    * https://us1.my.wallarm.com/ for the US cloud.
+    * https://us1.my.wallarm.com/ for the US cloud
+    * https://my.wallarm.com/ for the EU cloud
 2. Refresh the API Reference page using the link:
-    * https://apiconsole.eu1.wallarm.com/ for the EU cloud,
-    * https://apiconsole.us1.wallarm.com/ for the US cloud.
+    * https://apiconsole.us1.wallarm.com/ for the US cloud
+    * https://apiconsole.eu1.wallarm.com/ for the EU cloud
 3. Go to the required API method → the **Try it out** section, input parameter values, and **Execute** the request.
 
 ### Your own client
@@ -50,7 +50,7 @@ A token is used for request authentication. The token is generated after success
 
 Your UUID and secret key are used for request authentication.
 
-1. Sign in to your Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/) → **Settings** → **API credentials**.
+1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API credentials**.
 2. Copy the **UUID** value.
 3. Get the **Secret key** value:
 

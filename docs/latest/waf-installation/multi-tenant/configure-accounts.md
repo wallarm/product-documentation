@@ -42,7 +42,7 @@ To configure tenant accounts:
 
 ### Step 1: Sign up and send a request to activate the multitenancy feature
 
-1. Fill in and confirm the registration form in Wallarm Console in the [EU Cloud](https://my.wallarm.com/signup) or [US Cloud](https://us1.my.wallarm.com/signup).
+1. Fill in and confirm the registration form in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
 
     ![!Registration form](../../images/signup-en.png)
 
@@ -50,7 +50,7 @@ To configure tenant accounts:
         Please sign up using a corporate email address.
 2. Open your email inbox and activate the account using the link from the received message.
 3. Send a request for activating the multitenancy feature for your account to the [Wallarm technical support](mailto:support@wallarm.com). Send the following data with the request:
-    * Name of the Wallarm Cloud being used (EU Cloud or US Cloud)
+    * Name of the Wallarm Cloud being used (US Cloud or EU Cloud)
     * Names for a global account and technical tenant account
     * Email addresses of employees to be provided with access to tenant accounts (after activating the multitenancy feature, you will be able to add employees yourself)
     * Logo for branded Wallarm Console
@@ -75,8 +75,8 @@ After getting your request, the Wallarm technical support will:
 To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own client or from the API Reference UI that defines the authentication method:
 
 * For requests to be sent from the **API Reference UI**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the API Reference by the link:
-    * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
+    * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
 * For requests to be sent from the **own client**, it is required to pass the Global Administrator [user UUID and secret key](../../api/overview.md#your-own-client) in the request.
 
 At this step, a tenant account linked to a global account will be created.
@@ -92,13 +92,13 @@ At this step, a tenant account linked to a global account will be created.
     `X-WallarmAPI-Secret` | [Secret key](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
 
     ??? info "Show an example of the request sent from your own client"
-        === "EU Cloud"
-            ``` bash
-            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
-            ```
         === "US Cloud"
             ```bash
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            ```
+        === "EU Cloud"
+            ``` bash
+            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmAPI-UUID: YOUR_UUID" -H "X-WallarmAPI-Secret: YOUR_SECRET_KEY" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
     ??? info "Show an example of the response"

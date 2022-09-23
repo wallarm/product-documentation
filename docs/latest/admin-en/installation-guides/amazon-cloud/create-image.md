@@ -37,8 +37,8 @@ Before creating an AMI you need to perform an initial configuration of a single 
     !!! warning "Provide the filtering node with an internet connection"
         The filtering node requires access to the Wallarm API server for proper operation. The choice of the Wallarm API server depends on the Wallarm Cloud you are using:
         
-        *   If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
         *   If you are using the US Cloud, your node needs to be granted access to `https://us1.api.wallarm.com`.
+        *   If you are using the EU Cloud, your node needs to be granted access to `https://api.wallarm.com`.
         
     Make sure that you choose the correct VPC and subnets and [configure a security group][link-security-group-guide] in a way that does not prevent the filtering node from accessing Wallarm API servers.
 

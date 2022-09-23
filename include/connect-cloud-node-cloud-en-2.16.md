@@ -34,16 +34,16 @@ To connect the node to the Cloud using the token, proceed with the following ste
     !!! info
         You have to pick which script to run depending on the Cloud you are using.
         
-        * If you are using <https://my.wallarm.com/>, run the script from the **EU Cloud** tab below.
         * If you are using <https://us1.my.wallarm.com/>, run the script from the **US Cloud** tab below.
+        * If you are using <https://my.wallarm.com/>, run the script from the **EU Cloud** tab below.
     
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/addcloudnode
-        ```
     === "US Cloud"
         ``` bash
         sudo /usr/share/wallarm-common/addcloudnode -H us1.api.wallarm.com
+        ```
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/addcloudnode
         ```
         
 4. Paste the filtering node token from your clipboard. 
@@ -64,16 +64,16 @@ To connect the node to the Wallarm Cloud using your account requisites, proceed 
     !!! info
         You have to pick which script to run depending on the Cloud you are using.
         
-        * If you are using <https://my.wallarm.com/>, run the script from the **EU Cloud** tab below.
         * If you are using <https://us1.my.wallarm.com/>, run the script from the **US Cloud** tab below.
+        * If you are using <https://my.wallarm.com/>, run the script from the **EU Cloud** tab below.
     
-    === "EU Cloud"
-        ```bash
-        sudo /usr/share/wallarm-common/addnode
-        ```
     === "US Cloud"
         ```bash
         sudo /usr/share/wallarm-common/addnode -H us1.api.wallarm.com
+        ```
+    === "EU Cloud"
+        ```bash
+        sudo /usr/share/wallarm-common/addnode
         ```
     
 2.  Provide your Wallarm account email and password when prompted.

@@ -9,7 +9,7 @@ These instructions describe the steps to upgrade the multi-tenant node up to 4.x
 ## Requirements
 
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure)
-* Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Step 1: Contact the Wallarm support team
 
@@ -119,14 +119,6 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
         1. Send the GET request to the route `/v2/partner_client`:
 
             !!! info "Example of the request sent from your own client"
-                === "EU Cloud"
-                    ``` bash
-                    curl -X GET \
-                    'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
-                    -H 'accept: application/json' \
-                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-                    -H 'x-wallarmapi-uuid: YOUR_UUID'
-                    ```
                 === "US Cloud"
                     ``` bash
                     curl -X GET \
@@ -135,6 +127,15 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
                     -H 'x-wallarmapi-uuid: YOUR_UUID'
                     ```
+                === "EU Cloud"
+                    ``` bash
+                    curl -X GET \
+                    'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
+                    -H 'accept: application/json' \
+                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+                    -H 'x-wallarmapi-uuid: YOUR_UUID'
+                    ```
+            
             Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
             Response example:
@@ -170,19 +171,19 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 1. To get the UUID of each tenant, send the POST request to the route `v1/objects/client`:
 
     !!! info "Example of the request sent from your own client"
-        === "EU Cloud"
+        === "US Cloud"
             ``` bash
             curl -X POST \
-            https://api.wallarm.com/v1/objects/client \
+            https://us1.api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
             -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
             -H 'x-wallarmapi-uuid: YOUR_UUID' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
-        === "US Cloud"
+        === "EU Cloud"
             ``` bash
             curl -X POST \
-            https://us1.api.wallarm.com/v1/objects/client \
+            https://api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
             -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
             -H 'x-wallarmapi-uuid: YOUR_UUID' \

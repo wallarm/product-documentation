@@ -78,14 +78,15 @@ Allows you to enable or disable Wallarm functions.
 ### controller.wallarm.apiHost
 
 Wallarm API endpoint. Can be:
-* `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
+
 * `us1.api.wallarm.com` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
 
 **Default value**: `api.wallarm.com`
 
 ### controller.wallarm.token
 
-The *Wallarm Node* token is created on the Wallarm portal in the [EU](https://my.wallarm.com/nodes) or [US](https://us1.my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
+The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
 
 **Default value**: `not specified`
 
