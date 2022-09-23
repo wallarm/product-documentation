@@ -4,7 +4,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
 ## Requirements
 
-* Kubernetes platform version 1.19-1.24
+* Kubernetes platform version 1.20-1.24
 * [Helm](https://helm.sh/) package manager
 * Compatibility of your services with the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.3.0 or lower
 * Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
