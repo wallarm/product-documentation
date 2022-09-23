@@ -8,16 +8,6 @@ Learn more about the Wallarm API Security platform from our demo videos.
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/DRi9uXISq7A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Wallarm API Security architecture
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Qh-Wof1C3Ak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-**Related documentation articles**
-
-* [Overview of Wallarm API Security components](../about-wallarm-waf/overview.md)
-
 ## Protecting applications against OWASP Top 10
 
 <div class="video-wrapper">
