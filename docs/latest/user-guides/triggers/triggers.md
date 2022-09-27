@@ -9,7 +9,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 
 You can configure all the trigger components:
 
-* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, denylisted IP address, and new user added to the account.
+* **Condition**: system event to be notified about. For example: getting a certain amount of attacks, denylisted IP address, and new users added to the account.
 * **Filters**: condition details. For example: attack types.
 * **Reaction**: action that should be performed if the specified condition and filters are met. For example: sending the notification to Slack or another system configured as the [integration](../settings/integrations/integrations-intro.md), blocking IP address, or marking requests as the brute‑force attack.
 
@@ -109,7 +109,7 @@ New company accounts are featured by the following pre-configured triggers (defa
     Due to different parameter values of grouped hits, the [Mark as false positive](../events/false-attack.md#mark-an-attack-as-a-false-positive) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) will also be unavailable.
     
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
-* Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
+* Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour.
 
     [Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
 
@@ -121,7 +121,7 @@ Triggers work on all traffic within a company account by default but you can cha
 
 ## Disabling and deleting triggers
 
-* To temporarily stop sending notifications and reactions to events, you can disable the trigger. A disabled trigger will be displayed in the lists with **All** and **Disabled** triggers. To re‑enable sending notifications and reactions to events, the **Enable** option is used.
+* To temporarily stop sending notifications and reactions to events, you can disable the trigger. A trigger that has been disabled will be displayed in the lists with **All** and **Disabled** triggers. To re‑enable sending notifications and reactions to events, the **Enable** option is used.
 * To permanently stop sending notifications and reactions to events, you can delete the trigger. Deleting a trigger cannot be undone. The trigger will be permanently removed from the trigger list.
 
 To disable or delete the trigger, please select an appropriate option from the trigger menu and confirm the action if required.
