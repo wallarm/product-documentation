@@ -2,6 +2,15 @@
 
 This page describes new releases of Wallarm API Firewall.
 
+## v0.6.9 (2022-09-12)
+
+* Upgrade Go to 1.19
+* Upgrade other dependencies
+* Fix bugs of Shadow API detection and denylist processing
+* Delete the `Apifw-Request-Id` header from responses returned by API Firewall
+* Add compatibility of the Ingress object with Kubernetes 1.22
+* Terminate logging of incoming requests matching API specification at the INFO log level
+
 ## v0.6.8 (2022-04-11)
 
 ### New features
