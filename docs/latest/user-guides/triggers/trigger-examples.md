@@ -21,14 +21,14 @@ If you have recently created the Wallarm account, this [trigger is already creat
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-1. Open Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
+1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
 1. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode. However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
+The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode. However, the node analyzes the graylist only in the **safe blocking** mode. To block malicious requests that originating from graylisted IPs, switch the node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) to safe blocking learning its features first.
 
 ## Denylist IP if 4 or more malicious payloads are detected in 1 hour
 
@@ -47,7 +47,7 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-2. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
+2. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
@@ -60,7 +60,7 @@ If an IP address was denylisted by this trigger, the filtering node would block 
 
 To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
 
-If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the denylist.
+If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests originated will be added to the denylist.
 
 ![!Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 
