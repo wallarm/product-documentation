@@ -130,7 +130,7 @@ The main parameters you may need to change are:
 | `wallarm.tarantool.arena` | Specifies the amount of memory allocated for the Wallarm postanalytics module. It is recommended to set up a value sufficient to store requests data for the last 5-15 minutes. | `0.2`
 | `wallarm.metrics.enabled` | This switch toggles information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required. | `false`
 
-Other parameters come with default value and rarely need to be changed. To change them, refer to the [Kong instructions](https://github.com/Kong/charts/tree/main/charts/kong#configuration).
+Other parameters come with default value and rarely need to be changed.
 
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 

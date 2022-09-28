@@ -29,7 +29,11 @@ Among all supported [Wallarm deployment options](../../../admin-en/supported-pla
 
 ## Solution architecture
 
-To learn the solution architecture, refer to the [official Kong Ingress Controller design document](https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/design/).
+The solution has the following architecture:
+
+![!Solution architecture](../../../images/waf-installation/kubernetes/kong-ingress-controller/solution-architecture.png)
+
+The solution is based on the official Kong Ingress Controller, its architecture is described in the [official Kong documentation](https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/design/).
 
 Kong Ingress Controller with integrated Wallarm services is arranged by the following Deployment objects:
 
@@ -175,7 +179,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
             tag: "2.1.1"
         ```  
     
-    * `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes
+    * `<NODE_TOKEN>` is the Wallarm node token you copied from the Wallarm Console UI
     * `<KONG-ENTERPRISE-LICENSE>` is the [Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)
 1. Deploy the Wallarm Helm chart:
 
