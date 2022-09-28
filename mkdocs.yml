@@ -119,6 +119,9 @@ nav:
             - Deploying Wallarm Sidecar proxy: waf-installation/kubernetes/sidecar-proxy/deployment.md
             - Customizing Wallarm Sidecar proxy: waf-installation/kubernetes/sidecar-proxy/customization.md
             - Supported per-pod's annotation: waf-installation/kubernetes/sidecar-proxy/pod-annotations.md
+          - Deploying Wallarm for Kong:
+            - Deploying Kong Ingress Controller with integrated Wallarm services: waf-installation/kubernetes/kong-ingress-controller/deployment.md
+            - Customizing Kong Ingress Controller with integrated Wallarm services: waf-installation/kubernetes/kong-ingress-controller/customization.md
         - Cloud platforms:
           - Amazon AWS:
             - AWS Marketplace image deployment:
