@@ -184,7 +184,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version TBD <RELEASE_NAME> TBD --wait -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.2.3 <RELEASE_NAME> wallarm/kong-preview --wait -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Kong Ingress Controller release
