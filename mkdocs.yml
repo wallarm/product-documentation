@@ -119,6 +119,9 @@ nav:
             - Deploying Wallarm Sidecar proxy: waf-installation/kubernetes/sidecar-proxy/deployment.md
             - Customizing Wallarm Sidecar proxy: waf-installation/kubernetes/sidecar-proxy/customization.md
             - Supported per-pod's annotation: waf-installation/kubernetes/sidecar-proxy/pod-annotations.md
+          - Deploying Wallarm for Kong:
+            - Deploying Kong Ingress Controller with integrated Wallarm services: waf-installation/kubernetes/kong-ingress-controller/deployment.md
+            - Customizing Kong Ingress Controller with integrated Wallarm services: waf-installation/kubernetes/kong-ingress-controller/customization.md
         - Cloud platforms:
           - Amazon AWS:
             - AWS Marketplace image deployment:
@@ -152,7 +155,7 @@ nav:
         - Deploying Wallarm on AWS using Terraform:
           - Overview: waf-installation/cloud-platforms/aws/terraform-module/overview.md
           - Trying Wallarm Terraform Module with examples: waf-installation/cloud-platforms/aws/terraform-module/examples.md
-        - Installing on the Kong platform: admin-en/installation-kong-en.md
+        - Installing Wallarm from DEB/RPM packages for Kong: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md

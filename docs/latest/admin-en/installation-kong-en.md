@@ -8,9 +8,9 @@
 [versioning-policy]:                         ../updating-migrating/versioning-policy.md#version-list
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
 
-# Installing with Kong
+# Installing Wallarm from DEB/RPM packages for Kong
 
-These instructions provide you with the steps to install the Wallarm module with Kong.
+These instructions provide you with the steps to install the Wallarm module for Kong using DEB/RPM packages.
 
 !!! info "Prerequisites"
     Requirements for the Kong platform:

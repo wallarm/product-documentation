@@ -8,9 +8,9 @@
 [waf-installation-instr-middle]:             /2.18/admin-en/installation-kong-en/
 [versioning-policy]:                         ../updating-migrating/versioning-policy.md#version-list
 
-# Installing with Kong
+# Installing Wallarm from DEB/RPM packages for Kong
 
-These instructions provide you with the steps to install the Wallarm module with Kong.
+These instructions provide you with the steps to install the Wallarm module for Kong using DEB/RPM packages.
 
 !!! info "Prerequisites"
     Requirements for the Kong platform:
