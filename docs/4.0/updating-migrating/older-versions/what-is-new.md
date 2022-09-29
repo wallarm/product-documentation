@@ -26,7 +26,7 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
 The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
 
-[Instructions on the CDN node deployment](../../waf-installation/cdn-node.md)
+[Instructions on the CDN node deployment](../../installation/cdn-node.md)
 
 The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
 
@@ -79,17 +79,17 @@ The Wallarm Terraform module is the scalable solution meeting the best industry 
 
 We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
 
-[Documentation on the Wallarm Terraform module for AWS](../../waf-installation/cloud-platforms/aws/terraform-module/overview.md)
+[Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 
 ## Wallarm AWS image distributed with the ready-to-use `cloud-init.py` script
 
 If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to AWS. Starting from release 4.0, Wallarm distributes its AWS cloud image with the ready‑to‑use `cloud-init.py` script.
 
-[Specification of the Wallarm `cloud-init` script](../../waf-installation/cloud-platforms/cloud-init.md)
+[Specification of the Wallarm `cloud-init` script](../../installation/cloud-platforms/cloud-init.md)
 
 ## Simplified multi-tenant node configuration
 
-For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
+For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
 
 * The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive and [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) Envoy parameter have been added to configure the unique identifier of a tenant.
 * The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive and [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param) Envoy parameter behavior has been changed. Now it is **only** used to configure an application ID.

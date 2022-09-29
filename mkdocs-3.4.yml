@@ -106,9 +106,9 @@ nav:
         - Deployment options: admin-en/supported-platforms.md
         - NGINX:
           - NGINX installation options overview: admin-en/installation-nginx-overview.md
-          - Installing as a dynamic module for NGINX stable: waf-installation/nginx/dynamic-module.md
-          - Installing as a dynamic module for NGINX from Debian/CentOS repositories: waf-installation/nginx/dynamic-module-from-distr.md
-          - Installing as a dynamic module for NGINX Plus: waf-installation/nginx-plus.md
+          - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
+          - Installing as a dynamic module for NGINX from Debian/CentOS repositories: installation/nginx/dynamic-module-from-distr.md
+          - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Kubernetes:
           - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
@@ -126,8 +126,8 @@ nav:
                 - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
                 - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
                 - Setting up incoming request balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to AWS: waf-installation/cloud-platforms/aws/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on AWS: waf-installation/cloud-platforms/aws/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to AWS: installation/cloud-platforms/aws/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
           - Google Cloud Platform:
             - GCP Marketplace image deployment:
               - Creating and configuring a GCP instance with the Wallarm node: admin-en/installation-gcp-en.md
@@ -137,23 +137,23 @@ nav:
                 - Creating a filtering node instance template on GCP: admin-en/installation-guides/google-cloud/creating-instance-template.md
                 - Creating a managed instance group with enabled auto scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
                 - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to GCP: waf-installation/cloud-platforms/gcp/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on GCP: waf-installation/cloud-platforms/gcp/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to GCP: installation/cloud-platforms/gcp/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on GCP: installation/cloud-platforms/gcp/deb-rpm-packages.md
           - Microsoft Azure:
-            - Deployment of the Wallarm node Docker image to Azure: waf-installation/cloud-platforms/azure/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Azure: waf-installation/cloud-platforms/azure/deb-rpm-packages.md
+            - Deployment of the Wallarm node Docker image to Azure: installation/cloud-platforms/azure/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on Azure: installation/cloud-platforms/azure/deb-rpm-packages.md
           - Alibaba Cloud:
-            - Deployment of the Wallarm node Docker image to Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
-          - Deployment of the filtering node to the private clouds: waf-installation/cloud-platforms/private-cloud.md
+            - Deployment of the Wallarm node Docker image to Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/docker-container.md
+            - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+          - Deployment of the filtering node to the private clouds: installation/cloud-platforms/private-cloud.md
         - Installing Wallarm from DEB/RPM packages for Kong: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
         - Deploying the multi‑tenant node:
-          - Multitenancy overview: waf-installation/multi-tenant/overview.md
-          - Creating tenant accounts in Wallarm Console: waf-installation/multi-tenant/configure-accounts.md
-          - Deploying and configuring multi-tenant node: waf-installation/multi-tenant/deploy-multi-tenant-node.md
+          - Multitenancy overview: installation/multi-tenant/overview.md
+          - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
+          - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md

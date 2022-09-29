@@ -1,1 +1,0 @@
---8<-- "latest/waf-installation/cloud-platforms/aws/deb-rpm-packages.md"

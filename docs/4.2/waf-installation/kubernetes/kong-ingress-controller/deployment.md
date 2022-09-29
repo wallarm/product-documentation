@@ -1,1 +1,0 @@
---8<-- "latest/waf-installation/kubernetes/kong-ingress-controller/deployment.md"

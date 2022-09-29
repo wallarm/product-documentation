@@ -30,7 +30,7 @@ This directive value should correspond to the following format:
     Wallarm provides the default blocking page. To use this page, please specify the path `&/usr/share/nginx/html/wallarm_blocked.html` in the directive value.
 
     !!! warning "Important information for Debian and CentOS users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../waf-installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
+        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
         ```
         UUID ${request_id}
         ```

@@ -42,7 +42,7 @@ Analyzing requests with the [**libdetection** library](protecting-against-attack
 
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP images and Docker node container)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
-* Add the `sidecar.wallarm.io/wallarm-enable-libdetection: on` [annotation](../waf-installation/kubernetes/sidecar-proxy/pod-annotations.md) for the application pod if using the Wallarm Sidecar proxy solution
+* Add the `sidecar.wallarm.io/wallarm-enable-libdetection: on` [annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md) for the application pod if using the Wallarm Sidecar proxy solution
 
 ## Configure proper reporting of end-user IP addresses
 

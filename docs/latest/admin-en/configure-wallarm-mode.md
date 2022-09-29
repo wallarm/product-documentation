@@ -22,7 +22,7 @@ The filtration mode can be configured in the following ways:
 * Assign a value to the `wallarm_mode` directive in the filtering node configuration file
 
     !!! warning "Support of the `wallarm_mode` directive on the CDN node"
-        Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../waf-installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
+        Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
 * Define the general filtration rule in Wallarm Console
 * Create a filtration mode rule in the **Rules** section of Wallarm Console
 
@@ -31,7 +31,7 @@ Priorities of the filtration mode configuration methods are determined in the [`
 ### Specifying the filtration mode in the `wallarm_mode` directive
 
 !!! warning "Support of the `wallarm_mode` directive on the CDN node"
-    Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../waf-installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
+    Please note that the `wallarm_mode` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md). To configure the filtration mode of the CDN nodes, please use other available methods.
 
 Using the `wallarm_mode` directive in the filtering node configuration file, you can define filtration modes for different contexts. These contexts are ordered from the most global to the most local in the following list:
 
@@ -121,7 +121,7 @@ You can fine-tune the filtration mode for processing requests that meet your cus
 ### Setting up priorities of the filtration mode configuration methods using `wallarm_mode_allow_override`
 
 !!! warning "Support of the `wallarm_mode_allow_override` directive on the CDN node"
-    Please note that the `wallarm_mode_allow_override` directive cannot be configured on the [Wallarm CDN nodes](../waf-installation/cdn-node.md).
+    Please note that the `wallarm_mode_allow_override` directive cannot be configured on the [Wallarm CDN nodes](../installation/cdn-node.md).
 
 The `wallarm_mode_allow_override` directive manages the ability to apply rules that are defined on Wallarm Console instead of using the `wallarm_mode` directive values from the filtering node configuration file.
 

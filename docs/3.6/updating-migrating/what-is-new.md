@@ -12,7 +12,7 @@ There are the following changes available in Wallarm node 3.6:
 
     The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain’s DNS records.
 
-    [Instructions on the CDN node deployment](../waf-installation/cdn-node.md)
+    [Instructions on the CDN node deployment](../installation/cdn-node.md)
 * Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.1.3.
 
     [Instructions on migrating to the Wallarm Ingress controller 3.6 →](ingress-controller.md)

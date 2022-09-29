@@ -19,7 +19,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
             <a href="../../admin-en/installation-docker-en/" onClick="noAction(event)">Docker container</a>
             <a href="#kubernetes" onClick="noAction(event)">Kubernetes</a>
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -35,7 +35,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <p>Deploy Wallarm node compatible to NGINX Plus with...</p>
         <div id="nginxPlusId" class="options-list" style="display: none;">
             <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -88,8 +88,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <p>Deploy Wallarm node distributed as...</p>
         <div id="awsId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-ami-en/" onClick="noAction(event)">AWS Marketplace image</a>
-            <a href="../../waf-installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/aws/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../installation/cloud-platforms/aws/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -105,8 +105,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <p>Deploy Wallarm node distributed as...</p>
         <div id="gcpId" class="options-list" style="display: none;">
             <a href="../../admin-en/installation-gcp-en/" onClick="noAction(event)">GCP Marketplace image</a>
-            <a href="../../waf-installation/cloud-platforms/gcp/docker-container/" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/gcp/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/cloud-platforms/gcp/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../installation/cloud-platforms/gcp/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>    
     </div>
 </div> 
@@ -121,8 +121,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Deploy Wallarm node distributed as...</p>
         <div id="azureId" class="options-list" style="display: none;">
-            <a href="../../waf-installation/cloud-platforms/azure/docker-container/" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/azure/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/cloud-platforms/azure/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../installation/cloud-platforms/azure/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -137,8 +137,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Deploy Wallarm node distributed as...</p>
         <div id="alibabaId" class="options-list" style="display: none;">
-            <a href="../../waf-installation/cloud-platforms/alibaba-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/alibaba-cloud/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/cloud-platforms/alibaba-cloud/docker-container/" onClick="noAction(event)">Docker container</a>
+            <a href="../../installation/cloud-platforms/alibaba-cloud/deb-rpm-packages/" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -153,8 +153,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Deploy Wallarm node distributed as...</p>
         <div id="privateCloudId" class="options-list" style="display: none;">
-            <a href="../../waf-installation/cloud-platforms/private-cloud/#principles-of-deploying-the-wallarm-node-docker-container-to-the-private-cloud" onClick="noAction(event)">Docker container</a>
-            <a href="../../waf-installation/cloud-platforms/private-cloud/#principles-of-installing-the-wallarm-node-from-deb-and-rpm-packages-on-the-private-cloud" onClick="noAction(event)">DEB or RPM packages</a>
+            <a href="../../installation/cloud-platforms/private-cloud/#principles-of-deploying-the-wallarm-node-docker-container-to-the-private-cloud" onClick="noAction(event)">Docker container</a>
+            <a href="../../installation/cloud-platforms/private-cloud/#principles-of-installing-the-wallarm-node-from-deb-and-rpm-packages-on-the-private-cloud" onClick="noAction(event)">DEB or RPM packages</a>
         </div>
     </div>
 </div> 
@@ -215,7 +215,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="debian9Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
     </div>
 </div> 
@@ -230,7 +230,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="debian9backId" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
     </div>
 </div> 
@@ -245,9 +245,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="debian10Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
     </div>
 </div> 
@@ -265,9 +265,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="debian11Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
     </div>
 </div> 
@@ -282,8 +282,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="ubuntu18Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
             <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
         </div>
     </div>
@@ -299,8 +299,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="ubuntu20Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
         </div>
     </div>
 </div>
@@ -318,8 +318,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="centos6Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
         </div>
     </div>
 </div>
@@ -334,9 +334,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="centos7Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
             <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
         </div>
     </div>
@@ -352,9 +352,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="centos8Id" class="options-list" style="display: none;">
-            <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+            <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
         </div>
     </div>
 </div> 
@@ -371,8 +371,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             </h3>
             <p>Install the Wallarm module for...</p>
             <div id="alinux2Id" class="options-list" style="display: none;">
-                <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-                <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+                <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+                <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
             </div>
         </div>
     </div> 

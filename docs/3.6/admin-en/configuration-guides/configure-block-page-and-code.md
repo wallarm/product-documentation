@@ -44,7 +44,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html`. You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
 
     !!! warning "Important information for Debian and CentOS users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../waf-installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
+        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
         ```
         UUID ${request_id}
         ```

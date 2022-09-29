@@ -162,7 +162,7 @@ The library conducts the attack syntax analysis for matching the contexts. If th
 
 #### Enabling libdetection
 
-Analyzing requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../waf-installation/cdn-node.md).
+Analyzing requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md).
 
 To reduce the number of false positives, we recommend enabling analysis:
 

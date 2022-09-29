@@ -1,4 +1,4 @@
-[doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
+[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 

@@ -5,7 +5,7 @@ This document describes recommendations and associated risks for a safe upgrade 
 !!! warning "Breaking changes and recommendations for node upgrade"
     If upgrading the node from the version 3.6 or lower, please note that the latest version contains **breaking changes**. Please carefully review what has been changed before upgrading the node.
 
-    We recommend to upgrade both the client and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes up to version 4.2. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+    We recommend to upgrade both the client and [multi-tenant](../installation/multi-tenant/overview.md) nodes up to version 4.2. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
 
 ## Common recommendations
 

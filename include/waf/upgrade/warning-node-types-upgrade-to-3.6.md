@@ -1,3 +1,3 @@
 !!! warning "Breaking changes and recommendations for different node type upgrade"
     * If upgrading Wallarm node 2.18 or lower, please note that version 3.x contains **breaking changes**. Before upgrading the modules of 2.18 and lower up to 3.6, please carefully review the list of [Wallarm node changes](older-versions/what-is-new.md) and consider a possible configuration change.
-    * We recommend to upgrade both the regular (client) and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes up to version 3.6. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+    * We recommend to upgrade both the regular (client) and [multi-tenant](../installation/multi-tenant/overview.md) nodes up to version 3.6. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).

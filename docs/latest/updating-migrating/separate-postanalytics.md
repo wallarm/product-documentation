@@ -32,9 +32,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
     !!! warning "Support for CentOS 8.x has been deprecated"
         Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
 
-        * [Installation instructions for NGINX `stable`](../waf-installation/nginx/dynamic-module.md)
-        * [Installation instructions for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
-        * [Installation instructions for NGINX Plus](../waf-installation/nginx-plus.md)
+        * [Installation instructions for NGINX `stable`](../installation/nginx/dynamic-module.md)
+        * [Installation instructions for NGINX from CentOS/Debian repositories](../installation/nginx/dynamic-module-from-distr.md)
+        * [Installation instructions for NGINX Plus](../installation/nginx-plus.md)
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum remove wallarm-node-repo

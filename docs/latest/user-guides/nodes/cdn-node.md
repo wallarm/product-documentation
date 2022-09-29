@@ -23,7 +23,7 @@ The **Nodes** section of the Wallarm Console UI allows you to manage the nodes o
 
 ## Creating a node
 
-To create the CDN node, please follow the [instructions](../../waf-installation/cdn-node.md).
+To create the CDN node, please follow the [instructions](../../installation/cdn-node.md).
 
 ## Viewing details of a node
 

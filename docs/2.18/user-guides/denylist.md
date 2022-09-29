@@ -24,7 +24,7 @@ The denylist is available in the **Denylist** section of your Wallarm account. T
     For the denylisting to take effect, please enable it on the filtering node.
     
     * [Instructions for the regular filtering node][link-ip-blocking]
-    * To enable IP address denylisting on the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
+    * To enable IP address denylisting on the [multi-tenant node](../installation/multi-tenant/overview.md), please send a request to the [Wallarm technical support](mailto:support@wallarm.com).
 
 !!! info "Old name of the list"
     The old name of the IP address denylist is "IP address blacklist".
@@ -86,7 +86,7 @@ You can filter the history by:
 ## Block Manually
 
 !!! info "Blocking the IP address on the multi-tenant node"
-    If you have installed the [multi-tenant node](../waf-installation/multi-tenant/overview.md), please switch to the [account of a tenant](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is blocked before adding the IP address to the denylist.
+    If you have installed the [multi-tenant node](../installation/multi-tenant/overview.md), please switch to the [account of a tenant](../installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is blocked before adding the IP address to the denylist.
 
 To start blocking IP addresses:
 

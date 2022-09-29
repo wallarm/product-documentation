@@ -20,9 +20,9 @@
 
 These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 or lower to version 3.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
-* [NGINX `stable` module](../../waf-installation/nginx/dynamic-module.md)
-* [Module for NGINX from CentOS/Debian repositories](../../waf-installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plus module](../../waf-installation/nginx-plus.md)
+* [NGINX `stable` module](../../installation/nginx/dynamic-module.md)
+* [Module for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
+* [NGINX Plus module](../../installation/nginx-plus.md)
 * [Kong module](../../admin-en/installation-kong-en.md)
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
@@ -64,7 +64,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 === "NGINX Plus"
     For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
 === "NGINX from Debian/CentOS repository"
-    For NGINX [installed from Debian/CentOS repository](../../waf-installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-6-upgrade-wallarm-api-security-packages) along with Wallarm modules.
+    For NGINX [installed from Debian/CentOS repository](../../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-6-upgrade-wallarm-api-security-packages) along with Wallarm modules.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
 
@@ -90,9 +90,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
     !!! warning "Support for CentOS 8.x has been deprecated"
         Support for CentOS 8.x [has been deprecated](https://www.centos.org/centos-linux-eol/). You can install the Wallarm node 3.6 on the AlmaLinux, Rocky Linux or Oracle Linux 8.x operating system insted.
 
-        * [Installation instructions for NGINX `stable`](../../waf-installation/nginx/dynamic-module.md)
-        * [Installation instructions for NGINX from CentOS/Debian repositories](../../waf-installation/nginx/dynamic-module-from-distr.md)
-        * [Installation instructions for NGINX Plus](../../waf-installation/nginx-plus.md)
+        * [Installation instructions for NGINX `stable`](../../installation/nginx/dynamic-module.md)
+        * [Installation instructions for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
+        * [Installation instructions for NGINX Plus](../../installation/nginx-plus.md)
 
 **Debian and Ubuntu**
 
