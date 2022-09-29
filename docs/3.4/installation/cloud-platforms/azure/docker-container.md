@@ -1,4 +1,4 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
 [nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
 [graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md

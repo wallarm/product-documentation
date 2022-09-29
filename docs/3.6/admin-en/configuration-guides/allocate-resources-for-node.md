@@ -1,0 +1,1 @@
+--8<-- "4.0/admin-en/configuration-guides/allocate-resources-for-node.md"

@@ -9,7 +9,7 @@ Using applications enables you to:
 
 * View events and statistics separately for each application
 * Configure [triggers](../triggers/triggers.md), [rules](../rules/add-rule.md) and other Wallarm features for certain applications
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md)
+* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
 
 For Wallarm to identify your applications, it is required to assign them unique identifiers via the appropriate directive in the node configuration. Identifiers can be set for both the application domains and the domain paths.
 

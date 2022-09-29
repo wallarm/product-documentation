@@ -168,7 +168,7 @@ nav:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
-        - Allocating Resources for Wallarm Node: admin-en/configuration-guides/allocate-resources-for-waf-node.md
+        - Allocating Resources for Wallarm Node: admin-en/configuration-guides/allocate-resources-for-node.md
         - Filtering mirrored traffic:
           - Configuration of mirrored traffic filtration: admin-en/configuration-guides/traffic-mirroring/overview.md
           - Example of NGINX configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/nginx-example.md
@@ -176,8 +176,8 @@ nav:
           - Example of Traefik configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/traefik-example.md
           - Example of Istio configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/istio-example.md
         - Configuration of Filter Node for Separated Customer Environments:
-          - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md
-          - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md
+          - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
+          - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Identifying an original client IP address if using a proxy or load balancer: admin-en/using-proxy-or-balancer-en.md
         - Filtering node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md

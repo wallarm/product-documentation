@@ -151,7 +151,7 @@ spec:
 
 ### Allocating resources for containers
 
-The amount of memory allocated for the Wallarm sidecar containers determines the quality and speed of request processing. To allocate enough resources for memory requests and limits, [learn our recommendations](../../../admin-en/configuration-guides/allocate-resources-for-waf-node.md).
+The amount of memory allocated for the Wallarm sidecar containers determines the quality and speed of request processing. To allocate enough resources for memory requests and limits, [learn our recommendations](../../../admin-en/configuration-guides/allocate-resources-for-node.md).
 
 Resource allocation is allowed on both the global and per-pod levels.
 

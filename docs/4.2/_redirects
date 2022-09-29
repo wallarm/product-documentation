@@ -367,3 +367,17 @@
 /3.4/waf-installation/* /3.4/installation/:splat 301!
 /3.6/waf-installation/* /3.6/installation/:splat 301!
 /4.0/waf-installation/* /4.0/installation/:splat 301!
+/admin-en/configuration-guides/allocate-resources-for-waf-node/ /admin-en/configuration-guides/allocate-resources-for-node/
+/2.18/admin-en/configuration-guides/allocate-resources-for-waf-node/ /2.18/admin-en/configuration-guides/allocate-resources-for-node/
+/3.4/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.4/admin-en/configuration-guides/allocate-resources-for-node/
+/3.6/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.6/admin-en/configuration-guides/allocate-resources-for-node/
+/4.0/admin-en/configuration-guides/allocate-resources-for-waf-node/ /4.0/admin-en/configuration-guides/allocate-resources-for-node/
+/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/4.0/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /4.0/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/

@@ -5,7 +5,7 @@
 [logging-instr]:                    configure-logging.md
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          configuration-guides/allocate-resources-for-waf-node.md
+[allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file

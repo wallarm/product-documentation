@@ -21,7 +21,7 @@ The majority of Wallarm filtering node deployment options use NGINX as the rever
 ## Follow recommended onboarding steps
 
 1. Learn about available [Wallarm node deployment options](../admin-en/supported-platforms.md).
-2. Learn about available options to [separately manage the Wallarm node configuration for your environments](../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md) (if necessary).
+2. Learn about available options to [separately manage the Wallarm node configuration for your environments](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) (if necessary).
 3. Deploy Wallarm filtering nodes in your non-production environments with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
 4. Learn about how to operate, scale and monitor the Wallarm API Security solution, and confirm the stability of the new network component.
 5. Deploy Wallarm filtering nodes in your production environment with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.

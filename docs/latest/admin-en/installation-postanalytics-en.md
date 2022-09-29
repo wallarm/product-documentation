@@ -158,7 +158,7 @@ The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in t
     SLAB_ALLOC_ARENA=24
     ```
 
-Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-waf-node.md).
+Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-node.md).
 
 #### Address of the separate postanalytics server
 

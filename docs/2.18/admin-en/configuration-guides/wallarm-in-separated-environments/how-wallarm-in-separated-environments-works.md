@@ -1,0 +1,1 @@
+--8<-- "3.4/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md"

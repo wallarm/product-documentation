@@ -1,13 +1,13 @@
 # Recommendations on Configuring the Filter Node for Separated Environments
 
-You have already learned [how Wallarm filtering nodes work in separate environments](how-waf-in-separated-environments-works.md). For the nodes to work as described, learn recommendations on configuring nodes in separated environments from this article.
+You have already learned [how Wallarm filtering nodes work in separate environments](how-wallarm-in-separated-environments-works.md). For the nodes to work as described, learn recommendations on configuring nodes in separated environments from this article.
 
 ## Initial Wallarm Protection Deployment Process
 
 If you perform the initial rollout of Wallarm protection for environments, it is recommended you use the following approach (you are welcome to adjust it as needed):
 
 1. Learn about available Wallarm node deployment options [here](../../supported-platforms.md).
-2. If necessary, learn about available options to separately manage the filtering node configuration for your environments. You can find this information [here](how-waf-in-separated-environments-works.md#relevant-wallarm-features).
+2. If necessary, learn about available options to separately manage the filtering node configuration for your environments. You can find this information [here](how-wallarm-in-separated-environments-works.md#relevant-wallarm-features).
 3. Deploy Wallarm filtering nodes in your non-production environments with the filtration mode set to `monitoring`.
 4. Learn about how to operate, scale, and monitor the Wallarm solution; confirm the stability of the new network component.
 5. Deploy Wallarm filtering nodes in your production environment with the filtration mode set to `monitoring`.
@@ -35,7 +35,7 @@ Low-level configuration can easily be separately managed for different customer 
 
 ### Configuration of Wallarm Node Rules
 
-Since each rule record can be associated with a [different set](how-waf-in-separated-environments-works.md#resource-identification) of application instance IDs or `HOST` request headers, the following options are recommended:
+Since each rule record can be associated with a [different set](how-wallarm-in-separated-environments-works.md#resource-identification) of application instance IDs or `HOST` request headers, the following options are recommended:
 
 * First apply a new configuration to a test or development environment, verify the functionality, and then apply the change for the production environment.
 * Use the `Create regexp-based attack indicator` rule in the `Experimental` mode. This mode allows the rule to be deployed directly in the production environment without the risk of mistakenly blocking valid end user requests.

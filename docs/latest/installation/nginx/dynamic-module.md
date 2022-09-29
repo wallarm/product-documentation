@@ -1,6 +1,6 @@
 [img-wl-console-users]:             ../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
 [sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
