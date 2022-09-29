@@ -32,10 +32,10 @@
 /admin-en/installation-nginxplus-en /installation/nginx-plus/
 /admin-en/installation-nginx-distr-en /installation/nginx/dynamic-module-from-distr/
 
-/admin-en/troubleshooting/ /faq/common-errors-after-waf-installation/
-/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/waf-ingress-installation/
-/admin-en/troubleshooting /faq/common-errors-after-waf-installation/
-/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
+/admin-en/troubleshooting/ /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/ingress-installation/
+/admin-en/troubleshooting /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/ingress-installation/
 
 /2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
