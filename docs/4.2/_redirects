@@ -381,3 +381,8 @@
 /3.6/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
 /3.6/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
 /4.0/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /4.0/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/faq/waf-nginx-compatibility/ /faq/nginx-compatibility/ 
+/faq/waf-ingress-installation/ /faq/ingress-installation/
+/faq/common-errors-after-waf-installation/ /faq/common-errors-after-installation/
+/demo-videos/waf-overview/ /demo-videos/overview/ 
+/demo-videos/waf-events-inspection/ /demo-videos/events-inspection/

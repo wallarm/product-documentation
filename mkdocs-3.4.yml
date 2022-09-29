@@ -338,16 +338,16 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm filtering node with NGINX versions: faq/waf-nginx-compatibility.md
-    - Installing Wallarm Ingress controller: faq/waf-ingress-installation.md
-    - Errors after Wallarm node installation: faq/common-errors-after-waf-installation.md
+    - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
+    - Installing Wallarm Ingress controller: faq/ingress-installation.md
+    - Errors after Wallarm node installation: faq/common-errors-after-installation.md
     - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
   - Demo videos:
-    - Wallarm API Security overview and deployment options: demo-videos/waf-overview.md
-    - Inspecting events detected by the Wallarm filtering node: demo-videos/waf-events-inspection.md
+    - Wallarm API Security overview and deployment options: demo-videos/overview.md
+    - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
     - Wallarm Scanner overview: demo-videos/scanner-overview.md
     - Notifications and reactions to events detected by Wallarm: demo-videos/notifications.md
     - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
