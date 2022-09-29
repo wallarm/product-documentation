@@ -160,7 +160,7 @@ You can collect metrics from a filter node in several ways:
     This method is suitable for the following filter node deployment types:
 
     *   in the clouds: Amazon AWS, Google Cloud;
-    *   on Linux for NGINX/NGINX Plus and Kong platforms.
+    *   on Linux for NGINX/NGINX Plus platforms.
 
 *   [By exporting data via `collectd-nagios`][doc-collectd-nagios].
   

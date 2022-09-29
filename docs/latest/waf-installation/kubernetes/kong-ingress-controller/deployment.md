@@ -1,11 +1,11 @@
 # Deploying Kong Ingress Controller with integrated Wallarm services
 
-To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of the real-time malicious traffic mitigation.
+To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
 
 !!! info "Preview release"
-    The current implementation of Kong Ingress Controller with integrated Wallarm services is the preview stage of the solution.
+    The current implementation of the Kong Ingress Controller with integrated Wallarm services is the preview stage of the solution.
 
-The solution is deployed from the [Wallarm Helm chart].
+The solution is deployed from the [Wallarm Helm chart](https://github.com/wallarm/kong-charts-preview).
 
 The **key features** of the Kong Ingress Controller with integrated Wallarm services:
 
@@ -23,7 +23,7 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 Among all supported [Wallarm deployment options](../../../admin-en/supported-platforms.md), this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources managed by Kong.
-* You are using either the Open-Source or Enterprise official Kong Ingress controller and looking for the security solution compatible with your technology stack.
+* You are using either the Open-Source or Enterprise official Kong Ingress controller and looking for a security solution compatible with your technology stack.
 
     You can seamlessly replace the deployed Kong Ingress Controller with the one these instructions describe by only moving your configuration to a new deployment.
 
@@ -42,9 +42,9 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 
 ## Limitations
 
-The describing solution allows the Wallarm API Security layer fine-tuning only via the Wallarm Console UI.
+The described solution allows the Wallarm API Security layer fine-tuning only via the Wallarm Console UI.
 
-However some Wallarm API Security features reguire configuration files to be changed that is unsupported in current solution implementation. It makes the following Wallarm features unavailable:
+However, some Wallarm API Security features require configuration files to be changed that is unsupported in the current solution implementation. It makes the following Wallarm features unavailable:
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)
@@ -184,7 +184,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.2.3 <RELEASE_NAME> wallarm/kong-preview --wait -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.2.3 <RELEASE_NAME> wallarm/kong-preview -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Kong Ingress Controller release
@@ -205,8 +205,8 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE
-    wallarm-ingress-kong-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    wallarm-ingress-kong-preview-54cf88b989-gp2vg      1/1     Running   0          91m
+    wallarm-ingress-kong-preview-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
 1. Send the test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Kong Ingress Controller Service:
 
@@ -222,7 +222,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
 ## Customization
 
-Wallarm pods have been injected based on the [default `values.yaml`] and the custom configuration you specified on the 2nd deployment step.
+Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts-preview/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
 You can customize both the Kong API Gateway and Wallarm API Security behavior even more and get the most out of API security for your company.
 

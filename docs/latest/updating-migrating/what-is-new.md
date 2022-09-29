@@ -58,7 +58,7 @@ If upgrading Wallarm node 2.18 or lower, learn all changes from the [separate li
 1. Review [recommendations for the module upgrade](general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [Module for NGINX, NGINX Plus or Kong](nginx-modules.md)
+      * [Module for NGINX, NGINX Plus](nginx-modules.md)
       * [Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)

@@ -25,7 +25,6 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 4.0 o
 * [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../waf-installation/nginx-plus.md)
-* [Kong module](../admin-en/installation-kong-en.md)
 
 To upgrade the node 2.18 or lower, please use the [different instructions](older-versions/nginx-modules.md).
 

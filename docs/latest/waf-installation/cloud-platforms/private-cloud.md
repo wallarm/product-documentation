@@ -24,6 +24,5 @@ You can install the filtering node from DEB and RPM packages on the private clou
 
       * [Installing the filtering node as the NGINX Stable module](../../waf-installation/nginx/dynamic-module.md)
       * [Installing the filtering node as the NGINX Plus module](../../waf-installation/nginx-plus.md)
-      * [Installing the filtering node as the Kong module](../../admin-en/installation-kong-en.md)
 
 Before installing the filtering node on the private cloud, it is recommended to review the instructions on creating and managing instances on the deployed cloud. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](../../admin-en/supported-platforms.md#cloud-platforms).

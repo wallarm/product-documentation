@@ -370,3 +370,5 @@
 /admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
 /admin-en/scanner-ips-allowlisting/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
 /user-guides/denylist/ /user-guides/ip-lists/denylist/
+
+/admin-en/installation-kong-en/ /waf-installation/kubernetes/kong-ingress-controller/deployment/
