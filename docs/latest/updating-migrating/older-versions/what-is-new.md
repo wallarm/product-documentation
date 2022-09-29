@@ -74,7 +74,7 @@ Changes in node registration methods result in some updates in node types:
     The cloud node is not required to be migrated to the new node type.
 * The [**regular node**](/2.18/user-guides/nodes/regular-node/) supporting the registration by "email-password" passed to the `addnode` script is deprecated.
 
-    Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus, Kong module or the Docker container looks as follows:
+    Starting from version 4.0, registration of the node deployed as the NGINX, NGINX Plus module or the Docker container looks as follows:
 
     1. Create the **Wallarm node** in Wallarm Console and copy the generated token.
     1. Run the `register-node` script with the node token passed or run the Docker container with the `WALLARM_API_TOKEN` variable defined.
@@ -264,7 +264,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
 2. Upgrade installed modules following the instructions for your Wallarm node deployment option:
 
-      * [Upgrading modules for NGINX, NGINX Plus, Kong](nginx-modules.md)
+      * [Upgrading modules for NGINX, NGINX Plus](nginx-modules.md)
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)

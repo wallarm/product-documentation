@@ -155,7 +155,6 @@ nav:
         - Deploying Wallarm on AWS using Terraform:
           - Overview: waf-installation/cloud-platforms/aws/terraform-module/overview.md
           - Trying Wallarm Terraform Module with examples: waf-installation/cloud-platforms/aws/terraform-module/examples.md
-        - Installing Wallarm from DEB/RPM packages for Kong: admin-en/installation-kong-en.md
         - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md

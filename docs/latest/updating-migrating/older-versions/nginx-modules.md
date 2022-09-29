@@ -25,7 +25,6 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 
 * [NGINX `stable` module](../../waf-installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../../waf-installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plus module](../../waf-installation/nginx-plus.md)
-* [Kong module](../../admin-en/installation-kong-en.md)
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 

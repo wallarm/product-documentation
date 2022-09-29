@@ -61,8 +61,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Deploy Wallarm node compatible to Kong with...</p>
         <div id="kongId" class="options-list" style="display: none;">
-            <a href="#cloud-platforms" onClick="noAction(event)">AWS, GCP, Azure, etc</a>
-            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">DEB or RPM packages</a>
             <a href="../../waf-installation/kubernetes/kong-ingress-controller/deployment/" onClick="noAction(event)">Kong Ingress controller</a>        </div>    
     </div>
 </div> 
@@ -281,7 +279,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <div id="ubuntu18Id" class="options-list" style="display: none;">
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
-            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
         </div>
     </div>
 </div> 
@@ -319,7 +316,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <a href="../../waf-installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
             <a href="../../waf-installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
             <a href="../../waf-installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from CentOS repo</a>
-            <a href="../../admin-en/installation-kong-en/" onClick="noAction(event)">Kong</a>
         </div>
     </div>
 </div> 

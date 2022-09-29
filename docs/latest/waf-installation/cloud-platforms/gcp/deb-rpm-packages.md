@@ -19,7 +19,6 @@ You can select the web server or API gateway that is the most suitable for your 
 
 * [Install the filtering node as the NGINX Stable module](#installing-the-filtering-node-as-the-nginx-stable-module)
 * [Install the filtering node as the NGINX Plus module](#installing-the-filtering-node-as-the-nginx-plus-module)
-* [Install the filtering node as the Kong module](#installing-the-filtering-node-as-the-kong-module)
 
 ## Installing the filtering node as the NGINX Stable module
 
@@ -56,19 +55,5 @@ To install the filtering node as the NGINX Plus module in the Google Engine inst
     * Oracle Linux 8.x
 2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
 3. In the instance, install the packages of NGINX Plus and Wallarm filtering node following the [Wallarm instructions](../../../waf-installation/nginx/dynamic-module.md).
-
-To install the postanalytics module in a separate instance, please repeat steps 1-2 and install the postanalytics module following the [Wallarm instructions](../../../admin-en/installation-postanalytics-en.md).
-
-## Installing the filtering node as the Kong module
-
-To install the filtering node as the Kong module in the Google Engine instance:
-
-1. Create a Google Engine instance from the operating system image supported by Wallarm following the [GCP instructions](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage):
-
-    * Ubuntu 18.04 Bionic
-    * CentOS 7.x
-2. Connect to the created instance following the [GCP instructions](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
-3. In the instance, install Kong of version 1.4.3 or lower following the [Kong instructions](https://konghq.com/get-started/#install).
-4. In the instance, install the packages of Wallarm filtering node following the [Wallarm instructions](../../../admin-en/installation-kong-en.md).
 
 To install the postanalytics module in a separate instance, please repeat steps 1-2 and install the postanalytics module following the [Wallarm instructions](../../../admin-en/installation-postanalytics-en.md).

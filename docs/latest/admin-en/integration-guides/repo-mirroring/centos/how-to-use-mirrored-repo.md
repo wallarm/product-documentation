@@ -4,7 +4,6 @@
 
 [doc-repo-mirroring]:           how-to-mirror-repo-artifactory.md
 [doc-install-nginx]:            ../../../installation-nginx-overview.md
-[doc-install-kong]:             ../../../installation-kong-en.md
 [doc-install-postanalytics]:    ../../../installation-postanalytics-en.md
 
 
