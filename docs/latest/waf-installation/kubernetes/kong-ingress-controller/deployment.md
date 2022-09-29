@@ -205,8 +205,8 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE
-    wallarm-ingress-kong-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    wallarm-ingress-kong-preview-54cf88b989-gp2vg      1/1     Running   0          91m
+    wallarm-ingress-kong-preview-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
 1. Send the test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Kong Ingress Controller Service:
 
