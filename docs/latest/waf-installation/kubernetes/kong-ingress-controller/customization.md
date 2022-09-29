@@ -1,6 +1,6 @@
 # Customizing Kong Ingress Controller with integrated Wallarm services
 
-This article instructs you on safe and effective customization of [Kong Ingress Controller with integrated Wallarm services](deployment.md).
+This article instructs you on the safe and effective customization of the [Kong Ingress Controller with integrated Wallarm services](deployment.md).
 
 ## Configuration area
 
@@ -8,8 +8,8 @@ Kong Ingress Controller with integrated Wallarm services is based on the standar
 
 You can configure the solution as follows:
 
-* Globally via `values.yaml` - it allows to set the general deployment configuration, the Kong API Gateway and some basic Wallarm API Security settings. These settings apply to all Ingress resources the solution proxies traffic to.
-* Via the Wallarm Console UI - it allows to fine-tune the Wallarm API Security settings.
+* Globally via `values.yaml` - it allows setting up the general deployment configuration, the Kong API Gateway and some basic Wallarm API Security settings. These settings apply to all Ingress resources the solution proxies traffic to.
+* Via the Wallarm Console UI - it allows fine-tuning the Wallarm API Security settings.
 
 ## Configuration of Kong API Gateway
 
@@ -127,10 +127,10 @@ The main parameters you may need to change are:
 | `wallarm.token` | Wallarm node token. **Required**. | Empty |
 | `wallarm.fallback` | Whether to run the Kong API Gateway services if the Wallarm service start failed. | `on`
 | `wallarm.tarantool.replicaCount` | The number of running pods for the Wallarm postanalytics module that is the local data analytics backend for the solution. | `1`
-| `wallarm.tarantool.arena` | Specifies the amount of memory allocated for the Wallarm postanalytics module. It is recommended to set up a value sufficient to store requests data for the last 5-15 minutes. | `0.2`
+| `wallarm.tarantool.arena` | Specifies the amount of memory allocated for the Wallarm postanalytics module. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes. | `0.2`
 | `wallarm.metrics.enabled` | This switch toggles information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required. | `false`
 
-Other parameters come with default value and rarely need to be changed.
+Other parameters come with default values and rarely need to be changed.
 
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 
@@ -142,8 +142,8 @@ The Wallarm Console UI enables you to fine-tune the traffic analysis performed b
 
     The Wallarm Console UI enables you to change the mode:
 
-    * [Globally for all incmoming requests](../../../user-guides/settings/general.md)
+    * [Globally for all incoming requests](../../../user-guides/settings/general.md)
     * On the per-Ingress basis using the [rule](../../../user-guides/rules/wallarm-mode-rule.md)
 * Set up [notifications on security events](../../../user-guides/settings/integrations/integrations-intro.md)
-* [Manage access to APIs by request sources](../../../user-guides/ip-lists/overview.md)
+* [Manage access to APIs by the request sources](../../../user-guides/ip-lists/overview.md)
 * [Customize traffic filtration rules](../../../user-guides/rules/intro.md)
