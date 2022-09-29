@@ -5,7 +5,7 @@ To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress cont
 !!! info "Preview release"
     The current implementation of Kong Ingress Controller with integrated Wallarm services is the preview stage of the solution.
 
-The solution is deployed from the [Wallarm Helm chart].
+The solution is deployed from the [Wallarm Helm chart](https://github.com/wallarm/kong-charts-preview).
 
 The **key features** of the Kong Ingress Controller with integrated Wallarm services:
 
@@ -222,7 +222,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
 ## Customization
 
-Wallarm pods have been injected based on the [default `values.yaml`] and the custom configuration you specified on the 2nd deployment step.
+Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts-preview/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
 You can customize both the Kong API Gateway and Wallarm API Security behavior even more and get the most out of API security for your company.
 

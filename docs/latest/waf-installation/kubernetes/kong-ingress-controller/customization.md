@@ -13,7 +13,7 @@ You can configure the solution as follows:
 
 ## Configuration of Kong API Gateway
 
-Configuration of Kong Ingress Controller for Kong API Gateway is set by the [default Helm chart values]. This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
+Configuration of Kong Ingress Controller for Kong API Gateway is set by the [default Helm chart values](https://github.com/wallarm/kong-charts-preview/blob/main/charts/kong/values.yaml). This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
 
 To customize the default Helm chart values, learn the [official instructions on the Kong and Ingress Controller configuration](https://github.com/Kong/charts/tree/main/charts/kong#configuration).
 
