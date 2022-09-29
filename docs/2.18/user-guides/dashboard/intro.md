@@ -16,7 +16,7 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 
 
 !!! info "Getting started with Wallarm"
-    If you registered the Wallarm account in the US [Cloud](../../about-wallarm-waf/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment.
+    If you registered the Wallarm account in the US [Cloud](../../about-wallarm/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment.
     
     The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of helpful product discovery options with the following among them:
     

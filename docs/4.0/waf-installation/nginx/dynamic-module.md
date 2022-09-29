@@ -15,7 +15,7 @@
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md

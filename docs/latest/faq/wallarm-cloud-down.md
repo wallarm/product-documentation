@@ -16,7 +16,7 @@ What continues to work:
 * Traffic processing in the configured [mode](../admin-en/configure-wallarm-mode.md#available-filtration-modes) using the rules uploaded to the node during last successful [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) between the Cloud and the node. The node can continue to work as the latest versions of the following elements are uploaded from the Cloud according to the schedule and stored on the node locally:
 
     * [Custom ruleset](../user-guides/rules/compiling.md)
-    * [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
+    * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * The [IP lists](../user-guides/ip-lists/overview.md) are also uploaded to the node and stored within it. The uploaded addresses will continue to be handled but only until expiration date/time.
 
@@ -36,8 +36,8 @@ What stops working:
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
     * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
-* [Discovering API structure](../about-wallarm-waf/api-discovery.md) will not work.
-* [Active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) will stop.
+* [Discovering API structure](../about-wallarm/api-discovery.md) will not work.
+* [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will stop.
 * [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) will not be detected.
 * Integrations will stop, including that:
     * Instant and email [notifications](../user-guides/settings/integrations/integrations-intro.md) will not popup.

@@ -1,6 +1,6 @@
 | Wallarm node behavior | `off` | `monitoring` | `safe_blocking` |`block` |
 | -------- | - | - | - | -|
-| Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md) | - | + | + | + |
+| Analyzes whether incoming requests contain malicious payloads of the following types: [input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md) | - | + | + | + |
 | Uploads malicious requests to the Wallarm Cloud so that they are displayed in the event list | - | + | + | + |
 | Blocks malicious requests | - | - | Only those originated from [graylisted IPs](../user-guides/ip-lists/graylist.md) | + |
 | Blocks requests originated from [denylisted IPs](../user-guides/ip-lists/denylist.md)<sup>see exceptions</sup> | Does not analyze the denylist | - | + | + |

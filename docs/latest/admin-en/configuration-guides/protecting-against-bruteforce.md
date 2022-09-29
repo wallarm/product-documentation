@@ -9,17 +9,17 @@ There are the following classes of brute‑force attacks:
     
     The aim of this attack is to enumerate and access hidden resources (e.g. directories and files containing information on application components). The forced browsing attack type usually allows attackers to collect the information about application and then perform other attack types by exploiting this information.
 
-[Detailed brute force description →](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)
+[Detailed brute force description →](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)
 
 !!! warning "Brute force protection restrictions"
     When searching for brute‑force attack signs, Wallarm nodes analyze only HTTP requests that do not contain signs of other attack types. For example, the requests are not considered to be a part of brute‑force attack in the following cases:
 
-    * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
+    * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
     * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Configuration steps
 
-1. Add the [module](../../about-wallarm-waf/subscription-plans.md#modules) **Brute-force protection** to the Wallarm API Security subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Add the [module](../../about-wallarm/subscription-plans.md#modules) **Brute-force protection** to the Wallarm API Security subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 2. If the filtering node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
 3. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Brute force** or **Forced browsing**.
 4. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
@@ -72,7 +72,7 @@ The steps to configure the trigger are:
     * If the trigger condition is **Brute force** - the reaction is **Mark as brute force**. Requests received after the threshold exceedance will be marked as the brute‑force attack and displayed in the **Events** section of Wallarm Console.
     * If the trigger condition is **Forced browsing** - the reaction is **Mark as forced browsing**. Requests received after the threshold exceedance will be marked as the forced browsing attack and displayed in the **Events** section of Wallarm Console.
     * **Denylist IP address** and the period for IP address blocking to add IP addresses of malicious request sources to the [denylist](../../user-guides/ip-lists/denylist.md). The Wallarm node will block all requests originated from the denylisted IP after the threshold was exceeded.
-    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
+    * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources. The Wallarm node will block requests originated from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs. Brute‑force attacks originated from graylisted IPs are not blocked.
 6. Save the trigger and wait for the [Cloud and node synchronization completion](../configure-cloud-node-synchronization-en.md) (usually it takes 2-4 minutes).
 
 Example of the **Brute force** trigger to block the regular brute‑force attacks addressed to `https://example.com/api/v1/login`:
@@ -97,7 +97,7 @@ You can configure several triggers for brute force protection.
 
     ![!Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for attacks, you can use the filters, for example: `dirbust` for the forced browsing attacks, `brute` for the brute‑force attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 

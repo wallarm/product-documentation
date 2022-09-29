@@ -186,7 +186,7 @@ By default, the filtering node is in the status `off` and does not analyze incom
     }
     ```
 
-When operating in the `monitoring` mode, the filtering node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →](../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps)
+When operating in the `monitoring` mode, the filtering node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →](../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps)
 
 #### Memory
 

@@ -372,3 +372,9 @@
 /user-guides/denylist/ /user-guides/ip-lists/denylist/
 
 /admin-en/installation-kong-en/ /waf-installation/kubernetes/kong-ingress-controller/deployment/
+
+/about-wallarm-waf/* /about-wallarm/:splat 301!
+/2.18/about-wallarm-waf/* /2.18/about-wallarm/:splat 301!
+/3.4/about-wallarm-waf/* /3.4/about-wallarm/:splat 301!
+/3.6/about-wallarm-waf/* /3.6/about-wallarm/:splat 301!
+/4.0/about-wallarm-waf/* /4.0/about-wallarm/:splat 301!

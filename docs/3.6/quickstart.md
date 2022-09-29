@@ -31,7 +31,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 
 1. Create an account in Wallarm Console using the link for the [EU](https://my.wallarm.com/signup) or [US](https://us1.my.wallarm.com/signup) Wallarm Cloud.
 
-    [More details on Wallarm Clouds →](about-wallarm-waf/overview.md#cloud)
+    [More details on Wallarm Clouds →](about-wallarm/overview.md#cloud)
 2. Install one of the supported OS listed below on your server. For the Wallarm node deployment to be completed successfully, please install the OS from the image/distributive with the basic package set and do not apply any additional configurations to the installed OS. The quick start script may not be able to handle the OS customizations (e.g. security hardening or additional configurations fitting your internal server management standards).
 
     * Debian 10.x (buster)

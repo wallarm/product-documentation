@@ -16,7 +16,7 @@ By implementing the Wallarm Terraform module, we have provided the solution enab
 ## Prerequisites
 
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm-waf/overview.md#cloud)
+* Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 This topic does not include instructions for creating all AWS resources necessary to deploy Wallarm, such as a VPC cluster. For details, refer to the relevant [Terraform guide](https://learn.hashicorp.com/tutorials/terraform/module-use).
@@ -55,12 +55,12 @@ To deploy Wallarm for production using the AWS Terraform module:
 | `vpc_id` | [ID of the AWS Virtual Private Cloud](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html) to deploy the Wallarm EC2 instance to. | string | Yes
 | `token` | [Wallarm node token](../../../../user-guides/nodes/nodes.md#creating-a-node) copied from the Wallarm Console UI. | string | Yes
 | **Wallarm-specific variables** | | | |
-| `host` | [Wallarm API server](../../../../about-wallarm-waf/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default, `api.wallarm.com`. | string | No
+| `host` | [Wallarm API server](../../../../about-wallarm/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default, `api.wallarm.com`. | string | No
 `upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.2`. | string | No
 | `preset` | Wallarm deployment scheme. Possible values:<ul><li>`proxy`</li><li>`mirror`</li></ul>By default, `proxy`. | string | No
 | `proxy_pass` | Proxied server protocol and address. Wallarm node will process requests sent to the specified address and proxy legitimate ones to. As a protocol, 'http' or 'https' can be specified. The address can be specified as a domain name or IP address, and an optional port. | string | Yes, if `preset` is `proxy`
 | `mode` | [Traffic filtration mode](../../../../admin-en/configure-wallarm-mode.md). Possible values: `off`, `monitoring`, `safe_blocking`, `block`.<br><br>By default, `monitoring`. | string | No
-|`libdetection` | Whether to [use the libdetection library](../../../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) during the traffic analysis.<br><br>By default, `false`. | bool | No
+|`libdetection` | Whether to [use the libdetection library](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection) during the traffic analysis.<br><br>By default, `false`. | bool | No
 |`global_snippet` | Custom configuration to be added to the NGINX global configuration. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17). | string | No
 |`http_snippet` | Custom configuration to be added to the `http` configuration block of NGINX. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18). | string | No
 |`server_snippet` | Custom configuration to be added to the `server` configuration block of NGINX. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19). | string | No

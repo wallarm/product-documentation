@@ -5,7 +5,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 * Receive alerts on major events via the tools you use for your day-to-day workflow, for example via corporate messengers or incident management systems.
 * Block IP addresses from which a certain number of requests or attack vectors were sent.
 * Identify brute‑force and forced browsing attacks by the number of requests sent to the application addresses.
-* Optimize the event list by [grouping](../../about-wallarm-waf/protecting-against-attacks.md#attack) hits originating from the same IP address into one attack
+* Optimize the event list by [grouping](../../about-wallarm/protecting-against-attacks.md#attack) hits originating from the same IP address into one attack
 
 You can configure all the trigger components:
 
@@ -80,7 +80,7 @@ A reaction is an action that should be performed if the specified condition and 
         Triggers allow sending notifications on denylisted IPs only to the SIEM systems or Webhook URL. Messengers are not available for the **Denylisted IP** trigger condition.
 * [Group next hits into one attack](trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack) if the trigger condition is **Hits from the same IP**.
 
-    The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.
+    The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for these attacks.
 
 Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:
 
@@ -105,12 +105,12 @@ New company accounts are featured by the following pre-configured triggers (defa
 
     Hits can have different attack types, malicious payloads and URLs. These attack parameters will be marked with the `[multiple]` tag in the event list.
 
-    Due to different parameter values of grouped hits, the [Mark as false positive](../events/false-attack.md#mark-an-attack-as-a-false-positive) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) will also be unavailable.
+    Due to different parameter values of grouped hits, the [Mark as false positive](../events/false-attack.md#mark-an-attack-as-a-false-positive) button will be unavailable for the whole attack, but you still will be able to mark certain hits as false positives. [Active verification of the attack](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will also be unavailable.
     
     The hits with the Brute force, Forced browsing, Resource overlimit, Data bomb, or Virtual patch attack types are not considered in this trigger.
 * Graylist IP for 1 hour when it originates more than 3 different [malicious payloads](../../glossary-en.md#malicious-payload) within 1 hour
 
-    [Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
+    [Graylist](../ip-lists/graylist.md) is a list of suspicious IP addresses processed by the node as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests. In contrast to graylist, [denylist](../ip-lists/denylist.md) points to IP addresses that are not allowed to reach your applications at all - the node blocks even legitimate traffic produced by denylisted sources. IP graylisting is one of the options aimed at the reduction of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 
     The trigger is released in any node filtration mode, so that it will graylist IPs regardless of the node mode.
 

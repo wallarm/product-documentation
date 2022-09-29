@@ -33,12 +33,12 @@ Wallarm allows customization of Wallarm Console and some other components. If us
 * Host Wallarm Console on a custom domain
 * Set the email address for your technical support to receive messages from clients or colleagues
 
-Depending on the Wallarm API Security [subscription plan](../../about-wallarm-waf/subscription-plans.md), some options may be unavailable.
+Depending on the Wallarm API Security [subscription plan](../../about-wallarm/subscription-plans.md), some options may be unavailable.
 
 ## Multitenancy configuration
 
 The multitenancy feature is inactive by default. To enable and configure the feature:
 
-1. Send the request to [sales@wallarm.com](mailto:sales@wallarm.com) to add the **Multi-tenant system** [feature](../../about-wallarm-waf/subscription-plans.md#features) to your subscription plan.
+1. Send the request to [sales@wallarm.com](mailto:sales@wallarm.com) to add the **Multi-tenant system** [feature](../../about-wallarm/subscription-plans.md#features) to your subscription plan.
 2. [Configure](configure-accounts.md) tenant accounts in Wallarm Console.
 3. [Deploy and configure](deploy-multi-tenant-node.md) the multi-tenant Wallarm node.

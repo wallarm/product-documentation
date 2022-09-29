@@ -9,9 +9,9 @@ The solution is deployed from the [Wallarm Helm chart](https://github.com/wallar
 
 The **key features** of the Kong Ingress Controller with integrated Wallarm services:
 
-* Real-time [attack detection and mitigation](../../../about-wallarm-waf/protecting-against-attacks.md)
-* [Vulnerability detection](../../../about-wallarm-waf/detecting-vulnerabilities.md)
-* [API structure discovery](../../../about-wallarm-waf/api-discovery.md)
+* Real-time [attack detection and mitigation](../../../about-wallarm/protecting-against-attacks.md)
+* [Vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md)
+* [API structure discovery](../../../about-wallarm/api-discovery.md)
 * The Wallarm API Security services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
 * Support for Kong API Gateway 2.7.x (for both the Open-Source and Enterprise editions)

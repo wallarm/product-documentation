@@ -16,7 +16,7 @@
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
 [versioning-policy]:               ../updating-migrating/versioning-policy.md#version-list
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[waf-mode-recommendations]:          ../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[waf-mode-recommendations]:          ../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [waf-installation-instr-latest]:    /waf-installation/nginx-plus/
 [install-postanalytics-instr]:      ../admin-en/installation-postanalytics-en.md
 

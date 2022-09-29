@@ -89,16 +89,16 @@ nav:
   - Product guides:
     - Home: index.md
     - About Wallarm:
-        - How Wallarm API Security works: about-wallarm-waf/overview.md
-        - Detecting attacks: about-wallarm-waf/protecting-against-attacks.md
-        - Detecting vulnerabilities: about-wallarm-waf/detecting-vulnerabilities.md
-        - Discovering API structure: about-wallarm-waf/api-discovery.md
+        - How Wallarm API Security works: about-wallarm/overview.md
+        - Detecting attacks: about-wallarm/protecting-against-attacks.md
+        - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
+        - Discovering API structure: about-wallarm/api-discovery.md
         - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
-          - Security model of shared responsibility for clients' data: about-wallarm-waf/shared-responsibility.md
-          - Data retention policy: about-wallarm-waf/data-retention-policy.md
-        - Wallarm subscription plans: about-wallarm-waf/subscription-plans.md
-        - Wallarm API Security deployment and maintenance best practices: about-wallarm-waf/deployment-best-practices.md
+          - Security model of shared responsibility for clients' data: about-wallarm/shared-responsibility.md
+          - Data retention policy: about-wallarm/data-retention-policy.md
+        - Wallarm subscription plans: about-wallarm/subscription-plans.md
+        - Wallarm API Security deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
     - Quick start: quickstart.md
     - Administrator Guide:
       - Introduction to the administrator guide: admin-en/admin-intro-en.md

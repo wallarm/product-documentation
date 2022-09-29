@@ -11,7 +11,7 @@ Configuration of IP address allowlist and denylist has been changed as follows:
     * Additional steps to enable IP allowlisting or denylisting functionality are not required. The Wallarm node downloads IP addresses lists from the Wallarm Cloud by default and applies downloaded data when processing incoming requests.
     * Blocking page and error code returned in the response to the blocked request are configured using the [`wallarm_block_page`](../admin-en/configure-parameters-en.md#wallarm_block_page) directive instead of `wallarm_acl_block_page`.
 * Allowlisted and denylisted IP addresses are managed via Wallarm Console.
-* IP addresses of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner) are allowlisted by default. Manual allowlisting of Scanner IP addresses is no longer required.
+* IP addresses of [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) are allowlisted by default. Manual allowlisting of Scanner IP addresses is no longer required.
 
 ## Procedure for allowlist and denylist configuration migration
 

@@ -1,6 +1,6 @@
 # Configuring API Discovery
 
-If the [API Discovery](../../about-wallarm-waf/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **Settings** → **API Discovery**.
+If the [API Discovery](../../about-wallarm/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **Settings** → **API Discovery**.
 
 !!! warning "Administrator access"
     Only users with the following roles can access the section **Settings** → **API Discovery**:

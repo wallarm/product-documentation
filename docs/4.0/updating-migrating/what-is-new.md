@@ -89,7 +89,7 @@ The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wall
 
 ## Improved attack detection
 
-The [libdetection library](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
+The [libdetection library](../about-wallarm/protecting-against-attacks.md#library-libdetection) is upgraded. This provides the better attack detection.
 
 ## New variables to configure the node logging format
 

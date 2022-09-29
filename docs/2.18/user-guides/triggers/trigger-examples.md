@@ -196,7 +196,7 @@ If an IP address was added to the denylist, the webhook about this event will be
 
 ## Group hits originating from the same IP into one attack
 
-If more than 100 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hit) from the same IP address are detected in an hour, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
+If more than 100 [hits](../../about-wallarm/protecting-against-attacks.md#hit) from the same IP address are detected in an hour, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
 
 ![!Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
@@ -204,7 +204,7 @@ If more than 100 [hits](../../about-wallarm-waf/protecting-against-attacks.md#hi
 
 * All hits are sent in an hour
 * The IP addresses of the hit sources are the same
-* Hits have different attack types or parameters with malicious payloads or addresses the hits are sent to (so that the hits are not [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) into an attack by the basic method)
+* Hits have different attack types or parameters with malicious payloads or addresses the hits are sent to (so that the hits are not [grouped](../../about-wallarm/protecting-against-attacks.md#attack) into an attack by the basic method)
 * Attack types are different from Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch
 
 Example:
@@ -217,4 +217,4 @@ The first 100 hits will appear in the event list as individual hits. All of the 
 
 ![!Hits grouped by IP into one attack](../../images/user-guides/events/attack-from-grouped-hits.png)
 
-The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for the attack.
+The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for the attack.

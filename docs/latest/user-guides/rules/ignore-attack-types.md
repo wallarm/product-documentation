@@ -4,7 +4,7 @@ The rule **Ignore certain attack types** allows disabling detection of certain a
 
 By default, the Wallarm node marks the request as an attack if detecting the signs of any attack type in any request element. However, some requests containing attack signs can actually be legitimate (e.g. the body of the request publishing the post on the Database Administrator Forum may contain the [malicious SQL command](../../attacks-vulns-list.md#sql-injection) description).
 
-If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
+If the Wallarm node marks the standard payload of the request as the malicious one, a [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) occurs. To prevent false positives, standard attack detection rules need to be adjusted using the custom rules of certain types to accommodate protected application specificities. One of such custom rule types is **Ignore certain attack types**.
 
 ## Creating and applying the rule
 

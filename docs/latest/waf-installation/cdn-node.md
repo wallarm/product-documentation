@@ -2,7 +2,7 @@
 [data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.md
-[wallarm-cloud-docs]:               ../about-wallarm-waf/overview.md#cloud
+[wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../images/admin-guides/test-attacks-quickstart.png

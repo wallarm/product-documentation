@@ -397,7 +397,7 @@ spec:
 
 ### Configuring Wallarm features
 
-In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration](../../../about-wallarm-waf/deployment-best-practices.md).
+In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration](../../../about-wallarm/deployment-best-practices.md).
 
 This configuration is performed via [annotations](pod-annotations.md) and the Wallarm Console UI.
 

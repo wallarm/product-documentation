@@ -138,7 +138,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     * New **safe blocking** filtration mode.
 
-        This mode enables a significant reduction of [false positive](../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../user-guides/ip-lists/graylist.md).
+        This mode enables a significant reduction of [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../user-guides/ip-lists/graylist.md).
     
     * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
         
@@ -162,11 +162,11 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     
     * Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../user-guides/ip-lists/graylist.md).
 
-        The **safe blocking** mode enables a significant reduction of [false positive](../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
+        The **safe blocking** mode enables a significant reduction of [false positive](../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
         For automatic IP address graylisting there is a new [trigger **Add to graylist**](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) released.
     
-    * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+    * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
     
     * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
     
@@ -184,7 +184,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     New Wallarm nodes are distributed with the module **API Discovery** automatically identifiyng the application API structure. The module is disabled by default.
 
-    [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
+    [Details on the API Discovery module →](../about-wallarm/api-discovery.md)
 
     **Support of the libdetection library in the Envoy-based nodes**
 
@@ -192,7 +192,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
-    [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+    [Details on the **libdetection** library →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
     **New blocking page**
 

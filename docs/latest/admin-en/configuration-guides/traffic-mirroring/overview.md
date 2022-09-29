@@ -20,7 +20,7 @@ Installing the Wallarm node to filter mirrored traffic is useful to:
 Despite the deployment approach safety, it has some limitations:
 
 * Wallarm node does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
-* Wallarm does not detect application and API [vulnerabilities](../../../about-wallarm-waf/detecting-vulnerabilities.md) since the node only has copies of incoming requests, and server responses cannot be mirrored.
+* Wallarm does not detect application and API [vulnerabilities](../../../about-wallarm/detecting-vulnerabilities.md) since the node only has copies of incoming requests, and server responses cannot be mirrored.
 * The solution requires an additional component - the web server providing traffic mirroring or a similar tool (e.g. NGINX, Envoy, Istio, Traefik, custom Kong module, etc).
 
 ## Configuration

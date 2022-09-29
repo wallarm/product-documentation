@@ -18,7 +18,7 @@
 [versioning-policy]:               ../../updating-migrating/versioning-policy.md#version-list
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[waf-mode-recommendations]:          ../../about-wallarm-waf/deployment-best-practices.md#follow-recommended-onboarding-steps
+[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [waf-installation-instr-latest]:    /waf-installation/nginx/dynamic-module/
 
 # Installing dynamic Wallarm module for NGINX stable from NGINX repository

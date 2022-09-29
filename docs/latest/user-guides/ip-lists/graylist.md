@@ -2,7 +2,7 @@
 
 **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
 
-* [Input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks)
+* [Input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
 * [Attacks of the vpatch type](../rules/vpatch-rule.md)
 * [Attacks detected based on regular expressions](../rules/regex-rule.md)
 
@@ -42,7 +42,7 @@ Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, 
 
     An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to graylist this IP. You can configure automatic source IP graylisting by configuring the threshold for source IP graylisting and appropriate reaction in the [trigger](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
 
-    Source IP graylisting can significantly reduce the number of [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives).
+    Source IP graylisting can significantly reduce the number of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 * Graylist IP addresses, countries, regions, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by graylisted objects and block malicious requests.
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

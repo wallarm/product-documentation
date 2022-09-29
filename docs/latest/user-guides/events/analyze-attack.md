@@ -61,7 +61,7 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Sampling of hits
 
-Malicious traffic often consists of comparable and identical [hits](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
+Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
 
 Hit sampling optimizes the data storage and analysis by dropping non-unique hits from being uploaded to the Wallarm Cloud.
 
@@ -74,8 +74,8 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 ### Enabling the sampling algorithm
 
-* For [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
-* For [behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
+* For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
+* For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
 
 When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
 
@@ -85,14 +85,14 @@ Sampling will be automatically disabled once the percentage of attacks in the tr
 
 Hit sampling is performed in two sequential stages: **extreme** and **regular**.
 
-Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
+Regular algorithm processes only hits saved after the extreme stage, unless hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types. If extreme sampling is disabled for hits of these types, the regular algorithm processes the original hit set.
 
 **Extreme sampling**
 
 The extreme sampling algorithm has the following core logic:
 
-* If hits are of the [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
-* If hits are of the [behavioral](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
+* If hits are of the [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks) type, the algorithm uploads to the Cloud only those with unique [malicious payloads](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). If several hits with the same payload are detected within an hour, only the first of them is uploaded to the Cloud and the others are dropped.
+* If hits are of the [behavioral](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), [Data bomb](../../attacks-vulns-list.md#data-bomb) or [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources) types, the algorithm uploads to the Cloud only the first 10% of them detected within an hour.
 
 **Regular sampling**
 
@@ -108,7 +108,7 @@ The regular sampling algorithm has the following core logic:
     * Request method
     * Response code
     * Originating IP address
-2. Hit samples are grouped into [attacks](../../about-wallarm-waf/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the event list.
+2. Hit samples are grouped into [attacks](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components) in the event list.
 
 Grouped hits are displayed in the **Events** section of Wallarm Console as follows:
 
