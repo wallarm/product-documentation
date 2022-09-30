@@ -18,12 +18,6 @@ Watch our demo videos to overview how to manage events detected by Wallarm.
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-----------
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/2DTtc46FsbI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
 **Related documentation articles**
 
 * [Checking events in Wallarm Console](../user-guides/events/check-attack.md)

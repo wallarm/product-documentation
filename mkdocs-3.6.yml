@@ -360,5 +360,4 @@ nav:
     - Wallarm API Security overview and deployment options: demo-videos/overview.md
     - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
     - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Notifications and reactions to events detected by Wallarm: demo-videos/notifications.md
     - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
