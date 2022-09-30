@@ -1,6 +1,5 @@
 [img-network-plugin-influxdb]:     ../../images/monitoring/network-plugin-influxdb.png
 
-[doc-gauge-attacks]:               available-metrics.md#number-of-attacks
 [doc-grafana]:                     working-with-grafana.md
 
 [link-collectd-networking]:        https://collectd.org/wiki/index.php/Networking_introduction

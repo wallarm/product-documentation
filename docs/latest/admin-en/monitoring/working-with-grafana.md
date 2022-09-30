@@ -8,7 +8,7 @@
 
 [doc-network-plugin-influxdb]:      network-plugin-influxdb.md
 [doc-network-plugin-graphite]:      write-plugin-graphite.md
-[doc-gauge-attacks]:                available-metrics.md#number-of-attacks
+[doc-gauge-abnormal]:                available-metrics.md#number-of-requests
 [doc-available-metrics]:            available-metrics.md
 
 [anchor-query]:                     #fetching-the-required-metrics-from-the-data-source
@@ -22,7 +22,7 @@ If you have configured the export of metrics in InfluxDB or Graphite, then you c
 !!! info "A few assumptions"
     This document assumes that you have deployed Grafana alongside [InfluxDB][doc-network-plugin-influxdb] or [Graphite][doc-network-plugin-graphite].
     
-    The [`curl_json-wallarm_nginx/gauge-attacks`][doc-gauge-attacks] metric, which shows the number of attacks on an application that is protected by the `node.example.local` filter node, is used as an example.
+    The [`curl_json-wallarm_nginx/gauge-abnormal`][doc-gauge-abnormal] metric, which shows the number of requests processed by the `node.example.local` filter node, is used as an example.
     
     However, you can monitor any [supported metric][doc-available-metrics]. 
 
@@ -93,9 +93,9 @@ To fetch a metric from the InfluxDB data source do the following:
 
 
 
-The query to fetch the `curl_json-wallarm_nginx/gauge-attacks` metric is:
+The query to fetch the `curl_json-wallarm_nginx/gauge-abnormal` metric is:
 ```
-SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'attacks')    
+SELECT value FROM curl_json_value WHERE (host = 'node.example.local' AND instance = 'wallarm_nginx' AND type = 'gauge' AND type_instance = 'abnormal')    
 ```
 
 
@@ -107,7 +107,7 @@ To fetch a metric from the Graphite data source do the following:
 1.  Select the newly created “Graphite” data source from the *Query* drop-down list.
 2.  Select the elements of the required metric in a sequential manner by clicking the *select metric* button for the metric’s element in the *Series* line.
 
-    The elements of `the curl_json-wallarm_nginx/gauge-attacks` metric go as follows:
+    The elements of the `curl_json-wallarm_nginx/gauge-abnormal` metric go as follows:
 
     1.  The hostname, as it was set in the `write_graphite` plugin configuration file.
    
@@ -116,7 +116,7 @@ To fetch a metric from the Graphite data source do the following:
     2.  The name of the `collectd` plugin that provides a specific value. For this metric, the plugin is `curl_json`.
     3.  The name of the plugin instance. For this metric, the name is `wallarm_nginx`.
     4.  The type of value. For this metric, the type is `gauge`.
-    5.  The name of value. For this metric, the name is `attacks`.
+    5.  The name of value. For this metric, the name is `abnormal`.
 
 ### Further Actions
 
@@ -126,7 +126,7 @@ After the creation of the query, set up a visualization for the corresponding me
 
 Switch from the *Query* tab to the *Visualization* tab, and select the desired visualization for the metric.
 
-For the `curl_json-wallarm_nginx/gauge-attacks` metric, we recommend using the “Gauge” visualization:
+For the `curl_json-wallarm_nginx/gauge-abnormal` metric, we recommend using the “Gauge” visualization:
 *   Select the *Calc: Last* option to display the current metric value.
 *   If necessary, you can configure thresholds and other parameters. 
 
@@ -141,9 +141,9 @@ After configuring visualization take the following steps:
 
 ##  Verifying Monitoring
 
-After you have connected one of the data sources and configured the query and visualization for the `curl_json-wallarm_nginx/gauge-attacks` metric, check the monitoring operation:
+After you have connected one of the data sources and configured the query and visualization for the `curl_json-wallarm_nginx/gauge-abnormal` metric, check the monitoring operation:
 1.  Enable automatic metric updates at five-second intervals (select a value from the drop-down list in the upper right corner of the Grafana console).
-2.  Make sure that the current number of attacks on the Grafana dashboard matches the output from `wallarm-status` on the filter node:
+2.  Make sure that the current number of requests on the Grafana dashboard matches the output from `wallarm-status` on the filter node:
 
     --8<-- "../include/monitoring/wallarm-status-check-latest.md"
     
@@ -153,10 +153,10 @@ After you have connected one of the data sources and configured the query and vi
 
     --8<-- "../include/monitoring/sample-malicious-request.md"
     
-4.  Make sure that the attack counter has increased both in the `wallarm-status` output and on the Grafana dashboard:
+4.  Make sure that the request counter has increased both in the `wallarm-status` output and on the Grafana dashboard:
 
     --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
     ![!Checking the attack counter][img-grafana-16-attacks]
 
-The Grafana dashboard now displays the `curl_json-wallarm_nginx/gauge-attacks` metric values for the `node.example.local` filter node.
+The Grafana dashboard now displays the `curl_json-wallarm_nginx/gauge-abnormal` metric values for the `node.example.local` filter node.

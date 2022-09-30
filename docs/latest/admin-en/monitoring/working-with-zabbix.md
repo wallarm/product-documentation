@@ -34,7 +34,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     2.  A page with the host data will open. Switch to the *Items* tab and click the *Create item* button. 
     3.  Fill a metric name in the *Name* field (for example, `Wallarm NGINX Attacks`).
     4.  Leave the *Type*, *Host interface*, and *Type of information* parameters unchanged.
-    5.  Enter the key name of the metric in the *Key* field (as specified in `UserParameter=` in the [Zabbix agent configuration][doc-zabbix-parameters]; for example, `wallarm_nginx-gauge-attacks`).
+    5.  Enter the key name of the metric in the *Key* field (as specified in `UserParameter=` in the [Zabbix agent configuration][doc-zabbix-parameters]; for example, `wallarm_nginx-gauge-abnormal`).
     6.  If necessary, adjust the update frequency of the metric value and other parameters.
     7.  Make sure that the *Enabled* checkbox is checked.
     8.  Complete the process of adding a metric by clicking the *Add* button.
@@ -56,7 +56,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     3.  Save the changes that you made to the dashboard by clicking the *Save changes* button.
 
 4.  Check the monitoring operation: 
-    1.  Make sure that the current number of attacks in the Zabbix widget matches the output of `wallarm-status` on the filter node.
+    1.  Make sure that the current number of processed requests in the Zabbix widget matches the output of `wallarm-status` on the filter node.
     
         --8<-- "../include/monitoring/wallarm-status-check-padded-latest.md"
 
@@ -66,10 +66,10 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
         
         --8<-- "../include/monitoring/sample-malicious-request.md"
         
-    3.  Make sure that the attack counter has increased in both the `wallarm-status` output and the Zabbix widget:
+    3.  Make sure that the request counter has increased in both the `wallarm-status` output and the Zabbix widget:
     
         --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
 
         ![!Viewing the changed metric value][img-global-view-16]
 
-The Zabbix dashboard now displays the `curl_json-wallarm_nginx/gauge-attacks` metric of the `node.example.local` filter node. 
+The Zabbix dashboard now displays the `curl_json-wallarm_nginx/gauge-abnormal` metric of the `node.example.local` filter node. 

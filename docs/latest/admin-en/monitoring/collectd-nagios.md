@@ -9,9 +9,9 @@
 [link-collectd-docs]:       https://collectd.org/documentation/manpages/collectd-nagios.1.shtml
 [link-nrpe-readme]:         https://github.com/NagiosEnterprises/nrpe
 [link-nrpe-pdf]:            https://assets.nagios.com/downloads/nagioscore/docs/nrpe/NRPE.pdf
-[link-metric]:              ../../admin-en/monitoring/available-metrics.md#number-of-attacks
+[link-metric]:              ../../admin-en/monitoring/available-metrics.md#number-of-requests
 
-[doc-gauge-attacks]:        available-metrics.md#number-of-attacks
+[doc-gauge-abnormal]:        available-metrics.md#number-of-requests
 [doc-unixsock]:             fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 
 [anchor-header-7]:          #7-add-commands-to-the-nrpe-service-configuration-file-on-the-filter-node-to-get-the-required-metrics
@@ -130,10 +130,10 @@ To do this, perform the following steps on the filter node host:
 2.  Make sure that the `nagios` user can receive metric values from `collectd` by executing the following test command:
     
     ```
-    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
+    sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    This command allows the `nagios` user to get the value of the [`curl_json-wallarm_nginx/gauge-attacks`][link-metric] metric (the number of recorded attacks) for the `node.example.local` host.
+    This command allows the `nagios` user to get the value of the [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] metric (the number of processed requests) for the `node.example.local` host.
     
     **Example of command output:**
     
@@ -149,10 +149,10 @@ To do this, perform the following steps on the filter node host:
 
 ### 7.  Add Commands to the NRPE Service Configuration File on the Filter Node to Get the Required Metrics
 
-For example, to create a command named `check_wallarm_nginx_attacks` that will receive the `curl_json-wallarm_nginx/gauge-attacks` metric for the filter node with the `node.example.local` fully qualified domain name, add the following line to the NRPE service’s configuration file:
+For example, to create a command named `check_wallarm_nginx_abnormal` that will receive the `curl_json-wallarm_nginx/gauge-abnormal` metric for the filter node with the `node.example.local` fully qualified domain name, add the following line to the NRPE service’s configuration file:
 
 ```
-command[check_wallarm_nginx_attacks]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-attacks -H node.example.local
+command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
 
@@ -184,13 +184,13 @@ For example, this can be done as follows:
     define service {
       use generic-service
       host_name node.example.local
-      check_command check_nrpe!check_wallarm_nginx_attacks
+      check_command check_nrpe!check_wallarm_nginx_abnormal
       max_check_attempts 5
-      service_description wallarm_nginx_attacks
+      service_description wallarm_nginx_abnormal
     }
     ```
 
-    This file defines the `node.example.local` host with the `10.0.30.5` IP address and the command to check the status of the `wallarm_nginx_attacks` service, which means receiving the `curl_json-wallarm_nginx/gauge-attacks` metric from the filter node (see the description of the [`check_wallarm_nginx_attacks`][anchor-header-7] command).
+    This file defines the `node.example.local` host with the `10.0.30.5` IP address and the command to check the status of the `wallarm_nginx_abnormal` service, which means receiving the `curl_json-wallarm_nginx/gauge-abnormal` metric from the filter node (see the description of the [`check_wallarm_nginx_abnormal`][anchor-header-7] command).
 
 2.  Add the following line to the Nagios configuration file (by default, `/usr/local/nagios/etc/nagios.cfg`):
     

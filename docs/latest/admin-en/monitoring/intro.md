@@ -130,7 +130,7 @@ host/wallarm-tarantool/type-type_instance
 !!! info "Metric Examples"
     For a filter node on the `node.example.local` host:
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-attacks` is the metric of the number of recorded attacks;
+    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` is the metric of the number of processed requests;
     * `node.example.local/wallarm-tarantool/gauge-export_delay` is the metric of the Tarantool export delay in seconds.
     
     A complete list of metrics that can be monitored is available [here][doc-available-metrics].

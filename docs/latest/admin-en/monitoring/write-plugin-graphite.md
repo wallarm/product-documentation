@@ -1,6 +1,5 @@
 [img-write-plugin-graphite]:    ../../images/monitoring/write-plugin-graphite.png
 
-[doc-gauge-attacks]:            available-metrics.md#number-of-attacks
 [doc-grafana]:                  working-with-grafana.md
 
 [link-docker-ce]:               https://docs.docker.com/install/
