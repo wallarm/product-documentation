@@ -9,7 +9,7 @@
 Verify that Nagios is successfully monitoring the status of the previously created service:
 1.  Log in to the Nagios web interface.
 2.  Go to the services page by clicking on the “Services” link.
-3.  Make sure that the `wallarm_nginx_attacks` service is displayed and has the “OK” status:
+3.  Make sure that the `wallarm_nginx_abnormal` service is displayed and has the “OK” status:
 
     ![!Service status][img-nagios-service-status]
 
@@ -38,7 +38,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 
     ![!Updated Performance Data value][img-nagios-service-perfdata-updated]
 
-Now the values of the `curl_json-wallarm_nginx/gauge-attacks` metric of the filter node are displayed in the service state information in Nagios.
+Now the values of the `curl_json-wallarm_nginx/gauge-abnormal` metric of the filter node are displayed in the service state information in Nagios.
 
 !!! info "Nagios data visualization"
     By default, Nagios Core only supports tracking service status (`OK`, `WARNING`, `CRITICAL`). To store and visualize metric values contained in “Performance Data,” you can use third-party utilities, for example, [PHP4Nagios][link-php4nagios].
