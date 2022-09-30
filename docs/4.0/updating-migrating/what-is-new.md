@@ -8,6 +8,26 @@ Starting with version 4.0, the filtering node uploads data to the Cloud using th
 
 If your server with the deployed node has a limited access to the external resources and the access is granted to each resource separately, after upgrade to version 4.0 the synchronization between the filtering node and the Cloud will stop. The upgraded node needs to be granted access to the API endpoint with the new port.
 
+## Breaking changes due to the deleted metrics
+
+Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:
+
+* `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
+* `curl_json-wallarm_nginx/gauge-attacks`
+* `curl_json-wallarm_nginx/gauge-blocked`
+* `curl_json-wallarm_nginx/gauge-time_detect`
+* `curl_json-wallarm_nginx/derive-requests`
+* `curl_json-wallarm_nginx/derive-attacks`
+* `curl_json-wallarm_nginx/derive-blocked`
+* `curl_json-wallarm_nginx/derive-abnormal`
+* `curl_json-wallarm_nginx/derive-requests_lost`
+* `curl_json-wallarm_nginx/derive-tnt_errors`
+* `curl_json-wallarm_nginx/derive-api_errors`
+* `curl_json-wallarm_nginx/derive-segfaults`
+* `curl_json-wallarm_nginx/derive-memfaults`
+* `curl_json-wallarm_nginx/derive-softmemfaults`
+* `curl_json-wallarm_nginx/derive-time_detect`
+
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
 The release 4.0 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.

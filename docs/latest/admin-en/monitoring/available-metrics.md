@@ -13,6 +13,25 @@
 * [NGINX Metrics and NGINX Wallarm Module Metrics](#nginx-metrics-and-nginx-wallarm-module-metrics)
 * [Postanalytics Module Metrics](#postanalytics-module-metrics)
 
+!!! warning "Breaking changes due to the deleted metrics"
+    Starting from version 4.0, the Wallarm node does not collect the following metrics:
+    
+    * `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](#number-of-requests) metric instead
+    * `curl_json-wallarm_nginx/gauge-attacks`
+    * `curl_json-wallarm_nginx/gauge-blocked`
+    * `curl_json-wallarm_nginx/gauge-time_detect`
+    * `curl_json-wallarm_nginx/derive-requests`
+    * `curl_json-wallarm_nginx/derive-attacks`
+    * `curl_json-wallarm_nginx/derive-blocked`
+    * `curl_json-wallarm_nginx/derive-abnormal`
+    * `curl_json-wallarm_nginx/derive-requests_lost`
+    * `curl_json-wallarm_nginx/derive-tnt_errors`
+    * `curl_json-wallarm_nginx/derive-api_errors`
+    * `curl_json-wallarm_nginx/derive-segfaults`
+    * `curl_json-wallarm_nginx/derive-memfaults`
+    * `curl_json-wallarm_nginx/derive-softmemfaults`
+    * `curl_json-wallarm_nginx/derive-time_detect`
+
 ## Metric Format
 
 The `collectd` metrics have the following view:
