@@ -139,11 +139,6 @@ You may follow these recommendations:
 
 [How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-??? info "Watch Wallarm video about brute‑force attacks"
-    <div class="video-wrapper">
-    <iframe width="1280" height="720" src="https://www.youtube.com/embed/0R_2wL5_a-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
 ### Resource scanning
 
 **Attack**
@@ -342,11 +337,6 @@ You may follow these recommendations:
 *   Set necessary and sufficient access rights for the web application's files and directories.
 
 [How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
-
-??? info "Watch Wallarm video about brute‑force attacks"
-    <div class="video-wrapper">
-    <iframe width="1280" height="720" src="https://www.youtube.com/embed/0R_2wL5_a-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
 
 ### Information exposure
 

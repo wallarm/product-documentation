@@ -82,9 +82,3 @@ You may also add the `now` keyword to the search field to only display those eve
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-----------
-
-<div class="video-wrapper">
-  <iframe width="1280" height="720" src="https://www.youtube.com/embed/2DTtc46FsbI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
