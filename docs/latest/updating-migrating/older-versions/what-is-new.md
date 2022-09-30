@@ -7,6 +7,26 @@ This page lists the changes available when upgrading the node 2.18 up to version
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
+## Breaking changes due to the deleted metrics
+
+Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:
+
+* `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](../../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
+* `curl_json-wallarm_nginx/gauge-attacks`
+* `curl_json-wallarm_nginx/gauge-blocked`
+* `curl_json-wallarm_nginx/gauge-time_detect`
+* `curl_json-wallarm_nginx/derive-requests`
+* `curl_json-wallarm_nginx/derive-attacks`
+* `curl_json-wallarm_nginx/derive-blocked`
+* `curl_json-wallarm_nginx/derive-abnormal`
+* `curl_json-wallarm_nginx/derive-requests_lost`
+* `curl_json-wallarm_nginx/derive-tnt_errors`
+* `curl_json-wallarm_nginx/derive-api_errors`
+* `curl_json-wallarm_nginx/derive-segfaults`
+* `curl_json-wallarm_nginx/derive-memfaults`
+* `curl_json-wallarm_nginx/derive-softmemfaults`
+* `curl_json-wallarm_nginx/derive-time_detect`
+
 ## Detection of the new attack type IDOR / BOLA
 
 [Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA), also known as [Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
