@@ -14,15 +14,6 @@ controller:
 The following is a list of Wallarm-specific metrics in Prometheus format available via the newly exposed endpoint:
 
 ```
-# HELP wallarm_requests requests count
-# TYPE wallarm_requests gauge
-wallarm_requests 5
-# HELP wallarm_attacks attack requests count
-# TYPE wallarm_attacks gauge
-wallarm_attacks 5
-# HELP wallarm_blocked blocked requests count
-# TYPE wallarm_blocked gauge
-wallarm_blocked 5
 # HELP wallarm_abnormal abnormal requests count
 # TYPE wallarm_abnormal gauge
 wallarm_abnormal 5
@@ -41,12 +32,6 @@ wallarm_overlimits_time 0
 # HELP wallarm_segfaults segmentation faults count
 # TYPE wallarm_segfaults gauge
 wallarm_segfaults 0
-# HELP wallarm_memfaults vmem limit reached events count
-# TYPE wallarm_memfaults gauge
-wallarm_memfaults 0
-# HELP wallarm_softmemfaults request memory limit reached events count
-# TYPE wallarm_softmemfaults gauge
-wallarm_softmemfaults 0
 # HELP wallarm_proton_errors libproton non-memory related libproton faults events count
 # TYPE wallarm_proton_errors gauge
 wallarm_proton_errors 0

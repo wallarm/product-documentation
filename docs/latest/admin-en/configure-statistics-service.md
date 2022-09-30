@@ -74,14 +74,15 @@ curl http://127.0.0.8/wallarm-status
 As a result, you will get a response of the type:
 
 ```
-{ "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"abnormal":0,"tnt_errors":0,
-"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
+{ "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
+"tnt_errors":0,"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
 "softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"custom_ruleset_id":102,
 "db_apply_time":1598525865,"lom_apply_time":1598525870,"custom_ruleset_apply_time":1598525870,
 "proton_instances": { "total":3,"success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,
 "stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
 "fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
-"fname":"\/etc\/wallarm\/proton.db"}] }
+"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
+"split":{"clients":[]} }
 ```
 
 The following response parameters are available:
@@ -89,13 +90,16 @@ The following response parameters are available:
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/denylist.md) IPs.
 *   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/denylist.md) request sources.
+* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/allowlist.md) request sources.
 *   `abnormal`: the number of requests the application deems abnormal.
-*   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
-*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
 *   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
 *   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
+*   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
+*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
 *   `segfaults`: the number of issues that led to the emergency termination of the worker process.
 *   `memfaults`: the number of issues where the virtual memory limits were reached.
+* `softmemfaults`: the number of issues where the virtual memory limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)).
+* `proton_errors`: the number of the proton.db errors except for those occurred due to the situations when the virtual memory limit was exceeded.
 *   `time_detect`: the total time of requests analysis.
 *   `db_id`: proton.db version.
 *   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
@@ -121,5 +125,8 @@ The following response parameters are available:
     *   `mod_time`: Unix time of the last update of the proton.db file.
     *   `fname`: path to the proton.db file.
 * `startid`: randomly-generated unique ID of the filtering node.
+* `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
+* `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
+* `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
 
 The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start Wallarm.
