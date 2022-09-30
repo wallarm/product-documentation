@@ -8,7 +8,7 @@ These instructions describe the steps to upgrade the multi-tenant node 3.6 or lo
 
 ## Requirements
 
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
 * Access to `https://api.wallarm.com` if working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` if working with US Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Step 1: Contact the Wallarm support team
@@ -96,7 +96,7 @@ server {
 
 Notes on the configuration above:
 
-* The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/waf-installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
+* The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
 * Alike API requests should have been sent to link other applications to the tenants.
 * The tenants and the applications are separate entities, so it is logical to configure them with the different directives. Also, it would be convenient to avoid additional API requests. It would be logical to define relations between the tenants and applications via the configuration itself. All this is missing in the current configuration but will become available in the new 4.0 approach described below.
 
@@ -111,7 +111,7 @@ To rewrite the configuration, do the following:
 
 ### Get UUIDs of your tenants
 
-To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../waf-installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
 1. Get `clientid`(s) to later find UUIDs related to them:
 
@@ -135,7 +135,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
                     -H 'x-wallarmapi-uuid: YOUR_UUID'
                     ```
-            Where `PARTNER_ID` is the one obtained at [**Step 2**](../waf-installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
+            Where `PARTNER_ID` is the one obtained at [**Step 2**](../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
             Response example:
 

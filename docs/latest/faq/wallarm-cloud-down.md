@@ -16,7 +16,7 @@ What continues to work:
 * Traffic processing in the configured [mode](../admin-en/configure-wallarm-mode.md#available-filtration-modes) using the rules uploaded to the node during last successful [synchronization](../admin-en/configure-cloud-node-synchronization-en.md) between the Cloud and the node. The node can continue to work as the latest versions of the following elements are uploaded from the Cloud according to the schedule and stored on the node locally:
 
     * [Custom ruleset](../user-guides/rules/compiling.md)
-    * [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton)
+    * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
 
 * The [IP lists](../user-guides/ip-lists/overview.md) are also uploaded to the node and stored within it. The uploaded addresses will continue to be handled but only until expiration date/time.
 
@@ -29,15 +29,15 @@ What stops working:
 * The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-nginx-overview.md#modules-overview) has an in-memory storage (Tarantool) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
 
     !!! warning "Node in-memory storage limitation"
-        The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-waf-node.md#tarantool) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
+        The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.
 
 * The node collects but cannot send [metrics](../admin-en/monitoring/intro.md) for processed traffic to the Cloud.
 * [Scanning](../user-guides/scanner/intro.md) for the exposed assets and typical vulnerabilities will stop.
 * [Triggers](../user-guides/triggers/triggers.md) will stop working and thus:
     * [IP lists](../user-guides/ip-lists/overview.md) stop being updated.
     * [Trigger-based notifications](../user-guides/triggers/triggers.md) will not popup.
-* [Discovering API structure](../about-wallarm-waf/api-discovery.md) will not work.
-* [Active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) will stop.
+* [Discovering API structure](../about-wallarm/api-discovery.md) will not work.
+* [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) will stop.
 * [Brute force attacks](../admin-en/configuration-guides/protecting-against-bruteforce.md) will not be detected.
 * Integrations will stop, including that:
     * Instant and email [notifications](../user-guides/settings/integrations/integrations-intro.md) will not popup.

@@ -70,8 +70,8 @@ Allows you to enable or disable Wallarm functions.
 ### wallarm.apiHost
 
 Wallarm API endpoint. Can be:
-* `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
-* `us1.api.wallarm.com` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm/overview.md#eu-cloud),
+* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/overview.md#us-cloud).
 
 **Default value**: `api.wallarm.com`
 
@@ -188,7 +188,7 @@ For example, to return the default Wallarm blocking page and the error code 445 
 
 #### Enabling attack analysis with libdetection
 
-The [**libdetection**](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
 To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
 

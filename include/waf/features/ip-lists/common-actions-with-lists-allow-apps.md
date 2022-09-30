@@ -1,7 +1,7 @@
 ## Adding an object to the list
 
 !!! info "Adding an IP address to the list on the multi-tenant node"
-    If you have installed the [multi-tenant node](../../waf-installation/multi-tenant/overview.md), please firstly switch to the [account of a tenant](../../waf-installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is added to the list.
+    If you have installed the [multi-tenant node](../../installation/multi-tenant/overview.md), please firstly switch to the [account of a tenant](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure) for which the IP address is added to the list.
 
 To add an IP address, subnet, or group of IP addresses to the list:
 

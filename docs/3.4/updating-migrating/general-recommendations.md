@@ -8,7 +8,7 @@ This document describes recommendations and associated risks for a safe update o
 
 * Carefully plan and monitor the filtering node update process. Estimated release dates for new versions of Wallarm nodes are published in the [Wallarm node versioning policy](versioning-policy.md).
 * If your infrastructure has multiple Wallarm nodes installed, update them gradually. After updating the first node, monitor the node modules operation within a day and gradually update other Wallarm nodes if the first node operates correctly.
-* For the model with separated development and production environments, update the filtering node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring Wallarm nodes for separated environments](../admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes).
+* For the model with separated development and production environments, update the filtering node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring Wallarm nodes for separated environments](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes).
 * Before upgrading the filtering node, disable traffic routing through the node using any method available to you (e.g. by setting [traffic filtration mode](../admin-en/configure-wallarm-mode.md) to `off`).
 * Once filtering node module is upgraded, set the node filtration mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, then put the filtering node in the `block` mode.
 * Update NGINX to the latest version available before applying Wallarm node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
@@ -64,14 +64,14 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     * Support for new [filtration mode](../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylist](../user-guides/ip-lists/graylist.md).
 
-        The Wallarm node operating in `safe_blocking` mode blocks only those malicious requests originated from graylisted IP addresses that allow a significant reduction of [false positives](../about-wallarm-waf/protecting-against-attacks.md#false-positives) numbers.
+        The Wallarm node operating in `safe_blocking` mode blocks only those malicious requests originated from graylisted IP addresses that allow a significant reduction of [false positives](../about-wallarm/protecting-against-attacks.md#false-positives) numbers.
     
     * New reaction of triggers **Add to graylist** allowing to automatically graylist IP addresses originated a specific number of malicious requests.
 
         [Example of the trigger that graylists IP addresses →](../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)
     
     * Management of [IP address allowlist](../user-guides/ip-lists/allowlist.md) via Wallarm Console.
-    * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+    * Automated allowlisting of [Wallarm Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
     * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region or data center.
 
         [Details on adding IPs to the allowlist, denylist, and graylist →](../user-guides/ip-lists/overview.md)
@@ -86,7 +86,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     
     * New module **API Discovery** that automatically identifies the application API structure.
 
-        [Details on the API Discovery module →](../about-wallarm-waf/api-discovery.md)
+        [Details on the API Discovery module →](../about-wallarm/api-discovery.md)
     
     * The number of requests originated from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 
@@ -96,7 +96,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
-        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+        [Details on the **libdetection** library →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
     * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 
@@ -135,7 +135,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
         By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
-        [Details on the **libdetection** library →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+        [Details on the **libdetection** library →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
     * New environment variable `WALLARM_APPLICATION` that can be passed to the Wallarm NGINX‑based Docker container of version `3.4.1-1` or higher. This variable is used to set the identifier of the protected application to be used in the Wallarm Cloud.
 

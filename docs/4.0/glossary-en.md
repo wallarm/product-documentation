@@ -21,7 +21,7 @@ An attack is a single hit or multiple hits grouped by the following characterist
 
     This hit grouping method works for all hits except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types.
 
-    If hits are grouped by this method, the [**Mark as false positive**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
+    If hits are grouped by this method, the [**Mark as false positive**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option are unavailable for the attack.
 
 The listed hit grouping methods do not exclude each other. If hits have characteristics of both methods, they are all grouped into one attack.
 
@@ -55,7 +55,7 @@ For example:
 
     In this payload, `;wget+` is the [RCE](attacks-vulns-list.md#remote-code-execution-rce) attack sign and another part of the payload is the attack sign context.
 
-Since attack signs are not used to detect [behavioral attacks](about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
+Since attack signs are not used to detect [behavioral attacks](about-wallarm/protecting-against-attacks.md#behavioral-attacks), requests sent as a part of behavioral attacks have empty payloads.
 
 ## Vulnerability
 A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.

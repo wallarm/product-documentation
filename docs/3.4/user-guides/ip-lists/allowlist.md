@@ -12,7 +12,7 @@ In the Wallarm Console → **IP lists** → **Allowlist**, you can manage allowl
     * IP allowlisting for specific applications is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
     * If the Wallarm node 3.2 or higher operating in the `monitoring` mode detects the attack originated from the allowlisted IP, it uploads the attack data to the Wallarm Cloud. Uploaded data is displayed in the **Events** section of Wallarm Console.
     
-    If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address allowlist setup:
+    If you are using the regular (client) or [multi-tenant node](../../installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address allowlist setup:
 
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
 
@@ -25,7 +25,7 @@ In the Wallarm Console → **IP lists** → **Allowlist**, you can manage allowl
 
 ## Examples of IP allowlist usage
 
-* To search for vulnerabilities in the system, you can use [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner). The Scanner sends malicious requests to your application addresses and analyzes application responses. If Scanner IP addresses are not allowlisted, the filtering node can block requests sent by Scanner. To allow Wallarm components to seamlessly scan your resources for vulnerabilities, it is necessary to allowlist Scanner IP addresses.
+* To search for vulnerabilities in the system, you can use [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner). The Scanner sends malicious requests to your application addresses and analyzes application responses. If Scanner IP addresses are not allowlisted, the filtering node can block requests sent by Scanner. To allow Wallarm components to seamlessly scan your resources for vulnerabilities, it is necessary to allowlist Scanner IP addresses.
 
     Starting with Wallarm node 3.0, Wallarm automatically allowlists Scanner IP addresses.
 * If you use other trusted tools that originate potentially malicious requests, it is necessary to manually add source IPs of these tools to the allowlist.

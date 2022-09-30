@@ -17,7 +17,7 @@ You can filter widget data by [applications](settings/applications.md) and time 
 Any widget allows to open the [event list](events/check-attack.md) the statistics have been collected on.
 
 !!! info "Getting started with Wallarm"
-    If you registered the Wallarm account in the US [Cloud](../about-wallarm-waf/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment. 
+    If you registered the Wallarm account in the US [Cloud](../about-wallarm/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment. 
     
     The Dashboard section also includes the **Get started** button for new users. When you click the button, you will get a list of helpful product discovery options with the following among them:
     
@@ -28,8 +28,8 @@ Any widget allows to open the [event list](events/check-attack.md) the statistic
 
 The widget displays the following data:
 
-* Monthly request quota specified in the [subscription plan](../about-wallarm-waf/subscription-plans.md)
-* The number of detected [hits](../about-wallarm-waf/protecting-against-attacks.md#hit) and [blocked](../admin-en/configure-wallarm-mode.md) ones during the current month
+* Monthly request quota specified in the [subscription plan](../about-wallarm/subscription-plans.md)
+* The number of detected [hits](../about-wallarm/protecting-against-attacks.md#hit) and [blocked](../admin-en/configure-wallarm-mode.md) ones during the current month
 * The real-time speed at which requests and hits are encountered
 
 ![!Current month statistics](../images/user-guides/dashboard/current-month-stats.png)

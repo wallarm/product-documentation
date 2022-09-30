@@ -32,7 +32,7 @@ You can monitor the state of a filter node using the node-provided metrics. Thes
 The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filter nodes.
 
 !!! warning "Support of the monitoring service on the CDN node"
-    Please note that the `collectd` service is not supported by the [Wallarm CDN nodes](../../waf-installation/cdn-node.md).
+    Please note that the `collectd` service is not supported by the [Wallarm CDN nodes](../../installation/cdn-node.md).
 
 ##  Need for Monitoring
 

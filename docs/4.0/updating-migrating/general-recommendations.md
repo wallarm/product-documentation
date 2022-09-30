@@ -5,13 +5,13 @@ This document describes recommendations and associated risks for a safe upgrade 
 !!! warning "Breaking changes and recommendations for node upgrade"
     Please note that version 4.x contains **breaking changes**. Please carefully review what has been changed before upgrading the node.
 
-    We recommend to upgrade both the client and [multi-tenant](../waf-installation/multi-tenant/overview.md) nodes up to version 4.0. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+    We recommend to upgrade both the client and [multi-tenant](../installation/multi-tenant/overview.md) nodes up to version 4.0. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
 
 ## Common recommendations
 
 * Carefully plan and monitor the filtering node update process. Estimated release dates for new versions of Wallarm nodes are published in the [Wallarm node versioning policy](versioning-policy.md).
 * If your infrastructure has multiple Wallarm nodes installed, update them gradually. After updating the first node, monitor the node modules operation within a day and gradually update other Wallarm nodes if the first node operates correctly.
-* For the model with separated development and production environments, update the filtering node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring Wallarm nodes for separated environments](../admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes).
+* For the model with separated development and production environments, update the filtering node gradually. First, apply and test new version in non-production environments, then in production environments. Detailed recommendations are described in the [instructions for configuring Wallarm nodes for separated environments](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes).
 * Before upgrading the filtering node, disable traffic routing through the node using any method available to you (e.g. by setting [traffic filtration mode](../admin-en/configure-wallarm-mode.md) to `off`).
 * Once filtering node module is upgraded, set the node filtration mode to `monitoring`. If all modules work correctly and there is no abnormal number of new false positives in the `monitoring` mode for a day, then put the filtering node in the `block` mode.
 * Update NGINX to the latest version available before applying Wallarm node updates. If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.

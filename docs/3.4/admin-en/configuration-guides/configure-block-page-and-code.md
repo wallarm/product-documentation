@@ -2,7 +2,7 @@
 
 These instructions describe the method to customize the blocking page and error code returned in the response to the request blocked for the following reasons:
 
-* Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
+* Request contains malicious payloads of the following types: [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../../user-guides/rules/regex-rule.md).
 * Request containing malicious payloads from the list above is originated from [graylisted IP address](../../user-guides/ip-lists/graylist.md) and the node filters requests in the safe blocking [mode](../configure-wallarm-mode.md).
 * Request is originated from the [denylisted IP address](../../user-guides/ip-lists/denylist.md).
 
@@ -45,7 +45,7 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     Wallarm provides the default blocking page. To use this page, please specify the path `&/usr/share/nginx/html/wallarm_blocked.html` in the directive value.
 
     !!! warning "Important information for Debian and CentOS users"
-        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../waf-installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
+        If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
         ```
         UUID ${request_id}
         ```

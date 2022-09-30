@@ -11,7 +11,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ## Requirements
 
-* NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../waf-installation/nginx-plus.md)
+* NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../installation/nginx-plus.md)
 * Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -180,7 +180,7 @@ The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in t
     SLAB_ALLOC_ARENA=24
     ```
 
-Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-waf-node.md).
+Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-node.md).
 
 #### Address of the separate postanalytics server
 
@@ -223,9 +223,9 @@ To set the address of the separate postanalytics server:
     ```
 4. Add the address of the postanalytics module server to the configuration files on the server with the NGINX‑Wallarm package as described in the instructions for proper installation forms:
 
-    * [NGINX stable from NGINX repository](../waf-installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
-    * [NGINX from Debian/CentOS repositories](../waf-installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
-    * [NGINX Plus](../waf-installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
+    * [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
+    * [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
+    * [NGINX Plus](../installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
 
 ### 5. Restart Wallarm services
 

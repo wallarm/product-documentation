@@ -364,7 +364,7 @@ You may follow these recommendations:
 
 The application either intentionally or unintentionally discloses sensitive information to a subject that is not authorized to access it.
 
-The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm-waf/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, Wallarm records an incident and an active vulnerability of the **Information exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
+The vulnerability of this type can be detected only by the method of [passive detection](about-wallarm/detecting-vulnerabilities.md#passive-detection). If the response to the request discloses sensitive information, Wallarm records an incident and an active vulnerability of the **Information exposure** type. Some kinds of sensitive information that can be detected by Wallarm include:
 
 * System and environment status (for example: stack trace, warnings, fatal errors)
 * Network status and configuration

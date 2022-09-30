@@ -2,7 +2,7 @@
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
@@ -34,9 +34,9 @@ Please inform [Wallarm technical support](mailto:support@wallarm.com) that you a
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
-If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Scanner** → **Settings**.
+If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Scanner** → **Settings**.
 
-The module operation can cause [false positives](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
+The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
 ## Step 3: Update API port
 

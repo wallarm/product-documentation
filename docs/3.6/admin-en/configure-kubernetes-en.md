@@ -78,8 +78,8 @@ Allows you to enable or disable Wallarm functions.
 ### controller.wallarm.apiHost
 
 Wallarm API endpoint. Can be:
-* `api.wallarm.com` for the [EU cloud](../about-wallarm-waf/overview.md#eu-cloud),
-* `us1.api.wallarm.com` for the [US cloud](../about-wallarm-waf/overview.md#us-cloud).
+* `api.wallarm.com` for the [EU cloud](../about-wallarm/overview.md#eu-cloud),
+* `us1.api.wallarm.com` for the [US cloud](../about-wallarm/overview.md#us-cloud).
 
 **Default value**: `api.wallarm.com`
 
@@ -154,7 +154,7 @@ kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
 
 The annotation `nginx.ingress.kubernetes.io/wallarm-block-page` is used to configure the blocking page and error code returned in the response to the request blocked for the following reasons:
 
-* Request contains malicious payloads of the following types: [input validation attacks](../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
+* Request contains malicious payloads of the following types: [input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [vpatch attacks](../user-guides/rules/vpatch-rule.md), or [attacks detected based on regular expressions](../user-guides/rules/regex-rule.md).
 * Request containing malicious payloads from the list above is originated from [graylisted IP address](../user-guides/ip-lists/graylist.md) and the node filters requests in the safe blocking [mode](configure-wallarm-mode.md).
 * Request is originated from the [denylisted IP address](../user-guides/ip-lists/denylist.md).
 
@@ -168,7 +168,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 #### Enabling attack analysis with libdetection
 
-The [**libdetection**](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm-waf/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
 To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
 

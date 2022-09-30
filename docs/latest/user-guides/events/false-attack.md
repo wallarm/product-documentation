@@ -10,8 +10,8 @@
 
 ## How a false positive mark works?
 
-* If a false positive mark is added for the attack of the type different from [Information Exposure](../../attacks-vulns-list.md#information-exposure), the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm-waf/protecting-against-attacks.md#library-libproton)) is automatically created.
-* If a false positive mark is added for the incident with the [Information Exposure](../../attacks-vulns-list.md#information-exposure) attack type, the rule disabling analysis of the same requests for detected [vulnerability signs](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-detection-methods) is automatically created.
+* If a false positive mark is added for the attack of the type different from [Information Exposure](../../attacks-vulns-list.md#information-exposure), the rule disabling analysis of the same requests for detected attack signs ([tokens](../../about-wallarm/protecting-against-attacks.md#library-libproton)) is automatically created.
+* If a false positive mark is added for the incident with the [Information Exposure](../../attacks-vulns-list.md#information-exposure) attack type, the rule disabling analysis of the same requests for detected [vulnerability signs](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods) is automatically created.
 
 Created rule is applied when analyzing requests to the protected application. The rule is not displayed in Wallarm Console and can be changed or removed only by the request sent to [Wallarm technical support](mailto: support@wallarm.com).
 
@@ -38,7 +38,7 @@ To mark all requests (hits) in the attack as false positives:
     ![!False attack](../../images/user-guides/events/analyze-attack.png)
 
 !!! warning "If an attack is hits grouped by IPs"
-    If an attack consists of hits [grouped](../../about-wallarm-waf/protecting-against-attacks.md#attack) by IP addresses, the **Mark as false positive** button is unavailable. You can [mark certain hits](#mark-a-hit-as-a-false-positive) as false positives.
+    If an attack consists of hits [grouped](../../about-wallarm/protecting-against-attacks.md#attack) by IP addresses, the **Mark as false positive** button is unavailable. You can [mark certain hits](#mark-a-hit-as-a-false-positive) as false positives.
 
 If all the requests in the attack are marked as false positives, then the information about that attack will look like this:
 

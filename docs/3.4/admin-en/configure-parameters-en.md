@@ -1,4 +1,4 @@
-[doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
+[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 
@@ -80,7 +80,7 @@ Enables additional validation of the SQL Injection attacks via the **libdetectio
 
 Analyzing of requests with the **libdetection** library is disabled by default. To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
 
-[More details on **libdetection** →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+[More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
 To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
@@ -117,7 +117,7 @@ Sets the requests' analysis and custom rules generation based on the NGINX mirro
 
 ### wallarm_global_trainingset_path
 
-A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
@@ -278,7 +278,7 @@ For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override str
 
 ### wallarm_parse_response
 
-Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm-waf/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). 
+Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). 
 
 Possible values are `on` (response analysis is enabled) and `off` (response analysis is disabled).
 

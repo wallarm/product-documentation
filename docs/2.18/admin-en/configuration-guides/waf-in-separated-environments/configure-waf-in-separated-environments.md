@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments.md"

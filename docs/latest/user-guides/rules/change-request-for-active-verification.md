@@ -1,6 +1,6 @@
 # Customizing the module for active threat verification
 
-Custom ruleset allows changing the following configurations of the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module:
+Custom ruleset allows changing the following configurations of the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module:
 
 * Disable the module for the whole application or its part (only if the module is enabled for all applications in Wallarm Console → **Scanner**).
 * Rewrite the request before attack replaying.
@@ -9,7 +9,7 @@ Custom ruleset allows changing the following configurations of the [Active threa
 
 ### Rule overview
 
-The rule **Set mode of active threat verification** is used to change the [Active threat verification](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
+The rule **Set mode of active threat verification** is used to change the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
 
 ### Creating and applying the rule
 
@@ -37,7 +37,7 @@ If the rule above is already configured, the following rule will enable the **Ac
 
 ### Rule overview
 
-The rule **Rewrite attack before active verification** is used to modify the original request elements before the [attack replaying](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). The following elements can be modified:
+The rule **Rewrite attack before active verification** is used to modify the original request elements before the [attack replaying](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). The following elements can be modified:
 
 * Header with the request authentication data to replace [original authentication data with test data](#replacing-original-authentication-data-with-test-data).
 * Header `HOST`. For example, the header `HOST` could be modified to replay the attack on [staging or test environment](#modifying-the-application-address-for-attack-replaying).

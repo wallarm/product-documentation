@@ -28,7 +28,7 @@ In the scanner settings, you can perform the following actions:
 
 ## Active Threat Verification
 
-This setting enables or completely disables [automatic attack reproduction](../../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification) by the scanner.
+This setting enables or completely disables [automatic attack reproduction](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) by the scanner.
 You can later manually run the attack verification by clicking the *Check* button or using the *Rules* tab.
 
 ## Scanner's RPS Limits

@@ -5,7 +5,7 @@
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [default-ip-blocking-settings]:     ../admin-en/configure-ip-blocking-nginx-en.md
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
-[allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss

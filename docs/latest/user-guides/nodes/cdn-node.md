@@ -2,7 +2,7 @@
 [data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
 [operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
 [operation-mode-rule-docs]:         ../rules/wallarm-mode-rule.md
-[wallarm-cloud-docs]:               ../../about-wallarm-waf/overview.md#cloud
+[wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
 [cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
@@ -23,7 +23,7 @@ The **Nodes** section of the Wallarm Console UI allows you to manage the nodes o
 
 ## Creating a node
 
-To create the CDN node, please follow the [instructions](../../waf-installation/cdn-node.md).
+To create the CDN node, please follow the [instructions](../../installation/cdn-node.md).
 
 ## Viewing details of a node
 

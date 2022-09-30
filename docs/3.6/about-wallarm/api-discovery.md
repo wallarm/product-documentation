@@ -1,0 +1,1 @@
+--8<-- "4.0/about-wallarm/api-discovery.md"

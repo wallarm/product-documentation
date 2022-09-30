@@ -3,13 +3,13 @@
 If your company has several applications, you may find it convenient not only to view the statistics of the entire company's traffic but also to view the statistics separately for each application. To separate traffic by the applications, you can use the "application" entity in the Wallarm system.
 
 !!! warning "Support of the application configuration for the CDN node"
-    Please note that the application configuration is not supported by the [Wallarm CDN nodes](../../waf-installation/cdn-node.md).
+    Please note that the application configuration is not supported by the [Wallarm CDN nodes](../../installation/cdn-node.md).
 
 Using applications enables you to:
 
 * View events and statistics separately for each application
 * Configure [triggers](../triggers/triggers.md), [rules](../rules/add-rule.md) and other Wallarm features for certain applications
-* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works.md)
+* [Configure Wallarm in separated environments](../../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)
 
 For Wallarm to identify your applications, it is required to assign them unique identifiers via the appropriate directive in the node configuration. Identifiers can be set for both the application domains and the domain paths.
 

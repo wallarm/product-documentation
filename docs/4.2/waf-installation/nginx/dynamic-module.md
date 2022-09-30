@@ -1,1 +1,0 @@
---8<-- "latest/waf-installation/nginx/dynamic-module.md"

@@ -39,7 +39,7 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 
 The new deployment method lets you configure the Wallarm CDN node outside your infrastructure in 15 minutes. You need to just point to the domain to be protected and add the Wallarm CNAME record to the domain's DNS records.
 
-[Instructions on the CDN node deployment](../../waf-installation/cdn-node.md)
+[Instructions on the CDN node deployment](../../installation/cdn-node.md)
 
 The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
 
@@ -92,17 +92,17 @@ The Wallarm Terraform module is the scalable solution meeting the best industry 
 
 We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
 
-[Documentation on the Wallarm Terraform module for AWS](../../waf-installation/cloud-platforms/aws/terraform-module/overview.md)
+[Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 
 ## Wallarm AWS image distributed with the ready-to-use `cloud-init.py` script
 
 If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to AWS. Starting from release 4.0, Wallarm distributes its AWS cloud image with the ready‑to‑use `cloud-init.py` script.
 
-[Specification of the Wallarm `cloud-init` script](../../waf-installation/cloud-platforms/cloud-init.md)
+[Specification of the Wallarm `cloud-init` script](../../installation/cloud-platforms/cloud-init.md)
 
 ## Simplified multi-tenant node configuration
 
-For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
+For the [multi-tenant nodes](../../installation/multi-tenant/overview.md), tenants and applications are now defined each with its own directive:
 
 * The [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) NGINX directive and [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) Envoy parameter have been added to configure the unique identifier of a tenant.
 * The [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) NGINX directive and [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#application_param) Envoy parameter behavior has been changed. Now it is **only** used to configure an application ID.
@@ -113,7 +113,7 @@ For the [multi-tenant nodes](../../waf-installation/multi-tenant/overview.md), t
 
 * New **safe blocking** filtration mode.
 
-    This mode enables a significant reduction of [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../../user-guides/ip-lists/graylist.md).
+    This mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from [graylisted IP addresses](../../user-guides/ip-lists/graylist.md).
 * Analysis of request sources is now performed only in the `safe_blocking` and `block` modes.
     
     * If the Wallarm node operating in the `off` or `monitoring` mode detects the request originating from the [denylisted](../../user-guides/ip-lists/denylist.md) IP, it does not block this request.
@@ -134,10 +134,10 @@ There are the following new features for request source control:
 * Wallarm Console section for full IP address allowlist, denylist and graylist control.
 * Support for new [filtration mode](../../admin-en/configure-wallarm-mode.md) `safe_blocking` and [IP address graylists](../../user-guides/ip-lists/graylist.md).
 
-    The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm-waf/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
+    The **safe blocking** mode enables a significant reduction of [false positive](../../about-wallarm/protecting-against-attacks.md#false-positives) number by blocking only malicious requests originating from graylisted IP addresses.
 
     For automatic IP address graylisting there is a new [trigger **Add to graylist**](../../user-guides/triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour) released.
-* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
+* Automated allowlisting of [Wallarm Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vunerability-scanner) IP addresses. Manual allowlisting of Scanner IP addresses is no longer required.
 * Ability to allowlist, denylist, or graylist a subnet, Tor network IPs, VPN IPs, a group of IP addresses registered in a specific country, region, or data center.
 * Ability to allowlist, denylist, or graylist request sources for specific applications.
 * New NGINX directive and Envoy parameter `disable_acl` to disable request origin analysis.
@@ -152,7 +152,7 @@ There are the following new features for request source control:
 
 New Wallarm nodes are distributed with the module **API Discovery** automatically identifiyng the application API structure. The module is disabled by default.
 
-[Details on the API Discovery module →](../../about-wallarm-waf/api-discovery.md)
+[Details on the API Discovery module →](../../about-wallarm/api-discovery.md)
 
 ## Support of the libdetection library in the Envoy-based nodes
 
@@ -160,7 +160,7 @@ The **libdetection** library is now supported in the Envoy-based Wallarm nodes. 
 
 By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
 
-[Details on the **libdetection** library →](../../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+[Details on the **libdetection** library →](../../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
 ## The rule enabling the `overlimit_res` attack detection fine-tuning
 

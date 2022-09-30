@@ -11,7 +11,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 !!! warning "IP list support"
     Controlling access to your applications by allowlisted, denylisted and graylisted IP addresses is supported starting with the regular (client) and multi-tenant Wallarm node of version 3.2.
     
-    If you are using the regular (client) or [multi-tenant node](../../waf-installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address list setup:
+    If you are using the regular (client) or [multi-tenant node](../../installation/multi-tenant/overview.md) of version 3.0 or lower, please perform the following steps before IP address list setup:
 
     1. [Update deployed modules](../../updating-migrating/general-recommendations.md).
     2. If the Wallarm node version is 2.18 or lower, [migrate current IP denylists and allowlists to a new IP lists scheme](../../updating-migrating/migrate-ip-lists-to-node-3.md).
@@ -58,7 +58,7 @@ To configure IP lists:
     * [Graylist](graylist.md)
 
 !!! warning "Using additional traffic filtering facilities"
-    Note that if you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the IP addresses for the [Wallarm Scanner](../../about-wallarm-waf/detecting-vulnerabilities.md#vulnerability-scanner). This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
+    Note that if you use additional facilities (software or hardware) to automatically filter and block traffic, it is recommended that you configure an allowlist with the IP addresses for the [Wallarm Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner). This will allow Wallarm components to seamlessly scan your resources for vulnerabilities.
 
     * [Scanner IP address registered in Wallarm EU Cloud](../../admin-en/scanner-address-eu-cloud.md)
     * [Scanner IP address registered in Wallarm US Cloud](../../admin-en/scanner-address-us-cloud.md)

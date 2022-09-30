@@ -2,7 +2,7 @@
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-waf-node.md
+[allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss

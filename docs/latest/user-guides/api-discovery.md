@@ -1,6 +1,6 @@
 # API Discovery
 
-This section describes how to use the API structure built by the [API Discovery](../about-wallarm-waf/api-discovery.md) module.
+This section describes how to use the API structure built by the [API Discovery](../about-wallarm/api-discovery.md) module.
 
 The built API structure is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
@@ -47,11 +47,11 @@ Each parameter information includes:
     * Personally identifiable information (PII) like full name, passport number or SSN
 
 * Date and time when parameter information was last updated
-* [Type/format](../about-wallarm-waf/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
+* [Type/format](../about-wallarm/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
 
 ## Tracking changes in API structure
 
-You can check what [changes occurred](../about-wallarm-waf/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.

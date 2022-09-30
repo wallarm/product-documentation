@@ -25,17 +25,17 @@
 /admin-en/update-docker-en /updating-migrating/docker-container/
 /admin-en/update-postanalytics /updating-migrating/separate-postanalytics/
 
-/admin-en/installation-nginx-en/ /waf-installation/nginx/dynamic-module/
-/admin-en/installation-nginxplus-en/ /waf-installation/nginx-plus/
-/admin-en/installation-nginx-distr-en/ /waf-installation/nginx/dynamic-module-from-distr/
-/admin-en/installation-nginx-en /waf-installation/nginx/dynamic-module/
-/admin-en/installation-nginxplus-en /waf-installation/nginx-plus/
-/admin-en/installation-nginx-distr-en /waf-installation/nginx/dynamic-module-from-distr/
+/admin-en/installation-nginx-en/ /installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en/ /installation/nginx-plus/
+/admin-en/installation-nginx-distr-en/ /installation/nginx/dynamic-module-from-distr/
+/admin-en/installation-nginx-en /installation/nginx/dynamic-module/
+/admin-en/installation-nginxplus-en /installation/nginx-plus/
+/admin-en/installation-nginx-distr-en /installation/nginx/dynamic-module-from-distr/
 
-/admin-en/troubleshooting/ /faq/common-errors-after-waf-installation/
-/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/waf-ingress-installation/
-/admin-en/troubleshooting /faq/common-errors-after-waf-installation/
-/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/waf-ingress-installation/
+/admin-en/troubleshooting/ /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq/ /faq/ingress-installation/
+/admin-en/troubleshooting /faq/common-errors-after-installation/
+/admin-en/configuration-guides/wallarm-ingress-controller/best-practices/faq /faq/ingress-installation/
 
 /2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
@@ -60,8 +60,6 @@
 /2.12/quickstart-en/* /2.12
 /2.12/updating-migrating/* /2.12
 /2.12/user-guides/* /2.12
-/2.12/waf-installation/* /2.12
-/2.12/about-wallarm-waf/* /2.12
 /2.12/partner-waf-node/* /2.12
 /2.12/attacks-vulns-list /2.12
 /2.12/attacks-vulns-list/ /2.12
@@ -80,8 +78,6 @@
 /2.14/quickstart-en/* /2.14
 /2.14/updating-migrating/* /2.14
 /2.14/user-guides/* /2.14
-/2.14/waf-installation/* /2.14
-/2.14/about-wallarm-waf/* /2.14
 /2.14/partner-waf-node/* /2.14
 /2.14/attacks-vulns-list /2.14
 /2.14/attacks-vulns-list/ /2.14
@@ -91,8 +87,6 @@
 /2.16/quickstart-en/* /2.16
 /2.16/updating-migrating/* /2.16
 /2.16/user-guides/* /2.16
-/2.16/waf-installation/* /2.16
-/2.16/about-wallarm-waf/* /2.16
 /2.16/partner-waf-node/* /2.16
 /2.16/attacks-vulns-list /2.16
 /2.16/attacks-vulns-list/ /2.16
@@ -116,7 +110,9 @@
 /3.0/updating-migrating/* /2.18
 /3.0/user-guides/* /2.18
 /3.0/waf-installation/* /2.18
+/3.0/installation/* /2.18
 /3.0/about-wallarm-waf/* /2.18
+/3.0/about-wallarm/* /2.18
 /3.0/partner-waf-node/* /2.18
 /3.0/attacks-vulns-list /2.18
 /3.0/attacks-vulns-list/ /2.18
@@ -127,7 +123,9 @@
 /3.2/updating-migrating/* /3.2
 /3.2/user-guides/* /3.2
 /3.2/waf-installation/* /3.2
+/3.2/installation/* /3.2
 /3.2/about-wallarm-waf/* /3.2
+/3.2/about-wallarm/* /3.2
 /3.2/partner-waf-node/* /3.2
 /3.2/attacks-vulns-list /3.2
 /3.2/attacks-vulns-list/ /3.2
@@ -139,26 +137,12 @@
 /4.0/demo-videos/* /demo-videos/:splat 301!
 /4.0/api-firewall/* /api-firewall/:splat 301!
 
-/quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm-waf/overview/
-/quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm-waf/shared-responsibility/
-/quickstart-en/how-wallarm-works/subscription-plans /about-wallarm-waf/subscription-plans/
-/quickstart-en/how-wallarm-works/qs-intro-en/ /about-wallarm-waf/overview/
-/quickstart-en/how-wallarm-works/shared-responsibility/ /about-wallarm-waf/shared-responsibility/
-/quickstart-en/how-wallarm-works/subscription-plans/ /about-wallarm-waf/subscription-plans/
-
-/2.12/quickstart-en/how-wallarm-works/qs-intro-en /2.12/about-wallarm-waf/overview/
-/2.12/quickstart-en/how-wallarm-works/shared-responsibility /2.12/about-wallarm-waf/shared-responsibility/
-/2.12/quickstart-en/how-wallarm-works/subscription-plans /2.12/about-wallarm-waf/subscription-plans/
-/2.12/quickstart-en/how-wallarm-works/qs-intro-en/ /2.12/about-wallarm-waf/overview/
-/2.12/quickstart-en/how-wallarm-works/shared-responsibility/ /2.12/about-wallarm-waf/shared-responsibility/
-/2.12/quickstart-en/how-wallarm-works/subscription-plans/ /2.12/about-wallarm-waf/subscription-plans/
-
-/2.14/quickstart-en/how-wallarm-works/qs-intro-en /2.14/about-wallarm-waf/overview/
-/2.14/quickstart-en/how-wallarm-works/shared-responsibility /2.14/about-wallarm-waf/shared-responsibility/
-/2.14/quickstart-en/how-wallarm-works/subscription-plans /2.14/about-wallarm-waf/subscription-plans/
-/2.14/quickstart-en/how-wallarm-works/qs-intro-en/ /2.14/about-wallarm-waf/overview/
-/2.14/quickstart-en/how-wallarm-works/shared-responsibility/ /2.14/about-wallarm-waf/shared-responsibility/
-/2.14/quickstart-en/how-wallarm-works/subscription-plans/ /2.14/about-wallarm-waf/subscription-plans/
+/quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans /about-wallarm/subscription-plans/
+/quickstart-en/how-wallarm-works/qs-intro-en/ /about-wallarm/overview/
+/quickstart-en/how-wallarm-works/shared-responsibility/ /about-wallarm/shared-responsibility/
+/quickstart-en/how-wallarm-works/subscription-plans/ /about-wallarm/subscription-plans/
 
 /user-guides/triggers/create-trigger /user-guides/triggers/triggers/#creating-triggers
 /user-guides/triggers/delete-trigger /user-guides/triggers/triggers/#disabling-and-deleting-triggers
@@ -181,8 +165,8 @@
 /2.14/user-guides/triggers/delete-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
 /2.14/user-guides/triggers/disable-trigger/ /2.14/user-guides/triggers/triggers/#disabling-and-deleting-triggers
 
-/en/quick-installation/quick-dynamic-module-for-nginx.html /waf-installation/nginx/dynamic-module/
-/en/quick-installation/quick-dynamic-module-for-nginx.html/ /waf-installation/nginx/dynamic-module/
+/en/quick-installation/quick-dynamic-module-for-nginx.html /installation/nginx/dynamic-module/
+/en/quick-installation/quick-dynamic-module-for-nginx.html/ /installation/nginx/dynamic-module/
 
 /admin-en/api-en /api/overview/
 /admin-en/api-en/ /api/overview/
@@ -292,22 +276,22 @@
 /2.18/user-guides/rules/define-counters /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
 /2.18/user-guides/rules/define-counters/ /2.18/admin-en/configuration-guides/protecting-against-bruteforce/
 
-/partner-waf-node/overview /waf-installation/multi-tenant/overview/
-/partner-waf-node/creating-partner-account /waf-installation/multi-tenant/configure-accounts
-/partner-waf-node/connecting-clients /waf-installation/multi-tenant/configure-accounts
-/partner-waf-node/installing-partner-waf-node /waf-installation/multi-tenant/deploy-multi-tenant-node
-/3.4/partner-waf-node/overview /3.4/waf-installation/multi-tenant/overview/
-/3.4/partner-waf-node/creating-partner-account /3.4/waf-installation/multi-tenant/configure-accounts
-/3.4/partner-waf-node/connecting-clients /3.4/waf-installation/multi-tenant/configure-accounts
-/3.4/partner-waf-node/installing-partner-waf-node /3.4/waf-installation/multi-tenant/deploy-multi-tenant-node
-/3.2/partner-waf-node/overview /3.2/waf-installation/multi-tenant/overview/
-/3.2/partner-waf-node/creating-partner-account /3.2/waf-installation/multi-tenant/configure-accounts
-/3.2/partner-waf-node/connecting-clients /3.2/waf-installation/multi-tenant/configure-accounts
-/3.2/partner-waf-node/installing-partner-waf-node /3.2/waf-installation/multi-tenant/deploy-multi-tenant-node
-/2.18/partner-waf-node/overview /2.18/waf-installation/multi-tenant/overview/
-/2.18/partner-waf-node/creating-partner-account /2.18/waf-installation/multi-tenant/configure-accounts
-/2.18/partner-waf-node/connecting-clients /2.18/waf-installation/multi-tenant/configure-accounts
-/2.18/partner-waf-node/installing-partner-waf-node /2.18/waf-installation/multi-tenant/deploy-multi-tenant-node
+/partner-waf-node/overview /installation/multi-tenant/overview/
+/partner-waf-node/creating-partner-account /installation/multi-tenant/configure-accounts
+/partner-waf-node/connecting-clients /installation/multi-tenant/configure-accounts
+/partner-waf-node/installing-partner-waf-node /installation/multi-tenant/deploy-multi-tenant-node
+/3.4/partner-waf-node/overview /3.4/installation/multi-tenant/overview/
+/3.4/partner-waf-node/creating-partner-account /3.4/installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/connecting-clients /3.4/installation/multi-tenant/configure-accounts
+/3.4/partner-waf-node/installing-partner-waf-node /3.4/installation/multi-tenant/deploy-multi-tenant-node
+/3.2/partner-waf-node/overview /3.2/installation/multi-tenant/overview/
+/3.2/partner-waf-node/creating-partner-account /3.2/installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/connecting-clients /3.2/installation/multi-tenant/configure-accounts
+/3.2/partner-waf-node/installing-partner-waf-node /3.2/installation/multi-tenant/deploy-multi-tenant-node
+/2.18/partner-waf-node/overview /2.18/installation/multi-tenant/overview/
+/2.18/partner-waf-node/creating-partner-account /2.18/installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/connecting-clients /2.18/installation/multi-tenant/configure-accounts
+/2.18/partner-waf-node/installing-partner-waf-node /2.18/installation/multi-tenant/deploy-multi-tenant-node
 
 /user-guides/nodes/regular-node/ /user-guides/nodes/nodes/
 /user-guides/nodes/cloud-node/ /user-guides/nodes/nodes/
@@ -336,12 +320,12 @@
 /3.4/user-guides/dashboard/waf/ /user-guides/dashboard/
 /3.4/user-guides/dashboard/scanner/ /user-guides/dashboard/#vulnerability-scanner
 
-/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /4.0/waf-installation/kubernetes/sidecar-proxy/deployment/
-/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /4.0/waf-installation/kubernetes/sidecar-proxy/deployment/
-/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /4.0/waf-installation/kubernetes/sidecar-proxy/deployment/
-/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /waf-installation/kubernetes/sidecar-proxy/deployment/
-/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /waf-installation/kubernetes/sidecar-proxy/deployment/
-/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /waf-installation/kubernetes/sidecar-proxy/deployment/
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/4.0/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /4.0/installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-helm/ /installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container-manifest/ /installation/kubernetes/sidecar-proxy/deployment/
+/admin-en/installation-guides/kubernetes/wallarm-sidecar-container/ /installation/kubernetes/sidecar-proxy/deployment/
 
 /user-guides/ip-lists/greylist/ /user-guides/ip-lists/graylist/
 /4.0/user-guides/ip-lists/greylist/ /4.0/user-guides/ip-lists/graylist/
@@ -371,4 +355,34 @@
 /admin-en/scanner-ips-allowlisting/ /user-guides/ip-lists/allowlist/#examples-of-ip-allowlist-usage
 /user-guides/denylist/ /user-guides/ip-lists/denylist/
 
-/admin-en/installation-kong-en/ /waf-installation/kubernetes/kong-ingress-controller/deployment/
+/admin-en/installation-kong-en/ /installation/kubernetes/kong-ingress-controller/deployment/
+
+/about-wallarm-waf/* /about-wallarm/:splat 301!
+/2.18/about-wallarm-waf/* /2.18/about-wallarm/:splat 301!
+/3.4/about-wallarm-waf/* /3.4/about-wallarm/:splat 301!
+/3.6/about-wallarm-waf/* /3.6/about-wallarm/:splat 301!
+/4.0/about-wallarm-waf/* /4.0/about-wallarm/:splat 301!
+/waf-installation/* /installation/:splat 301!
+/2.18/waf-installation/* /2.18/installation/:splat 301!
+/3.4/waf-installation/* /3.4/installation/:splat 301!
+/3.6/waf-installation/* /3.6/installation/:splat 301!
+/4.0/waf-installation/* /4.0/installation/:splat 301!
+/admin-en/configuration-guides/allocate-resources-for-waf-node/ /admin-en/configuration-guides/allocate-resources-for-node/
+/2.18/admin-en/configuration-guides/allocate-resources-for-waf-node/ /2.18/admin-en/configuration-guides/allocate-resources-for-node/
+/3.4/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.4/admin-en/configuration-guides/allocate-resources-for-node/
+/3.6/admin-en/configuration-guides/allocate-resources-for-waf-node/ /3.6/admin-en/configuration-guides/allocate-resources-for-node/
+/4.0/admin-en/configuration-guides/allocate-resources-for-waf-node/ /4.0/admin-en/configuration-guides/allocate-resources-for-node/
+/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/2.18/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /2.18/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.4/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.4/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/3.6/admin-en/configuration-guides/waf-in-separated-environments/configure-waf-in-separated-environments/ /3.6/admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments/
+/4.0/admin-en/configuration-guides/waf-in-separated-environments/how-waf-in-separated-environments-works/ /4.0/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works/
+/faq/waf-nginx-compatibility/ /faq/nginx-compatibility/ 
+/faq/waf-ingress-installation/ /faq/ingress-installation/
+/faq/common-errors-after-waf-installation/ /faq/common-errors-after-installation/
+/demo-videos/waf-overview/ /demo-videos/overview/ 
+/demo-videos/waf-events-inspection/ /demo-videos/events-inspection/

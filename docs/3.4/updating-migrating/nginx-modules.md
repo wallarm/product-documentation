@@ -16,9 +16,9 @@
 
 These instructions describe the steps to update Linux node packages to version 3.4. Linux node packages are packages installed in accordance with one of the following instructions:
 
-* [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
-* [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plus module](../waf-installation/nginx-plus.md)
+* [NGINX `stable` module](../installation/nginx/dynamic-module.md)
+* [Module for NGINX from CentOS/Debian repositories](../installation/nginx/dynamic-module-from-distr.md)
+* [NGINX Plus module](../installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
 --8<-- "../include/waf/upgrade/warning-node-types-upgrade-to-3.4.md"
@@ -54,7 +54,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 === "NGINX Plus"
     For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
 === "NGINX from Debian/CentOS repository"
-    For NGINX [installed from Debian/CentOS repository](../waf-installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-5-update-wallarm-api-security-packages) along with Wallarm modules.
+    For NGINX [installed from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-5-update-wallarm-api-security-packages) along with Wallarm modules.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
 

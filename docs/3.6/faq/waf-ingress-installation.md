@@ -1,1 +1,0 @@
---8<-- "latest/faq/waf-ingress-installation.md"

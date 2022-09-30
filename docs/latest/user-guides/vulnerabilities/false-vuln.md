@@ -4,7 +4,7 @@
 
 # Working with false vulnerabilities
 
-[False positive](../../about-wallarm-waf/detecting-vulnerabilities.md#false-positives) occurs when legitimate entity is qualified as a vulnerability.
+[False positive](../../about-wallarm/detecting-vulnerabilities.md#false-positives) occurs when legitimate entity is qualified as a vulnerability.
 
 After analyzing a vulnerability, you may conclude that the vulnerability is a false positive. A vulnerability marked as a false positive will be switched to an appropriate status and will not be rechecked.
 

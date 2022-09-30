@@ -17,9 +17,9 @@
 
 These instructions describe the steps to update Linux node packages to version 2.18. Linux node packages are packages installed in accordance with one of the following instructions:
 
-* [NGINX `stable` module](../waf-installation/nginx/dynamic-module.md)
-* [Module for NGINX from CentOS/Debian repositories](../waf-installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plus module](../waf-installation/nginx-plus.md)
+* [NGINX `stable` module](../installation/nginx/dynamic-module.md)
+* [Module for NGINX from CentOS/Debian repositories](../installation/nginx/dynamic-module-from-distr.md)
+* [NGINX Plus module](../installation/nginx-plus.md)
 * [Kong module](../admin-en/installation-kong-en.md)
 
 ## Update procedure

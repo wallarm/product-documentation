@@ -2,12 +2,12 @@
 
 # Best practices for configuring the Active threat verification feature
 
-One method Wallarm uses to [detect vulnerabilities](../about-wallarm-waf/detecting-vulnerabilities.md) is **Active threat verification** which lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. For the module to operate securely, please learn its configuration best practices from this article.
+One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification** which lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. For the module to operate securely, please learn its configuration best practices from this article.
 
 By default **Active threat verification** is disabled. To enable the module, [know how to control the Attack rechecker](#know-how-to-control-the-attack-rechecker).
 
 !!! warning "Active threat verification if hits are grouped by IP"
-    If an attack is hits [grouped](../about-wallarm-waf/protecting-against-attacks.md#attack) by originating IPs, active verification of this attack is unavailable.
+    If an attack is hits [grouped](../about-wallarm/protecting-against-attacks.md#attack) by originating IPs, active verification of this attack is unavailable.
 
 ## How the Active threat verification feature works
 

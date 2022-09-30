@@ -1,4 +1,4 @@
-[doc-nginx-install]:    ../waf-installation/nginx/dynamic-module-from-distr.md
+[doc-nginx-install]:    ../installation/nginx/dynamic-module-from-distr.md
 [doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
 [doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
 [acl-access-phase]:            #wallarm_acl_access_phase
@@ -199,9 +199,9 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 
 Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-Analyzing of requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../waf-installation/cdn-node.md). To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
+Analyzing of requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md). To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
 
-[More details on **libdetection** →](../about-wallarm-waf/protecting-against-attacks.md#library-libdetection)
+[More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
 To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
 
@@ -222,7 +222,7 @@ proxy_request_buffering on;
 
     Default value is:
     
-    * `on` for the [Wallarm CDN nodes](../waf-installation/cdn-node.md) (`proxy_request_buffering` is `on` as well).
+    * `on` for the [Wallarm CDN nodes](../installation/cdn-node.md) (`proxy_request_buffering` is `on` as well).
     * `off` for all [deployment options](../admin-en/supported-platforms.md) except for the Wallarm CDN nodes.
 
 ### wallarm_fallback
@@ -345,7 +345,7 @@ For example, with `wallarm_mode monitoring` and `wallarm_mode_allow_override str
 
 ### wallarm_parse_response
 
-Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm-waf/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm-waf/detecting-vulnerabilities.md#active-threat-verification). 
+Whether to analyze the application responses. Response analysis is required for vulnerability detection during [passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). 
 
 Possible values are `on` (response analysis is enabled) and `off` (response analysis is disabled).
 
@@ -418,7 +418,7 @@ This parameter is effective only if `wallarm_parse_response on`.
 
 ### wallarm_partner_client_uuid
 
-Unique identifier of the tenant for the [multi-tenant](../waf-installation/multi-tenant/overview.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
+Unique identifier of the tenant for the [multi-tenant](../installation/multi-tenant/overview.md) Wallarm node. The value should be a string in the [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) format, for example:
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
@@ -548,7 +548,7 @@ Settings of the debug logging for a NGINX worker process.
 
 ### wallarm_protondb_path
 
-A path to the [proton.db](../about-wallarm-waf/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
+A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) file that has the global settings for request filtering, which do not depend on the application structure.
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.

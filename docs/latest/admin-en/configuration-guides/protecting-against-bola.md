@@ -12,7 +12,7 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
     * Requests sent via the HTTP protocol.
     * Requests that do not contain signs of other attack types, e.g. requests are not considered to be the BOLA attack if:
 
-        * These requests contain signs of [input validation attacks](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks).
+        * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
         * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
 ## Configuration steps
@@ -53,7 +53,7 @@ For the Wallarm node to identify the BOLA attacks:
     
     * **Graylist IP address** and the period to [graylist](../../user-guides/ip-lists/graylist.md) IP addresses of malicious request sources.
     
-        The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm-waf/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
+        The Wallarm node will block requests originating from the graylisted IPs only if requests contain [input validation](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), [the `vpatch`](../../user-guides/rules/vpatch-rule.md) or [custom](../../user-guides/rules/regex-rule.md) attack signs.
         
         !!! info "BOLA attack originating from graylisted IPs"
             The BOLA attacks originating from graylisted IPs are not blocked.
@@ -79,6 +79,6 @@ You can configure several triggers with different filters for BOLA protection.
 
     ![!BOLA attack in the UI](../../images/user-guides/events/bola-attack.png)
 
-    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm-waf/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
+    The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 
     To search for the BOLA attacks, you can use the `bola` search tag. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
