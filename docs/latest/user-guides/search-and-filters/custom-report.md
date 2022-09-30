@@ -8,8 +8,7 @@ You can filter events and then export the results into a PDF or CSV report. Wall
 
 PDF is a visually rich report, good for data analysis and presenting. This report includes:
 
-* Generic summary on all types of events
-* Separate summaries for attacks, vulnerabilities and incidents
+* Summaries for attacks, vulnerabilities and incidents
 * Detailed information on the events
 
 CSV includes details on each event matching the filter and is good for the technical purposes. You can use it for creating dashboards, getting unique attacker IPs, producing a list of attacked API hosts/applications, etc.
