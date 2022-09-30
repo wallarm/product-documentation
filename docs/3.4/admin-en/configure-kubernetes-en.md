@@ -103,7 +103,7 @@ Specifies the amount of memory allocated for postanalytics service. It is recomm
 
 ### controller.wallarm.metrics.enabled
 
-This switch toggles information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required.
+This switch [toggles](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md) information and metrics collection. If [Prometheus](https://github.com/helm/charts/tree/master/stable/prometheus) is installed in the Kubernetes cluster, no additional configuration is required.
 
 **Default value**: `false`
 

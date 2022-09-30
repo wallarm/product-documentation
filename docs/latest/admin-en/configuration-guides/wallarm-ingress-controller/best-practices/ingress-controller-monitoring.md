@@ -2,7 +2,9 @@
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics that should be monitored in a mission-critical environment. The `/wallarm-metrics` metrics service is enabled by default: 
+The general aspects of NGINX Ingress controller monitoring are already well covered on the Internet. Wallarm provides an additional set of monitoring metrics that should be monitored in a mission-critical environment. The `/wallarm-metrics` metrics service is disabled by default.
+
+To enable the service, set `controller.wallarm.metrics.enabled` to `true`:
 
 ```
 controller:
