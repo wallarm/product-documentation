@@ -178,9 +178,9 @@ Specify vulnerability status in the search string. Vulnerability can have one of
 
 ### Search by event time
 
-Specify time period in the search string. If the period is not specified, the search is conducted within the events that occurred during the last 24 hours.
+Specify the time period in the search string. If the time period is not specified, the search is conducted within the events that occurred during the last 24 hours.
 
-There are the following methods to specify the period:
+There are the following methods to specify the time period:
 
 * By date: `11/10/2020-11/14/2020`
 * By date and time (seconds are disregarded): `11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
@@ -270,7 +270,7 @@ This attribute value can be:
 
 ### Search by the country or region in which the IP address is registered
 
-To search by the country or the region, in which the IP address originated the attacks is registered, use the `country:` prefix.
+To search by the country or the region in which the IP address originated the attacks is registered, use the `country:` prefix.
 
 The country/region name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
 
@@ -354,7 +354,7 @@ To refine an anomaly search, use the following parameters:
 
 Example:
 
-`attacks sqli a:size` will search for all SQL-injection attacks, that have response size anomalies in their requests.
+`attacks sqli a:size` will search for all SQL-injection attacks that have response size anomalies in their requests.
 
 ### Search by request identifier
 
