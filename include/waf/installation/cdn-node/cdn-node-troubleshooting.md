@@ -48,3 +48,9 @@ If the CDN node is highlighted in red in the **Nodes** section, an error occurre
     Required action: make sure the uploaded certificate is valid. If not, upload the valid one.
 
 The CDN node highlighted in red does not proxy requests and as a result, does not mitigate malicious traffic.
+
+### Why the CDN node could disappear from the node list in Wallarm Console?
+
+Wallarm deletes CDN nodes with CNAME records left unchanged for 3 or more days since the moment of the node creation.
+
+If you find the CDN node disappeared, create a new node.
