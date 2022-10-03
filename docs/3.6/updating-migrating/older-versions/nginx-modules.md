@@ -226,15 +226,39 @@ We only changed the names of the directives, their logic remains the same. Direc
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
-## Step 11: Restart NGINX
+## Step 11: Update the `wallarm-status.conf` file contents
+
+Update the `/etc/nginx/conf.d/wallarm-status.conf` contents as follows:
+
+```
+server {
+  listen 127.0.0.8:80;
+  server_name localhost;
+
+  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  deny all;
+
+  wallarm_mode off;
+  disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  access_log off;
+
+  location ~/wallarm-status$ {
+    wallarm_status on;
+  }
+}
+```
+
+[More details on the statistics service configuration](../../admin-en/configure-statistics-service.md)
+
+## Step 12: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 12: Test Wallarm node operation
+## Step 13: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
-## Step 13: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 14: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

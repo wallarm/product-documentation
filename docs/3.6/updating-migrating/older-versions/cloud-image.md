@@ -62,6 +62,9 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
       * `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
+
+        Make sure the copied file contents correspond to the [recommended safe configuration](../../admin-en/configure-statistics-service.md#configuring-the-statistics-service).
+
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests

@@ -65,6 +65,9 @@ If upgrading Wallarm node 3.0 or lower:
       * `/etc/nginx/nginx.conf` and other files with NGINX settings
       * `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
       * `/etc/nginx/conf.d/wallarm-status.conf` with the filtering node monitoring service settings
+
+        If upgrading the node 2.18 or lower, make sure the copied file contents correspond to the [recommended safe configuration](../admin-en/configure-statistics-service.md#configuring-the-statistics-service).
+      
       * `/etc/environment` with environment variables
       * `/etc/default/wallarm-tarantool` with Tarantool settings
       * other files with custom settings for processing and proxying requests

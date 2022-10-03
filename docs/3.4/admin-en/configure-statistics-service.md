@@ -25,21 +25,24 @@ wallarm_status [on|off] [format=json|prometheus];
 
 When configuring the `wallarm_status` directive, you can specify the IP addresses from which you can request statistics. By default, access is denied from anywhere except for the IP addresses `127.0.0.1` and `::1`, which allow executing the request only from the server where Wallarm is installed.
 
-An example of a secure configuration of the filter node statistics service (`wallarm-status.conf`) is shown below:
+An example of a secure configuration of the filter node statistics service (`/etc/nginx/conf.d/wallarm-status.conf`) is shown below:
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
+
   allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
-  deny all;                  
+  deny all;
+
   wallarm_mode off;
+  disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
-  location /wallarm-status {
+
+  location ~/wallarm-status$ {
     wallarm_status on;
   }
 }
-
 ```
 
 !!! info "Changing the `listen` directive"

@@ -25,7 +25,7 @@ wallarm_status [on|off] [format=json|prometheus];
 
 When configuring the `wallarm_status` directive, you can specify the IP addresses from which you can request statistics. By default, access is denied from anywhere except for the IP addresses `127.0.0.1` and `::1`, which allow executing the request only from the server where Wallarm is installed.
 
-An example of a secure configuration of the filter node statistics service (`wallarm-status.conf`) is shown below:
+An example of a secure configuration of the filter node statistics service (`/etc/nginx/conf.d/wallarm-status.conf`) is shown below:
 
 ```
 server {
