@@ -320,11 +320,35 @@ In the new node version the following changes to the [node logging variables](..
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
-## Step 14: Restart NGINX
+## Step 14: Update the `wallarm-status.conf` file contents
+
+Update the `/etc/nginx/conf.d/wallarm-status.conf` contents as follows:
+
+```
+server {
+  listen 127.0.0.8:80;
+  server_name localhost;
+
+  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  deny all;
+
+  wallarm_mode off;
+  disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  access_log off;
+
+  location ~/wallarm-status$ {
+    wallarm_status on;
+  }
+}
+```
+
+[More details on the statistics service configuration](../../admin-en/configure-statistics-service.md)
+
+## Step 15: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 15: Test Wallarm node operation
+## Step 16: Test Wallarm node operation
 
 1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
 
@@ -342,13 +366,13 @@ In the new node version the following changes to the [node logging variables](..
 
     ![!Attacks in the interface][img-test-attacks-in-ui]
 
-## Step 16: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 17: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
-## Step 17: Delete the node of the previous version
+## Step 18: Delete the node of the previous version
 
 Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
 

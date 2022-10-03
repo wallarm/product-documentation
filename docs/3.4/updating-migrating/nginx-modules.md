@@ -186,11 +186,35 @@ If upgrading Wallarm node 3.0 or lower:
       * [Low-level filtration rules configured in Wallarm Console](../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../admin-en/configure-wallarm-mode.md).
 
-## Step 7: Restart NGINX
+## Step 7: Update the `wallarm-status.conf` file contents
+
+If upgrading the node 2.18 or lower, update the `/etc/nginx/conf.d/wallarm-status.conf` contents as follows:
+
+```
+server {
+  listen 127.0.0.8:80;
+  server_name localhost;
+
+  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  deny all;
+
+  wallarm_mode off;
+  disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  access_log off;
+
+  location ~/wallarm-status$ {
+    wallarm_status on;
+  }
+}
+```
+
+[More details on the statistics service configuration](../admin-en/configure-statistics-service.md)
+
+## Step 8: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-2.16.md"
 
-## Step 8: Test Wallarm node operation
+## Step 9: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation.md"
 
