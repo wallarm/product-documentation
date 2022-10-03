@@ -14,6 +14,7 @@
 [trigger-docs]:                     ../triggers/triggers.md
 [application-docs]:                 ../settings/applications.md
 [events-docs]:                      ../events/check-attack.md
+[graylist-populating-docs]:         ../ip-lists/graylist.md#managing-graylist
 
 # CDN filtering nodes
 

@@ -15,6 +15,8 @@
 [application-docs]:                 ../user-guides/settings/applications.md
 [nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.md
 [events-docs]:                      ../user-guides/events/check-attack.md
+[graylist-populating-docs]:         ../user-guides/ip-lists/graylist.md#managing-graylist
+[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
 
 # Deploying Wallarm CDN node
 
