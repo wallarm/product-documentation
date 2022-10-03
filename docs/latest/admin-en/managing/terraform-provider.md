@@ -1,0 +1,141 @@
+# Managing Wallarm using Terraform
+
+If you use [Terraform](https://www.terraform.io/) to manage your infrastructures, that may be a comfortable option for you to use it for managing Wallarm. The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for Terraform allows doing so.
+
+!!! info "Knowing Terraform"
+    This article suggests that you are familiar with the Terraform basics.
+
+## Installing provider
+
+1. Copy and paste into your Terraform configuration:
+
+    ```
+    terraform {
+    required_providers {
+        wallarm = {
+        source = "wallarm/wallarm"
+        version = "0.0.10"
+        }
+    }
+    }
+
+    provider "wallarm" {
+    # Configuration options
+    }
+    ```
+
+1. Run `terraform init`.
+
+## Connecting provider to your Wallarm account
+
+To connect Wallarm Terraform provider to your Wallarm account in the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Cloud, set API access credentials in your Terraform configuration:
+
+=== "US Cloud"
+    ```
+    provider "wallarm" {
+        api_uuid = "<UUID>"
+        api_secret = "<SECRET_KEY>"
+        api_host = "https://us1.api.wallarm.com"
+        # Required only when multitenancy feature is used:
+        # client_id = <CLIENT_ID>
+    }
+    ```
+=== "EU Cloud"
+    ```
+    provider "wallarm" {
+        api_uuid = "<UUID>"
+        api_secret = "<SECRET_KEY>"
+        api_host = "https://api.wallarm.com"
+        # Required only when multitenancy feature is used:
+        # client_id = <CLIENT_ID>
+    }
+    ```
+
+* `<UUID>` and `<SECRET_KEY>` are credentials to access API of your Wallarm account. [How to get them →](../../api/overview.md#your-own-client)
+* `<CLIENT_ID>` is ID of tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+
+See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) in the Wallarm provider documentation.
+
+## Managing Walarm with provider
+
+With the Walarm provider, via Terraform you can:
+
+* Create and manage:
+
+    * Applications
+    * Rules
+    * Triggers
+    * IPs in the deny list
+    * Users
+    * Integrations
+
+* Configure:
+
+    * All listed above plus
+    * Global filtration mode
+    * Scanner scope
+
+* Get details about:
+
+    * Nodes in your account
+    * Detected vulnerabilities
+
+* Register new nodes in your account
+
+See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
+
+In the documentation:
+
+* Terraform resources and data sources are described
+* You can find examples for each resource usage
+* `Argument` is what you can set in you configuration
+* `Attribute` is information you can get
+
+## Usage example
+
+Below is the example of Terraform configuration for Walarm:
+
+```
+provider "wallarm" {
+    api_uuid = "<UUID>"
+    api_secret = "<SECRET_KEY>"
+    api_host = "https://us1.api.wallarm.com"
+}
+
+resource "wallarm_global_mode" "global_block" {
+  waf_mode = "default"
+}
+
+resource "wallarm_application" "tf_app" {
+  name = "Terraform Application 001"
+  app_id = 42
+}
+
+resource "wallarm_rule_mode" "tiredful_api_mode" {
+  mode =  "monitoring"
+
+  action {
+    point = {
+      instance = 42
+    }
+  }
+
+  action {
+    type = "regex"
+    point = {
+      scheme = "https"
+    }
+  }
+}
+```
+
+The configuration above, after saving and performing `terraform apply`, does the following:
+
+* Connects to the US Cloud → company account with the `<UUID>` and `<SECRET_KEY>` API credentials.
+* `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` which means the filtration mode is controlled locally on each node.
+* `resource "wallarm_application" "tf_app"` → creates application named `Terraform Application 001` with ID `42`.
+* `resource "wallarm_rule_mode" "tiredful_api_mode"` → creates rule that sets traffic filtration mode to `Monitoring` for all the requests sent via HTTPS protocol to the application with ID `42`.
+
+## Further information about Wallarm and Terraform
+
+Wallarm provides the [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) to deploy the node to AWS from the Terraform-compatible environment.

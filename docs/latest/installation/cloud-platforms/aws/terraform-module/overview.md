@@ -99,3 +99,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 We have prepared examples of different ways to use the Wallarm module, so you could try it before deploying it to production.
 
 [See examples of the Wallarm AWS Terraform Module deployment](examples.md)
+
+## Further information about Wallarm and Terraform
+
+Wallarm provides the [Terraform provider](../../../../admin-en/managing/terraform-provider.md) to manage Wallarm infrastructure, such as company account, Cloud and nodes, via Terraform.
