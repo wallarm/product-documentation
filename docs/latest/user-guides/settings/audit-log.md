@@ -9,6 +9,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * [Two‑factor authentication](account.md#enabling-two-factor-authentication)
 * [Users](users.md)
 * Traffic processing [rules](../rules/intro.md)
+* [Custom ruleset backups](../rules/backup.md)
 * [Wallarm nodes](../nodes/nodes.md)
 * [CDN nodes](../nodes/cdn-node.md)
 * [Triggers](../triggers/triggers.md)
