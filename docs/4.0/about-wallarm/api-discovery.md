@@ -23,6 +23,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * [Track changes](#tracking-changes-in-api-structure) in API structure that took place within the selected period of time.
 * Quickly [create rules](../user-guides/api-discovery.md#api-structure-and-rules) per any given API endpoint.
 * Get full list of the malicious requests per any given API endpoint.
+* Provide your developers with access to the build API structure reviewing.
 
 ## How API Discovery works?
 
