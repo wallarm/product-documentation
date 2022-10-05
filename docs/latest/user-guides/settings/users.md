@@ -30,6 +30,7 @@ Users of Wallarm clients can have the following roles:
 * **Administrator** with access to all Wallarm settings
 * **Analyst** with access to view main Wallarm settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
+* **API Developer** with access to view and download the API structure discovered by the [API Discovery](../../about-wallarm/api-discovery.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
     !!! warning "Using the Deploy role to install the Wallarm node 4.0"
@@ -39,23 +40,23 @@ The [multitenancy](../../installation/multi-tenant/overview.md) feature also ena
 
 More detailed information about access of different user roles to the Wallarm entities is provided in the table below. Entity management covers entity creating, editing, and deleting.
 
-| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only |
-|---------------------|--------------------------------------|--------------------------|------------------------------|
-| **Filtering nodes**       | View and manage                      | View                     | View                         |
-| **Dashboard**       | View                                 | View                     | View                         |
-| **Events**          | View and manage                      | View and manage          | View                         |
-| **Vulnerabilities** | View and manage                      | View and manage          | View and manage              |
-| **API structure by API Discovery**   | View and manage                      | View and manage          | -                            |
-| **Scanner**         | View and manage                      | View and manage          | View                         |
-| **Triggers**        | View and manage                      | -                        | -                            |
-| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              |
-| **Rules**           | View and manage                      | View and manage          | View                         |
-| **Filtration mode**        | View and manage                      | View                     | View                         |
-| **Applications**    | View and manage                      | View                     | View                         |
-| **Configuration of API Discovery**   | View and manage                      | -          | -                            |
-| **Integrations**    | View and manage                      | -                        | -                            |
-| **Users**           | View and manage                      | -                        | View                         |
-| **Activity log**    | View                                 | -                        | View                         |
+| Entity              | Administrator / Global Administrator | Analyst / Global Analyst | Read Only / Global Read Only | API Developer |
+|---------------------|--------------------------------------|--------------------------|------------------------------|---|
+| **Filtering nodes**       | View and manage                      | View                     | View                         | - |
+| **Dashboard**       | View                                 | View                     | View                         | - |
+| **Events**          | View and manage                      | View and manage          | View                         | - |
+| **Vulnerabilities** | View and manage                      | View and manage          | View and manage              | - |
+| **API structure by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
+| **Scanner**         | View and manage                      | View and manage          | View                         | - |
+| **Triggers**        | View and manage                      | -                        | -                            | - |
+| **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |
+| **Rules**           | View and manage                      | View and manage          | View                         | - |
+| **Filtration mode**        | View and manage                      | View                     | View                         | - |
+| **Applications**    | View and manage                      | View                     | View                         | - |
+| **Configuration of API Discovery**   | View and manage                      | -          | -                            | - |
+| **Integrations**    | View and manage                      | -                        | -                            | - |
+| **Users**           | View and manage                      | -                        | View                         | - |
+| **Activity log**    | View                                 | -                        | View                         | - |
 
 ## Viewing Users
 
