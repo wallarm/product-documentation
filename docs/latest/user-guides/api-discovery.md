@@ -7,7 +7,7 @@ The built API structure is presented in the **API Discovery** section. The secti
 * **Administrator** and **Analyst** can view and manage the data discovered by the API Discovery module.
 
     **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
-* **API Developer** can only view the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
+* **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
 To provide users with familiar format of API representation, Wallarm provides list of discovered APIs and details on them in a **Swagger-like** interface.
 
