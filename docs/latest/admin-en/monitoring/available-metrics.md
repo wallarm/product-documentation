@@ -263,7 +263,7 @@ The delay between the recording of a request by the postanalytics module and dow
     * critical if `>300`
 * **Troubleshooting recommendations:**
     * Read logs from the `/var/log/wallarm/export-attacks.log` file and analyze errors. An increased value can be caused by low network throughput from the filter node to Wallarm’s API service.
-    * Check that enough memory is allocated for Tarantool ([`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
+    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
 
 ### Time of Storing Requests in the Postanalytics Module (in Seconds)
 
@@ -275,5 +275,5 @@ Time that the postanalytics module stores requests. The value depends on the amo
     * warning if `<900`
     * critical if `<300`
 * **Troubleshooting recommendations:**
-    * Increase the [`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit) value.
+    * Increase the [`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit) value.
     * Install the postanalytics module in a separate server pool following the [instructions](../installation-postanalytics-en.md).
