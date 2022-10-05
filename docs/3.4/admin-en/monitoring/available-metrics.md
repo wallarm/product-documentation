@@ -106,7 +106,7 @@ The number of requests not analyzed by the postanalytics module. This metric is 
 * **Troubleshooting recommendations:**
     * Get the NGINX and Tarantool logs and analyze errors if any.
     * Check if the Tarantool server address ([`wallarm_tarantool_upstream`](../configure-parameters-en.md#wallarm_tarantool_upstream)) is correct.
-    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)).
+    * Check that enough memory is [allocated for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool).
     * Contact the [Wallarm support team](mailto:support@wallarm.com) and provide the data above if the issue is not resolved.
 
 #### Number of Requests not Passed to the Wallarm API
@@ -119,7 +119,7 @@ The number of requests not passed to Wallarm API. This metric is collected if pa
 * **Troubleshooting recommendations:**
     * Get the NGINX and Tarantool logs and analyze errors if any.
     * Check if the Wallarm API settings ([`wallarm_api_conf`](../configure-parameters-en.md#wallarm_api_conf)) are correct.
-    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)).
+    * Check that enough memory is [allocated for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool).
     * Contact the [Wallarm support team](mailto:support@wallarm.com) and provide the data above if the issue was not resolved.
 
 ### Number of Issues Completed NGINX Worker Process Abnormally
@@ -242,7 +242,7 @@ The flag signaling that requests with attacks have been deleted from the postana
     * `0` if requests are not deleted
     * `1` if requests are deleted (not enough memory, please follow the instructions below)
 * **Troubleshooting recommendations:**
-    * Increase the [`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit) value.
+    * [Allocate more memory for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool).
     * Install the postanalytics module in a separate server pool following these [instructions](../installation-postanalytics-en.md).
 
 #### Number of Deleted Requests
@@ -255,7 +255,7 @@ It is recommended to use the [`wallarm-tarantool/gauge-export_drops_flag`](#indi
 * **Metric value:** `0`
 * **Rate of change:** `wallarm-tarantool/derive-export_drops`
 * **Troubleshooting recommendations:**
-    * Increase the [`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit) value.
+    * [Allocate more memory for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool).
     * Install the postanalytics module in a separate server pool following the [instructions](../installation-postanalytics-en.md).
 
 ### Request Export Delay (in Seconds)
@@ -269,7 +269,7 @@ The delay between the recording of a request by the postanalytics module and dow
     * critical if `>300`
 * **Troubleshooting recommendations:**
     * Read logs from the `/var/log/wallarm/export-attacks.log` file and analyze errors. An increased value can be caused by low network throughput from the filter node to Wallarm’s API service.
-    * Check that enough memory is allocated for Tarantool ([`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit)). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
+    * Check that enough memory is [allocated for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool). The [`tnt_errors`][anchor-tnt] metric also increases when allocated memory is exceeded.
 
 ### Time of Storing Requests in the Postanalytics Module (in Seconds)
 
@@ -281,5 +281,5 @@ Time that the postanalytics module stores requests. The value depends on the amo
     * warning if `<900`
     * critical if `<300`
 * **Troubleshooting recommendations:**
-    * Increase the [`wallarm_ts_request_memory_limit`](../configure-parameters-en.md#wallarm_ts_request_memory_limit) value.
+    * [Allocate more memory for Tarantool](../configuration-guides/allocate-resources-for-node.md#tarantool).
     * Install the postanalytics module in a separate server pool following the [instructions](../installation-postanalytics-en.md).
