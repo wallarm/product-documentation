@@ -1,3 +1,3 @@
-# Wallarm platform changelog
+# Changelog & news
 
 <div class="announcekit-widget"></div>

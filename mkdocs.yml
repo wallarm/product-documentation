@@ -369,4 +369,4 @@ nav:
     - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
     - Wallarm Scanner overview: demo-videos/scanner-overview.md
     - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
-  - Platform changelog: platform-changelog.md
+  - Changelog & news: news.md
