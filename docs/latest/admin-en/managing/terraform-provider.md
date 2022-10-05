@@ -2,8 +2,13 @@
 
 If you use [Terraform](https://www.terraform.io/) to manage your infrastructures, that may be a comfortable option for you to use it for managing Wallarm. The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for Terraform allows doing so.
 
-!!! info "Knowing Terraform"
-    This article suggests that you are familiar with the Terraform basics.
+## Prerequisites
+
+* Knowing the [Terraform](https://www.terraform.io/) basics
+* Terraform 0.13.5 or higher
+* Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Access to the account with the **Administrator** [role](../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../about-wallarm/overview.md#cloud)
+* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Installing provider
 
@@ -13,14 +18,14 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
     terraform {
     required_providers {
         wallarm = {
-        source = "wallarm/wallarm"
-        version = "0.0.10"
+          source = "wallarm/wallarm"
+          version = "0.0.10"
         }
-    }
+      }
     }
 
     provider "wallarm" {
-    # Configuration options
+      # Configuration options
     }
     ```
 
@@ -33,21 +38,21 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
 === "US Cloud"
     ```
     provider "wallarm" {
-        api_uuid = "<UUID>"
-        api_secret = "<SECRET_KEY>"
-        api_host = "https://us1.api.wallarm.com"
-        # Required only when multitenancy feature is used:
-        # client_id = <CLIENT_ID>
+      api_uuid = "<UUID>"
+      api_secret = "<SECRET_KEY>"
+      api_host = "https://us1.api.wallarm.com"
+      # Required only when multitenancy feature is used:
+      # client_id = <CLIENT_ID>
     }
     ```
 === "EU Cloud"
     ```
     provider "wallarm" {
-        api_uuid = "<UUID>"
-        api_secret = "<SECRET_KEY>"
-        api_host = "https://api.wallarm.com"
-        # Required only when multitenancy feature is used:
-        # client_id = <CLIENT_ID>
+      api_uuid = "<UUID>"
+      api_secret = "<SECRET_KEY>"
+      api_host = "https://api.wallarm.com"
+      # Required only when multitenancy feature is used:
+      # client_id = <CLIENT_ID>
     }
     ```
 
@@ -60,27 +65,23 @@ See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/doc
 
 With the Walarm provider, via Terraform you can:
 
-* Create and manage:
+* Manage (create, update, delete):
 
-    * Applications
-    * Rules
-    * Triggers
-    * IPs in the deny list
-    * Users
-    * Integrations
-
-* Configure:
-
-    * All listed above plus
-    * Global filtration mode
-    * Scanner scope
+    * [Applications](../../user-guides/settings/applications.md)
+    * [Rules](../../user-guides/rules/intro.md)
+    * [Triggers](../../user-guides/triggers/triggers.md)
+    * [IPs in the denylist](../../user-guides/ip-lists/denylist.md)
+    * [Users](../../user-guides/settings/users.md)
+    * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
+    * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
+    * [Scanner](../../user-guides/scanner/intro.md) scope
 
 * Get details about:
 
-    * Nodes in your account
-    * Detected vulnerabilities
+    * [Nodes](../../user-guides/nodes/nodes.md) in your account
+    * Detected [vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
 
-* Register new nodes in your account
+* Register new nodes in your account and unregister existing
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
@@ -93,13 +94,13 @@ In the documentation:
 
 ## Usage example
 
-Below is the example of Terraform configuration for Walarm:
+Below is the example of Terraform configuration for Wallarm:
 
 ```
 provider "wallarm" {
-    api_uuid = "<UUID>"
-    api_secret = "<SECRET_KEY>"
-    api_host = "https://us1.api.wallarm.com"
+  api_uuid = "<UUID>"
+  api_secret = "<SECRET_KEY>"
+  api_host = "https://us1.api.wallarm.com"
 }
 
 resource "wallarm_global_mode" "global_block" {
@@ -129,7 +130,9 @@ resource "wallarm_rule_mode" "tiredful_api_mode" {
 }
 ```
 
-The configuration above, after saving and performing `terraform apply`, does the following:
+Save the configuration file, then perform `terraform apply`.
+
+The configuration does the following:
 
 * Connects to the US Cloud → company account with the `<UUID>` and `<SECRET_KEY>` API credentials.
 * `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` which means the filtration mode is controlled locally on each node.
@@ -138,4 +141,11 @@ The configuration above, after saving and performing `terraform apply`, does the
 
 ## Further information about Wallarm and Terraform
 
-Wallarm provides the [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md) to deploy the node to AWS from the Terraform-compatible environment.
+Terraform supports a number of integrations (**providers**) and ready-to-use configurations (**modules**) available to users via the public [registry](https://www.terraform.io/registry#navigating-the-registry), populated by a number of vendors.
+
+To this registry, Wallarm published:
+
+* The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for managing Wallarm via Terraform. Described in the current article.
+* The [Wallarm module](../../installation/cloud-platforms/aws/terraform-module/overview.md) to deploy the node to AWS from the Terraform-compatible environment.
+
+These two are an independent elements used for different purposes, do not require each other.

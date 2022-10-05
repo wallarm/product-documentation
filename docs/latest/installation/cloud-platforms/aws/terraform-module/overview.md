@@ -102,4 +102,11 @@ We have prepared examples of different ways to use the Wallarm module, so you co
 
 ## Further information about Wallarm and Terraform
 
-Wallarm provides the [Terraform provider](../../../../admin-en/managing/terraform-provider.md) to manage Wallarm infrastructure, such as company account, Cloud and nodes, via Terraform.
+Terraform supports a number of integrations (**providers**) and ready-to-use configurations (**modules**) available to users via the public [registry](https://www.terraform.io/registry#navigating-the-registry), populated by a number of vendors.
+
+To this registry, Wallarm published:
+
+* The [Wallarm module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to AWS from the Terraform-compatible environment. Described in the current article.
+* The [Wallarm provider](../../../../admin-en/managing/terraform-provider.md) for managing Wallarm via Terraform.
+
+These two are an independent elements used for different purposes, do not require each other.
