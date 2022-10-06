@@ -6,7 +6,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
 
 * Knowing the [Terraform](https://www.terraform.io/) basics
 * Terraform 0.13.5 or higher
-* Wallarm account in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
+* Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the account with the **Administrator** [role](../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../about-wallarm/overview.md#cloud)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
@@ -16,7 +16,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
 
     ```
     terraform {
-    required_providers {
+      required_providers {
         wallarm = {
           source = "wallarm/wallarm"
           version = "0.0.10"
@@ -81,7 +81,7 @@ With the Walarm provider, via Terraform you can:
     * [Nodes](../../user-guides/nodes/nodes.md) in your account
     * Detected [vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
 
-* Register new nodes in your account and unregister existing
+* Register new nodes in your account and delete existing
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
