@@ -14,3 +14,9 @@ mkdocs build -f mkdocs-3.4.yml &&
 mkdocs build -f mkdocs-deprecated.yml -q &&
 mkdocs build -f mkdocs-2.18.yml
 """
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
