@@ -5,7 +5,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
 ## Prerequisites
 
 * Knowing the [Terraform](https://www.terraform.io/) basics
-* Terraform 0.13.5 or higher
+* Terraform 0.13.5 binary or higher
 * Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to the account with the **Administrator** [role](../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../about-wallarm/overview.md#cloud)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
@@ -19,7 +19,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
       required_providers {
         wallarm = {
           source = "wallarm/wallarm"
-          version = "0.0.10"
+          version = "1.0.0"
         }
       }
     }
@@ -81,20 +81,13 @@ With the Walarm provider, via Terraform you can:
     * [Nodes](../../user-guides/nodes/nodes.md) in your account
     * Detected [vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
 
-* Register new nodes in your account and delete existing
+* Register new nodes in your account and delete existing ones
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
-In the documentation:
-
-* Terraform resources and data sources are described
-* You can find examples for each resource usage
-* `Argument` is what you can set in you configuration
-* `Attribute` is information you can get
-
 ## Usage example
 
-Below is the example of Terraform configuration for Wallarm:
+Below is an example of Terraform configuration for Wallarm:
 
 ```
 provider "wallarm" {
@@ -148,4 +141,4 @@ To this registry, Wallarm published:
 * The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for managing Wallarm via Terraform. Described in the current article.
 * The [Wallarm module](../../installation/cloud-platforms/aws/terraform-module/overview.md) to deploy the node to AWS from the Terraform-compatible environment.
 
-These two are an independent elements used for different purposes, do not require each other.
+These two are independent tools used for different purposes. One is not required to use another.
