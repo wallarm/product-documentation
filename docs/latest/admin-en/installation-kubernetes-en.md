@@ -6,7 +6,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
 * Kubernetes platform version 1.20-1.24
 * [Helm](https://helm.sh/) package manager
-* Compatibility of your services with the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.3.1 or lower
+* Compatibility of your services with the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.4.0 or lower
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
@@ -64,7 +64,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 5. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.2.3 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.2.4 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
