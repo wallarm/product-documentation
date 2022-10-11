@@ -45,7 +45,7 @@ Wallarm Console is the major Wallarm platform component that displays data on pr
 
 ![!UI to create account](images/playground.png)
 
-To try the Wallarm API Security capabilities on your traffic, exit Playground and deploy the first Wallarm filtering node following the [instructions for the quickest start](#deploy-the-wallarm-docker-image).
+To try the Wallarm API Security capabilities on your traffic, exit Playground and deploy the first Wallarm filtering node following the [instructions for the quickest start](#deploy-the-wallarm-filtering-node).
 
 ## Deploy the Wallarm filtering node
 
