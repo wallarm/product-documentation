@@ -134,7 +134,7 @@ The configuration does the following:
 
 ## Further information about Wallarm and Terraform
 
-Terraform supports a number of integrations (**providers**) and ready-to-use configurations (**modules**) available to users via the public [registry](https://www.terraform.io/registry#navigating-the-registry), populated by a number of vendors.
+Terraform supports a number of integrations (**[providers](https://www.terraform.io/cdktf/concepts/providers)**) and ready-to-use configurations (**[modules](https://www.terraform.io/cdktf/concepts/modules)**) available to users via the public [registry](https://www.terraform.io/registry#navigating-the-registry), populated by a number of vendors.
 
 To this registry, Wallarm published:
 
