@@ -141,6 +141,21 @@
 /3.4/news/ /news/ 301!
 /3.6/news/ /news/ 301!
 /4.0/news/ /news/ 301!
+/3.2/* /3.4
+/3.4/admin-en/* /3.4
+/3.4/quickstart/ /3.4
+/3.4/quickstart /3.4
+/3.4/updating-migrating/* /3.4
+/3.4/user-guides/* /3.4
+/3.4/waf-installation/* /3.4
+/3.4/installation/* /3.4
+/3.4/about-wallarm-waf/* /3.4
+/3.4/about-wallarm/* /3.4
+/3.4/partner-waf-node/* /3.4
+/3.4/attacks-vulns-list /3.4
+/3.4/attacks-vulns-list/ /3.4
+/3.4/glossary-en /3.4
+/3.4/glossary-en/ /3.4
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
