@@ -1,3 +1,5 @@
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+
 # Splunk Enterprise via Logstash
 
 These instructions provide you with the example integration of Wallarm with the Logstash data collector to further forward events to the Splunk SIEM system.
@@ -102,3 +104,7 @@ Logstash will log the event as follows:
 The following entry will be displayed in Splunk events:
 
 ![!New user card in Splunk from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+
+## Getting events organized into a dashboard
+
+--8<-- "../include/integrations/application-for-splunk.md"
