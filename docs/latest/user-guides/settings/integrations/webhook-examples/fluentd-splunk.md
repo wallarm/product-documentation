@@ -1,3 +1,5 @@
+[splunk-dashboard-by-wallarm-img]: ../../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+
 # Splunk Enterprise via Fluentd
 
 These instructions provide you with the example integration of Wallarm with the Fluentd data collector to further forward events to the Splunk SIEM system.
@@ -108,3 +110,7 @@ Fluentd will log the event as follows:
 The following entry will be displayed in Splunk events:
 
 ![!New user card in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+
+## Getting events in Splunk Enterprise organized into a dashboard
+
+--8<-- "../include/integrations/application-for-splunk.md"

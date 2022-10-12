@@ -1,3 +1,5 @@
+[splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
+
 #   Splunk
 
 You can set up Wallarm to send alerts to Splunk when the following events are triggered:
@@ -8,7 +10,7 @@ You can set up Wallarm to send alerts to Splunk when the following events are tr
 
 In Splunk UI:
 
-1. Open the **Settings** ➝ **Add Data** page and select **Monitor**.
+1. Open **Settings** ➝ **Add Data** ➝ **Monitor**.
 2. Select the **HTTP Event Collector** option, enter an integration name and click **Next**.
 3. Skip choosing the data type at the **Input Settings** page and continue to **Review Settings**.
 4. Review and **Submit** the settings.
@@ -28,6 +30,10 @@ In Wallarm UI:
 ![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
 --8<-- "../include/cloud-ip-by-request.md"
+
+## Getting events organized into a dashboard
+
+--8<-- "../include/integrations/application-for-splunk.md"
 
 ## Testing integration
 
