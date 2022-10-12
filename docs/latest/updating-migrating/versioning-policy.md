@@ -10,9 +10,7 @@ This policy describes the method of versioning of different Wallarm filtering no
 | Node version | Release date   | Support until |
 |------------------|----------------|---------------|
 | 2.18 and lower   |                | November 2021 |
-| 3.0              | July 2021      | February 2022 |
-| 3.2              | August 2021    | April 2022    |
-| 3.4              | October 2021   | September 2022|
+| 3.4 and lower    | October 2021   | September 2022|
 | 3.6              | February 2022  | November 2022 |
 | 4.0              | June 2022      |               |
 | 4.2              | August 2022    |               |
@@ -28,10 +26,10 @@ Wallarm filtering node artifact versions have the following format:
 
 | Parameter                | Description                                                                                                                                                                                                                                                                                                         | Average release rate          |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|
-| `<MAJOR_VERSION>`              | Major Wallarm node version:<ul><li>Major rework of the component</li><li>Incompatible changes</li></ul>Initial value is `2`. The value increases by 1, for example: `3.4.0`, `4.0.0`.                                                                                                                    | No release expected              |
-| `<MINOR_VERSION>`              | Minor Wallarm node version:<ul><li>New product features</li><li>Major bug fixes</li><li>Other compatible changes</li></ul>The value increases by 2, for example: `3.2`, `3.4`.                                                                                                             | Once a quarter                         |
-| `<PATCH_VERSION>`              | Node patch version:<ul><li>Minor bug fixes</li><li>New features added after a special request</li></ul>Initial value is `0`. The value increases by 1, for example: `3.4.0`, `3.4.1`.                                                                                                                                     | Once a month                        |
-| `<BUILD_NUMBER>` (optional) | Node build version. The value is assigned automatically by the employed package build platform. The value will not be assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `3.4.0-1`, `3.4.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
+| `<MAJOR_VERSION>`              | Major Wallarm node version:<ul><li>Major rework of the component</li><li>Incompatible changes</li></ul>Initial value is `2`. The value increases by 1, for example: `3.6.0`, `4.0.0`.                                                                                                                    | No release expected              |
+| `<MINOR_VERSION>`              | Minor Wallarm node version:<ul><li>New product features</li><li>Major bug fixes</li><li>Other compatible changes</li></ul>The value increases by 2, for example: `4.0`, `4.2`.                                                                                                             | Once a quarter                         |
+| `<PATCH_VERSION>`              | Node patch version:<ul><li>Minor bug fixes</li><li>New features added after a special request</li></ul>Initial value is `0`. The value increases by 1, for example: `4.2.0`, `4.2.1`.                                                                                                                                     | Once a month                        |
+| `<BUILD_NUMBER>` (optional) | Node build version. The value is assigned automatically by the employed package build platform. The value will not be assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `4.2.0-1`, `4.2.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
 
 We recommend using different Wallarm node version format when downloading the packages or images. The format depends on the [Wallarm node installation form](../admin-en/supported-platforms.md):
 
@@ -47,9 +45,9 @@ Versions of Wallarm nodes packages may differ within the same artifact. For exam
 
 Wallarm supports only 3 latest versions of the filtering node in the following ways:
 
-* For the latest version (e.g. 4.0): allows package download, releases bug fixes and updates third‑party components if detecting vulnerabilities in the used version. May release new features after a special request.
-* For the previous version (e.g. 3.6): allows package download and releases bug fixes.
-* For the third available version (e.g. 3.4): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
+* For the latest version (e.g. 4.2): allows package download, releases bug fixes and updates third‑party components if detecting vulnerabilities in the used version. May release new features after a special request.
+* For the previous version (e.g. 4.0): allows package download and releases bug fixes.
+* For the third available version (e.g. 3.6): allows package download and releases bug fixes for 3 months after the date of the latest version release. In 3 months, the version will be deprecated.
 
 Node artifacts of deprecated versions are available for download and installation, but bug fixes and new features are not released in deprecated versions.
 
