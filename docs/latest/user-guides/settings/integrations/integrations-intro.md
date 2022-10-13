@@ -77,6 +77,10 @@ Each Wallarm node is distributed with the `collectd` service that [collects metr
 
 Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side. The listed systems are not displayed in the Wallarm Console UI.
 
+### Other systems
+
+If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
+
 ## Adding an integration
 
 To add a new integration:
