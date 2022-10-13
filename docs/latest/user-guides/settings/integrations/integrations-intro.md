@@ -60,11 +60,26 @@ The systems available for integration are grouped by types as follows:
 * [Fluentd][fluentd-notifications]
 * [Logstash][logstash-notifications]
 
-### Other systems
+### Universal systems
 
 * [Webhook][webhook-notifications] to integrate with any system that accepts incoming webhooks via HTTPS protocol, e.g.:
     * With Fluentd configured to forward logs to [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
     * With Logstash configured to forward logs to [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md)
+
+### Monitoring systems
+
+Each Wallarm node is distributed with the `collectd` service that [collects metrics on the processed traffic](../../../admin-en/monitoring/intro.md). Using the `collectd` utilities and plugins, you can send metrics to third-party monitoring systems and databases, e.g.:
+
+* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.md) with further visualization in Grafana or another system
+* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.md) with further visualization in Grafana or another system
+* [Nagios](../../../admin-en/monitoring/collectd-nagios.md)
+* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.md)
+
+Configuration for sending metrics to third-party monitoring systems and databases is performed on the node side. The listed systems are not displayed in the Wallarm Console UI.
+
+### Other systems
+
+If there is no system you are looking for, [let us know](mailto:support@wallarm.com). We will check the technical possibility of integration with the requested system and contact you.
 
 ## Adding an integration
 
