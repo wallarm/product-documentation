@@ -6,6 +6,9 @@
 If the [SELinux][link-selinux] mechanism is enabled on a host with a filter node, it may interfere with the filter node, rendering it inoperable:
 * The filter node's RPS (requests per second) and APS (attacks per second) values will not be exported to the Wallarm cloud.
 * It will not be possible to export filter node metrics to monitoring systems via the TCP protocol (see [“Monitoring the Filter Node”][doc-monitoring]).  
+* Using SELinux in the Docker container with the Wallarm node prevents file mounting. NGINX cannot read mounted files since they are assigned with unknown permissions that cannot be changed.
+
+    To mount files to the Docker container with the Wallarm node, it is recommended to [disable SELinux](#disable-selinux) first.
 
 
 SELinux is installed and enabled by default on RedHat‑based Linux distributions (e.g., CentOS or Amazon Linux 2.0.2021x and lower). SELinux can also be installed on other Linux distributions, such as Debian or Ubuntu.  
