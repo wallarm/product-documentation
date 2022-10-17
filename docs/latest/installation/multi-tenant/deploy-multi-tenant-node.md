@@ -54,7 +54,7 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
-1. In the Wallarm Console → **Nodes** section, click **Create node**.
+1. In the Wallarm Console → **Nodes** section, click **Create node** and select **Wallarm node**.
 1. Select the **Multi-tenant node** option.
 
     ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
