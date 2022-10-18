@@ -27,6 +27,6 @@ To learn more about available configuration options, proceed to the [link][link-
     
 ## Logout management
 
-Administrators can set up logout timeouts for company account. Settings will affect all account users. Idle and absolute timeouts can be set.
+[Administrators](users.md#user-roles) can set up logout timeouts for company account. Settings will affect all account users. Idle and absolute timeouts can be set.
 
 ![!General tab - Logout management](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-logout-management.png)
