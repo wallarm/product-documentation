@@ -1,6 +1,6 @@
 # IP address graylist
 
-**Graylist** is a list of suspicious IP addresses processed by the node only in the safe blocking [filtration mode](../../admin-en/configure-wallarm-mode.md) as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests.
+**Graylist** is a list of suspicious IP addresses processed by the node only in the **safe blocking** [filtration mode](../../admin-en/configure-wallarm-mode.md) as follows: if graylisted IP originates malicious requests, the node blocks them while allowing legitimate requests.
 
 Malicious requests originating from graylisted IPs are those containing the signs of the following attacks:
 
