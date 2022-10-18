@@ -2,6 +2,8 @@
 
 This article provides the example configuration required for Envoy to [mirror the traffic and route it to the Wallarm node](overview.md).
 
+## Step 1: Configure Envoy to mirror the traffic
+
 This example configures traffic mirroring with Envoy via the single `listener` listening to port 80 (without TLS) and having a single `filter`. Addresses of an original backend and additional backend receiving mirrored traffic are specified in the `clusters` block.
 
 ```yaml
@@ -80,3 +82,7 @@ static_resources:
 ```
 
 [Review the Envoy documentation](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
+
+## Step 2: Configure Wallarm node to filter mirrored traffic
+
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

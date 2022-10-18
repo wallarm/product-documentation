@@ -2,6 +2,8 @@
 
 This article provides the example configuration required for Istio to [mirror the traffic and route it to the Wallarm node](overview.md).
 
+## Step 1: Configure Istio to mirror the traffic
+
 For Istio to mirror the traffic, you can configure `VirtualService` for mirroring routes either to the internal endpoint (internal for Istio, e.g. hosted in Kubernetes) or to the external endpoint with `ServiceEntry`:
 
 * To enable mirroring of in-cluster requests (e.g. between pods), add `mesh` to `.spec.gateways`.
@@ -73,3 +75,7 @@ spec:
 ```
 
 [Review the Istio documentation](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
+
+## Step 2: Configure Wallarm node to filter mirrored traffic
+
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"
