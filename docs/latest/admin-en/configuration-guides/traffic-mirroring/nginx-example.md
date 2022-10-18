@@ -2,7 +2,7 @@
 
 Starting with NGINX 1.13 you can mirror the traffic to an additional backend. This article provides you with the example configuration required for NGINX to [mirror the traffic](overview.md) and for the node to process mirrored traffic.
 
-## NGINX configuration to mirror the traffic
+## Step 1: Configure NGINX to mirror the traffic
 
 For NGINX to mirror the traffic:
 
@@ -34,20 +34,6 @@ location /mirror-test {
     }
 ```
 
-## Wallarm node configuration to filter mirrored traffic
+## Step 2: Configure Wallarm node to filter mirrored traffic
 
-For the Wallarm node to process mirrored traffic, set the following configuration:
-
-```
-wallarm_force server_addr $http_x_server_addr;
-wallarm_force server_port $http_x_server_port;
-#Change 222.222.222.22 to the address of the mirroring server
-set_real_ip_from  222.222.222.22;
-real_ip_header    X-Forwarded-For;
-#real_ip_recursive on;
-wallarm_force response_status 0;
-wallarm_force response_time 0;
-wallarm_force response_size 0;
-```
-
-The [`real_ip_header`](../../using-proxy-or-balancer-en.md) directive is required to have Wallarm Console display the IP addresses of the attackers and the `wallarm_force_response_*` directives to disable analysis of all requests except for copies received from the mirroring traffic.
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

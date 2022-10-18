@@ -2,6 +2,8 @@
 
 This article provides the example configuration required for Traefik to [mirror the traffic and route it to the Wallarm node](overview.md).
 
+## Step 1: Configure Traefik to mirror the traffic
+
 The following configuration example is based on the [`dynamic configuration file`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/) approach. The Traefik web server also supports other configuration modes, and you can easily adjust the provided one to any of them as they have a similar structure.
 
 ```yaml
@@ -57,3 +59,7 @@ http:
 ```
 
 [Review the Traefik documentation](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
+
+## Step 2: Configure Wallarm node to filter mirrored traffic
+
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"
