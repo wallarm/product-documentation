@@ -112,3 +112,13 @@ To create the relevant rule:
 1. Click *Create*
 
 ![!Regex rule second example][img-regex-example2]
+
+## API call to create the rule
+
+To create the regexp-based attack indicator, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the examples of the corresponding API call.
+
+The following request will create the custom attack indicator based on the regexp `^(~(44[.]33[.]22[.]11))$`.
+
+If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HTTP header, the Wallarm node will consider them to be scanner attacks and block attacks if the corresponding [filtration mode](../../admin-en/configure-wallarm-mode.md) has been set.
+
+--8<-- "../include/api-request-examples/create-rule-scanner.md"
