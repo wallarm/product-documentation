@@ -26,11 +26,13 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 --8<-- "../include/api-request-examples/get-all-configured-rules.md"
 
-## Get defined conditions for request blocking
+## Get only conditions of all rules
 
 --8<-- "../include/api-request-examples/get-conditions.md"
 
 ## Get rules attached to a specific condition
+
+To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
 
 --8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
 
@@ -40,16 +42,20 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 ## Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`
 
-An application ID is specified in the `action.value` parameter.
+An application should be [configured](../user-guides/settings/applications.md) before sending this request. Specify an ID of an existing application in `action.point[instance].value`.
 
 --8<-- "../include/api-request-examples/create-rule-for-app-id.md"
 
-## Create a rule to block all requests with specific values of HOST and X-FORWARDED-FOR request headers
+## Create a rule to consider the requests with specific value of the `X-FORWARDED-FOR` header as attacks
 
-For domain `MY.DOMAIN.COM` the rule will block all requests besides one having IP address `44.33.22.11` in the value of `X-FORWARDED-FOR` HTTP request header.
+The following request will create the [custom attack indicator based on the regexp](../user-guides/rules/regex-rule.md) `^(~(44[.]33[.]22[.]11))$`.
+
+If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HTTP header, the Wallarm node will consider them to be scanner attacks and block attacks if the corresponding [filtration mode](../admin-en/configure-wallarm-mode.md) has been set.
 
 --8<-- "../include/api-request-examples/create-rule-scanner.md"
 
 ## Delete rule by its ID
+
+You can copy the rule ID to be deleted when [getting all configured rules](#get-all-configured-rules). Also, a rule ID has been returned in response to the rule creation request, in the `id` response parameter.
 
 --8<-- "../include/api-request-examples/delete-rule-by-id.md"
