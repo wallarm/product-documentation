@@ -5,7 +5,7 @@ This article provides the example configuration required for Istio to [mirror th
 For Istio to mirror the traffic, you can configure `VirtualService` for mirroring routes either to the internal endpoint (internal for Istio, e.g. hosted in Kubernetes) or to the external endpoint with `ServiceEntry`:
 
 * To enable mirroring of in-cluster requests (e.g. between pods), add `mesh` to `.spec.gateways`.
-* To enable mirroring of external requests (e.g. via LoadBalancer or NodePort service), configure Istio `Gateway` component and add the name of the component to `.spec.gateways` of `VirtualService`. This option is presented in the example below.
+* To enable mirroring of external requests (e.g. via LoadBalancer or NodePort service), configure the Istio `Gateway` component and add the name of the component to `.spec.gateways` of `VirtualService`. This option is presented in the example below.
 
 ```yaml
 ---
