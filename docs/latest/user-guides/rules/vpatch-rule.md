@@ -54,3 +54,17 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Click *Create*
 
 ![!Virtual patch for any request type][img-vpatch-example2]
+
+## API calls to create the rule
+
+To create the virtual patch rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+
+**Create the virtual patch to block all requests sent to `/my/api/*`**
+
+--8<-- "../include/api-request-examples/create-rule-en.md"
+
+**Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`**
+
+An application should be [configured](../settings/applications.md) before sending this request. Specify an ID of an existing application in `action.point[instance].value`.
+
+--8<-- "../include/api-request-examples/create-rule-for-app-id.md"
