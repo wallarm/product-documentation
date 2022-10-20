@@ -2,7 +2,7 @@
 | --------- | ----------- |
 | `X-WallarmAPI-Secret` | Secret key to [access Wallarm API][access-wallarm-api-docs], copy it from Wallarm Console → **Settings** → **Profile** → **API credentials**. |
 | `X-WallarmAPI-UUID` | UUID to [access Wallarm API][access-wallarm-api-docs], copy it from Wallarm Console → **Settings** → **Profile** → **API credentials**. |
-| `clientid` | ID of an account in Wallarm Cloud to populate IP list.
+| `clientid` | ID of an account in Wallarm Cloud to populate/read IP list.
 | `ip_rule.list` | The IP list type to add objects, can be: `black` (for denylist), `white` (for allowlist), `gray` (for graylist). |
 | `ip_rule.rule_type` | The type of objects to add to the list:<ul><li>`ip_range` if adding particular IPs or subnets</li><li>`country` if adding countries or regions</li><li>`proxy_type` if adding proxy services (`VPN`, `SES`, `PUB`, `WEB`, `TOR`)</li><li>`datacenter` for other source types (`rackspace`, `tencent`, `plusserver`, `ovh`, `oracle`, `linode`, `ibm`, `huawei`, `hetzner`, `gce`, `azure`, `aws`, `alibaba`)</li></ul> |
 | `ip_rule.subnet`<br>(`rule_type:"ip_range"`) | IP or subnet to add to the list, e.g. `"1.1.1.1"`. |

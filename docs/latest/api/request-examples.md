@@ -71,7 +71,7 @@ You can copy the rule ID to be deleted when [getting all configured rules](#get-
 
 ## API calls to get, populate and delete IP list objects
 
-Below are some examples of the API calls to get, populate and delete IP list objects.
+Below are some examples of the API calls to get, populate and delete [IP list](../user-guides/ip-lists/overview.md) objects.
 
 ### API request parameters
 
