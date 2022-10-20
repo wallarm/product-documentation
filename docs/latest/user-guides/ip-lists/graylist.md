@@ -38,9 +38,9 @@ Besides [manual adding objects](#adding-an-object-to-the-list) to the graylist, 
 
 ## Examples of IP graylist usage
 
-* Graylist IP addresses from which several consecutive attacks were originated.
+* Graylist IP addresses from which several consecutive attacks originated.
 
-    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to graylist this IP. You can configure automatic source IP graylisting by configuring the threshold for source IP graylisting and appropriate reaction in the [trigger](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
+    An attack may include several requests originating from one IP address and containing malicious payloads of different types. One of the methods to block most of the malicious requests and allow legitimate requests originated from this IP address is to graylist this IP. You can configure automatic source IP graylisting by configuring the threshold for source IP graylisting and appropriate reaction in the [trigger](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
 
     Source IP graylisting can significantly reduce the number of [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives).
 * Graylist IP addresses, countries, regions, data centers, networks (for example, Tor) that usually produce harmful traffic. The Wallarm node will allow legitimate requests produced by graylisted objects and block malicious requests.
