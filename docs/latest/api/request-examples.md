@@ -1,3 +1,6 @@
+[access-wallarm-api-docs]: #your-own-client
+[application-docs]:        ../user-guides/settings/applications.md
+
 # Wallarm API request examples
 
 The following are some examples of Wallarm API use. You can also generate code examples via the API Reference UI for the [US cloud](https://apiconsole.us1.wallarm.com/) or [EU cloud](https://apiconsole.eu1.wallarm.com/). Experienced users can also use the browser’s Developer console (“Network” tab) to quickly learn which API endpoints and requests are used by the UI of your Wallarm account to fetch data from the public API. To find information about how to open the Developer console, you can use the official browser documentation ([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/)).
@@ -59,3 +62,45 @@ If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HT
 You can copy the rule ID to be deleted when [getting all configured rules](#get-all-configured-rules). Also, a rule ID has been returned in response to the rule creation request, in the `id` response parameter.
 
 --8<-- "../include/api-request-examples/delete-rule-by-id.md"
+
+## API calls to get, populate and delete IP list objects
+
+Below are some examples of the API calls to get, populate and delete IP list objects.
+
+### API request parameters
+
+Parameters to be passed in the API requests to read and change IP lists:
+
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
+
+### Add to the list the entries from the `.csv` file
+
+To add to the list the IPs or subnets from the `.csv` file, use the following bash script:
+
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
+
+### Add to the list a single IP or subnet
+
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
+
+### Add to the list multiple countries
+
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
+
+### Add to the list multiple proxy services
+
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
+
+### Delete an object from the IP list
+
+Objects are deleted from IP lists by their IDs.
+
+To get an object ID, request the IP list contents and copy `objects.id` of the required object from a response:
+
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
+
+Having the object ID, send the following request to delete it from the list:
+
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
+
+You can delete multiple objects at once passing their IDs as an array in the deletion request.
