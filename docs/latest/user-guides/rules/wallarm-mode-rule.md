@@ -46,3 +46,11 @@ As all the other default rules, the `Set filtration mode` default rule is [inher
 1. Click *Create*
 
 ![!Setting traffic filtration mode][img-mode-rule]
+
+## API calls to create the rule
+
+To create the filtration mode rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
+
+The following request will create the rule setting the node to filter traffic going to the [application](../settings/applications.md) with ID `3` in the monitoring mode.
+
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
