@@ -64,9 +64,10 @@ Multi-tenant node:
 1. Split traffic between tenants using their unique identifiers.
 
     === "NGINX and NGINX Plus"
-        Open the tenant's NGINX configuration file and split traffic between tenants the unique identifier of a tenant using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
+        Open the tenant's NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
     === "NGINX Ingress Controller"
-        Use Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-partner-client-uuid` to set tenant UUID for each Ingress resource:
+        Use Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-partner-client-uuid` to set tenant UUID for each Ingress resource. One resource is related to one tenant:
+
         ```
         kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-partner-client-uuid=VALUE
         ```
@@ -78,7 +79,7 @@ Multi-tenant node:
         1. Run the docker container [mounting prepared `envoy.yaml`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml).
     === "Kubernetes Sidecar proxy"
         1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
-        1. Mount an NGINX configuration file [to the Wallarm sidecar container](../../installation/kubernetes/sidecar-proxy/customization.md#using-custom-nginx-configuration).
+        1. Mount an NGINX configuration file to the [Wallarm sidecar container](../../installation/kubernetes/sidecar-proxy/customization.md#using-custom-nginx-configuration).
 
     Example of the NGINX configuration file for the filtering node processing the traffic of two clients:
 
