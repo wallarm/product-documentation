@@ -1,5 +1,5 @@
 # build stage
-FROM python:3.9.0 as build-stage
+FROM python:3.8.0 as build-stage
 
 WORKDIR /tmp
 
