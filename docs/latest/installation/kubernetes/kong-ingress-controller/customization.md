@@ -9,11 +9,15 @@ Kong Ingress Controller with integrated Wallarm services is based on the standar
 You can configure the solution as follows:
 
 * Globally via `values.yaml` - it allows setting up the general deployment configuration, the Kong API Gateway and some basic Wallarm API Security settings. These settings apply to all Ingress resources the solution proxies traffic to.
+* Via the Ingress annotations - it allows fine-tuning the Wallarm API Security settings on a per-Ingress basis.
+
+    !!! warning "Annotation support"
+        Ingress annotation is supported only by the solution based on the Open-Source Kong Ingress controller. [The list of supported annotations is limited](#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 * Via the Wallarm Console UI - it allows fine-tuning the Wallarm API Security settings.
 
 ## Configuration of Kong API Gateway
 
-Configuration of Kong Ingress Controller for Kong API Gateway is set by the [default Helm chart values](https://github.com/wallarm/kong-charts-preview/blob/main/charts/kong/values.yaml). This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
+Configuration of Kong Ingress Controller for Kong API Gateway is set by the [default Helm chart values](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml). This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
 
 To customize the default Helm chart values, learn the [official instructions on the Kong and Ingress Controller configuration](https://github.com/Kong/charts/tree/main/charts/kong#configuration).
 
@@ -22,6 +26,7 @@ To customize the default Helm chart values, learn the [official instructions on 
 You can configure the Wallarm API Security layer of the solution as follows:
 
 * Set basic configuration via `values.yaml`: connection to the Wallarm Cloud, resource allocation, fallbacks.
+* Fine-tune traffic analysis on a per-Ingress basis via annotations (only for the Open-Source edition): traffic filtration mode, application management, multitenancy configuration, etc.
 * Fine-tune traffic analysis via the Wallarm Console UI: traffic filtration mode, notifications about security events, request source management, mask sensitive data, allow certain attack types, etc.
 
 ### Basic configuration via `values.yaml`
@@ -132,6 +137,28 @@ The main parameters you may need to change are:
 
 Other parameters come with default values and rarely need to be changed.
 
+### Fine-tuning of traffic analysis via Ingress annotations (only for the Open-Source edition)
+
+Below is the list of annotations supported in the Open-Source Kong Ingress controller with integrated Wallarm services.
+
+!!! info "Priorities of global and per-Ingress's settings"
+    Per-Ingress's annotations take precedence over Helm chart values.
+
+Before using an annotation, please add the `wallarm.com/` prefix to it, e.g.:
+
+```bash
+wallarm.com/wallarm-mode: block
+```
+
+| Annotation | Description | 
+|----------- |------------ |
+| `wallarm-mode` | [Traffic filtration mode](../../../admin-en/configure-wallarm-mode.md): `off` (default), `monitoring`, `safe_blocking`, or `block`. |
+| `wallarm-application` | [Wallarm application ID](../../../user-guides/settings/applications.md). The value can be a positive integer except for `0`. |
+| `wallarm-parse-response` | Whether to analyze the application responses for attacks: `true` (default) or `false`. Response analysis is required for vulnerability detection during [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). |
+| `wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use this annotation: `true` or `false` (default). |
+| `wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `true` (default) or `false`. |
+| `wallarm-partner-client-uuid` | Unique identifier of the tenant for the [multi-tenant](../../multi-tenant/overview.md) Wallarm node. The value should be a string in the UUID format, e.g. `123e4567-e89b-12d3-a456-426614174000`.<br><br>Know how to:<ul><li>[Get the UUID of the tenant during tenant creation](../../multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[Get the list of UUIDs of existing tenants](../../../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)</li></ul> |
+
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 
 The Wallarm Console UI enables you to fine-tune the traffic analysis performed by the Wallarm API Security layer as follows:
@@ -143,7 +170,10 @@ The Wallarm Console UI enables you to fine-tune the traffic analysis performed b
     The Wallarm Console UI enables you to change the mode:
 
     * [Globally for all incoming requests](../../../user-guides/settings/general.md)
-    * On the per-Ingress basis using the [rule](../../../user-guides/rules/wallarm-mode-rule.md)
+    * On a per-Ingress basis using the [rule](../../../user-guides/rules/wallarm-mode-rule.md)
+
+    !!! info "Priorities of per-Ingress' settings and the ones specified in the Wallarm Console UI"
+        If the mode for the Kong Open-Source based solution is specified via the `wallarm-mode` annotation and the Wallarm Console UI, the last will take precedence over the annotation.
 * Set up [notifications on security events](../../../user-guides/settings/integrations/integrations-intro.md)
 * [Manage access to APIs by the request sources](../../../user-guides/ip-lists/overview.md)
 * [Customize traffic filtration rules](../../../user-guides/rules/intro.md)
