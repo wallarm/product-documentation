@@ -12,8 +12,10 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 * The Wallarm API Security services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
 * Support for Kong API Gateway 3.0.x (for both the Open-Source and Enterprise editions)
-* Fine-tuning the Wallarm API Security layer via the Wallarm Console UI
-* Fine-tuning the Wallarm API Security layer of the Open-Source Controller edition on a per-Ingress basis via annotations
+* Fine-tuning the Wallarm API Security layer via the Wallarm Console UI and on a per-Ingress basis via annotations
+
+    !!! warning "Annotation support"
+        Ingress annotation is supported only by the solution based on the Open-Source Kong Ingress controller. [The list of supported annotations is limited](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 * Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the solution consuming most of the CPU
 
 ## Use cases
@@ -46,9 +48,9 @@ However, some Wallarm API Security features require configuration files to be ch
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)
-* [Custom blocking page and code setup](../../../admin-en/configuration-guides/configure-block-page-and-code.md)
+* [Custom blocking page and code setup](../../../admin-en/configuration-guides/configure-block-page-and-code.md) - not supported by both the Enterprise and Open-Source Kong Ingress controllers with Wallarm services
 
-As for the Open-Source Kong Ingress controller with Wallarm services, it supports the listed feature configuration on a per-Ingress basis via [annotations](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
+As for the Open-Source Kong Ingress controller with Wallarm services, it supports the multitenancy and application configuration on a per-Ingress basis via [annotations](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 
 ## Requirements
 
@@ -98,6 +100,12 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         image:
           repository: wallarm/kong
+        
+        ingressController:
+          enabled: true
+          installCRDs: false
+          image:
+            repository: wallarm/kong-kubernetes-ingress-controller
         ```
     === "EU Cloud"
         ```yaml
@@ -106,6 +114,12 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         image:
           repository: wallarm/kong
+
+        ingressController:
+          enabled: true
+          installCRDs: false
+          image:
+            repository: wallarm/kong-kubernetes-ingress-controller
         ```  
         
     Example of the file with the minimum configuration to run **Enterprise** Kong Ingress controller with integrated Wallarm services:
@@ -128,6 +142,12 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         enterprise:
           enabled: true
+
+        ingressController:
+          enabled: true
+          installCRDs: false
+          image:
+            repository: kong/kubernetes-ingress-controller
         ```
     === "EU Cloud"
         ```yaml
@@ -146,6 +166,12 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         enterprise:
           enabled: true
+        
+        ingressController:
+          enabled: true
+          installCRDs: false
+          image:
+            repository: kong/kubernetes-ingress-controller
         ```  
     
     * `<NODE_TOKEN>` is the Wallarm node token you copied from the Wallarm Console UI
