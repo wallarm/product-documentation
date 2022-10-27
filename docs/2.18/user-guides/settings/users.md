@@ -28,7 +28,7 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 Users of Wallarm clients can have the following roles:
 
 * **Administrator** with access to all Wallarm settings
-* **Analyst** with access to view main Wallarm settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
