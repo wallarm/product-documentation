@@ -185,12 +185,11 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Automatic BOLA protection
 
-The **API Discovery** module may automatically create/delete the read-only [BOLA protection triggers](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled) if this function is enabled for the module.
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
 
-!!! warning "BOLA protection restrictions"
-    Only Wallarm node 4.2 and above supports the BOLA attack detection.
+Potential target of the BOLA attacks are endpoints with variability. To protect such endpoints, send request to the [Wallarm support](mailto:support@wallarm.com).
 
-[More details on using API Discovery with automatic BOLA protection enabled →](../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled)
+As new endpoints with variable elements are discovered, Wallarm will generate for them a [trigger for BOLA attack detection](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery).
 
 ## Security of data uploaded to the Wallarm Cloud
 

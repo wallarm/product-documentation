@@ -128,11 +128,11 @@ Triggers work on all traffic within a company account by default but you can cha
 
 ## Automatically created triggers
 
-Some Walarm [modules](../../about-wallarm-waf/subscription-plans.md#modules) and [features](../../about-wallarm-waf/subscription-plans.md#features) may automatically create triggers.
+Some Walarm [modules](../../about-wallarm/subscription-plans.md#modules) and [features](../../about-wallarm/subscription-plans.md#features) may automatically create triggers to protect your systems from typical attack scenarios.
 
-To view the list of automatically created triggers, in the Wallarm Console → **Triggers** section, click **Automatically generated**.
+Such triggers are available in Wallarm Console → **Triggers** → **Automatically generated** in the read-only mode.
 
-For example, the **API Discovery** module may automatically create/delete the read-only [BOLA protection triggers](../../admin-en/configuration-guides/protecting-against-bola.md#using-api-discovery-with-automatic-bola-protection-enabled) if this function is enabled for the module.
+For example, the **API Discovery** module may automatically create/delete the [BOLA protection triggers](../../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) if this function is enabled for the module.
 
 ## Disabling and deleting triggers
 
