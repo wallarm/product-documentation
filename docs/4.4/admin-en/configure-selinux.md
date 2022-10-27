@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/configure-selinux.md"
