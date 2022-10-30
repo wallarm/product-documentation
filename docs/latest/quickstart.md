@@ -19,7 +19,7 @@
 
 The Wallarm API Security platform protects web applications, APIs, and microservices from OWASP and OWASP Top 10 attacks, bots, and application abuse with ultra‑low false positives. You can start using the platform in full for free with a limitation of 500K API monthly requests by following this guide.
 
-Under a quick start, you will register your Wallarm account and run the first Wallarm filtering node in a few minutes. Having a free quota you will be able to try on the product power on real traffic.
+Under a quick start, you will register your Wallarm account and run the first Wallarm filtering node in a few minutes. Having a free quota, you will be able to try on the product power on real traffic.
 
 ## Create Wallarm account and get Free tier
 
@@ -32,7 +32,7 @@ To create a Wallarm account:
 
 Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used:
 
-* In the US Cloud, Free tier lets you explore the power of Wallarm API Security for free on 500 thousand monthly requests.
+* In the US Cloud, Free tier allows you to explore the power of Wallarm API Security for free on 500 thousand monthly requests.
 * In the EU Cloud, there is a trial period allowing you to explore Wallarm API Security for free for 14 days.
 
 As for the US cloud, there is the option to explore Wallarm even before deploying any components to your environment - [Playground](#deploy-the-wallarm-filtering-node).
