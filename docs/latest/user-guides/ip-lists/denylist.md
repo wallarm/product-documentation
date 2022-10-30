@@ -13,14 +13,14 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
 
 ## Examples of IP denylist usage
 
-* Block IP addresses from which several consecutive attacks were originated.
+* Block IP addresses from which several consecutive attacks originated.
 
-    An attack may include several requests originated from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
+    An attack may include several requests originating from one IP address and containing malicious payloads of different types. One of the methods to block such attacks is to block requests origin. You can configure automatic source IP blocking by configuring the threshold for source IP blocking and appropriate reaction in the [trigger](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
 * Block behavioral-based attacks.
 
     The Wallarm filtering node can block most harmful traffic request-by-request if a malicious payload is detected. However, for behavioral‑based attacks when every single request is legitimate (e.g. login attempts with username/password pairs) blocking by origin might be necessary.
 
-    By default, automatic blocking of behavioral attacks source is disabled. [Instructions on configuring brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
+    By default, automatic blocking of behavioral attack sources is disabled. [Instructions on configuring brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
 
