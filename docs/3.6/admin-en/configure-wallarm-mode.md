@@ -42,7 +42,6 @@ You can set the traffic filtration mode in the local configuration files of the 
     If different `wallarm_mode` directive values are defined for the `http`, `server`, and `location` blocks, the most local configuration has the highest priority.
 * For the node deployed from the Docker [NGINX](installation-docker-en.md)/[Envoy-based](installation-guides/envoy/envoy-docker.md) image - use the `WALLARM_MODE` environment variable.
 * For the node deployed as the NGINX Ingress controller - use the `nginx.ingress.kubernetes.io/wallarm-mode` [per-Ingress annotation](configure-kubernetes-en.md#ingress-annotations).
-* For the node [deployed to AWS using the Terraform module](../installation/cloud-platforms/aws/terraform-module/overview.md) - use the `mode` variable.
 
 The possible values of the listed directives/parameters:
 
