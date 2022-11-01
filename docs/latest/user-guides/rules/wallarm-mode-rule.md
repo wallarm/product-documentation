@@ -4,19 +4,17 @@
 
 # Filtration mode rule
 
-The filtration mode allows you to enable and disable the blocking of requests to various parts of a web application.
-
-To set a filtration mode, create a *Set filtration mode* rule and select the appropriate mode.
+The filtration mode allows you to enable and disable the blocking of requests to various parts of a web application. One of the [options to configure the filtration mode](../../admin-en/configure-wallarm-mode.md) is to create the **Set filtration mode** rule for specific requests.
 
 The filtration mode can take one of the following values:
 
-* **Default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
+* **Default**: the system will work in accordance with the parameters specified in the local node configuration files.
 * **Disable**: the analysis and filtration of requests are disabled completely.
 * **Monitoring**: the requests are analyzed and displayed in the interface but they are not blocked even if they are originated from [denylisted](../ip-lists/denylist.md) IPs.
 * **Safe blocking**: malicious requests are blocked only if they are originated from [graylisted IPs](../ip-lists/graylist.md).
 * **Blocking**: malicious requests are blocked and displayed in the interface.
 
-To implement this rule, the NGINX configuration files must permit [centralized management of the operation mode][link-wallarm-mode-override].
+To implement this rule, the local node configuration must permit [centralized management of the operation mode][link-wallarm-mode-override].
 
 ## Creating and applying the rule
 
@@ -46,6 +44,14 @@ As all the other default rules, the `Set filtration mode` default rule is [inher
 1. Click *Create*
 
 ![!Setting traffic filtration mode][img-mode-rule]
+
+## Generating the rule for certain applications automatically
+
+Specifying filtration mode on a per-application basis during [application configuration](../settings/applications.md) results in the automatically generated **Set filtration mode** rule. This rule has the following priority among other filtration mode setup options:
+
+* A higher priority than the mode set in the local configuration files unless the [`wallarm_mode_allow_override` directive sets another behavior](../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override).
+* A higher priority than the [default instance of a rule](#default-instance-of-rule).
+* A lower priority than the custom rules configured for specific paths of the selected application (if any).
 
 ## API calls to create the rule
 
