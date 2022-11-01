@@ -34,13 +34,13 @@ The widget displays the following data:
 
 ![!Current month statistics](../images/user-guides/dashboard/current-month-stats.png)
 
-## Normal and malicious traffic
+## Normal and malicious traffic for a period
 
-The widget displays the following data:
+The widget displays the summary for the primary metrics of the traffic processed during the selected period (the last month by default):
 
 * The amount of traffic
 * The number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
-* The estimated cost of attacks for the attacker: the value considers the approximate cost of IP address renting and an attack duration
+* Trends: change in the event number for a selected period and the same previous period
 
 ![!Normal and malicious traffic](../images/user-guides/dashboard/traffic-stats.png)
 
