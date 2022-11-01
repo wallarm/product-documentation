@@ -25,16 +25,24 @@ By default, Wallarm considers each application to be the `default` application w
         Only users with the **Administrator** role can access the section **Settings** → **Applications**.
 2. Assign an application the unique ID in the node configuration via:
 
-    * The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) if Wallarm is installed as NGINX module, cloud marketplace image, NGINX-based Docker container with a mounted configuration file, sidecar container.
+    * The directive [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) if Wallarm is installed as NGINX module, cloud marketplace image, NGINX-based Docker container with a mounted configuration file.
     * The [environment variable](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) `WALLARM_APPLICATION` if Wallarm is installed as NGINX-based Docker container.
-    * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `wallarm-application` if Wallarm is installed as the Ingress controller.
     * The parameter [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings) if Wallarm is installed as Envoy-based Docker container with a mounted configuration file.
+    * The [Ingress annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-application` if Wallarm is installed as the NGINX Ingress controller.
+    * The [Ingress annotation](../../installation/kubernetes/kong-ingress-controller/customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition) `wallarm.com/wallarm-application` if Wallarm is installed as the Kong Ingress controller (Open-Source edition).
+    * The [pod annotation](../../installation/kubernetes/sidecar-proxy/pod-annotations.md) `sidecar.wallarm.io/wallarm-application` if Wallarm is installed as a Sidecar proxy.
 
     The value can be a positive integer except for `0`.
 
     If an application with a specified ID is not added in Wallarm Console → **Settings** → **Applications**, it will be added to the list automatically. The application name will be generated automatically based on the specified identifier (e.g. `Application #1` for the application with the ID `-1`). The name can be changed via Wallarm Console later.
 
 If the application is properly configured, its name will be displayed in the details of attacks aimed at this application. To test the application configuration, you can send the [test attack](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application address.
+
+## Setting up the filtration mode for application
+
+The application management UI in Wallarm Console enables you to set up the mode for the node to filter requests to the selected application.
+
+This setting will result in the [**Set filtration mode** rule](../rules/wallarm-mode-rule.md) generated for a selected application.
 
 ## Deleting an application
 
