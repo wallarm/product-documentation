@@ -20,8 +20,7 @@ Scanner performs the following tasks:
 
 ## Network Scope Scanning
 
-A **network scope** is a company's public resources (domains and IP addresses) connected to public networks.
-It defines an area to be scanned for typical vulnerabilities and is the cornerstone of the security process.
+A **network scope** is a company's public resources (domains and IP addresses) connected to public networks. It defines an area to be scanned for typical vulnerabilities and is the cornerstone of the security process.
 
 As the project develops, the number of resources in the scope steadily increases and control over them inevitably decreases.
 
