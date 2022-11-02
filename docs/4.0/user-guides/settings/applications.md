@@ -39,7 +39,7 @@ If the application is properly configured, its name will be displayed in the det
 
 ## Setting up the filtration mode for application
 
-The application management UI in Wallarm Console enables you to set up the mode for the node to filter requests to the selected application.
+The application management UI in Wallarm Console enables you to set up the [mode for the node to filter requests](../../admin-en/configure-wallarm-mode.md) to the selected application.
 
 This setting will result in the [**Set filtration mode** rule](../rules/wallarm-mode-rule.md) generated for a selected application.
 
