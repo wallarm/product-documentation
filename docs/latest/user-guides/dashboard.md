@@ -36,10 +36,10 @@ The widget displays the following data:
 
 ## Normal and malicious traffic for a period
 
-The widget displays the summary for the primary metrics of the traffic processed during the selected period (the last month by default):
+The widget displays the summary statistics for the traffic processed during the selected period:
 
-* The amount of traffic
-* The number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
+* The graph represents the data distribution over time, enabling you to track the periods of the most active activity
+* The total number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
 * Trends: change in the event number for a selected period and the same previous period
 
 ![!Normal and malicious traffic](../images/user-guides/dashboard/traffic-stats.png)
