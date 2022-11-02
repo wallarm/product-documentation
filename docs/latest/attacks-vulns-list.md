@@ -35,6 +35,7 @@
 [cwe-639]:  https://cwe.mitre.org/data/definitions/639.html
 [cwe-918]:  https://cwe.mitre.org/data/definitions/918.html
 [cwe-943]:  https://cwe.mitre.org/data/definitions/943.html
+[cwe-1270]: https://cwe.mitre.org/data/definitions/1270.html
 
 [link-cwe]: https://cwe.mitre.org/
 
@@ -566,6 +567,38 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+
+### Weak JWT
+
+**Vulnerability**
+
+**CWE code:** [CWE-1270][cwe-1270]
+
+**Wallarm code:** ???
+
+**Description:**
+
+[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
+
+JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
+
+**Wallarm behavior:**
+
+Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger] enabled.
+
+Wallarm considers JWTs to be weak if they are:
+
+* Signed using weak algorithms or secret keys
+* Signed using compromised secret keys
+
+Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities/check-vuln.md).
+
+**Remediation:**
+
+* Configure the Wallarm platform to detect JWT vulnerabilities as the [trigger example] demonstrates (if it does not).
+* Configure the Wallarm platform to notify you about detected JWT vulnerabilities. ???link
+* Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
+* If the JWT vulnerability exists in your application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks that exploit an active JWT vulnerability.
 
 ##  The list of special attacks and vulnerabilities
 

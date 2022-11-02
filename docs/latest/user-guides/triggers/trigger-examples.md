@@ -6,7 +6,7 @@ Learn real examples of [Wallarm triggers](triggers.md) to better understand this
 
 If 4 or more different malicious payloads are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour.
 
-If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as manually created triggers.
+If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
 
 ![!Graylisting trigger](../../images/user-guides/triggers/trigger-example-graylist.png)
 
@@ -78,13 +78,26 @@ Endpoint examples matching the URI value are `https://example.com/config.json`, 
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## Mark requests as a the BOLA attack
+## Mark requests as the BOLA attack
 
 If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which requests were originated will be added to the denylist.
 
 ![!BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
 [Details on configuration of BOLA protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bola.md)
+
+## Detect weak JWTs
+
+If any incoming request processed by the node 4.4 contains a weak JWT, record the corresponding [vulnerability](../vulnerabilities/check-vuln.md).
+
+Weak JWTs are those that are:
+
+* Signed using weak algorithms or secret keys
+* Signed using compromised secret keys
+
+If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
+
+![!Example for trigger on weak JWTs](../../images/user-guides/triggers/trigger-example-weak-jwt.png)
 
 ## Slack notification if 2 or more SQLi hits are detected in one minute
 
@@ -237,7 +250,7 @@ If an IP address was added to the denylist, the webhook about this event will be
 
 If more than 50 [hits](../../about-wallarm/protecting-against-attacks.md#hit) from the same IP address are detected in 15 minutes, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
 
-If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as manually created triggers.
+If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
 
 ![!Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
