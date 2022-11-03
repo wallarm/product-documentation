@@ -574,7 +574,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 **CWE code:** [CWE-1270][cwe-1270]
 
-**Wallarm code:** ???
+**Wallarm code:** `weak_jwt`
 
 **Description:**
 
@@ -584,21 +584,18 @@ JWT compromisation is a common aim of attackers as breaking authentication mecha
 
 **Wallarm behavior:**
 
-Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger] enabled.
+Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](user-guides/triggers/trigger-examples.md#detect-weak-jwts) enabled.
 
 Wallarm considers JWTs to be weak if they are:
 
-* Signed using weak algorithms or secret keys
-* Signed using compromised secret keys
+* Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).
+* Signed using compromised secret keys.
 
 Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities/check-vuln.md).
 
 **Remediation:**
 
-* Configure the Wallarm platform to detect JWT vulnerabilities as the [trigger example] demonstrates (if it does not).
-* Configure the Wallarm platform to notify you about detected JWT vulnerabilities. ???link
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
-* If the JWT vulnerability exists in your application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks that exploit an active JWT vulnerability.
 
 ##  The list of special attacks and vulnerabilities
 

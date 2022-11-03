@@ -92,7 +92,7 @@ If any incoming request processed by the node 4.4 contains a weak JWT, record th
 
 Weak JWTs are those that are:
 
-* Signed using weak algorithms or secret keys
+* Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).
 * Signed using compromised secret keys
 
 If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
