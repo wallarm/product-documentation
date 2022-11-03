@@ -1,6 +1,6 @@
 [allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
-# Detecting vulnerabilities
+# Detecting vulnerabilities [![API Security](../images/tags/api-security.svg)](subscription-plans.md)
 
 Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm API Security platform detects application vulnerabilities enabling you to enhance system security.
 

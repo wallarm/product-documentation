@@ -11,33 +11,15 @@ This document describes the components that may be included into the Wallarm sub
 
 ## Subscription plans
 
-The subscription plan includes a set of modules and features. You can select and include any modules listed below into your plan. The set of options in the plan is defined individually with each client.
+There are two main ways to use the Wallarm platforms that is also reflected in the subscription plans for the platform:
 
-### Modules
-
-The set of all Wallarm API Security modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
-
-* **API Threat Prevention / Web Application Firewall** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
-* **[Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)** automatically denylists IP addresses from which brute-force attacks are sent.
-* **[Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)** detects active application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the filtering node and looks for vulnerabilities in the corresponding parts of the application.
-* **[Custom ruleset setup](../user-guides/rules/compiling.md)** allows you to manually add request processing rules: block malicious requests if the filtering node is working in the `monitoring` mode or if any known malicious payload is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
-* **[Exposed asset Scanner](../user-guides/scanner/check-scope.md)** scans the company's exposed assets: discovering new domains, IP addresses, services, and notification of new objects.
-* **[Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
-* **[API Discovery](../about-wallarm/api-discovery.md)** identifies your application API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results. The **API Discovery** module is provided within a separate subscription plan.
-
-### Features
-
-The set of features included to the subscription plan is defined individually with each client. Examples of included features:
-
-* Limit for requests processed per month
-* Multi-tenant system
-* Registration of events in the audit log
-* Integration with SIEM / SOAR / DevOps systems
-* Authentication in Wallarm Console with SAML SSO
-* Receiving security reports
-* etc
-
-To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
+| Feature | WAAP | API Security |
+| ------- | ---- | ------------ |
+| OWASP Top 10 protection | + | + |
+| Web Application protection | + | + |
+| API service protection | + | + |
+| Real-time Threat Prevention | + | + |
+| API Abuse Prevention (Beta) | - | + |
 
 ## Free tier subscription plan
 
