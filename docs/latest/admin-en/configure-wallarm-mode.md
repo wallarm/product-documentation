@@ -1,6 +1,6 @@
 [acl-access-phase]:     ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase 
 
-# Configuration of filtration mode
+# Configuration of filtration mode [![WAAP](../images/tags/waap.svg)](../about-wallarm/subscription-plans.md) [![API Security](../images/tags/api-security.svg)](../about-wallarm/subscription-plans.md)
 
 Filtration mode defines the filtering node behavior when processing incoming requests. These instructions describe available filtration modes and their configuration methods.
 

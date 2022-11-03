@@ -22,7 +22,7 @@
 [img-node-with-several-instances]:  ../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
-# Installing dynamic Wallarm module for NGINX Plus
+# Installing dynamic Wallarm module for NGINX Plus [![WAAP](../images/tags/waap.svg)](../about-wallarm/subscription-plans.md) [![API Security](../images/tags/api-security.svg)](../about-wallarm/subscription-plans.md)
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 

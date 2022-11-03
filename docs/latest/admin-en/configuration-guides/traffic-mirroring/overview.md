@@ -1,4 +1,4 @@
-# Filtering mirrored traffic
+# Filtering mirrored traffic [![API Security](../../../images/tags/api-security.svg)](../../../about-wallarm/subscription-plans.md)
 
 One of the Wallarm node deployment approaches is an asynchronous-based deployment for mirrored HTTP traffic filtration. This article instructs you on the configuration required for this deployment implementation and provides some examples.
 

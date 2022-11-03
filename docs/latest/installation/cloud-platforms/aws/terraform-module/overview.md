@@ -1,4 +1,4 @@
-# Deploying Wallarm on AWS using Terraform
+# Deploying Wallarm on AWS using Terraform [![WAAP](../../../../images/tags/waap.svg)](../../../../about-wallarm/subscription-plans.md)[![API Security](../../../../images/tags/api-security.svg)](../../../../about-wallarm/subscription-plans.md)
 
 Wallarm provides the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to [AWS](https://aws.amazon.com/) from the Terraform-compatible environment. Use these instructions to explore the module and try the provided deployment examples.
 

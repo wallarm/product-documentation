@@ -1,4 +1,4 @@
-# Installing NGINX Ingress Controller with integrated Wallarm services
+# Installing NGINX Ingress Controller with integrated Wallarm services [![WAAP](../images/tags/waap.svg)](../about-wallarm/subscription-plans.md) [![API Security](../images/tags/api-security.svg)](../about-wallarm/subscription-plans.md)
 
 These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are no other non-NGINX Ingress controllers deployed.
 

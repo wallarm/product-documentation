@@ -1,4 +1,4 @@
-# Discovering API structure
+# Discovering API structure [![API Security](../images/tags/api-security.svg)](../about-wallarm/subscription-plans.md)
 
 The **API Discovery** module of Wallarm API Security identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 

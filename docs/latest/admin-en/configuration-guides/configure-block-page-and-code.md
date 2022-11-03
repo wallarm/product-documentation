@@ -1,4 +1,4 @@
-# Configuration of the blocking page and error code (NGINX)
+# Configuration of the blocking page and error code (NGINX) [![WAAP](../../images/tags/waap.svg)](../../about-wallarm/subscription-plans.md) [![API Security](../../images/tags/api-security.svg)](../../about-wallarm/subscription-plans.md)
 
 These instructions describe the method to customize the blocking page and error code returned in the response to the request blocked for the following reasons:
 

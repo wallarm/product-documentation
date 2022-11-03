@@ -1,4 +1,4 @@
-# Detecting attacks
+# Detecting attacks [![WAAP](../images/tags/waap.svg)](/tag-filtration) [![API Security](../images/tags/api-security.svg)](/tag-filtration)
 
 The Wallarm API Security platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 

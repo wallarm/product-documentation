@@ -1,4 +1,4 @@
-# Trying Wallarm Terraform Module with examples
+# Trying Wallarm Terraform Module with examples [![WAAP](../../../../images/tags/waap.svg)](../../../../about-wallarm/subscription-plans.md) [![API Security](../../../../images/tags/api-security.svg)](../../../../about-wallarm/subscription-plans.md)
 
 We have prepared the examples of different ways to use the [Wallarm Terraform Module](https://registry.terraform.io/modules/wallarm/wallarm/aws/), so you could try it before deploying it to production.
 
@@ -42,7 +42,7 @@ Wallarm proxy solution provides an additional functional network layer serving a
 
 [Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)
 
-## Mirror solution
+## Mirror solution [![API Security](../../../../images/tags/api-security.svg)](../../../../about-wallarm/subscription-plans.md)
 
 [This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing mirrored traffic. It is expected that the NGINX, Envoy, Istio and/or Traefik web server already provides traffic mirroring.
 
@@ -55,7 +55,7 @@ Key characteristics of the solution:
 
 [Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)
 
-## Solution for AWS VPC Traffic Mirroring
+## Solution for AWS VPC Traffic Mirroring [![API Security](../../../../images/tags/api-security.svg)](../../../../about-wallarm/subscription-plans.md)
 
 [This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing [traffic mirrored by Amazon VPC](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html).
 
