@@ -63,27 +63,23 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
 
 See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) in the Wallarm provider documentation.
 
-## Managing Walarm with provider
+## Managing Wallarm with provider
 
-With the Walarm provider, via Terraform you can:
+With the Wallarm provider, via Terraform you can manage:
 
-* Manage (create, update, delete):
+* [Nodes](../../user-guides/nodes/nodes.md) in your account
+* [Applications](../../user-guides/settings/applications.md)
+* [Rules](../../user-guides/rules/intro.md)
+* [Triggers](../../user-guides/triggers/triggers.md)
+* [IPs in the denylist](../../user-guides/ip-lists/denylist.md)
+* [Users](../../user-guides/settings/users.md)
+* [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
+* Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
+* [Scanner](../../user-guides/scanner/intro.md) scope
+* [Vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
 
-    * [Applications](../../user-guides/settings/applications.md)
-    * [Rules](../../user-guides/rules/intro.md)
-    * [Triggers](../../user-guides/triggers/triggers.md)
-    * [IPs in the denylist](../../user-guides/ip-lists/denylist.md)
-    * [Users](../../user-guides/settings/users.md)
-    * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
-    * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
-    * [Scanner](../../user-guides/scanner/intro.md) scope
-
-* Get details about:
-
-    * [Nodes](../../user-guides/nodes/nodes.md) in your account
-    * Detected [vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
-
-* Register new nodes in your account and delete existing ones
+!!! info "Wallarm Terraform provider and CDN nodes"
+    Currently [CDN nodes](../../user-guides/nodes/cdn-node.md) cannot be managed via the Wallarm Terraform provider.
 
 See how to perform the listed operations in the Wallarm provider [documentation](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs).
 
