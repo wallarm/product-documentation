@@ -12,7 +12,7 @@ The filtration mode can take one of the following values:
 
 * **Default**: the system will work in accordance with the parameters specified in the NGINX configuration files.
 * **Disable**: the analysis and filtration of requests are disabled completely.
-* **Monitorig**: the requests are analyzed and displayed in the interface but they are not blocked even if they are originated from [denylisted](../ip-lists/denylist.md) IPs.
+* **Monitoring**: the requests are analyzed and displayed in the interface but they are not blocked even if they are originated from [denylisted](../ip-lists/denylist.md) IPs.
 * **Safe blocking**: malicious requests are blocked only if they are originated from [graylisted IPs](../ip-lists/graylist.md).
 * **Blocking**: malicious requests are blocked and displayed in the interface.
 
@@ -46,3 +46,11 @@ As all the other default rules, the `Set filtration mode` default rule is [inher
 1. Click *Create*
 
 ![!Setting traffic filtration mode][img-mode-rule]
+
+## API calls to create the rule
+
+To create the filtration mode rule, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below is the example of the corresponding API call.
+
+The following request will create the rule setting the node to filter traffic going to the [application](../settings/applications.md) with ID `3` in the monitoring mode.
+
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"

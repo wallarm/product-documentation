@@ -62,3 +62,21 @@ Here are some details of how to work with the rules branch:
 * When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
 
     ![!Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+
+## API calls to get rules
+
+To get custom rules, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+
+**Get all configured rules**
+
+--8<-- "../include/api-request-examples/get-all-configured-rules.md"
+
+**Get only conditions of all rules**
+
+--8<-- "../include/api-request-examples/get-conditions.md"
+
+**Get rules attached to a specific condition**
+
+To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
+
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.md"

@@ -85,7 +85,10 @@ As a result, you will get a response of the type:
 "stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
 "fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
 "fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
-"split":{"clients":[]} }
+"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,
+"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
+[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
+"overlimits_time": 0,"time_detect": 0}]}]} }
 ```
 
 The following response parameters are available:

@@ -28,7 +28,7 @@ You can manage user accounts in the *Users* tab located in *Settings*.
 Users of Wallarm clients can have the following roles:
 
 * **Administrator** with access to all Wallarm settings
-* **Analyst** with access to view main Wallarm settings, information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
+* **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
 * **API Developer** with access to view and download the API structure discovered by the [API Discovery](../../about-wallarm/api-discovery.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console

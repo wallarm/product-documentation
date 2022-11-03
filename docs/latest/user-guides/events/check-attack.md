@@ -77,6 +77,30 @@ You may also add the `now` keyword to the search field to only display those eve
 
 ![!Attacks happening right now][img-current-attacks]
 
+## API calls to get attacks, incidents and vulberabilities
+
+To get the attack, incident and vulnerability details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+
+**Get the first 50 attacks detected in the last 24 hours**
+
+Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+
+--8<-- "../include/api-request-examples/get-attacks-en.md"
+
+**Get the first 50 incidents confirmed in the last 24 hours**
+
+The request is very similar to the previous example for a list of attacks; the `"!vulnid": null` term is added to this request. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.
+
+Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+
+--8<-- "../include/api-request-examples/get-incidents-en.md"
+
+**Get the first 50 vulnerabilities in the status "active" within the last 24 hours**
+
+Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
+
+--8<-- "../include/api-request-examples/get-vulnerabilities.md"
+
 ## Demo videos
 
 <div class="video-wrapper">

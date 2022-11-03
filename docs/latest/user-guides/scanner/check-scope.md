@@ -38,8 +38,8 @@ The elements' names displayed in bold font correspond with the group of observed
 Use the search field to find elements by their names. You can also search for substrings. For example, the query `domain.com` displays all domains that have “domain.com” as a substring: “a.domain.com”, “b.domain.com” and their associations.
 
 Click one of the buttons on the bar to filter elements by their status:
-* *All elements*: display all of the resources within the scope.
-* *New*: display the newly discovered resources that have not been viewed yet.
+* *All assets*: display all of the resources within the scope.
+* *New*: display the newly discovered resources that have not been viewed by any user of your company account yet.
 * *Disabled*: display the resources for which scanning is disabled.
 
 ## Check the Resource Associations

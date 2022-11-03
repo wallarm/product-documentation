@@ -412,6 +412,11 @@ Unique identifier of the tenant for the [multi-tenant](../installation/multi-ten
 
 !!! info
     This parameter can be set inside the http, server, and location blocks.
+    
+    Know how to:
+    
+    * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
+    * [Get the list of UUIDs of existing tenants →](../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)
 
 Configuration example:
 
