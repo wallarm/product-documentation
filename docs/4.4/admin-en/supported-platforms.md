@@ -304,6 +304,22 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 </div>
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
+    <div type="button" id="ubuntu22" onClick="platformClicked(event, 'ubuntu22')" class="platform-card-button">
+        <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
+        <h3>Ubuntu 22.04<br>Jammy
+            <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
+            </svg>
+        </h3>
+        <p>Install the Wallarm module for...</p>
+        <div id="ubuntu22Id" class="options-list" style="display: none;">
+            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
+            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
+        </div>
+    </div>
+</div>
+
+<div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="centos7" onClick="platformClicked(event, 'centos7')" class="platform-card-button">
         <img class="platform-icon" src="../../images/platform-icons/centos.svg">
         <h3>CentOS 7.x
@@ -319,6 +335,9 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
     </div>
 </div> 
+</div>
+
+<div class="navigation platforms" style="padding-top: 16px;">
 
     <div id="deployOptionsDiv" class="navigation-card platform-card">
         <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
@@ -335,10 +354,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             </div>
         </div>
     </div> 
-
-</div>
-
-<div class="navigation platforms" style="padding-top: 16px;">
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="almalinux" onClick="platformClicked(event, 'almalinux')" class="platform-card-button">
