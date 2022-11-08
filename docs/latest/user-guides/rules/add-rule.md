@@ -241,6 +241,13 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
+    === "Ubuntu 22.04 LTS (jammy)"
+        ```bash
+        sudo apt update
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node jammy/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sudo apt update
+        ```
 2. Install the **cpire** utility:
 
     ```bash

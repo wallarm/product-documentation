@@ -120,7 +120,7 @@ More detailed information about installation is available in the [official NGINX
 
 Wallarm node is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
---8<-- "../include/waf/installation/add-nginx-waf-repos-4.2.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-4.4.md"
 
 ### 3. Install Wallarm API Security packages
 
