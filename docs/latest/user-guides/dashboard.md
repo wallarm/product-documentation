@@ -4,6 +4,7 @@ Wallarm automatically collects metrics on processed traffic and represents them 
 
 Metrics are presented in the following widgets:
 
+* API Discovery
 * Statistics for the current month and the speed of request encountering
 * Normal and malicious traffic
 * Attack types
@@ -23,6 +24,25 @@ Any widget allows to open the [event list](events/check-attack.md) the statistic
     
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
     * The **Wallarm Playground** option will forward you to the Wallarm Console playground with read-only access to its sections. This option is available only for users of the US Cloud.
+
+## API Discovery
+
+This widget displays data about your API collected by the [API Discovery](../about-wallarm/api-discovery.md) module:
+
+* Number of discovered endpoints, including external and internal
+* Changes of you API in the last 30 days by type (new, changed, removed APIs)
+* Sensitive data in API
+* API usage: number of endpoints by API host or by application
+
+![!API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
+
+Click elements of the widget to go to the **API Discovery** section and view filtered data, like:
+
+* Only internal endpoints
+* Only new
+* Only having specific type of sensitive data
+* Only related to the specific API host
+* etc.
 
 ## Statistics for the current month and the speed of request encountering
 
@@ -50,7 +70,7 @@ This widget displays the [top types of detected attacks](../attacks-vulns-list.m
 
 Using this data, you can analyze the vulnerability of your services to different attack types and take appropriate measures to improve service security.
 
-![!Attack types](../images/user-guides/dashboard/attack-types.png)
+![!Attack types](../images/user-guides/dashboard/api-discovery-widget.png)
 
 ## API protocols
 
