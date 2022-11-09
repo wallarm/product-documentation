@@ -50,7 +50,7 @@ To activate API Abuse Prevention:
 
 ## Accuracy
 
-You can configure how strictly the signs of a malicious bot are monitored. This is set with the **Accuracy** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Accuracy** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
 
 There are three available levels:
 
