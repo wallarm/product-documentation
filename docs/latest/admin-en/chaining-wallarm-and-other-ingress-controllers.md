@@ -1,12 +1,17 @@
 # Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster
 
-These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are other non-Ingress controllers deployed (e.g. AWS ALB Ingress Controller which is not supported by Wallarm).
+These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster and chain it with other Controllers that are already running in your environment.
 
 ## The issue addressed by the solution
 
-Wallarm offers its node software in different form-factors, including a [Kubernetes Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md).
+Wallarm offers its node software in different form-factors, including the following Ingress controllers for Kubernetes:
 
-If you already use a non-NGINX Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller. Fortunately, it is possible to chain several Ingress controllers that enable you to utilize an existing controller to get end-user requests to a cluster, and deploy an additional Wallarm Ingress controller to provide necessary application protection.
+* [Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md)
+* [Ingress Controller built on top of the Kong Ingress Controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
+
+If you already use an Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller (e.g. if using AWS ALB Ingress Controller). In this case, you can explore the [Wallarm Sidecar proxy solution](../installation/kubernetes/sidecar-proxy/deployment.md) but if it also does not fit your infrastructure, it is possible to chain several Ingress controllers.
+
+Ingress controller chaining enables you to utilize an existing controller to get end-user requests to a cluster, and deploy an additional Wallarm Ingress controller to provide necessary application protection.
 
 ## Requirements
 
@@ -60,6 +65,8 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
             apiHost: "us1.api.wallarm.com"
           electionID: "wallarm-ingress-controller-leader"
           ingressClass: "wallarm-ingress"
+          ingressClassResource:
+            name: "wallarm-ingress"
           service
             type: "ClusterIP"
         nameOverride: "wallarm-ingress"
@@ -72,6 +79,8 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
             token: "<NODE_TOKEN>"
           electionID: "wallarm-ingress-controller-leader"
           ingressClass: "wallarm-ingress"
+          ingressClassResource:
+            name: "wallarm-ingress"
           service
             type: "ClusterIP"
         nameOverride: "wallarm-ingress"
