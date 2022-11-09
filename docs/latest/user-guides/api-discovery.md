@@ -31,7 +31,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ## Viewing endpoint parameters
 
-<a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
+<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including required and optional parameters with the relevant data types:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
@@ -40,6 +40,7 @@ To sort, click the name of the column. To change the sorting order, click again.
 Each parameter information includes:
 
 * Parameter name and the part of request this parameter belongs to
+* Information about parameter changes (new, removed)
 * Presence and type of sensitive data (PII) transmitted by this parameter, including:
 
     * Technical data like IP and MAC addresses
@@ -48,8 +49,8 @@ Each parameter information includes:
     * Medical data like medical license number
     * Personally identifiable information (PII) like full name, passport number or SSN
 
-* Date and time when parameter information was last updated
 * [Type/format](../about-wallarm/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
+* Date and time when parameter information was last updated
 
 ## Tracking changes in API structure
 
