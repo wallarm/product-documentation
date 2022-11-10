@@ -32,17 +32,13 @@ This widget displays data about your API collected by the [API Discovery](../abo
 * Number of discovered endpoints, including external and internal
 * Changes of you API in the last 30 days by type (new, changed, removed APIs)
 * Sensitive data in API
-* API usage: number of endpoints by API host or by application
+* API usage: number of endpoints by the API host or the application
+
+Using this information, you can reveal possible anomalies in the number of sensitive data your API transfers and analyze the structure of your API regarding how many endpoints relate to the different hosts and applications. The widget also draws attention to the changes in API that you always need to check to exclude security risks.
 
 ![!API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
 
-Click elements of the widget to go to the **API Discovery** section and view filtered data, like:
-
-* Only internal endpoints
-* Only new
-* Only having specific type of sensitive data
-* Only related to the specific API host
-* etc.
+Click elements of the widget to go to the **API Discovery** section and view filtered data.
 
 ## Statistics for the current month and the speed of request encountering
 
@@ -70,7 +66,7 @@ This widget displays the [top types of detected attacks](../attacks-vulns-list.m
 
 Using this data, you can analyze the vulnerability of your services to different attack types and take appropriate measures to improve service security.
 
-![!Attack types](../images/user-guides/dashboard/api-discovery-widget.png)
+![!Attack types](../images/user-guides/dashboard/attack-types.png)
 
 ## API protocols
 
