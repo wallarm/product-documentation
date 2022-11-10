@@ -51,6 +51,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Triggers**        | View and manage                      | -                        | -                            | - |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |
 | **Rules**           | View and manage                      | View and manage          | View                         | - |
+| **BOLA protection**           | View and manage                      | View          | - | - |
 | **Filtration mode**        | View and manage                      | View                     | View                         | - |
 | **Applications**    | View and manage                      | View                     | View                         | - |
 | **Configuration of API Discovery**   | View and manage                      | -          | -                            | - |

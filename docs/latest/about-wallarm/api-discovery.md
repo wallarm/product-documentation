@@ -187,9 +187,15 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
 
-Potential target of the BOLA attacks are endpoints with variability. To protect such endpoints, send request to the [Wallarm support](mailto:support@wallarm.com).
+Potential target of the BOLA attacks are endpoints with variability. Wallarm can automatically discover and protect such endpoints among the ones explored by the **API Discovery** module.
 
-As new endpoints with variable elements are discovered, Wallarm will generate for them a [trigger for BOLA attack detection](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery).
+To enable automatic BOLA protection, proceed to [Wallarm Console → **BOLA protection**](../user-guides/bola-protection.md) and turn the switch to the enabled state:
+
+![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+
+Each protected API endpoint will be highlighted with the corredponding icon in the API structure, e.g.:
+
+![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 ## Security of data uploaded to the Wallarm Cloud
 

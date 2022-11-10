@@ -7,7 +7,7 @@ By default, Wallarm automatically discovers only vulnerabilities of the BOLA typ
 You have the following options to detect and block the BOLA attacks with Wallarm:
 
 * [Manual creation of the **BOLA** trigger](#manual-creation-of-bola-trigger)
-* [Using the API Discovery module with the automatic BOLA protection - enables under a request to the technical support](#automatic-bola-protection-for-endpoints-discovered-by-api-discovery)
+* [Using the API Discovery module with the automatic BOLA protection - enabled via the Wallarm Console UI](#automatic-bola-protection-for-endpoints-discovered-by-api-discovery)
 
 !!! warning "BOLA protection restrictions"
     Only Wallarm node 4.2 and above supports the BOLA attack detection.
@@ -75,35 +75,21 @@ You can configure several triggers with different filters for BOLA protection.
 
 Automatic BOLA protection is available if you use the **[API Discovery](../../about-wallarm/api-discovery.md)** module.
 
-To enable auto protection, contact the [Wallarm technical support](mailto:support@wallarm.com).
+To enable auto protection, proceed to Wallarm Console → **BOLA protection** and turn the switch to the enabled state:
 
-### Logic of automatic BOLA protection
+![!BOLA trigger](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-The default logic of automatic BOLA protection is the following:
+Once protection is enabled, Wallarm behavior is the following:
 
-* Protects 50 API endpoints that are most likely to be the target of the BOLA attacks, e.g. those with [variability in endpoints](../../about-wallarm/api-discovery.md#variability-in-endpoints): `domain.com/path1/path2/path3/{variative_path4}`.
-* Does not consider the first 50 requests originating from the same IP in 30 seconds to be malicious.
-* Does not block BOLA attacks, only registers them in the event list when the threshold of requests from the same IP is reached. The requests will keep going to your applications.
+* Protects 50 API endpoints that are most likely to be the target of the BOLA attacks, e.g. those with [variability in path parameters](../../about-wallarm/api-discovery.md#variability-in-endpoints): `domain.com/path1/path2/path3/{variative_path4}`.
 
-Each protected endpoint is assigned with the trigger. Triggers are displayed in Wallarm Console → **Triggers** → **Automatically generated**.
+    Only API endpoints explored by the **API Discovery** module are monitored for attacks. The protected endpoints are [highlighted with the corresponding icon](../../about-wallarm/api-discovery.md#automatic-bola-protection).
+* Does not consider the first 50 requests originating from the same IP in 30 seconds malicious.
+* Does not block BOLA attacks, it only registers them in the event list when the threshold of requests from the same IP is reached. The requests will keep going to your applications.
+* Generates individual triggers to protect any API endpoints that are potential targets of BOLA attacks. The generated triggers are [displayed in **Triggers** → **Automatically generated**](../../user-guides/triggers/triggers.md#automatically-generated-triggers).
+* Reacts to the [changes in API Structure](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) by protecting new vulnerable endpoints and deleting triggers for removed endpoints.
 
-You can request default Wallarm behavior including [denylisting](../../user-guides/ip-lists/denylist.md) or [graylisting](../../user-guides/ip-lists/graylist.md) BOLA attack sources by sending a request to the [Wallarm support](mailto:support@wallarm.com).
-
-### Reaction to changes in API Structure
-
-BOLA automatic protection reacts to the [changes in API Structure](../../user-guides/api-discovery.md#tracking-changes-in-api-structure):
-
-* For the new endpoints, if they meet the [conditions](#logic-of-automatic-bola-protection), the new BOLA trigger will be created.
-* If the endpoint with the BOLA protection trigger is removed, the corresponding BOLA trigger is deleted.
-
-### Disabling API Discovery automatic BOLA protection
-
-Automatic BOLA protection is disabled in the following cases:
-
-* Your API Discovery [subscription](../../about-wallarm/subscription-plans.md) has expired.
-* In response to your request, the Wallarm support team has disabled the automatic BOLA protection for API Discovery.
-
-All the automatically created BOLA protection triggers will be deleted. The automatic API Discovery BOLA protection will stop.
+The **BOLA protection** section UI enables you to fine-tune the default Wallarm behavior (inluding BOLA attack blocking) by [editing the BOLA autodetection template](../../user-guides/bola-protection.md).
 
 ## Testing the configuration of BOLA protection
 
