@@ -10,7 +10,7 @@ If you already use a non-NGINX Ingress controller, it might be challenging to re
 
 ## Requirements
 
-* Kubernetes platform version 1.20-1.24
+* Kubernetes platform version 1.23-1.25
 * [Helm](https://helm.sh/) package manager
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
@@ -83,7 +83,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.2.5 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n wallarm-ingress -f <PATH_TO_VALUES>
+    helm install --version 4.2.6 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n wallarm-ingress -f <PATH_TO_VALUES>
     ```
 
     * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
