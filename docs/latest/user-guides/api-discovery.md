@@ -72,7 +72,7 @@ Selecting values from this filter will show only the endpoints correspondingly c
 
 ## API structure and related events
 
-To see attacks and incidents for the last 7 days related to some endpoint, in the endpoint menu select **Search for attacks on the endpoint**:
+To see attacks and incidents for the last 7 days related to some endpoint, click number in the **Hits** column:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
