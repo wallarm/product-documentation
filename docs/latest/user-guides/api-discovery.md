@@ -35,8 +35,6 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
-To sort, click the name of the column. To change the sorting order, click again.
-
 Each parameter information includes:
 
 * Parameter name and the part of request this parameter belongs to
@@ -70,16 +68,16 @@ Using the **Changes since** filter only highlights the changed endpoints among t
 
 Selecting values from this filter will show only the endpoints correspondingly changed within the specified period.
 
-## API structure and related events
+## Monitoring attacks on API endpoints
 
-To see attacks and incidents for the last 7 days related to some endpoint, click number in the **Hits** column:
+To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
-attacks incidents last 7 days d:<YOUR_API_HOST> u:<YOUR_ENDPOINT>
+attacks <START_DATE_TIME - CURRENT_DATE_TIME> u:<YOUR_ENDPOINT>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.

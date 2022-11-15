@@ -127,7 +127,7 @@ These options are:
 * Ability to list internal and external APIs separately.
 * Viewing endpoint parameters.
 * Tracking changes in API structure.
-* Quick navigation to attacks and incidents related to some endpoint.
+* Quick navigation to attacks related to some endpoint.
 * Custom rule creation for the specific endpoint.
 * Downloading OpenAPI specification (OAS) for your API structure as `swagger.json` file.
 
