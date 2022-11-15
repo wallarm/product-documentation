@@ -193,9 +193,11 @@ To enable automatic BOLA protection, proceed to [Wallarm Console → **BOLA prot
 
 ![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-Each protected API endpoint will be highlighted with the corredponding icon in the API structure, e.g.:
+Each protected API endpoint will be highlighted with the corresponding icon in the API structure, e.g.:
 
 ![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+
+You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
 
 ## Security of data uploaded to the Wallarm Cloud
 
