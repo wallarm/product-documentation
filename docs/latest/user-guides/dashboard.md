@@ -30,8 +30,8 @@ Any widget allows to open the [event list](events/check-attack.md) the statistic
 This widget displays data about your API collected by the [API Discovery](../about-wallarm/api-discovery.md) module:
 
 * Number of discovered endpoints, including external and internal
-* Changes of you API in the last 30 days by type (new, changed, removed APIs)
-* Sensitive data in API
+* Changes of your API in the last 30 days by type (new, changed, removed APIs)
+* Sensitive data in API by groups (personal, finance, etc.) and by types
 * API usage: number of endpoints by the API host or the application
 
 Using this information, you can reveal possible anomalies in the number of sensitive data your API transfers and analyze the structure of your API regarding how many endpoints relate to the different hosts and applications. The widget also draws attention to the changes in API that you always need to check to exclude security risks.
