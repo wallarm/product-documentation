@@ -139,7 +139,7 @@ Copy the configuration files for the system setup:
 
 ### 4. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.md"
 
 ### 5. Update Wallarm node configuration
 

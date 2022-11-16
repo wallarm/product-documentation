@@ -206,7 +206,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 5. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.md"
 
 ### 6. Update Wallarm node configuration
 
