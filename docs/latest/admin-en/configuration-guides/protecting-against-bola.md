@@ -79,19 +79,23 @@ To enable auto protection, proceed to Wallarm Console → **BOLA protection** an
 
 ![!BOLA trigger](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-Once protection is enabled, the default Wallarm behavior is the following:
+Once protection is enabled, Wallarm:
 
-* Defines 50 API endpoints that are most likely to be the target of the BOLA attacks, e.g. those with [variability in path parameters](../../about-wallarm/api-discovery.md#variability-in-endpoints): `domain.com/path1/path2/path3/{variative_path4}`.
+1. Identifies API endpoints that are most likely to be the target of the BOLA attacks, e.g. those with [variability in path parameters](../../about-wallarm/api-discovery.md#variability-in-endpoints): `domain.com/path1/path2/path3/{variative_path4}`.
 
     Only API endpoints explored by the **API Discovery** module are protected against the BOLA attacks in the automated way. Protected endpoints are [highlighted with the corresponding icon](../../about-wallarm/api-discovery.md#automatic-bola-protection).
-    
-    !!! info "Identification of vulnerable endpoints takes some time"
-        Wallarm applies the BOLA protection settings only after some time it takes for vulnerable API endpoint identification. During this time, Wallarm deeply observes a discovered API structure and incoming traffic trends.
-* Does not consider the first 50 requests sent from the same IP to vulnerable endpoints in 30 seconds to be BOLA attacks.
-* Does not consider the first 50 requests originating from the same IP in 30 seconds to be BOLA attacks.
-* Does not block BOLA attacks, it only registers them in the event list when the threshold of requests from the same IP is reached. The requests will keep going to your applications.
-* Generates individual triggers to protect any API endpoints that are potential targets of BOLA attacks. The generated triggers are [displayed in **Triggers** → **Automatically generated**](../../user-guides/triggers/triggers.md#automatically-generated-triggers).
-* Reacts to the [changes in API Structure](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) by protecting new vulnerable endpoints and deleting triggers for removed endpoints.
+1. Generates individual triggers to protect any vulnerable API endpoints based on the settings specified in the **BOLA protection** section. The triggers are [displayed in **Triggers** → **Automatically generated**](../../user-guides/triggers/triggers.md#automatically-generated-triggers).
+
+    !!! info "Individual trigger generation takes some time"
+        Wallarm applies the BOLA protection settings by generating individual triggers only after some time it takes for vulnerable API endpoint identification. During this time, Wallarm deeply observes a discovered API structure and incoming traffic trends.
+
+    Once a vulnerable endpoint is assigned with the BOLA trigger, it is protected against the BOLA attacks.
+1. Reacts to the [changes in API structure](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) by protecting new vulnerable endpoints and deleting triggers for removed endpoints.
+
+The generated triggers are based on the BOLA autoptotection template, by default they protect endpoints as follows:
+
+* Requests sent to a vulnerable endpoint after the threshold of 50 requests from the same IP per 30 sec are considered BOLA attacks.
+* Only register BOLA attacks in the event list when the threshold of requests from the same IP is reached. Do not block BOLA attacks. The requests will keep going to your applications.
 
 The **BOLA protection** section UI enables you to fine-tune the default Wallarm behavior (inluding BOLA attack blocking) by [editing the BOLA autodetection template](../../user-guides/bola-protection.md).
 
