@@ -60,7 +60,7 @@ You can configure [API Abuse profiles](../user-guides/api-abuse-prevention.md#cr
 When using this option, the system:
 
 1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Put its IP into denylist for 1 hour.
+1. Puts its IP into denylist for 1 hour.
 1. Blocks all requests from this IP within this time.
 
 [Denylist](../user-guides/ip-lists/denylist.md) is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [allowlist](../user-guides/ip-lists/allowlist.md)).
@@ -70,7 +70,7 @@ When using this option, the system:
 When using this option, the system:
 
 1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Put its IP into graylist for 1 hour.
+1. Puts its IP into graylist for 1 hour.
 1. Does one of the following:
 
     1. If the filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), it does nothing. Bot IPs are just listed in the graylist.
