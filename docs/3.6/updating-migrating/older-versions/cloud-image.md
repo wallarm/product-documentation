@@ -1,9 +1,9 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../admin-en/configuration-guides/allocate-memory-for-waf-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
@@ -98,7 +98,7 @@ sudo systemctl restart nginx
 
 ## Step 9: Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats-for-deprecated.md"
 
 ## Step 10: Create the virtual machine image based on the filtering node 3.6 in AWS or GCP
 

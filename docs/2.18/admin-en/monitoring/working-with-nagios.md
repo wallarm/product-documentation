@@ -30,7 +30,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
  
 5.  Perform a test attack on an application protected by the filter node. To do this, you can send a malicious request to the application either with the curl utility or a browser.
 
-    --8<-- "../include/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request-for-deprecated.md"
     
 6.  Ensure that the “Performance Data” value in Nagios has increased and matches the value displayed by `wallarm-status` on the filter node:
 

@@ -172,6 +172,6 @@ To deploy the containerized Wallarm filtering node configured through environmen
     curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
 
 Details on errors that occurred during the container deployment are displayed in the **View logs** instance menu. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
