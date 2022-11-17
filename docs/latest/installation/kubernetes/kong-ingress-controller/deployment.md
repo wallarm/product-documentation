@@ -221,7 +221,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block attacks but will register them.
+    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block attacks but it will register them.
 
     To check that attacks have been registered, proceed to Wallarm Console → **Events**:
 

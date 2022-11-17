@@ -83,8 +83,8 @@ When using this option, the system:
 1. Puts its IP into graylist for 1 hour.
 1. Does one of the following:
 
-    1. If filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), does nothing. Bot IPs are just listed in the graylist.
-    1. If filtering node is in the `safe blocking` mode, treats bot's IP as all the other IPs in the graylist.
+    1. If the filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), it does nothing. Bot IPs are just listed in the graylist.
+    1. If the filtering node is in the `safe blocking` mode, it treats bot's IP as all the other IPs in the graylist.
 
 [Graylist](../user-guides/ip-lists/graylist.md) is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
 
