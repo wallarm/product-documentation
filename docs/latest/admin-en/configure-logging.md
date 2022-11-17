@@ -20,6 +20,7 @@ A filter node stores the following log files in the `/var/log/wallarm` directory
 *   `registernode_loop.log` (only in the Docker containers): the log of activity of the wrapper script running the `register-node` script while it is succeeded.
 
     In Wallarm node image 4.0 and lower, the file is named `addnode_loop.log`.
+*   `weak-jwt-detect.log`: the log of the [JWT vulnerability](../attacks-vulns-list.md#weak-jwt) detection.
 
 ##  Configuring Extended Logging for the NGINX‑Based Filter Node
 

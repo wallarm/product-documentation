@@ -23,12 +23,3 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
     By default, automatic blocking of behavioral attack sources is disabled. [Instructions on configuring brute force protection →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
-
-!!! warning "Re-adding deleted IP address"
-    After manually deleting the IP address added to the list by the [trigger](../triggers/triggers.md), the trigger will run again only after half of the previous time the IP address was in the list.
-    
-    For example:
-
-    1. IP address was automatically added to the graylist for 1 hour because 4 different attack vectors were received from this IP address in 3 hours (as it is configured in the [trigger](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)).
-    2. User deleted this IP address from the graylist via Wallarm Console.
-    3. If 4 different attack vectors are sent from this IP address within 30 minutes, then this IP address will not be added to the graylist.

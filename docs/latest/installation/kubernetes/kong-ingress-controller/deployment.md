@@ -2,10 +2,7 @@
 
 To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
 
-!!! info "Preview release"
-    The current implementation of the Kong Ingress Controller with integrated Wallarm services is the preview stage of the solution.
-
-The solution is deployed from the [Wallarm Helm chart](https://github.com/wallarm/kong-charts-preview).
+The solution is deployed from the [Wallarm Helm chart](https://github.com/wallarm/kong-charts).
 
 The **key features** of the Kong Ingress Controller with integrated Wallarm services:
 
@@ -14,8 +11,11 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 * [API structure discovery](../../../about-wallarm/api-discovery.md)
 * The Wallarm API Security services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
-* Support for Kong API Gateway 2.7.x (for both the Open-Source and Enterprise editions)
-* Fine-tuning the Wallarm API Security layer via the Wallarm Console UI
+* Support for Kong API Gateway 3.0.x (for both the Open-Source and Enterprise editions)
+* Fine-tuning the Wallarm API Security layer via the Wallarm Console UI and on a per-Ingress basis via annotations
+
+    !!! warning "Annotation support"
+        Ingress annotation is supported only by the solution based on the Open-Source Kong Ingress controller. [The list of supported annotations is limited](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 * Provides a dedicated entity for the postanalytics module that is the local data analytics backend for the solution consuming most of the CPU
 
 ## Use cases
@@ -40,15 +40,17 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 * **Ingress controller** (`wallarm-ingress-kong`) that injects the Kong API Gateway and Wallarm resources into the K8s cluster configuring it based on the Helm chart values and connecting the node components to the Wallarm Cloud.
 * **Postanalytics module** (`wallarm-ingress-kong-wallarm-tarantool`) is the local data analytics backend for the solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
-## Limitations
+## Limitations of the Enterprise Kong Ingress controller
 
-The described solution allows the Wallarm API Security layer fine-tuning only via the Wallarm Console UI.
+The described solution for the Enterprise Kong Ingress controller allows the Wallarm API Security layer fine‑tuning only via the Wallarm Console UI.
 
-However, some Wallarm API Security features require configuration files to be changed that is unsupported in the current solution implementation. It makes the following Wallarm features unavailable:
+However, some Wallarm API Security features require configuration files to be changed that is unsupported in the current Enterprise solution implementation. It makes the following Wallarm features unavailable:
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)
-* [Custom blocking page and code setup](../../../admin-en/configuration-guides/configure-block-page-and-code.md)
+* [Custom blocking page and code setup](../../../admin-en/configuration-guides/configure-block-page-and-code.md) - not supported by both the Enterprise and Open-Source Kong Ingress controllers with Wallarm services
+
+As for the Open-Source Kong Ingress controller with Wallarm services, it supports the multitenancy and application configuration on a per-Ingress basis via [annotations](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
 
 ## Requirements
 
@@ -67,6 +69,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
 1. Create the Wallarm node.
 1. Deploy the Wallarm Helm chart with the Kong API Gateway and Wallarm services.
+1. Enable traffic analysis for your Ingress.
 1. Test Kong Ingress Controller with integrated Wallarm services.
 
 ### Step 1: Create the Wallarm node
@@ -96,15 +99,13 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
           apiHost: us1.api.wallarm.com
 
         image:
-          repository: wallarm/kong-oss-preview
-          tag: "2.7-ubuntu-4.2"
-
+          repository: wallarm/kong
+        
         ingressController:
           enabled: true
           installCRDs: false
           image:
-            repository: kong/kubernetes-ingress-controller
-            tag: "2.1.1"
+            repository: wallarm/kong-kubernetes-ingress-controller
         ```
     === "EU Cloud"
         ```yaml
@@ -112,15 +113,13 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
           token: "<NODE_TOKEN>"
 
         image:
-          repository: wallarm/kong-oss-preview
-          tag: "2.7-ubuntu-4.2"
+          repository: wallarm/kong
 
         ingressController:
           enabled: true
           installCRDs: false
           image:
-            repository: kong/kubernetes-ingress-controller
-            tag: "2.1.1"
+            repository: wallarm/kong-kubernetes-ingress-controller
         ```  
         
     Example of the file with the minimum configuration to run **Enterprise** Kong Ingress controller with integrated Wallarm services:
@@ -133,7 +132,6 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         image:
           repository: wallarm/kong-ee-preview
-          tag: "2.7-ubuntu-4.2"
           license_secret: "<KONG-ENTERPRISE-LICENSE>"
           vitals:
             enabled: false
@@ -150,7 +148,6 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
           installCRDs: false
           image:
             repository: kong/kubernetes-ingress-controller
-            tag: "2.1.1"
         ```
     === "EU Cloud"
         ```yaml
@@ -159,7 +156,6 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         image:
           repository: wallarm/kong-ee-preview
-          tag: "2.7-ubuntu-4.2"
           license_secret: "<KONG-ENTERPRISE-LICENSE>"
           vitals:
             enabled: false
@@ -170,13 +166,12 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 
         enterprise:
           enabled: true
-
+        
         ingressController:
           enabled: true
           installCRDs: false
           image:
             repository: kong/kubernetes-ingress-controller
-            tag: "2.1.1"
         ```  
     
     * `<NODE_TOKEN>` is the Wallarm node token you copied from the Wallarm Console UI
@@ -184,14 +179,26 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.2.3 <RELEASE_NAME> wallarm/kong-preview -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.2.4 <RELEASE_NAME> wallarm/kong -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Kong Ingress Controller release
     * `<KUBERNETES_NAMESPACE>` is the new namespace to deploy the Kong Ingress Controller
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
-### Step 3: Test Kong Ingress Controller with integrated Wallarm services
+### Step 3: Enable traffic analysis for your Ingress
+
+If the deployed solution is based on the Open-Source Kong Ingress controller, enable traffic analysis for your Ingress by setting the Wallarm mode to `monitoring`:
+
+```bash
+kubectl annotate ingress <KONG_INGRESS_NAME> wallarm.com/wallarm-mode=monitoring
+```
+
+Where `<KONG_INGRESS_NAME>` is the name of the K8s Ingress resource routing API calls to the microservices you want to protect.
+
+As for the Enterprise Kong Ingress controller, traffic analysis in the monitoring mode is enabled globally for all Ingress resources by default.
+
+### Step 4: Test Kong Ingress Controller with integrated Wallarm services
 
 To test that Kong Ingress Controller with integrated Wallarm services operates correctly:
 
@@ -204,9 +211,9 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
     As for the `wallarm-*` pods, each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
-    NAME                                              READY   STATUS    RESTARTS   AGE
-    wallarm-ingress-kong-preview-54cf88b989-gp2vg      1/1     Running   0          91m
-    wallarm-ingress-kong-preview-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
+    NAME                                                      READY   STATUS    RESTARTS   AGE
+    wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
+    wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
 1. Send the test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Kong Ingress Controller Service:
 
@@ -214,7 +221,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
     curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block attacks but it will register them.
+    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block attacks but it will register them.
 
     To check that attacks have been registered, proceed to Wallarm Console → **Events**:
 
@@ -222,7 +229,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
 ## Customization
 
-Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts-preview/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
+Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
 You can customize both the Kong API Gateway and Wallarm API Security behavior even more and get the most out of API security for your company.
 

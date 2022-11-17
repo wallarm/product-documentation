@@ -1,8 +1,8 @@
 # Email Report
 
-You can set additional email addresses that will be used to deliver scheduled reports and instant notifications. Sending messages to your primary email is configured by default.
+You can set additional email addresses that will be used to deliver scheduled [PDF reports](../../../user-guides/search-and-filters/custom-report.md) and instant notifications. Sending messages to your primary email is configured by default.
 
-* Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
+* Scheduled PDF reports can be sent on a daily, weekly, or monthly basis. PDF reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
 * Notifications include brief details of triggered events:
     --8<-- "../include/integrations/events-for-integrations.md"
 

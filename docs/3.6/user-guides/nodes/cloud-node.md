@@ -7,7 +7,7 @@ The Wallarm node is used in cloud‑based deployments on Amazon AWS, Google Clou
 You can create a Wallarm node while setting up integration with the platform or using the following instructions:
 
 1. Open Wallarm UI → **Nodes**.
-2. Click **Create node**.
+2. Click **Create node** and select **Wallarm node**.
 3. Enter node name and click **Create**.
 
     ![!Creating Wallarm node](../../images/user-guides/nodes/create-cloud-node.png)

@@ -99,3 +99,14 @@ To deploy Wallarm for production using the AWS Terraform module:
 We have prepared examples of different ways to use the Wallarm module, so you could try it before deploying it to production.
 
 [See examples of the Wallarm AWS Terraform Module deployment](examples.md)
+
+## Further information about Wallarm and Terraform
+
+Terraform supports a number of integrations (**providers**) and ready-to-use configurations (**modules**) available to users via the public [registry](https://www.terraform.io/registry#navigating-the-registry), populated by a number of vendors.
+
+To this registry, Wallarm published:
+
+* The [Wallarm module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to AWS from the Terraform-compatible environment. Described in the current article.
+* The [Wallarm provider](../../../../admin-en/managing/terraform-provider.md) for managing Wallarm via Terraform.
+
+These two are an independent elements used for different purposes, do not require each other.

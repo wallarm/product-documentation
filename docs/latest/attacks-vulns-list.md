@@ -35,6 +35,8 @@
 [cwe-639]:  https://cwe.mitre.org/data/definitions/639.html
 [cwe-918]:  https://cwe.mitre.org/data/definitions/918.html
 [cwe-943]:  https://cwe.mitre.org/data/definitions/943.html
+[cwe-1270]: https://cwe.mitre.org/data/definitions/1270.html
+[cwe-1294]: https://cwe.mitre.org/data/definitions/1294.html
 
 [link-cwe]: https://cwe.mitre.org/
 
@@ -566,6 +568,36 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+
+### Weak JWT
+
+**Vulnerability**
+
+**CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
+
+**Wallarm code:** `weak_jwt`
+
+**Description:**
+
+[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely.
+
+JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
+
+**Wallarm behavior:**
+
+Wallarm detects weak JWTs only if the filtering node has version 4.4 or above and there is the [**Weak JWT** trigger](user-guides/triggers/trigger-examples.md#detect-weak-jwts) enabled.
+
+Wallarm considers JWTs to be weak if they are:
+
+* Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).
+* Signed using compromised secret keys.
+
+Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities/check-vuln.md).
+
+**Remediation:**
+
+* Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
+* [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
 
 ##  The list of special attacks and vulnerabilities
 

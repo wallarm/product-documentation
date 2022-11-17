@@ -54,14 +54,32 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
-1. In the Wallarm Console → **Nodes** section, click **Create node**.
+1. In the Wallarm Console → **Nodes** section, click **Create node** and select **Wallarm node**.
 1. Select the **Multi-tenant node** option.
 
     ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Set node name and click **Create**.
 1. Copy the generated token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../admin-en/supported-platforms.md).
-1. Open the tenant's NGINX configuration file and specify the unique identifier of a tenant using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
+1. Split traffic between tenants using their unique identifiers.
+
+    === "NGINX and NGINX Plus"
+        Open the tenant's NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
+    === "NGINX Ingress Controller"
+        Use Ingress [annotation](../../admin-en/configure-kubernetes-en.md#ingress-annotations) `nginx.ingress.kubernetes.io/wallarm-partner-client-uuid` to set tenant UUID for each Ingress resource. One resource is related to one tenant:
+
+        ```
+        kubectl annotate --overwrite ingress YOUR_INGRESS_NAME nginx.ingress.kubernetes.io/wallarm-partner-client-uuid=VALUE
+        ```
+    === "Docker NGINX‑based image"
+        1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive. See example below.
+        1. Run the docker container [mounting the configuration file](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file).
+    === "Docker Envoy‑based image"
+        1. Open the `envoy.yaml` configuration file and split traffic between tenants using the [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#partner_client_id_param) parameter.
+        1. Run the docker container [mounting prepared `envoy.yaml`](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml).
+    === "Kubernetes Sidecar proxy"
+        1. Open the NGINX configuration file and split traffic between tenants using the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directive.
+        1. Mount an NGINX configuration file to the [Wallarm sidecar container](../../installation/kubernetes/sidecar-proxy/customization.md#using-custom-nginx-configuration).
 
     Example of the NGINX configuration file for the filtering node processing the traffic of two clients:
 

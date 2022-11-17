@@ -235,6 +235,7 @@ nav:
           - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
           - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
         - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
+      - Managing Wallarm using Terraform: admin-en/managing/terraform-provider.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboard: user-guides/dashboard.md

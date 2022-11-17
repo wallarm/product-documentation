@@ -48,6 +48,16 @@ To activate API Abuse Prevention:
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
+## Accuracy
+
+You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Accuracy** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+
+There are three available levels:
+
+* **Low** - uses more flexible rules when considering requests originating from malicious bots. No legitimate requests will be dropped, but there is a higher risk of malicious bots' requests reaching  APIs.
+* **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
+* **High** detects 100% of bots' requests, including possible false positives. It could potentially prevent legitimate requests from reaching APIs.
+
 ## Denylisting vs graylisting
 
 You can configure [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile) to add IPs of the detected malicious bots **for 1 hour**:

@@ -111,7 +111,7 @@ To deploy the Wallarm Sidecar proxy solution:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 1.1.3 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
+    helm install --version 1.1.4 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Wallarm Sidecar proxy release

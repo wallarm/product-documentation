@@ -29,6 +29,7 @@ To install the filtering node as the NGINX Stable module in the Azure instance:
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
+    * Ubuntu 22.04 Jammy
     * AlmaLinux
     * Rocky Linux
     * Oracle Linux 8.x
@@ -47,6 +48,7 @@ To install the filtering node as the NGINX Plus module in the Azure instance:
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
+    * Ubuntu 22.04 Jammy
     * CentOS 7.x
     * AlmaLinux
     * Rocky Linux

@@ -51,6 +51,6 @@ The CDN node highlighted in red does not proxy requests and as a result, does no
 
 ### Why the CDN node could disappear from the node list in Wallarm Console?
 
-Wallarm deletes CDN nodes with CNAME records left unchanged for 3 or more days since the moment of the node creation.
+Wallarm deletes CDN nodes with CNAME records left unchanged for 10 or more days since the moment of the node creation.
 
 If you find the CDN node disappeared, create a new node.

@@ -37,6 +37,10 @@ The sizing of Tarantool memory is controlled using the `SLAB_ALLOC_ARENA` attrib
     ```bash
     sudo vim /etc/default/wallarm-tarantool
     ```
+=== "Ubuntu 22.04 LTS (jammy)"
+    ```bash
+    sudo vim /etc/default/wallarm-tarantool
+    ```
 === "CentOS 7.x"
     ```bash
     sudo vim /etc/sysconfig/wallarm-tarantool
@@ -71,6 +75,10 @@ SLAB_ALLOC_ARENA=10.4
     sudo service wallarm-tarantool restart
     ```
 === "Ubuntu 20.04 LTS (focal)"
+    ```bash
+    sudo service wallarm-tarantool restart
+    ```
+=== "Ubuntu 22.04 LTS (jammy)"
     ```bash
     sudo service wallarm-tarantool restart
     ```

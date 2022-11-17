@@ -56,7 +56,7 @@ server {
         ...
         status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
         ```
-    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`.
+    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf`.
     1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses).
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
@@ -85,7 +85,10 @@ As a result, you will get a response of the type:
 "stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
 "fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
 "fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
-"split":{"clients":[]} }
+"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,
+"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
+[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
+"overlimits_time": 0,"time_detect": 0}]}]} }
 ```
 
 The following response parameters are available:

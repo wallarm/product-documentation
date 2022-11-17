@@ -1,3 +1,6 @@
+[access-wallarm-api-docs]: #your-own-client
+[application-docs]:        ../user-guides/settings/applications.md
+
 # Wallarm API request examples
 
 The following are some examples of Wallarm API use. You can also generate code examples via the API Reference UI for the [US cloud](https://apiconsole.us1.wallarm.com/) or [EU cloud](https://apiconsole.eu1.wallarm.com/). Experienced users can also use the browser’s Developer console (“Network” tab) to quickly learn which API endpoints and requests are used by the UI of your Wallarm account to fetch data from the public API. To find information about how to open the Developer console, you can use the official browser documentation ([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/)).
@@ -26,11 +29,13 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 --8<-- "../include/api-request-examples/get-all-configured-rules.md"
 
-## Get defined conditions for request blocking
+## Get only conditions of all rules
 
 --8<-- "../include/api-request-examples/get-conditions.md"
 
 ## Get rules attached to a specific condition
+
+To point to a specific condition, use its ID - you can get it when requesting conditions of all rules (see above).
 
 --8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
 
@@ -40,16 +45,68 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 ## Create the virtual patch for a specific application instance ID to block all requests sent to `/my/api/*`
 
-An application ID is specified in the `action.value` parameter.
+An application should be [configured](../user-guides/settings/applications.md) before sending this request. Specify an ID of an existing application in `action.point[instance].value`.
 
 --8<-- "../include/api-request-examples/create-rule-for-app-id.md"
 
-## Create a rule to block all requests with specific values of HOST and X-FORWARDED-FOR request headers
+## Create a rule to consider the requests with specific value of the `X-FORWARDED-FOR` header as attacks
 
-For domain `MY.DOMAIN.COM` the rule will block all requests besides one having IP address `44.33.22.11` in the value of `X-FORWARDED-FOR` HTTP request header.
+The following request will create the [custom attack indicator based on the regexp](../user-guides/rules/regex-rule.md) `^(~(44[.]33[.]22[.]11))$`.
+
+If requests to domain `MY.DOMAIN.COM` have the `X-FORWARDED-FOR: 44.33.22.11` HTTP header, the Wallarm node will consider them to be scanner attacks and block attacks if the corresponding [filtration mode](../admin-en/configure-wallarm-mode.md) has been set.
 
 --8<-- "../include/api-request-examples/create-rule-scanner.md"
 
+## Create the rule setting filtration mode to monitoring for the specific application
+
+The following request will create the [rule setting the node to filter traffic](../user-guides/rules/wallarm-mode-rule.md) going to the [application](../user-guides/settings/applications.md) with ID `3` in the monitoring mode.
+
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
+
 ## Delete rule by its ID
 
+You can copy the rule ID to be deleted when [getting all configured rules](#get-all-configured-rules). Also, a rule ID has been returned in response to the rule creation request, in the `id` response parameter.
+
 --8<-- "../include/api-request-examples/delete-rule-by-id.md"
+
+## API calls to get, populate and delete IP list objects
+
+Below are some examples of the API calls to get, populate and delete [IP list](../user-guides/ip-lists/overview.md) objects.
+
+### API request parameters
+
+Parameters to be passed in the API requests to read and change IP lists:
+
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
+
+### Add to the list the entries from the `.csv` file
+
+To add to the list the IPs or subnets from the `.csv` file, use the following bash script:
+
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
+
+### Add to the list a single IP or subnet
+
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
+
+### Add to the list multiple countries
+
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
+
+### Add to the list multiple proxy services
+
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
+
+### Delete an object from the IP list
+
+Objects are deleted from IP lists by their IDs.
+
+To get an object ID, request the IP list contents and copy `objects.id` of the required object from a response:
+
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
+
+Having the object ID, send the following request to delete it from the list:
+
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
+
+You can delete multiple objects at once passing their IDs as an array in the deletion request.

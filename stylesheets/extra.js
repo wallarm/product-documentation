@@ -26,14 +26,6 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
   injectScript('https://js.hs-scripts.com/3989912.js');
 }
 
-// Add LeadLander
-var sf14gv = 27823;
-  (function() {
-    var sf14g = document.createElement('script');
-    sf14g.src = 'https://tracking.leadlander.com/lt.min.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sf14g, s);
-  })();
-
 // Show version selector only for Product guides
 var rootVersion = '4.2';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');

@@ -123,7 +123,7 @@ Please reach out to your Wallarm account manager or the technical support team t
 
 ## Use the Wallarm Terraform provider for Wallarm Cloud configuration management
 
-[Wallarm's official Terraform provider](https://registry.terraform.io/providers/wallarm/wallarm/latest) allows you to manage your Wallarm Cloud configuration (users, applications, rules, integrations, etc) using the modern Infrastructure as Code (IaC) approach.
+[Wallarm's official Terraform provider](../admin-en/managing/terraform-provider.md) allows you to manage your Wallarm Cloud configuration (users, applications, rules, integrations, etc) using the modern Infrastructure as Code (IaC) approach.
 
 ## Have a plan to promptly update to newly released Wallarm node versions
 

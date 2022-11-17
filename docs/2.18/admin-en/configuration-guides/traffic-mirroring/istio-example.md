@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/traffic-mirroring/istio-example.md"
+--8<-- "3.6/admin-en/configuration-guides/traffic-mirroring/istio-example.md"
