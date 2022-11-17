@@ -44,7 +44,7 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 
 The described solution allows the Wallarm API Security layer fine-tuning only via the Wallarm Console UI.
 
-However, some Wallarm API Security features require configuration files to be changed that are unsupported in the current solution implementation. It makes the following Wallarm features unavailable:
+However, some Wallarm API Security features require configuration files to be changed that is unsupported in the current solution implementation. It makes the following Wallarm features unavailable:
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)
