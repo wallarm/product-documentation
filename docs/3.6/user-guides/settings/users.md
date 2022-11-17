@@ -42,7 +42,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Filtering nodes**       | View and manage                      | View                     | View        | -              | Create using the `addnode` and `addcloudnode` scripts |
 | **Dashboard**       | View                                 | View                     | View                     | -    | -                                 |
 | **Events**          | View and manage                      | View and manage          | View                       | -  | -                                 |
-| **Vulnerabilities** | View and manage                      | View and manage          | View and manage             | - | -                                 |
+| **Vulnerabilities** | View and manage                      | View and manage          | View             | - | -                                 |
 | **API structure by API Discovery**   | View and manage                      | View and manage          | -                 | View and download           | - |
 | **Scanner**         | View and manage                      | View and manage          | View                    | -     | -                                 |
 | **Triggers**        | View and manage                      | -                        | -                      | -      | -                                 |
