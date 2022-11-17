@@ -2,7 +2,7 @@
 
 One of the Wallarm node deployment approaches is an asynchronous-based deployment for mirrored HTTP traffic filtration. This article instructs you on the configuration required for this deployment implementation and provides some examples.
 
-Traffic mirroring enables original incoming traffic to be sent to multiple backends in parallel. Installing a Wallarm node as the additional backend lets you run filtration of traffic mirrors (copy) with no impact on the clients - any incoming requests will reach the servers they are addressed.
+Traffic mirroring enables original incoming traffic to be sent to multiple backends in parallel. Installing a Wallarm node as the additional backend lets you run filtration of traffic mirror (copy) with no impact on the clients - any incoming requests will reach the servers they are addressed.
 
 There is the example of the traffic flow diagram with the mirroring option enabled:
 
