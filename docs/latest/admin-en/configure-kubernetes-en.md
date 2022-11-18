@@ -168,28 +168,31 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 [More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
 
-#### Enabling attack analysis with libdetection
+#### Disabling attack analysis with libdetection
 
-The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton) which allows reducing the number of false positives. However, when additionally analyzing attacks using this library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
 
-To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
+You can reduce the memory consumption by disabling **libdetection**.
 
-There are two options to enable attack analysis with **libdetection**:
+!!! warning "Increase in number of false positives"
+    As **libdetection** ensures the double‑detection of attacks and reduces the number of false positives, disabling it may result in increase of false positives and thus not recommended.
+
+There are two options to disable attack analysis with **libdetection**:
 
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection off"
     ```
 * Pass the parameter `controller.config.server-snippet` to the Helm chart:
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

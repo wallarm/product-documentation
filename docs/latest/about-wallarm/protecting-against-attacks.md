@@ -160,24 +160,6 @@ SELECT example FROM table WHERE id=
 
 The library conducts the attack syntax analysis for matching the contexts. If the attack does not match the contexts, then the request will not be defined as a malicious one and will not be blocked (if the filtering node is working in the `block` mode).
 
-#### Enabling libdetection
-
-Analyzing requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md).
-
-To reduce the number of false positives, we recommend enabling analysis:
-
-=== "NGINX-based node"
-    1. Set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `on`. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
-    2. Set the value of the directive [`proxy_request_buffering`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering) to `on` to allow analyzing the request body. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
-=== "Envoy-based node"
-    1. Add the parameter `enable_libdetection on` to the [`rulesets` section](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) of the Envoy configuration file.
-    2. Add the filter [`envoy.buffer`](../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoybased-wallarm-node) to the `http_filters` section of the Envoy configuration file.
-=== "CDN node"
-    Analyzing requests with the **libdetection** library is enabled by default.
-
-!!! warning "Memory consumption increase"
-    When analyzing attacks using the **libdetection** library, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
-
 #### Testing libdetection
 
 To check the operation of **libdetection**, you can send the following legitimate request to the protected resource:
@@ -188,6 +170,22 @@ curl "http://localhost/?id=1' UNION SELECT"
 
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
 * If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
+
+#### Disabling libdetection
+
+Analyzing requests with the **libdetection** library is enabled by default in all [deployment options](../admin-en/supported-platforms.md) which allows reducing the number of false positives. However, when additionally analyzing attacks using this library, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
+
+You can reduce the memory consumption by disabling **libdetection**.
+
+!!! warning "Increase in number of false positives"
+    As **libdetection** ensures the double‑detection of attacks and reduces the number of false positives, disabling it may result in increase of false positives and thus not recommended.
+
+To disable **libdetection**:
+
+=== "NGINX-based node"
+    Set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `off`. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
+=== "Envoy-based node"
+    Add the parameter `enable_libdetection off` to the [`rulesets` section](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) of the Envoy configuration file.
 
 ### Custom rules for request analysis
 
