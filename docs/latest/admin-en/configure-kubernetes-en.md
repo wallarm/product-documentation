@@ -168,7 +168,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 [More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
 
-#### Disabling attack analysis with libdetection
+#### Disabling libdetection
 
 The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton) which allows reducing the number of false positives. However, when additionally analyzing attacks using this library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
 
