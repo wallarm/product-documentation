@@ -199,12 +199,12 @@ To deploy the container with environment variables and mounted configuration fil
 
     If the **FQDN** field is empty, please ensure the container is in the **Running** status.
 
-2. Send the request with test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the copied domain:
+2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied domain:
 
     ```
-    curl http://<COPIED_DOMAIN>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<COPIED_DOMAIN>/etc/passwd
     ```
-3. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

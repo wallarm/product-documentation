@@ -1,6 +1,5 @@
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 
 # Upgrading the multi-tenant node
 
@@ -261,4 +260,4 @@ In the configuration above:
 
 ## Step 4: Test Wallarm multi-tenant node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"

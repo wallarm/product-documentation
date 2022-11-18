@@ -1,4 +1,4 @@
 !!! info "Example"
     ``` bash
-    curl -I “http://node.example.local/?id='or+1=1--a-<script>prompt(1)</script>'”
+    curl -I http://node.example.local/etc/passwd
     ```

@@ -1,12 +1,12 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]:              ../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
@@ -123,21 +123,7 @@ There are two options for running the container using the updated image:
 
 ## Step 9: Test the filtering node operation
 
-1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
-
-    ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    ```
-1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
-
-    * Blocks the request if the appropriate [filtration mode](../admin-en/configure-wallarm-mode.md) is configured.
-    * Returns the [custom blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
-2. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure that:
-
-    * Attacks are displayed in the list.
-    * Hit details display the Wallarm node UUID.
-
-    ![!Attacks in the interface][img-test-attacks-in-ui]
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
 ## Step 10: Delete the filtering node of the previous version
 

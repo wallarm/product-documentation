@@ -125,13 +125,13 @@ More details on identifying an original client IP address based on the `PROXY` h
 
     === "Using cURL"
         ```bash
-        curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+        curl http://localhost/etc/passwd
         ```
     === "Using printf and Netcat (for the header `PROXY`)"
         ```bash
-        printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /?id=or+1=1--a-<script>prompt(1)</script>\r\n\r\n" | nc localhost 80
+        printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /etc/passwd\r\n\r\n" | nc localhost 80
         ```
-2. Open Wallarm Console and ensure that the original client IP address is displayed in the attack details:
+2. Open Wallarm Console and make sure that the original client IP address is displayed in the attack details:
 
     ![!IP address originated the request](../images/request-ip-address.png)
 
