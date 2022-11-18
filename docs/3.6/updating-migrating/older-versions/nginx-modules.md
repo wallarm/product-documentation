@@ -1,7 +1,7 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
@@ -256,7 +256,7 @@ server {
 
 ## Step 13: Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats-for-deprecated.md"
 
 ## Step 14: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
 

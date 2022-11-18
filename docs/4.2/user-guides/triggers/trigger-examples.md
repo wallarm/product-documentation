@@ -15,14 +15,14 @@ If you have recently created the Wallarm account, this [trigger is already creat
 1. Send the following requests to the protected resource:
 
     ```bash
+    curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
+    curl 'http://localhost/?id=1%27%20select%20version();'
     curl http://localhost/instructions.php/etc/passwd
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    curl http://localhost/news.php?news_id=%27123%E2%80%99%20UNION%20SELECT%20login%20FROM%20users--a-%27
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
 1. Open Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
-1. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
+1. Open the section **Events** and check that the attacks are displayed in the list:
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
@@ -41,14 +41,14 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
 1. Send the following requests to the protected resource:
 
     ```bash
+    curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
+    curl 'http://localhost/?id=1%27%20select%20version();'
     curl http://localhost/instructions.php/etc/passwd
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    curl http://localhost/news.php?news_id=%27123%E2%80%99%20UNION%20SELECT%20login%20FROM%20users--a-%27
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-2. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
-3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
+1. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
+1. Open the section **Events** and check that the attacks are displayed in the list:
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
@@ -94,38 +94,36 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected res
 
 **To test the trigger:**
 
-1. Send the following requests to the protected resource:
+Send the following requests to the protected resource:
 
-    ```bash
-    curl http://localhost/data/UNION%20SELECT
-    curl http://localhost/?id=or+1=1--a-
-    ```
-2. Open the Wallarm Console → **Events** and check that 3 [SQLi](../../attacks-vulns-list.md#sql-injection) attacks are displayed in the list of events. The attack was detected in the second request twice, before and after the parser [`percent`](../rules/request-processing.md#percent) was applied.
+```bash
+curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
+curl 'http://localhost/?id=1%27%20select%20version();'
+```
 
-    ![!3 SQLi hits in Wallarm Console](../../images/user-guides/triggers/test-3-sqli-hits.png)
-3. Open the Slack channel and check that the following notification from the user **wallarm** received:
+Open the Slack channel and check that the following notification from the user **wallarm** received:
 
-    ```
-    [Wallarm] Trigger: The number of detected hits exceeded the threshold
-    
-    Notification type: attacks_exceeded
-    
-    The number of detected hits exceeded 1 in 1 minute.
-    This notification was triggered by the "Notification about SQLi hits" trigger.
-    
-    Additional trigger’s clauses:
-    Attack type: SQLi.
-    
-    View events:
-    https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
-    
-    Client: TestCompany
-    Cloud: EU
-    ```
+```
+[Wallarm] Trigger: The number of detected hits exceeded the threshold
 
-    * `Notification about SQLi hits` is the trigger name
-    * `TestCompany` is the name of your company account in Wallarm Console
-    * `EU` is the Wallarm Cloud where your company account is registered
+Notification type: attacks_exceeded
+
+The number of detected hits exceeded 1 in 1 minute.
+This notification was triggered by the "Notification about SQLi hits" trigger.
+
+Additional trigger’s clauses:
+Attack type: SQLi.
+
+View events:
+https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
+
+Client: TestCompany
+Cloud: EU
+```
+
+* `Notification about SQLi hits` is the trigger name
+* `TestCompany` is the name of your company account in Wallarm Console
+* `EU` is the Wallarm Cloud where your company account is registered
 
 ## Slack and email notification if new user is added to the account
 

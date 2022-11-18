@@ -184,15 +184,15 @@ To test that the Wallarm Sidecar proxy operates correctly:
     NAME                     READY   STATUS    RESTARTS   AGE
     myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
     ```
-1. Send the test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the application cluster address Wallarm is enabled to filter traffic:
+1. Send the test  [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to filter traffic:
 
     ```bash
-    curl http://<APPLICATION_CLUSTER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
-    Since the Wallarm proxy operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md) by default, the Wallarm node will not block attacks but will register them.
+    Since the Wallarm proxy operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md) by default, the Wallarm node will not block the attack but will register it.
 
-    To check that attacks have been registered, proceed to Wallarm Console → **Events**:
+    To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
 

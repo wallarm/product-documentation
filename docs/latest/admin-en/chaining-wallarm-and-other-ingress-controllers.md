@@ -159,5 +159,5 @@ spec:
 Send a test request to the existing Ingress controller address and verify that the system is working as expected:
 
 ```bash
-curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
 ```

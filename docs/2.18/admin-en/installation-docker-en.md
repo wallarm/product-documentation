@@ -13,9 +13,9 @@
 [enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[attacks-in-ui-image]:           ../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 
 # Running Docker NGINX‑based image
@@ -158,7 +158,7 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Testing Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats-for-deprecated.md"
 
 ## Configuring the use cases
 

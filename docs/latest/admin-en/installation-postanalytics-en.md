@@ -257,7 +257,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
 To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 
 ```bash
-curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+curl http://localhost/etc/passwd
 ```
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:

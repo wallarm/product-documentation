@@ -37,18 +37,15 @@ This means that the filtering node statistics service is running and working pro
 
 ## 2. Run a test attack
 
-To check if Wallarm correctly detects attacks, send an invalid request to the protected resource.
+To check if Wallarm correctly detects attacks, send a malicious request to the protected resource.
 
 For example:
 
 ```
-http://<resource_URL>/?id='or+1=1--a-<script>prompt(1)</script>'
+http://<resource_URL>/etc/passwd
 ```
 
-Wallarm must detect in the request the following:
-
-* [SQLI](../attacks-vulns-list.md#sql-injection)
-* [XSS](../attacks-vulns-list.md#cross-site-scripting-xss)
+Wallarm must detect in the request [Path Traversal](../attacks-vulns-list.md#path-traversal).
 
 Now the counter of the number of attacks will increase when a request for `wallarm-status` is executed, which means that the filtering node is operating normally.
 

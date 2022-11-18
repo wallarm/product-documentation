@@ -12,9 +12,9 @@
 [graylist-docs]:                    ../user-guides/ip-lists/graylist.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
 [application-configuration]:        ../user-guides/settings/applications.md
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[attacks-in-ui-image]:           ../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 [about-sidecar-container]:          installation-guides/kubernetes/wallarm-sidecar-container.md
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 
@@ -157,7 +157,7 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Testing Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats-for-deprecated.md"
 
 ## Configuring the use cases
 

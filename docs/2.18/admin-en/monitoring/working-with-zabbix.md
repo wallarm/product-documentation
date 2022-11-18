@@ -64,7 +64,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
 
     2.  Perform a test attack on an application protected by the filter node. To do this, you can send a malicious request to the application either with the `curl` utility or a browser.
         
-        --8<-- "../include/monitoring/sample-malicious-request.md"
+        --8<-- "../include/monitoring/sample-malicious-request-for-deprecated.md"
         
     3.  Make sure that the attack counter has increased in both the `wallarm-status` output and the Zabbix widget:
     
