@@ -12,7 +12,6 @@
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
-[enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
@@ -201,4 +200,4 @@ To run postanalytics and process the requests on different servers, the followin
 
 Dynamic Wallarm API Security module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options.md"
+--8<-- "../include/waf/installation/common-customization-options-4.4.md"

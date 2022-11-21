@@ -168,31 +168,24 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 [More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
 
-#### Disabling libdetection
+#### Managing libdetection mode
 
-The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton) which allows reducing the number of false positives. However, when additionally analyzing attacks using this library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
-
-You can reduce the memory consumption by disabling **libdetection**.
-
-!!! warning "Increase in number of false positives"
-    As **libdetection** ensures the double‑detection of attacks and reduces the number of false positives, disabling it may result in increase of false positives and thus not recommended.
-
-There are two options to disable attack analysis with **libdetection**:
+You can control the [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) mode using one of the options:
 
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection off"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off"
     ```
 * Pass the parameter `controller.config.server-snippet` to the Helm chart:
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

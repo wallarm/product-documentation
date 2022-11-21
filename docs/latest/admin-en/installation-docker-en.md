@@ -6,7 +6,6 @@
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
-[enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 [graylist-docs]:                    ../user-guides/ip-lists/graylist.md
@@ -172,4 +171,4 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used filtering node configuration options:
 
---8<-- "../include/waf/installation/common-customization-options-docker.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"

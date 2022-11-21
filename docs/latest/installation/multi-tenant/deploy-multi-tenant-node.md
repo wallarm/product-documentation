@@ -3,7 +3,6 @@
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
 # Deploying and configuring multi-tenant node
 
@@ -146,4 +145,4 @@ Multi-tenant node:
 
 To customize the filtering node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

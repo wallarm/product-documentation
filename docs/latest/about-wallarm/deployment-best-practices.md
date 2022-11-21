@@ -38,11 +38,10 @@ By deploying and using the filtering nodes in all stages of your software develo
 
 ## Enable the libdetection library
 
-Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) (available starting from Wallarm node version 2.16) significantly improves the filtering node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the filtering node software and enable the **libdetection** library as follows:
+Analyzing requests with the [**libdetection** library](protecting-against-attacks.md#library-libdetection) significantly improves the filtering node ability to detect SQLi attacks. It is highly recommended for all Wallarm customers to [upgrade](/updating-migrating/general-recommendations/) to the latest version of the filtering node software and keep the **libdetection** library enabled.
 
-* [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) (including AWS / GCP images and Docker node container)
-* [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection)
-* Add the `sidecar.wallarm.io/wallarm-enable-libdetection: on` [annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md) for the application pod if using the Wallarm Sidecar proxy solution
+* In the filtering node version 4.4 and higher **libdetection** is enabled by default.
+* In the lower versions it is recommended to enabled it using the [approach](protecting-against-attacks.md#managing-libdetection-mode) for your deployment option.
 
 ## Configure proper reporting of end-user IP addresses
 

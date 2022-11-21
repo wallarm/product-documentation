@@ -171,21 +171,22 @@ curl "http://localhost/?id=1' UNION SELECT"
 * The library **libproton** will detect `UNION SELECT` as the SQL Injection attack sign. Since `UNION SELECT` without other commands is not a sign of the SQL Injection attack, **libproton** detects a false positive.
 * If analyzing of requests with the **libdetection** library is enabled, the SQL Injection attack sign will not be confirmed in the request. The request will be considered legitimate, the attack will not be uploaded to the Wallarm Cloud and will not be blocked (if the filtering node is working in the `block` mode).
 
-#### Disabling libdetection
+#### Managing libdetection mode
 
-Analyzing requests with the **libdetection** library is enabled by default in all [deployment options](../admin-en/supported-platforms.md) which allows reducing the number of false positives. However, when additionally analyzing attacks using this library, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
+!!! info "**libdetection** default mode"
+    The default mode of the **libdetection** library is `on/true` (enabled) for all [deployment options](../admin-en/supported-platforms.md).
 
-You can reduce the memory consumption by disabling **libdetection**.
+You can control the **libdetection** mode using:
 
-!!! warning "Increase in number of false positives"
-    As **libdetection** ensures the double‑detection of attacks and reduces the number of false positives, disabling it may result in increase of false positives and thus not recommended.
+* The [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) directive for NGINX.
+* The [`enable_libdetection`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) parameter for Envoy.
+* One of the [options](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode) for the Wallarm Ingress controller:
 
-To disable **libdetection**:
+    * The `nginx.ingress.kubernetes.io/server-snippet` annotation to the Ingress resource.
+    * The `controller.config.server-snippet` parameter of the Helm chart.
 
-=== "NGINX-based node"
-    Set the value of the directive [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) to `off`. The directive can be set inside the `http`, `server`, or `location` block of the NGINX configuration file.
-=== "Envoy-based node"
-    Add the parameter `enable_libdetection off` to the [`rulesets` section](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) of the Envoy configuration file.
+* The `wallarm-enable-libdetection` [pod annotation](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) for the Wallarm Sidecar proxy solution.
+* The `libdetection` variable for [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) deployment.
 
 ### Custom rules for request analysis
 

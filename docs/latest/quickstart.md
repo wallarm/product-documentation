@@ -13,7 +13,6 @@
 [events-docs]:                      user-guides/events/check-attack.md
 [sqli-attack-desc]:                 attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  attacks-vulns-list.md#crosssite-scripting-xss
-[enable-libdetection-docs]:         admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
 # Quick start with Wallarm API Security
 
@@ -150,4 +149,4 @@ To get more from the deployment stage:
 
 To further fine-tune the deployed node, learn the features:
 
---8<-- "../include/waf/installation/quick-start-configuration-options.md"
+--8<-- "../include/waf/installation/quick-start-configuration-options-4.4.md"
