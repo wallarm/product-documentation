@@ -15,12 +15,12 @@ To enable, use the [**Weak JWT** trigger](../user-guides/triggers/trigger-exampl
 
 ## Enhanced attack analysis with the libdetection library
 
-Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all SQLi attacks reducing the number of false positives detected amount SQL injections.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
 
 !!! warning "Memory consumption increase"
     With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
 
-[Details on how Wallarm detects attacks](../about-wallarm/protecting-against-attacks.md)
+[Details on how Wallarm detects attacks →](../about-wallarm/protecting-against-attacks.md)
 
 ## Supported installation options
 
