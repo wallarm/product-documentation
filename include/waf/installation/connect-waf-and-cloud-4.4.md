@@ -31,7 +31,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
         ```
     
     * `<NODE_TOKEN>` is the copied token value.
-    * You may add `-n <HOST_NAME>` parameter to set a custom name for your NGINX-Wallarm module node instance. Final node instance name will be: `HOST_NAME_NodeUUID`.
+    * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
 
     !!! info "If the postanalytics module is installed on a separate server"
         If the postanalytics module is installed on a separate server, it is recommended to use the node token generated during the [separate postanalytics module installation][install-postanalytics-instr].
