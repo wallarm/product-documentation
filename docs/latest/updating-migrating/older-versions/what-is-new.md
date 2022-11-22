@@ -1,4 +1,4 @@
-# What is new in Wallarm node (if upgrading a deprecated node)
+# What is new in Wallarm node (if upgrading an EOL node)
 
 This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.4. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
