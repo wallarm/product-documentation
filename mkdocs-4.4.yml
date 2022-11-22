@@ -338,7 +338,7 @@ nav:
         - Upgrading Wallarm CDN node: updating-migrating/cdn-node.md
       - Upgrading the multi-tenant node: updating-migrating/multi-tenant.md
       - Upgrading Wallarm node 2.18 and lower:
-        - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
+        - What is new in Wallarm node (if upgrading a deprecated node): updating-migrating/older-versions/what-is-new.md
         - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
         - Upgrading the postanalytics module 2.18 or lower: updating-migrating/older-versions/separate-postanalytics.md
         - Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower: updating-migrating/older-versions/docker-container.md

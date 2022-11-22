@@ -1,9 +1,9 @@
-# What is new in Wallarm node (if upgrading node 2.18 or lower)
+# What is new in Wallarm node (if upgrading a deprecated node)
 
-This page lists the changes available when upgrading the node 2.18 up to version 4.2. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.4. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
-!!! warning "Wallarm nodes 2.18 and lower are deprecated"
-    Wallarm nodes 2.18 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
+!!! warning "Wallarm nodes 3.6 and lower are deprecated"
+    Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
@@ -33,6 +33,17 @@ Starting from version 4.0, the Wallarm node does not collect the following colle
 
 To prevent exploitation of this vulnerability, Wallarm node contains a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
 
+## Checking JSON Web Token strength
+
+[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
+
+Starting from version 4.4, you can enable Wallarm to detect the following JWT weaknesses:
+
+* Unencrypted JWTs
+* JWTs signed using compromised secret keys
+
+To enable, use the [**Weak JWT** trigger](../../user-guides/triggers/trigger-examples.md#detect-weak-jwts).
+
 ## Checking JSON Web Tokens for attacks
 
 JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
@@ -48,6 +59,7 @@ Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 * Added support for Debian 11 Bullseye
+* Added support for Ubuntu 22.04 LTS (jammy)
 * Dropped support for CentOS 6.x (CloudLinux 6.x)
 * Dropped support for Debian 9.x
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
@@ -174,13 +186,14 @@ New Wallarm nodes are distributed with the module **API Discovery** automaticall
 
 [Details on the API Discovery module →](../../about-wallarm/api-discovery.md)
 
-## Support of the libdetection library in the Envoy-based nodes
+## Enhanced attack analysis with the libdetection library
 
-The **libdetection** library is now supported in the Envoy-based Wallarm nodes. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. This library reduces the number of false positives among the SQL Injection attacks.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above in all form-factors (including Envoy) are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all SQLi attacks reducing the number of false positives detected amount SQL injections.
 
-By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+!!! warning "Memory consumption increase"
+    With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
 
-[Details on the **libdetection** library →](../../about-wallarm/protecting-against-attacks.md#library-libdetection)
+[Details on how Wallarm detects attacks](../../about-wallarm/protecting-against-attacks.md)
 
 ## The rule enabling the `overlimit_res` attack detection fine-tuning
 
@@ -288,7 +301,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.2.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.4.
 
 ----------
 
