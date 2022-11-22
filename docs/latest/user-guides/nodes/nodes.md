@@ -53,7 +53,7 @@ The following node properties and metrics are available:
 
 If one Wallarm node is installed for multiple instances (e.g. for the initial traffic processing and request postanalytics performed by different server instances), then the corresponding number of filtering nodes is grouped into one record in the table. Properties and metrics will be available for each instance.
 
-In Wallarm, node instances are named as `hostname_NodeUUID`, where `hostname` is the name of the working machine on which the node instance is working and `NodeUUID` is the unique node identifier (UUID). You can set `hostname` manually during node installation using the `-n` parameter in `register-node` script or the `WALLARM_NODE_NAME` variable.
+In Wallarm, node instances are named as `hostname_NodeUUID`, where `hostname` is the name of the working machine on which the node instance is working and `NodeUUID` is the unique node identifier (UUID). You can set `hostname` manually during node installation using the `-n` parameter in `register-node` script.
 
 ## Regenerating the node token
 
