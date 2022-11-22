@@ -1,77 +1,41 @@
-# What is new in Wallarm node 4.2
+# What is new in Wallarm node 4.4
 
-The new minor version of the Wallarm node has been released! Wallarm node 4.2 has new features making attack mitigation even more powerful and usable including BOLA protection and dangerous JWT neutralization.
+The new minor version of the Wallarm node has been released! Wallarm node 4.4 has new features making attack mitigation even more powerful and usable including JWT strength check and double-validation of SQLi attacks.
 
-## Breaking changes due to the deleted metrics
+## Checking JSON Web Token strength
 
-Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:
+[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-* `curl_json-wallarm_nginx/gauge-requests` - you can use the [`curl_json-wallarm_nginx/gauge-abnormal`](../admin-en/monitoring/available-metrics.md#number-of-requests) metric instead
-* `curl_json-wallarm_nginx/gauge-attacks`
-* `curl_json-wallarm_nginx/gauge-blocked`
-* `curl_json-wallarm_nginx/gauge-time_detect`
-* `curl_json-wallarm_nginx/derive-requests`
-* `curl_json-wallarm_nginx/derive-attacks`
-* `curl_json-wallarm_nginx/derive-blocked`
-* `curl_json-wallarm_nginx/derive-abnormal`
-* `curl_json-wallarm_nginx/derive-requests_lost`
-* `curl_json-wallarm_nginx/derive-tnt_errors`
-* `curl_json-wallarm_nginx/derive-api_errors`
-* `curl_json-wallarm_nginx/derive-segfaults`
-* `curl_json-wallarm_nginx/derive-memfaults`
-* `curl_json-wallarm_nginx/derive-softmemfaults`
-* `curl_json-wallarm_nginx/derive-time_detect`
+Starting from version 4.4, you can enable Wallarm to detect the following JWT weaknesses:
 
-## Detection of the new attack type IDOR / BOLA
+* Unencrypted JWTs
+* JWTs signed using compromised secret keys
 
-[Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA), also known as [Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
+To enable, use the [**Weak JWT** trigger](../user-guides/triggers/trigger-examples.md#detect-weak-jwts).
 
-To prevent exploitation of this vulnerability, Wallarm node 4.2 contains a [new trigger](../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+## Enhanced attack analysis with the libdetection library
 
-## Checking JSON Web Tokens for attacks
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all SQLi attacks reducing the number of false positives detected amount SQL injections.
 
-JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
+!!! warning "Memory consumption increase"
+    With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
 
-Wallarm node 4.2 finds the JWT anywhere in the request, [decodes](../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
+[Details on how Wallarm detects attacks](../about-wallarm/protecting-against-attacks.md)
 
-**For example**, an attacker can encode the malicious payload `or+1=1--a-<script>prompt(1)</script>` as a JWT payload part and send the request with this JWT in the `Authorization` header.
+## Supported installation options
 
-Wallarm node will decode received JWT and detect the mentioned payload pointing to the SQLi and XSS attack attempts. Attack attempts will be displayed in Wallarm Console:
+We have added support for Ubuntu 22.04 LTS (jammy).
 
-![!JWT attack in the interface](../images/user-guides/events/jwt-attack.png)
+[See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
-## Blocking requests from denylisted IPs in any filtration mode
+## When upgrading node 3.6 and lower
 
-Request source denylisting enables you to define distrusted IP addresses for the node to block any requests from them in any mode. Wallarm node 4.0 and lower does not meet this standard denylist behavior.
-
-In Wallarm node 4.2, we improved the [denylist logic](../user-guides/ip-lists/denylist.md) to work as expected by default. Now, it blocks any requests originating from denylisted IPs in any [filtration mode](../admin-en/configure-wallarm-mode.md).
-
-The new behavior has been implemented by setting [`wallarm_acl_access_phase on`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) by default.
-
-## The CentOS 6.x (CloudLinux 6.x) and Debian 9.x distributions are no longer supported
-
-Starting from Wallarm node 4.2, we do not publish Wallarm distributions for CentOS 6.x (CloudLinux 6.x) and Debian 9.x since these OS went EOL.
-
-## Disabling IPv6 connections for the NGINX-based Wallarm Docker container
-
-The NGINX-based Wallarm Docker image 4.2 and above supports the new environment variable `DISABLE_IPV6`. This variable enables you to prevent NGINX from IPv6 connection processing, so that it only can process IPv4 connections.
-
-## Renamed `register-node` script log file
-
-The `/var/log/wallarm/addnode_loop.log` [log file](../admin-en/configure-logging.md) in the Docker containers has been renamed to `/var/log/wallarm/registernode_loop.log`.
-
-## When upgrading node 3.6
-
-If upgrading from the version 3.6 or lower, please also learn [other changes available starting from the major Wallarm node 4.0 release](/4.0/updating-migrating/what-is-new/).
-
-## When upgrading node 2.18
-
-If upgrading Wallarm node 2.18 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
+If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
 
 ## Which Wallarm nodes are recommended to be upgraded?
 
-* Client and multi-tenant Wallarm nodes of version 4.0 and 3.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
-* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (2.18 and lower). Changes available in Wallarm node 4.2 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.2 are **incompatible** with the nodes of older versions.
+* Client and multi-tenant Wallarm nodes of version 4.x to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+* Client and multi-tenant Wallarm nodes of the [unsupported](versioning-policy.md#version-list) versions (3.6 and lower). Changes available in Wallarm node 4.4 simplify the node configuration and improve traffic filtration. Please note that some settings of node 4.4 are **incompatible** with the nodes of older versions.
 
 ## Upgrade process
 
