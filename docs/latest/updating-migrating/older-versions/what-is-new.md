@@ -31,7 +31,7 @@ Starting from version 4.0, the Wallarm node does not collect the following colle
 
 [Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA), also known as [Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
 
-To prevent exploitation of this vulnerability, Wallarm node contains a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+To prevent exploitation of this vulnerability, Wallarm node 4.2 and above contain a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
 
 ## Checking JSON Web Token strength
 
@@ -48,7 +48,7 @@ To enable, use the [**Weak JWT** trigger](../../user-guides/triggers/trigger-exa
 
 JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
 
-Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
+Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
 
 ## Supported installation options
 
@@ -301,6 +301,8 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
+      * [Multi-tenant node](multi-tenant.md)
+      * [Upgrading the CDN node](../cdn-node.md)
 3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.4.
 
 ----------
