@@ -156,9 +156,9 @@ if(myParam !== null) {
 
 let paths = window.location.pathname.split('/');
 var announceBar = document.getElementsByClassName("md-banner__inner");
-if (paths[1] == '2.18') {
+if (paths[1] == '2.18' || '3.6') {
   for (var i = 0; i < announceBar.length; i++) {
-    announceBar[i].innerHTML = 'Wallarm node 2.18 and lower is not supported. Please <a href="/updating-migrating/older-versions/what-is-new/" style="color:white; font-weight: bold;">upgrade</a> Wallarm API Security modules to the latest version.';
+    announceBar[i].innerHTML = 'Wallarm node 3.6 and lower are not supported. Please <a href="/updating-migrating/older-versions/what-is-new/" style="color:white; font-weight: bold;">upgrade</a> Wallarm API Security modules to the latest version.';
  }
 }
 
