@@ -1,18 +1,18 @@
-[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# Upgrading the multi-tenant node
+# Upgrading the EOL multi-tenant node
 
-These instructions describe the steps to upgrade the multi-tenant node up to 4.x.
+These instructions describe the steps to upgrade the end‑of‑life multi-tenant node (version 3.6 and lower) up to 4.4.
 
 ## Requirements
 
-* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
+* Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
 
 ## Step 1: Contact the Wallarm support team
 
-If upgrading the node from version 3.x or lower, request the [Wallarm support team](mailto:support@wallarm.com) assistance to get the latest version of the [custom ruleset building](../user-guides/rules/compiling.md) feature during multi-tenant node upgrade.
+Request the [Wallarm support team](mailto:support@wallarm.com) assistance to get the latest version of the [custom ruleset building](../../user-guides/rules/compiling.md) feature during multi-tenant node upgrade.
 
 !!! info "Blocked upgrade"
     Using an incorrect version of the custom ruleset building feature may block the upgrade process.
@@ -23,32 +23,20 @@ The support team will also help you answer all questions related to the multi-te
 
 Standard procedures are the ones for:
 
-=== "If upgrading node 4.0 or 3.x"
-    * [Upgrading Wallarm NGINX modules](../updating-migrating/nginx-modules.md)
-    * [Upgrading the postanalytics module](../updating-migrating/separate-postanalytics.md)
-    * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/docker-container.md)
-    * [Upgrading NGINX Ingress controller with integrated Wallarm modules](../updating-migrating/ingress-controller.md)
-    * [Upgrading the cloud node image](../updating-migrating/cloud-image.md)
+* [Upgrading Wallarm NGINX modules](nginx-modules.md)
+* [Upgrading the postanalytics module](separate-postanalytics.md)
+* [Upgrading the Wallarm Docker NGINX- or Envoy-based image](docker-container.md)
+* [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+* [Upgrading the cloud node image](cloud-image.md)
 
-    !!! warning "Creating the multi-tenant node"
-        During the Wallarm node creation, please select the **Multi-tenant node** option:
+!!! warning "Creating the multi-tenant node"
+    During the Wallarm node creation, please select the **Multi-tenant node** option:
 
-        ![!Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
-=== "If upgrading node 2.18"
-    * [Upgrading Wallarm NGINX modules](../updating-migrating/older-versions/nginx-modules.md)
-    * [Upgrading the postanalytics module](../updating-migrating/older-versions/separate-postanalytics.md)
-    * [Upgrading the Wallarm Docker NGINX- or Envoy-based image](../updating-migrating/older-versions/docker-container.md)
-    * [Upgrading NGINX Ingress controller with integrated Wallarm modules](../updating-migrating/older-versions/ingress-controller.md)
-    * [Upgrading the cloud node image](../updating-migrating/older-versions/cloud-image.md)
-
-    !!! warning "Creating the multi-tenant node"
-        During the Wallarm node creation, please select the **Multi-tenant node** option:
-
-        ![!Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## Step 3: Reconfigure multitenancy
 
-If upgrading the node from version 3.x or lower, rewrite the configuration of how traffic is associated with your tenants and their applications. Consider the example below. In the example:
+Rewrite the configuration of how traffic is associated with your tenants and their applications. Consider the example below. In the example:
 
 * Tenant stands for partner's client. The partner has two clients.
 * The traffic targeting `tenant1.com` and `tenant1-1.com` should be associated with client 1.
@@ -97,11 +85,11 @@ Notes on the configuration above:
 
 * The traffic targeting `tenant1.com` and `tenant1-1.com` is associated with client 1 via `20` and `23` values, linked to this client via the [API request](https://docs.wallarm.com/3.6/installation/multi-tenant/configure-accounts/#step-4-link-tenants-applications-to-the-appropriate-tenant-account).
 * Alike API requests should have been sent to link other applications to the tenants.
-* The tenants and the applications are separate entities, so it is logical to configure them with the different directives. Also, it would be convenient to avoid additional API requests. It would be logical to define relations between the tenants and applications via the configuration itself. All this is missing in the current configuration but will become available in the new 4.0 approach described below.
+* The tenants and the applications are separate entities, so it is logical to configure them with the different directives. Also, it would be convenient to avoid additional API requests. It would be logical to define relations between the tenants and applications via the configuration itself. All this is missing in the current configuration but will become available in the new 4.x approach described below.
 
-### Study 4.0 approach
+### Study 4.x approach
 
-In version 4.0, UUID is the way to define the tenant in the node configuration.
+In version 4.x, UUID is the way to define the tenant in the node configuration.
 
 To rewrite the configuration, do the following:
 
@@ -110,7 +98,7 @@ To rewrite the configuration, do the following:
 
 ### Get UUIDs of your tenants
 
-To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
+To get the list of tenants, send authenticated requests to Wallarm API. Authentication approach is the same as the one [used for tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
 1. Get `clientid`(s) to later find UUIDs related to them:
 
@@ -118,7 +106,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
         Copy `clientid`(s) from the **ID** column in the Wallarm Console user interface:
         
-        ![!Selector of tenants in Wallarm Console](../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "By sending request to API"
         1. Send the GET request to the route `/v2/partner_client`:
 
@@ -140,7 +128,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     -H 'x-wallarmapi-uuid: YOUR_UUID'
                     ```
             
-            Where `PARTNER_ID` is the one obtained at [**Step 2**](../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
+            Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
 
             Response example:
 
@@ -216,8 +204,8 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
 In the NGINX configuration file:
 
-1. Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directives.
-1. Set the protected application IDs in the [`wallarm_application`](../admin-en/configure-parameters-en.md#wallarm_application) directives. 
+1. Specify the tenant UUIDs received above in the [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) directives.
+1. Set the protected application IDs in the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directives. 
 
     If the NGINX configuration used for the node 3.6 or lower involves application configuration, only specify tenant UUIDs and keep application configuration unchanged.
 

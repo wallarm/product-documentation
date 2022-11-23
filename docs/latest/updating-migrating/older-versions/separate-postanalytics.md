@@ -2,9 +2,9 @@
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 
-#   Upgrading the postanalytics module 2.18 or lower
+# Upgrading the EOL postanalytics module
 
-These instructions describe the steps to upgrade the postanalytics module 2.18 or lower installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
+These instructions describe the steps to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -143,3 +143,5 @@ To replace the regular postanalytics node with the Wallarm node:
     ```bash
     sudo systemctl restart wallarm-tarantool
     ```
+
+[Upgrade Wallarm NGINX modules][docs-module-update]

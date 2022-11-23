@@ -18,9 +18,9 @@
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 
-# Upgrading Wallarm NGINX modules 2.18 or lower
+# Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 or lower to version 4.2. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.4. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../../installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
@@ -37,9 +37,9 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 
 * If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
 * If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
 
-## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
+If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
@@ -130,9 +130,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
         ```
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.2
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)
 
-[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
 ## Step 7: Upgrade Wallarm API Security packages
 
@@ -336,7 +336,7 @@ server {
 
 --8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Step 17: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 17: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
@@ -350,6 +350,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 4.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"
