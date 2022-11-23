@@ -1,11 +1,6 @@
 # Recommendations for a safe node upgrade process
 
-This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.2.
-
-!!! warning "Breaking changes and recommendations for node upgrade"
-    If upgrading the node from the version 3.6 or lower, please note that the latest version contains **breaking changes**. Please carefully review what has been changed before upgrading the node.
-
-    We recommend to upgrade both the client and [multi-tenant](../installation/multi-tenant/overview.md) nodes up to version 4.2. It allows to stay up to date with Wallarm releases and prevent [installed module deprecation](versioning-policy.md#version-support).
+This document describes recommendations and associated risks for a safe upgrade of Wallarm filtering node up to 4.4.
 
 ## Common recommendations
 
@@ -22,8 +17,8 @@ Below are the risks that may occur when updating the filtering node. To reduce t
 
 ### Changed functionality
 
-* [What is new in Wallarm node 4.2](what-is-new.md)
-* [What is new if upgrading the node 2.18 or lower](older-versions/what-is-new.md)
+* [What is new in Wallarm node 4.4](what-is-new.md)
+* [What is new if upgrading the EOL node (3.6 or lower)](older-versions/what-is-new.md)
 
 ### New false positives
 
@@ -49,4 +44,6 @@ The Wallarm node update process depends on the platform and installation forms. 
 * [Docker container with the modules for NGINX or Envoy](docker-container.md)
 * [NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
 * [Cloud node image](cloud-image.md)
-* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 4.2](migrate-ip-lists-to-node-3.md)
+* [Multi-tenant node](multi-tenant.md)
+* [CDN node](cdn-node.md)
+* [Migrating allowlists and denylists from Wallarm node 2.18 and lower to 4.4](migrate-ip-lists-to-node-3.md)

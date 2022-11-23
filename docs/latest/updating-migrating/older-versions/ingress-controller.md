@@ -142,7 +142,7 @@ There are the following setting probably to be changed:
 
 Change the Wallarm module configuration set in the `values.yaml` file as follows:
 
-* [Migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. There are the following parameters potentially to be deleted from `values.yaml`:
+* If upgrading from version 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. There are the following parameters potentially to be deleted from `values.yaml`:
 
     ```diff
     controller:

@@ -302,7 +302,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
-      * [Upgrading the CDN node](../cdn-node.md)
+      * [CDN node](../cdn-node.md)
 3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.4.
 
 ----------

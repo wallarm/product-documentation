@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
-# Upgrading the multi-tenant node
+# Upgrading the EOL multi-tenant node
 
 These instructions describe the steps to upgrade the end‑of‑life multi-tenant node (version 3.6 and lower) up to 4.4.
 

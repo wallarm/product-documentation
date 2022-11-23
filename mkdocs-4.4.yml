@@ -344,7 +344,7 @@ nav:
         - Upgrading an EOL Docker NGINX- or Envoy-based image: updating-migrating/older-versions/docker-container.md
         - Upgrading EOL NGINX Ingress controller with integrated Wallarm modules: updating-migrating/older-versions/ingress-controller.md
         - Upgrading an EOL cloud node image: updating-migrating/older-versions/cloud-image.md
-        - Upgrading the multi‑tenant node: updating-migrating/older-versions/multi-tenant.md
+        - Upgrading the EOL multi‑tenant node: updating-migrating/older-versions/multi-tenant.md
         - Migrating allowlists and denylists from EOL Wallarm node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md

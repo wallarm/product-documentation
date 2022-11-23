@@ -47,16 +47,20 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## Step 3: Run the container using the new image
 
-Run the container using the updated image. You can pass the same configuration parameters that were passed when running a previous image version except for the ones listed in the previous steps.
+1. Proceed to Wallarm Console → **Nodes** and create **Wallarm node**.
 
-There are two options for running the container using the updated image:
+    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+1. Copy the generated token.
+1. Run the updated image using the copied token. You can pass the same configuration parameters that were passed when running a previous image version (except for the node token).
+    
+    There are two options for running the container using the updated image:
 
-* **With the environment variables** specifying basic filtering node configuration
-    * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
-    * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
-* **In the mounted configuration file** specifying advanced filtering node configuration
-    * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
-    * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+    * **With the environment variables** specifying basic filtering node configuration
+        * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+        * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
+    * **In the mounted configuration file** specifying advanced filtering node configuration
+        * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+        * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
 ## Step 4: Test the filtering node operation
 
