@@ -11,7 +11,7 @@ These instructions provide you with the example integration of Wallarm with the 
 ## Used resources
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
-* [Logstash 7.7.0](#logstash-configuration) installed on Debian 10.4 (Buster) and available on `https://logstash.example.domain.com`
+* [Logstash 7.7.0](#logstash-configuration) installed on Debian 11.x (bullseye) and available on `https://logstash.example.domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Logstash integration](#configuration-of-logstash-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"

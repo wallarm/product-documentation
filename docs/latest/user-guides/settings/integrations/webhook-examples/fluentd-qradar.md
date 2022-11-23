@@ -8,7 +8,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 ## Used resources
 
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
+* [Fluentd](#fluentd-configuration) installed on Debian 11.x (bullseye) and available on `https://fluentd-example-domain.com`
 * [QRadar V7.3.3](#qradar-configuration-optional) installed on Linux Red Hat and available with the IP address `https://109.111.35.11:514`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Fluentd integration](#configuration-of-fluentd-integration)
 

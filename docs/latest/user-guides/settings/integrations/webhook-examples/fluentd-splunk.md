@@ -11,7 +11,7 @@ These instructions provide you with the example integration of Wallarm with the 
 ## Used resources
 
 * [Splunk Enterprise](#splunk-enterprise-configuration) with WEB URL `https://109.111.35.11:8000` and API URL `https://109.111.35.11:8088`
-* [Fluentd](#fluentd-configuration) installed on Debian 10.4 (Buster) and available on `https://fluentd-example-domain.com`
+* [Fluentd](#fluentd-configuration) installed on Debian 11.x (bullseye) and available on `https://fluentd-example-domain.com`
 * Administrator access to Wallarm Console in [EU cloud](https://my.wallarm.com) to [configure the Fluentd integration](#configuration-of-fluentd-integration)
 
 --8<-- "../include/cloud-ip-by-request.md"

@@ -74,7 +74,7 @@ To see detailed information about creating a security group, proceed to this [li
 
 --8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
 
-To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 4.2.
+To launch an instance with the filtering node, proceed to this [link](https://aws.amazon.com/marketplace/pp/B073VRFXSD) and subscribe to the filtering node 4.4.
 
 When creating an instance, you need to specify the [previously created][anchor1] security group. To do this, perform the following actions:
 

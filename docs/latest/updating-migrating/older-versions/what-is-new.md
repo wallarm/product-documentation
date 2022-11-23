@@ -62,6 +62,7 @@ Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../..
 * Added support for Ubuntu 22.04 LTS (jammy)
 * Dropped support for CentOS 6.x (CloudLinux 6.x)
 * Dropped support for Debian 9.x
+* Dropped support for Debian 10.x for Wallarm to be installed as the module for either NGINX stable or NGINX Plus
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
