@@ -121,7 +121,8 @@ To create the filtering node and connect the postanalytics module to the Cloud:
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync --no-sync-acl
         ```
 
-    `<NODE_TOKEN>` is the copied token value.
+    * `<NODE_TOKEN>` is the copied token value.
+    * You may add `-n <HOST_NAME>` parameter to set a custom name for your postanalytics node instance. Final node instance name will be: `HOST_NAME_NodeUUID`.
 
 ### 4. Update postanalytics module configuration
 
