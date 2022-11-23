@@ -210,7 +210,15 @@ To match requests with regular expressions, the PIRE library is used. Mostly, th
 To test the regular expression, you can use the **cpire** utility on supported Debian or Ubuntu:
 
 1. Add Wallarm repository:
-    
+
+    === "Debian 10.x (buster)"
+        ```bash
+        sudo apt update
+        sudo apt install dirmngr
+        curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sudo apt update
+        ```
     === "Debian 11.x (bullseye)"
         ```bash
         sudo apt update

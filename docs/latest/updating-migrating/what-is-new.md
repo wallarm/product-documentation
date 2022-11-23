@@ -25,7 +25,7 @@ Attack analysis performed by Wallarm has been enhanced by involving an additiona
 ## Supported installation options
 
 * Added support for Ubuntu 22.04 LTS (jammy)
-* Dropped support for Debian 10.x (buster)
+* Dropped support for Debian 10.x (buster) for Wallarm to be installed as the module for either NGINX stable or NGINX Plus
 
 [See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
