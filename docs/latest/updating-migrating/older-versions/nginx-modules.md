@@ -86,7 +86,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -99,7 +99,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -114,15 +114,15 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
         ```
 
 ## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)
@@ -141,14 +141,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -172,14 +172,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
@@ -201,7 +201,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
 The deployed node has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.2. The regular node type will be removed in future releases, please migrate before.
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.4. The regular node type will be removed in future releases, please migrate before.
 
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:

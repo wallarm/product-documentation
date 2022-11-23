@@ -22,13 +22,13 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -43,15 +43,15 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
         ```
 
 ## Step 2: Upgrade the Tarantool packages
@@ -62,14 +62,14 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
