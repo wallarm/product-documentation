@@ -171,7 +171,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 #### Managing libdetection mode
 
 !!! info "**libdetection** default mode"
-    The default mode of the **libdetection** library is `on/true` (enabled).
+    The default mode of the **libdetection** library is `on` (enabled).
 
 You can control the [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) mode using one of the options:
 
