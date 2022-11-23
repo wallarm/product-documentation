@@ -13,7 +13,6 @@
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
@@ -225,4 +224,4 @@ To run postanalytics and process the requests on different servers, the followin
 
 Dynamic Wallarm API Security module with default settings is installed for NGINX `stable`. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
