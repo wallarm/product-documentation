@@ -112,10 +112,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
 2. Comment out or delete the previous repository address.
 3. Add a new repository address:
 
-    === "Debian 10.x (buster)"
-        ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/
-        ```
     === "Debian 11.x (bullseye)"
         ```bash
         deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/

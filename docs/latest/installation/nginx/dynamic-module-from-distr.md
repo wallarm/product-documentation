@@ -39,13 +39,6 @@ Installation commands for both options are described in the further instructions
 
 ### 1. Add Debian/CentOS repositories
 
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
@@ -74,10 +67,6 @@ The command installs the following packages:
 * `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
 * `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
 
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
-    ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
@@ -101,10 +90,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 The commands install packages for NGINX and for the NGINX-Wallarm module:
 
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
-    ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm

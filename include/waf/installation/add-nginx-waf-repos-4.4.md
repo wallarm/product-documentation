@@ -1,10 +1,3 @@
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
