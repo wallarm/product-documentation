@@ -68,6 +68,25 @@ Using the **Changes since** filter only highlights the changed endpoints among t
 
 Selecting values from this filter will show only the endpoints correspondingly changed within the specified period.
 
+## Working with risk score
+
+The [automatically calculated](../about-wallarm/api-discovery.md#endpoint-risk-score) **risk score** allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
+
+Risk score may be from `1` (lowest) to `10` (highest):
+
+| Value | Risk level | Color |
+| --------- | ----------- | --------- |
+| 1 to 3 | Low | Grey |
+| 4 to 7 | Medium | Orange |
+| 8 to 10 | High | Red |
+
+* `1` means no risk factors for this endpoint.
+* Risk score is not displayed (`N/A`) for the removed endpoints.
+
+To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details. In the **Risk score** section, expand the corresponding risk factor to get additional description, such as list of active vulnerabilities etc., and links to the solution recommendations.
+
+![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+
 ## Monitoring attacks on API endpoints
 
 To see attacks for the selected period related to some endpoint, click number in the **Hits** column:

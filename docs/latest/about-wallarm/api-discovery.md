@@ -15,7 +15,8 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 **As you have your API structure discovered by Wallarm, you can**:
 
 * Have a full visibility into the whole API estate including the list of [external and internal](#external-and-internal-apis) APIs.
-* Understand what data is [going into the APIs](../user-guides/api-discovery.md#params).
+* See what data is [going into the APIs](../user-guides/api-discovery.md#params).
+* Understand which endpoints are [most likely](#endpoint-risk-score) to be an attack target.
 * Filter APIs that consume and carry sensitive data.
 * Have an up-to-data API structure with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) into the OpenAPI v3 to compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
@@ -116,7 +117,7 @@ Before purchasing the API Discovery subscription plan, you can preview sample da
 
 ## Using built API structure
 
-The API Discovery section provides many options for the build API structure usage.
+The **API Discovery** section provides many options for the build API structure usage.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
@@ -132,6 +133,22 @@ These options are:
 * Downloading OpenAPI specification (OAS) for your API structure as `swagger.json` file.
 
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
+
+## Endpoint risk score
+
+API Discovery automatically calculates a **risk score** for each endpoint in your API portfolio. The risk score allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
+
+The risk score is made up of various factors, including:
+
+* Presence of **active vulnerabilities** that may result in unauthorized data access or corruption.
+* Ability to **upload files to the server** - endpoints are frequently targeted by Remote Code Execution (RCE) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+* Presence of the **variable path parts**, such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data (**BOLA attacks**).
+* Presence of the parameters with **sensitive data** - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
+* A **large number of parameters** increasing the number of attack directions.
+* **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
+* And others.
+
+[Learn how to work with the risk score →](../user-guides/api-discovery.md#working-with-risk-score)
 
 ## Tracking changes in API structure
 
