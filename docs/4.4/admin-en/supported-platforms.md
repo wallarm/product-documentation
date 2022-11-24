@@ -243,8 +243,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </h3>
         <p>Install the Wallarm module for...</p>
         <div id="debian10Id" class="options-list" style="display: none;">
-            <a href="../../installation/nginx/dynamic-module/" onClick="noAction(event)">NGINX Stable</a>
-            <a href="../../installation/nginx-plus/" onClick="noAction(event)">NGINX Plus</a>
             <a href="../../installation/nginx/dynamic-module-from-distr/" onClick="noAction(event)">NGINX from Debian repo</a>
         </div>
     </div>
