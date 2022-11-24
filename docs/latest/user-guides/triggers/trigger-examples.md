@@ -99,6 +99,18 @@ If you have recently created the Wallarm account, this [trigger is already creat
 
 ![!Example for trigger on weak JWTs](../../images/user-guides/triggers/trigger-example-weak-jwt.png)
 
+**To test the trigger:**
+
+1. Generate a JWT signed using a [compromised secret key](https://github.com/wallarm/jwt-secrets), e.g.:
+
+    ```
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiQWRtaW5pc3RyYXRvciJ9.p5DrumkF6oTBiUmdtDRT5YHqYL2D7p5YOp6quUrULYg
+    ```
+1. Generate some traffic with requests authenticated using a compromised JWT.
+1. If a significant amount of incoming requests processed by the node 4.4 contains weak JWTs, Wallarm registers the vulnerability, e.g.:
+
+    ![!JWT vuln example](../../images/user-guides/vulnerabilities/weak-auth-vuln.png)
+
 ## Slack notification if 2 or more SQLi hits are detected in one minute
 
 If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.

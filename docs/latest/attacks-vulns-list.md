@@ -575,7 +575,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
-**Wallarm code:** `weak_jwt`
+**Wallarm code:** `weak_auth`
 
 **Description:**
 
