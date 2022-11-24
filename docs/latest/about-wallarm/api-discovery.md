@@ -184,7 +184,7 @@ By default, a list with all API hosts (external and internal) is displayed. In t
 
 ## Variability in endpoints
 
-URLs can include alternating elements, such as ID of user, like:
+URLs can include diverse elements, such as ID of user, like:
 
 * `/api/articles/author/author-a-0001`
 * `/api/articles/author/author-a-1401`
@@ -194,7 +194,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 * `/api/articles/author/{parameter_X}`
 
-Click the endpoint to expand its parameters and view which type was automatically detected for the alternating parameter.
+Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
 ![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 

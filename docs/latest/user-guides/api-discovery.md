@@ -18,6 +18,13 @@ The API structure includes the following elements:
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
+!!! info "Default period"
+    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only the [changes in you API](#tracking-changes-in-api-structure) occurred within the last week are highlighted and [hits](#monitoring-attacks-on-api-endpoints) for the same period are counted.
+
+    See [this example](#example) to understand what API Discovery displays by default.
+
+You can manually select other time periods to be covered.
+
 ## Filtering endpoints
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
@@ -52,21 +59,30 @@ Each parameter information includes:
 
 ## Tracking changes in API structure
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes and hits since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
 * **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different - calculated based on the statistics of accessing each of the endpoint. If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
 
+Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Removed** mark, this means there are no changes in API for that period.
+
 ![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
-Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API structure** filter where you can select one or several types of changes:
+!!! info "Default period"
+    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted and [hits](#monitoring-attacks-on-api-endpoints) for the same period are counted.
 
-* New endpoints
-* Changed endpoints
-* Removed endpoints
+Using the **Changes and hits since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
 
-Selecting values from this filter will show only the endpoints correspondingly changed within the specified period.
+The **Changes in API structure** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
+
+<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 has changes in their parameters occurred 5 days ago for one and 10 days ago for another:
+
+* Each time you open the **API Discovery** section today, the **Changes and hits since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
+* Switch **Changes and hits since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
+* Set **Changes in API structure** to `Removed endpoints` - 3 endpoints will be displayed, all with the **Removed** mark.
+* Change **Changes in API structure** to `New endpoints + Removed endpoints` - 4 endpoints will be displayed, 3 with the **Removed** mark, and 1 with the **New** mark.
+* Switch **Changes and hits since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
 
 ## Working with risk score
 
@@ -89,7 +105,12 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 
 ## Monitoring attacks on API endpoints
 
-To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
+Attacks on API endpoints are displayed in the **Hits** column.
+
+!!! info "Default period"
+    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are displayed and [endpoint changes](#tracking-changes-in-api-structure) for the same period are highlighted.
+
+You can manually change the time period. To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
@@ -100,6 +121,8 @@ attacks <START_DATE_TIME - CURRENT_DATE_TIME> u:<YOUR_ENDPOINT>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
+
+Note that the number of hits displayed for the endpoint by **API Discovery** in some cases may be not equal to the  number of hits displayed by the **Events** section, even for the same time period. This can happen when the endpoint was discovered by API Discovery later than Wallarm started catching hits for this endpoint, for instance, if you did not have the API Discovery in your subscription before.
 
 ## API structure and rules
 
