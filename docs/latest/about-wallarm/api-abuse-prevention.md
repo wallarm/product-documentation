@@ -98,8 +98,12 @@ Behavior of the filtering node may differ if graylisted IP addresses are also al
 
 The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) for 1 hour.
 
-You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**. Each bot's IP is provided with the details on its nature.
-
 ![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
-If denylisted or graylisted IP actually does not belong to a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/allowlist.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
+[Learn how to explore blocked malicious bots →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots)
+
+## Exploring bot attacks
+
+You can search for and view API abuse attacks performed by bots in the **Events** section.
+
+[Learn how to explore bot attacks on API →](../user-guides/api-abuse-prevention.md#exploring-bot-attacks)

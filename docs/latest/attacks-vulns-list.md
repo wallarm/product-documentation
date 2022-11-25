@@ -599,6 +599,39 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
 * [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
 
+### API abuse
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+API abuse performed by bots like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+
+**Wallarm behavior:**
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following automated threats by default:
+
+* API abuse targeted at server response time increase or server unavailability
+* Credential stuffing
+* Fake account creation
+* Scalping
+* Vulnerability scanning
+* Scraping
+* Broken Object Level Authorization (BOLA)
+
+For the module to identify anomaly traffic as originating from malicious bots, the module relies on many metrics.
+
+If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* [Activate](about-wallarm/api-abuse-prevention.md#activating-api-abuse-prevention) API Abuse Prevention for your subscription.
+* Configure proper API abuse prevention using [API abuse profiles](user-guides/api-abuse-prevention.md).
+
 ##  The list of special attacks and vulnerabilities
 
 ### Virtual patch
