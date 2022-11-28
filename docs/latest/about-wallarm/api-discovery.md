@@ -196,7 +196,7 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 ## Enabling and configuring API Discovery
 
-The API Discovery package `wallarm-appstructure` is delivered with all forms of the [Wallarm node 3.2 and later](../admin-en/supported-platforms.md) including the CDN node but except for Debian 11.x. The API Discovery module is installed from the `wallarm-appstructure` package automatically during the filtering node deployment process. By default, the module does not analyze the traffic.
+The API Discovery package `wallarm-appstructure` is delivered with all forms of the [Wallarm node 3.2 and later](../admin-en/supported-platforms.md) including the CDN node but except for Debian 11.x and Ubuntu 22.04. The API Discovery module is installed from the `wallarm-appstructure` package automatically during the filtering node deployment process. By default, the module does not analyze the traffic.
 
 To run API Discovery correctly:
 

@@ -2,13 +2,15 @@
 
 Wallarm API Security protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
-!!! warning "Wallarm node 3.6 support will end soon"
-    Wallarm node 3.6 support will end [soon](/updating-migrating/versioning-policy/#version-list). Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
+!!! warning "Unsupported version"
+    Wallarm node 3.6 and lower are not supported. We have significantly simplified the node configuration procedure and made attack mitigation even more powerful and usable in the later releases.
+
+    Please learn [what is new in the later versions](/updating-migrating/older-versions/what-is-new/) and plan the upgrade procedure.
 
 <div class="navigation">
-<a href="../updating-migrating/what-is-new/" class="navigation-card">
+<a href="../updating-migrating/older-versions/what-is-new/" class="navigation-card">
     <h3>Upgrading to the latest version</h3>
-    <p>Learn new features in node 4.2 and apply changes to installed components</p>
+    <p>Learn new features in node 4.4 and apply changes to installed components</p>
 </a>
 
 <a href="./quickstart/" class="navigation-card">
