@@ -94,16 +94,11 @@ When using this option, the system:
 
 Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](../user-guides/ip-lists/overview.md#algorithm-of-ip-lists-processing).
 
-## Exploring blocked malicious bots
+## Exploring blocked malicious bots and their attacks
 
-The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) for 1 hour.
+You can:
 
-![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+* Explore blocked malicious bots
+* View API abuse attacks performed by bots
 
-[Learn how to explore blocked malicious bots →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots)
-
-## Exploring bot attacks
-
-You can search for and view API abuse attacks performed by bots in the **Events** section.
-
-[Learn how to explore bot attacks on API →](../user-guides/api-abuse-prevention.md#exploring-bot-attacks)
+[Learn how to explore blocked malicious bots and their attacks →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)

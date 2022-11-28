@@ -33,9 +33,9 @@ Deleted profiles are the ones that cannot be restored and that the **API Abuse P
 
 You can delete the profile by using the corresponding **Delete** option.
 
-## Exploring blocked malicious bots
+## Exploring blocked malicious bots and their attacks
 
-The **API Abuse Prevention** module blocks bots by [adding](../about-wallarm/api-abuse-prevention.md#exploring-blocked-malicious-bots) them to the denylist or graylist for 1 hour.
+The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) for 1 hour.
 
 You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**.
 
@@ -43,9 +43,7 @@ You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Deny
 
 If denylisted or graylisted IP actually does not belong to a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/allowlist.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
 
-### Exploring bot attacks
-
-You can explore bot API abuse attacks performed by bots in Wallarm Console → **Events** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
+You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Events** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
