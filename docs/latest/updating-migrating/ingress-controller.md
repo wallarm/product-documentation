@@ -7,7 +7,7 @@
 
 # Upgrading NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 4.x to the new version with Wallarm node 4.4.
+These instructions describe the steps to upgrade deployed Wallarm NGINX-based Ingress Controller 4.x to the new version with Wallarm node 4.4.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/ingress-controller.md).
 
