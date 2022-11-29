@@ -23,7 +23,7 @@ The API structure includes the following elements:
 
     See [this example](#example) to understand what API Discovery displays by default.
 
-You can manually select other time periods to be covered.
+    You can manually select other time periods to be covered.
 
 ## Filtering endpoints
 
@@ -76,7 +76,7 @@ Using the **Changes and hits since** filter only highlights the endpoints change
 
 The **Changes in API structure** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
 
-<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 has changes in their parameters occurred 5 days ago for one and 10 days ago for another:
+<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
 
 * Each time you open the **API Discovery** section today, the **Changes and hits since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
 * Switch **Changes and hits since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
@@ -108,7 +108,7 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 Attacks on API endpoints are displayed in the **Hits** column.
 
 !!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are displayed and [endpoint changes](#tracking-changes-in-api-structure) for the same period are highlighted.
+    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are counted.
 
 You can manually change the time period. To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
 
@@ -122,7 +122,8 @@ attacks <START_DATE_TIME - CURRENT_DATE_TIME> u:<YOUR_ENDPOINT>
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
 
-Note that the number of hits displayed for the endpoint by **API Discovery** in some cases may be not equal to the  number of hits displayed by the **Events** section, even for the same time period. This can happen when the endpoint was discovered by API Discovery later than Wallarm started catching hits for this endpoint, for instance, if you did not have the API Discovery in your subscription before.
+!!! info "Discrepancy in number of hits"
+    The number of hits displayed for the endpoint by **API Discovery** in some cases may be not equal to the  number of hits displayed by the **Events** section, even for the same time period. This can happen when the endpoint was discovered by API Discovery later than Wallarm started catching hits for this endpoint, for instance, if you did not have the API Discovery in your subscription before.
 
 ## API structure and rules
 
