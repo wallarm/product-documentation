@@ -47,3 +47,17 @@ You can also explore bot API abuse attacks performed by bots in Wallarm Console 
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
+The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
+
+| Segment | Contains | Example |
+|---|---|---|
+| SENSITIVE | Sensitive data that refers to the internals of the web application. | `wp-admin` |
+| SENSITIVE | Sensitive data that refers to the internals of the web application. | `wp-admin` |
+| IDENTIFIER | Various identifiers like numeric identifiers, UUIDs, etc. | - |
+| STATIC | Static data. | images, js |
+| FILE | Non-interactive files. | `image.png` |
+| QUERY | Query parameters. | - |
+| AUTH | Content related to the authentication/authorization endpoints. | - |
+| LANGUAGE | Language-related segments. | `en`, `fr` |
+| HEALTHCHECK | Content related to the health check endpoints. | - |
+| VARY | Other data not important for analysis. | - |
