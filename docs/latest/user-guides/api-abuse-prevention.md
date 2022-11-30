@@ -52,7 +52,6 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | Segment | Contains | Example |
 |---|---|---|
 | SENSITIVE | Sensitive data that refers to the internals of the web application. | `wp-admin` |
-| SENSITIVE | Sensitive data that refers to the internals of the web application. | `wp-admin` |
 | IDENTIFIER | Various identifiers like numeric identifiers, UUIDs, etc. | - |
 | STATIC | Static data. | images, js |
 | FILE | Non-interactive files. | `image.png` |

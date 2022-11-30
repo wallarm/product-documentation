@@ -629,8 +629,8 @@ If the metrics point to bot attack signs, the module [denylists or graylists](ab
 
 You may follow these recommendations:
 
-* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to Web applications.
-* Blacklist IP addresses of regions and sources (like Tor), definitely not related to your application.
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
 * Configure server-side rate limit for requests.
 * Use CAPTCHA solutions.
 * Search your application analytics for the bot attack signs.
