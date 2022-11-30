@@ -32,8 +32,8 @@ The method of sidecar container installation depends on the Kubernetes applicati
 * [Kubernetes deployment based on Helm charts](wallarm-sidecar-container-helm.md)
 * [Kubernetes deployment based on manifests](wallarm-sidecar-container-manifest.md)
 
-## Demo videos
+<!-- ## Demo videos
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/N5mEXPoU2Lw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->

@@ -105,9 +105,9 @@ nav:
     - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
-  - Demo videos:
-    - Wallarm API Security overview and deployment options: demo-videos/overview.md
-    - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
-    - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
+  # - Demo videos:
+  #   - Wallarm API Security overview and deployment options: demo-videos/overview.md
+  #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
+  #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
+  #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
   - Changelog & news: news.md
