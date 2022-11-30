@@ -101,8 +101,8 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 --8<-- "../include/api-request-examples/get-vulnerabilities.md"
 
-## Demo videos
+<!-- ## Demo videos
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/rhigX3DEoZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->

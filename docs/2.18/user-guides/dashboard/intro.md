@@ -23,8 +23,8 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
     * The **Wallarm Playground** option will forward you to the Wallarm Console playground with read-only access to its sections. This option is available only for users of the US Cloud.
 
-----------
+<!-- ----------
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+</div> -->
