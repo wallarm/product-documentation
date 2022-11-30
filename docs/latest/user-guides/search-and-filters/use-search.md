@@ -99,6 +99,7 @@ Specify in the search string:
 * `idor`: to search for vulnerabilities of the [BOLA (IDOR)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) type.
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
 * `weak_auth`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
+* `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
