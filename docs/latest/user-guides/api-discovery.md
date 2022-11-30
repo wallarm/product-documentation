@@ -19,7 +19,14 @@ The API structure includes the following elements:
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 !!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only the [changes in you API](#tracking-changes-in-api-structure) occurred within the last week are highlighted and [hits](#monitoring-attacks-on-api-endpoints) for the same period are counted.
+    Each time you open the **API Discovery** section:
+    
+    * You see actual structure of your API (all discovered endpoints)
+    * The **Changes and hits since** filter goes to the `Lask week` state, which means:
+
+        * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api-structure)
+        * Additionally, endpoints `Deleted` within this period will be displayed
+        * [Hits](#monitoring-attacks-on-api-endpoints) for the same period are counted
 
     See [this example](#example) to understand what API Discovery displays by default.
 
@@ -105,10 +112,7 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 
 ## Monitoring attacks on API endpoints
 
-Attacks on API endpoints are displayed in the **Hits** column.
-
-!!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are counted.
+Attacks on API endpoints are displayed in the **Hits** column. Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are counted.
 
 You can manually change the time period. To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
 
