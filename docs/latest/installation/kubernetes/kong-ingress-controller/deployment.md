@@ -200,10 +200,10 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <KUBERNETES_NAMESPACE>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=kong
     ```
 
-    As for the `wallarm-*` pods, each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
+    Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
     NAME                                                      READY   STATUS    RESTARTS   AGE

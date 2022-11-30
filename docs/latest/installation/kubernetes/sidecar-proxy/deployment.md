@@ -156,10 +156,10 @@ To test that the Wallarm Sidecar proxy operates correctly:
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n wallarm-sidecar
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
-    As for the `wallarm-*` pods, each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
+    Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE

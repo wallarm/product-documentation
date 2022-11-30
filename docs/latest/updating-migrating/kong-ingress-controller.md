@@ -52,13 +52,22 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.4.0 -f <PATH
 
 ## Step 4: Test the upgraded Ingress controller
 
+1. Make sure the version of the Helm chart was upgraded:
+
+    ```bash
+    helm list -n <NAMESPACE>
+    ```
+
+    Where `<NAMESPACE>` is the namespace the Ingress controller is deployed to.
+
+    The chart version should correspond to `kong-4.4.0`.
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <KUBERNETES_NAMESPACE>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=kong
     ```
 
-    As for the `wallarm-*` pods, each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
+    Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
     NAME                                                      READY   STATUS    RESTARTS   AGE
