@@ -11,6 +11,8 @@ This section is available under the following conditions:
 * The [API Discovery](../about-wallarm/api-discovery.md) module is enabled
 * The user [role](settings/users.md#user-roles) is either **Administrator** or **Global Administrator**
 
+    The section is also availabe in read-only mode for **Analysts** and **Global Analysts**.
+
 !!! info "Variations of BOLA mitigation"
 
     BOLA mitigation is available in the following variations:

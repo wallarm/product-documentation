@@ -11,5 +11,5 @@ Once BOLA protection is enabled, Wallarm:
     * Requests to a vulnerable endpoint exceeding the 50 requests threshold from the same IP per 30 sec are considered BOLA attacks.
     * Only register BOLA attacks in the event list when the threshold of requests from the same IP is reached. Wallarm does not block BOLA attacks. Requests will keep going to your applications.
 
-        The corresponding reaction in the autoprotection template is **Monitoring**.
+        The corresponding reaction in the autoprotection template is **Only register attacks**.
 1. Reacts to [changes in API structure][changes-in-api-structure-docs] by protecting new vulnerable endpoints and deleting triggers for removed endpoints.
