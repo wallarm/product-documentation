@@ -185,7 +185,7 @@ Note that the algorithm analyzes the new traffic. If at some moment you see addr
 
 ## Automatic BOLA protection
 
-Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either get or modify its data bypassing an authorization mechanism.
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism.
 
 Potential target of the BOLA attacks are endpoints with variability. Wallarm can automatically discover and protect such endpoints among the ones explored by the **API Discovery** module.
 

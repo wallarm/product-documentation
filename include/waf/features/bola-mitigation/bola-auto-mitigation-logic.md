@@ -5,7 +5,7 @@ Once BOLA protection is enabled, Wallarm:
     !!! info "This stage takes a period of time"
         Identification of vulnerable API endpoints takes a period of time required for deep observation of discovered API structure and incoming traffic trends.
     
-    Only API endpoints explored by the **API Discovery** module are protected against the BOLA attacks in the automated way. Protected endpoints are [highlighted with the corresponding icon][bola-protection-for-endpoints-docs].
+    Only API endpoints explored by the **API Discovery** module are protected against BOLA attacks in the automated way. Protected endpoints are [highlighted with the corresponding icon][bola-protection-for-endpoints-docs].
 1. Protects vulnerable API endpoints against BOLA attacks. The default protection logic is the following:
 
     * Requests to a vulnerable endpoint exceeding the 50 requests threshold from the same IP per 30 sec are considered BOLA attacks.
