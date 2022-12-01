@@ -566,6 +566,43 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+### API abuse
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+API abuse performed by bots like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+
+**Wallarm behavior:**
+
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following automated threats by default:
+
+* API abuse targeted at server response time increase or server unavailability
+* Credential stuffing
+* Fake account creation
+* Scalping
+* Vulnerability scanning
+* Scraping
+* Broken Object Level Authorization (BOLA)
+
+For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
+
+If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
+* Configure server-side rate limit for requests.
+* Use CAPTCHA solutions.
+* Search your application analytics for the bot attack signs.
 
 ##  The list of special attacks and vulnerabilities
 
