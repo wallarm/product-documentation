@@ -611,6 +611,8 @@ API abuse performed by bots like credential stuffing, fake account creation, con
 
 **Wallarm behavior:**
 
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
 The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following automated threats by default:
 
 * API abuse targeted at server response time increase or server unavailability
