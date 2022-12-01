@@ -1,3 +1,5 @@
+[ip-lists-docs]: ../../../user-guides/ip-lists/overview.md
+
 # Deploying Kong Ingress Controller with integrated Wallarm services
 
 To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
@@ -54,14 +56,7 @@ As for the Open-Source Kong Ingress controller with Wallarm services, it support
 
 ## Requirements
 
-* Kubernetes platform version 1.22-1.25
-* K8s Ingress resources that configure Kong to route API calls to the microservices you want to protect
-* [Helm v3](https://helm.sh/) package manager
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
-* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts
-* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions or data centers
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/)
+--8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
 
 ## Deployment
 
@@ -205,10 +200,10 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
-    kubectl get pods -n <KUBERNETES_NAMESPACE>
+    kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=kong
     ```
 
-    As for the `wallarm-*` pods, each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
+    Each pod should display the following: **READY: N/N** and **STATUS: Running**, e.g.:
 
     ```
     NAME                                                      READY   STATUS    RESTARTS   AGE
