@@ -64,6 +64,7 @@
 [link-imap-wiki]:                                https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol
 [link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
+[link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
 The Wallarm filtering node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
@@ -317,6 +318,29 @@ You may follow these recommendations:
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
 
+### Cross-Site Request Forgery (CSRF)
+
+**Vulnerability**
+
+**CWE code:** [CWE-352][cwe-352]
+
+**Wallarm code:** `csrf`
+
+**Description:**
+
+A CSRF attack allows an intruder to send requests to a vulnerable application on behalf of a legitimate user.
+
+The corresponding vulnerability occurs due to the user's browser automatically adding cookies that are set for the target domain name while performing the cross-site request. 
+
+As a result, the intruder can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the intruder does not even need to have access to that user's cookies.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+*   Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
+*   Set the `SameSite` cookie attribute.
+*   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
 ### Forced browsing
 

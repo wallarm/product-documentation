@@ -100,6 +100,7 @@ Specify in the search string:
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
 * `weak_auth`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
+* `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
