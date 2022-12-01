@@ -75,10 +75,12 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 1.1
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. Send the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to filter traffic:
+1. Send the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the application cluster address:
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
+
+    The requested application Pod should have the `wallarm-sidecar: enabled` label.
 
     Check that the solution of the newer version processes the malicious request as it did in the previous version.
