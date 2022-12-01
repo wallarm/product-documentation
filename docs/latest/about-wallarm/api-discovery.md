@@ -123,7 +123,6 @@ The **API Discovery** section provides many options for the build API structure 
 
 These options are:
 
-* Familiar format of API representation in a **Swagger-like manner**.
 * Search and filters.
 * Ability to list internal and external APIs separately.
 * Viewing endpoint parameters.
@@ -146,7 +145,8 @@ The risk score is made up of various factors, including:
 * Presence of the parameters with [**sensitive data**](#api-structure-elements) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
 * A **large number of parameters** increasing the number of attack directions.
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
-* And others.
+
+The details of the endpoint indicate all the factors that are applicable to the endpoint. When calculating the endpoint risk score, each applicable factor gets its own score, depending on its importance. From these scores, the greatest is taken as the risk score of the endpoint.
 
 [Learn how to work with the risk score →](../user-guides/api-discovery.md#working-with-risk-score)
 

@@ -106,7 +106,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 * `1` means no risk factors for this endpoint.
 * Risk score is not displayed (`N/A`) for the removed endpoints.
 
-To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details. In the **Risk score** section, expand the corresponding risk factor to get additional description, such as list of active vulnerabilities etc., and links to the solution recommendations.
+To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details. The details of the endpoint indicate all the factors that are applicable to the endpoint. In the **Risk score** section, expand the corresponding risk factor to get additional description, such as list of active vulnerabilities etc., and links to the solution recommendations.
 
 ![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
