@@ -22,11 +22,10 @@ The API structure includes the following elements:
     Each time you open the **API Discovery** section:
     
     * You see actual structure of your API (all discovered endpoints)
-    * The **Changes and hits since** filter goes to the `Lask week` state, which means:
+    * The **Changes since** filter goes to the `Lask week` state, which means:
 
         * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api-structure)
         * Additionally, endpoints `Deleted` within this period will be displayed
-        * [Hits](#monitoring-attacks-on-api-endpoints) for the same period are counted
 
     See [this example](#example) to understand what API Discovery displays by default.
 
@@ -66,7 +65,7 @@ Each parameter information includes:
 
 ## Tracking changes in API structure
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes and hits since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
@@ -77,19 +76,19 @@ Note that whatever period is selected, if nothing is highlighted with the **New*
 ![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 !!! info "Default period"
-    Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted and [hits](#monitoring-attacks-on-api-endpoints) for the same period are counted.
+    Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted.
 
-Using the **Changes and hits since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
+Using the **Changes since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
 
 The **Changes in API structure** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
 
 <a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
 
-* Each time you open the **API Discovery** section today, the **Changes and hits since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
-* Switch **Changes and hits since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
+* Each time you open the **API Discovery** section today, the **Changes since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
+* Switch **Changes since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
 * Set **Changes in API structure** to `Removed endpoints` - 3 endpoints will be displayed, all with the **Removed** mark.
 * Change **Changes in API structure** to `New endpoints + Removed endpoints` - 4 endpoints will be displayed, 3 with the **Removed** mark, and 1 with the **New** mark.
-* Switch **Changes and hits since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
+* Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
 
 ## Working with risk score
 
@@ -112,22 +111,19 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 
 ## Monitoring attacks on API endpoints
 
-Attacks on API endpoints are displayed in the **Hits** column. Each time you open the **API Discovery** section, the **Changes and hits since** filter goes to `Lask week` state, which means only hits within this period are counted.
+Attacks on API endpoints are displayed in the **Hits** column.
 
-You can manually change the time period. To see attacks for the selected period related to some endpoint, click number in the **Hits** column:
+To see attacks to some endpoint, click number in the **Hits** column:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
-attacks <START_DATE_TIME - CURRENT_DATE_TIME> u:<YOUR_ENDPOINT>
+attacks u:<YOUR_ENDPOINT>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
-
-!!! info "Discrepancy in number of hits"
-    The number of hits displayed for the endpoint by **API Discovery** in some cases may be not equal to the  number of hits displayed by the **Events** section, even for the same time period. This can happen when the endpoint was discovered by API Discovery later than Wallarm started catching hits for this endpoint, for instance, if you did not have the API Discovery in your subscription before.
 
 ## API structure and rules
 
