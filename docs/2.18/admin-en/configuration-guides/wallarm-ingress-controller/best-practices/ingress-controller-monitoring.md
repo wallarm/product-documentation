@@ -1,4 +1,4 @@
-# Ingress Controller Monitoring
+# NGINX-based Ingress Controller Monitoring
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 

@@ -2,7 +2,18 @@
 
 # Installing NGINX Ingress Controller with integrated Wallarm services
 
-These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are no other non-NGINX Ingress controllers deployed.
+These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution involves the default functionality of [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services.
+
+The solution is deployed from the Wallarm Helm chart.
+
+## Use cases
+
+Among all supported [Wallarm deployment options](supported-platforms.md), this solution is the recommended one for the following **use cases**:
+
+* There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
+* You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.
+
+    You can seamlessly replace the deployed NGINX Ingress Controller with the one these instructions describe by only moving your configuration to a new deployment.
 
 ## Requirements
 

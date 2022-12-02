@@ -1,20 +1,23 @@
 # Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster
 
-These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are other non-Ingress controllers deployed (e.g. AWS ALB Ingress Controller which is not supported by Wallarm).
+These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster and chain it with other Controllers that are already running in your environment.
 
 ## The issue addressed by the solution
 
-Wallarm offers its node software in different form-factors, including a [Kubernetes Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md).
+Wallarm offers its node software in different form-factors, including [Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md).
 
-If you already use a non-NGINX Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller. Fortunately, it is possible to chain several Ingress controllers that enable you to utilize an existing controller to get end-user requests to a cluster, and deploy an additional Wallarm Ingress controller to provide necessary application protection.
+If you already use an Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller (e.g. if using AWS ALB Ingress Controller). In this case, you can explore the [Wallarm Sidecar proxy solution](../installation/kubernetes/sidecar-proxy/deployment.md) but if it also does not fit your infrastructure, it is possible to chain several Ingress controllers.
+
+Ingress controller chaining enables you to utilize an existing controller to get end-user requests to a cluster, and deploy an additional Wallarm Ingress controller to provide necessary application protection.
 
 ## Requirements
 
 * Kubernetes platform version 1.19-1.23
 * [Helm](https://helm.sh/) package manager
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` for working with US Wallarm Cloud
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
+* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
 * Deployed Kubernetes cluster running an Ingress controller
 
@@ -34,8 +37,8 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 ### Step 1: Deploy the Wallarm Ingress controller
 
 1. Go to Wallarm Console → **Nodes** via the link below:
-    * https://my.wallarm.com/nodes for the EU Cloud
     * https://us1.my.wallarm.com/nodes for the US Cloud
+    * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
     ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
@@ -50,18 +53,6 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     ```
 1. Create the `values.yaml` file with the following Wallarm configuration:
 
-    === "EU Cloud"
-        ```bash
-        controller:
-          wallarm:
-            enabled: "true"
-            token: "<NODE_TOKEN>"
-          electionID: "wallarm-ingress-controller-leader"
-          ingressClass: "wallarm-ingress"
-          service
-            type: "ClusterIP"
-        nameOverride: "wallarm-ingress"
-        ```    
     === "US Cloud"
         ```bash
         controller:
@@ -71,10 +62,26 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
             apiHost: "us1.api.wallarm.com"
           electionID: "wallarm-ingress-controller-leader"
           ingressClass: "wallarm-ingress"
+          ingressClassResource:
+            name: "wallarm-ingress"
           service
             type: "ClusterIP"
         nameOverride: "wallarm-ingress"
         ```
+    === "EU Cloud"
+        ```bash
+        controller:
+          wallarm:
+            enabled: "true"
+            token: "<NODE_TOKEN>"
+          electionID: "wallarm-ingress-controller-leader"
+          ingressClass: "wallarm-ingress"
+          ingressClassResource:
+            name: "wallarm-ingress"
+          service
+            type: "ClusterIP"
+        nameOverride: "wallarm-ingress"
+        ```    
     
     `<NODE_TOKEN>` is the Wallarm node token.
 

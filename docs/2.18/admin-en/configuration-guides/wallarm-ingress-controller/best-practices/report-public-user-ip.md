@@ -1,4 +1,4 @@
-# Proper Reporting of End User Public IP Address
+# Proper Reporting of End User Public IP Address (NGINX-based Ingress controller)
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
