@@ -4,10 +4,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
 ## The issue addressed by the solution
 
-Wallarm offers its node software in different form-factors, including the following Ingress controllers for Kubernetes:
-
-* [Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md)
-* [Ingress Controller built on top of the Kong Ingress Controller](../installation/kubernetes/kong-ingress-controller/deployment.md)
+Wallarm offers its node software in different form-factors, including [Ingress Controller built on top of the Community Ingress NGINX Controller](installation-kubernetes-en.md).
 
 If you already use an Ingress controller, it might be challenging to replace the existing Ingress controller with the Wallarm controller (e.g. if using AWS ALB Ingress Controller). In this case, you can explore the [Wallarm Sidecar proxy solution](../installation/kubernetes/sidecar-proxy/deployment.md) but if it also does not fit your infrastructure, it is possible to chain several Ingress controllers.
 

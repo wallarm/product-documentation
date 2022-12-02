@@ -1,4 +1,4 @@
-# Installing Wallarm Ingress controller
+# Installing NGINX-based Wallarm Ingress controller
 
 This troubleshooting guide lists common issues you can face during the [Wallarm NGINX-based Ingress controller deployment](../admin-en/installation-kubernetes-en.md). If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
 

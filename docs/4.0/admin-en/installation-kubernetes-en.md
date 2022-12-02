@@ -8,8 +8,8 @@ The solution is deployed from the Wallarm Helm chart.
 
 Among all supported [Wallarm deployment options](supported-platforms.md), this solution is the recommended one for the following **use cases**:
 
-* There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.3.0 or lower.
-* You are using either [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.3.0 or lower and looking for a security solution compatible with your technology stack.
+* There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
+* You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.
 
     You can seamlessly replace the deployed NGINX Ingress Controller with the one these instructions describe by only moving your configuration to a new deployment.
 
