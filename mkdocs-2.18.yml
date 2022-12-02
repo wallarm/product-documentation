@@ -166,7 +166,7 @@ nav:
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
-          - Best Practices in Wallarm Ingress Controller Configuration:
+          - Best Practices in NGINX-based Wallarm Ingress Controller Configuration:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
             - Management of IP Addresses Blocking: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/block-ip-addresses.md
             - Configuration of IP Allowlisting for Wallarm Scanner: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/allowlist-wallarm-ip-addresses.md

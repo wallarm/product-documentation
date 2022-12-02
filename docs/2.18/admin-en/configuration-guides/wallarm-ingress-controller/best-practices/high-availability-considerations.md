@@ -1,4 +1,4 @@
-# High Availability Considerations
+# High Availability Considerations (NGINX-based Ingress controller)
 
 This article provides configuration recommendations for the Wallarm Ingress controller to be highly available and prevented from downtimes.
 
