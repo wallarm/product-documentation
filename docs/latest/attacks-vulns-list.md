@@ -328,11 +328,13 @@ You may follow these recommendations:
 
 **Description:**
 
-A CSRF attack allows an intruder to send requests to a vulnerable application on behalf of a legitimate user.
+Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker’s choosing.
 
-The corresponding vulnerability occurs due to the user's browser automatically adding cookies that are set for the target domain name while performing the cross-site request. 
+The corresponding vulnerability occurs due to the user's browser automatically adding user’s session cookies that are set for the target domain name while performing the cross-site request.
 
-As a result, the intruder can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the intruder does not even need to have access to that user's cookies.
+For most sites, these cookies include credentials associated with the site. Therefore, if the user is currently authenticated to the site, the site will have no way to distinguish between the forged request sent by the victim and a legitimate request sent by the victim.
+
+As a result, the attacker can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the attacker does not even need to have access to that user's cookies.
 
 **Remediation:**
 
