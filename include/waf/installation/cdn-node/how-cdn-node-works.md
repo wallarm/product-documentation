@@ -13,3 +13,4 @@ As for the other characteristics of the Wallarm CDN node:
 
     To change the mode, use the corresponding [rule][operation-mode-rule-docs].
 * The CDN node is fully configured via Wallarm Console UI. The only setting to be changed in another way is adding the Wallarm CNAME record to the protected resource's DNS records.
+* You can request the [Wallarm support team](mailto:support@wallarm.com) to perform application configuration for your node.
