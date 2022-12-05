@@ -150,7 +150,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.0.
 
-## Step 7: Upgrade Wallarm API Security packages
+## Step 7: Upgrade Wallarm packages
 
 ### Filtering node and postanalytics on the same server
 

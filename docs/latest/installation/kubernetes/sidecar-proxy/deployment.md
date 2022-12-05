@@ -195,6 +195,6 @@ To test that the Wallarm Sidecar proxy operates correctly:
 
 Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
-You can customize the Wallarm proxy behavior even more on both the global and per-pod levels and get the most out of Wallarm API Security for your company.
+You can customize the Wallarm proxy behavior even more on both the global and per-pod levels and get the most out of Wallarm solution for your company.
 
 Just proceed to the [Wallarm proxy solution customization guide](customization.md).

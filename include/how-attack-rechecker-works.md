@@ -29,7 +29,7 @@ The **Active threat verification** process uses the following logic to check the
     https://example.com/login?token=IyEvYmluL3NoCg&user=1%27%29+OR+SLEEP%280%29+AND+%28%27wlrm%27%3D%27wlrm
     https://example.com/login?token=IyEvYmluL3NoCg&user=SLEEP(10)/*'XOR(SLEEP(10))OR'|\x22XOR(SLEEP(10))OR\x22*/
     ```
-3. The **Active threat verification** module will send generated test requests to the application bypassing the Wallarm API Security protection (using the [allowlisting feature][allowlist-scanner-addresses]) and verify that the application at the specific endpoint is not vulnerable to the specific attack type. If the module suspects that the application has an actual security vulnerability, it will create an event with type [incident](../user-guides/events/check-attack.md#incidents).
+3. The **Active threat verification** module will send generated test requests to the application bypassing the Wallarm protection (using the [allowlisting feature][allowlist-scanner-addresses]) and verify that the application at the specific endpoint is not vulnerable to the specific attack type. If the module suspects that the application has an actual security vulnerability, it will create an event with type [incident](../user-guides/events/check-attack.md#incidents).
 
     !!! info "`User-Agent` HTTPS header value in the requests"
         The `User-Agent` HTTP header in the **Active threat verification** module requests will have the value `Wallarm Threat-Verification (v1.x)`.

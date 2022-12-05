@@ -136,7 +136,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.0/
         ```
 
-## Step 4: Upgrade Wallarm API Security packages
+## Step 4: Upgrade Wallarm packages
 
 ### Filtering node and postanalytics on the same server
 

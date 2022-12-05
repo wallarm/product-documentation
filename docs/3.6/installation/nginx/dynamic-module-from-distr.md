@@ -86,7 +86,7 @@ Installation commands for both options are described in the further instructions
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/3.6/x86_64/Packages/wallarm-node-repo-1-6.el8.noarch.rpm
     ```
 
-### 2. Install NGINX with Wallarm API Security packages
+### 2. Install NGINX with Wallarm packages
 
 #### Request processing and postanalytics on the same server
 

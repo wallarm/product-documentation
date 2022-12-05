@@ -1,8 +1,10 @@
-# Wallarm API Security subscription plans
+# Wallarm subscription plans
 
-The subscription plan outlines the access conditions to Wallarm API Security: subscription period, the set of available modules, and features.
+The subscription plan outlines the conditions of the access to Wallarm: subscription period, the set of available modules, and features.
 
-This document describes the components of the Wallarm API Security subscription plan and how to configure it.
+This document describes:
+* The components the Wallarm subscription plans are composed from
+* How to configure it subscription plans
 
 ## Subscription plans
 

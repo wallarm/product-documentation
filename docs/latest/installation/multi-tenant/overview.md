@@ -1,6 +1,6 @@
 # Multitenancy overview
 
-The **multitenancy** feature allows using Wallarm API Security to protect several independent company infrastructures or isolated environments simultaneously.
+The **multitenancy** feature allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously.
 
 **Tenant** represents the following entities:
 
@@ -33,7 +33,7 @@ Wallarm allows customization of Wallarm Console and some other components. If us
 * Host Wallarm Console on a custom domain
 * Set the email address for your technical support to receive messages from clients or colleagues
 
-Depending on the Wallarm API Security [subscription plan](../../about-wallarm/subscription-plans.md), some options may be unavailable.
+Depending on the Wallarm [subscription plan](../../about-wallarm/subscription-plans.md), some options may be unavailable.
 
 ## Multitenancy configuration
 

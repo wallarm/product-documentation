@@ -36,7 +36,7 @@ else {
   document.getElementById('versionsDiv').style.display = 'none'
 }
 
-// Show the list of available WAF versions
+// Show the list of available Wallarm versions
 function versionClicked (event) {
   if (document.getElementById('versionsList').style.display === 'none') {
     document.getElementById('versionsList').style.display = 'block'
@@ -47,7 +47,7 @@ function versionClicked (event) {
   }
 }
 
-// Open the docs for selected WAF version and change value in the selector
+// Open the docs for selected Wallarm version and change value in the selector
 function goToVersion (event, currentVersion, version) {
   event.preventDefault()
 

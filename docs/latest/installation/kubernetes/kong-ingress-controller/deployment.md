@@ -2,7 +2,7 @@
 
 # Deploying Kong Ingress Controller with integrated Wallarm services
 
-To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
+To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
 
 The solution is deployed from the [Wallarm Helm chart](https://github.com/wallarm/kong-charts).
 
@@ -11,10 +11,10 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 * Real-time [attack detection and mitigation](../../../about-wallarm/protecting-against-attacks.md)
 * [Vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md)
 * [API structure discovery](../../../about-wallarm/api-discovery.md)
-* The Wallarm API Security services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
+* The Wallarm services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
 * Support for Kong API Gateway 3.0.x (for both the Open-Source and Enterprise editions)
-* Fine-tuning the Wallarm API Security layer via the Wallarm Console UI and on a per-Ingress basis via annotations
+* Fine-tuning the Wallarm layer via the Wallarm Console UI and on a per-Ingress basis via annotations
 
     !!! warning "Annotation support"
         Ingress annotation is supported only by the solution based on the Open-Source Kong Ingress controller. [The list of supported annotations is limited](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
@@ -44,9 +44,9 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 
 ## Limitations of the Enterprise Kong Ingress controller
 
-The described solution for the Enterprise Kong Ingress controller allows the Wallarm API Security layer fine‑tuning only via the Wallarm Console UI.
+The described solution for the Enterprise Kong Ingress controller allows the Wallarm layer fine‑tuning only via the Wallarm Console UI.
 
-However, some Wallarm API Security features require configuration files to be changed that is unsupported in the current Enterprise solution implementation. It makes the following Wallarm features unavailable:
+However, some features of the Wallarm API Security Platform require configuration files to be changed that is unsupported in the current Enterprise solution implementation. It makes the following Wallarm features unavailable:
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)
@@ -226,6 +226,6 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
 Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
-You can customize both the Kong API Gateway and Wallarm API Security behavior even more and get the most out of API security for your company.
+You can customize both the Kong API Gateway and Wallarm behavior even more and get the most out of API security for your company.
 
 Just proceed to the [Kong Ingress Controller solution customization guide](customization.md).

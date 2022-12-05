@@ -76,7 +76,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/
         ```
 
-## Step 2: Update Wallarm API Security packages
+## Step 2: Update Wallarm packages
 
 ### Filtering node and postanalytics on the same server
 

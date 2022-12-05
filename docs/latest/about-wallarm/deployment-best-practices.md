@@ -23,10 +23,10 @@ The majority of Wallarm filtering node deployment options use NGINX as the rever
 1. Learn about available [Wallarm node deployment options](../admin-en/supported-platforms.md).
 2. Learn about available options to [separately manage the Wallarm node configuration for your environments](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) (if necessary).
 3. Deploy Wallarm filtering nodes in your non-production environments with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
-4. Learn about how to operate, scale and monitor the Wallarm API Security solution, and confirm the stability of the new network component.
+4. Learn about how to operate, scale and monitor the Wallarm solution, and confirm the stability of the new network component.
 5. Deploy Wallarm filtering nodes in your production environment with the [operation mode](../admin-en/configure-wallarm-mode.md) set to `monitoring`.
 6. Implement proper configuration management and [monitoring processes](#enable-proper-monitoring-of-the-filtering-nodes) for the new Wallarm component.
-7. Keep the traffic flowing via the filtering nodes in all your environments (including testing and production) for 7‑14 days to give the Wallarm API Security cloud-based backend some time to learn about your application.
+7. Keep the traffic flowing via the filtering nodes in all your environments (including testing and production) for 7‑14 days to give the Wallarm cloud-based backend some time to learn about your application.
 8. Enable Wallarm `block` [mode](../admin-en/configure-wallarm-mode.md) in all your non-production environments and use automated or manual tests to confirm that the protected application is working as expected.
 9. Enable Wallarm `block` [mode](../admin-en/configure-wallarm-mode.md) in the production environment and use available methods to confirm that the application is working as expected.
 
@@ -73,7 +73,7 @@ In addition to blocking individual malicious requests, Wallarm filtering nodes c
 
 [More details on using IP lists →](../user-guides/ip-lists/overview.md)
 
-## Learn how to perform gradual rollout of Wallarm API Security configuration changes
+## Learn how to perform gradual rollout of Wallarm configuration changes
 
 * Use standard DevOps change management and gradual rollout policies for low-level configuration changes for Wallarm filtering nodes in all form-factors.
 * For traffic filtration rules, use a different set of application [IDs](../admin-en/configure-parameters-en.md#wallarm_application) or `Host` request headers.

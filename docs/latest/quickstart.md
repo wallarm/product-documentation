@@ -14,7 +14,7 @@
 [sqli-attack-desc]:                 attacks-vulns-list.md#sql-injection
 [xss-attack-desc]:                  attacks-vulns-list.md#crosssite-scripting-xss
 
-# Quick start with Wallarm API Security
+# Quick start with Wallarm API Security Platform
 
 The Wallarm API Security Platform protects web applications, APIs, and microservices from OWASP and OWASP Top 10 attacks, bots, and application abuse with ultra‑low false positives. You can start using the platform in full for free with a limitation of 500K API monthly requests by following this guide.
 
@@ -31,8 +31,8 @@ To create a Wallarm account:
 
 Once an account is registered and confirmed, it is automatically assigned with **Free tier** or **Free trial** depending on the Wallarm Cloud being used:
 
-* In the US Cloud, Free tier allows you to explore the power of Wallarm API Security for free on 500 thousand monthly requests.
-* In the EU Cloud, there is a trial period allowing you to explore Wallarm API Security for free for 14 days.
+* In the US Cloud, Free tier allows you to explore the power of Wallarm solution for free on 500 thousand monthly requests.
+* In the EU Cloud, there is a trial period allowing you to explore Wallarm solution for free for 14 days.
 
 As for the US cloud, there is the option to explore Wallarm even before deploying any components to your environment - [Playground](#deploy-the-wallarm-filtering-node).
 
@@ -44,7 +44,7 @@ Wallarm Console is the major Wallarm platform component that displays data on pr
 
 ![!UI to create account](images/playground.png)
 
-To try the Wallarm API Security capabilities on your traffic, exit Playground and deploy the first Wallarm filtering node following the [instructions for the quickest start](#deploy-the-wallarm-filtering-node).
+To try the Wallarm solution capabilities on your traffic, exit Playground and deploy the first Wallarm filtering node following the [instructions for the quickest start](#deploy-the-wallarm-filtering-node).
 
 ## Deploy the Wallarm filtering node
 
@@ -78,7 +78,7 @@ Wallarm supports [many options for the filtering node deployment](admin-en/suppo
     Environment variable | Description| Required
     --- | ---- | ----
     `WALLARM_API_TOKEN` | Wallarm node token copied from the Wallarm Console UI. | Yes
-    `NGINX_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
+    `NGINX_BACKEND` | Domain or IP address of the resource to protect with Wallarm solution. | Yes
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
     `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originating from [graylisted IP addresses][graylist-docs]</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →][filtration-modes-docs] | No
 

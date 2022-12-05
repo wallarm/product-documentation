@@ -18,7 +18,7 @@ Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, b
 
 <a href="./about-wallarm/overview/" class="navigation-card">
     <h3>About Wallarm</h3>
-    <p>Learn Wallarm API Security features, architecture, and supported platforms</p>
+    <p>Learn Wallarm features, architecture, and supported platforms</p>
 </a>
 
 <a href="./admin-en/supported-platforms/" class="navigation-card">
@@ -27,7 +27,7 @@ Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, b
 </a>
 <a href="./admin-en/configure-parameters-en/" class="navigation-card">
     <h3>Configuration</h3>
-    <p>Customize deployed node settings to get the most out of Wallarm API Security for your company</p>
+    <p>Customize deployed node settings to get the most out of Wallarm solution for your company</p>
 </a>  
 
 <a href="./api/overview/" class="navigation-card">
@@ -41,6 +41,6 @@ Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, b
 
 <a href="./attacks-vulns-list/" class="navigation-card">
     <h3>Attack and vulnerability types</h3>
-    <p>Learn which attacks and vulnerabilities Wallarm API Security detects</p>
+    <p>Learn which attacks and vulnerabilities are detected by Wallarm</p>
 </a>
 </div>

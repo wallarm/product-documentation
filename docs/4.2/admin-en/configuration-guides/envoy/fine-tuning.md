@@ -101,7 +101,7 @@ Parameter | Description | Default value
 
 ##  Basic settings
 
-The `conf` section of the Wallarm API Security configuration contains the parameters that influence filtering node's basic operations:
+The `conf` section of the Wallarm configuration contains the parameters that influence filtering node's basic operations:
 
 ```
 conf:

@@ -1,12 +1,12 @@
-# Quick start with Wallarm API Security
+# Quick start with Wallarm API Security Platform
 
 These instructions describe how to quickly deploy the first Wallarm NGINX‑based filtering node and learn its basic features. This approach is recommended to be used only to try the product. To deploy the Wallarm node in the production environment, please refer to [separate guides for supported platforms](admin-en/supported-platforms.md).
 
-Wallarm API Security quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
+Wallarm API Security Platform quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
 
 ## How the quick start script works
 
-The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/3.6/getwallarm.sh) used for Wallarm API Security quick start performs the following steps:
+The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/3.6/getwallarm.sh) used for Wallarm API Security Platform quick start performs the following steps:
 
 1. Disable the [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) mechanism if it is installed on the OS. Wallarm quick deployment is not compatible with active SELinux.
 2. Install the latest stable version of NGINX from the NGINX official repository.
@@ -79,7 +79,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
 
 Wallarm node quick deployment is successfully completed!
 
-To continue the product exploring, we recommend learning more about the following Wallarm API Security features:
+To continue the product exploring, we recommend learning more about the following Wallarm API Security Platform features:
 
 * [Configuration of traffic filtration mode](admin-en/configure-wallarm-mode.md)
 * [Blocking page and error code configuration](admin-en/configuration-guides/configure-block-page-and-code.md)

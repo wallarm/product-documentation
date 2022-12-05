@@ -92,7 +92,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm
     ```
 
-### 3. Install Wallarm API Security packages
+### 3. Install Wallarm packages
 
 #### Request processing and postanalytics on the same server
 

@@ -30,7 +30,7 @@ The following node properties and metrics are available:
 * Date of the filtering node creation
 * Number of requests processed by the node in the current month
 * Versions of used LOM and proton.db
-* Versions of installed Wallarm API Security packages, NGINX, and Envoy (if any)
+* Versions of installed Wallarm packages, NGINX, and Envoy (if any)
 * Indicator of available component updates
 
 ![!Regular node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)

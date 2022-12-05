@@ -121,7 +121,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-4.0.md"
 
-### 3. Install Wallarm API Security packages
+### 3. Install Wallarm packages
 
 #### Request processing and postanalytics on the same server
 
