@@ -266,6 +266,6 @@ After a while, ensure the module operation does not cause false positives. If di
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Wallarm modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

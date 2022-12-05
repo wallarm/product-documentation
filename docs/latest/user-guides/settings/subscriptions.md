@@ -29,7 +29,7 @@ If you have recently registered in Wallarm Console and are using the [trial vers
 * Statistics on the requests processed by the filtering node
 * The set of enabled [modules](../../about-wallarm/subscription-plans.md#modules) and [features](../../about-wallarm/subscription-plans.md#features)
 
-    Wallarm API Security trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm API Security.
+    Wallarm trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm.
 * If you have the approved PoC plan with the Wallarm team, link to the PoC results document
 
 ![!Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)

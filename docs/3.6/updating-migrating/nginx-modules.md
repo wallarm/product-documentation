@@ -198,6 +198,6 @@ We only changed the names of the directives, their logic remains the same. Direc
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

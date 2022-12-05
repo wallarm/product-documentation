@@ -190,6 +190,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Wallarm modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

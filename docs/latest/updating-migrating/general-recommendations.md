@@ -42,7 +42,7 @@ The Wallarm node update process depends on the platform and installation forms. 
 
 * [Modules for NGINX, NGINX Plus](nginx-modules.md)
 * [Docker container with the modules for NGINX or Envoy](docker-container.md)
-* [NGINX Ingress controller with integrated Wallarm API Security modules](ingress-controller.md)
+* [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
 * [Cloud node image](cloud-image.md)
 * [Multi-tenant node](multi-tenant.md)
 * [CDN node](cdn-node.md)

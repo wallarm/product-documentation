@@ -1,6 +1,6 @@
 # Detecting attacks
 
-The Wallarm API Security platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
+The Wallarm API Security Platform continuously analyzes application traffic and mitigates malicious requests in real-time. From this article, you will learn resource types Wallarm protects from attacks, methods of detecting attacks in traffic and how you can track and manage detected threats.
 
 ## What is attack and what are attack components?
 
@@ -211,7 +211,7 @@ In such cases, standard rules need to be adjusted to accommodate protected appli
 * [Disable detection of certain attack signs in binary data](../user-guides/rules/ignore-attacks-in-binary-data.md).
 * [Disable parsers mistakenly applied to the requests](../user-guides/rules/disable-request-parsers.md).
 
-Identifying and handling false positives is a part of fine‑tuning Wallarm API Security to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
+Identifying and handling false positives is a part of Wallarm fine‑tuning to protect your applications. We recommend to deploy the first Wallarm node in the monitoring [mode](#monitoring-and-blocking-attacks) and analyze detected attacks. If some attacks are mistakenly recognized as attacks, mark them as false positives and switch the filtering node to blocking mode.
 
 ## Managing detected attacks
 

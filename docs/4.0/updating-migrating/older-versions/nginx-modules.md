@@ -366,6 +366,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 4.0. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Wallarm modules are updated to version 4.0. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

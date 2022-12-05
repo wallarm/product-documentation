@@ -141,7 +141,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 * `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../admin-en/installation-postanalytics-en.md))
 
-### 4. Connect the Wallarm API Security module
+### 4. Connect the Wallarm module
 
 1. Open the file `/etc/nginx/nginx.conf`:
 
@@ -191,6 +191,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 ## Settings customization
 
-Dynamic Wallarm API Security module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
+Dynamic Wallarm module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-4.4.md"

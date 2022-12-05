@@ -8,7 +8,7 @@
 
 Envoy uses pluggable filters defined in the Envoy configuration file to process incoming requests. These filters describe the actions to be performed on the request. For example, an `envoy.http_connection_manager` filter is used to proxy HTTP requests. This filter has its own set of HTTP filters that can be applied to the request.  
 
-The Wallarm API Security module is designed as an Envoy HTTP filter. The module's general settings are placed in a section dedicated to the `wallarm` HTTP filter:
+The Wallarm module is designed as an Envoy HTTP filter. The module's general settings are placed in a section dedicated to the `wallarm` HTTP filter:
 
 ```
 listeners:
@@ -21,7 +21,7 @@ listeners:
            - name: wallarm
              typed_config:
               "@type": type.googleapis.com/wallarm.Wallarm
-              <the Wallarm API Security module configuration>
+              <the Wallarm module configuration>
               ...  
 ```
 

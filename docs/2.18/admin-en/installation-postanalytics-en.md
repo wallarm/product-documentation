@@ -23,7 +23,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ### 1. Add Wallarm repositories
 
-The postanalytics module, like other Wallarm API Security modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+The postanalytics module, like other Wallarm modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 === "Debian 9.x (stretch)"
     ```bash

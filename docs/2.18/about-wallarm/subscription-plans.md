@@ -10,7 +10,7 @@ The subscription plan includes a set of modules and features. You can select and
 
 ### Modules
 
-The set of all Wallarm API Security modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
+The set of all Wallarm API Security Platform modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
 
 * **API Threat Prevention / Web Application Firewall** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
 * **[Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)** automatically denylists IP addresses from which brute-force attacks are sent.
@@ -39,11 +39,11 @@ When a new user is registered in Wallarm Console, a new client account with an a
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm API Security trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm API Security.
+* Wallarm trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm.
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
-* If the trial period expired, the client account is blocked. When a paid subscription to Wallarm API Security is activated, access to the client account is restored for all users.
+* If the trial period expired, the client account is blocked. When a paid Wallarm subscription is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 

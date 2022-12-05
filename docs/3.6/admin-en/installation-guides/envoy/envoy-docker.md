@@ -4,11 +4,11 @@
 
 These instructions describe the steps to run the Wallarm Docker image based on [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4). The image contains all systems required for correct Wallarm node operation:
 
-* Envoy proxy services with embedded Wallarm API Security module
+* Envoy proxy services with embedded Wallarm module
 * Tarantool modules for postanalytics
 * Other services and scripts
 
-Wallarm API Security module is designed as an Envoy HTTP filter for requests proxying.
+Wallarm module is designed as an Envoy HTTP filter for requests proxying.
 
 !!! warning "Supported configuration parameters"
     Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. See the list of parameters available for the [Envoy‑based filtering node configuration →](../../configuration-guides/envoy/fine-tuning.md)

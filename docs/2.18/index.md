@@ -1,6 +1,6 @@
 # Home
 
-Wallarm API Security protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
+Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
 !!! warning "Unsupported version"
     Wallarm node 2.18 and lower is not supported. We have significantly simplified the node configuration procedure and made attack mitigation even more powerful and usable in the later releases.

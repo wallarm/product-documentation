@@ -164,7 +164,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 
-### 3. Connect the Wallarm API Security module
+### 3. Connect the Wallarm module
 
 Copy the configuration files for the system setup:
 
@@ -309,6 +309,6 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
 
 ## Settings customization
 
-Dynamic Wallarm API Security module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Dynamic Wallarm module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

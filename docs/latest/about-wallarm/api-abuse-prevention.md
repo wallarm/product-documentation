@@ -1,6 +1,6 @@
 # API Abuse Prevention
 
-The **API Abuse Prevention** module of Wallarm API Security delivers detection and mitigation of bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+The **API Abuse Prevention** module of Wallarm API Security Platform delivers detection and mitigation of bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
 
 ## Automated threats blocked by API Abuse Prevention
 
