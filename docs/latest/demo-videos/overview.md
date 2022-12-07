@@ -1,6 +1,6 @@
-# Wallarm API Security Platform overview and deployment options
+# Wallarm platform overview and deployment options
 
-Learn more about the Wallarm API Security Platform from our demo videos.
+Learn more about the Wallarm platform from our demo videos.
 
 ## Protecting applications against OWASP Top 10
 

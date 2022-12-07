@@ -15,7 +15,7 @@ The subscription plan includes a set of modules and features. You can select and
 
 ### Modules
 
-The set of all Wallarm API Security Platform modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
+The set of all Wallarm platform modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
 
 * **API Threat Prevention / Web Application Firewall** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
 * **[Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)** automatically denylists IP addresses from which brute-force attacks are sent.

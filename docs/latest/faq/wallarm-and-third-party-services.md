@@ -1,10 +1,10 @@
-# Wallarm API Security Platform and third-party services interaction
+# Wallarm platform and third-party services interaction
 
-If some issues occur during the Wallarm API Security Platform and third-party services interaction, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
+If some issues occur during the Wallarm platform and third-party services interaction, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
 
-## What third-party services Wallarm API Security Platform interacts with?
+## What third-party services Wallarm platform interacts with?
 
-Wallarm API Security Platform interacts with the following third-party services:
+Wallarm platform interacts with the following third-party services:
 
 * GCP storage to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions and data centers.
 

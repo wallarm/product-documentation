@@ -2,7 +2,7 @@
 
 # Detecting vulnerabilities
 
-Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm API Security Platform detects application vulnerabilities enabling you to enhance system security.
+Due to negligence or inadequate information when building or implementing an application, it can be vulnerable to attacks. From this article, you will learn how the Wallarm platform detects application vulnerabilities enabling you to enhance system security.
 
 ## What is a vulnerability?
 

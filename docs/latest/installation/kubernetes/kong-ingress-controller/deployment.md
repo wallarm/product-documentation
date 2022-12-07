@@ -46,7 +46,7 @@ Kong Ingress Controller with integrated Wallarm services is arranged by the foll
 
 The described solution for the Enterprise Kong Ingress controller allows the Wallarm layer fine‑tuning only via the Wallarm Console UI.
 
-However, some features of the Wallarm API Security Platform require configuration files to be changed that is unsupported in the current Enterprise solution implementation. It makes the following Wallarm features unavailable:
+However, some features of the Wallarm platform require configuration files to be changed that is unsupported in the current Enterprise solution implementation. It makes the following Wallarm features unavailable:
 
 * [Multitenancy feature](../../multi-tenant/overview.md)
 * [Application configuration](../../../user-guides/settings/applications.md)

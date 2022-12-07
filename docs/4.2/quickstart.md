@@ -15,9 +15,9 @@
 [xss-attack-desc]:                  attacks-vulns-list.md#crosssite-scripting-xss
 [enable-libdetection-docs]:         admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 
-# Quick start with Wallarm API Security Platform
+# Quick start with Wallarm platform
 
-The Wallarm API Security Platform protects web applications, APIs, and microservices from OWASP and OWASP Top 10 attacks, bots, and application abuse with ultra‑low false positives. You can start using the platform in full for free with a limitation of 500K API monthly requests by following this guide.
+The Wallarm platform protects web applications, APIs, and microservices from OWASP and OWASP Top 10 attacks, bots, and application abuse with ultra‑low false positives. You can start using the platform in full for free with a limitation of 500K API monthly requests by following this guide.
 
 Under a quick start, you will register your Wallarm account and run the first Wallarm filtering node in a few minutes. Having a free quota you will be able to try on the product power on real traffic.
 
