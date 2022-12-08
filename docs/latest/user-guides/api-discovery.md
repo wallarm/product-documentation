@@ -111,7 +111,7 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 
 ## Monitoring attacks on API endpoints
 
-Attacks on API endpoints are displayed in the **Hits** column.
+Number of attacks on API endpoints are displayed in the **Hits** column. These are the attacks occurred since the endpoints were found by API Discovery.
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
@@ -120,7 +120,7 @@ To see attacks to some endpoint, click number in the **Hits** column:
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
-attacks u:<YOUR_ENDPOINT>
+attacks >= <START_DATE_TIME> endpoint_id:<YOUR_ENDPOINT_ID>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
