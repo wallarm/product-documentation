@@ -9,8 +9,6 @@ The built API structure is presented in the **API Discovery** section. The secti
     **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
 * **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
-To provide users with familiar format of API representation, Wallarm provides list of discovered APIs and details on them in a **Swagger-like** interface.
-
 The API structure includes the following elements:
 
 * Customer applications with discovered API hosts.
@@ -122,6 +120,8 @@ The **Events** section will be displayed with the [filter applied](../user-guide
 ```
 attacks >= <START_DATE_TIME> endpoint_id:<YOUR_ENDPOINT_ID>
 ```
+
+Note that only attacks since <START_DATE_TIME> date and time are displayed. The date is taken from the **Changes since** filter of API Discovery.
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
 
