@@ -69,6 +69,8 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
 
     --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
@@ -76,6 +78,8 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
 
     --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
