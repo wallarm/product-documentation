@@ -148,6 +148,8 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     ```
 
     --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
@@ -155,6 +157,8 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     ```
 
     --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -179,6 +183,8 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```
 
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
@@ -186,6 +192,8 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         ```
 
         --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update

@@ -33,6 +33,7 @@ The API structure includes the following elements:
 
 Among a wide range of API endpoint filters, you can choose the ones corresponding to your analysis purpose, e.g.:
 
+* Only attacked endpoints that you can sort by the number of hits.
 * Find the endpoints that have been changed or newly discovered in the last week and that process PII data. This kind of request can help you to stay up to date with critical changes in your APIs.
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
@@ -138,10 +139,10 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
 
-!!! warning "Filtered download"
+!!! info "Filtered download"
     When downloading the description of the API structure, applied filters are taken into account. Only filtered data is downloaded.
     
-!!! info "API host information in downloaded Swagger file"
+!!! warning "API host information in downloaded Swagger file"
     If a discovered API structure contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
 
 Using the downloaded data, you can discover:

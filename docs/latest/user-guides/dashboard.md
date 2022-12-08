@@ -4,6 +4,7 @@ Wallarm automatically collects metrics on processed traffic and represents them 
 
 Metrics are presented in the following widgets:
 
+* API Discovery
 * Statistics for the current month and the speed of request encountering
 * Normal and malicious traffic
 * Attack types
@@ -24,6 +25,21 @@ Any widget allows to open the [event list](events/check-attack.md) the statistic
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
     * The **Wallarm Playground** option will forward you to the Wallarm Console playground with read-only access to its sections. This option is available only for users of the US Cloud.
 
+## API Discovery
+
+This widget displays data about your API collected by the [API Discovery](../about-wallarm/api-discovery.md) module:
+
+* Number of discovered endpoints, including external and internal
+* Changes of your API in the last 30 days by type (new, changed, removed APIs)
+* Sensitive data in API by groups (personal, finance, etc.) and by types
+* API usage: number of endpoints by the API host or the application
+
+Using this information, you can reveal possible anomalies in the number of sensitive data your API transfers and analyze the structure of your API regarding how many endpoints relate to the different hosts and applications. The widget also draws attention to the changes in API that you always need to check to exclude security risks.
+
+![!API Discovery widget](../images/user-guides/dashboard/api-discovery-widget.png)
+
+Click elements of the widget to go to the **API Discovery** section and view filtered data.
+
 ## Statistics for the current month and the speed of request encountering
 
 The widget displays the following data:
@@ -34,13 +50,13 @@ The widget displays the following data:
 
 ![!Current month statistics](../images/user-guides/dashboard/current-month-stats.png)
 
-## Normal and malicious traffic
+## Normal and malicious traffic for a period
 
-The widget displays the following data:
+The widget displays the summary statistics for the traffic processed during the selected period:
 
-* The amount of traffic
-* The number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
-* The estimated cost of attacks for the attacker: the value considers the approximate cost of IP address renting and an attack duration
+* The graph represents the data distribution over time, enabling you to track the periods of the most active activity
+* The total number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
+* Trends: change in the event number for a selected period and the same previous period
 
 ![!Normal and malicious traffic](../images/user-guides/dashboard/traffic-stats.png)
 
