@@ -189,7 +189,7 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.6 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
@@ -296,7 +296,7 @@ By using this method, you can deploy Ingress Controller 4.2 as an additional ent
 2. Deploy the Ingress controller 4.2:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.6 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -332,7 +332,7 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 4.2:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.6 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Ingress controller release
@@ -384,7 +384,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.6 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -410,7 +410,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-4.2.5`.
+    The chart version should correspond to `wallarm-ingress-4.2.6`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
@@ -425,13 +425,13 @@ There are the following parameters passed in the commands:
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Wallarm Ingress controller address:
+3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
 
     ```bash
-    curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Events**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and the attack will be displayed in Wallarm Console → **Events**.
 
 ## Step 10: Adjust the Ingress annotations to released changes
 

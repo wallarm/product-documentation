@@ -197,20 +197,11 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 
 ### wallarm_enable_libdetection
 
-Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+Enables/disables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-Analyzing of requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md). To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
+Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../admin-en/supported-platforms.md). To reduce the number of false positives, we recommend analysis to stay enabled.
 
 [More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
-
-To allow **libdetection** to analyze the request body, please ensure that buffering of a client request body is enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)). 
-
-**Example:**
-
-```
-wallarm_enable_libdetection on;
-proxy_request_buffering on;
-```
 
 !!! warning "Memory consumption increase"
     When analyzing attacks using the libdetection library, the amount of memory consumed by NGINX and Wallarm processes may increase by about 10%.
@@ -218,12 +209,7 @@ proxy_request_buffering on;
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
-    To enable libdetection in the Wallarm Ingress controller, it is required to [apply](configure-kubernetes-en.md#enabling-attack-analysis-with-libdetection) the `nginx.ingress.kubernetes.io/server-snippet` annotation with this parameter to the Ingress resource.
-
-    Default value is:
-    
-    * `on` for the [Wallarm CDN nodes](../installation/cdn-node.md) (`proxy_request_buffering` is `on` as well).
-    * `off` for all [deployment options](../admin-en/supported-platforms.md) except for the Wallarm CDN nodes.
+    Default value is `on` for all [deployment options](../admin-en/supported-platforms.md).
 
 ### wallarm_fallback
 

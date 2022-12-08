@@ -2,9 +2,8 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
@@ -220,7 +219,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 8. Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Settings customization
 

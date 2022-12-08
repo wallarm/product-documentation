@@ -44,10 +44,10 @@ When using a tool like Terraform to launch the filtering node instance using Wal
     ```bash
     wallarm-node-195710/wallarm-node-<IMAGE_VERSION>-build
     ```
-* To launch the instance with the filtering node version 4.2, please use the following image name:
+* To launch the instance with the filtering node version 4.4, please use the following image name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-2-20220819-064343
+    wallarm-node-195710/wallarm-node-4-4-20221122-092419
     ```
 
 To get the image name, you can also follow these steps:
@@ -56,12 +56,12 @@ To get the image name, you can also follow these steps:
 2. Execute the command [`gcloud compute images list`](https://cloud.google.com/sdk/gcloud/reference/compute/images/list) with the following parameters:
 
     ```bash
-    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-4-2-*'" --no-standard-images
+    gcloud compute images list --project wallarm-node-195710 --filter="name~'wallarm-node-4-4-*'" --no-standard-images
     ```
-3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the filtering node version 4.2 image will have the following name:
+3. Copy the version value from the name of the latest available image and paste the copied value into the provided image name format. For example, the filtering node version 4.4 image will have the following name:
 
     ```bash
-    wallarm-node-195710/wallarm-node-4-2-20220819-064343
+    wallarm-node-195710/wallarm-node-4-4-20221122-092419
     ```
 
 ## 3. Configure the filtering node instance

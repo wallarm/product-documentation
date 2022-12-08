@@ -1,0 +1,4 @@
+* [Configuration of traffic filtration mode][operation-mode-rule-docs]
+* [Customizing the traffic filtration rules][rules-docs]
+* [IP address allowlisting, denylisting and graylisting][ip-lists-docs]
+* System event notifications configured via [native integrations with DevOps tools][integration-docs] and [triggers][trigger-docs]

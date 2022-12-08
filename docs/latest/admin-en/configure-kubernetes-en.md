@@ -1,6 +1,6 @@
 [link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
 
-# Fine‑tuning of Wallarm Ingress Controller
+# Fine‑tuning of NGINX-based Wallarm Ingress Controller
 
 Learn fine-tuning options available for the Wallarm Ingress controller to get the most out of Wallarm API Security.
 
@@ -168,28 +168,27 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 [More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
 
-#### Enabling attack analysis with libdetection
+#### Managing libdetection mode
 
-The [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) library additionally validates attacks detected by the library [**libproton**](../about-wallarm/protecting-against-attacks.md#library-libproton). Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
+!!! info "**libdetection** default mode"
+    The default mode of the **libdetection** library is `on` (enabled).
 
-To allow **libdetection** to parse and check the request body, buffering of a client request body must be enabled ([`proxy_request_buffering on`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering)).
-
-There are two options to enable attack analysis with **libdetection**:
+You can control the [**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection) mode using one of the options:
 
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on; proxy_request_buffering on;"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off"
     ```
 * Pass the parameter `controller.config.server-snippet` to the Helm chart:
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

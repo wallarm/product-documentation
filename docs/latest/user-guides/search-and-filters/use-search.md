@@ -98,7 +98,9 @@ Specify in the search string:
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 * `idor`: to search for vulnerabilities of the [BOLA (IDOR)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) type.
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
-* `weak_jwt`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
+* `weak_auth`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
+* `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
+* `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

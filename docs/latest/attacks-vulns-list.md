@@ -64,6 +64,7 @@
 [link-imap-wiki]:                                https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol
 [link-smtp-wiki]:                                https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol
 [ssi-wiki]:     https://en.wikipedia.org/wiki/Server_Side_Includes
+[link-owasp-csrf-cheatsheet]:               https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
 
 The Wallarm filtering node can detect many attacks and vulnerabilities. These attacks and vulnerabilities are listed [below][anchor-main-list].
 
@@ -317,6 +318,31 @@ You may follow these recommendations:
 *   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
 *   Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
 
+### Cross-Site Request Forgery (CSRF)
+
+**Vulnerability**
+
+**CWE code:** [CWE-352][cwe-352]
+
+**Wallarm code:** `csrf`
+
+**Description:**
+
+Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they’re currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker’s choosing.
+
+The corresponding vulnerability occurs due to the user's browser automatically adding user’s session cookies that are set for the target domain name while performing the cross-site request.
+
+For most sites, these cookies include credentials associated with the site. Therefore, if the user is currently authenticated to the site, the site will have no way to distinguish between the forged request sent by the victim and a legitimate request sent by the victim.
+
+As a result, the attacker can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the attacker does not even need to have access to that user's cookies.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+*   Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
+*   Set the `SameSite` cookie attribute.
+*   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
 ### Forced browsing
 
@@ -575,7 +601,7 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 **CWE code:** [CWE-1270][cwe-1270], [CWE-1294][cwe-1294]
 
-**Wallarm code:** `weak_jwt`
+**Wallarm code:** `weak_auth`
 
 **Description:**
 
@@ -598,6 +624,44 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 
 * Apply the recommendations from the [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
 * [Check if your JWT implementation is vulnerable for well-known secrets](https://lab.wallarm.com/340-weak-jwt-secrets-you-should-check-in-your-code/)
+
+### API abuse
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+API abuse performed by bots like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+
+**Wallarm behavior:**
+
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following automated threats by default:
+
+* API abuse targeted at server response time increase or server unavailability
+* Credential stuffing
+* Fake account creation
+* Scalping
+* Vulnerability scanning
+* Scraping
+* Broken Object Level Authorization (BOLA)
+
+For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
+
+If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
+* Configure server-side rate limit for requests.
+* Use CAPTCHA solutions.
+* Search your application analytics for the bot attack signs.
 
 ##  The list of special attacks and vulnerabilities
 

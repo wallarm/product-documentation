@@ -47,11 +47,11 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.2-1
         ```
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e NGINX_BACKEND=<HOST_TO_PROTECT_WITH_WALLARM> -p 80:80 wallarm/node:4.2.2-1
         ```
         
     * `-p`: port the filtering node listens to. The value should be the same as the instance port.
@@ -113,11 +113,11 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     === "Command for the Wallarm US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -e WALLARM_API_HOST='us1.api.wallarm.com' -v <INSTANCE_PATH_TO_CONFIG>:<DIRECTORY_FOR_MOUNTING> -p 80:80 wallarm/node:4.2.2-1
         ```
     === "Command for the Wallarm EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN=${WALLARM_API_TOKEN} -v <INSTANCE_PATH_TO_CONFIG>:<CONTAINER_PATH_FOR_MOUNTING> -p 80:80 wallarm/node:4.2.2-1
         ```
 
     * `<INSTANCE_PATH_TO_CONFIG>`: path to the configuration file created in the previous step. For example, `configs`.
@@ -143,12 +143,12 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
     If the IP address is empty, please ensure the instance is in the **Running** status.
 
-2. Send the request with test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the copied address:
+2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied address:
 
     ```
-    curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs](../../../admin-en/configure-logging.md). If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

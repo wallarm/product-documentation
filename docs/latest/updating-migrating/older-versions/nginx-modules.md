@@ -1,8 +1,8 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
@@ -10,7 +10,6 @@
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
@@ -18,9 +17,9 @@
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 
-# Upgrading Wallarm NGINX modules 2.18 or lower
+# Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 or lower to version 4.2. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.4. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../../installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
@@ -37,9 +36,9 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 2.18 
 * If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
 * If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
 
-## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
+If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
@@ -87,7 +86,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -100,7 +99,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -114,25 +113,27 @@ Delete the previous Wallarm repository address and add a repository with a new W
 3. Add a new repository address:
 
     === "Debian 10.x (buster)"
+        Please use this option only if [NGINX is installed from Debian/CentOS repositories](../../installation/nginx/dynamic-module-from-distr.md). Official NGINX versions and as a result Wallarm node 4.4 and above cannot be installed on Debian 10.x (buster).
+
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
         ```
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.2
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)
 
-[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
 ## Step 7: Upgrade Wallarm API Security packages
 
@@ -146,14 +147,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum update
@@ -177,14 +178,14 @@ Execute the following command to upgrade the filtering node and postanalytics mo
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.2.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
         sudo yum update
@@ -206,7 +207,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
 The deployed node has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.2. The regular node type will be removed in future releases, please migrate before.
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.4. The regular node type will be removed in future releases, please migrate before.
 
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
@@ -334,23 +335,9 @@ server {
 
 ## Step 16: Test Wallarm node operation
 
-1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-    ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    ```
-1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
-
-    * Blocks the request if the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md) is configured.
-    * Returns the [custom blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
-2. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure that:
-
-    * Attacks are displayed in the list.
-    * Hit details display the Wallarm node UUID.
-
-    ![!Attacks in the interface][img-test-attacks-in-ui]
-
-## Step 17: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 17: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
@@ -364,6 +351,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 4.2. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+Wallarm API Security modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

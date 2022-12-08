@@ -29,13 +29,13 @@ For the module to identify anomaly traffic as originating from malicious bots, t
 * Response codes
 * Request headers, etc
 
-If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour.
+If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour. The metrics value is reflected in the confidence rate of each bot's IP in the Wallarm Console UI.
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
 ## Activating API Abuse Prevention
 
-The **API Abuse Prevention** module in the disabled state is delivered with [all forms of the Wallarm node 4.2](../admin-en/supported-platforms.md) including the CDN node.
+The **API Abuse Prevention** module in the disabled state is delivered with [all forms of the Wallarm node 4.2 and above](../admin-en/supported-platforms.md) including the CDN node.
 
 To activate API Abuse Prevention:
 
@@ -44,9 +44,19 @@ To activate API Abuse Prevention:
 1. In Wallarm Console → **API Abuse Prevention**, create or enable at least one [API Abuse profile](../user-guides/api-abuse-prevention.md).
 
     !!! info "Access to API Abuse Prevention settings"
-        Only administrators of your company Wallarm account can access the **API Abuse Prevention** section. Contact your administrator if you do not have this access.
+        Only [administrators](../user-guides/settings/users.md#user-roles) of your company Wallarm account can access the **API Abuse Prevention** section. Contact your administrator if you do not have this access.
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+
+## Accuracy
+
+You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Accuracy** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+
+There are three available levels:
+
+* **Low** - uses more flexible rules when considering requests originating from malicious bots. No legitimate requests will be dropped, but there is a higher risk of malicious bots' requests reaching  APIs.
+* **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
+* **High** detects 100% of bots' requests, including possible false positives. It could potentially prevent legitimate requests from reaching APIs.
 
 ## Denylisting vs graylisting
 
@@ -73,8 +83,8 @@ When using this option, the system:
 1. Puts its IP into graylist for 1 hour.
 1. Does one of the following:
 
-    1. If filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), does nothing. Bot IPs are just listed in the graylist.
-    1. If filtering node is in the `safe blocking` mode, treats bot's IP as all the other IPs in the graylist.
+    1. If the filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), it does nothing. Bot IPs are just listed in the graylist.
+    1. If the filtering node is in the `safe blocking` mode, it treats bot's IP as all the other IPs in the graylist.
 
 [Graylist](../user-guides/ip-lists/graylist.md) is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
 
@@ -84,10 +94,11 @@ When using this option, the system:
 
 Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](../user-guides/ip-lists/overview.md#algorithm-of-ip-lists-processing).
 
-## Exploring blocked malicious bots
+## Exploring blocked malicious bots and their attacks
 
-The **API Abuse Prevention** module blocks bots by adding them to the [denylist](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md) for 1 hour. You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**.
+You can:
 
-![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+* Explore blocked malicious bots
+* View API abuse attacks performed by bots
 
-If denylisted or graylisted IP actually does not belong to a malicious bot, you can either delete the IP from the list or [allowlist](../user-guides/ip-lists/allowlist.md) it. Wallarm does not block any requests originating from allowlisted IPs including malicious ones.
+[Learn how to explore blocked malicious bots and their attacks →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)

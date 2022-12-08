@@ -1,9 +1,9 @@
-# What is new in Wallarm node (if upgrading node 2.18 or lower)
+# What is new in Wallarm node (if upgrading an EOL node)
 
-This page lists the changes available when upgrading the node 2.18 up to version 4.2. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.4. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
-!!! warning "Wallarm nodes 2.18 and lower are deprecated"
-    Wallarm nodes 2.18 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
+!!! warning "Wallarm nodes 3.6 and lower are deprecated"
+    Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
@@ -31,25 +31,38 @@ Starting from version 4.0, the Wallarm node does not collect the following colle
 
 [Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA), also known as [Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (or IDOR), became one of the most common API vulnerabilities. When an application includes an IDOR / BOLA vulnerability, it has a strong probability of exposing sensitive information or data to attackers. All the attackers need to do is exchange the ID of their own resource in the API call with an ID of a resource belonging to another user. The absence of proper authorization checks enables attackers to access the specified resource. Thus, every API endpoint that receives an ID of an object and performs any type of action on the object can be an attack target.
 
-To prevent exploitation of this vulnerability, Wallarm node contains a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+To prevent exploitation of this vulnerability, Wallarm node 4.2 and above contain a [new trigger](../../admin-en/configuration-guides/protecting-against-bola.md) which you can use to protect your endpoints from BOLA attacks. The trigger monitors the number of requests to a specified endpoint and creates a BOLA attack event when thresholds from the trigger are exceeded.
+
+## Checking JSON Web Token strength
+
+[JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
+
+Starting from version 4.4, you can enable Wallarm to detect the following JWT weaknesses:
+
+* Unencrypted JWTs
+* JWTs signed using compromised secret keys
+
+To enable, use the [**Weak JWT** trigger](../../user-guides/triggers/trigger-examples.md#detect-weak-jwts).
 
 ## Checking JSON Web Tokens for attacks
 
 JSON Web Token (JWT) is one of the most popular authentication methods. This makes it a favorite tool to perform attacks (for example SQLi or RCE) that are very difficult to find because the data in the JWT is encoded and it can be located anywhere in the request.
 
-Wallarm node finds the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
+Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../../user-guides/rules/request-processing.md#jwt) it and blocks (in the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md)) any attack attempts through this authentication method.
 
 ## Supported installation options
 
-* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.4.0.
+* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.5.1.
 
     [Instructions on migrating to the Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
 
     Wallarm node packages for the alternative operating systems will be stored in the CentOS 8.x repository. 
 * Added support for Debian 11 Bullseye
+* Added support for Ubuntu 22.04 LTS (jammy)
 * Dropped support for CentOS 6.x (CloudLinux 6.x)
 * Dropped support for Debian 9.x
+* Dropped support for Debian 10.x for Wallarm to be installed as the module for either NGINX stable or NGINX Plus
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
@@ -174,13 +187,14 @@ New Wallarm nodes are distributed with the module **API Discovery** automaticall
 
 [Details on the API Discovery module →](../../about-wallarm/api-discovery.md)
 
-## Support of the libdetection library in the Envoy-based nodes
+## Enhanced attack analysis with the libdetection library
 
-The **libdetection** library is now supported in the Envoy-based Wallarm nodes. This library additionally validates the SQL Injection attacks to confirm detected malicious payloads. If the payload is not confirmed by the **libdetection** library, the request is considered to be legitimate. This library reduces the number of false positives among the SQL Injection attacks.
+Attack analysis performed by Wallarm has been enhanced by involving an additional attack validation layer. Wallarm node 4.4 and above in all form-factors (including Envoy) are distributed with the libdetection library enabled by default. This library performs secondary fully grammar-based validation of all [SQLi](../../attacks-vulns-list.md#sql-injection) attacks reducing the number of false positives detected among SQL injections.
 
-By default, the library **libdetection** is disabled. To improve the attack detection, we recommend enabling it.
+!!! warning "Memory consumption increase"
+    With the **libdetection** library enabled, the amount of memory consumed by NGINX/Envoy and Wallarm processes may increase by about 10%.
 
-[Details on the **libdetection** library →](../../about-wallarm/protecting-against-attacks.md#library-libdetection)
+[Details on how Wallarm detects attacks →](../../about-wallarm/protecting-against-attacks.md)
 
 ## The rule enabling the `overlimit_res` attack detection fine-tuning
 
@@ -288,7 +302,9 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Upgrading the Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [Upgrading NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
       * [Cloud node image](cloud-image.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.2.
+      * [Multi-tenant node](multi-tenant.md)
+      * [CDN node](../cdn-node.md)
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.4.
 
 ----------
 

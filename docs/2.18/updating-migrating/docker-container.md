@@ -7,9 +7,9 @@
 [wallarm-acl-directive]:            ../admin-en/configure-parameters-en.md#wallarm_acl
 [allocating-memory-guide]:          ../admin-en/configuration-guides/allocate-resources-for-node.md
 [enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[attacks-in-ui-image]:           ../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Upgrading the Wallarm Docker NGINX- or Envoy-based image
 
@@ -54,7 +54,7 @@ There are two options for running the container using the updated image:
 
 ## Step 4: Test the filtering node operation
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats-for-deprecated.md"
 
 ## Step 5: Delete the filtering node of the previous version
 

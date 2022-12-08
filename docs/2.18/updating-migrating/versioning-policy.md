@@ -9,14 +9,12 @@ This policy describes the method of versioning of different Wallarm filtering no
 
 | Node version | Release date   | Support until |
 |------------------|----------------|---------------|
-| 2.18 and lower   |                | November 2021 |
-| 3.0              | July 2021      | February 2022 |
-| 3.2              | August 2021    | April 2022    |
-| 3.4              | October 2021   | September 2022|
-| 3.6              | February 2022  | November 2022 |
-| 4.0              | June 2022      |               |
+|2.18 and lower 2.x|                | November 2021 |
+| 3.6 and lower 3.x| October 2021   | November 2022 |
+| 4.0              | June 2022      | February 2023 |
 | 4.2              | August 2022    |               |
-| 4.4              |4th quarter 2022|               |
+| 4.4              | November 2022  |               |
+| Next version     |1st quarter 2023|               |
 
 ## Version format
 

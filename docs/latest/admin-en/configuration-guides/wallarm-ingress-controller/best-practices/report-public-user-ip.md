@@ -1,4 +1,4 @@
-# Proper Reporting of End User Public IP Address
+# Proper Reporting of End User Public IP Address (NGINX-based Ingress controller)
 
 These instructions describe the Wallarm Ingress controller configuration required to identify an originating IP address of a client (end user) when a controller is placed behind a load balancer.
 

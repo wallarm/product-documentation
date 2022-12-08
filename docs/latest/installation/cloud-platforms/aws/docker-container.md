@@ -80,7 +80,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                "image": "registry-1.docker.io/wallarm/node:4.4.0-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -114,7 +114,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                "image": "registry-1.docker.io/wallarm/node:4.4.0-1"
                 }
             ],
             "family": "wallarm-api-security-node"
@@ -246,7 +246,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                "image": "registry-1.docker.io/wallarm/node:4.4.0-1"
                 }
             ],
             "volumes": [
@@ -289,7 +289,7 @@ To deploy the container with environment variables and configuration file mounte
                     }
                 ],
                 "name": "wallarm-container",
-                "image": "registry-1.docker.io/wallarm/node:4.2.1-1"
+                "image": "registry-1.docker.io/wallarm/node:4.4.0-1"
                 }
             ],
             "volumes": [
@@ -352,12 +352,12 @@ To deploy the container with environment variables and configuration file mounte
 
     If the IP address is empty, please ensure the container is in the **RUNNING** status.
 
-2. Send the request with test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the copied address:
+2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied address:
 
     ```
-    curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<COPIED_IP>/etc/passwd
     ```
-3. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors that occurred during the container deployment are displayed in the task details in the AWS Management Console. If the container is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

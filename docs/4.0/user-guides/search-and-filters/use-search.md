@@ -97,6 +97,7 @@ Specify in the search string:
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
 * `idor`: to search for vulnerabilities of the [IDOR](../../attacks-vulns-list.md#insecure-direct-object-references-idor) type.
+* `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

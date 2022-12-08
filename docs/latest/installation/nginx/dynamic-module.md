@@ -2,9 +2,8 @@
 [wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
@@ -14,7 +13,6 @@
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
@@ -206,7 +204,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 5. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.md"
 
 ### 6. Update Wallarm node configuration
 
@@ -220,10 +218,10 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 8. Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Settings customization
 
 Dynamic Wallarm API Security module with default settings is installed for NGINX `stable`. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options-nginx.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

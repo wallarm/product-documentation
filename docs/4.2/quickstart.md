@@ -69,11 +69,11 @@ Wallarm supports [many options for the filtering node deployment](admin-en/suppo
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.2-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.2.2-1
         ```
 
     Environment variable | Description| Required
@@ -83,17 +83,17 @@ Wallarm supports [many options for the filtering node deployment](admin-en/suppo
     `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
     `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originating from [graylisted IP addresses][graylist-docs]</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →][filtration-modes-docs] | No
 
-    To test the deployment, run the first attack with the [SQLi][sqli-attack-desc] and [XSS][xss-attack-desc] malicious payloads:
+    To test the deployment, run the first attack with the [Path Traversal](attacks-vulns-list.md#path-traversal) malicious payload:
 
     ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://localhost/etc/passwd
     ```
 
     If `NGINX_BACKEND` is `example.com`, additionally pass the `-H 'Host: example.com'` option in the curl command.
 
-    Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block attacks but will register them. To check that attacks have been registered, proceed to Wallarm Console → **Events**:
+    Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface](images/current-attacks-in-ui-wallarm-node.png)
+    ![!Attacks in the interface](images/admin-guides/test-attacks-quickstart.png)
 === "Serverless deployment of the CDN node type"
     The Wallarm filtering node of the CDN type mitigates malicious traffic without placing any third‑party components in the application's infrastructure as it is hosted by the third-party cloud provider. All that is required to deploy the CDN node is to **specify the domain to be protected** and **add the Wallarm CNAME record** to the domain's DNS records.
 
@@ -124,7 +124,7 @@ Wallarm supports [many options for the filtering node deployment](admin-en/suppo
     Once DNS record changes are propagated, send test attacks to the protected domain:
 
     ```bash
-    curl http://<PROTECTED_DOMAIN>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
     curl http://<PROTECTED_DOMAIN>/etc/passwd
     ```
 

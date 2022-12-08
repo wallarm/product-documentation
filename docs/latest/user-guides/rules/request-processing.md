@@ -332,7 +332,7 @@ When defining a request element the [rule](add-rule.md) is applied to:
 
 ### Norms
 
-The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_default**, **hash_name**.
+The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_name**.
 
 If the norm is not specified, then the identifier of the entity that requires processing is passed to the parser. For example: the name of the JSON object or other identifier is passed after **hash**.
 
@@ -345,16 +345,6 @@ Used to get values of all elements, parameters, or objects. For example:
 * **array_all** for all array element values
 * **hash_all** for all JSON object or XML attribute values
 * **jwt_all** for all JWT values
-
-#### default
-
-Used to get default values of elements, parameters, or objects. For example:
-
-* **query_default** for default values of query string parameters
-* **header_default** for default values of headers
-* **array_default** for default values of array elements
-* **hash_default** for default values of JSON objects or XML attributes
-* **jwt_default** for default values of JWT
 
 #### name
 

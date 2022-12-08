@@ -21,7 +21,7 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 2. Open the Wallarm Console → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
-    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events-no-libdetection.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 

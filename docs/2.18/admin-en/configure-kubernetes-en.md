@@ -1,6 +1,6 @@
 [link-helm-chart-details]:  https://github.com/wallarm/ingress-chart#configuration
 
-# Fine‑tuning of Wallarm Ingress Controller
+# Fine‑tuning of NGINX-based Wallarm Ingress Controller
 
 Learn fine-tuning options available for the Wallarm Ingress controller to get the most out of Wallarm API Security.
 

@@ -1,12 +1,11 @@
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]:              ../../admin-en/configuration-guides/configure-block-page-and-code.md
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[enable-libdetection-docs]:         ../../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
-[sqli-attack-desc]:                 ../../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
@@ -15,12 +14,9 @@
 [envoy-process-time-limit-docs]:    ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 
-# Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower
+# Upgrading an EOL Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 2.18 or lower to the version 4.2.
-
-!!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.2 and deploy it as the Docker container.
+These instructions describe the steps to upgrade the running end‑of‑life Docker NGINX- or Envoy-based image (version 3.6 and lower) to the version 4.4.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
@@ -28,11 +24,11 @@ These instructions describe the steps to upgrade the running Docker NGINX- or En
 
 --8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
-## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-Please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.2 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
+If upgrading node 2.18 or lower, please inform [Wallarm technical support](mailto:support@wallarm.com) that you are upgrading filtering node modules up to 4.4 and ask to enable new IP list logic for your Wallarm account. When new IP list logic is enabled, please ensure the section [**IP lists**](../../user-guides/ip-lists/overview.md) of Wallarm Console is available.
 
-## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 2: Disable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Scanner** → **Settings**.
 
@@ -46,21 +42,21 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 === "NGINX-based image"
     ``` bash
-    docker pull wallarm/node:4.2.1-1
+    docker pull wallarm/node:4.4.0-1
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:4.2.0-1
+    docker pull wallarm/envoy:4.4.0-1
     ```
 
 ## Step 5: Switch to the token-based connection to the Wallarm Cloud
 
-The approach to connect the container to the Wallarm Cloud has been upgraded as follows:
+With the release of version 4.x, approach to connect the container to the Wallarm Cloud has been upgraded as follows:
 
 * [The "email and password"-based approach has been deprecated](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens). In this approach, the node was registered in the Wallarm Cloud automatically once the container started with correct credentials passed in the `DEPLOY_USER` and `DEPLOY_PASSWORD` variables.
 * The token-based approach has been included. To connect the container to the Cloud, run the container with the `WALLARM_API_TOKEN` variable containing the Wallarm node token copied from the Wallarm Console UI.
 
-It is recommended to use the new approach to run the image 4.2. The "email and password"-based approach will be deleted in future releases, please migrate before.
+It is recommended to use the new approach to run the image 4.4. The "email and password"-based approach will be deleted in future releases, please migrate before.
 
 To create a new Wallarm node and get its token:
 
@@ -69,9 +65,9 @@ To create a new Wallarm node and get its token:
     ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.2
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)
 
-[Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.2.
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to 4.4.
 
 ## Step 7: Switch from deprecated configuration options
 
@@ -107,7 +103,7 @@ There are the following deprecated configuration options:
 
 In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
-If the Docker container 2.18 or lower was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
+If the Docker container was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
 
 1. [Copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 1. [Mount](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
@@ -135,7 +131,7 @@ There are two options for running the container using the updated image:
     * [Instructions for the NGINX-based Docker container →](../../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
     * [Instructions for the Envoy-based Docker container →](../../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions
+## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * Environment variable [`WALLARM_MODE`](../../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables) or the directive [`wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode) of the NGINX‑based Docker container
@@ -146,27 +142,13 @@ There are two options for running the container using the updated image:
 
 ## Step 13: Test the filtering node operation
 
-1. Send the request with test [SQLI][sqli-attack-desc] and [XSS][xss-attack-desc] attacks to the application address:
-
-    ```
-    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
-    ```
-1. Make sure the node of the new type processes the request in the same way as the **regular** node did, e.g.:
-
-    * Blocks the request if the appropriate [filtration mode](../../admin-en/configure-wallarm-mode.md) is configured.
-    * Returns the [custom blocking page](../../admin-en/configuration-guides/configure-block-page-and-code.md) if it is configured.
-2. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure that:
-
-    * Attacks are displayed in the list.
-    * Hit details display the Wallarm node UUID.
-
-    ![!Attacks in the interface][img-test-attacks-in-ui]
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
 ## Step 14: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.2 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
+If the deployed image of the version 4.4 operates correctly, you can delete the filtering node of the previous version in the Wallarm Console → **Nodes** section.
 
-## Step 15: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 15: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

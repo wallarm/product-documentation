@@ -1,3 +1,5 @@
+[ip-lists-docs]: ../../../user-guides/ip-lists/overview.md
+
 # Deploying Kong Ingress Controller with integrated Wallarm services
 
 To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm API Security services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
@@ -54,14 +56,7 @@ As for the Open-Source Kong Ingress controller with Wallarm services, it support
 
 ## Requirements
 
-* Kubernetes platform version 1.22-1.25
-* K8s Ingress resources that configure Kong to route API calls to the microservices you want to protect
-* [Helm v3](https://helm.sh/) package manager
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
-* Access to `https://charts.wallarm.com` to add the Wallarm Helm charts
-* Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../../../user-guides/ip-lists/overview.md) countries, regions or data centers
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or the [EU Cloud](https://my.wallarm.com/)
+--8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
 
 ## Deployment
 
@@ -215,15 +210,15 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
     wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
     wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. Send the test [SQLI](../../../attacks-vulns-list.md#sql-injection) and [XSS](../../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Kong Ingress Controller Service:
+1. Send the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attacks to the Kong Ingress Controller Service:
 
     ```bash
-    curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block attacks but will register them.
+    Since the Wallarm layer operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes), the Wallarm node will not block the attack but will register it.
 
-    To check that attacks have been registered, proceed to Wallarm Console → **Events**:
+    To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
     ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
 

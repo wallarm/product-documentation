@@ -30,26 +30,26 @@ The postanalytics module, like other Wallarm API Security modules, is installed 
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 20.04 LTS (focal)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 22.04 LTS (jammy)"
@@ -61,17 +61,17 @@ The postanalytics module, like other Wallarm API Security modules, is installed 
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
 
 ### 2. Install packages for the postanalytics module
@@ -121,7 +121,8 @@ To create the filtering node and connect the postanalytics module to the Cloud:
         sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --no-sync --no-sync-acl
         ```
 
-    `<NODE_TOKEN>` is the copied token value.
+    * `<NODE_TOKEN>` is the copied token value.
+    * You may add `-n <HOST_NAME>` parameter to set a custom name for your postanalytics node instance. Final node instance name will be: `HOST_NAME_NodeUUID`.
 
 ### 4. Update postanalytics module configuration
 
@@ -257,7 +258,7 @@ To apply the settings to the postanalytics and NGINX‑Wallarm modules:
 To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 
 ```bash
-curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+curl http://localhost/etc/passwd
 ```
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:

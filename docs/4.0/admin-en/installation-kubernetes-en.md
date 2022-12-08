@@ -1,14 +1,25 @@
 # Installing NGINX Ingress Controller with integrated Wallarm services
 
-These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster using Helm when there are no other non-NGINX Ingress controllers deployed.
+These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution involves the default functionality of [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services.
+
+The solution is deployed from the Wallarm Helm chart.
+
+## Use cases
+
+Among all supported [Wallarm deployment options](supported-platforms.md), this solution is the recommended one for the following **use cases**:
+
+* There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
+* You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.
+
+    You can seamlessly replace the deployed NGINX Ingress Controller with the one these instructions describe by only moving your configuration to a new deployment.
 
 ## Requirements
 
 * Kubernetes platform version 1.20-1.24
 * [Helm](https://helm.sh/) package manager
 * Compatibility of your services with the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) version 1.3.0 or lower
-* Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
-* Access to `https://api.wallarm.com` for working with EU Wallarm Cloud or to `https://us1.api.wallarm.com` for working with US Wallarm Cloud
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud
 * Access to `https://charts.wallarm.com` to add the Wallarm Helm charts. Ensure the access is not blocked by a firewall
 * Access to the Wallarm repositories on Docker Hub `https://hub.docker.com/r/wallarm`. Make sure the access is not blocked by a firewall
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
@@ -31,8 +42,8 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 ### Step 1: Installing the Wallarm Ingress Controller
 
 1. Go to Wallarm Console → **Nodes** via the link below:
-    * https://my.wallarm.com/nodes for the EU Cloud
     * https://us1.my.wallarm.com/nodes for the US Cloud
+    * https://my.wallarm.com/nodes for the EU Cloud
 2. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
     ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
@@ -44,13 +55,6 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
 
     Example of the file with the minimun configuration:
 
-    === "EU Cloud"
-        ```bash
-        controller:
-          wallarm:
-            enabled: "true"
-            token: "<NODE_TOKEN>"
-        ```    
     === "US Cloud"
         ```bash
         controller:
@@ -59,6 +63,13 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
             token: "<NODE_TOKEN>"
             apiHost: "us1.api.wallarm.com"
         ```
+    === "EU Cloud"
+        ```bash
+        controller:
+          wallarm:
+            enabled: "true"
+            token: "<NODE_TOKEN>"
+        ```    
     
     `<NODE_TOKEN>` is the Wallarm node token.
 5. Install the Wallarm packages:
@@ -94,13 +105,13 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-2. Send the request with test [SQLI](../attacks-vulns-list.md#sql-injection) and [XSS](../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Wallarm Ingress controller address:
+2. Send the request with the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
 
     ```bash
-    curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Events**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and the attack will be displayed in Wallarm Console → **Events**.
 
 ## Configuration
 

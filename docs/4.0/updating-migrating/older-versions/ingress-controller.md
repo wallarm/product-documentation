@@ -425,13 +425,13 @@ There are the following parameters passed in the commands:
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Wallarm Ingress controller address:
+3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
 
     ```bash
-    curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Events**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and the attack will be displayed in Wallarm Console → **Events**.
 
 ## Step 10: Adjust the Ingress annotations to released changes
 

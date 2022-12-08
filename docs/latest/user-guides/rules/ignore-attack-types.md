@@ -35,7 +35,7 @@ Let's say when the user confirms the publication of the post on the Database Adm
 The example of the cURL request containing [SQL injection](../../attacks-vulns-list.md#sql-injection):
 
 ```bash
-curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=or+1=1--a-<script>prompt(1)</script>"}'
+curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{"emailAddress":"johnsmith@example.com", "postHeader":"SQL injections", "postBody":"My post describes the following SQL injection: ?id=1%20select%20version();"}'
 ```
 
 To ignore SQL injections in the parameter `postBody` of the requests to `https://example.com/posts/`, the rule **Ignore certain attack types** can be configured as follows:

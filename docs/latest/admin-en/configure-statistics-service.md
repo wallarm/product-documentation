@@ -56,7 +56,7 @@ server {
         ...
         status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
         ```
-    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/collectd.conf.d/nginx-wallarm.conf`.
+    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf`.
     1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses).
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:

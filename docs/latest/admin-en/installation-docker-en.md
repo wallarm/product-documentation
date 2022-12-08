@@ -6,15 +6,13 @@
 [proxy-balancer-instr]:             using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
 [allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
-[enable-libdetection-docs]:         configure-parameters-en.md#wallarm_enable_libdetection
 [nginx-waf-directives]:             configure-parameters-en.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
 [graylist-docs]:                    ../user-guides/ip-lists/graylist.md
 [filtration-modes-docs]:            configure-wallarm-mode.md
 [application-configuration]:        ../user-guides/settings/applications.md
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 configure-statistics-service.md
 
@@ -46,11 +44,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -p 80:80 wallarm/node:4.4.0-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e NGINX_BACKEND='example.com' -p 80:80 wallarm/node:4.4.0-1
         ```
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
@@ -82,11 +80,11 @@ To run the container:
 
     === "US Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -e WALLARM_API_HOST='us1.api.wallarm.com' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.4.0-1
         ```
     === "EU Cloud"
         ```bash
-        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.2.1-1
+        docker run -d -e WALLARM_API_TOKEN='XXXXXXX' -v /configs/default:/etc/nginx/sites-enabled/default -p 80:80 wallarm/node:4.4.0-1
         ```
 
     * The `-e` option passes the following required environment variables to the container:
@@ -173,4 +171,4 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used filtering node configuration options:
 
---8<-- "../include/waf/installation/common-customization-options-docker.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"

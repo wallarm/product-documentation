@@ -25,7 +25,6 @@ To install the filtering node as the NGINX Stable module in the Azure instance:
 
 1. Create an Azure instance from the operating system image supported by Wallarm following the [Azure instructions](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal):
 
-    * Debian 10.x Buster
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal
@@ -44,7 +43,6 @@ To install the filtering node as the NGINX Plus module in the Azure instance:
 
 1. Create an Azure instance from the operating system image supported by Wallarm following the [Azure instructions](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal):
 
-    * Debian 10.x Buster
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
     * Ubuntu 20.04 Focal

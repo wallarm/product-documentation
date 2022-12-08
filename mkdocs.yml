@@ -28,7 +28,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "4.2"
+  version: "4.4"
 
 extra:
   social:
@@ -81,7 +81,7 @@ markdown_extensions:
       show_description_in_lightgallery: false
   - meta
 
-docs_dir: docs/4.2
+docs_dir: docs/4.4
 site_dir: site
 edit_uri: ../product-docs-en/edit/master/docs/latest/
 watch:
@@ -95,6 +95,7 @@ nav:
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Discovering API structure: about-wallarm/api-discovery.md
+        - API Abuse Prevention: about-wallarm/api-abuse-prevention.md
         - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
           - Security model of shared responsibility for clients' data: about-wallarm/shared-responsibility.md
@@ -173,7 +174,7 @@ nav:
         - Configuration of BOLA (IDOR) protection: admin-en/configuration-guides/protecting-against-bola.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
-          - Best Practices in Wallarm Ingress Controller Configuration:
+          - Best Practices in NGINX-based Wallarm Ingress Controller Configuration:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
@@ -293,6 +294,7 @@ nav:
         - IP address allowlist: user-guides/ip-lists/allowlist.md
         - IP address graylist: user-guides/ip-lists/graylist.md
         - IP address denylist: user-guides/ip-lists/denylist.md
+      - API Abuse Prevention profile management: user-guides/api-abuse-prevention.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md
@@ -326,7 +328,7 @@ nav:
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 4.2: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.4: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
@@ -334,17 +336,20 @@ nav:
         - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
+        - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md
+        - Upgrading Wallarm Sidecar proxy: updating-migrating/sidecar-proxy.md
         - Upgrading the cloud node image: updating-migrating/cloud-image.md
         - Upgrading Wallarm CDN node: updating-migrating/cdn-node.md
-      - Upgrading the multi-tenant node: updating-migrating/multi-tenant.md
-      - Upgrading Wallarm node 2.18 and lower:
-        - What is new in Wallarm node (if upgrading node 2.18 or lower): updating-migrating/older-versions/what-is-new.md
-        - Upgrading Wallarm NGINX modules 2.18 or lower: updating-migrating/older-versions/nginx-modules.md
-        - Upgrading the postanalytics module 2.18 or lower: updating-migrating/older-versions/separate-postanalytics.md
-        - Upgrading the Docker NGINX- or Envoy-based image of Wallarm node 2.18 or lower: updating-migrating/older-versions/docker-container.md
-        - Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower: updating-migrating/older-versions/ingress-controller.md
-        - Upgrading the cloud node image 2.18 or lower: updating-migrating/older-versions/cloud-image.md
-        - Migrating allowlists and denylists from Wallarm node 2.18 and lower to 3.x: updating-migrating/migrate-ip-lists-to-node-3.md
+        - Upgrading the multi‑tenant node: updating-migrating/multi-tenant.md
+      - Upgrading EOL Wallarm nodes (3.6 and lower):
+        - What is new in Wallarm node (if upgrading an EOL node): updating-migrating/older-versions/what-is-new.md
+        - Upgrading EOL Wallarm NGINX modules: updating-migrating/older-versions/nginx-modules.md
+        - Upgrading the EOL postanalytics module: updating-migrating/older-versions/separate-postanalytics.md
+        - Upgrading an EOL Docker NGINX- or Envoy-based image: updating-migrating/older-versions/docker-container.md
+        - Upgrading EOL NGINX Ingress controller with integrated Wallarm modules: updating-migrating/older-versions/ingress-controller.md
+        - Upgrading an EOL cloud node image: updating-migrating/older-versions/cloud-image.md
+        - Upgrading the EOL multi‑tenant node: updating-migrating/older-versions/multi-tenant.md
+        - Migrating allowlists and denylists from EOL Wallarm node: updating-migrating/migrate-ip-lists-to-node-3.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":
@@ -354,6 +359,7 @@ nav:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
       - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
     - API Firewall changelog: api-firewall/release-notes.md
+  - "Security testing: FAST": https://docs.fast.wallarm.com/en/
   - API docs:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
@@ -365,9 +371,9 @@ nav:
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
-  - Demo videos:
-    - Wallarm API Security overview and deployment options: demo-videos/overview.md
-    - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
-    - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
+  # - Demo videos:
+  #   - Wallarm API Security overview and deployment options: demo-videos/overview.md
+  #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
+  #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
+  #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
   - Changelog & news: news.md

@@ -15,6 +15,7 @@
 [application-docs]:                 ../settings/applications.md
 [events-docs]:                      ../events/check-attack.md
 [graylist-populating-docs]:         ../ip-lists/graylist.md#managing-graylist
+[link-app-conf]:                    ../settings/applications.md
 
 # CDN filtering nodes
 

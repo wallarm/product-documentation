@@ -2,25 +2,33 @@
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
+[ip-list-docs]:                     ../../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 
-# Upgrading NGINX Ingress controller with integrated Wallarm modules 2.18 or lower
+# Upgrading EOL NGINX Ingress controller with integrated Wallarm modules
 
-These instructions describe the steps to upgrade deployed Wallarm Ingress Controller 2.18 or lower to the new version with Wallarm node 4.2.
+These instructions describe the steps to upgrade deployed end‑of‑life Wallarm Ingress Controller (version 3.6 and lower) to the new version with Wallarm node 4.4.
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
+!!! warning "The upgraded version of Community Ingress NGINX Controller"
+    If you upgrade the node from version 3.4 or lower, please note that the version of Community Ingress NGINX Controller the Wallarm Ingress controller is based on has been upgraded from 0.26.2 to 1.5.1.
+    
+    Since the operation of Community Ingress NGINX Controller 1.5.1 has been significantly changed, its configuration has to be adjusted to these changes during the Wallarm Ingress controller upgrade.
+
+    These instructions contain the list of Community Ingress NGINX Controller settings you probably have to change. Nevertheless, please draw up and individual plan for the configuration migration based on the [Community Ingress NGINX Controller release notes](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md). 
+
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
+## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 
-Inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 4.2 and ask to enable new IP lists logic for your Wallarm account.
+If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to 4.4 and ask to enable new IP lists logic for your Wallarm account.
 
 When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
-## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 2: Disable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Scanner** → **Settings**.
 
@@ -46,7 +54,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 
 ## Step 5: Update the `values.yaml` configuration
 
-To migrate to Wallarm Ingress controller 4.2, update the following configuration specified in the `values.yaml` file:
+To migrate to Wallarm Ingress controller 4.4, update the following configuration specified in the `values.yaml` file:
 
 * Standard configuration of Community Ingress NGINX Controller
 * Wallarm module configuration
@@ -134,7 +142,7 @@ There are the following setting probably to be changed:
 
 Change the Wallarm module configuration set in the `values.yaml` file as follows:
 
-* [Migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. There are the following parameters potentially to be deleted from `values.yaml`:
+* If upgrading from version 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. There are the following parameters potentially to be deleted from `values.yaml`:
 
     ```diff
     controller:
@@ -189,12 +197,12 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.2 settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
 
     If stdout is empty, ensure the `values.yaml` file is valid.
@@ -282,26 +290,26 @@ There are three ways of upgrading the Wallarm Ingress controller. Depending on w
 !!! warning "Using the staging environment or minikube"
     If the Wallarm Ingress controller is deployed to your staging environment, it is recommended to upgrade it first. With all services operating correctly in the staging environment, you can proceed to the upgrade procedure in the production environment.
 
-    Unless it is recommended to [deploy the Wallarm Ingress controller 4.2](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
+    Unless it is recommended to [deploy the Wallarm Ingress controller 4.4](../../admin-en/installation-kubernetes-en.md) with the updated configuration using minikube or another service first. Ensure all services operates as expected and then upgrade the Ingress controller in the production environment.
 
     This approach helps to avoid downtime of the services in the production environment.
 
 ### Method 1: Deployment of the temporary Ingress controller
 
-By using this method, you can deploy Ingress Controller 4.2 as an additional entity in your environment and switch the traffic to it gradually. It helps to avoid even temporary downtime of services and ensures safe migration.
+By using this method, you can deploy Ingress Controller 4.4 as an additional entity in your environment and switch the traffic to it gradually. It helps to avoid even temporary downtime of services and ensures safe migration.
 
-1. Copy the IngressClass configuration from the `values.yaml` file of the previous version to the `values.yaml` file for the Ingress controller 4.2.
+1. Copy the IngressClass configuration from the `values.yaml` file of the previous version to the `values.yaml` file for the Ingress controller 4.4.
 
     With this configuration, the Ingress controller will identify the Ingress objects but will not process their traffic.
-2. Deploy the Ingress controller 4.2:
+2. Deploy the Ingress controller 4.4:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>`: the name for the Ingress controller release
     * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
-    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.2 settings](#step-5-update-the-valuesyaml-configuration)
+    * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Ensure all services operate correctly.
 4. Switch the load to the new Ingress controller gradually.
 
@@ -329,17 +337,17 @@ To re‑create the Ingress controller release:
 
         Please do not use the `--wait` option when executing the command since it can increase the upgrade time.
 
-    2. Create a new release with Ingress controller 4.2:
+    2. Create a new release with Ingress controller 4.4:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
         ```
 
         * `<RELEASE_NAME>`: the name for the Ingress controller release
 
         * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
 
-        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.2 settings](#step-5-update-the-valuesyaml-configuration)
+        * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 === "Terraform CLI"
     1. Set the `wait = false` option in the Terraform configuration to decrease the upgrade time:
         
@@ -359,7 +367,7 @@ To re‑create the Ingress controller release:
         terraform taint helm_release.release
         ```
     
-    3. Create the new release with the Ingress controller 4.2:
+    3. Create the new release with the Ingress controller 4.4:
 
         ```bash
         terraform apply -target=helm_release.release
@@ -384,7 +392,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.2.5 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -400,7 +408,7 @@ There are the following parameters passed in the commands:
 
 * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
-* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.2 settings](#step-5-update-the-valuesyaml-configuration)
+* `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 
 ## Step 9: Test the upgraded Ingress controller
 
@@ -410,7 +418,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-4.2.5`.
+    The chart version should correspond to `wallarm-ingress-4.4.0`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash
@@ -425,19 +433,19 @@ There are the following parameters passed in the commands:
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. Send the request with test [SQLI](../../attacks-vulns-list.md#sql-injection) and [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks to the Wallarm Ingress controller address:
+3. Send the request with the test [Path Traversal](../../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
 
     ```bash
-    curl http://<INGRESS_CONTROLLER_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
+    curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in the response to the request and attacks will be displayed in Wallarm Console → **Events**.
+    If the filtering node is working in the `block` mode, the code `403 Forbidden` will be returned in response to the request and the attack will be displayed in Wallarm Console → **Events**.
 
 ## Step 10: Adjust the Ingress annotations to released changes
 
-Adjust the following Ingress annotations to the changes released in Ingress controller 4.2:
+Adjust the following Ingress annotations to the changes released in Ingress controller 4.4:
 
-1. [Migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Ingress annotations (if applied).
+1. If upgrading from version 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) the IP list configuration. Since IP list core logic has been significantly changed in Wallarm node 3.x, it is required to adjust IP list configuration appropriately by changing Ingress annotations (if applied).
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
@@ -452,7 +460,7 @@ Adjust the following Ingress annotations to the changes released in Ingress cont
 
     In new node versions, the Wallarm blocking page [has](what-is-new.md#new-blocking-page) the updated UI with no logo and support email specified by default.
 
-## Step 11: Re-enable the Active threat verification module (if upgrading node 2.16 or lower)
+## Step 11: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 

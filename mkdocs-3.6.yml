@@ -164,7 +164,7 @@ nav:
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
-          - Best Practices in Wallarm Ingress Controller Configuration:
+          - Best Practices in NGINX-based Wallarm Ingress Controller Configuration:
             - Proper Reporting of End‑user Public IP Address: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
@@ -346,6 +346,7 @@ nav:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
       - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
     - API Firewall changelog: api-firewall/release-notes.md
+  - "Security testing: FAST": https://docs.fast.wallarm.com/en/
   - API docs:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
@@ -357,9 +358,9 @@ nav:
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
-  - Demo videos:
-    - Wallarm API Security overview and deployment options: demo-videos/overview.md
-    - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
-    - Wallarm Scanner overview: demo-videos/scanner-overview.md
-    - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
+  # - Demo videos:
+  #   - Wallarm API Security overview and deployment options: demo-videos/overview.md
+  #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
+  #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
+  #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
   - Changelog & news: news.md

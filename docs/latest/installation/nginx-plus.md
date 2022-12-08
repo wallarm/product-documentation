@@ -2,9 +2,8 @@
 [wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../admin-en/configuration-guides/allocate-resources-for-node.md
 [waf-directives-instr]:             ../admin-en/configure-parameters-en.md
-[sqli-attack-desc]:                 ../attacks-vulns-list.md#sql-injection
-[xss-attack-desc]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
-[img-test-attacks-in-ui]:           ../images/admin-guides/test-attacks-quickstart.png
+[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [logging-instr]:                    ../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../admin-en/using-proxy-or-balancer-en.md
@@ -13,7 +12,6 @@
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../admin-en/installation-postanalytics-en/
-[enable-libdetection-docs]:         ../admin-en/configure-parameters-en.md#wallarm_enable_libdetection
 [waf-mode-recommendations]:          ../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
@@ -51,30 +49,23 @@ Install NGINX Plus and its dependencies using these [official NGINX instructions
 
 Wallarm node is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 20.04 LTS (focal)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Ubuntu 22.04 LTS (jammy)"
@@ -86,17 +77,17 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
 === "CentOS 7.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "Amazon Linux 2.0.2021x and lower"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.2/x86_64/wallarm-node-repo-4.2-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
     ```
 
 ### 3. Install Wallarm API Security packages
@@ -182,7 +173,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 5. Connect the filtering node to Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.md"
 
 ### 6. Update Wallarm node configuration
 
@@ -196,10 +187,10 @@ To run postanalytics and process the requests on different servers, the followin
 
 ### 8. Test Wallarm node operation
 
---8<-- "../include/waf/installation/test-waf-operation.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Settings customization
 
 Dynamic Wallarm API Security module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
---8<-- "../include/waf/installation/common-customization-options.md"
+--8<-- "../include/waf/installation/common-customization-options-4.4.md"
