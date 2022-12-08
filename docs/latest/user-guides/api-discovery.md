@@ -138,10 +138,10 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
 
-!!! warning "Filtered download"
+!!! info "Filtered download"
     When downloading the description of the API structure, applied filters are taken into account. Only filtered data is downloaded.
     
-!!! info "API host information in downloaded Swagger file"
+!!! warning "API host information in downloaded Swagger file"
     If a discovered API structure contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
 
 Using the downloaded data, you can discover:
