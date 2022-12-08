@@ -26,7 +26,7 @@ With passive detection, Wallarm detects a vulnerability due to the security inci
 
 Passive vulnerability detection is enabled by default.
 
-### Active threat verification
+### Active threat verification <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 #### How it works
 
@@ -50,7 +50,7 @@ Passive vulnerability detection is enabled by default.
 
 The module **Active threat verification** is disabled by default. It should be enabled and properly configured to work correctly. Please learn the **Active threat verification** configuration options and best practices for these options setup from [this document](../admin-en/attack-rechecker-best-practices.md).
 
-### Vulnerability Scanner
+### Vulnerability Scanner <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
 #### How it works
 

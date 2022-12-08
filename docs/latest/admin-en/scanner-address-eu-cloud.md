@@ -1,6 +1,6 @@
 [file-ips-list]: ../downloads/scanner-ip-addresses-eu.txt
 
-# Scanner Addresses for EU Cloud
+# Scanner Addresses for EU Cloud <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! info
     This list only works for users who use the EU Cloud <https://my.wallarm.com>.

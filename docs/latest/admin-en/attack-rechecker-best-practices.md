@@ -1,6 +1,6 @@
 [allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
-# Best practices for configuring the Active threat verification feature
+# Best practices for configuring the Active threat verification feature <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 One method Wallarm uses to [detect vulnerabilities](../about-wallarm/detecting-vulnerabilities.md) is **Active threat verification** which lets you turn attackers into penetration testers and discover possible security issues from their activity as they probe your apps/APIs for vulnerabilities. This module finds possible vulnerabilities by probing application endpoints using real attack data from the traffic. For the module to operate securely, please learn its configuration best practices from this article.
 
