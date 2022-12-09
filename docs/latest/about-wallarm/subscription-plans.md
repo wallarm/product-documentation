@@ -16,20 +16,18 @@ The Wallarm approach to subscription plan structure relies on the [use cases](ov
 | [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Partially | Yes |
 | **Protected resource types** | | |
 | Web applications | Yes | Yes |
-| Microservices | Partially | Yes |
 | APIs | Partially | Yes |
 | **API protocol support** | | |
 | Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes |
 | Mainstream (REST, GraphQL) | Yes | Yes |
 | Modern and streaming (gRPC, WebSocket) | No | Yes |
 | **Real-time threat prevention** | | |
-| [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks) | Yes | Yes |
+| [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), e.g. SQL injection, RCE | Yes | Yes |
 | [Virtual patching](../user-guides/rules/vpatch-rule.md) | Yes | Yes |
-| [Filtration by request sources](../user-guides/ip-lists/overview.md) | Yes | Yes |
-| [Custom security rules](../user-guides/rules/intro.md) | Partially | All |
+| [Geolocation filtering](../user-guides/ip-lists/overview.md) | Yes | Yes |
 | **Protection from automated threats** | | |
 | [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
-| [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Only manual setup | Manual and automated setup |
+| [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual setup | Automated protection |
 | [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No | Yes |
 | **Observability options** | | |
 | [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
@@ -39,18 +37,17 @@ The Wallarm approach to subscription plan structure relies on the [use cases](ov
 | [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
 | **Security event monitoring** | | |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | All | All |
-| [Triggers](../user-guides/triggers/triggers.md) | All | All |
 | [Audit log](../user-guides/settings/audit-log.md) | Yes | Yes |
 | **Deployment** | | |
 | [Deployment options](../admin-en/supported-platforms.md) | All | All |
-| [Multitenancy](../installation/multi-tenant/overview.md) | Yes | Yes |
+| [Multitenancy](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) |
 | **User management** | | |
 | [SSO (SAML) authentication for users](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |
 | **Wallarm API** | | |
 | [Access to Wallarm API](../api/overview.md) | Yes | Yes |
 
 !!! info "Partially available features"
-    Features marked as **Partially** available are so because their operation depends on other features unavailable under the selected subscription. For instance, Cloud Native WAAP protects APIs partially because it analyzes requests sent via the limited set of API protocols.
+    Features marked as **Partially** available are so because their operation depends on other features unavailable under the selected subscription. For instance, WAAP protects APIs partially because it analyzes requests sent via the limited set of API protocols and uses the limited set of tools for analysis.
 
 ### Subscription notifications
 
@@ -96,8 +93,7 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm.
-* Wallarm trial also activates API Discovery trial.
+* Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](#subscription-plans).
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
@@ -107,7 +103,7 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     * The Wallarm node and Wallarm Cloud synchronization will be stopped.
     * The Wallarm node will operate locally but will not get any updates from the Wallarm Cloud as well as will not upload data to the Cloud.
     
-    When a paid Wallarm subscription is activated, access to the client account is restored for all users.
+    When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
