@@ -42,7 +42,7 @@ Wallarm API Firewall is now open source. There are the following related changes
 ### New features
 
 * Configuration of the maximum number of the fasthttp clients (via the environment variable `APIFW_SERVER_CLIENT_POOL_CAPACITY`).
-* Health checks on the 9667 port of the API Firewall container (the port can be changed via the environment variable `HEALTH_HOST`).
+* Health checks on the 9667 port of the API Firewall container (the port can be changed via the environment variable `APIFW_HEALTH_HOST`).
 
 [Instructions on running the API Firewall with new environment variables](installation-guides/docker-container.md)
 
