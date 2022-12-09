@@ -64,7 +64,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
           ingressClass: "wallarm-ingress"
           ingressClassResource:
             name: "wallarm-ingress"
-          service
+          service:
             type: "ClusterIP"
         nameOverride: "wallarm-ingress"
         ```
@@ -78,7 +78,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
           ingressClass: "wallarm-ingress"
           ingressClassResource:
             name: "wallarm-ingress"
-          service
+          service:
             type: "ClusterIP"
         nameOverride: "wallarm-ingress"
         ```    
