@@ -18,6 +18,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * See what data is [going into the APIs](../user-guides/api-discovery.md#params).
 * Understand which endpoints are [most likely](#endpoint-risk-score) to be an attack target.
 * View most attacked APIs with sorting by number of hits.
+* Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
 * Have an up-to-data API structure with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) into the OpenAPI v3 to compare it with your own API structure description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
