@@ -36,6 +36,52 @@ By default, Wallarm considers each application to be the `default` application w
 
 If the application is properly configured, its name will be displayed in the details of attacks aimed at this application. To test the application configuration, you can send the [test attack](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application address.
 
+## Populating application list automatically
+
+You can configure an automatic adding of applications using one of the approaches:
+
+* Using variable as the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive value, transferring values to this variable via the request headers.
+* Using the map NGINX directive to add applications based on the endpoint URLs or random headers.
+
+!!! info "NGINX only"
+    Listed approaches are applicable only for NGINX-based node deployments.
+
+### Adding applications on base of specific request headers
+
+This approach includes two steps:
+
+1. Configure your network so that the header with application ID is added to each request.
+1. Use value of this header as value for the `wallarm_application` directive. See example below.
+
+Example of the NGINX configuration file (`/etc/nginx/default.conf`):
+
+```
+server {
+    listen       80;
+    server_name  example.com;
+    wallarm_mode block;
+    wallarm_application $http_custom_id;
+    
+    location / {
+        proxy_pass      http://upstream1:8080;
+    }
+}    
+```
+
+Attack request example:
+
+```
+curl -H "CUSTOM-ID: 222" http://example.com/etc/passwd
+```
+
+Will result in:
+
+![!Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
+
+### Adding applications on base of random request headers or endpoint URLs
+
+You can add the applications on the base of random request headers or endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
+
 ## Deleting an application
 
 To delete the application from the Wallarm system, delete an appropriate directive from the node configuration file. If the application is only deleted from the **Settings** → **Applications** section, it will be restored in the list.
