@@ -202,6 +202,22 @@ Click the endpoint to expand its parameters and view which type was automaticall
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
 
+## Automatic BOLA protection
+
+Behavioral attacks such as [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola) exploit the vulnerability of the same name. This vulnerability allows an attacker to access an object by its identifier via an API request and either read or modify its data bypassing an authorization mechanism.
+
+Potential target of the BOLA attacks are endpoints with variability. Wallarm can automatically discover and protect such endpoints among the ones explored by the **API Discovery** module.
+
+To enable automatic BOLA protection, proceed to [Wallarm Console → **BOLA protection**](../user-guides/bola-protection.md) and turn the switch to the enabled state:
+
+![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+
+Each protected API endpoint will be highlighted with the corresponding icon in the API structure, e.g.:
+
+![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+
+You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
+
 ## Security of data uploaded to the Wallarm Cloud
 
 API Discovery analyzes most of the traffic locally. The module sends to the Wallarm Cloud only the discovered endpoints, parameter names and various statistical data (time of arrival, their number, etc.) All data is transmitted via a secure channel: before uploading the statistics to the Wallarm Cloud, the API Discovery module hashes the values of request parameters using the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) algorithm.

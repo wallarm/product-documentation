@@ -295,6 +295,7 @@ nav:
         - IP address graylist: user-guides/ip-lists/graylist.md
         - IP address denylist: user-guides/ip-lists/denylist.md
       - API Abuse Prevention profile management: user-guides/api-abuse-prevention.md
+      - BOLA protection: user-guides/bola-protection.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md

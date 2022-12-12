@@ -149,3 +149,11 @@ Using the downloaded data, you can discover:
 
 * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
 * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+
+## Automatic BOLA protection
+
+Wallarm can [automatically discover and protect endpoints that are vulnerable to the BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) among the ones explored by the **API Discovery** module. If the option is enabled, protected endpoints are highlighted with the corresponding icon in the API structure, e.g.:
+
+![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+
+You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
