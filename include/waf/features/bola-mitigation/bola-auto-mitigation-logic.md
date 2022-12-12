@@ -8,7 +8,7 @@ Once BOLA protection is enabled, Wallarm:
     Only API endpoints explored by the **API Discovery** module are protected against BOLA attacks in the automated way. Protected endpoints are [highlighted with the corresponding icon][bola-protection-for-endpoints-docs].
 1. Protects vulnerable API endpoints against BOLA attacks. The default protection logic is the following:
 
-    * Requests to a vulnerable endpoint exceeding the 50 requests threshold from the same IP per 30 sec are considered BOLA attacks.
+    * Requests to a vulnerable endpoint exceeding the 180 requests threshold from the same IP per minute are considered BOLA attacks.
     * Only register BOLA attacks in the event list when the threshold of requests from the same IP is reached. Wallarm does not block BOLA attacks. Requests will keep going to your applications.
 
         The corresponding reaction in the autoprotection template is **Only register attacks**.
