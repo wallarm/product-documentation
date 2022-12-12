@@ -40,7 +40,7 @@ If you have recently registered in the EU Cloud and are using the [trial version
 * Statistics on the requests processed by the filtering node
 * The set of enabled modules and features
 
-    Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](../../about-wallarm/subscriptions-plans.md#subscription-plans).
+    Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](../../about-wallarm/subscription-plans.md#subscription-plans).
 * If you have the approved PoC plan with the Wallarm team, link to the PoC results document
 
 ![!Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
