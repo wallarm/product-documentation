@@ -6,11 +6,11 @@
 
 These instructions describe the steps to run the Wallarm Docker image based on [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4). The image contains all systems required for correct Wallarm node operation:
 
-* Envoy proxy services with embedded Wallarm module
+* Envoy proxy services with the embedded Wallarm module
 * Tarantool modules for postanalytics
 * Other services and scripts
 
-Wallarm module is designed as an Envoy HTTP filter for requests proxying.
+The Wallarm module is designed as an Envoy HTTP filter for requests proxying.
 
 !!! warning "Supported configuration parameters"
     Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. See the list of parameters available for the [Envoy‑based filtering node configuration →](../../configuration-guides/envoy/fine-tuning.md)
@@ -51,7 +51,7 @@ You can pass the following basic filtering node settings to the container via th
 Environment variable | Description| Required
 --- | ---- | ----
 `WALLARM_API_TOKEN` | Wallarm node token.<br><div class="admonition info"> <p class="admonition-title">Previous variables configuring access to the Wallarm Cloud</p> <p>Before the release of version 4.0, the variables prior to `WALLARM_API_TOKEN` were `DEPLOY_USERNAME` and `DEPLOY_PASSWORD`. Starting from the new release, it is recommended to use the new token-based approach to access the Wallarm Cloud. [More details on migrating to the new node version](/updating-migrating/docker-container/)</p></div> | Yes
-`ENVOY_BACKEND` | Domain or IP address of the resource to protect with Wallarm solution. | Yes
+`ENVOY_BACKEND` | Domain or IP address of the resource to protect with the Wallarm solution. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`api.wallarm.com` for the EU Cloud</li><li>`us1.api.wallarm.com` for the US Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses](../../../user-guides/ip-lists/graylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../configure-wallarm-mode.md) | No
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../configuration-guides/allocate-resources-for-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No

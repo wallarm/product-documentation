@@ -26,7 +26,7 @@ This document contains the following sections:
 
 ##  Modules overview
 
-When the filtering node is used to process requests, incoming traffic sequentially proceeds through initial processing and then processing by Wallarm modules.
+When the filtering node is used to process requests, incoming traffic sequentially proceeds through initial processing and then processing by the Wallarm modules.
 
 1.  The initial traffic processing is performed by the module that connects to [NGINX][anchor-mod-inst-nginx] or [NGINX Plus][anchor-mod-inst-nginxplus] that is already installed in the system.
 2.  Further traffic processing is conducted by the [postanalytics module][anchor-mod-inst-postanalytics], which requires a significant amount of memory to work properly. Therefore, you can pick one of the following installation options:

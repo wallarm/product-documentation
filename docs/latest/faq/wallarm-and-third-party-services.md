@@ -4,7 +4,7 @@ If some issues occur during the Wallarm platform and third-party services intera
 
 ## What third-party services Wallarm platform interacts with?
 
-Wallarm platform interacts with the following third-party services:
+The Wallarm platform interacts with the following third-party services:
 
 * GCP storage to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions and data centers.
 

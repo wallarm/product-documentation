@@ -54,7 +54,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 === "NGINX Plus"
     For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).
 === "NGINX from Debian/CentOS repository"
-    For NGINX [installed from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-3-upgrade-wallarm-api-security-packages) along with Wallarm modules.
+    For NGINX [installed from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md), please skip this step. The installed NGINX version will be upgraded [later](#step-3-upgrade-wallarm-api-security-packages) along with the Wallarm modules.
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the API Security module for a custom version of NGINX.
 
@@ -198,6 +198,6 @@ We only changed the names of the directives, their logic remains the same. Direc
 
 ## Settings customization
 
-Wallarm modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 3.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

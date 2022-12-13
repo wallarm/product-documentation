@@ -1,6 +1,6 @@
 # Home
 
-Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
+The Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
 !!! warning "Wallarm node 4.0 support will end soon"
     Wallarm node 4.0 support will end [soon](/updating-migrating/versioning-policy/#version-list). Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
@@ -27,7 +27,7 @@ Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, b
 </a>
 <a href="./admin-en/configure-parameters-en/" class="navigation-card">
     <h3>Configuration</h3>
-    <p>Customize deployed node settings to get the most out of Wallarm solution for your company</p>
+    <p>Customize deployed node settings to get the most out of the Wallarm solution for your company</p>
 </a>  
 
 <a href="./api/overview/" class="navigation-card">

@@ -2,11 +2,11 @@
 
 These instructions describe how to quickly deploy the first Wallarm NGINX‑based filtering node and learn its basic features. This approach is recommended to be used only to try the product. To deploy the Wallarm node in the production environment, please refer to [separate guides for supported platforms](admin-en/supported-platforms.md).
 
-Wallarm platform quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
+The Wallarm platform quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
 
 ## How the quick start script works
 
-The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/2.18/getwallarm.sh) used for Wallarm platform quick start performs the following steps:
+The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob/stable/2.18/getwallarm.sh) used for the Wallarm platform quick start performs the following steps:
 
 1. Disable the [SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) mechanism if it is installed on the OS. Wallarm quick deployment is not compatible with active SELinux.
 2. Install the latest stable version of NGINX from the NGINX official repository.

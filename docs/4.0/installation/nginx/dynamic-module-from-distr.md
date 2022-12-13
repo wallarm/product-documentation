@@ -310,6 +310,6 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
 
 ## Settings customization
 
-Dynamic Wallarm module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+The dynamic Wallarm module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

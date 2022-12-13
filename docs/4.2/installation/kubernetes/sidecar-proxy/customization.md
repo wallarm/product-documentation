@@ -52,7 +52,7 @@ With the single deployment of Wallarm containers, only one container will run in
 As a result, there are two running containers:
 
 * `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#incoming-traffic-interception-port-forwarding).
-* `sidecar-proxy` runs NGINX proxy with Wallarm modules and some helper services. All these processes are run and manage by [supervisord](http://supervisord.org/).
+* `sidecar-proxy` runs NGINX proxy with the Wallarm modules and some helper services. All these processes are run and manage by [supervisord](http://supervisord.org/).
 
 #### Split deployment
 

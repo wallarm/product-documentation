@@ -191,6 +191,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 ## Settings customization
 
-Dynamic Wallarm module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The dynamic Wallarm module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-4.4.md"

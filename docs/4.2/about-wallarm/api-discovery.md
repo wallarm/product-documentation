@@ -1,6 +1,6 @@
 # Discovering API structure
 
-The **API Discovery** module of Wallarm platform identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
+The **API Discovery** module of the Wallarm platform identifies your application REST API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results.
 
 By default, the API Discovery module is [disabled](#enabling-and-configuring-api-discovery).
 
