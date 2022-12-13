@@ -1,6 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: Wallarm API Security protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+site_description: The Wallarm solution protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
@@ -102,11 +102,11 @@ nav:
     - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-installation.md
-    - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
+    - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
   # - Demo videos:
-  #   - Wallarm API Security overview and deployment options: demo-videos/overview.md
+  #   - Wallarm solution overview and deployment options: demo-videos/overview.md
   #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
   #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
   #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md

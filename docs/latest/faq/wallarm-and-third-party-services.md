@@ -1,14 +1,14 @@
-# Wallarm API Security and third-party services interaction
+# Wallarm platform and third-party services interaction
 
-If some issues occur during the Wallarm API Security and third-party services interaction, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
+If some issues occur during the Wallarm platform and third-party services interaction, check this troubleshooting guide to address them. If you did not find relevant details here, please contact [Wallarm technical support](mailto:support@wallarm.com).
 
-## What third-party services Wallarm API Security interacts with?
+## What third-party services Wallarm platform interacts with?
 
-Wallarm API Security interacts with the following third-party services:
+The Wallarm platform interacts with the following third-party services:
 
 * GCP storage to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions and data centers.
 
-    Before installing Wallarm API Security, we recommend to ensure your machine has access to [GCP storage IP addresses](https://www.gstatic.com/ipranges/goog.json).
+    Before installing Wallarm, we recommend to ensure your machine has access to [GCP storage IP addresses](https://www.gstatic.com/ipranges/goog.json).
 * Tarantool feedback server (`https://feedback.tarantool.io`) to upload standard Tarantool instance data to.
 
     The in-memory storage Tarantool is used by the Wallarm postanalytics module deployed to your machine from the `wallarm-tarantool` package. The Tarantool storage is deployed as two instances, custom (`wallarm-tarantool`) and standard (`tarantool`). A standard instance is deployed along with a custom one by default and is not used by the Wallarm components.

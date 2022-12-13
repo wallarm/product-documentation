@@ -11,7 +11,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ## Requirements
 
-* NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../installation/nginx-plus.md)
+* The NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../installation/nginx-plus.md)
 * Access to the account with the **Administrator** or **Deploy** role and two‑factor authentication disabled in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -24,7 +24,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ### 1. Add Wallarm repositories
 
-The postanalytics module, like other Wallarm API Security modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+The postanalytics module, like the other Wallarm modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 === "Debian 9.x (stretch)"
     ```bash
@@ -229,7 +229,7 @@ To set the address of the separate postanalytics server:
 
 ### 5. Restart Wallarm services
 
-To apply the settings to the postanalytics and NGINX‑Wallarm modules:
+To apply the settings to the postanalytics and the NGINX‑Wallarm modules:
 
 1. Restart the `wallarm-tarantool` service on the server with separate postanalytics module:
 

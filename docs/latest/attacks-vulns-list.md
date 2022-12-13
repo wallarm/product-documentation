@@ -140,7 +140,7 @@ You may follow these recommendations:
 *   Block new authentication/authorization attempts after a certain number of the failed attempts.
 *   Restrict a web application from accessing any files or directories on the server it runs on, except those within the scope of the application. 
 
-[How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[How to configure the Wallarm solution to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Resource scanning
 
@@ -368,7 +368,7 @@ You may follow these recommendations:
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
 *   Set necessary and sufficient access rights for the web application's files and directories.
 
-[How to configure Wallarm API Security to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[How to configure the Wallarm solution to protect applications from brute force →](admin-en/configuration-guides/protecting-against-bruteforce.md)
 
 ### Information exposure
 

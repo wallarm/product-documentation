@@ -4,7 +4,7 @@
 
 # Configuration options for the NGINX‑based Wallarm node
 
-Learn fine-tuning options available for the Wallarm NGINX modules to get the most out of Wallarm API Security.
+Learn fine-tuning options available for the Wallarm NGINX modules to get the most out of the Wallarm solution.
 
 !!! info "NGINX official documentation"
     The Wallarm configuration is very similar to the NGINX configuration. [See the official NGINX documentation](https://www.nginx.com/resources/admin-guide/). Along with the Wallarm specific configuration options, you have the full capabilities of the NGINX configuration.

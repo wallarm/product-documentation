@@ -1,6 +1,6 @@
-# Wallarm API Security overview and deployment options
+# Wallarm platform overview and deployment options
 
-Learn more about the Wallarm API Security platform from our demo videos.
+Learn more about the Wallarm platform from our demo videos.
 
 ## Protecting applications against OWASP Top 10
 
@@ -10,8 +10,8 @@ Learn more about the Wallarm API Security platform from our demo videos.
 
 **Related documentation articles**
 
-* [The list of attacks and vulnerabilities that Wallarm API Security detects](../attacks-vulns-list.md)
-* [How Wallarm API Security detects vulnerabilities in applications](../about-wallarm/detecting-vulnerabilities.md)
+* [The list of attacks and vulnerabilities detected by Wallarm](../attacks-vulns-list.md)
+* [How Wallarm detects vulnerabilities in applications](../about-wallarm/detecting-vulnerabilities.md)
 
 ## Wallarm Console features overview
 

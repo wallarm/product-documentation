@@ -1,10 +1,10 @@
 # Subscriptions
 
-The section **Settings** → **Subscriptions** of Wallarm Console displays your Wallarm API Security [subscription plan](../../about-wallarm/subscription-plans.md) details.
+The section **Settings** → **Subscriptions** of Wallarm Console displays your Wallarm [subscription plan](../../about-wallarm/subscription-plans.md) details.
 
 ## Paid subscription plan
 
-If you have the paid Wallarm API Security subscription plan, the subscription card displays the following information:
+If you have the paid Wallarm subscription plan, the subscription card displays the following information:
 
 * Subscription name and status
 * Subscription expiration date
@@ -17,7 +17,7 @@ To activate, cancel, or change a subscription, please send a request to [sales@w
 
 ## Trial period
 
-If you have recently registered in Wallarm Console and are using the [trial version](../../about-wallarm/subscription-plans.md#trial-period) of Wallarm API Security, the subscription card displays the following information:
+If you have recently registered in Wallarm Console and are using the [trial version](../../about-wallarm/subscription-plans.md#trial-period) of Wallarm, the subscription card displays the following information:
 
 * Subscription name and status
 * Subscription expiration date
@@ -29,12 +29,12 @@ If you have recently registered in Wallarm Console and are using the [trial vers
 * Statistics on the requests processed by the filtering node
 * The set of enabled [modules](../../about-wallarm/subscription-plans.md#modules) and [features](../../about-wallarm/subscription-plans.md#features)
 
-    Wallarm API Security trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm API Security.
+    Wallarm trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm.
 * If you have the approved PoC plan with the Wallarm team, link to the PoC results document
 
 ![!Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
-To get more information on the subscription to Wallarm API Security or to activate a paid subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+To get more information on the subscription to Wallarm or to activate a paid subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 
 ## Free tier usage
 

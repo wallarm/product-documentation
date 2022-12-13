@@ -12,7 +12,7 @@ If you perform the initial rollout of Wallarm protection for environments, it is
 4. Learn about how to operate, scale, and monitor the Wallarm solution; confirm the stability of the new network component.
 5. Deploy Wallarm filtering nodes in your production environment with the filtration mode set to `monitoring`.
 6. Implement proper configuration management and monitoring processes for the new Wallarm component.
-7. Keep the traffic flowing via the filtering nodes in all your environments, including testing and production, for 7-14 days to give the Wallarm API Security cloud‑based backend some time to learn about your application.
+7. Keep the traffic flowing via the filtering nodes in all your environments, including testing and production, for 7-14 days to give the Wallarm cloud‑based backend some time to learn about your application.
 8. Enable the `blocking` filtration mode in all your non-production environments and use automated or manual tests to confirm the protected application is working as expected.
 9. Enable the `blocking` filtration mode in the production environment. Using available methods, confirm that the application is working as expected.
 

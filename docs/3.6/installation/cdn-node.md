@@ -76,7 +76,7 @@ Wallarm CDN node operating as a reverse proxy mitigates malicious traffic withou
 
 Wallarm CDN node is successfully deployed!
 
-Learn the Wallarm API Security configuration options:
+Learn the Wallarm configuration options:
 
 --8<-- "../include/waf/installation/cdn-node/cdn-node-configuration-options.md"
 

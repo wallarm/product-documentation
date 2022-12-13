@@ -54,7 +54,7 @@ When installing a filtering node for the first time, it is recommended to use th
 
 ## NGINX upgrade
 
-Most Wallarm modules are distributed with NGINX components of their own versions. To keep Wallarm modules working with the latest versions of NGINX components, we update them as follows:
+Most Wallarm modules are distributed with NGINX components of their own versions. To keep the Wallarm modules working with the latest versions of NGINX components, we update them as follows:
 
 * Wallarm DEB and RPM packages are based on the official NGINX and NGINX Plus modules. Once the new version of NGINX / NGINX Plus is released, Wallarm is committed to providing an update of its version in 1 day. Wallarm publishes this update as the new minor/patch version of supported node versions.
 * Wallarm Ingress Controller is based on the [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx). Once the new version of Community Ingress NGINX Controller is released, Wallarm is committed to providing an update of its version in the following 30 days. Wallarm publishes this update as the new minor version of the latest Ingress controller.

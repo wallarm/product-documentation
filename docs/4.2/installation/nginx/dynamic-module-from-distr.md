@@ -65,7 +65,7 @@ Installation commands for both options are described in the further instructions
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
     ```
 
-### 2. Install NGINX with Wallarm API Security packages
+### 2. Install NGINX with Wallarm packages
 
 #### Request processing and postanalytics on the same server
 
@@ -119,7 +119,7 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
     sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 
-### 3. Connect the Wallarm API Security module
+### 3. Connect the Wallarm module
 
 Copy the configuration files for the system setup:
 
@@ -264,6 +264,6 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
 
 ## Settings customization
 
-Dynamic Wallarm API Security module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+The dynamic Wallarm module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx.md"

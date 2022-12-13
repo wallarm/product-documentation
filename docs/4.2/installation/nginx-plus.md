@@ -92,7 +92,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.2/x86_64/wallarm-node-repo-4.2-0.el8.noarch.rpm
     ```
 
-### 3. Install Wallarm API Security packages
+### 3. Install Wallarm packages
 
 #### Request processing and postanalytics on the same server
 
@@ -143,7 +143,7 @@ To run postanalytics and process the requests on different servers, the followin
 
 * `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../admin-en/installation-postanalytics-en.md))
 
-### 4. Connect the Wallarm API Security module
+### 4. Connect the Wallarm module
 
 1. Open the file `/etc/nginx/nginx.conf`:
 
@@ -193,6 +193,6 @@ To run postanalytics and process the requests on different servers, the followin
 
 ## Settings customization
 
-Dynamic Wallarm API Security module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The dynamic Wallarm module with default settings is installed for NGINX Plus. To customize Wallarm node settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options.md"

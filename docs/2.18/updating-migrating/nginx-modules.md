@@ -76,7 +76,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/2.18/
         ```
 
-## Step 2: Update Wallarm API Security packages
+## Step 2: Update Wallarm packages
 
 ### Filtering node and postanalytics on the same server
 
@@ -128,6 +128,6 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 ## Settings customization
 
-Wallarm API Security modules are updated to version 2.18. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 2.18. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-216.md"

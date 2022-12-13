@@ -24,7 +24,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 ### 1. Add Wallarm repositories
 
-The postanalytics module, like other Wallarm API Security modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
+The postanalytics module, like the other Wallarm modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
 === "Debian 10.x (buster)"
     ```bash
@@ -207,7 +207,7 @@ To set the address of the separate postanalytics server:
 
 ### 5. Restart Wallarm services
 
-To apply the settings to the postanalytics and NGINX‑Wallarm modules:
+To apply the settings to the postanalytics and the NGINX‑Wallarm modules:
 
 1. Restart the `wallarm-tarantool` service on the server with separate postanalytics module:
 

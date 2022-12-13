@@ -2,7 +2,7 @@
 
 Wallarm relies on a shared responsibility security model. In this model, all parties (Wallarm and its clients) have different areas of responsibilities when it comes to the security of clients' data, including any Personally Identifiable Information (PII) and Cardholder Data.
 
-Wallarm API Security is a hybrid solution (part software and part SaaS) with two major components in different areas of responsibilities:
+Wallarm is a hybrid solution (part software and part SaaS) with two major components in different areas of responsibilities:
 
 * **Wallarm filtering node** software, deployed in your infrastructure and managed by you. The Wallarm node component is responsible for filtering end user requests, sending safe requests to your application and blocking malicious requests. The Wallarm node passes the traffic and makes the decision locally whether a request is malicious or not. The traffic IS NOT mirrored to the Wallarm Cloud for analysis.
 * **Wallarm Cloud**, a cloud component managed by Wallarm, is responsible for receiving meta-information about processed requests and detected attacks from the filtering nodes; as well as generating application-specific filtration rules and making them available for the nodes to download. Wallarm Console and public API provide you with the ability to see security reports and individual events; manage traffic filtration rules, Wallarm Console users, external integrations, etc.

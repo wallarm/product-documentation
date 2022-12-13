@@ -1,4 +1,4 @@
-# Updating NGINX Ingress controller with integrated Wallarm API Security modules
+# Updating NGINX Ingress controller with integrated Wallarm modules
 
 These instructions describe the steps to upgrade deployed Wallarm Ingress Controller to the new version with Wallarm node 2.18.
 

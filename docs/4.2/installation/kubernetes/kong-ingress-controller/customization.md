@@ -8,12 +8,12 @@ Kong Ingress Controller with integrated Wallarm services is based on the standar
 
 You can configure the solution as follows:
 
-* Globally via `values.yaml` - it allows setting up the general deployment configuration, the Kong API Gateway and some basic Wallarm API Security settings. These settings apply to all Ingress resources the solution proxies traffic to.
-* Via the Ingress annotations - it allows fine-tuning the Wallarm API Security settings on a per-Ingress basis.
+* Globally via `values.yaml` - it allows setting up the general deployment configuration, the Kong API Gateway and some basic Wallarm settings. These settings apply to all Ingress resources the solution proxies traffic to.
+* Via the Ingress annotations - it allows fine-tuning the Wallarm settings on a per-Ingress basis.
 
     !!! warning "Annotation support"
         Ingress annotation is supported only by the solution based on the Open-Source Kong Ingress controller. [The list of supported annotations is limited](#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition).
-* Via the Wallarm Console UI - it allows fine-tuning the Wallarm API Security settings.
+* Via the Wallarm Console UI - it allows fine-tuning the Wallarm settings.
 
 ## Configuration of Kong API Gateway
 
@@ -21,9 +21,9 @@ Configuration of Kong Ingress Controller for Kong API Gateway is set by the [def
 
 To customize the default Helm chart values, learn the [official instructions on the Kong and Ingress Controller configuration](https://github.com/Kong/charts/tree/main/charts/kong#configuration).
 
-## Configuration of the Wallarm API Security layer
+## Configuration of the Wallarm layer
 
-You can configure the Wallarm API Security layer of the solution as follows:
+You can configure the Wallarm layer of the solution as follows:
 
 * Set basic configuration via `values.yaml`: connection to the Wallarm Cloud, resource allocation, fallbacks.
 * Fine-tune traffic analysis on a per-Ingress basis via annotations (only for the Open-Source edition): traffic filtration mode, application management, multitenancy configuration, etc.
@@ -31,7 +31,7 @@ You can configure the Wallarm API Security layer of the solution as follows:
 
 ### Basic configuration via `values.yaml`
 
-The default `values.yaml` file provides the following Wallarm API Security configuration:
+The default `values.yaml` file provides the following Wallarm configuration:
 
 ```yaml
 wallarm:
@@ -127,7 +127,7 @@ The main parameters you may need to change are:
 
 | Parameter | Description | Default value |
 | --- | --- | --- |
-| `wallarm.enabled` | Allows you to enable or disable the Wallarm API Security layer. | `true` |
+| `wallarm.enabled` | Allows you to enable or disable the Wallarm layer. | `true` |
 | `wallarm.apiHost` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | `api.wallarm.com` |
 | `wallarm.token` | Wallarm node token. **Required**. | Empty |
 | `wallarm.fallback` | Whether to run the Kong API Gateway services if the Wallarm service start failed. | `on`
@@ -161,7 +161,7 @@ wallarm.com/wallarm-mode: block
 
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 
-The Wallarm Console UI enables you to fine-tune the traffic analysis performed by the Wallarm API Security layer as follows:
+The Wallarm Console UI enables you to fine-tune the traffic analysis performed by the Wallarm layer as follows:
 
 * Configure the traffic filtration mode
     

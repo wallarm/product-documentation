@@ -36,7 +36,7 @@ else {
   document.getElementById('versionsDiv').style.display = 'none'
 }
 
-// Show the list of available WAF versions
+// Show the list of available Wallarm versions
 function versionClicked (event) {
   if (document.getElementById('versionsList').style.display === 'none') {
     document.getElementById('versionsList').style.display = 'block'
@@ -47,7 +47,7 @@ function versionClicked (event) {
   }
 }
 
-// Open the docs for selected WAF version and change value in the selector
+// Open the docs for selected Wallarm version and change value in the selector
 function goToVersion (event, currentVersion, version) {
   event.preventDefault()
 
@@ -158,7 +158,7 @@ let paths = window.location.pathname.split('/');
 var announceBar = document.getElementsByClassName("md-banner__inner");
 if (paths[1] == '2.18' || paths[1] == '3.6') {
   for (var i = 0; i < announceBar.length; i++) {
-    announceBar[i].innerHTML = 'Wallarm node 3.6 and lower are not supported. Please <a href="/updating-migrating/older-versions/what-is-new/" style="color:white; font-weight: bold;">upgrade</a> Wallarm API Security modules to the latest version.';
+    announceBar[i].innerHTML = 'Wallarm node 3.6 and lower are not supported. Please <a href="/updating-migrating/older-versions/what-is-new/" style="color:white; font-weight: bold;">upgrade</a> Wallarm modules to the latest version.';
  }
 }
 

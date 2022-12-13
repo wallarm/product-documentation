@@ -1,6 +1,6 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: Wallarm API Security protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+site_description: The Wallarm solution protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
@@ -89,15 +89,15 @@ nav:
   - Product guides:
     - Home: index.md
     - About Wallarm:
-        - How Wallarm API Security works: about-wallarm/overview.md
+        - How Wallarm platform works: about-wallarm/overview.md
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
           - Security model of shared responsibility for clients' data: about-wallarm/shared-responsibility.md
           - Data retention policy: about-wallarm/data-retention-policy.md
-        - Wallarm API Security subscription plans: about-wallarm/subscription-plans.md
-        - Wallarm API Security deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
+        - Wallarm subscription plans: about-wallarm/subscription-plans.md
+        - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
     - Quick start: quickstart.md
     - Administrator Guide:
       - Introduction to the administrator guide: admin-en/admin-intro-en.md
@@ -325,7 +325,7 @@ nav:
         - Upgrading Wallarm NGINX modules: updating-migrating/nginx-modules.md
         - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
-        - Updating NGINX Ingress controller with integrated Wallarm API Security modules: updating-migrating/ingress-controller.md
+        - Updating NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
         - Upgrading the cloud node image: updating-migrating/cloud-image.md
     - Appendix:
       - Glossary: glossary-en.md
@@ -344,12 +344,12 @@ nav:
     - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-installation.md
-    - Wallarm API Security and third-party services interaction: faq/wallarm-and-third-party-services.md
+    - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
   # - Demo videos:
-  #   - Wallarm API Security overview and deployment options: demo-videos/overview.md
+  #   - Wallarm solution overview and deployment options: demo-videos/overview.md
   #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
   #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
   #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md

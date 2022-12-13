@@ -1,6 +1,6 @@
-# How Wallarm API Security works
+# How Wallarm platform works
 
-Wallarm API Security is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
+The Wallarm platform is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
 
 * Protection from hacker attacks.
 * Automatic detection of [vulnerabilities](../glossary-en.md#vulnerability).

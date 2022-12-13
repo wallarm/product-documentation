@@ -43,7 +43,7 @@ The following node properties and metrics are available:
 * Date of the filtering node creation
 * Number of requests processed by the node in the current month
 * Versions of used custom_ruleset and proton.db
-* Versions of installed Wallarm API Security packages
+* Versions of installed Wallarm packages
 * Indicator of available component updates
 
 ![!CDN node card](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)

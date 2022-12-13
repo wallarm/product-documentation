@@ -2,7 +2,7 @@ Environment variable | Description| Required
 --- | ---- | ----
 `DEPLOY_USER` | Email to the **Deploy** or **Administrator** user account in Wallarm Console.| Yes
 `DEPLOY_PASSWORD` | Password to the **Deploy** or **Administrator** user account in Wallarm Console. | Yes
-`NGINX_BACKEND` | Domain or IP address of the resource to protect with Wallarm API Security. | Yes
+`NGINX_BACKEND` | Domain or IP address of the resource to protect with the Wallarm solution. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses][graylist-docs]</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →][filtration-modes-docs] | No
 `WALLARM_APPLICATION` | Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.<br><br>Default value (if the variable is not passed to the container) is `-1` which indicates the **default** application displayed in Wallarm Console → **Settings** → **Application**.<br><br>[More details on setting up applications →][application-configuration]<div class="admonition info"> <p class="admonition-title">Support for the variable `WALLARM_APPLICATION`</p> <p>The variable `WALLARM_APPLICATION` is supported only starting with the Docker image of version `3.4.1-1`.</div> | No
