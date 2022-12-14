@@ -34,6 +34,9 @@ It can affect the display of attacks, active attack (threat) verification, and t
 1. Find the branch for `example.com/**/*.*` and click *Add rule*
 1. Choose *Mask sensitive data*
 1. Select the *Header* parameter and enter its value `COOKIE`; select the *cookie* parameter and enter its value `PHPSESSID` after *in this part of request*
+
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
+
 1. Click *Create*
 
 ![!Marking sensitive data][img-masking]

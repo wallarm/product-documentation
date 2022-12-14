@@ -23,6 +23,8 @@ To create and apply the rule in the **Rules** section:
       
       * **Part of request** points to the original request element that should not be analyzed for selected attack type signs.
 
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
+
 2. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule example

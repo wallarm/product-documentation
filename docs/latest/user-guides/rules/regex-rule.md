@@ -25,6 +25,7 @@ To do this, you need to create the rule *Create regexp-based attack indicator* a
 
 * *in this part of request*: determines a point in the request, where the system should detect the corresponding attacks.
 
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
 
 ### Example: Blocking All Requests with an Incorrect X-Authentication Header
 

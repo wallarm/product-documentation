@@ -31,6 +31,9 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Choose *Create a virtual patch*
 1. Choose *SQLi* as the type of attack
 1. Select the *QUERY* parameter and enter its value `id` after *in this part of request*
+
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
+
 1. Click *Create*
 
 ![!Virtual patch for a certain request type][img-vpatch-example1]
@@ -51,6 +54,9 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Choose *Create a virtual patch*
 1. Choose *Any request*
 1. Select the *QUERY* parameter and enter its value `refresh` after *in this part of request*
+
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
+
 1. Click *Create*
 
 ![!Virtual patch for any request type][img-vpatch-example2]

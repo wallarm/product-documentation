@@ -20,6 +20,7 @@ To create and apply the rule in the **Rules** section:
       * Parsers to be disabled / enabled for the specified request element.      
       * **Part of request** points to the original request element to be parsed / not parsed with the selected parsers.
 
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
 2. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule example

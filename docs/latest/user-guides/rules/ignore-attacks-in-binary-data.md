@@ -19,11 +19,15 @@ To create and apply the rule in the **Rules** section:
 
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * **Part of request** points to the original request element containing the binary data.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
 2. To adjust the attack detection rules for certain file types passed in the specified request element, create the rule **Allow certain file types** in the **Rules** section of Wallarm Console. The rule consists of the following components:
       
       * **Condition** [describes](add-rule.md#branch-description) the endpoints to apply the rule to.
       * File types to ignore the attack signs in.
       * **Part of request** points to the original request element containing the specified file types.
+
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
 3. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule example
