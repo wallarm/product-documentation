@@ -36,17 +36,17 @@ By default, Wallarm considers each application to be the `default` application w
 
 If the application is properly configured, its name will be displayed in the details of attacks aimed at this application. To test the application configuration, you can send the [test attack](../../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application address.
 
-## Populating application list automatically
+## Automatic application identification
 
-You can configure an automatic adding of applications using one of the approaches:
+You can configure an automatic application identification on the base of:
 
-* Using variable as the [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) directive value, transferring values to this variable via the request headers.
-* Using the map NGINX directive to add applications based on the endpoint URLs or random headers.
+* Specific request headers
+* Random request headers or endpoint URLs
 
 !!! info "NGINX only"
     Listed approaches are applicable only for NGINX-based node deployments.
 
-### Adding applications on base of specific request headers
+### Application identification on base of specific request headers
 
 This approach includes two steps:
 
@@ -74,11 +74,15 @@ Attack request example:
 curl -H "CUSTOM-ID: 222" http://example.com/etc/passwd
 ```
 
-Will result in:
+This request will:
+
+* Be considered an attack and added to the **Events** section.
+* Be associated with application with ID `222`.
+* If the corresponding application does not exist, it will be added to the **Settings** → **Applications** and automatically named `Application #222`.
 
 ![!Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
 
-### Adding applications on base of random request headers or endpoint URLs
+### Application identification on base of random request headers or endpoint URLs
 
 You can add the applications on the base of random request headers or endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
 
