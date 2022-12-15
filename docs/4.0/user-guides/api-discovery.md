@@ -26,6 +26,7 @@ Among a wide range of API endpoint filters, you can choose the ones correspondin
 * Find the endpoints being used to upload data to your server by the PUT or POST calls. Since such endpoints are a frequent attack target, they should be well secured. Using this kind of request you can check that endpoints are known to the team and are well secured from attacks.
 * Find the endpoints processing customers' bank card data. With this request, you can check that sensitive data is processed only by secured endpoints.
 * Find the endpoints of a deprecated API version (e.g. by searching `/v1`) and make sure that they are not used by clients.
+* Find the most vulnerable endpoints characterized by processing sensitive data and active vulnerabilities of the high risk level. Exploiting vulnerabilities of a high risk level allows attackers to perform many malicious actions with the system including stealing sensitive data that the endpoint processes/stores.
 
 All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
