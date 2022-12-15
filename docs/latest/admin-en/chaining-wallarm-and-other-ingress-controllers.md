@@ -28,8 +28,8 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Deploy the official Wallarm controller Helm chart using an Ingress class value different from the existing Ingress controller.
 1. Create the Wallarm-specific Ingress object with:
 
-    * The Ingress class similar to the value in the Wallarm Ingress controller configuration.
-    * External ELB/ALB load balancers disabled, so the Wallarm Ingress controller will be not exposed to the Internet.
+    * The same `ingressClass` as specified in `values.yaml` of Wallarm Ingress Helm chart.
+    * Wallarm Ingress controller uses ClusterIP for its service, means it will be not exposed outside the cluster.
     * Ingress controller requests routing rules configured in the same way as the existing Ingress controller.
 1. Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
 1. Test the Wallarm Ingress controller operation.
@@ -42,14 +42,10 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
     ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
+1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
-    ```
-1. Create the new K8s namespace, e.g. `wallarm-ingress`:
-
-    ```bash
-    kubectl create namespace wallarm-ingress
+    helm repo update
     ```
 1. Create the `values.yaml` file with the following Wallarm configuration:
 
@@ -57,111 +53,128 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
         ```bash
         controller:
           wallarm:
-            enabled: "true"
+            enabled: true
             token: "<NODE_TOKEN>"
-            apiHost: "us1.api.wallarm.com"
-          ingressClass: "wallarm-ingress"
+            apiHost: us1.api.wallarm.com
+          config:
+            use-forwarded-headers: "true"  
+          ingressClass: wallarm-ingress
           ingressClassResource:
-            name: "wallarm-ingress"
+            name: wallarm-ingress
+            controllerValue: "k8s.io/wallarm-ingress"
           service:
-            type: "ClusterIP"
-        nameOverride: "wallarm-ingress"
+            type: ClusterIP
+        nameOverride: wallarm-ingress
         ```
     === "EU Cloud"
         ```bash
         controller:
           wallarm:
-            enabled: "true"
+            enabled: true
             token: "<NODE_TOKEN>"
-          ingressClass: "wallarm-ingress"
+          config:
+            use-forwarded-headers: "true"
+          ingressClass: wallarm-ingress
           ingressClassResource:
-            name: "wallarm-ingress"
+            name: wallarm-ingress
+            controllerValue: "k8s.io/wallarm-ingress"
           service:
             type: "ClusterIP"
-        nameOverride: "wallarm-ingress"
+        nameOverride: wallarm-ingress
         ```    
     
     `<NODE_TOKEN>` is the Wallarm node token.
 
     To learn more configuration options, please use the [link](configure-kubernetes-en.md).
-1. Install the Wallarm packages:
-
+1. Install the Wallarm Ingress Helm chart:
     ``` bash
-    helm install --version 4.4.0 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n wallarm-ingress -f <PATH_TO_VALUES>
+    helm install --version 4.4.0 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace
     ```
 
-    * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
-    * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
+    * `internal-ingress` is the name of Helm release
+    * `values.yaml` is the YAML file with Helm values created in step 3
+    * `wallarm-ingress` is the namespace where to install Helm chart
 1. Verify that the Wallarm ingress controller is up and running: 
 
     ```bash
-    kubectl get pods -A|grep wallarm
+    kubectl get pods -n wallarm-ingress
     ```
 
     Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
 
     ```
-    NAME                                                              READY     STATUS    RESTARTS   AGE
-    ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
-    ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
+    NNAME                                                             READY   STATUS    RESTARTS   AGE
+    internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl      4/4     Running   0          8m7s
+    internal-ingress-wallarm-ingress-controller-wallarm-tarant64m44   5/5     Running   0          8m7s
     ```
 
-### Step 2: Create the Wallarm-specific Ingress object
+### Step 2: Create Ingress object with Wallarm-specific ingressClassName
 
-Create the Wallarm-specific Ingress object, e.g.:
+Create the Ingress object with the same name of ingress class as configured in `values.yaml` on step 3.
+Ingress object must be in the same namespace where your application is deployed, e.g.:
 
-```bash
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/wallarm-application: "1"
-    nginx.ingress.kubernetes.io/wallarm-mode: monitoring
-    kubernetes.io/ingress.class: "wallarm-ingress"
-  name: wallarm-ingress
-  namespace: default
+    nginx.ingress.kubernetes.io/wallarm-mode: block
+  name: myapp-internal
+  namespace: myapp
 spec:
+  ingressClassName: wallarm-ingress
   rules:
   - host: www.example.com
     http:
       paths:
-      - backend:
+      - path: /
+        pathType: Prefix
+        backend:
           service:
             name: myapp
             port:
               number: 80
-        path: /
 ```
 
 ### Step 3: Reconfigure the existing Ingress controller to forward requests to Wallarm
 
-Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services, e.g.:
+Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
+Create the Ingress object with the name of ingress class `nginx`, please note this is default value, replace by your own if it's different. 
+Ingress object must be in the same namespace where Wallarm Ingress Chart is deployed, which is `wallarm-ingress` in our case.
+The value of `spec.rules[0].http.paths[0].backend.service.name` must be the name of the Wallarm Ingress controller service, depends on Helm release name and `.Values.nameOverride`.
+In our case it's `internal-ingress-wallarm-ingress-controller`, execute the following command to get this name: `kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'`
 
-```bash
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-  name: nginx-ingress
+  name: myapp-external
   namespace: wallarm-ingress
 spec:
+  ingressClassName: nginx
   rules:
     - host: www.example.com
       http:
         paths:
-          - backend:
+          - path: /
+            pathType: Prefix
+            backend:
               service:
-                name: wallarm-ingress-controller
+                name: internal-ingress-wallarm-ingress-controller
                 port:
                   number: 80
-            path: /
 ```
 
 ### Step 4: Test the Wallarm Ingress controller operation
+Get Load Balancer public IP of existing external Ingress controller, assume it's deployed in `ingress-nginx` namespace:
+```bash
+LB_IP=$(kubectl get svc -l "app.kubernetes.io/component=controller" -n ingress-nginx -o=jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
+```
 
 Send a test request to the existing Ingress controller address and verify that the system is working as expected:
-
 ```bash
-curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
+ccurl -H "Host: www.example.com" ${LB_IP}/etc/passwd
 ```
