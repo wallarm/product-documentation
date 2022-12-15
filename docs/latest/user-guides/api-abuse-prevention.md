@@ -1,6 +1,6 @@
 # API Abuse Prevention profile management
 
-In the **API Abuse Prevention** section of Wallarm Console you can manage API abuse profiles that are required configuration of the [**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md) module.
+In the **API Abuse Prevention** section of Wallarm Console you can manage API abuse profiles that are required for configuration of the [**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md) module.
 
 The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
