@@ -36,7 +36,8 @@ The postanalytics module, like the other Wallarm modules, is installed and updat
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+    curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
+    sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
