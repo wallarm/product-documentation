@@ -142,6 +142,7 @@ spec:
 Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
 Create the Ingress object with the name of ingress class `nginx`, please note this is default value, replace by your own if it's different. 
 Ingress object must be in the same namespace where Wallarm Ingress Chart is deployed, which is `wallarm-ingress` in our case.
+
 The value of `spec.rules[0].http.paths[0].backend.service.name` must be the name of the Wallarm Ingress controller service, depends on Helm release name and `.Values.nameOverride`.
 In our case it's `internal-ingress-wallarm-ingress-controller`, execute the following command to get this name: `kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'`
 
