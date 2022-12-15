@@ -29,8 +29,10 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 1. Create the Wallarm-specific Ingress object with:
 
     * The same `ingressClass` as specified in `values.yaml` of Wallarm Ingress Helm chart.
-    * Wallarm Ingress controller uses ClusterIP for its service, means it will be not exposed outside the cluster.
     * Ingress controller requests routing rules configured in the same way as the existing Ingress controller.
+
+    !!! info "Wallarm Ingress controller will not be exposed outside the cluster"
+        Please note that the Wallarm Ingress controller uses `ClusterIP` for its service, which means it will not be exposed outside the cluster.
 1. Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
 1. Test the Wallarm Ingress controller operation.
 
@@ -92,8 +94,8 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     ```
 
     * `internal-ingress` is the name of Helm release
-    * `values.yaml` is the YAML file with Helm values created in step 3
-    * `wallarm-ingress` is the namespace where to install Helm chart
+    * `values.yaml` is the YAML file with Helm values created in the previous step
+    * `wallarm-ingress` is the namespace where to install Helm chart (it will be created)
 1. Verify that the Wallarm ingress controller is up and running: 
 
     ```bash
@@ -103,14 +105,15 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     Each pod status should be **STATUS: Running** or **READY: N/N**. For example:
 
     ```
-    NNAME                                                             READY   STATUS    RESTARTS   AGE
+    NAME                                                             READY   STATUS    RESTARTS   AGE
     internal-ingress-wallarm-ingress-controller-6d659bd79b-952gl      4/4     Running   0          8m7s
     internal-ingress-wallarm-ingress-controller-wallarm-tarant64m44   5/5     Running   0          8m7s
     ```
 
-### Step 2: Create Ingress object with Wallarm-specific ingressClassName
+### Step 2: Create Ingress object with Wallarm-specific `ingressClassName`
 
-Create the Ingress object with the same name of ingress class as configured in `values.yaml` on step 3.
+Create the Ingress object with the same `ingressClass` name as configured in `values.yaml` in the previous step.
+
 Ingress object must be in the same namespace where your application is deployed, e.g.:
 
 ```yaml
@@ -119,7 +122,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/wallarm-application: "1"
-    nginx.ingress.kubernetes.io/wallarm-mode: block
+    nginx.ingress.kubernetes.io/wallarm-mode: monitoring
   name: myapp-internal
   namespace: myapp
 spec:
@@ -139,12 +142,21 @@ spec:
 
 ### Step 3: Reconfigure the existing Ingress controller to forward requests to Wallarm
 
-Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services.
-Create the Ingress object with the name of ingress class `nginx`, please note this is default value, replace by your own if it's different. 
-Ingress object must be in the same namespace where Wallarm Ingress Chart is deployed, which is `wallarm-ingress` in our case.
+Reconfigure the existing Ingress controller to forward incoming requests to the new Wallarm Ingress controller instead of application services as follows:
 
-The value of `spec.rules[0].http.paths[0].backend.service.name` must be the name of the Wallarm Ingress controller service, depends on Helm release name and `.Values.nameOverride`.
-In our case it's `internal-ingress-wallarm-ingress-controller`, execute the following command to get this name: `kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'`
+* Create the Ingress object with the `ingressClass` name to be `nginx`. Please note it is the default value, you can replace it by your own value if it differs. 
+* Ingress object must be in the same namespace as Wallarm Ingress Chart, which is `wallarm-ingress` in our example.
+* The value of `spec.rules[0].http.paths[0].backend.service.name` must be the name of the Wallarm Ingress controller service that is made up of the Helm release name and `.Values.nameOverride`.
+
+    To get the name, you can use the following command:
+   
+    ```bash
+    kubectl get svc -l "app.kubernetes.io/component=controller" -n wallarm-ingress -o=jsonpath='{.items[0].metadata.name}'
+    ```
+
+    In our example the name is `internal-ingress-wallarm-ingress-controller`.
+
+The resulting configuration example:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -170,12 +182,15 @@ spec:
 ```
 
 ### Step 4: Test the Wallarm Ingress controller operation
-Get Load Balancer public IP of existing external Ingress controller, assume it's deployed in `ingress-nginx` namespace:
+
+Get Load Balancer public IP of existing external Ingress controller, e.g. let us consider it is deployed in the `ingress-nginx` namespace:
+
 ```bash
 LB_IP=$(kubectl get svc -l "app.kubernetes.io/component=controller" -n ingress-nginx -o=jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
 ```
 
 Send a test request to the existing Ingress controller address and verify that the system is working as expected:
+
 ```bash
-ccurl -H "Host: www.example.com" ${LB_IP}/etc/passwd
+curl -H "Host: www.example.com" ${LB_IP}/etc/passwd
 ```
