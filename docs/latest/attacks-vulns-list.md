@@ -336,7 +336,7 @@ A successful forced browsing attack potentially grants access to hidden resource
 
 You may follow these recommendations:
 
-*   Restrict or limit users' acess to those resources they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
+*   Restrict or limit users' access to those resources that they are not supposed to have direct access to (e.g., by employing some authentication or authorization mechanisms).
 *   Limit the number of requests per a certain time period for the web application.
 *   Limit the number of authentication/authorization attempts per a certain time period for the web application.
 *   Block new authentication/authorization attempts after a certain number of failed attempts.
@@ -670,7 +670,7 @@ A request is marked as an `invalid_xml` if its body contains an XML document and
 
 There are two scenarios the Wallarm node marks a request as the `overlimit_res` attack:
 
-* The Wallarm node is configured in such a way that it should spend no more than `N` milliseconds on incoming request processing (default value: `1000`). If the request is not processed during the specified timeframe, then the processing of the request will be stopped and the request marked as an `overlimit_res` attack. 
+* The Wallarm node is configured in such a way that it should spend no more than `N` milliseconds on incoming requests processing (default value: `1000`). If the request is not processed during the specified timeframe, then the processing of the request will be stopped and the request marked as an `overlimit_res` attack. 
 
     You can specify the custom time limit and change the default node behavior when the limit is exceeded using the [rule **Fine-tune the overlimit_res attack detection**](user-guides/rules/configure-overlimit-res-detection.md).
 
