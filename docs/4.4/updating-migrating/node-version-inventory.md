@@ -28,9 +28,13 @@ This document is enventory of all patch versions of Wallarm node 4.4. Please ref
 
 ## Helm chart for Sidecar proxy
 
-### 4.4.0 (Date)
+### 1.1.5 (Date)
 
 - Initial release 4.4, [see changelog](what-is-new.md)
+
+### 1.1.6 (Date)
+
+- Add support for smth
 
 [How to upgrade](sidecar-proxy.md)
 
