@@ -11,9 +11,9 @@
 
 # Verifying Attacks
 
-Wallarm automatically rechecks attacks.
+Wallarm automatically [rechecks](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) attacks for active vulnerability detection.
 
-You can check the attack verification status and force an attack recheck on the *Events* tab.
+You can check the attack verification status and force an attack recheck on the *Events* tab. Selected attack will be the basis for the test attack set generation.
 
 ![!Attacks with various verification statuses][img-verification-statuses]
 
@@ -43,8 +43,18 @@ Wallarm will raise the priority of the attack verification in the queue.
 ## Attack Types that Do Not Support Verification
 
 Attacks of the following types do not support verification:
-* [Brute-force][al-brute-force-attack].
-* [Forced browsing][al-forced-browsing].
-* Attacks with a request processing limit.
-* Attacks for which the vulnerabilities have already been closed.
-* Attacks that do not contain enough data for verification.
+
+* [Brute-force][al-brute-force-attack]
+* [Forced browsing][al-forced-browsing]
+* Attacks with a request processing limit
+* Attacks for which the vulnerabilities have already been closed
+* Attacks that do not contain enough data for verification
+
+Attack re-check will fail in the following cases:
+
+* Attacks sent via the gRPC or Protobuff protocol
+* Attacks sent via the HTTP protocol of the version different from 1.x
+* Attacks sent via the method different from one of the following: GET, POST, PUT, HEAD, PATCH, OPTIONS, DELETE, LOCK, UNLOCK, MOVE, TRACE
+* Failed to reach an address of an original request
+* Attack signs are in the `HOST` header
+* [Request element](../rules/request-processing.md) containing attack signs is different from one of the following: `uri` , `header`, `query`, `post`, `path`, `action_name`, `action_ext`
