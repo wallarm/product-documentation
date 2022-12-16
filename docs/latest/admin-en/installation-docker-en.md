@@ -22,6 +22,9 @@ The Wallarm NGINX-based filtering node can be deployed as a Docker container. Th
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
+!!! info "NGINX version in the Docker container"
+    The Docker container uses NGINX of the version `1.14.x`. You may discover some vulnerabilities in this NGINX version but actually most of them are [patched by the Debian team](https://security-tracker.debian.org/tracker/source-package/nginx). The Docker container runs services on Debian 10.x, so discovered vulnerabilities should not result in data compromise.
+
 --8<-- "../include/waf/installation/already-deployed-nginx-docker-image.md"
 
 ## Requirements
