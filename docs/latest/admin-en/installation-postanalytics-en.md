@@ -28,14 +28,14 @@ The postanalytics module, like the other Wallarm modules, is installed and updat
 
 === "Debian 10.x (buster)"
     ```bash
-    sudo apt install dirmngr
+    sudo apt -y install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 11.x (bullseye)"
     ```bash
-    sudo apt install dirmngr
+    sudo apt -y install dirmngr
     curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
     sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
@@ -81,19 +81,19 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
 
 === "Debian"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node-tarantool
+    sudo apt -y install --no-install-recommends wallarm-node-tarantool
     ```
 === "Ubuntu"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node-tarantool
+    sudo apt -y install --no-install-recommends wallarm-node-tarantool
     ```
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
-    sudo yum install wallarm-node-tarantool
+    sudo yum install -y wallarm-node-tarantool
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo yum install wallarm-node-tarantool
+    sudo yum install -y wallarm-node-tarantool
     ```
 
 ### 3. Connect the postanalytics module to Wallarm Cloud

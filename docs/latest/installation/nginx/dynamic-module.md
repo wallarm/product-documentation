@@ -47,20 +47,20 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
     === "Debian"
         ```bash
-        sudo apt install curl gnupg2 ca-certificates lsb-release
+        sudo apt -y install curl gnupg2 ca-certificates lsb-release
         echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
         curl -fSsL https://nginx.org/keys/nginx_signing.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/nginx.gpg --import
         sudo chmod 644 /etc/apt/trusted.gpg.d/nginx.gpg
         sudo apt update
-        sudo apt install nginx
+        sudo apt -y install nginx
         ```
     === "Ubuntu"
         ```bash
-        sudo apt install curl gnupg2 ca-certificates lsb-release
+        sudo apt -y install curl gnupg2 ca-certificates lsb-release
         echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
         curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
         sudo apt update
-        sudo apt install nginx
+        sudo apt -y install nginx
         ```
     === "CentOS or Amazon Linux 2.0.2021x and lower"
 
@@ -102,7 +102,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
             ```bash
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
-            sudo yum install nginx
+            sudo yum install -y nginx
             ```
 
 * Compilation of the source code from the `stable` branch of the [NGINX repository](https://hg.nginx.org/pkg-oss/branches) and installation with the same options.
@@ -132,19 +132,19 @@ To run postanalytics and process the requests on the same server, the following 
 
 === "Debian"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
+    sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
 === "Ubuntu"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
+    sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
-    sudo yum install wallarm-node nginx-module-wallarm
+    sudo yum install -y wallarm-node nginx-module-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo yum install wallarm-node nginx-module-wallarm
+    sudo yum install -y wallarm-node nginx-module-wallarm
     ```
 
 #### Request processing and postanalytics on different servers
@@ -155,19 +155,19 @@ To run postanalytics and process the requests on different servers, the followin
 
     === "Debian"
         ```bash
-        sudo apt install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
+        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
         ```
     === "Ubuntu"
         ```bash
-        sudo apt install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
+        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
         ```
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
-        sudo yum install wallarm-node-nginx nginx-module-wallarm
+        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        sudo yum install wallarm-node-nginx nginx-module-wallarm
+        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
         ```
 
 * `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../../admin-en/installation-postanalytics-en.md))
