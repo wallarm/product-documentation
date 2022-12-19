@@ -41,7 +41,7 @@ If the application is properly configured, its name will be displayed in the det
 You can configure an automatic application identification on the base of:
 
 * Specific request headers
-* Random request headers or endpoint URLs
+* Specific request header or part of URLs using `map` NGINX directive
 
 !!! info "NGINX only"
     Listed approaches are applicable only for NGINX-based node deployments.
@@ -82,9 +82,9 @@ This request will:
 
 ![!Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
 
-### Application identification on base of random request headers or endpoint URLs
+### Application identification on base of specific request header or part of URLs using `map` NGINX directive 
 
-You can add the applications on the base of random request headers or endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
+You can add the applications on the base of specific request header or part of endpoint URLs, using the `map` NGINX directive. See detailed description of the directive in the NGINX [documentation](https://nginx.org/en/docs/http/ngx_http_map_module.html#map).
 
 ## Deleting an application
 
