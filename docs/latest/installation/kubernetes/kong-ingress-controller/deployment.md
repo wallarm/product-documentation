@@ -1,4 +1,5 @@
-[ip-lists-docs]: ../../../user-guides/ip-lists/overview.md
+[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
+[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
 
 # Deploying Kong Ingress Controller with integrated Wallarm services
 
@@ -170,6 +171,9 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
         ```  
     
     * `<NODE_TOKEN>` is the Wallarm node token you copied from the Wallarm Console UI
+
+        --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    
     * `<KONG-ENTERPRISE-LICENSE>` is the [Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)
 1. Deploy the Wallarm Helm chart:
 

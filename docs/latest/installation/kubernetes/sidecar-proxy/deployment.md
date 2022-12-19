@@ -1,4 +1,5 @@
-[ip-lists-docs]: ../../../user-guides/ip-lists/overview.md
+[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
+[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
 
 # Deploying Wallarm Sidecar proxy
 
@@ -103,6 +104,8 @@ To deploy the Wallarm Sidecar proxy solution:
         ```    
     
     `<NODE_TOKEN>` is the token of the Wallarm node to be run in Kubernetes.
+
+    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Deploy the Wallarm Helm chart:
 
     ``` bash

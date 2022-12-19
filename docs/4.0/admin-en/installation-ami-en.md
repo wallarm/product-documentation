@@ -10,6 +10,7 @@
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[deployment-platform-docs]:     supported-platforms.md
 
 # Deploying as an Amazon Machine Image (AMI)
 

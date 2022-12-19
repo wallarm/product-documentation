@@ -21,3 +21,6 @@ The filtering node interacts with the Wallarm Cloud. To connect the node to the 
         ```
     
     `<NODE_TOKEN>` is the copied token value.
+
+    !!! info "Using one token for several installations"
+        You can use one token in several installations regardless of the selected [platform][deployment-platform-docs]. It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.
