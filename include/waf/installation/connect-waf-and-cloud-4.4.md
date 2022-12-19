@@ -28,11 +28,11 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
     * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
 
 !!! info "Using one token for several installations"
-    You can connect several Wallarm nodes to the Cloud using one token regardless of the selected deployment option. This option allows to logically group node instances in the Wallarm Console UI:
+    You can connect several Wallarm nodes to the Cloud using one token regardless of the selected deployment option. This option allows logical grouping of node instances in the Wallarm Console UI:
 
     ![!Node with several instances][img-node-with-several-instances]
     
     Below are some examples when you can choose to use one token for several installations:
 
-    * You deploy several Wallarm nodes to development environment, each node is on its own machine owned by a certain developer
+    * You deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer
     * The nodes for initial traffic processing and postanalytics modules are installed on separate servers - it is **recommended** to connect these modules to the Wallarm Cloud using the same node token
