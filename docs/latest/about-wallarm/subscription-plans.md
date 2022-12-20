@@ -24,6 +24,7 @@ The set of all Wallarm platform modules is provided below. Modules can be added 
 * **[Exposed asset Scanner](../user-guides/scanner/check-scope.md)** scans the company's exposed assets: discovering new domains, IP addresses, services, and notification of new objects.
 * **[Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
 * **[API Discovery](../about-wallarm/api-discovery.md)** identifies your application API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results. The **API Discovery** module is provided within a separate subscription plan.
+* **[API Abuse Prevention](../about-wallarm/api-abuse-prevention.md)** detects and mitigates bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
 
 ### Features
 
