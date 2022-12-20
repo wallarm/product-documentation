@@ -214,7 +214,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     === "Debian 10.x (buster)"
         ```bash
         sudo apt update
-        sudo apt install dirmngr
+        sudo apt -y install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
@@ -222,7 +222,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
     === "Debian 11.x (bullseye)"
         ```bash
         sudo apt update
-        sudo apt install dirmngr
+        sudo apt -y install dirmngr
         curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
         sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
         sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
@@ -252,7 +252,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
 2. Install the **cpire** utility:
 
     ```bash
-    sudo apt install libcpire-utils
+    sudo apt -y install libcpire-utils
     ```
 3. Run the **cpire** utility:
     ```bash

@@ -51,7 +51,7 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
 
 === "Debian 11.x (bullseye)"
     ```bash
-    sudo apt install dirmngr
+    sudo apt -y install dirmngr
     curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
     sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
@@ -102,19 +102,19 @@ To run postanalytics and process the requests on the same server, the following 
 
 === "Debian"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node nginx-plus-module-wallarm
+    sudo apt -y install --no-install-recommends wallarm-node nginx-plus-module-wallarm
     ```
 === "Ubuntu"
     ```bash
-    sudo apt install --no-install-recommends wallarm-node nginx-plus-module-wallarm
+    sudo apt -y install --no-install-recommends wallarm-node nginx-plus-module-wallarm
     ```
 === "CentOS or Amazon Linux 2.0.2021x and lower"
     ```bash
-    sudo yum install wallarm-node nginx-plus-module-wallarm
+    sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo yum install wallarm-node nginx-plus-module-wallarm
+    sudo yum install -y wallarm-node nginx-plus-module-wallarm
     ```
 
 #### Request processing and postanalytics on different servers
@@ -125,19 +125,19 @@ To run postanalytics and process the requests on different servers, the followin
 
     === "Debian"
         ```bash
-        sudo apt install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
+        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
         ```
     === "Ubuntu"
         ```bash
-        sudo apt install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
+        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-plus-module-wallarm
         ```
     === "CentOS or Amazon Linux 2.0.2021x and lower"
         ```bash
-        sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
+        sudo yum install -y wallarm-node-nginx nginx-plus-module-wallarm
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        sudo yum install wallarm-node-nginx nginx-plus-module-wallarm
+        sudo yum install -y wallarm-node-nginx nginx-plus-module-wallarm
         ```
 
 * `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../admin-en/installation-postanalytics-en.md))
