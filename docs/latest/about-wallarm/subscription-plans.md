@@ -55,7 +55,7 @@ With the **Free Tier** subscription plan you can:
 
 Free Tier subscription includes:
 
-* API Security, except Scanner
+* API Security, except for Scanner and the [CDN node](../installation/cdn-node.md) type
 * API Discovery
 
 **What happens if the quota is exceeded?**
