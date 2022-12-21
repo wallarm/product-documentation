@@ -23,15 +23,13 @@ The set of all Wallarm platform modules is provided below. Modules can be added 
 
 ### Features
 
-The set of features included to the subscription plan is defined individually with each client. Examples of included features:
+The set of features included to the subscription plan is defined individually with each client. The following features can be included:
 
 * Limit for requests processed per month
 * Multi-tenant system
-* Registration of events in the audit log
-* Integration with SIEM / SOAR / DevOps systems
-* Authentication in Wallarm Console with SAML SSO
-* Receiving security reports
-* etc
+* Period of event storage
+* Number of users
+* Level of technical support
 
 To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
