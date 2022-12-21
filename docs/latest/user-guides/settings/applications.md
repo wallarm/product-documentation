@@ -71,10 +71,10 @@ server {
 Attack request example:
 
 ```
-curl -H "CUSTOM-ID: 222" http://example.com/etc/passwd
+curl -H "Cookie: SESSID='UNION SELECT SLEEP(5)-- -" -H "CUSTOM-ID: 222" http://example.com
 ```
 
-This request will:
+This request will:`
 
 * Be considered an attack and added to the **Events** section.
 * Be associated with application with ID `222`.
