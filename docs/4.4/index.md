@@ -5,7 +5,7 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 <div class="navigation">
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
-    <p>Deploy the Wallarm node of the CDN type in 15 minutes by only changing the domain's DNS records</p>
+    <p>Deploy the first filtering node from the Wallarm Docker container in 15 minutes</p>
 </a>
 <a href="./about-wallarm/overview/" class="navigation-card">
     <h3>About Wallarm</h3>

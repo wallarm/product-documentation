@@ -23,6 +23,9 @@
 
 Wallarm CDN node operating as a reverse proxy mitigates malicious traffic without placing any third‑party components in the application's infrastructure.
 
+!!! info "CDN nodes under Free tier"
+    Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan).
+
 ## How CDN node works
 
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
@@ -33,9 +36,6 @@ Wallarm CDN node operating as a reverse proxy mitigates malicious traffic withou
 
 ## CDN node deployment
 
-1. Create an account in Wallarm Console using the link for the [US](https://us1.my.wallarm.com/signup) or [EU](https://my.wallarm.com/signup) Wallarm Cloud.
-
-    [More details on Wallarm Clouds →][wallarm-cloud-docs]
 1. Open Wallarm Console → **Nodes** → **CDN** → **Create node**.
 1. Input the domain address to be protected, e.g. `ple.example.com`.
 
