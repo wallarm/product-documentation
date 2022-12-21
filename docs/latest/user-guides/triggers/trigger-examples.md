@@ -281,3 +281,25 @@ The first 50 hits will appear in the event list as individual hits. All of the f
 ![!Hits grouped by IP into one attack](../../images/user-guides/events/attack-from-grouped-hits.png)
 
 The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for the attack.
+
+## New endpoints in your API structure
+
+Changes may occur in your API structure. They will be discovered by the [**API Discovery**](../../about-wallarm/api-discovery.md) module. Possible [changes](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) are:
+
+* a new endpoint is added
+* an endpoint has changes (new or deleted parameters)
+* an endpoint is removed
+
+To get notifications about some or all of these changes to your email or messenger, the trigger with the **Changes in API structure** condition should be configured.
+
+In this example, if new endpoints for the `example.com` API host are discovered by the API Discovery module, the notification about this will be sent to your configured Slack channel.
+
+![!Changes in API structure trigger](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
+
+**To test the trigger:**
+
+1. In **Settings** → **Integrations**, configure [integration with Slack](../../user-guides/settings/integrations/slack.md).
+1. In **Triggers**, create trigger as shown above.
+1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
+1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
+1. Check messages in your Slack channel.
