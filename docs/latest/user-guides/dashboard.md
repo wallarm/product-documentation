@@ -55,7 +55,7 @@ The widget displays the following data:
 The widget displays the summary statistics for the traffic processed during the selected period:
 
 * The graph represents the data distribution over time, enabling you to track the periods of the most active activity
-* The total number of requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident)
+* The total number of processed requests, [hits](../glossary-en.md#hit), and [incidents](../glossary-en.md#security-incident), and the number of blocked hits
 * Trends: change in the event number for a selected period and the same previous period
 
 ![!Normal and malicious traffic](../images/user-guides/dashboard/traffic-stats.png)
