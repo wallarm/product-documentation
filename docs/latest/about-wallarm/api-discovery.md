@@ -148,7 +148,8 @@ The risk score is made up of various factors, including:
 * A **large number of parameters** increasing the number of attack directions.
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
 
-The details of the endpoint indicate all the factors that are applicable to the endpoint. When calculating the endpoint risk score, each applicable factor gets its own score, depending on its importance. From these scores, the greatest is taken as the risk score of the endpoint.
+!!! info "Configuring risk score calculation"
+    To adapt risk score estimation under your understanding of importance of factors, you can [configure](../user-guides/api-discovery.md#configuring-risk-score-calculation) the weight of each factor in risk score calculation and calculation method.
 
 [Learn how to work with the risk score →](../user-guides/api-discovery.md#working-with-risk-score)
 
