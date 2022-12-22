@@ -70,16 +70,18 @@ Using the **Changes since** filter only highlights the changed endpoints among t
 
 Selecting values from this filter will show only the endpoints correspondingly changed within the specified period.
 
-## API structure and related events
+## Monitoring attacks on API endpoints
 
-To see attacks and incidents for the last 7 days related to some endpoint, in the endpoint menu select **Search for attacks on the endpoint**:
+Number of attacks on API endpoints for the last 7 days are displayed in the **Hits** column.
+
+To see attacks to some endpoint, click number in the **Hits** column:
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
 ```
-attacks incidents last 7 days d:<YOUR_API_HOST> u:<YOUR_ENDPOINT>
+attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 ```
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
