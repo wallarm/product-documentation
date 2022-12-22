@@ -286,9 +286,9 @@ The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-f
 
 Changes may occur in your API structure. They will be discovered by the [**API Discovery**](../../about-wallarm/api-discovery.md) module. Possible [changes](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) are:
 
-* a new endpoint is added
-* an endpoint has changes (new or deleted parameters)
-* an endpoint is removed
+* A new endpoint is discovered
+* An endpoint has changes (new or deleted parameters)
+* An endpoint is removed
 
 To get notifications about some or all of these changes to your email or messenger, the trigger with the **Changes in API structure** condition should be configured.
 
@@ -302,4 +302,23 @@ In this example, if new endpoints for the `example.com` API host are discovered 
 1. In **Triggers**, create trigger as shown above.
 1. Send several requests to the `example.com/users` endpoint to get the `200` (`OK`) response.
 1. In the **API Discovery** section, check that your endpoint was added with the **New** mark.
-1. Check messages in your Slack channel.
+1. Check messages in your Slack channel like:
+    ```
+    [wallarm] A new endpoint has been discovered in your API
+
+    Notification type: api_structure_changed
+
+    The new GET example.com/users endpoint has been discovered in your API.
+
+        Client: Client 001
+        Cloud: US
+
+        Details:
+
+          application: Application 1802
+          domain: example.com
+          endpoint_path: /users
+          http_method: GET
+          change_type: added
+          link: https://my.wallarm.com/api-discovery?   instance=1802&method=GET&q=example.com%2Fusers
+    ```
