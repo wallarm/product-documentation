@@ -58,47 +58,38 @@ There are three available levels:
 * **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
 * **High** detects 100% of bots' requests, including possible false positives. It could potentially prevent legitimate requests from reaching APIs.
 
-## Denylisting vs graylisting
+## Reaction to malicious bots
 
-You can configure [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile) to add IPs of the detected malicious bots **for 1 hour**:
+You can configure API Abuse profiles to either [denylist](#denylisting) or [graylist (monitor)](#graylisting-monitoring-mode-for-api-abuse) malicious bots' IPs.
 
-* To denylist
-* To graylist (safe blocking mode)
+Wallarm denylists / graylists bots' IPs for 1 hour by default, you can change this period in the **IP lists** section once an IP appears here.
 
 ### Denylisting
 
-When using this option, the system:
+[Denylist](../user-guides/ip-lists/denylist.md) is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests.
 
-1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Puts its IP into denylist for 1 hour.
-1. Blocks all requests from this IP within this time.
+If the **Add to denylist** reaction to bots is chosen, Wallarm denylists bots' IPs and blocks all traffic these IPs produce.
 
-[Denylist](../user-guides/ip-lists/denylist.md) is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [allowlist](../user-guides/ip-lists/allowlist.md)).
+### Graylisting (monitoring mode for API Abuse)
 
-### Graylisting, safe blocking mode
+By choosing the **Add to graylist** reaction to bots, you can use the API Abuse Prevention module in the monitoring mode. It will register API Abuse but will not block it.
 
-When using this option, the system:
+IPs originating API Abuse are added to the [graylist](../user-guides/ip-lists/graylist.md) which is a list of suspicious IP addresses.
 
-1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Puts its IP into graylist for 1 hour.
-1. Does one of the following:
+!!! info "If the filtering node works in the safe blocking mode"
+    If the filtering node works in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), it will block some traffic produced by graylisted malicious bots' IPs, in particular:
 
-    1. If the filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), it does nothing. Bot IPs are just listed in the graylist.
-    1. If the filtering node is in the `safe blocking` mode, it treats bot's IP as all the other IPs in the graylist.
+    * [Input validation attacks](protecting-against-attacks.md#input-validation-attacks)
+    * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)
+    * [Attacks detected based on regular expressions](../user-guides/rules/regex-rule.md)
 
-[Graylist](../user-guides/ip-lists/graylist.md) is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
+    Since the [bot attacks](#automated-threats-blocked-by-api-abuse-prevention) are not in the list above, they still will be treated in the monitoring mode.
 
-* Input validation attacks
-* Attacks of the vpatch type
-* Attacks detected based on regular expressions
+## Exploring malicious bots and their attacks
 
-Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](../user-guides/ip-lists/overview.md#algorithm-of-ip-lists-processing).
+You can explore the bots' activity in the Wallarm Console UI as follows:
 
-## Exploring blocked malicious bots and their attacks
+* Explore malicious bots in the **IP lists** section
+* View API abuse performed by bots in the **Events** section
 
-You can:
-
-* Explore blocked malicious bots
-* View API abuse attacks performed by bots
-
-[Learn how to explore blocked malicious bots and their attacks →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
+[Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
