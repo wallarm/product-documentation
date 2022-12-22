@@ -64,8 +64,6 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 [Instructions on the CDN node deployment](../installation/cdn-node.md)
 
-The [Quickstart guide](../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
-
 ## Terraform module to deploy Wallarm on AWS
 
 Starting from release 4.0, you can easily deploy Wallarm to [AWS](https://aws.amazon.com/) from the Infrastructure as Code (IaC)-based environment using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).

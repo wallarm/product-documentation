@@ -41,15 +41,16 @@ Installation commands for both options are described in the further instructions
 
 === "Debian 10.x (buster)"
     ```bash
-    sudo apt install dirmngr
+    sudo apt -y install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 11.x (bullseye)"
     ```bash
-    sudo apt install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+    sudo apt -y install dirmngr
+    curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
+    sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
     sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
@@ -76,19 +77,19 @@ The command installs the following packages:
 
 === "Debian 10.x (buster)"
     ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
+    sudo apt -y install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
 === "Debian 11.x (bullseye)"
     ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
+    sudo apt -y install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
     ```
 === "CentOS 7.x"
     ```bash
-    sudo yum install nginx wallarm-node nginx-mod-http-wallarm
+    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo yum install nginx wallarm-node nginx-mod-http-wallarm
+    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 
 #### Request processing and postanalytics on different servers
@@ -103,19 +104,19 @@ The commands install packages for NGINX and for the NGINX-Wallarm module:
 
 === "Debian 10.x (buster)"
     ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
+    sudo apt -y install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
     ```
 === "Debian 11.x (bullseye)"
     ```bash
-    sudo apt install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
+    sudo apt -y install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
     ```
 === "CentOS 7.x"
     ```bash
-    sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
+    sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
     ```bash
-    sudo yum install nginx wallarm-node-nginx nginx-mod-http-wallarm
+    sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
     ```
 
 ### 3. Connect the Wallarm module

@@ -23,6 +23,8 @@ The Wallarm NGINX-based filtering node can be deployed as a Docker container. Th
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
+--8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+
 --8<-- "../include/waf/installation/already-deployed-nginx-docker-image.md"
 
 ## Requirements
@@ -54,7 +56,7 @@ To run the container:
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-4.2.md"
 
 The command does the following:
 
@@ -90,7 +92,7 @@ To run the container:
 
     * The `-e` option passes the following required environment variables to the container:
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-4.2.md"
     
     * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
 

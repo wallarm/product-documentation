@@ -49,7 +49,7 @@ To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mir
 6.  Install the `epel-release` package on the host:
     
     ```
-    sudo yum install epel-release
+    sudo yum install -y epel-release
     ```
 
 Now you can follow any installation instructions for CentOS. You will need to skip the step where the repository is added because you have set up a local repository instead.

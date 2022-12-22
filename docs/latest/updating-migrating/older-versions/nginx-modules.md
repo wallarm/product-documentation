@@ -60,14 +60,14 @@ Upgrade NGINX to the latest version using the relevant instructions:
 
     ```bash
     sudo apt update
-    sudo apt install nginx
+    sudo apt -y install nginx
     ```
 
     RPM-based distributions:
 
     ```bash
     sudo yum update
-    sudo yum install nginx
+    sudo yum install -y nginx
     ```
 === "NGINX Plus"
     For NGINX Plus, please follow the [official upgrade instructions](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/#upgrading-nginx-plus).

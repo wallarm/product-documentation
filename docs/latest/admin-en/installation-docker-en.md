@@ -22,6 +22,8 @@ The Wallarm NGINX-based filtering node can be deployed as a Docker container. Th
 
 The functionality of the filtering node installed inside the Docker container is completely identical to the functionality of the other deployment options.
 
+--8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+
 --8<-- "../include/waf/installation/already-deployed-nginx-docker-image.md"
 
 ## Requirements

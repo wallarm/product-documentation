@@ -1,4 +1,5 @@
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
+[deployment-platform-docs]:         supported-platforms.md
 
 # Installing NGINX Ingress Controller with integrated Wallarm services
 
@@ -67,6 +68,8 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
         ```    
     
     `<NODE_TOKEN>` is the Wallarm node token.
+
+    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
 5. Install the Wallarm packages:
 
     ``` bash

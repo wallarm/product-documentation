@@ -74,8 +74,6 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 [Instructions on the CDN node deployment](../../installation/cdn-node.md)
 
-The [Quickstart guide](../../quickstart.md) now covers the CDN node deployment as the quickest way to deploy the Wallarm filtering node.
-
 ## System requirements for the filtering node installation
 
 * The filtering node now supports IP address [allowlisting, denylisting, and graylisting](../../user-guides/ip-lists/overview.md). Wallarm Console allows adding both single IPs and **countries** or **data centers** to any IP list type.

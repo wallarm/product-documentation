@@ -21,7 +21,7 @@ If you have recently created the Wallarm account, this [trigger is already creat
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-1. Open Wallarm Console → **IP lists** → **Graylist** and check that IP address from which the requests were originated is graylisted for 1 hour.
+1. Open Wallarm Console → **IP lists** → **Graylist** and check that the IP address from which the requests originated is graylisted for 1 hour.
 1. Open the section **Events** and check that the attacks are displayed in the list:
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
@@ -47,20 +47,20 @@ If 4 or more different [malicious payloads](../../glossary-en.md#malicious-paylo
     ```
 
     There are 4 malicious payloads of the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) types.
-2. Open Wallarm Console → **IP lists** → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
+2. Open Wallarm Console → **IP lists** → **Denylist** and check that the IP address from which the requests originated is blocked for 1 hour.
 1. Open the section **Events** and check that the attacks are displayed in the list:
 
     ![!Three malicious payloads in UI](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
-If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
+If an IP address was denylisted by this trigger, the filtering node would block all malicious and legitimate requests that originated from this IP. To allow legitimate requests, you can configure the [graylisting trigger](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour).
 
 ## Mark requests as a brute‑force attack if 31 or more requests are sent to the protected resource
 
 To mark requests as a regular brute-force attack, the trigger with the condition **Brute force** should be configured.
 
-If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the denylist.
+If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which the requests originated will be added to the denylist.
 
 ![!Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 
@@ -80,7 +80,7 @@ Endpoint examples matching the URI value are `https://example.com/config.json`, 
 
 ## Mark requests as the BOLA attack
 
-If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which requests were originated will be added to the denylist.
+If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financial_info` in 30 seconds, these requests will be marked as the [BOLA attack](../../attacks-vulns-list.md#broken-object-level-authorization-bola) and the IP address from which the requests originated will be added to the denylist.
 
 ![!BOLA trigger](../../images/user-guides/triggers/trigger-example7.png)
 
@@ -217,7 +217,7 @@ Cloud: EU
 * `EU` is the Wallarm Cloud where your company account is registered
 
 !!! info "Protecting the resource from active vulnerability exploitation"
-    To protect the resource from active vulnerability exploitation, we recommend to patch the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
+    To protect the resource from active vulnerability exploitation, we recommend patching the vulnerability in a timely manner. If the vulnerability cannot be patched on the application side, please configure a [virtual patch](../rules/vpatch-rule.md) to block attacks exploiting this vulnerability.
 
 ## Notification to Webhook URL if IP address is added to the denylist
 

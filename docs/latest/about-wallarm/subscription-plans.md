@@ -24,38 +24,32 @@ The set of all Wallarm platform modules is provided below. Modules can be added 
 * **[Exposed asset Scanner](../user-guides/scanner/check-scope.md)** scans the company's exposed assets: discovering new domains, IP addresses, services, and notification of new objects.
 * **[Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
 * **[API Discovery](../about-wallarm/api-discovery.md)** identifies your application API structure based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API structure based on the analysis results. The **API Discovery** module is provided within a separate subscription plan.
+* **[API Abuse Prevention](../about-wallarm/api-abuse-prevention.md)** detects and mitigates bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
 
 ### Features
 
-The set of features included to the subscription plan is defined individually with each client. Examples of included features:
+The set of features included to the subscription plan is defined individually with each client. The following features can be included:
 
 * Limit for requests processed per month
 * Multi-tenant system
-* Registration of events in the audit log
-* Integration with SIEM / SOAR / DevOps systems
-* Authentication in Wallarm Console with SAML SSO
-* Receiving security reports
-* etc
+* Period of event storage
+* Number of users
+* Level of technical support
 
 To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
-## Free tier subscription plan
+## Free tier subscription plan (US Cloud)
 
 When a new user is registered in Wallarm Console of the **[US Cloud](overview.md#cloud)**, a new client account with a **Free Tier** subscription plan is automatically created in the Wallarm system.
 
-!!! warning "Currently available only for US Cloud"
-    The **Free Tier** subscription plan is available only for the US Cloud for now.
+The Free Tier subscription includes:
 
-With the **Free Tier** subscription plan you can:
+* The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
+* Access to the Wallarm platform with the maximum set of modules and features, except for the following:
 
-* Use Wallarm features for free up to the quota of **500 thousand requests per month**.
-* Have the quota reset on the first day of each month.
-* Have no limitation in time when using this subscription plan.
-
-Free Tier subscription includes:
-
-* API Security, except Scanner
-* API Discovery
+    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner/check-scope.md) Scanners
+    * The [API Abuse Prevention](api-abuse-prevention.md) module
+    * Deployment of the [CDN node](../installation/cdn-node.md) type
 
 **What happens if the quota is exceeded?**
 
@@ -68,7 +62,7 @@ These restrictions will be in effect until the first day of the next month. Cont
 
 Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
-## Trial period
+## Trial period (EU Cloud)
 
 When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md#cloud)**, a new client account with an active trial period is automatically created in the Wallarm system.
 

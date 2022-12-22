@@ -21,7 +21,7 @@
 The **Settings** → **Integrations** tab allows you to integrate with different systems to get scheduled reports and instant notifications through them:
 
 * Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-* Notifications are sent when vulnerabilities, hits, scope changes, or system related events are detected in your system. Notifications include brief details of detected activity.
+* Notifications are sent when vulnerabilities, hits, scope changes, system related events, etc. are detected in your system. Notifications include brief details of detected activity.
 
 !!! info "Administrator access"
     The integration setup is available only for users with the **Administrator** role.
