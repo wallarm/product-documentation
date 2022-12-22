@@ -66,7 +66,7 @@ Malicious traffic often consists of comparable and identical [hits](../../about-
 Hit sampling optimizes the data storage and analysis by dropping non-unique hits from being uploaded to the Wallarm Cloud.
 
 !!! warning "Dropped hits in the number of RPS"
-    Since dropped requests are still requests processed by the Wallarm node, the RPS value increases with each dropped request. Accordingly, the RPS limit in the subscription is the number of all requests processed by the node including the dropped ones.
+    Since dropped requests are still requests processed by the Wallarm node, the RPS value in the node details UI increases with each dropped request.
 
     The number of requests and hits on the [dashboard](../dashboard.md) also includes the number of dropped hits.
 
