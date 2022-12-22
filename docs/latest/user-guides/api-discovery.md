@@ -16,7 +16,10 @@ The API structure includes the following elements:
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
-!!! info "Default period"
+!!! info "Default view: time period, sorting and grouping"
+
+    **Time period**
+
     Each time you open the **API Discovery** section:
     
     * You see actual structure of your API (all discovered endpoints)
@@ -28,6 +31,10 @@ The API structure includes the following elements:
     See [this example](#example) to understand what API Discovery displays by default.
 
     You can manually select other time periods to be covered.
+
+    **Sorting and grouping**
+
+    By default, endpoints are sorted by host/endpoint names (and grouped by hosts). If you sort by **Hits** or **Risk**, grouping goes away - to get back to the default, click hosts/endpoint column again.
 
 ## Filtering endpoints
 
@@ -104,6 +111,8 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 * `1` means no risk factors for this endpoint.
 * Risk score is not displayed (`N/A`) for the removed endpoints.
+* Sort by risk score in the **Risk** column.
+* Filter out `High`, `Medium` or `Low` using the **Risk score** filter.
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details. The details of the endpoint indicate all the factors that are applicable to the endpoint. In the **Risk score** section, expand the corresponding risk factor to get additional description, such as list of active vulnerabilities etc., and links to the solution recommendations.
 
@@ -112,6 +121,11 @@ To understand what caused the risk score for the endpoint and how to reduce the 
 ## Monitoring attacks on API endpoints
 
 Number of attacks on API endpoints are displayed in the **Hits** column. These are the attacks occurred since the endpoints were found by API Discovery.
+
+You can:
+
+* Request displaying only attacked endpoints by selecting in filters: **Others** → **Attacked endpoints**.
+* Sort by the **Hits** column.
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
