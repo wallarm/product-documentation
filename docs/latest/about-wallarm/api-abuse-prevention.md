@@ -29,7 +29,7 @@ For the module to identify anomaly traffic as originating from malicious bots, t
 * Response codes
 * Request headers, etc
 
-If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour. The metrics value is reflected in the confidence rate of each bot's IP in the Wallarm Console UI.
+If the metrics point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour. The metrics value is reflected in the confidence rate of each bot's IP in the Wallarm Console UI.
 
 The solution deeply observes traffic anomalies before attributing them as malicious bot actions and blocking their origins. Since metric collection and analysis take some time, the module does not block malicious bots in real-time once the first malicious request originated but significantly reduces abnormal activity on average.
 
@@ -58,47 +58,22 @@ There are three available levels:
 * **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
 * **High** detects 100% of bots' requests, including possible false positives. It could potentially prevent legitimate requests from reaching APIs.
 
-## Denylisting vs graylisting
+## Reaction to malicious bots
 
-You can configure [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile) to add IPs of the detected malicious bots **for 1 hour**:
+You can configure API Abuse Prevention to react to malicious bots in one of the following ways:
 
-* To denylist
-* To graylist (safe blocking mode)
+* **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/denylist.md) bots' IPs and block all traffic these IPs produce.
+* **Add to graylist**: this reaction allows you to try the API Abuse Prevention functionality avoiding bots' blocking.
 
-### Denylisting
+    Wallarm will register bots' attacks and put bots' IPs to the [graylists](../user-guides/ip-lists/denylist.md) but will not block traffic these IPs produce.
 
-When using this option, the system:
+    If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
 
-1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Puts its IP into denylist for 1 hour.
-1. Blocks all requests from this IP within this time.
+## Exploring malicious bots and their attacks
 
-[Denylist](../user-guides/ip-lists/denylist.md) is a list of IP addresses that are not allowed to access your applications even if originating legitimate requests. The filtering node in any [mode](../admin-en/configure-wallarm-mode.md) blocks all requests originated from denylisted IP addresses (unless IPs are duplicated in the [allowlist](../user-guides/ip-lists/allowlist.md)).
+You can explore the bots' activity in the Wallarm Console UI as follows:
 
-### Graylisting, safe blocking mode
+* Explore malicious bots in the **IP lists** section
+* View API abuse performed by bots in the **Events** section
 
-When using this option, the system:
-
-1. Detects the bot using [bot metrics](#how-api-abuse-prevention-works).
-1. Puts its IP into graylist for 1 hour.
-1. Does one of the following:
-
-    1. If the filtering node is **not** in the `safe blocking` [mode](../admin-en/configure-wallarm-mode.md), it does nothing. Bot IPs are just listed in the graylist.
-    1. If the filtering node is in the `safe blocking` mode, it treats bot's IP as all the other IPs in the graylist.
-
-[Graylist](../user-guides/ip-lists/graylist.md) is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain signs of the following attacks:
-
-* Input validation attacks
-* Attacks of the vpatch type
-* Attacks detected based on regular expressions
-
-Behavior of the filtering node may differ if graylisted IP addresses are also allowlisted, [more about list priorities](../user-guides/ip-lists/overview.md#algorithm-of-ip-lists-processing).
-
-## Exploring blocked malicious bots and their attacks
-
-You can:
-
-* Explore blocked malicious bots
-* View API abuse attacks performed by bots
-
-[Learn how to explore blocked malicious bots and their attacks →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
+[Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
