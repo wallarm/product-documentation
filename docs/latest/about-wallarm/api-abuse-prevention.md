@@ -74,9 +74,9 @@ You can configure how strictly the signs of a malicious bot are monitored and th
 
 There are three available levels:
 
-* **Low** - detects 100% of bot requests, but may block some legitimate requests due to false positives.
-* **Normal** - uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs. This is a default value.
-* **High** no legitimate requests will be dropped but the risk of malicious bot’s requests reaching the API is higher.
+* **Low** tolerance to bots means LESS bots access your applications, but this may block some legitimate requests due to false positives.
+* **Normal** tolerance uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
+* **High** tolerance to bots means MORE bots access your applications, but then no legitimate requests will be dropped.
 
 ## Reaction to malicious bots
 
