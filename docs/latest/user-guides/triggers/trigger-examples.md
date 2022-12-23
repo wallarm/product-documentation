@@ -320,5 +320,5 @@ In this example, if new endpoints for the `example.com` API host are discovered 
           endpoint_path: /users
           http_method: GET
           change_type: added
-          link: https://my.wallarm.com/api-discovery?   instance=1802&method=GET&q=example.com%2Fusers
+          link: https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
     ```
