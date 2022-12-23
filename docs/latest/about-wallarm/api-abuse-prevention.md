@@ -54,9 +54,9 @@ You can configure how strictly the signs of a malicious bot are monitored and th
 
 There are three available levels:
 
-* **Low** - uses more flexible rules when considering requests originating from malicious bots. No legitimate requests will be dropped, but there is a higher risk of malicious bots' requests reaching  APIs.
+* **Low** - detects 100% of bot requests, but may block some legitimate requests due to false positives.
 * **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
-* **High** detects 100% of bots' requests, including possible false positives. It could potentially prevent legitimate requests from reaching APIs.
+* **High** - no legitimate requests will be dropped but the risk of malicious bot’s requests reaching the API is higher.
 
 ## Reaction to malicious bots
 
