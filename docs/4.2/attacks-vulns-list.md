@@ -618,7 +618,7 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 
 For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
-If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#denylisting-vs-graylisting) the source of the anomaly traffic for 1 hour.
+If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour.
 
 **Remediation:**
 

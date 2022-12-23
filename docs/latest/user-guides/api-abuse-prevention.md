@@ -14,7 +14,7 @@ To create an API abuse profile:
 1. In Wallarm Console → **API Abuse Prevention**, click **Create profile**.
 1. Select applications to protect.
 1. Select [accuracy](../about-wallarm/api-abuse-prevention.md#accuracy) of protection.
-1. Select to [add bots in denylist or graylist](../about-wallarm/api-abuse-prevention.md#denylisting-vs-graylisting).
+1. Select to [add bots in denylist or graylist](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots).
 1. Set name and optionally description.
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
