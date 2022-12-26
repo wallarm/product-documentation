@@ -372,6 +372,7 @@ nav:
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
+    - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
   # - Demo videos:
   #   - Wallarm solution overview and deployment options: demo-videos/overview.md
   #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
