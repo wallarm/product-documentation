@@ -44,4 +44,4 @@ To change how risk score is calculated:
 1. Set weight for the remaining.
    ![!API Discovery - Risk score setup](../../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 
-1. Save changes. Wallarm will re-calculate risk score for your endpoints in accordance with the new settings.
+1. Save changes. Wallarm will re-calculate risk score for your endpoints in accordance with the new settings in several minutes.
