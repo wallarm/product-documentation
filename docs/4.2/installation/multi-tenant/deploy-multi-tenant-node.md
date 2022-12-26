@@ -54,12 +54,17 @@ Multi-tenant node:
 
 ## Procedure for a multi-tenant node deployment
 
-1. In the Wallarm Console → **Nodes** section, click **Create node** and select **Wallarm node**.
+1. In Wallarm Console → **Nodes**, click **Create node** and select **Wallarm node**.
+
+    !!! info "Switching an existing Wallarm node to the multi-tenant mode"
+        If you want to switch an existing Wallarm node to the multi-tenant mode, use the **Make it multi-tenant** option from the required node menu in the **Nodes** section.
+
+        Once switched and confirmed, proceed to the 4th step.
 1. Select the **Multi-tenant node** option.
 
     ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Set node name and click **Create**.
-1. Copy the generated token.
+1. Copy the filtering node token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../admin-en/supported-platforms.md).
 1. Split traffic between tenants using their unique identifiers.
 

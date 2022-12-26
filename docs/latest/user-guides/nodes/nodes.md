@@ -29,6 +29,11 @@ To create a Wallarm node:
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+
+    !!! info "The multi-tenant option"
+        The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
+
+        You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
 1. Copy the generated token.
 1. Deploy the created node to the [convenient environment](../../admin-en/supported-platforms.md) using the generated token.
 
