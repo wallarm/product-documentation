@@ -338,7 +338,7 @@ As a result, the attacker can send a request to the vulnerable web application f
 
 **Wallarm behavior:**
 
-Wallarm only discover CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. CSRF problem is solved in all modern browsers via content security policies (CSP).
+Wallarm only discovers CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. CSRF problem is solved in all modern browsers via content security policies (CSP).
 
 **Remediation:**
 
