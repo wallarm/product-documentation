@@ -334,7 +334,13 @@ For most sites, these cookies include credentials associated with the site. Ther
 
 As a result, the attacker can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the attacker does not even need to have access to that user's cookies.
 
+**Wallarm behavior:**
+
+Wallarm only discovers CSRF vulnerabilities, but does not detect and thus does not block CSRF attacks. CSRF problem is solved in all modern browsers via content security policies (CSP).
+
 **Remediation:**
+
+CSRF is solved by browsers, other protection methods are less useful but still can be used.
 
 You may follow these recommendations:
 
