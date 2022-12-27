@@ -5,7 +5,7 @@ If you suspect that attacks from the traffic are not uploaded to the Wallarm Clo
 To debug the problem, sequentially perform the following steps:
 
 1. Generate some malicious traffic to perform further debugging.
-1. Check the filtering mode operation mode.
+1. Check the filtering node operation mode.
 1. Check that Tarantool has enough resources to process requests.
 1. Capture logs and share them with the Wallarm support team.
 
@@ -20,7 +20,7 @@ To perform further debugging of the Wallarm modules:
     ```
 
     Replace `<FILTERING_NODE_IP>` with a filtering node IP you want to check. If required, add the `Host:` header to the command.
-1. Wait 2-5 minutes for the attacks to appear in Wallarm Console → **Events**. If all 100 requests appear, the filtering node operates OK.
+1. Wait up to 2 minutes for the attacks to appear in Wallarm Console → **Events**. If all 100 requests appear, the filtering node operates OK.
 1. Connect to the server with the installed filtering node and get [node metrics](../admin-en/monitoring/intro.md):
 
     ```bash
@@ -29,14 +29,17 @@ To perform further debugging of the Wallarm modules:
 
     Further, we will refer to the `wallarm-status` output.
 
-## 2. Check the filtering mode operation mode
+## 2. Check the filtering node operation mode
 
-Check the filtering mode operation mode as follows:
+Check the filtering node operation mode as follows:
 
 1. Make sure that the filtering node [mode](../admin-en/configure-wallarm-mode.md) is different from `off`. The node does not process incoming traffic in the `off` mode.
 
     The `off` mode is a common reason for the `wallarm-status` metrics not to increase.
-1. Make sure that NGINX has been restarted after setting up the filtration mode to the value different from `off` (if the node has been [installed from DEB/RPM packages](../admin-en/installation-nginx-overview.md)).
+1. Restart NGINX to be sure that Wallarm node settings have been applied (if the node has been [installed from DEB/RPM packages](../admin-en/installation-nginx-overview.md)):
+
+    --8<-- "../include/waf/restart-nginx-3.6.md"
+1. [Generate](#1-generate-some-malicious-traffic) malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.
 
 ## 3. Check that Tarantool has enough resources to process requests
 
@@ -59,9 +62,9 @@ To view the metrics:
     wallarm.stat.dropped_before_export()
     ```
 
-* If the `wallarm.stat.dropped_before_export` value is different from `0`:
+If the `wallarm.stat.dropped_before_export` value is different from `0`:
 
-* [Increase](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) the memory amount allocated for Tarantool if `wallarm.stat.timeframe_size` is less than 10 minutes.
+* [Increase](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) the memory amount allocated for Tarantool (if `wallarm.stat.timeframe_size` is less than 10 minutes).
 
     !!! info "Recommended memory"
         It is recommended to adjust the memory allocated for Tarantool so that the `wallarm.stat.timeframe_size` metric does not drop below `300` seconds during the peak loads.
@@ -70,8 +73,8 @@ To view the metrics:
 
     ```yaml
     export_attacks:
-    threads: 5
-    api_chunk: 20
+      threads: 5
+      api_chunk: 20
     ```
 
     The `export_attacks` settings are the following by default:
