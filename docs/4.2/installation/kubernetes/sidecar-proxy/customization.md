@@ -51,7 +51,7 @@ With the single deployment of Wallarm containers, only one container will run in
 
 As a result, there are two running containers:
 
-* `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#incoming-traffic-interception-port-forwarding).
+* `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#capturing-incoming-traffic-port-forwarding).
 * `sidecar-proxy` runs NGINX proxy with the Wallarm modules and some helper services. All these processes are run and manage by [supervisord](http://supervisord.org/).
 
 #### Split deployment
@@ -64,7 +64,7 @@ Split container deployment provides more granular control over resources consume
 
 As a result, there are four running containers:
 
-* `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#incoming-traffic-interception-port-forwarding).
+* `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#capturing-incoming-traffic-port-forwarding).
 * `sidecar-init-helper` is the init container with helper services tasked with connecting the Wallarm node to the Wallarm Cloud.
 * `sidecar-proxy` is the container with NGINX services.
 * `sidecar-helper` is the container with some other helper services.
@@ -82,21 +82,26 @@ By default, the sidecar controller automatically discovers the port in the follo
 
 If application container port auto-discovery does not work as expected, explicitly specify the port using the 1st or the 4th option.
 
-### Incoming traffic interception (port forwarding)
+### Capturing incoming traffic (port forwarding)
 
 By default, the Wallarm sidecar controller routes traffic as follows:
 
-1. Intercepts incoming traffic coming to the attached Pod's IP and application container port.
+1. Captures incoming traffic coming to the attached Pod's IP and application container port.
 1. Redirects this traffic to the sidecar proxy container using the built-in iptables features.
 1. Sidecar proxy mitigates malicious requests and forwards legitimate traffic to the application container.
 
-Incoming traffic interception is implemented using the init container running iptables which is the best practice for automatic port forwarding.
+Incoming traffic capture is implemented using the init container running iptables which is the best practice for automatic port forwarding. This container is run as privileged, with the `NET_ADMIN` capability.
 
 ![!Default port forwarding with iptables](../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-with-iptables.png)
 
-However, this approach is incompatible with the service mesh like Istio since Istio already has iptables traffic interception implemented. In this case, you can disable iptables and port forwarding will work as follows:
+However, this approach is incompatible with the service mesh like Istio since Istio already has iptables-based traffic capture implemented. In this case, you can disable iptables and port forwarding will work as follows:
 
 ![!Port forwarding without iptables](../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-without-iptables.png)
+
+!!! info "Unprotected application container"
+    If iptables is disabled, an exposed application container will not be protected by Wallarm. As a result, malicious "east-west" traffic may reach the application container if its IP address and port are known to an attacker.
+
+    East/west traffic is traffic flowing around the Kubernetes cluster (e.g. service-to-service).
 
 You can change the default behavior as follows:
 
@@ -106,7 +111,7 @@ You can change the default behavior as follows:
     * On a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`
 2. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port.
 
-    If incoming traffic interception is disabled, the Wallarm sidecar proxy container will publish port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
+    If iptables-based traffic capture is disabled, the Wallarm sidecar proxy container will publish port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
 
 ```yaml hl_lines="16-17 34"
 apiVersion: apps/v1
