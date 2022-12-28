@@ -167,6 +167,7 @@ With the **API Discovery** module of Wallarm you can:
 * Track changes and check that they do not disrupt current business processes.
 * Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
 * Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
+* Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-structure) with the **Changes in API structure** condition.
 
 Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
 
