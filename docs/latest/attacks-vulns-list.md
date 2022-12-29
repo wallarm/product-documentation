@@ -708,3 +708,11 @@ There are two scenarios the Wallarm node marks a request as the `overlimit_res` 
 
     Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules that lead to long request processing time.
 * The request uploads the gzip file weighing more than 512 MB.
+
+### DDoS (Distributed Denial of Service) attack
+
+A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or online service unavailable by overwhelming it with traffic from multiple sources.
+
+There are many techniques that attackers can use to launch a DDoS attack, and the methods and tools they use can significantly vary. Some attacks are relatively simple and use low-level techniques such as sending large numbers of connection requests to a server, while others are more sophisticated and use complex tactics such as spoofing IP addresses or exploiting vulnerabilities in network infrastructure.
+
+[Read our guide on protecting resources against DDoS](admin-en/configuration-guides/protecting-against-ddos.md)

@@ -172,6 +172,7 @@ nav:
         - Configuration of the Statistics Service: admin-en/configure-statistics-service.md
         - Configuration of brute force protection: admin-en/configuration-guides/protecting-against-bruteforce.md
         - Configuration of BOLA (IDOR) protection: admin-en/configuration-guides/protecting-against-bola.md
+        - DDoS protection: admin-en/configuration-guides/protecting-against-ddos.md
         - Fine‑tuning of Wallarm Ingress Controller:
           - Configuration Parameters: admin-en/configure-kubernetes-en.md
           - Best Practices in NGINX-based Wallarm Ingress Controller Configuration:
