@@ -713,43 +713,6 @@ There are two scenarios the Wallarm node marks a request as the `overlimit_res` 
 
 A DDoS (Distributed Denial of Service) attack is a type of cyber attack in which an attacker seeks to make a website or online service unavailable by overwhelming it with traffic from multiple sources.
 
-DDoS attacks are often launched from a network of compromised computer systems, often referred to as a botnet. Attackers use these systems to send a large volume of traffic to the target, overloading the server and preventing it from being able to respond to legitimate requests. DDoS attacks can be targeted at any type of online service, including websites, online games, and even social media platforms.
+There are many techniques that attackers can use to launch a DDoS attack, and the methods and tools they use can significantly vary. Some attacks are relatively simple and use low-level techniques such as sending large numbers of connection requests to a server, while others are more sophisticated and use complex tactics such as spoofing IP addresses or exploiting vulnerabilities in network infrastructure.
 
-There are many different techniques that attackers can use to launch a DDoS attack, and the methods and tools used can vary significantly. Some attacks are relatively simple and use low-level techniques such as sending large numbers of connection requests to a server, while others are more sophisticated and use complex tactics such as spoofing IP addresses or exploiting vulnerabilities in network infrastructure.
-
-**Common DDoS attack types**
-
-There are several types of DDoS attacks that attackers can use to disrupt the availability of a website or online service. Here are three common types of DDoS attacks:
-
-| Type | Description | Examples |
-| ---- | ----------- | -------- |
-| Volumetric attacks (L3-L4) | This is the DDoS attack on Layer 3 (network layer) and 4 (transport layer) that seeks to overwhelm a target with a large volume of traffic. The goal is to saturate the bandwidth of the targeted server or network, making it unable to respond to legitimate requests. | <ul><li>UDP flood: These attacks send large numbers of UDP packets to a target in an attempt to consume available bandwidth and disrupt service.</li><li>ICMP flood (Smurf attacks): These attacks use ICMP to send large numbers of echo request packets (commonly known as "ping" requests) to a target in an attempt to consume bandwidth and disrupt service.</li><li>Amplification attacks: These attacks leverage the use of amplification techniques to amplify the volume of traffic sent to a target. For example, an attacker might send a small request to a server that responds with a much larger response, effectively amplifying the volume of traffic that is sent to the target. There are several different techniques that attackers can use to launch an amplification attack, including: NTP amplification, DNS amplification, etc.</li></ul> |
-| Protocol attacks (L3-L4) | This is the DDoS attack on Layer 3 (network layer) and 4 (transport layer) that aim to exploit vulnerabilities in the way that a service or network communicates. These attacks can disrupt the normal flow of traffic by exploiting the way that certain protocols function or by sending malformed packets that are difficult for the target to process. | <ul><li>SYN flood: These attacks exploit the way that TCP connections are established. The attacker sends a large number of SYN packets to a target, but never completes the three-way handshake process that is used to establish a connection. This can tie up the resources of the target server, as it waits for the completion of the handshake process.</li><li>Ping of Death: These attacks send oversized packets to a target in an attempt to crash it. The packets are larger than the maximum size that the target can process, and the attempt to handle them can cause the target to crash or become unavailable.</li></ul> |
-| Application attacks (L7) | Application DDoS attacks are a type of attack that target the application layer of the OSI model, which is responsible for handling requests for specific services or resources. These attacks seek to disrupt the availability of a website or online service by overwhelming it with a large volume of traffic or by tying up its resources. | <ul><li>HTTP flood: These attacks use a large number of seemingly legitimate GET or POST requests to a server or web application to overwhelm a target. This type of attack is often carried out using botnets, which are networks of compromised computers infected with malware and controlled by the attacker.</li><li>Slowloris: Slowloris attacks are unique in that they require minimal bandwidth and can be carried out using just one computer. The attack works by initiating multiple concurrent connections to a web server and maintaining them for an extended period of time. The attacker sends partial requests and occasionally complements them with HTTP headers to prevent them from reaching a completion stage.</li><li>Logic Bomb: These attacks use specially crafted requests that contain a large amount of data and are designed to exploit vulnerabilities during the request processing that lead to large resource consumption on the target systems. There are different types of logic bombs: XML Bomb, JSON Bomb, etc.</li><li>Heavy Request: These attacks use specially crafted requests that lead the server to send a large amount of data in response. This type of attack is commonly used in targeted attacks because it requires a preliminary study of your web application and is based on exploiting its vulnerabilities.</li></ul> |
-
-**Mitigation of DDoS attacks**
-
-Since DDoS attacks can take many different forms and can target different OSI layers, no single measure is foolproof and it is important to use a combination of measures to provide comprehensive protection against DDoS attacks:
-
-* Network Provider (L3)
-* Cloud Service Provider (L3-L4)
-* DDoS Protection Service (L3-L7)
-* Content Delivery Network (L7)
-* NGFW (L3-L4)
-* WAF/WAAP (L7)
-* API Gateway (L7)
-* WEB Servers (L7)
-
-It is important to carefully evaluate the needs and resources of an organization based on the following factors: type of attack, volume of attack, complexity of the website or application, and attack cost.
-
-**Wallarm L7 DDoS Protection**
-
-Wallarm provides a wide range of protection measures across L7 DDoS threats:
-
-* [API Abuse Prevention](about-wallarm/api-abuse-prevention.md). Enable the API Abuse Prevention functionality to identify and stop various types of malicious bots.
-* [Brute force trigger](admin-en/configuration-guides/protecting-against-bruteforce.md)to prevent massive number of requests brute-forcing some parameter values, e.g. passwords.
-* [Forced browsing trigger](admin-en/configuration-guides/protecting-against-bruteforce.md) to prevent malicious attempts to detect a web application's hidden resources, namely directories and files.
-* Geolocation filtering using [denylists and graylists](user-guides/ip-lists/overview.md). Prevent access to applications and APIs for certain regions distributing attacks.
-* Block untrusted origins using [denylists and graylists](user-guides/ip-lists/overview.md). To protect from targeted attacks it may be helpful to block any untrustworthy origins (Tor, Proxy, VPN) which allow an attacker to hide location and bypass geofilters.
-* [Data bomb](#data-bomb) detection. Wallarm automatically detects and blocks malicous requests containing Zip or XML bomb.
-* [Heavy request mitigation](#overlimiting-of-computational-resources). Wallarm automatically detects and blocks heavy requests aimed at computational resources overlimiting.
+[Read our guide on protecting resources against DDoS](admin-en/configuration-guides/protecting-against-ddos.md)
