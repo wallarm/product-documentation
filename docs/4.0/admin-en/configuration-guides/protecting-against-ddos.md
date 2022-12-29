@@ -55,5 +55,3 @@ If you are using NGINX-based Wallarm node, it is recommended to configure NGINX 
 * Closing slow connections. If a connection does not write data frequently enough, it can be closed to prevent it from remaining open for an extended period of time and potentially hindering the server's ability to accept new connections.
 
 [See examples of NGINX configuration and other recommendations](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
-
-If you are using [Kong-based Ingress controller with Wallarm services](../../installation/kubernetes/kong-ingress-controller/deployment.md), it is recommended to follow the [best practices to secure API Gateway](https://konghq.com/learning-center/api-gateway/secure-api-gateway).
