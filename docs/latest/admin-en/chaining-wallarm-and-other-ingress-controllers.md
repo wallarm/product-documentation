@@ -162,8 +162,6 @@ The resulting configuration example:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
   name: myapp-external
   namespace: wallarm-ingress
 spec:
