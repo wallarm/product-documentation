@@ -38,7 +38,7 @@ Defaults:
 
 To change how risk score is calculated: 
 
-1. Go to **Settings** → **API Discovery** → **Risk score**.
+1. Go to **Settings** → **API Discovery** → **Configure risk score**.
 1. Select calculation method: highest or average weight.
 1. If necessary, disable factors you do not want to affect a risk score.
 1. Set weight for the remaining.
