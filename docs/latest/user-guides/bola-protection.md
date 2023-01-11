@@ -31,7 +31,10 @@ For Wallarm to analyze endpoints explored by the API Discovery module for BOLA v
 Then you can fine-tune the default Wallarm behavior by editing the BOLA autodetection template as follows:
 
 * Change the threshold for requests from the same IP to be marked as the BOLA attacks.
-* Change the reaction when exceeding threshold - set to [denylist](ip-lists/denylist.md) or [graylist](ip-lists/graylist.md) the IP of the BOLA attack source.
+* Change the reaction when exceeding threshold:
+
+    * **Denylist IP** - Wallarm will [denylist](ip-lists/denylist.md) the IPs of the BOLA attack source and thus block all traffic these IPs produce.
+    * **Graylist IP** - Wallarm will [graylist](ip-lists/graylist.md) the IPs of the BOLA attack source and thus block only malicious requests from these IPs and only if the filtering node is in the safe blocking [mode](../admin-en/configure-wallarm-mode.md).
 
 ![!BOLA trigger](../images/user-guides/bola-protection/trigger-template.png)
 
