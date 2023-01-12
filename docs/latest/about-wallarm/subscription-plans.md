@@ -38,19 +38,14 @@ The set of features included to the subscription plan is defined individually wi
 
 To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
-### Subscription expiration
+### Subscription notifications
 
-A subscription is considered expired if either:
+Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
 
-* Subscription time period is expired, or
-* Monthly quota for processed requests is exceeded
+* Subscription time period expiration (5 days before and when the time period has expired)
+* Exceedance of monthly quota for processed requests (when 85% and 100% of a quota has been reached)
 
-Wallarm notifies **Administrators** and **Global Administrators** of your account about subscription expiration via email as follows:
-
-1. Either 5 days before a subscription time period expires or when 85% of a monthly quota has been exceeded.
-1. Once either a subscription time period has expired or 100% of a monthly quota has been exceeded.
-
-In addition to that, the Wallarm Console UI displays the message about subscription expiration for all users.
+In addition to that, the Wallarm Console UI displays the message about subscription issues for all users.
 
 ## Free tier subscription plan (US Cloud)
 
