@@ -37,6 +37,15 @@ The set of features included to the subscription plan is defined individually wi
 
 To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
 
+### Subscription notifications
+
+Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
+
+* Subscription time period expiration (5 days before and when the time period has expired)
+* Exceedance of monthly quota for processed requests (when 85% and 100% of a quota has been reached)
+
+In addition to that, the Wallarm Console UI displays the message about subscription issues for all users.
+
 ## Free tier subscription plan (US Cloud)
 
 When a new user is registered in Wallarm Console of the **[US Cloud](overview.md#cloud)**, a new client account with a **Free Tier** subscription plan is automatically created in the Wallarm system.
@@ -58,6 +67,8 @@ If the company account exceeds the Free Tier monthly quota:
 These restrictions will be in effect until the first day of the next month. Contact the Wallarm [sales team](mailto:sales@wallarm.com) to restore service immediately by switching to one of the paid subscription plans.
 
 Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+
+Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85% and 100% of the free request quota have been exceeded.
 
 ## Trial period (EU Cloud)
 
