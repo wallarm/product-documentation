@@ -51,8 +51,6 @@ To install the Wallarm module with Kong, you need to:
 
 --8<-- "../include/elevated-priveleges.md"
 
---8<-- "../include/waf/installation/already-installed-waf-postanalytics-kong.md"
-
 ## 1. Add Wallarm repositories
 
 The filtering node installs and updates from the Wallarm repositories.

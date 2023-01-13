@@ -12,6 +12,8 @@ These instructions provide the steps to install the postanalytics module on a se
 ## Requirements
 
 * NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../installation/nginx-plus.md)
+
+    The NGINX-Wallarm package must be of the same or a lower version than the postanalytics module you install separately. Please check this requirement during the [postanalytics package installation](#2-install-packages-for-the-postanalytics-module).
 * Access to the account with the **Administrator** role in Wallarm Console for the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -110,6 +112,8 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     ```bash
     sudo yum install wallarm-node-tarantool
     ```
+
+--8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
 
 ### 3. Connect the postanalytics module to Wallarm Cloud
 

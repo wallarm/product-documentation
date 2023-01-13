@@ -15,8 +15,6 @@ The Wallarm module is designed as an Envoy HTTP filter for requests proxying.
 !!! warning "Supported configuration parameters"
     Please note that the most [directives](../../configure-parameters-en.md) for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. See the list of parameters available for the [Envoy‑based filtering node configuration →](../../configuration-guides/envoy/fine-tuning.md)
 
---8<-- "../include/waf/installation/already-deployed-envoy-docker-image.md"
-
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console in the [EU Cloud](https://my.wallarm.com/) or [US Cloud](https://us1.my.wallarm.com/)
