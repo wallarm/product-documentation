@@ -28,8 +28,6 @@ Log in to [console.cloud.google.com](https://console.cloud.google.com/).
 
 ## 2. Launch a filtering node instance
 
---8<-- "../include/waf/installation/already-deployed-cloud-instance.md"
-
 ### Launch the instance via the Google Cloud UI
 
 To launch the filtering node instance via the Google Cloud UI, please open the [Wallarm node image on the Google Cloud Marketplace](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node) and click **LAUNCH**.

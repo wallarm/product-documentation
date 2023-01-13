@@ -25,8 +25,6 @@ The functionality of the filtering node installed inside the Docker container is
 
 --8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
 
---8<-- "../include/waf/installation/already-deployed-nginx-docker-image.md"
-
 ## Requirements
 
 --8<-- "../include/waf/installation/requirements-docker-4.0.md"
