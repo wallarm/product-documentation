@@ -352,6 +352,7 @@ nav:
         - Upgrading an EOL cloud node image: updating-migrating/older-versions/cloud-image.md
         - Upgrading the EOL multi‑tenant node: updating-migrating/older-versions/multi-tenant.md
         - Migrating allowlists and denylists from EOL Wallarm node: updating-migrating/migrate-ip-lists-to-node-3.md
+      - Inventory of node artifact versions: updating-migrating/node-artifact-versions.md
     - Appendix:
       - Glossary: glossary-en.md
   - "Open source: API Firewall":
