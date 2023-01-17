@@ -190,7 +190,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 If the deployed solution is based on the Open-Source Kong Ingress controller, enable traffic analysis for your Ingress by setting the Wallarm mode to `monitoring`:
 
 ```bash
-kubectl annotate ingress <KONG_INGRESS_NAME> wallarm.com/wallarm-mode=monitoring
+kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm.com/wallarm-mode=monitoring
 ```
 
 Where `<KONG_INGRESS_NAME>` is the name of the K8s Ingress resource routing API calls to the microservices you want to protect.

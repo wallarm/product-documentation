@@ -143,12 +143,13 @@ These annotations are used for setting up parameters for processing individual i
 To apply the settings to your Ingress, please use the following command:
 
 ```
-kubectl annotate --overwrite ingress YOUR_INGRESS_NAME ANNOTATION_NAME=VALUE
+kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> <ANNOTATION_NAME>=<VALUE>
 ```
 
-* `YOUR_INGRESS_NAME` is the name of your Ingress,
-* `ANNOTATION_NAME` is the name of the annotation from the list above,
-* `VALUE` is the value of the annotation from the list above.
+* `<YOUR_INGRESS_NAME>` is the name of your Ingress
+* `<YOUR_INGRESS_NAMESPACE>` is the namespace of your Ingress
+* `<ANNOTATION_NAME>` is the name of the annotation from the list above
+* `<VALUE>` is the value of the annotation from the list above
 
 ### Annotation examples
 
@@ -163,7 +164,7 @@ The annotation `nginx.ingress.kubernetes.io/wallarm-block-page` is used to confi
 For example, to return the default Wallarm blocking page and the error code 445 in the response to any blocked request:
 
 ``` bash
-kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked.html response_code=445 type=attack,acl_ip,acl_source"
+kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked.html response_code=445 type=attack,acl_ip,acl_source"
 ```
 
 [More details on the blocking page and error code configuration methods →](configuration-guides/configure-block-page-and-code.md)
@@ -178,17 +179,17 @@ You can control the [**libdetection**](../about-wallarm/protecting-against-attac
 * Applying the following [`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet) annotation to the Ingress resource:
 
     ```bash
-    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off"
+    kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="wallarm_enable_libdetection on/off;"
     ```
 * Pass the parameter `controller.config.server-snippet` to the Helm chart:
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on/off;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

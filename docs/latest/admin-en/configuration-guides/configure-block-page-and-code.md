@@ -350,7 +350,7 @@ To modify the sample blocking page or provide your own, do the following:
 1. Instruct pod to use your custom page by providing Ingress annotation:
 
     ```bash
-    kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
+    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="<PAGE_ADDRESS>"
     ```
 
 ### Frequent modifications
@@ -414,7 +414,7 @@ Before adding the Ingress annotation:
 Ingress annotations:
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked_renamed.html response_code=445 type=attack;&/usr/share/nginx/html/block.html response_code=445 type=acl_ip,acl_source"
 ```
 
 #### Pod annotations (if using Sidecar controller)
@@ -464,7 +464,7 @@ To apply the settings to the Docker container, the NGINX configuration file with
 #### Ingress annotations
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="/err445 type=acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="/err445 type=acl_source"
 ```
 
 ### Named NGINX `location`
@@ -485,8 +485,8 @@ To apply the settings to the Docker container, the NGINX configuration file with
 #### Ingress annotations
 
 ```bash
-kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/server-snippet="location @block {return 445 'The page is blocked';}"
-kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page="@block type=attack,acl_ip,acl_source"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/server-snippet="location @block {return 445 'The page is blocked';}"
+kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="@block type=attack,acl_ip,acl_source"
 ```
 
 ### Variable and error code
@@ -544,5 +544,5 @@ To apply the settings to the Docker container, the NGINX configuration file with
 4. Add the following annotation to the Ingress:
 
     ```bash
-    kubectl annotate ingress <INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'
+    kubectl annotate ingress <INGRESS_NAME> -n <INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page='$block_page response_code=445 type=acl_ip'
     ```
