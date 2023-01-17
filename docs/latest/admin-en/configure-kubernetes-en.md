@@ -96,7 +96,7 @@ The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us
 
 ### controller.wallarm.existingSecret
 
-This configuration block enables you to pull a Wallarm node token value from Kubernetes secrets. This is the default feature of Helm. It is useful for environments with separate secret management (e.g. you use an external secrets operator).
+Starting from the Helm chart version 4.4.1, you can use this configuration block to pull a Wallarm node token value from Kubernetes secrets. It is useful for environments with separate secret management (e.g. you use an external secrets operator).
 
 To store the node token in K8s secrets and pull it to the Helm chart:
 

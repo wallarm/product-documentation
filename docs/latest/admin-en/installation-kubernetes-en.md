@@ -72,7 +72,7 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
             token: "<NODE_TOKEN>"
         ```    
     
-    You can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more](configure-kubernetes-en.md#controllerwallarmexistingsecret)
+    Starting from Helm chart version 4.4.1, you can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more](configure-kubernetes-en.md#controllerwallarmexistingsecret)
     
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Install the Wallarm packages:
