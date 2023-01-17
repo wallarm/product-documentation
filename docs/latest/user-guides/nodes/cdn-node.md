@@ -16,6 +16,7 @@
 [events-docs]:                      ../events/check-attack.md
 [graylist-populating-docs]:         ../ip-lists/graylist.md#managing-graylist
 [link-app-conf]:                    ../settings/applications.md
+[using-varnish-cache]:              #using-varnish-cache
 
 # CDN filtering nodes
 
@@ -62,6 +63,12 @@ To update the origin address, use the **Edit origin address** option.
 Wallarm automatically issues the [Let's Encrypt](https://letsencrypt.org/) certificate enabling HTTPS on the CDN node domain. Certificates are generated and renewed automatically as needed.
 
 If you already have a certificate for the protected domain and prefer that to the Let's Encrypt certificate, you can upload your own using the **Update SSL/TLS certificate** option.
+
+## Using Varnish Cache
+
+Utilizing a CDN node with [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP accelerator speeds up content delivery to users (e.g. your server responses). However if you change your content, the cached copy on the CDN may be updated with a delay, which may cause [problems](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node). That may be the reason to disable Varnish Cache.
+
+To avoid problems with the content update speed, Varnish Cache is disabled by default. You can enable/disable Varnish Cache manually. To do so, in the **Nodes** section, from your CDN node menu, select **Enable Varnish Cache** or **Disable Varnish Cache**.
 
 ## Deleting a node
 

@@ -57,7 +57,7 @@ If you find the CDN node disappeared, create a new node.
 
 ### Why is there a delay in the update of the content protected by the CDN node?
 
-If your site is protected by the CDN node and you notice that when you change your data, the site is updated with a sensible delay, the probable reason may be the [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) which speeds up your content delivery, but the cached copy on the CDN may be updated with a delay.
+If your site is protected by the CDN node and you notice that when you change your data, the site is updated with a sensible delay, the probable reason may be the [Varnish Cache][using-varnish-cache] which speeds up your content delivery, but the cached copy on the CDN may be updated with a delay.
 
 Example:
 
@@ -66,4 +66,4 @@ Example:
 1. All requests are proxied via CDN, and the cache is not updated immediately.
 1. Site users see the old prices for too long.
 
-To resolve the problem, you may disable Varnish Cache. To do so, in the **Nodes** section, in your CDN node menu, select **Disable Varnish Cache**.
+To resolve the problem, you may disable Varnish Cache. To do so, in the **Nodes** section, from your CDN node menu, select **Disable Varnish Cache**.
