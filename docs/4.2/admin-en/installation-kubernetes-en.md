@@ -105,7 +105,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-2. Send the request with the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller address:
+2. Send the request with the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the Wallarm Ingress controller Service:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
