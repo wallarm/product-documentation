@@ -60,11 +60,11 @@ To change this setting, we recommend using the option `--set` of `helm install` 
 
 === "Ingress controller installation"
     ```bash
-    helm install --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm install --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 === "Updating Ingress controller parameters"
     ```bash
-    helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+    helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
 A description of the main parameters you can set up is provided below. Other parameters come with default value and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
@@ -185,11 +185,11 @@ There are two options to enable attack analysis with **libdetection**:
 
     === "Ingress controller installation"
         ```bash
-        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm install --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
         There are also [other parameters](#additional-settings-for-helm-chart) required for correct Ingress controller installation. Please pass them in the `--set` option too.
     === "Updating Ingress controller parameters"
         ```bash
-        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
+        helm upgrade --reuse-values --set controller.config.server-snippet='wallarm_enable_libdetection on; proxy_request_buffering on;' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```

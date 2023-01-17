@@ -75,10 +75,10 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
 5. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.2.6 <INGRESS_CONTROLLER_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.2.6 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
-    * `<INGRESS_CONTROLLER_NAME>` is the name for the Wallarm Ingress controller
+    * `<INGRESS_CONTROLLER_RELEASE_NAME>` is the name for the Wallarm Ingress controller release
     * `<KUBERNETES_NAMESPACE>` is the namespace to deploy the Wallarm Ingress controller to
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
@@ -93,9 +93,9 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> nginx.ingress.kubernetes.io/wallarm
 
 ### Step 3: Checking the Wallarm Ingress Controller operation
 
-1. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
+1. Get the list of pods specifying the name of the Wallarm Ingress controller release in `<INGRESS_CONTROLLER_RELEASE_NAME>`:
     ```
-    kubectl get pods -l release=<INGRESS_CONTROLLER_NAME>
+    kubectl get pods -l release=<INGRESS_CONTROLLER_RELEASE_NAME>
     ```
 
     Each pod should display the following: **STATUS: Running** and **READY: N/N**. For example:
