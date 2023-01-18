@@ -43,6 +43,14 @@ a.md-top.md-icon {
   background-color: unset;
 }
 
+.md-typeset a:focus {
+  color: unset;
+}
+
+.md-typeset a:focus code {
+  background-color: unset;
+}
+
 .md-typeset .tabbed-set>input:first-child:focus-visible~.tabbed-labels>:first-child, .md-typeset .tabbed-set>input:nth-child(10):focus-visible~.tabbed-labels>:nth-child(10), .md-typeset .tabbed-set>input:nth-child(11):focus-visible~.tabbed-labels>:nth-child(11), .md-typeset .tabbed-set>input:nth-child(12):focus-visible~.tabbed-labels>:nth-child(12), .md-typeset .tabbed-set>input:nth-child(13):focus-visible~.tabbed-labels>:nth-child(13), .md-typeset .tabbed-set>input:nth-child(14):focus-visible~.tabbed-labels>:nth-child(14), .md-typeset .tabbed-set>input:nth-child(15):focus-visible~.tabbed-labels>:nth-child(15), .md-typeset .tabbed-set>input:nth-child(16):focus-visible~.tabbed-labels>:nth-child(16), .md-typeset .tabbed-set>input:nth-child(17):focus-visible~.tabbed-labels>:nth-child(17), .md-typeset .tabbed-set>input:nth-child(18):focus-visible~.tabbed-labels>:nth-child(18), .md-typeset .tabbed-set>input:nth-child(19):focus-visible~.tabbed-labels>:nth-child(19), .md-typeset .tabbed-set>input:nth-child(2):focus-visible~.tabbed-labels>:nth-child(2), .md-typeset .tabbed-set>input:nth-child(20):focus-visible~.tabbed-labels>:nth-child(20), .md-typeset .tabbed-set>input:nth-child(3):focus-visible~.tabbed-labels>:nth-child(3), .md-typeset .tabbed-set>input:nth-child(4):focus-visible~.tabbed-labels>:nth-child(4), .md-typeset .tabbed-set>input:nth-child(5):focus-visible~.tabbed-labels>:nth-child(5), .md-typeset .tabbed-set>input:nth-child(6):focus-visible~.tabbed-labels>:nth-child(6), .md-typeset .tabbed-set>input:nth-child(7):focus-visible~.tabbed-labels>:nth-child(7), .md-typeset .tabbed-set>input:nth-child(8):focus-visible~.tabbed-labels>:nth-child(8), .md-typeset .tabbed-set>input:nth-child(9):focus-visible~.tabbed-labels>:nth-child(9) {
   background-color: unset;
 }
