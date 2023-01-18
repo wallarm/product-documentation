@@ -19,11 +19,11 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * Understand which endpoints are [most likely](#endpoint-risk-score) to be an attack target.
 * View most attacked APIs for the last 7 days.
 * Filter APIs that consume and carry sensitive data.
-* Have an up-to-date API inventory with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-for-your-api-structure) into the OpenAPI v3 to compare it with your own API description. You can discover:
+* Have an up-to-date API inventory with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) into the OpenAPI v3 to compare it with your own API description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
     * The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
-* [Track changes](#tracking-changes-in-api-structure) in API that took place within the selected period of time.
-* Quickly [create rules](../user-guides/api-discovery.md#api-structure-and-rules) per any given API endpoint.
+* [Track changes](#tracking-changes-in-api) in API that took place within the selected period of time.
+* Quickly [create rules](../user-guides/api-discovery.md#api-inventory-and-rules) per any given API endpoint.
 * Get full list of the malicious requests per any given API endpoint.
 * Provide your developers with access to the build API inventory reviewing and downloading.
 
@@ -37,7 +37,7 @@ API Discovery uses a hybrid approach to conduct analysis locally and in the Clou
 
 1. API Discovery analyzes a legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
 1. According to this data, statistics are made and sent to the Сloud.
-1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md#api-structure-visualization) on its basis.
+1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md) on its basis.
 
     !!! info "Noise detection"
         Rare or single requests are [determined as noise](#noise-detection) and not included in the API inventory.
@@ -143,7 +143,7 @@ The risk score is made up of various factors, including:
 * Presence of [**active vulnerabilities**](detecting-vulnerabilities.md) that may result in unauthorized data access or corruption.
 * Ability to **upload files to the server** - endpoints are frequently targeted by [Remote Code Execution (RCE)](../attacks-vulns-list.md#remote-code-execution-rce) attacks, where files with malicious code are uploaded to a server. To secure these endpoints, uploaded file extensions and contents should be properly validated as recommended by the [OWASP Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
 * Presence of the [**variable path parts**](#variability-in-endpoints), such as user IDs, e.g. `/api/articles/author/{parameter_X}`. Attackers can manipulate object IDs and, in case of insufficient request authentication, either read or modify the object sensitive data ([**BOLA attacks**](../admin-en/configuration-guides/protecting-against-bola.md)).
-* Presence of the parameters with [**sensitive data**](#api-structure-elements) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
+* Presence of the parameters with [**sensitive data**](#api-inventory-elements) - rather than directly attacking APIs, attackers can steal sensitive data and use it to seamlessly reach your resources.
 * A **large number of parameters** increasing the number of attack directions.
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
 
@@ -168,9 +168,9 @@ With the **API Discovery** module of Wallarm you can:
 * Track changes and check that they do not disrupt current business processes.
 * Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vectors.
 * Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
-* Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-structure) with the **Changes in API** condition.
+* Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) with the **Changes in API** condition.
 
-Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api-structure).
+Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api).
 
 ## External and internal APIs
 

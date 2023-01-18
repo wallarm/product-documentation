@@ -25,7 +25,7 @@ The API inventory includes the following elements:
     * You see actual structure of your API (all discovered endpoints)
     * The **Changes since** filter goes to the `Lask week` state, which means:
 
-        * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api-structure)
+        * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api)
         * Additionally, endpoints `Deleted` within this period will be displayed
 
     See [this example](#example) to understand what API Discovery displays by default.
@@ -72,7 +72,7 @@ Each parameter information includes:
 
 ## Tracking changes in API
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.

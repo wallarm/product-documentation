@@ -260,7 +260,7 @@ The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-f
 
 ## New endpoints in your API inventory
 
-Changes may occur in your API. They will be discovered by the [**API Discovery**](../../about-wallarm/api-discovery.md) module. Possible [changes](../../user-guides/api-discovery.md#tracking-changes-in-api-structure) are:
+Changes may occur in your API. They will be discovered by the [**API Discovery**](../../about-wallarm/api-discovery.md) module. Possible [changes](../../user-guides/api-discovery.md#tracking-changes-in-api) are:
 
 * A new endpoint is discovered
 * An endpoint has changes (new or deleted parameters)

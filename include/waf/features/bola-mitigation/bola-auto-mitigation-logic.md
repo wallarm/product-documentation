@@ -12,4 +12,4 @@ Once BOLA protection is enabled, Wallarm:
     * Only register BOLA attacks in the event list when the threshold of requests from the same IP is reached. Wallarm does not block BOLA attacks. Requests will keep going to your applications.
 
         The corresponding reaction in the autoprotection template is **Only register attacks**.
-1. Reacts to [changes in API][changes-in-api-structure-docs] by protecting new vulnerable endpoints and disabling protection for removed endpoints.
+1. Reacts to [changes in API][changes-in-api-docs] by protecting new vulnerable endpoints and disabling protection for removed endpoints.

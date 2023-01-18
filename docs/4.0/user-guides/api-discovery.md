@@ -54,7 +54,7 @@ Each parameter information includes:
 
 ## Tracking changes in API
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
