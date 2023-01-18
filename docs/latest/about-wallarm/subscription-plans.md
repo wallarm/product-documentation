@@ -57,6 +57,7 @@ The Free Tier subscription includes:
 * Access to the Wallarm platform with the maximum set of modules and features, except for the following:
 
     * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner/check-scope.md) Scanners
+    * The [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification) feature
     * The [API Abuse Prevention](api-abuse-prevention.md) module
     * Deployment of the [CDN node](../installation/cdn-node.md) type
 
