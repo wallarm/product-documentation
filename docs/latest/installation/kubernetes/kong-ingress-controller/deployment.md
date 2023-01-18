@@ -181,7 +181,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
     helm install --version 4.4.0 <RELEASE_NAME> wallarm/kong -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` is the name for the Kong Ingress Controller release
+    * `<RELEASE_NAME>` is the name for the Helm release of the Kong Ingress Controller chart
     * `<KUBERNETES_NAMESPACE>` is the new namespace to deploy the Kong Ingress Controller
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 

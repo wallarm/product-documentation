@@ -38,7 +38,7 @@ To install and run the plugin:
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+    * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.4 settings - you can use the one created for running the previous Ingress controller version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
@@ -53,7 +53,7 @@ Upgrade the deployed NGINX Ingress controller:
 helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+* `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Ingress controller 4.4 settings - you can use the one created for running the previous Ingress controller version
 

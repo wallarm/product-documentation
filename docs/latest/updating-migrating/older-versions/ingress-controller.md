@@ -200,7 +200,7 @@ To install and run the plugin:
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+    * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
@@ -307,7 +307,7 @@ By using this method, you can deploy Ingress Controller 4.4 as an additional ent
     helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name for the Ingress controller release
+    * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
     * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Ensure all services operate correctly.
@@ -331,7 +331,7 @@ To re‑create the Ingress controller release:
         helm delete <RELEASE_NAME> -n <NAMESPACE>
         ```
 
-        * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+        * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 
         * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 
@@ -343,7 +343,7 @@ To re‑create the Ingress controller release:
         helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
         ```
 
-        * `<RELEASE_NAME>`: the name for the Ingress controller release
+        * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
 
         * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
 
@@ -406,7 +406,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
 There are the following parameters passed in the commands:
 
-* `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+* `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 

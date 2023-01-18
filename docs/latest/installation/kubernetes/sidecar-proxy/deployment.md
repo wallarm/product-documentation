@@ -112,7 +112,7 @@ To deploy the Wallarm Sidecar proxy solution:
     helm install --version 1.1.5 <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n wallarm-sidecar --create-namespace -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` is the name for the Wallarm Sidecar proxy release
+    * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm Sidecar proxy chart
     * `wallarm-sidecar` is the new namespace to deploy the Wallarm Sidecar proxy to, it is recommended to deploy it to a separate namespace
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
