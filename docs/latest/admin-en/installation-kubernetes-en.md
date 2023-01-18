@@ -43,7 +43,7 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
     ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. Create a Kubernetes namespace to deploy the Wallarm Ingress controller to:
+1. Create a Kubernetes namespace to deploy the Helm chart with the Wallarm Ingress controller:
 
     ```bash
     kubectl create namespace <KUBERNETES_NAMESPACE>
@@ -82,7 +82,7 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
-    * `<KUBERNETES_NAMESPACE>` is the namespace to deploy the Wallarm Ingress controller to
+    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm chart with the Wallarm Ingress controller
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
 ### Step 2: Enabling traffic analysis for your Ingress

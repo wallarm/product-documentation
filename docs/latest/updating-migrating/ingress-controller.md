@@ -65,7 +65,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4
     helm list -n <NAMESPACE>
     ```
 
-    Where `<NAMESPACE>` is the namespace the Ingress controller is deployed to.
+    Where `<NAMESPACE>` is the namespace the Helm chart with the Ingress controller is deployed to.
 
     The chart version should correspond to `wallarm-ingress-4.4.1`.
 1. Get the list of pods:

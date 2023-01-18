@@ -182,7 +182,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Kong Ingress Controller chart
-    * `<KUBERNETES_NAMESPACE>` is the new namespace to deploy the Kong Ingress Controller
+    * `<KUBERNETES_NAMESPACE>` is the new namespace to deploy the Helm release with the Kong Ingress Controller chart
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
 ### Step 3: Enable traffic analysis for your Ingress
