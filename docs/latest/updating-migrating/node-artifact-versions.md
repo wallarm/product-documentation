@@ -15,7 +15,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
     * [`controller.wallarm.tarantool.terminationGracePeriodSeconds`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L789) - read more in the [K8s documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes)
     * [`controller.wallarm.topologySpreadConstraint`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L793) - read more in the [K8s documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#topologyspreadconstraints-field)
-    * [`revisionHistoryLimit`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L870) - this global parameter now also sets a number of Tarantool resource ReplicaSets to retain
+    * [`revisionHistoryLimit`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L870) - this global parameter now also sets a number of Tarantool resource ReplicaSets to retain, read more about the parameter in the [K8s documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#revision-history-limit)
 
 [How to upgrade](ingress-controller.md)
 
