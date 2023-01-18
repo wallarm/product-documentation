@@ -107,7 +107,7 @@ To store the node token in K8s secrets and pull it to the Helm chart:
     ```
 
     * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Wallarm Ingress controller
-    * `wallarm-api-token` is the secret name
+    * `wallarm-api-token` is the Kubernetes secret name
     * `<WALLARM_NODE_TOKEN>` is the Wallarm node token value copied from the Wallarm Console UI
 
     If using some external secret operator, follow [appropriate documentation to create a secret](https://external-secrets.io).
