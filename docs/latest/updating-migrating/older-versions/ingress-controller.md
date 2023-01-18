@@ -197,10 +197,10 @@ To install and run the plugin:
 2. Run the plugin:
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+    * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
     * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Make sure no changes can affect the stability of the running services and carefully examine the errors from stdout.
@@ -304,10 +304,10 @@ By using this method, you can deploy Ingress Controller 4.4 as an additional ent
 2. Deploy the Ingress controller 4.4:
 
     ```bash
-    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name for the Ingress controller release
+    * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
     * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 3. Ensure all services operate correctly.
@@ -331,7 +331,7 @@ To re‑create the Ingress controller release:
         helm delete <RELEASE_NAME> -n <NAMESPACE>
         ```
 
-        * `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+        * `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 
         * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 
@@ -340,10 +340,10 @@ To re‑create the Ingress controller release:
     2. Create a new release with Ingress controller 4.4:
 
         ```bash
-        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f <PATH_TO_VALUES>
+        helm install <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f <PATH_TO_VALUES>
         ```
 
-        * `<RELEASE_NAME>`: the name for the Ingress controller release
+        * `<RELEASE_NAME>`: the name for the Helm release of the Ingress controller chart
 
         * `<NAMESPACE>`: the namespace to deploy the Ingress controller to
 
@@ -392,7 +392,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
     ```bash
     cat objects-to-remove.txt | xargs kubectl delete --wait=false -n <NAMESPACE>    && \
-    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.0 -f `<PATH_TO_VALUES>`
+    helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.1 -f `<PATH_TO_VALUES>`
     ```
 
     To decrease service downtime, it is NOT recommended to execute commands separately.
@@ -406,7 +406,7 @@ Release re‑creation will take several minutes and the Ingress controller will 
 
 There are the following parameters passed in the commands:
 
-* `<RELEASE_NAME>`: the name of the release with the deployed Ingress controller
+* `<RELEASE_NAME>`: the name of the Helm release with the Ingress controller chart
 * `<NAMESPACE>`: the namespace the Ingress controller is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the [Ingress controller 4.4 settings](#step-5-update-the-valuesyaml-configuration)
 
@@ -418,7 +418,7 @@ There are the following parameters passed in the commands:
     helm ls
     ```
 
-    The chart version should correspond to `wallarm-ingress-4.4.0`.
+    The chart version should correspond to `wallarm-ingress-4.4.1`.
 2. Get the list of pods specifying the name of the Wallarm Ingress controller in `<INGRESS_CONTROLLER_NAME>`:
     
     ``` bash

@@ -40,10 +40,15 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
 1. Go to Wallarm Console → **Nodes** via the link below:
     * https://us1.my.wallarm.com/nodes for the US Cloud
     * https://my.wallarm.com/nodes for the EU Cloud
-2. Create a filtering node with the **Wallarm node** type and copy the generated token.
+1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
     ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-3. Add the [Wallarm chart repository](https://charts.wallarm.com/):
+1. Create a Kubernetes namespace to deploy the Helm chart with the Wallarm Ingress controller:
+
+    ```bash
+    kubectl create namespace <KUBERNETES_NAMESPACE>
+    ```
+1. Add the [Wallarm chart repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
@@ -52,7 +57,7 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
     Example of the file with the minimun configuration:
 
     === "US Cloud"
-        ```bash
+        ```yaml
         controller:
           wallarm:
             enabled: "true"
@@ -60,24 +65,24 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
             apiHost: "us1.api.wallarm.com"
         ```
     === "EU Cloud"
-        ```bash
+        ```yaml
         controller:
           wallarm:
             enabled: "true"
             token: "<NODE_TOKEN>"
         ```    
     
-    `<NODE_TOKEN>` is the Wallarm node token.
-
+    Starting from Helm chart version 4.4.1, you can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more](configure-kubernetes-en.md#controllerwallarmexistingsecret)
+    
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
-5. Install the Wallarm packages:
+1. Install the Wallarm packages:
 
     ``` bash
-    helm install --version 4.4.0 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.4.1 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>` is the name for the NGINX-based Wallarm Ingress controller release
-    * `<KUBERNETES_NAMESPACE>` is the namespace to deploy the Wallarm Ingress controller to
+    * `<RELEASE_NAME>` is the name for the Helm release of the Ingress controller chart
+    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm chart with the Wallarm Ingress controller
     * `<PATH_TO_VALUES>` is the path to the `values.yaml` file
 
 ### Step 2: Enabling traffic analysis for your Ingress

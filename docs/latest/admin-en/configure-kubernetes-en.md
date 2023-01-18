@@ -19,6 +19,10 @@ controller:
     apiPort: 443
     apiSSL: true
     token: ""
+    existingSecret:
+      enabled: false
+      secretKey: token
+      secretName: wallarm-api-token
     tarantool:
       kind: Deployment
       service:
@@ -89,6 +93,37 @@ Wallarm API endpoint. Can be:
 The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
 
 **Default value**: `not specified`
+
+### controller.wallarm.existingSecret
+
+Starting from the Helm chart version 4.4.1, you can use this configuration block to pull a Wallarm node token value from Kubernetes secrets. It is useful for environments with separate secret management (e.g. you use an external secrets operator).
+
+To store the node token in K8s secrets and pull it to the Helm chart:
+
+1. Create a Kubernetes secret with the Wallarm node token:
+
+    ```bash
+    kubectl -n <KUBERNETES_NAMESPACE> create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
+    ```
+
+    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm release with Wallarm Ingress controller
+    * `wallarm-api-token` is the Kubernetes secret name
+    * `<WALLARM_NODE_TOKEN>` is the Wallarm node token value copied from the Wallarm Console UI
+
+    If using some external secret operator, follow [appropriate documentation to create a secret](https://external-secrets.io).
+1. Set the following configuration in `values.yaml`:
+
+    ```yaml
+    controller:
+      wallarm:
+        token: ""
+        existingSecret:
+          enabled: true
+          secretKey: token
+          secretName: wallarm-api-token
+    ```
+
+**Default value**: `existingSecret.enabled: false` that points the Helm chart to get the Wallarm node token from `controller.wallarm.token`.
 
 ### controller.wallarm.tarantool.replicaCount
 

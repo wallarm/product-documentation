@@ -31,7 +31,7 @@ To install and run the plugin:
     helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 1.1.5 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: the name of the release with the deployed Sidecar proxy
+    * `<RELEASE_NAME>`: the name of the Helm release with the Sidecar proxy chart
     * `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
     * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.4 settings - you can use the one created for running the previous Sidecar proxy version
 3. Make sure that no changes can affect the stability of the running services and carefully examine the errors from stdout.
@@ -46,7 +46,7 @@ Upgrade the deployed components of the Sidecar proxy solution:
 helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 1.1.5 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: the name of the release with the deployed Sidecar proxy
+* `<RELEASE_NAME>`: the name of the Helm release with the deployed Sidecar proxy chart
 * `<NAMESPACE>`: the namespace the Sidecar proxy is deployed to
 * `<PATH_TO_VALUES>`: the path to the `values.yaml` file defining the Sidecar proxy 4.4 settings - you can use the one created for running the previous Sidecar proxy version
 
