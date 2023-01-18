@@ -16,7 +16,7 @@ You may enable/disable API Discovery for all applications or only the selected o
 
 ## Adding new applications
 
-When you add a new application in **Settings** → **[Applications](applications.md)**, it is automatically added to the list in **Settings** → **API Discovery**. If the **API Discovery** module is enabled, then building the API structure will be enabled for the new application by default.
+When you add a new application in **Settings** → **[Applications](applications.md)**, it is automatically added to the list in **Settings** → **API Discovery**. If the **API Discovery** module is enabled, then building the API inventory will be enabled for the new application by default.
 
 ## Configuring risk score calculation
 

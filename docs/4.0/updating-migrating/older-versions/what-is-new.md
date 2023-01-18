@@ -153,9 +153,9 @@ There are the following new features for request source control:
 
 [Details on adding IPs to the allowlist, denylist, and graylist →](../../user-guides/ip-lists/overview.md)
 
-## New module for API structure discovery
+## New module for API inventory discovery
 
-New Wallarm nodes are distributed with the module **API Discovery** automatically identifiyng the application API structure. The module is disabled by default.
+New Wallarm nodes are distributed with the module **API Discovery** automatically identifying the application API. The module is disabled by default.
 
 [Details on the API Discovery module →](../../about-wallarm/api-discovery.md)
 

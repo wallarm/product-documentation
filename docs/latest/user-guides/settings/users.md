@@ -30,7 +30,7 @@ Users of Wallarm clients can have the following roles:
 * **Administrator** with access to all Wallarm settings
 * **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
-* **API Developer** with access to view and download the API structure discovered by the [API Discovery](../../about-wallarm/api-discovery.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
+* **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../about-wallarm/api-discovery.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 * **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
 
     !!! warning "Using the Deploy role to install the Wallarm node 4.0"
@@ -46,7 +46,7 @@ More detailed information about access of different user roles to the Wallarm en
 | **Dashboard**       | View                                 | View                     | View                         | - |
 | **Events**          | View and manage                      | View and manage          | View                         | - |
 | **Vulnerabilities** | View and manage                      | View and manage          | View              | - |
-| **API structure by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
+| **API inventory by API Discovery**   | View and manage                      | View and manage          | -                            | View and download |
 | **Scanner**         | View and manage                      | View and manage          | View                         | - |
 | **Triggers**        | View and manage                      | -                        | -                            | - |
 | **IP lists**       | View, manage, and export             | View, manage, and export | View and export              | - |

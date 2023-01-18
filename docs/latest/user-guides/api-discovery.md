@@ -1,15 +1,15 @@
 # API Discovery
 
-This section describes how to use the API structure built by the [API Discovery](../about-wallarm/api-discovery.md) module.
+This section describes how to use the API inventory built by the [API Discovery](../about-wallarm/api-discovery.md) module.
 
-The built API structure is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+The built API inventory is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
 * **Administrator** and **Analyst** can view and manage the data discovered by the API Discovery module.
 
     **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
 * **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
-The API structure includes the following elements:
+The API inventory includes the following elements:
 
 * Customer applications with discovered API hosts.
 * Discovered endpoints grouped by API hosts. For each endpoint, the HTTP method is displayed.
@@ -70,9 +70,9 @@ Each parameter information includes:
 * [Type/format](../about-wallarm/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
 * Date and time when parameter information was last updated
 
-## Tracking changes in API structure
+## Tracking changes in API
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API structure within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api-structure) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
@@ -87,14 +87,14 @@ Note that whatever period is selected, if nothing is highlighted with the **New*
 
 Using the **Changes since** filter only highlights the endpoints changed within the selected period, but does not filter out endpoints without changes.
 
-The **Changes in API structure** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
+The **Changes in API** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
 
 <a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
 
 * Each time you open the **API Discovery** section today, the **Changes since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
 * Switch **Changes since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
-* Set **Changes in API structure** to `Removed endpoints` - 3 endpoints will be displayed, all with the **Removed** mark.
-* Change **Changes in API structure** to `New endpoints + Removed endpoints` - 4 endpoints will be displayed, 3 with the **Removed** mark, and 1 with the **New** mark.
+* Set **Changes in API** to `Removed endpoints` - 3 endpoints will be displayed, all with the **Removed** mark.
+* Change **Changes in API** to `New endpoints + Removed endpoints` - 4 endpoints will be displayed, 3 with the **Removed** mark, and 1 with the **New** mark.
 * Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
 
 ## Working with risk score
@@ -139,24 +139,24 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 You can also copy some endpoint URL to the clipboard and use it to search for the events. To do this, in this endpoint menu select **Copy URL**.
 
-## API structure and rules
+## API inventory and rules
 
-You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API structure: 
+You can quickly create a new [custom rule](../user-guides/rules/intro.md) from any endpoint of API inventory: 
 
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
 ![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Download OpenAPI specification (OAS) for your API structure
+## Download OpenAPI specification (OAS) of your API inventory
 
-Click **Download OAS** to get a `swagger.json` file with the description of the API structure discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
+Click **Download OAS** to get a `swagger.json` file with the API inventory discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
 
 !!! info "Filtered download"
-    When downloading the description of the API structure, applied filters are taken into account. Only filtered data is downloaded.
+    When downloading the API inventory, applied filters are taken into account. Only filtered data is downloaded.
     
 !!! warning "API host information in downloaded Swagger file"
-    If a discovered API structure contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
+    If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
 
 Using the downloaded data, you can discover:
 
@@ -165,7 +165,7 @@ Using the downloaded data, you can discover:
 
 ## Automatic BOLA protection
 
-Wallarm can [automatically discover and protect endpoints that are vulnerable to the BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) among the ones explored by the **API Discovery** module. If the option is enabled, protected endpoints are highlighted with the corresponding icon in the API structure, e.g.:
+Wallarm can [automatically discover and protect endpoints that are vulnerable to the BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) among the ones explored by the **API Discovery** module. If the option is enabled, protected endpoints are highlighted with the corresponding icon in the API inventory, e.g.:
 
 ![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
