@@ -58,7 +58,9 @@ The following filters are available:
 * **URI** (only for the conditions **Brute force**, **Forced browsing** and **BOLA**): full URI to which the request was sent. URI can be configured via the [URI constructor](../../user-guides/rules/add-rule.md#uri-constructor) or [advanced edit form](../../user-guides/rules/add-rule.md#advanced-edit-form).
 * **Type** is a [type](../../attacks-vulns-list.md) of attack detected in the request or a type of vulnerability the request is directed to.
 * **Application** is the [application](../settings/applications.md) that receives the request or in which an incident is detected.
-* **IP** is the IP address from which the request is sent.
+* **IP** is an IP address from which the request is sent.
+
+    The filter expects only single IPs, it does not allow subnets, locations and source types.
 * **Domain** is the domain that receives the request or in which an incident is detected.
 * **Response status** is the response code returned to the request.
 * **Target** is an application architecture part that the attack is directed at or in which the incident is detected. It can take the following values: `Server`, `Client`, `Database`.
