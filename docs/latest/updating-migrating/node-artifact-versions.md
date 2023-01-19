@@ -4,9 +4,11 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## Helm chart for NGINX Ingress controller
 
-### 4.4.0
+[How to upgrade](ingress-controller.md)
 
-* Initial release 4.4, [see changelog](what-is-new.md)
+### 4.4.2 (2023-01-19)
+
+* Fix the weak JWT detection functionality issues
 
 ### 4.4.1 (2023-01-16)
 
@@ -17,7 +19,9 @@ This document lists available [patch versions](versioning-policy.md#version-form
     * [`controller.wallarm.topologySpreadConstraint`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L793) - read more in the [K8s documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#topologyspreadconstraints-field)
     * [`revisionHistoryLimit`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L870) - this global parameter now also sets a number of Tarantool resource ReplicaSets to retain, read more about the parameter in the [K8s documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#revision-history-limit)
 
-[How to upgrade](ingress-controller.md)
+### 4.4.0
+
+* Initial release 4.4, [see changelog](what-is-new.md)
 
 ## Helm chart for Kong Ingress controller
 
