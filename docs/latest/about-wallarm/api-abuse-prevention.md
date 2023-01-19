@@ -17,6 +17,8 @@ The **API Abuse Prevention** module detects the following automated threats by d
 * [Scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
 * [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola). Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the request. This may lead to unauthorized access to sensitive data.
 
+You can configure the **API Abuse Prevention** module to protect from all types of bots or [limit protection](#protecting-from-specific-bot-types) only for specific threats.
+
 ## How API Abuse Prevention works?
 
 The **API Abuse Prevention** module uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
@@ -57,6 +59,12 @@ There are three available levels:
 * **Low** - detects 100% of bot requests, but may block some legitimate requests due to false positives.
 * **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
 * **High** - no legitimate requests will be dropped but the risk of malicious bot’s requests reaching the API is higher.
+
+## Protecting from specific bot types
+
+You can limit protecting from bots to specific types of bots only. It speeds up the analysis and allows additional protection from the false positives. Bot types can be selected in the **Protect from** section of [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+
+By default all bot types are selected.
 
 ## Reaction to malicious bots
 
