@@ -44,7 +44,7 @@ a.md-top.md-icon {
 }
 
 .md-typeset a:focus {
-  color: unset;
+  color: var(--md-accent-fg-color);
 }
 
 .md-typeset a:focus code {
