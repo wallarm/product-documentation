@@ -66,9 +66,9 @@ If you already have a certificate for the protected domain and prefer that to th
 
 ## Using Varnish Cache
 
-Utilizing a CDN node with [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP accelerator speeds up content delivery to users (e.g. your server responses). However if you change your content, the cached copy on the CDN may be updated with a delay, which may cause [problems](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node). That may be the reason to disable Varnish Cache.
+Utilizing a CDN node with the [Varnish Cache](https://varnish-cache.org/intro/index.html#intro) HTTP accelerator speeds up content delivery to users (e.g. your server responses). However if you change your content, the cached copy on the CDN may be updated with a delay, which may cause [problems](#why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node) and be the reason to disable Varnish Cache.
 
-To avoid problems with the content update speed, Varnish Cache is disabled by default. You can enable/disable Varnish Cache manually. To do so, in the **Nodes** section, from your CDN node menu, select **Enable Varnish Cache** or **Disable Varnish Cache**.
+To avoid problems with the content update speed, Varnish Cache is disabled by default. You can enable/disable Varnish Cache manually. To do so, proceed to **Nodes** → CDN node menu → **Enable Varnish Cache** or **Disable Varnish Cache**.
 
 ## Deleting a node
 

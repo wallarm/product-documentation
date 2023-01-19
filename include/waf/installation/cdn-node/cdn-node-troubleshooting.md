@@ -66,4 +66,4 @@ Example:
 1. All requests are proxied via CDN, and the cache is not updated immediately.
 1. Site users see the old prices for some time.
 
-To resolve the problem, you may disable Varnish Cache. To do so, in the **Nodes** section, from your CDN node menu, select **Disable Varnish Cache**.
+To resolve the problem, you may disable Varnish Cache. To do so, proceed to **Nodes** → CDN node menu → **Disable Varnish Cache**.
