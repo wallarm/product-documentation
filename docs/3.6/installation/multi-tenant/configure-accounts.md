@@ -24,7 +24,10 @@ Tenant accounts are created according to the following structure:
     * Provide tenants with access to the data on detected attacks and to the traffic filtration settings.
     * Provide users with with access to certain tenant account's data.
 
-[Global users](../../user-guides/settings/users.md#user-roles) can switch between accounts in Wallarm Console:
+[Global users](../../user-guides/settings/users.md#user-roles) can: 
+
+* Switch between accounts in Wallarm Console.
+* Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
 
 ![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
