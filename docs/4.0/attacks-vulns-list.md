@@ -35,6 +35,9 @@
 [cwe-639]:  https://cwe.mitre.org/data/definitions/639.html
 [cwe-918]:  https://cwe.mitre.org/data/definitions/918.html
 [cwe-943]:  https://cwe.mitre.org/data/definitions/943.html
+[cwe-937]:  https://cwe.mitre.org/data/definitions/937.html
+[cwe-1035]: https://cwe.mitre.org/data/definitions/1035.html
+[cwe-1104]: https://cwe.mitre.org/data/definitions/1104.html
 
 [link-cwe]: https://cwe.mitre.org/
 
@@ -393,6 +396,29 @@ The vulnerability of this type can be detected only by the method of [passive de
 
 You may follow the recommendation to prohibit a web application from having the ability to display any sensitive information.
 
+### Vulnerable Component
+
+**Vulnerability**
+
+**CWE codes:** [CWE-937][cwe-937], [CWE-1035][cwe-1035], [CWE-1104][cwe-1104]
+
+**Wallarm code:** `vuln_component`
+
+**Description:**
+
+This vulnerability occurs if your web application or API uses a vulnerable or outdated component. This can include an OS, web/application server, database management system (DBMS), runtime environments, libraries and other components.
+
+This vulnerability is mapped with [A06:2021 – Vulnerable and Outdated Components](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components).
+
+**Remediation:**
+
+You may follow the recommendation to monitor and timely apply updates or configuration changes for the lifetime of the application or API, as follows:
+
+* Remove unused dependencies, unnecessary features, components, files, and documentation.
+* Continuously inventory the versions of both client-side and server-side components (e.g., frameworks, libraries) and their dependencies using tools like OWASP Dependency Check, retire.js, etc.
+* Continuously monitor sources like Common Vulnerability and Exposures (CVE) and National Vulnerability Database (NVD) for vulnerabilities in the components.
+* Only obtain components from official sources over secure links. Prefer signed packages to reduce the chance of including a modified, malicious component.
+* Monitor for libraries and components that are unmaintained or do not create security patches for older versions. If patching is not possible, consider deploying a virtual patch to monitor, detect, or protect against the discovered issue.
 
 ### Remote code execution (RCE)
 

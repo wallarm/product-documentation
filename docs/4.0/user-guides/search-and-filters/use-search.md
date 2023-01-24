@@ -13,6 +13,7 @@
 [al-ldapi]:               ../../attacks-vulns-list.md#ldap-injection
 [al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
 [al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
+[al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
 [al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 [email-injection]:        ../../attacks-vulns-list.md#email-injection
 [ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
@@ -92,6 +93,7 @@ Specify in the search string:
 * `ldapi`: to search for [LDAP injection][al-ldapi] attacks/vulnerabilities.
 * `scanner`: to search for [port scanner][al-port-scanner] attacks/vulnerabilities.
 * `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
+* `vuln_component`: to search for vulnerabilities occurred due to [Vulnerability Component][al-vuln-component] usage.
 * `mail_injection`: to search for [Email Injections][email-injection].
 * `ssi`: to search for [SSI Injections][ssi-injection].
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
