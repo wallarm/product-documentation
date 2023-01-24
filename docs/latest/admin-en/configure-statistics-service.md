@@ -10,7 +10,7 @@ To obtain statistics about the filter node, use the `wallarm_status` directive, 
 
 !!! warning "Important"
 
-    It is highly recommended to configure the statistics service in the separate configuration file `wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
+    It is highly recommended to configure the statistics service in the separate configuration file `/etc/nginx/conf.d/wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
     
     Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
 
@@ -23,9 +23,11 @@ wallarm_status [on|off] [format=json|prometheus];
 !!! info
     The directive can be configured in the context of `server` and/or `location`.
 
-When configuring the `wallarm_status` directive, you can specify the IP addresses from which you can request statistics. By default, access is denied from anywhere except for the IP addresses `127.0.0.1` and `::1`, which allow executing the request only from the server where Wallarm is installed.
+    The `format` parameter has the `json` value by default.
 
-An example of a secure configuration of the filter node statistics service (`/etc/nginx/conf.d/wallarm-status.conf`) is shown below:
+### Default configuration
+
+By default, the filter node statistics service has the most secure configuration. The `/etc/nginx/conf.d/wallarm-status.conf` configuration file looks like the following:
 
 ```
 server {
@@ -39,59 +41,198 @@ server {
   disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
 
-  location ~/wallarm-status$ {
+  location /wallarm-status {
     wallarm_status on;
   }
 }
 ```
 
-!!! info "Changing the `listen` directive"
-    Note that if you change the IP address of the `listen` directive (in the example above, `127.0.0.8`), you will also need to change the following settings:
+### Limiting IP addresses allowed to request statistics
 
-    1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
-
-        ```bash
-        hostname: example-node-name
-        uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
-        ...
-        status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
-        ```
-    1. Adjust the [monitoring](monitoring/intro.md) settings of the filtering node to the new IP address in the file `/etc/collectd/wallarm-collectd.conf.d/nginx-wallarm.conf`.
-    1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the above configuration file allows access only to loopback addresses).
+When configuring the `wallarm_status` directive, you can specify the IP addresses from which you can request statistics. By default, access is denied from anywhere except for the IP addresses `127.0.0.1` and `::1`, which allow executing the request only from the server where Wallarm is installed.
 
 To allow requests from another server, add the `allow` instruction with the IP address of the desired server in the configuration. For example:
 
-```
-allow 10.41.29.0;
+```diff
+...
+server_name localhost;
+
+allow 127.0.0.0/8;
++ allow 10.41.29.0;
+...
 ```
 
+Once the settings changed, restart NGINX to apply the changes:
+
+--8<-- "../include/waf/restart-nginx-3.6.md"
+
+### Changing an IP address of the statistics service
+
+To change an IP address of the statistics service:
+
+1. Specify a new address in the `listen` directive of the `/etc/nginx/conf.d/wallarm-status.conf` file.
+1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
+
+    ```bash
+    hostname: example-node-name
+    uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+    ...
+    status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
+    ```
+1. Correct the `URL` parameter accordingly in the [`collectd`](monitoring/intro.md) configuration file. The location of this file depends on the type of operating system distribution you have:
+
+    --8<-- "../include/monitoring/collectd-config-location.md"
+1. Add or change the `allow` directive to allow access from addresses other than loopback addresses (the default configuration file allows access only to loopback addresses).
+1. Restart NGINX to apply changes:
+
+    --8<-- "../include/waf/restart-nginx-3.6.md"
+
+### Getting statistics in the Prometheus format
+
+By default, the statistics is returned only in the JSON format. To get the statistics in the Prometheus format:
+
+1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file:
+
+
+    ```diff
+    ...
+
+    location /wallarm-status {
+      wallarm_status on;
+    }
+
+    + location /wallarm-status-prometheus {
+    +   wallarm_status on format=prometheus;
+    + }
+
+    ...
+    ```
+
+    !!! warning "Do not delete or change the default `/wallarm-status` configuration"
+        Please do not delete or change the default configuration of the `/wallarm-status` location. Default operation of this endpoint is crucial to upload correct data to the Wallarm Cloud.
+1. Restart NGINX to apply changes:
+
+    --8<-- "../include/waf/restart-nginx-3.6.md"
+1. Call the new endpoint to get the Prometheus metrics:
+
+    ```bash
+    curl http://127.0.0.8/wallarm-status-prometheus
+    ```
 
 ##  Working with the Statistics Service
 
 To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
 
-```
-curl http://127.0.0.8/wallarm-status
-```
+=== "Statistics in the JSON format"
+    ```
+    curl http://127.0.0.8/wallarm-status
+    ```
 
-As a result, you will get a response of the type:
+    As a result, you will get a response of the type:
 
-```
-{ "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
-"tnt_errors":0,"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
-"softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"custom_ruleset_id":102,
-"db_apply_time":1598525865,"lom_apply_time":1598525870,"custom_ruleset_apply_time":1598525870,
-"proton_instances": { "total":3,"success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,
-"stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
-"fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
-"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
-"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,
-"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
-[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
-"overlimits_time": 0,"time_detect": 0}]}]} }
-```
+    ```
+    { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
+    "tnt_errors":0,"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
+    "softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"custom_ruleset_id":102,
+    "db_apply_time":1598525865,"lom_apply_time":1598525870,"custom_ruleset_apply_time":1598525870,
+    "proton_instances": { "total":3,"success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,
+    "stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
+    "fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
+    "fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
+    "split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,
+    "blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
+    [{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
+    "overlimits_time": 0,"time_detect": 0}]}]} }
+    ```
+=== "Statistics in the Prometheus format"
+    ```
+    curl http://127.0.0.8/wallarm-status-prometheus
+    ```
 
-The following response parameters are available:
+    The address can be different, please check the `/etc/nginx/conf.d/wallarm-status.conf` file for the actual address.
+
+    As a result, you will get a response of the type:
+
+
+    ```
+    # HELP wallarm_requests requests count
+    # TYPE wallarm_requests gauge
+    wallarm_requests 2
+    # HELP wallarm_attacks attack requests count
+    # TYPE wallarm_attacks gauge
+    wallarm_attacks 0
+    # HELP wallarm_blocked blocked requests count
+    # TYPE wallarm_blocked gauge
+    wallarm_blocked 0
+    # HELP wallarm_blocked_by_acl blocked by acl requests count
+    # TYPE wallarm_blocked_by_acl gauge
+    wallarm_blocked_by_acl 0
+    # HELP wallarm_acl_allow_list requests passed by allow list
+    # TYPE wallarm_acl_allow_list gauge
+    wallarm_acl_allow_list 0
+    # HELP wallarm_abnormal abnormal requests count
+    # TYPE wallarm_abnormal gauge
+    wallarm_abnormal 2
+    # HELP wallarm_tnt_errors tarantool write errors count
+    # TYPE wallarm_tnt_errors gauge
+    wallarm_tnt_errors 0
+    # HELP wallarm_api_errors API write errors count
+    # TYPE wallarm_api_errors gauge
+    wallarm_api_errors 0
+    # HELP wallarm_requests_lost lost requests count
+    # TYPE wallarm_requests_lost gauge
+    wallarm_requests_lost 0
+    # HELP wallarm_overlimits_time overlimits_time count
+    # TYPE wallarm_overlimits_time gauge
+    wallarm_overlimits_time 0
+    # HELP wallarm_segfaults segmentation faults count
+    # TYPE wallarm_segfaults gauge
+    wallarm_segfaults 0
+    # HELP wallarm_memfaults vmem limit reached events count
+    # TYPE wallarm_memfaults gauge
+    wallarm_memfaults 0
+    # HELP wallarm_softmemfaults request memory limit reached events count
+    # TYPE wallarm_softmemfaults gauge
+    wallarm_softmemfaults 0
+    # HELP wallarm_proton_errors libproton non-memory related libproton faults events count
+    # TYPE wallarm_proton_errors gauge
+    wallarm_proton_errors 0
+    # HELP wallarm_time_detect_seconds time spent for detection
+    # TYPE wallarm_time_detect_seconds gauge
+    wallarm_time_detect_seconds 0
+    # HELP wallarm_db_id proton.db file id
+    # TYPE wallarm_db_id gauge
+    wallarm_db_id 71
+    # HELP wallarm_lom_id LOM file id
+    # TYPE wallarm_lom_id gauge
+    wallarm_lom_id 386
+    # HELP wallarm_custom_ruleset_id Custom Ruleset file id
+    # TYPE wallarm_custom_ruleset_id gauge
+    wallarm_custom_ruleset_id 386
+    # HELP wallarm_db_apply_time proton.db file apply time id
+    # TYPE wallarm_db_apply_time gauge
+    wallarm_db_apply_time 1674548649
+    # HELP wallarm_lom_apply_time LOM file apply time
+    # TYPE wallarm_lom_apply_time gauge
+    wallarm_lom_apply_time 1674153198
+    # HELP wallarm_custom_ruleset_apply_time Custom Ruleset file apply time
+    # TYPE wallarm_custom_ruleset_apply_time gauge
+    wallarm_custom_ruleset_apply_time 1674153198
+    # HELP wallarm_proton_instances proton instances count
+    # TYPE wallarm_proton_instances gauge
+    wallarm_proton_instances{status="success"} 5
+    wallarm_proton_instances{status="fallback"} 0
+    wallarm_proton_instances{status="failed"} 0
+    # HELP wallarm_stalled_worker_time_seconds time a worker stalled in libproton
+    # TYPE wallarm_stalled_worker_time_seconds gauge
+
+    # HELP wallarm_startid unique start id
+    # TYPE wallarm_startid gauge
+    wallarm_startid 3226376659815907920
+    ```
+
+The following response parameters are available (Prometheus metrics have the `wallarm_` prefix):
+
 *   `requests`: the number of requests that have been processed by the filter node.
 *   `attacks`: the number of recorded attacks.
 *   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/denylist.md) IPs.
@@ -118,8 +259,8 @@ The following response parameters are available:
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
     *   `fallback`: the number of proton.db + LOM pairs loaded from the last saved files.
     *   `failed`: the number of proton.db + LOM pairs that were not initialized and run in the “do not analyze” mode.
-*   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive).
-*   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the `wallarm_stalled_worker_timeout` directive) and the amount of time spent on request processing.
+*   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive).
+*   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive) and the amount of time spent on request processing.
 *   `ts_files`: information about the [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file:
     *   `id`: used LOM version.
     *   `size`: LOM file size in bytes.
@@ -135,4 +276,4 @@ The following response parameters are available:
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
 
-The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start Wallarm.
+The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start statistics collection.
