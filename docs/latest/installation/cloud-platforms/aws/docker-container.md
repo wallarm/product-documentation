@@ -8,6 +8,8 @@
 
 # Deployment of the Wallarm node Docker image to AWS
 
+!!! warning "DO WE WANT TO HAVE THIS ARTICLE IN DOCS? AND SHOULD WE REACH IT WITH SOME INFO?"
+
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Amazon cloud platform using the [Amazon Elastic Container Service (Amazon ECS)](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/).
 
 !!! warning "The instructions limitations"

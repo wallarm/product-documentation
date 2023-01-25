@@ -3,6 +3,9 @@
 [doc-configure-parameters]:     ../admin-en/configure-parameters-en.md
 [doc-stat-service]:    ../admin-en/configure-statistics-service.md
 
+!!! warning "PROBABLY THIS ARTICLE WILL BE REMOVED"
+    PROBABLY THIS ARTICLE WILL BE REMOVED SINCE EACH DEPLOYMENT INSTRUCTION PROVIDES CUSTOMERS WITH TEST ATTACK / WE WILL REFER CUSTOMERS FROM INSTALLATION INSTRUCTIONS TO THIS ARTICLE
+
 If everything is configured correctly, Wallarm filters the requests and proxies the filtered requests in accordance with the configuration file settings.
 
 To check the correct operation, you must:

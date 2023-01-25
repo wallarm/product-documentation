@@ -1,5 +1,7 @@
 # Installation of the filtering node from DEB or RPM packages on AWS
 
+!!! warning "DO WE WANT TO HAVE THIS ARTICLE IN DOCS? AND SHOULD WE REACH IT WITH SOME INFO?"
+
 This quick guide provides the steps to install the filtering node from the source packages on a separate Amazon EC2 instance. By following this guide, you will create an instance from the supported operating system image and install the Wallarm filtering node on this operating system.
 
 !!! warning "The instructions limitations"

@@ -5,6 +5,9 @@
 
 # Separate postanalytics module installation
 
+!!! warning "EXPLAIN WHEN IT CAN BE USEFUL"
+    Use the contents of https://docs.wallarm.com/admin-en/installation-nginx-overview/
+
 --8<-- "../include/waf/installation/nginx-installation-options.md"
 
 These instructions provide the steps to install the postanalytics module on a separate server.

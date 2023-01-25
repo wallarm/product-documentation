@@ -103,19 +103,21 @@ navigationElements.forEach(el => {
 function platformClicked (event, platformId) {
   event.preventDefault();
   optionsId = platformId + 'Id';
+  blockId = document.getElementById(platformId).parentNode.parentNode.id;
   var activeOptions=document.getElementsByClassName('option-active');
   // console.log(this);
 
   if (activeOptions.length != 0) {
-    for (let index = 0; index < activeOptions.length; index++) {
-      if (activeOptions[index].children[0].children[3].id != this.optionsId) {
-      document.getElementById(activeOptions[index].children[0].children[3].id).style.display = 'none';
-      activeOptions[index].classList.remove("option-active");
-      }
-      else { console.log(this.optionsId) }
-    }
+    // for (let index = 0; index < activeOptions.length; index++) {
+    //   if (activeOptions[index].children[0].children[3].id != this.optionsId) {
+    //   document.getElementById(activeOptions[index].children[0].children[3].id).style.display = 'none';
+    //   activeOptions[index].classList.remove("option-active");
+    //   }
+    //   else { console.log(this.optionsId) }
+    // }
     if (document.getElementById(optionsId).style.display === 'none') {
-      document.getElementById(optionsId).style.display = 'block';
+      document.getElementById(optionsId).style.display = 'grid';
+      document.getElementById(blockId).style.display = 'none';
       document.getElementById(platformId).parentNode.classList.add("option-active");
     }
     else {
@@ -125,7 +127,8 @@ function platformClicked (event, platformId) {
   }
   else {
     if (document.getElementById(optionsId).style.display === 'none') {
-      document.getElementById(optionsId).style.display = 'block';
+      document.getElementById(optionsId).style.display = 'grid';
+      document.getElementById(blockId).style.display = 'none';
       document.getElementById(platformId).parentNode.classList.add("option-active");
     }
     else {

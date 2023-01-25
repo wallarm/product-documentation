@@ -104,66 +104,153 @@ nav:
         - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
     - Quick start: quickstart.md
     - Administrator Guide:
-      - Introduction to the administrator guide: admin-en/admin-intro-en.md
-      - Installation:
-        - Deployment options: admin-en/supported-platforms.md
-        - NGINX:
-          - NGINX installation options overview: admin-en/installation-nginx-overview.md
-          - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
-          - Installing as a dynamic module for NGINX from Debian/CentOS repositories: installation/nginx/dynamic-module-from-distr.md
-          - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
-          - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
-        - Kubernetes:
-          - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
-          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
-          - Deploying Wallarm as Kubernetes Sidecar proxy:
-            - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
-            - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
-            - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
-          - Deploying Wallarm for Kong:
-            - Deploying Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/deployment.md
-            - Customizing Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/customization.md
-        - Cloud platforms:
+      # - Introduction to the administrator guide: admin-en/admin-intro-en.md
+      - Deployment:
+        - Deployment options: admin-en/supported-platforms-new.md
+        - Out-of-Band (OOB):
+          - Overview: installation/oob/overview.md
+          - eBPF: installation/oob/ebpf.md
+          - Mirroring:
+            - Mirroring with Wallarm deployment: installation/oob/mirroring-wallarm.md
+        - Public Clouds:
+          - Overview: installation/public-clouds/overview.md
           - Amazon AWS:
-            - AWS Marketplace image deployment:
-              - Creating and configuring an AMI with the Wallarm node: admin-en/installation-ami-en.md
-              - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
+            - AMI:
+              - Deployment: installation/public-clouds/aws/ami.md
               - Setting up filtering node auto scaling:
                 - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
                 - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
                 - Setting up incoming request balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to AWS: installation/cloud-platforms/aws/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
+            - Terraform module:
+              - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
+              - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
+            - Kubernetes: installation/public-clouds/aws/kubernetes.md
+            - Docker container: installation/cloud-platforms/aws/docker-container.md
+            - DEB or RPM packages: installation/cloud-platforms/aws/deb-rpm-packages.md
           - Google Cloud Platform:
-            - GCP Marketplace image deployment:
-              - Creating and configuring a GCP instance with the Wallarm node: admin-en/installation-gcp-en.md
-              - Creating an image with the Wallarm filtering node: admin-en/installation-guides/google-cloud/create-image.md
+            - Markeplace image:
+              - Deployment: installation/public-clouds/gcp/image.md
               - Setting up filtering node auto scaling:
                 - Overview of the filtering node auto scaling configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
                 - Creating a filtering node instance template on GCP: admin-en/installation-guides/google-cloud/creating-instance-template.md
                 - Creating a managed instance group with enabled auto scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
                 - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to GCP: installation/cloud-platforms/gcp/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on GCP: installation/cloud-platforms/gcp/deb-rpm-packages.md
+            - Kubernetes: installation/public-clouds/gcp/kubernetes.md
+            - Docker container: installation/cloud-platforms/gcp/docker-container.md
+            - DEB or RPM packages: installation/cloud-platforms/gcp/deb-rpm-packages.md
           - Microsoft Azure:
-            - Deployment of the Wallarm node Docker image to Azure: installation/cloud-platforms/azure/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Azure: installation/cloud-platforms/azure/deb-rpm-packages.md
+            - Docker container: installation/cloud-platforms/azure/docker-container.md
+            - DEB or RPM packages: installation/cloud-platforms/azure/deb-rpm-packages.md
           - Alibaba Cloud:
-            - Deployment of the Wallarm node Docker image to Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+            - Docker container: installation/cloud-platforms/alibaba-cloud/docker-container.md
+            - DEB or RPM packages: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+        - Serverless:
+          - Deploying Section.io CDN node: installation/cdn-node.md
+        - Kubernetes:
+          - Overview: installation/kubernetes/overview.md
+          - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
+          - Deploying Wallarm for Kong:
+            - Deploying Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/deployment.md
+            - Customizing Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/customization.md
+          - Deploying Wallarm as Kubernetes Sidecar proxy:
+            - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
+            - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
+            - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
+          - eBPF: installation/kubernetes/ebpf.md
+        - API Gateways:
+          - Deploying Wallarm for Kong:
+            - Deploying Kong Ingress Controller with integrated Wallarm services: installation/api-gateways/deployment.md
+            - Customizing Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/customization.md
+        - Load Balancers:
+          - Overview: installation/load-balancing/overview.md
+          - NGINX Stable:
+            - DEB/RPM packages: installation/load-balancing/dynamic-module.md
+            - Running Docker NGINX‑based image: installation/load-balancing/installation-docker-en.md 
+            - Installing NGINX Ingress Controller with integrated Wallarm services: installation/load-balancing/installation-kubernetes-en.md
+            # - Amazon AWS:
+            #   - AMI:
+            #     - Deployment: installation/public-clouds/aws/ami.md
+            #     - Setting up filtering node auto scaling:
+            #       - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+            #       - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+            #       - Setting up incoming request balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+            #   - Terraform module:
+            #     - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
+            #     - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
+            #   - Kubernetes: installation/public-clouds/aws/kubernetes.md
+            #   - Docker container: installation/cloud-platforms/aws/docker-container.md
+            #   - DEB or RPM packages: installation/cloud-platforms/aws/deb-rpm-packages.md
+            # - Google Cloud Platform:
+            #   - Markeplace image:
+            #     - Deployment: installation/public-clouds/gcp/image.md
+            #     - Setting up filtering node auto scaling:
+            #       - Overview of the filtering node auto scaling configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+            #       - Creating a filtering node instance template on GCP: admin-en/installation-guides/google-cloud/creating-instance-template.md
+            #       - Creating a managed instance group with enabled auto scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+            #       - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+            #   - Kubernetes: installation/public-clouds/gcp/kubernetes.md
+            #   - Docker container: installation/cloud-platforms/gcp/docker-container.md
+            #   - DEB or RPM packages: installation/cloud-platforms/gcp/deb-rpm-packages.md
+            # - Microsoft Azure:
+            #   - Docker container: installation/cloud-platforms/azure/docker-container.md
+            #   - DEB or RPM packages: installation/cloud-platforms/azure/deb-rpm-packages.md
+            # - Alibaba Cloud:
+            #   - Docker container: installation/cloud-platforms/alibaba-cloud/docker-container.md
+            #   - DEB or RPM packages: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+          - NGINX Plus: installation/load-balancing/nginx-plus.md
+          - NGINX Distro: installation/load-balancing/dynamic-module-from-distr.md
+          - Older or custom NGINX: installation/custom-nginx.md
+          - Envoy: installation/load-balancing/envoy-docker.md
+        - Packages:
+          - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
+          - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
+          - OS with NGINX Stable: installation/nginx/dynamic-module.md
+          - OS with NGINX Plus: installation/nginx-plus.md
+          - OS with NGINX distro: installation/nginx/dynamic-module-from-distr.md
+        # - NGINX:
+        #   - NGINX installation options overview: admin-en/installation-nginx-overview.md
+          # - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
+          # - Installing as a dynamic module for NGINX from Debian/CentOS repositories: 
+          # - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
+          # - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
+        - Others:
+          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
           - Deployment of the filtering node to the private clouds: installation/cloud-platforms/private-cloud.md
+          - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
+          - Deploying the multi‑tenant node:
+            - Multitenancy overview: installation/multi-tenant/overview.md
+            - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
+            - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
           - Specification of the Wallarm cloud-init script: installation/cloud-platforms/cloud-init.md
-        - Deploying Wallarm on AWS using Terraform:
-          - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
-          - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
-        - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
-        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
+          - Using a Mirrored Wallarm Repository:
+            - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
+            - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
+        # - Cloud platforms:
+          # - Amazon AWS:
+            # - AWS Marketplace image deployment:
+            #   - Creating and configuring an AMI with the Wallarm node: admin-en/installation-ami-en.md
+            #   - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
+            # - Deployment of the Wallarm node Docker image to AWS: installation/cloud-platforms/aws/docker-container.md
+            # - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
+          # - Google Cloud Platform:
+          #   - GCP Marketplace image deployment:
+          #     - Creating and configuring a GCP instance with the Wallarm node: admin-en/installation-gcp-en.md
+          #     - Creating an image with the Wallarm filtering node: admin-en/installation-guides/google-cloud/create-image.md
+              # - Setting up filtering node auto scaling:
+              #   - Overview of the filtering node auto scaling configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+              #   - Creating a filtering node instance template on GCP: admin-en/installation-guides/google-cloud/creating-instance-template.md
+              #   - Creating a managed instance group with enabled auto scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+              #   - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+            # - Deployment of the Wallarm node Docker image to GCP: installation/cloud-platforms/gcp/docker-container.md
+            # - Installation of the filtering node from DEB or RPM packages on GCP: installation/cloud-platforms/gcp/deb-rpm-packages.md
+          # - Microsoft Azure:
+          #   - Deployment of the Wallarm node Docker image to Azure: installation/cloud-platforms/azure/docker-container.md
+          #   - Installation of the filtering node from DEB or RPM packages on Azure: installation/cloud-platforms/azure/deb-rpm-packages.md
+          # - Alibaba Cloud:
+          #   - Deployment of the Wallarm node Docker image to Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/docker-container.md
+          #   - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+        # - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
-        - Deploying the multi‑tenant node:
-          - Multitenancy overview: installation/multi-tenant/overview.md
-          - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
-          - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
-        - Deploying Wallarm CDN node: installation/cdn-node.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -212,9 +299,6 @@ nav:
           - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
       - Monitoring & Failover:
         - Configuring a Failover Method: admin-en/configure-backup-en.md
-        - Using a Mirrored Wallarm Repository:
-          - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-          - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
         - Monitoring the Filter Node:
           - Introduction to the filtering node monitoring: admin-en/monitoring/intro.md
           - How to Fetch Metrics: admin-en/monitoring/fetching-metrics.md
