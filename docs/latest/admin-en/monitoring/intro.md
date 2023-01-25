@@ -27,9 +27,9 @@
 
 # Introduction to the filtering node monitoring
 
-You can monitor the state of a filter node using the node-provided metrics. These metrics are gathered by the [`collectd`][link-collectd] service that is installed on every Wallarm filter node.
+You can monitor the state of a filter node using the node-provided metrics. This article describes how to operate with the metrics gathered by the [`collectd`][link-collectd] service that is installed on every Wallarm filter node. The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filter nodes.
 
-The `collectd` service provides several ways to transfer data and can serve as a source of metrics for many monitoring systems, offering you control over the state of the filter nodes.
+In addition to the `collectd` metrics, Wallarm provides you with the metric format compatible with Prometheus and basic JSON metrics. Read about these formats in the [separate article](../configure-statistics-service.md).
 
 !!! warning "Support of the monitoring service on the CDN node"
     Please note that the `collectd` service is not supported by the [Wallarm CDN nodes](../../installation/cdn-node.md).
@@ -61,11 +61,11 @@ You can monitor both the Wallarm module and the postanalytics module even if the
 
 For monitoring to work, it is required that:
 * NGINX returns the statistics to the filter node (`wallarm_status on`),
-* the filtration mode is in the `monitoring`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
+* the filtration mode is in the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
   
 By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
 
-If you configure the statistics service to be available at a non-standard address:
+If you [configure](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service) the statistics service to be available at a non-standard address:
 
 1. Add the `status_endpoint` parameter with the new address value to the `/etc/wallarm/node.yaml` file, e.g.:
 
