@@ -4,8 +4,8 @@
 
     * 1.14.2 for Debian 10.x (buster)
     * 1.18.0 for Debian 11.x (bullseye)
-    * 1.18.0 for CentOS 7.x
-    * 1.20.1 for AlmaLinux, Rocky Linux or Oracle Linux 8.x
+    * 1.20.1 for CentOS 7.x
+    * 1.14.1 for AlmaLinux, Rocky Linux or Oracle Linux 8.x
 
     !!! info "Custom NGINX versions"
         If you have a different version, see [how to connect the Wallarm module to custom build of NGINX][nginx-custom]
