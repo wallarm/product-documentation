@@ -8,7 +8,7 @@
     * 1.20.1 for AlmaLinux, Rocky Linux or Oracle Linux 8.x
 
     !!! info "Custom NGINX versions"
-        If you have a different version, see [how to connect  the Wallarm module to custom build of NGINX][nginx-custom]
+        If you have a different version, see [how to connect the Wallarm module to custom build of NGINX][nginx-custom]
 * Executing all commands as a superuser (e.g. `root`)
 * For the request processing and postanalytics on different servers: postanalytics installed on the separate server upon the [instructions][install-postanalytics-instr]
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
