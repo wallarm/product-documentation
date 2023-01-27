@@ -46,7 +46,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
 
     === "Debian"
         ```bash
-        sudo apt install curl gnupg2 ca-certificates lsb-release
+        sudo apt install curl gnupg2 ca-certificates lsb-release debian-archive-keyring
         echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
         curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
         sudo apt update
