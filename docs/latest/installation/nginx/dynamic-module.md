@@ -53,13 +53,19 @@ These are the following options to install NGINX `stable` from the NGINX reposit
         sudo apt -y install nginx
         ```
     === "Ubuntu"
-        ```bash
-        sudo apt -y install curl gnupg2 ca-certificates lsb-release
-        echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
-        curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
-        sudo apt update
-        sudo apt -y install nginx
-        ```
+        1. Install the dependencies required for NGINX stable:
+
+            ```bash
+            sudo apt -y install curl gnupg2 ca-certificates lsb-release
+            ```
+        1. Install NGINX stable:
+
+            ```bash
+            echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+            curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+            sudo apt update
+            sudo apt -y install nginx
+            ```
     === "CentOS or Amazon Linux 2.0.2021x and lower"
 
         1. If an EPEL repository is added in CentOS 7.x, please disable installation of NGINX stable from this repository by adding `exclude=nginx*` to the file `/etc/yum.repos.d/epel.repo`.
