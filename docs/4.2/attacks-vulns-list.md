@@ -612,15 +612,26 @@ API abuse performed by bots like credential stuffing, fake account creation, con
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following automated threats by default:
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following bot types by default:
 
-* API abuse targeted at server response time increase or server unavailability
-* Credential stuffing
-* Fake account creation
-* Scalping
-* Vulnerability scanning
-* Scraping
-* Broken Object Level Authorization (BOLA)
+* **API abuse**
+
+    * Server response time increase
+    * Fake account creation
+    * Scalping
+    * Broken Object Level Authorization (BOLA)
+
+* **Account takeover**:
+
+    * Credential cracking
+    * Credential stuffing
+
+* **Security crawlers**:
+    * Fingerprinting
+    * Footprinting
+    * Vulnerability scanning
+
+* **Scraping**
 
 For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
