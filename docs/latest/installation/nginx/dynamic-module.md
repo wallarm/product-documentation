@@ -56,7 +56,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
         1. Install the dependencies required for NGINX stable:
 
             ```bash
-            sudo apt -y install curl gnupg2 ca-certificates lsb-release
+            sudo apt -y install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
             ```
         1. Install NGINX stable:
 
@@ -105,6 +105,7 @@ These are the following options to install NGINX `stable` from the NGINX reposit
         2. Install NGINX stable from the official repository:
 
             ```bash
+            sudo yum install -y yum-utils
             echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
             sudo yum install -y nginx
             ```
