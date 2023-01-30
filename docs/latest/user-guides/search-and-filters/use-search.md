@@ -104,6 +104,7 @@ Specify in the search string:
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 * `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
+* `ssrf`: to search for [Server‑side Request Forgery (SSRF) vulnerabilities and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 
 An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 

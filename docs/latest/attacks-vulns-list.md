@@ -304,7 +304,7 @@ You may follow these recommendations:
 
 ### Server‑side Request Forgery (SSRF)
 
-**Vulnerability**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -312,7 +312,9 @@ You may follow these recommendations:
 
 **Description:**
 
-A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.  
+A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
+
+Starting from release 4.4.2, Wallarm mitigates SSRF attack attempts. SSRF vulnerabilities are detected by all [supported Wallarm versions](updating-migrating/versioning-policy.md).
 
 **Remediation:**
 
