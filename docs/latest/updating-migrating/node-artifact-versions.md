@@ -2,9 +2,23 @@
 
 This document lists available [patch versions](versioning-policy.md#version-format) of Wallarm node 4.4 in different form-factors. You can track new patch version releases and plan timely upgrade based on this document.
 
+## DEB/RPM packages for NGINX
+
+### 4.4.1 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+
+### 4.4.0
+
+* Initial release 4.4, [see changelog](what-is-new.md)
+
 ## Helm chart for NGINX Ingress controller
 
 [How to upgrade](ingress-controller.md)
+
+### 4.4.3 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 
 ### 4.4.2 (2023-01-19)
 
@@ -27,6 +41,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](kong-ingress-controller.md)
 
+### 4.4.3 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+
 ### 4.4.1
 
 * Fix the weak JWT detection functionality issues
@@ -41,6 +59,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
+### 1.1.6 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+
 ### 4.4.1
 
 * Fix the weak JWT detection functionality issues
@@ -51,11 +73,19 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## NGINX-based Docker container
 
+### 4.4.1 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+
 ### 4.4.0
 
 * Initial release 4.4, [see changelog](what-is-new.md)
 
 ## Envoy-based Docker container
+
+### 4.4.1 (date)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 
 ### 4.4.0
 
