@@ -101,6 +101,7 @@ Specify in the search string:
 * `idor`: to search for vulnerabilities of the [BOLA (IDOR)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) type.
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
 * `weak_auth`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
+* `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 * `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
 
