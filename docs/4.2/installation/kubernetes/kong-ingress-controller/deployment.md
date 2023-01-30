@@ -10,7 +10,7 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 
 * Real-time [attack detection and mitigation](../../../about-wallarm/protecting-against-attacks.md)
 * [Vulnerability detection](../../../about-wallarm/detecting-vulnerabilities.md)
-* [API structure discovery](../../../about-wallarm/api-discovery.md)
+* [API inventory discovery](../../../about-wallarm/api-discovery.md)
 * The Wallarm services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
 * Support for Kong API Gateway 3.0.x (for both the Open-Source and Enterprise editions)

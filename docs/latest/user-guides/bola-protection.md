@@ -1,5 +1,5 @@
 [variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-structure-docs]:       api-discovery.md#tracking-changes-in-api-structure
+[changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
 [bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
 
 # BOLA protection

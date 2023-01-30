@@ -41,7 +41,7 @@ A condition is a system event to be notified about. The following conditions are
     * Hits not saved in the [sample](../events/analyze-attack.md#sampling-of-hits).
 * Number of incidents
 * Denylisted IP
-* [Changes in API structure](../../about-wallarm/api-discovery.md#tracking-changes-in-api-structure)
+* [Changes in API inventory](../../about-wallarm/api-discovery.md#tracking-changes-in-api)
 * Hits from the same IP, except for the ones of the Brute force, Forced browsing, BOLA (IDOR), Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
