@@ -105,7 +105,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 | Value | Risk level | Color |
 | --------- | ----------- | --------- |
-| 1 to 3 | Low | Grey |
+| 1 to 3 | Low | Gray |
 | 4 to 7 | Medium | Orange |
 | 8 to 10 | High | Red |
 
