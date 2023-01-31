@@ -31,6 +31,12 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## Helm chart for Sidecar proxy
 
+[How to upgrade](sidecar-proxy.md)
+
+### 4.4.1
+
+* Fix the weak JWT detection functionality issues
+
 ### 1.1.5
 
 * Initial release 4.4, [see changelog](what-is-new.md)
