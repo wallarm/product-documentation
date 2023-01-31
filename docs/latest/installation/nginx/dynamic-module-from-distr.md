@@ -18,6 +18,7 @@
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 
 # Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
 
@@ -25,7 +26,7 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 ## Requirements
 
---8<-- "../include/waf/installation/nginx-requirements-4.0.md"
+--8<-- "../include/waf/installation/nginx-distr-requirements-4.0.md"
 
 ## Installation options
 

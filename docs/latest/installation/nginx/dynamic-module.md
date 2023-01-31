@@ -20,6 +20,7 @@
 [waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 
 # Installing dynamic Wallarm module for NGINX stable from NGINX repository
 
