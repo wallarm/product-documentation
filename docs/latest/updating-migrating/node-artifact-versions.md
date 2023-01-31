@@ -25,6 +25,14 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## Helm chart for Kong Ingress controller
 
+[How to upgrade](kong-ingress-controller.md)
+
+### 4.4.1
+
+* Fix the weak JWT detection functionality issues
+* Upgrade the Kong API Gateway version to 3.1.x (for both the Open-Source and Enterprise editions)
+* Upgrade the Kong Ingress Controller version to 2.8.x
+
 ### 4.4.0
 
 * Initial release 4.4, [see changelog](what-is-new.md)
