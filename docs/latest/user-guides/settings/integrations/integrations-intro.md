@@ -1,5 +1,4 @@
 [integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
-[disable-button]:               ../../../images/user-guides/settings/integrations/disable-button.png
 
 [email-notifications]:          ./email.md
 [slack-notifications]:          ./slack.md
@@ -92,6 +91,9 @@ The number of integrations with one system is not limited. For example: to send 
 
 --8<-- "../include/cloud-ip-by-request.md"
 
+!!! info "Advanced notifications setup"
+    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
+
 ## Filtering integrations
 
 To filter displayed integrations, you can use the tabs:
@@ -99,11 +101,6 @@ To filter displayed integrations, you can use the tabs:
 * **All** with enabled, disabled, and not yet configured integrations
 * **Enabled** with active configured integrations
 * **Disabled** with disabled configured integrations
-
-![!Filtering Integrations][disable-button]
-
-!!! info "Advanced notifications setup"
-    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
 
 ## Unavailability of integrated systems and incorrect integration parameters
 
