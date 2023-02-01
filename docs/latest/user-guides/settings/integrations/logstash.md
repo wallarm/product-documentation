@@ -92,7 +92,7 @@ You will find more details in the [official Logstash documentation](https://www.
 
 ## Setting up integration
 
-1. Proceed to the Logstash integration setup in Wallarm Console → **Settings** → **Integrations** → **Logstash**.
+1. Proceed to the Logstash integration setup in Wallarm Console → **Integrations** → **Logstash**.
 1. Input the integration name.
 1. Specify target Logstash URL (Webhook URL).
 1. If required, configure advanced settings:

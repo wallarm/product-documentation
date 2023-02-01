@@ -15,7 +15,7 @@ In [Opsgenie UI](https://app.opsgenie.com/teams/list):
 
 In Wallarm UI:
 
-1. Open **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **Opsgenie** block or click the **Add integration** button and choose **Opsgenie**.
 3. Enter an integration name.
 4. Paste the copied API key to the **API key** field.

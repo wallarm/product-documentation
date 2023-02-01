@@ -109,7 +109,7 @@ Notifications are sent in JSON format. The set of JSON objects depends on the ev
 
 ## Setting up integration
 
-1. Open Wallarm UI → **Settings** → **Integrations**.
+1. Open Wallarm UI → **Integrations**.
 2. Click the **Webhook** block or click the **Add integration** button and choose **Webhook**.
 3. Enter an integration name.
 4. Enter target Webhook URL.

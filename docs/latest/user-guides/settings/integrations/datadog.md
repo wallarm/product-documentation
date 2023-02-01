@@ -9,7 +9,7 @@ You can choose the following events to be sent to Datadog:
 ## Setting up integration
 
 1. Open the Datadog UI → **Organization Settings** → **API Keys** and generate the API key for the integration with Wallarm.
-1. Open Wallarm Console → **Settings** → **Integrations** and proceed to the **Datadog** integration setup.
+1. Open Wallarm Console → **Integrations** and proceed to the **Datadog** integration setup.
 1. Enter an integration name.
 1. Paste the Datadog API key to the **API key** field.
 1. Select the [Datadog region](https://docs.datadoghq.com/getting_started/site/).

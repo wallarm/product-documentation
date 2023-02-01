@@ -6,7 +6,7 @@ You can set up Wallarm to send notifications to your Slack channel when the foll
 
 ## Setting up integration
 
-1. Open the **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **Slack** block or click the **Add integration** button and choose **Slack**.
 3. Enter an integration name.
 4. Open [Webhook settings in Slack](https://my.slack.com/services/new/incoming-webhook/) and add a new Webhook choosing the channel to post messages to.

@@ -95,7 +95,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
 
 ## Setting up integration
 
-1. Proceed to the Fluentd integration setup in Wallarm Console → **Settings** → **Integrations** → **Fluentd**.
+1. Proceed to the Fluentd integration setup in Wallarm Console → **Integrations** → **Fluentd**.
 1. Input the integration name.
 1. Specify target Fluentd URL (Webhook URL).
 1. If required, configure advanced settings:
