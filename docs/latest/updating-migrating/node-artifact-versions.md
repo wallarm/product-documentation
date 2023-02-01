@@ -7,6 +7,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.1 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.0
 
@@ -19,6 +20,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.2 (2023-01-19)
 
@@ -44,6 +46,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.1
 
@@ -62,6 +65,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 1.1.6 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.1
 
@@ -76,6 +80,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.1 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.0
 
@@ -86,6 +91,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.1 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.0
 

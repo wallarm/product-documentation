@@ -36,6 +36,14 @@ Attack analysis performed by Wallarm has been enhanced by involving an additiona
 * [Mass Assignment](../attacks-vulns-list.md#mass-assignment) - attempts to bind HTTP request parameters into program code variables or objects.
 * [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) when an attacker tries to make requests on behalf of the attacked web server.
 
+## Parameters of the statistics service
+
+**Starting from release 4.4.3**, the Wallarm statistics service returns the new parameter `custom_ruleset_ver`.
+
+The parameter points to the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
+
+[Details on the statistics service →](../admin-en/configure-statistics-service.md)
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
