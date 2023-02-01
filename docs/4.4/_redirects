@@ -407,3 +407,8 @@
 /demo-videos/waf-overview/ /demo-videos/overview/ 
 /demo-videos/waf-events-inspection/ /demo-videos/events-inspection/
 /demo-videos/notifications/ /user-guides/triggers/triggers/
+
+/user-guides/settings/api-discovery/ /user-guides/api-discovery/#configuring-api-discovery
+/4.2/user-guides/settings/api-discovery/ /4.2/user-guides/api-discovery/#configuring-api-discovery
+/4.0/user-guides/settings/api-discovery/ /4.0/user-guides/api-discovery/#configuring-api-discovery
+/3.6/user-guides/settings/api-discovery/ /3.6/user-guides/api-discovery/#configuring-api-discovery
