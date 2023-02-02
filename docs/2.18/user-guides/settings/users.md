@@ -46,9 +46,9 @@ More detailed information about access of different user roles to Wallarm entiti
 | **Triggers**        | View and manage                      | -                        | -                            | -                                 |
 | **Denylist**       | View, manage, and export             | View, manage, and export | View and export              | -                                 |
 | **Rules**           | View and manage                      | View and manage          | View                         | -                                 |
+| **Integrations**    | View and manage                      | -                        | -                            | -                                 |
 | **Filtration mode**        | View and manage                      | View                     | View                         | -                                 |
 | **Applications**    | View and manage                      | View                     | View                         | -                                 |
-| **Integrations**    | View and manage                      | -                        | -                            | -                                 |
 | **Users**           | View and manage                      | -                        | View                         | -                                 |
 | **Activity log**    | View                                 | -                        | View                         | -                                 |
 

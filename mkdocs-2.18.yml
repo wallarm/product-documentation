@@ -286,6 +286,29 @@ nav:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
       - IP Address Denylist: user-guides/denylist.md
+      - Integrations:
+        - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
+        - Email Report: user-guides/settings/integrations/email.md
+        - Slack: user-guides/settings/integrations/slack.md
+        - Telegram: user-guides/settings/integrations/telegram.md
+        - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
+        - InsightConnect: user-guides/settings/integrations/insightconnect.md
+        - Opsgenie: user-guides/settings/integrations/opsgenie.md
+        - PagerDuty: user-guides/settings/integrations/pagerduty.md
+        - Sumo Logic: user-guides/settings/integrations/sumologic.md
+        - Splunk: user-guides/settings/integrations/splunk.md
+        - Datadog: user-guides/settings/integrations/datadog.md
+        - Fluentd: user-guides/settings/integrations/fluentd.md
+        - Logstash: user-guides/settings/integrations/logstash.md
+        - Webhook: user-guides/settings/integrations/webhook.md
+        - Examples of integrations via intermediate data collectors:
+          - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
+          - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
+          - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
+          - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
+          - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
+          - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
+          - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
       - Settings:
         - Profile: user-guides/settings/account.md
         - General: user-guides/settings/general.md
@@ -293,29 +316,6 @@ nav:
         - Applications: user-guides/settings/applications.md
         - Users: user-guides/settings/users.md
         - Activity Log: user-guides/settings/audit-log.md
-        - Integrations:
-          - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
-          - Email Report: user-guides/settings/integrations/email.md
-          - Slack: user-guides/settings/integrations/slack.md
-          - Telegram: user-guides/settings/integrations/telegram.md
-          - Microsoft Teams: user-guides/settings/integrations/microsoft-teams.md
-          - InsightConnect: user-guides/settings/integrations/insightconnect.md
-          - Opsgenie: user-guides/settings/integrations/opsgenie.md
-          - PagerDuty: user-guides/settings/integrations/pagerduty.md
-          - Sumo Logic: user-guides/settings/integrations/sumologic.md
-          - Splunk: user-guides/settings/integrations/splunk.md
-          - Datadog: user-guides/settings/integrations/datadog.md
-          - Fluentd: user-guides/settings/integrations/fluentd.md
-          - Logstash: user-guides/settings/integrations/logstash.md
-          - Webhook: user-guides/settings/integrations/webhook.md
-          - Examples of integrations via intermediate data collectors:
-            - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
-            - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
-            - Splunk Enterprise via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-splunk.md
-            - Splunk Enterprise via Logstash: user-guides/settings/integrations/webhook-examples/logstash-splunk.md
-            - Micro Focus ArcSight Logger via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-arcsight-logger.md
-            - Micro Focus ArcSight Logger via Logstash: user-guides/settings/integrations/webhook-examples/logstash-arcsight-logger.md
-            - Datadog via Fluentd/Logstash: user-guides/settings/integrations/webhook-examples/fluentd-logstash-datadog.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
       - What is new in Wallarm node 2.18: updating-migrating/what-is-new.md

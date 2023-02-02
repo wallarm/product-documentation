@@ -11,7 +11,7 @@ First, generate and copy an API key as follows:
 1. Open the InsightConnect's UI → **Settings** → [**API Keys** page](https://insight.rapid7.com/platform#/apiKeyManagement) and click **New User Key**.
 2. Enter an API key name (e.g. `Wallarm API`) and click **Generate**.
 3. Copy the generated API key.
-4. Go to Wallarm UI → **Settings** → **Integrations** in the [US](https://us1.my.wallarm.com/settings/integrations/) or [EU](https://my.wallarm.com/settings/integrations/) cloud and click **InsightConnect**.
+4. Go to Wallarm UI → **Integrations** in the [US](https://us1.my.wallarm.com/integrations/) or [EU](https://my.wallarm.com/integrations/) cloud and click **InsightConnect**.
 4. Paste the API key that you copied before into the **API key** field.
 
 Secondly, generate and copy an API URL as follows:

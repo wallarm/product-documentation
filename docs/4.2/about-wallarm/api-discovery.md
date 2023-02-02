@@ -148,7 +148,7 @@ The risk score is made up of various factors, including:
 * **XML or JSON objects** passed in the endpoint request may be used by the attackers to transfer malicious XML external entities and injections to the server.
 
 !!! info "Configuring risk score calculation"
-    To adapt risk score estimation under your understanding of importance of factors, you can [configure](../user-guides/settings/api-discovery.md#configuring-risk-score-calculation) the weight of each factor in risk score calculation and calculation method.
+    To adapt risk score estimation under your understanding of importance of factors, you can [configure](../user-guides/api-discovery.md#customizing-risk-score-calculation) the weight of each factor in risk score calculation and calculation method.
 
 [Learn how to work with the risk score →](../user-guides/api-discovery.md#working-with-risk-score)
 
@@ -225,7 +225,7 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-1. Enable API Discovery for the required applications in Wallarm Console → **Settings** → **API Discovery** (also accessible by clicking **Configure API Discovery** at the built structure page).
+1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
     ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 

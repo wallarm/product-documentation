@@ -1,18 +1,13 @@
 # API Discovery
 
-This section describes how to use the API inventory built by the [API Discovery](../about-wallarm/api-discovery.md) module.
+The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](../about-wallarm/api-discovery.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
 
-The built API inventory is presented in the **API Discovery** section. The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
+The section is only available to the users of the following [roles](../user-guides/settings/users.md#user-roles):
 
-* **Administrator** and **Analyst** can view and manage the data discovered by the API Discovery module.
+* **Administrator** and **Analyst** can view and manage the data discovered by the API Discovery module, and access the API Discovery configuration part.
 
     **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
 * **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
-
-The API inventory includes the following elements:
-
-* Customer applications with discovered API hosts.
-* Discovered endpoints grouped by API hosts. For each endpoint, the HTTP method is displayed.
 
 ![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
@@ -22,7 +17,7 @@ The API inventory includes the following elements:
 
     Each time you open the **API Discovery** section:
     
-    * You see actual structure of your API (all discovered endpoints)
+    * You see actual inventory of your APIs (all discovered endpoints)
     * The **Changes since** filter goes to the `Lask week` state, which means:
 
         * From the presented endpoints, the `New` and `Changed` within this period will obtain corresponding [marks](#tracking-changes-in-api)
@@ -99,7 +94,7 @@ The **Changes in API** filter works differently and shows **only** endpoints cha
 
 ## Working with risk score
 
-The [automatically calculated](../about-wallarm/api-discovery.md#endpoint-risk-score) **risk score** allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
+The [risk score](../about-wallarm/api-discovery.md#endpoint-risk-score) allows you to understand which endpoints are most likely to be an attack target and therefore should be the focus of your security efforts.
 
 Risk score may be from `1` (lowest) to `10` (highest):
 
@@ -114,7 +109,10 @@ Risk score may be from `1` (lowest) to `10` (highest):
 * Sort by risk score in the **Risk** column.
 * Filter out `High`, `Medium` or `Low` using the **Risk score** filter.
 
-To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details. The details of the endpoint indicate all the factors that are applicable to the endpoint. In the **Risk score** section, expand the corresponding risk factor to get additional description, such as list of active vulnerabilities etc., and links to the solution recommendations.
+!!! info "Configuring risk score calculation"
+    By default, the API Discovery module automatically calculates a risk score for each endpoint based on the well-proven risk factor weights. To adapt risk score estimation under your understanding of importance of factors, you can [configure](#customizing-risk-score-calculation) the weight of each factor and a risk score calculation method.
+
+To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
 ![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
@@ -170,3 +168,45 @@ Wallarm can [automatically discover and protect endpoints that are vulnerable to
 ![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
+
+## Configuring API Discovery
+
+By clicking the **Configure API Discovery** button in the **API Discovery** section, you proceed to the API discovery fine-tuning options, such as choosing applications for API discovery and customizing the risk score calculation.
+
+### Choosing applications for API Discovery
+
+If the [API Discovery](../about-wallarm/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure API Discovery**.
+
+You may enable/disable API Discovery for all applications or only the selected ones.
+
+![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+
+When you add a new application in **Settings** → **[Applications](settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
+
+### Customizing risk score calculation
+
+You can configure the weight of each factor in [risk score](../about-wallarm/api-discovery.md#endpoint-risk-score) calculation and calculation method.
+
+Defaults: 
+
+* Calculation method: `Use the highest weight from all criteria as endpoint risk score`.
+* Default factor weights:
+
+    | Factor | Weight |
+    | --- | --- |
+    | Active vulnerabilities | 9 |
+    | Potentially vulnerable to BOLA | 6 |
+    | Parameters with sensitive data | 8 |
+    | Number of query and body parameters | 6 |
+    | Accepts XML / JSON objects | 6 |
+    | Allows uploading files to the server | 6 |
+
+To change how risk score is calculated: 
+
+1. Click the **Configure API Discovery** button in the **API Discovery** section.
+1. Select calculation method: highest or average weight.
+1. If necessary, disable factors you do not want to affect a risk score.
+1. Set weight for the remaining.
+
+    ![!API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+1. Save changes. Wallarm will re-calculate risk score for your endpoints in accordance with the new settings in several minutes.

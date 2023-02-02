@@ -14,7 +14,7 @@ In Sumo Logic UI:
 
 In Wallarm UI:
 
-1. Open the **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **Sumo Logic** block or click the **Add integration** button and choose **Sumo Logic**.
 3. Enter an integration name.
 4. Paste the copied value of HTTP Source Address (URL) to the **HTTP Source Address (URL)** field.

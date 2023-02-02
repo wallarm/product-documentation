@@ -1,5 +1,4 @@
 [integration-pane-img]:         ../../../images/user-guides/settings/integrations/integration-panel.png
-[disable-button]:               ../../../images/user-guides/settings/integrations/disable-button.png
 
 [email-notifications]:          ./email.md
 [slack-notifications]:          ./slack.md
@@ -18,7 +17,7 @@
 
 # Integrations Overview
 
-The **Settings** → **Integrations** tab allows you to integrate with different systems to get scheduled reports and instant notifications through them:
+The **Integrations** section of Wallarm Console allows you to integrate with different systems to get scheduled reports and instant notifications through them:
 
 * Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
 * Notifications are sent when vulnerabilities, hits, scope changes, system related events, etc. are detected in your system. Notifications include brief details of detected activity.
@@ -34,7 +33,7 @@ The systems available for integration are grouped by types as follows:
 
 ### Email and messengers
 
-* **Personal email** — the reports and notifications that are sent to the email indicated upon registration. You can also configure these notifications on the [**Profile**][account] tab.
+* **Personal email** — the reports and notifications that are sent to the email indicated upon registration. You can also configure these notifications in [**Settings** → **Profile**][account].
 * [Email report][email-notifications]
 * [Slack][slack-notifications]
 * [Telegram][telegram-notifications]
@@ -92,6 +91,9 @@ The number of integrations with one system is not limited. For example: to send 
 
 --8<-- "../include/cloud-ip-by-request.md"
 
+!!! info "Advanced notifications setup"
+    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
+
 ## Filtering integrations
 
 To filter displayed integrations, you can use the tabs:
@@ -99,11 +101,6 @@ To filter displayed integrations, you can use the tabs:
 * **All** with enabled, disabled, and not yet configured integrations
 * **Enabled** with active configured integrations
 * **Disabled** with disabled configured integrations
-
-![!Filtering Integrations][disable-button]
-
-!!! info "Advanced notifications setup"
-    For advanced notification setup, you can use [triggers](../../triggers/triggers.md).
 
 ## Unavailability of integrated systems and incorrect integration parameters
 

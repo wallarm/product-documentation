@@ -8,7 +8,7 @@ You can set additional email addresses that will be used to deliver scheduled [P
 
 ## Setting up integration
 
-1. Open **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **Email report** block or click the **Add integration** button and choose **Email report**. 
 3. Enter an integration name.
 4. Enter email addresses using a comma as a separator.

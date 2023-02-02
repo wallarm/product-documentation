@@ -18,7 +18,7 @@ In Splunk UI:
 
 In Wallarm UI:
 
-1. Open **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **Splunk** block or click the **Add integration** button and choose **Splunk**.
 3. Enter an integration name.
 4. Paste the copied token into the **HEC token** field.

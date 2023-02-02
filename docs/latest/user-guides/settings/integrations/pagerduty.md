@@ -26,7 +26,7 @@ In PagerDuty UI, [set up an integration][link-pagerduty-docs] for any existing s
 
 In Wallarm UI:
 
-1. Open **Settings** → **Integrations** tab.
+1. Open the **Integrations** section.
 2. Click the **PagerDuty** block or click the **Add integration** button and choose **PagerDuty**. 
 3. Enter an integration name.
 4. Paste the **Integration Key** value into the appropriate field.
