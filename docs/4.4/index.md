@@ -1,6 +1,6 @@
 # Wallarm platform
 
-The Wallarm solution protects legacy web, APIs, and microservices from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
+The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
 <div class="navigation">
 <a href="./quickstart/" class="navigation-card">
@@ -27,7 +27,7 @@ The Wallarm solution protects legacy web, APIs, and microservices from OWASP API
 </a>
 
 <a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">
-    <h3>Integrations</h3>
+    <h3>Integrations and DevSecOps</h3>
     <p>Log security events via SIEM, SOAR systems and data collectors you use for your day-to-day workflow</p>
 </a>
 
