@@ -7,40 +7,41 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 
 <div class="navigation">
 <a href="../updating-migrating/what-is-new/" class="navigation-card">
-    <h3>Upgrading to the latest version</h3>
-    <p>Learn new features in node 4.4 and apply changes to installed components</p>
+    <h3>What is new and upgrade</h3>
+    <p>Learn changes in the latest Wallarm node 4.4 and keep your modules up-to-date</p>
 </a>
 
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
-    <p>Deploy the first filtering node from the Wallarm Docker container in 15 minutes</p>
+    <p>Get started now: deploy Wallarm for effortless API Security</p>
 </a>
-
 <a href="./about-wallarm/overview/" class="navigation-card">
-    <h3>About Wallarm</h3>
-    <p>Learn Wallarm features, architecture, and supported platforms</p>
+    <h3>How Wallarm works</h3>
+    <p>Learn Wallarm hybrid architecture</p>
 </a>
 
 <a href="./admin-en/supported-platforms/" class="navigation-card">
-    <h3>Installation</h3>
-    <p>Select the platform and quickly deploy your first Wallarm node to existing infrastucture</p>
+    <h3>Deployment options</h3>
+    <p>Explore Out-of-Band, inline, and mirroring deployment options for cloud-native and other environments</p>
 </a>
 <a href="./admin-en/configure-parameters-en/" class="navigation-card">
     <h3>Configuration</h3>
-    <p>Customize deployed node settings to get the most out of the Wallarm solution for your company</p>
+    <p>Learn how to configure Wallarm for high performance and autoscaling</p>
 </a>  
+
+<a href="./user-guides/user-intro/" class="navigation-card">
+    <h3>User guide</h3>
+    <p>Learn how to operate Wallarm and mitigate attacks with security teams</p>
+</a>  
+
+<a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">
+    <h3>Integrations and DevSecOps</h3>
+    <p>Connect Wallarm with SIEM, SOAR and DevOps tools</p>
+</a>
 
 <a href="./api/overview/" class="navigation-card">
     <h3>Wallarm API</h3>
-    <p>Learn how to use Wallarm API to extend Wallarm node functionality</p>
+    <p>Make custom integrations via REST API</p>
 </a>
-<a href="./user-guides/user-intro/" class="navigation-card">
-    <h3>Using Wallarm</h3>
-    <p>Track and operate the system security state and Wallarm node together with your team via Wallarm Console</p>
-</a>  
 
-<a href="./attacks-vulns-list/" class="navigation-card">
-    <h3>Attack and vulnerability types</h3>
-    <p>Learn which attacks and vulnerabilities are detected by Wallarm</p>
-</a>
 </div>
