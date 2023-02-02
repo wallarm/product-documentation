@@ -51,7 +51,6 @@ More detailed information about access of different user roles to the Wallarm en
 | **Integrations**    | View and manage                      | -                        | -                        | -    | -                                 |
 | **Filtration mode**        | View and manage                      | View                     | View                        | - | -                                 |
 | **Applications**    | View and manage                      | View                     | View                      | -   | -                                 |
-| **Configuration of API Discovery**   | View and manage                      | -          | -                     | -       |-          |
 | **Users**           | View and manage                      | -                        | View                      | -   | -                                 |
 | **Activity log**    | View                                 | -                        | View                      | -   | -                                 |
 

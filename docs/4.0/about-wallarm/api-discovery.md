@@ -226,7 +226,7 @@ To run API Discovery correctly:
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
 
-1. Enable API Discovery for the required applications in Wallarm Console → **Settings** → **API Discovery** (also accessible by clicking **Configure API Discovery** at the built structure page).
+1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
     ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 

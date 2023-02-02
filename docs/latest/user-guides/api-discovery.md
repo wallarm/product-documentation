@@ -171,11 +171,11 @@ You can filter API endpoints by the BOLA auto protection state. The correspondin
 
 ## Configuring API Discovery
 
-By clicking the **Configure** button in the **API Discovery** section, you proceed to the API discovery fine-tuning options, such as choosing applications for API discovery and customizing the risk score calculation.
+By clicking the **Configure API Discovery** button in the **API Discovery** section, you proceed to the API discovery fine-tuning options, such as choosing applications for API discovery and customizing the risk score calculation.
 
-### Choosing applications for API discovery
+### Choosing applications for API Discovery
 
-If the [API Discovery](../about-wallarm/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure**.
+If the [API Discovery](../about-wallarm/api-discovery.md) subscription is purchased for your company account, you can enable/disable traffic analysis with API Discovery in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
 You may enable/disable API Discovery for all applications or only the selected ones.
 
@@ -203,7 +203,7 @@ Defaults:
 
 To change how risk score is calculated: 
 
-1. Click the **Configure** button in the **API Discovery** section.
+1. Click the **Configure API Discovery** button in the **API Discovery** section.
 1. Select calculation method: highest or average weight.
 1. If necessary, disable factors you do not want to affect a risk score.
 1. Set weight for the remaining.
