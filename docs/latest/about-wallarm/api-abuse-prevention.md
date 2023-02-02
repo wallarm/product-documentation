@@ -77,7 +77,7 @@ The following detectors may be involved:
 * **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
 * **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
 
-Statistics diagram displays tops for 30 days for the number of times the detectors were involved in marking malicious bots alone and together with each other (intersection).
+Statistics diagram displays tops for 30 days for the number of times the detectors were involved in marking malicious bots totally and together with each other (intersection).
 
 ![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
