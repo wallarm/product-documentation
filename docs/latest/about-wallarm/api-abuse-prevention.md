@@ -69,6 +69,72 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
 
     If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
 
+## API abuse prevention statistics
+
+API Abuse Prevention uses multiple detectors to identify the malicious bots. The module provides statistics on what detectors were involved in marking the ones.
+
+The following detectors may be involved:
+
+* Request interval
+* Request uniqueness
+* Request rate
+* Bad user-agent
+* Outdated browser
+* Suspicious behavior score
+* Business logic score
+
+Statistics diagram displays tops for 30 days for the number of detectors that were involved in marking malicious bots alone and together with each other (intersection).
+
+![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+
+Click the `?` sign for the detector to get the detector's detailed description.
+
+### Request interval
+
+The **Request interval** bot detector identifies patterns of API bot activity by analyzing the time intervals between consecutive requests.
+
+If requests are consistently sent at the same interval, such as every 5 seconds or every 30 seconds, it is likely that the requests are being made by a bot rather than a human user. This detector can identify even the most precise intervals, down to the millisecond, and flag any activity that lacks the randomness typically found in human behavior.
+
+### Request uniqueness
+
+The **Request uniqueness** bot detector identifies patterns of API bot activity by analyzing the number of unique endpoints visited during a session. 
+
+If a client consistently visits a low percentage of unique endpoints, such as 10% or less, it is likely that they are a bot rather than a human user. This detector uses a dynamic threshold calculated by statistics to flag any activity that falls below a certain percentage of unique API endpoints as potentially bot-like behavior.
+
+### Request rate
+
+The **Request rate** bot detector identifies patterns of API bot activity by analyzing the number of requests made in a specific time interval.
+
+If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that they are a bot rather than a human user. This detector uses statistical methods to get the dynamic threshold for each user session, ensuring that the detection is accurate and up-to-date.
+
+### Bad user-agent
+
+The **Bad user-agent** bot detector identifies patterns of API bot activity by analyzing the `User-Agent headers included in requests.
+
+This detector checks for specific signatures, including those belonging to crawlers, scrapers, and security checkers. It also performs additional checks for consistency and malicious patterns in the user-agent strings. By using this detector, Wallarm can effectively mitigate well-known bot activity and use this data to further improve effectiveness over time.
+
+### Outdated browser
+
+The **Outdated browser** bot detector identifies patterns of API bot activity by analyzing the browser and platform used in requests. 
+
+If a client is using an outdated or unsupported browser or platform, it is likely that they are a bot rather than a human user. This detector can identify requests made from outdated or unsupported combinations of browsers and platforms, allowing Wallarm to effectively mitigate API bot activity and improve the security of your system.
+
+### Suspicious behavior score
+
+The **Suspicious behavior score** bot detector identifies patterns of API bot activity by analyzing usual and unusual business logic API requests taken during a session. These actions are identified as having a specific target or purpose, and are often carefully crafted in terms of timing, type of action, and desired output.
+
+For instance, for e-commerce APIs, the suspicious behavior score will be lower for API clients that submit orders, search for items, and check carts, rather than bots that scrap prices only.
+
+By tracking the number of business logic actions taken by a client, this detector can flag any activity that appears to be bot-like and potentially harmful to your system.
+
+### Business logic score
+
+The **Business logic score** bot detector measures how frequently a client uses critical or sensitive API endpoints within the context of your application behavior.
+
+This score is calculated as the sum of the importance of each API endpoint visited by the client session, and is based on a machine learning predictors. 
+
+By tracking the business logic score for each client session, Wallarm can identify patterns of API bot activity that may pose a threat to your system.
+
 ## Exploring malicious bots and their attacks
 
 You can explore the bots' activity in the Wallarm Console UI as follows:
