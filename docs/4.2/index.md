@@ -26,7 +26,7 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 
 <a href="./user-guides/user-intro/" class="navigation-card">
     <h3>User guide</h3>
-    <p>Learn how to operate Wallarm and mitigate attacks with security teams</p>
+    <p>Learn how to operate Wallarm and mitigate attacks together with a security team</p>
 </a>  
 
 <a href="./updating-migrating/what-is-new/" class="navigation-card">
