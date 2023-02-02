@@ -252,6 +252,13 @@ A couple sentences about Kubernetes deployments and a [link to a detailed explan
         <p>A couple lines about this solution...</p>
 </a> 
 
+<a href="../../installation/cloud-platforms/aws/terraform-module/overview/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
+        <img class="platform-icon" width="64px" height="64px" src="../../images/platform-icons/tbd.png">
+        <h3>Terraform module for AWS
+        </h3>
+        <p>A couple lines about this solution...</p>
+</a> 
+
 </div>
 
 <!-- blocks for Ingress -->

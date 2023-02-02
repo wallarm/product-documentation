@@ -213,7 +213,7 @@ nav:
           # - Installing as a dynamic module for NGINX from Debian/CentOS repositories: 
           # - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
           # - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
-        - Others:
+        - Additional:
           - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
           - Deployment of the filtering node to the private clouds: installation/cloud-platforms/private-cloud.md
           - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
@@ -222,9 +222,9 @@ nav:
             - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
             - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
           - Specification of the Wallarm cloud-init script: installation/cloud-platforms/cloud-init.md
-          - Using a Mirrored Wallarm Repository:
-            - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
-            - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
+          # - Using a Mirrored Wallarm Repository:
+          #   - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
+          #   - How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-use-mirrored-repo.md
         # - Cloud platforms:
           # - Amazon AWS:
             # - AWS Marketplace image deployment:
@@ -250,7 +250,6 @@ nav:
           #   - Deployment of the Wallarm node Docker image to Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/docker-container.md
           #   - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
         # - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
-        - Checking the filtering node operation: admin-en/installation-check-operation-en.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -298,6 +297,7 @@ nav:
           - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
           - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
       - Monitoring & Failover:
+        - Checking the filtering node operation: admin-en/installation-check-operation-en.md
         - Configuring a Failover Method: admin-en/configure-backup-en.md
         - Monitoring the Filter Node:
           - Introduction to the filtering node monitoring: admin-en/monitoring/intro.md
