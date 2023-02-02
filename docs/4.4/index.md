@@ -26,7 +26,7 @@ The Wallarm solution protects legacy web, APIs, and microservices from OWASP API
     <p>Learn how to use Wallarm API to extend Wallarm node functionality</p>
 </a>
 
-<a href="./user-guides/settings/integrations/" class="navigation-card">
+<a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">
     <h3>Integrations</h3>
     <p>Log security events via SIEM, SOAR systems and data collectors you use for your day-to-day workflow</p>
 </a>
