@@ -31,7 +31,7 @@ Attack analysis performed by Wallarm has been enhanced by involving an additiona
 
 ## New attack types
 
-**Starting from release 4.4.2**, Wallarm detects new attack types:
+**Starting from release 4.4.3**, Wallarm detects new attack types:
 
 * [Mass Assignment](../attacks-vulns-list.md#mass-assignment) - attempts to bind HTTP request parameters into program code variables or objects.
 * [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) when an attacker tries to make requests on behalf of the attacked web server.

@@ -314,7 +314,7 @@ You may follow these recommendations:
 
 A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
 
-Starting from release 4.4.2, Wallarm mitigates SSRF attack attempts. SSRF vulnerabilities are detected by all [supported Wallarm versions](updating-migrating/versioning-policy.md).
+Starting from release 4.4.3, Wallarm mitigates SSRF attack attempts. SSRF vulnerabilities are detected by all [supported Wallarm versions](updating-migrating/versioning-policy.md).
 
 **Remediation:**
 
@@ -641,7 +641,7 @@ During a Mass Assignment attack, attackers try to bind HTTP request parameters i
 
 APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa6-mass-assignment.md) list of most serious API security risks.
 
-Starting from release 4.4.2, Wallarm mitigates Mass Assignment attempts.
+Starting from release 4.4.3, Wallarm mitigates Mass Assignment attempts.
 
 **Remediation:**
 

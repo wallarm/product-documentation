@@ -4,7 +4,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## DEB/RPM packages for NGINX
 
-### 4.4.1 (date)
+### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -62,7 +62,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
-### 1.1.6 (date)
+### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -77,7 +77,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## NGINX-based Docker container
 
-### 4.4.1 (date)
+### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -88,7 +88,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## Envoy-based Docker container
 
-### 4.4.1 (date)
+### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
