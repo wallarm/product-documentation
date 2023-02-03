@@ -4,6 +4,8 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## DEB/RPM packages for NGINX
 
+[How to upgrade](nginx-modules.md)
+
 ### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
@@ -77,6 +79,8 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ## NGINX-based Docker container
 
+[How to upgrade](docker-container.md)
+
 ### 4.4.3 (date)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
@@ -87,6 +91,8 @@ This document lists available [patch versions](versioning-policy.md#version-form
 * Initial release 4.4, [see changelog](what-is-new.md)
 
 ## Envoy-based Docker container
+
+[How to upgrade](docker-container.md)
 
 ### 4.4.3 (date)
 
