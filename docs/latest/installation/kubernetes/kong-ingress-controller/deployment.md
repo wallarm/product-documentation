@@ -14,7 +14,7 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 * [API inventory discovery](../../../about-wallarm/api-discovery.md)
 * The Wallarm services are integrated natively into both the Open-Source and Enterprise [Kong API Gateway](https://docs.konghq.com/gateway/latest/) editions
 * This solution is based on the [official Kong Ingress Controller for Kong API Gateway](https://docs.konghq.com/kubernetes-ingress-controller/latest/) that provides full support for features of Kong API Gateway
-* Support for Kong API Gateway 3.0.x (for both the Open-Source and Enterprise editions)
+* Support for Kong API Gateway 3.1.x (for both the Open-Source and Enterprise editions)
 * Fine-tuning the Wallarm layer via the Wallarm Console UI and on a per-Ingress basis via annotations
 
     !!! warning "Annotation support"
@@ -64,7 +64,7 @@ As for the Open-Source Kong Ingress controller with Wallarm services, it support
 To deploy Kong Ingress Controller with integrated Wallarm services:
 
 1. Create the Wallarm node.
-1. Deploy the Wallarm Helm chart with the Kong API Gateway and Wallarm services.
+1. Deploy the Wallarm Helm chart with the Kong Ingress Controller and Wallarm services.
 1. Enable traffic analysis for your Ingress.
 1. Test Kong Ingress Controller with integrated Wallarm services.
 
@@ -178,7 +178,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 4.4.0 <RELEASE_NAME> wallarm/kong -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.4.1 <RELEASE_NAME> wallarm/kong -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Kong Ingress Controller chart
