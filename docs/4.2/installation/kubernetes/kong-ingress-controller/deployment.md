@@ -63,7 +63,7 @@ As for the Open-Source Kong Ingress controller with Wallarm services, it support
 To deploy Kong Ingress Controller with integrated Wallarm services:
 
 1. Create the Wallarm node.
-1. Deploy the Wallarm Helm chart with the Kong API Gateway and Wallarm services.
+1. Deploy the Wallarm Helm chart with the Kong Ingress Controller and Wallarm services.
 1. Enable traffic analysis for your Ingress.
 1. Test Kong Ingress Controller with integrated Wallarm services.
 
