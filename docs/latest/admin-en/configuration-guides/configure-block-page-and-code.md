@@ -39,9 +39,9 @@ The `wallarm_block_page` directive accepts the listed parameters in the followin
     wallarm_block_page &/<PATH_TO_FILE/HTML_HTM_FILE_NAME> response_code=<CUSTOM_CODE> type=<BLOCKED_REQUEST_TYPE>;
     ```
     
-    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code. For example, `${remote_addr}` displays the IP address from which the blocked request originated.
-
     Wallarm provides the sample blocking page `&/usr/share/nginx/html/wallarm_blocked.html`. You can use this page as a start point for your [customization](#customizing-sample-blocking-page).
+
+    You can use [NGINX variables](https://nginx.org/en/docs/varindex.html) on the blocking page. For this, add the variable name in the format `${variable_name}` to the blocking page code, e.g. `${remote_addr}` to display the IP address from which the blocked request originated.
 
     !!! warning "Important information for Debian and CentOS users"
         If you use an NGINX version lower than 1.11 installed from [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) repositories, you should remove the `request_id` variable from the page code to display the dynamic blocking page correctly:
@@ -87,7 +87,7 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 ## Customizing sample blocking page
 
- The sample blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
+The sample blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
 
 ![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
@@ -378,6 +378,8 @@ To add your company support email, in the `wallarm_blocked_renamed.html` file, m
     const SUPPORT_EMAIL = "support@company.com";
 </script>
 ```
+
+If initializing a custom variable containing `$` in a value, escape this symbol by adding `{wallarm_dollar}` before the variable name, e.g.: `${wallarm_dollar}{variable_name}`. The `wallarm_dollar` variable returns `&`.
 
 ## Configuration examples
 
