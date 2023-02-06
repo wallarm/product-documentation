@@ -92,13 +92,6 @@ a.md-top.md-icon {
   font-size: 16px;
 }
 
-a.md-header__button.md-logo:before {
-  content: url(images/left-arrow.svg);
-  position: absolute;
-  right: 139px;
-  top: 9.98px;
-}
-
 .back-wallarmcom {
   display: block;
   position: absolute;
