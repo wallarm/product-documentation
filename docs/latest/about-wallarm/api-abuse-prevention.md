@@ -21,7 +21,19 @@ The **API Abuse Prevention** module detects the following automated threats by d
 
 The **API Abuse Prevention** module uses the complex bot detection model that involves ML-based methods as well as statistical and mathematical anomaly search methods and cases of direct abuse. The module self-learns the normal traffic profile and identifies dramatically different behavior as anomalies.
 
-API Abuse Prevention uses multiple [detectors](#api-abuse-prevention-statistics) to identify the malicious bots.
+API Abuse Prevention uses multiple detectors to identify the malicious bots. The module provides statistics on what detectors were involved in marking the ones.
+
+The following detectors may be involved:
+
+* **Request interval** analyzing the time intervals between consecutive requests to find lacks the randomness which is the sign of bot behavior.
+* **Request uniqueness** analyzing the number of unique endpoints visited during a session. If a client consistently visits a low percentage of unique endpoints, such as 10% or less, it is likely that it is a bot rather than a human user.
+* **Request rate** analyzing the number of requests made in a specific time interval. If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that it is a bot rather than a human user.
+* **Bad user-agent** analyzing the `User-Agent` headers included in requests. This detector checks for specific signatures, including those belonging to crawlers, scrapers, and security checkers.
+* **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
+* **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
+* **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
+
+![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 If one or several detectors point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour. The metrics value is reflected in the confidence rate of each bot's IP in the Wallarm Console UI.
 
@@ -62,26 +74,6 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
     Wallarm will register bots' attacks and put bots' IPs to the [graylists](../user-guides/ip-lists/denylist.md) but will not block traffic these IPs produce.
 
     If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
-
-## API abuse prevention statistics
-
-API Abuse Prevention uses multiple detectors to identify the malicious bots. The module provides statistics on what detectors were involved in marking the ones.
-
-The following detectors may be involved:
-
-* **Request interval** analyzing the time intervals between consecutive requests to find lacks the randomness which is the sign of bot behavior.
-* **Request uniqueness** analyzing the number of unique endpoints visited during a session. If a client consistently visits a low percentage of unique endpoints, such as 10% or less, it is likely that it is a bot rather than a human user.
-* **Request rate** analyzing the number of requests made in a specific time interval. If an API client consistently makes a high percentage of requests over a certain threshold, it is likely that it is a bot rather than a human user.
-* **Bad user-agent** analyzing the `User-Agent` headers included in requests. This detector checks for specific signatures, including those belonging to crawlers, scrapers, and security checkers.
-* **Outdated browser** analyzing the browser and platform used in requests. If a client is using an outdated or unsupported browser or platform, it is likely that it is a bot rather than a human user.
-* **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
-* **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
-
-Statistics diagram displays tops for 30 days for the number of times the detectors were involved in marking malicious bots totally and together with each other (intersection).
-
-![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
-
-Click the `?` sign for the detector to get the detector's detailed description.
 
 ## Exploring malicious bots and their attacks
 
