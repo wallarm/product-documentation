@@ -379,7 +379,7 @@ To add your company support email, in the `wallarm_blocked_renamed.html` file, m
 </script>
 ```
 
-If initializing a custom variable containing `$` in a value, escape this symbol by adding `{wallarm_dollar}` before the variable name, e.g.: `${wallarm_dollar}{variable_name}`. The `{wallarm_dollar}` variable returns `&`.
+If initializing a custom variable containing `$` in a value, escape this symbol by adding `{wallarm_dollar}` before the variable name, e.g.: `${wallarm_dollar}{variable_name}`. The `wallarm_dollar` variable returns `&`.
 
 ## Configuration examples
 
