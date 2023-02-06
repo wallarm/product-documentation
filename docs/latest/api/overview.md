@@ -48,33 +48,50 @@ A token is used for request authentication. The token is generated after success
 !!! info "API credentials and SSO"
     When SSO is enabled for the user, authentication for requests to Wallarm API via UUID and secret key becomes unavailable for this user. Find detailed information in the [SSO configuration](../admin-en/configuration-guides/sso/employ-user-auth.md#sso-and-api-authentication) article.
 
-Your UUID and secret key are used for request authentication.
+To authenticate your requests to Wallarm API:
 
-1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API credentials**.
-2. Copy the **UUID** value.
-3. Get the **Secret key** value:
-
-    * If you know the secret key value, then you can continue using the known value. The Wallarm Console displays the encrypted value of your active secret key.
-    * If you do not know the secret key value or it was lost, to generate the new secret key:
-        1. Click **Renew secret key**.
-        1. Confirm by entering your password. 
-        1. As soon as the new key is generated, copy its value. The secret key value will not be shown again.
-
-        !!! warning "Reusing the secret key value"
-            The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:
-
-            * Write down the key value in a secure place. The secret key value will not be shown again.
-            * Reuse the stored key value in all requests to Wallarm API.
-            * If you generated the new key value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
-4. Send the required API request passing the following values:
-    * **UUID** in the `X-WallarmAPI-UUID` header parameter
-    * **Secret key** in the `X-WallarmAPI-Secret` header parameter
-
-![!Wallarm API credentials](../images/wallarm-api-credentials.png)
+1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
+1. [Open](#configuring-tokens) yours or shared token and copy value from the **Token** section.
+1. Send the required API request passing the **Token** value in the `WallarmApi-Token` header parameter.
 
 <!-- ## API restrictions
 
 Wallarm limits the rate of API calls to 500 requests per second. -->
+
+## Configuring tokens
+
+Tokens are used for API request authentication. You can configure any number of tokens.
+
+Normal users can:
+
+* Create own tokens.
+* See, edit, disable/enable or remove all tokens they own.
+* Use shared tokens.
+* For each own token:
+
+    * Set permissions, but not wider than their own.
+    * Set expiration date for the token. If set, the token will be disabled after that date.
+
+!!! info "Automatic removal"
+    All disabled tokens are automatically removed in a week after disabling.
+
+Administrators can:
+
+* See, edit, disable/enable or remove all tokens in the company account.
+* Create private or shared tokens. Shared can be used by any user in the company account.
+
+Administrators cannot:
+
+* See or copy values of the tokens that they do not own.
+
+![!Wallarm API token](../images/api-tokens-edit.png)
+
+Consider that:
+
+* If token owner is disabled, all one's tokens are automatically disabled as well.
+* If token owner is reduced in permissions, corresponding permissions will be removed from all one's tokens.
+
+Note that some tokes are created automatically when migrating from the previous authentication approach. Permissions for the migrated legacy tokens are not displayed and cannot be changed.
 
 ## Wallarm approach to API development and documentation
 
