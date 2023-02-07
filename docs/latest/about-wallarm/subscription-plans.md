@@ -1,6 +1,6 @@
 # Wallarm subscription plans
 
-The Wallarm platform provides 2 subscription plans each for the certain [Wallarm product](overview.md#use-cases-of-the-wallarm-platform), Cloud Native WAAP or Advanced API Security. This document outlines these subscription plans in details.
+The Wallarm platform provides 2 subscription plans each for the certain [Wallarm product](overview.md#wallarm-products), Cloud Native WAAP or Advanced API Security. This document outlines these subscription plans in details.
 
 ## Subscription plans
 
