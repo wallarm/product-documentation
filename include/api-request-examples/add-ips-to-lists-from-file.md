@@ -28,8 +28,7 @@
     curl -X POST \
     https://$API/v4/ip_rules \
     -H "Content-Type: application/json" \
-    -H "X-WallarmAPI-Secret: $SECRET"  \
-    -H "X-WallarmAPI-UUID: $UUID" \
+    -H "WallarmApi-Token: <YOUR_TOKEN>"  \
     -d '{
     "clientid": '$CLIENT',
     "ip_rule": {
@@ -77,8 +76,7 @@
     curl -X POST \
     https://$API/v4/ip_rules \
     -H "Content-Type: application/json" \
-    -H "X-WallarmAPI-Secret: $SECRET"  \
-    -H "X-WallarmAPI-UUID: $UUID" \
+    -H "WallarmApi-Token: <YOUR_TOKEN>"  \
     -d '{
     "clientid": '$CLIENT',
     "ip_rule": {
