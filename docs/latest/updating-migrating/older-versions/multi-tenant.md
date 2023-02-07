@@ -116,16 +116,14 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     curl -X GET \
                     'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
                     -H 'accept: application/json' \
-                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-                    -H 'x-wallarmapi-uuid: YOUR_UUID'
+                    -H "WallarmApi-Token: YOUR_TOKEN"
                     ```
                 === "EU Cloud"
                     ``` bash
                     curl -X GET \
                     'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
                     -H 'accept: application/json' \
-                    -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
-                    -H 'x-wallarmapi-uuid: YOUR_UUID'
+                    -H "WallarmApi-Token: YOUR_TOKEN"
                     ```
             
             Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
@@ -160,7 +158,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://us1.api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+            -H "WallarmApi-Token: YOUR_TOKEN" \
             -H 'x-wallarmapi-uuid: YOUR_UUID' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
@@ -169,7 +167,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H 'x-wallarmapi-secret: YOUR_SECRET_KEY' \
+            -H "WallarmApi-Token: YOUR_TOKEN" \
             -H 'x-wallarmapi-uuid: YOUR_UUID' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        

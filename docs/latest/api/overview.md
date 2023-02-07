@@ -62,7 +62,7 @@ Wallarm limits the rate of API calls to 500 requests per second. -->
 
 Tokens are used for API request authentication. You can configure any number of tokens.
 
-Normal users can:
+Non-administrator users can:
 
 * Create own tokens.
 * See, edit, disable/enable or remove all tokens they own.
@@ -78,7 +78,7 @@ Normal users can:
 Administrators can:
 
 * See, edit, disable/enable or remove all tokens in the company account.
-* Create private or shared tokens. Shared can be used by any user in the company account.
+* Create private or shared tokens. Shared tokens can be used by any user in the company account.
 
 Administrators cannot:
 
@@ -91,7 +91,7 @@ Consider that:
 * If token owner is disabled, all one's tokens are automatically disabled as well.
 * If token owner is reduced in permissions, corresponding permissions will be removed from all one's tokens.
 
-Note that some tokes are created automatically when migrating from the previous authentication approach. Permissions for the migrated legacy tokens are not displayed and cannot be changed.
+Note that some tokens are created automatically when migrating from the previous authentication approach. Permissions for the migrated legacy tokens are not displayed and cannot be changed.
 
 ## Wallarm approach to API development and documentation
 
