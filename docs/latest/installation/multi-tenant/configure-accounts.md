@@ -96,11 +96,11 @@ At this step, a tenant account linked to a global account will be created.
     ??? info "Show an example of the request sent from your own client"
         === "US Cloud"
             ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: YOUR_TOKEN" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
         === "EU Cloud"
             ``` bash
-            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: YOUR_TOKEN" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
     ??? info "Show an example of the response"
