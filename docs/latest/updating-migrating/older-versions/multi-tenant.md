@@ -158,8 +158,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://us1.api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H "WallarmApi-Token: <YOUR_TOKEN>" \
-            -H 'x-wallarmapi-uuid: YOUR_UUID' \
+            -H 'WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
         === "EU Cloud"
@@ -167,8 +166,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H "WallarmApi-Token: <YOUR_TOKEN>" \
-            -H 'x-wallarmapi-uuid: YOUR_UUID' \
+            -H 'WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
 
