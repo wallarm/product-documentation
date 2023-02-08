@@ -89,7 +89,7 @@ nav:
   - Product guides:
     - Home: index.md
     - How Wallarm works:
-        - How Wallarm platform works: about-wallarm/overview.md
+        - How the Wallarm platform works: about-wallarm/overview.md
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Discovering API inventory: about-wallarm/api-discovery.md
