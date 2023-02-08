@@ -1,4 +1,4 @@
-# How the Wallarm platform works
+# Wallarm platform overview
 
 The Wallarm platform is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
 

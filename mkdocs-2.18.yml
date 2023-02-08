@@ -88,8 +88,8 @@ edit_uri: ../product-docs-en/edit/master/docs/2.18/
 nav:
   - Product guides:
     - Home: index.md
-    - How Wallarm works:
-        - How the Wallarm platform works: about-wallarm/overview.md
+    - How Wallarm Works:
+        - Wallarm platform overview: about-wallarm/overview.md
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Attack and vulnerability types: attacks-vulns-list.md
@@ -98,7 +98,7 @@ nav:
           - Data retention policy: about-wallarm/data-retention-policy.md
         - Wallarm subscription plans: about-wallarm/subscription-plans.md
         - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
-    - Quick start: quickstart.md
+    - Quick Start: quickstart.md
     - Administrator Guide:
       - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Installation:
