@@ -24,7 +24,7 @@
 Wallarm CDN node operating as a reverse proxy mitigates malicious traffic without placing any third‑party components in the application's infrastructure.
 
 !!! info "CDN nodes under Free tier"
-    Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan).
+    Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
 
 ## How CDN node works
 

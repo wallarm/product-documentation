@@ -1,4 +1,4 @@
-# Discovering API inventory
+# Discovering API inventory <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Discovery** module of the Wallarm platform builds your application REST API inventory based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results.
 
@@ -18,6 +18,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * See what data is [going into the APIs](../user-guides/api-discovery.md#params).
 * Understand which endpoints are [most likely](#endpoint-risk-score) to be an attack target.
 * View most attacked APIs for the last 7 days.
+* Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
 * Have an up-to-date API inventory with the option to [export it](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) into the OpenAPI v3 to compare it with your own API description. You can discover:
     * The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
@@ -112,7 +113,7 @@ This data allows checking that values of the expected format are passed in each 
 
 ### Sample preview
 
-Before purchasing the API Discovery subscription plan, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
+Before purchasing the [subscription plan](subscription-plans.md#subscription-plans) with API Discovery, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
 
 ![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
@@ -220,7 +221,7 @@ The API Discovery package `wallarm-appstructure` is delivered with all forms of 
 
 To run API Discovery correctly:
 
-1. Add the subscription plan for the **API Discovery** [module](../about-wallarm/subscription-plans.md#modules). To add the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
+1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
     If the applications are not configured, structures of all APIs are grouped in one tree.
