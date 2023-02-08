@@ -1,44 +1,61 @@
 # Wallarm subscription plans
 
-The subscription plan outlines the access conditions to the Wallarm products: subscription period, the set of available modules, and features.
+When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
 
-Different subscription plans are used for:
+Wallarm provides the following subscription plans:
 
-* API Security
-* API Discovery
+* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
+* **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
 
-This document describes the components that may be included into the Wallarm subscription plans and how to configure them.
+    !!! info "Advanced API Security is a subscription bundle"
+        The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
 
 ## Subscription plans
 
-The subscription plan includes a set of modules and features. You can select and include any modules listed below into your plan. The set of options in the plan is defined individually with each client.
+| Feature | Cloud Native WAAP | WAAP + Advanced API Security |
+| ------- | ----------------- | --------------------- |
+| **OWASP coverage** | | |
+| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Yes | Yes |
+| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Partially <sup>⁕</sup> | Yes |
+| **Protected resource types** | | |
+| Web applications | Yes | Yes |
+| APIs | Partially <sup>⁕</sup> | Yes |
+| **API protocol support** | | |
+| Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes |
+| Mainstream (REST, GraphQL) | Yes | Yes |
+| Modern and streaming (gRPC, WebSocket) | No | Yes |
+| **Real-time threat prevention** | | |
+| [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks), e.g. SQL injection, RCE | Yes | Yes |
+| [Virtual patching](../user-guides/rules/vpatch-rule.md) | Yes | Yes |
+| [Geolocation filtering](../user-guides/ip-lists/overview.md) | Yes | Yes |
+| **Protection from automated threats** | | |
+| [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
+| [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual setup | Automated protection |
+| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No | Yes |
+| **Observability options** | | |
+| [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
+| [Sensitive data detection](../about-wallarm/api-discovery.md) | No | Yes |
+| **Security testing and vulnerability assessment** | | |
+| [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
+| [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
+| **Security event monitoring** | | |
+| [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | All | All |
+| [Audit log](../user-guides/settings/audit-log.md) | Yes | Yes |
+| **Deployment** | | |
+| [Deployment options](../admin-en/supported-platforms.md) | All | All |
+| [Multitenancy](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) |
+| **User management** | | |
+| [SSO (SAML) authentication for users](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |
+| **Wallarm API** | | |
+| [Access to Wallarm API](../api/overview.md) | Yes | Yes |
 
-### Modules
+`⁕` Features may operate **Partially** when they depend on unavailable functionality, e.g. WAAP protects APIs partially because it analyzes requests sent via the limited set of API protocols.
 
-The set of all Wallarm platform modules is provided below. Modules can be added to any subscription plan additionally, so the set of modules is not fixed within the subscription plan.
+To activate a subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com). Subscription cost will be determined based on the chosen plan, its period, and [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md).
 
-* **API Threat Prevention / Web Application Firewall** continuously analyzes HTTP and HTTPS traffic and blocks malicious requests. Traffic analysis is performed with the DPI (Deep packet inspection) technology, and the decision to block a request is made in real time.
-* **[Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md)** automatically denylists IP addresses from which brute-force attacks are sent.
-* **[Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)** detects active application vulnerabilities that could be exploited during an attack. For this, the module automatically replays attacks from real traffic processed by the filtering node and looks for vulnerabilities in the corresponding parts of the application.
-* **[Custom ruleset setup](../user-guides/rules/compiling.md)** allows you to manually add request processing rules: block malicious requests if the filtering node is working in the `monitoring` mode or if any known malicious payload is not detected in the malicious request / detect the attack based on the specified regular expression / cut out sensitive information such as passwords or cookies from the uploading to the Wallarm Cloud / enable and disable the blocking of requests to various parts of a web application.
-* **[Exposed asset Scanner](../user-guides/scanner/check-scope.md)** scans the company's exposed assets: discovering new domains, IP addresses, services, and notification of new objects.
-* **[Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)** detects common types of vulnerabilities in the application in accordance with the OWASP Top 10 recommendations. The list of vulnerabilities that can be detected is available at this [link](../attacks-vulns-list.md).
-* **[API Discovery](../about-wallarm/api-discovery.md)** identifies your application API based on the actual API usage. The module continuously analyzes the real traffic requests and builds the API inventory based on the analysis results. The **API Discovery** module is provided within a separate subscription plan.
-* **[API Abuse Prevention](../about-wallarm/api-abuse-prevention.md)** detects and mitigates bots performing API abuse like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+Information about an active plan is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
-### Features
-
-The set of features included to the subscription plan is defined individually with each client. The following features can be included:
-
-* Limit for requests processed per month
-* Multi-tenant system
-* Period of event storage
-* Number of users
-* Level of technical support
-
-To define features that should be included to your subscription plan, please send the request to [sales@wallarm.com](mailto:sales@wallarm.com). 
-
-### Subscription notifications
+## Subscription notifications
 
 Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
 
@@ -54,12 +71,14 @@ When a new user is registered in Wallarm Console of the **[US Cloud](overview.md
 The Free Tier subscription includes:
 
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
-* Access to the Wallarm platform with the maximum set of modules and features, except for the following:
+* Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
 
     * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner/check-scope.md) Scanners
     * The [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification) feature
     * The [API Abuse Prevention](api-abuse-prevention.md) module
     * Deployment of the [CDN node](../installation/cdn-node.md) type
+    * Partial coverage of OWASP API Top 10 due to unavailability of Vulnerability Scanner
+    * Access to Wallarm API
 
 **What happens if the quota is exceeded?**
 
@@ -80,8 +99,7 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
 
 * The trial period is free.
 * The trial period lasts 14 days.
-* Wallarm trial provides the maximum set of modules and features that can be included in a paid subscription to Wallarm.
-* Wallarm trial also activates API Discovery trial.
+* Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](#subscription-plans).
 * The trial period can be extended for 14 days more only once.
 
     The trial period can be extended in the Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md) section and via the button from the email notifying about the end of the trial period. The email is sent only to users with the [role **Administrator** and **Global Administrator**](../user-guides/settings/users.md#user-roles).
@@ -91,12 +109,6 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     * The Wallarm node and Wallarm Cloud synchronization will be stopped.
     * The Wallarm node will operate locally but will not get any updates from the Wallarm Cloud as well as will not upload data to the Cloud.
     
-    When a paid Wallarm subscription is activated, access to the client account is restored for all users.
+    When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
-
-## Subscription management
-
-* To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-* Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
-* Subscription cost is determined based on [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md), subscription period, the set of connected modules, and features.

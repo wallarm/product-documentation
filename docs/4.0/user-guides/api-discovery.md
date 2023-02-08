@@ -1,4 +1,4 @@
-# API Discovery
+# API Discovery <a href="../../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This section describes how to use the API inventory built by the [API Discovery](../about-wallarm/api-discovery.md) module.
 

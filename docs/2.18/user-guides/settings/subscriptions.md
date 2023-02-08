@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/subscriptions.md"
+--8<-- "4.2/user-guides/settings/subscriptions.md"

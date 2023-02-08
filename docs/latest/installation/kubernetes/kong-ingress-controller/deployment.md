@@ -230,6 +230,6 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
 Wallarm pods have been injected based on the [default `values.yaml`](https://github.com/wallarm/kong-charts/blob/main/charts/kong/values.yaml) and the custom configuration you specified on the 2nd deployment step.
 
-You can customize both the Kong API Gateway and Wallarm behavior even more and get the most out of API security for your company.
+You can customize both the Kong API Gateway and Wallarm behavior even more and get the most out of Wallarm for your company.
 
 Just proceed to the [Kong Ingress Controller solution customization guide](customization.md).

@@ -1,4 +1,4 @@
-# Customizing the module for active threat verification
+# Customizing the module for active threat verification <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Custom ruleset allows changing the following configurations of the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module:
 

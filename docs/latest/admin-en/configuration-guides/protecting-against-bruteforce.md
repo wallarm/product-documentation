@@ -19,10 +19,9 @@ There are the following classes of brute‑force attacks:
 
 ## Configuration steps
 
-1. Add the [module](../../about-wallarm/subscription-plans.md#modules) **Brute-force protection** to the Wallarm subscription plan. To add the module, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-2. If the filtering node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
-3. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Brute force** or **Forced browsing**.
-4. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
+1. If the filtering node is deployed behind a proxy server or load balancer, then [configure](../using-proxy-or-balancer-en.md) displaying of a real IP address of the client.
+1. [Configure](#configuring-the-trigger-to-identify-brute-force) the trigger **Brute force** or **Forced browsing**.
+1. [Test](#testing-the-configuration-of-brute-force-protection) the configuration of brute force protection.
 
 ## Configuring the trigger to identify brute force
 

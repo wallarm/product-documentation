@@ -4,7 +4,7 @@
 [link-admin-guide]:         ../admin-en/admin-intro-en.md
 
 [doc-use-search]:           search-and-filters/use-search.md
-[doc-subscriptions]:        settings/subscriptions.md
+[doc-subscriptions]:        ../about-wallarm/subscription-plans.md
 
 
 # Introduction to the User Guide

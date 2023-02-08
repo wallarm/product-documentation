@@ -25,7 +25,7 @@ Any widget allows to open the [event list](events/check-attack.md) the statistic
     * The **Onboarding tour** option will provide you with deployment options supported by Wallarm and links to relevant deployment instructions.
     * The **Wallarm Playground** option will forward you to the Wallarm Console playground with read-only access to its sections. This option is available only for users of the US Cloud.
 
-## API Discovery
+# API Discovery <a href="../../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 This widget displays data about your API collected by the [API Discovery](../about-wallarm/api-discovery.md) module:
 
