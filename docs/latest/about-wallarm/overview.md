@@ -1,34 +1,18 @@
 # How the Wallarm platform works
 
-The Wallarm platform has hybrid architecture that is uniquely suited to protect all your APIs and web applications in multi‑cloud and cloud‑native environments. This document overviews the products Wallarm provides and explains its architecture.
+The Wallarm platform is uniquely suited to protect your cloud applications and APIs. Its hybrid architecture safeguards your resources by offering:
 
-## Wallarm products
-
-The Wallarm platform provides the following products:
-
-* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
-* **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
-
-| Feature | Cloud Native WAAP | Advanced API Security |
-| ------- | ----------------- | --------------------- |
-| Mitigation of [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Yes | Yes |
-| Mitigation of [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Partially | Yes |
-| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No <sup>⁕</sup> | Yes |
-| [API Discovery](../about-wallarm/api-discovery.md) | No <sup>⁕</sup> | Yes |
-| [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No <sup>⁕</sup> | Yes |
-
-`⁕` - can be added as a separate subscription to a corresponding module.
-
-When [subscribing](subscription-plans.md#subscription-plans) to Wallarm, you choose the product that meets your business needs the most.
-
-## Components of the Wallarm platform
+* [Protection against hacker attacks](protecting-against-attacks.md) with ultra-low false positives
+* [Protection against bots performing API abuse](api-abuse-prevention.md)
+* [API Discovery](api-discovery.md)
+* [Automatic detection of vulnerabilities](detecting-vulnerabilities.md)
 
 Wallarm consists of the following core components:
 
 * The Wallarm filtering node
 * The Wallarm Cloud
 
-### Filtering node
+## Filtering node
 
 The Wallarm filtering node does the following:
 
@@ -36,9 +20,9 @@ The Wallarm filtering node does the following:
 * Collects the network traffic metrics and uploads the metrics to the Wallarm Cloud
 * Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis
 
-The Wallarm filtering node is installed in your network infrastructure by one of the [supported deployment options](../admin-en/supported-platforms.md). Regardless of the [Wallarm product](#wallarm-products) you are using, any deployment option is available.
+You deploy the Wallarm filtering node to a network infrastructure by one of the [supported deployment options](../admin-en/supported-platforms.md).
 
-### Cloud
+## Cloud
 
 The Wallarm Cloud does the following:
 
@@ -53,14 +37,14 @@ At the same time, you may use both Wallarm Clouds. In this case you will need to
 
 Endpoints for the Wallarm Clouds are provided below.
 
-#### US Cloud
+### US Cloud
 
 Physically located in the USA.
 
 * https://us1.my.wallarm.com/ to create Wallarm account
 * `https://us1.api.wallarm.com/` to call API methods
 
-#### EU Cloud
+### EU Cloud
 
 Physically located in the Netherlands.
 
