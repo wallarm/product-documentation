@@ -1,25 +1,25 @@
 # Wallarm subscription plans
 
-The Wallarm platform provides 2 subscription plans each for the certain [Wallarm product](overview.md#wallarm-products), Cloud Native WAAP or Advanced API Security. This document outlines these subscription plans in details.
+When subscribing to Wallarm, you choose a plan that meets your business needs the most. From this document, you can learn available subscription plans and the functionality they enable.
+
+Wallarm provides the following subscription plans:
+
+* **Cloud Native WAAP (Web Application & API Protection)** that is a Next-Gen WAF providing web applications and APIs with protection against common threats.
+* **Advanced API Security** provides comprehensive API discovery and threat prevention across your entire portfolio, regardless of protocol.
+
+    !!! info "Advanced API Security is a subscription bundle"
+        The Advanced API Security subscription plan is sold as an add-on for Cloud Native WAAP.
 
 ## Subscription plans
 
-There are the following subscription plans:
-
-* Cloud Native WAAP (Web Application & API Protection)
-* Advanced API Security
-
-!!! info "Advanced API Security is a subscription bundle"
-    The Advanced API Security subscription plan is sold as a bundle for Cloud Native WAAP since it enhances the default WAAP feature set.
-
-| Feature | Cloud Native WAAP | Advanced API Security |
+| Feature | Cloud Native WAAP | WAAP + Advanced API Security |
 | ------- | ----------------- | --------------------- |
 | **OWASP coverage** | | |
 | [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Yes | Yes |
-| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Partially | Yes |
+| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | Partially <sup>⁕</sup> | Yes |
 | **Protected resource types** | | |
 | Web applications | Yes | Yes |
-| APIs | Partially | Yes |
+| APIs | Partially <sup>⁕</sup> | Yes |
 | **API protocol support** | | |
 | Legacy (SOAP, XML-RPC, WebDAV, WebForm) | Yes | Yes |
 | Mainstream (REST, GraphQL) | Yes | Yes |
@@ -31,13 +31,13 @@ There are the following subscription plans:
 | **Protection from automated threats** | | |
 | [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | Yes | Yes |
 | [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | Manual setup | Automated protection |
-| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No <sup>⁕</sup> | Yes |
+| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | No | Yes |
 | **Observability options** | | |
-| [API Discovery](../about-wallarm/api-discovery.md) | No <sup>⁕</sup> | Yes |
-| [Sensitive data detection](../about-wallarm/api-discovery.md) | No <sup>⁕</sup> | Yes |
+| [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
+| [Sensitive data detection](../about-wallarm/api-discovery.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
-| [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No <sup>⁕</sup> | Yes |
-| [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No <sup>⁕</sup> | Yes |
+| [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
+| [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | No | Yes |
 | **Security event monitoring** | | |
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | All | All |
 | [Audit log](../user-guides/settings/audit-log.md) | Yes | Yes |
@@ -49,12 +49,13 @@ There are the following subscription plans:
 | **Wallarm API** | | |
 | [Access to Wallarm API](../api/overview.md) | Yes | Yes |
 
-`⁕` - can be added as a separate subscription to a corresponding module.
+`⁕` Features may operate **Partially** when they depend on unavailable functionality, e.g. WAAP protects APIs partially because it analyzes requests sent via the limited set of API protocols.
 
-!!! info "Partially available features"
-    Features marked as **Partially** available are so because their operation depends on other features unavailable under the selected subscription. For instance, WAAP protects APIs partially because it analyzes requests sent via the limited set of API protocols and uses the limited set of tools for analysis.
+To activate a subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com). Subscription cost will be determined based on the chosen plan, its period, and [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md).
 
-### Subscription notifications
+Information about an active plan is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
+
+## Subscription notifications
 
 Wallarm notifies **Administrators** and **Global Administrators** of your account via emails about any issues with a subscription:
 
@@ -111,9 +112,3 @@ When a new user is registered in Wallarm Console of the **[EU Cloud](overview.md
     When a paid subscription to Wallarm is activated, access to the client account is restored for all users.
 
 Information about the trial period is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
-
-## Subscription management
-
-* To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-* Information about active subscription is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
-* Subscription cost is determined based on [incoming traffic volume](../admin-en/operation/learn-incoming-request-number.md), subscription period, and the chosen Wallarm product.
