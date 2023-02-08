@@ -45,9 +45,6 @@ A token is used for request authentication. The token is generated after success
 
 ### Your own client
 
-!!! info "API credentials and SSO"
-    When SSO is enabled for the user, authentication for requests to Wallarm API via UUID and secret key becomes unavailable for this user. Find detailed information in the [SSO configuration](../admin-en/configuration-guides/sso/employ-user-auth.md#sso-and-api-authentication) article.
-
 To authenticate your requests to Wallarm API:
 
 1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
