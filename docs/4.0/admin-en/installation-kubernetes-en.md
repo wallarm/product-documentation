@@ -53,7 +53,7 @@ Among all supported [Wallarm deployment options](supported-platforms.md), this s
     ```
 4. Create the `values.yaml` file with the [Wallarm configuration](configure-kubernetes-en.md).
 
-    Example of the file with the minimun configuration:
+    Example of the file with the minimum configuration:
 
     === "US Cloud"
         ```bash

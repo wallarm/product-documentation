@@ -42,7 +42,7 @@ These instructions provide you with the steps to deploy the Wallarm Ingress cont
     ```
 4. Create the `values.yaml` file with the [Wallarm configuration](configure-kubernetes-en.md).
 
-    Example of the file with the minimun configuration:
+    Example of the file with the minimum configuration:
 
     === "EU Cloud"
         ```bash
