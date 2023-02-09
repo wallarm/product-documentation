@@ -1,3 +1,6 @@
+[user-roles-article]:    ../user-guides/settings/users.md#user-roles
+[img-api-tokens-edit]:   ../images/api-tokens-edit.png
+
 # Wallarm API overview
 
 Wallarm API provides interaction between components of the Wallarm system. You can use Wallarm API methods to create, get, or update the following instances:
@@ -55,42 +58,7 @@ To authenticate your requests to Wallarm API:
 
 Wallarm limits the rate of API calls to 500 requests per second. -->
 
-## Configuring tokens
-
-Tokens are used for API request authentication. You can configure any number of tokens.
-
-[All users](../user-guides/settings/users.md#user-roles) can:
-
-* Create own tokens.
-* See, edit, disable/enable or remove all tokens they own.
-* Use shared tokens.
-* For each own token:
-
-    * Set permissions, but not wider than their own.
-    * Set expiration date for the token. If set, the token will be disabled after that date.
-
-!!! info "Automatic removal"
-    All disabled tokens are automatically removed in a week after disabling.
-
-Administrators can:
-
-* See, edit, disable/enable or remove all tokens in the company account.
-* Create private or shared tokens. Shared tokens can be used by any user in the company account.
-
-    !!! info "Administrators cannot"
-        Administrators cannot see or copy values of the tokens that they do not own.
-
-![!Wallarm API token](../images/api-tokens-edit.png)
-
-Consider that:
-
-* If token owner is disabled, all one's tokens are automatically disabled as well.
-* If token owner is reduced in permissions, corresponding permissions will be removed from all one's tokens.
-
-Note that previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **legacy** token, so that your requests authenticated with UUID and secret key will continue working. Permissions for the migrated legacy tokens are not displayed and cannot be changed.
-
-!!! info "SSO users"
-    Legacy tokens are not created for users using SSO to access the Wallarm Console. If SSO is enabled for the owner of some tokens, all these tokens are automatically disabled.
+--8<-- "../include/configure-api-tokens.md"
 
 ## Wallarm approach to API development and documentation
 
