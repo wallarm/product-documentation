@@ -68,6 +68,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.4.4 (2023-02-10)
+
+* Ability to save a Wallarm node token as a Kubernetes secret and pull it to the Helm chart using the `existingSecret` feature. [Read more](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapiexistingsecret)
+
 ### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
