@@ -19,6 +19,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](ingress-controller.md)
 
+### 4.4.5 (2023-02-10)
+
+* Fix the pod re-start issues when Wallarm API is unavailable during Helm chart installation or upgrade
+
 ### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
