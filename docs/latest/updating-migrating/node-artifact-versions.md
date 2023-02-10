@@ -21,6 +21,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ### 4.4.5 (2023-02-10)
 
+* Fix the pod re-start issue when Wallarm API accidentally becomes unavailable
+
+### 4.4.4 (2023-02-10)
+
 * Fix the pod re-start issues when Wallarm API is unavailable during Helm chart installation or upgrade
 
 ### 4.4.3 (2023-02-10)
