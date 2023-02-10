@@ -6,7 +6,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](nginx-modules.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -19,7 +19,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](ingress-controller.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -45,7 +45,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](kong-ingress-controller.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -64,7 +64,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -81,7 +81,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](docker-container.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
@@ -94,11 +94,37 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](docker-container.md)
 
-### 4.4.3 (date)
+### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
 ### 4.4.0
+
+* Initial release 4.4, [see changelog](what-is-new.md)
+
+## Amazon Machine Image (AMI)
+
+[How to upgrade](cloud-image.md)
+
+### 4.4.2-1 (2023-02-10)
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
+
+### 4.4.1-1
+
+* Initial release 4.4, [see changelog](what-is-new.md)
+
+## Google Cloud Platform Image
+
+[How to upgrade](cloud-image.md)
+
+### wallarm-node-4-4-20230131-154432
+
+* Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
+* New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
+
+### wallarm-node-4-4-20221122-092419
 
 * Initial release 4.4, [see changelog](what-is-new.md)
