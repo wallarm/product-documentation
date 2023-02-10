@@ -29,6 +29,25 @@ Attack analysis performed by Wallarm has been enhanced by involving an additiona
 
 [See the full list of supported installation options →](../admin-en/supported-platforms.md)
 
+## New attack types
+
+**Starting from release 4.4.3**, Wallarm detects new attack types:
+
+* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)
+
+    During a Mass Assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
+* [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)
+
+    A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
+
+## Parameters of the statistics service
+
+**Starting from release 4.4.3**, the Wallarm statistics service returns the new parameter `custom_ruleset_ver`.
+
+The parameter points to the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
+
+[Details on the statistics service →](../admin-en/configure-statistics-service.md)
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).

@@ -304,7 +304,7 @@ You may follow these recommendations:
 
 ### Server‑side Request Forgery (SSRF)
 
-**Vulnerability**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-918][cwe-918]
 
@@ -312,7 +312,9 @@ You may follow these recommendations:
 
 **Description:**
 
-A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.  
+A successful SSRF attack may allow an attacker to make requests on behalf of the attacked web server; this potentially leads to revealing the web application's network ports in use, scanning the internal networks, and bypassing authorization.
+
+Starting from release 4.4.3, Wallarm mitigates SSRF attack attempts. SSRF vulnerabilities are detected by all [supported Wallarm versions](updating-migrating/versioning-policy.md).
 
 **Remediation:**
 
@@ -626,6 +628,28 @@ An attacker can change the message output and change the user behavior. SSI Inje
 
 * Sanitize and filter all user input to prevent malicious payloads in the input from being executed.
 * Apply the recommendations from the [OWASP Input Validation Cheatsheet][link-owasp-inputval-cheatsheet].
+
+### Mass Assignment
+
+**Attack**
+
+**Wallarm code:** `mass_assignment`
+
+**Description:**
+
+During a Mass Assignment attack, attackers try to bind HTTP request parameters into program code variables or objects. If an API is vulnerable and allows binding, attackers may change sensitive object properties that are not intended to be exposed, which could lead to privilege escalation, bypassing security mechanisms, and more.
+
+APIs vulnerable to Mass Assignment attacks allow converting client input to internal variables or object properties without proper filtering. This vulnerability is included in the [OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa6-mass-assignment.md) list of most serious API security risks.
+
+Starting from release 4.4.3, Wallarm mitigates Mass Assignment attempts.
+
+**Remediation:**
+
+To protect the API, you may follow these recommendations:
+
+* Avoid using functions that automatically bind a client’s input into code variables or object properties.
+* Use built-in function features to whitelist only the properties that should be updated by the client and blacklist private properties.
+* If applicable, explicitly define and enforce schemas for the input data payloads.
 
 ### Weak JWT
 

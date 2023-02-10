@@ -134,13 +134,13 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
     "tnt_errors":0,"api_errors":0,"requests_lost":0,"overlimits_time":0,"segfaults":0,"memfaults":0,
     "softmemfaults":0,"proton_errors":0,"time_detect":0,"db_id":73,"lom_id":102,"custom_ruleset_id":102,
-    "db_apply_time":1598525865,"lom_apply_time":1598525870,"custom_ruleset_apply_time":1598525870,
-    "proton_instances": { "total":3,"success":3,"fallback":0,"failed":0 },"stalled_workers_count":0,
-    "stalled_workers":[],"ts_files":[{"id":102,"size":12624136,"mod_time":1598525870,
-    "fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,"mod_time":1598525865,
-    "fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,"timestamp":1664530105.868875,
-    "split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,
-    "blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
+    "custom_ruleset_ver":51,"db_apply_time":1598525865,"lom_apply_time":1598525870,
+    "custom_ruleset_apply_time":1598525870,"proton_instances": { "total":3,"success":3,"fallback":0,
+    "failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":[{"id":102,"size":12624136,
+    "mod_time":1598525870,"fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,
+    "mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,
+    "timestamp":1664530105.868875,"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,
+    "blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
     [{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
     "overlimits_time": 0,"time_detect": 0}]}]} }
     ```
@@ -209,6 +209,9 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     # HELP wallarm_custom_ruleset_id Custom Ruleset file id
     # TYPE wallarm_custom_ruleset_id gauge
     wallarm_custom_ruleset_id 386
+    # HELP wallarm_custom_ruleset_ver custom ruleset file format version
+    # TYPE wallarm_custom_ruleset_ver gauge
+    wallarm_custom_ruleset_ver 51
     # HELP wallarm_db_apply_time proton.db file apply time id
     # TYPE wallarm_db_apply_time gauge
     wallarm_db_apply_time 1674548649
@@ -251,6 +254,10 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `db_id`: proton.db version.
 *   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
 *   `custom_ruleset_id` (in Wallarm node 3.4 and lower, `lom_id`): version of the [custom ruleset][gl-lom] build.
+*   `custom_ruleset_ver` (available starting from the Wallarm release 4.4.3): the [custom ruleset][gl-lom] format:
+
+    * `4x` - for Wallarm nodes 2.x which are [out-of-date](../updating-migrating/versioning-policy.md#version-list).
+    * `5x` - for Wallarm nodes 4.x and 3.x (the latter are [out-of-date](../updating-migrating/versioning-policy.md#version-list)).
 *   `db_apply_time`: Unix time of the last update of the proton.db file.
 *   `lom_apply_time`: will be deprecated soon, please use `custom_ruleset_apply_time`.
 *   `custom_ruleset_apply_time` (in Wallarm node 3.4 and lower, `lom_apply_time`): Unix time of the last update of the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
