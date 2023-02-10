@@ -27,26 +27,7 @@ config:
     parseResponse: "on"
     parseWebsocket: "off"
     unpackResponse: "on"
-    upstream:
-      connectAttempts: 10
-      reconnectInterval: 15s
-    cron:
-      exportEnvironment:
-        schedule: "0 */1 * * *"
-        command: "/opt/wallarm/ruby/usr/share/wallarm-common/export-environment -l STDOUT"
-        timeout: 10m
-      exportMetrics:
-        schedule: "* * * * *"
-        command: "/opt/wallarm/ruby/usr/share/wallarm-common/export-metrics -l STDOUT"
-        timeout: 3h
-      syncIpLists:
-        schedule: "* * * * *"
-        command: "/opt/wallarm/ruby/usr/share/wallarm-common/sync-ip-lists -l STDOUT"
-        timeout: 3h
-      syncIpListsSource:
-        schedule: "*/5 * * * *"
-        command: "/opt/wallarm/ruby/usr/share/wallarm-common/sync-ip-lists-source -l STDOUT"
-        timeout: 3h
+    ...
 ```
 
 ## config.wallarm.api.token (required)
