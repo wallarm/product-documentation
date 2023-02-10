@@ -119,6 +119,7 @@ nav:
           - Deploying Wallarm as Kubernetes Sidecar proxy:
             - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
             - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
+            - Wallarm-specific Helm chart values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
             - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
           - Deploying Wallarm for Kong:
             - Deploying Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/deployment.md
