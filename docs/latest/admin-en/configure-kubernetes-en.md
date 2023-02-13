@@ -92,6 +92,8 @@ Wallarm API endpoint. Can be:
 
 The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
 
+The parameter is ignored if [`controller.wallarm.existingSecret.enabled: true`](#controllerwallarmexistingsecret).
+
 **Default value**: `not specified`
 
 ### controller.wallarm.existingSecret
