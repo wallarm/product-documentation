@@ -32,17 +32,17 @@ Once an account is registered and confirmed, it is automatically assigned with *
 * In the US Cloud, Free tier allows you to explore the power of the Wallarm solution for free on 500 thousand monthly requests.
 * In the EU Cloud, there is a trial period allowing you to explore the Wallarm solution for free for 14 days.
 
-As for the US cloud, there is the option to explore Wallarm even before deploying any components to your environment - [Playground](#deploy-the-wallarm-filtering-node).
+As for the US cloud, there is the option to  - [Playground](#deploy-the-wallarm-filtering-node).
 
 ## Learn Wallarm in Playground
 
-Accounts in the US Wallarm Cloud are featured with **Playground** which enables the Wallarm platform exploration without having to deploy any platform components. In Playground, you can access the Wallarm Console view like it is filled with real data.
+To explore Wallarm even before signing up and deploying any components to your environment, use [Wallarm Playground](https://my.us1.wallarm.com/playground).
 
-Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
+In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
 
 ![!UI to create account](images/playground.png)
 
-To try the Wallarm solution capabilities on your traffic, exit Playground and deploy the first Wallarm filtering node following the [instructions for the quickest start](#deploy-the-wallarm-filtering-node).
+To try the Wallarm solution capabilities on your traffic, exit Playground and [deploy the first Wallarm filtering node](#deploy-the-wallarm-filtering-node) under created Wallarm account.
 
 ## Deploy the Wallarm filtering node
 
