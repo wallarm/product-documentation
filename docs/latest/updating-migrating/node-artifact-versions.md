@@ -19,6 +19,18 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](ingress-controller.md)
 
+### 4.4.6 (2023-02-13)
+
+* Fix the deprecated API version for HorizontalPodAutoscaler, bump to v2 (`autoscaling/v2beta2` → `autoscaling/v2`)
+
+### 4.4.5 (2023-02-13)
+
+* Fix the pod re-start issue when Wallarm API accidentally becomes unavailable
+
+### 4.4.4 (2023-02-13)
+
+* Fix the pod re-start issues when Wallarm API is unavailable during Helm chart installation or upgrade
+
 ### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
@@ -63,6 +75,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ## Helm chart for Sidecar proxy
 
 [How to upgrade](sidecar-proxy.md)
+
+### 4.4.4 (2023-02-13)
+
+* Ability to save a Wallarm node token as a Kubernetes secret and pull it to the Helm chart using the `existingSecret` feature. [Read more](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapiexistingsecret)
 
 ### 4.4.3 (2023-02-10)
 

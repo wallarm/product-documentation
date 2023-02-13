@@ -8,11 +8,11 @@ The Wallarm Sidecar proxy solution is based on the standard Kubernetes component
 
 ### Global settings
 
-Global configuration options apply to all sidecar resources created by the Wallarm controller.
-
-Global settings are set by the [default Helm chart values](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml). This configuration can be overridden by the `values.yaml` file provided by the user during `helm install` or `helm upgrade`.
+Global configuration options apply to all sidecar resources created by the Wallarm controller and are set in the [default Helm chart values](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml). You can override them during `helm install` or `helm upgrade` by providing custom `values.yaml`.
 
 The number of available global configuration options is unlimited. Care should be taken when customizing the solution since it allows complete change of the resulting Pod and improper solution function as a result. Please rely on the Helm and Kubernetes documentation when changing global settings.
+
+[There is the list of Wallarm-specific chart values](helm-chart-for-wallarm.md)
 
 ### Per-pod settings
 
