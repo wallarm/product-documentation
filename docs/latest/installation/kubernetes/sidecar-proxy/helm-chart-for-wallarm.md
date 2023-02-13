@@ -30,9 +30,11 @@ config:
     ...
 ```
 
-## config.wallarm.api.token (required)
+## config.wallarm.api.token
 
 The Wallarm node token created in Wallarm Console in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) Cloud. It is required to access Wallarm API.
+
+The parameter is ignored if [`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret).
 
 ## config.wallarm.api.host
 
@@ -53,7 +55,7 @@ To store the node token in K8s secrets and pull it to the Helm chart:
     kubectl -n <KUBERNETES_NAMESPACE> create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
     ```
 
-    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm release with Wallarm Ingress controller
+    * `<KUBERNETES_NAMESPACE>` is the Kubernetes namespace you have created for the Helm release with Wallarm Sidecar controller
     * `wallarm-api-token` is the Kubernetes secret name
     * `<WALLARM_NODE_TOKEN>` is the Wallarm node token value copied from the Wallarm Console UI
 
