@@ -6,7 +6,7 @@
 
 # Checking Your Profile
 
-To see your profile data and settings, proceed to *Settings* → *Profile* tab.
+To see your profile data and settings, proceed to **Settings** → **Profile** tab.
 
 In your profile, you can check your account information:
 
@@ -15,7 +15,6 @@ In your profile, you can check your account information:
 * Name and phone
 * Preferred date and time format to be used in the Wallarm system
 * Security: your last password data change and two-factor authentication status. Some elements may be unavailable if you use SSO authentication.
-* [API credentials](../../api/overview.md)
 * Sign-in history
 
 You can click the *Sign out* button to log out of your Wallarm account.
