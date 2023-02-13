@@ -20,10 +20,10 @@ config:
         enabled: false
         secretKey: token
         secretName: wallarm-api-token
-    fallback: "off"
+    fallback: "on"
     mode: monitoring
     modeAllowOverride: "on"
-    enableLibDetection: "off"
+    enableLibDetection: "on"
     parseResponse: "on"
     parseWebsocket: "off"
     unpackResponse: "on"

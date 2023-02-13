@@ -76,6 +76,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.4.5 (2023-02-13)
+
+* Set the [`config.wallarm.fallback`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmfallback) and [`config.wallarm.enableLibDetection`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmenablelibdetection) Helm values to `on` by default
+
 ### 4.4.4 (2023-02-13)
 
 * Ability to save a Wallarm node token as a Kubernetes secret and pull it to the Helm chart using the `existingSecret` feature. [Read more](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapiexistingsecret)
