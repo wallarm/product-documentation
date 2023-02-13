@@ -19,6 +19,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](ingress-controller.md)
 
+### 4.4.7 (2023-02-13)
+
+* Fix the issue when Wallarm helper containers don't respect SIGTERM signal, which leads to rolling upgrade taking much time
+
 ### 4.4.6 (2023-02-13)
 
 * Fix the deprecated API version for HorizontalPodAutoscaler, bump to v2 (`autoscaling/v2beta2` → `autoscaling/v2`)
