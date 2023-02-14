@@ -61,7 +61,7 @@ You can monitor both the Wallarm module and the postanalytics module even if the
 
 For monitoring to work, it is required that:
 * NGINX returns the statistics to the filter node (`wallarm_status on`),
-* the filtration mode is in the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
+* The filtration mode is in the `monitoring`/`safe_blocking`/`block` [mode](../configure-wallarm-mode.md#available-filtration-modes).
   
 By default, this service is accessible at `http://127.0.0.8/wallarm-status`.
 
@@ -79,7 +79,7 @@ If you [configure](../configure-statistics-service.md#changing-an-ip-address-of-
 
     --8<-- "../include/monitoring/collectd-config-location.md"
 
-If a non-standard IP address or port for Tarantool are used, you will need to correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
+If a non-standard IP address or port for Tarantool is used, you will need to correct the Tarantool configuration file accordingly. The location of this file depends on the type of operating system distribution you have:
 
 --8<-- "../include/monitoring/tarantool-config-location.md"
 
