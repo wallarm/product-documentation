@@ -67,7 +67,7 @@ Each parameter information includes:
 
 ## Tracking changes in API
 
-You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
+You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in the API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
 * **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
@@ -189,7 +189,7 @@ You can configure the weight of each factor in [risk score](../about-wallarm/api
 
 Defaults: 
 
-* Calculation method: `Use the highest weight from all criteria as endpoint risk score`.
+* Calculation method: `Use the highest weight from all criteria as the endpoint risk score`.
 * Default factor weights:
 
     | Factor | Weight |
@@ -209,4 +209,4 @@ To change how risk score is calculated:
 1. Set weight for the remaining.
 
     ![!API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
-1. Save changes. Wallarm will re-calculate risk score for your endpoints in accordance with the new settings in several minutes.
+1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.
