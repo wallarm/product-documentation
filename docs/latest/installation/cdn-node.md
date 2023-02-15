@@ -18,6 +18,8 @@
 [graylist-populating-docs]:         ../user-guides/ip-lists/graylist.md#managing-graylist
 [graylist-docs]:                    ../user-guides/ip-lists/graylist.md
 [link-app-conf]:                    ../user-guides/settings/applications.md
+[varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
+[using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache
 
 # Deploying Wallarm CDN node
 

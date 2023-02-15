@@ -54,3 +54,16 @@ The CDN node highlighted in red does not proxy requests and as a result, does no
 Wallarm deletes CDN nodes with CNAME records left unchanged for 10 or more days since the moment of the node creation.
 
 If you find the CDN node disappeared, create a new node.
+
+### Why is there a delay in the update of the content protected by the CDN node?
+
+If your site is protected by the CDN node and you notice that when you change your data, the site is updated with a sensible delay, the probable reason may be the [Varnish Cache][using-varnish-cache] which speeds up your content delivery, but the cached copy on the CDN may be updated with a delay.
+
+Example:
+
+1. You have Varnish Cache enabled for your CDN node.
+1. You updated prices on your site.
+1. All requests are proxied via CDN, and the cache is not updated immediately.
+1. Site users see the old prices for some time.
+
+To resolve the problem, you may disable Varnish Cache. To do so, proceed to **Nodes** → CDN node menu → **Disable Varnish Cache**.
