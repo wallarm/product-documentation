@@ -1,7 +1,7 @@
 [user-roles-article]:       ../../user-guides/settings/users.md#user-roles
 [img-api-tokens-edit]:      ../../images/api-tokens-edit.png
 
-In the Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
+In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
 
 ![!Wallarm API token][img-api-tokens-edit]
 
@@ -16,7 +16,7 @@ This section is available for the users of any role.
 
 You can renew the token value at any moment.
 
-**Administrators** / **Global Administrators** can see and manage all tokens in the company account. Besides private tokens, they can create shared ones, that can be seen/used by other administrators.
+**Administrators** / **Global Administrators** can view and manage all tokens in the company account. Besides private tokens, they can create shared ones, that can be viewed/used by other administrators.
 
 !!! info "Token privacy"
     No other users (even administrators) can use your private tokens (which means, view or copy token value). Besides, non-administrators will not even see your tokens.
@@ -27,8 +27,15 @@ Consider that:
 * If the token owner has been reduced in permissions, corresponding permissions will be removed from all one's tokens.
 * All disabled tokens are automatically removed in a week after disabling.
 
-## Legacy tokens
+## Backward-compatible tokens
 
-Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **legacy** token, so that your requests authenticated with UUID and secret key will continue working. Permissions for the migrated legacy tokens are not displayed and cannot be changed.
+Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **backward-compatible** token. With this token requests authenticated with UUID and secret key will continue working.
 
-Legacy tokens are not created for users using SSO to access the Wallarm Console.
+!!! warning "Renew token"
+    If you renew the value of the backward-compatible token, the backward compatibility ends - all requests authenticated with old UUID and secret key will stop working.
+
+You can also use the generated value of the backward-compatible token passing it in the `WallarmApi-Token` header parameter of your requests.
+
+Backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.
+
+Backward-compatible tokens are not created for users using SSO to access Wallarm Console.
