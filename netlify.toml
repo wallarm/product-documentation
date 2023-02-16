@@ -1,7 +1,6 @@
 [build]
 publish = "site"
 command = """
-python setup.py install &&
 pip3 install --no-cache-dir -r requirements.txt &&
 mkdocs build &&
 mkdocs build -f mkdocs-4.2.yml &&
