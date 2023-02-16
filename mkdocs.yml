@@ -24,6 +24,8 @@ theme:
     - navigation.tabs
     - navigation.top
     - navigation.tracking
+    - content.code.copy
+    - content.action.edit
   logo: images/wallarm-logo-new.svg
   favicon: images/favicon.png
   icon:
