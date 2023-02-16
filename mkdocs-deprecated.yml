@@ -78,8 +78,6 @@ markdown_extensions:
   - sane_lists
   - attr_list
   - prependnewline
-  - lightgallery:
-      show_description_in_lightgallery: false
   - meta
 
 docs_dir: docs/deprecated
