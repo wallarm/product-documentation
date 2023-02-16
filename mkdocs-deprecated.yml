@@ -12,6 +12,7 @@ plugins:
   - minify:
       minify_html: true
   - meta-descriptions
+  - glightbox
 dev_addr: '127.0.0.1:8000'
 
 theme:
