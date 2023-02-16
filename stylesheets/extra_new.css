@@ -1,8 +1,8 @@
 /* Root styles */
 
-:root {
+[data-md-color-scheme="wallarm-palette"] {
     --md-default-fg-color:               hsla(0, 0%, 0%, 1);
-    --md-default-fg-color--light:        #000000;
+    --md-default-fg-color--light:        hsla(0, 0%, 0%, 1);
     --md-primary-bg-color:               #FFFF;
     --md-primary-fg-color:               #222222;
     --md-accent-fg-color:                #FC7303;

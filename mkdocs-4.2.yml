@@ -18,6 +18,8 @@ dev_addr: '127.0.0.1:8000'
 theme:
   name: material
   custom_dir: stylesheets
+  palette:
+    scheme: wallarm-palette
   features:
     - navigation.tabs
     - navigation.top
