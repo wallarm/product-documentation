@@ -50,10 +50,10 @@ After that, the user will be notified by an email that the login using SSO is di
 
 When SSO is enabled for the user, authentication for [requests to Wallarm API](../../../api/overview.md#your-own-client) becomes unavailable for this user. To get working API credentials, you have two options: 
 
-* If the **strict SSO** mode is not used, create user without SSO option under your company account, and use this user's [API credentials](../../../api/overview.md#your-own-client).
-* If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user.
+* If the **strict SSO** mode is not used, create user without SSO option under your company account, and create [API token(s)](../../../api/overview.md#your-own-client).
+* If the **strict SSO** mode is used, you can enable API authentication for the SSO users with the **Administrator** role. To do this, select **Enable API access** from this user menu. The `SSO+API` auth method is enabled for the user which allows creating API tokens.
 
-    Later you can disable API authentication for the user by selecting **Disable API access**.
+    Later you can disable API authentication for the user by selecting **Disable API access**. If this is done, all existing API tokens will be deleted and in a week - removed.
 
 ## Strict SSO mode
 
@@ -62,7 +62,7 @@ Wallarm supports the **strict SSO** mode that differs from the regular SSO in th
 * The authentication method for all existing users of the account is switched to SSO.
 * All new users get the SSO as the authentication method by default.
 * Authentication method cannot be switched to anything different from SSO for any user.
-* [API access](#sso-and-api-authentication) can be added for the users with the **Administrator** role (`SSO+API` user auth mode).
+* [API access](#sso-and-api-authentication) is disabled for all users: their API tokens are disabled and in a week - removed. API access can be later restored for the users with the **Administrator** role (`SSO+API` user auth mode). If this is done within a week, old user's tokens may be re-enabled.
 
 To enable or disable the strict SSO mode, contact the [Wallarm support team](mailto:support@wallarm.com).
 
