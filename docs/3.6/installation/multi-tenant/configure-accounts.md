@@ -91,8 +91,7 @@ At this step, a tenant account linked to a global account will be created.
     `name` | Tenant's name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix Wallarm will use for vulnerability tracking and association with the tenant. The prefix must contain four capital letters or numbers and be related to a tenant's name, e.g.: `TNNT` for the tenant `Tenant`. | Body | Yes
     `partner_uuid` | [Main tenant UUID](#step-2-get-access-to-the-tenant-account-creation) received when creating a global account. | Body | Yes
-    `X-WallarmAPI-UUID` | The Global administrator [user UUID](../../api/overview.md#your-own-client). | Header | Yes, when sending a request from your own client
-    `X-WallarmAPI-Secret` | [Secret key](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
+    `WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
 
     ??? info "Show an example of the request sent from your own client"
         === "EU Cloud"
