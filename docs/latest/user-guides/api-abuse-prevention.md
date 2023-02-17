@@ -48,27 +48,27 @@ You can also explore bot API abuse attacks performed by bots in Wallarm Console 
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-Bot information is visualized in three blob charts. In all charts, the bigger the blob, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot. On the charts, you also can compare you current bot with the other detected bots, but not more than 30 most suspicious.
+Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot. On the plots, you also can compare you current bot with the other detected bots, but not more than 30 most suspicious.
 
-The blob charts:
+The bubble plots:
 
 * **Bot behavior** displays different aspects of the bot behavior, including:
 
-    * Blob size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size.
+    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size.
     * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer to the red.
     * Horizontally: the more RPS (requests per second), the farther to the right.
     * Vertically: the more bot detectors made "this is a bot" decision, the higher on the graph.
 
 * **Bot performance** displays intensity of bot activities, including:
 
-    * Blob size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size.
+    * Bubble size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size.
     * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer to the red.
     * Horizontally: the more RPS (requests per second), the farther to the right.
     * Vertically: the faster the IP sends the requests, the higher on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
 
 * **Bot scope** displays bot relation to its targets, including:
 
-    * Blob size: the more different API endpoints the IP requested, the larger the size.
+    * Bubble size: the more different API endpoints the IP requested, the larger the size.
     * Color: the more requests with unsafe method the IP requested, the closer to the red.
     * Horizontally: the more RPS (requests per second), the farther to the right.
     * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher on the graph.
