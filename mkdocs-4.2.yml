@@ -1,11 +1,11 @@
 site_name: Wallarm Documentation
 site_url: https://docs.wallarm.com/
-site_description: The Wallarm solution protects websites, APIs and microservices from OWASP Top 10, bots and application abuse with no manual rule configuration and ultra-low false positives.
+site_description: The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
 
-copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2022 © Wallarm Inc.'
+copyright: '<a href="https://wallarm.com/terms-of-services" target="_blank">Terms of services</a> | <a href="https://wallarm.com/privacy-policy" target="_blank">Privacy policy</a> | <a href="https://wallarm.com/cookie-policy" target="_blank">Cookie policy</a> | 2023 © Wallarm Inc.'
 
 plugins:
   - search
