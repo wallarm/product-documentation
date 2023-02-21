@@ -51,7 +51,9 @@ In the left column, all of the modules are grouped in accordance with the [CWE][
 
 ### Disabling and Enabling Individual Modules
 
- In the right column, all of the modules are filtered according to the filtering field. Here you can individually enable and disable modules.## Disabling and Enabling Vulnerability Rechecking
+ In the right column, all of the modules are filtered according to the filtering field. Here you can individually enable and disable modules.
+ 
+### Disabling and Enabling Vulnerability Rechecking
 
 During the active vulnerability check, the scanner restarts tests to check whether the previously detected vulnerabilities are still present.
 
