@@ -68,15 +68,15 @@ To activate API Abuse Prevention:
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-## Accuracy
+## Tolerance
 
-You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Accuracy** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
+You can configure how strictly the signs of a malicious bot are monitored and thus control the number of false positive detections. This is set with the **Tolerance** parameter within [API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile).
 
 There are three available levels:
 
-* **Low** - detects 100% of bot requests, but may block some legitimate requests due to false positives.
-* **Normal** - optimizes rules to prevent most malicious bots' requests from reaching APIs, while avoiding excessive false positives. This is a default value.
-* **High** - no legitimate requests will be dropped but the risk of malicious bot’s requests reaching the API is higher.
+* **Low** tolerance to bots means LESS bots access your applications, but this may block some legitimate requests due to false positives.
+* **Normal** tolerance uses optimal rules to avoid many false positives and prevent most malicious bot requests from reaching APIs.
+* **High** tolerance to bots means MORE bots access your applications, but then no legitimate requests will be dropped.
 
 ## Reaction to malicious bots
 
