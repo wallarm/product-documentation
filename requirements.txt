@@ -7,4 +7,3 @@ prependnewline==1.2
 mkdocs-meta-descriptions-plugin==1.0.2
 markdown==3.3.4
 importlib_metadata==4.13.0
-mkdocs-glightbox==0.3.1
