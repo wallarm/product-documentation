@@ -19,6 +19,11 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](ingress-controller.md)
 
+### 4.4.8 (2023-02-23)
+
+* The Helm chart version of the NGINX Ingress controller has been bumped to [4.5.2](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.5.2)
+* The NGINX Ingress controller version has been bumped to [1.6.4](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.6.4)
+
 ### 4.4.7 (2023-02-13)
 
 * Fix the issue when Wallarm helper containers don't respect SIGTERM signal, which leads to rolling upgrade taking much time
