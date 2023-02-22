@@ -17,6 +17,7 @@
     --md-code-hl-variable-color:         hsla(0, 0%, 0%, 1);
     --md-mermaid-node-fg-color:          #FC7303;
     --md-mermaid-node-bg-color:          #FC7303;
+    --md-typeset-color:                  hsla(0, 0%, 0%, 1);
 }
 
 .md-typeset {
@@ -620,7 +621,7 @@ a.md-search-result__link:hover {
   background-color: #F7F7F8;
 }
 
-.md-search-result__more summary:focus, .md-search-result__more summary:hover {
+.md-search-result__more>summary:focus>div, .md-search-result__more>summary:hover>div {
   background-color: #F7F7F8;
   box-shadow: inset 0px -1px 0px rgba(229, 229, 229, 0.5);
 }
