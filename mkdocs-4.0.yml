@@ -17,10 +17,14 @@ dev_addr: '127.0.0.1:8000'
 theme:
   name: material
   custom_dir: stylesheets
+  palette:
+    scheme: wallarm-palette
   features:
     - navigation.tabs
     - navigation.top
     - navigation.tracking
+    - content.code.copy
+    - content.action.edit
   logo: images/wallarm-logo-new.svg
   favicon: images/favicon.png
   icon:
