@@ -105,6 +105,7 @@
 /3.6/faq/* /faq/:splat 301!
 /3.6/demo-videos/* /demo-videos/:splat 301!
 /3.6/api-firewall/* /api-firewall/:splat 301!
+/3.6/news/ /news/
 /3.0/admin-en/* /2.18
 /3.0/quickstart-en/* /2.18
 /3.0/updating-migrating/* /2.18
@@ -136,6 +137,10 @@
 /4.0/faq/* /faq/:splat 301!
 /4.0/demo-videos/* /demo-videos/:splat 301!
 /4.0/api-firewall/* /api-firewall/:splat 301!
+/4.2/api/* /api/:splat 301!
+/4.2/faq/* /faq/:splat 301!
+/4.2/api-firewall/* /api-firewall/:splat 301!
+/4.2/news/ /news/
 /2.18/news/ /news/ 301!
 /3.2/news/ /news/ 301!
 /3.4/news/ /news/ 301!
