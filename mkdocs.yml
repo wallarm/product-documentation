@@ -58,7 +58,6 @@ extra_javascript:
   - 'extra.js'
 
 markdown_extensions:
-  - lightgallery
   - admonition
   - pymdownx.highlight:
       linenums_style: table
