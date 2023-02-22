@@ -140,7 +140,7 @@
 /4.2/api/* /api/:splat 301!
 /4.2/faq/* /faq/:splat 301!
 /4.2/api-firewall/* /api-firewall/:splat 301!
-/4.2/news/ /news/
+/4.2/news/ /news/ 301!
 /2.18/news/ /news/ 301!
 /3.2/news/ /news/ 301!
 /3.4/news/ /news/ 301!
