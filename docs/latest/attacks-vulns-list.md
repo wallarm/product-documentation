@@ -792,6 +792,10 @@ You may follow these recommendations:
 
 **Description:**
 
+Web scraping, also known as data scraping or web harvesting, is the process of automatically extracting data from websites. It involves using software or code to retrieve and extract data from web pages and save it in a structured format such as a spreadsheet or database.
+
+Web scraping can be used for malicious purposes. For example, scrapers can be used to steal sensitive information such as login credentials, personal information, or financial data from websites. Scrapers can also be used to spam or scrape data from a website in a way that degrades its performance, causing denial of service (DoS) attacks.
+
 **Wallarm behavior:**
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
