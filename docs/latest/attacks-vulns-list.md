@@ -689,32 +689,22 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 
 **Description:**
 
-API abuse performed by bots like credential stuffing, fake account creation, content scraping and other malicious actions targeted at your APIs.
+A set of basic bot types that includes server response time increase, fake account creation, scalping, and broken object level authorization (BOLA).
 
 **Wallarm behavior:**
 
 Wallarm detects API abuse only if the filtering node has version 4.2 or above.
 
-The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following bot types by default:
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following bot types:
 
-* **API abuse**
+* API abuse targeted at server response time increase or server unavailability. Usually, it is achieved by malicious traffic spikes.
+* [Fake account creation](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) and [Spamming](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) are creation of fake accounts or confirmation of fake content (e.g. feedback). Usually, it does not result in service unavailability but slows down or degrades regular business processes, e.g.:
 
-    * Server response time increase
-    * Fake account creation
-    * Scalping
-    * Broken Object Level Authorization (BOLA)
+    * Processing of real user requests by the support team
+    * Collecting real user statistics by the marketing team
 
-* **Account takeover**:
-
-    * Credential cracking
-    * Credential stuffing
-
-* **Security crawlers**:
-    * Fingerprinting
-    * Footprinting
-    * Vulnerability scanning
-
-* **Scraping**
+* [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
+* [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola). Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the request. This may lead to unauthorized access to sensitive data.
 
 For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
@@ -729,6 +719,96 @@ You may follow these recommendations:
 * Configure server-side rate limit for requests.
 * Use CAPTCHA solutions.
 * Search your application analytics for the bot attack signs.
+
+### API abuse - Account takeover
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+A type of cyber attack where a malicious actor gains access to someone else's account without their permission or knowledge. This can happen when an attacker obtains a user's login credentials through various means such as phishing, malware, or social engineering. Once they have access to the account, they can use it for various purposes, such as stealing sensitive information, conducting fraudulent transactions, or spreading spam or malware. Account takeover attacks can have serious consequences for individuals and businesses, including financial losses, reputational damage, and loss of trust.
+
+**Wallarm behavior:**
+
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following account takeover bot types:
+
+* [Credential cracking](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html) includes brute force, dictionary (word list) and guessing attacks used against authentication processes of the application to identify valid account credentials.
+* [Credential stuffing](https://owasp.org/www-community/attacks/Credential_stuffing) is the automated injection of stolen user credentials into website login forms, in order to fraudulently gain access to user accounts.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Use strong passwords.
+* Enable two-factor authentication.
+* Use CAPTCHA solutions.
+* Monitor accounts for suspicious activities.
+
+### API abuse - Security crawlers
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+While security crawlers are designed to scan websites and detect vulnerabilities and security issues, they can also be used for malicious purposes. Malicious actors may use them to identify vulnerable websites and exploit them for their own gain.
+
+Furthermore, some security crawlers may be poorly designed and inadvertently cause harm to websites by overwhelming servers, causing crashes, or creating other types of disruptions.
+
+**Wallarm behavior:**
+
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the following security crawlers bot types:
+
+* [Fingerprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html) exploits specific requests which are sent to the application eliciting information in order to profile the application.
+* [Footprinting](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html) is an information gathering with the objective of learning as much as possible about the composition, configuration and security mechanisms of the application.
+* [Vulnerability scanning](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-014_Vulnerability_Scanning) is characterized by service vulnerability search.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Implement security measures: Make sure your website has security measures in place, such as SSL certificates, firewalls, and intrusion detection software.
+* Use Captcha: Implement Captcha, a tool that helps identify if a user is a human or a bot. This will help prevent malicious bots from crawling your website.
+* Implement rate limiting: Rate limiting will limit the number of requests that can be made to your website within a certain timeframe. This will prevent bots from overwhelming your website with requests.
+* Monitor traffic: Monitor your website traffic and look for patterns that may indicate malicious activity. This can help you identify and block malicious bots.
+* Use robots.txt: Create a robots.txt file to tell search engine crawlers which pages they can and cannot crawl. This can help prevent malicious bots from crawling pages that contain sensitive data.
+* Regularly update software: Keep your website software and plugins up to date to ensure you have the latest security patches and fixes.
+* Use a content delivery network (CDN): A CDN can help distribute traffic to your website and reduce the load on your server. This can also help protect against DDoS attacks, which are commonly used by malicious bots.
+
+### API abuse - Scraping
+
+**Attack**
+
+**Wallarm code:** `api_abuse`
+
+**Description:**
+
+**Wallarm behavior:**
+
+Wallarm detects API abuse only if the filtering node has version 4.2 or above.
+
+The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses the complex bot detection model to detect the [scraping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) bot type which is collecting accessible data and/or processed output from the application that may result in private or non-free content becoming available for any user.
+
+**Remediation:**
+
+You may follow these recommendations:
+
+* Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
+* Implement CAPTCHA or other anti-bot measures: CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a test that is used to determine whether the user is a human or a bot. Implementing CAPTCHA or other anti-bot measures can help prevent automated scraping tools from accessing your website.
+* Use Robots.txt: Robots.txt is a file that is placed in the root directory of a website and is used to instruct search engines and other bots which pages of the website they are allowed to crawl. You can use this file to block bots that you don't want to access your website.
+* Monitor traffic patterns: Monitoring traffic patterns can help you identify scraping attempts in real-time. Tools such as Google Analytics can help you monitor your website traffic and detect unusual activity.
+* Rate limiting: Rate limiting is a technique used to limit the number of requests that can be made to a website within a certain time period. This can help prevent scraping tools from overloading your website with requests.
+* Obfuscate or encrypt data: Obfuscating or encrypting your data can make it more difficult for scraping tools to read and extract your data.
+* Legal action: If you suspect that your website is being maliciously scraped, you can take legal action against the scraper. This can include sending cease and desist letters, filing a complaint with the scraper's hosting provider, or pursuing legal action in court.
 
 ##  The list of special attacks and vulnerabilities
 
