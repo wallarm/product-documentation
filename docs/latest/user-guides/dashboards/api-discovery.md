@@ -9,7 +9,7 @@ The API Discovery Wallarm dashboard summarizies data about your API collected by
 * Sensitive data in API by groups (personal, finance, etc.) and by types
 * API usage: number of endpoints by the API host or the application
 
-Using this information, you can reveal the [riskiest] endpoints to implement appropriate security controls before endpoint vulnerabilitiies can be exploited by attackers.
+Using this information, you can reveal the [riskiest](../../about-wallarm/api-discovery.md#endpoint-risk-score) endpoints to implement appropriate security controls before endpoint vulnerabilitiies can be exploited by attackers.
 
 The dashboard also allows to reveal possible anomalies in the number of sensitive data your API transfers and analyze the structure of your API regarding how many endpoints relate to the different hosts and applications.
 
