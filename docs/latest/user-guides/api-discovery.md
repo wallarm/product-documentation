@@ -189,7 +189,7 @@ You can configure the weight of each factor in [risk score](../about-wallarm/api
 
 Defaults: 
 
-* Calculation method: `Use the highest weight from all criteria as the endpoint risk score`.
+* Calculation method: `Use the highest weight from all criteria as endpoint risk score`.
 * Default factor weights:
 
     | Factor | Weight |
