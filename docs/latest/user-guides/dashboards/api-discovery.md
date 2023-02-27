@@ -9,7 +9,7 @@ The **API Discovery** Wallarm dashboard summarizies data about your API collecte
 * Changes of your API in the last 7 days by type (new, changed, removed APIs)
 * Total number of discovered endpoints and how many of them are external and internal
 * Sensitive data in API by groups (personal, finance, etc.) and by types
-* API usage: number of endpoints by the API host and the application
+* API inventory: number of endpoints by the API host and the application
 
 ![!API Discovery widget](../../images/user-guides/dashboard/api-discovery-widget.png)
 
