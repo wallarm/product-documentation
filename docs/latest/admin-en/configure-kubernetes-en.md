@@ -135,7 +135,7 @@ The number of running pods for postanalytics. Postanalytics is used for the beha
 
 ### controller.wallarm.tarantool.arena
 
-Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store requested data for the last 5-15 minutes.
+Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
 **Default value**: `0.2`
 
