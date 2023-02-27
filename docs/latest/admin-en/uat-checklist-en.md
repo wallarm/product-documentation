@@ -39,7 +39,7 @@ See also [Checking the filter node operation](installation-check-operation-en.md
     *   If you are using the EU cloud, proceed to the <https://my.wallarm.com/> link.
 2.  See if you can log in successfully.
 
-See also [Dashboard overview](../user-guides/dashboard.md).
+See also the [Threat Prevention Dashboard overview](../user-guides/dashboards/threat-prevention.md).
 
 ## Wallarm Interface Shows Requests per Second
 
@@ -62,7 +62,7 @@ See also [Dashboard overview](../user-guides/dashboard.md).
 
 2. Check if the Wallarm interface shows detected requests per second.
 
-See also [Dashboard](../user-guides/dashboard.md).
+See also the [Threat Prevention Dashboard](../user-guides/dashboards/threat-prevention.md).
 
 ## Wallarm Marks Requests as False and Stops Blocking them
 

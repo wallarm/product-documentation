@@ -12,9 +12,9 @@ Metrics are presented in the following widgets:
 * Attack targets
 * Vulnerability Scanner
 
-You can filter widget data by [applications](settings/applications.md) and time period. By default, widgets represent statistics on all applications for the last month.
+You can filter widget data by [applications](../settings/applications.md) and time period. By default, widgets represent statistics on all applications for the last month.
 
-Any widget allows to open the [event list](events/check-attack.md) the statistics have been collected on.
+Any widget allows to open the [event list](../events/check-attack.md) the statistics have been collected on.
 
 !!! info "Getting started with Wallarm"
     If you registered the Wallarm account in the US [Cloud](../../about-wallarm/overview.md#cloud), you would be able to explore core Wallarm features in the **Playground** with read-only access to the Wallarm Console sections. Use it to try out major features of the Wallarm platform without having to deploy any components to your environment. 
@@ -99,7 +99,7 @@ This widget displays the statistics on the attack source groups:
 * Locations
 * Types, e.g. Tor, Proxy, VPN, AWS, GCP, etc.
 
-This data can help to define abusive attack sources and enable the blocking of requests originating from them by using gray or deny [lists of IP addresses](ip-lists/overview.md).
+This data can help to define abusive attack sources and enable the blocking of requests originating from them by using gray or deny [lists of IP addresses](../ip-lists/overview.md).
 
 You can view data on each source group on separate tabs.
 
@@ -107,7 +107,7 @@ You can view data on each source group on separate tabs.
 
 ## Attack targets
 
-This widget displays domains and [applications](settings/applications.md) being attacked the most. The following metrics are displayed for each object:
+This widget displays domains and [applications](../settings/applications.md) being attacked the most. The following metrics are displayed for each object:
 
 * The number of detected incidents
 * The number of detected hits
@@ -119,7 +119,7 @@ You can view data on domains and applications on separate tabs.
 
 ## Vulnerability Scanner
 
-The Scanner widget shows statistics on vulnerabilities detected in [public assets](scanner/check-scope.md):
+The Scanner widget shows statistics on vulnerabilities detected in [public assets](../scanner/check-scope.md):
 
 * The number of vulnerabilities of all risk levels detected over the selected period
 * The number of active vulnerabilities of all risk levels at the end of the selected period
