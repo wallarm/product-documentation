@@ -247,7 +247,9 @@ nav:
       - Managing Wallarm using Terraform: admin-en/managing/terraform-provider.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md
-      - Dashboard: user-guides/dashboard.md
+      - Dashboards:
+        - API Discovery: user-guides/dashboards/api-discovery.md
+        - Threat Prevention: user-guides/dashboards/threat-prevention.md
       - Events:
         - Checking Events: user-guides/events/check-attack.md
         - Analyzing Attacks: user-guides/events/analyze-attack.md
