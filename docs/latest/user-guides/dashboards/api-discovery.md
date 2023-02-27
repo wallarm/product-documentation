@@ -1,20 +1,18 @@
 # API Discovery Dashboard <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-The API Discovery Wallarm dashboard summarizies data about your API collected by the [API Discovery](../../about-wallarm/api-discovery.md) module during the current month:
+The **API Discovery** Wallarm dashboard summarizies data about your API collected by the [API Discovery](../../about-wallarm/api-discovery.md) module. It provides a comprehensive overview of your API inventory based on the metrics:
 
 * Number of endpoints by risk level
-* Riskiest endpoints
-* Changes of your API in the last 30 days by type (new, changed, removed APIs)
-* Number of discovered endpoints, including external and internal
+* The [riskiest](../../about-wallarm/api-discovery.md#endpoint-risk-score) endpoints among the whole API inventory and among the newly discovered endpoints in the last 7 days
+
+    The riskiest endpoints are most likely to be an attack target due to active vulnerabilities and other risk factors. Each risky endpoint is provided with the targeting hit volume. You can sort endpoints either by a risk score or a hit volume (by default).
+* Changes of your API in the last 7 days by type (new, changed, removed APIs)
+* Total number of discovered endpoints and how many of them are external and internal
 * Sensitive data in API by groups (personal, finance, etc.) and by types
-* API usage: number of endpoints by the API host or the application
-
-Using this information, you can reveal the [riskiest](../../about-wallarm/api-discovery.md#endpoint-risk-score) endpoints to implement appropriate security controls before endpoint vulnerabilitiies can be exploited by attackers.
-
-The dashboard also allows to reveal possible anomalies in the number of sensitive data your API transfers and analyze the structure of your API regarding how many endpoints relate to the different hosts and applications.
-
-Additionally, it draws attention to the changes in API that you always need to check to exclude security risks. 
+* API usage: number of endpoints by the API host and the application
 
 ![!API Discovery widget](../../images/user-guides/dashboard/api-discovery-widget.png)
 
-Click elements of the widget to go to the **API Discovery** section and view filtered data. If clicking hit number, you will be addresses to the [event list](events/check-attack.md) with the corresponding hit data.
+The dashboard can uncover anomalies, such as risky frequently-used endpoints or high volume of sensitive data your API transfers. Additionally, it draws attention to the changes in API that you always need to check to exclude security risks. This helps you implement security controls to prevent endpoints from being targets of attacks.
+
+Click elements of the widget to go to the **API Discovery** section and view filtered data. If clicking hit number, you will be addresses to the [event list](events/check-attack.md) with the attack data for the last 7 days.
