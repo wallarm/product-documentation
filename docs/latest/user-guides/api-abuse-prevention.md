@@ -48,7 +48,10 @@ You can also explore bot API abuse attacks performed by bots in Wallarm Console 
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot. On the plots, you also can compare you current bot with the other detected bots, but not more than 30 most suspicious.
+Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot. On the plots, you also can compare you current bot with the other detected bots.
+
+!!! info "What other bots are displayed?"
+    Besides **this bot**, the bots that attacked the same application within the past 24 hours, but not more than 30 most suspicious, will be displayed.
 
 The bubble plots:
 
@@ -64,7 +67,7 @@ The bubble plots:
     * Bubble size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size.
     * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer to the red.
     * Horizontally: the more RPS (requests per second), the farther to the right.
-    * Vertically: the faster the IP sends the requests, the higher on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
+    * Vertically: the higher the request rate (how fast the IP sends the requests), the higher on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
 
 * **Bot scope** displays bot relation to its targets, including:
 
