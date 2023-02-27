@@ -110,8 +110,11 @@ nav:
         - Out-of-Band (OOB):
           - Overview: installation/oob/overview.md
           - eBPF: installation/oob/ebpf.md
-          - Mirroring:
-            - Mirroring with Wallarm deployment: installation/oob/mirroring-wallarm.md
+          - Terraform module for AWS:
+            - OOB for mirrored traffic: installation/oob/terraform-modeule/mirrored-traffic.md
+            - OOB for Amazon VPC mirroring: installation/oob/terraform-modeule/vpc-mirroring.md
+          # - Mirroring:
+          #   - Mirroring with Wallarm deployment: installation/oob/mirroring-wallarm.md
         - Public Clouds:
           - Overview: installation/public-clouds/overview.md
           - Amazon AWS:
