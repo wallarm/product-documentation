@@ -5,7 +5,7 @@
 Learn fine-tuning options available for the Wallarm Ingress controller to get the most out of the Wallarm solution.
 
 !!! info "Official documentation for NGINX Ingress Controller"
-    The fine‑tuning of Wallarm Ingress Controller is quite similar to that of NGINX Ingress Controller described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/). When working with Wallarm, all options for setting up the original NGINX Ingress Controller are available.
+    The fine‑tuning of the Wallarm Ingress Controller is quite similar to that of the NGINX Ingress Controller described in the [official documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/). When working with Wallarm, all options for setting up the original NGINX Ingress Controller are available.
 
 ## Additional Settings for Helm Chart
 
@@ -71,7 +71,7 @@ To change this setting, we recommend using the option `--set` of `helm install` 
     helm upgrade --reuse-values --set controller.wallarm.enabled=true <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-A description of the main parameters you can set up is provided below. Other parameters come with default value and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
+A description of the main parameters you can set up is provided below. Other parameters come with default values and rarely need to be changed; their descriptions are provided at this [link][link-helm-chart-details].
 
 ### controller.wallarm.enabled
 
@@ -90,7 +90,7 @@ Wallarm API endpoint. Can be:
 
 ### controller.wallarm.token
 
-The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access to Wallarm API.
+The *Wallarm Node* token is created on the Wallarm portal in the [US](https://us1.my.wallarm.com/nodes) or [EU](https://my.wallarm.com/nodes) cloud. It is required to access the Wallarm API.
 
 The parameter is ignored if [`controller.wallarm.existingSecret.enabled: true`](#controllerwallarmexistingsecret).
 
@@ -125,7 +125,7 @@ To store the node token in K8s secrets and pull it to the Helm chart:
           secretName: wallarm-api-token
     ```
 
-**Default value**: `existingSecret.enabled: false` that points the Helm chart to get the Wallarm node token from `controller.wallarm.token`.
+**Default value**: `existingSecret.enabled: false` that points to the Helm chart to get the Wallarm node token from `controller.wallarm.token`.
 
 ### controller.wallarm.tarantool.replicaCount
 
@@ -135,7 +135,7 @@ The number of running pods for postanalytics. Postanalytics is used for the beha
 
 ### controller.wallarm.tarantool.arena
 
-Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store requests data for the last 5-15 minutes.
+Specifies the amount of memory allocated for postanalytics service. It is recommended to set up a value sufficient to store request data for the last 5-15 minutes.
 
 **Default value**: `0.2`
 

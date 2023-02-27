@@ -1,6 +1,6 @@
 # Inventory of node artifact versions
 
-This document lists available [patch versions](versioning-policy.md#version-format) of Wallarm node 4.4 in different form-factors. You can track new patch version releases and plan timely upgrade based on this document.
+This document lists available [patch versions](versioning-policy.md#version-format) of Wallarm node 4.4 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
 
 ## DEB/RPM packages for NGINX
 

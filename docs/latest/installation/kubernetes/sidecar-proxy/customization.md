@@ -1,6 +1,6 @@
 # Customizing Wallarm Sidecar proxy
 
-This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution](deployment.md) providing example for some common customization use cases.
+This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution](deployment.md) providing examples for some common customization use cases.
 
 ## Configuration area
 
@@ -52,7 +52,7 @@ With the single deployment of Wallarm containers, only one container will run in
 As a result, there are two running containers:
 
 * `sidecar-init-iptables` is the init container running iptables. By default, this container starts but you can [disable it](#capturing-incoming-traffic-port-forwarding).
-* `sidecar-proxy` runs NGINX proxy with the Wallarm modules and some helper services. All these processes are run and manage by [supervisord](http://supervisord.org/).
+* `sidecar-proxy` runs NGINX proxy with the Wallarm modules and some helper services. All these processes are run and managed by [supervisord](http://supervisord.org/).
 
 #### Split deployment
 
@@ -111,7 +111,7 @@ You can change the default behavior as follows:
     * On a per-pod basis by setting the Pod's annotation `sidecar.wallarm.io/sidecar-injection-iptables-enable` to `"false"`
 2. Update the `spec.ports.targetPort` setting in your Service manifest to point to the `proxy` port.
 
-    If iptables-based traffic capture is disabled, the Wallarm sidecar proxy container will publish port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
+    If iptables-based traffic capture is disabled, the Wallarm sidecar proxy container will publish a port with the name `proxy`. For incoming traffic to come from Kubernetes service to the `proxy` port, the `spec.ports.targetPort` setting in your Service manifest should point to this port:
 
 ```yaml hl_lines="16-17 34"
 apiVersion: apps/v1

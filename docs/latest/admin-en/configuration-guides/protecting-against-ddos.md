@@ -18,7 +18,7 @@ There are several types of DDoS attacks that attackers can use to disrupt the av
 
 <a name="volum-amplif-attacks"></a>**Volumetric and amplification attacks** seek to overwhelm a target with a large volume of traffic. The goal is to saturate the bandwidth or computing resources of the targeted server or network, making it unable to respond to legitimate requests.
 
-<a name="proto-attacks-logicbombs"></a>**Protocol exploits and Logic bombs** are DDoS attacks aim to exploit vulnerabilities in the way that a service or network communicates. These attacks can disrupt the normal flow of traffic by exploiting certain protocols or by sending malformed packets that are difficult for the target to process.
+<a name="proto-attacks-logicbombs"></a>**Protocol exploits and Logic bombs** are DDoS attacks aimed to exploit vulnerabilities in the way that a service or network communicates. These attacks can disrupt the normal flow of traffic by exploiting certain protocols or by sending malformed packets that are difficult for the target to process.
 
 ## Mitigation of DDoS attacks
 

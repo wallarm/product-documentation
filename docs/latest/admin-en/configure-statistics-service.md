@@ -89,7 +89,7 @@ To change an IP address of the statistics service:
 
 ### Getting statistics in the Prometheus format
 
-By default, the statistics is returned only in the JSON format. To get the statistics in the Prometheus format:
+By default, the statistics are returned only in the JSON format. To get the statistics in the Prometheus format:
 
 1. Add the following configuration to the `/etc/nginx/conf.d/wallarm-status.conf` file:
 
