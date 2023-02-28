@@ -9,7 +9,7 @@
 [anchor3]:  #active-threat-verification
 [anchor4]:  #updating-the-status-of-previously-detected-vulnerabilities
 
-# Scanner Overview
+# Scanner Overview <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Scanner performs the following tasks:
 * [Network scope scanning][anchor1]

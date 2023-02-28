@@ -4,7 +4,7 @@
 
 [img-configure-scanner]:        ../../images/user-guides/scanner/configure-scanner.png
 
-# General Scanner Settings
+# General Scanner Settings <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 To access scanner settings, go to the *Scanner* tab and click the Settings button on the left.
 

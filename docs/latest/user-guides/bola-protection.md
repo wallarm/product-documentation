@@ -2,7 +2,7 @@
 [changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
 [bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
 
-# BOLA protection
+# BOLA protection <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **BOLA protection** section of the Wallarm Console UI enables you to configure mitigation of [BOLA (IDOR) attacks](../attacks-vulns-list.md#broken-object-level-authorization-bola) targeted at the API endpoints explored by the **API Discovery** module.
 

@@ -7,7 +7,7 @@
 [img-scope-element]:    ../../images/user-guides/scanner/scope-element.png
 [img-disable-association]:      ../../images/user-guides/scanner/disable-association.png
 
-# Working with the Scope
+# Working with the Scope <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 You can see information on the company's public resources on the *Scanner*
 tab of the Wallarm interface.

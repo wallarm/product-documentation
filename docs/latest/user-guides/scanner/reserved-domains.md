@@ -2,7 +2,7 @@
 
 [img-reserved-domain]:          ../../images/user-guides/scanner/reserved-domain.png
 
-# Domain Reservation
+# Domain Reservation <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 If you reserve your domain in Wallarm, other customers cannot add them to their network scopes.
 

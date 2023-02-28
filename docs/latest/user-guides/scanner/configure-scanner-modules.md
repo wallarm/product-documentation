@@ -5,7 +5,7 @@
 [img-filter-modules]:       ../../images/user-guides/scanner/filter-modules.png
 
 
-# Configuring Scanner Modules
+# Configuring Scanner Modules <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 Click the *Configure* link under the scanner toggle to configure the scanner.
 

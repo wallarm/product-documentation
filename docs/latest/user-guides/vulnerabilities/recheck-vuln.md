@@ -4,7 +4,7 @@
 
 [glossary-vulnerability]:       ../../glossary-en.md#vulnerability
 
-# Rechecking a Vulnerability
+# Rechecking a Vulnerability <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
 The *Vulnerability* tab displays information about [vulnerabilities][glossary-vulnerability].
 
