@@ -48,19 +48,11 @@ You can also explore bot API abuse attacks performed by bots in Wallarm Console 
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot. On the plots, you also can compare you current bot with the other detected bots.
+Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
 
-!!! info "What other bots are displayed?"
-    Besides **this bot**, the bots that attacked the same application within the past 24 hours, but not more than 30 most suspicious, will be displayed.
+On the plots, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
 
 The bubble plots:
-
-* **Bot behavior** displays different aspects of the bot behavior, including:
-
-    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size.
-    * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer to the red.
-    * Horizontally: the more RPS (requests per second), the farther to the right.
-    * Vertically: the more bot detectors made "this is a bot" decision, the higher on the graph.
 
 * **Bot performance** displays intensity of bot activities, including:
 
@@ -68,6 +60,13 @@ The bubble plots:
     * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer to the red.
     * Horizontally: the more RPS (requests per second), the farther to the right.
     * Vertically: the higher the request rate (how fast the IP sends the requests), the higher on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
+
+* **Bot behavior** displays different aspects of the bot behavior, including:
+
+    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size.
+    * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer to the red.
+    * Horizontally: the more RPS (requests per second), the farther to the right.
+    * Vertically: the more bot detectors made "this is a bot" decision, the higher on the graph.
 
 * **Bot scope** displays bot relation to its targets, including:
 
