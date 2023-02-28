@@ -23,9 +23,13 @@ Despite the OOB deployment approach safety, it has some limitations:
 
     ??? what attacks can be found? (e.g. brute force cannot be)
 * Wallarm does not detect application and API [vulnerabilities](../../about-wallarm/detecting-vulnerabilities.md) since it only has copies of incoming requests, and server responses cannot be mirrored.
-* API Discovery?
-* API Abuse Prevention?
-* Integrations?
+* Re-checker does not work or works???
+* API Discovery? - no
+* API Abuse Prevention? - to be discussed
+* Integrations? - yes
+
+
+say that attacks will be displayed in the Events section
 
 ## Use cases
 
@@ -48,23 +52,25 @@ Wallarm offers the following Out-of-Band (OOB) deployment options:
     * [Wallarm OOB for Amazon VPC mirroring](terraform-module/vpc-mirroring.md)
 * NGINX module deployed from (?):
 
-    * DEB/RPM packages
+    * DEB/RPM packages + AWS AMI image
     * Docker container
-    * AWS AMI image
-    * GCP cloud image
-    * AWS ECS
-    * GCE
-    * Azure Container Instances service
-    * Alibaba ECS
+    * AWS ECS - делаем но несрочно
+    * Azure Container Instances service - делаем но несрочно
+    * Alibaba ECS - делаем но несрочно
+
+
+сделаем в deployment options раводяшку с выбором cloud/k8s/nginx/etc
+mirroring средствами cloud provider, then agentless
 
 
 <!-- The type of monitoring scenario, out-of-band or inline, effects the placement of monitoring equipment, the type of equipment used, and the monitoring activities you can conduct as part of your visibility architecture. -->
 
 <!-- 
 
-1. should we use the term "in-band"???? against the "out of band" term?
-1. нужна помощь с терминами synchronous и asynchronous -- что нам подходит в контексте OOB??
+1. нужна помощь с терминами synchronous и asynchronous -- что нам подходит в контексте OOB?? синхронно всегда когда in-line, async = OOB and mirroringю. но терминологию такую стараемся не применять
 1. вот у нас есть mirror solution в примерах деплоя terraform module for aws. это не ведь тоже OOB?
 1. везде пишут, что OOB это agentless. у нас ebpf ведь с agent? а вот OOB для VPC traffic mirroring - agentless?
 1. надо ли как-то отражать просто сами артефакты в структуре/док-ии? Docker containers, packages, helm charts
 1. то есть внутри OOB тоже настроена наша нода на анализ зеркалированного трафика, а как при этом настраивается сам сервер, чтобы предоставлять зеркало трафика-то? какой-то прямо компонент внутри OOb решения есть получается???? речь про ebpf -->
+
+cdn = agentless
