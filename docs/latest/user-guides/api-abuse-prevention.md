@@ -56,24 +56,24 @@ The bubble plots:
 
 * **Bot performance** displays intensity of bot activities, including:
 
-    * Bubble size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size.
-    * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer to the red.
-    * Horizontally: the more RPS (requests per second), the farther to the right.
-    * Vertically: the higher the request rate (how fast the IP sends the requests), the higher on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
+    * Bubble size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size is.
+    * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer the color is to the red.
+    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
+    * Vertically: the higher the request rate (how fast the IP sends the requests), the higher the bubble is on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
 
 * **Bot behavior** displays different aspects of the bot behavior, including:
 
-    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size.
-    * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer to the red.
-    * Horizontally: the more RPS (requests per second), the farther to the right.
-    * Vertically: the more bot detectors made "this is a bot" decision, the higher on the graph.
+    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size is.
+    * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer the color is to the red.
+    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
+    * Vertically: the more bot detectors made "this is a bot" decision, the higher the bubble is on the graph.
 
 * **Bot scope** displays bot relation to its targets, including:
 
-    * Bubble size: the more different API endpoints the IP requested, the larger the size.
-    * Color: the more requests with unsafe method the IP requested, the closer to the red.
-    * Horizontally: the more RPS (requests per second), the farther to the right.
-    * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher on the graph.
+    * Bubble size: the more different API endpoints the IP requested, the larger the size is.
+    * Color: the more requests with unsafe method the IP requested, the closer the color is to the red.
+    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
+    * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher the bubble is on the graph.
 
 The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
 
