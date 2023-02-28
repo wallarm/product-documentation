@@ -79,12 +79,12 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 
 | Segment | Contains | Example |
 |---|---|---|
-| SENSITIVE | Sensitive data that refers to the internals of the web application. | `wp-admin` |
+| SENSITIVE | URL parts that provide access to the application's critical functions or resources, such as the admin panel. They should be kept confidential and restricted to authorized personnel to prevent potential security breaches. | `wp-admin` |
 | IDENTIFIER | Various identifiers like numeric identifiers, UUIDs, etc. | - |
-| STATIC | Static data. | images, js |
-| FILE | Non-interactive files. | `image.png` |
+| STATIC | The folders that contain static files of different kinds. | `images`, `js`, `css` |
+| FILE | Static file names. | `image.png` |
 | QUERY | Query parameters. | - |
 | AUTH | Content related to the authentication/authorization endpoints. | - |
-| LANGUAGE | Language-related segments. | `en`, `fr` |
+| LANGUAGE | Language-related parts. | `en`, `fr` |
 | HEALTHCHECK | Content related to the health check endpoints. | - |
-| VARY | Other data not important for analysis. | - |
+| VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - |
