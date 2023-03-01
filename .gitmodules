@@ -4,3 +4,6 @@
 [submodule "docs/latest-ja/api-firewall-1"]
 	path = docs/latest-ja/api-firewall-1
 	url = https://github.com/wallarm/api-firewall
+[submodule "docs/latest/installation/oob/terraform-module/terraform-aws-wallarm"]
+	path = docs/latest/installation/oob/terraform-module/terraform-aws-wallarm
+	url = https://github.com/wallarm/terraform-aws-wallarm

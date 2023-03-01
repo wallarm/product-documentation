@@ -1,0 +1,1 @@
+--8<-- "latest/installation/oob/packages/nginx-stable.md"

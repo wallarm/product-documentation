@@ -112,6 +112,18 @@ nav:
       - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Installation:
         - Deployment options: admin-en/supported-platforms.md
+        - Out-of-Band:
+          - Overview: installation/oob/overview.md
+          - Terraform Module for AWS:
+            - VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
+            - Mirroring by a web server: installation/oob/terraform-module/mirroring-by-web-server.md
+          - DEB/RPM Packages:
+            - NGINX stable: installation/oob/packages/nginx-stable.md
+          #   - NGINX Plus: - need help with mirroring config
+          #   - NGINX from Debian/CentOS Repo: - need help with mirroring config
+          - AWS AMI: installation/oob/aws-ami.md
+          - GCP Image: installation/oob/gcp-image.md
+          - Docker Image: installation/oob/docker-image.md
         - NGINX:
           - NGINX installation options overview: admin-en/installation-nginx-overview.md
           - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
