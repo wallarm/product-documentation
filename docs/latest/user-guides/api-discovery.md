@@ -1,4 +1,4 @@
-# API Discovery <a href="../../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Discovery <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 The **API Discovery** section of Wallarm Console enables you to manage your [API inventory](../about-wallarm/api-discovery.md), as well as to fine-tune its discovery. This guide instructs you on using this section.
 
