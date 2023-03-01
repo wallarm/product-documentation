@@ -181,7 +181,7 @@ nav:
         - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Deploying Wallarm CDN node: installation/cdn-node.md
     - Administrator Guide:
-      - Introduction to the administrator guide: admin-en/admin-intro-en.md
+      # - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
