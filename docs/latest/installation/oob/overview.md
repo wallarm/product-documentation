@@ -36,7 +36,7 @@ The Wallarm OOB is an effective way to implement web application and API securit
 The OOB solution is suitable for the following use cases:
 
 * Get knowledge about all the potential threats web applications and APIs may encounter, without affecting the application performance.
-* Train the Wallarm solution on the traffic copy before running the module on the production system.
+* Train the Wallarm solution on the traffic copy before running the module on the [in-line](../load-balancing/overview.md).
 * Capture security logs for auditing purposes. Wallarm provides [native integrations](../../user-guides/settings/integrations/integrations-intro.md) with many SIEM systems, messengers, etc.
 
 ## Supported deployment options
