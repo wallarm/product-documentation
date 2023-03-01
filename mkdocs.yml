@@ -180,6 +180,8 @@ nav:
         - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
         - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Deploying Wallarm CDN node: installation/cdn-node.md
+      - Load Balancers:
+        - Overview: installation/load-balancing/overview.md
     - Administrator Guide:
       # - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Configuration:
