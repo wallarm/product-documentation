@@ -689,7 +689,7 @@ Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](u
 
 **Description:**
 
-A set of basic bot types that includes server response time increase, fake account creation, scalping, and broken object level authorization (BOLA).
+A set of basic bot types that includes server response time increase, fake account creation, and scalping.
 
 **Wallarm behavior:**
 
@@ -704,7 +704,6 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
     * Collecting real user statistics by the marketing team
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
-* [Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola). Attackers can exploit API endpoints that are vulnerable to broken object level authorization by manipulating the ID of an object that is sent within the request. This may lead to unauthorized access to sensitive data.
 
 For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
