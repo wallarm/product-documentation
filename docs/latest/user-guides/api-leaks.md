@@ -4,7 +4,12 @@ The **API Leaks** module of the Wallarm platform actively scans thousands of pub
 
 This article gives an information on how to use API Leaks. For basic understanding, refer to the module's [overview](../about-wallarm/api-leaks.md)
 
-Use **API Leaks** section to work as described below.
+## Access API Leaks
+
+In Wallarm console, use **API Leaks** section to work as described below.
+
+* Only users with the **Administrator** or **Global administrator** [role](../user-guides/settings/users.md#user-roles) can access the section and manage leaks.
+* Users with the **Analyst** or **Global analyst** role can access the section, but cannot manage leaks.
 
 ## New leaks
 
@@ -32,6 +37,10 @@ However the leak was added - automatically or manually - the decision on what to
 All the same can be done from the leak details window.
 
 ## Interactive diagrams
+
+The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks.
+
+![!API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
 
 * Use diagrams to quickly analyze current situation with found leaks.
 * Click diagram elements to filter leaks by risk levels and sources.
