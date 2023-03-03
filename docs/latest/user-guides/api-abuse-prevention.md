@@ -49,7 +49,7 @@ You can also explore bot API abuse attacks performed by bots in Wallarm Console 
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
+<!-- Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
 
 On the plots, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
 
@@ -74,7 +74,7 @@ The bubble plots:
     * Bubble size: the more different API endpoints the IP requested, the larger the size is.
     * Color: the more requests with unsafe method the IP requested, the closer the color is to the red.
     * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
-    * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher the bubble is on the graph.
+    * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher the bubble is on the graph. -->
 
 The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
 
