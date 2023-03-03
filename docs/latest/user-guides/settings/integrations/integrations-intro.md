@@ -7,6 +7,7 @@
 [opsgenie-notifications]:       ./opsgenie.md
 [insightconnect-notifications]: ./insightconnect.md
 [pagerduty-notifications]:      ./pagerduty.md
+[jira-notifications]:           ./jira.md
 [splunk-notifications]:         ./splunk.md
 [sumologic-notifications]:      ./sumologic.md
 [datadog-notifications]:        ./datadog.md
@@ -45,6 +46,7 @@ The systems available for integration are grouped by types as follows:
 * [InsightConnect][insightconnect-notifications]
 * [Opsgenie][opsgenie-notifications]
 * [PagerDuty][pagerduty-notifications]
+* [Jira][jira-notifications]
 
 ### SIEM and SOAR systems
 
