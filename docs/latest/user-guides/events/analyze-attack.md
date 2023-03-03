@@ -31,7 +31,7 @@ Each request displays the associated information in the following columns:
 * *Source*: The IP address from which the request originated. Clicking the IP address adds the IP address value into the search field. The following information is also displayed if it was found in the IP2Location or similar database:
      * The country/region in which the IP address is registered.
      * The source type, e.g. **Proxy**, **Tor** or the cloud platform the IP registered in, etc.
-* *Code*: The server's response status code from the request. If the filtering node blocked the request, the code would be `403` or another [custom value](../../admin-en/configuration-guides/configure-block-page-and-code.md).
+* *Status*: The request blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)).
 * *Size*: The server's response size.
 * *Time*: The server's response time.
 
