@@ -1,11 +1,12 @@
-#   Jira
+# Atlassian Jira
 
 You can set up Wallarm to create issues in Jira when [vulnerabilities](../../../glossary-en.md#vulnerability) are detected, all or only for the selected risk level(s):
+
 * High risk
 * Medium risk
 * Low risk
 
-##  Setting up integration
+## Setting up integration
 
 In Jira UI: 
 
@@ -14,13 +15,11 @@ In Jira UI:
 
 In Wallarm UI:
 
-1. Open the **Integrations** section.
-1. Perform the next steps in the **Incident and task management systems** section.
-1. Click the **Jira** block or click the **Add integration** button and choose **Jira**.
+1. Open Wallarm Console → **Integrations** → **Jira**.
 1. Enter an integration name.
 1. Enter Jira host (e.g., `https://company-x.atlassian.net/`).
-1. Specify issuer email, which is required for Jira authentication, and also wll be used for the created issues as their author info.
-1. Paste the generated API token. Authentication data (host, email, token) will be checked.
+1. Enter the Jira user email, which Jira requires for authentication and also will be used to identify the Reporter for created issues.
+1. Paste the generated API token. The email and token will be checked to authenticate Wallarm in JIRA available at the specified host.
 1. Select Jira space to create issues in. Available only on successful authentication.
 1. Select Jira issue type the created issues will belong to. Available only after selecting the space.
 1. Select event types to trigger notifications. All vulnerabilities or only of the specific risk level(s) may be selected. If nothing is selected, Jira issues will not be created.
