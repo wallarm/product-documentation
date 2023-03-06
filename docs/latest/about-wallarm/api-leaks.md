@@ -2,6 +2,9 @@
 
 The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens and allow you to block leaked credentials usage.
 
+!!! info "Wallarm node is required"
+    For mitigation of the leaked API tokens threat, Wallarm [node(s)](../user-guides/nodes/nodes.md) should be deployed.
+
 ![!API Leaks](../images/about-wallarm-waf/api-leaks/api-leaks.png)
 
 This article gives an overview of API Leaks: issues addressed by it, its purpose and main possibilities. For information on how to use API Leaks, refer to its [user guide](../user-guides/api-leaks.md).
@@ -10,20 +13,9 @@ This article gives an overview of API Leaks: issues addressed by it, its purpose
 
 Your organization may use a number of API tokens to provide access to the different parts of your API. These tokens may leak: be in one or another way accessed and then published to different public repositories and thus become a security threat.
 
-You need:
+You need to monitor public repositories to find your leaked API tokens and try to miss as few episodes as possible. To achieve this, you have to study manually a huge amount of data over and over again.
 
-* Monitor public repositories to find your leaked API tokens and try to miss as few episodes as possible. To achieve this, you need:
-
-    * Manually study a huge amount of data over and over again.
-
-* If leaked API tokens are found, prevent their usage. To achieve this, you need:
-
-    * Find all the places where the leaked tokens are used in your API.
-    * Regenerate them in all these places.
-    * Do that quickly.
-    * Not to miss any of usage locations.
-
-## What can be done with API Leaks
+If leaked API tokens are found, it is necessary to prevent their usage. To achieve this, you need to find all the places where the leaked tokens are used in your API, regenerate them in all these places, do that quickly, and not to miss any of usage locations.
 
 The **API Leaks** module allows:
 
@@ -31,8 +23,9 @@ The **API Leaks** module allows:
 * Automatic detection of leaked API tokens, published on these repositories.
 * Automatic risk level detection.
 * Automatic adding of detected leaks into the list in the **API Leaks** section of Wallarm.
-* Automatic detection of remediation variants.
-* Filtering new leaks.
+* Adding leaks manually.
+* Automatic provisioning of options for leaked data remediation.
+* Filtering the leaks list to find the new ones only.
 * Analyzing leak information like volume, source and risk level.
 * Making your own decisions on whether to block or not the usage of the leaked tokens.
 
