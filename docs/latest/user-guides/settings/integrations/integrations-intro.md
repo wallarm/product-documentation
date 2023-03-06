@@ -20,7 +20,8 @@
 The **Integrations** section of Wallarm Console allows you to integrate with different systems to get scheduled reports and instant notifications through them:
 
 * Scheduled reports can be sent on a daily, weekly, or monthly basis. Reports include detailed information about vulnerabilities, attacks, and incidents detected in your system over the selected period.
-* Notifications are sent when vulnerabilities, hits, scope changes, system related events, etc. are detected in your system. Notifications include brief details of detected activity.
+* On an hourly basis, you can get a notification with the number of requests processed during the previous hour.
+* You can receive instant notification for each detected vulnerability, hit, system-related event, and scope change.
 
 !!! info "Administrator access"
     The integration setup is available only for users with the **Administrator** role.
