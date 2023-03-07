@@ -314,6 +314,7 @@ nav:
         - InsightConnect: user-guides/settings/integrations/insightconnect.md
         - Opsgenie: user-guides/settings/integrations/opsgenie.md
         - PagerDuty: user-guides/settings/integrations/pagerduty.md
+        - Jira: user-guides/settings/integrations/jira.md
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Datadog: user-guides/settings/integrations/datadog.md
