@@ -217,10 +217,25 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 ## Enabling and configuring API Discovery
 
-The API Discovery package `wallarm-appstructure` is delivered with all forms of the [Wallarm node 3.2 and later](../admin-en/supported-platforms.md) including the CDN node but except for CloudLinux 6.x and Debian 11.x. The API Discovery module is installed from the `wallarm-appstructure` package automatically during the filtering node deployment process. By default, the module does not analyze the traffic.
+The `wallarm-appstructure` package is included in all [forms](../admin-en/supported-platforms.md) of the Wallarm node except for the CloudLinux 6.x and Debian 11.x packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
-To run API Discovery correctly:
+To enable and run API Discovery correctly:
 
+1. Make sure your Wallarm node is of the [supported version](../updating-migrating/versioning-policy.md#version-list).
+
+    To ensure that you always have access to the full range of the API Discovery features, it is recommended to check for updates to the `wallarm-appstructure` package on a regular basis as follows:
+
+
+    === "Debian Linux"
+        ```bash
+        sudo apt update
+        sudo apt install wallarm-appstructure
+        ```
+    === "RedHat Linux"
+        ```bash
+        sudo yum update
+        sudo yum install wallarm-appstructure
+        ```
 1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes **API Discovery**. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 1. If you want to enable API Discovery only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 
