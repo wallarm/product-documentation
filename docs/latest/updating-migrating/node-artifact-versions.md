@@ -35,6 +35,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
 ### 4.4.5 (2023-02-13)
 
 * Fix the pod re-start issue when Wallarm API accidentally becomes unavailable
+* Remove the `synccloud` and `heardbeat` containers in [#185](https://github.com/wallarm/ingress/pull/185)
 
 ### 4.4.4 (2023-02-13)
 
@@ -57,6 +58,7 @@ This document lists available [patch versions](versioning-policy.md#version-form
     * [`controller.wallarm.tarantool.terminationGracePeriodSeconds`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L789) - read more in the [K8s documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes)
     * [`controller.wallarm.topologySpreadConstraint`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L793) - read more in the [K8s documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/#topologyspreadconstraints-field)
     * [`revisionHistoryLimit`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L870) - this global parameter now also sets a number of Tarantool resource ReplicaSets to retain, read more about the parameter in the [K8s documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#revision-history-limit)
+* Remove the `exportenv` init container in [#170](https://github.com/wallarm/ingress/pull/170)
 
 ### 4.4.0
 
