@@ -19,9 +19,9 @@ In Wallarm UI:
 1. Enter an integration name.
 1. Enter Jira host (e.g., `https://company-x.atlassian.net/`).
 1. Enter the Jira user email, which Jira requires for authentication and also will be used to identify the Reporter for created issues.
-1. Paste the generated API token. The email and token will be checked to authenticate Wallarm in Jira available at the specified host.
-1. Select Jira space to create issues in. Available only on successful authentication.
-1. Select Jira issue type the created issues will belong to. Available only after selecting the space.
+1. Paste the generated API token. The email and token will be checked to authenticate Wallarm at the specified Jira host. On success, spaces available to this Jira user will be listed.
+1. Select Jira space to create issues in. When selected, list of issue types supported in this space will be listed.
+1. Select Jira issue type the created issues will belong to.
 1. Select event types to trigger notifications. All vulnerabilities or only of the specific risk level(s) may be selected. If nothing is selected, Jira issues will not be created.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
