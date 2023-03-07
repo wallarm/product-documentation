@@ -174,7 +174,7 @@ You may follow these recommendations:
 
 ### Server‑Side Template Injection (SSTI)
 
-**Vulnerability/Attack**
+**Attack**
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
@@ -478,7 +478,7 @@ You may follow these recommendations:
 
 ### CRLF Injection
 
-**Attack**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-93][cwe-93]
 
@@ -585,7 +585,7 @@ You may follow these recommendations:
 
 ### Email Injection
 
-**Vulnerability/Attack**
+**Attack**
 
 **CWE code:** [CWE-20][cwe-20], [CWE-150][cwe-150], [CWE-88][cwe-88]
 
@@ -604,7 +604,7 @@ Vulnerability to this attack occurs due to poor validation of the data inputted 
 
 ### SSI Injection
 
-**Vulnerability/Attack**
+**Attack**
 
 **CWE code:** [CWE-96][cwe-96], [CWE-97][cwe-97]
 
