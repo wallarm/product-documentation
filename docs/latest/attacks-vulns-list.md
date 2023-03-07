@@ -705,8 +705,6 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 
 * [Scalping](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping) is characterized by bots making online store products unavailable for real customers, e.g. by reserving all items so that they become out of stock but do not make any profit.
 
-For the module to identify anomaly traffic as originating from malicious bots, the module relies on many [metrics](about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
-
 If the metrics point to bot attack signs, the module [denylists or graylists](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour.
 
 **Remediation:**
@@ -716,7 +714,7 @@ You may follow these recommendations:
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Denylist IP addresses of regions and sources (like Tor), definitely not related to your application.
 * Configure server-side rate limit for requests.
-* Use CAPTCHA solutions.
+* Use additional CAPTCHA solutions.
 * Search your application analytics for the bot attack signs.
 
 ### API abuse - Account takeover
@@ -744,8 +742,9 @@ You may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
 * Use strong passwords.
+* Do not use the same passwords for different resources.
 * Enable two-factor authentication.
-* Use CAPTCHA solutions.
+* Use additional CAPTCHA solutions.
 * Monitor accounts for suspicious activities.
 
 ### API abuse - Security crawlers
@@ -775,13 +774,13 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 You may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
-* Implement security measures: Make sure your website has security measures in place, such as SSL certificates, firewalls, and intrusion detection software.
-* Use Captcha: Implement Captcha, a tool that helps identify if a user is a human or a bot. This will help prevent malicious bots from crawling your website.
-* Implement rate limiting: Rate limiting will limit the number of requests that can be made to your website within a certain timeframe. This will prevent bots from overwhelming your website with requests.
-* Monitor traffic: Monitor your website traffic and look for patterns that may indicate malicious activity. This can help you identify and block malicious bots.
-* Use robots.txt: Create a robots.txt file to tell search engine crawlers which pages they can and cannot crawl. This can help prevent malicious bots from crawling pages that contain sensitive data.
-* Regularly update software: Keep your website software and plugins up to date to ensure you have the latest security patches and fixes.
-* Use a content delivery network (CDN): A CDN can help distribute traffic to your website and reduce the load on your server. This can also help protect against DDoS attacks, which are commonly used by malicious bots.
+* Use SSL certificates.
+* Use additional CAPTCHA solutions.
+* Implement rate limiting.
+* Monitor your traffic to look for patterns that may indicate malicious activity.
+* Use robots.txt file to tell search engine crawlers which pages they can and cannot crawl.
+* Regularly update software.
+* Use a content delivery network (CDN).
 
 ### API abuse - Scraping
 
@@ -806,12 +805,12 @@ The [API Abuse Prevention](about-wallarm/api-abuse-prevention.md) module uses th
 You may follow these recommendations:
 
 * Get familiar with the [OWASP description for automated threats](https://owasp.org/www-project-automated-threats-to-web-applications/) to web applications.
-* Implement CAPTCHA or other anti-bot measures: CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) is a test that is used to determine whether the user is a human or a bot. Implementing CAPTCHA or other anti-bot measures can help prevent automated scraping tools from accessing your website.
-* Use Robots.txt: Robots.txt is a file that is placed in the root directory of a website and is used to instruct search engines and other bots which pages of the website they are allowed to crawl. You can use this file to block bots that you don't want to access your website.
-* Monitor traffic patterns: Monitoring traffic patterns can help you identify scraping attempts in real-time. Tools such as Google Analytics can help you monitor your website traffic and detect unusual activity.
-* Rate limiting: Rate limiting is a technique used to limit the number of requests that can be made to a website within a certain time period. This can help prevent scraping tools from overloading your website with requests.
-* Obfuscate or encrypt data: Obfuscating or encrypting your data can make it more difficult for scraping tools to read and extract your data.
-* Legal action: If you suspect that your website is being maliciously scraped, you can take legal action against the scraper. This can include sending cease and desist letters, filing a complaint with the scraper's hosting provider, or pursuing legal action in court.
+* Use additional CAPTCHA solutions.
+* Use robots.txt file to tell search engine crawlers which pages they can and cannot crawl.
+* Monitor your traffic to look for patterns that may indicate malicious activity.
+* Implement rate limiting.
+* Obfuscate or encrypt data.
+* Take legal action.
 
 ##  The list of special attacks and vulnerabilities
 
