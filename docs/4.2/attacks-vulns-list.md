@@ -172,7 +172,7 @@ You may follow these recommendations:
 
 ### Server‑Side Template Injection (SSTI)
 
-**Attack**
+**Vulnerability/Attack**
 
 **CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]
 
