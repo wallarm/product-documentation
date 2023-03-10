@@ -1,13 +1,14 @@
-# Using API Leaks
+# Managing API Leaks
 
-The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens and allow you to block leaked credentials usage.
+The **API Leaks** module of the Wallarm platform actively scans thousands of public repositories and sources to check for the leaks of API tokens and allow you to block leaked credentials usage. This article gives an information on how to manage the API leaks.
 
-This article gives an information on how to use API Leaks. For basic understanding, refer to the module's [overview](../about-wallarm/api-leaks.md)
+For basic understanding, refer to the module's [overview](../about-wallarm/api-leaks.md).
 
 ## Access API Leaks
 
 In Wallarm console, use **API Leaks** section to work as described below.
 
+* To get access to the API Leaks module, please send a request to [Wallarm technical support](mailto:support@wallarm.com).
 * Only users with the **Administrator** or **Global administrator** [role](../user-guides/settings/users.md#user-roles) can access the section and manage leaks.
 * Users with the **Analyst** or **Global analyst** role can access the section, but cannot manage leaks.
 
@@ -22,12 +23,9 @@ There are two ways of registering new leaks:
 
 ## Interactive diagrams
 
-The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks.
+The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks. Use diagrams to quickly analyze current situation with found leaks, сlick diagram elements to filter leaks by risk levels and sources.
 
 ![!API Leaks - Visualization](../images/about-wallarm-waf/api-leaks/api-leaks-visual.png)
-
-* Use diagrams to quickly analyze current situation with found leaks.
-* Click diagram elements to filter leaks by risk levels and sources.
 
 ## Making decisions
 
@@ -46,3 +44,5 @@ However the leak was added - automatically or manually - the decision on what to
 In Wallarm Console → **Events**, set the **Type** filter to `Virtual patch` (`vpatch`) to see all attempts of leaked tokens usage.
 
 ![!Events - API leaks via vpatch](../images/about-wallarm-waf/api-leaks/api-leaks-in-events.png)
+
+For now, you can track the attempts of leaked tokens usage only if `vpatch` is applied.
