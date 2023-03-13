@@ -65,41 +65,78 @@ To retrieve further pages of results, execute requests including the `cursor` pa
 
 Below is the Python code example for retrieving attacks using cursor paging:
 
-```python
-import requests
-import json
+=== "EU Cloud"
+    ```python
+    import requests
+    import json
 
-url = 'https://api.wallarm.com/v2/objects/attack'
-headers = {
-    'X-WallarmAPI-UUID': '<YOUR_UUID>',
-    'X-WallarmAPI-Secret': '<YOUR_SECRET_KEY>',
-    'Content-Type': 'application/json'
-}
-payload = {
-    "paging": True,
-    "filter": {
-        "clientid": [<YOUR_CLIENT_ID>],
-        "vulnid": None,
-        "!type": ["warn"],
-        "time": [[<TIMESTAMP>, None]],
-        "!state": "falsepositive"
+    url = 'https://api.wallarm.com/v2/objects/attack'
+    headers = {
+        'X-WallarmAPI-UUID': '<YOUR_UUID>',
+        'X-WallarmAPI-Secret': '<YOUR_SECRET_KEY>',
+        'Content-Type': 'application/json'
     }
-}
-
-response = requests.post(url, headers=headers, json=payload)
-data = json.loads(response.text)
-cursor = data['cursor']
-
-while cursor:
-    payload['cursor'] = cursor
+    payload = {
+        "paging": True,
+        "filter": {
+            "clientid": [<YOUR_CLIENT_ID>],
+            "vulnid": None,
+            "!type": ["warn"],
+            "time": [[<TIMESTAMP>, None]],
+            "!state": "falsepositive"
+        }
+    }
 
     response = requests.post(url, headers=headers, json=payload)
     data = json.loads(response.text)
-
-    print(data)
-
     cursor = data['cursor']
-```
+
+    while cursor:
+        payload['cursor'] = cursor
+
+        response = requests.post(url, headers=headers, json=payload)
+        data = json.loads(response.text)
+
+        print(data)
+
+        cursor = data['cursor']
+    ```
+=== "US Cloud"
+    ```python
+    import requests
+    import json
+
+    url = 'https://us1.api.wallarm.com/v2/objects/attack'
+    headers = {
+        'X-WallarmAPI-UUID': '<YOUR_UUID>',
+        'X-WallarmAPI-Secret': '<YOUR_SECRET_KEY>',
+        'Content-Type': 'application/json'
+    }
+    payload = {
+        "paging": True,
+        "filter": {
+            "clientid": [<YOUR_CLIENT_ID>],
+            "vulnid": None,
+            "!type": ["warn"],
+            "time": [[<TIMESTAMP>, None]],
+            "!state": "falsepositive"
+        }
+    }
+
+    response = requests.post(url, headers=headers, json=payload)
+    data = json.loads(response.text)
+    cursor = data['cursor']
+
+    while cursor:
+        payload['cursor'] = cursor
+
+        response = requests.post(url, headers=headers, json=payload)
+        data = json.loads(response.text)
+
+        print(data)
+
+        cursor = data['cursor']
+    ```
 
 ## Get the first 50 incidents confirmed in the last 24 hours
 
