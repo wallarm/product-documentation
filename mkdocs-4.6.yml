@@ -49,7 +49,7 @@ extra:
   generator: false
   analytics:
     provider: google
-    property: UA-45499521-1
+    property: G-TFMBLQFQQ1
 
 extra_css:
   - 'extra_new.css'
