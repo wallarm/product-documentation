@@ -87,6 +87,9 @@ Please replacing `TIMESTAMP` with the date 24 hours ago converted to the [Unix T
 
 --8<-- "../include/api-request-examples/get-attacks-en.md"
 
+!!! warning "Getting 100 or more attacks"
+    For attack and hit sets containing 100 or more records, it is best to retrieve them in smaller pieces rather than fetching large datasets all at once, in order to optimize performance. [Explore the corresponding request example](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
+
 **Get the first 50 incidents confirmed in the last 24 hours**
 
 The request is very similar to the previous example for a list of attacks; the `"!vulnid": null` term is added to this request. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.

@@ -11,6 +11,139 @@ Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Tim
 
 --8<-- "../include/api-request-examples/get-attacks-en.md"
 
+## Get a large number of attacks (100 and more)
+
+For attack and hit sets containing 100 or more records, it is best to retrieve them in smaller pieces rather than fetching large datasets all at once, in order to optimize performance. The corresponding Wallarm API endpoints support cursor-based pagination with 100 records per page.
+
+This technique involves returning a pointer to a specific item in the dataset and then on subsequent requests, the server returns results after the given pointer. To enable cursor pagination, include `"paging": true` in the request parameters.
+
+The following are examples of API calls for retrieving all attacks detected since `<TIMESTAMP>` using the cursor pagination:
+
+=== "EU Cloud"
+    ```curl
+    curl -k 'https://api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'Content-Type: application/json' \
+      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
+=== "US Cloud"
+    ```curl
+    curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'Content-Type: application/json' \
+      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
+
+This request returns information on the latest 100 attacks detected, arranged from the most recent to the earliest. In addition, the response includes a `cursor` parameter that contains a pointer to the next set of 100 attacks.
+
+To retrieve the next 100 attacks, use the same request as before but include the `cursor` parameter with the pointer value copied from the response of the previous request. This allows the API to know where to start returning the next set of 100 attacks from, e.g.:
+
+=== "EU Cloud"
+    ```curl
+    curl -k 'https://api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'Content-Type: application/json' \
+      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
+=== "US Cloud"
+    ```curl
+    curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
+      -X POST \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'Content-Type: application/json' \
+      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+    ```
+
+To retrieve further pages of results, execute requests including the `cursor` parameter with the value copied from the previous response.
+
+Below is the Python code example for retrieving attacks using cursor paging:
+
+=== "EU Cloud"
+    ```python
+    import json
+    from pprint import pprint as pp
+
+    import requests
+
+
+    client_id = <YOUR_CLIENT_ID>
+    ts = <TIMESTAMP>  # UNIX time
+
+    url = "https://api.wallarm.com/v2/objects/attack"
+    headers = {
+        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "paging": True,
+        "filter": {
+            "clientid": [client_id],
+            "vulnid": None,
+            "time": [[ts, None]],
+            "!state": "falsepositive",
+        },
+    }
+
+
+    while True:
+        response = requests.post(url, headers=headers, json=payload)
+        data = response.json()
+
+        cursor = data.get("cursor")
+        if not cursor:
+            break
+
+        pp(data)
+        payload["cursor"] = cursor
+    ```
+=== "US Cloud"
+    ```python
+    import json
+    from pprint import pprint as pp
+
+    import requests
+
+
+    client_id = <YOUR_CLIENT_ID>
+    ts = <TIMESTAMP>  # UNIX time
+
+    url = "https://us1.api.wallarm.com/v2/objects/attack"
+    headers = {
+        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "paging": True,
+        "filter": {
+            "clientid": [client_id],
+            "vulnid": None,
+            "time": [[ts, None]],
+            "!state": "falsepositive",
+        },
+    }
+
+
+    while True:
+        response = requests.post(url, headers=headers, json=payload)
+        data = response.json()
+
+        cursor = data.get("cursor")
+        if not cursor:
+            break
+
+        pp(data)
+        payload["cursor"] = cursor
+    ```
+
 ## Get the first 50 incidents confirmed in the last 24 hours
 
 The request is very similar to the previous example for a list of attacks; the `"!vulnid": null` term is added to this request. This term instructs the API to ignore all attacks without specified vulnerability ID, and this is how the system distinguishes between attacks and incidents.
