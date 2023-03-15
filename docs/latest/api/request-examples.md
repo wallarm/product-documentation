@@ -23,19 +23,19 @@ The following are examples of API calls for retrieving all attacks detected sinc
     ```curl
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID> \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY> \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
       -H 'Content-Type: application/json' \
-      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "!type": ["warn"], "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 === "US Cloud"
     ```curl
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID> \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY> \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
       -H 'Content-Type: application/json' \
-      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "!type": ["warn"], "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+      -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
 This request returns information on the latest 100 attacks detected, arranged from the most recent to the earliest. In addition, the response includes a `cursor` parameter that contains a pointer to the next set of 100 attacks.
@@ -46,19 +46,19 @@ To retrieve the next 100 attacks, use the same request as before but include the
     ```curl
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID> \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY> \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
       -H 'Content-Type: application/json' \
-      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "!type": ["warn"], "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 === "US Cloud"
     ```curl
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID> \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY> \
+      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
+      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
       -H 'Content-Type: application/json' \
-      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "!type": ["warn"], "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
+      -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
 To retrieve further pages of results, execute requests including the `cursor` parameter with the value copied from the previous response.
@@ -67,75 +67,81 @@ Below is the Python code example for retrieving attacks using cursor paging:
 
 === "EU Cloud"
     ```python
-    import requests
     import json
+    from pprint import pprint as pp
 
-    url = 'https://api.wallarm.com/v2/objects/attack'
+    import requests
+
+
+    client_id = <YOUR_CLIENT_ID>
+    ts = <TIMESTAMP>  # UNIX time
+
+    url = "https://api.wallarm.com/v2/objects/attack"
     headers = {
-        'X-WallarmAPI-UUID': '<YOUR_UUID>',
-        'X-WallarmAPI-Secret': '<YOUR_SECRET_KEY>',
-        'Content-Type': 'application/json'
+        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "Content-Type": "application/json",
     }
     payload = {
         "paging": True,
         "filter": {
-            "clientid": [<YOUR_CLIENT_ID>],
+            "clientid": [client_id],
             "vulnid": None,
-            "!type": ["warn"],
-            "time": [[<TIMESTAMP>, None]],
-            "!state": "falsepositive"
-        }
+            "time": [[ts, None]],
+            "!state": "falsepositive",
+        },
     }
 
-    response = requests.post(url, headers=headers, json=payload)
-    data = json.loads(response.text)
-    cursor = data['cursor']
 
-    while cursor:
-        payload['cursor'] = cursor
-
+    while True:
         response = requests.post(url, headers=headers, json=payload)
-        data = json.loads(response.text)
+        data = response.json()
 
-        print(data)
+        cursor = data.get("cursor")
+        if not cursor:
+            break
 
-        cursor = data['cursor']
+        pp(data)
+        payload["cursor"] = cursor
     ```
 === "US Cloud"
     ```python
-    import requests
     import json
+    from pprint import pprint as pp
 
-    url = 'https://us1.api.wallarm.com/v2/objects/attack'
+    import requests
+
+
+    client_id = <YOUR_CLIENT_ID>
+    ts = <TIMESTAMP>  # UNIX time
+
+    url = "https://us1.api.wallarm.com/v2/objects/attack"
     headers = {
-        'X-WallarmAPI-UUID': '<YOUR_UUID>',
-        'X-WallarmAPI-Secret': '<YOUR_SECRET_KEY>',
-        'Content-Type': 'application/json'
+        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "Content-Type": "application/json",
     }
     payload = {
         "paging": True,
         "filter": {
-            "clientid": [<YOUR_CLIENT_ID>],
+            "clientid": [client_id],
             "vulnid": None,
-            "!type": ["warn"],
-            "time": [[<TIMESTAMP>, None]],
-            "!state": "falsepositive"
-        }
+            "time": [[ts, None]],
+            "!state": "falsepositive",
+        },
     }
 
-    response = requests.post(url, headers=headers, json=payload)
-    data = json.loads(response.text)
-    cursor = data['cursor']
 
-    while cursor:
-        payload['cursor'] = cursor
-
+    while True:
         response = requests.post(url, headers=headers, json=payload)
-        data = json.loads(response.text)
+        data = response.json()
 
-        print(data)
+        cursor = data.get("cursor")
+        if not cursor:
+            break
 
-        cursor = data['cursor']
+        pp(data)
+        payload["cursor"] = cursor
     ```
 
 ## Get the first 50 incidents confirmed in the last 24 hours
