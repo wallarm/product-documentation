@@ -1,8 +1,8 @@
 # Allocating Resources for Wallarm Node
 
-The amount of memory allocated for the filtering node determines the quality and speed of request processing. These instructions describe the recommendations for filtering node memory allocation.
+The amount of memory and CPU resources allocated for the filtering node determines the quality and speed of request processing. These instructions describe the recommendations for filtering node memory allocation.
 
-In a filtering node there are two main memory consumers:
+In a filtering node there are two main memory and CPU consumers:
 
 * [Tarantool](#tarantool), also called **postanalytics module**. This is the local data analytics backend and the primary memory consumer in a filtering node.
 * [NGINX](#nginx) is the main filtering node and reverse proxy component.
@@ -149,3 +149,15 @@ The NGINX memory consumption can be estimated as follows:
     When running in production mode, it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process.
     
     Actual NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of LOM rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc. On average, one CPU core can handle about 500 RPS. In the majority of cases it is recommended to initially over-provision a filtering node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).
+
+## Best practices for lowering CPU load
+
+You can do the following to lower the CPU load by Wallarm:
+
+* For the NGINX‑based filtering nodes, to reveal the longest request processing episodes, [enable extended logging](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor processing time.
+* Disable mistakenly applied parsers [in rules](../../user-guides/rules/disable-request-parsers.md) or [via the NGINX configuration](../../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests.
+* [Lower request processing time](../../user-guides/rules/configure-overlimit-res-detection.md) where data is loaded that does not imply the possibility of an attack.
+* Analyze possible targets for [DDoS](../../attacks-vulns-list.md#ddos-distributed-denial-of-service-attack) and [turn on blocking triggers against brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md) and DirBuster apps.
+* Check Wallarm [IP lists](../../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
+
+A CPU load about 10-15% would be the ideal result , meaning that Wallarm nodes will be able to handle a x10 traffic spike.
