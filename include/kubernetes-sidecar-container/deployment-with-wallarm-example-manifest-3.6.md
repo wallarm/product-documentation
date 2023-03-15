@@ -31,8 +31,7 @@ spec:
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # Amount of memory in GB for request analytics data, 
-          # recommended value is 75% of the total server memory
+          # Amount of memory in GB for request analytics data
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:

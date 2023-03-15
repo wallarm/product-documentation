@@ -20,7 +20,6 @@ wallarm:
   # "safe_blocking" to block malicious requests originated from graylisted IPs
   # "block" to process all requests and block the malicious ones
   mode: "block"
-  # Amount of memory in GB for request analytics data,
-  # recommended value is 75% of the total server memory
+  # Amount of memory in GB for request analytics data
   tarantool_memory_gb: 2
 ```
