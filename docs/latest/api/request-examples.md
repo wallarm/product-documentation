@@ -20,7 +20,7 @@ This technique involves returning a pointer to a specific item in the dataset an
 The following are examples of API calls for retrieving all attacks detected since `<TIMESTAMP>` using the cursor pagination:
 
 === "EU Cloud"
-    ```curl
+    ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
       -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
@@ -29,7 +29,7 @@ The following are examples of API calls for retrieving all attacks detected sinc
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 === "US Cloud"
-    ```curl
+    ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
       -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
@@ -43,7 +43,7 @@ This request returns information on the latest 100 attacks detected, arranged fr
 To retrieve the next 100 attacks, use the same request as before but include the `cursor` parameter with the pointer value copied from the response of the previous request. This allows the API to know where to start returning the next set of 100 attacks from, e.g.:
 
 === "EU Cloud"
-    ```curl
+    ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
       -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
@@ -52,7 +52,7 @@ To retrieve the next 100 attacks, use the same request as before but include the
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 === "US Cloud"
-    ```curl
+    ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
       -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
