@@ -23,8 +23,7 @@ The following are examples of API calls for retrieving all attacks detected sinc
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
@@ -32,8 +31,7 @@ The following are examples of API calls for retrieving all attacks detected sinc
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
@@ -46,8 +44,7 @@ To retrieve the next 100 attacks, use the same request as before but include the
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
@@ -55,8 +52,7 @@ To retrieve the next 100 attacks, use the same request as before but include the
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
@@ -78,8 +74,7 @@ Below is the Python code example for retrieving attacks using cursor paging:
 
     url = "https://api.wallarm.com/v2/objects/attack"
     headers = {
-        "X-WallarmAPI-UUID": "<YOUR_UUID>",
-        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "WallarmApi-Token": "<YOUR_TOKEN>",
         "Content-Type": "application/json",
     }
     payload = {
@@ -117,7 +112,7 @@ Below is the Python code example for retrieving attacks using cursor paging:
 
     url = "https://us1.api.wallarm.com/v2/objects/attack"
     headers = {
-        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "WallarmApi-Token": "<YOUR_TOKEN>",
         "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
         "Content-Type": "application/json",
     }
