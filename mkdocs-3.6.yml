@@ -47,9 +47,9 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/channel/UCgD4zSzAJwf3tBlOgJo7Qkw
   generator: false
-  analytics:
-    provider: google
-    property: G-TFMBLQFQQ1
+  # analytics:
+  #   provider: google
+  #   property: G-TFMBLQFQQ1
 
 extra_css:
   - 'extra_new.css'
