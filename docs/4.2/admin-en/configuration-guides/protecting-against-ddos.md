@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/protecting-against-ddos.md"
+--8<-- "4.4/admin-en/configuration-guides/protecting-against-ddos.md"
