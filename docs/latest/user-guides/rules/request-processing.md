@@ -330,6 +330,10 @@ When defining a request element the [rule](add-rule.md) is applied to:
 
 ![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
+#### remote_addr
+
+IP address of a request origin. This point is used only in the [**Set rate limit**](rate-limiting.md) rule to limit requests per IPs.
+
 ### Norms
 
 The norms are applied to parsers for array and key data types. Norms are used to define the boundaries of data analysis. The value of the norm is indicated in the parser tag. For example: **hash_all**, **hash_name**.
