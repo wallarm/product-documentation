@@ -528,6 +528,70 @@ A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library
     
     **Default value**: `/etc/wallarm/proton.db`
 
+### wallarm_rate_limit
+
+Sets the rate limiting configuration in the following format:
+
+```
+wallarm_rate_limit <POINT_TO_MEASURE_LIMITS_FOR> rate=<RATE> burst=<BURST> delay=<DELAY>;
+```
+
+* `POINT_TO_MEASURE_LIMITS_FOR` - a request point that you want to measure limits for. Can contain text, [NGINX variable](http://nginx.org/en/docs/varindex.html) and their combination.
+* `rate=<RATE>` (required) - rate limit, can be `rate=<number>r/s` or `rate=<number>r/m`.
+* `burst=<BURST>` (optional) - maximum number of excessive requests to be buffered once the specified RPS/RPM is exceeded and to be processed once the rate is back to normal. `0` by default.
+* `delay=<DELAY>` - if the `<BURST>` value is different from `0`, you can control whether to keep the defined RPS/RPM between buffered excessive requests execution. `nodelay` points to simultaneous processing of all buffered excessive requests, without the rate limit delay. Numeric value implies simultaneous processing of the specified number of excessive requests, others are processed with delay set in RPS/RPM.
+
+Example:
+
+```
+wallarm_rate_limit $remote_addr rate=10r/s burst=9 delay=5; 
+```
+
+!!! info
+    **Default value:** none.
+
+    This parameter can be set inside the http, server, location contexts.
+
+    If you set the [rate limiting](../user-guides/rules/rate-limiting.md) rule, the `wallarm_rate_limit` directive has a lower priority.
+
+### wallarm_rate_limit_enabled
+
+Enables/disables Wallarm rate limiting.
+
+If `off`, neither the [rate limiting rule](../user-guides/rules/rate-limiting.md) (recommended) nor the `wallarm_rate_limit` directive work.
+
+!!! info
+    **Default value:** `on` but Wallarm rate limiting does not work without either the [rate limiting rule](../user-guides/rules/rate-limiting.md) (recommended) or the `wallarm_rate_limit` directive configured.
+    
+    This parameter can be set inside the http, server, location contexts.
+
+### wallarm_rate_limit_log_level
+
+The level for logging the requests rejected by the rate limting control. Can be: `info`, `notice`, `warn`, `error`.
+
+!!! info
+    **Default value:** `error`.
+    
+    This parameter can be set inside the http, server, location contexts.
+
+### wallarm_rate_limit_status_code
+
+Code to return in response to the requests rejected by the Wallarm rate limiting module.
+
+!!! info
+    **Default value:** `503`.
+    
+    This parameter can be set inside the http, server, location contexts.
+
+### wallarm_rate_limit_shm_size
+
+Sets total amount of shared memory that the Wallarm rate limiting module can consume. The value is set for an individual NGINX worker. Minimum size for each worker is 8MB.
+
+!!! info
+    **Default value:** `64m` (64 MB).
+    
+    This parameter can be set inside the http context only.
+
 ### wallarm_request_chunk_size
 
 Limits the size of the part of the request that is processed during one iteration. You can set up a custom value of the `wallarm_request_chunk_size` directive in bytes by assigning an integer to it. The directive also supports the following postfixes:
