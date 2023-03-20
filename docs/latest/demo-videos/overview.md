@@ -1,6 +1,6 @@
-# Wallarm platform overview and deployment options
+# Wallarm platform settings
 
-Learn more about the Wallarm platform from our demo videos.
+Learn more about the Wallarm platform settings from our demo videos.
 
 <!-- ## Protecting applications against OWASP Top 10
 
