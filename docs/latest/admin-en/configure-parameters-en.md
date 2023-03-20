@@ -585,7 +585,11 @@ Code to return in response to the requests rejected by the Wallarm rate limiting
 
 ### wallarm_rate_limit_shm_size
 
-Sets total amount of shared memory that the Wallarm rate limiting module can consume. The value is set for an individual NGINX worker. Minimum size for each worker is 8MB.
+Sets the maximum amount of shared memory that the Wallarm rate limiting module can consume. The value is set for a singl NGINX worker. The minimum size for each worker is 8MB.
+
+To better understand this, let us consider an example where the rate limit module is measuring the limits based on the `X-SESSION-ID` header, which has values like `client123`. The Wallarm module considers this value to be 19 bytes long (9 original symbols + 10 added by Wallarm).
+
+If `wallarm_rate_limit_shm_size` is set to 64 MB, the rate limiting module can process requests with up to 437,000 unique keys of the same length.
 
 !!! info
     **Default value:** `64m` (64 MB).

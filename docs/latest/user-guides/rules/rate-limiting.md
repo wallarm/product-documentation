@@ -18,7 +18,7 @@ To set and apply rate limit:
         If the value is different from `0`, you can control whether to keep the defined RPS/RPM between buffered excessive requests execution. **No delay** points to simultaneous processing of all buffered excessive requests, without the rate limit delay. **Delay** implies simultaneous processing of the specified number of excessive requests, others are processed with delay set in RPS/RPM.
     
     * **Response code** - code to return in response to rejected requests. `503` by default.
-1. In **In this part of request**, specify request points that you want to measure limits for.
+1. In **In this part of request**, specify request points (aka keys) that you want to measure limits for.
 
     --8<-- "../include/waf/features/rules/request-part-reference.md"
 1. Wait for the [rule compilation to complete](compiling.md).
