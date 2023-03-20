@@ -37,7 +37,7 @@ In Wallarm UI:
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 Test Splunk notification in the JSON format:
 

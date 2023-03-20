@@ -21,7 +21,7 @@ You can choose the following events to be sent to Datadog:
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 The test Datadog log:
 

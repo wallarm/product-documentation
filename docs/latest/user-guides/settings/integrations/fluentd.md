@@ -109,7 +109,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 The test Fluentd log:
 

@@ -135,7 +135,7 @@ We described some examples of how to configure the integration with the popular 
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 Test webhook example:
 

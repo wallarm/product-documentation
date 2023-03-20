@@ -21,7 +21,7 @@ You can set additional email addresses that will be used to deliver scheduled [P
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-with-email.md"
 
 Test notification example:
 
