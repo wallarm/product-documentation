@@ -17,16 +17,20 @@ This file is automatically created after running the `addnode` script and includ
 
 The `node.yaml` file may contain the following access parameters:
 
-| Parameter         | Description                                                                                                                                                                                                                                                              |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file.                                                                                                                                                                                                       |
-| `uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file.                                                                                                                                                                            |
-| `secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file.                                                                                                                                                            |
-| `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>Default value is `api.wallarm.com`.           |
-| `api.port`       | Wallarm API port. Default value is `443`.                                                                                                                                                                                                                   |
-| `api.ca_verify`  | Whether to enable/disable Wallarm API server certificate verification. Can be:<ul><li>`true` to enable verification</li><li>`false` to disable verification</li></ul>Default value is `true`. |
-| `api.local_host` | Local IP address of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed).
-| `api.local_port` | Port of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed).
+| Parameter | Description | Default value |
+| --------- | ----------- | ------------- |
+| `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
+| `uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
+| `secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
+| `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | `api.wallarm.com` |
+| `api.port`       | Wallarm API port. | `443` |
+| `api.use_ssl`  | Whether to use SSL when connecting to Wallarm API. | `true` |
+| `api.ca_verify`  | Whether to enable/disable Wallarm API server certificate verification. Can be:<ul><li>`true` to enable verification</li><li>`false` to disable verification</li></ul>. | `true` |
+| `api.ca_file`  | Path to the SSL certificate file. | `/usr/share/wallarm-common/ca.pem` |
+| `api.localhost` | Local IP address of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
+| `api.localport` | Port of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
+| `api.read_timeout` | TBD | - |
+| `api.open_timeout` | TBD | - |
 
 To change synchronization parameters, proceed with the following steps:
 
