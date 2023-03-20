@@ -35,15 +35,15 @@ Limiting connections to the endpoint helps to prevent such attacks. You can limi
 
 ![!Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
 
-### Limiting IP connections to prevent brute force attacks on auth parameters
+### Limiting connections by sessions to prevent brute force attacks on auth parameters
 
-By applying rate limiting to requests from the same IP address, you can also restrict brute force attempts to find real JWTs or other authentication parameters in order to gain unauthorized access to protected resources. For example, if rate limit is set to allow only 10 requests per minute from a particular IP address, an attacker who is attempting to discover a valid JWT by making multiple requests with different token values will quickly hit the rate limit, and their requests will be rejected until the rate limit period expires.
+By applying rate limiting to user sessions, you can restrict brute force attempts to find real JWTs or other authentication parameters in order to gain unauthorized access to protected resources. For example, if rate limit is set to allow only 10 requests per minute under a session, an attacker attempting to discover a valid JWT by making multiple requests with different token values will quickly hit the rate limit, and their requests will be rejected until the rate limit period expires.
 
-Suppose a web application with an API endpoint at the URL `https://example.com/api/login` accepts POST requests that include a Bearer JWT in the `Authorization` request header. For this scenario, the rule limiting connections per IP will appear as follows:
+Suppose your application assigns each user session with a unique ID and reflects it in the `X-SESSION-ID` header. The API endpoint at the URL `https://example.com/api/login` accepts POST requests that include a Bearer JWT in the `Authorization` header. For this scenario, the rule limiting connections by sessions will appear as follows:
 
 ![!Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-The [regexp] used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
+The [regexp](add-rule.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 If your authentication mechanism mandates users to pass the token in a different header, you can modify the rule as needed.
 
