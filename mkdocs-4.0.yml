@@ -309,6 +309,7 @@ nav:
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Datadog: user-guides/settings/integrations/datadog.md
+        - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
         - Fluentd: user-guides/settings/integrations/fluentd.md
         - Logstash: user-guides/settings/integrations/logstash.md
         - Webhook: user-guides/settings/integrations/webhook.md
