@@ -130,7 +130,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 
 2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator).
 
-    For production environments, it is recommended to have larger amount of memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough.
+    Learn more about amount of required resources [here](../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 
     For example:
     

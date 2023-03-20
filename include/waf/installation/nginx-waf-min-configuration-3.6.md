@@ -48,7 +48,7 @@ When operating in the `monitoring` mode, the filtering node searches attack sign
 !!! info "Postanalytics module on the separate server"
     If you installed the postanalytics module on a separate server, then skip this step as you already have the module configured.
 
-The Wallarm node uses the in-memory storage Tarantool. For production environments, it is recommended to have larger amount of memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough.
+The Wallarm node uses the in-memory storage Tarantool. Learn more about amount of required resources [here][memory-instr]. Note that for testing environments you can allocate lower resources than for the production ones.
 
 To allocate memory for Tarantool:
 
