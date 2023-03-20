@@ -81,16 +81,13 @@ The Free Tier subscription includes:
 
 **What happens if the quota is exceeded?**
 
-If the company account exceeds 200% of the Free Tier monthly quota:
-
-* Access to the company account is temporarily disabled.
-* Integrations are temporarily disabled.
+If the company account exceeds 100% of the Free Tier monthly quota, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled.
 
 These restrictions will be in effect until the first day of the next month. Contact the Wallarm [sales team](mailto:sales@wallarm.com) to restore service immediately by switching to one of the paid subscription plans.
 
 Information about the Free Tier subscription usage is displayed in Wallarm Console → **Settings** → [**Subscriptions**](../user-guides/settings/subscriptions.md).
 
-Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85%, 100%, 185% and 200% of the free request quota have been exceeded. When reaching 100%, your access to the Wallarm Console is disabled, along with all integrations. When reaching 200%, protection on your Wallarm nodes is disabled.
+Wallarm notifies **Administrators** and **Global Administrators** of your account via email when 85%, 100%, 185% and 200% of the free request quota have been exceeded.
 
 ## Trial period (EU Cloud)
 
