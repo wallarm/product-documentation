@@ -112,6 +112,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](docker-container.md)
 
+### 4.6.0-1 (2023-03-20)
+
+* Initial release 4.6, [see changelog](what-is-new.md)
+
 ### 4.4.5-1 (2023-03-03)
 
 * Fix the issue with invalid custom ruleset causing segmentation faults
