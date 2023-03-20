@@ -19,7 +19,7 @@ You can set up Wallarm to send notifications to your Microsoft Teams channel whe
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-basic-data.md"
 
 Test Microsoft Teams message from the user **wallarm**:
 

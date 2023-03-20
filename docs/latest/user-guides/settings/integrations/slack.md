@@ -19,7 +19,7 @@ You can set up Wallarm to send notifications to your Slack channel when the foll
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-basic-data.md"
 
 Test Slack message from the user **wallarm**:
 

@@ -119,7 +119,7 @@ Fluentd integration example:
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 The test log in the Fluentd or Logstash intermediate data collector:
 

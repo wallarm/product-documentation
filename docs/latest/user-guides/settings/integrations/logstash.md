@@ -106,7 +106,7 @@ You will find more details in the [official Logstash documentation](https://www.
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 The test Logstash log:
 

@@ -3,7 +3,11 @@ Integration testing allows checking configuration correctness, availability of t
 The integration is tested as follows:
 
 * Test notifications with the prefix `[Test message]` are sent to the selected system.
-* Test integrations are sent for all events available for the selected system. If the integration card includes 3 event types, the system will receive 3 test notifications.
+* Test notifications cover the following events (each in a single record):
 
-    If the integration card includes the event type **System related**, an appropriate test notification includes details on the newly added user.
+    * New user in the company account
+    * Newly detected hit
+    * Newly discovered IP in the company scope
+    * New trigger in the company account
+    * Newly discovered security vulnerability
 * Test notifications include test data.

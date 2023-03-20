@@ -28,21 +28,13 @@ In the Wallarm Console UI:
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
-You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**. The test logs have the following types:
-
-* `create_user_CL`: the log on the new user in the company account
-* `new_hits_CL`: the log on the newly detected hit
-* `scope_object_CL`: the log on the newly discovered IP in the company scope
-* `trigger_create_CL`: the log on the new trigger in the company account
-* `vuln_CL`: the log on the newly discovered security vulnerability
-
-The test `create_user_CL` log in Microsoft Sentinel looks as follows:
+You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**, e.g. the test `create_user_CL` log in Microsoft Sentinel looks as follows:
 
 ![!Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
-## Types of Wallarm custom logs in Sentinel
+## Types of Wallarm logs
 
 Overall, Wallarm can log in Sentinel the records of the following types:
 
