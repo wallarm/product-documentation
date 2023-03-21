@@ -340,6 +340,7 @@ If the norm is not specified, then the identifier of the entity that requires pr
 
 Used to get values of all elements, parameters, or objects. For example:
 
+* **path_all** for all parts of URL path
 * **query_all** for all query string parameter values
 * **header_all** for all header values
 * **array_all** for all array element values
