@@ -283,12 +283,12 @@ The following response parameters are available (Prometheus metrics have the `wa
 * `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
 * `rate_limit`: information about the Wallarm [rate limiting](../user-guides/rules/rate-limiting.md) module:
     * `shm_zone_size`: total amount of shared memory that the Wallarm rate limiting module can consume in bytes (the value is based on the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) directive, default is `67108864`).
-    * `buckets_count`: the number of buckets (usually equal to NGINX workers count).
-    * `entries`: the number of request points (aka keys) you measure limits for.
+    * `buckets_count`: the number of buckets (usually equal to NGINX workers count, 8 is a maximum).
+    * `entries`: the number of unique request point values (aka keys) you measure limits for.
     * `delayed`: the number of requests that have been buffered by the rate limiting module due to the `burst` setting.
     * `exceeded`: the number of requests that have been rejected by the rate limiting module because they exceeded the limit.
-    * `expired`: the number of unique keys stored for 60 seconds due to suspicion of exceeding the rate limit, but later removed from the backet because they did not exceed the limit.
-    * `removed`: the number of unique keys stored for 60 seconds due to suspicion of exceeding the rate limit, but removed from the backet due to insufficient memory resources. If the value is higher that `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
+    * `expired`: the total number of keys that are removed from the bucket on a regular 60-second basis if the rate limit for those keys was not exceeded.
+    * `removed`: the number of keys abruptly removed from the backet. If the value is higher that `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
     * `no_free_nodes`: the value different from `0` indicates that there is insufficient memory allocated for the rate limit module, the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value increase is recommended.
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.

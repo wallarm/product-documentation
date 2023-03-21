@@ -4,6 +4,8 @@ Lack of rate limiting is included in the [OWASP API Top 10 2019](https://github.
 
 Wallarm provides the **Set rate limit** rule to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 
+You can limit connections based on any request parameter, including source IP address, request headers with user session identifiers, JSON objects, and more.
+
 ## Creating and applying the rule
 
 To set and apply rate limit:
@@ -15,12 +17,17 @@ To set and apply rate limit:
     * Maximum number for the requests per second or minute.
     * **Burst** - maximum number of excessive requests to be buffered once the specified RPS/RPM is exceeded and to be processed once the rate is back to normal. `0` by default.
 
-        If the value is different from `0`, you can control whether to keep the defined RPS/RPM between buffered excessive requests execution. **No delay** points to simultaneous processing of all buffered excessive requests, without the rate limit delay. **Delay** implies simultaneous processing of the specified number of excessive requests, others are processed with delay set in RPS/RPM.
+        If the value is different from `0`, you can control whether to keep the defined RPS/RPM between buffered excessive requests execution.
+        
+        **No delay** points to simultaneous processing of all buffered excessive requests, without the rate limit delay. **Delay** implies simultaneous processing of the specified number of excessive requests, others are processed with delay set in RPS/RPM.
     
     * **Response code** - code to return in response to rejected requests. `503` by default.
-1. In **In this part of request**, specify request points (aka keys) that you want to measure limits for.
+1. In **In this part of request**, specify request points for which you wish to set limits. Wallarm will restrict requests that have the same values for the selected request parameters.
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    All available points are described [here](request-processing.md), you can choose those matching your particular use case, e.g.:
+    
+    * `remote_addr` to limit connections by origin IP
+    * `json` → `json_docs` → `json_obj` → `api_key` to limit connections by the `api_key` JSON body parameter
 1. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule examples
@@ -78,5 +85,8 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
 The rate limit functionality has the following limitations and pecularities:
 
 * Rate limiting rule is supported by all [Wallarm deployment forms](../../admin-en/supported-platforms.md) except for the Envoy-based Docker image.
+* If you have multiple Wallarm nodes and the incoming traffic on each node meets the rate limit rule, they are limited independently.
+* When multiple rate limit rules apply to incoming requests, the rule with the lowest rate limit is used to limit the requests.
+* If an incoming request does not have the point specified in the **In this part of request** rule section, then this rule is not applied as a limitation for that request.
 * If your web server is configured to limit connections (e.g. by using the [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINX module) and you also apply the Wallarm rule, the web server rejects requests by the configured rules but Wallarm does not.
 * Wallarm does not save requests exceeding the rate limit, it only rejects them by returning the code chosen in the rule. The exception are requests with [attack signs](../../about-wallarm/protecting-against-attacks.md) - they are recorded by Wallarm even if they are rejected by the rate limiting rule.

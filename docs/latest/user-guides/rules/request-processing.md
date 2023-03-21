@@ -74,6 +74,10 @@ Request example | Query string parameters and values
 `/?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb` | <ul><li>`[query, 'p1', hash, 'x']` — `1`</li><li>`[query, 'p1', hash, 'y']` — `2`</li><li>`[query, 'p2', array, 0]` — `aaa`</li><li>`[query, 'p2', array, 1]` — `bbb`</li></ul>
 `/?p3=1&p3=2` | <ul><li>`[query, 'p3', array, 0]` — `1`</li><li>`[query, 'p3', array, 1]` — `2`</li><li>`[query, 'p3', pollution]` — `1,2`</li></ul>
 
+### IP address of a request origin
+
+Request point for an IP address of a request origin in the Wallarm rules is `remote_addr`. This point is used only in the [**Set rate limit**](rate-limiting.md) rule to limit requests per IPs.
+
 ### Headers
 
 Headers are presented in the HTTP request and some other formats (e.g., **multipart**). The **header** tag corresponds to the parser. Header names are always converted to uppercase.
@@ -329,10 +333,6 @@ When defining a request element the [rule](add-rule.md) is applied to:
 * Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
 
 ![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
-
-#### remote_addr
-
-IP address of a request origin. This point is used only in the [**Set rate limit**](rate-limiting.md) rule to limit requests per IPs.
 
 ### Norms
 
