@@ -4,11 +4,8 @@ The [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) module of t
 
 Watch our demo video to know API Abuse Prevention different aspects: 
 
-* Bot types it can protect from.
-* Information flow starting from agent request and ending at your applications with the filtering node in between,
-* Principles of bot detection and avoiding false positives.
-* User interface.
-* Bot related data: attacks and IP lists.
+* Get familiar with the different bot types your applications can be protected from.
+* Understand Wallarm capabilities to prevent API abuse by bots.
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/6nOmRhGmWeA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
