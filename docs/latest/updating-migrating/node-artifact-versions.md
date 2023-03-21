@@ -129,6 +129,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](docker-container.md)
 
+### 4.6.0-1 (2023-03-21)
+
+* Initial release 4.6, [see changelog](what-is-new.md)
+
 ### 4.4.3 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
