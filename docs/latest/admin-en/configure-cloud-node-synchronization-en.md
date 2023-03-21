@@ -13,15 +13,16 @@ These instructions describe parameters and methods used to configure filtering n
 
 The `node.yaml` file contains the parameters providing the filtering node access to the Cloud.
 
-This file is automatically created after running the `addnode` script and includes the filtering node name and UUID, and Wallarm API secret key. Default path to the file is `/etc/wallarm/node.yaml`. This path can be changed via the [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) directive.
+This file is automatically created after running the `register-node` script and includes the filtering node name and UUID, and Wallarm API secret key. Default path to the file is `/etc/wallarm/node.yaml`. This path can be changed via the [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) directive.
 
 The `node.yaml` file may contain the following access parameters:
 
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
-| `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
-| `uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
-| `secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `addnode` |
+| `hostname`       | Filtering node name. This variable is **required** to be set in the `node.yaml` file. | Provided by `register-node` |
+| `regtoken`       | Token for node to be able to access the Wallarm API. | Provided by `register-node` |
+| `uuid`           | Filtering node UUID. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
+| `secret`         | Secret key to access the Wallarm API. This variable is **required** to be set in the `node.yaml` file. | Provided by `regtoken` |
 | `api.host`       | Wallarm API endpoint. Can be:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul> | `api.wallarm.com` |
 | `api.port`       | Wallarm API port. | `443` |
 | `api.use_ssl`  | Whether to use SSL when connecting to Wallarm API. | `true` |
@@ -29,8 +30,6 @@ The `node.yaml` file may contain the following access parameters:
 | `api.ca_file`  | Path to the SSL certificate file. | `/usr/share/wallarm-common/ca.pem` |
 | `api.localhost` | Local IP address of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
 | `api.localport` | Port of the network interface through which requests to Wallarm API are sent. This parameter is required if the network interface used by default restricts access to Wallarm API (for example, access to the Internet may be closed). | - |
-| `api.read_timeout` | TBD | - |
-| `api.open_timeout` | TBD | - |
 
 To change synchronization parameters, proceed with the following steps:
 
