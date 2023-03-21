@@ -1,7 +1,5 @@
 # Wallarm platform settings
 
-Learn more about the Wallarm platform settings from our demo videos.
-
 <!-- ## Protecting applications against OWASP Top 10
 
 <div class="video-wrapper">
@@ -23,7 +21,16 @@ Learn more about the Wallarm platform settings from our demo videos.
 
 * [Documentation for Wallarm Console sections](../user-guides/user-intro.md) -->
 
-## Wallarm platform - settings
+Watch our demo video to know how to get a general information and set up things via the **Settings** section of the Wallarm console including:
+
+* Obtaining your current user information in the [**Profile**](../user-guides/settings/account.md) section
+* Filtration mode in the [**General**](../user-guides/settings/general.md) section
+* Your [**Subscriptions**](../user-guides/settings/subscriptions.md) information
+* Configuration for [**Applications**](../user-guides/settings/applications.md)
+* [**API Discovery**](../about-wallarm/api-discovery.md) settings
+* Configuration for [**Integrations**](../user-guides/settings/integrations/)
+* Information and settings for [**Users**](../user-guides/settings/users.md) of your organization
+* [**Activity log**](../user-guides/settings/audit-log.md)
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/8kPa1EsQFaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

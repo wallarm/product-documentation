@@ -1,6 +1,9 @@
-# Inspecting events detected by the Wallarm filtering node
+# Analyzing CVEs and related attacks
 
-Watch our demo videos to overview how to manage events detected by Wallarm.
+Watch this demo video to:
+
+* Get familiar with the [**CVEs** dashboard](../user-guides/dashboards/threat-prevention.md#cves).
+* Know how to use the **CVEs** dashboard together with the [**Events** section](../user-guides/events/check-attack.md) to analyze specific CVE-related events.
 
 <!-- ## Viewing statistics on detected events on the dashboards
 
@@ -41,8 +44,6 @@ Watch our demo videos to overview how to manage events detected by Wallarm.
 * [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
 * [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md) -->
-
-## API attack perimeter visibility
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

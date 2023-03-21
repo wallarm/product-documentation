@@ -383,7 +383,7 @@ nav:
     - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
   # - Demo videos:
   #   - Wallarm platform settings: demo-videos/overview.md
-  #   - Inspecting events detected by the Wallarm filtering node: demo-videos/events-inspection.md
+  #   - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
   #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
   #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
   - Changelog & news: news.md
