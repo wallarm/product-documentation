@@ -382,7 +382,7 @@ nav:
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
-    - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
+    - CPU high usage troubleshooting: faq/cpu.md    - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
   # - Demo videos:
   #   - Wallarm platform settings: demo-videos/overview.md
   #   - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
