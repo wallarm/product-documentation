@@ -119,17 +119,6 @@ Open for editing the configuration file of Tarantool:
 
 Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
-For example:
-
-=== "If testing the node"
-    ```bash
-    SLAB_ALLOC_ARENA=0.5
-    ```
-=== "If deploying the node to the production environment"
-    ```bash
-    SLAB_ALLOC_ARENA=24
-    ```
-
 **Restart Tarantool:**
 
 === "Ubuntu 18.04 LTS (bionic)"

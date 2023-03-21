@@ -211,18 +211,6 @@ The Wallarm node uses the in-memory storage Tarantool. To allocate memory for Ta
 
     Learn more about amount of required resources [here](../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 
-    For example:
-    
-    === "If testing the node"
-        ```bash
-        SLAB_ALLOC_ARENA=0.5
-        ```
-    === "If deploying the node to the production environment"
-        ```bash
-        SLAB_ALLOC_ARENA=24
-        ```
-
-    Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
     ``` bash

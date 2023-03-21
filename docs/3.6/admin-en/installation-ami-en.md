@@ -131,17 +131,6 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator).
 
     Learn more about amount of required resources [here](../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
-
-    For example:
-    
-    === "If testing the node"
-        ```bash
-        SLAB_ALLOC_ARENA=0.5
-        ```
-    === "If deploying the node to the production environment"
-        ```bash
-        SLAB_ALLOC_ARENA=24
-        ```
 3. To apply changes, restart the Tarantool daemon:
 
     ```
