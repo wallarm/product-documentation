@@ -31,10 +31,6 @@ Users of Wallarm clients can have the following roles:
 * **Analyst** with access to view main Wallarm settings, and manage information about attacks, [incidents][link-glossary-incident] and [vulnerabilities][link-glossary-vulnerability]
 * **Read Only** with access to view main Wallarm settings
 * **API Developer** with access to view and download the API inventory discovered by the [API Discovery](../../about-wallarm/api-discovery.md) module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
-* **Deploy** with access to create Wallarm filtering nodes using the `addnode` script and with no access to Wallarm Console
-
-    !!! warning "Using the Deploy role to install the Wallarm node 4.0"
-        The **Deploy** user role is recommended to be used to install only nodes 3.6 and lower since the [`addnode` script is deprecated in the release of version 4.0](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
 The [multitenancy](../../installation/multi-tenant/overview.md) feature also enables you to use the global roles **Global Administrator**, **Global Analyst**, **Global Read Only**. Global roles provide users with access to the technical tenant account and linked tenant accounts, regular roles provide users with access only to the technical tenant account.
 
