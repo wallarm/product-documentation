@@ -90,7 +90,33 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-## Step 3: Restart the postanalytics module
+## Step 3: Update the node type
+
+!!! info "Only for nodes installed using the `addnode` script"
+    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](what-is-new.md#removal-of-the-email-password-based-node-registration) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
+
+1. Make sure that your Wallarm account has the **Administrator** role by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
+
+    ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation][img-create-wallarm-node]
+1. Copy the generated token.
+1. Execute the `register-node` script to run the node:
+
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force --no-sync --no-sync-acl
+        ```
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force --no-sync --no-sync-acl
+        ```
+    
+    * `<NODE_TOKEN>` is the Wallarm node token.
+    * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
+
+## Step 4: Restart the postanalytics module
 
 === "Debian"
     ```bash

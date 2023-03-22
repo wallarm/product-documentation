@@ -20,7 +20,7 @@
 
 # Upgrading EOL Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.4. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../../installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
@@ -133,7 +133,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
         ```
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)
+## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.6 (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
@@ -217,7 +217,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
 The deployed node has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
-It is recommended to install the new node type instead of the deprecated one during migration to the version 4.4. The regular node type will be removed in future releases, please migrate before.
+It is recommended to install the new node type instead of the deprecated one during migration to the version 4.6. The regular node type will be removed in future releases, please migrate before.
 
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
@@ -361,6 +361,6 @@ If the postanalytics module is installed on a separate server, please also delet
 
 ## Settings customization
 
-The Wallarm modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 4.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
