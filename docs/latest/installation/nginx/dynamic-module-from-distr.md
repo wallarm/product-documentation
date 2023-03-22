@@ -209,7 +209,7 @@ The Wallarm node uses the in-memory storage Tarantool. To allocate memory for Ta
         ```
 2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
-    Learn more about amount of required resources [here](../../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
+    Learn more about amount of required resources [here](../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 
 3. To apply changes, restart Tarantool:
 
