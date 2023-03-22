@@ -21,8 +21,6 @@ The **API Leaks** Wallarm module helps to solve these issues by providing the fo
 * Ability to add leaks manually.
 * Ability to make your own decisions on how the leaked data problems should be remediated in each case.
 
-Remediation via blocking leaked tokens works effectively even if you do not know at some moment all the places where the leaked tokens are used in your API. This gives you time to study all the places and regenerate tokens there. Once this is done, you can mark leak as closed - protection will stop as you do not need it anymore.
-
 ## Visualization of found leaks
 
 The **API Leaks** section provides rich visual representation for your current situation regarding found API leaks. This representation is interactive: you can click diagram elements to filter leaks by risk levels and sources.
