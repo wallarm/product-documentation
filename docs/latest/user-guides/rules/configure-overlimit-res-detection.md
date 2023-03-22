@@ -4,16 +4,6 @@ The Wallarm node spends limited time on a single incoming request processing and
 
 Limiting the request processing time prevents the bypass attacks aimed at the Wallarm nodes. In some cases, the requests marked as `overlimit_res` can indicate insufficient resources allocated for the Wallarm node modules resulting in long request processing.
 
-!!! info "Rule support in different node versions"
-    The **Fine-tune the overlimit_res attack detection** rule is supported only by the Wallarm node 3.6 and higher.
-
-    In versions 3.4 and lower:
-
-    * The custom time limit for a single request processing is configured via the [`wallarm_process_time_limit`](../../admin-en/configure-parameters-en.md#wallarm_process_time_limit) NGINX directive and the [`process_time_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit) Envoy parameter.
-    * The `overlimit_res` attack processing mode is configured via the [`wallarm_process_time_limit_block`](../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block) NGINX directive and the [`process_time_limit_block`](../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block) Envoy parameter.
-
-    It is recommended to transfer the `overlimit_res` attack detection configuration from directives to the rule during the Wallarm module upgrade up to the latest version. Relevant instructions are provided for each [node deployment option](../../updating-migrating/general-recommendations.md#update-process).
-
 ## Default node behavior
 
 The Wallarm node is configured to spend no more than **1,000 milliseconds** on a single incoming request processing by default.

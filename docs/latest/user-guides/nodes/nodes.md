@@ -17,8 +17,8 @@ Wallarm node UI management options:
 !!! info "Administrator access"
     The creating, deleting, and regenerating of Wallarm nodes/tokens is only available to users with the **Administrator** role. Viewing the details of installed nodes is available to all users.
 
-!!! warning "Regular and cloud node types"
-    Before the release of version 4.0, the Wallarm node could be either of the regular or cloud type. Starting from the new release, the [regular type was deprecated and the cloud type was renamed to **Wallarm node**](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
+!!! warning "Removed regular and cloud types of nodes"
+    Starting from the release 4.6, only the [**Wallarm node** type is available](../../updating-migrating/what-is-new.md#removal-of-the-email-password-based-node-registration).
 
     **Wallarm node** utilizes a unified approach to registering and configuring in [any supported environment](../../admin-en/supported-platforms.md).
 

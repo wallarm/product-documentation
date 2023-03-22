@@ -75,16 +75,6 @@ api:
 
 ### wallarm_application
 
-!!! warning "Predecessors and changed behavior of the directive"
-    In Wallarm node 3.4 and lower, role of this directive was performed by the `wallarm_instance` directive (now deprecated).
-    
-    In Wallarm node 3.6 this directive was used both for its main purpose described in this section and for specifying tenants in the multi-tenant nodes. Now the second role went away and transferred to the new [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) directive. The first role remains unchanged.
-
-    When updating configuration you used for your filtering node of the version before 4.0:
-
-    * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy).
-
 Unique identifier of the protected application to be used in the Wallarm Cloud. The value can be a positive integer except for `0`.
 
 Unique identifiers can be set for both the application domains and the domain paths, for example:
@@ -190,10 +180,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 !!! info
     This parameter can be set inside the http, server, and location blocks.
     
-    **Default value**: `/etc/wallarm/custom_ruleset` (in Wallarm node 3.4 and lower, `/etc/wallarm/lom`)
-
-!!! warning "Previous name of the directive"
-    In Wallarm node 3.4 and lower, this directive is named `wallarm_local_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_local_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
+    **Default value**: `/etc/wallarm/custom_ruleset`
 
 ### wallarm_enable_libdetection
 
@@ -227,9 +214,6 @@ Sets the requests' analysis and custom rules generation based on the NGINX mirro
 
 ### wallarm_general_ruleset_memory_limit
 
-!!! warning "Previous name of the directive"
-    In Wallarm node 3.6 and lower, this directive is named `wallarm_ts_request_memory_limit`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_ts_request_memory_limit` directive will be deprecated soon. The directive logic has not changed.
-
 Set a limit for the maximum amount of memory that can be used by one instance of proton.db and custom ruleset.
 
 If the memory limit is exceeded while processing some request, the user will get a 500 error.
@@ -248,10 +232,8 @@ Value of **0** turns the limit off.
 
 ### wallarm_global_trainingset_path
 
-!!! warning "The directive will be deprecated soon"
-    Starting with Wallarm node 3.6, please use the [`wallarm_protondb_path`](#wallarm_protondb_path) directive instead.
-
-    The `wallarm_global_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
+!!! warning "The directive is deprecated"
+    Starting with Wallarm node 3.6, please use the [`wallarm_protondb_path`](#wallarm_protondb_path) directive instead. Just change the directive name, its logic did not change.
 
 ### wallarm_file_check_interval
 
@@ -274,7 +256,7 @@ Defines an interval between checking new data in proton.db and custom ruleset fi
     When updating configuration you used for your filtering node of the version before 4.0:
 
     * If you upgrade filtering node without multitenancy feature and have any `wallarm_instance` used to set unique identifier of the protected application, just rename it to `wallarm_application`.
-    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy).
+    * If you upgrade filtering node with multitenancy feature, consider all `wallarm_instance` to be `wallarm_application`, then rewrite the configuration as described in the [multitenancy reconfiguration instruction](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy).
 
 ### wallarm_key_path
 
@@ -286,10 +268,8 @@ A path to the Wallarm private key used for encryption/decryption of proton.db an
 
 ### wallarm_local_trainingset_path
 
-!!! warning "The directive will be deprecated soon"
-    Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead.
-
-    The `wallarm_local_trainingset_path` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
+!!! warning "The directive is deprecated"
+    Starting with Wallarm node 3.6, please use the [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) directive instead. Just change the directive name, its logic did not change.
 
 ### wallarm_mode
 
@@ -417,7 +397,7 @@ Unique identifier of the tenant for the [multi-tenant](../installation/multi-ten
     Know how to:
     
     * [Get the UUID of the tenant during tenant creation →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
-    * [Get the list of UUIDs of existing tenants →](../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)
+    * [Get the list of UUIDs of existing tenants →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
     
 Configuration example:
 
@@ -548,9 +528,6 @@ A path to the [proton.db](../about-wallarm/protecting-against-attacks.md#library
     
     **Default value**: `/etc/wallarm/proton.db`
 
-!!! warning "Previous name of the directive"
-    In Wallarm node 3.4 and lower, this directive is named `wallarm_global_trainingset_path`. If you use this name, we recommend to change it when [upgrading the node modules](../updating-migrating/general-recommendations.md#update-process). The `wallarm_global_trainingset_path` directive will be deprecated soon. The directive logic has not changed.
-
 ### wallarm_request_chunk_size
 
 Limits the size of the part of the request that is processed during one iteration. You can set up a custom value of the `wallarm_request_chunk_size` directive in bytes by assigning an integer to it. The directive also supports the following postfixes:
@@ -638,10 +615,8 @@ You can use time intervals suffixes that are described in the [NGINX documentati
 
 ### wallarm_ts_request_memory_limit
 
-!!! warning "The directive will be deprecated soon"
-    Starting with Wallarm node 4.0, please use the [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) directive instead.
-
-    The `wallarm_ts_request_memory_limit` directive is still supported but will be deprecated in future releases. If you use the directive, we recommend to rename it. The directive logic has not changed.
+!!! warning "The directive is deprecated"
+    Starting with Wallarm node 4.0, please use the [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) directive instead. Just change the directive name, its logic did not change.
 
 ### wallarm_unpack_response
 

@@ -39,7 +39,7 @@ You may use the following filter node variables when defining the NGINX logging 
 |Name|Type|Value|
 |---|---|---|
 |`request_id`|String|Request identifier<br>Has the following value form: `a79199bcea606040cc79f913325401fb`|
-|`wallarm_request_cpu_time`<br>(in Wallarm node 3.6 and lower, `wallarm_request_time`)|Float|Time in seconds the CPU of the machine with the filtering node spent processing the request.|
+|`wallarm_request_cpu_time`|Float|Time in seconds the CPU of the machine with the filtering node spent processing the request.|
 |`wallarm_request_mono_time`|Float|Time in seconds the CPU spent processing the request + time in the queue. For example, if the request was in the queue for 3 seconds and processed by CPU for 1 second, then: <ul><li>`"wallarm_request_cpu_time":1`</li><li>`"wallarm_request_mono_time":4`</li></ul>|
 |`wallarm_serialized_size`|Integer|Size of the serialized request in bytes|
 |`wallarm_is_input_valid`|Integer|Request validity<br>`0`: request is valid. The request has been checked by filter node and matches LOM rules.<br>`1`: request is invalid. The request has been checked by filter node and does not match LOM rules.|

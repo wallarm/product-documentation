@@ -253,14 +253,14 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `time_detect`: the total time of requests analysis.
 *   `db_id`: proton.db version.
 *   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
-*   `custom_ruleset_id` (in Wallarm node 3.4 and lower, `lom_id`): version of the [custom ruleset][gl-lom] build.
+*   `custom_ruleset_id`: version of the [custom ruleset][gl-lom] build.
 *   `custom_ruleset_ver` (available starting from the Wallarm release 4.4.3): the [custom ruleset][gl-lom] format:
 
     * `4x` - for Wallarm nodes 2.x which are [out-of-date](../updating-migrating/versioning-policy.md#version-list).
     * `5x` - for Wallarm nodes 4.x and 3.x (the latter are [out-of-date](../updating-migrating/versioning-policy.md#version-list)).
 *   `db_apply_time`: Unix time of the last update of the proton.db file.
 *   `lom_apply_time`: will be deprecated soon, please use `custom_ruleset_apply_time`.
-*   `custom_ruleset_apply_time` (in Wallarm node 3.4 and lower, `lom_apply_time`): Unix time of the last update of the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
+*   `custom_ruleset_apply_time`: Unix time of the last update of the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
 *   `proton_instances`: information about proton.db + LOM pairs:
     *   `total`: the number of proton.db + LOM pairs.
     *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
