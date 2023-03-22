@@ -1,7 +1,5 @@
 # CPU high usage troubleshooting
 
-Wallarm filtering node performs many functions, each requiring CPU resources. To reach the right balance between functionality and consumed resources, follow the best practices and carefully consider which node functions are required in your case and which can be turned off.
-
 You can do the following to lower the CPU load by Wallarm:
 
 * [Enable extended logging](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor processing time to reveal the longest request processing episodes.
