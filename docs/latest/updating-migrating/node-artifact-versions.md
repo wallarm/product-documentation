@@ -40,7 +40,7 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
-### 4.4.0-1
+### 4.6.0-1 (???)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -48,7 +48,7 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
-### 4.4.0
+### 4.6.0-1 (???)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
