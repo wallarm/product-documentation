@@ -1,8 +1,8 @@
-# Inspecting events detected by the Wallarm filtering node
+# Analyzing CVEs and related attacks
 
-Watch our demo videos to overview how to manage events detected by Wallarm.
+Watch our demo video to get familiar with the Wallarm platform's [**CVEs**](../user-guides/dashboards/threat-prevention.md#cves) dashboard and know how to use this dashboard together with the [**Events**](../user-guides/events/check-attack.md) section to analyze specific CVE-related events.
 
-## Viewing statistics on detected events on the dashboards
+<!-- ## Viewing statistics on detected events on the dashboards
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/6KBn59aGFxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -40,4 +40,12 @@ Watch our demo videos to overview how to manage events detected by Wallarm.
 
 * [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
-* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md)
+* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md) -->
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+**Related documentation articles**
+
+* [CVEs widget](../user-guides/dashboards/threat-prevention.md#cves)

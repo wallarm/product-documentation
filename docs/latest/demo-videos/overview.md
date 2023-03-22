@@ -1,8 +1,6 @@
-# Wallarm platform overview and deployment options
+# Wallarm platform settings
 
-Learn more about the Wallarm platform from our demo videos.
-
-## Protecting applications against OWASP Top 10
+<!-- ## Protecting applications against OWASP Top 10
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -21,4 +19,14 @@ Learn more about the Wallarm platform from our demo videos.
 
 **Related documentation articles**
 
-* [Documentation for Wallarm Console sections](../user-guides/user-intro.md)
+* [Documentation for Wallarm Console sections](../user-guides/user-intro.md) -->
+
+Watch our demo video to discover the general Wallarm settings available in Wallarm Console, such as [user management](../user-guides/settings/users.md), node [filtration mode](../user-guides/settings/general.md) setup, [subscription plan](../user-guides/settings/subscriptions.md) management, [application configuration](../user-guides/settings/applications.md), and [activity log](../user-guides/settings/audit-log.md).
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/8kPa1EsQFaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+**Related documentation articles**
+
+* [General settings](../user-guides/settings/general.md)
