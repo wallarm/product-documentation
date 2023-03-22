@@ -1,5 +1,7 @@
 # CPU high usage troubleshooting
 
+This troubleshooting article explains how to reduce CPU usage by Wallarm. By following the suggested steps, you can improve your environments's performance and avoid frustrating slowdowns.
+
 You can do the following to lower the CPU load by Wallarm:
 
 * [Enable extended logging](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor processing time to reveal the longest request processing episodes.
