@@ -115,18 +115,7 @@ You can change the amount of RAM allocated for Tarantool. To allocate the instan
 
 2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator).
     
-    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough (e.g. 25% of the total memory).
-
-    For example:
-    
-    === "If testing the node"
-        ```bash
-        SLAB_ALLOC_ARENA=0.5
-        ```
-    === "If deploying the node to the production environment"
-        ```bash
-        SLAB_ALLOC_ARENA=24
-        ```
+    Learn more about amount of required resources [here](../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 3. To apply changes, restart the Tarantool daemon:
     
     ```

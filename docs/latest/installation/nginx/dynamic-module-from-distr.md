@@ -191,7 +191,7 @@ When operating in the `monitoring` mode, the filtering node searches attack sign
 !!! info "Postanalytics module on the separate server"
     If you installed the postanalytics module on a separate server, then skip this step as you already have the module configured.
 
-The Wallarm node uses the in-memory storage Tarantool. The recommended memory size for Tarantool is 75% of the total server memory. To allocate memory for Tarantool:
+The Wallarm node uses the in-memory storage Tarantool. To allocate memory for Tarantool:
 
 1. Open the Tarantool configuration file in the editing mode:
 
@@ -209,20 +209,8 @@ The Wallarm node uses the in-memory storage Tarantool. The recommended memory si
         ```
 2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
 
-    For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. If testing the Wallarm node or having a small instance size, the lower amount can be enough (e.g. 25% of the total memory).
+    Learn more about amount of required resources [here](../../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 
-    For example:
-    
-    === "If testing the node"
-        ```bash
-        SLAB_ALLOC_ARENA=0.5
-        ```
-    === "If deploying the node to the production environment"
-        ```bash
-        SLAB_ALLOC_ARENA=24
-        ```
-
-    Detailed recommendations about allocating memory for Tarantool are described in these [instructions][memory-instr]. 
 3. To apply changes, restart Tarantool:
 
     ``` bash

@@ -102,9 +102,7 @@ To install the filtering node alone, run the command:
 !!! info
     Skip this step if you installed postanalytics on a separate server as you already have your postanalytics configured.
 
-The amount of memory determines the quality of work of the statistical algorithms.
-
-For production environments, the recommended amount of RAM allocated for the postanalytics module is 75% of the total server memory. For example, if the server has 32 GB of memory, the recommended allocation size is 24 GB. If testing the Wallarm node or having a small server size, the lower amount can be enough (e.g. 25% of the total memory).
+The amount of memory determines the quality of work of the statistical algorithms. Learn more about amount of required resources [here](../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
 
 **Allocate the operating memory size for Tarantool:**
 
@@ -120,17 +118,6 @@ Open for editing the configuration file of Tarantool:
     ```
 
 Set the allocated memory size in the configuration file of Tarantool via the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
-
-For example:
-
-=== "If testing the node"
-    ```bash
-    SLAB_ALLOC_ARENA=0.5
-    ```
-=== "If deploying the node to the production environment"
-    ```bash
-    SLAB_ALLOC_ARENA=24
-    ```
 
 **Restart Tarantool:**
 
