@@ -19,7 +19,7 @@
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x to version 4.4. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
 * [NGINX `stable` module](../installation/nginx/dynamic-module.md)
 * [Module for NGINX from CentOS/Debian repositories](../installation/nginx/dynamic-module-from-distr.md)
@@ -189,16 +189,76 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
-## Step 4: Restart NGINX
+## Step 4: Update the node type
+
+!!! info "Only for nodes installed using the `addnode` script"
+    Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](what-is-new.md#removal-of-the-email-password-based-node-registration) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
+
+1. Make sure that your Wallarm account has the **Administrator** role by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
+
+    ![!User list in Wallarm console][img-wl-console-users]
+1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+    ![!Wallarm node creation][img-create-wallarm-node]
+
+    !!! info "If the postanalytics module is installed on a separate server"
+        If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
+
+        ![!Node with several instances](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+
+        The Wallarm node has already been created during the [separate postanalytics module upgrade](separate-postanalytics.md). To connect the initial traffic processing module to the Cloud using the same node credentials:
+
+        1. Copy the node token generated during the separate postanalytics module upgrade.
+        1. Proceed to the 4th step in the list below.
+1. Copy the generated token.
+1. Pause the NGINX service to mitigate the risk of incorrect RPS calculation:
+
+    === "Debian"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo service nginx stop
+        ```
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo systemctl stop nginx
+        ```
+1. Execute the `register-node` script to run the **Wallarm node**:
+
+    === "US Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force
+        ```
+    === "EU Cloud"
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force
+        ```
+    
+    * `<NODE_TOKEN>` is the Wallarm node token.
+    * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
+
+## Step 5: Update the Wallarm blocking page
+
+In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+
+If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+## Step 6: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 5: Test Wallarm node operation
+## Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## Settings customization
 
-The Wallarm modules are updated to version 4.4. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
+The Wallarm modules are updated to version 4.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"

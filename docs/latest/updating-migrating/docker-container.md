@@ -16,10 +16,10 @@
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
-These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.4.
+These instructions describe the steps to upgrade the running Docker NGINX- or Envoy-based image 4.x to the version 4.6.
 
 !!! warning "Using credentials of already existing Wallarm node"
-    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.4 and deploy it as the Docker container.
+    We do not recommend using the already existing Wallarm node of the previous version. Please follow these instructions to create a new filtering node of the version 4.6 and deploy it as the Docker container.
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/docker-container.md).
 
@@ -38,13 +38,22 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     docker pull wallarm/envoy:4.4.3-1
     ```
 
-## Step 2: Stop the running container
+## Step 2: Update the Wallarm blocking page (if upgrading NGINX-based image)
+
+In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+
+If the Docker container was configured to return the `&/usr/share/nginx/html/wallarm_blocked.html` page to blocked requests, change this configuration as follows:
+
+1. [Copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+1. [Mount](../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code) the customized page and the NGINX configuration file to a new Docker container in the next step.
+
+## Step 3: Stop the running container
 
 ```bash
 docker stop <RUNNING_CONTAINER_NAME>
 ```
 
-## Step 3: Run the container using the new image
+## Step 4: Run the container using the new image
 
 1. Proceed to Wallarm Console → **Nodes** and create **Wallarm node**.
 
@@ -61,10 +70,10 @@ docker stop <RUNNING_CONTAINER_NAME>
         * [Instructions for the NGINX-based Docker container →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
         * [Instructions for the Envoy-based Docker container →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
-## Step 4: Test the filtering node operation
+## Step 5: Test the filtering node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Step 5: Delete the filtering node of the previous version
+## Step 6: Delete the filtering node of the previous version
 
-If the deployed image of the version 4.4 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
+If the deployed image of the version 4.6 operates correctly, you can delete the filtering node of the previous version in Wallarm Console → **Nodes**.
