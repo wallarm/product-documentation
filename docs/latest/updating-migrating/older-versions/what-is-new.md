@@ -35,15 +35,15 @@ With Wallarm's rate limiting feature supported since Wallarm node 4.6, security 
 
 You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Set rate limit** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
 
-[Guide on rate limit configuration →]
+[Guide on rate limit configuration →](../../user-guides/rules/rate-limiting.md)
 
 Although the rate limiting rule is the recommended method for setting up the feature, you can also configure rate limits using the new NGINX directives:
 
-* [wallarm_rate_limit]
-* [wallarm_rate_limit_enabled]
-* [wallarm_rate_limit_log_level]
-* [wallarm_rate_limit_status_code]
-* [wallarm_rate_limit_shm_size]
+* [`wallarm_rate_limit`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit)
+* [`wallarm_rate_limit_enabled`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_enabled)
+* [`wallarm_rate_limit_log_level`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_log_level)
+* [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
+* [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
 ## Detection of the new attack types
 
