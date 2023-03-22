@@ -1,6 +1,6 @@
 # What is new in Wallarm node (if upgrading an EOL node)
 
-This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.4. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.6. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 3.6 and lower are deprecated"
     Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
@@ -26,6 +26,24 @@ Starting from version 4.0, the Wallarm node does not collect the following colle
 * `curl_json-wallarm_nginx/derive-memfaults`
 * `curl_json-wallarm_nginx/derive-softmemfaults`
 * `curl_json-wallarm_nginx/derive-time_detect`
+
+## Rate limits
+
+The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
+
+With Wallarm's rate limiting feature supported since Wallarm node 4.6, security teams can effectively manage the service's load and prevent false alarms, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
+
+You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Set rate limit** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
+
+[Guide on rate limit configuration →]
+
+Although the rate limiting rule is the recommended method for setting up the feature, you can also configure rate limits using the new NGINX directives:
+
+* [wallarm_rate_limit]
+* [wallarm_rate_limit_enabled]
+* [wallarm_rate_limit_log_level]
+* [wallarm_rate_limit_status_code]
+* [wallarm_rate_limit_shm_size]
 
 ## Detection of the new attack types
 
@@ -95,9 +113,9 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 ## Unified registration of nodes in the Wallarm Cloud by tokens
 
-The release 4.x enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md). Wallarm nodes of previous versions required the "email-password" user credentials on some platforms.
+With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.6.
 
-Unified registration of nodes by tokens makes the connection to the Wallarm Cloud more secure and faster, e.g.:
+The release 4.6 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
 * Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
 * Users' data remains securely stored in the Wallarm Cloud.
@@ -272,6 +290,7 @@ The NGINX-based Wallarm Docker image 4.2 and above supports the new environment 
 
 ## Parameters of the statistics service
 
+* The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting](#rate-limits) module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
 * The number of requests originating from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 * The service return one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
 * The following node statistics parameters have been renamed:
@@ -311,7 +330,7 @@ The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#w
       * [Cloud node image](cloud-image.md)
       * [Multi-tenant node](multi-tenant.md)
       * [CDN node](../cdn-node.md)
-3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.4.
+3. [Migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node versions to 4.6.
 
 ----------
 
