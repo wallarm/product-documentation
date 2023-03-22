@@ -14,9 +14,11 @@ You can configure rate limits easily in the Wallarm Console UI → **Rules** →
 
 ## Removal of the email-password based node registration
 
-With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. This method was deprecated with the [release of version 4.0](older-versions/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens), and most customers have already migrated to a new registration method. If you have not done so yet, it is now mandatory to switch to the token-based node registration method to continue with Wallarm node 4.6 and above.
+With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. This method was deprecated with the release of version 4.0, and most customers have already migrated to a new registration method. If you have not done so yet, it is now mandatory to switch to the token-based node registration method to continue with Wallarm node 4.6 and above.
 
 Nodes of version 4.6 and above can only be registered using tokens, which ensures a more secure and faster connection to the Wallarm Cloud. Instructions for migrating to the token-based node registration method are provided in each migration guide to help with the transition.
+
+Changes in node registration methods also result in some updates in node types. [Read more](older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)
 
 ## New blocking page
 
@@ -30,13 +32,13 @@ New blocking page with the new layout looks as follows by default:
 
 ## Changes in the statistics service parameters
 
-The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting] module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
+The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting](#rate-limits) module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
 
 [Details on the statistics service →](../admin-en/configure-statistics-service.md)
 
 ## New NGINX directives
 
-Although the [rate limiting rule] is the recommended method for setting up the feature, you can also configure rate limits using the new NGINX directives:
+Although the [rate limiting rule](#rate-limits) is the recommended method for setting up the feature, you can also configure rate limits using the new NGINX directives:
 
 * [wallarm_rate_limit]
 * [wallarm_rate_limit_enabled]
@@ -61,6 +63,8 @@ If upgrading from the version 3.6 or lower, learn all changes from the [separate
       * [Module for NGINX, NGINX Plus](nginx-modules.md)
       * [Docker container with the modules for NGINX or Envoy](docker-container.md)
       * [NGINX Ingress controller with integrated Wallarm modules](ingress-controller.md)
+      * [Kong Ingress controller with integrated Wallarm modules](kong-ingress-controller.md)
+      * [Sidecar proxy](sidecar-proxy.md)
       * [Cloud node image](cloud-image.md)
       * [CDN node](cdn-node.md)
       * [Multi-tenant node](multi-tenant.md)
