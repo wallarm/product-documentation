@@ -132,7 +132,7 @@ These options are:
 * Tracking changes in API.
 * Quick navigation to attacks related to some endpoint.
 * Custom rule creation for the specific endpoint.
-* Downloading OpenAPI specification (OAS) for an individual API endpoints and an entire API as `swagger.json` file.
+* Downloading OpenAPI specification (OAS) for individual API endpoints and an entire API as `swagger.json` file.
 
 Learn more about available options from the [User guide](../user-guides/api-discovery.md).
 

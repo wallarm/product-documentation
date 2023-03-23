@@ -97,15 +97,14 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ## Download OpenAPI specification (OAS) of your API inventory
 
-Click **Download OAS** to get a `swagger.json` file with the API inventory discovered by Wallarm. The description will be in the [OpenAPI v3 format](https://spec.openapis.org/oas/v3.0.0).
+The API Discovery UI provides you with an option to download the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification of either an individual API endpoint or an entire API discovered by Wallarm.
 
-!!! warning "Filtered download"
-    When downloading the API inventory, applied filters are taken into account. Only filtered data is downloaded.
+* The **Download OAS** button on the API inventory page returns `swagger.json` for the entire inventory or only the filtered data if any filters were applied before downloading.
+
+    With the downloaded data, you can identify missing endpoints (Shadow API) and unused endpoints (Zombie API) in your specification compared to Wallarm's discoveries.
+
+    !!! warning "API host information in downloaded Swagger file"
+        If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
+* The **Download OAS** button in an individual endpoint menu returns `swagger.json` for the selected endpoint.
     
-!!! info "API host information in downloaded Swagger file"
-    If a discovered API inventory contains several API hosts, endpoints from all API hosts will be included in the downloaded Swagger file. Currently, the API host information is not included in the file.
-
-Using the downloaded data, you can discover:
-
-* The list of endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
-* The list of endpoints presented in your specification but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+    By utilizing the downloaded specification with other applications like Postman, you can conduct endpoint vulnerability and other tests. In addition, it allows for a closer examination of the endpoint's capabilities to uncover the processing of sensitive data and the presence of undocumented parameters.
