@@ -3,7 +3,7 @@
 The Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
 !!! warning "Unsupported version"
-    Wallarm node 4.0 and lower are not supported. We have significantly simplified the node configuration procedure and made attack mitigation even more powerful and usable in the later releases.
+    Wallarm node 4.0 and lower are not supported. We have made attack mitigation even more powerful and usable in the later releases.
 
     Please learn [what is new in the later versions](/updating-migrating/older-versions/what-is-new/) and plan the upgrade procedure.
 
