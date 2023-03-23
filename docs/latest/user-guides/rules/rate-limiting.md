@@ -4,7 +4,7 @@ Lack of rate limiting is included in the [OWASP API Top 10 2019](https://github.
 
 Wallarm provides the **Set rate limit** rule to help prevent excessive traffic to your API. This rule enables you to specify the maximum number of connections that can be made to a particular scope, while also ensuring that incoming requests are evenly distributed. If a request exceeds the defined limit, Wallarm rejects it and returns the code you selected in the rule.
 
-You can limit connections based on any request parameter, including source IP address, request headers with user session identifiers, JSON objects, and more.
+Wallarm examines various request parameters such as cookies or JSON fields, which allows you to limit connections based not only on the source IP address, but also on session identifiers, usernames, or email addresses. This additional level of granularity enables you to enhance the overall security of a platform based on any origin data.
 
 ## Creating and applying the rule
 
@@ -27,12 +27,12 @@ To set and apply rate limit:
     All available points are described [here](request-processing.md), you can choose those matching your particular use case, e.g.:
     
     * `remote_addr` to limit connections by origin IP
-    * `json` → `json_docs` → `json_obj` → `api_key` to limit connections by the `api_key` JSON body parameter
+    * `json` → `json_doc` → `hash` → `api_key` to limit connections by the `api_key` JSON body parameter
 1. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule examples
 
-### Limiting IP connections to prevent DoS attacks on API endpoint
+<!-- ### Limiting IP connections to prevent DoS attacks on API endpoint
 
 Suppose you have a section in the UI that returns a list of users, with a limit of 200 users per page. To fetch the page, the UI sends a request to the server using the following URL: `https://example-domain.com/api/users?page=1&size=200`.
 
@@ -40,7 +40,17 @@ However, an attacker could exploit this by changing the `size` parameter to an e
 
 Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![!Example](../../images/user-guides/rules/rate-limit-for-200-users.png)
+![!Example](../../images/user-guides/rules/rate-limit-for-200-users.png) -->
+
+### Limiting connections by IP to ensure high API availability
+
+Suppose a healthcare company's REST API letting doctors to submit patient information through a POST request to the `/patients` endpoint of the `https://example-host.com` host. This endpoint contains sensitive personal health information, and it is important to ensure that it is not abused or overwhelmed by a large number of requests.
+
+Limiting connections by IP within a certain period of time specifically for the `/patients` endpoint could prevent this. This ensures the stability and availability of the endpoint to all doctors, while also protecting the security of patient information by preventing DoS attacks.
+
+For example, limit can be set to 5 POST requests per minute for each IP address as follows:
+
+![!Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### Limiting connections by sessions to prevent brute force attacks on auth parameters
 
@@ -52,15 +62,15 @@ Suppose your application assigns each user session with a unique ID and reflects
 
 The [regexp](add-rule.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
-If your authentication mechanism mandates users to pass the token in a different header, you can modify the rule as needed.
+If you use JWT (JSON Web Tokens) to manage user sessions, you can adjust the rule to [decrypt](request-processing.md#jwt) the JWT and extract the session ID from its payload as follows:
 
-### User-Agent-based rate limiting to prevent attacks on API endpoints
+![!Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
-Let's say you have an old version of your application has some known security vulnerabilities allowing letting attackers brute force API using the vulnerable application version. Usually, the `User-Agent` header is used to pass browser/application versions. To prevent the brute force attack via the old application version, you can implement `User-Agent`-based rate limiting.
+### User-Agent based rate limiting to prevent attacks on API endpoints
+
+Let's say you have an old version of your application has some known security vulnerabilities allowing attackers to brute force API endpoint `https://example-domain.com/login` using the vulnerable application version. Usually, the `User-Agent` header is used to pass browser/application versions. To prevent the brute force attack via the old application version, you can implement `User-Agent` based rate limiting.
 
 For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
-
-The following rate limiting rule limits requests to any path of the `https://example-domain.com` host (e.g. `/users`, `/items/books`, `/payments/{payment_id}/users`):
 
 ![!Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
@@ -78,7 +88,18 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
 * Response code: reject requests exceeding the limit and the burst with the 503 code
 * Wallarm identifies repeated requests targeted at a single endpoint by the `uri` [point](request-processing.md)
 
+    !!! info "Query parameters are not included into URI"
+        This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
+
 ![!Example](../../images/user-guides/rules/rate-limit-by-uri.png)
+
+### Limiting connections by customer IDs to prevent server overhelm
+
+Let us consider a web service that provides access to customer orders data for an online shopping platform. Rate limiting by customer ID can help prevent customers from placing too many orders in a short period of time, which can put a strain on inventory management and order fulfillment.
+
+For example, the rule limiting each customer by 10 POST requests per minute to `https://example-domain.com/orders` may look as below. This example considers a customer ID is [passed](request-processing.md#json_doc) in the `data.customer_id` JSON body object.
+
+![!Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## Limitations and pecularities
 
