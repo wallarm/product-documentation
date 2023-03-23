@@ -2,6 +2,9 @@
 
 The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
+!!! info "Newer version is available"
+    The newer version of the Wallarm node has been released. [What is new in the latest version](/updating-migrating/what-is-new/)
+
 <div class="navigation">
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
