@@ -1,1 +1,0 @@
---8<-- "4.2/installation/multi-tenant/deploy-multi-tenant-node.md"

@@ -1,1 +1,0 @@
---8<-- "4.2/admin-en/scanner-address-us-cloud.md"

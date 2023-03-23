@@ -1,1 +1,0 @@
---8<-- "4.2/user-guides/settings/subscriptions.md"

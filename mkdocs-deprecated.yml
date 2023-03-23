@@ -32,7 +32,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "3.4"
+  version: "4.0"
 
 extra:
   social:
@@ -86,7 +86,7 @@ markdown_extensions:
   - meta
 
 docs_dir: docs/deprecated
-site_dir: site/3.4
+site_dir: site/4.0
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:
