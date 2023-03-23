@@ -6,7 +6,7 @@ The new minor version of the Wallarm node has been released! It features an impo
 
 The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
 
-With Wallarm's rate limiting feature supported since Wallarm node 4.6, security teams can effectively manage the service's load and prevent false alarms, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
+With Wallarm's rate limiting feature supported since Wallarm node 4.6, security teams can effectively manage the service's load, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
 
 You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Set rate limit** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
 
