@@ -1,4 +1,4 @@
-[link-wallarm-mode-override]: ../../admin-ja/configure-parameters-ja.md#wallarm_mode_allow_override
+[link-wallarm-mode-override]: ../../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 
 [img-mode-rule]: ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
@@ -24,9 +24,9 @@
 
 ## デフォルトのルールインスタンス
 
-Wallarmは、[default](../../user-guides/rules/view.md#default-rules)レベルで`フィルタリングモードの設定`ルールのインスタンスを自動的に作成します。システムは、[一般的なフィルタリングモード](../../admin-ja/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいてその値を設定します。
+Wallarmは、[default](../../user-guides/rules/view.md#default-rules)レベルで`フィルタリングモードの設定`ルールのインスタンスを自動的に作成します。システムは、[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいてその値を設定します。
 
-このルールのインスタンスは削除することができません。値を変更するには、システムの[一般的なフィルタリングモード](../../admin-ja/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更してください。
+このルールのインスタンスは削除することができません。値を変更するには、システムの[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更してください。
 
 他のすべてのデフォルトルールと同様に、`フィルタリングモードの設定`デフォルトルールはすべてのブランチで[継承](../../user-guides/rules/view.md)されます。
 

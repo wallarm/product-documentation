@@ -1,10 +1,10 @@
-[allocating-memory-guide]:          ../../../admin-ja/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-ja/configure-parameters-ja.md
+[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
 [graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-ja/configure-wallarm-mode.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-ja/configure-statistics-service.md
+[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 
 # Wallarm の GCP へのノード Docker イメージの展開
 

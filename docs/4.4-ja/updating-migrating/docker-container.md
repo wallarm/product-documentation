@@ -1,18 +1,18 @@
-[waf-mode-instr]: ../admin-ja/configure-wallarm-mode.md
-[blocking-page-instr]: ../admin-ja/configuration-guides/configure-block-page-and-code.md
-[logging-instr]: ../admin-ja/configure-logging.md
-[proxy-balancer-instr]: ../admin-ja/using-proxy-or-balancer-ja.md
-[process-time-limit-instr]: ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[allocating-memory-guide]: ../admin-ja/configuration-guides/allocate-resources-for-node.md
+[waf-mode-instr]: ../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]: ../admin-en/configuration-guides/configure-block-page-and-code.md
+[logging-instr]: ../admin-en/configure-logging.md
+[proxy-balancer-instr]: ../admin-en/using-proxy-or-balancer-en.md
+[process-time-limit-instr]: ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[allocating-memory-guide]: ../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]: ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]: ../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]: ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]: ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
+[nginx-process-time-limit-docs]: ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]: ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]: ../user-guides/ip-lists/graylist.md
-[waf-mode-instr]: ../admin-ja/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]: ../admin-ja/configuration-guides/envoy/fine-tuning.md#process_time_limit
-[envoy-process-time-limit-block-docs]: ../admin-ja/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[waf-mode-instr]: ../admin-en/configure-wallarm-mode.md
+[envoy-process-time-limit-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
+[envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 
 # Docker NGINX-またはEnvoyベースのイメージのアップグレード
 
@@ -55,11 +55,11 @@ docker stop <RUNNING_CONTAINER_NAME>
     更新されたイメージを使用してコンテナを実行するには、2つのオプションがあります：
 
     * **環境変数で**基本的なフィルタリングノードの構成を指定します
-        * [NGINXベースのDockerコンテナー用の手順 →](../admin-ja/installation-docker-ja.md#run-the-container-passing-the-environment-variables)
-        * [EnvoyベースのDockerコンテナー用の手順 →](../admin-ja/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
+        * [NGINXベースのDockerコンテナー用の手順 →](../admin-en/installation-docker-en.md#run-the-container-passing-the-environment-variables)
+        * [EnvoyベースのDockerコンテナー用の手順 →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-passing-the-environment-variables)
     * **マウントされた構成ファイルで**高度なフィルタリングノード構成を指定します
-        * [NGINXベースのDockerコンテナー用の手順 →](../admin-ja/installation-docker-ja.md#run-the-container-mounting-the-configuration-file)
-        * [EnvoyベースのDockerコンテナー用の手順 →](../admin-ja/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
+        * [NGINXベースのDockerコンテナー用の手順 →](../admin-en/installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+        * [EnvoyベースのDockerコンテナー用の手順 →](../admin-en/installation-guides/envoy/envoy-docker.md#run-the-container-mounting-envoyyaml)
 
 ## ステップ4：フィルタリングノードの操作をテストする
 

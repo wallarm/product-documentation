@@ -1,4 +1,4 @@
-[acl-access-phase]: ../admin-ja/configure-parameters-ja.md#wallarm_acl_access_phase
+[acl-access-phase]: ../admin-en/configure-parameters-en.md#wallarm_acl_access_phase
 
 # フィルタリングモードの設定
 
@@ -104,7 +104,7 @@ Wallarm Console の **ルール** タブ上のローカルフィルタリング�
 !!! info "Wallarm Cloud とフィルタリングノードの同期"
     Wallarm Consoleで定義されたルールは、Wallarm Cloudとフィルタリングノードの同期プロセス中に適用され、2〜4分ごとに実行されます。
 
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-ja.md)
+    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md)
 
 ### "Rules" タブでのフィルタリングルールの設定
 
@@ -116,7 +116,7 @@ Wallarm Console の **ルール** タブで、カスタム条件に一致する�
 !!! info "Wallarm Cloud とフィルタリングノードの同期"
     Wallarm Consoleで定義されたルールは、Wallarm Cloud とフィルタリングノードの同期プロセス中に適用され、2〜4分ごとに実行されます。
 
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-ja.md)`wallarm_mode_allow_override` を使用してフィルタリングモードの設定方法の優先度を設定する
+    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md)`wallarm_mode_allow_override` を使用してフィルタリングモードの設定方法の優先度を設定する
 
 !!! warning "`wallarm_mode_allow_override` ディレクティブの CDN ノードでのサポート"
     `wallarm_mode_allow_override` ディレクティブは、[Wallarm CDN ノード](../installation/cdn-node.md)では設定できません。

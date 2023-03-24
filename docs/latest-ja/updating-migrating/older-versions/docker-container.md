@@ -1,18 +1,18 @@
-[waf-mode-instr]: ../../admin-ja/configure-wallarm-mode.md
-[blocking-page-instr]: ../../admin-ja/configuration-guides/configure-block-page-and-code.md
-[logging-instr]: ../../admin-ja/configure-logging.md
-[proxy-balancer-instr]: ../../admin-ja/using-proxy-or-balancer-ja.md
-[process-time-limit-instr]: ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[allocating-memory-guide]: ../../admin-ja/configuration-guides/allocate-resources-for-node.md
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
+[blocking-page-instr]: ../../admin-en/configuration-guides/configure-block-page-and-code.md
+[logging-instr]: ../../admin-en/configure-logging.md
+[proxy-balancer-instr]: ../../admin-en/using-proxy-or-balancer-en.md
+[process-time-limit-instr]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[allocating-memory-guide]: ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]: ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]: ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
+[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]: ../../user-guides/ip-lists/graylist.md
-[waf-mode-instr]: ../../admin-ja/configure-wallarm-mode.md
-[envoy-process-time-limit-docs]: ../../admin-ja/configuration-guides/envoy/fine-tuning.md#process_time_limit
-[envoy-process-time-limit-block-docs]: ../../admin-ja/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
+[envoy-process-time-limit-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
+[envoy-process-time-limit-block-docs]: ../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
 
 # EOL Docker NGINX もしくは Envoy ベースのイメージのアップグレード
 
@@ -76,24 +76,24 @@ Wallarmノード2.16以下をアップグレードする場合、Wallarmコン�
 * `WALLARM_ACL_ENABLE` 環境変数は廃止予定です。IPリストが新しいノードバージョンに[移行](../migrate-ip-lists-to-node-3.md)されている場合、この変数を`docker run`コマンドから削除してください。
 * 以下の NGINX ディレクティブが変更されました：
 
-    * `wallarm_instance` → [`wallarm_application`](../../admin-ja/configure-parameters-ja.md#wallarm_application)
-    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-ja/configure-parameters-ja.md#wallarm_custom_ruleset_path)
-    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-ja/configure-parameters-ja.md#wallarm_protondb_path)
-    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-ja/configure-parameters-ja.md#wallarm_general_ruleset_memory_limit)
+    * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
+    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
 
     これらのディレクティブの名前だけが変更されており、ロジックは変わっていません。近日中に旧名のディレクティブが廃止予定になりますので、事前に名前を変更することをお勧めします。
 
     マウントされた設定ファイルに旧名のディレクティブが明示的に指定されている場合は、それらを変更してください。
-* `wallarm_request_time` [ログ変数](../../admin-ja/configure-logging.md#filter-node-variables) の名前が `wallarm_request_cpu_time` に変更されました。
+* `wallarm_request_time` [ログ変数](../../admin-en/configure-logging.md#filter-node-variables) の名前が `wallarm_request_cpu_time` に変更されました。
 
     変数の名前だけが変更されており、ロジックは変わっていません。古い名前は一時的にサポートされますが、それでも変数の名前を変更することをお勧めします。
 * 以下の Envoy パラメーターの名前が変更されました：
 
-    * `lom` → [`custom_ruleset`](../../admin-ja/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
-    * `instance` → [`application`](../../admin-ja/configuration-guides/envoy/fine-tuning.md#basic-settings)
+    * `lom` → [`custom_ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+    * `instance` → [`application`](../../admin-en/configuration-guides/envoy/fine-tuning.md#basic-settings)
     * `tsets` セクション → `rulesets` 、それに伴い、このセクションの `tsN` エントリ → `rsN`
-    * `ts` → [`ruleset`](../../admin-ja/configuration-guides/envoy/fine-tuning.md#ruleset_param)
-    * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-ja/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
+    * `ts` → [`ruleset`](../../admin-en/configuration-guides/envoy/fine-tuning.md#ruleset_param)
+    * `ts_request_memory_limit` → [`general_ruleset_memory_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings)
 
     パラメーターの名前だけが変更されており、ロジックは変わっていません。近日中に旧名のパラメーターが廃止予定になりますので、事前に名前を変更することをお勧めします。
 
@@ -105,8 +105,8 @@ Wallarmノード2.16以下をアップグレードする場合、Wallarmコン�
 
 Docker コンテナがブロックされたリクエストに `&/usr/share/nginx/html/wallarm_blocked.html` ページを返すように設定されていた場合、次の手順でこの設定を変更します。
 
-1. [新しいサンプルページのバージョン](../../admin-ja/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)をコピーしてカスタマイズする。
-1. [次のステップで新しいDockerコンテナにカスタマイズされたページとNGINX設定ファイルをマウント](../../admin-ja/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)する。以下は Wallarm のドキュメントの一部を英語から日本語に翻訳したものです。
+1. [新しいサンプルページのバージョン](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)をコピーしてカスタマイズする。
+1. [次のステップで新しいDockerコンテナにカスタマイズされたページとNGINX設定ファイルをマウント](../../admin-en/configuration-guides/configure-block-page-and-code.md#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code)する。以下は Wallarm のドキュメントの一部を英語から日本語に翻訳したものです。
 
 ## ステップ 9：`overlimit_res` 攻撃検出設定をディレクティブからルールへ転送
 

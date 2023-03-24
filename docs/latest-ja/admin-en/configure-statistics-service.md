@@ -1,6 +1,6 @@
-[doc-configure-kubernetes]:     configure-kubernetes-ja.md
+[doc-configure-kubernetes]:     configure-kubernetes-en.md
 [link-prometheus]:              https://prometheus.io/
-[gl-lom]:                       ../glossary-ja.md#custom-ruleset-the-former-term-is-lom
+[gl-lom]:                       ../glossary-en.md#custom-ruleset-the-former-term-is-lom
 
 # 統計サービスの設定
 
@@ -38,7 +38,7 @@ server {
   deny all;
 
   wallarm_mode off;
-  disable_acl "on";   # 要求元のチェックが無効になり、denylisted IPs が wallarm-status サービスをリクエストできるようになります。 https://docs.wallarm.com/admin-ja/configure-parameters-ja/#disable_acl
+  disable_acl "on";   # 要求元のチェックが無効になり、denylisted IPs が wallarm-status サービスをリクエストできるようになります。 https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
 
   location /wallarm-status {

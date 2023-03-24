@@ -1,13 +1,13 @@
-[wallarm-status-instr]:             ../admin-ja/configure-statistics-service.md
-[memory-instr]:                     ../admin-ja/configuration-guides/allocate-memory-for-waf-node.md
-[waf-directives-instr]:             ../admin-ja/configure-parameters-ja.md
+[wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
+[memory-instr]:                     ../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[waf-directives-instr]:             ../admin-en/configure-parameters-en.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]:    ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                   ../admin-ja/configure-wallarm-mode.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 
 # クラウドノードイメージのアップグレード
 
@@ -27,10 +27,10 @@
 2. 起動ステップで、以下の設定を行います:
 
       * 画像バージョン `4.4.x` を選択
-      * AWS の場合、**Security Group Settings**フィールドで[作成されたセキュリティグループ](../admin-ja/installation-ami-ja.md#3-create-a-security-group)を選択
-      * AWS の場合、**Key Pair Settings**フィールドで[作成されたキーペアの名前](../admin-ja/installation-ami-ja.md#2-create-a-pair-of-ssh-keys)を選択
+      * AWS の場合、**Security Group Settings**フィールドで[作成されたセキュリティグループ](../admin-en/installation-ami-en.md#3-create-a-security-group)を選択
+      * AWS の場合、**Key Pair Settings**フィールドで[作成されたキーペアの名前](../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys)を選択
 3. インスタンスの起動を確認します。
-4. GCP の場合、[手順](../admin-ja/installation-gcp-ja.md#3-configure-the-filtering-node-instance)に従ってインスタンスを設定します。
+4. GCP の場合、[手順](../admin-en/installation-gcp-en.md#3-configure-the-filtering-node-instance)に従ってインスタンスを設定します。
 
 ## Step 2: フィルタリングノードを Wallarm クラウドに接続する
 
@@ -38,8 +38,8 @@
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. 新しい Wallarm ノードを作成し、生成されたトークンを使用して Wallarm クラウドに接続します。これは、クラウドプラットフォームの指示に従って行われます。
-      * [AWS](../admin-ja/installation-ami-ja.md#6-connect-the-filtering-node-to-wallarm-cloud)
-      * [GCP](../admin-ja/installation-gcp-ja.md#5-connect-the-filtering-node-to-wallarm-cloud)
+      * [AWS](../admin-en/installation-ami-en.md#6-connect-the-filtering-node-to-wallarm-cloud)
+      * [GCP](../admin-en/installation-gcp-en.md#5-connect-the-filtering-node-to-wallarm-cloud)
 
 ## Step 3: 以前のバージョンから新しいバージョンへのフィルタリングノードの設定をコピーする
 
@@ -54,7 +54,7 @@
 
 NGINX 設定ファイルの使用に関する詳細情報は、[公式の NGINX ドキュメント](https://nginx.org/docs/beginners_guide.html)で利用可能です。
 
-フィルタリングノードディレクティブの一覧は[こちら](../admin-ja/configure-parameters-ja.md)で利用できます。
+フィルタリングノードディレクティブの一覧は[こちら](../admin-en/configure-parameters-en.md)で利用できます。
 
 ## ステップ 4: NGINX を再起動する
 
@@ -70,7 +70,7 @@ sudo systemctl restart nginx
 
 ## Step 6: AWS または GCP でフィルタリングノード 4.4 を元にした仮想マシンイメージを作成する
 
-フィルタリングノード 4.4 を元にした仮想マシンイメージを作成するには、[AWS](../admin-ja/installation-guides/amazon-cloud/create-image.md) または [GCP](../admin-ja/installation-guides/google-cloud/create-image.md) の手順に従ってください。
+フィルタリングノード 4.4 を元にした仮想マシンイメージを作成するには、[AWS](../admin-en/installation-guides/amazon-cloud/create-image.md) または [GCP](../admin-en/installation-guides/google-cloud/create-image.md) の手順に従ってください。
 
 ## Step 7: 以前の Wallarm ノードインスタンスを削除する
 

@@ -1,9 +1,9 @@
-[nginx-process-time-limit-docs]: ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]: ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]: ../../user-guides-ja/rules/configure-overlimit-res-detection.md
-[graylist-docs]: ../../user-guides-ja/ip-lists/graylist.md
-[ip-list-docs]: ../../user-guides-ja/ip-lists/overview.md
-[waf-mode-instr]: ../../admin-ja/configure-wallarm-mode.md
+[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]: ../../user-guides/ip-lists/graylist.md
+[ip-list-docs]: ../../user-guides/ip-lists/overview.md
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
 
 # EOL NGINX Ingressコントローラーと統合されたWallarmモジュールのアップグレード
 
@@ -26,13 +26,13 @@
 
 ノード 2.18 以前をアップグレードする場合は、[Wallarm の技術サポート](mailto:support@wallarm.com)に連絡して、フィルタリングノードモジュールを 4.4 までアップデートしていることを通知し、Wallarm アカウントで新しい IP リストのロジックを有効にしてもらってください。
 
-新しい IP リストのロジックが有効になったら、Wallarm Console を開いて、[**IP リスト**](../../user-guides-ja/ip-lists/overview.md)セクションが利用可能かどうかを確認してください。
+新しい IP リストのロジックが有効になったら、Wallarm Console を開いて、[**IP リスト**](../../user-guides/ip-lists/overview.md)セクションが利用可能かどうかを確認してください。
 
 ## ステップ2: アクティブな脅威検証モジュールを無効にする（ノード2.16以前をアップグレードする場合のみ）
 
-Wallarmノード2.16以前をアップグレードする場合は、Wallarm Console→**Scanner**→**Settings**で、[アクティブな脅威検証](../../about-wallarm-ja/detecting-vulnerabilities.md#active-threat-verification)モジュールを無効にしてください。
+Wallarmノード2.16以前をアップグレードする場合は、Wallarm Console→**Scanner**→**Settings**で、[アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールを無効にしてください。
 
-モジュールの操作は、アップグレードプロセス中に[誤検知](../../about-wallarm-ja/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
+モジュールの操作は、アップグレードプロセス中に[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
 
 ## ステップ3: APIポートを更新する
 
@@ -66,7 +66,7 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
 
 以下は、おそらく変更が必要な設定です。
 
-* リクエストが Wallarm Ingress コントローラに送信される前にロードバランサを経由して送信される場合の、[エンドユーザーのパブリック IP アドレスの適切な報告](../../admin-ja/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)。
+* リクエストが Wallarm Ingress コントローラに送信される前にロードバランサを経由して送信される場合の、[エンドユーザーのパブリック IP アドレスの適切な報告](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)。
 
     ```diff
     controller:

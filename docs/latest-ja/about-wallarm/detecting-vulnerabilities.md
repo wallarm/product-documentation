@@ -59,8 +59,8 @@ Wallarmは、攻撃サインを含むリクエストを使用して、次の方�
 * スキャナから送信されるリクエストの[リミット](../user-guides/scanner/configure-scanner.md#scanners-rps-limits)は、Wallarmコンソールの**Scanner**セクションで設定できます。
 * トラフィックを自動的にフィルタリングしてブロックするために追加の設備（ソフトウェアまたはハードウェア）を使用する場合、Wallarm ScannerのIPアドレス用にallowlistを設定することをお勧めします。これにより、Wallarmコンポーネントは脆弱性をスキャンするためにリソースをシームレスにスキャンできるようになります。
 
-    * [Wallarm US Cloudに登録されたスキャナのIPアドレス](../admin-jp/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloudに登録されたスキャナのIPアドレス](../admin-jp/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloudに登録されたスキャナのIPアドレス](../admin-en/scanner-address-us-cloud.md)
+    * [Wallarm EU Cloudに登録されたスキャナのIPアドレス](../admin-en/scanner-address-eu-cloud.md)
 
     追加の設備を使用せずにWallarmスキャナを使用する場合、Scanner IPアドレスを手動でallowlistする必要はありません。Wallarmノード3.0からは、Scanner IPアドレスが自動的にallowlistに登録されるようになりました。
 

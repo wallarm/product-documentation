@@ -76,8 +76,8 @@ Wallarmで検出可能な[すべての攻撃](../attacks-vulns-list.md)は、以
 
 リソースを行動攻撃から保護するために、相関分析の閾値と、行動攻撃に対して脆弱な URL を設定する必要があります：
 
-* [ブルートフォース攻撃保護の構成手順](../admin-ja/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA（IDOR）保護の構成手順](../admin-ja/configuration-guides/protecting-against-bola.md)
+* [ブルートフォース攻撃保護の構成手順](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* [BOLA（IDOR）保護の構成手順](../admin-en/configuration-guides/protecting-against-bola.md)
 
 !!! warning "行動攻撃防御の制限事項"
     Wallarm ノードでは、行動攻撃の兆候を検索する際、他の攻撃タイプの兆候が含まれていない HTTP リクエストのみが分析されます。たとえば、以下の場合は行動攻撃の一部とは見なされません：
@@ -92,7 +92,7 @@ Wallarm ノードは、次のような HTTP 及び WebSocket トラフィック�
 * HTTP トラフィックの分析は、デフォルトで有効になっています。
 
     Wallarm ノードは、HTTP トラフィックを [入力検証攻撃](#input-validation-attacks) 及び [行動攻撃](#behavioral-attacks) に対して分析します。
-* WebSocket トラフィックの分析は、[`wallarm_parse_websocket`](../admin-ja/configure-parameters-ja.md#wallarm_parse_websocket) 指令を使用して追加で有効化する必要があります。
+* WebSocket トラフィックの分析は、[`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket) 指令を使用して追加で有効化する必要があります。
 
     Wallarm ノードは、WebSocket トラフィックを [入力検証攻撃](#input-validation-attacks) のみに対して分析します。
 
@@ -202,9 +202,9 @@ Wallarmは、次のモードで攻撃を処理できます。
 
 Wallarmは、高品質なリクエスト解析と低レベルの誤検知を保証します。ただし、保護されたアプリケーションには固有の仕様がありますので、ブロックモードを有効にする前に監視モードでWallarmの動作を分析することをお勧めします。
 
-フィルタリングモードを制御するには、ディレクティブ `wallarm_mode` を使用します。フィルタリングモード構成の詳細情報は、[リンク](../admin-ja/configure-wallarm-mode.md)で確認できます。
+フィルタリングモードを制御するには、ディレクティブ `wallarm_mode` を使用します。フィルタリングモード構成の詳細情報は、[リンク](../admin-en/configure-wallarm-mode.md)で確認できます。
 
-行動攻撃のフィルタリングモードは、特定の[トリガー](../admin-ja/configuration-guides/protecting-against-bruteforce.md)を介して個別に構成します。
+行動攻撃のフィルタリングモードは、特定の[トリガー](../admin-en/configuration-guides/protecting-against-bruteforce.md)を介して個別に構成します。
 
 ## 誤検知
 

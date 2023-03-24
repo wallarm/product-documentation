@@ -81,7 +81,7 @@ Wallarmは多数のデプロイオプションをサポートしており、変�
         </h3>
         <p>Wallarmノードを以下のように分布型で展開します。</p>
         <div id="awsId" class="options-list" style="display: none;">
-            <a href="../../admin-ja/installation-ami-ja/" onClick="noAction(event)">AWS Marketplaceイメージ</a>
+            <a href="../../admin-en/installation-ami-ja/" onClick="noAction(event)">AWS Marketplaceイメージ</a>
             <a href="../../installation/cloud-platforms/aws/terraform-module/overview/" onClick="noAction(event)">Terraformモジュール</a>
             <a href="../../installation/cloud-platforms/aws/docker-container/" onClick="noAction(event)">Dockerコンテナ</a>
             <a href="../../installation/cloud-platforms/aws/deb-rpm-packages/" onClick="noAction(event)">DEBまたはRPMパッケージ</a>
@@ -99,7 +99,7 @@ Wallarmは多数のデプロイオプションをサポートしており、変�
         </h3>
         <p>Wallarmノードを以下のように分布型で展開します。</p>
         <div id="gcpId" class="options-list" style="display: none;">
-            <a href="../../admin-ja/installation-gcp-ja/" onClick="noAction(event)">GCP Marketplaceイメージ</a>
+            <a href="../../admin-en/installation-gcp-ja/" onClick="noAction(event)">GCP Marketplaceイメージ</a>
             <a href="../../installation/cloud-platforms/gcp/docker-container/" onClick="noAction(event)">Dockerコンテナ</a>
             <a href="../../installation/cloud-platforms/gcp/deb-rpm-packages/" onClick="noAction(event)">DEBまたはRPMパッケージ</a>
         </div>    
