@@ -87,7 +87,7 @@ markdown_extensions:
   - meta
 
 docs_dir: docs/4.4-ja
-site_dir: site/ja/4.4
+site_dir: site/4.4/ja
 edit_uri: ../product-docs-en/edit/master/docs/latest-ja/
 watch:
   - docs/latest
