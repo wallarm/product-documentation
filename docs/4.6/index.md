@@ -3,11 +3,6 @@
 The Wallarm solution protects APIs, microservices and web applications from OWASP API Top 10 threats, API abuse and other automated threats with no manual rule configuration and ultra‑low false positives.
 
 <div class="navigation">
-<a href="./updating-migrating/what-is-new/" class="navigation-card">
-    <h3>What is new and upgrade</h3>
-    <p>Learn changes in the latest Wallarm node 4.6 and keep your modules up-to-date</p>
-</a>
-
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
     <p>Get started now: deploy Wallarm for effortless API Security</p>
@@ -30,6 +25,11 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
     <h3>User guide</h3>
     <p>Learn how to operate Wallarm and mitigate attacks together with a security team</p>
 </a>  
+
+<a href="./updating-migrating/what-is-new/" class="navigation-card">
+    <h3>What is new and upgrade</h3>
+    <p>Learn changes in the latest Wallarm node 4.6 and keep your modules up-to-date</p>
+</a>
 
 <a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">
     <h3>Integrations and DevSecOps</h3>
