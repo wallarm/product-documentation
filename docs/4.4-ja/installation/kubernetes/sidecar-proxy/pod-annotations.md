@@ -1,0 +1,1 @@
+--8<-- "latest/installation/kubernetes/sidecar-proxy/pod-annotations.md"

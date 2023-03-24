@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/nginx/dynamic-module-from-distr.md"

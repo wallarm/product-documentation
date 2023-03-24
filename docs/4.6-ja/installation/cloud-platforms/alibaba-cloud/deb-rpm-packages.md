@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md"

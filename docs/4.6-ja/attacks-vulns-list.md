@@ -1,0 +1,1 @@
+--8<-- "latest-ja/attacks-vulns-list.md"
