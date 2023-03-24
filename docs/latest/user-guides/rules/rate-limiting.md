@@ -28,6 +28,9 @@ To set and apply rate limit:
     
     * `remote_addr` to limit connections by origin IP
     * `json` → `json_doc` → `hash` → `api_key` to limit connections by the `api_key` JSON body parameter
+
+    !!! info "Restrictions on the value length"
+        The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
 1. Wait for the [rule compilation to complete](compiling.md).
 
 ## Rule examples
@@ -74,7 +77,7 @@ For example, you can set a limit of 10 requests per minute for each `User-Agent`
 
 ![!Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
-### Endpoint-based rate limiting to prevent DoS attacks
+<!-- ### Endpoint-based rate limiting to prevent DoS attacks
 
 Rate limiting can also involve setting a threshold for the number of requests that can be made to a particular endpoint within a specified time frame, such as 60 requests per minute. If a client exceeds this limit, further requests are rejected.
 
@@ -91,7 +94,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
     !!! info "Query parameters are not included into URI"
         This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
-![!Example](../../images/user-guides/rules/rate-limit-by-uri.png)
+![!Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
 ### Limiting connections by customer IDs to prevent server overhelm
 
@@ -106,6 +109,7 @@ For example, the rule limiting each customer by 10 POST requests per minute to `
 The rate limit functionality has the following limitations and pecularities:
 
 * Rate limiting rule is supported by all [Wallarm deployment forms](../../admin-en/supported-platforms.md) except for the Envoy-based Docker image.
+* The maximum allowed length of parameter values by which you measure limits is 8000 symbols.
 * If you have multiple Wallarm nodes and the incoming traffic on each node meets the rate limit rule, they are limited independently.
 * When multiple rate limit rules apply to incoming requests, the rule with the lowest rate limit is used to limit the requests.
 * If an incoming request does not have the point specified in the **In this part of request** rule section, then this rule is not applied as a limitation for that request.
