@@ -83,7 +83,7 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerab
 
 For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities/check-vuln.md).
 
-![!Vulnerabilities section](../images/about-wallarm-waf/vulnerabilities-list.png)
+![!Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## Notifications about discovered vulnerabilities
 

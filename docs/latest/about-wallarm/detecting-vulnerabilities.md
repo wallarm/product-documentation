@@ -86,7 +86,7 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerab
 * Run vulnerability status verification: still active or fixed on the application side
 * Close vulnerabilities or mark them as false positives
 
-![!Vulnerabilities section](../images/about-wallarm-waf/vulnerabilities-list.png)
+![!Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
 
 If you use the [**API Discovery** module](api-discovery.md) of the Wallarm platform, vulnerabilities are linked with discovered API endpoints, e.g.:
 
