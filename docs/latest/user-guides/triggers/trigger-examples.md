@@ -88,7 +88,7 @@ If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financia
 
 ## Detect weak JWTs
 
-If a significant amount of incoming requests processed by the node 4.4 contains weak JWTs, record the corresponding [vulnerability](../vulnerabilities/check-vuln.md).
+If a significant amount of incoming requests processed by the node 4.4 or above contains weak JWTs, record the corresponding [vulnerability](../vulnerabilities/check-vuln.md).
 
 Weak JWTs are those that are:
 
@@ -107,7 +107,7 @@ If you have recently created the Wallarm account, this [trigger is already creat
     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiQWRtaW5pc3RyYXRvciJ9.p5DrumkF6oTBiUmdtDRT5YHqYL2D7p5YOp6quUrULYg
     ```
 1. Generate some traffic with requests authenticated using a compromised JWT.
-1. If a significant amount of incoming requests processed by the node 4.4 contains weak JWTs, Wallarm registers the vulnerability, e.g.:
+1. If a significant amount of incoming requests processed by the node 4.4 or above contains weak JWTs, Wallarm registers the vulnerability, e.g.:
 
     ![!JWT vuln example](../../images/user-guides/vulnerabilities/weak-auth-vuln.png)
 

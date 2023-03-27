@@ -27,7 +27,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
     ```
 === "CentOS 8"
     !!! warning "Support for CentOS 8.x has been deprecated"
@@ -40,7 +40,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```bash
     sudo yum remove wallarm-node-repo
     sudo yum clean all
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.4/x86_64/wallarm-node-repo-4.4-0.el8.noarch.rpm
+    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
 
 **Debian and Ubuntu**
@@ -58,19 +58,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
             Official NGINX versions (stable and Plus) and, as a result, Wallarm node 4.4 and above cannot be installed on Debian 10.x (buster). Please use this OS only if [NGINX is installed from Debian/CentOS repositories](../../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/
+        deb http://repo.wallarm.com/debian/wallarm-node buster/4.6/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
+        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.6/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.6/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
+        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
         ```
 
 ## Step 3: Upgrade the Tarantool packages
@@ -81,7 +81,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
     --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
@@ -90,7 +90,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
     --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOS or Amazon Linux 2.0.2021x and lower"
