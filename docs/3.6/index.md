@@ -10,7 +10,7 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 <div class="navigation">
 <a href="../updating-migrating/older-versions/what-is-new/" class="navigation-card">
     <h3>Upgrading to the latest version</h3>
-    <p>Learn new features in node 4.4 and apply changes to installed components</p>
+    <p>Learn new features in node 4.6 and apply changes to installed components</p>
 </a>
 
 <a href="./quickstart/" class="navigation-card">

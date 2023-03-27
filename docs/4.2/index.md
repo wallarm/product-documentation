@@ -9,7 +9,7 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 
 <a href="./updating-migrating/what-is-new/" class="navigation-card">
     <h3>What is new and upgrade</h3>
-    <p>Learn changes in the Wallarm node 4.2 and keep your modules up-to-date</p>
+    <p>Learn changes in the latest Wallarm node 4.6 and keep your modules up-to-date</p>
 </a>
 
 <a href="./quickstart/" class="navigation-card">
