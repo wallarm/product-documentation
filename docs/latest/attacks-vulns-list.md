@@ -674,7 +674,7 @@ Wallarm considers JWTs to be weak if they are:
 * Unencrypted - there is no signing algorithm (the `alg` field is `none` or absent).
 * Signed using compromised secret keys.
 
-Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities/check-vuln.md).
+Once a weak JWT is detected, Wallarm records the corresponding [vulnerability](user-guides/vulnerabilities.md).
 
 **Remediation:**
 

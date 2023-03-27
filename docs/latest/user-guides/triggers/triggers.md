@@ -125,7 +125,7 @@ New company accounts are featured by the following pre-configured triggers (defa
 
     [JSON Web Token (JWT)](https://jwt.io/) is a popular authentication standard used to exchange data between resources like APIs securely. JWT compromisation is a common aim of attackers as breaking authentication mechanisms provides them full access to web applications and APIs. The weaker JWTs, the higher chance for it to be compromised.
 
-    This trigger enables Wallarm to automatically detect weak JWTs in incoming requests and record corresponding [vulnerabilities](../vulnerabilities/check-vuln.md).
+    This trigger enables Wallarm to automatically detect weak JWTs in incoming requests and record corresponding [vulnerabilities](../vulnerabilities.md).
 
 Triggers work on all traffic within a company account by default but you can change any trigger settings.
 
