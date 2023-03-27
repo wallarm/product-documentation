@@ -4,7 +4,7 @@ If the Wallarm Cloud is down, Wallarm nodes continue attack mitigation with some
 
 ## How does Wallarm node operate if Wallarm Cloud is down?
 
-The Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company account data is protected by the [on-submit saving and backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
+The Wallarm Cloud is an extremely stable and scalable service. Additionally, all your company's account data is protected by [backups](#how-does-wallarm-protect-its-cloud-data-from-loss).
 
 However, if in rare cases the Wallarm Cloud temporarily goes down (for example, on pausing for maintenance), a Wallarm node continues operating although with some limitations.
 
@@ -71,7 +71,7 @@ Yes, this is possible. For example, let us consider that the [synchronization](.
 
 ## How does Wallarm protect its Cloud data from loss?
 
-The Wallarm Cloud saves **all the data** submitted by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, the Wallarm Cloud temporarily going down is an extremely rare case. But if this happens the chance is significantly low that down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
+The Wallarm Cloud saves **all the data** provided by a user in Wallarm Console and uploaded to it from the nodes. As mentioned above, the Wallarm Cloud temporarily going down is an extremely rare case. But if this happens the chance is significantly low that down state will affect saved data. It means that after restoration you will immediately continue working with all your data.
 
 To deal with the low chance that the hard drives storing actual data of the Wallarm Cloud are destroyed, Wallarm automatically creates backups and restores from them if necessary:
 
