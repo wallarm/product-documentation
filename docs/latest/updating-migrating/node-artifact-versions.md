@@ -8,7 +8,7 @@ replace by 4.6
 
 [How to upgrade](nginx-modules.md)
 
-### 4.4.0
+### 4.6.0 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -16,7 +16,7 @@ replace by 4.6
 
 [How to upgrade](ingress-controller.md)
 
-### 4.4.0
+### 4.6.0 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -24,7 +24,7 @@ replace by 4.6
 
 [How to upgrade](kong-ingress-controller.md)
 
-### 4.4.0
+### 4.6.0 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -40,7 +40,7 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
-### 4.6.0-1 (???)
+### 4.6.0-1 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -48,7 +48,7 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
-### 4.6.0-1 (???)
+### 4.6.0-1 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -56,7 +56,7 @@ replace by 4.6
 
 [How to upgrade](cloud-image.md)
 
-### 4.4.1-1
+### 4.6.0-1 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
@@ -64,6 +64,6 @@ replace by 4.6
 
 [How to upgrade](cloud-image.md)
 
-### wallarm-node-4-4-20221122-092419
+### wallarm-node-4-6-20230324-114215 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
