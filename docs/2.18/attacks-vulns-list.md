@@ -272,7 +272,7 @@ You may follow these recommendations:
 
 ### Open redirect
 
-**Attack**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-601][cwe-601]
 
