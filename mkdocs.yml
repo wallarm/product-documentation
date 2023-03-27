@@ -256,12 +256,7 @@ nav:
         - Analyzing Attacks: user-guides/events/analyze-attack.md
         - Working with False Attacks: user-guides/events/false-attack.md
         - Verifying Attacks: user-guides/events/verify-attack.md
-      - Vulnerabilities:
-        - Checking Vulnerabilities: user-guides/vulnerabilities/check-vuln.md
-        - Analyzing Vulnerabilities: user-guides/vulnerabilities/analyze-vuln.md
-        - Closing and Opening Vulnerabilities: user-guides/vulnerabilities/close-open-vuln.md
-        - Rechecking Vulnerabilities: user-guides/vulnerabilities/recheck-vuln.md
-        - Working with False Vulnerabilities: user-guides/vulnerabilities/false-vuln.md
+      - Vulnerabilities: user-guides/vulnerabilities.md
       - API Discovery: user-guides/api-discovery.md
       - Search and Filters:
         - Using Search and Filters: user-guides/search-and-filters/use-search.md

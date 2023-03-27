@@ -9,9 +9,7 @@
 
 # Analyzing Attacks
 
-You can check attacks in the *Events* tab of the Wallarm interface.
-
-Wallarm automatically groups associated malicious requests into one entity — an attack.
+You can check attacks in the **Events** section of Wallarm Console. Wallarm automatically groups associated malicious requests into one entity — an attack.
 
 ## Analyze an Attack
 

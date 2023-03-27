@@ -1,5 +1,5 @@
 [link-scope-rps-limit]:     check-scope.md#limit-scanning-speed
-[link-vulnerabilities]:     ../vulnerabilities/check-vuln.md
+[link-vulnerabilities]:     ../vulnerabilities.md
 [link-scanner-modules]:     configure-scanner-modules.md
 
 [img-configure-scanner]:        ../../images/user-guides/scanner/configure-scanner.png

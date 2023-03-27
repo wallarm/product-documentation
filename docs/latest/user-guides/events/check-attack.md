@@ -1,6 +1,5 @@
 [link-using-search]:    ../search-and-filters/use-search.md
 [link-verify-attack]:   ../events/verify-attack.md
-[link-check-vulns]:     ../vulnerabilities/check-vuln.md
 
 [img-attacks-tab]:      ../../images/user-guides/events/check-attack.png
 [img-current-attacks]:  ../../images/glossary/attack-with-one-hit-example.png
@@ -12,7 +11,7 @@
 
 # Checking events
 
-You can check detected attacks, incidents, and vulnerabilities in the **Events** section of Wallarm Console. To find required data, please use the search field as described [here][use-search] or manually set required search filters.
+You can check detected attacks and incidents in the **Events** section of Wallarm Console. To find required data, please use the search field as described [here][use-search] or manually set required search filters.
 
 ## Attacks
 
@@ -50,18 +49,6 @@ Clicking the vulnerability brings you to its detailed description and instructio
 
 To sort incidents by the time of the last request, you can use the **Sort by latest hit** switch.
 
-## Vulnerabilities
-
-![!Vulnerabilities tab][img-vulns-tab]
-
-* **Date**: The date and time of vulnerability discovery.
-* **Risk**: The danger level of the vulnerability.
-* **Target**: The side to be the victim in the case of vulnerability exploitation (client, server).
-* **Type**: The type of the attack that exploits the vulnerability.
-* **Domain**: The domain that the vulnerability was discovered at.
-* **ID**: The unique identifier of the vulnerability in the Wallarm system.
-* **Title**: The title of the vulnerability.
-
 ## Events that are currently happening
 
 You can check events in real time. If your company resources are receiving malicious requests, the following data is displayed in Wallarm Console:
@@ -77,9 +64,9 @@ You may also add the `now` keyword to the search field to only display those eve
 
 ![!Attacks happening right now][img-current-attacks]
 
-## API calls to get attacks, incidents and vulberabilities
+## API calls to get attacks and incidents
 
-To get the attack, incident and vulnerability details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
+To get the attack or incident details, you can [call the Wallarm API directly](../../api/overview.md) besides using the Wallarm Console UI. Below are some examples of the corresponding API calls.
 
 **Get the first 50 attacks detected in the last 24 hours**
 
@@ -97,12 +84,6 @@ The request is very similar to the previous example for a list of attacks; the `
 Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
 
 --8<-- "../include/api-request-examples/get-incidents-en.md"
-
-**Get the first 50 vulnerabilities in the status "active" within the last 24 hours**
-
-Please replace `TIMESTAMP` with the date 24 hours ago converted to the [Unix Timestamp](https://www.unixtimestamp.com/) format.
-
---8<-- "../include/api-request-examples/get-vulnerabilities.md"
 
 <!-- ## Demo videos
 

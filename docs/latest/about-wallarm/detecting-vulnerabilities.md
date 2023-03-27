@@ -74,7 +74,7 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 
 False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an active vulnerability in one protected application and be expected behavior of another protected application.
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be checked by the **Active threat verification** module. [More about managing false positives via Wallarm Console →](../user-guides/vulnerabilities/false-vuln.md)
+If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be checked by the **Active threat verification** module. [More about managing false positives via Wallarm Console →](../user-guides/vulnerabilities.md#marking-vulnerabilities-as-false-positives)
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
@@ -92,7 +92,7 @@ If you use the [**API Discovery** module](api-discovery.md) of the Wallarm platf
 
 ![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
-For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities/check-vuln.md).
+For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities.md).
 
 ## Notifications about discovered vulnerabilities
 

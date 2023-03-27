@@ -26,4 +26,4 @@ CSV report may include several CSV files, one for each type of event - attack, i
 
 ## Download previously created PDF report
 
-The last three PDF reports are saved. If necessary, download them from the export window.
+The last three PDF reports including those [generated for vulnerabilities](../vulnerabilities.md#downloading-vulnerability-report) are saved. If necessary, download them from the export window.
