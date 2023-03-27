@@ -1,10 +1,11 @@
 # CPU high usage troubleshooting
 
-This troubleshooting article explains how to reduce CPU usage by Wallarm. By following the suggested steps, you can improve your environments's performance and avoid frustrating slowdowns.
+Recommended CPU usage by Wallarm is about 10-15%, meaning that filtering nodes will be able to handle a x10 traffic spike. If a Wallarm node consumes more CPU than it was expected and you need to reduce CPU usage, use this guide.
+
+Before taking any measures for lowering CPU usage, you can [enable extended logging](../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor processing time to reveal the longest request processing episodes.
 
 You can do the following to lower the CPU load by Wallarm:
 
-* [Enable extended logging](../../admin-en/configure-logging.md#configuring-extended-logging-for-the-nginx‑based-filter-node) and monitor processing time to reveal the longest request processing episodes.
 * Add `limit_req` to the NGINX configuration. This may be the best way to reduce CPU load in case of brute force and other attacks.
 
     ??? info "Example configuration" - using `limit_req`"
@@ -30,7 +31,7 @@ You can do the following to lower the CPU load by Wallarm:
             }
         ```
 
-* Set the [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive to `on` to immediately block any requests from denylisted IPs in any filtration mode without searching for the attack signs in these requests.
+* Make sure that the [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is set to `on` which immediately blocks any requests from denylisted IPs in any filtration mode without searching for the attack signs in these requests. Along with enabling the directive, check Wallarm [IP lists](../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
 
     Note that this method of lowering CPU usage may lead to skipping requests from search engines. This problem, however, can also be solved through the use of the `map` module in the NGINX configuration.
 
@@ -50,10 +51,7 @@ You can do the following to lower the CPU load by Wallarm:
         }
         ```
 
-* Disable [libdetection](../../about-wallarm/protecting-against-attacks.md#libdetection-overview) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%.
-* Disable mistakenly applied parsers [in rules](../../user-guides/rules/disable-request-parsers.md) or [via the NGINX configuration](../../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests.
-* [Lower request processing time](../../user-guides/rules/configure-overlimit-res-detection.md) where data is loaded that does not imply the possibility of an attack.
-* Analyze possible targets for [DDoS](../../attacks-vulns-list.md#ddos-distributed-denial-of-service-attack) and [turn on blocking triggers against brute force](../../admin-en/configuration-guides/protecting-against-bruteforce.md) and DirBuster apps.
-* Check Wallarm [IP lists](../../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
-
-A CPU load about 10-15% would be the ideal result , meaning that Wallarm nodes will be able to handle a x10 traffic spike.
+* Disable [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%.
+* If during detected attack analysis you reveal that Wallarm mistakenly uses some parsers [in rules](../user-guides/rules/disable-request-parsers.md) or [via the NGINX configuration](../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests, disable these parsers usage.
+* [Lower request processing time](../user-guides/rules/configure-overlimit-res-detection.md).
+* Analyze possible targets for [DDoS](../admin-en/configuration-guides/protecting-against-ddos.md) and apply one of the available [protection measures](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm).

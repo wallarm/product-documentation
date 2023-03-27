@@ -147,7 +147,7 @@ The NGINX memory consumption can be estimated as follows:
 
 ## CPU utilization
 
-NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of custom ruleset rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc. Additionally, as Wallarm filtering node performs many functions, each requiring CPU resources you need to carefully consider which node functions are required in your case and which can be turned off.
+NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of custom ruleset rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc.
 
 On average, one CPU core can handle about 500 RPS. When running in production mode, it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process. In the majority of cases it is recommended to initially over-provision a filtering node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).
 
