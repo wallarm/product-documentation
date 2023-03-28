@@ -196,7 +196,8 @@ nav:
           - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Identifying an original client IP address if using a proxy or load balancer: admin-en/using-proxy-or-balancer-en.md
-        - Filtering node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
+        - Configuring synchronization between Wallarm node and Cloud: admin-en/configure-cloud-node-synchronization-en.md
+        - Configuring access to files needed for node operation: admin-en/configure-access-to-files-needed-for-node.md
         - Working with Filter Node Logs: admin-en/configure-logging.md
         - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
         - Using Single Sign‑On (SSO):
