@@ -295,7 +295,6 @@ nav:
           - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md
           - Ignoring attack signs in the binary data: user-guides/rules/ignore-attacks-in-binary-data.md
           - The overlimit_res attack detection fine‑tuning: user-guides/rules/configure-overlimit-res-detection.md
-          - Setting rate limit: user-guides/rules/rate-limiting.md
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
