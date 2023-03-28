@@ -4,17 +4,15 @@ The `wallarm-worker` and `nginx` services are usually automatically provided wit
 
 ## Configuring file access
 
-Parameters providing the access to files needed for the node operation may be set explicitly in the `node.yaml` file.
-
-This file is automatically created after running the `addnode` script. Default path to the file is `/etc/wallarm/node.yaml`. This path can be changed via the [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) directive.
+Parameters providing the access to files needed for the node operation may be set explicitly in the `node.yaml` file. This file is automatically created after running the `register-node` script. Default path to the file is `/etc/wallarm/node.yaml`. This path can be changed via the [`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf) directive.
 
 The `node.yaml` file may contain the following file access parameters:
 
-| Parameter    | Description | Parameter in `node.yaml` file <br> (node) |
-|--------------|-------------| -------------|
-| `owner`      | Owner for the files needed for the filtering node operation. | `syncnode.owner` |
-| `group`      | Group for the files needed for the filtering node operation. | `syncnode.group` |
-| `mode`       | Access rights to the files needed for the filtering node operation. | `syncnode.mode`  |
+| Parameter    | Description |
+|--------------|-------------|
+| `syncnode.owner` | Owner for the files needed for the filtering node operation. |
+| `syncnode.group` | Group for the files needed for the filtering node operation. |
+| `syncnode.mode`  | Access rights to the files needed for the filtering node operation. |
 
 The algorithm searches for the file permissions performing the following steps (goes to the next step only if the previous one did not give the result):
 
