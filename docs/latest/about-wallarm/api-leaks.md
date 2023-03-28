@@ -8,11 +8,11 @@ For information on how to use the **API Leaks** module, refer to its [user guide
 
 ## Issues addressed by API Leaks
 
-Your organization may use a number of API tokens to provide access to the different parts of your API. These tokens may leak: be in one or another way accessed and then published to different public repositories and thus become a security threat.
+Your organization may use a number of API tokens to provide access to the different parts of your API. If these tokens leak, they become a security threat.
 
-You need to monitor public repositories to find your leaked API tokens and try to miss as few episodes as possible. To achieve this, you have to study manually a huge amount of data over and over again.
+In order to protect your APIs, you need to monitor public repositories to find any leaked API tokens, without missing a single instance – otherwise, you’re still at risk. To achieve this, you have to constantly analyze a huge amount of data over and over again.
 
-If leaked API tokens are found, it is necessary to prevent their usage. To achieve this, you need to find all the places where the leaked tokens are used in your API, regenerate them in all these places, do that quickly, and not to miss any of usage locations.
+If leaked API secrets are found, a multifaceted response is needed to prevent harm to your APIs. This involves finding all the places where the leaked secrets are used, regenerating them in all these places, and blocking use of the compromised versions – and this has to be done quickly, and with 100% completeness. This is difficult to accomplish manually.
 
 The **API Leaks** Wallarm module helps to solve these issues by providing the following:
 
