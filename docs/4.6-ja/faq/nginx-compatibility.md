@@ -1,0 +1,1 @@
+--8<-- "latest-ja/faq/nginx-compatibility.md"
