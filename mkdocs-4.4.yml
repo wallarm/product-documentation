@@ -32,7 +32,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "4.6"
+  version: "4.4"
 
 extra:
   social:
@@ -85,8 +85,8 @@ markdown_extensions:
       show_description_in_lightgallery: false
   - meta
 
-docs_dir: docs/4.6
-site_dir: site
+docs_dir: docs/4.4
+site_dir: site/4.4
 edit_uri: ../product-docs-en/edit/master/docs/latest/
 watch:
   - docs/latest
@@ -295,7 +295,6 @@ nav:
           - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md
           - Ignoring attack signs in the binary data: user-guides/rules/ignore-attacks-in-binary-data.md
           - The overlimit_res attack detection fine‑tuning: user-guides/rules/configure-overlimit-res-detection.md
-          - Setting rate limit: user-guides/rules/rate-limiting.md
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
@@ -339,7 +338,7 @@ nav:
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 4.6: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.4: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:

@@ -1,1 +1,0 @@
---8<-- "latest/user-guides/vulnerabilities/false-vuln.md"

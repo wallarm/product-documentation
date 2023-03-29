@@ -1,1 +1,0 @@
---8<-- "4.2/admin-en/configure-kubernetes-en.md"

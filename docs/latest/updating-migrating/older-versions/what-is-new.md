@@ -33,17 +33,19 @@ The lack of proper rate limiting has been a significant problem for API security
 
 With Wallarm's rate limiting feature supported since Wallarm node 4.6, security teams can effectively manage the service's load and prevent false alarms, ensuring that the service remains available and secure for legitimate users. This feature offers various connection limits based on request and session parameters, including traditional IP-based rate limiting, JSON fields, base64 encoded data, cookies, XML fields, and more.
 
+For example, you can limit API connections for each user, preventing them from making thousands of requests per minute. This would put a heavy load on your servers and could cause the service to crash. By implementing rate limiting, you can protect your servers from overload and ensure that all users have fair access to the API.
+
 You can configure rate limits easily in the Wallarm Console UI → **Rules** → **Set rate limit** by specifying the rate limit scope, rate, burst, delay, and response code for your particular use case.
 
-[Guide on rate limit configuration →]
+[Guide on rate limit configuration →](../../user-guides/rules/rate-limiting.md)
 
 Although the rate limiting rule is the recommended method for setting up the feature, you can also configure rate limits using the new NGINX directives:
 
-* [wallarm_rate_limit]
-* [wallarm_rate_limit_enabled]
-* [wallarm_rate_limit_log_level]
-* [wallarm_rate_limit_status_code]
-* [wallarm_rate_limit_shm_size]
+* [`wallarm_rate_limit`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit)
+* [`wallarm_rate_limit_enabled`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_enabled)
+* [`wallarm_rate_limit_log_level`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_log_level)
+* [`wallarm_rate_limit_status_code`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
+* [`wallarm_rate_limit_shm_size`](../../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
 ## Detection of the new attack types
 

@@ -141,6 +141,11 @@
 /4.2/faq/* /faq/:splat 301!
 /4.2/api-firewall/* /api-firewall/:splat 301!
 /4.2/news/ /news/ 301!
+/4.4/demo-videos/* /demo-videos/:splat 301!
+/4.4/api/* /api/:splat 301!
+/4.4/faq/* /faq/:splat 301!
+/4.4/api-firewall/* /api-firewall/:splat 301!
+/4.4/news/ /news/ 301!
 /2.18/news/ /news/ 301!
 /3.2/news/ /news/ 301!
 /3.4/news/ /news/ 301!
@@ -161,6 +166,21 @@
 /3.4/attacks-vulns-list/ /3.4
 /3.4/glossary-en /3.4
 /3.4/glossary-en/ /3.4
+
+/4.0/admin-en/* /4.0
+/4.0/quickstart/ /4.0
+/4.0/quickstart /4.0
+/4.0/updating-migrating/* /4.0
+/4.0/user-guides/* /4.0
+/4.0/waf-installation/* /4.0
+/4.0/installation/* /4.0
+/4.0/about-wallarm-waf/* /4.0
+/4.0/about-wallarm/* /4.0
+/4.0/partner-waf-node/* /4.0
+/4.0/attacks-vulns-list /4.0
+/4.0/attacks-vulns-list/ /4.0
+/4.0/glossary-en /4.0
+/4.0/glossary-en/ /4.0
 
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
@@ -422,3 +442,5 @@
 /4.2/user-guides/dashboard/ /4.2/user-guides/dashboards/threat-prevention/
 /4.0/user-guides/dashboard/ /4.0/user-guides/dashboards/threat-prevention/
 /3.6/user-guides/dashboard/ /3.6/user-guides/dashboards/threat-prevention/
+
+/4.0/* /4.0

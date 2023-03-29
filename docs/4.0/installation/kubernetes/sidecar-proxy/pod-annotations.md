@@ -1,1 +1,0 @@
---8<-- "4.2/installation/kubernetes/sidecar-proxy/pod-annotations.md"

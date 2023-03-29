@@ -139,10 +139,11 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     "failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":[{"id":102,"size":12624136,
     "mod_time":1598525870,"fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,
     "mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,
-    "timestamp":1664530105.868875,"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,
-    "blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
-    [{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
-    "overlimits_time": 0,"time_detect": 0}]}]} }
+    "timestamp":1664530105.868875,"rate_limit":{"shm_zone_size":67108864,"buckets_count":4,"entries":1,
+    "delayed":0,"exceeded":1,"expired":0,"removed":0,"no_free_nodes":0},"split":{"clients":[
+    {"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,
+    "time_detect": 0,"applications":[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,
+    "blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0}]}]} }
     ```
 === "Statistics in the Prometheus format"
     ```
@@ -280,6 +281,15 @@ The following response parameters are available (Prometheus metrics have the `wa
     *   `fname`: path to the proton.db file.
 * `startid`: randomly-generated unique ID of the filtering node.
 * `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
+* `rate_limit`: information about the Wallarm [rate limiting](../user-guides/rules/rate-limiting.md) module:
+    * `shm_zone_size`: total amount of shared memory that the Wallarm rate limiting module can consume in bytes (the value is based on the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) directive, default is `67108864`).
+    * `buckets_count`: the number of buckets (usually equal to NGINX workers count, 8 is a maximum).
+    * `entries`: the number of unique request point values (aka keys) you measure limits for.
+    * `delayed`: the number of requests that have been buffered by the rate limiting module due to the `burst` setting.
+    * `exceeded`: the number of requests that have been rejected by the rate limiting module because they exceeded the limit.
+    * `expired`: the total number of keys that are removed from the bucket on a regular 60-second basis if the rate limit for those keys was not exceeded.
+    * `removed`: the number of keys abruptly removed from the backet. If the value is higher that `expired`, increase the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value.
+    * `no_free_nodes`: the value different from `0` indicates that there is insufficient memory allocated for the rate limit module, the [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) value increase is recommended.
 * `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
 * `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
 

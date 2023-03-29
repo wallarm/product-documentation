@@ -2,14 +2,21 @@
 
 The Wallarm solution protects websites, APIs, and microservices from OWASP Top 10, bots, and application abuse with no manual rule configuration and ultra‑low false positives.
 
-!!! info "Newer version is available"
-    The newer version of the Wallarm node has been released. [What is new in the latest version](/updating-migrating/what-is-new/)
+!!! warning "Wallarm node 4.2 support will end soon"
+    Wallarm node 4.2 support will end [soon](/updating-migrating/versioning-policy/#version-list). Please learn [what is new in the later versions](/updating-migrating/what-is-new/) and plan the upgrade procedure.
 
 <div class="navigation">
+
+<a href="/updating-migrating/what-is-new/" class="navigation-card">
+    <h3>What is new and upgrade</h3>
+    <p>Learn changes in the latest Wallarm node 4.6 and keep your modules up-to-date</p>
+</a>
+
 <a href="./quickstart/" class="navigation-card">
     <h3>Quick start</h3>
     <p>Get started now: deploy Wallarm for effortless API Security</p>
 </a>
+
 <a href="./about-wallarm/overview/" class="navigation-card">
     <h3>How Wallarm works</h3>
     <p>Learn Wallarm hybrid architecture</p>
@@ -19,6 +26,7 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
     <h3>Deployment options</h3>
     <p>Explore Out-of-Band, inline, and mirroring deployment options for cloud-native and other environments</p>
 </a>
+
 <a href="./admin-en/configure-parameters-en/" class="navigation-card">
     <h3>Configuration</h3>
     <p>Learn how to configure Wallarm for high performance and autoscaling</p>
@@ -27,11 +35,6 @@ The Wallarm solution protects websites, APIs, and microservices from OWASP Top 1
 <a href="./user-guides/user-intro/" class="navigation-card">
     <h3>User guide</h3>
     <p>Learn how to operate Wallarm and mitigate attacks together with a security team</p>
-</a>  
-
-<a href="./updating-migrating/what-is-new/" class="navigation-card">
-    <h3>What is new and upgrade</h3>
-    <p>Learn changes in the Wallarm node 4.2 and keep your modules up-to-date</p>
 </a>
 
 <a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">

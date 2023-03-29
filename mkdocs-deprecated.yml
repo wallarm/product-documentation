@@ -32,7 +32,7 @@ theme:
   font:
     text: Inter
     code: Roboto Mono
-  version: "3.4"
+  version: "4.0"
 
 extra:
   social:
@@ -86,7 +86,7 @@ markdown_extensions:
   - meta
 
 docs_dir: docs/deprecated
-site_dir: site/3.4
+site_dir: site/4.0
 edit_uri: ../product-docs-en/edit/master/docs/deprecated/
 
 nav:
@@ -99,6 +99,7 @@ nav:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
       - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
     - API Firewall changelog: api-firewall/release-notes.md
+  - "Security testing: FAST": https://docs.fast.wallarm.com/en/
   - API docs:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
@@ -109,6 +110,8 @@ nav:
     - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
+    - Tarantool troubleshooting: faq/tarantool.md
+    - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
   - Demo videos:
     - Wallarm platform settings: demo-videos/overview.md
     - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
