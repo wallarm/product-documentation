@@ -97,6 +97,7 @@ nav:
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Discovering API inventory: about-wallarm/api-discovery.md
+        - API Leaks Remediation: about-wallarm/api-leaks.md
         - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
           - Security model of shared responsibility for clients' data: about-wallarm/shared-responsibility.md
@@ -253,6 +254,7 @@ nav:
         - Rechecking Vulnerabilities: user-guides/vulnerabilities/recheck-vuln.md
         - Working with False Vulnerabilities: user-guides/vulnerabilities/false-vuln.md
       - API Discovery: user-guides/api-discovery.md
+      - API Leaks: user-guides/api-leaks.md
       - Search and Filters:
         - Using Search and Filters: user-guides/search-and-filters/use-search.md
         - Creating a Custom Report: user-guides/search-and-filters/custom-report.md
@@ -373,5 +375,5 @@ nav:
 #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
     - API Discovery overview: demo-videos/api-discovery.md
     - API Abuse Prevention overview: demo-videos/api-abuse-prevention.md
-#   - API Leaks overview: demo-videos/api-leaks.md
+    - API Leaks overview: demo-videos/api-leaks.md
   - Changelog & news: news.md
