@@ -46,35 +46,19 @@ You can interfere in the bot protection process. If denylisted or graylisted IP 
 
 You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Events** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
 
-
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-<!-- Bot information is visualized in three bubble plots. In all plots, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
+Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
 
-On the plots, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
+On the heatmaps, you can also compare you current bot (**this bot**) with the other bots that attacked the same application within the past 24 hours. If too many bots did that, only 30 most suspicious will be displayed.
 
-The bubble plots:
+The heatmaps:
 
-* **Bot performance** displays intensity of bot activities, including:
+* **Performance** visualizes the performance of the current and other detected bots including their request non-uniqueness, scheduled requests, RPS, and request interval.
+* **Behavior** visualizes the suspicious behavior score of the current and other detected bots including their degree of suspicious behavior, amount of requests to critical or sensitive endpoints, RPS and the number of bot detectors that detected them as bots.
+* **HTTP errors** visualizes the API errors caused by bot activities including the number of different endpoints they target, the number of unsafe requests they make, their RPS, and the number of error response codes they receive.
 
-    * Bubble size: request non-uniqueness, the more the IP requested the same (not unique) API endpoints, the larger the size is.
-    * Color: scheduled requests, the more the IP requested API endpoints due to the schedule (the same time intervals), the closer the color is to the red.
-    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
-    * Vertically: the higher the request rate (how fast the IP sends the requests), the higher the bubble is on the graph. Comparing to RPS: IP can send 3 requests per second (which is not a lot), but do that within 3 milliseconds (which is very fast).
-
-* **Bot behavior** displays different aspects of the bot behavior, including:
-
-    * Bubble size: business logic score, the more often among all your API endpoints the IP requested critical or sensitive ones, the larger the size is.
-    * Color: suspicious behavior score, the more often among all your API endpoints the IP requested the ones that were unusual for normal user to be interested in your application, the closer the color is to the red.
-    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
-    * Vertically: the more bot detectors made "this is a bot" decision, the higher the bubble is on the graph.
-
-* **Bot scope** displays bot relation to its targets, including:
-
-    * Bubble size: the more different API endpoints the IP requested, the larger the size is.
-    * Color: the more requests with unsafe method the IP requested, the closer the color is to the red.
-    * Horizontally: the more RPS (requests per second), the farther the bubble is to the right.
-    * Vertically: the more error responses (4XX, 5XX) from the origin server, the higher the bubble is on the graph. -->
+Each heatmap includes detailed description of its bubble size, color and position meaning (use **Show more**). You can zoom in heatmap by drawing rectangular around required area.
 
 The **API Abuse Prevention** module compiles client traffic into URL patterns. The URL pattern may have the following segments:
 
