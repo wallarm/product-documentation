@@ -31,6 +31,8 @@ You can do the following to lower the CPU load by Wallarm:
         }        
         ```
 
+      Starting from node 4.6, you can alternatively use Wallarm's own [rate limiting](../user-guides/rules/rate-limiting.md) functionality.
+
 * Check that the appropriate amount of memory [has been allocated](../admin-en/configuration-guides/allocate-resources-for-node.md) for NGINX and Tarantool.
 * Make sure that the [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is set to `on` which immediately blocks any requests from denylisted IPs in any filtration mode without searching for the attack signs in these requests. Along with enabling the directive, check Wallarm [IP lists](../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
 
@@ -52,7 +54,7 @@ You can do the following to lower the CPU load by Wallarm:
         }
         ```
 
-* Disable [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%.
-* If during detected attack analysis you reveal that Wallarm mistakenly uses some parsers [in rules](../user-guides/rules/disable-request-parsers.md) or [via the NGINX configuration](../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests, disable these parsers usage.
-* [Lower request processing time](../user-guides/rules/configure-overlimit-res-detection.md). Note that by doing this youmay prevent legitimate requests from getting the server.
+* Disable [libdetection](../about-wallarm/protecting-against-attacks.md#libdetection-overview) (enabled by default since node version 4.4) via `wallarm_enable_libdetection off`. Using libdetection increases CPU consumption by 5-10%. However, it is necessary to consider that disabling libdetection may lead to increase in number of false positives for SQLi attack detection.
+* If during detected attack analysis you reveal that Wallarm mistakenly uses some parsers [in rules](../user-guides/rules/disable-request-parsers.md) or [via the NGINX configuration](../admin-en/configure-parameters-en.md#wallarm_parser_disable) for specific elements of the requests, disable these parsers for what they do not apply to. Note, however, that disabling parsers in general is never recommended.
+* [Lower request processing time](../user-guides/rules/configure-overlimit-res-detection.md). Note that by doing this you may prevent legitimate requests from getting the server.
 * Analyze possible targets for [DDoS](../admin-en/configuration-guides/protecting-against-ddos.md) and apply one of the available [protection measures](../admin-en/configuration-guides/protecting-against-ddos.md#l7-ddos-protection-with-wallarm).
