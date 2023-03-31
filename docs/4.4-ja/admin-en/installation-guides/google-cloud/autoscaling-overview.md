@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/installation-guides/google-cloud/autoscaling-overview.md"
+--8<-- "latest-ja/admin-en/installation-guides/google-cloud/autoscaling-overview.md"

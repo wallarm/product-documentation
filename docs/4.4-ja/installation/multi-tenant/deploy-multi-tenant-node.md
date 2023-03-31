@@ -1,1 +1,1 @@
---8<-- "latest/installation/multi-tenant/deploy-multi-tenant-node.md"
+--8<-- "latest-ja/installation/multi-tenant/deploy-multi-tenant-node.md"

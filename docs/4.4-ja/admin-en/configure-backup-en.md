@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configure-backup-en.md"
+--8<-- "latest-ja/admin-en/configure-backup-en.md"

@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/older-versions/multi-tenant.md"
+--8<-- "latest-ja/updating-migrating/older-versions/multi-tenant.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/nodes/cdn-node.md"
+--8<-- "latest-ja/user-guides/nodes/cdn-node.md"

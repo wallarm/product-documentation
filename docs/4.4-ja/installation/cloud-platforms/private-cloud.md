@@ -1,1 +1,1 @@
---8<-- "latest/installation/cloud-platforms/private-cloud.md"
+--8<-- "latest-ja/installation/cloud-platforms/private-cloud.md"

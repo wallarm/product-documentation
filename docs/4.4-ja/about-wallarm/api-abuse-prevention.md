@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/api-abuse-prevention.md"
+--8<-- "latest-ja/about-wallarm/api-abuse-prevention.md"

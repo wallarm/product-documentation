@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/scanner/check-scope.md"
+--8<-- "latest-ja/user-guides/scanner/check-scope.md"

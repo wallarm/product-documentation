@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/sso/change-sso-provider.md"
+--8<-- "latest-ja/admin-en/configuration-guides/sso/change-sso-provider.md"

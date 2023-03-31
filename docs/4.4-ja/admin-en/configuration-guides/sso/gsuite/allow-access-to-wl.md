@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md"
+--8<-- "latest-ja/admin-en/configuration-guides/sso/gsuite/allow-access-to-wl.md"

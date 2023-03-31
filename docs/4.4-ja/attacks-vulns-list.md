@@ -1,1 +1,1 @@
---8<-- "latest/attacks-vulns-list.md"
+--8<-- "latest-ja/attacks-vulns-list.md"

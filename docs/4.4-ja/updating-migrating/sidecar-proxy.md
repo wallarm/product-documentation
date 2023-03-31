@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/sidecar-proxy.md"
+--8<-- "latest-ja/updating-migrating/sidecar-proxy.md"

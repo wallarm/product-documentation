@@ -1,1 +1,1 @@
---8<-- "latest/glossary-en.md"
+--8<-- "latest-ja/glossary-en.md"

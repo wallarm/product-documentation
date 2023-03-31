@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/scanner/intro.md"
+--8<-- "latest-ja/user-guides/scanner/intro.md"

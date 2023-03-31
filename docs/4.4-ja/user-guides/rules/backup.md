@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/backup.md"
+--8<-- "latest-ja/user-guides/rules/backup.md"

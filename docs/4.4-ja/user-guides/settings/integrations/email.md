@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/email.md"
+--8<-- "latest-ja/user-guides/settings/integrations/email.md"

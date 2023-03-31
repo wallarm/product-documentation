@@ -1,1 +1,1 @@
---8<-- "latest/faq/nginx-compatibility.md"
+--8<-- "latest-ja/faq/nginx-compatibility.md"

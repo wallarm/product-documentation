@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/sso/gsuite/setup-idp.md"
+--8<-- "latest-ja/admin-en/configuration-guides/sso/gsuite/setup-idp.md"

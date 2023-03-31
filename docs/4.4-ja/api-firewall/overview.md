@@ -1,1 +1,1 @@
---8<-- "latest/api-firewall/overview.md"
+--8<-- "latest-ja/api-firewall/overview.md"

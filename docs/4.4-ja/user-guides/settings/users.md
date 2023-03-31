@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/users.md"
+--8<-- "latest-ja/user-guides/settings/users.md"

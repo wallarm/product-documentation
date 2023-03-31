@@ -1,1 +1,1 @@
---8<-- "latest/faq/wallarm-status-page.md"
+--8<-- "latest-ja/faq/wallarm-status-page.md"

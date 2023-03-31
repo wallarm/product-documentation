@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/overview.md"
+--8<-- "latest-ja/about-wallarm/overview.md"

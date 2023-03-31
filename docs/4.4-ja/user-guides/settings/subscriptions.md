@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/subscriptions.md"
+--8<-- "latest-ja/user-guides/settings/subscriptions.md"

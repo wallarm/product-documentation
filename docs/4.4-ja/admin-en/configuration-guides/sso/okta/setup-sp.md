@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/sso/okta/setup-sp.md"
+--8<-- "latest-ja/admin-en/configuration-guides/sso/okta/setup-sp.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/scanner/reserved-domains.md"
+--8<-- "latest-ja/user-guides/scanner/reserved-domains.md"

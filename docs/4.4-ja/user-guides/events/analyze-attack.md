@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/events/analyze-attack.md"
+--8<-- "latest-ja/user-guides/events/analyze-attack.md"

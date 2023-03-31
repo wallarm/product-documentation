@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/add-replace-response-header.md"
+--8<-- "latest-ja/user-guides/rules/add-replace-response-header.md"

@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/configure-block-page-and-code.md"
+--8<-- "latest-ja/admin-en/configuration-guides/configure-block-page-and-code.md"

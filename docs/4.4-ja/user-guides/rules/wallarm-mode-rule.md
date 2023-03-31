@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/wallarm-mode-rule.md"
+--8<-- "latest-ja/user-guides/rules/wallarm-mode-rule.md"

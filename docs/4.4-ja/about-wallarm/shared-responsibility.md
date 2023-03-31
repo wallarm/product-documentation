@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/shared-responsibility.md"
+--8<-- "latest-ja/about-wallarm/shared-responsibility.md"

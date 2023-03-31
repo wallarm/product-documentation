@@ -1,1 +1,1 @@
---8<-- "latest/faq/common-errors-after-installation.md"
+--8<-- "latest-ja/faq/common-errors-after-installation.md"

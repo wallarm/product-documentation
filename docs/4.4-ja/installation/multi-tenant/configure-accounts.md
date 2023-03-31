@@ -1,1 +1,1 @@
---8<-- "latest/installation/multi-tenant/configure-accounts.md"
+--8<-- "latest-ja/installation/multi-tenant/configure-accounts.md"

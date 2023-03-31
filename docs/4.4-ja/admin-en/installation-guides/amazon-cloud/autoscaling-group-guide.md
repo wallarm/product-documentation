@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md"
+--8<-- "latest-ja/admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md"

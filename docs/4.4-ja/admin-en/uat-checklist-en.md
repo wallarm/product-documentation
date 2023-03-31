@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/uat-checklist-en.md"
+--8<-- "latest-ja/admin-en/uat-checklist-en.md"

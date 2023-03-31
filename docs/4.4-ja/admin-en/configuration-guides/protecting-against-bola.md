@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/protecting-against-bola.md"
+--8<-- "latest-ja/admin-en/configuration-guides/protecting-against-bola.md"

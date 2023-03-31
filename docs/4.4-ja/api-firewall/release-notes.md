@@ -1,1 +1,1 @@
---8<-- "latest/api-firewall/release-notes.md"
+--8<-- "latest-ja/api-firewall/release-notes.md"

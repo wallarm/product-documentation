@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/ip-lists/denylist.md"
+--8<-- "latest-ja/user-guides/ip-lists/denylist.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/insightconnect.md"
+--8<-- "latest-ja/user-guides/settings/integrations/insightconnect.md"

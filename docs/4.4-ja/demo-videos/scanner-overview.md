@@ -4,4 +4,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/demo-videos/scanner-overview.md"
+--8<-- "latest-ja/demo-videos/scanner-overview.md"

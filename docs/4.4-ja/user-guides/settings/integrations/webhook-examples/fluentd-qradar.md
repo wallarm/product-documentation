@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/webhook-examples/fluentd-qradar.md"
+--8<-- "latest-ja/user-guides/settings/integrations/webhook-examples/fluentd-qradar.md"

@@ -1,1 +1,1 @@
---8<-- "latest/api-firewall/demos/kubernetes-cluster.md"
+--8<-- "latest-ja/api-firewall/demos/kubernetes-cluster.md"

@@ -1,1 +1,1 @@
---8<-- "latest/about-wallarm/data-retention-policy.md"
+--8<-- "latest-ja/about-wallarm/data-retention-policy.md"

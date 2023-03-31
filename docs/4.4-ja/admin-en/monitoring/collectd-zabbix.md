@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/monitoring/collectd-zabbix.md"
+--8<-- "latest-ja/admin-en/monitoring/collectd-zabbix.md"

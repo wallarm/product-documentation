@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/api-abuse-prevention.md"
+--8<-- "latest-ja/user-guides/api-abuse-prevention.md"

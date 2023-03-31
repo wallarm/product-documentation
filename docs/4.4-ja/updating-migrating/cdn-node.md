@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/cdn-node.md"
+--8<-- "latest-ja/updating-migrating/cdn-node.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/use-sso.md"
+--8<-- "latest-ja/user-guides/use-sso.md"

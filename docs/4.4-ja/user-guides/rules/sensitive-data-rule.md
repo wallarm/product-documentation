@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/sensitive-data-rule.md"
+--8<-- "latest-ja/user-guides/rules/sensitive-data-rule.md"

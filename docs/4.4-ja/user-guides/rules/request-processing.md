@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/rules/request-processing.md"
+--8<-- "latest-ja/user-guides/rules/request-processing.md"

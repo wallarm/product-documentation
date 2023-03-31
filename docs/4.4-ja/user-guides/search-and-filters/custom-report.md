@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/search-and-filters/custom-report.md"
+--8<-- "latest-ja/user-guides/search-and-filters/custom-report.md"

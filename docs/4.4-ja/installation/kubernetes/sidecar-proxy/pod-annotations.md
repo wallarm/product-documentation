@@ -1,1 +1,1 @@
---8<-- "latest/installation/kubernetes/sidecar-proxy/pod-annotations.md"
+--8<-- "latest-ja/installation/kubernetes/sidecar-proxy/pod-annotations.md"

@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/node-artifact-versions.md"
+--8<-- "latest-ja/updating-migrating/node-artifact-versions.md"

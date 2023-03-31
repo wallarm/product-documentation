@@ -1,1 +1,1 @@
---8<-- "latest/faq/wallarm-cloud-down.md"
+--8<-- "latest-ja/faq/wallarm-cloud-down.md"

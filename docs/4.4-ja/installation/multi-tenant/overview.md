@@ -1,1 +1,1 @@
---8<-- "latest/installation/multi-tenant/overview.md"
+--8<-- "latest-ja/installation/multi-tenant/overview.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/bola-protection.md"
+--8<-- "latest-ja/user-guides/bola-protection.md"

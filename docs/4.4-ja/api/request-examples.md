@@ -1,1 +1,1 @@
---8<-- "latest/api/request-examples.md"
+--8<-- "latest-ja/api/request-examples.md"

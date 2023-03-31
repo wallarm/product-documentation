@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/nodes/nodes.md"
+--8<-- "latest-ja/user-guides/nodes/nodes.md"

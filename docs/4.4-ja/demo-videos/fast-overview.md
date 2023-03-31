@@ -8,4 +8,4 @@ search:
 
 ---
 
---8<-- "latest/demo-videos/fast-overview.md"
+--8<-- "latest-ja/demo-videos/fast-overview.md"

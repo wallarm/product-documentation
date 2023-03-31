@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/managing/terraform-provider.md"
+--8<-- "latest-ja/admin-en/managing/terraform-provider.md"

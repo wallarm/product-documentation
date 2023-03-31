@@ -1,1 +1,1 @@
---8<-- "latest/news.md"
+--8<-- "latest-ja/news.md"

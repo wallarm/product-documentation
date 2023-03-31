@@ -1,1 +1,1 @@
---8<-- "latest/admin-en/configuration-guides/traffic-mirroring/overview.md"
+--8<-- "latest-ja/admin-en/configuration-guides/traffic-mirroring/overview.md"

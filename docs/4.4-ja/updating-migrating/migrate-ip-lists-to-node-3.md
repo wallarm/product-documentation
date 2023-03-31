@@ -1,1 +1,1 @@
---8<-- "latest/updating-migrating/migrate-ip-lists-to-node-3.md"
+--8<-- "latest-ja/updating-migrating/migrate-ip-lists-to-node-3.md"

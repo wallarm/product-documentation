@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/vulnerabilities/analyze-vuln.md"
+--8<-- "latest-ja/user-guides/vulnerabilities/analyze-vuln.md"

@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/scanner/configure-scanner-modules.md"
+--8<-- "latest-ja/user-guides/scanner/configure-scanner-modules.md"

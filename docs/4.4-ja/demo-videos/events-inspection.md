@@ -4,4 +4,4 @@ search:
   exclude: true
 ---
 
---8<-- "latest/demo-videos/events-inspection.md"
+--8<-- "latest-ja/demo-videos/events-inspection.md"
