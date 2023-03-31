@@ -11,5 +11,5 @@
     * Medium risk
     * Low risk
 * [Rules](../../../user-guides/rules/intro.md) and [triggers](../../../user-guides/triggers/triggers.md) changed (creating, updating, or deleting the rule or trigger)
-* [Scope](../../scanner/check-scope.md) changed: updates in hosts, services, and domains
+* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
 * On an hourly basis, you can get a notification with the number of requests processed during the previous hour

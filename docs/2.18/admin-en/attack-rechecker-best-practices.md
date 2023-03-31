@@ -32,7 +32,7 @@ If your application uses non-standard types of authentication (for example, requ
 
 ### Know how to control the Attack rechecker
 
-The global on/off switch of the **Attack rechecker** module is located in the Wallarm Console → [**Scanner** section](../user-guides/scanner/configure-scanner-modules.md). By default this module is disabled.
+The global on/off switch of the **Attack rechecker** module is located in Wallarm Console → [**Vulnerabilities**](../user-guides/vulnerabilities.md). By default this module is disabled.
 
 ### Configure proper white-listing rules for scanner IP addresses
 

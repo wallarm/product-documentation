@@ -72,7 +72,7 @@ The Free Tier subscription includes:
 * The Wallarm features available for free up to the quota of **500 thousand requests per month** with no limitation in time. The quota resets on the first day of each month.
 * Access to the Wallarm platform as [Advanced API Security](#subscription-plans), except for the following:
 
-    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner/check-scope.md) Scanners
+    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner) and [Exposed asset](../user-guides/scanner.md) Scanners
     * The [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification) feature
     * The [API Abuse Prevention](api-abuse-prevention.md) module
     * Deployment of the [CDN node](../installation/cdn-node.md) type

@@ -86,7 +86,7 @@ See also [Checking attacks and incidents](../user-guides/events/check-attack.md)
 1. On the *Scanner* tab, add your resource's domain.
 2. Check if Wallarm discovers all resources associated with the added domain.
 
-See also [Working with the scanner](../user-guides/scanner/intro.md).
+See also [Working with the scanner](../user-guides/scanner.md).
 
 ## Denylisting Works
 

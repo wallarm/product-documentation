@@ -1,8 +1,8 @@
 [img-dashboard]:    ../../images/user-guides/dashboard/dashboard-scanner.png
 
 [doc-events-tab]:           ../events/check-attack.md
-[doc-scanner-overview]:     ../scanner/intro.md
-[doc-scanner-scope]:     ../scanner/check-scope.md
+[doc-scanner-overview]:     ../scanner.md
+[doc-scanner-scope]:     ../scanner.md
 [doc-explore-vulns]:        ../vulnerabilities.md
 
 # Scanner Dashboard
