@@ -6,7 +6,7 @@ To reveal the longest request processing episodes and thus the primary CPU consu
 
 You can do the following to lower the CPU load by Wallarm:
 
-* Add [`limit_req`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) to the NGINX configuration. This may be the best way to reduce CPU load in case of brute force and other attacks.
+* Add [`limit_req`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) to the NGINX configuration or starting from node 4.6 use Wallarm's own [rate limiting](../user-guides/rules/rate-limiting.md) functionality. This may be the best way to reduce CPU load in case of brute force and other attacks.
 
     ??? info "Example configuration - using `limit_req`"
 
@@ -30,8 +30,6 @@ You can do the following to lower the CPU load by Wallarm:
           }
         }        
         ```
-
-      Starting from node 4.6, you can alternatively use Wallarm's own [rate limiting](../user-guides/rules/rate-limiting.md) functionality.
 
 * Check that the appropriate amount of memory [has been allocated](../admin-en/configuration-guides/allocate-resources-for-node.md) for NGINX and Tarantool.
 * Make sure that the [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive is set to `on` which immediately blocks any requests from denylisted IPs in any filtration mode without searching for the attack signs in these requests. Along with enabling the directive, check Wallarm [IP lists](../user-guides/ip-lists/overview.md) to find IPs that were mistakenly added to the **Allowlist** or locations mistakenly not added to the **Denylist**.
