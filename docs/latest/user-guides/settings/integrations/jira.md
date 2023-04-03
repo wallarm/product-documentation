@@ -32,6 +32,10 @@ In Wallarm UI:
 
 --8<-- "../include/integrations/test-integration.md"
 
+Test Jira issue creation:
+
+![!Test Jira issue creation](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+
 ## Updating integration
 
 --8<-- "../include/integrations/update-integration.md"
