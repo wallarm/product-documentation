@@ -30,7 +30,7 @@ In Wallarm UI:
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration-basic-data.md"
 
 Test Jira issue creation:
 
