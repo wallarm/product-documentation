@@ -1,11 +1,15 @@
 # Allocating Resources for Wallarm Node
 
-The amount of memory allocated for the filtering node determines the quality and speed of request processing. These instructions describe the recommendations for filtering node memory allocation.
+The amount of memory and CPU resources allocated for the filtering node determines the quality and speed of request processing. These instructions describe the recommendations for filtering node memory allocation.
 
-In a filtering node there are two main memory consumers:
+In a filtering node there are two main memory and CPU consumers:
 
 * [Tarantool](#tarantool), also called **postanalytics module**. This is the local data analytics backend and the primary memory consumer in a filtering node.
 * [NGINX](#nginx) is the main filtering node and reverse proxy component.
+
+NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of custom ruleset rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc.
+
+On average, one CPU core can handle about 500 RPS. When running in production mode, it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process. In the majority of cases it is recommended to initially over-provision a filtering node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).
 
 ## Tarantool
 
@@ -145,7 +149,6 @@ The NGINX memory consumption can be estimated as follows:
 
 * for other deployment options, use the NGINX configuration files.
 
-!!! info "Recommendations from the CPU utilization perspective"
-    When running in production mode, it is recommended to allocate at least one CPU core for the NGINX process and one core for the Tarantool process.
-    
-    Actual NGINX CPU utilization depends on many factors like RPS level, average size of request and response, number of LOM rules handled by the node, types and layers of employed data encodings like Base64 or data compression, etc. On average, one CPU core can handle about 500 RPS. In the majority of cases it is recommended to initially over-provision a filtering node, see the actual CPU and memory usage for real production traffic levels, and gradually reduce allocated resources to a reasonable level (with at least 2x headroom for traffic spikes and node redundancy).
+## Troubleshooting
+
+If a Wallarm node consumes more memory and CPU than it was expected, to reduce resource usage, get familiar with the recommendations from the [CPU high usage troubleshooting](../../faq/cpu.md) article and follow them.

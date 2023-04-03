@@ -1,6 +1,6 @@
 # Tarantool troubleshooting
 
-Sections below provides the information about frequent errors in Tarantool operation and their troubleshooting.
+Sections below provide the information about frequent errors in Tarantool operation and their troubleshooting.
 
 ## How can I solve the "readahead limit reached" problem?
 
