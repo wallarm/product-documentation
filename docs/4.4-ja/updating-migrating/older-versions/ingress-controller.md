@@ -20,7 +20,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-4.4.md"
 
 ## ステップ1: フィルタリングノードモジュールをアップグレードしていることをWallarmの技術サポートに通知する（ノード2.18以前をアップグレードする場合のみ）
 
