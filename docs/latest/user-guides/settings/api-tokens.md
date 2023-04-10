@@ -9,7 +9,7 @@ This section is available for the users of any role.
 
 ## Configuring tokens
 
-Users of **[all roles][user-roles-article]** (besides **Read Only**) can create own tokens and use them (which means, view token value and include it into API request to authenticate it). For each own token you can set permissions, but not wider than the ones your user has. Optionally, you can set expiration date for the token - if set, the token will be disabled after that date. Also, you can disable/enable your tokens manually.
+Users of **[all roles][user-roles-article]** (besides **Read Only** and **API Developer**) can create own tokens and use them (which means, view token value and include it into API request to authenticate it). For each own token you can set permissions, but not wider than the ones your user has. Optionally, you can set expiration date for the token - if set, the token will be disabled after that date. Also, you can disable/enable your tokens manually.
 
 You can renew the token value at any moment.
 
