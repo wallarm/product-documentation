@@ -358,4 +358,4 @@ Used to get names of all elements, parameters, or objects. For example:
 * **query_name** for all query string parameter names
 * **header_name** for all header names
 * **hash_name** for all JSON object or XML attribute names
-* **jwt_name** for nmaes of all parameters with JWT
+* **jwt_name** for names of all parameters with JWT
