@@ -13,7 +13,14 @@ Users of **[all roles][user-roles-article]** (besides **Read Only** and **API De
 
 You can renew the token value at any moment.
 
-**Administrators** / **Global Administrators** can view and manage all tokens in the company account. Besides private tokens, they can create shared ones, that can be viewed/used by other administrators. When specifying permissions for the tokens, they can select to take these permissions from the selected role.
+**Administrators** / **Global Administrators** can view and manage all tokens in the company account. Besides private tokens, they can create shared ones, that can be viewed/used by other administrators. When specifying permissions for the tokens, they can select to take these permissions from the selected role:
+
+* Administrator
+* Analyst
+* API Developer
+* Read only
+* Deploy - API tokens with this role are used to deploy Wallarm nodes.
+* Сustom - switches back to the  manual permission selection.
 
 !!! info "Token privacy"
     No other users (even administrators) can use your private tokens (which means, view or copy token value). Besides, non-administrators will not even see your tokens.
