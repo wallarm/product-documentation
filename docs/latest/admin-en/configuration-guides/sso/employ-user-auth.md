@@ -62,7 +62,6 @@ Wallarm supports the **strict SSO** mode that differs from the regular SSO in th
 * The authentication method for all existing users of the account is switched to SSO.
 * All new users get the SSO as the authentication method by default.
 * Authentication method cannot be switched to anything different from SSO for any user.
-* [API access](#sso-and-api-authentication) is disabled for all users: their API tokens are disabled and in a week - removed. API access can be later restored for the users with the **Administrator** role (`SSO+API` user auth mode). If this is done within a week, old user's tokens may be re-enabled.
 
 To enable or disable the strict SSO mode, contact the [Wallarm support team](mailto:support@wallarm.com).
 

@@ -29,8 +29,8 @@ Consider that:
 
 Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **backward-compatible** token. With this token requests authenticated with UUID and secret key will continue working.
 
-!!! warning "Renew token"
-    If you renew the value of the backward-compatible token, the backward compatibility ends - all requests authenticated with old UUID and secret key will stop working.
+!!! warning "Renew token or enable SSO"
+    If you renew the value of the backward-compatible token or enable SSO/strict SSO for this token's owner, the backward compatibility ends - all requests authenticated with old UUID and secret key will stop working.
 
 You can also use the generated value of the backward-compatible token passing it in the `WallarmApi-Token` header parameter of your requests.
 
