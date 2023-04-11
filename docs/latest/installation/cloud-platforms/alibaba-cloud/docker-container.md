@@ -5,6 +5,9 @@
 [filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:        ../../../user-guides/settings/applications.md
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
+[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
+[api-token]:                        ../../../user-guides/settings/api-tokens.md
+[platform]:                         ../../../admin-en/supported-platforms.md
 
 # Deployment of the Wallarm node Docker image to Alibaba Cloud
 

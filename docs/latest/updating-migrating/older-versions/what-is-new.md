@@ -321,6 +321,17 @@ The following [node logging variables](../../admin-en/configure-logging.md#filte
 
 The new [`wallarm_acl_access_phase`](../../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../../user-guides/ip-lists/denylist.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.
 
+## Easy grouping for node instances
+
+Now you can easily group node instances using one [**API token**](../../user-guides/settings/api-tokens.md) with the `Deploy` role for their installation together with the `WALLARM_LABELS` variable and its `group` label. 
+
+For example: 
+
+```bash
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/envoy:4.6.0-1
+```
+...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
+
 ## Upgrade process
 
 1. Review [recommendations for the modules upgrade](../general-recommendations.md).
