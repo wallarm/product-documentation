@@ -96,24 +96,24 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 9.x (stretch)"
         ``` bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
+        deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/
-        deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/
+        deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/
+        deb https://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/
         ```
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/3.6/
+        deb https://repo.wallarm.com/debian/wallarm-node buster/3.6/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/
         ```
 
 ## Step 3: Upgrade Wallarm packages

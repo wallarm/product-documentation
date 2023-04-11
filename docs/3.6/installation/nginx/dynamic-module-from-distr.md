@@ -43,15 +43,15 @@ Installation commands for both options are described in the further instructions
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 9.x (stretch-backports)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
     # for correct Wallarm node operation, uncomment the following line in /etc/apt/sources.list`:
     # deb http://deb.debian.org/debian stretch-backports main contrib non-free
     sudo apt update
@@ -60,14 +60,14 @@ Installation commands for both options are described in the further instructions
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node buster/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "Debian 11.x (bullseye)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "CloudLinux OS 6.x"

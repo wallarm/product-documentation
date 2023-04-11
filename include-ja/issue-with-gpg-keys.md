@@ -6,5 +6,5 @@
 
     可能なエラーメッセージ：
 
-    * `http://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/repodata/repomd.xml: [Errno -1] repomd.xmlの署名はwallarm-node_2.14用に検証できませんでした`
+    * `https://repo.wallarm.com/centos/wallarm-node/7/2.14/x86_64/repodata/repomd.xml: [Errno -1] repomd.xmlの署名はwallarm-node_2.14用に検証できませんでした`
     * `設定されたリポジトリの1つに失敗しました（CentOS 7用のWallarm Node - 2.14）、yumには続行するための十分なキャッシュデータがありません。`
