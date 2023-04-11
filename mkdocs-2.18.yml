@@ -322,7 +322,6 @@ nav:
         - Users: user-guides/settings/users.md
         - API tokens: user-guides/settings/api-tokens.md
         - Activity Log: user-guides/settings/audit-log.md
-        - API tokens: user-guides/settings/api-tokens.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
       - What is new in Wallarm node 2.18: updating-migrating/what-is-new.md
