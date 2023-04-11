@@ -88,16 +88,16 @@ At this step, a tenant account linked to a global account will be created.
     `name` | Tenant's name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix Wallarm will use for vulnerability tracking and association with the tenant. The prefix must contain four capital letters or numbers and be related to a tenant's name, e.g.: `TNNT` for the tenant `Tenant`. | Body | Yes
     `partner_uuid` | [Main tenant UUID](#step-2-get-access-to-the-tenant-account-creation) received when creating a global account. | Body | Yes
-    `WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
+    `X-WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
 
     ??? info "Show an example of the request sent from your own client"
         === "EU Cloud"
             ``` bash
-            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
         === "US Cloud"
             ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
 2. Copy the values of the `id` and `partnerid` parameters from the response to the request. The parameters will be used when linking tenant's applications to the tenant account.
@@ -129,16 +129,16 @@ To link the application to the account:
     `partnerid` | The `partnerid` value obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api). | Path | Yes
     `clientid` | Tenant ID obtained after the [tenant creation](#step-3-create-the-tenant-via-the-wallarm-api) (`id`).  | Body | Yes
     `id` | Unique ID for the link between the tenant and the application. The value can be an arbitrary positive integer. | Body | Yes
-    `WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
+    `X-WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
 
     ??? info "Show an example of the request sent from your own client"
         === "EU Cloud"
             ``` bash
-            curl -v -X POST "https://api.wallarm.com/v2/partner/111/partner_client" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"13\"}"
+            curl -v -X POST "https://api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"13\"}"
             ```
         === "US Cloud"
             ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
+            curl -v -X POST "https://us1.api.wallarm.com/v2/partner/111/partner_client" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"clientid\": 888, \"id\": \"14\"}"
             ```
 1. Copy and save the `id` values you passed in the requests. These IDs will be used in NGINX configuration (`wallarm_instance`) to split several tenants' traffic later.
 
