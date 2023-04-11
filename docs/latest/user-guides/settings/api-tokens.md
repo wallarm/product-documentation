@@ -32,6 +32,6 @@ Previously UUID and secret key were used for request authentication which is now
 !!! warning "Renew token or enable SSO"
     If you renew the value of the backward-compatible token or enable SSO/strict SSO for this token's owner, the backward compatibility ends - all requests authenticated with old UUID and secret key will stop working.
 
-You can also use the generated value of the backward-compatible token passing it in the `WallarmApi-Token` header parameter of your requests.
+You can also use the generated value of the backward-compatible token passing it in the `X-WallarmApi-Token` header parameter of your requests.
 
 Backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.

@@ -91,16 +91,16 @@ At this step, a tenant account linked to a global account will be created.
     `name` | Tenant's name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix Wallarm will use for vulnerability tracking and association with the tenant. The prefix must contain four capital letters or numbers and be related to a tenant's name, e.g.: `TNNT` for the tenant `Tenant`. | Body | Yes
     `partner_uuid` | [Main tenant UUID](#step-2-get-access-to-the-tenant-account-creation) received when creating a global account. | Body | Yes
-    `WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
+    `X-WallarmApi-Token` | Appropriate [API token](../../api/overview.md#your-own-client) of the Global administrator user. | Header | Yes, when sending a request from your own client
 
     ??? info "Show an example of the request sent from your own client"
         === "US Cloud"
             ```bash
-            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
         === "EU Cloud"
             ``` bash
-            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
+            curl -v -X POST "https://api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
             ```
 
     ??? info "Show an example of the response"

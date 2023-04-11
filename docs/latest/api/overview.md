@@ -53,7 +53,7 @@ To authenticate your requests to Wallarm API:
 1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
 1. [Create](../user-guides/settings/api-tokens.md#configuring-tokens) token to access the Wallarm API.
 1. Open your token and copy value from the **Token** section.
-1. Send the required API request passing the **Token** value in the `WallarmApi-Token` header parameter.
+1. Send the required API request passing the **Token** value in the `X-WallarmApi-Token` header parameter.
 
 [More details on API tokens →](../user-guides/settings/api-tokens.md)
 

@@ -116,14 +116,14 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
                     curl -X GET \
                     'https://us1.api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
                     -H 'accept: application/json' \
-                    -H "WallarmApi-Token: <YOUR_TOKEN>"
+                    -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
                 === "EU Cloud"
                     ``` bash
                     curl -X GET \
                     'https://api.wallarm.com/v2/partner_client?partnerid=PARTNER_ID' \
                     -H 'accept: application/json' \
-                    -H "WallarmApi-Token: <YOUR_TOKEN>"
+                    -H "X-WallarmApi-Token: <YOUR_TOKEN>"
                     ```
             
             Where `PARTNER_ID` is the one obtained at [**Step 2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) of the tenant creation procedure.
@@ -158,7 +158,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://us1.api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H 'WallarmApi-Token: <YOUR_TOKEN>' \
+            -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
         === "EU Cloud"
@@ -166,7 +166,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
             curl -X POST \
             https://api.wallarm.com/v1/objects/client \
             -H 'content-type: application/json' \
-            -H 'WallarmApi-Token: <YOUR_TOKEN>' \
+            -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
             -d '{ "filter": { "id": [<CLIENT_1_ID>, <CLIENT_2_ID>]}}'
             ```        
 
