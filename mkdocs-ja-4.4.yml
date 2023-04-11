@@ -335,6 +335,7 @@ nav:
         - Subscriptions: user-guides/settings/subscriptions.md
         - Applications: user-guides/settings/applications.md
         - Users: user-guides/settings/users.md
+        - API tokens: user-guides/settings/api-tokens.md
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
