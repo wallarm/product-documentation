@@ -216,15 +216,15 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Debian 9.x (stretch-backports)"
         ```bash
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node stretch-backports/3.6/' | sudo tee --append /etc/apt/sources.list.d/wallarm.list"
         # for correct Wallarm node operation, uncomment the following line in /etc/apt/sources.list`:
         # deb http://deb.debian.org/debian stretch-backports main contrib non-free
         sudo apt update
@@ -234,7 +234,7 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node buster/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node buster/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Debian 11.x (bullseye)"
@@ -242,21 +242,21 @@ To test the regular expression, you can use the **cpire** utility on supported D
         sudo apt update
         sudo apt install dirmngr
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/debian/wallarm-node bullseye/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
         sudo apt update
         curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-        sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+        sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
         sudo apt update
         ```
 2. Install the **cpire** utility:

@@ -58,19 +58,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
             Official NGINX versions (stable and Plus) and, as a result, Wallarm node 4.4 and above cannot be installed on Debian 10.x (buster). Please use this OS only if [NGINX is installed from Debian/CentOS repositories](../../installation/nginx/dynamic-module-from-distr.md).
 
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.4/
+        deb https://repo.wallarm.com/debian/wallarm-node buster/4.4/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
+        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.4/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.4/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/
         ```
 
 ## Step 3: Upgrade the Tarantool packages

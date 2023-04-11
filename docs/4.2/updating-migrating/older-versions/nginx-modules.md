@@ -116,19 +116,19 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     === "Debian 10.x (buster)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node buster/4.2/
+        deb https://repo.wallarm.com/debian/wallarm-node buster/4.2/
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        deb http://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
+        deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.2/
         ```
     === "Ubuntu 18.04 LTS (bionic)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/4.2/
         ```
     === "Ubuntu 20.04 LTS (focal)"
         ```bash
-        deb http://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
+        deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.2/
         ```
 
 ## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.2

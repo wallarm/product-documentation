@@ -34,9 +34,9 @@ https://repo.wallarm.com/centos/wallarm-node/7/3.6/x86_64/repodata/repomd.xml:
 One of the configured repositories failed (Wallarm Node for CentOS 7 - 3.6),
 and yum doesn't have enough cached data to continue.
 
-W: GPG error: http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release: The following signatures
+W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release: The following signatures
 couldn't be verified because the public key is not available: NO_PUBKEY 1111FQQW999
-E: The repository 'http://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release' is not signed.
+E: The repository 'https://repo.wallarm.com/ubuntu/wallarm-node focal/3.6/ Release' is not signed.
 N: Updating from such a repository can't be done securely, and is therefore disabled by default.
 N: See apt-secure(8) manpage for repository creation and user configuration details.
 ```

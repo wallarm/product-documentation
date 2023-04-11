@@ -62,7 +62,7 @@ Depending on your operating system, run one of the following commands:
 === "Ubuntu 18.04 LTS (bionic)"
     ```bash
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb http://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
+    sh -c "echo 'deb https://repo.wallarm.com/ubuntu/wallarm-node bionic/3.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
     sudo apt update
     ```
 === "CentOS 7.x"
