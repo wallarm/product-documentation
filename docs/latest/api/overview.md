@@ -1,3 +1,6 @@
+[user-roles-article]:    ../user-guides/settings/users.md#user-roles
+[img-api-tokens-edit]:   ../images/api-tokens-edit.png
+
 # Wallarm API overview
 
 Wallarm API provides interaction between components of the Wallarm system. You can use Wallarm API methods to create, get, or update the following instances:
@@ -45,32 +48,14 @@ A token is used for request authentication. The token is generated after success
 
 ### Your own client
 
-!!! info "API credentials and SSO"
-    When SSO is enabled for the user, authentication for requests to Wallarm API via UUID and secret key becomes unavailable for this user. Find detailed information in the [SSO configuration](../admin-en/configuration-guides/sso/employ-user-auth.md#sso-and-api-authentication) article.
+To authenticate your requests to Wallarm API:
 
-Your UUID and secret key are used for request authentication.
+1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
+1. [Create](../user-guides/settings/api-tokens.md#configuring-tokens) token to access the Wallarm API.
+1. Open your token and copy value from the **Token** section.
+1. Send the required API request passing the **Token** value in the `X-WallarmApi-Token` header parameter.
 
-1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API credentials**.
-2. Copy the **UUID** value.
-3. Get the **Secret key** value:
-
-    * If you know the secret key value, then you can continue using the known value. The Wallarm Console displays the encrypted value of your active secret key.
-    * If you do not know the secret key value or it was lost, to generate the new secret key:
-        1. Click **Renew secret key**.
-        1. Confirm by entering your password. 
-        1. As soon as the new key is generated, copy its value. The secret key value will not be shown again.
-
-        !!! warning "Reusing the secret key value"
-            The button **Renew secret key** generates the new value of the secret key and invalidates the previous value. To use the secret key securely:
-
-            * Write down the key value in a secure place. The secret key value will not be shown again.
-            * Reuse the stored key value in all requests to Wallarm API.
-            * If you generated the new key value, make sure the previous value is not used in other API clients. If the previous value is in use, replace it with the newly generated secret value.
-4. Send the required API request passing the following values:
-    * **UUID** in the `X-WallarmAPI-UUID` header parameter
-    * **Secret key** in the `X-WallarmAPI-Secret` header parameter
-
-![!Wallarm API credentials](../images/wallarm-api-credentials.png)
+[More details on API tokens →](../user-guides/settings/api-tokens.md)
 
 <!-- ## API restrictions
 

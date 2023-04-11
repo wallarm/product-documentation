@@ -7,6 +7,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * Services (ports) from the network perimeter
 * Domains and associated IP addresses from the network perimeter
 * [Two‑factor authentication](account.md#enabling-two-factor-authentication)
+* [API tokens](api-tokens.md)
 * [Users](users.md)
 * Traffic processing [rules](../rules/intro.md)
 * [Custom ruleset backups](../rules/backup.md)
