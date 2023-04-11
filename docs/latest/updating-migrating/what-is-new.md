@@ -48,6 +48,17 @@ Although the [rate limiting rule](#rate-limits) is the recommended method for se
 * [`wallarm_rate_limit_status_code`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
 * [`wallarm_rate_limit_shm_size`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
 
+## Easy grouping for node instances
+
+Now you can easily group node instances using one [**API token**](../../../user-guides/settings/api-tokens.md) with the `Deploy` role for their installation together with the `WALLARM_LABELS` variable and its `group` label. 
+
+For example: 
+
+```bash
+docker run -d -e WALLARM_API_TOKEN='<API TOKEN WITH DEPLOY ROLE>' -e ENVOY_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>;label2=LABEL2' -p 80:80 wallarm/envoy:4.6.0-1
+```
+...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).
+
 ## When upgrading node 3.6 and lower
 
 If upgrading from the version 3.6 or lower, learn all changes from the [separate list](older-versions/what-is-new.md).
