@@ -272,7 +272,7 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 **Remediation:**
 
 * Implement a proper authorization mechanism that relies on the user policies and hierarchy.
-* Prefer to use random and unpredictable values as [GUIDs](https://ru.wikipedia.org/wiki/GUID) for objects' IDs.
+* Prefer to use random and unpredictable values as [GUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier) for objects' IDs.
 * Write tests to evaluate the authorization mechanism. Do not deploy vulnerable changes that break the tests.
 
 **Wallarm behavior:**
