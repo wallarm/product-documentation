@@ -12,7 +12,7 @@ Ingressコントローラのチェーンでは、既存のコントローラを�
 
 ## 要件
 
-* Kubernetesプラットフォームバージョン1.23-1.25
+* Kubernetesプラットフォームバージョン1.24-1.26
 * [Helm](https://helm.sh/)パッケージマネージャ
 * Wallarm Consoleで**Administrator**ロールのアカウントへのアクセス[USクラウド](https://us1.my.wallarm.com/)または[EUクラウド](https://my.wallarm.com/)
 * US Wallarm Cloudで作業するには`https://us1.api.wallarm.com`、EU Wallarm Cloudで作業するには`https://api.wallarm.com`へのアクセス
