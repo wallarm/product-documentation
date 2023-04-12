@@ -12,6 +12,10 @@
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     supported-platforms.md
 
+[node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
+[api-token]:                        ../user-guides/settings/api-tokens.md
+[platform]:                         ../admin-en/supported-platforms.md
+
 # Deploying as an Amazon Machine Image (AMI)
 
 To deploy an Amazon Machine Image with a filtering node, perform the following steps:
@@ -105,7 +109,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 ## 6. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
 
 ## 7. Set up the filtering node for using a proxy server
 

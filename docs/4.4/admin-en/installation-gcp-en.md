@@ -89,7 +89,7 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 ## 5. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4-only-with-postanalytics.md"
 
 ## 6. Set up the filtering node for using a proxy server
 
