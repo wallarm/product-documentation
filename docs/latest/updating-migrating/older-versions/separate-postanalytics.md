@@ -123,15 +123,21 @@ To replace the regular postanalytics node with the Wallarm node:
 
     === "US Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> -H us1.api.wallarm.com --force --no-sync --no-sync-acl
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com --force --no-sync --no-sync-acl
         ```
     === "EU Cloud"
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <NODE_TOKEN> --force --no-sync --no-sync-acl
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --force --no-sync --no-sync-acl
         ```
     
-    * `<NODE_TOKEN>` is the Wallarm node token.
+    * `<TOKEN>` is the copied value of the node token or API token with the `Deploy` role.
     * The `--force` option forces rewriting of the Wallarm Cloud access credentials specified in the `/etc/wallarm/node.yaml` file.
+
+    <div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You have two options for using one token for several installations:</p> <ul><li>**For all node versions**, you can use one [**node token**](../../quickstart.md#deploy-the-wallarm-filtering-node) in several installations regardless of the selected [platform](../../admin-en/supported-platforms.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</li><li><p>**Starting from node 4.6**, for nodes grouping, you can use one [**API token**](../../user-guides/settings/api-tokens.md) with the `Deploy` role together with the `--labels 'group=<GROUP>'` flag, for example:</p>
+    ```
+    sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> --labels 'group=<GROUP>'
+    ```
+    </p></li></div>
 
 ## Step 5: Restart the postanalytics module
 

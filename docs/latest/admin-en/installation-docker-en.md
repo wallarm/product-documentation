@@ -15,6 +15,9 @@
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
 [node-status-docs]:                 configure-statistics-service.md
+[node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
+[api-token]:                        ../user-guides/settings/api-tokens.md
+[platform]:                         ../admin-en/supported-platforms.md
 
 # Running Docker NGINX‑based image
 

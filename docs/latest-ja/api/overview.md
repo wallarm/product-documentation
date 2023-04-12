@@ -70,8 +70,6 @@ Wallarm APIリクエストを行うには、確認済みユーザーである必
     * `X-WallarmAPI-UUID` ヘッダーパラメーターに **UUID**
     * `X-WallarmAPI-Secret` ヘッダーパラメーターに **Secret key**
 
-![!Wallarm API credentials](../images/wallarm-api-credentials.png)
-
 ## Wallarm API開発とドキュメントのアプローチ
 
 Wallarm APIリファレンスは、シングルページアプリケーション（SPA）であり、表示されるすべてのデータはAPIから動的に取得されます。この設計は、Wallarmが最初に公開APIで新しいデータと機能を利用可能にし、次のステップでAPIリファレンスで説明する[APIファースト](https://swagger.io/resources/articles/adopting-an-api-first-approach/)アプローチを採用するよう促します。通常、すべての新機能は公開APIとAPIリファレンスの両方で並行してリリースされますが、APIリファレンスの変更を先行する形で新しいAPI変更がリリースされることがあり、一部の機能は公開APIのみで利用可能です。

@@ -53,7 +53,7 @@ To run the container:
 
 You can pass the following basic filtering node settings to the container via the option `-e`:
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-4.4.md"
 
 The command does the following:
 
@@ -89,7 +89,7 @@ To run the container:
 
     * The `-e` option passes the following required environment variables to the container:
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-4.4.md"
     
     * The `-v` option mounts the directory with the configuration file `default` to the `/etc/nginx/sites-enabled` container directory.
 
