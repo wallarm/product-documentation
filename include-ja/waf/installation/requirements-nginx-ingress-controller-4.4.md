@@ -1,6 +1,6 @@
-* Kubernetesプラットフォームバージョン1.24-1.26
+* Kubernetesプラットフォームバージョン1.23-1.25
 * [Helm](https://helm.sh/)パッケージマネージャ
-* [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)バージョン1.7.0以下と互換性があるサービス
+* [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)バージョン1.6.4以下と互換性があるサービス
 * Wallarm Consoleの**Administrator**ロールを持つアカウントへのアクセスがある[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)
 * US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com`へのアクセス
 * Wallarm Helmチャートを追加するための`https://charts.wallarm.com`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
