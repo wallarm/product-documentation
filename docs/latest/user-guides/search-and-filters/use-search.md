@@ -318,9 +318,10 @@ You may use masks within a domain. The symbol `*` replaces any number of charact
 
 ### Search by path
 
-To search by path, use the `u:` or `url:` prefix.
+To search by path, either:
 
-Strings that start with `/` are processed without a prefix. Any string can be specified with a prefix.
+* Use the `u:` or `url:` prefix and specify the path in quotes starting with `/`, e.g.: `url:"/api/users"`, or
+* Start the input with `/` without any prefix, e.g.: `/api/users`
 
 ### Search by application
 
