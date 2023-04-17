@@ -61,13 +61,11 @@ Traffic mirroring can be implemented by configuring a web server to copy incomin
 
 ![!OOB scheme for traffic mirrored by web server](../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png)
 
-For those who prefer a web server to mirror traffic, Wallarm offers the following artifacts for OOB deployment:
-
-* [Terraform module for deployment on AWS](terraform-module/mirroring-by-web-server.md) - works with traffic mirrored by any web server (NGINX, Envoy, Traefik, Istio, etc.)
-* [DEB/RPM packages](packages/nginx-stable.md) - works only with traffic mirrored by NGINX
+For those who prefer a web server to mirror traffic, Wallarm offers [Terraform module for deployment on AWS](terraform-module/mirroring-by-web-server.md) which works with traffic mirrored by any web server (NGINX, Envoy, Traefik, Istio, etc.)
+<!-- * [DEB/RPM packages](packages/nginx-stable.md) - works only with traffic mirrored by NGINX
 * [AWS AMI](aws-ami.md) - works only with traffic mirrored by NGINX
 * [GCP Image](gcp-image.md) - works only with traffic mirrored by NGINX
-* [Docker image](docker-image) - works only with traffic mirrored by NGINX
+* [Docker image](docker-image) - works only with traffic mirrored by NGINX -->
 
 <!-- 
 открыть задачи на тестирование и дополнение инструкций для OOB + на следующие инструкции:

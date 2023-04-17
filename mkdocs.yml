@@ -115,13 +115,13 @@ nav:
         - Terraform Module for AWS:
           - VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
           - Mirroring by a web server: installation/oob/terraform-module/mirroring-by-web-server.md
-        - DEB/RPM Packages:
-          - NGINX stable: installation/oob/packages/nginx-stable.md
+        # - DEB/RPM Packages:
+        #   - NGINX stable: installation/oob/packages/nginx-stable.md - need review
         #   - NGINX Plus: - need help with mirroring config
         #   - NGINX from Debian/CentOS Repo: - need help with mirroring config
-        - AWS AMI: installation/oob/aws-ami.md
-        - GCP Image: installation/oob/gcp-image.md
-        - Docker Image: installation/oob/docker-image.md
+        # - AWS AMI: installation/oob/aws-ami.md - need review
+        # - GCP Image: installation/oob/gcp-image.md - need review
+        # - Docker Image: installation/oob/docker-image.md - need review
       - NGINX:
         - NGINX installation options overview: admin-en/installation-nginx-overview.md
         - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
