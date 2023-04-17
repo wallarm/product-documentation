@@ -505,3 +505,6 @@
 /user-guides/scanner/configure-scanner/ /user-guides/scanner/
 /user-guides/scanner/intro/ /user-guides/scanner/
 /user-guides/scanner/reserved-domains/ /user-guides/scanner/
+
+/admin-en/admin-intro-en/ /admin-en/supported-platforms/
+/4.4/admin-en/admin-intro-en/ /4.4/admin-en/supported-platforms/

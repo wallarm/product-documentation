@@ -128,7 +128,7 @@ To see detailed information about ways to connect to an instance, proceed to thi
 
 ### 5. Connect the filtering node to the Wallarm Cloud
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
 
 ### 6. Configure Wallarm node to filter mirrored traffic
 

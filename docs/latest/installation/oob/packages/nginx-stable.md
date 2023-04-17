@@ -256,9 +256,9 @@ For the Wallarm node to process mirrored traffic:
     wallarm_force response_size 0;
     ```
 
-    * The [`real_ip_header`](../../using-proxy-or-balancer-en.md) directive is required to have Wallarm Console display the IP addresses of the attackers.
+    * The [`real_ip_header`](../../../admin-en/using-proxy-or-balancer-en.md) directive is required to have Wallarm Console display the IP addresses of the attackers.
     * The `wallarm_force_response_*` directives are required to disable analysis of all requests except for copies received from the mirrored traffic.
-    * Since malicious requests [cannot](overview.md#limitations-of-mirrored-traffic-filtration) be blocked, the Wallarm node always analyzes requests in the monitoring [mode](../../configure-wallarm-mode.md) even if the `wallarm_mode` directive or Wallarm Cloud sets the safe or regular blocking mode (aside from the mode set to off).
+    * Since malicious requests [cannot](overview.md#limitations-of-mirrored-traffic-filtration) be blocked, the Wallarm node always analyzes requests in the monitoring [mode](../../../admin-en/configure-wallarm-mode.md) even if the `wallarm_mode` directive or Wallarm Cloud sets the safe or regular blocking mode (aside from the mode set to off).
 1. Restart NGINX:
 
     --8<-- "../include/waf/root_perm_info.md"

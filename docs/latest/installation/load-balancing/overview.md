@@ -17,7 +17,7 @@ The in-line deployment approach to the Wallarm deployment offers several advanta
 * Wallarm instantly blocks malicious requests since traffic analysis proceeds in real time.
 * All Wallarm features, including [API Discovery](../../about-wallarm/api-discovery.md) and [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) work with no limitations as Wallarm has access to both incoming requests and server responses.
 
-In contrast to the [OOB](../oob/overview.md) approach, the in-line deployment may introduce additional latency, particularly in high-traffic scenarios, as each request analysis requires some time, albeit not significant. [Allocating sufficient resources for Wallarm node](admin-en/configuration-guides/allocate-resources-for-node.md) prevents any issues.
+In contrast to the [OOB](../oob/overview.md) approach, the in-line deployment may introduce additional latency, particularly in high-traffic scenarios, as each request analysis requires some time, albeit not significant. [Allocating sufficient resources for Wallarm node](../../admin-en/configuration-guides/allocate-resources-for-node.md) prevents any issues.
 
 ## Use cases
 
