@@ -79,9 +79,7 @@ You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking
 * **Unused** for the endpoints that obtained the `Unused` status within the period.
 
     * An endpoint gets the `Unused` status if it is not requested (with the code 200 in response) for 7 days.
-    * If the endpoint is not requested for 14 days, it is not displayed in API Inventory.
     * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
-    * If it has already been hidden, it will be displayed again.
 
 Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Unused** mark, this means there are no changes in API for that period.
 
