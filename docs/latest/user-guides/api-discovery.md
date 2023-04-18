@@ -53,7 +53,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 Each parameter information includes:
 
 * Parameter name and the part of request this parameter belongs to
-* Information about parameter changes (new, removed)
+* Information about parameter changes (new, unused)
 * Presence and type of sensitive data (PII) transmitted by this parameter, including:
 
     * Technical data like IP and MAC addresses
@@ -70,10 +70,20 @@ Each parameter information includes:
 You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in the API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
-* **Changed** for the endpoints that have new or removed parameters. In the details of the endpoint such parameters will have a corresponding mark.
-* **Removed** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different - calculated based on the statistics of accessing each of the endpoints. If later the "removed" endpoint is discovered as having some traffic again it will be marked as "new".
+* **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
 
-Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Removed** mark, this means there are no changes in API for that period.
+    * A parameter gets the `New` status if is is discovered within the period.
+    * A parameter gets the `Unused` status if it does not pass any data for 7 days. 
+    * If later the parameter in the `Unused` status passes data again it will lose the `Unused` status.
+
+* **Unused** for the endpoints that obtained the `Unused` status within the period.
+
+    * An endpoint gets the `Unused` status if it is not requested (with the code 200 in response) for 7 days.
+    * If the endpoint is not requested for 14 days, it is not displayed in API Inventory.
+    * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
+    * If it has already been hidden, it will be displayed again.
+
+Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Unused** mark, this means there are no changes in API for that period.
 
 ![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
@@ -84,12 +94,12 @@ Using the **Changes since** filter only highlights the endpoints changed within 
 
 The **Changes in API** filter works differently and shows **only** endpoints changed within the selected period and filters out all the rest.
 
-<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were removed 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
+<a name="example"></a>Let us consider the example: say your API today has 10 endpoints (there were 12, but 3 of them were marked unused 10 days ago). 1 of this 10 was added yesterday, 2 have changes in their parameters occurred 5 days ago for one and 10 days ago for another:
 
 * Each time you open the **API Discovery** section today, the **Changes since** filter will go to the `Last week` state; page will display 10 endpoints, in the **Changes** column 1 of them will have the **New** mark, and 1 - the **Changed** mark.
-* Switch **Changes since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Removed** mark.
-* Set **Changes in API** to `Removed endpoints` - 3 endpoints will be displayed, all with the **Removed** mark.
-* Change **Changes in API** to `New endpoints + Removed endpoints` - 4 endpoints will be displayed, 3 with the **Removed** mark, and 1 with the **New** mark.
+* Switch **Changes since** to `Last 2 weeks` - 13 endpoints will be displayed, in the **Changes** column 1 of them will have the **New** mark, 2 - the **Changed** mark, and 3 - the **Unused** mark.
+* Set **Changes in API** to `Unused endpoints` - 3 endpoints will be displayed, all with the **Unused** mark.
+* Change **Changes in API** to `New endpoints + Unused endpoints` - 4 endpoints will be displayed, 3 with the **Unused** mark, and 1 with the **New** mark.
 * Switch **Changes since** back to `Last week` - 1 endpoint will be displayed, it will have the **New** mark.
 
 ## Working with risk score
@@ -105,7 +115,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 | 8 to 10 | High | Red |
 
 * `1` means no risk factors for this endpoint.
-* Risk score is not displayed (`N/A`) for the removed endpoints.
+* Risk score is not displayed (`N/A`) for the unused endpoints.
 * Sort by risk score in the **Risk** column.
 * Filter out `High`, `Medium` or `Low` using the **Risk score** filter.
 

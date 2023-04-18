@@ -288,7 +288,7 @@ Changes may occur in your API. They will be discovered by the [**API Discovery**
 
 * A new endpoint is discovered
 * An endpoint has changes (new or deleted parameters)
-* An endpoint is removed
+* An endpoint is marked unused
 
 To get notifications about some or all of these changes to your email or messenger, the trigger with the **Changes in API** condition should be configured.
 
