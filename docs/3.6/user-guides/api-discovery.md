@@ -57,9 +57,16 @@ Each parameter information includes:
 You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following markers will be displayed in the endpoint list:
 
 * **New** for the endpoints added to the list within the period.
-* **Changed** for the endpoints that have new or unused parameters. In the details of the endpoint such parameters will have a corresponding mark.
-* **Unused** for the endpoints that did not receive any traffic within the period. For each endpoint this period will be different - calculated based on the statistics of accessing each of the endpoint. If later the "unused" endpoint is discovered as having some traffic again it will be marked as "new".
+* **Changed** for the endpoints that have newly discovered parameters or parameters that obtained the `Unused` status within the period. In the details of the endpoint such parameters will have a corresponding mark.
 
+    * A parameter gets the `New` status if is is discovered within the period.
+    * A parameter gets the `Unused` status if it does not pass any data for 7 days. 
+    * If later the parameter in the `Unused` status passes data again it will lose the `Unused` status.
+
+* **Unused** for the endpoints that obtained the `Unused` status within the period.
+
+    * An endpoint gets the `Unused` status if it is not requested (with the code 200 in response) for 7 days.
+    * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
 ![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API** filter where you can select one or several types of changes:
