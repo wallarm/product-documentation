@@ -123,7 +123,7 @@ nav:
         # - GCP Image: installation/oob/gcp-image.md - need review
         # - Docker Image: installation/oob/docker-image.md - need review
       - Public Clouds:
-        - Overview: installation/cloud-platforms/overview.md
+        # - Overview: installation/cloud-platforms/overview.md
         - Amazon Web Services:
           - AWS AMI:
             - Creating and configuring an AMI with the Wallarm node: admin-en/installation-ami-en.md
@@ -132,7 +132,7 @@ nav:
               - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
               - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
               - Setting up incoming request balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-          - AWS EKS: installation/cloud-platforms/aws/docker-container.md
+          - AWS ECS: installation/cloud-platforms/aws/docker-container.md
           # - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
         - Google Cloud:
           - Marketplace image:
