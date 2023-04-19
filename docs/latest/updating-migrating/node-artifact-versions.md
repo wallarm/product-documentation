@@ -52,7 +52,7 @@ replace by 4.6
 
 ### 4.6.1-1 (2023-04-18)
 
-* Container terminates when WALLARM_LABELS was not provided for deploy token
+* Now, container terminates when `WALLARM_LABELS` is not provided for deploy token
 
 ## Envoy-based Docker image
 
