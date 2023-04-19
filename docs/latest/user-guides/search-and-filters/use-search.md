@@ -23,7 +23,7 @@
 
 # Using search and filters
 
-Wallarm provides convenient methods for searching detected attacks, incidents and vulnerabilities. In the **Events** section of Wallarm Console, there are the following search methods available:
+Wallarm provides convenient methods for searching detected attacks and incidents. In the **Events** section of Wallarm Console, there are the following search methods available:
 
 * **Filters** to select filtering criteria
 * **Search field** to input search queries with attributes and modifiers similar to human language
@@ -49,12 +49,10 @@ The search field accepts queries with attributes and modifiers similar to human 
 
 * `attacks xss`: to search for all [XSS-attacks][al-xss]
 * `attacks today`: to search for all attacks that happened today
-* `vulns sqli`: to search for [SQL-injection][al-sqli] vulnerabilities
-* `vulns 11/01/2020-11/10/2020`: to search for vulnerabilities within a certain period of time
-* `xss 12/14/2020`: to search for all vulnerabilities, suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 December 2020
-* `p:xss 12/14/2020`: to search for all vulnerabilities, suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 December 2020
+* `xss 12/14/2020`: to search for all suspicions, attacks, and incidents of [cross‑site scripting][al-xss] on 14 December 2020
+* `p:xss 12/14/2020`: to search for all suspicions, attacks, and incidents of all types within the xss HTTP request parameter (i.e. `http://localhost/?xss=attack-here`) as of 14 December 2020
 * `attacks 9-12/2020`: to search for all attacks from September to December 2020
-* `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks, incidents, and vulnerabilities on `/catalog/import.php` path since yesterday
+* `rce /catalog/import.php`: to search for all [RCE][al-rce] attacks and incidents on `/catalog/import.php` path since yesterday
 
 When values of different parameters are specified, the results will meet all those conditions. When different values for the same parameter are specified, the results will meet any of those conditions.
 
@@ -69,20 +67,19 @@ Specify in the search string:
 
 * `attack`, `attacks`: to search only for the attacks that are *not* aimed at known vulnerabilities.
 * `incident`, `incidents`: to search only for incidents (attacks exploiting a known vulnerability).
-* `vuln`, `vulns`, `vulnerability`, `vulnerabilities`: to search only for vulnerabilities.
 
-### Search by attack type or vulnerability type
+### Search by attack type
 
 Specify in the search string:
 
-* `sqli`: to search for [SQL injection][al-sqli] attacks/vulnerabilities.
-* `xss`: to search for [Cross Site Scripting][al-xss] attacks/vulnerabilities.
-* `rce`: to search for [OS Commanding][al-rce] attacks/vulnerabilities.
+* `sqli`: to search for [SQL injection][al-sqli] attacks.
+* `xss`: to search for [Cross Site Scripting][al-xss] attacks.
+* `rce`: to search for [OS Commanding][al-rce] attacks.
 * `brute`: to search for [brute-force][al-brute-force] attacks.
 * `ptrav`: to search for [path traversal][al-path-traversal] attacks.
-* `crlf`: to search for [CRLF injection][al-crlf] attacks/vulnerabilities.
-* `redir`: to search for [open redirect][al-open-redirect] vulnerabilities.
-* `nosqli`: to search for [NoSQL injection][al-nosqli] attacks/vulnerabilities.
+* `crlf`: to search for [CRLF injection][al-crlf] attacks.
+* `redir`: to search for [open redirect][al-open-redirect] attacks.
+* `nosqli`: to search for [NoSQL injection][al-nosqli] attacks.
 * `data_bomb`: to search for [logic bomb][al-logic-bomb] attacks.
 * `ssti`: to search for [Server‑Side Template Injections][ssti-injection].
 * `invalid_xml`: to search for [usage of unsafe XML header][invalid-xml].
@@ -90,23 +87,19 @@ Specify in the search string:
 * `xxe`: to search for [XML External Entity][al-xxe] attacks.
 * `vpatch`: to search for [virtual patches][al-virtual-patch].
 * `dirbust`: to search for [forced browsing][al-forced-browsing] attacks.
-* `ldapi`: to search for [LDAP injection][al-ldapi] attacks/vulnerabilities.
-* `scanner`: to search for [port scanner][al-port-scanner] attacks/vulnerabilities.
-* `infoleak`: to search for attacks/vulnerabilities of [information disclosure][al-infoleak].
-* `vuln_component`: to search for vulnerabilities occurred due to [Vulnerability Component][al-vuln-component] usage.
+* `ldapi`: to search for [LDAP injection][al-ldapi] attacks.
+* `scanner`: to search for [port scanner][al-port-scanner] attacks.
+* `infoleak`: to search for attacks of [information disclosure][al-infoleak].
 * `mail_injection`: to search for [Email Injections][email-injection].
 * `ssi`: to search for [SSI Injections][ssi-injection].
 * `overlimit_res`: to search for attacks of the [resource overlimiting][overlimit-res] type.
 * `experimental`: to search for experimental attacks detected based on [custom regular expression](../rules/regex-rule.md).
-* `idor`: to search for vulnerabilities of the [BOLA (IDOR)](../../attacks-vulns-list.md#broken-object-level-authorization-bola) type.
 * `bola`: to search for attacks exploiting the [BOLA (IDOR) vulnerability](../../attacks-vulns-list.md#broken-object-level-authorization-bola).
-* `weak_auth`: to search for [JWT vulnerabilities](../../attacks-vulns-list.md#weak-jwt).
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
-* `csrf`: to search for [cross-site request forgery (CSRF) vulnerabilities](../../attacks-vulns-list.md#cross-site-request-forgery-csrf).
-* `ssrf`: to search for [Server‑side Request Forgery (SSRF) vulnerabilities and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
+* `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 
-An attack or vulnerability name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
+An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
 ### Search by known attacks (CVE and well‑known exploits)
 
@@ -153,13 +146,13 @@ This tag allows the following values:
 * `auth:oauth2`
 * `auth:scram`
 
-### Search by the attack target or the vulnerability target
+### Search by the attack target
 
 Specify in the search string:
 
-* `client`: to search for clients' data attacks/vulnerabilities.
-* `database`: to search for database attacks/vulnerabilities.
-* `server`: to search for app server attacks/vulnerabilities.
+* `client`: to search for clients' data attacks.
+* `database`: to search for database attacks.
+* `server`: to search for app server attacks.
 
 ### Search by risk level
 
@@ -168,20 +161,6 @@ Specify the risk level in the search string:
 * `low`: low risk level.
 * `medium`: medium risk level.
 * `high`: high risk level.
-
-### Search by vulnerability identifier
-
-To search for a certain vulnerability, specify its identifier. It can be specified in two ways:
-
-* either fully: `WLRM-ABCD-X0123`
-* or in abbreviated form: `X0123`
-
-### Search by vulnerability status
-
-Specify vulnerability status in the search string. Vulnerability can have one of the three statuses:
-
-* `open`: currently relevant vulnerability
-* `closed`: fixed vulnerability
 
 ### Search by event time
 
@@ -325,7 +304,7 @@ To search by path, either:
 
 ### Search by application
 
-To search by the application to which the attack was sent or in which a vulnerability was found, use the `application:` or `app:` prefix (the former `pool:` prefix is still supported but not recommended).
+To search by the application to which the attack was sent, use the `application:` or `app:` prefix (the former `pool:` prefix is still supported but not recommended).
 
 The attribute value is the application name set on the **Applications** tab in the **Settings** section. For example: `application:'Example application'`.
 
