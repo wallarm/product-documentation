@@ -6,7 +6,7 @@ The **API Discovery** Wallarm dashboard summarizies data about your API collecte
 * The [riskiest](../../about-wallarm/api-discovery.md#endpoint-risk-score) endpoints among the whole API inventory and among the newly discovered endpoints in the last 7 days
 
     The riskiest endpoints are most likely to be an attack target due to active vulnerabilities and other risk factors. Each risky endpoint is provided with the targeting hit volume. You can sort endpoints either by a risk score or a hit volume (by default).
-* Changes of your API in the last 7 days by type (new, changed, removed APIs)
+* Changes of your API in the last 7 days by type (new, changed, unused APIs)
 * Total number of discovered endpoints and how many of them are external and internal
 * Sensitive data in API by groups (personal, finance, etc.) and by types
 * API inventory: number of endpoints by the API host and the application
