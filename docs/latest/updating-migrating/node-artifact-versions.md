@@ -50,6 +50,10 @@ replace by 4.6
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
+### 4.6.1-1 (2023-04-18)
+
+* Container terminates when WALLARM_LABELS was not provided for deploy token
+
 ## Envoy-based Docker image
 
 [How to upgrade](docker-container.md)
