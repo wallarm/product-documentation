@@ -1,7 +1,7 @@
 [img-dashboard-waf]:        ../../images/user-guides/dashboard/dashboard.png
 [img-dashboard-scanner]:    ../../images/user-guides/dashboard/dashboard-scanner.png
 
-[doc-scanner]:              ../scanner/intro.md
+[doc-scanner]:              ../scanner.md
 
 # Dashboards Overview
 

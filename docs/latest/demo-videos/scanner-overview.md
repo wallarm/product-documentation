@@ -1,6 +1,6 @@
 # Wallarm Scanner overview
 
-Watch our demo videos to learn more about [Wallarm Scanner](../user-guides/scanner/intro.md).
+Watch our demo videos to learn more about [Wallarm Scanner](../user-guides/scanner.md).
 
 ## Wallarm Scanner overview
 
@@ -10,8 +10,8 @@ Watch our demo videos to learn more about [Wallarm Scanner](../user-guides/scann
 
 **Related documentation articles**
 
-* [Scanner overview](../user-guides/scanner/intro.md)
-* [Configuring Scanner](../user-guides/scanner/configure-scanner.md)
+* [Scanner overview](../user-guides/scanner.md)
+* [Configuring Scanner](../user-guides/scanner.md)
 
 ## Configuring Wallarm Scanner
 
@@ -21,5 +21,5 @@ Watch our demo videos to learn more about [Wallarm Scanner](../user-guides/scann
 
 **Related documentation articles**
 
-* [Scanner overview](../user-guides/scanner/intro.md)
-* [Configuring Scanner](../user-guides/scanner/configure-scanner.md)
+* [Scanner overview](../user-guides/scanner.md)
+* [Configuring Scanner](../user-guides/scanner.md)

@@ -58,9 +58,9 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 
 #### Configuration
 
-* Scanner can be [enabled or disabled](../user-guides/scanner/configure-scanner-modules.md) in the Wallarm Console → **Scanner** section. By default, Scanner is enabled	
-* The list of [vulnerabilities that can be detected](../user-guides/scanner/configure-scanner-modules.md) by Scanner can be configured in the Wallarm Console → **Scanner** section. By default, Vulnerability Scanner detects all available vulnerabilities	
-* The [limit of requests sent from Scanner](../user-guides/scanner/configure-scanner.md#scanners-rps-limits) can be configured in the Wallarm Console → **Scanner** section	
+* Scanner can be [enabled or disabled](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Scanner is enabled.
+* The list of [vulnerabilities that can be detected](../user-guides/vulnerabilities.md#configuring-vulnerability-detection) by Scanner can be configured in Wallarm Console → **Vulnerabilities** → **Configure**. By default, Vulnerability Scanner detects all available vulnerabilities.
+* The [limit of requests sent from Scanner](../user-guides/scanner.md#limiting-vulnerability-scanning) can be configured for each asset in Wallarm Console → **Scanner** → **Configure**.
 * If the filtering node operates in the `block` mode, it is required to [disable blocking of IP addresses](../admin-en/scanner-ips-allowlisting.md) from which Scanner sends requests
 
 ## False positives
@@ -69,7 +69,7 @@ Vulnerability Scanner checks all company's exposed assets for typical vulnerabil
 
 False positives in vulnerability scanning may occur due to the protected application specificities. Similar responses to similar requests may indicate an active vulnerability in one protected application and be expected behavior of another protected application.
 
-If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be switched to an appropriate status and will not be checked by the **Active threat verification** module. [More about managing false positives via Wallarm Console →](../user-guides/vulnerabilities/false-vuln.md)
+If a false positive for a vulnerability is detected, you can add an appropriate mark to the vulnerability in Wallarm Console. A vulnerability marked as a false positive will be closed and will not be rechecked.
 
 If the detected vulnerability exists in the protected application but cannot be fixed, we recommend setting up the [**Create a virtual patch**](../user-guides/rules/vpatch-rule.md) rule. This rule will allow blocking attacks exploiting the detected type of vulnerability and will eliminate the risk of an incident.
 
@@ -81,9 +81,9 @@ All detected vulnerabilities are displayed in the Wallarm Console → **Vulnerab
 * Run vulnerability status verification: still active or fixed on the application side
 * Close vulnerabilities or mark them as false positives
 
-For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities/check-vuln.md).
+For more information on managing vulnerabilities, see the instructions on [working with vulnerabilities](../user-guides/vulnerabilities.md).
 
-![!Vulnerabilities section](../images/about-wallarm-waf/vulnerabilities-list.png)
+![!Vulnerabilities section](../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## Notifications about discovered vulnerabilities
 

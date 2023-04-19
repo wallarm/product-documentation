@@ -280,7 +280,7 @@ This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 
 ### Open redirect
 
-**Attack**
+**Vulnerability/Attack**
 
 **CWE code:** [CWE-601][cwe-601]
 

@@ -22,7 +22,7 @@ Watch our demo video to get familiar with the Wallarm platform's [**CVEs**](../u
 
 * [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
-* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md)
+* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities.md)
 
 ## Analyzing attacks detected by the filtering node
 
@@ -40,7 +40,7 @@ Watch our demo video to get familiar with the Wallarm platform's [**CVEs**](../u
 
 * [Checking events in Wallarm Console](../user-guides/events/check-attack.md)
 * [Analyzing attacks detected by the filtering node](../user-guides/events/analyze-attack.md)
-* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities/analyze-vuln.md) -->
+* [Analyzing vulnerabilities detected by the filtering node](../user-guides/vulnerabilities.md) -->
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/74s1_X_rhp0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

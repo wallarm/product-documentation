@@ -119,7 +119,7 @@ You can view data on domains and applications on separate tabs.
 
 ## Vulnerability Scanner
 
-The Scanner widget shows statistics on vulnerabilities detected in [public assets](../scanner/check-scope.md):
+The Scanner widget shows statistics on vulnerabilities detected in [public assets](../scanner.md):
 
 * The number of vulnerabilities of all risk levels detected over the selected period
 * The number of active vulnerabilities of all risk levels at the end of the selected period

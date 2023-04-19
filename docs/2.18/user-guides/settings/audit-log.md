@@ -2,7 +2,7 @@
 
 On the **Settings** → **Activity log** tab of Wallarm Console, you can check the history of user actions in the Wallarm system. The logs include information about creating, updating and deleting the following objects:
 
-* IP address or subnet from the [network perimeter](../scanner/check-scope.md)
+* IP address or subnet from the [network perimeter](../scanner.md)
 * Domains from the network perimeter
 * Services (ports) from the network perimeter
 * Domains and associated IP addresses from the network perimeter
@@ -18,7 +18,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 
 The logs also include information on the following actions and objects:
 
-* [Vulnerability marked as the false positive](../vulnerabilities/false-vuln.md)
+* [Vulnerability marked as the false positive](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
 * [Rechecked attack](../events/verify-attack.md)
 
 ![!Activity log](../../images/user-guides/settings/audit-log.png)

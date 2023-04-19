@@ -88,7 +88,7 @@ If 31 or more requests are sent to `https://example.com/shops/{shop_id}/financia
 
 ## Detect weak JWTs
 
-If a significant amount of incoming requests processed by the node 4.4 or above contains weak JWTs, record the corresponding [vulnerability](../vulnerabilities/check-vuln.md).
+If a significant amount of incoming requests processed by the node 4.4 or above contains weak JWTs, record the corresponding [vulnerability](../vulnerabilities.md).
 
 Weak JWTs are those that are:
 

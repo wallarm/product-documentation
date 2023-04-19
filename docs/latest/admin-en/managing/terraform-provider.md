@@ -75,8 +75,8 @@ With the Wallarm provider, via Terraform you can manage:
 * [Users](../../user-guides/settings/users.md)
 * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
 * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
-* [Scanner](../../user-guides/scanner/intro.md) scope
-* [Vulnerabilities](../../user-guides/vulnerabilities/check-vuln.md)
+* [Scanner](../../user-guides/scanner.md) scope
+* [Vulnerabilities](../../user-guides/vulnerabilities.md)
 
 !!! info "Wallarm Terraform provider and CDN nodes"
     Currently [CDN nodes](../../user-guides/nodes/cdn-node.md) cannot be managed via the Wallarm Terraform provider.

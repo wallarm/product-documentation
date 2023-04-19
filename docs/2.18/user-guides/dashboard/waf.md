@@ -8,7 +8,7 @@
 [doc-setup-app]:            ../settings/applications.md
 [doc-events-tab]:           ../events/check-attack.md
 [doc-denylist-tab]:        ../ip-lists/denylist.md
-[doc-scanner]:              ../scanner/intro.md
+[doc-scanner]:              ../scanner.md
 
 [gl-hit]:                   ../../glossary-en.md#hit
 

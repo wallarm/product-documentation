@@ -2,7 +2,7 @@
 
 --8<-- "../include/ingress-controller-best-practices-intro.md"
 
-To ensure proper functionality of the [Wallarm vulnerability scanner](../../../../user-guides/scanner/intro.md), it is necessary to allowlist (disable the Wallarm functionality for) the IP addresses of Wallarm’s scanner nodes. This allows the scanner to reach the protected application in order to validate that detected attacks are not targeting real application vulnerabilities.
+To ensure proper functionality of the [Wallarm vulnerability scanner](../../../../user-guides/scanner.md), it is necessary to allowlist (disable the Wallarm functionality for) the IP addresses of Wallarm’s scanner nodes. This allows the scanner to reach the protected application in order to validate that detected attacks are not targeting real application vulnerabilities.
 
 The list of Wallarm IP addresses is available at the following links:
 
