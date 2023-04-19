@@ -115,6 +115,7 @@ nav:
         - Terraform Module for AWS:
           - VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
           - Mirroring by a web server: installation/oob/terraform-module/mirroring-by-web-server.md
+          - Test: https://deploy-preview-799--pensive-dubinsky-5f7a00.netlify.app/user-guides/user-intro/
         # - DEB/RPM Packages:
         #   - NGINX stable: installation/oob/packages/nginx-stable.md - need review
         #   - NGINX Plus: - need help with mirroring config
