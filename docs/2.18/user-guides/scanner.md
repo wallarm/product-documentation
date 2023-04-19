@@ -85,7 +85,7 @@ Cloud: EU
 
 To fine-tune asset scanning in Wallarm, click the **Configure** button. From there, you can control which methods the Wallarm Scanner uses to find your company's exposed assets. By default, all available methods are used.
 
-TBD: screenshot
+![!Scanner config](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
 
 There is also a [global switcher for the Wallarm Scanner](vulnerabilities.md#configuring-vulnerability-detection) located in the **Vulnerabilities** section. This switcher enables or disables the Scanner for your entire company account, controlling both the asset scanning and vulnerability discovery processes.
 
@@ -105,9 +105,7 @@ Wallarm Scanner uses test malicious requests to detect vulnerabilities in discov
 
 To set the same limits for all domains and IP addresses, click **Configure** and set values in the corresponding section.
 
-TBD: screenshot
-
-To verride limits for specific IP addresses or domains:
+To override limits for specific IP addresses or domains:
 
 1. Open an asset of the **Domain** or **IP** type.
 1. Click the **Set RPS limits** button and specify the limit.
