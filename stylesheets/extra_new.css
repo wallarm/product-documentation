@@ -33,11 +33,11 @@
   display: block;
 }
 
-a.md-top.md-icon:hover {
+.md-top.md-icon:hover {
   background-color: #FC7303;
 }
 
-a.md-top.md-icon {
+.md-top.md-icon {
   background-color: rgba(0,0,0,0.8);
   color: #FFFFFF;
 }
