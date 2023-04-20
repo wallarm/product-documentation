@@ -1,12 +1,29 @@
-# AWS S3
+# Amazon S3
 
-You can set up Wallarm to TBD.
+You can set up Wallarm to send files with the information about detected hits to your Amazon S3 bucket. Information will be sent in the files of JSON format each 10 minutes.
 
-Usually integrations do something when the following events are triggered:
+??? note "Data fields for each hit"
 
---8<-- "../include/integrations/events-for-integrations.md"
+    * date and time of hit detection
+    * request_id
+    * attacker's IP
+    * datacenter
+    * proxy_type
+    * tor
+    * remote_country
+    * application_id
+    * domain
+    * method
+    * uri
+    * protocol
+    * status_code
+    * attack_type
+    * block_status
+    * payload 
+    * point
+    * tags
 
-But AWS S3 integration is different: TBD.
+Files placed to your S3 bucket will be named as `wallarm_hits_{timestamp}.json`.
 
 ## Setting up integration
 
@@ -15,43 +32,134 @@ When setting up the integration with Amazon S3, you need to decide which method 
 * Via role ARN (recommended)
 * Via secret access key
 
-In the Amazon S3 UI:
-
 1. Create an Amazon S3 bucket for Wallarm following the [instructions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html).
-1. Navigate to your bucket → **Properties** tab and copy the code of your bucket's **AWS Region**, for example `us-west-1`.
-1. If you selected authorization via secret access key, navigate to IAM → Dashboard → **Manage access keys** → **Access keys** section. Get ID of access key that you store somewhere or create new/restore lost key as described [here](https://aws.amazon.com/ru/blogs/security/wheres-my-secret-access-key/). Anyway, you will need your active key and its ID.
-
-In the Wallarm Console UI:
-
-1. Open the **Integrations** section.
-1. Click the **AWS S3** block or click the **Add integration** button and choose **AWS S3**.
-1. Enter an integration name.
-1. Enter the previously copied AWS region code of your S3 bucket.
-1. Enter your S3 bucket name.
-1. Configure permissions for Wallarm to access your S3 bucket.
+1. Perform different steps depending on selected authorization method.
 
     === "Role ARN"
-        1. Steps TBD.
+
+        1. In AWS UI, navigate to S3 → your bucket → **Properties** tab and copy the code of your bucket's **AWS Region**, for example `us-west-1`, and (for ARN variant) your bucket's **Amazon Resource Name (ARN)**, for example `arn:aws:s3:::test-bucket-json`.
+        1. In the Wallarm Console UI, open the **Integrations** section.
+        1. Click the **AWS S3** block or click the **Add integration** button and choose **AWS S3**.
+        1. Enter an integration name.
+        1. Enter the previously copied AWS region code of your S3 bucket.
+        1. Enter your S3 bucket name.
+        1. Copy provided Wallarm account ID.
+        1. Copy provided external ID.
+        1. In AWS UI, initiate creating new role under IAM → **Access Management** → **Roles**.
+        1. Select **AWS account** → **Another AWS Account** as trusted entity type.
+        1. Paste Wallarm **Account ID**.
+        1. Select **Require external ID** and paste external ID provided by Wallarm.
+        1. Click **Next** and create policy for you role:
+
+            ```json
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Sid": "VisualEditor0",
+                        "Effect": "Allow",
+                        "Action": "s3:PutObject",
+                        "Resource": "<YOUR_S3_BUCKET_ARN>"
+                    }
+                ]
+            }
+            ```
+        1. Complete role creation and copy role's ARN.
+        1. In the Wallarm Console UI, your integration creation dialog, click the **Role ARN** tab.
+        1. Paste your role's ARN.
+
     === "Secret access key"
+
+        1. In AWS UI, navigate to S3 → your bucket → **Properties** tab and copy the code of your bucket's **AWS Region**, for example `us-west-1`.
+        1. Navigate to IAM → Dashboard → **Manage access keys** → **Access keys** section.
+        1. Get ID of access key that you store somewhere or create new/restore lost key as described [here](https://aws.amazon.com/ru/blogs/security/wheres-my-secret-access-key/). Anyway, you will need your active key and its ID.
+        1. In the Wallarm Console UI, Open the **Integrations** section.
+        1. Click the **AWS S3** block or click the **Add integration** button and choose **AWS S3**.
+        1. Enter an integration name.
+        1. Enter the previously copied AWS region code of your S3 bucket.
+        1. Enter your S3 bucket name.
         1. Click the **Secret access key** tab.
         1. Enter access key ID.
         1. Enter secret access key.
 
-1. Choose event types to trigger notifications. If the events are not chosen, then notifications will not be sent.
+1. Make sure in the **Regular notifications** section, hits in the last 10 minutes are selected to be sent. If not chosen, data will not be sent to S3 bucket.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-      ![!Amazon-S3 integration](../../../images/user-guides/settings/integrations/TBD.png)
+To control the amount of stored data, it is recommended to set up an automatic deletion of old objects from your Amazon S3 bucket as described [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html).
 
 ## Testing integration
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+Integration testing allows checking configuration correctness, availability of the Wallarm Cloud, and the sent data format. To test the integration, you can use the **Test integration**  when creating or editing the integration.
 
-Test Slack message from the user **wallarm**:
+For Amazon S3, integration test sends the JSON file with data into your bucket.
 
-```
-Image or text TBD.
-```
+??? note "Example of the JSON file with the data on hits detected in the last 10 minutes"
+
+    ```json
+    [
+    {
+        "time":1678984671,
+        "request_id":"d2a900a6efac7a7c893a00903205071a",
+        "ip":"127.0.0.1",
+        "datacenter":"unknown",
+        "tor":"none",
+        "remote_country":null,
+        "application_id":null,
+        "domain":"localhost",
+        "method":"GET",
+        "uri":"/etc/passwd",
+        "port":45070,
+        "protocol":"none",
+        "status_code":499,
+        "attack_type":"ptrav",
+        "block_status":"monitored",
+        "payload":[
+            "/etc/passwd"
+        ],
+        "point":[
+            "uri"
+        ],
+        "tags":{
+            "lom_id":7,
+            "libproton_version":"4.4.11",
+            "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
+            "wallarm_mode":"monitoring",
+            "final_wallarm_mode":"monitoring"
+        }
+    },
+    {
+        "time":1678984675,
+        "request_id":"b457fccec9c66cdb07eab7228b34eca6",
+        "ip":"127.0.0.1",
+        "datacenter":"unknown",
+        "tor":"none",
+        "remote_country":null,
+        "application_id":null,
+        "domain":"localhost",
+        "method":"GET",
+        "uri":"/etc/passwd",
+        "port":45086,
+        "protocol":"none",
+        "status_code":499,
+        "attack_type":"ptrav",
+        "block_status":"monitored",
+        "payload":[
+            "/etc/passwd"
+        ],
+        "point":[
+            "uri"
+        ],
+        "tags":{
+            "lom_id":7,
+            "libproton_version":"4.4.11",
+            "brute_counter":"c188cd2baa2cefb3f3688cb4008a649e",
+            "wallarm_mode":"monitoring",
+            "final_wallarm_mode":"monitoring"
+        }
+    }
+    ]
+    ```
 
 ## Updating integration
 
