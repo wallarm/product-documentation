@@ -29,8 +29,10 @@ Files placed to your S3 bucket will be named as `wallarm_hits_{timestamp}.json`.
 
 When setting up the integration with Amazon S3, you need to decide which method of authorization you will use:
 
-* Via role ARN (recommended)
-* Via secret access key
+* **Via role ARN (recommended)** - using roles with external ID option to grant access to resources is [recommended](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html?icmpid=docs_iam_console) by AWS as method increasing the security and preventing "confused deputy" attacks. Wallarm provides such ID unique for your organization account.
+* **Via secret access key** - more common, simpler method, requiring sharing access key of your AWS IAM user. If you select this method, it is recommended to use access key of a separate IAM user with only permission of writing to the S3 bucket used in integration.
+
+To set up an Amazon S3 integration:
 
 1. Create an Amazon S3 bucket for Wallarm following the [instructions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html).
 1. Perform different steps depending on selected authorization method.
