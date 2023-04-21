@@ -58,6 +58,11 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
+### 4.6.1-1 (2023-04-21)
+
+* Now, container terminates when `WALLARM_LABELS` is not provided for deploy token
+* Fix request count calculation
+
 ### 4.6.0-1 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
