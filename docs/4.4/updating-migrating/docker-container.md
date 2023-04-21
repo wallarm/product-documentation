@@ -35,7 +35,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:4.4.3-1
+    docker pull wallarm/envoy:4.4.4-1
     ```
 
 ## Step 2: Stop the running container

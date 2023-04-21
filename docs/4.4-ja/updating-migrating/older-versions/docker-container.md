@@ -46,7 +46,7 @@ Wallarmノード2.16以下をアップグレードする場合、Wallarmコン�
     ```
 === "Envoyベースのイメージ"
     ``` bash
-    docker pull wallarm/envoy:4.4.3-1
+    docker pull wallarm/envoy:4.4.4-1
     ```
 
 ## ステップ5: トークンベースの接続でWallarmクラウドに切り替える

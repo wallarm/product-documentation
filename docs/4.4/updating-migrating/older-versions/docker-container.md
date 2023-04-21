@@ -46,7 +46,7 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
     ```
 === "Envoy-based image"
     ``` bash
-    docker pull wallarm/envoy:4.4.3-1
+    docker pull wallarm/envoy:4.4.4-1
     ```
 
 ## Step 5: Switch to the token-based connection to the Wallarm Cloud
