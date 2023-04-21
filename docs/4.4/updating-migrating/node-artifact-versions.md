@@ -129,12 +129,16 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](docker-container.md)
 
-### 4.4.3 (2023-02-10)
+### 4.4.4-1 (2023-04-21)
+
+* Fix request count calculation
+
+### 4.4.3-1 (2023-02-10)
 
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
-### 4.4.0
+### 4.4.0-1
 
 * Initial release 4.4, [see changelog](what-is-new.md)
 
