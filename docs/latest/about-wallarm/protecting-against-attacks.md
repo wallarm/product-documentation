@@ -37,9 +37,9 @@ Attack detection method depends on the attack group. To detect behavioral attack
 
 ### Input validation attacks
 
-Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse requests in order to detect specific symbol combinations.
+Input validation attacks include SQL injection, cross‑site scripting, remote code execution, Path Traversal and other attack types. Each attack type is characterized by specific symbol combinations sent in the requests. To detect input validation attacks, it is required to conduct syntax analysis of the requests - parse them in order to detect specific symbol combinations.
 
-Input validation attacks are detected by the filtering node using the listed [tools](#tools-for-attack-detection).
+Wallarm detects input validation attacks in any request part including binary files like SVG, JPEG, PNG, GIF, PDF, etc using the listed [tools](#tools-for-attack-detection).
 
 Detection of input validation attacks is enabled for all clients by default.
 
