@@ -1,18 +1,33 @@
-The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node to the Cloud:
+The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node to the Cloud, you need to provide access of the node to the Wallarm Cloud API. This can be done using one of the tokens:
+
+* [API token][api-token] with `Deploy` role  - use this token when:
+    * The Wallarm node will scale in your infrastructure, while the number of groups is not known in advance (groups will be constantly added/removed).
+    * You need to control the lifecycle of the token (you can specify the expiration date of API tokens).
+* [Node token][node-token] - use this token when you do not plan to automatically scale the node (for example, DEB/ RPM), or if you know in advance what groups of nodes will be and you can create them manually via **Nodes** → **Create node**.
+
+To connect the filtering node to the Cloud:
 
 1. If the [postanalytics module installed separately][install-postanalytics-instr]:
 
     1. Copy the node token generated during the separate postanalytics module installation.
-    1. Proceed to the 5th step in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
+    1. Proceed to the 5th step (node token variant) in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
 1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Obtain token of the appropriate type:
 
-    ![!Wallarm node creation][img-create-wallarm-node]
-1. Copy the generated token.
+    === "API token"
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Find or create API token with the `Deploy` source role.
+        1. Copy this token.
+    === "Node token"
+        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+        ![!Wallarm node creation][img-create-wallarm-node]
+        1. Copy the generated token.
+
 1. Run the `register-node` script in a system with the filtering node:
     
     === "US Cloud"
