@@ -41,22 +41,15 @@ To connect the filtering node to the Cloud:
 
             === "US Cloud"
                 ``` bash
-                    sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+                    sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
                 ```
             === "EU Cloud"
                 ``` bash
-                sudo /usr/share/wallarm-common/register-node -t <TOKEN>
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
                 ```
             
         * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
-        * You may add `--labels 'group=<GROUP>'` parameter to put your node to the node group, for example:
-
-            ```
-            sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> \ 
-            --labels 'group=<GROUP>'
-            ```
-            
-            ...will place node instance into the <GROUP> node group (existing, or, if does not exist, it will be created).
+        * `--labels 'group=<GROUP>'` parameter puts your node to the `<GROUP>` node group (existing, or, if does not exist, it will be created).
 
     === "Node token"
 
