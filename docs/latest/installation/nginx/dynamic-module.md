@@ -25,7 +25,7 @@
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [platform]:                         ../../admin-en/supported-platforms.md
 
-# Installing dynamic Wallarm module for NGINX stable from NGINX repository
+# Deploying Wallarm from DEB/RPM packages <a href="../../../load-balancing/overview/"><img src="../../../../images/in-line-tag.svg" style="border: none;"></a> <a href="../../../oob/overview/"><img src="../../../../images/oob-tag.svg" style="border: none;"></a>
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
@@ -33,11 +33,14 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 --8<-- "../include/waf/installation/nginx-requirements-4.0.md"
 
-## Installation options
+## 1. Choose the approach for Wallarm deployment
 
---8<-- "../include/waf/installation/nginx-installation-options.md"
+Before deploying Wallarm, choose how it should analyze the traffic:
 
-Installation commands for both options are described in the further instructions.
+* As the [reverse proxy](../../load-balancing/overview.md) solution analyzing origin of your traffic
+* As the [Out-of-Band (OOB)](../../oob/overview.md) solution analyzing a mirror of your traffic
+
+If you choose to deploy Wallarm as the OOB solution, configure your web server to mirror incoming traffic to Wallarm nodes. Inside the [link](../../oob/mirroring-by-web-servers.md), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
 
 ## Installation
 
@@ -131,8 +134,6 @@ Wallarm node is installed and updated from the Wallarm repositories. To add repo
 
 ### 3. Install Wallarm packages
 
-#### Request processing and postanalytics on the same server
-
 To run postanalytics and process the requests on the same server, the following packages are required:
 
 * `nginx-module-wallarm` for the NGINX-Wallarm module
@@ -154,31 +155,6 @@ To run postanalytics and process the requests on the same server, the following 
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
-
-#### Request processing and postanalytics on different servers
-
-To run postanalytics and process the requests on different servers, the following packages are required:
-
-* `wallarm-node-nginx` and `nginx-module-wallarm` for the NGINX-Wallarm module
-
-    === "Debian"
-        ```bash
-        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
-        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
-        ```
-
-* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../../admin-en/installation-postanalytics-en.md))
 
 ### 4. Connect the Wallarm module
 
@@ -215,15 +191,37 @@ To run postanalytics and process the requests on different servers, the followin
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
 
-### 6. Update Wallarm node configuration
+## 7. Enable Wallarm to analyze the traffic
 
---8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.md"
+By default, the deployed Wallarm node does not analyze incoming traffic. To start traffic analisys, add the `wallarm_mode` directive in the `/etc/nginx/sites-enabled/default` file:
 
-### 7. Restart NGINX
+```
+server {
+    listen 80;
+    listen [::]:80 ipv6only=on;
+    wallarm_mode monitoring;
 
---8<-- "../include/waf/root_perm_info.md"
+    ...
+}
+```
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+The monitoring mode is the recommended one for the first deployment and solution testing. Wallarm provides safe blocking and blocking modes as well, [read more](../../../admin-en/configure-wallarm-mode.md).
+
+If you deploy Wallarm as the OOB solution, the monitoring mode is the only supported mode.
+
+## 8. Enable Wallarm to either proxy traffic or analyze its mirror
+
+--8<-- "../include/setup-filter-nginx-en-latest.md"
+
+## 9. Restart NGINX
+
+To apply the settings, restart NGINX:
+
+``` bash
+sudo systemctl restart nginx
+```
+
+Each configuration file change requires NGINX to be restarted to apply it.
 
 ### 8. Test Wallarm node operation
 

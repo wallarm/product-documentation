@@ -8,20 +8,16 @@
 [deployment-platform-docs]:     supported-platforms.md
 [platform]:                         ../admin-en/supported-platforms.md
 
-# Deploying on Google Cloud Platform (GCP)
+# Deploying Wallarm from Google Cloud Platform Image <a href="../installation/load-balancing/overview/"><img src="../../images/in-line-tag.svg" style="border: none;"></a> <a href="../installation/oob/overview/"><img src="../../images/oob-tag.svg" style="border: none;"></a>
 
-To deploy a filtering node on the Google Cloud Platform, perform the following steps:
+## 1. Choose the approach for Wallarm deployment
 
-1. Log in to your Google Cloud Platform account.
-2. Launch a filtering node instance.
-3. Configure the filtering node instance.
-4. Connect to the filtering node instance via SSH.
-5. Connect the filtering node to the Wallarm Cloud.
-6. Set up the filtering node for using a proxy server.
-7. Set up filtering and proxying rules
-8. Allocate more memory for the Wallarm node.
-9. Configure logging.
-10. Restart NGINX.
+Before deploying Wallarm, choose how it should analyze the traffic:
+
+* As the [reverse proxy](../../load-balancing/overview.md) solution analyzing origin of your traffic
+* As the [Out-of-Band (OOB)](../../oob/overview.md) solution analyzing a mirror of your traffic
+
+If you choose to deploy Wallarm as the OOB solution, configure your web server to mirror incoming traffic to Wallarm nodes. Inside the [link](../../oob/mirroring-by-web-servers.md), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
 
 ## 1. Log in to your Google Cloud Platform account
 
@@ -92,55 +88,42 @@ To see detailed information about ways of connecting to instances, proceed to th
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
 
-## 6. Set up the filtering node for using a proxy server
+## 7. Enable Wallarm to analyze the traffic
 
---8<-- "../include/setup-proxy.md"
+By default, the deployed Wallarm node does not analyze incoming traffic. To start traffic analisys, add the `wallarm_mode` directive in the `/etc/nginx/sites-enabled/default` file:
 
-## 7. Set up filtering and proxying rules
+```
+server {
+    listen 80;
+    listen [::]:80 ipv6only=on;
+    wallarm_mode monitoring;
+
+    ...
+}
+```
+
+The monitoring mode is the recommended one for the first deployment and solution testing. Wallarm provides safe blocking and blocking modes as well, [read more](../../../admin-en/configure-wallarm-mode.md).
+
+If you deploy Wallarm as the OOB solution, the monitoring mode is the only supported mode.
+
+## 8. Enable Wallarm to either proxy traffic or analyze its mirror
 
 --8<-- "../include/setup-filter-nginx-en-latest.md"
 
-## 8. Allocate more memory for the Wallarm node
+## 9. Restart NGINX
 
-The Wallarm node uses Tarantool, an open‑source in-memory database, to calculate traffic metrics required for automated adjusting of security rules.
-
-By default, the amount of RAM allocated to Tarantool is 40% of the total instance memory.
-
-You can change the amount of RAM allocated for Tarantool. To allocate the instance RAM to Tarantool:
-
-1. Open the Tarantool configuration file:
-
-    ```
-    sudo vim /etc/default/wallarm-tarantool
-    ```
-
-2. Set the amount of allocated RAM in the `SLAB_ALLOC_ARENA` in GB. The value can be an integer or a float (a dot `.` is a decimal separator).
-    
-    Learn more about amount of required resources [here](../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
-3. To apply changes, restart the Tarantool daemon:
-    
-    ```
-    sudo systemctl restart wallarm-tarantool
-    ```
-
-## 9. Configure logging
-
---8<-- "../include/installation-step-logging.md"
-
-## 10. Restart NGINX
-
-Restart NGINX by running the following command:
+To apply the settings, restart NGINX:
 
 ``` bash
 sudo systemctl restart nginx
 ```
 
-## The installation is complete
+Each configuration file change requires NGINX to be restarted to apply it.
 
-The installation is now complete.
+## 10. Test the Wallarm operation
 
---8<-- "../include/check-setup-installation-en.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
---8<-- "../include/filter-node-defaults.md"
+## Further fine-tuning
 
 --8<-- "../include/installation-extra-steps.md"

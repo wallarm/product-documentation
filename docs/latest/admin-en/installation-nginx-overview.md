@@ -13,6 +13,8 @@
 [link-ig-nginx-distr]:              ../installation/nginx/dynamic-module-from-distr.md
 [link-ig-nginxplus]:                ../installation/nginx-plus.md
 
+!!!!! TO MOVE
+
 The Wallarm filtering node that is used with NGINX or NGINX Plus consists of the following modules:
 *   The module that connects to NGINX (NGINX Plus)
 *   The postanalytics module

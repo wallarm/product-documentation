@@ -318,3 +318,6 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
 ## Tarantool troubleshooting
 
 [Tarantool troubleshooting](../faq/tarantool.md)
+
+
+!!! only for deb rpm
