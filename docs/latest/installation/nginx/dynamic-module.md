@@ -27,6 +27,7 @@
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
 # Installing dynamic Wallarm module for NGINX stable from NGINX repository
 

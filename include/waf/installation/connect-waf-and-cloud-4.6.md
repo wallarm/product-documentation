@@ -1,9 +1,23 @@
-The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node to the Cloud, you need to provide access of the node to the Wallarm Cloud API. This can be done using one of the tokens:
+The Wallarm filtering node interacts with the Wallarm Cloud. When connecting the filtering node to the Cloud, you can achieve the following:
 
-* [API token][api-token] with `Deploy` role  - use this token when:
-    * The Wallarm node will scale in your infrastructure, while the number of groups is not known in advance (groups will be constantly added/removed).
+* Provide filtering node with the access to the Wallarm Console's API.
+* See the node in the Wallarm Console UI.
+* Set the node name, under which it will be displayed in the Wallarm Console UI.
+* Put the node into the appropriate **node group** (used to logically organize nodes in UI).
+
+This can be done using one of the tokens:
+
+* [API token][api-token] with `Deploy` role - use this token when:
+
+    * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
     * You need to control the lifecycle of the token (you can specify the expiration date of API tokens).
-* [Node token][node-token] - use this token when you do not plan to automatically scale the node (for example, DEB/ RPM), or if you know in advance what groups of nodes will be and you can create them manually via **Nodes** → **Create node**.
+
+* [Node token][node-token] - use this token when:
+
+    * You do not plan to automatically scale the node (for example, DEB/ RPM).
+    * You know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
+
+    ![!API tokens vs node tokens][img-grouped-nodes]
 
 To connect the filtering node to the Cloud:
 
@@ -16,34 +30,49 @@ To connect the filtering node to the Cloud:
     You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
-1. Obtain token of the appropriate type:
+1. Register node using token of the appropriate type:
 
     === "API token"
+
         1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
         1. Find or create API token with the `Deploy` source role.
         1. Copy this token.
+        1. Run the `register-node` script in a system with the filtering node:
+
+            === "US Cloud"
+                ``` bash
+                    sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+                ```
+            === "EU Cloud"
+                ``` bash
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN>
+                ```
+            
+        * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
+        * You may add `--labels 'group=<GROUP>'` parameter to put your node to the node group, for example:
+
+            ```
+            sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> \ 
+            --labels 'group=<GROUP>'
+            ```
+            
+            ...will place node instance into the <GROUP> node group (existing, or, if does not exist, it will be created).
+
     === "Node token"
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-        ![!Wallarm node creation][img-create-wallarm-node]
+        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or  [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
         1. Copy the generated token.
+        1. Run the `register-node` script in a system with the filtering node:
 
-1. Run the `register-node` script in a system with the filtering node:
+            === "US Cloud"
+                ``` bash
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+                ```
+            === "EU Cloud"
+                ``` bash
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN>
+                ```
     
-    === "US Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
-        ```
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN>
-        ```
-    
-    * `<TOKEN>` is the copied value of the node token or API token with the `Deploy` role.
+        * `<TOKEN>` is the copied value of the node token.
+
     * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
-
-    <div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You have two options for using one token for several installations:</p> <ul><li>**For all node versions**, you can use one [**node token**][node-token] in several installations regardless of the selected [platform][platform]. It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</li><li><p>**Starting from node 4.6**, for nodes grouping, you can use one [**API token**][api-token] with the `Deploy` role together with the `--labels 'group=<GROUP>'` flag, for example:</p>
-    ```
-    sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> --labels 'group=<GROUP>'
-    ```
-    </p></li></div>
