@@ -69,6 +69,8 @@ To set up an Amazon S3 integration:
         1. Complete role creation and copy role's ARN.
         1. In the Wallarm Console UI, your integration creation dialog, at the **Role ARN** tab,  paste your role's ARN.
 
+            ![!Amazon S3 integration](../../../images/user-guides/settings/integrations/add-amazon-s3-integration.png)
+
     === "Secret access key"
 
         1. In AWS UI, navigate to S3 → your bucket → **Properties** tab and copy the code of your bucket's **AWS Region**, for example `us-west-1`.
