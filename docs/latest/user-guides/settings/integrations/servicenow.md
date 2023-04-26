@@ -1,6 +1,6 @@
 # ServiceNow
 
-You can set up Wallarm to create trouble tickets in ServiceNow when the following events are triggered:
+You can set up Wallarm to create trouble tickets in [ServiceNow](https://www.servicenow.com/) when the following events are triggered:
 
 * System related:
     * [User](../../../user-guides/settings/users.md) changes (newly created, deleted, role change)
@@ -16,8 +16,8 @@ You can set up Wallarm to create trouble tickets in ServiceNow when the followin
 
 In ServiceNow UI:
 
-1. Get name of your ServiceNow instance.
-1. Gen username and password to access the instance.
+1. Get name of your [ServiceNow instance](https://www.tutorialspoint.com/servicenow/servicenow_introduction.htm#:~:text=A%20ServiceNow%20instance%20is%20a,built%20on%20multi%2Dinstance%20architecture.).
+1. Get username and password to access the instance.
 1. Enable OAuth authentication and get client ID and secret as described [here](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html).
 
 In Wallarm UI:
@@ -31,15 +31,9 @@ In Wallarm UI:
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-    ![!ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration-TBD.png)
-
 ## Testing integration
 
 --8<-- "../include/integrations/test-integration-basic-data.md"
-
-Test ServiceNow trouble ticket creation:
-
-![!Test ServiceNow trouble ticket creation](../../../images/user-guides/settings/integrations/test-servicenow-trouble-ticket-creation-TBD.png)
 
 ## Updating integration
 
