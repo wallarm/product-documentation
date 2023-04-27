@@ -11,10 +11,7 @@ There are the following token types available:
     * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
     * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
 
-* [Node token][node-token] - use this token when:
-
-    * You do not plan to automatically scale the node (for example, DEB/ RPM).
-    * You know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
+* [Node token][node-token] - use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
 
 !!! info "Autoscaling support"
     Both token types support the node autoscaling feature available in some clouds/installation variants.
