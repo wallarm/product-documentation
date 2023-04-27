@@ -1,36 +1,36 @@
-The Wallarm filtering node interacts with the Wallarm Cloud. When connecting the filtering node to the Cloud, you can achieve the following:
+The Wallarm filtering node interacts with the Wallarm Cloud. You need to connect the node to the Cloud. When connecting, you can set the node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in UI).
 
-* Provide filtering node with the access to the Wallarm Console's API.
-* See the node in the Wallarm Console UI.
-* Set the node name, under which it will be displayed in the Wallarm Console UI.
-* Put the node into the appropriate **node group** (used to logically organize nodes in UI).
+![!API tokens vs node tokens][img-grouped-nodes]
 
-This can be done using one of the tokens:
+To provide the node with access, you need to generate a token on the Cloud side and specify it on the machine with the node packages.
+
+There are the following token types available:
 
 * [API token][api-token] with `Deploy` role - use this token when:
 
     * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-    * You need to control the lifecycle of the token (you can specify the expiration date of API tokens).
+    * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
 
 * [Node token][node-token] - use this token when:
 
     * You do not plan to automatically scale the node (for example, DEB/ RPM).
     * You know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
 
-    ![!API tokens vs node tokens][img-grouped-nodes]
+!!! info "Autoscaling support"
+    Both token types support the node autoscaling feature available in some clouds/installation variants.
 
-To connect the filtering node to the Cloud:
+To generate a token and connect the node to the Cloud:
 
 1. If the [postanalytics module installed separately][install-postanalytics-instr]:
 
     1. Copy the node token generated during the separate postanalytics module installation.
-    1. Proceed to the 5th step (node token variant) in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
+    1. Proceed to the 3rd step (node token variant) in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
 1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
      
     You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
     ![!User list in Wallarm console][img-wl-console-users]
-1. Register node using token of the appropriate type:
+1. Connect node using token of the appropriate type:
 
     === "API token"
 
