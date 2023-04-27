@@ -71,6 +71,18 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
 
     If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
 
+## Exception list
+
+If you want to mark some events or IPs as good ones to avoid blocking the similar requests in the future, you can add them to exception list.
+
+You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to deny- or graylist.
+
+By default, the IP is added to the exception list for 1 hour. You can modify this period or remove exception at any moment.
+
+![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
+
+[Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
+
 ## Exploring malicious bots and their attacks
 
 You can explore the bots' activity in the Wallarm Console UI as follows:

@@ -73,3 +73,21 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 | LANGUAGE | Language-related parts. | `en`, `fr` |
 | HEALTHCHECK | Content related to the health check endpoints. | - |
 | VARY | The segment is marked as VARY if it is impossible to attribute it to other categories. A variable part of the URL path. | - |
+
+## Working with exception list
+
+To mark some events or IPs as good ones to avoid blocking the similar requests in the future, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention. You can:
+
+* Add IP address or range to the exception list:
+
+    * From the **API Abuse Prevention** section → **Exception list** tab via **Add exception**.
+
+        ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+
+    * From the **Events** section: use `api_abuse` search key or select `API Abuse` from the **Type** filter, than expand the required event and click **Add to exception list**.
+
+        ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+
+* Change any item period of stay in the list (default is 1 hour).
+* Immediately remove any item from the list.
+* View historical data - items that were presented in the list within the selected period of time in past.
