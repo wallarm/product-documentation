@@ -1,44 +1,55 @@
-Depending on the deployment [approach] being used, configure Wallarm to either proxy traffic or process the traffic mirror:
+The following files contain NGINX and filtering node settings:
 
-=== "In-line deployment"
-    1. Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the AWS documentation on either [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-application-load-balancer.html) or [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html).
+* `/etc/nginx/nginx.conf` defines the configuration of NGINX
+* `/etc/nginx/conf.d/wallarm.conf` defines the global configuration of Wallarm filtering node
+* `/etc/nginx/conf.d/wallarm-status.conf` defines the filtering node monitoring service configuration
 
-        Depending on the scope you are going to protect, you can also place the Wallarm solution before, or on a level with your load balancer. To choose the correct option, learn your infrastructure and needs in details, AWS knowledge is a must here. For help, you can contact [sales@wallarm.com](,ailto:sales@wallarm.com).
-    1. Set an IP address for Wallarm to proxy legitimate traffic to. It can be an IP of an application instance, load balancer, DNS, etc., depending on your architectire.
+You can create your own configuration files to define the operation of NGINX and Wallarm. It is recommended to create a separate configuration file with the `server` block for each group of the domains that should be processed in the same way.
+
+To see detailed information about working with NGINX configuration files, proceed to the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+
+Wallarm directives define the operation logic of the Wallarm filtering node. To see the list of Wallarm directives available, proceed to the [Wallarm configuration options](configure-parameters-en.md) page.
+
+**Configuration file example**
+
+Let us suppose that you need to configure the server to work in the following conditions:
+* Only HTTP traffic is processed. There are no HTTPS requests processed.
+* The following domains receive the requests: `example.com` and `www.example.com`.
+* All requests must be passed to the server `10.80.0.5`.
+* All incoming requests are considered less than 1MB in size (default setting).
+* The processing of a request takes no more than 60 seconds (default setting).
+* Wallarm must operate in the monitor mode.
+* Clients access the filtering node directly, without an intermediate HTTP load balancer.
+
+!!! info "Creating a configuration file"
+    You can create a custom NGINX configuration file (e.g. `example.com.conf`) or modify the default NGINX configuration file (`default.conf`).
     
-        To do so, open the `/etc/nginx/sites-enabled/default` file on the Wallarm instance and edit the `proxy_pass` value, e.g. Wallarm should send legitimate requests to http://10.80.0.5:
+    When creating a custom configuration file, make sure that NGINX listens to the incoming connections on the free port.
 
-        ```
-        server {
-          listen 80;
-          listen [::]:80 ipv6only=on;
-          wallarm_mode monitoring;
 
-          ...
+To meet the listed conditions, the contents of the configuration file must be the following:
 
-          location / {
-            proxy_pass http://10.80.0.5; 
-            ...
-          }
-        }
-        ```
-=== "Out-of-Band deployment"
-    It is expected that you have already configured your web server to mirror traffic and send it to the Wallarm instance.
+```
 
-    For the Wallarm node to process mirrored traffic, set the following configuration in the `/etc/nginx/sites-enabled/default` file on the Wallarm instance:
+    server {
+      listen 80;
+      listen [::]:80 ipv6only=on;
 
-    ```
-    wallarm_force server_addr $http_x_server_addr;
-    wallarm_force server_port $http_x_server_port;
-    #Change 222.222.222.22 to the address of the mirroring server
-    set_real_ip_from  222.222.222.22;
-    real_ip_header    X-Forwarded-For;
-    #real_ip_recursive on;
-    wallarm_force response_status 0;
-    wallarm_force response_time 0;
-    wallarm_force response_size 0;
-    ```
+      # the domains for which traffic is processed
+      server_name example.com; 
+      server_name www.example.com;
 
-    * The [`real_ip_header`](../../using-proxy-or-balancer-en.md) directive is required to have Wallarm Console display the IP addresses of the attackers.
-    * The `wallarm_force_response_*` directives are required to disable analysis of all requests except for copies received from the mirrored traffic.
-    * Since malicious requests [cannot](overview.md#limitations-of-mirrored-traffic-filtration) be blocked, the Wallarm node always analyzes requests in the monitoring [mode](../../configure-wallarm-mode.md) even if the `wallarm_mode` directive or Wallarm Cloud sets the safe or regular blocking mode (aside from the mode set to off).
+      # turn on the monitoring mode of traffic processing
+      wallarm_mode monitoring; 
+      # wallarm_application 1;
+
+      location / {
+        # setting the address for request forwarding
+        proxy_pass http://10.80.0.5; 
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      }
+    }
+
+```

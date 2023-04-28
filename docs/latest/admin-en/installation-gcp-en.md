@@ -10,15 +10,6 @@
 
 # Deploying Wallarm from Google Cloud Platform Image
 
-## 1. Choose the approach for Wallarm deployment
-
-Before deploying Wallarm, choose how it should analyze the traffic:
-
-* As the [reverse proxy](../../load-balancing/overview.md) solution analyzing origin of your traffic
-* As the [Out-of-Band (OOB)](../../oob/overview.md) solution analyzing a mirror of your traffic
-
-If you choose to deploy Wallarm as the OOB solution, configure your web server to mirror incoming traffic to Wallarm nodes. Inside the [link](../../oob/mirroring-by-web-servers.md), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
-
 ## 1. Log in to your Google Cloud Platform account
 
 Log in to [console.cloud.google.com](https://console.cloud.google.com/).
