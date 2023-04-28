@@ -40,9 +40,11 @@ This guide explains how to configure auto scaling of the filtering nodes using E
     Make sure you have access to the private SSH key (stored in PEM format) that you created earlier to connect to the filtering node.
 
 To enable filtering node auto scaling in the Amazon cloud, do the following steps:
+
+1.  [Create an Amazon Machine Image](create-image.md)
 1.  [Set up filtering node auto scaling][link-doc-asg-guide]
     1.  [Create a Launch Template][link-doc-create-template]
     2.  [Create an Auto Scaling Group][link-doc-create-asg]
-2.  [Set up incoming requests balancing][link-doc-lb-guide]
+1.  [Set up incoming requests balancing][link-doc-lb-guide]
     1.  [Create a load balancer][link-doc-create-lb]
     2.  [Set up an Auto Scaling Group for using the created balancer][link-doc-set-up-asg]

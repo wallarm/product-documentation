@@ -2,32 +2,32 @@
 
 This article explains how to deploy Wallarm as the [OOB](../overview.md) solution if you choose to produce a traffic mirror by your web server means.
 
-Traffic mirroring can be implemented by configuring a web server to copy incoming traffic to the Wallarm services for analysis. With this approach, traffic flow looks as follows:
+<!-- Traffic mirroring can be implemented by configuring a web server to copy incoming traffic to the Wallarm services for analysis. With this approach, traffic flow looks as follows: -->
 
-![!OOB scheme](../../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png)
+<!-- ![!OOB scheme](../../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png) -->
 
 ## Deployment procedure
 
 To deploy and configure Wallarm to analyze a traffic mirror, you need to:
 
-1. Configure web servers being used in your infrastructure to produce a copy of your incoming traffic and send the copy to a Wallarm node as to an additional backend.
-
-    For configuration details, we recommend to refer to the documentation of your web server. [Below](#examples-of-web-server-configuration-for-traffic-mirroring) we give configuration examples for some popular web servers but the real configuration depends on the pecularities of your instrastructure.
 1. Deploy the Wallarm node to your infrastructure by one of the following methods:
 
-    * To AWS using the Terraform module
-    * From AWS AMI
-    * From GCP Machine Image
-    * From NGINX-based Docker image
-    * From DEB/RPM packages
+    * [To AWS using the Terraform module](../terraform-module/mirroring-by-web-server.md)
+    * [To AWS using the Machine Image](aws-ami.md)
+    * [To GCP using the Machine Image](gcp-machine-image.md)
+    * [To a container-based environment using the NGINX-based Docker image](docker-image.md)
+    * [On a machine with a Debian or Ubuntu OS from DEB/RPM packages](packages.md)
 
     !!! info "Support of mirrored traffic analysis"
         Only NGINX-based Wallarm nodes support mirrored traffic filtration.
 1. Configure Wallarm to analyze the traffic copy - the instructions above are equiped with the required steps.
+1. Configure a web server being used in your infrastructure to produce a copy of your incoming traffic and send the copy to a Wallarm node as to an additional backend.
+
+    For configuration details, we recommend to refer to the documentation of your web server. [Below](#examples-of-web-server-configuration-for-traffic-mirroring) we give configuration examples for some popular web servers but the real configuration depends on the pecularities of your instrastructure.
 
 ## Examples of web server configuration for traffic mirroring
 
-This article demonstrates examples on how to configure your web server to mirror incoming traffic to Wallarm nodes as to an additional backend.
+Belowe are the examples on how to configure your web server to mirror incoming traffic to Wallarm nodes as to an additional backend.
 
 ### NGINX
 
@@ -60,6 +60,8 @@ location /mirror-test {
         proxy_set_header X-Request-ID $request_id;
     }
 ```
+
+[Review the NGINX documentation](http://nginx.org/en/docs/http/ngx_http_mirror_module.html)
 
 ### Envoy
 
@@ -133,7 +135,8 @@ static_resources:
               ### Address of the original endpoint. Address is DNS name
               ### or IP address, port_value is TCP port number. Wallarm
               ### mirror schema can be deployed with any port but the
-              ### default value is TCP/8445.
+              ### default value is TCP/8445 for Terraform module, and
+              ### the default value for other deployment options should be 80.
               ###
               socket_address:
                 address: wallarm

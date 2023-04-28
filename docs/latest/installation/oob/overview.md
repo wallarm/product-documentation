@@ -8,7 +8,7 @@ The OOB approach involves placing the Wallarm solution on a separate network seg
 
 Traffic mirroring is a key component of the OOB approach. A mirror (copy) of the incoming traffic is sent to the Wallarm OOB solution, which operates on the copy, rather than the actual traffic.
 
-![!OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+<!-- ![!OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png) -->
 
 As the OOB solution only records malicious activity but does not block it, it is an effective way to implement web application and API security for organizations with less stringent real-time protection requirements. The OOB solution is suitable for the following use cases:
 
@@ -37,22 +37,7 @@ Despite the OOB deployment approach safety, it has some limitations:
 
 ## Supported deployment options
 
-Wallarm offers the Out-of-Band (OOB) deployment options for traffic mirorred by various means, including cloud platforms and web servers:
+Wallarm offers the Out-of-Band (OOB) deployment options for traffic mirorred by various means, including web servers and cloud platforms:
 
-**Traffic mirroring by a cloud platform service**
-
-Cloud platforms typically offer native traffic mirroring capabilities, with [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) being a prime example.
-
-For those who deploy their services on AWS from the Terraform-compatible environment, Wallarm offers the [Terraform module](terraform-module/aws-vpc-mirroring.md). It enables agentless Wallarm deployment with the required VPC mirroring configuration.
-
-**Traffic mirroring by a web server**
-
-Traffic mirroring can be implemented by configuring a web server to [copy incoming traffic to the Wallarm services](web-server-mirroring/overview.md) for analysis.
-
-For those who prefer a web server to mirror traffic, Wallarm offers the following artifacts:
-
-* [Terraform module for deployment on AWS](terraform-module/mirroring-by-web-server.md) which works with traffic mirrored by any web server (NGINX, Envoy, Traefik, Istio, etc.)
-* [AWS AMI](web-server-mirroring/aws-ami.md) for deploying Wallarm nodes from pre-configured AWS Machine Image
-* [GCP Machine image](web-server-mirroring/gcp-machine-image.md) for deploying Wallarm nodes from pre-configured Google Cloud Machine Image
-* [NGINX-based Docker image](web-server-mirroring/docker-image.md) for deploying Wallarm nodes from the official Docker image in a container-based environment
-* [DEB/RPM packages](web-server-mirroring/packages.md) for deploying Wallarm nodes from DEB/RPM packages on a machine with a Debian or Ubuntu operating system
+* Most web servers such as NGINX, Envoy, Istio, etc. offer built-in modules or features for traffic mirroring. If you prefer the Wallarm OOB security solution to analyze traffic mirrored by a web server, refer to the [appropriate deployment option overview](web-server-mirroring/overview.md).
+* Cloud platforms typically offer native traffic mirroring capabilities, with [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) being a prime example. For those who deploy their services on AWS from the Terraform-compatible environment, Wallarm offers the [Terraform module](terraform-module/aws-vpc-mirroring.md) which enables agentless Wallarm deployment with the required VPC mirroring configuration.

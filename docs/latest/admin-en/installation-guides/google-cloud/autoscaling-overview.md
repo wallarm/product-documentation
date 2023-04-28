@@ -15,10 +15,12 @@ You can set up Wallarm filtering node auto scaling on the Google Cloud Platform 
 --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
 To auto scale filtering nodes on the Google Cloud Platform, perform the following steps:
+
+1.  [Create a Machine Image](create-image.md)
 1.  Set up filtering node auto scaling:
     1.  [Create a filtering node instance template][link-doc-template-creation];
     2.  [Create a managed instance group with auto scaling enabled][link-doc-managed-autoscaling-group];
-2.  [Set up incoming requests balancing][link-doc-lb-guide].
+1.  [Set up incoming requests balancing][link-doc-lb-guide].
 
 !!! info "Required rights"
     Before setting up auto scaling, make sure that your GCP account has the `Compute Admin` role.

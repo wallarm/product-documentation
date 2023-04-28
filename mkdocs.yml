@@ -118,6 +118,8 @@ nav:
           # - Docker image
           # - DEB/RPM packages
           - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
+          - GCP Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
+          # - GCP Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
           # - AWS ECS
           # - GCP , Azure, Alibaba - all deployment methods
         - Mirroring by Cloud Platforms:

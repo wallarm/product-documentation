@@ -1,4 +1,4 @@
-[link-docs-aws-autoscaling]:        autoscaling-overview.md
+[link-docs-aws-autoscaling]:        autoscaling-group-guide.md
 [link-docs-aws-node-setup]:         ../../installation-ami-en.md
 [link-ssh-keys-guide]:              ../../installation-ami-en.md#2-create-a-pair-of-ssh-keys
 [link-security-group-guide]:        ../../installation-ami-en.md#3-create-a-security-group

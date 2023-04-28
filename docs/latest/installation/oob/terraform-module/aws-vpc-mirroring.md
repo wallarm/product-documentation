@@ -1,6 +1,6 @@
 # Deploying Wallarm OOB for AWS VPC Mirroring using Terraform module
 
-This example demonstrates how to deploy the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) as an Out-of-Band solution analyzing [traffic mirrored by Amazon VPC](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html).
+This example demonstrates how to deploy Wallarm as an Out-of-Band solution using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) for analyzing [traffic mirrored by Amazon VPC](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html).
 
 ## Key characteristics
 
@@ -9,7 +9,7 @@ This example demonstrates how to deploy the [Wallarm Terraform module](https://r
 
 ## Solution architecture
 
-![!OOB scheme for VPC mirroring](../../../images/waf-installation/oob/terraform-module-for-aws-vpc-mirroring.png)
+![!OOB scheme for VPC mirroring](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-for-traffic-mirrored-by-vpc.png?raw=true)
 
 This example Wallarm solution has the following components:
 
@@ -19,9 +19,9 @@ This example Wallarm solution has the following components:
 * NLB for mirrored packets that receives the mirrored traffic via UDP/4789 as Ethernet frames encapsulated into VXLAN.
 * Traffic rebuilder distributing traffic across Auto Scaling Group instances that detect HTTP requests among VXLAN encapsulated packets. The provided example deploys this layer on the cloud-init script execution stage and uses [goreplay](https://github.com/buger/goreplay) to retreive HTTP requests from the traffic.
 * ALB forwarding retrieved HTTP requests to Wallarm instances.
-* Wallarm node instances analyzing requests from an internal ALB and proxying any requests further.
+* Wallarm node instances analyzing requests from an internal ALB and sending malicious traffic data to the Wallarm Cloud.
 
-    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. Wallarm nodes can also operate in other modes including those aimed at blocking malicious requests and forwarding only legitimate ones further. To learn more about Wallarm node modes, use [our documentation](https://docs.wallarm.com/admin-en/configure-wallarm-mode/).
+    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](../overview.md#advantages-and-limitations) approach does not allow attack blocking.
 
 ## Code Components
 
@@ -74,4 +74,3 @@ terraform destroy
 * [Amazon VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)
 * [AWS VPC with public and private subnets (NAT)](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
 * [Elastic network interfaces](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html)
-* [Wallarm documentation](https://docs.wallarm.com)
