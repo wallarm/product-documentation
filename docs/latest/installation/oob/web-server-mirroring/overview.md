@@ -15,8 +15,8 @@ To deploy and configure Wallarm to analyze a traffic mirror, you need to:
     * [To AWS using the Terraform module](../terraform-module/mirroring-by-web-server.md)
     * [To AWS using the Machine Image](aws-ami.md)
     * [To GCP using the Machine Image](gcp-machine-image.md)
-    * [To a container-based environment using the NGINX-based Docker image](docker-image.md)
-    * [On a machine with a Debian or Ubuntu OS from DEB/RPM packages](packages.md)
+    <!-- * [To a container-based environment using the NGINX-based Docker image](docker-image.md)
+    * [On a machine with a Debian or Ubuntu OS from DEB/RPM packages](packages.md) -->
 
     !!! info "Support of mirrored traffic analysis"
         Only NGINX-based Wallarm nodes support mirrored traffic filtration.

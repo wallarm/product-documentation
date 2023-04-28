@@ -1,16 +1,16 @@
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
-[img-ssh-key-generation]:       ../../../../images/installation-gcp/common/ssh-key-generation.png
+[img-ssh-key-generation]:       ../../../images/installation-gcp/common/ssh-key-generation.png
 [versioning-policy]:            ../../../updating-migrating/versioning-policy.md#version-list
-[img-wl-console-users]:         ../../../../images/check-user-no-2fa.png
-[img-create-wallarm-node]:      ../../../../images/user-guides/nodes/create-cloud-node.png
+[img-wl-console-users]:         ../../../images/check-user-no-2fa.png
+[img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
 
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
+[attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-nginx-directives]:         ../../../admin-en/configure-parameters-en.md
 [autoscaling-docs]:                 ../../../admin-en/installation-guides/google-cloud/autoscaling-overview.md
 [real-ip-docs]:                     ../../../admin-en/using-proxy-or-balancer-en.md
