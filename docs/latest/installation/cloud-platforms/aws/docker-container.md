@@ -30,10 +30,30 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, the AWS Management Console and AWS CLI are used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Get API or node token:
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
+    === "API token"
+
+        !!! info "When to use"
+            Use this token when:
+
+            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
+            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
+
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Find or create API token with the `Deploy` source role.
+        1. Copy this token.
+
+    === "Node token"
+
+        !!! info "When to use"
+            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
+
+        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or  [EU Cloud](https://my.wallarm.com/nodes).
+        1. Do one of the following: 
+            1. Create the node of the **Wallarm node** type and copy the generated token.
+            1. Use existing node group - copy token using node's menu → **Copy token**.
+
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
       1. Select the template **EC2 Linux + Networking**.
@@ -160,10 +180,30 @@ In these instructions, the configuration file is mounted from the [AWS EFS](http
 
 To deploy the container with environment variables and configuration file mounted from AWS EFS:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+1. Get API or node token:
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
+    === "API token"
+
+        !!! info "When to use"
+            Use this token when:
+
+            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
+            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
+
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Find or create API token with the `Deploy` source role.
+        1. Copy this token.
+
+    === "Node token"
+
+        !!! info "When to use"
+            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
+
+        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or  [EU Cloud](https://my.wallarm.com/nodes).
+        1. Do one of the following: 
+            1. Create the node of the **Wallarm node** type and copy the generated token.
+            1. Use existing node group - copy token using node's menu → **Copy token**.
+
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
 
