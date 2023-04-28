@@ -8,7 +8,7 @@
 [deployment-platform-docs]:     supported-platforms.md
 [platform]:                         ../admin-en/supported-platforms.md
 
-# Deploying Wallarm from Google Cloud Platform Image <a href="../installation/load-balancing/overview/"><img src="../../images/in-line-tag.svg" style="border: none;"></a> <a href="../installation/oob/overview/"><img src="../../images/oob-tag.svg" style="border: none;"></a>
+# Deploying Wallarm from Google Cloud Platform Image
 
 ## 1. Choose the approach for Wallarm deployment
 

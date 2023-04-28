@@ -112,9 +112,16 @@ nav:
       - Deployment options: admin-en/supported-platforms.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
-        - Mirroring by Web Servers: installation/oob/mirroring-by-web-servers.md
+        - Mirroring by Web Servers:
+          - Overview: installation/oob/web-server-mirroring/overview.md
+          - AWS Terraform module: installation/oob/terraform-module/mirroring-by-web-server.md
+          # - Docker image
+          # - DEB/RPM packages
+          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
+          # - AWS ECS
+          # - GCP , Azure, Alibaba - all deployment methods
         - Mirroring by Cloud Platforms:
-          - AWS Terraform Module for VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
+          - AWS VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
         # - DEB/RPM Packages:
         #   - NGINX stable: installation/oob/packages/nginx-stable.md - need review
         #   - NGINX Plus: - need help with mirroring config

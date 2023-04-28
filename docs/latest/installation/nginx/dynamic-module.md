@@ -25,7 +25,7 @@
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [platform]:                         ../../admin-en/supported-platforms.md
 
-# Deploying Wallarm from DEB/RPM packages <a href="../../../load-balancing/overview/"><img src="../../../../images/in-line-tag.svg" style="border: none;"></a> <a href="../../../oob/overview/"><img src="../../../../images/oob-tag.svg" style="border: none;"></a>
+# Deploying Wallarm from DEB/RPM packages
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 

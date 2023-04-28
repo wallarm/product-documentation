@@ -2,7 +2,7 @@
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 
-# Running Docker Envoy‑based image <a href="../../../load-balancing/overview/"><img src="../../../../images/in-line-tag.svg" style="border: none;"></a>
+# Running Docker Envoy‑based image
 
 These instructions describe the steps to run the Wallarm Docker image based on [Envoy 1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4). The image contains all systems required for correct Wallarm node operation:
 

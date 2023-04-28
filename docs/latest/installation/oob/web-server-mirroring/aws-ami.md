@@ -17,9 +17,9 @@
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../../images/admin-guides/test-attacks-quickstart.png
 
-# Deploying Wallarm Amazon Machine Image
+# Deploying Wallarm OOB from Amazon Machine Image
 
-This article instructs you on deploying Wallarm on AWS from the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The deployed solution only analyzes traffic mirrored by NGINX stable.
+This article instructs you on deploying Wallarm [OOB](overview.md) on AWS from the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The described solution is intended to analyze a traffic mirror produced by a web server.
 
 <!-- ???
 say that all regions are supported -->
@@ -32,14 +32,11 @@ say that all regions are supported -->
 * Access to `https://us1.api.wallarm.com:444` for working with US Wallarm Cloud or to `https://api.wallarm.com:444` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions](../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md)
 * Executing all commands on the Wallarm instance as a superuser (e.g. `root`)
 
-## 1. Choose the approach for Wallarm deployment
+## 1. Configure your web server to produce a traffic mirror
 
-Before deploying Wallarm, choose how it should analyze the traffic:
+To deploy Wallarm as the OOB solution, configure your web server to mirror incoming traffic to a Wallarm node. For configuration details, we recommend to refer to your web server configuration.
 
-* As the [reverse proxy](../../load-balancing/overview.md) solution analyzing origin of your traffic
-* As the [Out-of-Band (OOB)](../../oob/overview.md) solution analyzing a mirror of your traffic
-
-If you choose to deploy Wallarm as the OOB solution, configure your web server to mirror incoming traffic to Wallarm nodes. Inside the [link](../../oob/mirroring-by-web-servers.md), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
 
 ## 2. Create a pair of SSH keys in AWS
 
@@ -129,13 +126,26 @@ server {
 }
 ```
 
-The monitoring mode is the recommended one for the first deployment and solution testing. Wallarm provides safe blocking and blocking modes as well, [read more](../../../admin-en/configure-wallarm-mode.md).
+Since malicious requests [cannot] be blocked, the only [mode] Wallarm analyzes traffic is monitoring. For in-line deployment, there also safe blocking and blocking modes but even if you set the `wallarm_mode` directive to a value different from monitoring, the node continues to monitor traffic and only record malicious traffic (aside from the mode set to off).
 
-If you deploy Wallarm as the OOB solution, the monitoring mode is the only supported mode.
+## 8. Enable Wallarm to analyze the traffic mirror
 
-## 8. Enable Wallarm to either proxy traffic or analyze its mirror
+For the Wallarm node to process mirrored traffic, set the following configuration in the `/etc/nginx/sites-enabled/default` file on the Wallarm instance:
 
---8<-- "../include/setup-filter-nginx-en-latest.md"
+```
+wallarm_force server_addr $http_x_server_addr;
+wallarm_force server_port $http_x_server_port;
+#Change 222.222.222.22 to the address of the mirroring server
+set_real_ip_from  222.222.222.22;
+real_ip_header    X-Forwarded-For;
+#real_ip_recursive on;
+wallarm_force response_status 0;
+wallarm_force response_time 0;
+wallarm_force response_size 0;
+```
+
+* The [`real_ip_header`](../../../admin-en/using-proxy-or-balancer-en.md) directive is required to have Wallarm Console display the IP addresses of the attackers.
+* The `wallarm_force_response_*` directives are required to disable analysis of all requests except for copies received from the mirrored traffic.
 
 ## 9. Restart NGINX
 
