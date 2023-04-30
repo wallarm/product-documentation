@@ -32,7 +32,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) on G
 
 ## 6. Restart NGINX
 
-To apply the settings, restart NGINX:
+To apply the settings, restart NGINX on the Wallarm instance:
 
 ``` bash
 sudo systemctl restart nginx
@@ -40,15 +40,15 @@ sudo systemctl restart nginx
 
 Each configuration file change requires NGINX to be restarted to apply it.
 
-## 7. Test the Wallarm operation
-
---8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
-
-## 8. Configure your web server to mirror traffic to the Wallarm node
+## 7. Configure your web server to mirror traffic to the Wallarm node
 
 Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
 
 Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+
+## 8. Test the Wallarm operation
+
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 9. Fine-tune the deployment architecture
 

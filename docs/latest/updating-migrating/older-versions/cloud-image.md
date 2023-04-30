@@ -41,10 +41,10 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
 2. At the launch step, set the following settings:
 
       * Select the image version `4.6.x`
-      * For AWS, select the [created security group](../../admin-en/installation-ami-en.md#3-create-a-security-group) in the field **Security Group Settings**
-      * For AWS, select the name of the [created key pair](../../admin-en/installation-ami-en.md#2-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
+      * For AWS, select the [created security group](../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group) in the field **Security Group Settings**
+      * For AWS, select the name of the [created key pair](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys) in the field **Key Pair Settings**
 3. Confirm the instance launch.
-4. For GCP, configure the instance following these [instructions](../../admin-en/installation-gcp-en.md#3-configure-the-filtering-node-instance).
+4. For GCP, configure the instance following these [instructions](../../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance).
 
 ## Step 5: Adjust Wallarm node filtration mode settings to changes released in the latest versions (only if upgrading node 2.18 or lower)
 
@@ -60,8 +60,8 @@ The module operation can cause [false positives](../../about-wallarm/protecting-
       * [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCP documentation](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. Create a new Wallarm node and connect it to the Wallarm Cloud using the generated token as described in the instructions for the cloud platform:
-      * [AWS](../../admin-en/installation-ami-en.md#6-connect-the-filtering-node-to-the-wallarm-cloud)
-      * [GCP](../../admin-en/installation-gcp-en.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [AWS](../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
 
 ## Step 7: Copy the filtering node settings from the previous version to the new version
 

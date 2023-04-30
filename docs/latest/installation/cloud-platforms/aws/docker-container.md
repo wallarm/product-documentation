@@ -9,7 +9,7 @@
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 
-# Deployment of the Wallarm node Docker image to AWS
+# Deployment of the Wallarm Docker image to AWS
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Amazon cloud platform using the [Amazon Elastic Container Service (Amazon ECS)](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/).
 

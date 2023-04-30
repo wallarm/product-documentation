@@ -9,7 +9,7 @@
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 
-# Deployment of the Wallarm node Docker image to GCP
+# Deployment of the Wallarm Docker image to GCP
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Google Cloud Platform using the [component Google Compute Engine (GCE)](https://cloud.google.com/compute).
 
