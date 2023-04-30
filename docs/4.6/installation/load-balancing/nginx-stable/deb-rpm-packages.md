@@ -1,0 +1,1 @@
+--8<-- "latest/installation/load-balancing/nginx-stable/deb-rpm-packages.md"

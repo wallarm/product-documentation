@@ -26,7 +26,7 @@ What continues to work:
 
 What stops working:
 
-* The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-nginx-overview.md#modules-overview) has an in-memory storage (Tarantool) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
+* The node collects but cannot send data on detected attacks and vulnerabilities to the Cloud. Note that your node [postanalytics module](../admin-en/installation-postanalytics-en.md) has an in-memory storage (Tarantool) where the collected data is temporarily stored before sending to the Cloud. As soon as Cloud is restored, buffered data will be sent to it.
 
     !!! warning "Node in-memory storage limitation"
         The size of the buffer is [limited](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) and when exceeded, the older data is deleted. So the amount of time the Cloud was down and the amount of information collected during this time may lead to the situation when you get in Wallarm Console only some data after the Cloud restoration.

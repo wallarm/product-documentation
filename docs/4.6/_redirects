@@ -514,3 +514,5 @@
 /admin-en/configuration-guides/traffic-mirroring/nginx-example/ /installation/oob/web-server-mirroring/overview/#nginx
 /admin-en/configuration-guides/traffic-mirroring/traefik-example/ /installation/oob/web-server-mirroring/overview/#traefik
 /admin-en/configuration-guides/traffic-mirroring/overview/ /installation/oob/web-server-mirroring/overview/
+
+/admin-en/installation-nginx-overview/ /admin-en/installation-postanalytics-en/
