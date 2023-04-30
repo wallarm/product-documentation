@@ -147,6 +147,8 @@ nav:
         - Alibaba Cloud:
           - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
           # - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
+      - Serverless:
+        - CDN node: installation/cdn-node.md
       - Additional:
         - Auto Scaling:
           - Amazon Web Services:
