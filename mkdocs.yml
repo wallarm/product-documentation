@@ -149,7 +149,18 @@ nav:
           # - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
       - Serverless:
         - CDN node: installation/cdn-node.md
+      - Kubernetes:
+        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+        - Sidecar Proxy:
+          - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
+          - Customization: installation/kubernetes/sidecar-proxy/customization.md
+          - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+          - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+        - Kong Ingress Controller:
+          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
+          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
       - Additional:
+        - Chaining of the Wallarm and additional Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
         - Auto Scaling:
           - Amazon Web Services:
             - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
@@ -172,17 +183,6 @@ nav:
           - Installing as a dynamic module for NGINX from Debian/CentOS repositories: installation/nginx/dynamic-module-from-distr.md
           - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
           - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
-        - Kubernetes:
-          - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
-          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
-          - Deploying Wallarm as Kubernetes Sidecar proxy:
-            - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
-            - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
-            - Wallarm-specific Helm chart values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-            - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
-          - Deploying Wallarm for Kong:
-            - Deploying Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/deployment.md
-            - Customizing Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/customization.md
         - Deploying Wallarm on AWS using Terraform:
           # - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
           - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
