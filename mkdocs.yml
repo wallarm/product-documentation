@@ -159,6 +159,15 @@ nav:
         - Kong Ingress Controller:
           - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
           - Customization: installation/kubernetes/kong-ingress-controller/customization.md
+      - Packages:
+        - Docker image (NGINX): admin-en/installation-docker-en.md
+        - Docker image (Envoy): admin-en/installation-guides/envoy/envoy-docker.md
+        - DEB/RPM packages for NGINX: installation/nginx/dynamic-module.md
+        - DEB/RPM packages for NGINX Plus: installation/nginx-plus.md
+        - DEB/RPM packages for NGINX Distro: installation/nginx/dynamic-module-from-distr.md
+        - AWS AMI: installation/packages/aws-ami.md
+        - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Terraform module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
       - Additional:
         - Chaining of the Wallarm and additional Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
         - Auto Scaling:
@@ -175,19 +184,14 @@ nav:
             - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
         - Specification of the Wallarm cloud-init script: installation/cloud-platforms/cloud-init.md
         - Deployment of the filtering node to the private clouds: installation/cloud-platforms/private-cloud.md
+        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
     - Administrator Guide:
       - Installation:
         - NGINX:
           - NGINX installation options overview: admin-en/installation-nginx-overview.md
-          - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
-          - Installing as a dynamic module for NGINX from Debian/CentOS repositories: installation/nginx/dynamic-module-from-distr.md
-          - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
-          - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
         - Deploying Wallarm on AWS using Terraform:
           # - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
           - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
-        - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
-        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
         - Deploying the multi‑tenant node:
           - Multitenancy overview: installation/multi-tenant/overview.md

@@ -1,0 +1,1 @@
+--8<-- "latest/installation/packages/gcp-machine-image.md"

@@ -24,6 +24,7 @@
 [logs-docs]:                        ../../../admin-en/configure-logging.md
 [oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
+[wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 
 # Deploying Wallarm OOB from Amazon Machine Image
 
@@ -40,13 +41,7 @@ say that all regions are supported -->
 
 ## 7. Restart NGINX
 
-To apply the settings, restart NGINX on the Wallarm instance:
-
-``` bash
-sudo systemctl restart nginx
-```
-
-Each configuration file change requires NGINX to be restarted to apply it.
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 8. Configure your web server to mirror traffic to the Wallarm node
 
@@ -58,6 +53,6 @@ Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-m
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
 
-## 10. Fine-tune the deployment architecture
+## 10. Fine-tune the deployed solution
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"

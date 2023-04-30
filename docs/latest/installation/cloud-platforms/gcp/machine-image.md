@@ -20,45 +20,7 @@
 [oob-advantages-limitations]:       ../../oob/overview.md#advantages-and-limitations
 [wallarm-mode]:                     ../../../admin-en/configure-wallarm-mode.md
 [oob-docs]:                         ../../oob/overview.md
+[wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[web-server-mirroring-examples]:    ../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 
-# Deploying Wallarm OOB from GCP Machine Image
-
-This article provides instructions for deploying Wallarm OOB on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution can be deployed either in-line or Out-of-Band.
-
-<!-- ???
-say that all regions are supported -->
-
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
-
-## 5. Enable Wallarm to analyze the traffic
-
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
-
-## 6. Restart NGINX
-
-To apply the settings, restart NGINX on the Wallarm instance:
-
-``` bash
-sudo systemctl restart nginx
-```
-
-Each configuration file change requires NGINX to be restarted to apply it.
-
-## 7. Configure sending traffic to the Wallarm instance
-
-Depending on the deployment approach being used, perform the following settings:
-
-=== "In-line"
-    Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
-=== "Out-of-Band"
-    Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
-
-    Inside the [link](../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
-
-## 8. Test the Wallarm operation
-
---8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
-
-## 9. Fine-tune the deployment architecture
-
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-gcp-image.md"
