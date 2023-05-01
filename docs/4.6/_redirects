@@ -518,3 +518,6 @@
 /admin-en/installation-nginx-overview/ /admin-en/installation-postanalytics-en/
 
 /installation/cloud-platforms/aws/terraform-module/examples/ /installation/cloud-platforms/aws/terraform-module/overview/#trying-wallarm-terraform-module-with-examples
+
+/admin-en/installation-ami-en/ /installation/cloud-platforms/aws/ami/
+/admin-en/installation-gcp-en/ /installation/cloud-platforms/gcp/machine-image/
