@@ -151,8 +151,7 @@ nav:
         - Alibaba Cloud:
           - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
           # - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
-      - Serverless:
-        - CDN node: installation/cdn-node.md
+      - CDN node: installation/cdn-node.md
       - Kubernetes:
         - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
         - Sidecar Proxy:
@@ -163,11 +162,11 @@ nav:
         - Kong Ingress Controller:
           - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
           - Customization: installation/kubernetes/kong-ingress-controller/customization.md
-      - Load Balancers:  
-        - NGINX Stable:
-          - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
-          - Docker image: installation/load-balancing/nginx-stable/docker-image.md
-          - Ingress Controller: installation/load-balancing/nginx-stable/ingress-controller.md
+      # - Load Balancers:  
+      #   - NGINX Stable:
+      #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
+      #     - Docker image: installation/load-balancing/nginx-stable/docker-image.md
+      #     - Ingress Controller: installation/load-balancing/nginx-stable/ingress-controller.md
         #   - Sidecar proxy:
         #     - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
         #     - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
@@ -177,10 +176,10 @@ nav:
           # - Proxy for AWS API Gateway: installation/load-balancing/terraform-module/proxy-for-aws-api-gateway.md
           # - AWS AMI: installation/load-balancing/nginx-stable/aws-ami.md
           # - GCP Marketplace image: installation/load-balancing/nginx-stable/gcp-machine-image.md
-        - NGINX Plus: 
-          - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
-        - Envoy:
-          - Docker image: installation/load-balancing/envoy/docker-image.md
+        # - NGINX Plus: 
+        #   - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
+        # - Envoy:
+        #   - Docker image: installation/load-balancing/envoy/docker-image.md
       - Packages:
         - Docker image (NGINX): admin-en/installation-docker-en.md
         - Docker image (Envoy): admin-en/installation-guides/envoy/envoy-docker.md
