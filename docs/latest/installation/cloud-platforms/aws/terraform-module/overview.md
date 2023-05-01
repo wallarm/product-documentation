@@ -2,16 +2,7 @@
 
 Wallarm provides the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to [AWS](https://aws.amazon.com/) from the Terraform-compatible environment. Use these instructions to explore the module and try the provided deployment examples.
 
-By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **proxy** and **mirror** security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable. You can try both options by either configuring the module itself or deploying the [provided examples](examples.md).
-
-=== "Example architecture of the proxy solution"
-
-    ![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
-=== "Example architecture of the mirror solution"
-    
-    ![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
-    
-[How to deploy the provided example architecture?](examples.md)
+By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **proxy** and **mirror** security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable.
 
 ## Prerequisites
 
@@ -96,9 +87,12 @@ To deploy Wallarm for production using the AWS Terraform module:
 
 ## Trying Wallarm Terraform Module with examples
 
-We have prepared examples of different ways to use the Wallarm module, so you could try it before deploying it to production.
+We have prepared examples of different ways to use the Wallarm module, so you could try it before deploying it to production:
 
-[See examples of the Wallarm AWS Terraform Module deployment](examples.md)
+* [Proxy in AWS VPC](proxy-in-aws-vpc.md)
+* [Proxy for Amazon API Gateway](proxy-for-aws-api-gateway.md)
+* [OOB for Web Server Mirroring](oob-for-web-server-mirroring.md)
+* [OOB for AWS VPC Mirroring](oob-for-aws-vpc-mirroring.md)
 
 ## Further information about Wallarm and Terraform
 

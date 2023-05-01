@@ -18,7 +18,7 @@ This example Wallarm solution has the following components:
 * An internal ALB accepting mirrored HTTPS requests from a web server and forwarding them to the Wallarm node instances.
 * Wallarm node analyzing requests from an internal ALB and sending malicious traffic data to the Wallarm Cloud.
 
-    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](../overview.md#advantages-and-limitations) approach does not allow attack blocking.
+    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](https://docs.wallarm.com/installation/oob/overview/#advantages-and-limitations) approach does not allow attack blocking.
 
 The last two components will be deployed by the provided `wallarm` example module.
 
@@ -30,7 +30,7 @@ This example has the following code components:
 
 ## Configuring HTTP request mirroring
 
-Traffic mirroring is a feature provided by many web servers. The [link](../web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring) provides the documentation on how to configure traffic mirroring with some of them.
+Traffic mirroring is a feature provided by many web servers. The [link](https://docs.wallarm.com/installation/oob/web-server-mirroring/overview/#examples-of-web-server-configuration-for-traffic-mirroring) provides the documentation on how to configure traffic mirroring with some of them.
 
 ## Limitations
 

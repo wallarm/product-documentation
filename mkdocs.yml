@@ -133,9 +133,13 @@ nav:
         # - Docker Image: installation/oob/docker-image.md - need review
       - Public Clouds:
         - Amazon Web Services:
-          - AWS AMI: installation/cloud-platforms/aws/ami.md
-          - AWS ECS: installation/cloud-platforms/aws/docker-container.md
-          - Terraform module: installation/cloud-platforms/aws/terraform-module/overview.md
+          - AMI: installation/cloud-platforms/aws/ami.md
+          - ECS: installation/cloud-platforms/aws/docker-container.md
+          - Terraform module:
+            - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+            - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+            - OOB for Web Server Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
+            - OOB for AWS VPC Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
         # - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
         - Google Cloud:
           - Machine image: installation/cloud-platforms/gcp/machine-image.md
@@ -177,15 +181,15 @@ nav:
           - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
         - Envoy:
           - Docker image: installation/load-balancing/envoy/docker-image.md
-      - Linux Packages:
+      - Packages:
         - Docker image (NGINX): admin-en/installation-docker-en.md
         - Docker image (Envoy): admin-en/installation-guides/envoy/envoy-docker.md
-        - DEB/RPM packages for NGINX: installation/nginx/dynamic-module.md
-        - DEB/RPM packages for NGINX Plus: installation/nginx-plus.md
-        - DEB/RPM packages for NGINX Distro: installation/nginx/dynamic-module-from-distr.md
+        - Linux packages for NGINX: installation/nginx/dynamic-module.md
+        - Linux packages for NGINX Plus: installation/nginx-plus.md
+        - Linux packages for NGINX Distro: installation/nginx/dynamic-module-from-distr.md
         - AWS AMI: installation/packages/aws-ami.md
         - GCP Machine Image: installation/packages/gcp-machine-image.md
-        # - Terraform module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+        - Terraform module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
       - Additional:
         - Chaining of the Wallarm and additional Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
         - Auto Scaling:
@@ -208,10 +212,6 @@ nav:
           - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
           - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
     - Administrator Guide:
-      # - Installation:
-      #   - Deploying Wallarm on AWS using Terraform:
-          # - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
-          # - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md

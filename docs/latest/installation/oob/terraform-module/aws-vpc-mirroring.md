@@ -21,7 +21,7 @@ This example Wallarm solution has the following components:
 * ALB forwarding retrieved HTTP requests to Wallarm instances.
 * Wallarm node instances analyzing requests from an internal ALB and sending malicious traffic data to the Wallarm Cloud.
 
-    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](../overview.md#advantages-and-limitations) approach does not allow attack blocking.
+    The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](https://docs.wallarm.com/installation/oob/overview/#advantages-and-limitations) approach does not allow attack blocking.
 
 ## Code Components
 

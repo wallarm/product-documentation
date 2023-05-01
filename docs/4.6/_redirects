@@ -516,3 +516,5 @@
 /admin-en/configuration-guides/traffic-mirroring/overview/ /installation/oob/web-server-mirroring/overview/
 
 /admin-en/installation-nginx-overview/ /admin-en/installation-postanalytics-en/
+
+/installation/cloud-platforms/aws/terraform-module/examples/ /installation/cloud-platforms/aws/terraform-module/overview/#trying-wallarm-terraform-module-with-examples
