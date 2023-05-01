@@ -1,1 +1,0 @@
---8<-- "latest/admin-en/admin-intro-en.md"

@@ -4,7 +4,7 @@ The filtering node may require some additional configuration after installation.
 
 The document below lists a few of the typical setups that you can apply if needed.
 
-To get more information about other available settings, proceed to the **Configuration** section of the [Administrator’s guide](admin-intro-en.md).
+To get more information about other available settings, proceed to the **Configuration** section of the Administrator’s guide.
 
 ### Configuring the display of the client's real IP
 

@@ -1,7 +1,7 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
 
-# Deploying Kong Ingress Controller with integrated Wallarm services
+# Deploying Kong Ingress Controller with Integrated Wallarm Services
 
 To secure APIs managed by Kong API Gateway, you can deploy the Kong Ingress controller with integrated Wallarm services in a Kubernetes cluster. The solution involves the default Kong API Gateway functionality with the layer of real-time malicious traffic mitigation.
 

@@ -22,6 +22,9 @@
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [platform]:                         ../../admin-en/supported-platforms.md
+[oob-docs]:                         ../oob/overview.md
+[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 
 # Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
 
@@ -29,17 +32,15 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 ## Requirements
 
---8<-- "../include/waf/installation/nginx-distr-requirements-4.0.md"
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* SELinux disabled or configured upon the [instructions][configure-selinux-instr]
+* Executing all commands as a superuser (e.g. `root`)
+* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
+* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions or data centers
+* Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
 
-## Installation options
-
---8<-- "../include/waf/installation/nginx-installation-options.md"
-
-Installation commands for both options are described in the further instructions.
-
-## Installation
-
-### 1. Add Debian/CentOS repositories
+## 1. Add Debian/CentOS repositories
 
 === "Debian 10.x (buster)"
     ```bash
@@ -67,15 +68,13 @@ Installation commands for both options are described in the further instructions
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
 
-### 2. Install NGINX with Wallarm packages
-
-#### Request processing and postanalytics on the same server
+## 2. Install NGINX with Wallarm packages
 
 The command installs the following packages:
 
 * `nginx` for NGINX
 * `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
-* `wallarm-node` for the postanalytics module, Tarantool database, and additional NGINX-Wallarm packages
+* `wallarm-node` for the [postanalytics](../../admin-en/installation-postanalytics-en.md) module, Tarantool database, and additional NGINX-Wallarm packages
 
 === "Debian 10.x (buster)"
     ```bash
@@ -94,34 +93,7 @@ The command installs the following packages:
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 
-#### Request processing and postanalytics on different servers
-
-To run postanalytics and process the requests on different servers, the following packages are required:
-
-* `wallarm-node-tarantool` on the separate server for the postanalytics module and Tarantool database (installation steps are described in the [instructions](../../admin-en/installation-postanalytics-en.md))
-
-* `wallarm-node-nginx` and `libnginx-mod-http-wallarm`/`nginx-mod-http-wallarm` for the NGINX-Wallarm module
-
-The commands install packages for NGINX and for the NGINX-Wallarm module:
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt -y install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo apt -y install --no-install-recommends nginx wallarm-node-nginx libnginx-mod-http-wallarm
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum install -y nginx wallarm-node-nginx nginx-mod-http-wallarm
-    ```
-
-### 3. Connect the Wallarm module
+## 3. Connect the Wallarm module
 
 Copy the configuration files for the system setup:
 
@@ -138,100 +110,15 @@ Copy the configuration files for the system setup:
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-### 4. Connect the filtering node to Wallarm Cloud
+## 4. Connect the filtering node to Wallarm Cloud
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
 
-### 5. Update Wallarm node configuration
+## 5. Enable Wallarm to analyze the traffic
 
-Main configuration files of NGINX and Wallarm filtering node are located in the directories:
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
-* `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
-
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
-
-#### Request filtration mode
-
-By default, the filtering node is in the status `off` and does not analyze incoming requests. To enable requests analysis, please follow the steps:
-
-1. Open the file `/etc/nginx/conf.d/default.conf`:
-
-    ```bash
-    sudo vim /etc/nginx/conf.d/default.conf
-    ```
-2. Add the line `wallarm_mode monitoring;` to the `https`, `server` or `location` block:
-
-??? note "Example of the file `/etc/nginx/conf.d/default.conf`"
-
-    ```bash
-    server {
-        # port for which requests are filtered
-        listen       80;
-        # domain for which requests are filtered
-        server_name  localhost;
-        # Filtering node mode
-        wallarm_mode monitoring;
-
-        location / {
-            root   /usr/share/nginx/html;
-            index  index.html index.htm;
-        }
-
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   /usr/share/nginx/html;
-        }
-    }
-    ```
-
-When operating in the `monitoring` mode, the filtering node searches attack signs in requests but does not block detected attacks. We recommend keeping the traffic flowing via the filtering node in the `monitoring` mode for several days after the filtering node deployment and only then enable the `block` mode. [Learn recommendations on the filtering node operation mode setup →](../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps)
-
-#### Memory
-
-!!! info "Postanalytics module on the separate server"
-    If you installed the postanalytics module on a separate server, then skip this step as you already have the module configured.
-
-The Wallarm node uses the in-memory storage Tarantool. To allocate memory for Tarantool:
-
-1. Open the Tarantool configuration file in the editing mode:
-
-    === "Debian"
-        ``` bash
-        sudo vim /etc/default/wallarm-tarantool
-        ```
-    === "CentOS"
-        ``` bash
-        sudo vim /etc/sysconfig/wallarm-tarantool
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ``` bash
-        sudo vim /etc/sysconfig/wallarm-tarantool
-        ```
-2. Specify memory size in GB in the `SLAB_ALLOC_ARENA` directive. The value can be an integer or a float (a dot `.` is a decimal separator).
-
-    Learn more about amount of required resources [here](../../admin-en/configuration-guides/allocate-resources-for-node.md). Note that for testing environments you can allocate lower resources than for the production ones.
-
-3. To apply changes, restart Tarantool:
-
-    ``` bash
-    sudo systemctl restart wallarm-tarantool
-    ```
-
-#### Address of the separate postanalytics server
-
-!!! info "NGINX-Wallarm and postanalytics on the same server"
-    If the NGINX-Wallarm and postanalytics modules are installed on the same server, then skip this step.
-
---8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
-
-#### Other configurations
-
-To update other NGINX and Wallarm node configurations, use the NGINX documentation and the list of [available Wallarm node directives][waf-directives-instr].
-
-### 6. Restart NGINX
+## 6. Restart NGINX
 
 --8<-- "../include/waf/root_perm_info.md"
 
@@ -248,12 +135,34 @@ To update other NGINX and Wallarm node configurations, use the NGINX documentati
     sudo systemctl restart nginx
     ```
 
-### 7. Test Wallarm node operation
+## 7. Configure sending traffic to the Wallarm instance
+
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+
+## 8. Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Settings customization
+## 9. Fine-tune the deployed solution
 
-The dynamic Wallarm module with default settings is installed for NGINX from the Debian/CentOS repositories. To customize Wallarm node settings, use the [available directives](../../admin-en/configure-parameters-en.md).
+The dynamic Wallarm module with default settings is installed for NGINX `stable`. The filtering node may require some additional configuration after deployment.
 
---8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
+
+* `/etc/nginx/conf.d/default.conf` with NGINX settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
+
+Below there are a few of the typical settings that you can apply if needed:
+
+* [Configuration of the filtration mode][waf-mode-instr]
+* [Allocating resources for Wallarm nodes][memory-instr]
+* [Logging Wallarm node variables][logging-instr]
+* [Using the balancer of the proxy server behind the filtering node][proxy-balancer-instr]
+* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
+* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]

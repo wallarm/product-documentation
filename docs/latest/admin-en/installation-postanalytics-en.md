@@ -5,15 +5,21 @@
 
 # Separate postanalytics module installation
 
---8<-- "../include/waf/installation/nginx-installation-options.md"
+The processing of requests in the Wallarm node is divided into two stages:
 
-These instructions provide the steps to install the postanalytics module on a separate server.
+* Primary processing in the NGINX-Wallarm module. The processing is not memory demanding and can be put on frontend servers without changing the server requirements.
+* Statistical analysis of the processed requests in the postanalytics module. Postanalytics is memory demanding, which may require changes in the server configuration or installation of postanalytics on a separate server.
+
+Depending on the system architecture, the NGINX-Wallarm and postanalytics modules can be installed on the **same server** or on **different servers**. By default, Wallarm deployment instructions cover the steps to install all modules on the same server.
+
+These instructions provide the steps to install the postanalytics module on a separate server. This option is available only for the following Wallarm artifacts:
+
+* [DEB/RPM packages for NGINX stable](../installation/nginx/dynamic-module.md)
+* [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
+* [DEB/RPM packages for NGINX Distro from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md)
 
 ## Requirements
 
-* NGINX-Wallarm module installed with [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md), [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md) or [NGINX Plus](../installation/nginx-plus.md)
-
-    The NGINX-Wallarm package must be of the same or a lower version than the postanalytics module you install separately. Please check this requirement during the [postanalytics package installation](#2-install-packages-for-the-postanalytics-module).
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 * SELinux disabled or configured upon the [instructions][configure-selinux-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -22,9 +28,7 @@ These instructions provide the steps to install the postanalytics module on a se
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
 * Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
 
-## Installation
-
-### 1. Add Wallarm repositories
+## 1. Add Wallarm repositories
 
 The postanalytics module, like the other Wallarm modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
 
@@ -77,7 +81,7 @@ The postanalytics module, like the other Wallarm modules, is installed and updat
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
 
-### 2. Install packages for the postanalytics module
+## 2. Install packages for the postanalytics module
 
 Install the `wallarm-node-tarantool` package from the Wallarm repository for the postanalytics module and Tarantool database:
 
@@ -98,9 +102,7 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
     sudo yum install -y wallarm-node-tarantool
     ```
 
---8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
-
-### 3. Connect the postanalytics module to Wallarm Cloud
+## 3. Connect the postanalytics module to Wallarm Cloud
 
 The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create the Wallarm node for the postanalytics module. Created node will get the security rules from the Cloud and upload attacks data to the Cloud.
 
@@ -135,7 +137,7 @@ To create the filtering node and connect the postanalytics module to the Cloud:
     ```
     </p></li></div>
 
-### 4. Update postanalytics module configuration
+## 4. Update postanalytics module configuration
 
 The configuration files of the postanalytics module are located in the paths:
 
@@ -161,7 +163,7 @@ To open the file in the editing mode, please use the command:
     sudo vim /etc/sysconfig/wallarm-tarantool
     ```
 
-#### Memory
+### Memory
 
 The postanalytics module uses the in-memory storage Tarantool. For production environments, it is recommended to have larger amount of memory. If testing the Wallarm node or having a small server size, the lower amount can be enough.
 
@@ -169,7 +171,7 @@ The allocated memory size is set in GB via the `SLAB_ALLOC_ARENA` directive in t
 
 Detailed recommendations about allocating memory for Tarantool are described in these [instructions](configuration-guides/allocate-resources-for-node.md).
 
-#### Address of the separate postanalytics server
+### Address of the separate postanalytics server
 
 To set the address of the separate postanalytics server:
 
@@ -208,54 +210,85 @@ To set the address of the separate postanalytics server:
         host: '<IP address of Tarantool>'
         port: 3313
     ```
-4. Add the address of the postanalytics module server to the configuration files on the server with the NGINX‑Wallarm package as described in the instructions for proper installation forms:
 
-    * [NGINX stable from NGINX repository](../installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
-    * [NGINX from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
-    * [NGINX Plus](../installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
+## 5. Restart Wallarm services
 
-### 5. Restart Wallarm services
+To apply the settings to the postanalytics module:
 
-To apply the settings to the postanalytics and the NGINX‑Wallarm modules:
+=== "Debian"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart wallarm-tarantool
+    ```
 
-1. Restart the `wallarm-tarantool` service on the server with separate postanalytics module:
+## 6. Install the NGINX-Wallarm module on a separate server
 
-    === "Debian"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo systemctl restart wallarm-tarantool
-        ```
-2. Restart the NGINX service on the server with the NGINX‑Wallarm module:
+Once the postanalytics module is installed on the separate server, install the other Wallarm modules on a different server. Below are the links to the corresponding instructions and the package names to be specified for the NGINX-Wallarm module installation:
 
-    === "Debian"
-        ```bash
-        sudo systemctl restart nginx
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo service nginx restart
-        ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
-        sudo systemctl restart nginx
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo systemctl restart nginx
-        ```
+* [NGINX stable](../installation/nginx/dynamic-module.md)
 
-### 6. Check the NGINX‑Wallarm and separate postanalytics modules interaction
+    In the package installation step, specify `wallarm-node-nginx` and `nginx-module-wallarm`.
+* [NGINX Plus](../installation/nginx-plus.md)
+
+    In the package installation step, specify `wallarm-node-nginx` and `nginx-plus-module-wallarm`.
+* [NGINX Distro from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md)
+
+    In the package installation step, specify `wallarm-node-nginx` and `libnginx-mod-http-wallarm/nginx-mod-http-wallarm`.
+
+--8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
+
+## 7. Connect the NGINX-Wallarm module to the postanalytics module
+
+On the server with the NGINX-Wallarm module → the `/etc/nginx/conf.d/wallarm.conf` file, specify the postanalytics module server address:
+
+```
+upstream wallarm_tarantool {
+    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+    keepalive 2;
+    }
+
+    # omitted
+
+wallarm_tarantool_upstream wallarm_tarantool;
+```
+
+* `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
+* `keepalive` value must not be lower than the number of the Tarantool servers.
+* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
+
+Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
+
+=== "Debian"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo service nginx restart
+    ```
+=== "CentOS"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+
+## 8. Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
 To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
 

@@ -36,7 +36,7 @@ Check the filtering node operation mode as follows:
 1. Make sure that the filtering node [mode](../admin-en/configure-wallarm-mode.md) is different from `off`. The node does not process incoming traffic in the `off` mode.
 
     The `off` mode is a common reason for the `wallarm-status` metrics not to increase.
-1. Restart NGINX to be sure that Wallarm node settings have been applied (if the node has been [installed from DEB/RPM packages](../admin-en/installation-nginx-overview.md)):
+1. Restart NGINX to be sure that Wallarm node settings have been applied (if the node has been installed from DEB/RPM packages):
 
     --8<-- "../include/waf/restart-nginx-3.6.md"
 1. [Generate](#1-generate-some-malicious-traffic) malicious traffic once again to be sure that attacks are still not uploaded to the Cloud.

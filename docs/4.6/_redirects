@@ -505,3 +505,19 @@
 /user-guides/scanner/configure-scanner/ /user-guides/scanner/
 /user-guides/scanner/intro/ /user-guides/scanner/
 /user-guides/scanner/reserved-domains/ /user-guides/scanner/
+
+/admin-en/admin-intro-en/ /admin-en/supported-platforms/
+/4.4/admin-en/admin-intro-en/ /4.4/admin-en/supported-platforms/
+
+/admin-en/configuration-guides/traffic-mirroring/envoy-example/ /installation/oob/web-server-mirroring/overview/#envoy
+/admin-en/configuration-guides/traffic-mirroring/istio-example/ /installation/oob/web-server-mirroring/overview/#istio
+/admin-en/configuration-guides/traffic-mirroring/nginx-example/ /installation/oob/web-server-mirroring/overview/#nginx
+/admin-en/configuration-guides/traffic-mirroring/traefik-example/ /installation/oob/web-server-mirroring/overview/#traefik
+/admin-en/configuration-guides/traffic-mirroring/overview/ /installation/oob/web-server-mirroring/overview/
+
+/admin-en/installation-nginx-overview/ /admin-en/installation-postanalytics-en/
+
+/installation/cloud-platforms/aws/terraform-module/examples/ /installation/cloud-platforms/aws/terraform-module/overview/#trying-wallarm-terraform-module-with-examples
+
+/admin-en/installation-ami-en/ /installation/cloud-platforms/aws/ami/
+/admin-en/installation-gcp-en/ /installation/cloud-platforms/gcp/machine-image/

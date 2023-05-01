@@ -9,7 +9,7 @@
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 
-# Deployment of the Wallarm node Docker image to Alibaba Cloud
+# Deployment of the Wallarm Docker Image to Alibaba Cloud
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Alibaba Cloud platform using the [Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs).
 

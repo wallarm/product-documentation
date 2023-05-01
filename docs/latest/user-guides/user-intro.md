@@ -1,7 +1,6 @@
 [img-wallarm-portal-overview]:  ../images/user-guides/dashboard/dashboard.png
 
 [link-wallarm-console]:     https://my.wallarm.com/settings/users
-[link-admin-guide]:         ../admin-en/admin-intro-en.md
 
 [doc-use-search]:           search-and-filters/use-search.md
 [doc-subscriptions]:        ../about-wallarm/subscription-plans.md

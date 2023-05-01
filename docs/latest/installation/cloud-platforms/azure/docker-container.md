@@ -9,7 +9,7 @@
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 
-# Deployment of the Wallarm node Docker image to Azure
+# Deployment of the Wallarm Docker Image to Azure
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Microsoft Azure cloud platform using the [Azure **Container Instances** service](https://docs.microsoft.com/en-us/azure/container-instances/).
 
