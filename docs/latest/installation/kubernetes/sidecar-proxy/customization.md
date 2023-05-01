@@ -1,4 +1,4 @@
-# Customizing Wallarm Sidecar proxy
+# Customizing Wallarm Sidecar Proxy
 
 This article instructs you on safe and effective customization of the [Wallarm Kubernetes Sidecar proxy solution](deployment.md) providing examples for some common customization use cases.
 

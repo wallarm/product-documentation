@@ -19,7 +19,7 @@
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [platform]:                         ../../../admin-en/supported-platforms.md
 
-# Running Docker NGINX‑based image
+# Running Docker NGINX‑Based Image
 
 The Wallarm NGINX-based filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
 

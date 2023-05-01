@@ -21,7 +21,7 @@
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
 [using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache
 
-# Deploying Wallarm CDN node
+# Deploying Wallarm CDN Node
 
 Wallarm CDN node operating as a reverse proxy mitigates malicious traffic without placing any third‑party components in the application's infrastructure.
 

@@ -1,4 +1,4 @@
-# Per-pod's annotations supported by Wallarm Sidecar proxy
+# Pod's Annotations Supported by Wallarm Sidecar Proxy
 
 The [Wallarm Sidecar proxy solution](deployment.md) can be configured via annotations on the per-pod's basis. The list of annotations supported in this solution are described in this document.
 

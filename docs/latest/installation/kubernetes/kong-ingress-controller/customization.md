@@ -1,4 +1,4 @@
-# Customizing Kong Ingress Controller with integrated Wallarm services
+# Customizing Kong Ingress Controller with Integrated Wallarm Services
 
 This article instructs you on the safe and effective customization of the [Kong Ingress Controller with integrated Wallarm services](deployment.md).
 

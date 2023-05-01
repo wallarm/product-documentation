@@ -1,4 +1,4 @@
-# Wallarm-specific values of the Sidecar proxy Helm chart
+# Wallarm-Specific Values of the Sidecar Proxy Helm Chart
 
 This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade](../../../updating-migrating/sidecar-proxy.md). The Wallarm-specific and other chart values are for global configuration of the Sidecar proxy Helm chart.
 
