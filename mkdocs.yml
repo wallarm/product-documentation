@@ -110,6 +110,7 @@ nav:
     - Quick Start: quickstart.md
     - Deployment:
       - Deployment Options: admin-en/supported-platforms.md
+      - Deployment Options NEW: admin-en/supported-platforms-new.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
         - Mirroring by Web Servers:
@@ -162,7 +163,7 @@ nav:
         - Kong Ingress Controller:
           - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
           - Customization: installation/kubernetes/kong-ingress-controller/customization.md
-      # - Load Balancers:  
+      # - Load Balancers:
       #   - NGINX Stable:
       #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
       #     - Docker image: installation/load-balancing/nginx-stable/docker-image.md
@@ -176,7 +177,7 @@ nav:
           # - Proxy for AWS API Gateway: installation/load-balancing/terraform-module/proxy-for-aws-api-gateway.md
           # - AWS AMI: installation/load-balancing/nginx-stable/aws-ami.md
           # - GCP Marketplace image: installation/load-balancing/nginx-stable/gcp-machine-image.md
-        # - NGINX Plus: 
+        # - NGINX Plus:
         #   - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
         # - Envoy:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
@@ -251,7 +252,7 @@ nav:
             - "Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard": admin-en/configuration-guides/sso/okta/metadata-transfer.md
             - "Step 4: Allowing Access to the Wallarm Application on the Okta Side": admin-en/configuration-guides/sso/okta/allow-access-to-wl.md
           - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
-          - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
+          - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
       - Monitoring & Failover:
         - Checking the filtering node operation: admin-en/installation-check-operation-en.md
         - Configuring a Failover Method: admin-en/configure-backup-en.md
@@ -272,7 +273,7 @@ nav:
               - Working with the Filter Node Metrics in Nagios: admin-en/monitoring/working-with-nagios.md
             - Zabbix:
               - Exporting Metrics to Zabbix via the `collectd-nagios` Utility: admin-en/monitoring/collectd-zabbix.md
-              - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md  
+              - Working with the Filter Node in Zabbix: admin-en/monitoring/working-with-zabbix.md
       - Operations:
         - Configuring SELinux: admin-en/configure-selinux.md
         - Wallarm User Acceptance Testing Checklist: admin-en/uat-checklist-en.md
@@ -334,7 +335,7 @@ nav:
       - API Abuse Prevention profile management: user-guides/api-abuse-prevention.md
       - BOLA protection: user-guides/bola-protection.md
       - Integrations:
-        - Integrations Overview: user-guides/settings/integrations/integrations-intro.md 
+        - Integrations Overview: user-guides/settings/integrations/integrations-intro.md
         - Email Report: user-guides/settings/integrations/email.md
         - Slack: user-guides/settings/integrations/slack.md
         - Telegram: user-guides/settings/integrations/telegram.md
@@ -403,7 +404,7 @@ nav:
   - "Security testing: FAST": https://docs.fast.wallarm.com/en/
   - API docs:
     - Wallarm API overview: api/overview.md
-    - Wallarm API request examples: api/request-examples.md 
+    - Wallarm API request examples: api/request-examples.md
   - FAQ:
     - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
