@@ -35,6 +35,9 @@ In the Wallarm Console UI:
 1. Paste the copied Workspace ID and Primary key.
 1. Choose event types to be logged in Microsoft Sentinel. If the events are not chosen, then logs will not be sent.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
+
+    !!! info "Delay in sending data to new workspaces"
+        Creating a Workspace on Sentinel for Wallarm integration can take up to 1 hour for all services to function. This delay can result in errors during integration testing and usage. If all integration settings are correct but errors continue to appear, please try again after 1 hour.
 1. Click **Add integration**.
 
     ![!Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
