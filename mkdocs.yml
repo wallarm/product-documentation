@@ -153,15 +153,16 @@ nav:
           # - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
       - CDN: installation/cdn-node.md
       - Kubernetes:
-        - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
-        - Sidecar Proxy:
+        - Ingress:
+          - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+          - Kong Ingress Controller:
+            - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
+            - Customization: installation/kubernetes/kong-ingress-controller/customization.md
+        - Sidecar:
           - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
           - Customization: installation/kubernetes/sidecar-proxy/customization.md
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
-        - Kong Ingress Controller:
-          - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
-          - Customization: installation/kubernetes/kong-ingress-controller/customization.md
       # - Load Balancers:  
       #   - NGINX Stable:
       #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
