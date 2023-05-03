@@ -1,7 +1,6 @@
 /* Card styles */
 .do-section {
     position: relative;
-    margin-top: 24px;
     font-size: 14px;
     line-height: 20px;
     color: #000;
@@ -146,4 +145,49 @@ a.do-card:is(:any-link, :hover, :active) {
     border-radius: 50%;
     background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="black"/><path d="M14 10L8 16L14 22M8.5 16H24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 680px) {
+    .md-typeset h2 {
+        margin: 24px 0 16px;
+    }
+
+    .do-main {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .do-card {
+        grid-row: auto !important;
+        grid-column: auto !important;
+        min-height: 90px;
+        padding: 16px 80px 16px 16px;
+    }
+
+    .do-card :is(img, svg) {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        height: 56px;
+        margin-bottom: 0;
+    }
+
+    .do-nested {
+        grid-template-columns: 1fr;
+    }
+
+    .do-nested .do-card:first-child {
+        padding-top: 64px;
+    }
+
+    .do-nested .do-card:nth-child(n + 2) {
+        padding: 16px;
+        border-width: 1px 0 0 0;
+    }
+
+    .do-back {
+        top: 16px;
+        left: 16px;
+    }
 }
