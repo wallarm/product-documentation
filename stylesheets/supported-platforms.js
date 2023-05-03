@@ -1,19 +1,46 @@
 const titles = {};
+let state;
+
+try {
+    state = JSON.parse(localStorage.getItem('do')) || {};
+} catch {
+    state = {};
+    localStorage.setItem('do', JSON.stringify(state));
+}
 
 /**
- * Re-calculate section title when nested level was changed
+ * Update the navigation history of the sections
  */
-function recalculateSectionTitle($section) {
+const updateStateItem = value => {
+    if (value.length === 1) delete state[value[0]];
+    else state[value[0]] = value;
+
+    localStorage.setItem('do', JSON.stringify(state));
+}
+
+/**
+ * Re-calculate section title state when nested level was changed
+ */
+function recalculateSectionTitleState($section) {
     const parts = [];
     let $card = document.getElementById($section.querySelector('[data-current]')?.dataset.for);
+
     while ($card) {
         parts.unshift($card.id);
         const $grid = $card.closest('.do-main, .do-nested');
         $card = document.getElementById($grid?.dataset.for);
     }
 
-    const $title = $section.previousElementSibling;
+    updateStateItem(parts);
+}
+
+/**
+ * Draw a title by its ID
+ */
+function drawTitle(id) {
+    const $title = document.getElementById(id);
     const $headerlink = $title.querySelector('.headerlink');
+    const parts = state[id] || [id];
 
     $title.innerHTML = '';
     parts.forEach((id, i) => {
@@ -28,7 +55,8 @@ function recalculateSectionTitle($section) {
 /**
  * Make currently visible grid hidden and display another one grid
  */
-function navigateToGrid($next) {
+function navigateToGrid(cardID) {
+    const $next = document.querySelector(`[data-for=${cardID}]`);
     const $section = $next.closest('.do-section');
     const $current = $section.querySelector('[data-current]');
 
@@ -41,16 +69,15 @@ function navigateToGrid($next) {
     // Needed for animation purposes
     $section.style.height = getComputedStyle($next).height;
 
-    recalculateSectionTitle($section);
+    recalculateSectionTitleState($section);
+    drawTitle($section.previousElementSibling.id);
 }
 
 /**
  * Card click listener
  */
 function clickDeploymentCard(event) {
-    const $section = event.currentTarget.closest('.do-section');
-    const $next = $section.querySelector(`[data-for=${event.currentTarget.id}]`);
-    navigateToGrid($next);
+    navigateToGrid(event.currentTarget.id);
 }
 
 /**
@@ -67,9 +94,7 @@ document.querySelectorAll('.do-card[id]').forEach($node => {
  * Breadcrumbs click listener
  */
 function clickBreadcrumb(event) {
-    if (!event.target.dataset.to) return;
-    const $section = event.currentTarget.nextElementSibling;
-    navigateToGrid($section.querySelector(`[data-for=${event.target.dataset.to}]`));
+    if (event.target.dataset.to) navigateToGrid(event.target.dataset.to);
 }
 
 /**
@@ -82,27 +107,6 @@ document.querySelectorAll('h2').forEach($title => {
 });
 
 /**
- * Setup missed markup before using the page
- */
-document.querySelectorAll('.do-section').forEach($section => {
-    const $main = $section.querySelector('.do-main');
-    $main.dataset.current = 'true';
-    $main.dataset.for = $section.previousElementSibling.id;
-
-    $section.querySelectorAll('.do-nested').forEach($nested => {
-        // `1 / span 999` is a hack to make the first card take the whole first column
-        // if there are more than one row in a grid.
-        const cards = $nested.querySelectorAll('.do-card');
-        if (cards.length > 3) cards[0].style.gridRow = '1 / span 999';
-
-        $nested.classList.add('do-hidden');
-    });
-
-    $section.style.height = getComputedStyle($main).height;
-    $section.dataset.ready = 'true';
-});
-
-/**
  * Add "Back" buttons to the nested grids
  */
 document.querySelectorAll('.do-nested .do-card:first-child').forEach($card => {
@@ -111,6 +115,32 @@ document.querySelectorAll('.do-nested .do-card:first-child').forEach($card => {
 
     const $back = document.createElement('div');
     $back.classList.add('do-back');
-    $back.addEventListener('click', () => { navigateToGrid($grid); });
+    $back.addEventListener('click', () => { navigateToGrid($grid.dataset.for); });
     $card.append($back);
+});
+
+/**
+ * Setup missed markup before using the page
+ */
+document.querySelectorAll('.do-section').forEach($section => {
+    const $main = $section.querySelector('.do-main');
+    $main.dataset.current = 'true';
+    $main.dataset.for = $section.previousElementSibling.id;
+
+    $section.querySelectorAll('.do-nested').forEach($nested => {
+        // `1 / span N` is a hack to make the first card take the whole first column
+        // if there is more than one row in a grid.
+        const cards = $nested.querySelectorAll('.do-card');
+        if (cards.length > 3) cards[0].style.gridRow = `1 / span ${Math.ceil((cards.length - 1) / 2)}`;
+
+        $nested.classList.add('do-hidden');
+    });
+
+    $section.style.height = getComputedStyle($main).height;
+    $section.dataset.ready = 'true';
+});
+
+// Restore previously navigated sections
+Object.values(state).forEach(parts => {
+    navigateToGrid(parts[parts.length - 1]);
 });

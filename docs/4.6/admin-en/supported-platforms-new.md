@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/supported-platforms.css?v=1" />
-
 # Deployment Options
 
 Wallarm supports many deployment options enabling you to seamlessly integrate the platform with your environment without its modification. Learn the Wallarm deployment options and choose the most appropriate one from this document.
+
+<link rel="stylesheet" href="/supported-platforms.css?v=1" />
 
 ## Out-of-Band
 
@@ -19,7 +19,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Mirroring by cloud platforms</h3>
             <p>Out-of-band deployment for cloud mirrored traffic</p>
         </div>
-
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers">
@@ -87,7 +86,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
-
     </div>
 
     <div class="do-nested" data-for="public-clouds-aws">
@@ -139,7 +137,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>OOB for AWS VPC Mirroring</h3>
             <p>Wallarm OOB for AWS VPC Mirroring</p>
         </a>
-        
     </div>
 
     <div class="do-nested" data-for="public-clouds-gcp">
@@ -209,12 +206,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Wallarm solutions for Ingress load balancing and security</p>
         </div>
 
-        <a id="kubernetes-sidecar" class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
+        <a class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
             <img src="../../images/platform-icons/pod.svg" />
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
-    
     </div>
 
     <div class="do-nested" data-for="kubernetes-ingress">
@@ -233,7 +229,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Kong Ingress Controller</h3>
             <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
         </a>
-    
     </div>
 </div>
 
@@ -264,7 +259,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </a>
-
     </div>
 
     <div class="do-nested" data-for="packages-docker-images">
@@ -283,7 +277,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Docker image (Envoy)</h3>
             <p>Use the Envoy-based Docker image for Wallarm deployment</p>
         </a>
-
     </div>
 
     <div class="do-nested" data-for="packages-cloud-images">
@@ -311,55 +304,55 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
-        <a id="packages-linux-debian-10" class="do-card">
+        <div id="packages-linux-debian-10" class="do-card">
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-debian-11" class="do-card">
+        <div id="packages-linux-debian-11" class="do-card">
             <h3>Debian 11.x Bullseye</h3>
             <p>Wallarm packages for Debian 11.x Bullseye</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-ubuntu-18" class="do-card">
+        <div id="packages-linux-ubuntu-18" class="do-card">
             <h3>Ubuntu 18.04 Bionic</h3>
             <p>Wallarm packages for Ubuntu 18.04 Bionic</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-ubuntu-20" class="do-card">
+        <div id="packages-linux-ubuntu-20" class="do-card">
             <h3>Ubuntu 20.04 Focal</h3>
             <p>Wallarm packages for Ubuntu 20.04 Focal</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-ubuntu-22" class="do-card">
+        <div id="packages-linux-ubuntu-22" class="do-card">
             <h3>Ubuntu 22.04 Jammy</h3>
             <p>Wallarm packages for Ubuntu 22.04 Jammy</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-centos-7" class="do-card">
+        <div id="packages-linux-centos-7" class="do-card">
             <h3>CentOS 7.x</h3>
             <p>Wallarm packages for CentOS 7.x</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-amazon-linux" class="do-card">
+        <div id="packages-linux-amazon-linux" class="do-card">
             <h3>Amazon Linux 2.0.2021x and lower</h3>
             <p>Wallarm packages for Amazon Linux 2.0.2021x and lower</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-almalinux" class="do-card">
+        <div id="packages-linux-almalinux" class="do-card">
             <h3>AlmaLinux</h3>
             <p>Wallarm packages for AlmaLinux</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-rocky-linux" class="do-card">
+        <div id="packages-linux-rocky-linux" class="do-card">
             <h3>Rocky Linux</h3>
             <p>Wallarm packages for Rocky Linux</p>
-        </a>
+        </div>
 
-        <a id="packages-linux-oracle-linux-8" class="do-card">
+        <div id="packages-linux-oracle-linux-8" class="do-card">
             <h3>Oracle Linux 8.x</h3>
             <p>Wallarm packages for Oracle Linux 8.x</p>
-        </a>
+        </div>
     </div>
 
     <div class="do-nested" data-for="packages-linux-debian-10">
@@ -560,6 +553,25 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>NGINX Distro</h3>
             <p>Packages for OS with NGINX Distro</p>
         </a>
+    </div>
+</div>
+
+## Custom deployment method
+
+<div class="do-section">
+    <div class="do-main">
+        <div class="do-card">
+            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="36" cy="36" r="29" fill="#F3F4F6"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M33 19H39L40.4641 25.2225L45.8995 21.8577L50.1422 26.1003L46.7773 31.5358L53 33V39L46.7774 40.4641L50.1421 45.8994L45.8994 50.1421L40.4642 46.7774L39 53H33L31.5358 46.7773L26.1006 50.1419L21.8579 45.8993L25.2225 40.4641L19 39V33L25.2226 31.5359L21.8578 26.1004L26.1005 21.8578L31.5359 25.2226L33 19ZM36 42C39.3137 42 42 39.3137 42 36C42 32.6863 39.3137 30 36 30C32.6863 30 30 32.6863 30 36C30 39.3137 32.6863 42 36 42Z" fill="#959DAC"/>
+            </svg>
+            <p style="margin-bottom: 8px">Did not find your platform / approach?</p>
+            <a href="mailto:sales@wallarm.com">
+                <button type="button" class="wlrm-button">
+                    Contact us
+                </button>
+            </a>
+        </div>
     </div>
 </div>
 
