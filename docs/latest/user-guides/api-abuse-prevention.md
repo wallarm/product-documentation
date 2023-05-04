@@ -76,7 +76,11 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 
 ## Working with exception list
 
-To mark some events or IPs as good ones to avoid blocking the similar requests in the future, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention. You can:
+To mark some events or IPs as good ones to avoid blocking the similar requests in the future, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention. 
+
+You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to deny- or graylist.
+
+There are two ways of adding IP addresses to the exception list:
 
 * Add IP address or range to the exception list:
 
@@ -84,10 +88,12 @@ To mark some events or IPs as good ones to avoid blocking the similar requests i
 
         ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
-    * From the **Events** section: use `api_abuse` search key or select `API Abuse` from the **Type** filter, than expand the required event and click **Add to exception list**.
+    * From the **Events** section: use `api_abuse` search key or select `API Abuse` from the **Type** filter, then expand the required event and click **Add to exception list**.
 
         ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
-* Change any item period of stay in the list (default is 1 hour).
-* Immediately remove any item from the list.
-* View historical data - items that were presented in the list within the selected period of time in past.
+When the IP address is added to the exception list, the address is automatically removed from deny- or graylist if it was there.
+
+By default, the IP is added to the exception list forever. You can change this and set time when the address should be removed from the exception list. You can also remove address from exceptions immediately at any moment.
+
+The **Exception list** provides the historical data - you can view items that were presented in the list within the selected period of time in past.

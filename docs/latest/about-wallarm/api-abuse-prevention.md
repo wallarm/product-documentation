@@ -71,20 +71,6 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
 
     If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
 
-## Exception list
-
-If you want to mark some events or IPs as good ones to avoid blocking the similar requests in the future, you can add them to exception list.
-
-You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to deny- or graylist.
-
-When the IP address is added to the exception list, the address is automatically removed from deny- or graylist if it was there.
-
-By default, the IP is added to the exception list forever. You can change this and set time when the address should be removed from the exception list. You can also remove address from exceptions immediately at any moment.
-
-![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
-
-[Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
-
 ## Exploring malicious bots and their attacks
 
 You can explore the bots' activity in the Wallarm Console UI as follows:
@@ -93,3 +79,11 @@ You can explore the bots' activity in the Wallarm Console UI as follows:
 * View API abuse performed by bots in the **Events** section
 
 [Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
+
+## Exception list
+
+An exception list is a list of IP addresses that are known to be associated with legitimate bots or crawlers, and are therefore exempt from being blocked or restricted by the API Abuse Prevention module.
+
+You can add your own IP addresses to the exception list, as well as add IP addresses that have been flagged as being associated with malicious bot activity. [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
+
+![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
