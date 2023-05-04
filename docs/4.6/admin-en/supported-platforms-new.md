@@ -4,7 +4,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <link rel="stylesheet" href="/supported-platforms.css?v=1" />
 
-## Out-of-Band
+## Out-of-band
 
 <div class="do-section">
     <div class="do-main">
@@ -556,7 +556,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Custom deployment method
+## Custom deployment option
 
 <div class="do-section">
     <div class="do-main">
@@ -565,10 +565,10 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
                 <circle cx="36" cy="36" r="29" fill="#F3F4F6"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M33 19H39L40.4641 25.2225L45.8995 21.8577L50.1422 26.1003L46.7773 31.5358L53 33V39L46.7774 40.4641L50.1421 45.8994L45.8994 50.1421L40.4642 46.7774L39 53H33L31.5358 46.7773L26.1006 50.1419L21.8579 45.8993L25.2225 40.4641L19 39V33L25.2226 31.5359L21.8578 26.1004L26.1005 21.8578L31.5359 25.2226L33 19ZM36 42C39.3137 42 42 39.3137 42 36C42 32.6863 39.3137 30 36 30C32.6863 30 30 32.6863 30 36C30 39.3137 32.6863 42 36 42Z" fill="#959DAC"/>
             </svg>
-            <p style="margin-bottom: 8px">Did not find your platform / approach?</p>
-            <a href="mailto:sales@wallarm.com">
+            <p style="margin-bottom: 8px">Can't find what you need? Contact Wallarm sales to explore custom solutions.</p>
+            <a href="mailto:sales@wallarm.com?subject=Request%20for%20custom%20Wallarm%20deployment&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20explore%20a%20Wallarm%20deployment%20option%20for%20my%20product%20security.%20I%20couldn%27t%20find%20what%20I%20need%20among%20the%20listed%20options%20in%20your%20documentation%2C%20and%20I%20would%20appreciate%20your%20help%20to%20explore%20the%20possibilities.%0AI%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0AThank%20you%20for%20your%20time%20and%20assistance.">
                 <button type="button" class="wlrm-button">
-                    Contact us
+                    Contact sales
                 </button>
             </a>
         </div>
