@@ -231,11 +231,6 @@ It is recommended to install the new node type instead of the deprecated one dur
 
 To replace the regular node with the Wallarm node:
 
-1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
-     
-    You can check mentioned settings by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
-
-    ![!User list in Wallarm console][img-wl-console-users]
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation][img-create-wallarm-node]

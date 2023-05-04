@@ -4,11 +4,6 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
 
     1. Copy the node token generated during the separate postanalytics module installation.
     1. Proceed to the 5th step in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
-1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
-     
-    You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
-
-    ![!User list in Wallarm console][img-wl-console-users]
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
     ![!Wallarm node creation][img-create-wallarm-node]

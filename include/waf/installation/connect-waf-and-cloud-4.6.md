@@ -22,11 +22,6 @@ To generate a token and connect the node to the Cloud:
 
     1. Copy the node token generated during the separate postanalytics module installation.
     1. Proceed to the 3rd step (node token variant) in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
-1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
-     
-    You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
-
-    ![!User list in Wallarm console][img-wl-console-users]
 1. Connect node using token of the appropriate type:
 
     === "API token"
@@ -38,7 +33,7 @@ To generate a token and connect the node to the Cloud:
 
             === "US Cloud"
                 ``` bash
-                    sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
                 ```
             === "EU Cloud"
                 ``` bash
