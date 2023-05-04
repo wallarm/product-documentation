@@ -77,7 +77,9 @@ If you want to mark some events or IPs as good ones to avoid blocking the simila
 
 You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to deny- or graylist.
 
-By default, the IP is added to the exception list for 1 hour. You can modify this period or remove exception at any moment.
+When the IP address is added to the exception list, the address is automatically removed from deny- or graylist if it was there.
+
+By default, the IP is added to the exception list forever. You can change this and set time when the address should be removed from the exception list. You can also remove address from exceptions immediately at any moment.
 
 ![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
 
