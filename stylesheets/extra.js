@@ -242,3 +242,11 @@ function resizeMessagePostToParentIframe(height) {
 })
 (window,document,'script','dataLayer','GTM-P8GHH8M');
 // End Google Tag Manager
+
+/*
+* Listen to the main navigation clicks.
+* */
+document.querySelector('.md-nav--primary').addEventListener('click', () => {
+  // Reset the "Deployment options" opened states
+  localStorage.removeItem('do');
+});

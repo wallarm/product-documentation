@@ -57,6 +57,8 @@ function drawTitle(id) {
  */
 function navigateToGrid(cardID) {
     const $next = document.querySelector(`[data-for=${cardID}]`);
+    if (!$next) return;
+
     const $section = $next.closest('.do-section');
     const $current = $section.querySelector('[data-current]');
 
@@ -144,3 +146,20 @@ document.querySelectorAll('.do-section').forEach($section => {
 Object.values(state).forEach(parts => {
     navigateToGrid(parts[parts.length - 1]);
 });
+
+function debounce(cb, timeout = 0) {
+    let timer;
+
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => cb(...args), timeout);
+    };
+}
+
+// Watch window resize and re-calculate section heights
+window.addEventListener('resize', debounce(() => {
+    document.querySelectorAll('.do-section').forEach($section => {
+        const $current = $section.querySelector('[data-current]');
+        $section.style.height = getComputedStyle($current).height;
+    });
+}, 200));
