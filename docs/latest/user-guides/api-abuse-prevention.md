@@ -76,7 +76,7 @@ The **API Abuse Prevention** module compiles client traffic into URL patterns. T
 
 ## Working with exception list
 
-To mark some events or IPs as good ones to avoid blocking the similar requests in the future, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention. 
+To mark some IPs as good ones to avoid blocking the similar requests in the future, use the [**Exception list**](../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention. 
 
 You add IP address or range to the exception list and specify target application: this causes that any requests from these addresses to the target application will not lead to marking these addresses as malicious bots and they will not be added to deny- or graylist.
 
@@ -92,7 +92,10 @@ There are two ways of adding IP addresses to the exception list:
 
         ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
-When the IP address is added to the exception list, the address is automatically removed from deny- or graylist if it was there.
+When the IP address is added to the exception list, the address is automatically removed from deny- or graylist. IP address is removed from deny- or graylist only if it was added there by API Abuse Prevention itself (has a `Bot` reason).
+
+!!! info "Blocking other attack types from IP"
+    If an IP from the exception list produces other attack types, like brute force or input validation attacks and others, Wallarm blocks such requests.
 
 By default, the IP is added to the exception list forever. You can change this and set time when the address should be removed from the exception list. You can also remove address from exceptions immediately at any moment.
 
