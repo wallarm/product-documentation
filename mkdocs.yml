@@ -111,7 +111,7 @@ nav:
     - Quick Start: quickstart.md
     - Deployment:
       - Deployment Options: admin-en/supported-platforms.md
-      - Deployment Options NEW: admin-en/supported-platforms-new.md
+      - Deployment Options NEW: installation/supported-deployment-options.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
         - Mirroring by Web Servers:
