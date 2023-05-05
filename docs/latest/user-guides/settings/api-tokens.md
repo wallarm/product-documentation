@@ -42,3 +42,9 @@ Previously UUID and secret key were used for request authentication which is now
 You can also use the generated value of the backward-compatible token passing it in the `X-WallarmApi-Token` header parameter of your requests.
 
 Backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.
+
+## API tokens vs. node tokens
+
+--8<-- "../include/wallarm-token-types.md"
+
+This article describes API tokens. [Know more about node tokens →](../../user-guides/nodes/nodes.md)

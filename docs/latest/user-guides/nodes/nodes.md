@@ -75,6 +75,12 @@ Token regeneration creates a new token for the node.
 
 ![!Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
 
+## Node tokens vs. API tokens
+
+--8<-- "../include/wallarm-token-types.md"
+
+This article describes node tokens. [Know more about API tokens →](../../user-guides/settings/api-tokens.md).
+
 ## Deleting a node
 
 When the node is deleted, filtration of requests to your application will be stopped. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.

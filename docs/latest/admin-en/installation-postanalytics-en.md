@@ -110,26 +110,9 @@ The postanalytics module interacts with the Wallarm Cloud. It is required to cre
 
 To provide the node with access, you need to generate a token on the Cloud side and specify it on the machine with the node packages.
 
-There are the following token types available:
-
-* [API token][api-token] with `Deploy` role - use this token when:
-
-    * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-    * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
-
-* [Node token][node-token] - use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
-
-!!! info "Autoscaling support"
-    Both token types support the node autoscaling feature available in some clouds/installation variants.
-
 To generate a token and connect the postanalytics filtering node to the Cloud:
 
-1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
-     
-    You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
-
-    ![!User list in Wallarm console][img-wl-console-users]
-1. Connect node using token of the appropriate type:
+1. Connect node using token of the [appropriate type](../installation/tokens.md):
 
     === "API token"
 
@@ -140,7 +123,7 @@ To generate a token and connect the postanalytics filtering node to the Cloud:
 
             === "US Cloud"
                 ``` bash
-                    sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+                sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
                 ```
             === "EU Cloud"
                 ``` bash
