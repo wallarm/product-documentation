@@ -247,9 +247,9 @@ For more information on managing attacks, see the instructions on [working with 
 
 ![!Attacks view](../images/user-guides/events/check-attack.png)
 
-Additionally, Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture. Wallarm's [Threat PreventionThreat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, while the [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats.
+Additionally, Wallarm provides comprehensive dashboards to help you stay on top of your system's security posture. Wallarm's [Threat Prevention](../user-guides/dashboards/threat-prevention.md) dashboard provides general metrics on your system's security posture, while the [OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md) dashboard provides detailed visibility into your system's security posture against the OWASP API Top 10 threats.
 
-![!OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-dash.png)
+![!OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Notifications about detected attacks, hits and malicious payloads
 

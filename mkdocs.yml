@@ -289,7 +289,6 @@ nav:
       - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboards:
         - Threat Prevention: user-guides/dashboards/threat-prevention.md
-        - OWASP API Security Top 10: user-guides/dashboards/owasp-api-top-ten.md
         - API Discovery: user-guides/dashboards/api-discovery.md
         - OWASP API Security Top 10: user-guides/dashboards/owasp-api-top-ten.md
       - Events:
