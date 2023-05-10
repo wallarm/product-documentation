@@ -253,6 +253,7 @@ nav:
         - Threat Prevention: user-guides/dashboards/threat-prevention.md
         - OWASP API Security Top 10: user-guides/dashboards/owasp-api-top-ten.md
         - API Discovery: user-guides/dashboards/api-discovery.md
+        - OWASP API Security Top 10: user-guides/dashboards/owasp-api-top-ten.md
       - Events:
         - Checking Events: user-guides/events/check-attack.md
         - Analyzing Attacks: user-guides/events/analyze-attack.md
