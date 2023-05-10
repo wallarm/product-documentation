@@ -1,6 +1,8 @@
 [user-roles-article]:       ../../user-guides/settings/users.md#user-roles
 [img-api-tokens-edit]:      ../../images/api-tokens-edit.png
 
+# API Tokens (bla)
+
 In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
 
 ![!Wallarm API token][img-api-tokens-edit]
@@ -19,7 +21,7 @@ You can renew the token value at any moment.
 * Analyst
 * API Developer
 * Read only
-* Deploy - API tokens with this role are used to deploy Wallarm nodes
+* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud)
 * Сustom - switches back to the  manual permission selection
 
 !!! info "Token privacy"
@@ -45,6 +47,6 @@ Backward-compatible token has the same permissions as the user role does, these 
 
 ## API tokens vs. node tokens
 
---8<-- "../include/wallarm-token-types.md"
+You can use API tokens described in this article for Wallarm Cloud API [request authentication](../../api/overview.md) from any client and with any set of permissions.
 
-This article describes API tokens. [Know more about node tokens →](../../user-guides/nodes/nodes.md)
+One of the clients accessing Wallarm Cloud API is Wallarm filtering node itself. To grant a filtering node with the access to API of Wallarm Cloud, besides API tokens, you can use node tokens. [Know the difference and what to prefer →](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud)

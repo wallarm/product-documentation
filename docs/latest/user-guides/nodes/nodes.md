@@ -24,18 +24,54 @@ Wallarm node UI management options:
 
 ## Creating a node
 
+Wallarm filtering node creation includes:
+
+1. Deploying new node itself
+1. Connecting new node to Wallarm Cloud
+
+Read below a brief description of each element and a procedure explaining how they can be differently done together.
+
+### Deploying new node itself
+
+Install your new node to the [convenient environment](../../admin-en/supported-platforms.md).
+
+### Connecting new node to Wallarm Cloud
+
+The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node with access to Wallarm Cloud API, you need to generate a token on the Cloud side and use it on the machine with the node. Use **API tokens** (recommended) or **node tokens** for this purpose:
+
+* [**API tokens**](../settings/api-tokens.md) with `Deploy` role when:
+
+    * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
+    * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
+
+* **Node tokens** when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group, then use group's token for every node you want to include.
+
+!!! info "Autoscaling support"
+    Both token types support the node autoscaling feature available in some clouds/installation variants.
+
+### Procedure
+
 To create a Wallarm node:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+=== "With API token"
 
-    ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+    1. Deploy new node to the [convenient environment](../../admin-en/supported-platforms.md) using your API token.
 
-    !!! info "The multi-tenant option"
-        The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
+=== "With node token"
 
-        You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
-1. Copy the generated token.
-1. Deploy the created node to the [convenient environment](../../installation/supported-deployment-options.md) using the generated token.
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or  [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+        ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+
+        !!! info "The multi-tenant option"
+            The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
+
+            You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
+    1. Copy the generated token.
+    1. Deploy new node to the [convenient environment](../../admin-en/supported-platforms.md) using your node token.
 
 ## Viewing details of a node
 
@@ -74,12 +110,6 @@ Token regeneration creates a new token for the node.
 3. If the node is already installed in your infrastructure, copy the new token value and specify it within the installed node settings.
 
 ![!Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
-
-## Node tokens vs. API tokens
-
---8<-- "../include/wallarm-token-types.md"
-
-This article describes node tokens. [Know more about API tokens →](../../user-guides/settings/api-tokens.md).
 
 ## Deleting a node
 

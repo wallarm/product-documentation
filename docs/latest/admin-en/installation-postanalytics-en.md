@@ -112,7 +112,7 @@ To provide the node with access, you need to generate a token on the Cloud side 
 
 To generate a token and connect the postanalytics filtering node to the Cloud:
 
-1. Connect node using token of the [appropriate type](../installation/tokens.md):
+1. Connect node using token of the [appropriate type](../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
 
     === "API token"
 
