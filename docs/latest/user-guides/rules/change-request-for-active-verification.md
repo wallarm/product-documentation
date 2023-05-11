@@ -9,7 +9,7 @@ Custom ruleset allows changing the following configurations of the [Active threa
 
 ### Rule overview
 
-The rule **Set mode of active threat verification** is used to change the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console  → **Scanner**.
+The rule **Set mode of active threat verification** is used to change the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module mode for the specific applications, domains or URLs if this module is enabled globally in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 ### Creating and applying the rule
 

@@ -43,7 +43,7 @@ If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:suppo
 
 ## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
-If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Scanner** → **Settings**.
+If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
