@@ -55,13 +55,13 @@ a.do-card:is(:any-link, :hover, :active) {
     line-height: 24px;
 }
 
-.do-card h3:after {
+div.do-card h3:after {
     width: 24px;
     height: 24px;
     content: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="%23959DAC" stroke-width="2" stroke-linecap="square" d="M10.5 8L14.5 12L10.5 16"></path></svg>');
 }
 
-.do-card:hover h3:after {
+div.do-card:hover h3:after {
     content: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path stroke="%23FC7303" stroke-width="2" stroke-linecap="square" d="M10.5 8L14.5 12L10.5 16"></path></svg>');
 }
 
@@ -160,7 +160,7 @@ a.do-card:is(:any-link, :hover, :active) {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="black"/><path d="M14 10L8 16L14 22M8.5 16H24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="16" fill="%23969DAB"/><path d="M14 10L8 16L14 22M8.5 16H24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     cursor: pointer;
 }
 
