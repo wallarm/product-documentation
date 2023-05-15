@@ -110,8 +110,7 @@ nav:
         - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
     - Quick Start: quickstart.md
     - Deployment:
-      - Deployment Options: admin-en/supported-platforms.md
-      - Deployment Options NEW: installation/supported-deployment-options.md
+      - Deployment Options: installation/supported-deployment-options.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
         - Mirroring by Web Servers:

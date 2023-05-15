@@ -521,3 +521,8 @@
 
 /admin-en/installation-ami-en/ /installation/cloud-platforms/aws/ami/
 /admin-en/installation-gcp-en/ /installation/cloud-platforms/gcp/machine-image/
+
+/admin-en/supported-platforms/ /installation/supported-deployment-options/
+/4.4/installation/supported-deployment-options/ /4.4/admin-en/supported-platforms/
+/4.2/installation/supported-deployment-options/ /4.2/admin-en/supported-platforms/
+/3.6/installation/supported-deployment-options/ /3.6/admin-en/supported-platforms/
