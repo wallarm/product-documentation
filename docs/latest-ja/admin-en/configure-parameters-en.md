@@ -197,7 +197,7 @@ Wallarmクラウドで使用する保護対象アプリケーションの一意�
 
 **libdetection** ライブラリを使用してSQLインジェクション攻撃の追加検証を有効/無効にします。**libdetection** を使用することで、攻撃の二重検出が可能になり、誤検出が減ります。
 
-**libdetection** ライブラリを使用したリクエストの解析は、すべての [展開オプション](../admin-en/supported-platforms.md) でデフォルトで有効になっています。誤検出の数を減らすために、解析を有効にしておくことをお勧めします。
+**libdetection** ライブラリを使用したリクエストの解析は、すべての [展開オプション](../installation/supported-deployment-options.md) でデフォルトで有効になっています。誤検出の数を減らすために、解析を有効にしておくことをお勧めします。
 
 [**libdetection** の詳細 →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
@@ -207,7 +207,7 @@ Wallarmクラウドで使用する保護対象アプリケーションの一意�
 !!! info
     このパラメータは、http、server、location ブロック内で設定できます。
 
-    すべての [展開オプション](../admin-en/supported-platforms.md) ではデフォルト値が `on` です。
+    すべての [展開オプション](../installation/supported-deployment-options.md) ではデフォルト値が `on` です。
 
 ### wallarm_fallback
 

@@ -34,7 +34,7 @@
 
 マルチテナント・ノードは：
 
-* 通常のフィルタリングノードと同じ[プラットフォーム](../../admin-en/supported-platforms.md) にインストールでき、同じ手順に従ってインストールできます。
+* 通常のフィルタリングノードと同じ[プラットフォーム](../../installation/supported-deployment-options.md) にインストールでき、同じ手順に従ってインストールできます。
 * **技術テナント**または**テナント**レベルにインストールできます。テナントにWallarm Consoleへのアクセス権を提供したい場合、フィルタリングノードは対応するテナントレベルにインストールする必要があります。
 * 通常のフィルタリングノードと同じ手順で設定できます。
 * テナントごとにトラフィックを分割するために、ディレクティブ [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid)が使用されます。
@@ -44,7 +44,7 @@
 
 * [テナントアカウントの設定](configure-accounts.md)
 * [技術テナントアカウント](configure-accounts.md#tenant-account-structure)の下で追加された**グローバル管理者**ロールを持つユーザーによるさらなるコマンドの実行
-* [フィルタリングノードのインストールに対応するプラットフォーム](../../admin-en/supported-platforms.md)
+* [フィルタリングノードのインストールに対応するプラットフォーム](../../installation/supported-deployment-options.md)
 
 ## マルチテナント・ノードの展開に関する推奨事項
 
@@ -62,7 +62,7 @@
     ![!マルチテナントノード作成](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. ノード名を設定し、**作成**をクリックします。
 1. フィルタリングノードトークンをコピーします。
-1. フィルタリングノードの展開形式に応じて、[適切な手順](../../admin-en/supported-platforms.md)を実行します。
+1. フィルタリングノードの展開形式に応じて、[適切な手順](../../installation/supported-deployment-options.md)を実行します。
 1. 一意の識別子を使用して、テナント間のトラフィックを分割します。
 
     === "NGINXおよびNGINX Plus"

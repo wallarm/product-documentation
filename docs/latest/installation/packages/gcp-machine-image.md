@@ -4,11 +4,11 @@
 [versioning-policy]:            ../../updating-migrating/versioning-policy.md#version-list
 [img-wl-console-users]:         ../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:     ../../admin-en/supported-platforms.md
+[deployment-platform-docs]:     ../../installation/supported-deployment-options.md
 
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[platform]:                         ../../admin-en/supported-platforms.md
+[platform]:                         ../../installation/supported-deployment-options.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-nginx-directives]:         ../../admin-en/configure-parameters-en.md

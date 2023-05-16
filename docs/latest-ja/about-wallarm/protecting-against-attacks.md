@@ -166,7 +166,7 @@ curl "http://localhost/?id=1' UNION SELECT"
 * **libdetection**ライブラリでリクエストを分析するように設定されている場合、SQL Injection攻撃の符号はこのリクエストでは認められません。リクエストは正当なものと見なされ、攻撃はWallarm Cloudにアップロードされず、ブロックされません(フィルタリングノードが`block`モードで動作している場合)。#### libdetection モードの管理
 
 !!! info "**libdetection** デフォルト・モード"
-    **libdetection** ライブラリのデフォルト・モードは `on/true`（有効）で、すべての [展開オプション](../admin-en/supported-platforms.md) に適用されます。
+    **libdetection** ライブラリのデフォルト・モードは `on/true`（有効）で、すべての [展開オプション](../installation/supported-deployment-options.md) に適用されます。
 
 **libdetection** モードを制御するには、以下を使用できます:
 

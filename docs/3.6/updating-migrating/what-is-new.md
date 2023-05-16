@@ -77,13 +77,13 @@ Wallarm node 3.6 provides **all changes listed above** as well as the following:
 
 * Support for CloudLinux OS 6.x
 
-    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    [See the full list of supported platforms →](../installation/supported-deployment-options.md)
 * Support for Debian 11 Bullseye
 
-    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    [See the full list of supported platforms →](../installation/supported-deployment-options.md)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    [See the full list of supported platforms →](../installation/supported-deployment-options.md)
 * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
 
     [Instructions on deploying the Wallarm NGINX‑based Docker container →](../admin-en/installation-docker-en.md)

@@ -20,7 +20,7 @@ The Wallarm filtering node does the following:
 * Collects the network traffic metrics and uploads the metrics to the Wallarm Cloud
 * Downloads resource-specific security rules you defined in the Wallarm Cloud and applies them during the traffic analysis
 
-You deploy the Wallarm filtering node to a network infrastructure by one of the [supported deployment options](../admin-en/supported-platforms.md).
+You deploy the Wallarm filtering node to a network infrastructure by one of the [supported deployment options](../installation/supported-deployment-options.md).
 
 ## Cloud
 

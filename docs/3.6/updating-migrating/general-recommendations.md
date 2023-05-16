@@ -91,15 +91,15 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
 
     * Support for CloudLinux OS 6.x
 
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+        [See the full list of supported platforms →](../installation/supported-deployment-options.md)
 
     * Support for Debian 11 Bullseye
 
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+        [See the full list of supported platforms →](../installation/supported-deployment-options.md)
     
     * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-        [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+        [See the full list of supported platforms →](../installation/supported-deployment-options.md)
     
     * New environment variable `WALLARM_APPLICATION` to be passed to the Wallarm NGINX‑based Docker container. This variable sets the identifier of the protected application to be used in the Wallarm Cloud.
 
@@ -124,7 +124,7 @@ Wallarm node 3.x is **totally incompatible with Wallarm node of version 2.18 and
     * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
     * Version of Envoy used in [Wallarm Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-    [See the full list of supported installation options →](../admin-en/supported-platforms.md)
+    [See the full list of supported installation options →](../installation/supported-deployment-options.md)
 
     **System requirements for the filtering node installation**
 

@@ -48,7 +48,7 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
 環境変数 | 説明 | 必要
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../supported-platforms.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
+`WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
 `ENVOY_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレス。 | はい
 `WALLARM_API_HOST` | Wallarm APIサーバ：<ul><li>米国クラウドの場合は `us1.api.wallarm.com`</li><li>EUクラウドの場合は `api.wallarm.com`</li></ul>デフォルト： `api.wallarm.com`。 | いいえ
 `WALLARM_MODE` | ノードモード：<ul><li>`block` で悪意のあるリクエストをブロック</li><li>`safe_blocking` で[グレーリスト化されたIPアドレス](../../../user-guides/ip-lists/graylist.md)からの悪意のあるリクエストのみをブロック</li><li>`monitoring` でリクエストを解析するがブロックしない</li><li>`off` でトラフィックの解析と処理を無効にする</li></ul>デフォルト： `monitoring`。<br>[フィルタリングモードの詳細説明 →](../../configure-wallarm-mode.md) | いいえ
@@ -90,7 +90,7 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
     環境変数 | 説明 | 必要
     --- | ---- | ----
-    `WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../supported-platforms.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
+    `WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
     `WALLARM_API_HOST` | Wallarm APIサーバ：<ul><li>米国クラウドの場合は `us1.api.wallarm.com`</li><li>EUクラウドの場合は `api.wallarm.com`</li></ul>デフォルト： `api.wallarm.com`。 | いいえ
 
     * `-v` オプションで、設定ファイル `envoy.yaml` を含むディレクトリを `/etc/envoy` コンテナディレクトリにマウントします。

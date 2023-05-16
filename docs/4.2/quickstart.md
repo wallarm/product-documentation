@@ -47,7 +47,7 @@ Continue by deploying the [first Wallarm filtering node](#deploy-the-wallarm-fil
 
 ## Deploy the Wallarm filtering node
 
-Wallarm supports [many options for the filtering node deployment](admin-en/supported-platforms.md). You can either learn them and choose the most appropriate one or follow the quickest way to start with Wallarm as described below.
+Wallarm supports [many options for the filtering node deployment](installation/supported-deployment-options.md). You can either learn them and choose the most appropriate one or follow the quickest way to start with Wallarm as described below.
 
 To quickly deploy the node as a component of your infrastructure, first make sure you have:
 
@@ -99,7 +99,7 @@ Wallarm node quick deployment has been successfully completed!
 To get more from the deployment stage:
 
 * [Learn full guide on deploying NGINX-based Wallarm node with Docker](admin-en/installation-docker-en.md)
-* [Learn all deployment options supported by Wallarm](admin-en/supported-platforms.md)
+* [Learn all deployment options supported by Wallarm](installation/supported-deployment-options.md)
 
 To further fine-tune the deployed node, learn the features:
 

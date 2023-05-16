@@ -31,7 +31,7 @@ Wallarm filtering node artifact versions have the following format:
 | `<PATCH_VERSION>`              | Node patch version:<ul><li>Minor bug fixes</li><li>New features added after a special request</li></ul>Initial value is `0`. The value increases by 1, for example: `3.4.0`, `3.4.1`.                                                                                                                                     | Once a month                        |
 | `<BUILD_NUMBER>` (optional) | Node build version. The value is assigned automatically by the employed package build platform. The value will not be assigned to artifacts built using a manual process.<br />The value increases by 1, for example: `3.4.0-1`, `3.4.0-2`. If the first build fails, the build is run again and the value is incremented. | As new `<PATCH_VERSION>` released |
 
-We recommend using different Wallarm node version format when downloading the packages or images. The format depends on the [Wallarm node installation form](../admin-en/supported-platforms.md):
+We recommend using different Wallarm node version format when downloading the packages or images. The format depends on the [Wallarm node installation form](../installation/supported-deployment-options.md):
 
 * `<MAJOR_VERSION>.<MINOR_VERSION>` for Linux packages
 * `<MAJOR_VERSION>.<MINOR_VERSION>.<PATCH_VERSION>[-<BUILD_NUMBER>]` for Docker and cloud images, and Helm charts

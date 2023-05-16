@@ -17,7 +17,7 @@
 [node-status-docs]:                 configure-statistics-service.md
 [node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../user-guides/settings/api-tokens.md
-[platform]:                         ../admin-en/supported-platforms.md
+[platform]:                         ../installation/supported-deployment-options.md
 
 # Running Docker NGINX‑based image
 

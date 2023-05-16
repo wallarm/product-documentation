@@ -46,7 +46,7 @@ Wallarmアカウントを作成するには：
 
 ## Wallarmフィルタリングノードをデプロイする
 
-Wallarmは、フィルタリングノードのデプロイに[多くのオプションをサポートしています](admin-en/supported-platforms.md)。それらを学んで最も適切なものを選択するか、以下に説明するようにWallarmで最も速く開始する方法をたどってください。
+Wallarmは、フィルタリングノードのデプロイに[多くのオプションをサポートしています](installation/supported-deployment-options.md)。それらを学んで最も適切なものを選択するか、以下に説明するようにWallarmで最も速く開始する方法をたどってください。
 
 ノードをインフラストラクチャのコンポーネントとして迅速にデプロイするには、最初に以下を確認してください。
 
@@ -98,7 +98,7 @@ Wallarmノードのクイックデプロイが成功しました！
 デプロイステージをさらに活用するには：
 
 * [DockerでNGINXベースのWallarmノードをデプロイするための完全なガイドを学ぶ](admin-en/installation-docker-en.md)
-* [Wallarmがサポートするすべてのデプロイオプションを学ぶ](admin-en/supported-platforms.md)
+* [Wallarmがサポートするすべてのデプロイオプションを学ぶ](installation/supported-deployment-options.md)
 
 デプロイされたノードをさらに微調整するために、以下の機能を学びます。
 

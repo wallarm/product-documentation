@@ -1,5 +1,5 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
 
 # Wallarmサイドカーコントローラのデプロイ
 
@@ -21,7 +21,7 @@ Wallarmサイドカープロキシソリューションの**主要機能**:
 
 ## ユースケース
 
-すべてのサポートされている[Wallarmデプロイメントオプション](../../../admin-en/supported-platforms.md)の中で、このソリューションは以下の**ユースケース**に対して推奨されています:
+すべてのサポートされている[Wallarmデプロイメントオプション](../../../installation/supported-deployment-options.md)の中で、このソリューションは以下の**ユースケース**に対して推奨されています:
 
 * 既存のIngressコントローラ（例: AWS ALB Ingressコントローラ）があるインフラストラクチャにセキュリティソリューションをデプロイすることを阻止しているため、セキュリティソリューションを探しています。」 セキュリティソリューション
 * ゼロトラスト環境で、各マイクロサービス（内部APIを含む）がセキュリティソリューションによって保護される必要がある

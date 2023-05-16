@@ -217,7 +217,7 @@ Other data (endpoint values, request methods, and parameter names) is not hashed
 
 ## Enabling and configuring API Discovery
 
-The `wallarm-appstructure` package is included in all [forms](../admin-en/supported-platforms.md) of the Wallarm node except for the CloudLinux 6.x and Debian 11.x packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
+The `wallarm-appstructure` package is included in all [forms](../installation/supported-deployment-options.md) of the Wallarm node except for the CloudLinux 6.x and Debian 11.x packages. During node deployment, it installs the API Discovery module but keeps it disabled by default.
 
 To enable and run API Discovery correctly:
 

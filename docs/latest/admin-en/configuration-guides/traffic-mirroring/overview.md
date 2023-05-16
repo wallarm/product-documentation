@@ -29,7 +29,7 @@ Despite the deployment approach safety, it has some limitations:
 To implement Wallarm to filter mirrored traffic:
 
 1. Configure your web server to mirror incoming traffic to an additional backend.
-1. [Install](../../supported-platforms.md) the Wallarm node as the additional backend and configure it to filter the mirrored traffic.
+1. [Install](../../../installation/supported-deployment-options.md) the Wallarm node as the additional backend and configure it to filter the mirrored traffic.
 
 Traffic mirroring is supported by many web servers. Inside the following links, you will find the **example configuration** for the most popular of them:
 

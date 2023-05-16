@@ -223,7 +223,7 @@ API Discovery はほとんどのトラフィックをローカルで解析しま
 !!! warning "重要"
     Wallarm は、パラメータで指定された値をクラウドに送信しません。エンドポイント、パラメータ名、およびその統計データだけが送信されます。## APIディスカバリを有効にし、構成する
 
-`wallarm-appstructure`パッケージは、Debian 11.xおよびUbuntu 22.04パッケージを除く、Wallarmノードのすべての[フォーム](../admin-en/supported-platforms.md)に含まれています。ノードのデプロイ時にAPIディスカバリモジュールがインストールされますが、デフォルトでは無効化された状態になっています。
+`wallarm-appstructure`パッケージは、Debian 11.xおよびUbuntu 22.04パッケージを除く、Wallarmノードのすべての[フォーム](../installation/supported-deployment-options.md)に含まれています。ノードのデプロイ時にAPIディスカバリモジュールがインストールされますが、デフォルトでは無効化された状態になっています。
 
 APIディスカバリを正常に有効化、実行するには以下の手順を行ってください。
 

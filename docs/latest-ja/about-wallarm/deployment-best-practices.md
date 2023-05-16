@@ -18,7 +18,7 @@ Wallarm フィルタリングノードの展開オプションの大部分は、
 - [NGINX Tuning For Best Performance](https://github.com/denji/nginx-tuning)
 - [Top 25 NGINX Web Server Best Security Practices](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html)## 推奨されるオンボーディング手順に従う
 
-1. [利用可能な Wallarm ノード展開オプション](../admin-en/supported-platforms.md) について学びます。
+1. [利用可能な Wallarm ノード展開オプション](../installation/supported-deployment-options.md) について学びます。
 2. [環境ごとに Wallarm ノード構成を分離して管理するためのオプション](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) について学びます（必要に応じて）。
 3. [operation mode](../admin-en/configure-wallarm-mode.md) を `monitoring` に設定して、監視用の Wallarm フィルタリング・ノードを非本番環境にデプロイします。
 4. Wallarm ソリューションの操作、スケーリングとモニタリングの方法、新しいネットワーク・コンポーネントの安定性を確認します。

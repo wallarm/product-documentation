@@ -41,7 +41,7 @@ Wallarmは次のサブスクリプションプランを提供しています：
 | [インテグレーション](../user-guides/settings/integrations/integrations-intro.md) SIEM、メッセンジャーなど | すべて | すべて |
 | [監査ログ](../user-guides/settings/audit-log.md) | はい | はい |
 | **デプロイメント** | | |
-| [デプロイメントオプション](../admin-en/supported-platforms.md) | すべて | すべて |
+| [デプロイメントオプション](../installation/supported-deployment-options.md) | すべて | すべて |
 | [マルチテナント](../installation/multi-tenant/overview.md) | 要求により | 要求により |
 | **ユーザー管理** | | |
 | [ユーザー用のSSO（SAML）認証](../admin-en/configuration-guides/sso/intro.md) | はい | はい |

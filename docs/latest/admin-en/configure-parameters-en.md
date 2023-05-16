@@ -186,7 +186,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 
 Enables/disables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../admin-en/supported-platforms.md). To reduce the number of false positives, we recommend analysis to stay enabled.
+Analyzing of requests with the **libdetection** library is enabled by default in all [deployment options](../installation/supported-deployment-options.md). To reduce the number of false positives, we recommend analysis to stay enabled.
 
 [More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
@@ -196,7 +196,7 @@ Analyzing of requests with the **libdetection** library is enabled by default in
 !!! info
     This parameter can be set inside the http, server, and location blocks.
 
-    Default value is `on` for all [deployment options](../admin-en/supported-platforms.md).
+    Default value is `on` for all [deployment options](../installation/supported-deployment-options.md).
 
 ### wallarm_fallback
 

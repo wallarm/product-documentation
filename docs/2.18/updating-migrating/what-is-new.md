@@ -11,7 +11,7 @@ Since version 2.16.0-8 of the Wallarm node Docker image, the environment variabl
 
 * Added Ubuntu 20.04 LTS (focal) support
 
-[See the full list of supported platforms →](../admin-en/supported-platforms.md)
+[See the full list of supported platforms →](../installation/supported-deployment-options.md)
 
 ## New features
 
