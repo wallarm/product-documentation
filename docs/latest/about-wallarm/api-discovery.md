@@ -20,8 +20,8 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * View most attacked APIs for the last 7 days.
 * Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
-* [Upload](#shadow-api) your own API specifications to Wallarm to find the endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API").
-* [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format and compare with your own API specifications to find endpoints presented in your specifications but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
+* Highlight [shadow API](#finding-shadow-api) (endpoints discovered by Wallarm, but absent in your specifications).
+* [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format.
 * [Track changes](#tracking-changes-in-api) in API that took place within the selected period of time.
 * Quickly [create rules](../user-guides/api-discovery.md#api-inventory-and-rules) per any given API endpoint.
 * Get a full list of the malicious requests per any given API endpoint.
@@ -220,15 +220,13 @@ Each protected API endpoint will be highlighted with the corresponding icon in t
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
 
-## Shadow API
+## Finding shadow API
 
-The **API Discovery** module provides you with the possibility to upload your own API specifications to Wallarm to find the endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "Shadow API"). Finding shadow API endpoints is important as they can contain open vulnerabilities.
+As you have your API inventory discovered by Wallarm, you can highlight shadow API (endpoints discovered by Wallarm, but absent in your specifications).
 
-The functionality is included into all [subscriptions](../about-wallarm/subscription-plans.md), but disabled by default - contact the [Wallarm support team](mailto:support@wallarm.com) to enable it.
+This can be done with [**API Specifications**](api-specifications.md) enabled: with it you upload your API specifications to Wallarm and as soon as they are uploaded, their endpoint lists are compared with what was automatically detected by API Discovery and shadow APIs are highlighted.
 
-![!API Discovery - API Specifications (TBD: Figma image - replace as soon as the functionality is available)](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
-
-[Learn how to find shadow API with Wallarm →](../user-guides/api-discovery.md#finding-shadow-api)
+![!API Discovery - API Specifications](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 ## Security of data uploaded to the Wallarm Cloud
 
