@@ -27,7 +27,7 @@ Wallarmによって実行される攻撃分析は、追加の攻撃確認レイ�
 * Ubuntu 22.04 LTS(jammy)のサポート追加
 * WallarmをNGINX安定版またはNGINX Plusのモジュールとしてインストールする場合のDebian 10.x（buster）のサポートを廃止
 
-[サポートされているインストールオプションの完全リスト →](../admin-en/supported-platforms.md)
+[サポートされているインストールオプションの完全リスト →](../installation/supported-deployment-options.md)
 
 ## 新しい攻撃タイプ
 

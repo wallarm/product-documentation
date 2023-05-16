@@ -1,5 +1,5 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
 
 # Deploying Kong Ingress Controller with Integrated Wallarm Services
 
@@ -23,7 +23,7 @@ The **key features** of the Kong Ingress Controller with integrated Wallarm serv
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../../admin-en/supported-platforms.md), this solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options](../../../installation/supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources managed by Kong.
 * You are using either the Open-Source or Enterprise official Kong Ingress controller and looking for a security solution compatible with your technology stack.

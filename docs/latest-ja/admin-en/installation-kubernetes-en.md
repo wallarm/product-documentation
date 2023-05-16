@@ -1,5 +1,5 @@
 [ip-list-docs]: ../user-guides/ip-lists/overview.md
-[deployment-platform-docs]: supported-platforms.md
+[deployment-platform-docs]: ../installation/supported-deployment-options.md
 
 # Wallarmサービスを統合したNGINX Ingressコントローラのインストール
 
@@ -9,7 +9,7 @@
 
 ## ユースケース
 
-すべてのサポートされる[Wallarm展開オプション](supported-platforms.md)の中で、このソリューションは以下の**ユースケース**において推奨されるものです。
+すべてのサポートされる[Wallarm展開オプション](../installation/supported-deployment-options.md)の中で、このソリューションは以下の**ユースケース**において推奨されるものです。
 
 * [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)と互換性のあるIngressリソースにトラフィックをルーティングするIngressコントローラやセキュリティレイヤがない
 * 開発技術スタックと互換性のあるセキュリティソリューションを探している[Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)を使用している。

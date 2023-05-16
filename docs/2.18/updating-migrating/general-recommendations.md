@@ -34,7 +34,7 @@ Before upgrading, please check the [set of changes](what-is-new.md) and consider
 
     * Added Ubuntu 20.04 LTS (focal) support
 
-    [See the full list of supported platforms →](../admin-en/supported-platforms.md)
+    [See the full list of supported platforms →](../installation/supported-deployment-options.md)
 
     **New filtering node featuress**
 

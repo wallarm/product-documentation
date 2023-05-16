@@ -34,7 +34,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 Multi-tenant node:
 
-* Can be installed on the same [platforms](../../admin-en/supported-platforms.md) and according to the same instructions as a regular filtering node.
+* Can be installed on the same [platforms](../../installation/supported-deployment-options.md) and according to the same instructions as a regular filtering node.
 * Can be installed on the **technical tenant** or **tenant** level. If you want to provide a tenant with access to Wallarm Console, the filtering node must be installed at the corresponding tenant level.
 * Can be configured according to the same instructions as a regular filtering node.
 * The directive [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) is used to split traffic by the tenants.
@@ -44,7 +44,7 @@ Multi-tenant node:
 
 * [Configured tenant accounts](configure-accounts.md)
 * Execution of further commands by the user with the **Global administrator** role added under the [technical tenant account](configure-accounts.md#tenant-account-structure)
-* [Supported platform for the filtering node installation](../../admin-en/supported-platforms.md)
+* [Supported platform for the filtering node installation](../../installation/supported-deployment-options.md)
 
 ## Recommendations for a multi-tenant node deployment
 
@@ -64,7 +64,7 @@ Multi-tenant node:
     ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Set node name and click **Create**.
 1. Copy the filtering node token.
-1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../admin-en/supported-platforms.md).
+1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../installation/supported-deployment-options.md).
 1. Split traffic between tenants using their unique identifiers.
 
     === "NGINX and NGINX Plus"

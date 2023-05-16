@@ -228,7 +228,7 @@ API Discoveryは、トラフィックのほとんどをローカルで分析し�
 !!! warning "重要"
     Wallarmは、パラメータに指定された値をCloudに送信しません。エンドポイント、パラメータ名、およびそれらの統計情報のみが送信されます。## API Discoveryの有効化と設定
 
-`wallarm-appstructure`パッケージは、Debian 11.xとUbuntu 22.04パッケージを除くすべての[形態](../admin-en/supported-platforms.md)のWallarmノードに含まれています。ノードのデプロイ中に、API Discoveryモジュールをインストールしますが、デフォルトでは無効にしています。
+`wallarm-appstructure`パッケージは、Debian 11.xとUbuntu 22.04パッケージを除くすべての[形態](../installation/supported-deployment-options.md)のWallarmノードに含まれています。ノードのデプロイ中に、API Discoveryモジュールをインストールしますが、デフォルトでは無効にしています。
 
 API Discoveryを正しく有効化して実行するには：
 

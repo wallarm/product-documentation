@@ -40,7 +40,7 @@ Wallarm provides the following subscription plans:
 | [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | All | All |
 | [Audit log](../user-guides/settings/audit-log.md) | Yes | Yes |
 | **Deployment** | | |
-| [Deployment options](../admin-en/supported-platforms.md) | All | All |
+| [Deployment options](../installation/supported-deployment-options.md) | All | All |
 | [Multitenancy](../installation/multi-tenant/overview.md) | Yes (by request) | Yes (by request) |
 | **User management** | | |
 | [SSO (SAML) authentication for users](../admin-en/configuration-guides/sso/intro.md) | Yes | Yes |

@@ -176,7 +176,7 @@ curl "http://localhost/?id=1' UNION SELECT"
 #### Managing libdetection mode
 
 !!! info "**libdetection** default mode"
-    The default mode of the **libdetection** library is `on/true` (enabled) for all [deployment options](../admin-en/supported-platforms.md).
+    The default mode of the **libdetection** library is `on/true` (enabled) for all [deployment options](../installation/supported-deployment-options.md).
 
 You can control the **libdetection** mode using:
 

@@ -6,7 +6,7 @@ The solution is deployed from the Wallarm Helm chart.
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](supported-platforms.md), this solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options](../installation/supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
 * You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.

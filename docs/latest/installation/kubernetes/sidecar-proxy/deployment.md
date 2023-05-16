@@ -1,5 +1,5 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
 
 # Deploying Wallarm Sidecar Proxy
 
@@ -21,7 +21,7 @@ The **key features** of the Wallarm Sidecar proxy solution:
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../../admin-en/supported-platforms.md), this solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options](../../../installation/supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
 
 * You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based](../../../admin-en/installation-kubernetes-en.md) or [Wallarm Kong-based Ingress controller](../kong-ingress-controller/deployment.md)
 * Zero-trust environment that requires each microservice (including internal APIs) to be protected by the security solution

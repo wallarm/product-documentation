@@ -109,7 +109,7 @@ nav:
     - Administrator Guide:
       - Introduction to the administrator guide: admin-en/admin-intro-en.md
       - Installation:
-        - Deployment options: admin-en/supported-platforms.md
+        - Deployment options: installation/supported-deployment-options.md
         - NGINX:
           - NGINX installation options overview: admin-en/installation-nginx-overview.md
           - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md

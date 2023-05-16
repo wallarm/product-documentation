@@ -20,7 +20,7 @@ This page lists the changes available when upgrading the node 2.18 up to version
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-[See the full list of supported installation options →](../../admin-en/supported-platforms.md)
+[See the full list of supported installation options →](../../installation/supported-deployment-options.md)
 
 ## System requirements for the filtering node installation
 

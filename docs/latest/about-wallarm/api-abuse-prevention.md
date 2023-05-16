@@ -37,7 +37,7 @@ The solution deeply observes traffic anomalies before attributing them as malici
 
 ## Activating API Abuse Prevention
 
-The **API Abuse Prevention** module in the disabled state is delivered with [all forms of the Wallarm node 4.2 and above](../admin-en/supported-platforms.md) including the CDN node.
+The **API Abuse Prevention** module in the disabled state is delivered with [all forms of the Wallarm node 4.2 and above](../installation/supported-deployment-options.md) including the CDN node.
 
 To activate API Abuse Prevention:
 

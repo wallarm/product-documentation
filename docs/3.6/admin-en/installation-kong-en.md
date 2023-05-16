@@ -4,7 +4,7 @@
 
 [doc-wallarmblockpage]: configure-parameters-en.md#wallarm_block_page
 [doc-postanalytics]:    installation-postanalytics-en.md
-[doc-supported-os]:     supported-platforms.md
+[doc-supported-os]:     ../installation/supported-deployment-options.md
 [waf-installation-instr-middle]:             /2.18/admin-en/installation-kong-en/
 [versioning-policy]:                         ../updating-migrating/versioning-policy.md#version-list
 

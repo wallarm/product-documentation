@@ -20,7 +20,7 @@ Wallarm node UI management options:
 !!! warning "Removed regular and cloud types of nodes"
     Starting from the release 4.6, only the [**Wallarm node** type is available](../../updating-migrating/what-is-new.md#removal-of-the-email-password-based-node-registration).
 
-    **Wallarm node** utilizes a unified approach to registering and configuring in [any supported environment](../../admin-en/supported-platforms.md).
+    **Wallarm node** utilizes a unified approach to registering and configuring in [any supported environment](../../installation/supported-deployment-options.md).
 
 ## Creating a node
 
@@ -35,7 +35,7 @@ To create a Wallarm node:
 
         You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
 1. Copy the generated token.
-1. Deploy the created node to the [convenient environment](../../admin-en/supported-platforms.md) using the generated token.
+1. Deploy the created node to the [convenient environment](../../installation/supported-deployment-options.md) using the generated token.
 
 ## Viewing details of a node
 

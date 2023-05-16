@@ -6,7 +6,7 @@ You have already learned [how Wallarm filtering nodes work in separate environme
 
 If you perform the initial rollout of Wallarm protection for environments, it is recommended you use the following approach (you are welcome to adjust it as needed):
 
-1. Learn about available Wallarm node deployment options [here](../../supported-platforms.md).
+1. Learn about available Wallarm node deployment options [here](../../../installation/supported-deployment-options.md).
 2. If necessary, learn about available options to separately manage the filtering node configuration for your environments. You can find this information [here](how-wallarm-in-separated-environments-works.md#relevant-wallarm-features).
 3. Deploy Wallarm filtering nodes in your non-production environments with the filtration mode set to `monitoring`.
 4. Learn about how to operate, scale, and monitor the Wallarm solution; confirm the stability of the new network component.
@@ -29,7 +29,7 @@ The following approaches are recommended to test and gradually change the config
 
 ### Low-level Configuration of Wallarm Filtering Nodes in All Form-factors
 
-Low-level configuration of filtering nodes is performed via Docker environment variables, provided NGINX configuration file, Kubernetes Ingress controller parameters, etc. The way of configuration depends on the [deployment option](../../supported-platforms.md). 
+Low-level configuration of filtering nodes is performed via Docker environment variables, provided NGINX configuration file, Kubernetes Ingress controller parameters, etc. The way of configuration depends on the [deployment option](../../../installation/supported-deployment-options.md). 
 
 Low-level configuration can easily be separately managed for different customer environments using your existing change management processes for infrastructure resources.
 

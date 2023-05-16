@@ -1,5 +1,5 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../admin-en/supported-platforms.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
 
 # Kong Ingress Controllerを統合されたWallarmサービスと展開する
 
@@ -23,7 +23,7 @@ Kong API Gatewayで管理されているAPIを保護するには、Kubernetesク
 
 ## ユースケース
 
-すべての [Wallarm 展開オプション](../../../admin-en/supported-platforms.md) をサポートする中で、このソリューションは以下の **ユースケース** において推奨されるものです。
+すべての [Wallarm 展開オプション](../../../installation/supported-deployment-options.md) をサポートする中で、このソリューションは以下の **ユースケース** において推奨されるものです。
 
 * Kong で管理されている Ingress リソースへの トラフィックをルーティングするIngressコントローラとセキュリティレイヤがありません。
 * オープンソース版またはエンタープライズ版の公式Kong Ingressコントローラを使用しており、技術スタックと互換性のあるセキュリティソリューションを探しています。

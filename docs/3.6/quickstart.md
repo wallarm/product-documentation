@@ -1,6 +1,6 @@
 # Quick start with Wallarm platform
 
-These instructions describe how to quickly deploy the first Wallarm NGINX‑based filtering node and learn its basic features. This approach is recommended to be used only to try the product. To deploy the Wallarm node in the production environment, please refer to [separate guides for supported platforms](admin-en/supported-platforms.md).
+These instructions describe how to quickly deploy the first Wallarm NGINX‑based filtering node and learn its basic features. This approach is recommended to be used only to try the product. To deploy the Wallarm node in the production environment, please refer to [separate guides for supported platforms](installation/supported-deployment-options.md).
 
 The Wallarm platform quick start is performed using the provided Shell script to be run on a server with a supported Linux‑based operating system (OS).
 
@@ -91,4 +91,4 @@ To continue the product exploring, we recommend learning more about the followin
 
 When the Wallarm quick start is completed and basic API Security features are explored, you are recommended to proceed to the production deployment.
 
-[Wallarm production deployment options →](admin-en/supported-platforms.md)
+[Wallarm production deployment options →](installation/supported-deployment-options.md)

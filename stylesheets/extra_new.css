@@ -20,6 +20,19 @@
     --md-typeset-color:                  hsla(0, 0%, 0%, 1);
 }
 
+:root {
+  --color-black: #000;
+
+  --color-primary-100: #FEF6E5;
+  --color-primary-200: #FEE1B4;
+  --color-primary-300: #FEBB67;
+  --color-primary-400: #FDA041;
+  --color-primary-500: #FC7303;
+
+  --color-grey-300: #DBE0E7;
+  --color-grey-500: #959DAC;
+}
+
 .md-typeset {
     line-height: 1.5;
     font-size: 16px;
@@ -638,7 +651,7 @@ a.md-search-result__link:hover {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 16px;
   grid-auto-rows: minmax(100px, auto);
-  display: grid;  
+  display: grid;
 }
 
 @media screen and (max-width: 600px) {
@@ -733,7 +746,7 @@ a.navigation-card:hover {
 
 .platforms {
   grid-template-columns: repeat(3, 1fr);
-} 
+}
 
 @media screen and (max-width: 600px) {
   .platforms {
@@ -765,7 +778,7 @@ a.navigation-card:hover {
 }
 
 .options-list {
-  position: static; 
+  position: static;
   padding-top: 16px;
 }
 
@@ -853,4 +866,23 @@ a.navigation-card:hover {
 
 .tabbed-content .highlight .md-clipboard {
   top: .7em;
+}
+
+/* Wallarm UI library */
+.wlrm-button {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 6px 12px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-500);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .3s ease-in-out;
+}
+
+.wlrm-button:hover {
+  background-color: var(--color-primary-200);
 }

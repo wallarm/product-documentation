@@ -199,7 +199,7 @@ A path to the [custom ruleset](../user-guides/rules/intro.md) file that contains
 
 Enables additional validation of the SQL Injection attacks via the **libdetection** library. Using **libdetection** ensures the double‑detection of attacks and reduces the number of false positives.
 
-Analyzing of requests with the **libdetection** library is disabled by default in all [deployment options](../admin-en/supported-platforms.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md). To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
+Analyzing of requests with the **libdetection** library is disabled by default in all [deployment options](../installation/supported-deployment-options.md) except for the [Wallarm CDN nodes](../installation/cdn-node.md). To reduce the number of false positives, we recommend to enable analysis (`wallarm_enable_libdetection on`).
 
 [More details on **libdetection** →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
@@ -223,7 +223,7 @@ proxy_request_buffering on;
     Default value is:
     
     * `on` for the [Wallarm CDN nodes](../installation/cdn-node.md) (`proxy_request_buffering` is `on` as well).
-    * `off` for all [deployment options](../admin-en/supported-platforms.md) except for the Wallarm CDN nodes.
+    * `off` for all [deployment options](../installation/supported-deployment-options.md) except for the Wallarm CDN nodes.
 
 ### wallarm_fallback
 

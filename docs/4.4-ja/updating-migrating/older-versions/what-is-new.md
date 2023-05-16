@@ -74,7 +74,7 @@ Wallarmノード 4.2 以降では、リクエスト内のどこにでも JWT を
 * Ubuntu 16.04 LTS （xenial）のサポートが削除されました
 * [Wallarm Envoy-based Dockerイメージ](../../admin-en/installation-guides/envoy/envoy-docker.md)で使用されるEnvoyのバージョンが[1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)に上がりました。
 
-[サポートされているインストールオプションの完全なリストを参照 →](../../admin-en/supported-platforms.md)
+[サポートされているインストールオプションの完全なリストを参照 →](../../installation/supported-deployment-options.md)
 
 ## サーバーレスWallarmノード展開の新しい方法
 
@@ -93,7 +93,7 @@ Wallarmノード 4.2 以降では、リクエスト内のどこにでも JWT を
 
     展開済みノードを持つサーバーが限定された外部リソースへのアクセスを持ち、各リソースへのアクセスが個別に許可される場合、バージョン4.xへのアップグレード後、フィルタリングノードとクラウド間の同期が停止します。アップグレードされたノードには、新しいポートとともにAPIエンドポイントへのアクセスが許可される必要があります。## Wallarm Cloud でのノードの統一登録トークン
 
-リリース 4.x では、[対応しているどのプラットフォーム](../../admin-en/supported-platforms.md)でも、**トークン**によって Wallarm ノードを Wallarm Cloud に登録できるようになります。以前のバージョンの Wallarm ノードは、いくつかのプラットフォームで「メールアドレス-パスワード」のユーザー認証情報が必要でした。
+リリース 4.x では、[対応しているどのプラットフォーム](../../installation/supported-deployment-options.md)でも、**トークン**によって Wallarm ノードを Wallarm Cloud に登録できるようになります。以前のバージョンの Wallarm ノードは、いくつかのプラットフォームで「メールアドレス-パスワード」のユーザー認証情報が必要でした。
 
 トークンでのノードの統一登録により、Wallarm Cloud への接続がより安全で高速になります。例えば、
 

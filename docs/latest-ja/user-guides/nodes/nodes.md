@@ -20,7 +20,7 @@ WallarmノードのUI管理オプション：
 !!! warning "通常とクラウドノードの種類"
     バージョン4.0のリリース前では、Wallarmノードは通常タイプまたはクラウドタイプのいずれかである可能性がありました。新しいリリースから、[通常タイプが非推奨となり、クラウドタイプが**Wallarmノード**に改名されました](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)。
 
-    **Wallarmノード**は、[すべてのサポートされている環境](../../admin-en/supported-platforms.md)で登録および設定を統一されたアプローチを利用します。
+    **Wallarmノード**は、[すべてのサポートされている環境](../../installation/supported-deployment-options.md)で登録および設定を統一されたアプローチを利用します。
 
 ## ノードの作成
 
@@ -35,7 +35,7 @@ Wallarmノードを作成するには：
 
         ノードを作成時や既存のノードのメニューから、マルチテナントモードに切り替えることができます。
 1. 生成されたトークンをコピーします。
-1. 生成されたトークンを使用して、作成したノードを [好適な環境](../../admin-en/supported-platforms.md)にデプロイします。
+1. 生成されたトークンを使用して、作成したノードを [好適な環境](../../installation/supported-deployment-options.md)にデプロイします。
 
 ## ノードの詳細を表示する
 

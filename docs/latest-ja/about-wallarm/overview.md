@@ -18,7 +18,7 @@ Wallarmフィルタリングノードは、以下のような機能を提供し�
 * ネットワークトラフィックのメトリックを収集し、それらをWallarm Cloudにアップロードします。
 * Wallarm Cloudで定義したリソース固有のセキュリティルールをダウンロードし、トラフィック分析時に適用します。
 
-Wallarmフィルタリングノードをネットワークインフラストラクチャに展開するには、[サポートされているデプロイオプション](../admin-en/supported-platforms.md)のいずれかを使用します。
+Wallarmフィルタリングノードをネットワークインフラストラクチャに展開するには、[サポートされているデプロイオプション](../installation/supported-deployment-options.md)のいずれかを使用します。
 
 ## Cloud
 Wallarm Cloudは、以下のような機能を提供します。

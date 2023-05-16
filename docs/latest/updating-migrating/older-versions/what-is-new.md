@@ -94,7 +94,7 @@ Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../..
 * Dropped support for the operating system Ubuntu 16.04 LTS (xenial)
 * Version of Envoy used in [Wallarm Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md) has been increased to [1.18.4](https://www.envoyproxy.io/docs/envoy/latest/version_history/v1.18.4)
 
-[See the full list of supported installation options →](../../admin-en/supported-platforms.md)
+[See the full list of supported installation options →](../../installation/supported-deployment-options.md)
 
 ## New method for the serverless Wallarm node deployment
 
@@ -117,7 +117,7 @@ The new deployment method lets you configure the Wallarm CDN node outside your i
 
 With the release of Wallarm node 4.6, email-password based registration of Wallarm nodes in the Cloud has been removed. It is now mandatory to switch to the new token-based node registration method to continue with Wallarm node 4.6.
 
-The release 4.6 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../admin-en/supported-platforms.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
+The release 4.6 enables you to register the Wallarm node in the Wallarm Cloud by the **token** on [any supported platform](../../installation/supported-deployment-options.md), which ensures a more secure and faster connection to the Wallarm Cloud as follows:
 
 * Dedicated user accounts of the **Deploy** role allowing only to install the node are no longer required.
 * Users' data remains securely stored in the Wallarm Cloud.
