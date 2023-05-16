@@ -2,15 +2,7 @@
 
 You can set up Wallarm to create trouble tickets in [ServiceNow](https://www.servicenow.com/) when the following events are triggered:
 
-* System related:
-    * [User](../../../user-guides/settings/users.md) changes (newly created, deleted, role change)
-    * [Integration](integrations-intro.md) changes (disabled, deleted)
-    * [Application](../../../user-guides/settings/applications.md) changes (newly created, deleted, name change)
-* [Vulnerabilities](../../../glossary-en.md#vulnerability) detected, all by default or only for the selected risk level(s):
-    * High risk
-    * Medium risk
-    * Low risk
-* [Scope (exposed assets)](../../scanner.md) changed: updates in hosts, services, and domains
+--8<-- "../include/integrations/events-for-integrations-mail.md"
 
 ## Prerequisites
 
@@ -20,7 +12,7 @@ ServiceNow is a platform to help companies manage digital workflows for enterpri
 
 In ServiceNow UI:
 
-1. Get name of your [ServiceNow instance](https://www.tutorialspoint.com/servicenow/servicenow_introduction.htm#:~:text=A%20ServiceNow%20instance%20is%20a,built%20on%20multi%2Dinstance%20architecture.).
+1. Get name of your [ServiceNow instance](https://docs.servicenow.com/bundle/tokyo-application-development/page/build/team-development/concept/c_InstanceHierarchies.html).
 1. Get username and password to access the instance.
 1. Enable OAuth authentication and get client ID and secret as described [here](https://docs.servicenow.com/bundle/tokyo-application-development/page/integrate/inbound-rest/task/t_EnableOAuthWithREST.html).
 
