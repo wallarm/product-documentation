@@ -15,13 +15,14 @@ For dynamic DNS resolution, you can set a `proxy_pass` directive as the variable
 
 !!! warning "Impact of dynamic DNS resolution on traffic processing"
     * NGINX configuration with the `resolver` directive and variable in the `proxy_pass` directive slows down request processing since it will be the additional step of dynamic DNS resolution in the request processing.
+    * NGINX re‑resolves the domain name when its time-to-life (TTL) expires. By including the `valid` parameter to the `resolver` directive, you can tell NGINX to ignore the TTL and re‑resolve names at a specified frequency instead.
     * If the DNS server is down, NGINX will not process the traffic.
 
 For example:
 
 ```bash
 location / {
-        resolver 172.43.1.2;
+        resolver 172.43.1.2 valid=10s;
         set $backend https://demo-app.com$uri$is_args$args;
         proxy_pass $backend;
         include proxy_params;
