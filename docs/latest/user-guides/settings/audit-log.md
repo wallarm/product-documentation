@@ -17,6 +17,7 @@ On the **Settings** → **Activity log** tab of Wallarm Console, you can check t
 * [Integrations](integrations/integrations-intro.md)
 * [Blocked IP address](../ip-lists/denylist.md)
 * [Hit sampling](../events/analyze-attack.md#sampling-of-hits)
+* [Subscription plan](subscriptions.md)
 
 The logs also include information on the following actions and objects:
 
