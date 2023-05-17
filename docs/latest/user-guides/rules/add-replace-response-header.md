@@ -27,7 +27,7 @@ To create and apply the rule in the **Rules** section:
       * Name of the header to be added or to replace its value.
       * New value of the specified header.
 
-        To delete an existing response header, please specify a space as the value of this header on the **Replace** tab.
+        To delete an existing response header, please leave the value of this header on the **Replace** tab empty.
 
 2. Wait for the [rule compilation to complete](compiling.md).
 
