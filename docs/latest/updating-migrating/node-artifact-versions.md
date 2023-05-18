@@ -16,6 +16,11 @@ replace by 4.6
 
 [How to upgrade](ingress-controller.md)
 
+### 4.6.3 (2023-05-18)
+
+* The Helm chart version of the NGINX Ingress controller has been bumped to [4.6.1](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.6.1)
+* The NGINX Ingress controller version has been bumped to [1.7.1](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.7.1)
+
 ### 4.6.2 (2023-04-10)
 
 * The Helm chart version of the NGINX Ingress controller has been bumped to [4.6.0](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.6.0)
