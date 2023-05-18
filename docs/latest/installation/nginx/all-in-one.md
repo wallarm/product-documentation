@@ -90,10 +90,32 @@ The all-in-one installation script will:
 1. Add Wallarm repositories for your NGINX/OS.
 1. Install Wallarm packages from these repositories.
 1. Connect the installed Wallarm module to your NGINX.
-1. Request token and - when provided - connect the filtering node to Wallarm Cloud.
-1. Performs initial modification of `/etc/nginx/nginx.conf`.
+1. Connect the filtering node to Wallarm Cloud using the provided token.
+1. Remind that you need, for the node to start working, to perform its configuration via `/etc/nginx/nginx.conf`.
 
-**Procedure:**
+The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when all is done completely automatically.
+
+!!! info "Script help and parameters"
+    As soon as you have the all-in one script downloaded, you can get help on it with:
+
+    ```
+    sudo sh ./wallarm-4.6.7.x86_64-glibc.sh -- -h
+    ```
+
+    Which returns:
+
+    ```
+    ...
+    Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
+    Options:
+    -b, --batch                 batch mode, non-interactive installation
+    -t, --token TOKEN           Node token. only used in batch mode
+    -c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, only used in batch mode
+    -h, --help
+        --version
+    ```
+
+### Procedure
 
 1. Download all-in-one Wallarm installation script.
 
@@ -101,16 +123,50 @@ The all-in-one installation script will:
     sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.7.x86_64-glibc.sh
     ```
 
-1. Run script.
+1. Run script in the selected mode.
 
-    ```bash
-    sudo sh wallarm-4.6.7.x86_64-glibc.sh
-    ```
+    === "Interactive mode"
+        1. Run:
 
-1. Confirm you want to connect the  node to Wallarm Cloud.
-1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-1. Enter your Wallarm node token.
-1. Confirm modification of `/etc/nginx/nginx.conf`.
+            ```bash
+            sudo sh wallarm-4.6.7.x86_64-glibc.sh
+            ```
+
+        1. Confirm you want to connect the node to Wallarm Cloud.
+        1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+        1. Enter Wallarm token.
+
+    === "Batch (non-interactive) mode"
+        1. Run depending on the [selected token type](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
+
+            ```bash
+            sudo sh wallarm-4.6.7.x86_64-glibc.sh -b -t <API TOKEN> -с <US/EU/EU2> env WALLARM_LABELS="group=<GROUP>"
+            ```
+
+            or:
+
+            ```bash
+            sudo sh wallarm-4.6.7.x86_64-glibc.sh -b -t <NODE TOKEN> -с <US/EU/EU2>
+            ```
+
+1. Read message saying that you need, for the node to start working, to perform its configuration via `/etc/nginx/nginx.conf`.
+1. Confirm that installation is finished.
+
+### Separate postanalytics module installation
+
+The all-in-one script supports [separate postanalytics module installation](../../admin-en/installation-postanalytics-en.md). To install filtering part separately, use:
+
+```
+sudo sh ./wallarm-4.6.7.x86_64-glibc.sh filtering
+```
+
+To install postanalytics separately, use:
+
+```
+sudo sh ./wallarm-4.6.7.x86_64-glibc.sh postanalytics
+```
+
+Without argument filtering and postanalytics part are installed altogether.
 
 ## 4. Enable Wallarm to analyze the traffic
 
