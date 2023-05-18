@@ -65,13 +65,8 @@ There are three available levels:
 You can configure API Abuse Prevention to react to malicious bots in one of the following ways:
 
 * **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/denylist.md) bots' IPs and block all traffic these IPs produce.
-* **Add to graylist**: this reaction allows you to try the API Abuse Prevention functionality avoiding bots' blocking.
-
-    Wallarm will register bots' attacks and put bots' IPs to the [graylists](../user-guides/ip-lists/denylist.md) but will not block traffic these IPs produce.
-
-    If you use filtering node in the safe blocking [mode](../admin-en/configure-wallarm-mode.md), some attacks originating from graylisted IPs will be blocked. [Read more](../user-guides/ip-lists/graylist.md)
-
-* **Only monitor**: Wallarm will display the detected bot activity in the **Events** section but will add the bot's IP neither to deny- nor to graylist. From any bot related event in `Monitoring` status, you can quickly block the bot with the **Add source IP to denylist** button.
+* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/graylist.md) bots' IPs and block only malicious requests originating from them.
+* **Only monitor**: Wallarm will display the detected bot activity in the [**Events**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
 
 ## Exploring malicious bots and their attacks
 
