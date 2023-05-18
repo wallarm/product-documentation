@@ -182,13 +182,18 @@ When uploading your specification, set:
 
     Note that you can re-start comparison at any moment manually via specification menu → **Restart comparison**.
 
-In **API Discovery** section, found shadow APIs obtain the shadow API mark in the **Issues** column. You can use the **Compare to...** filter to highlight shadow APIs for the selected specification comparisons, and **Other → Shadow API** filter to see only shadow APIs.
+Found shadow APIs are displayed in Wallarm Console:
 
-![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
+* In the [**API Discovery**](../about-wallarm/api-discovery.md#shadow-api) section: the shadow API mark in the **Issues** column is displayed. 
 
-In the details of the endpoint that was defined as Shadow API, the uploaded specifications in which it is absent are listed in the **Specification conflicts** section (there may be several).
+    You can use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by mark in the **Issues** column.
 
-A tab with shadow APIs is displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
+    ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
+
+    Use the **Other → Shadow API** filter to see only shadow APIs related to the selected comparisons and filter out the remaining endpoints.
+
+* In the [**API Discovery**](../about-wallarm/api-discovery.md#shadow-api) section, in the details of the endpoint that was defined as Shadow API: the uploaded specifications in which this endpoint is absent are listed in the **Specification conflicts** section (there may be several).
+* Shadow APIs are displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
 
 ## Download OpenAPI specification (OAS) of your API inventory
 
