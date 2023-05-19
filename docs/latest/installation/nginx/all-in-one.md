@@ -99,7 +99,7 @@ The all-in-one installation script can work in **interactive mode** (default), w
     As soon as you have the all-in one script downloaded, you can get help on it with:
 
     ```
-    sudo sh ./wallarm-4.6.7.x86_64-glibc.sh -- -h
+    sudo sh ./wallarm-4.6.8.x86_64-glibc.sh -- -h
     ```
 
     Which returns:
@@ -107,10 +107,16 @@ The all-in-one installation script can work in **interactive mode** (default), w
     ```
     ...
     Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
-    Options:
+
+    OPTION                      DESCRIPTION
     -b, --batch                 batch mode, non-interactive installation
     -t, --token TOKEN           Node token. only used in batch mode
-    -c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, only used in batch mode
+    -c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default EU, only used in batch mode
+    -H, --host HOST             Wallarm API address, fore example api.wallarm.com or us1.api.wallarm.com, only used in batch mode
+    -P, --port PORT             Wallarm API pot, fore example 443
+        --no-ssl                disable SSL for Wallarm API access
+        --no-verify             disable SSL certificates verification
+    -f, --force                 always create a new instance in Cloud
     -h, --help
         --version
     ```
@@ -120,7 +126,7 @@ The all-in-one installation script can work in **interactive mode** (default), w
 1. Download all-in-one Wallarm installation script.
 
     ```bash
-    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.7.x86_64-glibc.sh
+    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.8.x86_64-glibc.sh
     ```
 
 1. Run script in the selected mode.
@@ -129,7 +135,7 @@ The all-in-one installation script can work in **interactive mode** (default), w
         1. Run:
 
             ```bash
-            sudo sh wallarm-4.6.7.x86_64-glibc.sh
+            sudo sh wallarm-4.6.8.x86_64-glibc.sh
             ```
 
         1. Confirm you want to connect the node to Wallarm Cloud.
@@ -140,13 +146,13 @@ The all-in-one installation script can work in **interactive mode** (default), w
         1. Run depending on the [selected token type](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
 
             ```bash
-            sudo sh wallarm-4.6.7.x86_64-glibc.sh -b -t <API TOKEN> -с <US/EU/EU2> env WALLARM_LABELS="group=<GROUP>"
+            sudo env WALLARM_LABELS="group=GROUP" sh wallarm-4.6.8.x86_64-glibc.sh -- -b -t <API TOKEN> -c <US/EU/EU2>
             ```
 
             or:
 
             ```bash
-            sudo sh wallarm-4.6.7.x86_64-glibc.sh -b -t <NODE TOKEN> -с <US/EU/EU2>
+            sudo sh wallarm-4.6.8.x86_64-glibc.sh -- -b -t <NODE TOKEN> -с <US/EU/EU2>
             ```
 
 1. Read message saying that you need, for the node to start working, to perform its configuration via `/etc/nginx/nginx.conf`.
@@ -157,16 +163,26 @@ The all-in-one installation script can work in **interactive mode** (default), w
 The all-in-one script supports [separate postanalytics module installation](../../admin-en/installation-postanalytics-en.md). To install filtering part separately, use:
 
 ```
-sudo sh ./wallarm-4.6.7.x86_64-glibc.sh filtering
+sudo sh ./wallarm-4.6.8.x86_64-glibc.sh filtering
 ```
 
 To install postanalytics separately, use:
 
 ```
-sudo sh ./wallarm-4.6.7.x86_64-glibc.sh postanalytics
+sudo sh ./wallarm-4.6.8.x86_64-glibc.sh postanalytics
 ```
 
 Without argument filtering and postanalytics part are installed altogether.
+
+### ARM version
+
+To install node on machine with the ARM processor architecture, download the following all-in-one script:
+
+```bash
+sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.8.aarch64-glibc.sh
+```
+
+The script uses all the same options.
 
 ## 4. Enable Wallarm to analyze the traffic
 
