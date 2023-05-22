@@ -54,8 +54,7 @@ The API inventory will display the endpoints and parameters that exceeded these 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
 * Only those requests to which the server responded in the 2xx range are processed.
-* Requests that do not conform to the design principles of the REST API are not processed. This is done by controlling the `Content-Type` header parameter of responses: if the `Content-Type` parameter does not contain `application` as a type and `json` as a subtype, such request is considered to be non-REST API and is filtered out. Example of REST API response:  `Content-Type: application/json;charset=utf-8`. If the parameter does not exist, API Discovery analyzes the request.
-* Standard fields such as `Accept` and alike are discarded.
+* Standard fields such as `Сontent-Type`, `Accept` and alike are discarded.
 
 ### API inventory elements
 
@@ -203,6 +202,7 @@ Click the endpoint to expand its parameters and view which type was automaticall
 ![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
+
 ## Shadow API
 
 A shadow API refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
