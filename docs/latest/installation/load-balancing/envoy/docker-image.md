@@ -33,7 +33,7 @@ The filtering node configuration parameters can be passed to the `docker run` co
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash
@@ -52,7 +52,7 @@ Environment variable | Description| Required
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with the Wallarm solution. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses](../../../user-guides/ip-lists/graylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../../admin-en/configure-wallarm-mode.md) | No
-`WALLARM_LABELS` | <p>Available starting from node 4.6. Works only if `WALLARM_API_TOKEN` is set to [API token](../../../user-guides/settings/api-tokens.md) with the `Deploy` role. Allows setting the `group` label for node instance grouping, for example:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).</p> | No
+`WALLARM_LABELS` | <p>Available starting from node 4.6. Works only if `WALLARM_API_TOKEN` is set to [API token](../../../user-guides/settings/api-tokens.md) with the `Deploy` role. Sets the `group` label for node instance grouping, for example:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).</p> | Yes (for API tokens)
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../../admin-en/configuration-guides/allocate-resources-for-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
 
 The command does the following:
@@ -76,7 +76,7 @@ To run the container:
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash

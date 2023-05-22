@@ -61,7 +61,7 @@ Deploy the Wallarm filtering node from the Docker image:
 
     As for the **Multi-tenant node** checkbox, leave it unticked. This checkbox is related to the corresponding feature setup that is not a part of a quick start.
 1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
 === "US Cloud"
     ```bash

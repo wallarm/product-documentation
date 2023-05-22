@@ -116,7 +116,7 @@ To generate a token and connect the postanalytics filtering node to the Cloud:
 
     === "API token"
 
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
         1. Find or create API token with the `Deploy` source role.
         1. Copy this token.
         1. Run the `register-node` script in a system with the filtering node:
@@ -135,7 +135,7 @@ To generate a token and connect the postanalytics filtering node to the Cloud:
 
     === "Node token"
 
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or  [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
         1. Copy the generated token.
         1. Run the `register-node` script in a system with the filtering node:
 

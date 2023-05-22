@@ -1,7 +1,7 @@
 [user-roles-article]:       ../../user-guides/settings/users.md#user-roles
 [img-api-tokens-edit]:      ../../images/api-tokens-edit.png
 
-# API Tokens (bla)
+# API Tokens
 
 In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
 
@@ -21,7 +21,7 @@ You can renew the token value at any moment.
 * Analyst
 * API Developer
 * Read only
-* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud)
+* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#creating-a-node)
 * Сustom - switches back to the  manual permission selection
 
 !!! info "Token privacy"

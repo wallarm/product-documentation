@@ -43,7 +43,7 @@ To run the container:
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash
@@ -79,7 +79,7 @@ To run the container:
 
     ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash
