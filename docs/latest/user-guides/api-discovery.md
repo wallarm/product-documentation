@@ -154,6 +154,20 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
+## Displaying shadow API
+
+The **API Discovery** module automatically uncovers shadow APIs by comparing the discovered API inventory with [customers' provided specifications](../user-guides/api-specifications.md). To display [shadow APIs](../about-wallarm/api-discovery.md#shadow-api) among endpoints discovered by Wallarm:
+
+* Use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by the special mark in the **Issues** column.
+
+    ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
+
+* Use the **Other → Shadow API** filter to see only shadow APIs related to the selected comparisons and filter out the remaining endpoints.
+
+In the details of the endpoint that was defined as Shadow API, the uploaded specifications in which this endpoint is absent are listed in the **Specification conflicts** section (there may be several).
+
+Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
+
 ## Download OpenAPI specification (OAS) of your API inventory
 
 The API Discovery UI provides you with an option to download the [OpenAPI v3](https://spec.openapis.org/oas/v3.0.0) specification of either an individual API endpoint or an entire API discovered by Wallarm.

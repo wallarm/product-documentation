@@ -299,6 +299,7 @@ nav:
         - Verifying Attacks: user-guides/events/verify-attack.md
       - Vulnerabilities: user-guides/vulnerabilities.md
       - API Discovery: user-guides/api-discovery.md
+      - API Specifications: user-guides/api-specifications.md
       - API Leaks: user-guides/api-leaks.md
       - Search and Filters:
         - Using Search and Filters: user-guides/search-and-filters/use-search.md
