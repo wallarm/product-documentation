@@ -65,8 +65,15 @@ There are three available levels:
 You can configure API Abuse Prevention to react to malicious bots in one of the following ways:
 
 * **Add to denylist**: Wallarm will [denylist](../user-guides/ip-lists/denylist.md) bots' IPs and block all traffic these IPs produce.
-* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/graylist.md) bots' IPs and block only malicious requests originating from them.
-* **Only monitor**: Wallarm will display the detected bot activity in the [**Events**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
+* **Add to graylist**: Wallarm will [graylist](../user-guides/ip-lists/graylist.md) bots' IPs and block only requests originating from these IPs and containing the signs of the following attacks:
+
+    * [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
+    * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)
+    * [Attacks detected based on regular expressions](../user-guides/rules/regex-rule.md)
+
+* **Only monitor**: Wallarm will display the detected bot activity in the [**Events**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. 
+
+    From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.
 
 ## Exploring malicious bots and their attacks
 
