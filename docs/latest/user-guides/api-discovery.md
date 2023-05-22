@@ -154,46 +154,19 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Finding shadow API
+## Displaying shadow API
 
-A shadow API refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
+In API Discovery section, to display the [automatically revealed shadow APIs](../about-wallarm/api-discovery.md#shadow-api):
 
-The API Discovery module automatically uncovers shadow APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](api-specifications.md) UI section and the module automatically highlights endpoints discovered by API Discovery, but absent in your uploaded specification.
-
-As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
-
-![!API Discovery - API Specifications](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
-
-The **API Specifications** section is available to the users of all [roles](../user-guides/settings/users.md#user-roles). Users of the following roles can add, remove, and change comparison settings:
-
-* Administrator
-* Global administrator
-
-When uploading your specification, set:
-
-* Application(s) and host(s) - only endpoints related to the selected applications/hosts will be compared. If you select **Compare with all current and future discovered applications hosts**, all hosts (of the selected applications) known now and all hosts that will be discovered in future will be included into comparison.
-
-    You can change comparison settings at any moment later - after this the comparison will be re-done providing new results.
-
-* From where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
-* Whether the comparison should be performed once after specification upload or every hour (the **Perform regular comparison** option is selected by default). Hourly comparison allows finding additional shadow APIs as API Discovery discovers more endpoints. Specification uploaded from URL is updated before each comparison.
-
-    ![!API Discovery - API Specifications - uploading API specification to find shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
-
-    Note that you can re-start comparison at any moment manually via specification menu → **Restart comparison**.
-
-Found shadow APIs are displayed in Wallarm Console:
-
-* In the [**API Discovery**](../about-wallarm/api-discovery.md#shadow-api) section: the shadow API mark in the **Issues** column is displayed. 
-
-    You can use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by mark in the **Issues** column.
+* Use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by the special mark in the **Issues** column.
 
     ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
 
-    Use the **Other → Shadow API** filter to see only shadow APIs related to the selected comparisons and filter out the remaining endpoints.
+* Use the **Other → Shadow API** filter to see only shadow APIs related to the selected comparisons and filter out the remaining endpoints.
 
-* In the [**API Discovery**](../about-wallarm/api-discovery.md#shadow-api) section, in the details of the endpoint that was defined as Shadow API: the uploaded specifications in which this endpoint is absent are listed in the **Specification conflicts** section (there may be several).
-* Shadow APIs are displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
+In the details of the endpoint that was defined as Shadow API, the uploaded specifications in which this endpoint is absent are listed in the **Specification conflicts** section (there may be several).
+
+Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
 
 ## Download OpenAPI specification (OAS) of your API inventory
 
