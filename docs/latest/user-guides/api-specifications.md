@@ -2,10 +2,7 @@
 
 In the **API Specifications** section of the Wallarm Console UI, you can keep your API specifications which Wallarm uses to uncover shadow APIs. This article gives an information on how to use this section.
 
-The section is available to the users of all [roles](../user-guides/settings/users.md#user-roles). Users of the following roles can add, remove, and change comparison settings:
-
-* Administrator
-* Global administrator
+**Administrators** and **Global administrators** can add, remove and download specifications and change settings of shadow API detection. Users of other [roles](../user-guides/settings/users.md#user-roles) can only view the list of uploaded specifications.
 
 ## Revealing shadow API
 
