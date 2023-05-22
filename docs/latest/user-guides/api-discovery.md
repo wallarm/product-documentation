@@ -156,18 +156,18 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ## Finding shadow API
 
-If [**API Specifications**](api-specifications.md) feature is enabled, you can upload your own API specifications to Wallarm to find the endpoints discovered by Wallarm, but absent in your specification (missing endpoints, also known as "[Shadow API](../about-wallarm/api-discovery.md#shadow-api)").
+A shadow API refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
 
-As soon as your specification is uploaded, its endpoint list is compared with what was automatically detected by API Discovery and shadow APIs are highlighted in the Wallarm Console.
+The API Discovery module automatically uncovers shadow APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](api-specifications.md) UI section and the module automatically highlights endpoints discovered by API Discovery, but absent in your uploaded specification.
 
-You specifications can be uploaded at the **API Specifications** section. This section shows the list of uploaded specifications and comparison results. By default, the section is disabled - contact the [Wallarm support team](mailto:support@wallarm.com) to enable.
+As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
 
-After enabling, the **API Specifications** section is available to the users of all [roles](../user-guides/settings/users.md#user-roles). Users of the following roles can add, remove, and change comparison settings:
+![!API Discovery - API Specifications](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+
+The **API Specifications** section is available to the users of all [roles](../user-guides/settings/users.md#user-roles). Users of the following roles can add, remove, and change comparison settings:
 
 * Administrator
 * Global administrator
-
-![!API Discovery - API Specifications (TBD: Figma image - replace as soon as the functionality is available)](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 When uploading your specification, set:
 
