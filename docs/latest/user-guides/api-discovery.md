@@ -156,7 +156,7 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ## Displaying shadow API
 
-In API Discovery section, to display the [automatically revealed shadow APIs](../about-wallarm/api-discovery.md#shadow-api):
+The **API Discovery** module automatically uncovers shadow APIs by comparing the discovered API inventory with [customers' provided specifications](../user-guides/api-specifications.md). To display [shadow APIs](../about-wallarm/api-discovery.md#shadow-api) among endpoints discovered by Wallarm:
 
 * Use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by the special mark in the **Issues** column.
 
