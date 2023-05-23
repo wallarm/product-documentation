@@ -17,6 +17,7 @@
 [node-status-docs]:                 configure-statistics-service.md
 [node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../installation/supported-deployment-options.md
 
 # Running Docker NGINX‑based image
@@ -39,29 +40,7 @@ The functionality of the filtering node installed inside the Docker container is
 
 To run the container:
 
-1. Get API or node token:
-
-    === "API token"
-
-        !!! info "When to use"
-            Use this token when:
-
-            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
-
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
-        1. Copy this token.
-
-    === "Node token"
-
-        !!! info "When to use"
-            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
-
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-        1. Do one of the following: 
-            * Create the node of the **Wallarm node** type and copy the generated token.
-            * Use existing node group - copy token using node's menu → **Copy token**.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 1. Run the container with the node:
 
@@ -95,29 +74,7 @@ You can mount the prepared configuration file to the Docker container via the `-
 
 To run the container:
 
-1. Get API or node token:
-
-    === "API token"
-
-        !!! info "When to use"
-            Use this token when:
-
-            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
-
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
-        1. Copy this token.
-
-    === "Node token"
-
-        !!! info "When to use"
-            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
-
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-        1. Do one of the following: 
-            * Create the node of the **Wallarm node** type and copy the generated token.
-            * Use existing node group - copy token using node's menu → **Copy token**.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 1. Run the container with the node:
 

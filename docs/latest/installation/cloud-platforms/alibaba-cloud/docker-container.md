@@ -7,6 +7,7 @@
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
 
 # Deployment of the Wallarm Docker Image to Alibaba Cloud
@@ -29,29 +30,7 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, you should create the Alibaba Cloud instance and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
-1. Get API or node token:
-
-    === "API token"
-
-        !!! info "When to use"
-            Use this token when:
-
-            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
-
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
-        1. Copy this token.
-
-    === "Node token"
-
-        !!! info "When to use"
-            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
-
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-        1. Do one of the following: 
-            * Create the node of the **Wallarm node** type and copy the generated token.
-            * Use existing node group - copy token using node's menu → **Copy token**.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
@@ -87,29 +66,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the Alibaba Cloud instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
-1. Get API or node token:
-
-    === "API token"
-
-        !!! info "When to use"
-            Use this token when:
-
-            * The Wallarm node will scale in your infrastructure, while the number of node groups is not known in advance (node groups will be constantly added/removed).
-            * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
-
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
-        1. Copy this token.
-
-    === "Node token"
-
-        !!! info "When to use"
-            Use this token when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
-
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-        1. Do one of the following: 
-            * Create the node of the **Wallarm node** type and copy the generated token.
-            * Use existing node group - copy token using node's menu → **Copy token**.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
             
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:

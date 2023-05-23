@@ -45,14 +45,15 @@ location /mirror-test {
 
 You can mount the prepared configuration file to the Docker container via the `-v` option. The file must contain the following settings:
 
-* [Filtering node directives](configure-parameters-en.md)
+* [Filtering node directives](../../admin-en/configure-parameters-en.md)
+
 * [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
 
 To run the container:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+    ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the node:
 
@@ -131,6 +132,6 @@ By default, the logs rotate once every 24 hours. To set up the log rotation, cha
 
 <!-- ## Configuring the use cases
 
-The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used filtering node configuration options:
+The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](../../admin-en/configure-parameters-en.md). Below are some commonly used filtering node configuration options:
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.md" -->
