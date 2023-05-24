@@ -65,3 +65,15 @@ According to the OWASP project, the top security threats for 2023 are largely si
 * The [API8:2019 Injection](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa8-injection.md) threat is no longer listed separately and has been included in the new [API10:2023 Unsafe Consumption of APIs](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xaa-unsafe-consumption-of-apis.md) category.
 * The [API10:2019 Insufficient Logging & Monitoring](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xaa-insufficient-logging-monitoring.md) threat has been removed from the OWASP API Security Top 10.
 * The new [API6:2023 Server Side Request Forgery](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa6-server-side-request-forgery.md) and [API8:2023 Lack of Protection from Automated Threats](https://github.com/OWASP/API-Security/blob/master/2023/en/src/0xa8-lack-of-protection-from-automated-threats.md) risks have been added to the list that underscores the significance of these API threats.
+
+## Addressing Wallarm node and Cloud synchronization issues
+
+When Wallarm nodes are not updated or face synchronization issues with the Cloud, error messages appear on the dashboards indicating problems that can impact infrastructure security. Outdated nodes may lack important security updates, allowing malicious traffic to bypass defenses. Synchronization issues can disrupt the nodes' functionality, preventing them from receiving vital security policies from the Cloud.
+
+To maintain a secure environment, it is crucial to regularly update Wallarm nodes and address synchronization problems. Here are instructions on how to handle the error messages:
+
+1. If your Wallarm node version is [end-of-life or is approaching its end-of-life](../../updating-migrating/versioning-policy.md#version-list), it is recommended to upgrade your node to the latest version.
+1. If you encounter issues with Wallarm Cloud synchronization, collect the following logs and share this data with the [Wallarm support team](mailto:support@wallarm.com):
+
+    * Logs from `/var/log/wallarmsyncnode.log` to check for any problems with the `syncnode` script
+    * Logs from the `var/log/syslog` or `var/log/messages` directory (depending on the deployment option) to provide additional details about the synchronization issue.
