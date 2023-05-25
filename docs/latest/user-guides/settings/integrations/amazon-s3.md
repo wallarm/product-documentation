@@ -61,7 +61,7 @@ To set up an Amazon S3 integration:
                         "Sid": "VisualEditor0",
                         "Effect": "Allow",
                         "Action": "s3:PutObject",
-                        "Resource": "<YOUR_S3_BUCKET_ARN>"
+                        "Resource": "<YOUR_S3_BUCKET_ARN>/*"
                     }
                 ]
             }
