@@ -51,10 +51,8 @@ You can mount the prepared configuration file to the Docker container via the `-
 
 To run the container:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Run the container with the node:
 
     === "US Cloud"

@@ -45,9 +45,13 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 !!! info "The multi-tenant option"
     The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
 
-    * For API token installation, you can switch a node to the multi-tenant mode after installation from the existing node's menu.
+    === "API token installation"
 
-    * For node token installation, you can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
+        You can switch a node to the multi-tenant mode after installation from the existing node's menu.
+
+    === "Node token installation"
+    
+        You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
 
 ## Viewing details of a node
 
@@ -101,7 +105,7 @@ The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node
 
 * [**API tokens**](../settings/api-tokens.md) with the `Deploy` role when:
 
-    * The Wallarm node will scale in your infrastructure, while the number of node groups used to logically organize nodes in UI is not known in advance (node groups will be constantly added/removed - with API tokens you will be able to easily manage these groups with the `WALLARM_LABELS` variable setting the `group` label value).
+    * The number of node groups used to logically organize nodes in UI is not known in advance (node groups will be constantly added/removed - with API tokens you will be able to easily manage these groups with the `WALLARM_LABELS` variable setting the `group` label value).
     * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
 
 * **Node tokens** when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.

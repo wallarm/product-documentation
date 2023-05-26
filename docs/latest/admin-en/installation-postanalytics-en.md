@@ -2,6 +2,7 @@
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Separate postanalytics module installation
 
@@ -110,44 +111,37 @@ The postanalytics module interacts with the Wallarm Cloud. It is required to cre
 
 To provide the node with access, you need to generate a token on the Cloud side and specify it on the machine with the node packages.
 
-To generate a token and connect the postanalytics filtering node to the Cloud:
+To connect the postanalytics filtering node to the Cloud:
 
-1. Connect node using token of the [appropriate type](../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
+
+1. Run the `register-node` script in a system with the filtering node:
 
     === "API token"
 
-        1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-        1. Find or create API token with the `Deploy` source role.
-        1. Copy this token.
-        1. Run the `register-node` script in a system with the filtering node:
-
-            === "US Cloud"
-                ``` bash
-                sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
-                ```
-            === "EU Cloud"
-                ``` bash
-                sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
-                ```
+        === "US Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+            ```
+        === "EU Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
+            ```
             
         * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
         * `--labels 'group=<GROUP>'` parameter puts your node to the `<GROUP>` node group (existing, or, if does not exist, it will be created).
 
     === "Node token"
 
-        1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
-        1. Copy the generated token.
-        1. Run the `register-node` script in a system with the filtering node:
+        === "US Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+            ```
+        === "EU Cloud"
+            ``` bash
+            sudo /usr/share/wallarm-common/register-node -t <TOKEN>
+            ```
 
-            === "US Cloud"
-                ``` bash
-                sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
-                ```
-            === "EU Cloud"
-                ``` bash
-                sudo /usr/share/wallarm-common/register-node -t <TOKEN>
-                ```
-    
         * `<TOKEN>` is the copied value of the node token.
 
     * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
