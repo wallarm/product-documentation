@@ -69,7 +69,7 @@ Install the supported NGINX variant:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.6.8.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.6.10.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
@@ -110,7 +110,7 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
 1. Download all-in-one Wallarm installation script.
 
     ```bash
-    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.8.x86_64-glibc.sh
+    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
     ```
 
 1. Run script in the selected mode.
@@ -119,7 +119,7 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
         1. Run:
 
             ```bash
-            sudo sh wallarm-4.6.8.x86_64-glibc.sh
+            sudo sh wallarm-4.6.10.x86_64-glibc.sh
             ```
 
         1. Confirm you want to connect the node to Wallarm Cloud.
@@ -130,13 +130,13 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
         1. Run depending on the [selected token type](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
 
             ```bash
-            sudo env WALLARM_LABELS="group=GROUP" sh wallarm-4.6.8.x86_64-glibc.sh -- -b -t <API TOKEN> -c <US/EU/EU2>
+            sudo env WALLARM_LABELS="group=GROUP" sh wallarm-4.6.10.x86_64-glibc.sh -- -b -t <API TOKEN> -c <US/EU/EU2>
             ```
 
             or:
 
             ```bash
-            sudo sh wallarm-4.6.8.x86_64-glibc.sh -- -b -t <NODE TOKEN> -с <US/EU/EU2>
+            sudo sh wallarm-4.6.10.x86_64-glibc.sh -- -b -t <NODE TOKEN> -с <US/EU/EU2>
             ```
 
 1. Confirm that installation is finished.
@@ -147,13 +147,13 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
 The all-in-one script supports [separate postanalytics module installation](../../admin-en/installation-postanalytics-en.md). To install filtering part separately, use:
 
 ```
-sudo sh ./wallarm-4.6.8.x86_64-glibc.sh filtering
+sudo sh ./wallarm-4.6.10.x86_64-glibc.sh filtering
 ```
 
 To install postanalytics separately, use:
 
 ```
-sudo sh ./wallarm-4.6.8.x86_64-glibc.sh postanalytics
+sudo sh ./wallarm-4.6.10.x86_64-glibc.sh postanalytics
 ```
 
 Without argument filtering and postanalytics part are installed altogether.
@@ -163,7 +163,7 @@ Without argument filtering and postanalytics part are installed altogether.
 To install node on machine with the ARM64 processor architecture, download the following all-in-one script:
 
 ```bash
-sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.8.aarch64-glibc.sh
+sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.aarch64-glibc.sh
 ```
 
 The script uses all the same options.
