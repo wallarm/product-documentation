@@ -28,19 +28,25 @@
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 
-# Installing dynamic Wallarm module via All-in-One Wallarm Binary
+# Installing Wallarm with All-in-One Binary
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for different NGINX versions and on a number of different Linux OS versions using **all-in-one Wallarm binary**.
+
+The all-in-one installation script:
+
+1. Checks your OS and NGINX version.
+1. Adds Wallarm repositories for the detected OS and NGINX version.
+1. Installs Wallarm packages from these repositories.
+1. Connects the installed Wallarm module to your NGINX.
+1. Connects the filtering node to Wallarm Cloud using the provided token.
+
+Thus it automates a lot of activities that should be performed manually when using other installation methods, the script is recommended as the **best way to install a filtering node**.
 
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Supported OS on the machine with the node: Debian 10.x or 11.x, Ubuntu, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
 * SELinux disabled or configured upon the [instructions](../../admin-en/configure-selinux.md)
-* NGINX of the [appropriate version](#1-install-nginx-and-dependencies)
-
-    !!! info "Custom NGINX versions"
-        If you have a different version, see [how to connect the Wallarm module to custom build of NGINX](../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx)
-
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm binary. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -51,32 +57,6 @@ Install the supported NGINX variant:
 
 * [NGINX 1.22.1 `stable` →](dynamic-module.md#1-install-nginx-stable-and-dependencies)
 * [NGINX Plus R28 →](../nginx-plus.md#1-install-nginx-plus-and-dependencies)
-* NGINX on different operating systems:
-
-    === "Debian 10.x (buster)"
-        ```bash
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "Debian 11.x (bullseye)"
-        ```bash
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "CentOS 7.x"
-        ```bash
-        sudo yum install -y nginx
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo yum install -y nginx
-        ```
-
-<! --  
-* NGINX OpenResty 1.21.4.1
-* Nginx 1.14.1 on centos 8
-* Nginx 1.20.1 on centos 7
-* Nginx 1.18.0 on bullseye
-* Nginx 1.14.2 on buster
--->
 
 ## 2. Prepare Wallarm token
 
@@ -84,44 +64,48 @@ Install the supported NGINX variant:
 
 ## 3. Run all-in-one Wallarm binary
 
-The all-in-one installation script will:
+### Script parameters
 
-1. Check your NGINX version and OS.
-1. Add Wallarm repositories for your NGINX/OS.
-1. Install Wallarm packages from these repositories.
-1. Connect the installed Wallarm module to your NGINX.
-1. Connect the filtering node to Wallarm Cloud using the provided token.
-1. Remind that you need, for the node to start working, to perform its configuration via `/etc/nginx/nginx.conf`.
+As soon as you have the all-in one script downloaded, you can get help on it with:
+
+```
+sudo sh ./wallarm-4.6.8.x86_64-glibc.sh -- -h
+```
+
+Which returns:
+
+```
+...
+Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
+
+OPTION                      DESCRIPTION
+-b, --batch                 batch mode, non-interactive installation
+-t, --token TOKEN           Node token. only used in batch mode
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default EU, only used in batch mode
+-H, --host HOST             Wallarm API address, fore example api.wallarm.com or us1.api.wallarm.com, only used in batch mode
+-P, --port PORT             Wallarm API pot, fore example 443
+    --no-ssl                disable SSL for Wallarm API access
+    --no-verify             disable SSL certificates verification
+-f, --force                 always create a new instance in Cloud
+-h, --help
+    --version
+```
+
+### Script mode
 
 The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when all is done completely automatically.
 
-!!! info "Script help and parameters"
-    As soon as you have the all-in one script downloaded, you can get help on it with:
+In interactive mode the following is asked by the script:
 
-    ```
-    sudo sh ./wallarm-4.6.8.x86_64-glibc.sh -- -h
-    ```
+* Connect to cloud?
+* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
+* Wallarm token
 
-    Which returns:
+Also interactive mode includes a reminder that you need to configure the installed node.
 
-    ```
-    ...
-    Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
+### x86_64 version
 
-    OPTION                      DESCRIPTION
-    -b, --batch                 batch mode, non-interactive installation
-    -t, --token TOKEN           Node token. only used in batch mode
-    -c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default EU, only used in batch mode
-    -H, --host HOST             Wallarm API address, fore example api.wallarm.com or us1.api.wallarm.com, only used in batch mode
-    -P, --port PORT             Wallarm API pot, fore example 443
-        --no-ssl                disable SSL for Wallarm API access
-        --no-verify             disable SSL certificates verification
-    -f, --force                 always create a new instance in Cloud
-    -h, --help
-        --version
-    ```
-
-### Procedure
+Wallarm suggests installations for x86_64 version of the processor of your machine with the node and for [ARM64 version](#arm64-version). This procedure describes the x86_64 version installation.
 
 1. Download all-in-one Wallarm installation script.
 
@@ -155,8 +139,8 @@ The all-in-one installation script can work in **interactive mode** (default), w
             sudo sh wallarm-4.6.8.x86_64-glibc.sh -- -b -t <NODE TOKEN> -с <US/EU/EU2>
             ```
 
-1. Read message saying that you need, for the node to start working, to perform its configuration via `/etc/nginx/nginx.conf`.
 1. Confirm that installation is finished.
+1. As script notifies you that you need to configure the installed node, perform this configuration via `/etc/nginx/nginx.conf`.
 
 ### Separate postanalytics module installation
 
@@ -174,9 +158,9 @@ sudo sh ./wallarm-4.6.8.x86_64-glibc.sh postanalytics
 
 Without argument filtering and postanalytics part are installed altogether.
 
-### ARM version
+### ARM64 version
 
-To install node on machine with the ARM processor architecture, download the following all-in-one script:
+To install node on machine with the ARM64 processor architecture, download the following all-in-one script:
 
 ```bash
 sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.8.aarch64-glibc.sh
@@ -208,12 +192,12 @@ The dynamic Wallarm module with default settings is installed for NGINX `stable`
 
 Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
 
-* `/etc/nginx/conf.d/default.conf` with NGINX settings
-* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+* `/etc/nginx/nginx.conf` with NGINX settings
+* `/etc/nginx/wallarm.conf` with global filtering node settings
 
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `default.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/etc/default/wallarm-tarantool` or `/etc/sysconfig/wallarm-tarantool` with the Tarantool database settings
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+* `/etc/nginx/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the Tarantool database settings
 
 Below there are a few of the typical settings that you can apply if needed:
 

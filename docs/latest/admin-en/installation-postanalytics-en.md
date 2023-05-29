@@ -19,6 +19,9 @@ These instructions provide the steps to install the postanalytics module on a se
 * [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
 * [DEB/RPM packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
+!!! info "All-in-one installation"
+    Starting from Wallarm node 4.6, it is recommended to install postanalytics using [all-in-one installation](../installation/nginx/all-in-one.md#separate-postanalytics-module-installation) which automates all the activities listed in the steps below and makes node deployment much easier.
+
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
