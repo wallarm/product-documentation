@@ -113,6 +113,7 @@ nav:
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
     - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
+    - Addressing Wallarm node issues alerted by OWASP dashboards: faq/node-issues-on-owasp-dashboards.md
   - Demo videos:
     - Wallarm platform settings: demo-videos/overview.md
     - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
