@@ -325,6 +325,7 @@ nav:
         - Fluentd: user-guides/settings/integrations/fluentd.md
         - Logstash: user-guides/settings/integrations/logstash.md
         - Webhook: user-guides/settings/integrations/webhook.md
+        - Amazon S3: user-guides/settings/integrations/amazon-s3.md
         - Examples of integrations via intermediate data collectors:
           - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
           - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
