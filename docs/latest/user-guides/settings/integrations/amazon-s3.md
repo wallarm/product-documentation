@@ -4,21 +4,21 @@ You can set up Wallarm to send files with the information about detected hits to
 
 Data fields for each hit:
 
-    * time - date and time of hit detection
-    * request_id
-    * IP - attacker's IP
-    * hit source type: datacenter, proxy_type, tor, remote_country
-    * application_id
-    * domain
-    * method
-    * uri
-    * protocol
-    * status_code
-    * attack_type
-    * block_status
-    * payload 
-    * point
-    * tags
+* `time` - date and time of hit detection
+* `request_id`
+* `IP` - attacker's IP
+* Hit source type: `datacenter`, `proxy_type`, `tor`, `remote_country`
+* `application_id`
+* `domain`
+* `method`
+* `uri`
+* `protocol`
+* `status_code`
+* `attack_type`
+* `block_status`
+* `payload` 
+* `point`
+* `tags`
 
 Files placed to your S3 bucket are named as `wallarm_hits_{timestamp}.json`.
 
