@@ -6,13 +6,16 @@
 [ms-teams-notifications]:       ./microsoft-teams.md
 [opsgenie-notifications]:       ./opsgenie.md
 [insightconnect-notifications]: ./insightconnect.md
+[sentinel-notifications]:       ./azure-sentinel.md
 [pagerduty-notifications]:      ./pagerduty.md
 [jira-notifications]:           ./jira.md
+[servicenow-notifications]:     ./servicenow.md
 [splunk-notifications]:         ./splunk.md
 [sumologic-notifications]:      ./sumologic.md
 [datadog-notifications]:        ./datadog.md
 [fluentd-notifications]:        ./fluentd.md
 [logstash-notifications]:       ./logstash.md
+[aws-s3-notifications]:         ./amazon-s3.md
 [webhook-notifications]:        ./webhook.md
 [account]:                      ../account.md
 
@@ -43,24 +46,27 @@ The systems available for integration are grouped by types as follows:
 
 ### Incident and task management systems
 
-* [InsightConnect][insightconnect-notifications]
 * [Opsgenie][opsgenie-notifications]
 * [PagerDuty][pagerduty-notifications]
 * [Jira][jira-notifications]
+* [ServiceNow][servicenow-notifications]
 
 ### SIEM and SOAR systems
 
 * [Sumo Logic][sumologic-notifications]
+* [Splunk][splunk-notifications]
+* [InsightConnect][insightconnect-notifications]
+* [Microsoft Sentinel][sentinel-notifications]
 
 ### Log management systems
 
-* [Splunk][splunk-notifications]
 * [Datadog][datadog-notifications]
 
 ### Data collectors
 
 * [Fluentd][fluentd-notifications]
 * [Logstash][logstash-notifications]
+* [AWS S3][aws-s3-notifications]
 
 ### Universal systems
 
