@@ -27,12 +27,10 @@ You can check detected attacks and incidents in the **Events** section of Wallar
      * The country/region in which the IP address is registered (if it was found in the databases like IP2Location or others)
      * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
 * **Domain / Path**: The domain, path and the application ID that the request targeted.
-* Color indicator displays the status of attack blocking:
-
-     * Orange indicator if all hits of the attack were recorded but not blocked by the filtering node because the filtering node operates in the monitoring [mode](../../admin-en/configure-wallarm-mode.md). If your application blocked the attack (for example, the application returned `403 Forbidden`), the indicator would be still orange and the **Code** column would display the code returned by the application.
-     * Red indicator if all hits of the attack were blocked by the filtering node.
-     * Red with a white indicator if some hits of the attack were blocked and others were only recorded ([filtration mode](../../admin-en/configure-wallarm-mode.md) for some hits is set to monitoring).
-* **Code**: The server's response status code on the request. When there are several response status codes, the most frequent code and the total number of returned codes are displayed. If the filtering node blocked the request, the code would be `403` or another [custom value](../../admin-en/configuration-guides/configure-block-page-and-code.md).
+* **Status**: The attack blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)):
+     * Blocked: all hits of the attack were blocked by the filtering node.
+     * Partially blocked: some hits of the attack were blocked and others were only registered.
+     * Monitoring: all hits of the attack were registered but not blocked.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
 * **Active verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below
     ![!Filter for false positive][img-show-falsepositive]
