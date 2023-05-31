@@ -10,37 +10,11 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 
 ## Algorithm of IP lists processing
 
-The filtering node inspects whether source IPs of incoming requests matches entries of IP lists as follows:
+The filtering node employs different approaches based on the selected operation [mode](../../admin-en/configure-wallarm-mode.md) to analyze IP lists. In certain modes, it assesses all three types of IP lists, namely allowlists, denylists, and graylists. However, in other modes, it focuses on only specific IP lists.
 
-* Request filtering is performed in the **off [mode](../../admin-en/configure-wallarm-mode.md)**:
+The image provided below visually represents the priorities and combinations of IP lists in each operation mode, highlighting which lists are considered in each case:
 
-    1. If a source IP of an incoming request is added to the allowlist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    1. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request.
-    1. If a source IP of an incoming request is neither in the denylist nor in the allowlist, the filtering node forwards an incoming request to your application without searching for attacks.
-
-    The node does not analyze the graylist.
-* Request filtering is performed in the **monitoring mode**:
-
-    1. If a source IP of an incoming request is added to the allowlist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    1. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    1. If a source IP of an incoming request is neither in the denylist nor in the allowlist, the filtering node forwards an incoming request to your application even if it contains attack signs.
-
-    The node does not analyze the graylist.
-* Request filtering is performed in the **safe blocking mode**:
-
-    1. If a source IP of an incoming request is added to the allowlist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    2. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    3. If a source IP of an incoming request is added to the graylist and an incoming request contains attack signs, the filtering node blocks an incoming request. If an incoming request does not contain attack signs, the filtering node forwards it to your application. If an IP address is not in the list, the next step is performed.
-    4. If a source IP of an incoming request is not in any of the lists, the filtering node forwards an incoming request to your application even if it contains attack signs.
-* Request filtering is performed in the **blocking mode**:
-
-    1. If a source IP of an incoming request is added to the allowlist, the filtering node forwards an incoming request to your application. If an IP address is not in the list, the next step is performed.
-    2. If a source IP of an incoming request is added to the denylist, the filtering node blocks an incoming request. If an IP address is not in the list, the next step is performed.
-    3. If a source IP of an incoming request is neither in the denylist nor in the allowlist and an incoming request contains attack signs, the filtering node blocks it. If an incoming request does not contain attack signs, the filtering node forwards it to your application.
-
-    The node does not analyze the graylist.
-
-The filtering node analyzes IP lists starting with allowlists, continuing with denylists, and ending with graylists. For example, if an IP address is added to both allowlist and denylist, the filtering node considers this IP address as a trusted source and forwards all requests originated from it to your applications regardless of whether an incoming request contains attack signs.
+![!IP list priorities](../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
 ## IP lists configuration
 
