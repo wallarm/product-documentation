@@ -21,7 +21,7 @@ If you use [Terraform](https://www.terraform.io/) to manage your infrastructures
       required_providers {
         wallarm = {
           source = "wallarm/wallarm"
-          version = "1.0.0"
+          version = "1.1.0"
         }
       }
     }
@@ -40,8 +40,7 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
 === "US Cloud"
     ```
     provider "wallarm" {
-      api_uuid = "<UUID>"
-      api_secret = "<SECRET_KEY>"
+      api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://us1.api.wallarm.com"
       # Required only when multitenancy feature is used:
       # client_id = <CLIENT_ID>
@@ -50,15 +49,14 @@ To connect Wallarm Terraform provider to your Wallarm account in the [US](https:
 === "EU Cloud"
     ```
     provider "wallarm" {
-      api_uuid = "<UUID>"
-      api_secret = "<SECRET_KEY>"
+      api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://api.wallarm.com"
       # Required only when multitenancy feature is used:
       # client_id = <CLIENT_ID>
     }
     ```
 
-* `<UUID>` and `<SECRET_KEY>` are credentials to access API of your Wallarm account. [How to get them →](../../api/overview.md#your-own-client)
+* `<WALLARM_API_TOKEN>` allows to access API of your Wallarm account. [How to get it →](../../user-guides/settings/api-tokens.md)
 * `<CLIENT_ID>` is ID of tenant (client); required only when [multitenancy](../../installation/multi-tenant/overview.md) feature is used. Take `id` (not `uuid`) as described [here](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
 See [details](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) in the Wallarm provider documentation.
@@ -71,7 +69,7 @@ With the Wallarm provider, via Terraform you can manage:
 * [Applications](../../user-guides/settings/applications.md)
 * [Rules](../../user-guides/rules/intro.md)
 * [Triggers](../../user-guides/triggers/triggers.md)
-* [IPs in the denylist](../../user-guides/ip-lists/denylist.md)
+* IPs in the [denylist](../../user-guides/ip-lists/denylist.md), [allowlist](../../user-guides/ip-lists/allowlist.md) and [graylist](../../user-guides/ip-lists/graylist.md)
 * [Users](../../user-guides/settings/users.md)
 * [Integrations](../../user-guides/settings/integrations/integrations-intro.md)
 * Global [filtration mode](../../admin-en/configure-wallarm-mode.md)
@@ -89,8 +87,7 @@ Below is an example of Terraform configuration for Wallarm:
 
 ```
 provider "wallarm" {
-  api_uuid = "<UUID>"
-  api_secret = "<SECRET_KEY>"
+  api_token = "<WALLARM_API_TOKEN>"
   api_host = "https://us1.api.wallarm.com"
 }
 
@@ -125,7 +122,7 @@ Save the configuration file, then perform `terraform apply`.
 
 The configuration does the following:
 
-* Connects to the US Cloud → company account with the `<UUID>` and `<SECRET_KEY>` API credentials.
+* Connects to the US Cloud → company account with the provided Wallarm API token.
 * `resource "wallarm_global_mode" "global_block"` → sets global filtration mode to `Local settings (default)` which means the filtration mode is controlled locally on each node.
 * `resource "wallarm_application" "tf_app"` → creates application named `Terraform Application 001` with ID `42`.
 * `resource "wallarm_rule_mode" "tiredful_api_mode"` → creates rule that sets traffic filtration mode to `Monitoring` for all the requests sent via HTTPS protocol to the application with ID `42`.
