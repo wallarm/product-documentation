@@ -8,6 +8,7 @@ Wallarm node UI management options:
 
 * Create new nodes
 * View properties and metrics of installed nodes
+* View attacks detected by the selected node (in the **Events** section)
 * Regenerate node tokens
 * Rename nodes
 * Delete nodes
