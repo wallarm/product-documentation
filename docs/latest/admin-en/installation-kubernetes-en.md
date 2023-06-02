@@ -1,6 +1,5 @@
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:         ../installation/supported-deployment-options.md
-[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Installing NGINX Ingress Controller with integrated Wallarm services
 

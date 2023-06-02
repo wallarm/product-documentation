@@ -52,4 +52,4 @@ You can use API tokens described in this article for Wallarm Cloud API [request 
 One of the clients accessing Wallarm Cloud API is Wallarm filtering node itself. To grant a filtering node with the access to API of Wallarm Cloud, besides API tokens, you can use node tokens. [Know the difference and what to prefer →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
 
 !!! info "Ingress and sidecar installations"
-    API tokens currently cannot be used for [Ingress controller](../../admin-en/installation-kubernetes-en.md) and [sidecar controller](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments. Use node tokens instead.
+    API tokens currently cannot be used for [NGINX](../../admin-en/installation-kubernetes-en.md) and [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingress controllers and [sidecar proxy](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments. Use node tokens instead.

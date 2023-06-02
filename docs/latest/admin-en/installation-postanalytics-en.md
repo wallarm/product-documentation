@@ -120,7 +120,7 @@ To connect the postanalytics filtering node to the Cloud:
     === "API token"
 
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
         
         * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
@@ -129,7 +129,7 @@ To connect the postanalytics filtering node to the Cloud:
     === "Node token"
 
         ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
 
         * `<TOKEN>` is the copied value of the node token.
