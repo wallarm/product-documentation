@@ -1,3 +1,5 @@
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+
 # Deploying Wallarm Proxy to AWS VPC Using Terraform module
 
 This example demonstrates how to deploy Wallarm as an inline proxy to an existing AWS Virtual Private Cloud (VPC) using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
@@ -56,8 +58,7 @@ This example has the following code components:
 ## Running the example Wallarm AWS proxy solution
 
 1. Sign up for Wallarm Console in the [EU Cloud](https://my.wallarm.com/nodes) or [US Cloud](https://us1.my.wallarm.com/nodes).
-1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
-1. Copy the generated node token.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 1. Clone the repository containing the example code to your machine:
 
     ```

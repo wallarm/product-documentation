@@ -1,5 +1,6 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Deploying Wallarm Sidecar Proxy
 
@@ -67,15 +68,9 @@ To deploy the Wallarm Sidecar proxy solution:
 1. Attach the Wallarm Sidecar proxy to the application Pod.
 1. Test the Wallarm Sidecar proxy operation.
 
-### Step 1: Create the Wallarm node
+### Step 1: Get Wallarm token
 
-1. Open Wallarm Console → **Nodes** via the link below:
-
-    * https://us1.my.wallarm.com/nodes for the US Cloud
-    * https://my.wallarm.com/nodes for the EU Cloud
-1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-    
-    ![!Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 ### Step 2: Deploy the Wallarm Helm chart
 

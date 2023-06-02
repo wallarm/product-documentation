@@ -1,3 +1,5 @@
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+
 # Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster
 
 These instructions provide you with the steps to deploy the Wallarm Ingress controller to your K8s cluster and chain it with other Controllers that are already running in your environment.
@@ -38,12 +40,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
 
 ### Step 1: Deploy the Wallarm Ingress controller
 
-1. Go to Wallarm Console → **Nodes** via the link below:
-    * https://us1.my.wallarm.com/nodes for the US Cloud
-    * https://my.wallarm.com/nodes for the EU Cloud
-1. Create a filtering node with the **Wallarm node** type and copy the generated token.
-    
-    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com

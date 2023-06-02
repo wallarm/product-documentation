@@ -115,35 +115,26 @@ To connect the postanalytics filtering node to the Cloud:
 
 --8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-1. Run the `register-node` script in a system with the filtering node:
+1. Run the `register-node` script on a machine where you install the filtering node:
 
     === "API token"
 
-        === "US Cloud"
-            ``` bash
-            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
-            ```
-        === "EU Cloud"
-            ``` bash
-            sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
-            ```
-            
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
+        ```
+        
         * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
         * `--labels 'group=<GROUP>'` parameter puts your node to the `<GROUP>` node group (existing, or, if does not exist, it will be created).
 
     === "Node token"
 
-        === "US Cloud"
-            ``` bash
-            sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
-            ```
-        === "EU Cloud"
-            ``` bash
-            sudo /usr/share/wallarm-common/register-node -t <TOKEN>
-            ```
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
+        ```
 
         * `<TOKEN>` is the copied value of the node token.
 
+    * Use `-H us1.api.wallarm.com` to install into US Cloud, remove this option to install to EU Cloud.
     * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
 
 ## 4. Update postanalytics module configuration

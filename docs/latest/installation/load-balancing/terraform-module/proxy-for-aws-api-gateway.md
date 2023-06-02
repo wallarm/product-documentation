@@ -1,3 +1,5 @@
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+
 # Example deployment of Wallarm AWS Terraform Module: Proxy solution for Amazon API Gateway
 
 This example demonstrates how to protect [Amazon API Gateway](https://aws.amazon.com/api-gateway/) with Wallarm deployed as an inline proxy to AWS Virtual Private Cloud (VPC) using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/).
@@ -84,8 +86,7 @@ It is NOT recommended to change the endpoint type from "private" to "regional" b
 ## Running the example Wallarm AWS proxy solution for API Gateway
 
 1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
-1. Copy the generated node token.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 1. Clone the repository containing the example code to your machine:
 
     ```

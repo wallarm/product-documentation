@@ -4,7 +4,7 @@ The filtering node interacts with the Wallarm Cloud. To connect the node to the 
 
     ![!Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
-1. Run the `register-node` script in a system with the filtering node:
+1. Run the `register-node` script on a machine where you install the filtering node:
     
     === "US Cloud"
         ``` bash
