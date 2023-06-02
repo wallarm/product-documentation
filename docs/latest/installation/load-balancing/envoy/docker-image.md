@@ -1,6 +1,8 @@
 [versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+
 
 # Running Docker Envoy‑Based Image
 
@@ -29,11 +31,11 @@ The filtering node configuration parameters can be passed to the `docker run` co
 
 ## Run the container passing the environment variables
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+To run the container:
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
-1. Run the container with the created node:
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
+
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash
@@ -48,11 +50,11 @@ You can pass the following basic filtering node settings to the container via th
 
 Environment variable | Description| Required
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarm node or API token.<br><div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You have two options for using one token for several installations:</p> <ul><li>**For all node versions**, you can use one [**node token**](../../../quickstart.md#deploy-the-wallarm-filtering-node) in several installations regardless of the selected [platform](../../../installation/supported-deployment-options.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</li><li>**Starting from node 4.6**, for nodes grouping, you can use one [**API token**](../../../user-guides/settings/api-tokens.md) with the `Deploy` role together with the `WALLARM_LABELS` variable.</li></ul></div> | Yes
+`WALLARM_API_TOKEN` | Wallarm node or API token. | Yes
 `ENVOY_BACKEND` | Domain or IP address of the resource to protect with the Wallarm solution. | Yes
 `WALLARM_API_HOST` | Wallarm API server:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default: `api.wallarm.com`. | No
 `WALLARM_MODE` | Node mode:<ul><li>`block` to block malicious requests</li><li>`safe_blocking` to block only those malicious requests originated from [graylisted IP addresses](../../../user-guides/ip-lists/graylist.md)</li><li>`monitoring` to analyze but not block requests</li><li>`off` to disable traffic analyzing and processing</li></ul>By default: `monitoring`.<br>[Detailed description of filtration modes →](../../../admin-en/configure-wallarm-mode.md) | No
-`WALLARM_LABELS` | <p>Available starting from node 4.6. Works only if `WALLARM_API_TOKEN` is set to [API token](../../../user-guides/settings/api-tokens.md) with the `Deploy` role. Allows setting the `group` label for node instance grouping, for example:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).</p> | No
+`WALLARM_LABELS` | <p>Available starting from node 4.6. Works only if `WALLARM_API_TOKEN` is set to [API token](../../../user-guides/settings/api-tokens.md) with the `Deploy` role. Sets the `group` label for node instance grouping, for example:</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...will place node instance into the `<GROUP>` instance group (existing, or, if does not exist, it will be created).</p> | Yes (for API tokens)
 `TARANTOOL_MEMORY_GB` | [Amount of memory](../../../admin-en/configuration-guides/allocate-resources-for-node.md) allocated to Tarantool. The value can be an integer or a float (a dot <code>.</code> is a decimal separator). By default: 0.2 gygabytes. | No
 
 The command does the following:
@@ -72,11 +74,9 @@ You can mount the prepared file `envoy.yaml` to the Docker container via the `-v
 
 To run the container:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
-1. Run the container with the created node:
+1. Run the container with the node:
 
     === "US Cloud"
         ```bash

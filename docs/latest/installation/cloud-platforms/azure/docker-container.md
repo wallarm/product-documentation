@@ -7,6 +7,7 @@
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
 
 # Deployment of the Wallarm Docker Image to Azure
@@ -38,10 +39,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 In these instructions, the container is deployed using the Azure CLI.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
     ```bash
@@ -97,10 +96,8 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 To deploy the container with environment variables and mounted configuration file:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
     ```bash

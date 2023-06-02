@@ -7,6 +7,7 @@
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
 
 # Deployment of the Wallarm Docker Image to Alibaba Cloud
@@ -29,10 +30,8 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, you should create the Alibaba Cloud instance and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
 
@@ -41,7 +40,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
     * The instance settings should reflect the [method used to connect to the instance](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
 1. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
 1. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
-1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
+1. Set the instance environment variable with the copied Wallarm token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'
@@ -67,10 +66,8 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the Alibaba Cloud instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the Alibaba Cloud Console or [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm). In these instructions, Alibaba Cloud Console is used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
-
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
+            
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances**.
 1. Create the instance following the [Alibaba Cloud instructions](https://www.alibabacloud.com/help/doc-detail/87190.htm?spm=a2c63.p38356.b99.137.77df24df7fJ2XX) and the guidelines below:
 
@@ -79,7 +76,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     * The instance settings should reflect the [method used to connect to the instance](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
 1. Connect to the instance by one of the methods described in the [Alibaba Cloud documentation](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l).
 1. Install the Docker packages in the instance following the [instructions for an appropriate operating system](https://docs.docker.com/engine/install/#server).
-1. Set the instance environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
+1. Set the instance environment variable with the copied Wallarm token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
     export WALLARM_API_TOKEN='<WALLARM_API_TOKEN>'

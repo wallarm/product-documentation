@@ -25,18 +25,34 @@ Wallarm node UI management options:
 
 ## Creating a node
 
-To create a Wallarm node:
+To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-node-creation):
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+=== "With API token"
 
-    ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+    1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your API token. After node registering, it will automatically appear in the **Nodes** section of Wallarm Console.
 
-    !!! info "The multi-tenant option"
-        The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
+=== "With node token"
 
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+
+        ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+    
+    1. Copy the generated token.
+    1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your node token.
+
+!!! info "The multi-tenant option"
+    The **multi-tenant** option allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously. [Read more](../../installation/multi-tenant/overview.md)
+
+    === "API token installation"
+
+        You can switch a node to the multi-tenant mode after installation from the existing node's menu.
+
+    === "Node token installation"
+    
         You can switch a node to the multi-tenant mode either during its creation or from the existing node's menu.
-1. Copy the generated token.
-1. Deploy the created node to the [convenient environment](../../installation/supported-deployment-options.md) using the generated token.
 
 ## Viewing details of a node
 
@@ -83,3 +99,20 @@ When the node is deleted, filtration of requests to your application will be sto
 1. Open Wallarm Console → **Nodes**.
 2. Select one or more nodes and click **Delete**. You can also delete the filtering node by selecting a button of the node menu or node card.
 3. Confirm the action.
+
+## API and node tokens for node creation
+
+The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node with access to Wallarm Cloud API, you need to generate a token on the Cloud side and use it on the machine with the node. Use **API tokens** (recommended) or **node tokens** for this purpose:
+
+* [**API tokens**](../settings/api-tokens.md) with the `Deploy` role when:
+
+    * The number of node groups used to logically organize nodes in UI is not known in advance (node groups will be constantly added/removed - with API tokens you will be able to easily manage these groups with the `WALLARM_LABELS` variable setting the `group` label value).
+    * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
+
+        !!! info "Ingress and sidecar installations"
+            API tokens currently cannot be used for [NGINX](../../admin-en/installation-kubernetes-en.md) and [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingress controllers and [Sidecar proxy](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments, as well as for AWS deployments based on [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use node tokens instead.
+
+* **Node tokens** when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
+
+!!! info "Autoscaling support"
+    Both token types support the node autoscaling feature available in some clouds/installation variants.

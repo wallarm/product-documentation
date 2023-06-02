@@ -2,6 +2,7 @@
 [configure-selinux-instr]:    configure-selinux.md
 [configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Separate postanalytics module installation
 
@@ -104,38 +105,37 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
 
 ## 3. Connect the postanalytics module to Wallarm Cloud
 
-The postanalytics module interacts with the Wallarm Cloud. To connect the postanalytics module to the Cloud, it is required to create the Wallarm node for the postanalytics module. Created node will get the security rules from the Cloud and upload attacks data to the Cloud.
+The postanalytics module interacts with the Wallarm Cloud. It is required to create the Wallarm node for the postanalytics module and connect this node to the Cloud. When connecting, you can set the postanalytics node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in UI). It is **recommended** to use the same node group for the node processing initial traffic and for the node performing postanalysis.
 
-To create the filtering node and connect the postanalytics module to the Cloud:
+![!Grouped nodes](../images/user-guides/nodes/grouped-nodes.png)
 
-1. Make sure that your Wallarm account has the **Administrator** role enabled in Wallarm Console.
-     
-    You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
+To provide the node with access, you need to generate a token on the Cloud side and specify it on the machine with the node packages.
 
-    ![!User list in Wallarm console][img-wl-console-users]
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+To connect the postanalytics filtering node to the Cloud:
 
-    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
-1. Run the `register-node` script in a system with the installed postanalytics module packages:
-    
-    === "US Cloud"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
+
+1. Run the `register-node` script on a machine where you install the filtering node:
+
+    === "API token"
+
+        ``` bash
+        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com --no-sync --no-sync-acl
+        ```
+        
+        * `<TOKEN>` is the copied value of the API token with the `Deploy` role.
+        * `--labels 'group=<GROUP>'` parameter puts your node to the `<GROUP>` node group (existing, or, if does not exist, it will be created).
+
+    === "Node token"
+
         ``` bash
         sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com --no-sync --no-sync-acl
         ```
-    === "EU Cloud"
-        ``` bash
-        sudo /usr/share/wallarm-common/register-node -t <TOKEN> --no-sync --no-sync-acl
-        ```
 
-    * `<TOKEN>` is the copied value of the node token or API token with the `Deploy` role.
-    * You may add `-n <HOST_NAME>` parameter to set a custom name for your postanalytics node instance. Final node instance name will be: `HOST_NAME_NodeUUID`.
+        * `<TOKEN>` is the copied value of the node token.
 
-    <div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You have two options for using one token for several installations:</p> <ul><li>**For all node versions**, you can use one [**node token**](../quickstart.md#deploy-the-wallarm-filtering-node) in several installations regardless of the selected [platform](../installation/supported-deployment-options.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</li><li><p>**Starting from node 4.6**, for nodes grouping, you can use one [**API token**](../user-guides/settings/api-tokens.md) with the `Deploy` role together with the `--labels 'group=<GROUP>'` flag, for example:</p>
-    ```
-    sudo /usr/share/wallarm-common/register-node -t <API TOKEN WITH DEPLOY ROLE> --labels 'group=<GROUP>'
-    ```
-    </p></li></div>
+    * Use `-H us1.api.wallarm.com` to install into US Cloud, remove this option to install to EU Cloud.
+    * You may add `-n <HOST_NAME>` parameter to set a custom name for your node instance. Final instance name will be: `HOST_NAME_NodeUUID`.
 
 ## 4. Update postanalytics module configuration
 

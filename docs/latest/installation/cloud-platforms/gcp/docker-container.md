@@ -7,6 +7,7 @@
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
 
 # Deployment of the Wallarm Docker Image to GCP
@@ -32,10 +33,8 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, you can use the [GCP Console or gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers). In these instructions, gcloud CLI is used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
     ```bash
@@ -79,11 +78,9 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 To deploy the containerized Wallarm filtering node configured through environment variables and mounted file, you should create the instance, locate the filtering node configuration file in this instance file system and run the Docker container in this instance. You can perform these steps via the [GCP Console or gcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers). In these instructions, gcloud CLI is used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
-1. Create the instace based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) comand:
+1. Create the instance based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) comand:
 
     ```bash
     gcloud compute instances create <INSTANCE_NAME> \

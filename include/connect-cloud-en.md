@@ -27,7 +27,7 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
 
     ![!User list in Wallarm console][img-wl-console-users]
 
-2.  Run the `addnode` script in a system with the filtering node:
+2.  Run the `addnode` script on a machine where you install the filtering node:
     
     !!! info
         You have to pick the script to run depending on the Cloud you are using.

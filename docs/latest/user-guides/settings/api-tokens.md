@@ -1,6 +1,8 @@
 [user-roles-article]:       ../../user-guides/settings/users.md#user-roles
 [img-api-tokens-edit]:      ../../images/api-tokens-edit.png
 
+# API Tokens
+
 In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
 
 ![!Wallarm API token][img-api-tokens-edit]
@@ -19,7 +21,7 @@ You can renew the token value at any moment.
 * Analyst
 * API Developer
 * Read only
-* Deploy - API tokens with this role are used to deploy Wallarm nodes
+* Deploy - API tokens with this role are used to [deploy Wallarm nodes](../../user-guides/nodes/nodes.md#creating-a-node)
 * Сustom - switches back to the  manual permission selection
 
 !!! info "Token privacy"
@@ -42,3 +44,12 @@ Previously UUID and secret key were used for request authentication which is now
 You can also use the generated value of the backward-compatible token passing it in the `X-WallarmApi-Token` header parameter of your requests.
 
 Backward-compatible token has the same permissions as the user role does, these permissions are not displayed in the token window and cannot be changed. If you want to control permissions, you need to remove a backward-compatible token and create a new one.
+
+## API tokens vs. node tokens
+
+You can use API tokens described in this article for Wallarm Cloud API [request authentication](../../api/overview.md) from any client and with any set of permissions.
+
+One of the clients accessing Wallarm Cloud API is Wallarm filtering node itself. To grant a filtering node with the access to API of Wallarm Cloud, besides API tokens, you can use node tokens. [Know the difference and what to prefer →](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
+
+!!! info "Ingress and sidecar installations"
+    API tokens currently cannot be used for [NGINX](../../admin-en/installation-kubernetes-en.md) and [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingress controllers and [Sidecar proxy](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments, as well as for AWS deployments based on [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use node tokens instead.

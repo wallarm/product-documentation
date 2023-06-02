@@ -7,6 +7,7 @@
 [node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../installation/supported-deployment-options.md
 
 # Deployment of the Wallarm Docker Image to AWS
@@ -30,10 +31,8 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 
 To deploy the containerized Wallarm filtering node configured only through environment variables, the AWS Management Console and AWS CLI are used.
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
       1. Select the template **EC2 Linux + Networking**.
@@ -160,10 +159,8 @@ In these instructions, the configuration file is mounted from the [AWS EFS](http
 
 To deploy the container with environment variables and configuration file mounted from AWS EFS:
 
-1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
-1. Copy the generated token.
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
 
