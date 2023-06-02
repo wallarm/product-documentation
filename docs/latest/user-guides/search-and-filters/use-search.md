@@ -357,3 +357,17 @@ Examples:
 ### Search for sampled hits
 
 To search for the [sampled hits](../events/analyze-attack.md#sampling-of-hits), add `sampled` to the search string.
+
+### Search by node UUID
+
+To search for attacks detected by specific node, specify the `node_uuid` prefix, followed by the node UUID.
+
+Examples:
+
+* `attacks incidents today node_uuid:<NODE UUID>`: to search for all attacks and incidents for today found by the node with this `<NODE UUID>`.
+* `attacks today !node_uuid:<NODE UUID>`: to search for all attacks for today found by any node except the node with this `<NODE UUID>`.
+
+!!! info "Search only for new attacks"
+    Only attacks detected after May 31, 2023 will be displayed when searching by node UUID.
+
+You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it<!-- or just select **Show events from this node** from the node menu-->.

@@ -11,6 +11,7 @@ Wallarm node UI management options:
 * Regenerate node tokens
 * Rename nodes
 * Delete nodes
+<!--* View attacks detected by the selected node (in the **Events** section)-->
 
 ![!Nodes](../../images/user-guides/nodes/table-nodes.png)
 
