@@ -7,11 +7,11 @@ Wallarm node modules should be deployed to the customer's environment for Wallar
 Wallarm node UI management options:
 
 * Create new nodes
-* View properties and metrics of installed nodes<!--
-* View attacks detected by the selected node (in the **Events** section)-->
+* View properties and metrics of installed nodes
 * Regenerate node tokens
 * Rename nodes
 * Delete nodes
+<!--* View attacks detected by the selected node (in the **Events** section)-->
 
 ![!Nodes](../../images/user-guides/nodes/table-nodes.png)
 
