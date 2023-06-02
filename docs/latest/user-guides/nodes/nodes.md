@@ -109,7 +109,7 @@ The Wallarm filtering node interacts with the Wallarm Cloud. To provide the node
     * You need to control the lifecycle of the token (you can specify the expiration date or disable API tokens which makes them more secure).
 
         !!! info "Ingress and sidecar installations"
-            API tokens currently cannot be used for [NGINX](../../admin-en/installation-kubernetes-en.md) and [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingress controllers and [sidecar proxy](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments. Use node tokens instead.
+            API tokens currently cannot be used for [NGINX](../../admin-en/installation-kubernetes-en.md) and [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md) Ingress controllers and [Sidecar proxy](../../installation/kubernetes/sidecar-proxy/deployment.md) deployments, as well as for AWS deployments based on [Terraform module](../../installation/cloud-platforms/aws/terraform-module/overview.md). Use node tokens instead.
 
 * **Node tokens** when you know in advance what node groups will be presented. Use **Nodes** → **Create node** to create and name the node group. During node deployment, use group's token for every node you want to include into the group.
 
