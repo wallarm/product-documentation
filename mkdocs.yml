@@ -288,6 +288,7 @@ nav:
       - Managing Wallarm using Terraform: admin-en/managing/terraform-provider.md
       - Docker Image Security:
         - Verifying Docker Image Signatures: integrations-devsecops/verify-docker-image-signature.md
+        - Generating an SBOM for Wallarm Docker Images: integrations-devsecops/generate-sbom-for-docker-images.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboards:
