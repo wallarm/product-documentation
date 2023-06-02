@@ -1,6 +1,5 @@
 [ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 # Deploying Kong Ingress Controller with Integrated Wallarm Services
 
@@ -69,9 +68,15 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
 1. Enable traffic analysis for your Ingress.
 1. Test Kong Ingress Controller with integrated Wallarm services.
 
-### Step 1: Get Wallarm token
+### Step 1: Create the Wallarm node
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+1. Open Wallarm Console → **Nodes** via the link below:
+
+    * https://us1.my.wallarm.com/nodes for the US Cloud
+    * https://my.wallarm.com/nodes for the EU Cloud
+1. Create a filtering node with the **Wallarm node** type and copy the generated token.
+    
+    ![!Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
 ### Step 2: Deploy the Wallarm Helm chart
 
