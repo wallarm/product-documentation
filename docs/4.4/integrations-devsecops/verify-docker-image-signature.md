@@ -44,7 +44,7 @@ The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docke
 
 ```bash
 [{"critical":{"identity":{"docker-reference":"index.docker.io/<WALLARM_DOCKER_IMAGE>"},
-"image":{"docker-manifest-digest":"<HASH_ALGORITHM"},"type":"cosign container image signature"},
+"image":{"docker-manifest-digest":"<HASH_ALGORITHM>"},"type":"cosign container image signature"},
 "optional":{"Bundle":{"SignedEntryTimestamp":"<VALUE>","Payload":{"body":"<VALUE>",
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
