@@ -36,7 +36,7 @@ Before proceeding with Docker image signature verification, make sure to [instal
 To verify a Docker image signature, execute the following commands replacing the `WALLARM_DOCKER_IMAGE` value with the specific image tag:
 
 ```bash
-export WALLARM_DOCKER_IMAGE="wallarm/ingress-tarantool:4.6.2-1"
+export WALLARM_DOCKER_IMAGE="wallarm/ingress-controller:4.6.2-1"
 cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 ```
 
@@ -49,7 +49,7 @@ The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docke
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
 
-## Automation of verification procedure
+<!-- ## Automation of verification procedure
 
 To automate the verification of Docker images used in [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md), you can use the provided script.
 
@@ -87,4 +87,4 @@ To automate the verification of Docker images used in [NGINX-based Ingress Contr
         echo;echo
     done
     ```
-
+ -->

@@ -6,10 +6,10 @@ You may need to obtain the SBOM for Wallarm Docker Images to assess and mitigate
 
 ## The list of Wallarm Docker images
 
-Below is the list of all Wallarm Docker images, you can generate SBOM for each of them.
+Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker images, you can generate SBOM for each of them.
 
-* [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
-* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
+<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
+* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
 * Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
 
     * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)

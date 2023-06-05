@@ -36,7 +36,7 @@ Before proceeding with Docker image signature verification, make sure to [instal
 To verify a Docker image signature, execute the following commands replacing the `WALLARM_DOCKER_IMAGE` value with the specific image tag:
 
 ```bash
-export WALLARM_DOCKER_IMAGE="wallarm/ingress-nginx:4.6.2-1"
+export WALLARM_DOCKER_IMAGE="wallarm/ingress-controller:4.6.2-1"
 cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 ```
 
