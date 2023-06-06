@@ -82,7 +82,7 @@ You add IP address or range to the exception list and specify target application
 
 There are two ways of adding IP addresses to the exception list:
 
-* From the **API Abuse Prevention** section → **Exception list** tab via **Add exception**.
+* From the **API Abuse Prevention** section → **Exception list** tab via **Add exception**. Here, besides IPs and subnets, you can add locations and source types that should be ignored by API Abuse Prevention.
 
     ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
