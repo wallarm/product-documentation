@@ -19,9 +19,6 @@ These instructions provide the steps to install the postanalytics module on a se
 * [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
 * [DEB/RPM packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
-!!! info "All-in-one installation"
-    Starting from Wallarm node 4.6, it is recommended to install postanalytics using [all-in-one installation](../installation/nginx/all-in-one.md#separate-postanalytics-module-installation) which automates all the activities listed in the steps below and makes node deployment much easier.
-
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
@@ -31,6 +28,26 @@ These instructions provide the steps to install the postanalytics module on a se
 * Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
 * Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
+
+## Postanalytics module installation via all-in-one installation script
+
+Starting from Wallarm node 4.6, to install postanalytics separately, it is recommended to usу the [all-in-one installation](../installation/nginx/all-in-one.md#separate-postanalytics-module-installation) which automates a lot of activities and makes node deployment much easier.
+
+To install postanalytics separately via all-in-one script, use:
+
+```
+sudo sh ./wallarm-4.6.10.x86_64-glibc.sh postanalytics
+```
+
+To install filtering part separately, use:
+
+```
+sudo sh ./wallarm-4.6.10.x86_64-glibc.sh filtering
+```
+
+[Know the full picture of using all-in-one script for nodes installation →](../installation/nginx/all-in-one.md#separate-postanalytics-module-installation)
+
+If you decided to install the postanalytics module manually, perform the steps below.
 
 ## 1. Add Wallarm repositories
 

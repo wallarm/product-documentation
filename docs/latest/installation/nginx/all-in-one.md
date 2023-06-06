@@ -8,7 +8,6 @@
 [logging-instr]:                    ../../admin-en/configure-logging.md
 [proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../../admin-en/configure-selinux.md
 [configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../../updating-migrating/nginx-modules.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
@@ -40,29 +39,34 @@ The all-in-one installation script:
 1. Connects the installed Wallarm module to your NGINX.
 1. Connects the filtering node to Wallarm Cloud using the provided token.
 
-Thus it automates a lot of activities that should be performed manually when using other installation methods, the script is recommended as the **best way to install a filtering node**.
+Thus it automates a lot of activities that should be performed manually when installing a Wallarm filtering node from Linux packages.
 
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Supported OS on the machine with the node: Debian 10.x or 11.x, Ubuntu, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
-* SELinux disabled or configured upon the [instructions](../../admin-en/configure-selinux.md)
+* Supported OS on the machine with the node: Debian 10.x or 11.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm binary. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Executing all commands as a superuser (e.g. `root`)
 
 ## 1. Install NGINX and dependencies
 
-Install the supported NGINX variant:
+Install the latest NGINX version of:
 
-* [NGINX 1.22.1 `stable` →](dynamic-module.md#1-install-nginx-stable-and-dependencies)
-* [NGINX Plus R28 →](../nginx-plus.md#1-install-nginx-plus-and-dependencies)
+* **NGINX `stable`** - see how to install it: Wallarm [documentation](dynamic-module.md#1-install-nginx-stable-and-dependencies) / NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Plus** - see how to install it: Wallarm [documentation](../nginx-plus.md#1-install-nginx-plus-and-dependencies) / NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 ## 2. Prepare Wallarm token
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
 
 ## 3. Run all-in-one Wallarm binary
+
+Download all-in-one Wallarm installation script:
+
+    ```bash
+    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
+    ```
 
 ### Script parameters
 
@@ -91,6 +95,8 @@ OPTION                      DESCRIPTION
     --version
 ```
 
+Note that the `filtering/postanalytics` argument allows installing [separately](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. Without the argument filtering and postanalytics part are installed altogether.
+
 ### Script mode
 
 The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when all is done completely automatically.
@@ -107,13 +113,7 @@ Also interactive mode includes a reminder that you need to configure the install
 
 Wallarm suggests installations for x86_64 version of the processor of your machine with the node and for [ARM64 version](#arm64-version). This procedure describes the x86_64 version installation.
 
-1. Download all-in-one Wallarm installation script.
-
-    ```bash
-    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
-    ```
-
-1. Run script in the selected mode.
+1. Run downloaded script in the selected mode.
 
     === "Interactive mode"
         1. Run:
@@ -142,22 +142,6 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
 1. Confirm that installation is finished.
 1. As script notifies you that you need to configure the installed node, perform this configuration via `/etc/nginx/nginx.conf`.
 
-### Separate postanalytics module installation
-
-The all-in-one script supports [separate postanalytics module installation](../../admin-en/installation-postanalytics-en.md). To install filtering part separately, use:
-
-```
-sudo sh ./wallarm-4.6.10.x86_64-glibc.sh filtering
-```
-
-To install postanalytics separately, use:
-
-```
-sudo sh ./wallarm-4.6.10.x86_64-glibc.sh postanalytics
-```
-
-Without argument filtering and postanalytics part are installed altogether.
-
 ### ARM64 version
 
 To install node on machine with the ARM64 processor architecture, download the following all-in-one script:
@@ -166,7 +150,7 @@ To install node on machine with the ARM64 processor architecture, download the f
 sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.aarch64-glibc.sh
 ```
 
-The script uses all the same options.
+The script uses all the same options as a x86_64 version.
 
 ## 4. Enable Wallarm to analyze the traffic
 
@@ -188,7 +172,7 @@ The script uses all the same options.
 
 ## 8. Fine-tune the deployed solution
 
-The dynamic Wallarm module with default settings is installed for NGINX `stable`. The filtering node may require some additional configuration after deployment.
+The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
 
 Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
 
