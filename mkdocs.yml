@@ -191,6 +191,8 @@ nav:
         - AWS AMI: installation/packages/aws-ami.md
         - GCP Machine Image: installation/packages/gcp-machine-image.md
         - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+      - Custom:
+        - Request Custom Deployment: installation/custom/request-custom-deployment.md
       - Additional:
         - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
         - Auto Scaling:
