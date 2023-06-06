@@ -16,6 +16,14 @@ replace by 4.6
 
 [How to upgrade](ingress-controller.md)
 
+### 4.6.4 (2023-06-06)
+
+* The Helm chart version of the NGINX Ingress controller has been bumped to [4.7.0](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.7.0)
+* The NGINX Ingress controller version has been bumped to [1.8.0](https://github.com/kubernetes/ingress-nginx/releases/tag/controller-v1.8.0)
+* Internal improvements:
+    * Mount Wallarm API token to the Docker container as a volume instead of the environment variable
+    * Use a dedicated image tag for helper containers
+
 ### 4.6.3 (2023-05-18)
 
 * The Helm chart version of the NGINX Ingress controller has been bumped to [4.6.1](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.6.1)
