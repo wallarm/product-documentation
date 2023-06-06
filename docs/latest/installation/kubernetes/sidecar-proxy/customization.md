@@ -255,6 +255,77 @@ spec:
               containerPort: 80
 ```
 
+### SSL/TLS termination
+
+By default, the Sidecar proxy solution only accepts HTTP traffic and forwards plain HTTP traffic to the application pods. It is assumed that SSL/TLS termination is performed by an infrastructure component located before the sidecar solution (such as Ingress/Application Gateway), allowing the sidecar solution to process plain HTTP.
+
+However, there may be cases where the existing infrastructure does not support SSL/TLS termination. In such cases, you can enable SSL/TLS termination at the Wallarm sidecar proxy level. This feature is supported starting from the Helm chart 4.6.1.
+
+!!! warning "The Sidecar solution supports either SSL or plain HTTP traffic processing"
+    The Wallarm Sidecar solution supports either SSL/TLS or plain HTTP traffic processing. Enabling SSL/TLS termination means that the sidecar solution will not process plain HTTP traffic, while disabling SSL/TLS termination will result in only HTTPS traffic being processed.
+
+To enable SSL/TLS termination:
+
+1. Obtain the server certificate (public key) and private key associated with the server for which the Sidecar proxy will terminate SSL/TLS.
+1. In the namespace of the application pod, create a [TLS secret](https://kubernetes.io/docs/concepts/configuration/secret/#tls-secrets) containing the server certificate and private key.
+1. In the `values.yaml` file, add the `config.profiles section` for secret mounting. The example below shows multiple certificate mounting configurations.
+
+    Customize the code based on the comments to meet your needs. Remove any unnecessary certificate mounting configurations if you only require one certificate.
+
+    ```yaml
+    config:
+      wallarm:
+        api:
+          token: "<NODE_TOKEN>"
+          host: "us1.api.wallarm.com" # or empty string if using the EU Cloud
+        # Other Wallarm settings https://docs.wallarm.com/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm/
+      profiles:
+        tls-profile: # Set any desired TLS profile name here
+          sidecar:
+            volumeMounts:
+              - name: nginx-certs-example-com # Name of the volume containing example.com keys
+                mountPath: /etc/nginx/certs/example.com # Path to mount example.com keys in the container
+                readOnly: true
+              - name: nginx-certs-example-io # Name of the volume containing example.io keys
+                mountPath: /etc/nginx/certs/example.io # Path to mount example.io keys in the container
+                readOnly: true
+            volumes:
+              - name: nginx-certs-example-com # Name of the volume containing example.com keys
+                secret:
+                  secretName: example-com-certs # Name of the secret created for the example.com backend, containing public and private keys
+              - name: nginx-certs-example-io # Name of the volume containing example.io keys
+                secret:
+                  secretName: example-io-certs # Name of the secret created for the example.io backend, containing public and private keys
+          nginx:
+            # NGINX SSL module configuration specific to your TLS/SSL termination procedure.
+            # Refer to https://nginx.org/en/docs/http/ngx_http_ssl_module.html.
+            # This configuration is required for the Sidecar proxy to perform traffic termination.
+            servers:
+              - listen: "ssl http2"
+                include:
+                  - "server_name example.com www.example.com"
+                  - "ssl_protocols TLSv1.3"
+                  - "ssl_certificate /etc/nginx/certs/example.com/tls.crt"
+                  - "ssl_certificate_key /etc/nginx/certs/example.com/tls.key"
+                  - "ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384"
+                  - "ssl_conf_command Ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256"
+              - listen: "ssl"
+                include:
+                  - "server_name example.io www.example.io"
+                  - "ssl_protocols TLSv1.2 TLSv1.3"
+                  - "ssl_certificate /etc/nginx/certs/example.io/tls.crt"
+                  - "ssl_certificate_key /etc/nginx/certs/example.io/tls.key"
+    ```
+1. Apply the changes from `values.yaml` to the Sidecar proxy solution using the following command:
+
+    ```bash
+    helm upgrade <RELEASE_NAME> wallarm/wallarm-sidecar --wait -n <NAMESPACE> -f values.yaml
+    ```
+1. [Apply](pod-annotations.md#how-to-use-annotations) the `sidecar.wallarm.io/profile: tls-profile` annotation to the application pod.
+1. Once the configuration is applied, you can test the solution by following the steps described [here](deployment.md#step-4-test-the-wallarm-sidecar-proxy-operation), replacing HTTP with HTTPS protocol.
+
+The sidecar solution will accept TLS/SSL traffic, terminate it, and forward plain HTTP traffic to the application pod.
+
 ### Enabling additional NGINX modules
 
 Docker image of the Wallarm sidecar proxy is distributed with the following additional NGINX modules disabled by default:
