@@ -86,7 +86,7 @@ You can explore the bots' activity in the Wallarm Console UI as follows:
 
 ## Exception list
 
-An exception list is a list of IP addresses that are known to be associated with legitimate bots or crawlers, and are therefore exempt from being blocked or restricted by the API Abuse Prevention module.
+An exception list is a list of IP addresses, subnets, locations and source types that are known to be associated with legitimate bots or crawlers, and are therefore exempt from being blocked or restricted by the API Abuse Prevention module.
 
 You can add IP addresses to the exception list in advance or if they have already been mistakenly flagged as being associated with malicious bot activity. [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
 
