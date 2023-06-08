@@ -144,20 +144,14 @@ Below is the list of annotations supported in the Open-Source Kong Ingress contr
 !!! info "Priorities of global and per-Ingress's settings"
     Per-Ingress's annotations take precedence over Helm chart values.
 
-Before using an annotation, please add the `wallarm.com/` prefix to it, e.g.:
-
-```bash
-wallarm.com/wallarm-mode: block
-```
-
 | Annotation | Description | 
 |----------- |------------ |
-| `wallarm-mode` | [Traffic filtration mode](../../../admin-en/configure-wallarm-mode.md): `off` (default), `monitoring`, `safe_blocking`, or `block`. |
-| `wallarm-application` | [Wallarm application ID](../../../user-guides/settings/applications.md). The value can be a positive integer except for `0`. |
-| `wallarm-parse-response` | Whether to analyze the application responses for attacks: `true` (default) or `false`. Response analysis is required for vulnerability detection during [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). |
-| `wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use this annotation: `true` or `false` (default). |
-| `wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `true` (default) or `false`. |
-| `wallarm-partner-client-uuid` | Unique identifier of the tenant for the [multi-tenant](../../multi-tenant/overview.md) Wallarm node. The value should be a string in the UUID format, e.g. `123e4567-e89b-12d3-a456-426614174000`.<br><br>Know how to:<ul><li>[Get the UUID of the tenant during tenant creation](../../multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[Get the list of UUIDs of existing tenants](../../../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)</li></ul> |
+| `wallarm.com/wallarm-mode` | [Traffic filtration mode](../../../admin-en/configure-wallarm-mode.md): `off` (default), `monitoring`, `safe_blocking`, or `block`. |
+| `wallarm.com/wallarm-application` | [Wallarm application ID](../../../user-guides/settings/applications.md). The value can be a positive integer except for `0`. |
+| `wallarm.com/wallarm-parse-response` | Whether to analyze the application responses for attacks: `true` (default) or `false`. Response analysis is required for vulnerability detection during [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). |
+| `wallarm.com/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, use this annotation: `true` or `false` (default). |
+| `wallarm.com/wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `true` (default) or `false`. |
+| `wallarm.com/wallarm-partner-client-uuid` | Unique identifier of the tenant for the [multi-tenant](../../multi-tenant/overview.md) Wallarm node. The value should be a string in the UUID format, e.g. `123e4567-e89b-12d3-a456-426614174000`.<br><br>Know how to:<ul><li>[Get the UUID of the tenant during tenant creation](../../multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[Get the list of UUIDs of existing tenants](../../../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)</li></ul> |
 
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 
