@@ -1,0 +1,37 @@
+{% extends template.self %}
+
+{% block body %}
+
+    {% block book_header %}
+    <div class="book-header" role="navigation">
+        {% if glossary.path %}
+            <a href="{{ ('/' + glossary.path)|resolveFile }}" class="btn pull-left" aria-label="{{ "GLOSSARY_OPEN"|t }}"><i class="fa fa-sort-alpha-asc"></i></a>
+        {% endif %}
+        <a href="/en/"><div class="logo"></div></a>
+    </div>
+    {% endblock %}
+
+    {{ super() }}
+
+{% endblock %}
+
+{% block search_results %}
+<div id="book-search-results">
+    <div class="search-noresults">
+    {{ super() }}
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            {% block search_has_results %}
+            <p class="search-results-title">{{ 'SEARCH_RESULTS_TITLE'|t|safe }}</p>
+            <ul class="search-results-list"></ul>
+            {% endblock %}
+        </div>
+        <div class="no-results">
+            {% block search_no_results %}
+            <p class="search-results-title">{{ 'SEARCH_NO_RESULTS_TITLE'|t|safe }}</p>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

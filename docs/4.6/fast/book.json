@@ -1,0 +1,29 @@
+{
+    "title": "Wallarm",
+    "description": "Wallarm official documentation",
+    "author": "Wallarm",
+    "plugins": [
+        "code",
+        "bootstrap-callout",
+        "codetabs",
+        "include",
+        "nocache",
+        "collapsible-chapters",
+        "richquotes",
+        "anchors",
+        "comment",
+        "custom-favicon",
+        "language-picker",
+        "lunr@git+https://github.com/RouganStriker/plugin-lunr.git#fc6a52c2fd6d12bbcd1c4a8d43c62fa13162aba7",
+        "collapse",
+        "api",
+        "scripts@git+https://github.com/GitbookIO/plugin-scripts.git",
+		"imgzoomer"
+    ],
+    "pluginsConfig": {
+        "favicon": "images/favicon.ico",
+        "scripts": {
+            "files": ["./custom/index.js"]
+        }
+    }
+}
