@@ -18,15 +18,11 @@
 >
 >   Read about the extension types in detail [here][link-ext-logic].
 
-<!-- -->
-
-> #### Info::  Request element description syntax
+ > #### Info::  Request element description syntax
 > When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
 > 
 > To see detailed information, proceed to this [link][link-points].
-<!-- -->
-
-This phase specifies a payload to be inserted in the particular parameters of a baseline request to create a test requests that are based on this request.
+ This phase specifies a payload to be inserted in the particular parameters of a baseline request to create a test requests that are based on this request.
 
 The `generate` section has the following structure:
 

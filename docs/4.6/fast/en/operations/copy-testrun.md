@@ -92,7 +92,7 @@ To copy and execute a test run via the Wallarm portal's web interface:
     ![The “Test run” sidebar][img-similar-tr-sidebar]
     
     You may configure additional settings by selecting “Advanced settings” (if necessary):
-!INCLUDE "../include/test-run-adv-settings.md"    
+--8<-- "../include/fast/test-run-adv-settings.md"    
     
 5.  Make sure that the “Use baselines from `<the name of the test record to reuse>`” option is checked.
 

@@ -20,9 +20,7 @@ To see the OWASP Juice Shop documentation that lists the vulnerabilities embedde
 >   #### Warning:: Working with a vulnerable application
 >  
 >   We suggest you avoid providing the host that the OWASP Juice Shop runs on with internet access or real data (for example, login/password pairs).
-<!-- -->
-
-To test the “OWASP Juice Shop” target application for vulnerabilities, take the following steps:
+ To test the “OWASP Juice Shop” target application for vulnerabilities, take the following steps:
 1.  [Examine the web application][link-app-examination] to become familiar with its behavior.
 2.  [Craft a sample modifying extension.][link-mod-extension]
 3.  [Craft a sample nonmodifying extension.][link-non-mod-extension]

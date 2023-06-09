@@ -7,9 +7,7 @@ The **Cookie** parser creates a hash table based on the Cookie header contents i
 > #### Info:: Regular expressions in points
 > The cookie name in the point can be a regular expression of the [Ruby programming language][link-ruby].
 
-<!-- -->
-
-> #### Warning:: Using the Cookie parser in the point
+ > #### Warning:: Using the Cookie parser in the point
 > The Cookie parser can only be used in the point together with the Header filter that refers to the Cookie header of the baseline request.
  
 **Example:** 

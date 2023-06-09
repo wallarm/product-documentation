@@ -72,19 +72,15 @@ You can do this in either of the following ways:
         $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
         ```
 
-<!-- -->
+ --8<-- "../include/fast/wallarm-api-host-note.md"
 
-!INCLUDE "../include/wallarm-api-host-note.md"
+ If the FAST node launches successfully, it writes to the console the following output that informs about the successful connection to the Wallarm Cloud and the number of extensions loaded:
 
-<!-- -->
-
-If the FAST node launches successfully, it writes to the console the following output that informs about the successful connection to the Wallarm Cloud and the number of extensions loaded:
-
-!INCLUDE "../../console-include/dsl/fast-node-run-ok.md"
+--8<-- "../include/fast/console-include/dsl/fast-node-run-ok.md"
 
 If an error occurs during the node launch, the error information is written to the console. The message about the extension syntax error is shown in the following example:
 
-!INCLUDE "../../console-include/dsl/fast-node-run-fail.md"
+--8<-- "../include/fast/console-include/dsl/fast-node-run-fail.md"
 
 > #### Info:: Extensions location requirements
 > The extensions from the nested directories will not be connected (for example, if the extension is placed into the `extensions/level-2/` directory). Depending on the chosen method of connection, the extensions should be placed either into the root of the directory that is mounted into the FAST node Docker container or into the root of the Git repository.
@@ -120,7 +116,7 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     ![Test run][img-test-run]
 
 4.  Wait until the FAST node writes an informational message to the console similar to the following: `Recording baselines for TestRun#`. This means that the FAST node is ready to record the baseline requests.<br>
-!INCLUDE "../../console-include/dsl/fast-node-recording.md"
+--8<-- "../include/fast/console-include/dsl/fast-node-recording.md"
 
 5.  Create and send a POST request with random parameters to the OWASP Juice Shop login page through the FAST node, as shown in the following example:
     
@@ -141,13 +137,11 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     >   
     >   After sending the baseline request, it is recommended to stop the recording process. This procedure is described [here][link-stop-recording].
     
-    <!-- -->
-
-6.  In the FAST node console output you will see how:  
+     6.  In the FAST node console output you will see how:  
     *   the target application is tested using the built-in FAST detects,
     *   the modifying FAST extension executes for the POST parameters in the baseline request, and
     *   the non-modifying FAST extension executes for the URI parameter in the baseline request.<br><br>
-!INCLUDE "../../console-include/dsl/fast-node-working.md"    
+--8<-- "../include/fast/console-include/dsl/fast-node-working.md"    
     
     You can see the full log of request processing by opening the test run information on the Wallarm web interface and clicking the “Details” link.
 <br><br>

@@ -17,9 +17,7 @@
 >   *   `rec_0001` as an identifier of a test record.
 >   *   `bl_7777` as an identifier of a baseline request.
 
-<!-- -->
-
->   #### Info:: Install `docker-compose`
+ >   #### Info:: Install `docker-compose`
 >   
 >   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording and testing modes.
 >   

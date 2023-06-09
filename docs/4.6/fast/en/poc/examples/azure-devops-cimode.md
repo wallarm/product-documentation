@@ -16,7 +16,7 @@ To securely use the [FAST node token](../../operations/create-node.md), open you
 
 ## Adding the Step of Request Recording
 
-!INCLUDE "../../include/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 <br>
 

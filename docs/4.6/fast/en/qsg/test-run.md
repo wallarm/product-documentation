@@ -96,7 +96,7 @@ You can click on the “Baseline req.” column to see all the baseline requests
 
 It is observable from the console output that the FAST node named `DEMO NODE` is ready for recording baseline requests for the test run named `DEMO TEST RUN`:
 
-!INCLUDE "../../console-include/qsg/fast-node-ready-for-recording.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-ready-for-recording.md"
     
     
 ##  2.  Execute the HTTPS baseline request you created earlier
@@ -113,7 +113,7 @@ The result of the request execution is shown below:
 
 It is observable from the console output that the FAST node has recorded a baseline request:
 
-!INCLUDE "../../console-include/qsg/fast-node-testing.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-testing.md"
 
 You can observe some baseline requests being saved to the Wallarm cloud:
 

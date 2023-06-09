@@ -14,7 +14,7 @@ To securely use the [FAST node token](../../operations/create-node.md), pass its
 
 ![Passing Bamboo global variable](../../../images/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
-!INCLUDE "../../include/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 <br>
 

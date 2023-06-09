@@ -54,9 +54,7 @@ The use of the Detect phase is obligatory for each extension type. This phase re
 >   When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
 >   
 >   To see detailed information, proceed to this [link][link-points].
-<!-- -->
-
-
+ 
 ##  How a Modifying Extension Works
 
 During a modifying extension operation, a baseline request sequentially proceeds through the Collect, Match, Modify, and Generate phases, all of which are optional and may not be included in the extension. A single test request or multiple test requests will be formed as a result of proceeding through these phases. These requests will be sent to the target application to check it for vulnerabilities.
@@ -65,9 +63,7 @@ During a modifying extension operation, a baseline request sequentially proceeds
 >   #### Info:: An extension without optional phases
 >   
 >   If no optional phases are applied to the baseline request, the test request matches the baseline request. 
-<!-- -->
-
-![Modifying extension phases overview][img-phases-mod-overview]
+ ![Modifying extension phases overview][img-phases-mod-overview]
 
 If a baseline request satisfies a defined FAST [test policy][doc-policy-in-detail] then the request contains one or more parameters that are allowed for processing. The modifying extension iterates through these parameters:
  1. Each parameter passes through the extension phases and the corresponding test requests are created and executed.

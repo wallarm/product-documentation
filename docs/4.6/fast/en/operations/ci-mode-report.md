@@ -42,7 +42,7 @@ docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qw
 
 If the command was successfully executed, you will get brief data about the test run in the terminal:
 
-!INCLUDE "../../console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include/fast/console-include/operations/node-in-ci-mode-report.md"
 
 When the report generation is finished, you will find the following files with reports in the `DIRECTORY_FOR_REPORTS` folder:
 

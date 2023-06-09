@@ -24,9 +24,7 @@ FAST node determines the baseline requests among the proxied ones and places the
 >   *   `token_Qwe12345` as a token.
 >   *   `rec_0001` as an identifier of a test record.
 
-<!-- -->
-
->   #### Info:: Install `docker-compose`
+ >   #### Info:: Install `docker-compose`
 >   
 >   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording mode.
 >   
@@ -46,15 +44,11 @@ FAST node configuration is done via environment variables. The table below holds
 | `ALLOWED_HOSTS`       | The FAST node will record those requests that target any host listed in the environment variable. <br>Default value: empty string (all incoming requests will be recorded). See [this][doc-allowed-hosts] document for details.| No |
 | `BUILD_ID` | The identifier of a CI/CD workflow. This identifier allows several FAST nodes to work concurrently using the same cloud FAST node. See [this][doc-concurrent-pipelines] document for details.| No |
 
-<!-- -->
-
->   #### Info:: See also:
+ >   #### Info:: See also:
 >   
 >   The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
-<!-- -->
-
-## Deployment of a FAST Node in Recording Mode
+ ## Deployment of a FAST Node in Recording Mode
 
 A sample `docker-compose.yaml` configuration file will be used to demonstrate how FAST operates in recording mode (note the value of the `CI_MODE` environment variable):
 
@@ -106,9 +100,7 @@ This output informs us that the FAST node has successfully connected to the Wall
 >   
 >   To change the default test record name, you need to pass the necessary value via the `TEST_RECORD_NAME` environment variable when starting the FAST node Docker container.
 
-<!-- -->
-
->   #### Warning:: Test Execution
+ >   #### Warning:: Test Execution
 >   
 >   It is now time to conduct existing tests for the target application. FAST will record the baseline requests and populate the test record with them.
 

@@ -12,15 +12,9 @@ The extensions are described using YAML. We assume that you are familiar with YA
 
 The logic of the extensions may include elements described with regular expressions. FAST expressions only support Ruby language regular expression syntax. It is assumed that you are familiar with the Ruby regular expression syntax. To see detailed information, proceed to this [link][link-ruby-regexp].
 
-<!-- -->
+ --8<-- "../include/fast/cloud-note.md"
 
-!INCLUDE "../include/cloud-note.md"
-
-<!-- -->
-
-<!-- -->
-
-> #### Info::  Request element description syntax
+  > #### Info::  Request element description syntax
 > When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
 > 
 > To see detailed information, proceed to this [link][link-points].

@@ -32,23 +32,15 @@
 
 #   How FAST Operates
 
-<!-- -->
+ --8<-- "../include/fast/cloud-note.md"
 
-!INCLUDE "../include/cloud-note.md"
-
-<!-- -->
-
-<!-- -->
-
->   #### Info:: A short note on the document content
+  >   #### Info:: A short note on the document content
 >   
 >   The relationships between the entities (see below) and the testing scenarios that are described in this chapter relate to testing with the use of the Wallarm API. This kind of testing employs all entities; therefore, it is possible to provide the reader with integral insights into how these entities interact with each other.  
 >   
 >   When integrating FAST into a CI/CD workflow, these entities remain unchanged; however, the order of steps may differ for a particular case. Read [this document][doc-ci-intro] for extra details.
 
-<!-- -->
-
-FAST makes use of the following entities:
+ FAST makes use of the following entities:
 *   [Test record.][anchor-testrecord]
 *   [FAST test policy.][anchor-testpolicy]
 *   [Test run.][anchor-testrun]
@@ -100,9 +92,7 @@ You can [create][link-create-policy] a new policy or [use an existing][link-use-
 >   
 >   The choice of the test policy depends on how the tested target application works. It is recommended that you create a distinct test policy for each of the applications you test.
 
-<!-- -->
-
->   #### Info:: Additional Information
+ >   #### Info:: Additional Information
 >   *   [Test policy example][doc-testpolicy-creation-example] from the Quick Start guide
 >   *   [Test policy details][doc-policy-in-detail]
 

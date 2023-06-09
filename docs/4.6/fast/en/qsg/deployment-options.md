@@ -15,13 +15,9 @@ description: FAST is a two-component solution, comprising of the FAST node and t
 
 FAST is a two-component solution, comprising of the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
 
-<!-- -->
+ --8<-- "../include/fast/cloud-note.md"
 
-!INCLUDE "../include/cloud-note.md"
-
-<!-- -->
-
-To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to policy obtained from the cloud. The newly created requests form a security test set are executed in order to test the application for vulnerabilities.
+ To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to policy obtained from the cloud. The newly created requests form a security test set are executed in order to test the application for vulnerabilities.
 
 ![A process of testing with FAST][img-fast-integration]
 

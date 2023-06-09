@@ -15,15 +15,11 @@
 >
 >   Read about the extension types in detail [here][link-ext-logic].
 
-<!-- -->
-
-> #### Info::  Request elements description syntax
+ > #### Info::  Request elements description syntax
 > When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
 > 
 > To see detailed information, proceed to this [link][link-points].
-<!-- -->
-
-This phase modifies values of a baseline request's parameters, if it is necessary. Note that you cannot add a new element that is absent from the baseline request using the Modify phase. For example, you cannot add the `Cookie` HTTP header if the baseline request does not contain it. 
+ This phase modifies values of a baseline request's parameters, if it is necessary. Note that you cannot add a new element that is absent from the baseline request using the Modify phase. For example, you cannot add the `Cookie` HTTP header if the baseline request does not contain it. 
 
 The `modify` section in the extension YAML file contains an array of `<key: value>` pairs. Each pair describes a certain request element (the key) and data that should be inserted into this element (the value). The key can contain regular expressions in the [Ruby regular expressions format][link-ruby-regexp]. You cannot apply regular expressions to the key's value.
 

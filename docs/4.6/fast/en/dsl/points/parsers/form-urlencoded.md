@@ -9,9 +9,7 @@ The **Form_urlencoded** parser is used for working with the request body in the 
 > #### Info:: Regular expressions in points 
 > The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby]. 
 
-<!-- -->
-
-> #### Warning:: Using the Form_urlencoded parser in the point
+ > #### Warning:: Using the Form_urlencoded parser in the point
 > The Form_urlencoded parser can only be used in the point together with the Post filter that refers to the baseline request body.
 
 The request body in the form-urlencoded format may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-formurlencoded-array] and [Hash][link-formurlencoded-hash] filters correspondingly to address the elements in these structures.

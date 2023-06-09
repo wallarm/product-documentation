@@ -11,9 +11,7 @@
 >   
 >   Read about the extension types in detail [here][link-ext-logic].
 
-<!-- -->
-
-This phase sends the predefined test requests to test a target application for vulnerabilities. The host that the test requests should be sent to is determined by the `Host` header value in incoming baseline requests.
+ This phase sends the predefined test requests to test a target application for vulnerabilities. The host that the test requests should be sent to is determined by the `Host` header value in incoming baseline requests.
 
 The `send` section has the following structure:
 

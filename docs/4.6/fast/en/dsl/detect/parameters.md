@@ -14,9 +14,7 @@
 > #### Warning:: Detecting a vulnerability in the Detect phase
 > To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
 
-<!-- -->
-
-> #### Info:: Markers operation logic
+ > #### Info:: Markers operation logic
 > If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
 
 ##  OOB
@@ -46,9 +44,7 @@ The `oob` parameter checks the triggering of Out-Of-Band markers by the test req
 >   #### Info:: Available OOB markers
 >   Currently, there is only one Out-of-Band marker available: `DNS_MARKER`.
 
-<!-- -->
-
->   #### Info:: The Out-of-Band attack mechanism
+ >   #### Info:: The Out-of-Band attack mechanism
 >   The Out-of-Band (resource load) attack mechanism fully corresponds to its name. When performing the attack, the malefactor forces the server to download malicious content from the external source.
 > 
 >   For example, when performing an OOB DNS attack, the malefactor can embed the domain name into the `<img>` tag as follows: `<img src=http://vulnerable.example.com>`.

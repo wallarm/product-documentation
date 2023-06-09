@@ -1,8 +1,6 @@
 [link-allowed-hosts]:               http://nginx.org/en/docs/http/server_names.html
 
-<!-- -->
-
-> #### Info:: Valid `ALLOWED_HOSTS` Variable Values
+ > #### Info:: Valid `ALLOWED_HOSTS` Variable Values
 > The `ALLOWED_HOSTS` variable accepts the following host formats:
 > * fully qualified names (e.g. `node.example.local`)
 > * a value beginning with a period (e.g. `.example.local`) that is recognized as a subdomain wildcard

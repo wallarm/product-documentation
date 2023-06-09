@@ -38,9 +38,7 @@ To delete the point, use the «—» symbol next to it:
 >
 > The same list of points is configured for the default policy. This policy cannot be changed.
 
-<!-- -->
-
-
+ 
 > #### Info:: Point reference
 >
 > When creating or editing points, you can click on the **How to use** link to get additional details regarding points. 

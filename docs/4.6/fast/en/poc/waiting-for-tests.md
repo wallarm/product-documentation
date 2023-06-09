@@ -34,6 +34,4 @@ If a FAST node is deployed via [CI mode](integration-overview-ci-mode.md), then 
 It is possible to establish even more complex logic of how the FAST-enabled CI/CD job should interact with the CI/CD tool. To do so, use other pieces of data that could be found in the API server’s response.
 {% endcollapse %}
 
-<!-- -->
-
-You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.
+ You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.

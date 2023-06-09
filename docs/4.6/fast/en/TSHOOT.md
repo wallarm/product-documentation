@@ -8,10 +8,10 @@
 
 **What to do if...**
 *   **...the FAST node displays one of the following messages on the console output?**<br>
-!INCLUDE "../console-include/tshoot/request-timeout.md"
+--8<-- "../include/fast/console-include/tshoot/request-timeout.md"
     
     or<br>
-!INCLUDE "../console-include/tshoot/access-denied.md"
+--8<-- "../include/fast/console-include/tshoot/access-denied.md"
     
     **Solution:** make sure that
     *   the FAST node and corresponding Docker host have internet access (particularly, the Wallarm `api.wallarm.com` and `us1.api.wallarm.com` API servers should be accessible via `TCP/443`), and

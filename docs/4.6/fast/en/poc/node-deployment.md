@@ -159,6 +159,4 @@ Provided that a test run's has been successfully created, the FAST node begins t
 
 The testing process can take a lot of time to complete. Use information from [this document][doc-waiting-for-tests] to determine if security testing with FAST has finished.
 
-<!-- -->
-
-You could refer back to the [“Deployment via API”][doc-integration-overview-api] or the [“CI/CD Workflow with FAST”][doc-integration-overview] documents if necessary. 
+ You could refer back to the [“Deployment via API”][doc-integration-overview-api] or the [“CI/CD Workflow with FAST”][doc-integration-overview] documents if necessary. 

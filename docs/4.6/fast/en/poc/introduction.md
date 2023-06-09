@@ -10,21 +10,13 @@ The guide contains the following pieces of information:
 2.  Which steps the integration configuration process consists of.
 3.  How to start and manage the process of the security testing. 
 
-<!-- -->
+ --8<-- "../include/fast/cloud-note.md"
 
-!INCLUDE "../include/cloud-note.md"
-
-<!-- -->
-
-<!-- -->
-
->   #### Info:: Agreement on terms
+  >   #### Info:: Agreement on terms
 >   
 >   The “API” term will be used as a shorter version of the “Wallarm API” term throughout the guide, unless stated otherwise.
 
-<!-- -->
-
->   #### Info:: HTTPS support
+ >   #### Info:: HTTPS support
 >   
 >   This guide describes the integration of FAST to test an HTTP-based target application.
 >    

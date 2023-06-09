@@ -65,8 +65,6 @@ In this case the fuzzer will create 5 additional requests to check  each byte wi
 One or more such requests will cause an anomaly again and the fuzzer will form the list of detected anomalous bytes, for example: `A`, `C`.
 {% endcollapse %}
 
-<!-- -->
-
-Next, you can get information about the [fuzzing configuration][doc-fuzzer-configuration] and the description of rules that define whether the anomaly was found.
+ Next, you can get information about the [fuzzing configuration][doc-fuzzer-configuration] and the description of rules that define whether the anomaly was found.
 
 The FAST fuzzer processes one allowed point per iteration (*fuzzing*). Depending on [fuzzing stopping rules][link-stop-fuzzing-section], one or more points will be processed consistently.

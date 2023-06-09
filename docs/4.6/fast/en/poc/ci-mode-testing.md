@@ -27,9 +27,7 @@ While in testing mode, the FAST node creates a test run based on the test record
 >   *   `rec_0001` as an identifier of a test record
 >   *   `bl_7777` as an identifier of a baseline request
 
-<!-- -->
-
->   #### Info:: Install `docker-compose`
+ >   #### Info:: Install `docker-compose`
 >   
 >   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how the FAST node operates in the testing mode.
 >   
@@ -57,15 +55,11 @@ FAST node configuration is done via environment variables. The table below holds
 | `FILE_EXTENSIONS_TO_EXCLUDE` | The list of static file extensions that should be excluded from the evaluation process during testing.<br>You can enumerate these extensions using the <code>&#124;</code> character: <br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | No |
 | `PROCESSES`            | The number of processes that can be used by FAST node. Each process uses the number of threads specified in the `WORKERS` variable.<br>Default number of processes: `1`.<br>Special value: `auto` equal to half of the CPU number calculated using the [nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) command. | No |
 
-<!-- -->
-
->   #### Info:: See also:
+ >   #### Info:: See also:
 >   
 >   The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
-<!-- -->
-
-## Acquiring a Test Policy Identifier
+ ## Acquiring a Test Policy Identifier
 
 If you plan to employ your own [test policy][doc-testpolicy], then [create one][link-wl-portal-new-policy] in the Wallarm cloud. Later, pass the identifier to the FAST node's Docker container via the `TEST_RUN_POLICY_ID` environment variable when running the FAST node in testing mode. 
 
@@ -99,9 +93,7 @@ docker-compose run --rm -e CI_MODE=testing fast
 > 
 > When security testing is finished, you will find the brief `<TEST RUN NAME>.<UNIX TIME>.txt` report and the detailed `<TEST RUN NAME>.<UNIX TIME>.json` report in the `{DIRECTORY_FOR_REPORTS}` directory.
 
-<!-- -->
-
->   #### Info:: Options of the `docker-compose` command
+ >   #### Info:: Options of the `docker-compose` command
 >   
 >   You can pass any of the environment variables described above to a FAST node Docker container via the `-e` option. 
 >   

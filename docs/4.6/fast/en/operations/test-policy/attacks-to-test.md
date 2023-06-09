@@ -34,9 +34,7 @@ You can control the way of detecting vulnerabilities in the application in the f
 
     Please note that if the **Use only custom DSL** switch is activated, then the built-in FAST extensions and [FAST fuzzer][doc-fuzzer] will be disabled. If the FAST fuzzer is enabled, then the **Use only custom DSL** switch will become inactive again.
 
-<!-- -->
-
-> #### Info:: Basic vulnerabilities
+ > #### Info:: Basic vulnerabilities
 >
 > When creating a policy, the most typical vulnerabilities that can be detected in applications are selected by default:
 >

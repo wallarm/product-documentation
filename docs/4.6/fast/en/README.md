@@ -16,13 +16,7 @@ After getting the security test set ready, the FAST node will execute the test s
 
 Given the automatization capabilities combined with the built-in vulnerabilities knowledge base, FAST is a suitable tool for DevOps, security experts, software developers and QA engineers. With FAST, it is possible to use the security experts' deep knowledge to construct security testing policies, while giving developers with no expertise in the security field a way to automate security test generation and execution. Therefore, both groups of team members could effectively communicate in an asynchronous way with each other. The FAST architecture allows integrating security test generation and execution processes into the existing CI/CD process, so that the overall quality of software being developed can be increased.
 
-<!-- -->
-
-!INCLUDE "include/cloud-note-readme.md"
-
-<!-- -->
-
-<!-- -->
+--8<-- "../include/fast/cloud-note-readme.md"
 
 > #### Info:: Text formatting conventions
 > This guides contain a variety of text strings and commands that need to be entered or run to get the desired result. For your convenience, all of them are formatted according to the text formatting conventions. To see the conventions, proceed to this [link][link-agreements].

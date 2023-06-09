@@ -12,9 +12,7 @@
 >   This guide uses the vulnerable [OWASP Juice Shop][link-juice-shop] application to demonstrate the capabilities of the FAST extension mechanism.
 >   
 >   It is assumed that an instance of this application is accessible via the `ojs.example.local` domain name. If a different domain name is assigned to the deployed application (see [installation instructions][link-ojs-install-manual]), please replace `ojs.example.local` with the appropriate domain name.
-<!-- -->
-
-To successfully construct a FAST extension, you need to understand the mechanism of operation of the web application or API that you need to test for vulnerabilities (the internal architecture of the application or API, request and response format, the logic of exception handling, etc).
+ To successfully construct a FAST extension, you need to understand the mechanism of operation of the web application or API that you need to test for vulnerabilities (the internal architecture of the application or API, request and response format, the logic of exception handling, etc).
 
 Let us perform an inspection of the OWASP Juice Shop application to find out a few potential ways of exploiting vulnerabilities.
 
@@ -58,9 +56,7 @@ Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL in
 >       "password": "12345"
 >   }
 >   ```
-<!-- -->
-
-To understand how to detect the case of a successful vulnerability exploitation, log in to the site as the administrator using the email and password values mentioned above. Intercept the API server's response using the Wireshark application:
+ To understand how to detect the case of a successful vulnerability exploitation, log in to the site as the administrator using the email and password values mentioned above. Intercept the API server's response using the Wireshark application:
 *   The HTTP status of the response: `200 OK` (if there are any issues during login, then the server will respond with the `401 Unauthorized` status). 
 *   The server's response in JSON format that informs about a successful authentication:
 

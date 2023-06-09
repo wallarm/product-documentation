@@ -91,9 +91,7 @@ You have set the environment variables. Their purpose can be described as follow
 >   
 >   Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
 
-<!-- -->
-
-!INCLUDE "../include/wallarm-api-host-note.md"
+ --8<-- "../include/fast/wallarm-api-host-note.md"
 
 <!-- -->
    
@@ -137,7 +135,7 @@ You should provide several arguments to the command:
 
 If the container deployment is successful, you will be presented with a console output like this:
 
-!INCLUDE "../../console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-deployment-ok.md"
 
 Now you should have the ready-to-work FAST node connected to the Wallarm cloud. The node is listening to the incoming HTTP and HTTPS requests on `localhost:8080` by recognizing the requests to the `google-gruyere.appspot.com` domain as baseline ones.
     

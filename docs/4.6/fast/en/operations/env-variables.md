@@ -67,8 +67,6 @@ The FAST node employs this environment variable in the following way:
 *   If the value of the incoming request's `Host` header matches the value specified in the `ALLOWED_HOSTS` variable, then the FAST node considers the request to be a baseline one. The request is then recorded and proxied.
 *   All other requests are proxied through the FAST node but are not recorded.
 
-<!-- -->
-
->   #### Info:: Example of ALLOWED_HOSTS Environment Variable Usage
+ >   #### Info:: Example of ALLOWED_HOSTS Environment Variable Usage
 >
 >   If the variable is defined as `ALLOWED_HOSTS=google-gruyere.appspot.com`, then the requests targeted to the `google-gruyere.appspot.com` domain will be considered baseline ones.

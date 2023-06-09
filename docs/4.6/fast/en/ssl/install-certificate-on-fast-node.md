@@ -9,9 +9,7 @@
 > * Your browser is configured to use a FAST node as an HTTP or HTTPS proxy.
 > * Your browser already trusts the SSL certificate you are going to install for the FAST node.
 
-<!-- -->
-
-> ####  Warning:: Certificate requirements
+ > ####  Warning:: Certificate requirements
 > To successfully complete this installation, your SSL certificate must be either a root certificate or an intermediate certificate.
 > 
 > The certificate and the corresponding private key must be [encoded using PEM][link-pem-encoding]. If your certificate has a different encoding, you can use any available certificate conversion tool, such as [OpenSSL][link-openssl] to convert it to a PEM encoded certificate.

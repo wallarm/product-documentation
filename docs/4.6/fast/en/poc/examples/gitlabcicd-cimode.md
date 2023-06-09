@@ -19,13 +19,13 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 
 ![Passing GitLab CI/CD environment variable][gitlabci-example-env-var]
 
-!INCLUDE "../../include/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 <br>
 
 ## Adding the Step of Request Recording
 
-!INCLUDE "../../include/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 <br>
 
@@ -54,7 +54,7 @@ An example includes the following steps:
 
 ## Adding the Step of Security Testing
 
-!INCLUDE "../../include/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 <br>
 

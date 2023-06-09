@@ -15,16 +15,12 @@
 >
 >   Read about the extension types in detail [here][link-ext-logic].
 
-<!-- -->
-
->   #### Info:: Request elements description syntax
+ >   #### Info:: Request elements description syntax
 >   
 >   When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
 >   
 >   To see detailed information, proceed to this [link][link-points].
-<!-- -->
-
-This phase collects all the baseline requests that satisfy the specified condition. To make the decision about collecting the request, the phase uses the information about the requests that were already collected during the test run.
+ This phase collects all the baseline requests that satisfy the specified condition. To make the decision about collecting the request, the phase uses the information about the requests that were already collected during the test run.
 
 The baseline request collection procedure happens in real time. Each of the requests will be processed in the order in which the FAST node writes the baseline requests. There is no need to wait until the request-writing process is finished for the requests to be processed and collected by the Collect phase.
 

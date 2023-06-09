@@ -71,7 +71,7 @@ To create a test run via your Wallarm account interface, follow the steps below:
     ![Creating test run][img-test-run-creation]
 
 6. Add **Advanced settings** if required. This block of settings includes the following points:
-!INCLUDE "../include/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
 
     ![Test run advanced settings][img-testrun-adv-settings]
 

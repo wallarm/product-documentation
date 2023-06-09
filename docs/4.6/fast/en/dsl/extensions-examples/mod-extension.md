@@ -172,9 +172,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 <!-- -->
 >   #### Info:: Escaping the special symbols
 >   Remember to escape the special symbols in the strings.
-<!-- -->
-
-##  The Extension File
+ ##  The Extension File
 
 Now the `mod-extension.yaml` file contains the complete set of the sections required for the extension to operate. The listing of the file's content is below:
 

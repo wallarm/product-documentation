@@ -14,9 +14,7 @@ During its operation, FAST interacts with the Wallarm portal and API server that
     *   Wallarm portal: <https://my.wallarm.com>
     *   Wallarm API server: `api.wallarm.com`
 
-<!-- -->
-
->   #### Warning:: Please, pay attention
+ >   #### Warning:: Please, pay attention
 >   
 >   **Rules of interaction with Wallarm clouds:**
 >   *   You can only interact with a Wallarm portal and API server that are located in the same cloud.
