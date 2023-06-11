@@ -29,22 +29,20 @@
 
 # Installing Wallarm with All-in-One Binary
 
-These instructions describe the steps to install Wallarm filtering node as a dynamic module for different NGINX versions and on a number of different Linux OS versions using **all-in-one Wallarm binary**.
+In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distributive NGINX](dynamic-module-from-distr.md), the **all-in-one binary** simplifies the process by automatically performing the following actions:
 
-The all-in-one installation script:
+1. Checking your OS and NGINX version.
+1. Adding Wallarm repositories for the detected OS and NGINX version.
+1. Installing Wallarm packages from these repositories.
+1. Connecting the installed Wallarm module to your NGINX.
+1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-1. Checks your OS and NGINX version.
-1. Adds Wallarm repositories for the detected OS and NGINX version.
-1. Installs Wallarm packages from these repositories.
-1. Connects the installed Wallarm module to your NGINX.
-1. Connects the filtering node to Wallarm Cloud using the provided token.
-
-Thus it automates a lot of activities that should be performed manually when installing a Wallarm filtering node from Linux packages.
+![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Supported OS on the machine with the node: Debian 10.x or 11.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
+* Supported OS: Debian 10.x or 11.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm binary. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -53,20 +51,79 @@ Thus it automates a lot of activities that should be performed manually when ins
 
 Install the latest NGINX version of:
 
-* **NGINX `stable`** - see how to install it: Wallarm [documentation](dynamic-module.md#1-install-nginx-stable-and-dependencies) / NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
-* **NGINX Plus** - see how to install it: Wallarm [documentation](../nginx-plus.md#1-install-nginx-plus-and-dependencies) / NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+* **NGINX `stable`** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Plus** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 
 ## 2. Prepare Wallarm token
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
 
-## 3. Run all-in-one Wallarm binary
+## 3. Download all-in-one Wallarm binary
 
-Download all-in-one Wallarm installation script:
+Wallarm suggests installations for x86_64 version of the processor of your machine with the node and for [ARM64 version](#arm64-version). This and the following steps describe the x86_64 version installation.
+
+To download all-in-one Wallarm [installation script](#script-parameters), execute the command:
+
+```bash
+sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
+```
+
+## 4. Run all-in-one Wallarm binary
+
+1. Run downloaded script:
 
     ```bash
-    sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
+    sudo sh wallarm-4.6.10.x86_64-glibc.sh
     ```
+
+1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+1. Enter Wallarm token.
+
+    The script finishes installation and reminds about necessity to configure the installed node via `/etc/nginx/nginx.conf`.
+
+## 5. Enable Wallarm to analyze the traffic
+
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+
+## 6. Restart NGINX
+
+--8<-- "../include/waf/root_perm_info.md"
+
+--8<-- "../include/waf/restart-nginx-3.6.md"
+
+## 7. Configure sending traffic to the Wallarm instance
+
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+
+## 8. Test Wallarm node operation
+
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+
+## 8. Fine-tune the deployed solution
+
+The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
+
+Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
+
+* `/etc/nginx/nginx.conf` with NGINX settings
+* `/etc/nginx/wallarm.conf` with global filtering node settings
+
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+* `/etc/nginx/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the Tarantool database settings
+
+Below there are a few of the typical settings that you can apply if needed:
+
+* [Configuration of the filtration mode][waf-mode-instr]
+* [Allocating resources for Wallarm nodes][memory-instr]
+* [Logging Wallarm node variables][logging-instr]
+* [Using the balancer of the proxy server behind the filtering node][proxy-balancer-instr]
+* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
+* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
+* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+* [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
+
+## Appendix
 
 ### Script parameters
 
@@ -109,87 +166,12 @@ In interactive mode the following is asked by the script:
 
 Also interactive mode includes a reminder that you need to configure the installed node.
 
-### x86_64 version
-
-Wallarm suggests installations for x86_64 version of the processor of your machine with the node and for [ARM64 version](#arm64-version). This procedure describes the x86_64 version installation.
-
-1. Run downloaded script in the selected mode.
-
-    === "Interactive mode"
-        1. Run:
-
-            ```bash
-            sudo sh wallarm-4.6.10.x86_64-glibc.sh
-            ```
-
-        1. Confirm you want to connect the node to Wallarm Cloud.
-        1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-        1. Enter Wallarm token.
-
-    === "Batch (non-interactive) mode"
-        1. Run depending on the [selected token type](../../user-guides/nodes/nodes.md#connecting-new-node-to-wallarm-cloud):
-
-            ```bash
-            sudo env WALLARM_LABELS="group=GROUP" sh wallarm-4.6.10.x86_64-glibc.sh -- -b -t <API TOKEN> -c <US/EU/EU2>
-            ```
-
-            or:
-
-            ```bash
-            sudo sh wallarm-4.6.10.x86_64-glibc.sh -- -b -t <NODE TOKEN> -с <US/EU/EU2>
-            ```
-
-1. Confirm that installation is finished.
-1. As script notifies you that you need to configure the installed node, perform this configuration via `/etc/nginx/nginx.conf`.
-
 ### ARM64 version
 
-To install node on machine with the ARM64 processor architecture, download the following all-in-one script:
+To install a node on the machine with the ARM64 processor architecture, download the following all-in-one script:
 
 ```bash
 sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.aarch64-glibc.sh
 ```
 
-The script uses all the same options as a x86_64 version.
-
-## 4. Enable Wallarm to analyze the traffic
-
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
-
-## 5. Restart NGINX
-
---8<-- "../include/waf/root_perm_info.md"
-
---8<-- "../include/waf/restart-nginx-3.6.md"
-
-## 6. Configure sending traffic to the Wallarm instance
-
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
-
-## 7. Test Wallarm node operation
-
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
-
-## 8. Fine-tune the deployed solution
-
-The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
-
-Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
-
-* `/etc/nginx/nginx.conf` with NGINX settings
-* `/etc/nginx/wallarm.conf` with global filtering node settings
-
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
-* `/etc/nginx/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the Tarantool database settings
-
-Below there are a few of the typical settings that you can apply if needed:
-
-* [Configuration of the filtration mode][waf-mode-instr]
-* [Allocating resources for Wallarm nodes][memory-instr]
-* [Logging Wallarm node variables][logging-instr]
-* [Using the balancer of the proxy server behind the filtering node][proxy-balancer-instr]
-* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
-* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
-* [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
+The script uses all the same options as the x86_64 version.
