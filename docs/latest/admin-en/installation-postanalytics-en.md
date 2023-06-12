@@ -49,6 +49,9 @@ sudo sh ./wallarm-4.6.10.x86_64-glibc.sh filtering
 
 If you decided to install the postanalytics module manually, perform the steps below.
 
+!!! info "Combining manual and automatic installation"
+    When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the filtering part (without postanalytics) manually and then postanalytics with all-in-one script and vise versa. When doing so, you need always manually [perform the step of connecting the NGINX-Wallarm module to the postanalytics module](#7-connect-the-nginx-wallarm-module-to-the-postanalytics-module).
+
 ## 1. Add Wallarm repositories
 
 The postanalytics module, like the other Wallarm modules, is installed and updated from the Wallarm repositories. To add repositories, use the commands for your platform:
