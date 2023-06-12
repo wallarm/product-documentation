@@ -47,17 +47,16 @@ After completing the FAST node deployment you should ensure that
 2.  The node has access to the Wallarm cloud.
 3.  All the baseline HTTP or HTTPS requests will be proxied through the node.
 
->   #### Info:: SSL certificate installation
->
->   In the case of using HTTPS to interact with the target application, the request source might not trust the self-signed SSL certificate obtained from the FAST node installation. For example, if you use the Mozilla Firefox browser as the requests source, you may encounter a similar message (it may differ for other browsers or request sources):
->
->   ![“Insecure connection” message][img-insecure-connection]
->
->   To resolve the certificate issue, you have two options:
->   1.  Install the self-signed SSL certificate from FAST node as a trusted certificate to the request source.
->   2.  Install the existing trusted SSL certificate to your FAST node.
+!!! info "SSL certificate installation"
+    In the case of using HTTPS to interact with the target application, the request source might not trust the self-signed SSL certificate obtained from the FAST node installation. For example, if you use the Mozilla Firefox browser as the requests source, you may encounter a similar message (it may differ for other browsers or request sources):
+    
+    ![“Insecure connection” message][img-insecure-connection]
+    
+    To resolve the certificate issue, you have two options:
 
-        
+    1.  Install the self-signed SSL certificate from FAST node as a trusted certificate to the request source.
+    1.  Install the existing trusted SSL certificate to your FAST node.
+  
 ##  FAST deployment specifics in the Quick Start guide 
 
 This guide aims to demonstrate the FAST operation by exploiting the deployment option where the node is installed locally with the request source. 
@@ -74,6 +73,5 @@ The installation that is used in this guide has the following specifics:
 
 ![Quick Start guide deployment scheme][img-qsg-deployment-scheme]
 
->   #### Info:: Google Gruyere
->
->   Google Gruyere is a purpose-built application for security testing. It contains a lot of intentionally integrated vulnerabilities. Therefore, every application instance runs in an isolated sandbox for security reasons. To begin working with the application, you should navigate to <https://google-gruyere.appspot.com> and run a sandbox with the separated instance of Gruyere application.
+!!! info "Google Gruyere"
+    Google Gruyere is a purpose-built application for security testing. It contains a lot of intentionally integrated vulnerabilities. Therefore, every application instance runs in an isolated sandbox for security reasons. To begin working with the application, you should navigate to <https://google-gruyere.appspot.com> and run a sandbox with the separated instance of Gruyere application.

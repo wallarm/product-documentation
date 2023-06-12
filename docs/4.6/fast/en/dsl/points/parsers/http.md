@@ -30,8 +30,8 @@ The HTTP parser builds a complex data structure on the basis of the baseline req
 *   [Header][anchor6];
 *   [Post][anchor7].
 
-> #### Info:: Using filters in points
-> Add the name of the filter in upper case to the point to use the filter in the point.
+!!! info "Using filters in points"
+    Add the name of the filter in upper case to the point to use the filter in the point.
 
 ## URI Filter
 
@@ -48,8 +48,8 @@ The `URI_value` point refers to the `/login/index.php` string in the `GET http:/
 
 The **Path** filter refers to an array containing URI path parts. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`.
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 **Example:** 
 
@@ -97,8 +97,8 @@ The Action_ext filter refers to a string value. This filter cannot refer to comp
 
 The **Get** filter refers to the hash table that contains parameters from the request query string. The elements of this hash table need to be referred to by using the names of the parameters.
 
-> #### Info:: Regular expressions in points
-> The name of the parameter in the point can be a regular expression of the [Ruby programming language][link-ruby].
+!!! info "Regular expressions in points"
+    The name of the parameter in the point can be a regular expression of the [Ruby programming language][link-ruby].
 
 Query string parameters may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-get-array] and [Hash][link-get-hash] filters correspondingly to address the elements in these structures.
 
@@ -119,13 +119,14 @@ For the `POST http://example.com/login?id=01234&username=admin` request, the Get
 
 The **Header** filter refers to the hash table that contains header names and values. The elements of this hash table need to be referred to by using the names of the headers.
 
-> #### Info:: A header name in a point
-> A header name can be specified in a point in one of the following ways:
-> * In upper case;
-> * The same way it is specified in the request.
+!!! info "A header name in a point"
+    A header name can be specified in a point in one of the following ways:
 
- > #### Info:: Regular expressions in points
-> The header name in the point can be a regular expression of the [Ruby programming language][link-ruby].
+        * In upper case;
+        * The same way it is specified in the request.
+
+!!! info "Regular expressions in points"
+    The header name in the point can be a regular expression of the [Ruby programming language][link-ruby].
 
 
 The name of the header can also contain an array of values. Use the [Array][link-header-array] filter to address the elements of this array.

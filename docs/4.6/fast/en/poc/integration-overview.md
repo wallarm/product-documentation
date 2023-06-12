@@ -64,8 +64,7 @@ In this scenario, FAST demonstrates the following behavior:
 See [this document][doc-concurrent-pipelines] for detailed explanation about how to use FAST in concurrent CI/CD workflows.
 
 
->   #### Info:: HTTPS support
->   
-> This instruction describes the integration of FAST with CI/CD to test the application working over HTTP protocol.
-> 
-> FAST node also supports testing applications working over HTTPS protocol. More details are described in the [Quick Start guide][doc-qsg].
+!!! info "HTTPS support"
+    This instruction describes the integration of FAST with CI/CD to test the application working over HTTP protocol.
+    
+    FAST node also supports testing applications working over HTTPS protocol. More details are described in the [Quick Start guide][doc-qsg].

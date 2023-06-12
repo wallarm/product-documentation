@@ -9,19 +9,20 @@
 
 #   Copying a Test Run
 
->   #### Info:: Necessary Data
->   
->   To copy a test run via an API call, the following pieces of data are required:
->   *   a token
->   *   an existing test record identifier
->
->   To copy a test run via a web interface, a Wallarm account is required.
->   
->   You can get detailed information about token and test records [here][doc-tr-information].
->   
->   The following values are used as examples in this document:
->   *   `token_Qwe12345` as a token.
->   *   `rec_0001` as a test record.
+!!! info "Necessary Data"
+    To copy a test run via an API call, the following pieces of data are required:
+    
+        * a token
+        * an existing test record identifier
+
+    To copy a test run via a web interface, a Wallarm account is required.
+
+    You can get detailed information about token and test records [here][doc-tr-information].
+    
+    The following values are used as examples in this document:
+
+        *   `token_Qwe12345` as a token.
+        *   `rec_0001` as a test record.
 
 When a test run is being copied, an existing [test record][doc-testrecord] is reused.
 
@@ -96,12 +97,11 @@ To copy and execute a test run via the Wallarm portal's web interface:
     
 5.  Make sure that the “Use baselines from `<the name of the test record to reuse>`” option is checked.
 
-    >   #### Info:: Reusing a Test Record
-    >   
-    >   Note that it is the test record name that is displayed in the option, not the test run name.
-    >   
-    >   A test record name is often omitted: for example, if [a test run is created][doc-create-testrun] without the `test_record_name` parameter specified, then the name of the test record is the same as the name of the test run.
-    >   
-    >   The figure above shows the copy dialogue that mentions a test record where the name is not equivalent to the name of the test run wthat made use of this test record in the past (the `MY TEST RECORD` test record was used by the `DEMO TEST RUN` test run). 
+    !!! info "Reusing a Test Record"
+        Note that it is the test record name that is displayed in the option, not the test run name.
+        
+        A test record name is often omitted: for example, if [a test run is created][doc-create-testrun] without the `test_record_name` parameter specified, then the name of the test record is the same as the name of the test run.
+        
+        The figure above shows the copy dialogue that mentions a test record where the name is not equivalent to the name of the test run wthat made use of this test record in the past (the `MY TEST RECORD` test record was used by the `DEMO TEST RUN` test run). 
 
 6.  Execute the test run by clicking on the “Create and run” button.    

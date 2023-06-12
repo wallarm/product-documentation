@@ -24,9 +24,8 @@
 
 This chapter will guide you through the process of installation and initial configuration of the FAST node. Upon completion of all necessary steps, you will have an operating FAST node. It will be listening on `localhost:8080`, ready to proxy HTTP and HTTPS requests to the [Google Gruyere][link-https-google-gruyere] application. The node will be installed on your machine along with the Mozilla Firefox browser.
     
->   #### Info:: Note on the browser to use
->   
->   It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
+!!! info "Note on the browser to use"
+    It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
 
 ![FAST node deployment scheme in use][img-qsg-deployment-scheme]    
     
@@ -67,10 +66,8 @@ It is suggested that you use the Docker Community Edition (CE). However, any Doc
     
 4.  Move your mouse cursor over the **Token** field of the created node and copy the value.
 
-    >   #### Info:: Note on token
-    >   
-    >   It is possible to retrieve the token via a Wallarm API call as well. However, that is beyond the scope of this document. 
-    
+    !!! info "Note on token"
+        It is possible to retrieve the token via a Wallarm API call as well. However, that is beyond the scope of this document. 
         
 ##  3.  Prepare a file containing the necessary environment variables 
 
@@ -87,13 +84,10 @@ You have set the environment variables. Their purpose can be described as follow
 -   `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
 -   `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
     
->   #### Info:: Using the `ALLOWED_HOSTS` environment variable
->   
->   Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
+!!! info "Using the `ALLOWED_HOSTS` environment variable"
+    Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
 
  --8<-- "../include/fast/wallarm-api-host-note.md"
-
-<!-- -->
    
 ##  4.  Deploy the FAST node Docker container
 
@@ -125,13 +119,12 @@ You should provide several arguments to the command:
     
     You also could publish the container’s port to a non-loopback IP address on the host by providing the `-p <host IP>:<target port>:8080` argument to make it accessible from outside the Docker host as well.        
 
->   #### Info:: Example of a `docker run` command:
->
->   The execution of the following command will run a container named `fast-node` employing the environment variables file `/home/user/fast.cfg` and publish its port to `localhost:8080`:
->   
->   ```
->   docker run --name fast-node --env-file=/home/user/fast.cfg -p 8080:8080 wallarm/fast
->   ```
+!!! info "Example of a `docker run` command"
+    The execution of the following command will run a container named `fast-node` employing the environment variables file `/home/user/fast.cfg` and publish its port to `localhost:8080`:
+
+    ```
+    docker run --name fast-node --env-file=/home/user/fast.cfg -p 8080:8080 wallarm/fast
+    ```
 
 If the container deployment is successful, you will be presented with a console output like this:
 

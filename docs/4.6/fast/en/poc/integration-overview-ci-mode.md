@@ -34,8 +34,8 @@ The corresponding workflow steps are:
     *   Proxies baseline requests from the requests' source to the target application.
     *   Records these baseline requests in the test record to later create the security test set based on them.
     
-    >   #### Info:: Note on Test Runs
-    >   A test run is not created in the recording mode.
+    !!! info "Note on Test Runs"
+        A test run is not created in the recording mode.
 
 3.  Preparing and setting up a test tool:
     

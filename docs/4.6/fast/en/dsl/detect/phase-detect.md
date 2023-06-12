@@ -11,18 +11,17 @@
 
 # The Detect Phase
 
-<!-- -->
->   #### Info:: Scope of the phase
->   
->   This phase is obligatory for any FAST extension type to operate (the YAML file should contain the `detect` section).
->   
->   Read about the extension types in detail [here][link-ext-logic].
+!!! info "Scope of the phase"
+    This phase is obligatory for any FAST extension type to operate (the YAML file should contain the `detect` section).
+  
+    Read about the extension types in detail [here][link-ext-logic].
 
- > #### Info::  Request elements description syntax
-> When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
-> 
-> To see detailed information, proceed to this [link][link-points].
- This phase specifies the parameters to look for in the server response in order to make a conclusion about whether a vulnerability was successfully exploited by a test request.
+!!! info "Request elements description syntax"
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+
+    To see detailed information, proceed to this [link][link-points].
+
+This phase specifies the parameters to look for in the server response in order to make a conclusion about whether a vulnerability was successfully exploited by a test request.
 
 The `detect` section has the following structure:
 

@@ -7,8 +7,8 @@
 The **Multipart** parser is used for working with the request body in the multipart format. This parser creates a hash table where the names of the request body parameters are the keys and the values of the corresponding parameters are the hash table values. The elements of this hash table need to be referred to by using the names of the parameters.
 
 
-> #### Info:: Regular expressions in points
-> The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
  > #### Warning:: Using the Multipart parser in the point
 > The Multipart parser can only be used in the point together with the Post filter that refers to the baseline request body.

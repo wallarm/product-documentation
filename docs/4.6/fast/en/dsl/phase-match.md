@@ -4,19 +4,18 @@
 
 # The Match Phase
 
-<!-- -->
->   #### Info:: Scope of the phase
->   
->   This phase is used in a modifying extension and is optional for its operation (the `match` section may be either absent or present in the YAML file).
->   
->   This phase should be absent from the non-modifying extension's YAML file.
->
->   Read about the extension types in detail [here][link-ext-logic].
+!!! info "Scope of the phase"  
+    This phase is used in a modifying extension and is optional for its operation (the `match` section may be either absent or present in the YAML file).
 
- > #### Info::  Request element description syntax
-> When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with, using the points. 
-> 
-> To see detailed information, proceed to this [link][link-points].
+    This phase should be absent from the non-modifying extension's YAML file.
+    
+    Read about the extension types in detail [here][link-ext-logic].
+
+!!! info "Request element description syntax"
+     When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with, using the points. 
+    
+    To see detailed information, proceed to this [link][link-points].
+ 
  This phase checks if an incoming baseline request matches specified criteria.
 
 The `match` section in the extension YAML file contains an array of `<key: value>` pairs. Each pair describes a certain element of the request (the key) and this element's data (the value). The key and the value may contain regular expressions in the [Ruby regular expression format][link-ruby-regexp].

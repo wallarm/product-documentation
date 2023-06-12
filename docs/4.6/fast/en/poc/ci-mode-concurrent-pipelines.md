@@ -5,11 +5,11 @@
 
 #   Using FAST in Concurrent CI/CD Workflows
 
-> #### Info:: Necessary data 
-> 
-> The following values are used as examples in this document:
-> * `token_Qwe12345` as a token.
-> * `rec_1111` and `rec_2222` as test records identifiers.
+!!! info "Necessary data" 
+    The following values are used as examples in this document:
+
+        * `token_Qwe12345` as a token.
+        * `rec_1111` and `rec_2222` as test records identifiers.
 
 Several FAST nodes can be deployed simultaneously in concurrent CI/CD workflows. These nodes share the same token and work with a single cloud FAST node.
 
@@ -27,9 +27,8 @@ Next, an example will be given on how to run two FAST nodes simultaneously: in r
 
 ##  Running the FAST Node in Recording Mode to Use in Concurrent CI/CD Workflows
 
->   #### Info:: Note on the examples
->   
->   The examples below use only the essential set of environment variables, enough for a FAST node container to be up and operational. This is for the sake of simplicity. 
+!!! info "Note on the examples"
+    The examples below use only the essential set of environment variables, enough for a FAST node container to be up and operational. This is for the sake of simplicity. 
 
 Run the following command to run the first FAST node container in recording mode:
 
@@ -53,11 +52,10 @@ docker run --rm --name fast-node-2 \
 -p 8000:8080 wallarm/fast
 ```
 
->   #### Info:: Note on the `docker run` commands
->   
->   The aforementioned commands are supposed to be run on the same Docker host, so in addition to the different `BUILD_ID` values, these commands have distinct container names (`fast-node-1` and `fast-node-2`) and target ports values (`8080` and `8000`).
->   
->   If you run FAST node containers on separate Docker hosts, then the `docker run` commands may differ only in the `BUILD_ID` values.
+!!! info "Note on the `docker run` commands"
+    The aforementioned commands are supposed to be run on the same Docker host, so in addition to the different `BUILD_ID` values, these commands have distinct container names (`fast-node-1` and `fast-node-2`) and target ports values (`8080` and `8000`).
+    
+    If you run FAST node containers on separate Docker hosts, then the `docker run` commands may differ only in the `BUILD_ID` values.
 
 After executing these two commands, two FAST nodes will operate in recording mode using the same cloud FAST node, but **distinct test records will be created**.
 

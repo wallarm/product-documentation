@@ -2,23 +2,21 @@
 
 A few examples of FAST test policies are presented in this document, including the following that are used in the FAST documentation. These examples demonstrate all aspects of working with the policies.
 
-> #### Info:: Request element description syntax
-> 
-> A FAST test policy allows or denies a FAST node permission to work with particular elements of a baseline request.
->
-> These elements are described using the [points](../../dsl/points/intro.md).
-> 
-> In the sample test policies below, every baseline request’s element is followed by the corresponding point, like this: any GET parameter (`GET_.*`).
+!!! info "Request element description syntax"
+    A FAST test policy allows or denies a FAST node permission to work with particular elements of a baseline request.
 
- > #### Info:: Detection of vulnerabilities
->
-> [The list of vulnerabilities that FAST can detect](../../VULN-LIST.md)
->
-> Please note that the choice of vulnerability types during configuration of a test policy influences which ones of the embedded FAST extensions (aka detects) will be executed.
->
-> Custom FAST extensions will try to detect the vulnerability type they are designed for, even if this vulnerability type was not selected when configuring a policy.
->
-> For example, a policy can allow for testing a target application for RCE, but a custom extension will test the application for SQLi vulnerabilities.
+    These elements are described using the [points](../../dsl/points/intro.md).
+
+    In the sample test policies below, every baseline request’s element is followed by the corresponding point, like this: any GET parameter (`GET_.*`).
+
+!!! info "Detection of vulnerabilities"
+    [The list of vulnerabilities that FAST can detect](../../VULN-LIST.md)
+
+    Please note that the choice of vulnerability types during configuration of a test policy influences which ones of the embedded FAST extensions (aka detects) will be executed.
+
+    Custom FAST extensions will try to detect the vulnerability type they are designed for, even if this vulnerability type was not selected when configuring a policy.
+
+    For example, a policy can allow for testing a target application for RCE, but a custom extension will test the application for SQLi vulnerabilities.
 
 ## Default Test Policy
 
@@ -37,12 +35,11 @@ This is an unchangeable test policy that allows for working with common request 
 
 ![Policy example](../../../images/operations/en/test-policy/examples/default-policy-example.png)
 
-> #### Info:: Note
->
-> Please take the following into account:
->
-> * When you create a new test policy, its settings will be identical to those used in the default policy. You can modify the settings of the new policy as needed.
-> * This policy can be used in the [example](../../poc/examples/circleci.md) of FAST integration into CI/CD.
+!!! info "Note"
+    Please take the following into account:
+
+        * When you create a new test policy, its settings will be identical to those used in the default policy. You can modify the settings of the new policy as needed.
+        * This policy can be used in the [example](../../poc/examples/circleci.md) of FAST integration into CI/CD.
 
 ## Policy that Allows Working with All GET and POST Parameters
 
@@ -54,9 +51,8 @@ This test policy allows working with all GET (`GET_.*`) and POST parameters (`PO
 
 ![Policy example](../../../images/operations/en/test-policy/examples/get-post-policy-example.png)
 
-> #### Info:: Note
->
-> In the Quick Start guide, this policy can be used to conduct security testing of the [Google Gruyere](../../qsg/test-run.md) target application.
+!!! info "Note"
+    In the Quick Start guide, this policy can be used to conduct security testing of the [Google Gruyere](../../qsg/test-run.md) target application.
 
 ## Policy that Allows Working with URI and Encoded email POST Parameter (Only Custom FAST Extensions Are Allowed to Run)
 
@@ -92,9 +88,8 @@ This policy allows working with `email` POST parameter in a request. The `email`
 
 ![Policy example](../../../images/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
-> #### Info:: Note
->
-> This policy can be used to find vulnerabilities in the [OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md).
+!!! info "Note"
+    This policy can be used to find vulnerabilities in the [OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md).
 
 ## Policy that Denies Working with the Value of a Particular Point
 

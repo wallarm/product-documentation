@@ -2,14 +2,12 @@
 
 # The Send Phase
 
-<!-- -->
->   #### Info:: Scope of the phase
->      
->   This phase is obligatory for a nonmodifying extension to operate (the YAML file should contain the `send` section).
->   
->   Note that this phase is absent in a modifying extension because the Send phase would render other phases unusable (except for the Detect phase and implicit Collect phase) if combined with them.
->   
->   Read about the extension types in detail [here][link-ext-logic].
+!!! info "Scope of the phase"
+    This phase is obligatory for a nonmodifying extension to operate (the YAML file should contain the `send` section).
+    
+    Note that this phase is absent in a modifying extension because the Send phase would render other phases unusable (except for the Detect phase and implicit Collect phase) if combined with them.
+    
+    Read about the extension types in detail [here][link-ext-logic].
 
  This phase sends the predefined test requests to test a target application for vulnerabilities. The host that the test requests should be sent to is determined by the `Host` header value in incoming baseline requests.
 
@@ -76,17 +74,16 @@ headers:
 ```
     {% endcollapse %}
       
-    >   #### Info:: Working with the `Host` header 
-    >   
-    >   You can add a `Host` header to a test request that differs from the one extracted from a baseline request, if necessary. 
-    >   
-    >   For example, it is possible to add the `Host: demo.com` header to a test request in the Send section.
-    >   If the corresponding extension is running and the FAST node receives a baseline request with the `Host: example.com` header, then the test request with the header `Host: demo.com` will be sent to the `example.com` host. The resulting request is similar to this one:
-    >   
-    >   ```
-    >   curl -k -g -X POST -L -H "Host: demo.com" -H "Content-Type: application/json" "http://example.com/app" --data "{"field":"value"}"
-    >   ```
-    <!-- -->
+    !!! info "Working with the `Host` header"
+        You can add a `Host` header to a test request that differs from the one extracted from a baseline request, if necessary. 
+        
+        For example, it is possible to add the `Host: demo.com` header to a test request in the Send section.
+    
+        If the corresponding extension is running and the FAST node receives a baseline request with the `Host: example.com` header, then the test request with the header `Host: demo.com` will be sent to the `example.com` host. The resulting request is similar to this one:
+
+        ```
+        curl -k -g -X POST -L -H "Host: demo.com" -H "Content-Type: application/json" "http://example.com/app" --data "{"field":"value"}"
+        ```
     
 *   `body`: a string that contains the request's body. You can specify any required request body, as long as you escape special characters, if any, in the resulting string.
 

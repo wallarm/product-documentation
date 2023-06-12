@@ -12,12 +12,10 @@ The guide contains the following pieces of information:
 
  --8<-- "../include/fast/cloud-note.md"
 
-  >   #### Info:: Agreement on terms
->   
->   The “API” term will be used as a shorter version of the “Wallarm API” term throughout the guide, unless stated otherwise.
+!!! info "Agreement on terms"
+    The “API” term will be used as a shorter version of the “Wallarm API” term throughout the guide, unless stated otherwise.
 
- >   #### Info:: HTTPS support
->   
->   This guide describes the integration of FAST to test an HTTP-based target application.
->    
->   However, the FAST node may test applications that work over HTTPS as well. The HTTPS-related topics are discussed in the [“Quick Start Guide”][doc-qsg]
+!!! info "HTTPS support"
+    This guide describes the integration of FAST to test an HTTP-based target application.
+    
+    However, the FAST node may test applications that work over HTTPS as well. The HTTPS-related topics are discussed in the [“Quick Start Guide”][doc-qsg]

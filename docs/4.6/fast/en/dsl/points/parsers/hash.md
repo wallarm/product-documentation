@@ -22,8 +22,8 @@ The Hash filter can be used in the point together with the following filters and
 
 Use the keys to refer to the elements of the hash table addressed by the Hash filter.
 
-> #### Info:: Regular expressions in points
-> The key in the point can be a [regular expression of the Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The key in the point can be a [regular expression of the Ruby programming language][link-ruby].  
 
 ## The Example of Using the Get Filter and the Hash Filter
 

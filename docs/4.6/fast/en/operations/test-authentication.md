@@ -11,8 +11,8 @@ To pass credentials for test run authentication, perform the following steps bef
     1. Add the [`modify`](../dsl/phase-modify.md) section to the file.
     2. In the `modify` section, specify the part of the request where authentication parameters are passed. The request part must be specified in the [point](../dsl/points/basics.md) format.
 
-        > #### Info:: Example of a point for the token parameter
-        > If a token is used for request authentication and its value is passed in the `token` parameter in the `Cookie` request header, the point may look like `HEADER_COOKIE_COOKIE_token_value`.
+        !!! info "Example of a point for the token parameter"
+            If a token is used for request authentication and its value is passed in the `token` parameter in the `Cookie` request header, the point may look like `HEADER_COOKIE_COOKIE_token_value`.
     
     3. Specify values of authentication parameters in the following way:
     ```

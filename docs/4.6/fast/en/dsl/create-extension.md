@@ -16,10 +16,10 @@
 
 # The Creation of FAST Extensions
 
-> #### Info::  Request elements description syntax
-> When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
-> 
-> To see detailed information, proceed to this [link][link-points].
+!!! info "Request elements description syntax"
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+
+    To see detailed information, proceed to this [link][link-points].
 
 The FAST extensions are created by describing all of the sections that are required for the extension to operate in the corresponding YAML file. Extensions of a different type use their own set of sections ([detailed information about the extension types][link-ext-logic]).
 
@@ -87,6 +87,5 @@ meta-info:
     ![Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
 
 
->   #### Info:: Plugging in FAST extensions
->   
->   To plug an extension to FAST, you need to mount the directory containing the extension's YAML file to the FAST node Docker container. To see detailed information about the mounting procedure, navigate to this [link][link-extensions].
+!!! info "Plugging in FAST extensions"
+    To plug an extension to FAST, you need to mount the directory containing the extension's YAML file to the FAST node Docker container. To see detailed information about the mounting procedure, navigate to this [link][link-extensions].

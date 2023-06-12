@@ -8,15 +8,16 @@
 
 #   Waiting for the Testing to Finish
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain:
->   *   A [token][doc-get-token].
->   *   An [identifier][doc-get-testrun-id] of a test run.
->   
->   The following values are used as example values throughout the chapter:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain:
+    
+    * a [token][doc-get-token].
+    * an [identifier][doc-get-testrun-id] of a test run.
+    
+    The following values are used as example values throughout the chapter:
+        
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
 
 The processes of creating and executing the test requests begin when the first baseline request is recorded and could take a significant amount of time after the process of baseline requests recording has been stopped. You could check the state of the test run periodically to get some insights into the performing processes.
 

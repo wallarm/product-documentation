@@ -32,9 +32,8 @@ FAST generates and executes a security test set in the following way:
     2.  The marked request is saved to the Wallarm cloud
     3.  The initial baseline request is sent to the target application unmodified
     
-    >   #### Info:: The baseline requests recording process
-    >
-    >   This process is often referred to as baseline requests recording. You could stop the recording either from the web interface of the cloud or by making an API call to the Wallarm API. The node will continue sending initial baselines to the target application.
+    !!! info "The baseline requests recording process"
+        This process is often referred to as baseline requests recording. You could stop the recording either from the web interface of the cloud or by making an API call to the Wallarm API. The node will continue sending initial baselines to the target application.
     
     The baseline recording begins if the node receives the test policy and the test run ID first.
     
@@ -50,9 +49,8 @@ FAST generates and executes a security test set in the following way:
 
     ![FAST node internal logic][img-fast-node-internals]
 
-    >   #### Info:: Note on a test run in use
-    >
-    >   In any given period of time, only one test run can be running on the FAST node. If you create another test run for the same node, the current test run execution is interrupted.
+    !!! info "Note on a test run in use"
+        In any given period of time, only one test run can be running on the FAST node. If you create another test run for the same node, the current test run execution is interrupted.
     
     
 ----------
@@ -84,15 +82,14 @@ You can click on the “Baseline req.” column to see all the baseline requests
 
 ![Viewing recorded baseline requests][img-view-recording-cloud]
 
->   #### Info:: The node readiness for the recording
->
->   You should wait until you see the console output signalling that the FAST node named `DEMO NODE` is ready to record baseline requests for the test run named `DEMO TEST RUN`.
->   
->   If the node is ready to record the baseline request, you will see a similar message in the console output:
->   
->   `[info] Recording baselines for TestRun#N ‘DEMO TEST RUN’`
->
->   The node will be able to generate a security test set based on the baseline requests only after this message is shown.	
+!!! info "The node readiness for the recording"
+    You should wait until you see the console output signalling that the FAST node named `DEMO NODE` is ready to record baseline requests for the test run named `DEMO TEST RUN`
+    
+    If the node is ready to record the baseline request, you will see a similar message in the console output:
+    
+    `[info] Recording baselines for TestRun#N ‘DEMO TEST RUN’`
+    
+    The node will be able to generate a security test set based on the baseline requests only after this message is shown.	
 
 It is observable from the console output that the FAST node named `DEMO NODE` is ready for recording baseline requests for the test run named `DEMO TEST RUN`:
 
@@ -103,9 +100,8 @@ It is observable from the console output that the FAST node named `DEMO NODE` is
 
 To do that, navigate to the link you [created][link-previous-chapter] using the pre-configured Mozilla Firefox browser.
 
->   #### Info:: Example of a link
->   
->   <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
+!!! info "Example of a link"
+    <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
 
 The result of the request execution is shown below:
 
@@ -121,9 +117,8 @@ You can observe some baseline requests being saved to the Wallarm cloud:
 
 This document suggests that only one request be executed for demonstration purposes. Given that there are no additional requests to the target application, stop the baseline recording process by selecting the **Stop recording** option from the “Actions” drop-down menu.
 
->   #### Info:: Controlling the test run execution process
->   
->   A security test set was generated quite fast for the test run you created. However, the process could take a significant amount of time, depending on the number of baseline requests, the test policy in use, and the responsiveness of the target application. You could pause or stop the testing process by selecting an appropriate option from the “Actions” drop-down menu.
+!!! info "Controlling the test run execution process"
+    A security test set was generated quite fast for the test run you created. However, the process could take a significant amount of time, depending on the number of baseline requests, the test policy in use, and the responsiveness of the target application. You could pause or stop the testing process by selecting an appropriate option from the “Actions” drop-down menu.
 
 The test run stops automatically when the testing process is finished, given that no baseline recording is in progress. Some brief information about the detected vulnerabilities will be displayed in the “Result” column. FAST should find some XSS vulnerabilities for the executed HTTPS request:
 

@@ -64,8 +64,8 @@ Add the names of the XML parser and the filter provided by it in upper case to t
  
 The **Xml_comment** filter refers to the array containing comments from data in XML format. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`.
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 The Xml_comment filter can only be used in the point together with the XML parser.
 
@@ -135,8 +135,8 @@ body, the `POST_XML_DTD_value` point refers to the `example.dtd` value.
 
 The **Xml_dtd_entity** filter refers to the array containing the DTD schema directives defined in the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. 
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 The Xml_dtd_entity filter can only be used in the point together with the XML parser.
 
@@ -187,8 +187,8 @@ In this array, each index refers to the name-value pair that corresponds with th
 
 The **Xml_pi** filter refers to the array of the processing instructions defined for the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. 
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 The Xml_pi filter can only be used in the point together with the XML parser.
 
@@ -234,8 +234,8 @@ In this array, each index refers to the name-value pair that corresponds with th
 
 The **Xml_tag** filter refers to the hash table of the XML tags from the XML data. The elements of this hash table need to be referred to by using the names of the tags. This filter can only be used in the point together with the XML parser. 
 
-> #### Info:: Regular expressions in points
-> The tag name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The tag name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 The tags from the XML data may also contain arrays of values. Use the [Array][link-xmltag-array] or the [Xml_tag_array][anchor6] filter to refer to the values from these arrays.
 
@@ -277,13 +277,14 @@ body, the Xml_tag filter applied to the request body together with the XML parse
 
 The **Xml_tag_array** filter refers to the array of the tag values from the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. This filter can only be used in the point together with the XML parser. 
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 The [Array][link-array] filter applied to the XML data works similarly to the Xml_tag_array.
 
-> #### Info:: The ways of addressing tag content
-> The XML parser does not differentiate between the tag value and the first element in the tag values array.
+!!! info "The ways of addressing tag content"
+    The XML parser does not differentiate between the tag value and the first element in the tag values array.
+
 For example, the `POST_XML_XML_TAG_myTag_value` and the `POST_XML_XML_TAG_myTag_ARRAY_0_value` points refer to the same value.
 
 **Example:** 
@@ -324,8 +325,8 @@ body, the Xml_tag_array applied to the `text` tag in the request body refers to 
 
 The **Xml_attr** filter refers to the hash table of the tag attributes from the XML data. The elements of this hash table need to be referred to by using the names of the attributes.
 
-> #### Info:: Regular expressions in points
-> The attribute name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points
+    The attribute name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 This filter can only be used in the point together with the Xml_tag filter.
 

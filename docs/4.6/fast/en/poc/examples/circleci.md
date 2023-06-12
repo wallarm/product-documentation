@@ -40,9 +40,8 @@
 
 #   Example of FAST Integration into CI/CD
 
->   #### Info:: Chapter conventions
->   
->   The following token value is used as an example value throughout the chapter: `token_Qwe12345`.
+!!! info "Chapter conventions"
+    The following token value is used as an example value throughout the chapter: `token_Qwe12345`.
 
 A sample project [fast-example-api-circleci-rails-integration][link-example-project] is available on the Wallarm’s GitHub. It’s purpose is to demonstrate how to perform FAST integration into existing CI/CD processes. This example follows the [“Deployment via the API when Baseline Requests Recording Takes Place”][link-api-recoding-mode] scenario.
 
@@ -71,9 +70,8 @@ RSpec executes a few integration tests to test the following scenarios:
 
 Capybara and Selenium help to convert these tests into a set of HTTP requests to the application.
 
->   #### Info:: Tests Location
->   
->   The aforementioned integration tests are described in the `spec/features/posts_spec.rb` file.
+!!! info "Tests Location"
+    The aforementioned integration tests are described in the `spec/features/posts_spec.rb` file.
 
 ##  How FAST Integrates with RSpec and CircleCI
 
@@ -130,9 +128,8 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
         
         The token is passed into the service’s container by the `WALLARM_API_TOKEN=$TOKEN` environment variable. The token is required for the proper FAST operation.
         
-        >   #### Info:: Note on baseline requests
-        >
-        >   The provided example does not employ the `ALLOWED_HOSTS` [environment variable][doc-env-variables]. Therefore, the FAST node recognizes all incoming requests as the baseline ones.
+        !!! info "Note on baseline requests"
+            The provided example does not employ the `ALLOWED_HOSTS` [environment variable][doc-env-variables]. Therefore, the FAST node recognizes all incoming requests as the baseline ones.
     
     *   `selenium`: a service for the Selenium server. Capybara from the `app-test` container uses the server for its operation.
         
@@ -166,9 +163,8 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
         
         Then the API call [is issued][doc-node-ready-for-recording] to check if the FAST node is ready to record the baseline requests. The existing tests’ execution process is not started until the node is ready.
         
-        >   #### Info:: Test policy in use
-        >   
-        >   This example uses the default test policy.
+        !!! info "Test policy in use"
+            This example uses the default test policy.
         
     2.  RSpec tests are executed.
     3.  The following actions are performed after the RSpec tests are done:
@@ -212,9 +208,8 @@ The described CircleCI job closely follows the steps listed [earlier][link-api-r
     
     Given that there is the Wallarm demo application under the test, the failed CI job represents the vulnerabilities FAST detected in the application (the message “FAST tests have failed” should appear in the build log files). The failure is not invoked by any build-related technical issues in this case.
     
-    >   #### Info:: Error message
-    >   
-    >   The “FAST tests have failed” error message is produced by the `wait_test_run_finish` method that is located in the `spec/support/fast_helper.rb` file, which is before the termination with the exit code `1`.
+    !!! info "Error message"
+        The “FAST tests have failed” error message is produced by the `wait_test_run_finish` method that is located in the `spec/support/fast_helper.rb` file, which is before the termination with the exit code `1`.
 
 8.  There is no information about detected vulnerabilities displayed in the CircleCI console during testing process. 
 

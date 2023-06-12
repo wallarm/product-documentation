@@ -16,19 +16,17 @@ The requests' source is set up to use the FAST node as a proxy and sends HTTP or
 
 FAST node determines the baseline requests among the proxied ones and places them in a test record. 
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
->   
->   The following values are used as examples throughout this chapter:
->   *   `token_Qwe12345` as a token.
->   *   `rec_0001` as an identifier of a test record.
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
+    
+    The following values are used as examples throughout this chapter:
+      * `token_Qwe12345` as a token.
+      * `rec_0001` as an identifier of a test record.
 
- >   #### Info:: Install `docker-compose`
->   
->   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording mode.
->   
->   The installation instructions for this tool are available [here][link-docker-compose-install].
+!!! info "Install `docker-compose`"
+    The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording mode.
+    
+    The installation instructions for this tool are available [here][link-docker-compose-install].
 
 ## Environment Variables in Recording Mode
 
@@ -44,9 +42,8 @@ FAST node configuration is done via environment variables. The table below holds
 | `ALLOWED_HOSTS`       | The FAST node will record those requests that target any host listed in the environment variable. <br>Default value: empty string (all incoming requests will be recorded). See [this][doc-allowed-hosts] document for details.| No |
 | `BUILD_ID` | The identifier of a CI/CD workflow. This identifier allows several FAST nodes to work concurrently using the same cloud FAST node. See [this][doc-concurrent-pipelines] document for details.| No |
 
- >   #### Info:: See also:
->   
->   The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
+!!! info "See also"
+    The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
  ## Deployment of a FAST Node in Recording Mode
 
@@ -96,9 +93,8 @@ If the command executes successfully, a console output similar to the one shown 
 
 This output informs us that the FAST node has successfully connected to the Wallarm cloud and created a test record with the `rec_0001` identifier and the name `TestRecord Oct 01 01:01 UTC.` It is ready to receive requests and record the baseline requests.
 
->   #### Info:: A Note on Test Record Names
->   
->   To change the default test record name, you need to pass the necessary value via the `TEST_RECORD_NAME` environment variable when starting the FAST node Docker container.
+!!! info "A Note on Test Record Names"
+    To change the default test record name, you need to pass the necessary value via the `TEST_RECORD_NAME` environment variable when starting the FAST node Docker container.
 
  >   #### Warning:: Test Execution
 >   

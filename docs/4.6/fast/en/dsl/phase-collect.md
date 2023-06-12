@@ -6,20 +6,18 @@
 
 # The Collect Phase
 
-<!-- -->
->   #### Info:: Scope of the phase
->   
->   This phase is used in a modifying extension and is optional for its operation (the `collect` section may be either absent or present in the YAML file).
->   
->   Also, this phase is implicitly used by a nonmodifying extension because this extension type makes use of the uniqueness condition.
->
->   Read about the extension types in detail [here][link-ext-logic].
+!!! info "Scope of the phase"
+    This phase is used in a modifying extension and is optional for its operation (the `collect` section may be either absent or present in the YAML file).
+    
+    Also, this phase is implicitly used by a nonmodifying extension because this extension type makes use of the uniqueness condition.
+    
+    Read about the extension types in detail [here][link-ext-logic].
 
- >   #### Info:: Request elements description syntax
->   
->   When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
->   
->   To see detailed information, proceed to this [link][link-points].
+ !!! info "Request elements description syntax
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
+    
+    To see detailed information, proceed to this [link][link-points].
+
  This phase collects all the baseline requests that satisfy the specified condition. To make the decision about collecting the request, the phase uses the information about the requests that were already collected during the test run.
 
 The baseline request collection procedure happens in real time. Each of the requests will be processed in the order in which the FAST node writes the baseline requests. There is no need to wait until the request-writing process is finished for the requests to be processed and collected by the Collect phase.
@@ -115,6 +113,6 @@ Thus, the uniqueness condition for the `[PATH_0_value, PATH_1_value]` will be sa
 
 
 
->   #### Info:: Collect phase parameters
->   
->   Currently, only the uniqueness condition for the received baseline requests is supported in the Collect phase. In the future, the functionality of this phase may be expanded.
+!!! info "Collect phase parameters"
+    Currently, only the uniqueness condition for the received baseline requests is supported in the Collect phase. In the future, the functionality of this phase may be expanded.
+    

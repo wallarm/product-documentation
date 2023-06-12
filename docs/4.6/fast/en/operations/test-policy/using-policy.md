@@ -33,8 +33,7 @@ You can specify the test policy in the following ways:
 
     ![Getting policy ID][img-get-policy-id]
 
-> #### Info:: Default test policy
->
-> FAST automatically creates and applies **Default Policy**. This policy tests an application for typical vulnerabilities by checking the most commonly used request points.
->
-> Please note that the settings of the default test policy cannot be changed.
+!!! info "Default test policy"
+    FAST automatically creates and applies **Default Policy**. This policy tests an application for typical vulnerabilities by checking the most commonly used request points.
+
+    Please note that the settings of the default test policy cannot be changed.

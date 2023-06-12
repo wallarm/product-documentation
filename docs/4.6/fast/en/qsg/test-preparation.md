@@ -32,9 +32,8 @@ You have successfully deployed a FAST node and connected it to the cloud in the 
 
 ![The test scheme in use][img-test-scheme]
 
->   #### Info:: Creating a test policy
->   
->   It is strongly recommended that you create a dedicated policy for each target application under the test. However, you could make use of the default policy that is automatically created by the Wallarm cloud. This document will guide you through the process of creating a dedicated policy, while the default policy is beyond the scope of this guide.
+!!! info "Creating a test policy"
+    It is strongly recommended that you create a dedicated policy for each target application under the test. However, you could make use of the default policy that is automatically created by the Wallarm cloud. This document will guide you through the process of creating a dedicated policy, while the default policy is beyond the scope of this guide.
     
     
 ----------
@@ -45,15 +44,11 @@ To set the environment for testing, do the following:
 1.  [Prepare the baseline request][anchor1]
 2.  [Create the test policy targeted at XSS vulnerabilities][anchor2]
     
-> #### Info:: Target application
-> 
-> The current example uses [Google Gruyere][link-https-google-gruyere] as the target application. If you construct the baseline request to your local application, please use the IP address of the machine running this application instead of Google Gruyere address.
-> 
-> To get the IP address, you can use tools like `ifconfig` or `ip addr`.
-
-----------
+!!! info "Target application"
+    The current example uses [Google Gruyere][link-https-google-gruyere] as the target application. If you construct the baseline request to your local application, please use the IP address of the machine running this application instead of Google Gruyere address.
     
-    
+    To get the IP address, you can use tools like `ifconfig` or `ip addr`.
+        
 ##  1.  Prepare the baseline request
 
 1.  Provided baseline request is targeted to the [Google Gruyere][link-https-google-gruyere] application, you should create a sandboxed instance of the application first. Then you should obtain a unique identifier of the instance.
@@ -74,10 +69,8 @@ To set the environment for testing, do the following:
     https://google-gruyere.appspot.com/<your instance ID>/snippets.gtl?password=paSSw0rd&uid=123
     ```
 
-    >   #### Info:: Example of a request
-    >
-    >   <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
-    
+    !!! info "Example of a request"
+        <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
     
 ##  2.  Create a test policy targeted at XSS vulnerabilities
 
@@ -110,9 +103,8 @@ To set the environment for testing, do the following:
 8.  Return to the test policy list by selecting the **Back to test policies** button.
     
     
->   #### Info:: Test policy details
->   
->   Detailed information about test policies is available by the [link][doc-policy-in-detail].
+!!! info "Test policy details"
+    Detailed information about test policies is available by the [link][doc-policy-in-detail].
 
 ----------
     

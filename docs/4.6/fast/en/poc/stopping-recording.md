@@ -9,15 +9,16 @@
 
 #   Stopping the Recording Process
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain:
->   *   A [token][doc-get-token].
->   *   An [identifier][doc-get-testrun-id] of a test run.
->   
->   The following values are used as example values throughout the chapter:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain:
+        
+        * a [token][doc-get-token].
+        * an [identifier][doc-get-testrun-id] of a test run.
+    
+    The following values are used as example values throughout the chapter:
+
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
 
 Stop the baseline requests recording process via API by following the steps described [here][doc-stop-recording].
 

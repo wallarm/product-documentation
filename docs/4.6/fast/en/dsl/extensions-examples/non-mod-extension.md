@@ -91,12 +91,11 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
         body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
     ``` 
     
-    <!-- -->
-    >   #### Info:: A note about the `Host` header
-    >   
-    >   The `Host` header can be omitted in these requests because it does not influence the exploitation of this particular SQLi vulnerability. A FAST node will automatically add the `Host` header extracted from an incoming baseline requests.
-    >   
-    >   Read [here][link-send-headers] about how the Send phase handles request's headers.
+    !!! info "A note about the `Host` header" 
+        The `Host` header can be omitted in these requests because it does not influence the exploitation of this particular SQLi vulnerability. A FAST node will automatically add the `Host` header extracted from an incoming baseline requests.
+        
+        Read [here][link-send-headers] about how the Send phase handles request's headers.
+
      3.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
     
     The following conditions indicate that the user authentication with administrator's rights was successful:
@@ -121,9 +120,9 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
         - body: "\"bid\":1"
     ```
     
-<!-- -->
->   #### Info:: Escaping the special symbols
->   Remember to escape the special symbols in the strings.
+!!! info "Escaping the special symbols"
+    Remember to escape the special symbols in the strings.
+
  ##  The Extension File
 
 Now the `non-mod-extension.yaml` file contains a complete set of the sections required for the extension to operate. The list of the file's contents is shown below:

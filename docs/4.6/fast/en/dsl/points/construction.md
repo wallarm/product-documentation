@@ -56,8 +56,8 @@ Let us recall the list of FAST DSL parsers and filters available for use in the 
 
 It is recommended that points be assembled from right to left for an easier understanding of which parsers and filters should be included in the point. Move from smaller to larger parts of the request when building a point.
 
-> #### Info:: Point parts divider
-> The parts of the point must be divided using the `_` symbol.
+!!! info "Point parts divider"
+    The parts of the point must be divided using the `_` symbol.
 
 ## Example 1 
 

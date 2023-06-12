@@ -104,32 +104,26 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
       - "POST_JSON_DOC_HASH_password_value": "dummy"
     ```
     
-    <!-- -->
-    >   #### Info::  Request elements description syntax
-    >   
-    >   Because the request data that is contained in the JSON format is stored in `<key: value>` pairs, the point that refers to the `email` element value will look as shown above. The point that refers to the `password` element value has a similar structure. 
-    >   
-    >   To see detailed information about constructing the points, proceed to this [link][link-points].
-    <!-- -->
-    
+    !!! info "Request elements description syntax"
+        Because the request data that is contained in the JSON format is stored in `<key: value>` pairs, the point that refers to the `email` element value will look as shown above. The point that refers to the `password` element value has a similar structure.
+        
+        To see detailed information about constructing the points, proceed to this [link][link-points].
+ 
 5.  **The `generate` section, the [Generate phase][doc-generate-phase]**.
 
     It is known that there are two payloads that should replace the value of the `email` parameter in the baseline request in order to exploit the SQL injection vulnerability in the target application:
     *   `'or 1=1 --`
     *   `admin@juice-sh.op'--`
         
-    <!-- -->
-    >   #### Info:: Inserting the payload into the modified request
-    >   
-    >   The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
-    >    
-    >   ```
-    >   {
-    >       "email": "'or 1=1 --",
-    >       "password":"dummy"
-    >   }
-    >   ```
-    <!-- -->
+    !!! info "Inserting the payload into the modified request"
+    The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
+    
+    ```
+     {
+         "email": "'or 1=1 --",
+         "password":"dummy"
+     }
+     ```
     
     Because any password can be used to log in successfully due to the chosen payloads, it is not necessary to insert the payload into the password field, which will have a `dummy` value after the Modify phase is applied.
     
@@ -169,9 +163,9 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
         - body: "\"bid\":1"
     ```
     
-<!-- -->
->   #### Info:: Escaping the special symbols
->   Remember to escape the special symbols in the strings.
+!!! info "Escaping the special symbols"
+    Remember to escape the special symbols in the strings.
+
  ##  The Extension File
 
 Now the `mod-extension.yaml` file contains the complete set of the sections required for the extension to operate. The listing of the file's content is below:

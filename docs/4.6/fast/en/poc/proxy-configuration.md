@@ -17,10 +17,9 @@ Depending on the way your CI/CD infrastructure interacts with the FAST node’s 
 *   IP address.
 *   Domain name.
 
->   #### Info:: Example
->   
->   If your test tool runs as a Linux Docker container, you can pass the following environment variable into the container to enable proxying of all the HTTP requests from that container through the FAST node:
->   
->   ```
->   HTTP_PROXY=http://<FAST node name or IP address>:<port>
->   ```
+!!! info "Example"
+    If your test tool runs as a Linux Docker container, you can pass the following environment variable into the container to enable proxying of all the HTTP requests from that container through the FAST node:
+    
+    ```
+    HTTP_PROXY=http://<FAST node name or IP address>:<port>
+    ```

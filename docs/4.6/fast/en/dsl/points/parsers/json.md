@@ -57,8 +57,8 @@ body, the Json_doc parser applied to the request body refers to the following da
 
 The **Json_obj** filter refers to the hash table of the JSON objects. The elements of this hash table need to be referred to by using the names of the JSON objects.
 
-> #### Info:: Regular expressions in points
-> The name of the JSON object in the point can be a [regular expression of the Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The name of the JSON object in the point can be a [regular expression of the Ruby programming language][link-ruby].  
 
 The [Hash][link-hash] filter applied to the JSON data works similarly to the Json_obj.
 
@@ -98,8 +98,8 @@ body, the Json_obj filter applied to the request body together with the Json_doc
 
 The **Json_array** filter refers to the array of the JSON object values. The elements of this array need to be referred to by using the indexes. The array indexing starts with `0`.
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a [regular expression of the Ruby programming language][link-ruby]. 
+!!! info "Regular expressions in points"
+    The index in the point can be a [regular expression of the Ruby programming language][link-ruby]. 
 
 The [Array][link-array] filter applied to the JSON data works similarly to the Json_array filter.
 

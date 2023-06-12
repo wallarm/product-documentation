@@ -18,21 +18,19 @@
 
 While in testing mode, the FAST node creates a test run based on the test record that was populated from baseline requests in recording mode and executes the security test set for the target application.
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
->   
->   The following values are used as examples throughout this chapter:
->   *   `tr_1234` as an identifier of a test run
->   *   `rec_0001` as an identifier of a test record
->   *   `bl_7777` as an identifier of a baseline request
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
+    
+    The following values are used as examples throughout this chapter:
+        
+        * `tr_1234` as an identifier of a test run
+        * `rec_0001` as an identifier of a test record
+        * `bl_7777` as an identifier of a baseline request
 
- >   #### Info:: Install `docker-compose`
->   
->   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how the FAST node operates in the testing mode.
->   
->   The installation instructions for this tool are available [here][link-docker-compose-install].
-
+!!! info "Install `docker-compose`"
+    The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how the FAST node operates in the testing mode.
+    
+    The installation instructions for this tool are available [here][link-docker-compose-install].
 
 ## Environment Variables in Testing Mode
 
@@ -55,9 +53,8 @@ FAST node configuration is done via environment variables. The table below holds
 | `FILE_EXTENSIONS_TO_EXCLUDE` | The list of static file extensions that should be excluded from the evaluation process during testing.<br>You can enumerate these extensions using the <code>&#124;</code> character: <br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | No |
 | `PROCESSES`            | The number of processes that can be used by FAST node. Each process uses the number of threads specified in the `WORKERS` variable.<br>Default number of processes: `1`.<br>Special value: `auto` equal to half of the CPU number calculated using the [nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) command. | No |
 
- >   #### Info:: See also:
->   
->   The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
+!!! info "See also"
+    The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
  ## Acquiring a Test Policy Identifier
 
@@ -65,9 +62,8 @@ If you plan to employ your own [test policy][doc-testpolicy], then [create one][
 
 Otherwise, if you choose to use the default test policy, then do not set the `TEST_RUN_POLICY_ID` environment variable for the container.
 
->   #### Info:: How to Create a Test Policy
->   
->   The “Quick Start” guide contains [step-by-step instructions][doc-testpolicy-creation-example] on how to create a sample test policy.
+!!! info "How to Create a Test Policy"
+    The “Quick Start” guide contains [step-by-step instructions][doc-testpolicy-creation-example] on how to create a sample test policy.
 
 ## Obtaining a test record identifier
  
@@ -88,16 +84,15 @@ You either can change the variable's value by modifying it in the `docker-compos
 docker-compose run --rm -e CI_MODE=testing fast
 ```
 
-> #### Info:: Getting the report about the test
-> To get the report with the test results, mount the directory to download the report via the `-v {DIRECTORY_FOR_REPORTS}:/opt/reports/` option when deploying the FAST node Docker container. 
-> 
-> When security testing is finished, you will find the brief `<TEST RUN NAME>.<UNIX TIME>.txt` report and the detailed `<TEST RUN NAME>.<UNIX TIME>.json` report in the `{DIRECTORY_FOR_REPORTS}` directory.
+!!! info "Getting the report about the test"
+    To get the report with the test results, mount the directory to download the report via the `-v {DIRECTORY_FOR_REPORTS}:/opt/reports/` option when deploying the FAST node Docker container.
 
- >   #### Info:: Options of the `docker-compose` command
->   
->   You can pass any of the environment variables described above to a FAST node Docker container via the `-e` option. 
->   
->   The `--rm` option is also used in the example above, so that the FAST node container will be automatically disposed of when the node is stopped.
+    When security testing is finished, you will find the brief `<TEST RUN NAME>.<UNIX TIME>.txt` report and the detailed `<TEST RUN NAME>.<UNIX TIME>.json` report in the `{DIRECTORY_FOR_REPORTS}` directory.
+
+!!! info "Options of the `docker-compose` command"
+    You can pass any of the environment variables described above to a FAST node Docker container via the `-e` option.
+
+    The `--rm` option is also used in the example above, so that the FAST node container will be automatically disposed of when the node is stopped.
 
 If the command executes successfully, then a console output similar to the one shown here will be generated:
 

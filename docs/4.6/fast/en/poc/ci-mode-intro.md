@@ -7,21 +7,20 @@
 
 #   Introduction
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
->   
->   The following values are used as examples throughout this chapter:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
->   *   `rec_0001` as an identifier of a test record.
->   *   `bl_7777` as an identifier of a baseline request.
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
+    
+    The following values are used as examples throughout this chapter:
+        
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
+        *  `rec_0001` as an identifier of a test record.
+        *   `bl_7777` as an identifier of a baseline request.
 
- >   #### Info:: Install `docker-compose`
->   
->   The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording and testing modes.
->   
->   The installation instructions for this tool are available [here][link-docker-compose-install].
+!!! info "Install `docker-compose`"
+    The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording and testing modes.
+    
+    The installation instructions for this tool are available [here][link-docker-compose-install].
 
 To conduct a security testing in CI mode, a FAST node must be sequentially run in two modes:
 1.  [Recording mode][doc-recording-mode].

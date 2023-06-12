@@ -9,19 +9,20 @@
 
 #   Stopping the Recording Process
 
->   #### Info:: Necessary data
->   
->   To stop recording via API, the following pieces of data are required:
->   *   a token
->   *   a test run identifier
->
-> To stop recording via web interface, you need a Wallarrm account.
-> 
->   You can get detailed information about test run and token [here][doc-about-tr-token].
->   
->   The following values are used as example values in this document:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
+!!! info "Necessary data"
+    To stop recording via API, the following pieces of data are required:
+    
+        * a token
+        * a test run identifier
+
+    To stop recording via web interface, you need a Wallarrm account.
+    
+    You can get detailed information about test run and token [here][doc-about-tr-token].
+    
+    The following values are used as example values in this document:
+        
+        *   `token_Qwe12345` as a token.
+        *   `tr_1234` as an identifier of a test run.
 
 The need to stop baseline requests recording is described by the [link][link-stop-explained]. 
 

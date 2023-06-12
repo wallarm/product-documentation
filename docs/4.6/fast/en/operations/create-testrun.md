@@ -12,15 +12,14 @@
 
 #   Creating a Test Run
 
->   #### Info:: Necessary data
->   
->   To create a test run via API methods, you need a token.
->   
->   To create a test run via the web interface, you need a Wallarm account.
->   
->   You can get detailed information about token [here][doc-token-information].
->
->   The `token_Qwe12345` value is used as an example token in this document.
+!!! info "Necessary data"
+    To create a test run via API methods, you need a token.
+    
+    To create a test run via the web interface, you need a Wallarm account.
+    
+    You can get detailed information about token [here][doc-token-information].
+    
+    The `token_Qwe12345` value is used as an example token in this document.
 
 When a test run is being created, a new [test record][doc-testrecord] is created as well.
 

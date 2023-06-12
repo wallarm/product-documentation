@@ -48,19 +48,17 @@ Each extension type employs a distinct set of phases. Some of these phases are m
 
 The use of the Detect phase is obligatory for each extension type. This phase receives the responses of the target application to the test requests. The extension uses these responses to determine whether the application has certain vulnerabilities. The information from the Detect phase is sent to the Wallarm cloud.
 
-<!-- -->
->   #### Info:: Request elements description syntax
->
->   When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
->   
->   To see detailed information, proceed to this [link][link-points].
+!!! info "Request elements description syntax"
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
+    
+    To see detailed information, proceed to this [link][link-points].
  
 ##  How a Modifying Extension Works
 
 During a modifying extension operation, a baseline request sequentially proceeds through the Collect, Match, Modify, and Generate phases, all of which are optional and may not be included in the extension. A single test request or multiple test requests will be formed as a result of proceeding through these phases. These requests will be sent to the target application to check it for vulnerabilities.
 
 <!-- -->
->   #### Info:: An extension without optional phases
+!!! info "An extension without optional phases
 >   
 >   If no optional phases are applied to the baseline request, the test request matches the baseline request. 
  ![Modifying extension phases overview][img-phases-mod-overview]
@@ -102,6 +100,5 @@ At each moment of time, the extension processes a single baseline request. FAST 
 
 The number of requests that the FAST node can process in parallel depends on the number of workers. The number of workers is defined by the value assigned to the environment variable `WORKERS` upon FAST node Docker container execution (the default variable value is 10).
 
-> #### Info:: Test policy details
-> 
-> More detailed description of working with test policies is available by the [link][doc-policy-in-detail].
+!!! info "Test policy details"
+    More detailed description of working with test policies is available by the [link][doc-policy-in-detail].

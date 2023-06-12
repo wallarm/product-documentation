@@ -25,20 +25,18 @@
 
  On your very first login to a [Wallarm portal][link-wl-portal] you will have the opportunity to gain familiarity with FAST by taking a five-step onboarding process.
 
->   #### Info:: Controlling the onboarding process
->   
->   
->   You can stop the onboarding process by clicking the ✕ button in the onboarding panel at any time.
->   
->   You will be presented with the option to either skip the onboarding completely or resume the process later from the step you are on.
->
->   If you have skipped the onboarding and wish to start it, press the question mark in the top right corner of the Wallarm portal and choose the “FAST in 5 minutes” item in the opened sidebar:            
->   
->   ![“The Quick Help” button][img-quick-help-howto]
->   
->   If you want to resume the onboarding process you delayed earlier, then click on the “FAST in 5 minutes” button in the bottom right corner of the Wallarm portal:
->   
->   ![The “FAST in 5 minutes” button][img-fast-5mins-button]
+!!! info "Controlling the onboarding process"
+    You can stop the onboarding process by clicking the ✕ button in the onboarding panel at any time.
+    
+    You will be presented with the option to either skip the onboarding completely or resume the process later from the step you are on.
+    
+    If you have skipped the onboarding and wish to start it, press the question mark in the top right corner of the Wallarm portal and choose the “FAST in 5 minutes” item in the opened sidebar:            
+    
+    ![“The Quick Help” button][img-quick-help-howto]
+    
+    If you want to resume the onboarding process you delayed earlier, then click on the “FAST in 5 minutes” button in the bottom right corner of the Wallarm portal:
+    
+    ![The “FAST in 5 minutes” button][img-fast-5mins-button]
 
 To get a quick introduction to FAST, do the following:
 1.  Read about the FAST solution.
@@ -51,9 +49,8 @@ To get a quick introduction to FAST, do the following:
     
     ![The deployment hint][img-deploy]
     
-    >   #### Info:: Installing Docker
-    >   
-    >   If you do not have Docker, then [install it][link-docker-install-docs]. Either Docker edition is considered suitable—Community Edition or Enterprise Edition.
+    !!! info "Installing Docker"
+        If you do not have Docker, then [install it][link-docker-install-docs]. Either Docker edition is considered suitable—Community Edition or Enterprise Edition.
     
     FAST node will listen to incoming connections on `127.0.0.1:8080` after it starts.
     
@@ -63,15 +60,13 @@ To get a quick introduction to FAST, do the following:
     
     ![The proxy settings in Mozilla Firefox][img-ff-proxy-settings]
     
-    >   #### Info:: Using a different port number
-    >   
-    >   If you do not want to provide the `8080` port  to the FAST node (e.g., there is another service listening on that port), you can set another port number to be used by FAST. To do so, pass the desired port number via the `-p` parameter of the `docker run` command. For example, to use port `9090` you would write the following: `-p 9090:8080`.
+    !!! info "Using a different port number"
+        If you do not want to provide the `8080` port  to the FAST node (e.g., there is another service listening on that port), you can set another port number to be used by FAST. To do so, pass the desired port number via the `-p` parameter of the `docker run` command. For example, to use port `9090` you would write the following: `-p 9090:8080`.
     
     Click the “Create a Test Run →” button to go to the next step.
     
-    >   #### Info:: Returning to the previous step
-    >   
-    >   Note that you can always go back to the previous step by clicking the button with the previous step’s name (e.g., “← Understanding FAST”).
+    !!! info "Returning to the previous step"
+        Note that you can always go back to the previous step by clicking the button with the previous step’s name (e.g., “← Understanding FAST”).
    
 3.  Create a test run by clicking the “Create test run” button. Select a name for the test run and then choose the necessary test policy and node from the drop-down lists as stated in the onboarding hint:
 
@@ -101,11 +96,10 @@ To get a quick introduction to FAST, do the following:
     
     ![The result of testing][img-results]
     
-    >   #### Info:: Analyzing the vulnerability
-    >   
-    >   You can click on the value in the “Results” column of the test run to get some insights into the discovered vulnerability:
-    >   
-    >   ![The detailed information about the vulnerability][img-detailed-results]
+    !!! info "Analyzing the vulnerability
+        You can click on the value in the “Results” column of the test run to get some insights into the discovered vulnerability:
+        
+        ![The detailed information about the vulnerability][img-detailed-results]
     
     Click the “Run With It!” button to go to the next step.
     
@@ -117,6 +111,5 @@ To get a quick introduction to FAST, do the following:
     
     Click the “Finish” button to complete the onboarding process.
     
-    >   #### Info:: Additional actions to take
-    >   
-    >   You can shut down the FAST node’s Docker container and disable proxying in the browser upon successful detection of the vulnerability.
+    !!! info "Additional actions to take
+        You can shut down the FAST node’s Docker container and disable proxying in the browser upon successful detection of the vulnerability.

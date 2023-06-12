@@ -71,22 +71,22 @@ The state is displayed for each baseline request:
 
 ## Checking the State Using API Method
 
->   #### Info:: Necessary data
->   
->   To proceed with the steps described below, the following pieces of data are required:
->   *   a token
->   *   a test run identifier
->
->   You can get detailed information about test run and token [here][doc-about-tr-token].
->   
->   The following values are used as example values in this document:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
+!!! info "Necessary data"
+    To proceed with the steps described below, the following pieces of data are required:
+    
+        * a token
+        * a test run identifier
+    
+    You can get detailed information about test run and token [here][doc-about-tr-token].
+    
+    The following values are used as example values in this document:
+
+        *   `token_Qwe12345` as a token.
+        *   `tr_1234` as an identifier of a test run.
 
 
->   #### Info:: How to choose the right period of time to perform check of a test run
->
->   You can check the state of the test run in the pre-defined period of time (e.g., 15 seconds). Alternatively, you can employ the estimated time of completion for a test run to determine when the next check is to be done. You can obtain this estimate while checking the state of a test run. [See details below.][anchor-testrun-estimates]
+!!! info "How to choose the right period of time to perform check of a test run"
+    You can check the state of the test run in the pre-defined period of time (e.g., 15 seconds). Alternatively, you can employ the estimated time of completion for a test run to determine when the next check is to be done. You can obtain this estimate while checking the state of a test run. [See details below.][anchor-testrun-estimates]
 
 You could perform a single check of the test run state by issuing the following API call:
 
@@ -183,13 +183,13 @@ To check a test run's state in an `estimated_time_to_completion` period of time,
 
 3.  Repeat the previous step until the test run's execution is complete.
 
->   #### Info:: The graphical representation of the estimates
->   
->   You can obtain the estimates' values by using the Wallarm web interface as well.
->   To do so, log in to the Wallarm portal and navigate to [the list of test runs][link-wl-portal-testruns-in-progress] which are executing now:
->   
->   ![Test run's speed and execution time estimates][img-testrun-velocity]
->
->   When the test run's execution is complete, you are presented with the average requests per second value:
->   
->   ![Average requests per second value][img-testrun-avg-rps]
+!!! info "The graphical representation of the estimates"
+    You can obtain the estimates' values by using the Wallarm web interface as well.
+    
+    To do so, log in to the Wallarm portal and navigate to [the list of test runs][link-wl-portal-testruns-in-progress] which are executing now:
+    
+    ![Test run's speed and execution time estimates][img-testrun-velocity]
+    
+    When the test run's execution is complete, you are presented with the average requests per second value:
+    
+    ![Average requests per second value][img-testrun-avg-rps]

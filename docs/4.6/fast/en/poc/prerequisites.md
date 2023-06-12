@@ -42,6 +42,5 @@ To enable integrating FAST into a CI/CD workflow, you will need
 
     If you have several CI/CD jobs that are running simultaneously, create an appropriate number of FAST nodes in the Wallarm cloud.
 
-    >   #### Info:: An example token
-    >   
-    >   The `token_Qwe12345` value is used as an example of a token throughout this guide.    
+    !!! info "An example token"
+        The `token_Qwe12345` value is used as an example of a token throughout this guide.    

@@ -82,8 +82,8 @@ If an error occurs during the node launch, the error information is written to t
 
 --8<-- "../include/fast/console-include/dsl/fast-node-run-fail.md"
 
-> #### Info:: Extensions location requirements
-> The extensions from the nested directories will not be connected (for example, if the extension is placed into the `extensions/level-2/` directory). Depending on the chosen method of connection, the extensions should be placed either into the root of the directory that is mounted into the FAST node Docker container or into the root of the Git repository.
+!!! info "Extensions location requirements"
+    The extensions from the nested directories will not be connected (for example, if the extension is placed into the `extensions/level-2/` directory). Depending on the chosen method of connection, the extensions should be placed either into the root of the directory that is mounted into the FAST node Docker container or into the root of the Git repository.
 
 ## Checking Operation of Extensions
 
@@ -132,11 +132,9 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     
     You may use `curl` or other tools to send the request.
     
-    <!-- -->
-    >   #### Info:: Stopping the baseline request recording process
-    >   
-    >   After sending the baseline request, it is recommended to stop the recording process. This procedure is described [here][link-stop-recording].
-    
+    !!! info "Stopping the baseline request recording process"
+        After sending the baseline request, it is recommended to stop the recording process. This procedure is described [here][link-stop-recording].
+
      6.  In the FAST node console output you will see how:  
     *   the target application is tested using the built-in FAST detects,
     *   the modifying FAST extension executes for the POST parameters in the baseline request, and

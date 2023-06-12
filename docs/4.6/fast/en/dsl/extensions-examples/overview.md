@@ -26,10 +26,7 @@ To see the OWASP Juice Shop documentation that lists the vulnerabilities embedde
 3.  [Craft a sample nonmodifying extension.][link-non-mod-extension]
 4.  [Use the created extensions.][link-using-extension]
 
-<!-- -->
->   #### Info:: Request elements description syntax
->
->   When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
->   
->   To see detailed information, proceed to this [link][link-points].
-<!-- -->
+!!! info "Request elements description syntax"
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
+    
+    To see detailed information, proceed to this [link][link-points].

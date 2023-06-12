@@ -22,8 +22,8 @@ The Array filter can be used in the point together with the following filters an
 
 The elements of this array need to be referred to by using the indexes. The array indexing starts with `0`.
 
-> #### Info:: Regular expressions in points
-> The index in the point can be a [regular expression of the Ruby programming language][link-ruby].  
+!!! info "Regular expressions in points"
+    The index in the point can be a [regular expression of the Ruby programming language][link-ruby].  
 
 ## The Example of Using the Get Filter with the Array Filter
 

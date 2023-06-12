@@ -36,8 +36,8 @@ There are several universal points building principles that must be considered w
     
     For the `GET http://example.com/login/?Uid=01234` request, the `GET_Uid_value` point refers to the `Uid` query string parameter.
     
-    > #### Info:: Escaping special symbols
-    > Some of the service symbols might require escaping when used in points. To get detailed information, proceed to the documentation on the [Ruby programming language regular expressions][link-ruby].
+    !!! info "Escaping special symbols"
+        Some of the service symbols might require escaping when used in points. To get detailed information, proceed to the documentation on the [Ruby programming language regular expressions][link-ruby].
 
 *   A point can be placed into the extension in the following ways:
     *   surrounded by the `"` symbols. 
@@ -58,8 +58,8 @@ There are several universal points building principles that must be considered w
         
         `HEADER_.*_value`.
     
-    > #### Info:: Surrounding points with symbols
-    > YAML syntax defines the difference between using various symbols to surround points. To get detailed information, proceed to this [link][link-yaml].
+    !!! info "Surrounding points with symbols"
+        YAML syntax defines the difference between using various symbols to surround points. To get detailed information, proceed to this [link][link-yaml].
 
 *   Points divided with the `,` symbol and surrounded by the `[` and the `]` symbols are treated as an array of points. 
     

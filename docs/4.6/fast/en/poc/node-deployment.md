@@ -29,14 +29,14 @@
 
 #   Running FAST Node via the Wallarm API
 
->   #### Info:: Chapter Prerequisites
->   
->   To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
->   
->   The following values are used as examples throughout this chapter:
->   *   `token_Qwe12345` as a token.
->   *   `tr_1234` as an identifier of a test run.
->   *   `rec_0001` as an identifier of a test record.
+!!! info "Chapter Prerequisites"
+    To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
+    
+    The following values are used as examples throughout this chapter:
+    
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
+        * `rec_0001` as an identifier of a test record.
 
 Running and configuration of FAST node comprises the following steps:
 1.  [Deployment of the Docker Container with the FAST Node.][anchor-node]
@@ -108,10 +108,8 @@ If you plan to employ your own [test policy][doc-testpolicy], then [create one][
 
 Otherwise, if you choose to use the default test policy, then the `policy_id` parameter should be omitted from the API call.
 
->   #### Info:: Example of Test Policy
->   
->   The “Quick Start” guide contains [step-by-step instructions][doc-testpolicy-creation-example] on how to create a sample test policy.
-
+!!! info "Example of Test Policy"
+    The “Quick Start” guide contains [step-by-step instructions][doc-testpolicy-creation-example] on how to create a sample test policy.
 
 ### Creating a Test Run
 
@@ -119,9 +117,8 @@ When a test run is created, a new [test record][doc-testrecord] is created as we
 
 This method of test run creation should be used if it is required to test a target application along with recording of baseline requests.
 
->   #### Info:: How to Create a Test Run
->   
->   This process is described in detail [here][doc-create-testrun].
+!!! info "How to Create a Test Run"
+    This process is described in detail [here][doc-create-testrun].
 
 The FAST node needs a certain amount of time to pass after the creation of the test run in order to record requests.
 
@@ -148,12 +145,10 @@ When a test run is being copied, an existing [test record][doc-testrecord] is re
 
 This way of test run creation is to be used if it is required to test a target application using already recorded baseline requests.
 
->   #### Info:: How to Copy a Test Run
->   
->   This process is described in detail [here][doc-copy-testrun].
+!!! info "How to Copy a Test Run"
+    This process is described in detail [here][doc-copy-testrun].
 
 Provided that a test run's has been successfully created, the FAST node begins testing immediately. There is no need to take any additional actions.
-
 
 ## The Next Steps
 

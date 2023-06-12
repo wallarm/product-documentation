@@ -8,9 +8,8 @@
 
 FAST uses test policies that allow you to set up FAST node behavior when testing an application for [vulnerabilities][gl-vuln]. Documents in this section contain instructions for test policy management.
 
-> #### Info:: Terminology
->
-> The "FAST test policy" term can be abbreviated as "policy" in this documentation section.
+!!! info "Terminology"
+    The "FAST test policy" term can be abbreviated as "policy" in this documentation section.
 
 ## Test Policy Principles
 

@@ -50,11 +50,11 @@ To build the Wallarm FAST plugin manually, follow the steps below:
 
 ## Step 2: Adding Steps of Recording and Testing
 
-> #### Info:: Configured workflow
->
-> Further instructions will require the configured Jenkins workflow to correspond to one of the following points:
-> - Test automation must be implemented. In this case, the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps will be added.
-> - Set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
+!!! info "Configured workflow"
+    Further instructions will require the configured Jenkins workflow to correspond to one of the following points:
+
+        * Test automation must be implemented. In this case, the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps will be added.
+        * Set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
 
 ### Adding the Step of Request Recording
 

@@ -21,9 +21,8 @@ FAST detects [vulnerabilities][gl-vuln] using the following options:
 * built-in FAST extensions,
 * [custom extensions][link-user-extensions].
 
-    > #### Info:: Custom extensions
-    >
-    > To use custom extensions, please [connect][link-connect-extensions] them to the FAST node.
+    !!! info "Custom extensions"
+        To use custom extensions, please [connect][link-connect-extensions] them to the FAST node.
 
 You can control the way of detecting vulnerabilities in the application in the following ways:
 
@@ -34,15 +33,13 @@ You can control the way of detecting vulnerabilities in the application in the f
 
     Please note that if the **Use only custom DSL** switch is activated, then the built-in FAST extensions and [FAST fuzzer][doc-fuzzer] will be disabled. If the FAST fuzzer is enabled, then the **Use only custom DSL** switch will become inactive again.
 
- > #### Info:: Basic vulnerabilities
->
-> When creating a policy, the most typical vulnerabilities that can be detected in applications are selected by default:
->
-> * [path traversal (PTRAV)][vuln-ptrav],
-> * [remote code execution (RCE)][vuln-rce],
-> * [SQL injection (SQLi)][vuln-sqli],
-> * [cross-site scripting (XSS)][vuln-xss],
-> * [vulnerability to attack on XML external entity (XXE)][vuln-xxe].
->
->
-> If you use custom policies, you can disable testing the application for a specific vulnerability by unticking the corresponding checkbox at any moment.
+!!! info "Basic vulnerabilities"
+    When creating a policy, the most typical vulnerabilities that can be detected in applications are selected by default:
+
+        * [path traversal (PTRAV)][vuln-ptrav],
+        * [remote code execution (RCE)][vuln-rce],
+        * [SQL injection (SQLi)][vuln-sqli],
+        * [cross-site scripting (XSS)][vuln-xss],
+        * [vulnerability to attack on XML external entity (XXE)][vuln-xxe].
+    
+    If you use custom policies, you can disable testing the application for a specific vulnerability by unticking the corresponding checkbox at any moment.
