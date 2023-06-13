@@ -63,6 +63,10 @@ replace by 4.6
 
 [How to upgrade](docker-container.md)
 
+### 4.6.2-1 (2023-06-13)
+
+* Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../user-guides/vulnerabilities.md) capabilities
+
 ### 4.6.1-1 (2023-04-18)
 
 * Now, container terminates when `WALLARM_LABELS` is not provided for deploy token
