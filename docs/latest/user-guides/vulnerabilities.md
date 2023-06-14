@@ -58,7 +58,7 @@ Wallarm regularly rechecks both active and closed vulnerabilities. This involves
 
 Active vulnerabilities and vulnerabilities fixed less than a month ago are rechecked once a day. Vulnerabilities that were fixed more than a month ago are rechecked once a week.
 
-Depending on the initial vulnerability detection method, the testing is performed by either **Vulnerability Scanner** or the **Active Threat Verification** module. The configuration settings for the automated recheking process can be controlled via the [**Configure**](#configuring-vulnerability-detection) button.
+Depending on the initial vulnerability detection method, the testing is performed by either **Vulnerability Scanner** or the **Active Threat Verification** module. The configuration settings for the automated rechecking process can be controlled via the [**Configure**](#configuring-vulnerability-detection) button.
 
 It is not possible to recheck vulnerabilities that were detected passively.
 

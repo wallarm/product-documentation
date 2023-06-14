@@ -87,7 +87,7 @@ To fine-tune asset scanning in Wallarm, click the **Configure** button. From the
 
 ![!Scanner config](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
 
-There is also a [global switcher for the Wallarm Scanner](vulnerabilities.md#configuring-vulnerability-detection) located in the **Vulnerabilities** section. This switcher enables or disables the Scanner for your entire company account, controlling both the asset scanning and vulnerability discovery processes.
+There is also the global switcher for the Wallarm Scanner called **Basic Scanner functionality**. This switcher enables or disables the Scanner for your entire company account, controlling both the asset scanning and vulnerability discovery processes. You can also find the same toggle switch in the **Vulnerabilities** section. Changing the switch in one section will automatically update the setting in the other section as well.
 
 ## Scanning exposed assets for vulnerabilities
 
