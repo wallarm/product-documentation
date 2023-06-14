@@ -34,6 +34,66 @@ Consider that:
 * All disabled tokens are automatically removed in a week after disabling.
 * To enable previously disabled token, save it with the new expiration date.
 
+## Creating tokens with global role permissions
+
+To create an API token with the permissions based on the following [roles](../../user-guides/settings/users.md#user-roles): 
+
+* **Global Administrator**
+* **Global Analyst**
+* **Global Read Only** 
+
+...do the following:
+
+1. Log in [US](https://us1.my.wallarm.com/) or [EU](https://my.wallarm.com/) Wallarm Console as global administrator.
+1. At the top right, select `?` → **Wallarm API Console**. Wallarm API console is opened:
+
+    * https://apiconsole.us1.wallarm.com/ for the US Cloud
+    * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
+ 
+1. Send the POST request to the `/v2/api_tokens` route with the following parameters:
+
+    ```bash
+    {
+    "client_id": <CLIENT_ID>,
+    "realname": "<NAME_FOR_YOUR_API_TOKEN>",
+    "user_id": <USER_ID>,
+    "enabled": true,
+    "expire_at": "2033-06-13T04:56:01.037Z",
+    "permissions": [
+        "<REQUIRED_GLOBAL_ROLE>"
+    ]
+    }
+    ```
+
+    Where:
+
+    * `<NAME_FOR_YOUR_API_TOKEN>` is recommended to explain the token purpose.
+    * `<USER_ID>` defines the user who owns the token.
+    * `<CLIENT_ID>` defines the company account this user belongs to.
+    
+        Obtain these IDs by sending the POST request to the `/v1/user` route.
+
+    * `<REQUIRED_GLOBAL_ROLE>` can be:
+        
+        * `partner_admin` for Global Administrator
+        * `partner_analytic` for Global Analyst
+        * `partner_auditor` for Global Read Only
+
+Examples of usage: the API token with Global Administrator's permissions can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api):
+
+```bash
+{
+"client_id": 1010,
+"realname": "Token for tenant creation",
+"user_id": 10101011,
+"enabled": true,
+"expire_at": "2033-06-13T04:56:01.037Z",
+"permissions": [
+    "partner_admin"
+]
+}
+```
+
 ## Backward-compatible tokens
 
 Previously UUID and secret key were used for request authentication which is now replaced with tokens. The UUID and secret key your were using are automatically transformed to the **backward-compatible** token. With this token requests authenticated with UUID and secret key will continue working.
