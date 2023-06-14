@@ -1,6 +1,6 @@
 [kong-install]:         https://konghq.com/get-started/#install
 [kong-docs]:            https://getkong.org/docs/
-[kong-admin-api]:       https://getkong.org/docs/0.10.x/admin-api/
+[kong-admin-api]:       https://docs.konghq.com/gateway/latest/admin-api/
 
 [doc-wallarmblockpage]: configure-parameters-en.md#wallarm_block_page
 [doc-postanalytics]:    installation-postanalytics-en.md
