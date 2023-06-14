@@ -70,11 +70,11 @@ If you need to recheck a vulnerability manually, you can trigger the rechecking 
 
 The vulnerability detection configuration can be fine-tuned using the **Configure** button, with the following options:
 
-* Enable / disable **Vulnerability Scanner** and specify the types of vulnerabilities you want to detect using this Wallarm module. The Scanner is enabled by default and is set to target all available vulnerability types.
+* You can choose the specific types of vulnerabilities you want to detect using the Vulnerability Scanner. By default, the Scanner is set to target all available vulnerability types.
+* Enable / disable **Basic Scanner functionality** which includes both the vulnerability and [exposed asset](scanner.md) discovery processes. By default, this functionality is enabled.
 
-    !!! info "Disabling Vulnerability Scanner affects exposed asset discovery"
-        Please note that the **Vulnerability Scanner** switcher controls both the vulnerability and [exposed asset](scanner.md) discovery processes.
-* Enable / disable vulnerability rechecking with the Scanner by selecting the **Recheck vulnerabilities** option.
+    You can also find the same toggle switch in the **Scanner** section. Changing the switch in one section will automatically update the setting in the other section as well.
+* Enable / disable vulnerability rechecking with the Scanner by using the **Recheck vulnerabilities** option.
 * Enable / disable the **Active threat verification** module for vulnerability detection and rechecking. Note that this option controls the module itself, not just the rechecking process.
 
     By default, this module is disabled, learn its configuration [best practices](../admin-en/attack-rechecker-best-practices.md) before enabling.
