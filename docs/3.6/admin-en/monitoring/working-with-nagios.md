@@ -2,7 +2,7 @@
 [img-nagios-service-details]:           ../../images/monitoring/nagios-service-details-1.png
 [img-nagios-service-perfdata-updated]:  ../../images/monitoring/nagios-service-details-2.png
 
-[link-php4nagios]:                      https://docs.pnp4nagios.org/
+[link-PNP4Nagios]:                      http://www.pnp4nagios.org/doku.php?id=pnp-0.4:start
 
 #   Working with the Filter Node Metrics in Nagios
 
@@ -41,4 +41,4 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 Now the values of the `curl_json-wallarm_nginx/gauge-abnormal` metric of the filter node are displayed in the service state information in Nagios.
 
 !!! info "Nagios data visualization"
-    By default, Nagios Core only supports tracking service status (`OK`, `WARNING`, `CRITICAL`). To store and visualize metric values contained in “Performance Data,” you can use third-party utilities, for example, [PHP4Nagios][link-php4nagios].
+    By default, Nagios Core only supports tracking service status (`OK`, `WARNING`, `CRITICAL`). To store and visualize metric values contained in “Performance Data,” you can use third-party utilities, for example, [PNP4Nagios][link-PNP4Nagios].

@@ -42,7 +42,7 @@ To create a security group for the filtering node:
     
     The filtering node requires access to a Wallarm API server for proper operation.
 
-To see detailed information about creating a security group, proceed to the [AWS documentation]([link-sg]).
+To see detailed information about creating a security group, proceed to the [AWS documentation][link-sg].
 
 ## 3. Launch a Wallarm node instance
 

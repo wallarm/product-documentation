@@ -2,7 +2,7 @@
 [img-nagios-service-details]: ../../images/monitoring/nagios-service-details-1.png
 [img-nagios-service-perfdata-updated]: ../../images/monitoring/nagios-service-details-2.png
 
-[link-php4nagios]: https://docs.pnp4nagios.org/
+[link-PNP4Nagios]: http://www.pnp4nagios.org/doku.php?id=pnp-0.4:start
 
 # Nagiosでフィルタノードのメトリクスを操作する
 
@@ -40,4 +40,4 @@
 これで、フィルタノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックの値が、Nagiosのサービス状態情報に表示されるようになりました。
 
 !!! info "Nagiosデータの視覚化"
-    デフォルトでは、Nagios Coreはサービスステータス（`OK`、`WARNING`、`CRITICAL`）の追跡のみをサポートしています。 「Performance Data」に含まれるメトリック値を保存および可視化するためには、例えば[PHP4Nagios][link-php4nagios]のようなサードパーティ製ユーティリティを使用できます。
+    デフォルトでは、Nagios Coreはサービスステータス（`OK`、`WARNING`、`CRITICAL`）の追跡のみをサポートしています。 「Performance Data」に含まれるメトリック値を保存および可視化するためには、例えば[PNP4Nagios][link-PNP4Nagios]のようなサードパーティ製ユーティリティを使用できます。

@@ -265,7 +265,7 @@ Depending on the API endpoint logic, an attacker can either just read data on we
 
 This vulnerability is also known as IDOR (Insecure Direct Object Reference).
 
-[More details on the vulnerability](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)
+[More details on the vulnerability](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md)
 
 **Remediation:**
 
