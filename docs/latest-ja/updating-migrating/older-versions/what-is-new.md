@@ -31,7 +31,7 @@
 
 Wallarmは新しい攻撃タイプを検出します：
 
-* [Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md) (BOLA)は、[Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (IDOR)とも呼ばれ、APIの脆弱性として非常に一般的になっています。アプリケーションにIDOR / BOLAの脆弱性が含まれている場合、攻撃者に機密情報やデータが漏洩する可能性が高くなります。攻撃者は、API呼び出しで自身のリソースIDを他のユーザーのリソースIDと交換するだけで済みます。適切な認証チェックがないため、攻撃者は指定されたリソースにアクセスできます。そのため、オブジェクトのIDを受け取り、オブジェクトに対して何らかのアクションを実行するすべてのAPIエンドポイントが攻撃対象になります。
+* [Broken Object Level Authorization](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md) (BOLA)は、[Insecure Direct Object References](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References) (IDOR)とも呼ばれ、APIの脆弱性として非常に一般的になっています。アプリケーションにIDOR / BOLAの脆弱性が含まれている場合、攻撃者に機密情報やデータが漏洩する可能性が高くなります。攻撃者は、API呼び出しで自身のリソースIDを他のユーザーのリソースIDと交換するだけで済みます。適切な認証チェックがないため、攻撃者は指定されたリソースにアクセスできます。そのため、オブジェクトのIDを受け取り、オブジェクトに対して何らかのアクションを実行するすべてのAPIエンドポイントが攻撃対象になります。
 
     この脆弱性を悪用されないようにするために、Wallarmノード 4.2 以降には、BOLA攻撃からエンドポイントを保護するために使用できる[新しいトリガー](../../admin-en/configuration-guides/protecting-against-bola.md)が含まれています。トリガーは、指定されたエンドポイントへのリクエスト数を監視し、トリガーからの閾値を超えるとBOLA攻撃イベントを生成します。
 * [Mass Assignment](../../attacks-vulns-list.md#mass-assignment)

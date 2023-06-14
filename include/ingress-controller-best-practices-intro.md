@@ -3,5 +3,4 @@
     
     Recommended reading:
     
-    * [Collection of articles about the Kubernetes Ingress controller](https://www.aquasec.com/wiki/display/containers/Working+with+Kubernetes+Ingress)
     * [Official NGINX Ingress Controller Guide](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)

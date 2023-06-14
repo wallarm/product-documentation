@@ -261,7 +261,7 @@ APIエンドポイントのロジックに応じて、攻撃者はウェブア�
 
 この脆弱性は、IDOR（Insecure Direct Object Reference）としても知られています。
 
-[脆弱性に関する詳細](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa1-broken-object-level-authorization.md)
+[脆弱性に関する詳細](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md)
 
 **修復：**
 
@@ -618,7 +618,7 @@ SSIインジェクションは、HTMLページに悪意のあるペイロード�
 
 Mass Assignment 攻撃では、攻撃者はHTTPリクエストパラメータをプログラムコード変数またはオブジェクトにバインドしようとします。APIが脆弱でバインディングを許可している場合、攻撃者は公開する意図のない機密オブジェクトプロパティを変更して、権限のエスカレーションやセキュリティ機構のバイパスなどの結果を引き起こす可能性があります。
 
-Mass Assignment 攻撃に脆弱な API は、適切なフィルタリングなしにクライアント入力を内部変数またはオブジェクトプロパティに変換することを許可します。この脆弱性は、[OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/2019/en/src/0xa6-mass-assignment.md) API セキュリティリスクの最も深刻なリストに含まれています。
+Mass Assignment 攻撃に脆弱な API は、適切なフィルタリングなしにクライアント入力を内部変数またはオブジェクトプロパティに変換することを許可します。この脆弱性は、[OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa6-mass-assignment.md) API セキュリティリスクの最も深刻なリストに含まれています。
 
 リリース 4.4.3 から、Wallarm は Mass Assignment の試みを緩和します。
 
