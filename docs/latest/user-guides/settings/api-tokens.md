@@ -36,19 +36,15 @@ Consider that:
 
 ## Creating tokens with global role permissions
 
-To create an API token with the permissions based on the following [roles](../../user-guides/settings/users.md#user-roles): 
+To create an API token with the permissions based on the global [roles](../../user-guides/settings/users.md#user-roles) like Global Administrator, Global Analyst or Global Read Only, do the following:
 
-* **Global Administrator**
-* **Global Analyst**
-* **Global Read Only** 
-
-...do the following:
-
-1. Log in [US](https://us1.my.wallarm.com/) or [EU](https://my.wallarm.com/) Wallarm Console as global administrator.
+1. Log to the [US](https://us1.my.wallarm.com/) or [EU](https://my.wallarm.com/) Wallarm Console under the [appropriate user](#configuring-tokens).
 1. At the top right, select `?` → **Wallarm API Console**. Wallarm API console is opened:
 
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
+
+    Note that Wallarm API console retrieves authentication data from the main Wallarm Console. If you change user in main Console, refresh API console page for the new authentication.
  
 1. Send the POST request to the `/v2/api_tokens` route with the following parameters:
 
@@ -68,8 +64,7 @@ To create an API token with the permissions based on the following [roles](../..
     Where:
 
     * `<NAME_FOR_YOUR_API_TOKEN>` is recommended to explain the token purpose.
-    * `<USER_ID>` defines the user who owns the token.
-    * `<CLIENT_ID>` defines the company account this user belongs to.
+    * `<USER_ID>` defines the user who owns the token, and `<CLIENT_ID>` - the company account this user belongs to.
     
         Obtain these IDs by sending the POST request to the `/v1/user` route.
 
@@ -78,6 +73,10 @@ To create an API token with the permissions based on the following [roles](../..
         * `partner_admin` for Global Administrator
         * `partner_analytic` for Global Analyst
         * `partner_auditor` for Global Read Only
+
+    The described request will create API token in Wallarm Console.
+
+1. Check your token in Wallarm Console → **Settings** → **API Tokens**. To use token, use **Copy token** from its menu.
 
 Examples of usage: the API token with Global Administrator's permissions can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api):
 
