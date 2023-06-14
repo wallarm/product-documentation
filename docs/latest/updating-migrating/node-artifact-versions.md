@@ -2,8 +2,6 @@
 
 This document lists available [patch versions](versioning-policy.md#version-format) of Wallarm node 4.6 in different form-factors. You can track new patch version releases and plan timely upgrades based on this document.
 
-replace by 4.6
-
 ## DEB/RPM packages for NGINX
 
 [How to upgrade](nginx-modules.md)
