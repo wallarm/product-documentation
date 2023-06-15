@@ -37,7 +37,7 @@ Despite the OOB deployment approach safety, it has some limitations:
 
 ## Supported deployment options
 
-Wallarm offers the Out-of-Band (OOB) deployment options for traffic mirorred by various means, including web servers and cloud platforms:
+Wallarm offers the Out-of-Band (OOB) deployment options for traffic mirorred by various means:
 
-* Most web servers such as NGINX, Envoy, Istio, etc. offer built-in modules or features for traffic mirroring. If you prefer the Wallarm OOB security solution to analyze traffic mirrored by a web server, refer to the [appropriate deployment option overview](web-server-mirroring/overview.md).
+* Most services such as NGINX, Envoy, Istio, etc. offer built-in modules or features for traffic mirroring. If you prefer the Wallarm OOB security solution to analyze traffic mirrored by such solutions, refer to the [appropriate deployment option overview](web-server-mirroring/overview.md).
 * Cloud platforms typically offer native traffic mirroring capabilities, with [AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html) being a prime example. For those who deploy their services on AWS from the Terraform-compatible environment, Wallarm offers the [Terraform module](terraform-module/aws-vpc-mirroring.md) which enables agentless Wallarm deployment with the required VPC mirroring configuration.

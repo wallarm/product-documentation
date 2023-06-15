@@ -1,4 +1,4 @@
-# Deploying Wallarm OOB for AWS VPC Mirroring using Terraform module
+# Deploying Wallarm OOB for AWS VPC Mirroring using Terraform Module
 
 This example demonstrates how to deploy Wallarm as an Out-of-Band solution using the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) for analyzing [traffic mirrored by Amazon VPC](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html).
 

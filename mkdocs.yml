@@ -113,13 +113,13 @@ nav:
       - Deployment Options: installation/supported-deployment-options.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
-        - Mirroring by NGINX, Envoy and similar:
+        - Mirroring by NGINX, Envoy and Similar:
           - Overview: installation/oob/web-server-mirroring/overview.md
           - Public Clouds:
             - AWS:
               - AMI: installation/oob/web-server-mirroring/aws-ami.md
               - Kubernetes:
-                - Terraform module: installation/oob/terraform-module/mirroring-by-web-server.md
+                - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
             - GCP:
               - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
           - Docker: installation/oob/web-server-mirroring/docker-image.md
@@ -128,7 +128,7 @@ nav:
             - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
             - NGINX Distro: installation/oob/web-server-mirroring/linux/nginx-distro.md
         - AWS VPC Mirroring:
-          - Terraform module: installation/oob/terraform-module/aws-vpc-mirroring.md
+          - Terraform Module: installation/oob/terraform-module/aws-vpc-mirroring.md
       - Public Clouds:
         - Amazon Web Services:
           - AMI: installation/cloud-platforms/aws/ami.md
@@ -212,9 +212,9 @@ nav:
         - Wallarm Deployment to Private Clouds: installation/cloud-platforms/private-cloud.md
         - Separate Postanalytics Module Installation: admin-en/installation-postanalytics-en.md
         - Multi‑Tenant Node:
-          - Multitenancy overview: installation/multi-tenant/overview.md
-          - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
-          - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
+          - Multitenancy Overview: installation/multi-tenant/overview.md
+          - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
+          - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
     - Administrator Guide:
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md

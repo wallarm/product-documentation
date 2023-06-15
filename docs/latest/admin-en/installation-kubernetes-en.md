@@ -1,7 +1,7 @@
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
 [deployment-platform-docs]:         ../installation/supported-deployment-options.md
 
-# Installing NGINX Ingress Controller with integrated Wallarm services
+# Deploying NGINX Ingress Controller with Integrated Wallarm Services
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution involves the default functionality of [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services.
 

@@ -27,7 +27,7 @@
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
-# Deploying Wallarm OOB from Amazon Machine Image
+# Deploying Wallarm OOB from Amazon Image
 
 This article provides instructions for deploying [Wallarm OOB](overview.md) on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution described here is designed to analyze traffic mirrored by a web server.
 

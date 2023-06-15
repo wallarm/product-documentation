@@ -1,4 +1,4 @@
-# Terraform Module for Web Server Traffic Mirroring
+# Deploying Wallarm OOB for NGINX, Envoy and Similar Mirroring using Terraform Module
 
 This article demonstrates the **example** on how to deploy Wallarm to AWS as an Out-of-Band solution using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/). It is expected that the NGINX, Envoy, Istio and/or Traefik web server provides traffic mirroring.
 

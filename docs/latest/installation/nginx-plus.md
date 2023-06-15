@@ -29,7 +29,7 @@
 [web-server-mirroring-examples]:    oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../images/user-guides/nodes/grouped-nodes.png
 
-# Installing dynamic Wallarm module for NGINX Plus
+# Installing Dynamic Wallarm Module for NGINX Plus
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 
