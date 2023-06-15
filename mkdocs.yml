@@ -113,25 +113,22 @@ nav:
       - Deployment Options: installation/supported-deployment-options.md
       - Out-of-Band:
         - Overview: installation/oob/overview.md
-        - Mirroring by Web Servers:
+        - Mirroring by NGINX, Envoy and Similar:
           - Overview: installation/oob/web-server-mirroring/overview.md
-          - AWS Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
-          # - Docker image
-          # - DEB/RPM packages
-          - AWS AMI: installation/oob/web-server-mirroring/aws-ami.md
-          - GCP Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
-          # - GCP Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
-          # - AWS ECS
-          # - GCP , Azure, Alibaba - all deployment methods
-        - Mirroring by Cloud Platforms:
-          - AWS VPC Mirroring: installation/oob/terraform-module/aws-vpc-mirroring.md
-        # - DEB/RPM Packages:
-        #   - NGINX stable: installation/oob/packages/nginx-stable.md - need review
-        #   - NGINX Plus: - need help with mirroring config
-        #   - NGINX from Debian/CentOS Repo: - need help with mirroring config
-        # - AWS AMI: installation/oob/aws-ami.md - need review
-        # - GCP Image: installation/oob/gcp-image.md - need review
-        # - Docker Image: installation/oob/docker-image.md - need review
+          - Public Clouds:
+            - AWS:
+              - AMI: installation/oob/web-server-mirroring/aws-ami.md
+              - Kubernetes:
+                - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+            - GCP:
+              - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
+          - Docker: installation/oob/web-server-mirroring/docker-image.md
+          - Linux:
+            - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
+            - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
+            - NGINX Distro: installation/oob/web-server-mirroring/linux/nginx-distro.md
+        - AWS VPC Mirroring:
+          - Terraform Module: installation/oob/terraform-module/aws-vpc-mirroring.md
       - Public Clouds:
         - Amazon Web Services:
           - AMI: installation/cloud-platforms/aws/ami.md
@@ -139,19 +136,15 @@ nav:
           - Terraform Module:
             - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
             - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-            - OOB for Web Server Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
+            - OOB for NGINX, Envoy, etc. Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
             - OOB for AWS VPC Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
-        # - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
         - Google Cloud:
           - Machine Image: installation/cloud-platforms/gcp/machine-image.md
           - GCE: installation/cloud-platforms/gcp/docker-container.md
-        # - Installation of the filtering node from DEB or RPM packages on GCP: installation/cloud-platforms/gcp/deb-rpm-packages.md
         - Microsoft Azure:
           - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
-          # - Installation of the filtering node from DEB or RPM packages on Azure: installation/cloud-platforms/azure/deb-rpm-packages.md
         - Alibaba Cloud:
           - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-          # - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
       - CDN: installation/cdn-node.md
       - Kubernetes:
         - Ingress:
@@ -164,6 +157,7 @@ nav:
           - Customization: installation/kubernetes/sidecar-proxy/customization.md
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+        - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
       # - Load Balancers:  
       #   - NGINX Stable:
       #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
@@ -183,15 +177,21 @@ nav:
         # - Envoy:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
       - Packages:
-        - Docker Image (NGINX): admin-en/installation-docker-en.md
-        - Docker Image (Envoy): admin-en/installation-guides/envoy/envoy-docker.md
-        - Linux Packages for NGINX: installation/nginx/dynamic-module.md
-        - Linux Packages for NGINX Plus: installation/nginx-plus.md
-        - Linux Packages for NGINX Distro: installation/nginx/dynamic-module-from-distr.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Docker Images:
+          - NGINX-based: admin-en/installation-docker-en.md
+          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - Linux Packages:
+          - NGINX stable: installation/nginx/dynamic-module.md
+          - NGINX Plus: installation/nginx-plus.md
+          - NGINX Distro: installation/nginx/dynamic-module-from-distr.md
+        - Cloud Images:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP Machine Image: installation/packages/gcp-machine-image.md
         - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
-      - Additional:
+      - Custom Deployment:
+        - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+        - Custom Deployment Options: installation/custom/request-custom-deployment.md
+      - Additional Options:
         - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
         - Auto Scaling:
           - Amazon Web Services:
@@ -209,9 +209,9 @@ nav:
         - Wallarm Deployment to Private Clouds: installation/cloud-platforms/private-cloud.md
         - Separate Postanalytics Module Installation: admin-en/installation-postanalytics-en.md
         - Multi‑Tenant Node:
-          - Multitenancy overview: installation/multi-tenant/overview.md
-          - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
-          - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
+          - Multitenancy Overview: installation/multi-tenant/overview.md
+          - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
+          - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
     - Administrator Guide:
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
@@ -520,7 +520,6 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-installation.md
     - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md

@@ -19,7 +19,7 @@
 [waf-installation-instr-latest]:     /installation/nginx-plus/
 [img-node-with-several-instances]:  ../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
+[nginx-custom]:                 ../../custom/custom-nginx-version.md
 [node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
@@ -39,7 +39,7 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 * NGINX Plus release 28 (R28)
 
     !!! info "Custom NGINX Plus versions"
-        If you have a different version, see [how to connect the Wallarm module to custom build of NGINX][nginx-custom]
+        If you have a different version, refer to the instructions on [how to connect the Wallarm module to custom build of NGINX][nginx-custom]
 * Executing all commands as a superuser (e.g. `root`)
 * Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
@@ -49,9 +49,6 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 ## 1. Install NGINX Plus and dependencies
 
 Install NGINX Plus and its dependencies using these [official NGINX instructions](https://www.nginx.com/resources/admin-guide/installing-nginx-plus/).
-
-!!! info "Installing on Amazon Linux 2.0.2021x and lower"
-    To install NGINX Plus on Amazon Linux 2.0.2021x and lower, use the CentOS 7 instructions.
 
 ## 2. Add Wallarm repositories
 
@@ -224,9 +221,5 @@ Wallarm settings are defined using the [NGINX directives](../../../admin-en/conf
 Below there are a few of the typical settings that you can apply if needed:
 
 * [Configuration of the filtration mode][waf-mode-instr]
-* [Allocating resources for Wallarm nodes][memory-instr]
-* [Logging Wallarm node variables][logging-instr]
-* [Using the balancer of the proxy server behind the filtering node][proxy-balancer-instr]
-* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
-* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"

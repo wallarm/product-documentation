@@ -12,7 +12,7 @@
 [dynamic-dns-resolution-nginx]: ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 [img-wl-console-users]: ../../images/check-users.png 
 [img-create-wallarm-node]: ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]: ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
+[nginx-custom]: ../../installation/custom/custom-nginx-version.md
 [nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md

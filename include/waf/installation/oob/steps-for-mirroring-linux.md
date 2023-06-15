@@ -1,8 +1,8 @@
 By default, the deployed Wallarm node does not analyze incoming traffic.
 
-To start traffic analysis, change the `/etc/nginx/sites-enabled/default` file on the Wallarm instance as follows:
+Perform the following configuration in the `/etc/nginx/conf.d/default.conf` file on the machine with the installed node to configure Wallarm to process the traffic mirror:
 
-1. For the Wallarm node to accept mirrored traffic, set the following configuration:
+1. For the Wallarm node to accept mirrored traffic, set the following configuration in the `server` NGINX block:
 
     ```
     wallarm_force server_addr $http_x_server_addr;
@@ -16,7 +16,7 @@ To start traffic analysis, change the `/etc/nginx/sites-enabled/default` file on
     wallarm_force response_size 0;
     ```
 
-    * The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][real-ip-docs].
+    * The `set_real_ip_from` and `real_ip_header` directives are required to have Wallarm Console [display the IP addresses of the attackers][proxy-balancer-instr].
     * The `wallarm_force_response_*` directives are required to disable analysis of all requests except for copies received from the mirrored traffic.
 1. For the Wallarm node to analyze the mirrored traffic, set the `wallarm_mode` directive to `monitoring`:
 
@@ -30,4 +30,4 @@ To start traffic analysis, change the `/etc/nginx/sites-enabled/default` file on
     }
     ```
 
-    Since malicious requests [cannot][oob-advantages-limitations] be blocked, the only [mode][wallarm-mode] Wallarm accepts is monitoring. For in-line deployment, there are also safe blocking and blocking modes but even if you set the `wallarm_mode` directive to a value different from monitoring, the node continues to monitor traffic and only record malicious traffic (aside from the mode set to off).
+    Since malicious requests [cannot][oob-advantages-limitations] be blocked, the only [mode][waf-mode-instr] Wallarm accepts is monitoring. For in-line deployment, there are also safe blocking and blocking modes but even if you set the `wallarm_mode` directive to a value different from monitoring, the node continues to monitor traffic and only record malicious traffic (aside from the mode set to off).

@@ -36,7 +36,7 @@ Perform the following configuration in the `/etc/nginx/sites-enabled/default` fi
     
         The monitoring mode is the recommended one for the first deployment and solution testing. Wallarm provides safe blocking and blocking modes as well, [read more][wallarm-mode].
 === "Out-of-Band"
-    1. For the Wallarm node to accept mirrored traffic, set the following configuration:
+    1. For the Wallarm node to accept mirrored traffic, set the following configuration in the `server` NGINX block:
 
         ```
         wallarm_force server_addr $http_x_server_addr;

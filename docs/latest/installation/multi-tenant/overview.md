@@ -1,4 +1,4 @@
-# Multitenancy overview
+# Multitenancy Overview
 
 The **multitenancy** feature allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously.
 

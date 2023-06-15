@@ -24,23 +24,23 @@
 
 # Deploying Wallarm OOB from GCP Machine Image
 
-This article provides instructions for deploying [Wallarm OOB](overview.md) on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution described here is designed to analyze traffic mirrored by a web server.
+This article provides instructions for deploying [Wallarm OOB](overview.md) on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
 ## 5. Enable Wallarm to analyze the mirrored traffic
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 6. Restart NGINX
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 7. Configure your web server to mirror traffic to the Wallarm node
+## 7. Configure your web or proxy server to mirror traffic to the Wallarm node
 
-Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
+Configure your web or server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
 
-Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
 
 ## 8. Test the Wallarm operation
 

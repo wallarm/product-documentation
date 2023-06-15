@@ -1,4 +1,4 @@
-# Creating tenant accounts in Wallarm Console
+# Creating Tenant Accounts in Wallarm Console
 
 The [multitenancy](overview.md) feature enables you to use several linked accounts, each a separate record in one Wallarm Console. An account allocated for a particular company or isolated environment is called a **tenant account**.
 

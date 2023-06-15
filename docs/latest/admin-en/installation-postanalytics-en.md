@@ -4,7 +4,7 @@
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
-# Separate postanalytics module installation
+# Separate Postanalytics Module Installation
 
 The processing of requests in the Wallarm node is divided into two stages:
 

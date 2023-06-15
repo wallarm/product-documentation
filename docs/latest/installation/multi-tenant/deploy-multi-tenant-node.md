@@ -4,7 +4,7 @@
 [process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
 
-# Deploying and configuring multi-tenant node
+# Deploying and Configuring Multi-tenant Node
 
 The [multi-tenant](overview.md) node protects several independent company infrastructures or isolated environments simultaneously.
 

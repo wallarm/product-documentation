@@ -27,9 +27,9 @@
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
-# Deploying Wallarm OOB from Amazon Machine Image
+# Deploying Wallarm OOB from Amazon Image
 
-This article provides instructions for deploying [Wallarm OOB](overview.md) on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution described here is designed to analyze traffic mirrored by a web server.
+This article provides instructions for deploying [Wallarm OOB](overview.md) on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
 
 <!-- ???
 say that all regions are supported -->
@@ -38,17 +38,17 @@ say that all regions are supported -->
 
 ## 6. Enable Wallarm to analyze the mirrored traffic
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 7. Restart NGINX
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 8. Configure your web server to mirror traffic to the Wallarm node
+## 8. Configure your web or proxy server to mirror traffic to the Wallarm node
 
-Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
+Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
 
-Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
 
 ## 9. Test the Wallarm operation
 

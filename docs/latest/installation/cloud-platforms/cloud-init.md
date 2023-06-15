@@ -1,4 +1,4 @@
-# Specification of the Wallarm cloud-init script
+# Specification of the Wallarm cloud-init Script
 
 If following the Infrastructure as Code (IaC) approach, you may need to use the [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) script to deploy the Wallarm node to the public cloud. Starting from release 4.0, Wallarm distributes its cloud images with the ready‑to‑use `cloud-init.py` script that is described in this topic.
 

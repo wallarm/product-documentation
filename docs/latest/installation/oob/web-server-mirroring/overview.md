@@ -1,6 +1,6 @@
-# Wallarm OOB for Traffic Mirrored by Web Servers
+# Wallarm OOB for Traffic Mirrored by NGINX, Envoy and Similar
 
-This article explains how to deploy Wallarm as the [OOB](../overview.md) solution if you choose to produce a traffic mirror by your web server means.
+This article explains how to deploy Wallarm as the [OOB](../overview.md) solution if you choose to produce a traffic mirror by your NGINX, Envoy or similar solution.
 
 <!-- Traffic mirroring can be implemented by configuring a web server to copy incoming traffic to the Wallarm services for analysis. With this approach, traffic flow looks as follows: -->
 
@@ -22,13 +22,13 @@ To deploy and configure Wallarm to analyze a traffic mirror, you need to:
     !!! info "Support of mirrored traffic analysis"
         Only NGINX-based Wallarm nodes support mirrored traffic filtration.
 1. Configure Wallarm to analyze the traffic copy - the instructions above are equiped with the required steps.
-1. Configure a web server being used in your infrastructure to produce a copy of your incoming traffic and send the copy to a Wallarm node as to an additional backend.
+1. Configure your infrastructure to produce a copy of your incoming traffic and send the copy to a Wallarm node as to an additional backend.
 
-    For configuration details, we recommend to refer to the documentation of your web server. [Below](#examples-of-web-server-configuration-for-traffic-mirroring) we give configuration examples for some popular web servers but the real configuration depends on the pecularities of your instrastructure.
+    For configuration details, we recommend to refer to the documentation of components being used in your infrastructure. [Below](#examples-of-web-server-configuration-for-traffic-mirroring) we give configuration examples for some popular solutions like NGINX, Envoy and similar but the real configuration depends on the pecularities of your instrastructure.
 
-## Examples of web server configuration for traffic mirroring
+## Configuration examples for traffic mirroring
 
-Belowe are the examples on how to configure your web server to mirror incoming traffic to Wallarm nodes as to an additional backend.
+Belowe are the examples on how to configure NGINX, Envoy, Traefik, Istio to mirror incoming traffic to Wallarm nodes as to an additional backend.
 
 ### NGINX
 
@@ -222,7 +222,7 @@ spec:
 
 ### Traefik
 
-The following configuration example is based on the [`dynamic configuration file`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/) approach. The Traefik web server also supports other configuration modes, and you can easily adjust the provided one to any of them as they have a similar structure.
+The following configuration example is based on the [`dynamic configuration file`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/) approach. Traefik also supports other configuration modes, and you can easily adjust the provided one to any of them as they have a similar structure.
 
 ```yaml
 ### Dynamic configuration file

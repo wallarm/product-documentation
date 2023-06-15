@@ -18,7 +18,7 @@
 [install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
+[nginx-custom]:                 ../custom/custom-nginx-version.md
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
@@ -28,93 +28,13 @@
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
+# Installing Dynamic Wallarm Module for NGINX from Debian/CentOS Repositories
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 
-## Requirements
+--8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* SELinux disabled or configured upon the [instructions][configure-selinux-instr]
-* Executing all commands as a superuser (e.g. `root`)
-* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions or data centers
-* Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
-
-## 1. Add Debian/CentOS repositories
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt -y install dirmngr
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node buster/4.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo apt -y install dirmngr
-    curl -fSsL https://repo.wallarm.com/wallarm.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/wallarm.gpg --import
-    sudo chmod 644 /etc/apt/trusted.gpg.d/wallarm.gpg
-    sh -c "echo 'deb https://repo.wallarm.com/debian/wallarm-node bullseye/4.6/' | sudo tee /etc/apt/sources.list.d/wallarm.list"
-    sudo apt update
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum install -y epel-release
-    sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
-    ```
-
-## 2. Install NGINX with Wallarm packages
-
-The command installs the following packages:
-
-* `nginx` for NGINX
-* `libnginx-mod-http-wallarm` or `nginx-mod-http-wallarm` for the NGINX-Wallarm module
-* `wallarm-node` for the [postanalytics](../../admin-en/installation-postanalytics-en.md) module, Tarantool database, and additional NGINX-Wallarm packages
-
-=== "Debian 10.x (buster)"
-    ```bash
-    sudo apt -y install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
-    ```
-=== "Debian 11.x (bullseye)"
-    ```bash
-    sudo apt -y install --no-install-recommends nginx wallarm-node libnginx-mod-http-wallarm
-    ```
-=== "CentOS 7.x"
-    ```bash
-    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
-    ```
-
-## 3. Connect the Wallarm module
-
-Copy the configuration files for the system setup:
-
-=== "Debian"
-    ```bash
-    sudo cp /usr/share/doc/libnginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
-    ```
-=== "CentOS"
-    ```bash
-    sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
-    ```
-
-## 4. Connect the filtering node to Wallarm Cloud
-
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
 
 ## 5. Enable Wallarm to analyze the traffic
 
@@ -161,10 +81,7 @@ Wallarm settings are defined using the [NGINX directives](../../admin-en/configu
 Below there are a few of the typical settings that you can apply if needed:
 
 * [Configuration of the filtration mode][waf-mode-instr]
-* [Allocating resources for Wallarm nodes][memory-instr]
-* [Logging Wallarm node variables][logging-instr]
-* [Using the balancer of the proxy server behind the filtering node][proxy-balancer-instr]
-* [Limiting the single request processing time in the directive `wallarm_process_time_limit`][process-time-limit-instr]
-* [Limiting the server reply waiting time in the NGINX directive `proxy_read_timeout`](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout)
-* [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
+
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+
 * [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
