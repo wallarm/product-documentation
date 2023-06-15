@@ -546,6 +546,12 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
+
+        <a class="do-card" href="../../installation/kubernetes/terraform-module-for-aws/">
+            <img src="../../images/platform-icons/terraform.svg" />
+            <h3>Terraform module</h3>
+            <p>Use the Terraform module for Wallarm deployment on AWS</p>
+        </a>
     </div>
 
     <div class="do-nested" data-for="kubernetes-ingress">

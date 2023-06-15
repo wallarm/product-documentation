@@ -157,6 +157,7 @@ nav:
           - Customization: installation/kubernetes/sidecar-proxy/customization.md
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+        - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
       # - Load Balancers:  
       #   - NGINX Stable:
       #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
