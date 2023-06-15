@@ -1,4 +1,4 @@
-# Building Wallarm Packages for Custom NGINX
+# Custom NGINX Packages
 
 If you require Wallarm DEB/RPM packages for an NGINX version that is different from the stable version, NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
 
