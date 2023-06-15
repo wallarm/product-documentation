@@ -1,1 +1,0 @@
---8<-- "latest/installation/cloud-platforms/gcp/deb-rpm-packages.md"
