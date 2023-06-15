@@ -30,7 +30,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) on G
 
 ## 5. Enable Wallarm to analyze the mirrored traffic
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 6. Restart NGINX
 
@@ -40,7 +40,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) on G
 
 Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
 
-Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy).
 
 ## 8. Test the Wallarm operation
 

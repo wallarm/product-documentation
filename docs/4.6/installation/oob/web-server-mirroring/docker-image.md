@@ -1,0 +1,1 @@
+--8<-- "latest/installation/oob/web-server-mirroring/docker-image.md"

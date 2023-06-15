@@ -38,7 +38,7 @@ say that all regions are supported -->
 
 ## 6. Enable Wallarm to analyze the mirrored traffic
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 7. Restart NGINX
 
@@ -48,7 +48,7 @@ say that all regions are supported -->
 
 Configure your web server to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web server documentation.
 
-Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy, Istio).
+Inside the [link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring), you will find the example configuration for the most popular of web servers (NGINX, Traefik, Envoy).
 
 ## 9. Test the Wallarm operation
 
