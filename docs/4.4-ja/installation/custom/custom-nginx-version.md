@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/custom/custom-nginx-version.md"

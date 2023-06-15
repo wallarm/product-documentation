@@ -1,7 +1,7 @@
 [docs-module-update]:   nginx-modules.md
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
+[nginx-custom]:                 ../../custom/custom-nginx-version.md
 
 # EOL postanalyticsモジュールのアップグレード
 

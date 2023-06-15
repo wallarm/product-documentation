@@ -891,19 +891,21 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## Custom deployment option
+## Custom deployment
 
 <div class="do-section">
     <div class="do-main">
-        <div class="do-card">
+        <a class="do-card" href="../../installation/custom/custom-nginx-version/">
+            <img src="../../images/platform-icons/nginx.svg" />
+            <h3>Custom NGINX</h3>
+            <p>Request Wallarm Linux packages for a custom NGINX</p>
+        </a>
+
+        <a class="do-card" href="../../installation/custom/request-custom-deployment/">
             <img src="../../images/platform-icons/custom-deployment.svg" />
-            <p style="margin-bottom: 8px">Can't find what you need? Contact Wallarm sales to explore custom solutions.</p>
-            <a href="mailto:sales@wallarm.com?subject=Request%20for%20custom%20Wallarm%20deployment&body=Hello%20Wallarm%20Sales%20Team%2C%0AI%27m%20writing%20to%20explore%20a%20Wallarm%20deployment%20option%20for%20my%20product%20security.%20I%20couldn%27t%20find%20what%20I%20need%20among%20the%20listed%20options%20in%20your%20documentation%2C%20and%20I%20would%20appreciate%20your%20help%20to%20explore%20the%20possibilities.%0AI%20would%20be%20happy%20to%20schedule%20a%20call%20with%20you%20to%20discuss%20my%20requirements%20in%20detail.%0AThank%20you%20for%20your%20time%20and%20assistance.">
-                <button type="button" class="wlrm-button">
-                    Contact sales
-                </button>
-            </a>
-        </div>
+            <h3>Custom Deployment</h3>
+            <p style="margin-bottom: 8px">Can't find what you need? Let's discuss a custom solution</p>
+        </a>
     </div>
 </div>
 

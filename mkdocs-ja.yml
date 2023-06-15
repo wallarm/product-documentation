@@ -171,6 +171,7 @@ nav:
           - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
           - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
         - Deploying Wallarm CDN node: installation/cdn-node.md
+        - Building Wallarm Packages for Custom NGINX: installation/custom/custom-nginx-version.md
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -381,7 +382,6 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-installation.md
     - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md

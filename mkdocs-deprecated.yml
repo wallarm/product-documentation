@@ -105,7 +105,6 @@ nav:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
   - FAQ:
-    - Compatibility of Wallarm filtering node with NGINX versions: faq/nginx-compatibility.md
     - Installing Wallarm Ingress controller: faq/ingress-installation.md
     - Errors after Wallarm node installation: faq/common-errors-after-installation.md
     - Wallarm platform and third-party services interaction: faq/wallarm-and-third-party-services.md
