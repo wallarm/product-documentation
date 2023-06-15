@@ -136,7 +136,7 @@ nav:
           - Terraform Module:
             - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
             - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
-            - OOB for NGINX, Envoy, etc Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
+            - OOB for NGINX, Envoy, etc. Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
             - OOB for AWS VPC Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
         # - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
         - Google Cloud:
@@ -180,13 +180,16 @@ nav:
         # - Envoy:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
       - Packages:
-        - Docker Image (NGINX): admin-en/installation-docker-en.md
-        - Docker Image (Envoy): admin-en/installation-guides/envoy/envoy-docker.md
-        - Linux Packages for NGINX: installation/nginx/dynamic-module.md
-        - Linux Packages for NGINX Plus: installation/nginx-plus.md
-        - Linux Packages for NGINX Distro: installation/nginx/dynamic-module-from-distr.md
-        - AWS AMI: installation/packages/aws-ami.md
-        - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Docker Images:
+          - NGINX-based: admin-en/installation-docker-en.md
+          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - Linux Packages:
+          - NGINX stable: installation/nginx/dynamic-module.md
+          - NGINX Plus: installation/nginx-plus.md
+          - NGINX Distro: installation/nginx/dynamic-module-from-distr.md
+        - Cloud Images:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP Machine Image: installation/packages/gcp-machine-image.md
         - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
       - Custom Deployment:
         - Building Wallarm Packages for Custom NGINX: installation/custom/custom-nginx-version.md
