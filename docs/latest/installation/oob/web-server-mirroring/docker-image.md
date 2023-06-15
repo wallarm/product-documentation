@@ -24,7 +24,7 @@
 
 # Deploying Wallarm OOB from the Docker Image
 
-This article provides instructions for deploying [Wallarm OOB](overview.md) using the [NGINX-based Docker image](https://hub.docker.com/r/wallarm/node). The solution described here is designed to analyze traffic mirrored by a web server.
+This article provides instructions for deploying [Wallarm OOB](overview.md) using the [NGINX-based Docker image](https://hub.docker.com/r/wallarm/node). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
 
 --8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
 

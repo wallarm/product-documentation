@@ -1,6 +1,6 @@
 # Deploying Wallarm OOB for NGINX, Envoy and Similar Mirroring using Terraform Module
 
-This article demonstrates the **example** on how to deploy Wallarm to AWS as an Out-of-Band solution using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/). It is expected that the NGINX, Envoy, Istio and/or Traefik web server provides traffic mirroring.
+This article demonstrates the **example** on how to deploy Wallarm to AWS as an Out-of-Band solution using the [Wallarm Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/). It is expected that NGINX, Envoy, Istio and/or Traefik provides traffic mirroring.
 
 ## Key characteristics
 
@@ -14,8 +14,8 @@ This article demonstrates the **example** on how to deploy Wallarm to AWS as an 
 This example Wallarm solution has the following components:
 
 * Internet-facing load balancer routing traffic to the Wallarm node instances. It is expected that a load balancer has been already deployed, the `wallarm` module will not create this resource.
-* Any web server serving traffic from a load balancer and mirroring HTTP requests to an internal ALB endpoint and backend services. It is expected that a web server has been already deployed, the `wallarm` module will not create this resource.
-* An internal ALB accepting mirrored HTTPS requests from a web server and forwarding them to the Wallarm node instances.
+* Any web or proxy server (e.g. NGINX, Envoy) serving traffic from a load balancer and mirroring HTTP requests to an internal ALB endpoint and backend services. It is expected that a the component used for traffic mirroring has been already deployed, the `wallarm` module will not create this resource.
+* An internal ALB accepting mirrored HTTPS requests from a web or proxy server and forwarding them to the Wallarm node instances.
 * Wallarm node analyzing requests from an internal ALB and sending malicious traffic data to the Wallarm Cloud.
 
     The example runs the Wallarm nodes in the monitoring mode that drives the described behavior. If you switch the [mode](https://docs.wallarm.com/admin-en/configure-wallarm-mode/) to another value, nodes continue to only monitor the traffic as the [OOB](https://docs.wallarm.com/installation/oob/overview/#advantages-and-limitations) approach does not allow attack blocking.
@@ -30,14 +30,14 @@ This example has the following code components:
 
 ## Configuring HTTP request mirroring
 
-Traffic mirroring is a feature provided by many web servers. The [link](https://docs.wallarm.com/installation/oob/web-server-mirroring/overview/#examples-of-web-server-configuration-for-traffic-mirroring) provides the documentation on how to configure traffic mirroring with some of them.
+Traffic mirroring is a feature provided by many web and proxy servers. The [link](https://docs.wallarm.com/installation/oob/web-server-mirroring/overview/#examples-of-web-server-configuration-for-traffic-mirroring) provides the documentation on how to configure traffic mirroring with some of them.
 
 ## Limitations
 
 Despite the fact that the described example solution is the most functional Out-of-Band Wallarm solution, it has some limitations inherent in the asynchronous approach:
 
 * Wallarm node does not instantly block malicious requests since traffic analysis proceeds irrespective of actual traffic flow.
-* The solution requires an additional component - the web server providing traffic mirroring or a similar tool (e.g. NGINX, Envoy, Istio, Traefik, custom Kong module, etc).
+* The solution requires an additional component - the web or proxy server providing traffic mirroring or a similar tool (e.g. NGINX, Envoy, Istio, Traefik, custom Kong module, etc).
 
 ## Running the example Wallarm mirror solution
 

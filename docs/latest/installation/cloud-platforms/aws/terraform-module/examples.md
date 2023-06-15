@@ -44,7 +44,7 @@ Wallarm proxy solution provides an additional functional network layer serving a
 
 ## Mirror solution
 
-[This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing mirrored traffic. It is expected that the NGINX, Envoy, Istio and/or Traefik web server already provides traffic mirroring.
+[This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing mirrored traffic. It is expected that NGINX, Envoy, Istio and/or Traefik already provides traffic mirroring.
 
 ![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
