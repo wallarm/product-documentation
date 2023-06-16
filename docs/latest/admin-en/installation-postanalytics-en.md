@@ -36,13 +36,13 @@ Starting from Wallarm node 4.6, to install postanalytics separately, it is recom
 To install postanalytics separately via all-in-one script, use:
 
 ```
-sudo sh ./wallarm-4.6.10.x86_64-glibc.sh postanalytics
+sudo sh ./wallarm-4.6.11.x86_64-glibc.sh postanalytics
 ```
 
 To install filtering part separately, use:
 
 ```
-sudo sh ./wallarm-4.6.10.x86_64-glibc.sh filtering
+sudo sh ./wallarm-4.6.11.x86_64-glibc.sh filtering
 ```
 
 [Know the full picture of using all-in-one script for nodes installation →](../installation/nginx/all-in-one.md#separate-postanalytics-module-installation)

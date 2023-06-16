@@ -26,6 +26,9 @@
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+
 
 # Installing Wallarm with All-in-One Binary
 
@@ -42,7 +45,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Supported OS: Debian 10.x or 11.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7.x, AlmaLinux, Rocky Linux or Oracle Linux 8.x
+* Supported OS: Debian 10, 11 and 12.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7, 8 Stream, 9 Stream, Alma/Rocky Linux 9, Oracle Linux 8.x, Redos, SuSe Linux, and other popular Linux variants.
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm binary. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Executing all commands as a superuser (e.g. `root`)
@@ -53,10 +56,24 @@ Install the latest NGINX version of:
 
 * **NGINX `stable`** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
 * **NGINX Plus** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+* **NGINX Distro** - see how to install in the Wallarm [documentation](../../installation/nginx/dynamic-module-from-distr.md).
 
 ## 2. Prepare Wallarm token
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+To install node, you will need a Wallarm token of the [appropriate type][wallarm-token-types]. To prepare a token:
+
+=== "API token"
+
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+
+=== "Node token"
+
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Do one of the following: 
+        * Create the node of the **Wallarm node** type and copy the generated token.
+        * Use existing node group - copy token using node's menu → **Copy token**.
 
 ## 3. Download all-in-one Wallarm binary
 
@@ -65,16 +82,24 @@ Wallarm suggests installations for x86_64 version of the processor of your machi
 To download all-in-one Wallarm [installation script](#script-parameters), execute the command:
 
 ```bash
-sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
+curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
 ```
 
 ## 4. Run all-in-one Wallarm binary
 
 1. Run downloaded script:
 
-    ```bash
-    sudo sh wallarm-4.6.10.x86_64-glibc.sh
-    ```
+    === "API token"
+        ```bash
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh
+        ```
+
+        Where `WALLARM_LABELS` variable sets group into which the node will be added. (used for logical grouping of nodes in the Wallarm Console UI).
+
+    === "Node token"
+        ```bash
+        sudo sh wallarm-4.6.11.x86_64-glibc.sh
+        ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 1. Enter Wallarm token.
@@ -87,9 +112,11 @@ sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.x86_64-glibc.sh
 
 ## 6. Restart NGINX
 
---8<-- "../include/waf/root_perm_info.md"
+Restart NGINX using the following command:
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+```bash
+sudo systemctl restart nginx
+```
 
 ## 7. Configure sending traffic to the Wallarm instance
 
@@ -106,11 +133,8 @@ The dynamic Wallarm module with default settings is installed. The filtering nod
 Wallarm settings are defined using the [NGINX directives](../../admin-en/configure-parameters-en.md) or the Wallarm Console UI. Directives should be set in the following files on the machine with the Wallarm node:
 
 * `/etc/nginx/nginx.conf` with NGINX settings
-* `/etc/nginx/wallarm.conf` with global filtering node settings
-
-    The file is used for settings applied to all domains. To apply different settings to different domain groups, use the file `nginx.conf` or create new configuration files for each domain group (for example, `example.com.conf` and `test.com.conf`). More detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
 * `/etc/nginx/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
-* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the Tarantool database settings
+* `/opt/wallarm/etc/collectd/wallarm-collectd.conf.d/wallarm-tarantool.conf` with the settings for the `collectd` plugin that collects statistics from Tarantool
 
 Below there are a few of the typical settings that you can apply if needed:
 
@@ -130,7 +154,7 @@ Below there are a few of the typical settings that you can apply if needed:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.6.10.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.6.11.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
@@ -171,7 +195,7 @@ Also interactive mode includes a reminder that you need to configure the install
 To install a node on the machine with the ARM64 processor architecture, download the following all-in-one script:
 
 ```bash
-sudo curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.10.aarch64-glibc.sh
+curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
 ```
 
 The script uses all the same options as the x86_64 version.
