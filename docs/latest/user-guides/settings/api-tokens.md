@@ -44,7 +44,7 @@ To create an API token with the permissions based on the global [roles](../../us
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
 
-    Note that Wallarm API console retrieves authentication data from the main Wallarm Console. If you change user in main Console, refresh API console page for the new authentication.
+    Note that Wallarm API Console retrieves authentication data from the Wallarm Console. If you change user in Wallarm Console, refresh the Wallarm API Console page for the new authentication.
  
 1. Send the POST request to the `/v2/api_tokens` route with the following parameters:
 
@@ -54,7 +54,7 @@ To create an API token with the permissions based on the global [roles](../../us
     "realname": "<NAME_FOR_YOUR_API_TOKEN>",
     "user_id": <USER_ID>,
     "enabled": true,
-    "expire_at": "2033-06-13T04:56:01.037Z",
+    "expire_at": "<TOKEN_EXPIRATION_DATE_AND_TIME>",
     "permissions": [
         "<REQUIRED_GLOBAL_ROLE>"
     ]
@@ -68,30 +68,34 @@ To create an API token with the permissions based on the global [roles](../../us
     
         Obtain these IDs by sending the POST request to the `/v1/user` route.
 
+    * `<TOKEN_EXPIRATION_DATE_AND_TIME>` in [ISO 8601 format](https://www.cl.cam.ac.uk/~mgk25/iso-time.html), for example `2033-06-13T04:56:01.037Z`.
     * `<REQUIRED_GLOBAL_ROLE>` can be:
         
         * `partner_admin` for Global Administrator
         * `partner_analytic` for Global Analyst
         * `partner_auditor` for Global Read Only
 
-    The described request will create API token in Wallarm Console.
+    ??? info "Example"
+        ```bash
+        {
+        "client_id": 1010,
+        "realname": "Token for tenant creation",
+        "user_id": 10101011,
+        "enabled": true,
+        "expire_at": "2033-06-13T04:56:01.037Z",
+        "permissions": [
+            "partner_admin"
+        ]
+        }
+        ```
 
-1. Check your token in Wallarm Console → **Settings** → **API Tokens**. To use token, use **Copy token** from its menu.
+        This request creates an API token with Global Administrator's permissions that can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api).
 
-Examples of usage: the API token with Global Administrator's permissions can be used for the [tenant creation](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api):
+1. From the response, get the `id` of the created token and send the GET request to the `/v2/api_tokens/{id}/secret` route using this `id`.
+1. Copy token's secret. Now you can use it for API request authorization.
 
-```bash
-{
-"client_id": 1010,
-"realname": "Token for tenant creation",
-"user_id": 10101011,
-"enabled": true,
-"expire_at": "2033-06-13T04:56:01.037Z",
-"permissions": [
-    "partner_admin"
-]
-}
-```
+    !!! info "Copying token from Wallarm Console"
+        As created API token is displayed in Wallarm Console, you can also copy the token's secret from its menu in **Settings** → **API Tokens**.
 
 ## Backward-compatible tokens
 

@@ -13,12 +13,12 @@ Wallarm API provides interaction between components of the Wallarm system. You c
 * filter nodes
 * etc.
 
-Description of API methods is given in the API Reference by the link:
+Description of API methods is given in the **Wallarm API Console** available from Wallarm Console → top right → `?` → **Wallarm API Console** or directly by the link:
 
 * https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#us-cloud)
 * https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#eu-cloud)
 
-![!Wallarm API Reference](../images/wallarm-api-reference.png)
+![!Wallarm API Console](../images/wallarm-api-reference.png)
 
 ## API endpoint
 
@@ -32,21 +32,21 @@ API requests are sent to the following URL:
 You must be a verified user to make Wallarm API requests. The method of API requests authentication depends on the client sending the request:
 
 * [API Reference UI](#api-reference-ui)
-* [Your own client](#your-own-client)
+* [Your own API client used for sending API requests](#your-own-api-client-used-for-sending-api-requests)
 
-### API Reference UI
+### Wallarm API Console
 
 A token is used for request authentication. The token is generated after successful authentication in your Wallarm account.
 
-1. Sign in to your Wallarm account using the link:
+1. Sign in to your Wallarm Console using the link:
     * https://us1.my.wallarm.com/ for the US cloud
     * https://my.wallarm.com/ for the EU cloud
-2. Refresh the API Reference page using the link:
+2. Refresh the Wallarm API Console page using the link:
     * https://apiconsole.us1.wallarm.com/ for the US cloud
     * https://apiconsole.eu1.wallarm.com/ for the EU cloud
 3. Go to the required API method → the **Try it out** section, input parameter values, and **Execute** the request.
 
-### Your own client
+### Your own API client used for sending API requests
 
 To authenticate your requests to Wallarm API:
 
