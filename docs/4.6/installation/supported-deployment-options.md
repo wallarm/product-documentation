@@ -187,8 +187,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -210,8 +210,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -269,7 +269,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
-    <div class="do-nested" data-for="packages-linux-centos-7">
+    <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-centos-7">
         <div class="do-card">
             <img src="../../images/platform-icons/centos.svg" />
             <h3>CentOS 7.x</h3>
@@ -287,8 +287,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -328,8 +328,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -351,8 +351,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -374,8 +374,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/nginx-distro/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -704,8 +704,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </div>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -727,8 +727,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -804,8 +804,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -845,8 +845,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -868,8 +868,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 
@@ -891,8 +891,8 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
 
         <a class="do-card" href="../../installation/nginx/dynamic-module-from-distr/">
-            <h3>NGINX Distro</h3>
-            <p>Packages for OS with NGINX Distro</p>
+            <h3>Distribution-provided NGINX</h3>
+            <p>Packages for OS with NGINX installed from the Debian/CentOS software repositories</p>
         </a>
     </div>
 </div>

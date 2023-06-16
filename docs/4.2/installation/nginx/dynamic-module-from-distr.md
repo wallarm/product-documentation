@@ -21,9 +21,11 @@
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../custom/custom-nginx-version.md
 
-# Installing dynamic Wallarm module for NGINX from Debian/CentOS repositories
+# Installing dynamic Wallarm module for distribution-provided NGINX
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
+
+NGINX Open Source can be obtained from nginx.org or the default repositories of Debian/CentOS depending on your requirements, NGINX version preferences, and repository management policies. Wallarm provides packages for both [nginx.org](dynamic-module.md) and distribution‑provided versions. This guide focuses on NGINX from Debian/CentOS repositories.
 
 ## Requirements
 

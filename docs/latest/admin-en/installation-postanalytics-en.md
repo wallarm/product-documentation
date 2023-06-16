@@ -17,7 +17,7 @@ These instructions provide the steps to install the postanalytics module on a se
 
 * [DEB/RPM packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
-* [DEB/RPM packages for NGINX Distro from Debian/CentOS repository](../installation/nginx/dynamic-module-from-distr.md)
+* [DEB/RPM packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
 ## Requirements
 
@@ -242,7 +242,7 @@ Once the postanalytics module is installed on the separate server, install the o
 * [NGINX Plus](../installation/nginx-plus.md)
 
     In the package installation step, specify `wallarm-node-nginx` and `nginx-plus-module-wallarm`.
-* [NGINX Distro from Debian/CentOS repositories](../installation/nginx/dynamic-module-from-distr.md)
+* [Distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
     In the package installation step, specify `wallarm-node-nginx` and `libnginx-mod-http-wallarm/nginx-mod-http-wallarm`.
 
