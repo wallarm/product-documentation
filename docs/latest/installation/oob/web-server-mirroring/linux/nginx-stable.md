@@ -30,7 +30,7 @@
 
 # Installing Wallarm OOB Dynamic Module for NGINX Stable using Linux Packages
 
-These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module for the open source version of NGINX `stable`.
+These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module using Linux packages for NGINX `stable` from nginx.org.
 
 Wallarm supports the following operating systems:
 

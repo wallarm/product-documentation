@@ -28,11 +28,13 @@
 [web-server-mirroring-examples]:    ../overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Wallarm OOB Dynamic Module for NGINX Distro using Linux Packages
+# Installing Wallarm OOB Dynamic Module for Distribution-Provided NGINX
 
-These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
+These instructions describe the steps to install Wallarm as an [OOB](../overview.md) dynamic module using Linux packages for distribution-provided NGINX.
 
-Wallarm supports the following operating systems:
+NGINX Open Source can be obtained from nginx.org or the default repositories of Debian/CentOS depending on your requirements, NGINX version preferences, and repository management policies. Wallarm provides packages for both [nginx.org](nginx-stable.md) and distribution‑provided versions. This guide focuses on NGINX from Debian/CentOS repositories.
+
+The Wallarm module is compatible with distribution-provided NGINX on the following operating systems:
 
 * Debian 10.x (buster)
 * Debian 11.x (bullseye)

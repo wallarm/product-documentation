@@ -126,7 +126,7 @@ nav:
           - Linux:
             - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
             - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
-            - NGINX Distro: installation/oob/web-server-mirroring/linux/nginx-distro.md
+            - Distribution-Provided NGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
         - AWS VPC Mirroring:
           - Terraform Module: installation/oob/terraform-module/aws-vpc-mirroring.md
       - Public Clouds:
@@ -183,7 +183,7 @@ nav:
         - Linux Packages:
           - NGINX stable: installation/nginx/dynamic-module.md
           - NGINX Plus: installation/nginx-plus.md
-          - NGINX Distro: installation/nginx/dynamic-module-from-distr.md
+          - Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
         - Cloud Images:
           - AWS AMI: installation/packages/aws-ami.md
           - GCP Machine Image: installation/packages/gcp-machine-image.md

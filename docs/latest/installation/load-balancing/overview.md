@@ -45,7 +45,7 @@ Wallarm offers various artifacts for in-line deployment depending on a web serve
     * Terraform module for AWS
 * NGINX Plus:
     * DEB/RPM packages
-* NGINX Distro:
+* Distribution-provided NGINX:
     * DEB/RPM packages
 * Kong:
     * K8s Kong Ingress Controller
