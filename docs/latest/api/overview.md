@@ -32,7 +32,7 @@ API requests are sent to the following URL:
 You must be a verified user to make Wallarm API requests. The method of API requests authentication depends on the client sending the request:
 
 * [API Reference UI](#api-reference-ui)
-* [Your own API client used for sending API requests](#your-own-api-client-used-for-sending-api-requests)
+* [Your own API client](#your-own-api-client)
 
 ### Wallarm API Console
 
@@ -46,9 +46,9 @@ A token is used for request authentication. The token is generated after success
     * https://apiconsole.eu1.wallarm.com/ for the EU cloud
 3. Go to the required API method → the **Try it out** section, input parameter values, and **Execute** the request.
 
-### Your own API client used for sending API requests
+### Your own API client
 
-To authenticate your requests to Wallarm API:
+To authenticate requests from your own API client to Wallarm API:
 
 1. Sign in to your Wallarm account in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)  → **Settings** → **API tokens**.
 1. [Create](../user-guides/settings/api-tokens.md#configuring-tokens) token to access the Wallarm API.

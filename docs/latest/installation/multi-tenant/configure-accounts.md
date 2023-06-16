@@ -75,12 +75,12 @@ After getting your request, the Wallarm technical support will:
 
 ### Step 3: Create the tenant via the Wallarm API
 
-To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from the own API client used for sending API requests or from the [Wallarm API Console](../../api/overview.md) that defines the authentication method:
+To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from your own API client or from the [Wallarm API Console](../../api/overview.md) that defines the authentication method:
 
 * For requests to be sent from the **Wallarm API Console**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the Wallarm API Console page available at:
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
     * https://apiconsole.eu1.wallarm.com/ for the EU Cloud
-* For requests to be sent from the **own API client used for sending API requests**, it is required to pass the [API token with Global Administrator's permissions](../../user-guides/settings/api-tokens.md#creating-tokens-with-global-role-permissions) in the request.
+* For requests to be sent from the **your own API client**, it is required to pass the [API token with Global Administrator's permissions](../../user-guides/settings/api-tokens.md#creating-tokens-with-global-role-permissions) in the request.
 
 At this step, a tenant account linked to a global account will be created.
 
@@ -88,12 +88,12 @@ At this step, a tenant account linked to a global account will be created.
 
     Parameter | Description | Request part | Required
     --------- | -------- | ------------- | ---------
-    `X-WallarmApi-Token` | [API token](../../user-guides/settings/api-tokens.md#configuring-tokens) with the **Global Administrator**'s permissions. | Header | Yes, when sending a request from your own API client used for sending API requests
+    `X-WallarmApi-Token` | [API token](../../user-guides/settings/api-tokens.md#configuring-tokens) with the **Global Administrator**'s permissions. | Header | Yes, when sending a request from your own API client
     `name` | Tenant's name. | Body | Yes
     `vuln_prefix` | Vulnerability prefix Wallarm will use for vulnerability tracking and association with the tenant. The prefix must contain four capital letters or numbers and be related to a tenant's name, e.g.: `TNNT` for the tenant `Tenant`. | Body | Yes
     `partner_uuid` | [Main tenant UUID](#step-2-get-access-to-the-tenant-account-creation) received when creating a global account. | Body | Yes
 
-    ??? info "Show an example of the request sent from your own API client used for sending API requests"
+    ??? info "Show an example of the request sent from your own API client"
         === "US Cloud"
             ```bash
             curl -v -X POST "https://us1.api.wallarm.com/v1/objects/client/create" -H "X-WallarmApi-Token: <YOUR_TOKEN>" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"name\": \"Tenant\", \"vuln_prefix\": \"TNNT\", \"partner_uuid\": \"YOUR_PARTNER_UUID\"}"
