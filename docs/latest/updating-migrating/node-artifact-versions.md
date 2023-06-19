@@ -56,6 +56,11 @@ replace by 4.6
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.6.2 (2023-06-19)
+
+* Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
+* Bump Alpine version in the Sidecar proxy solution to 3.18.0
+
 ### 4.6.1 (2023-06-07)
 
 * Support for [SSL/TLS termination](../installation/kubernetes/sidecar-proxy/customization.md#ssltls-termination)
