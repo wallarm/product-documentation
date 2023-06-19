@@ -1,4 +1,4 @@
-# Legitimate request is blocked with the "Malicious activity blocked" message
+# Legitimate request is blocked
 
 If your user reports a legitimate request being blocked despite the Wallarm measures, you can review and evaluate their request as this articles explains.
 
@@ -8,10 +8,18 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
 
     ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-1. Investigate the blocked request by utilizing the [search](../user-guides/search-and-filters/use-search.md) functionality in the **Events** section of your Wallarm Console. For example, [search by request ID](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
+1. In Wallarm Console → [**Events**](../user-guides/events/check-attack.md) section, [search](../user-guides/search-and-filters/use-search.md) for the event related to the blocked request. For example, [search by request ID](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
 
-    `attacks incidents request_id:<requestId>`
+    ```
+    attacks incidents request_id:<requestId>
+    ```
 
-1. Examine the information provided in the [**Events**](../user-guides/events/check-attack.md)section to determine if it indicates a false positive or a legitimate blocking. If you conclude that it is a false positive, report that.
-1. If possible, solve the wrong blocking issue by applying measures against [false positives](../user-guides/events/false-attack.md) and/or re-configuring [rules](../user-guides/rules/intro.md), [triggers](../user-guides/triggers/triggers.md), [IP lists](../user-guides/ip-lists/overview.md).
-1. If the request is not found or further investigation is required, share the request details with [Wallarm support](mailto:support@wallarm.com) for further assistance and investigation.
+1. Examine the event to determine if it indicates a wrong or legitimate blocking.
+1. If it is a wrong blocking, solve the issue by applying one or a combination of measures: 
+
+    * Measures against [false positives](../user-guides/events/false-attack.md)
+    * Re-configuring [rules](../user-guides/rules/intro.md)
+    * Re-configuring [triggers](../user-guides/triggers/triggers.md)
+    * Modifying [IP lists](../user-guides/ip-lists/overview.md)
+
+1. If the information initially provided by the user is incomplete or you are not sure about measures that can be safely applied, share the details with [Wallarm support](mailto:support@wallarm.com) for further assistance and investigation.
