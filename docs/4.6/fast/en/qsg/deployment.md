@@ -81,8 +81,8 @@ ALLOWED_HOSTS=google-gruyere.appspot.com
 ```
 
 You have set the environment variables. Their purpose can be described as follows:
--   `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
--   `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
+* `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
+* `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
     
 !!! info "Using the `ALLOWED_HOSTS` environment variable"
     Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
@@ -145,8 +145,8 @@ To set up proxying in the Mozilla Firefox browser, do the following:
 
 2.  The “Connection Settings” window should open up. Select the **Manual proxy configuration** option. Configure the proxy by entering the following values:
 
-    -   **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
-    -   **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
+    *   **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
+    *   **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
         
     Select the **ОК** button to apply the changes you have made.
 

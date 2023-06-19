@@ -23,10 +23,10 @@
 This chapter will guide you through the process of configuring FAST to detect XSS vulnerabilities in the Google Gruyere application. Upon completion of all necessary steps, you will be ready to proxy an HTTPS baseline request through the FAST node in order to find XSS vulnerabilities.
 
 To generate a security test set, Wallarm FAST requires the following:
--   A deployed FAST node, proxying baseline requests
--   A connection of the FAST node to the Wallarm cloud 
--   A baseline request
--   A test policy
+*   A deployed FAST node, proxying baseline requests
+*   A connection of the FAST node to the Wallarm cloud 
+*   A baseline request
+*   A test policy
 
 You have successfully deployed a FAST node and connected it to the cloud in the [previous chapter][link-previous-chapter]. In this chapter you will focus on creating a [test policy][gl-testpolicy] and a baseline request.
 
