@@ -32,6 +32,8 @@
 
 # Installing Wallarm with All-in-One Binary
 
+These instructions describe the steps to install Wallarm filtering node as a dynamic module for different NGINX versions and on a number of different Linux OS versions using **all-in-one Wallarm binary**.
+
 In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distributive NGINX](dynamic-module-from-distr.md), the **all-in-one binary** simplifies the process by automatically performing the following actions:
 
 1. Checking your OS and NGINX version.
@@ -54,8 +56,8 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 
 Install the latest NGINX version of:
 
-* **NGINX `stable`** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
-* **NGINX Plus** - see how to install it in the NGINX [documemtation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
+* **NGINX `stable`** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
+* **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
 * **NGINX Distro** - see how to install in the Wallarm [documentation](../../installation/nginx/dynamic-module-from-distr.md).
 
 ## 2. Prepare Wallarm token
@@ -77,13 +79,26 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 
 ## 3. Download all-in-one Wallarm binary
 
-Wallarm suggests installations for x86_64 version of the processor of your machine with the node and for [ARM64 version](#arm64-version). This and the following steps describe the x86_64 version installation.
+Wallarm suggests all-in-one installations for the following processors of node machine:
+
+* x86_64
+* ARM64
 
 To download all-in-one Wallarm [installation script](#script-parameters), execute the command:
 
-```bash
-curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
-```
+=== "x86_64 version"
+
+    ```bash
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+    ```
+
+=== "ARM64 version"
+
+    ```bash
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
+    ```
+
+The steps below describe the x86_64 version installation. The ARM64 script uses all the same options.
 
 ## 4. Run all-in-one Wallarm binary
 
@@ -180,7 +195,7 @@ Note that the `filtering/postanalytics` argument allows installing [separately](
 
 ### Script mode
 
-The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when all is done completely automatically.
+The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
 
 In interactive mode the following is asked by the script:
 
@@ -189,13 +204,3 @@ In interactive mode the following is asked by the script:
 * Wallarm token
 
 Also interactive mode includes a reminder that you need to configure the installed node.
-
-### ARM64 version
-
-To install a node on the machine with the ARM64 processor architecture, download the following all-in-one script:
-
-```bash
-curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
-```
-
-The script uses all the same options as the x86_64 version.
