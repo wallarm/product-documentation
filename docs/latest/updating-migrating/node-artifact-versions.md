@@ -16,6 +16,11 @@ replace by 4.6
 
 [How to upgrade](ingress-controller.md)
 
+### 4.6.5 (2023-06-19)
+
+* Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
+* Increased [memory allocated for the Wallarm postanalytics module](../admin-en/configure-kubernetes-en.md#controllerwallarmtarantoolarena) to 1GB
+
 ### 4.6.4 (2023-06-06)
 
 * The Helm chart version of the NGINX Ingress controller has been bumped to [4.7.0](https://github.com/kubernetes/ingress-nginx/releases/tag/helm-chart-4.7.0)
