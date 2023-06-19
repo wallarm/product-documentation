@@ -20,7 +20,7 @@
 [anchor6]:  #6--install-ssl-certificates 
     
     
-#   FAST node deployment
+# FAST node deployment
 
 This chapter will guide you through the process of installation and initial configuration of the FAST node. Upon completion of all necessary steps, you will have an operating FAST node. It will be listening on `localhost:8080`, ready to proxy HTTP and HTTPS requests to the [Google Gruyere][link-https-google-gruyere] application. The node will be installed on your machine along with the Mozilla Firefox browser.
     
@@ -87,7 +87,7 @@ You have set the environment variables. Their purpose can be described as follow
 !!! info "Using the `ALLOWED_HOSTS` environment variable"
     Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
 
- --8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include/fast/wallarm-api-host-note.md"
    
 ##  4.  Deploy the FAST node Docker container
 
@@ -99,19 +99,19 @@ docker run --name <name> --env-file=<environment variables file created on the p
 
 You should provide several arguments to the command:
     
--   **`--name`** *`<name>`*
+*   **`--name`** *`<name>`*
         
     Specifies the name of the Docker container.
     
     It should be unique among all existing containers' names.
     
--   **`--env-file=`** *`<environment variables file created in the previous step>`*
+*   **`--env-file=`** *`<environment variables file created in the previous step>`*
     
     Specifies a file containing all the environment variables to export into the container.
     
     You should specify a path to the file you created in the [previous step][anchor3].
 
--   **`-p`** *`<target port>`* **`:8080`**
+*   **`-p`** *`<target port>`* **`:8080`**
     
     Specifies a port of the Docker host to which the container’s 8080 port should be mapped. None of the container ports are available to the Docker host by default. 
     

@@ -32,7 +32,7 @@
 
 #   How FAST Operates
 
- --8<-- "../include/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
 !!! info "A short note on the document content"
     The relationships between the entities (see below) and the testing scenarios that are described in this chapter relate to testing with the use of the Wallarm API. This kind of testing employs all entities; therefore, it is possible to provide the reader with integral insights into how these entities interact with each other.

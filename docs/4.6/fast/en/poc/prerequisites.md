@@ -17,7 +17,7 @@ To enable integrating FAST into a CI/CD workflow, you will need
     Create an [account][link-fast-trial] if you do not have one (this account will be tied to the American cloud)
     
 *   The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)
- --8<-- "../include/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
  *   Permissions to create and run Docker containers for your CI/CD workflow
     

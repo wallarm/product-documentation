@@ -72,7 +72,7 @@ You can do this in either of the following ways:
         $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
         ```
 
- --8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include/fast/wallarm-api-host-note.md"
 
  If the FAST node launches successfully, it writes to the console the following output that informs about the successful connection to the Wallarm Cloud and the number of extensions loaded:
 

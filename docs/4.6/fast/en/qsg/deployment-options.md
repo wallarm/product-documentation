@@ -15,9 +15,9 @@ description: FAST is a two-component solution, comprising of the FAST node and t
 
 FAST is a two-component solution, comprising of the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
 
- --8<-- "../include/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
- To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to policy obtained from the cloud. The newly created requests form a security test set are executed in order to test the application for vulnerabilities.
+To conduct application testing, HTTP or HTTPS requests are proxied through the FAST node first. FAST creates a new request set based on the original queries according to policy obtained from the cloud. The newly created requests form a security test set are executed in order to test the application for vulnerabilities.
 
 ![A process of testing with FAST][img-fast-integration]
 
@@ -63,13 +63,13 @@ This guide aims to demonstrate the FAST operation by exploiting the deployment o
 
 The installation that is used in this guide has the following specifics:
 
--   The Mozilla Firefox browser serves as the baseline request source.
--   One HTTPS baseline request is constructed.
--   A self-signed SSL certificate from the FAST node is installed into the browser.
--   Google Gruyere serves as the target application.
--   The target application is tested against XSS vulnerabilities.
--   The policy is created with the web interface of Wallarm cloud.
--   The testing process is started with the web interface of Wallarm cloud.
+*   The Mozilla Firefox browser serves as the baseline request source.
+*   One HTTPS baseline request is constructed.
+*   A self-signed SSL certificate from the FAST node is installed into the browser.
+*   Google Gruyere serves as the target application.
+*   The target application is tested against XSS vulnerabilities.
+*   The policy is created with the web interface of Wallarm cloud.
+*   The testing process is started with the web interface of Wallarm cloud.
 
 ![Quick Start guide deployment scheme][img-qsg-deployment-scheme]
 

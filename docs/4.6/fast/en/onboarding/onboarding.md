@@ -21,7 +21,7 @@
 
 #   FAST Onboarding
 
- --8<-- "../include/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
  On your very first login to a [Wallarm portal][link-wl-portal] you will have the opportunity to gain familiarity with FAST by taking a five-step onboarding process.
 

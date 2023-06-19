@@ -10,7 +10,7 @@ The guide contains the following pieces of information:
 2.  Which steps the integration configuration process consists of.
 3.  How to start and manage the process of the security testing. 
 
- --8<-- "../include/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
 !!! info "Agreement on terms"
     The “API” term will be used as a shorter version of the “Wallarm API” term throughout the guide, unless stated otherwise.
