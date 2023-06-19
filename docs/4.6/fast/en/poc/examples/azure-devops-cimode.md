@@ -62,9 +62,8 @@ To implement security testing, follow the instructions:
     docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://app-test:3000 --network my-network --rm wallarm/fast
     ```
 
-> #### Warning:: Docker Network
->
-> Before security testing, make sure that the FAST node and test application are running on the same network.
+!!! warning "Docker Network"
+    Before security testing, make sure that the FAST node and test application are running on the same network.
 
 {% collapse title="Example of the automated testing step with running FAST node in the testing mode" %}
 

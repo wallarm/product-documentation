@@ -11,6 +11,5 @@ To implement the request recording, apply the following settings to the step of 
     docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
     ```
 
-> #### Warning:: Docker Network
->
-> Before recording requests, make sure the FAST node and tool for automated testing are running on the same network.
+!!! warning "Docker Network"
+    Before recording requests, make sure the FAST node and tool for automated testing are running on the same network.

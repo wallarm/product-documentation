@@ -10,8 +10,8 @@ The **Multipart** parser is used for working with the request body in the multip
 !!! info "Regular expressions in points"
     The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
- > #### Warning:: Using the Multipart parser in the point
-> The Multipart parser can only be used in the point together with the Post filter that refers to the baseline request body.
+!!! warning "Using the Multipart parser in the point"
+    The Multipart parser can only be used in the point together with the Post filter that refers to the baseline request body.
 
 
 **Example:** 

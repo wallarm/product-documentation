@@ -11,11 +11,11 @@
 
 #   The Detect Phase Parameters Description
 
-> #### Warning:: Detecting a vulnerability in the Detect phase
-> To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
+!!! warning "Detecting a vulnerability in the Detect phase"
+    To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
 
- > #### Info:: Markers operation logic
-> If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
+!!! info "Markers operation logic"
+    If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
 
 ##  OOB
 

@@ -6,10 +6,8 @@
 
 #   Configuration of Proxying Rules
 
->   #### Warning:: Attention
->   
->   Perform the steps described in this chapter only if FAST node is being deployed either via [API][doc-node-deployment-api] or via [CI Mode (recording mode)][doc-fast-recording-mode].
->
+!!! warning "Attention"
+    Perform the steps described in this chapter only if FAST node is being deployed either via [API][doc-node-deployment-api] or via [CI Mode (recording mode)][doc-fast-recording-mode].
 
 Configure your request source to use the FAST node as an HTTP proxy for all the requests issued towards the target application.
 

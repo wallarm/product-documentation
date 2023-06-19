@@ -73,8 +73,8 @@ This section contains the set of the parameters. Each of the parameters describe
 The parameter may have the following characteristics:
 *   Be optional (the parameter can be either present or absent from the request). All of the parameters in the `detect` section satisfy this characteristic.
  
-    > #### Warning:: A note on the parameters that are required in the `detect` section
-    > Despite the fact that both `oob` and `response` parameters are optional, one of them must be present in the `detect` section. Otherwise, the Detect phase will be unable to operate. The `detect` section might also contain both of these parameters.
+    !!! warning "A note on the parameters that are required in the `detect` section"
+        Despite the fact that both `oob` and `response` parameters are optional, one of them must be present in the `detect` section. Otherwise, the Detect phase will be unable to operate. The `detect` section might also contain both of these parameters.
 
 *   Not have an assigned value.  
     

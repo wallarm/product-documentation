@@ -149,11 +149,10 @@ INFO [1]: TestRun#tr_1234 passed
 
 In this case, the test run with the `tr_1234` identifier is considered passed.
 
->   #### Warning:: About Security Test Sets
->   
->   Note that the above examples do not imply that only one test set was executed. A test set is formed for each baseline request that complies with the FAST test policy.
->   
->   A single test-set-related message is shown here for demonstration purposes.
+!!! warning "About security test sets"
+    Note that the above examples do not imply that only one test set was executed. A test set is formed for each baseline request that complies with the FAST test policy.
+    
+    A single test-set-related message is shown here for demonstration purposes.
 
 After the FAST node has finished the testing process, it terminates and returns an exit code to the process that runs as part of a CI/CD job. 
 * If security test status is “passed” and the FAST node encounters no errors during testing process, then the `0` exit code is returned. 

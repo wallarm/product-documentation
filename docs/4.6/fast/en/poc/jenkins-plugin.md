@@ -60,9 +60,8 @@ To build the Wallarm FAST plugin manually, follow the steps below:
 
 To add the step of request recording, select the `Record baselines` mode on the **Build** tab and set up the variables described below. The step of request recording must be added **before the step of automated application testing**.
 
-> #### Warning:: Network
->
-> Before recording requests, make sure that the FAST plugin and tool for automated testing are on the same network.
+!!! warning "Network"
+    Before recording requests, make sure that the FAST plugin and tool for automated testing are on the same network.
 
 {% collapse title="Variables in the recording mode" %}
 
@@ -96,9 +95,8 @@ To add the step of security testing, select the `Playback baselines` mode on the
 
 Please note that the application must be already started and available for testing **before running security testing**.
 
-> #### Warning:: Network
->
-> Before security testing, make sure that the FAST plugin and application are on the same network.
+!!! warning "Network"
+    Before security testing, make sure that the FAST plugin and application are on the same network.
 
 {% collapse title="Variables in the testing mode" %}
 
@@ -122,8 +120,8 @@ Please note that the application must be already started and available for testi
 | `Local docker ip`       | The IP address that will be assigned to the running FAST node. | No |
 | `Without sudo`          | Whether to execute the FAST node commands with the rights of the user ran FAST node. By default, commands are executed with the superuser rights (via sudo). |No|
 
-> #### Warning:: Running FAST node
-> Please note that if you add to the workflow of both the step of request recording and the step of security testing, then the names of the FAST node Docker containers must be different.
+!!! warning "Running FAST node"
+    Please note that if you add to the workflow of both the step of request recording and the step of security testing, then the names of the FAST node Docker containers must be different.
 
 {% endcollapse %}
 

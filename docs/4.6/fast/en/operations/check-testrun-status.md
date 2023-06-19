@@ -167,9 +167,8 @@ There is a separate group of parameters in the API server's response, that allow
     
     The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
     
->   #### Warning:: The possible values of the parameters related to test run's execution speed and time estimates
->   
->   The aforementioned parameters' values are `null` in the first 10 seconds of a test run's execution.
+!!! warning "The possible values of the parameters related to test run's execution speed and time estimates"
+    The aforementioned parameters' values are `null` in the first 10 seconds of a test run's execution.
 
 You can employ the `estimated_time_to_completion` parameter's value to determine when the next test run's state check is to be done. Note that the value may either increase or decrease.
 
