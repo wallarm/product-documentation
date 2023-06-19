@@ -71,6 +71,9 @@ You can configure API Abuse Prevention to react to malicious bots in one of the 
     * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)
     * [Attacks detected based on regular expressions](../user-guides/rules/regex-rule.md)
 
+    !!! info "Time to be presented in the list"
+        When adding to deny- or graylist, you set the time during which the IP will be in the list. Default value is `Add for a day`.
+
 * **Only monitor**: Wallarm will display the detected bot activity in the [**Events**](../user-guides/events/check-attack.md) section but will add the bot's IP neither to deny- nor to graylist. 
 
     From such events details, you can quickly block the bot with the **Add source IP to denylist** button. The IP is added to the denylist forever, but in the **IP Lists** section you can delete it or change the time of staying in the list.

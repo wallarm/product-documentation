@@ -16,6 +16,7 @@ To create an API abuse profile:
 1. Select [tolerance](../about-wallarm/api-abuse-prevention.md#tolerance) level.
 1. If necessary, in the **Protect from** section, limit the [types of bots](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) to protect from.
 1. Select the appropriate [reaction to malicious bots](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots).
+1. If reaction is to add to deny- or graylist, set the time during which the IP will be in the list. Default value is `Add for a day`. 
 1. Set name and optionally description.
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
