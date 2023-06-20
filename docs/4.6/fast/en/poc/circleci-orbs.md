@@ -12,17 +12,18 @@
 
 This instruction describes the method to integrate FAST with CircleCI workflow via [Wallarm FAST Orbs (plugin)][circleci-fast-plugin]. An integration setup is performed in the `~/.circleci/config.yml` configuration file. More details about CircleCI Orbs are available in [official CircleCI documentation][circleci-using-orbs].
 
-> #### Warning:: Requirements
-> * CircleCI version 2.1
-> * Configured CircleCI workflow with an already [recorded set of baseline requests][recording-mode]
->
-> If you work with another version of CircleCI or need to add the step of request recording, then please check out the [example of integration with CircleCI via FAST node][fast-jenkins-cimode].
+!!! warning "Requirements"
+
+    * CircleCI version 2.1
+    * Configured CircleCI workflow with an already [recorded set of baseline requests][recording-mode]
+    
+    If you work with another version of CircleCI or need to add the step of request recording, then please check out the [example of integration with CircleCI via FAST node][fast-jenkins-cimode].
 
 ## Step 1: Passing FAST Node Token
 
 Pass [FAST node token][fast-node-token] value in the `WALLARM_API_TOKEN`environment variable in CircleCI project settings. The method of environment variables setup is described in [CircleCI documentation][circleci-set-env-var].
 
-![Passing CircleCI environment variable][circleci-example-env-var]
+![!Passing CircleCI environment variable][circleci-example-env-var]
 
 ## Step 2: Connecting Wallarm FAST Orbs
 

@@ -62,7 +62,7 @@ The corresponding workflow steps are:
 
 This scenario is shown on the picture below:
 
-![An example of a CI/CD job with requests recording][img-sample-job-recording]
+![!An example of a CI/CD job with requests recording][img-sample-job-recording]
 
 
 ##  Deployment via the API when Prerecorded Baseline Requests are Used
@@ -89,7 +89,7 @@ The corresponding workflow steps are:
     
 6.  Obtaining the results of the testing.
 
-![An example of a CI/CD job with use of pre-recorded requests][img-sample-job-no-recording]   
+![!An example of a CI/CD job with use of pre-recorded requests][img-sample-job-no-recording]   
 
 
 ##  A FAST Node Container's Lifecycle (Deployment via API)

@@ -12,7 +12,7 @@
 
 When working with a web application through a browser using HTTPS, you may see this or a similar message about an untrusted certificate:
 
-![Mozilla Firefox's untrusted certificate message][img-insecure-connection]
+![!Mozilla Firefox's untrusted certificate message][img-insecure-connection]
 
 The FAST node interrupts HTTPS requests from a client and initiates connection to the remote server itself. Your browser must trust the FAST node certificate, otherwise the browser will treat this situation as a man-in-the-middle attack.  
 

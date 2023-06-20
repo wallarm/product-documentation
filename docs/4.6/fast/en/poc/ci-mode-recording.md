@@ -96,10 +96,8 @@ This output informs us that the FAST node has successfully connected to the Wall
 !!! info "A Note on Test Record Names"
     To change the default test record name, you need to pass the necessary value via the `TEST_RECORD_NAME` environment variable when starting the FAST node Docker container.
 
- >   #### Warning:: Test Execution
->   
->   It is now time to conduct existing tests for the target application. FAST will record the baseline requests and populate the test record with them.
-
+!!! warning "Test Execution"
+    It is now time to conduct existing tests for the target application. FAST will record the baseline requests and populate the test record with them.
 
 ## Stopping and Removing the Docker Container with the FAST Node in Recording Mode
 

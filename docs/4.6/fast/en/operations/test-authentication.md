@@ -26,8 +26,8 @@ To pass credentials for test run authentication, perform the following steps bef
     docker run --name fast-proxy -e WALLARM_API_TOKEN='dfjyt8C79DxZptWwQS3/0RHiuJLNFrqTdgCIzPPZq' -v /home/username/dsl_auth:/opt/dsl_auths -p 8080:8080 wallarm/fast
     ```
 
-    > #### Warning:: Files in the mounted directory
-    > Please note that the mounted directory should contain only the file with authentication credentials.
+    !!! warning "Files in the mounted directory"
+        Please note that the mounted directory should contain only the file with authentication credentials.
 
 ## Examples of .yml/.yaml Files with Defined Authentication Parameters
 

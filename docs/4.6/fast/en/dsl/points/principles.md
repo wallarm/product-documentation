@@ -3,11 +3,12 @@
 
 # Points Building Principles
 
-> #### Warning:: Reserved words
-> Do not use the following names and keys for the baseline request elements in order to prevent collisions with the reserved words:
-> * Names and keys that match the names of the parsers
-> * Names and keys that match the names of the filters
-> * Names and keys that match the `name` and `value` service words 
+!!! warning "Reserved words"
+    Do not use the following names and keys for the baseline request elements in order to prevent collisions with the reserved words:
+        
+        * Names and keys that match the names of the parsers
+        * Names and keys that match the names of the filters
+        * Names and keys that match the `name` and `value` service words 
 
 There are several universal points building principles that must be considered when developing a custom extension.
 *   All Points are treated as regular expressions.

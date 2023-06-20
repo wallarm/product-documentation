@@ -54,7 +54,7 @@ To stop the recording process via the web interface, please follow the steps bel
 
 3. Select **Stop recording**.
 
-    ![Stopping the recording via web interface][img-stop-recording-item]
+    ![!Stopping the recording via web interface][img-stop-recording-item]
 
 The REQ indicator to the left of the **Baseline req.** column will be switched off when the recording is stopped.
 

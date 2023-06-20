@@ -76,7 +76,7 @@ meta-info:
 `threat: 20`
     {% endcollapse %}
     
-    ![The list of the vulnerabilities found][img-vulns]
+    ![!The list of the vulnerabilities found][img-vulns]
 
 *   `description` — optional string parameter that contains the description of the vulnerability that the extension detects. This information will be shown in the detailed description of the vulnerability.
     
@@ -84,7 +84,7 @@ meta-info:
 `description: "A demonstrational vulnerability"`    
     {% endcollapse %}
     
-    ![Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
+    ![!Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
 
 
 !!! info "Plugging in FAST extensions"

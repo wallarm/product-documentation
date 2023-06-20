@@ -17,7 +17,7 @@ The integration of FAST in CI MODE into the GitLab CI/CD workflow is configured 
 
 To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][gitlabci-set-env-var].
 
-![Passing GitLab CI/CD environment variable][gitlabci-example-env-var]
+![!Passing GitLab CI/CD environment variable][gitlabci-example-env-var]
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -94,7 +94,7 @@ An example includes the following steps:
 
 The result of security testing will be displayed on the GitLab CI/CD interface.
 
-![The result of running FAST node in testing mode][fast-example-gitlab-result]
+![!The result of running FAST node in testing mode][fast-example-gitlab-result]
 
 ## More Examples
 

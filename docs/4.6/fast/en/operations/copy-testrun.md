@@ -83,14 +83,14 @@ To copy and execute a test run via the Wallarm portal's web interface:
 2.  Select a test run to copy, then open the action menu on the right of the test run.
 3.  Select the “Create similar testrun” menu entry. 
 
-    ![The “Create similar test run” menu entry][img-similar-tr-item]
+    ![!The “Create similar test run” menu entry][img-similar-tr-item]
 
 4.  Select the following items in the opened sidebar:
     *   the name of the test run's copy
     *   the policy to use with the test run's copy
     *   the node on which the test run's copy will be executed
     
-    ![The “Test run” sidebar][img-similar-tr-sidebar]
+    ![!The “Test run” sidebar][img-similar-tr-sidebar]
     
     You may configure additional settings by selecting “Advanced settings” (if necessary):
 --8<-- "../include/fast/test-run-adv-settings.md"    

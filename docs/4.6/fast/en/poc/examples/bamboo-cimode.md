@@ -12,7 +12,7 @@ The example below uses the YAML specification to configure the integration.
 
 To securely use the [FAST node token](../../operations/create-node.md), pass its value in the [Bamboo global variable](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html).
 
-![Passing Bamboo global variable](../../../images/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![!Passing Bamboo global variable](../../../images/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -33,9 +33,8 @@ To implement the request recording, apply the following settings to the job of a
     docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
     ```
 
-> #### Warning:: Docker Network
->
-> Before recording requests, make sure that the FAST node and the tool for automated testing are running on the same network.
+!!! warning "Docker Network"
+    Before recording requests, make sure that the FAST node and the tool for automated testing are running on the same network.
 
 {% collapse title="Example of the automated testing step with running FAST node in the recording mode" %}
 
@@ -80,9 +79,8 @@ To implement the security testing, add the corresponding separate step to your w
     docker run --name fast -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast
     ```
 
-> #### Warning:: Docker Network
->
-> Before security testing, make sure that the FAST node and the test application are running on the same network.
+!!! warning "Docker Network"
+    Before security testing, make sure that the FAST node and the test application are running on the same network.
 
 {% collapse title="Example of the security testing step" %}
 
@@ -126,7 +124,7 @@ An example includes the following steps:
 
 The result of security testing will be displayed in the build logs in Bamboo UI. Also, Bamboo allows downloading the full `.log` file.
 
-![The result of running the FAST node in testing mode](../../../images/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
+![!The result of running the FAST node in testing mode](../../../images/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
 ## More Examples
 

@@ -20,14 +20,14 @@
 [anchor6]:  #6--install-ssl-certificates 
     
     
-#   FAST node deployment
+# FAST node deployment
 
 This chapter will guide you through the process of installation and initial configuration of the FAST node. Upon completion of all necessary steps, you will have an operating FAST node. It will be listening on `localhost:8080`, ready to proxy HTTP and HTTPS requests to the [Google Gruyere][link-https-google-gruyere] application. The node will be installed on your machine along with the Mozilla Firefox browser.
     
 !!! info "Note on the browser to use"
     It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
 
-![FAST node deployment scheme in use][img-qsg-deployment-scheme]    
+![!FAST node deployment scheme in use][img-qsg-deployment-scheme]    
     
     
 ----------    
@@ -60,7 +60,7 @@ It is suggested that you use the Docker Community Edition (CE). However, any Doc
 
 2.  Select the “Nodes” tab, then click the **Create FAST node** button (or the **Add FAST node** link).
 
-    ![Creation of a new node][img-fast-create-node]
+    ![!Creation of a new node][img-fast-create-node]
 
 3.  A dialog window will appear. Give a meaningful name to the node and select the **Create** button. The guide suggests that you use the name `DEMO NODE`.
     
@@ -81,13 +81,13 @@ ALLOWED_HOSTS=google-gruyere.appspot.com
 ```
 
 You have set the environment variables. Their purpose can be described as follows:
--   `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
--   `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
+* `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
+* `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
     
 !!! info "Using the `ALLOWED_HOSTS` environment variable"
     Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
 
- --8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include/fast/wallarm-api-host-note.md"
    
 ##  4.  Deploy the FAST node Docker container
 
@@ -99,19 +99,19 @@ docker run --name <name> --env-file=<environment variables file created on the p
 
 You should provide several arguments to the command:
     
--   **`--name`** *`<name>`*
+*   **`--name`** *`<name>`*
         
     Specifies the name of the Docker container.
     
     It should be unique among all existing containers' names.
     
--   **`--env-file=`** *`<environment variables file created in the previous step>`*
+*   **`--env-file=`** *`<environment variables file created in the previous step>`*
     
     Specifies a file containing all the environment variables to export into the container.
     
     You should specify a path to the file you created in the [previous step][anchor3].
 
--   **`-p`** *`<target port>`* **`:8080`**
+*   **`-p`** *`<target port>`* **`:8080`**
     
     Specifies a port of the Docker host to which the container’s 8080 port should be mapped. None of the container ports are available to the Docker host by default. 
     
@@ -141,23 +141,23 @@ To set up proxying in the Mozilla Firefox browser, do the following:
 
 1.  Open the browser. Select “Preferences” in the menu. Select the “General” tab and scroll down to the “Network Settings.” Select the **Settings** button.
 
-    ![Mozilla Firefox options][img-firefox-options]
+    ![!Mozilla Firefox options][img-firefox-options]
 
 2.  The “Connection Settings” window should open up. Select the **Manual proxy configuration** option. Configure the proxy by entering the following values:
 
-    -   **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
-    -   **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
+    *   **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
+    *   **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
         
     Select the **ОК** button to apply the changes you have made.
 
-    ![Mozilla Firefox proxy settings][img-firefox-proxy-options]
+    ![!Mozilla Firefox proxy settings][img-firefox-proxy-options]
     
     
 ##  6.  Install SSL certificates
 
 While working with the [Google Gruyere][link-https-google-gruyere] application via HTTPS you might encounter the following browser message regarding the interruption of a safe connection:
 
-![“Insecure connection” message][img-insecure-connection]
+![!“Insecure connection” message][img-insecure-connection]
 
 You should add a self-signed FAST node SSL certificate to be able to interact with the web application via HTTPS. To do so, navigate to this [link][link-ssl-installation], select your browser from the list, and perform the necessary actions described. This guide suggests that you use the Mozilla Firefox browser.
     

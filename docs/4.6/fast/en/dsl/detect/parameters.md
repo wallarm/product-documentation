@@ -11,17 +11,17 @@
 
 #   The Detect Phase Parameters Description
 
-> #### Warning:: Detecting a vulnerability in the Detect phase
-> To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
+!!! warning "Detecting a vulnerability in the Detect phase"
+    To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
 
- > #### Info:: Markers operation logic
-> If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
+!!! info "Markers operation logic"
+    If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
 
 ##  OOB
 
 The `oob` parameter checks the triggering of Out-Of-Band markers by the test request. 
 
-![`oob` parameter structure][img-oob]
+![!`oob` parameter structure][img-oob]
 
 > #### Info:: Detecting the OOB marker in the server response
 > If the OOB marker is detected in the server's response, then it will be assumed that the vulnerability was found in the target application. 
@@ -55,7 +55,7 @@ The `oob` parameter checks the triggering of Out-Of-Band markers by the test req
 
 This parameter checks whether the necessary elements are present in the server's response to a test request. If at least one of these elements is found, then it is assumed that a vulnerability was detected.
 
-![`response` parameter structure][img-response]
+![!`response` parameter structure][img-response]
 
 * The response should contain any marker.
     
@@ -65,7 +65,7 @@ This parameter checks whether the necessary elements are present in the server's
 
 ### Checking the HTTP Statuses
 
-![`HTTP Status` parameter structure][img-http-status]
+![!`HTTP Status` parameter structure][img-http-status]
 
 *   The response should contain a certain HTTP status.
     ```
@@ -103,7 +103,7 @@ The HTTP status should contain one of the following values: `500`, `404`, any of
 
 ### Checking the HTTP headers
 
-![`headers` parameter structure][img-headers]
+![!`headers` parameter structure][img-headers]
 
 *   The response headers should contain any marker.
     
@@ -195,7 +195,7 @@ The `Cookie` header should contain one of the following data options: `"test=qwe
 
 ### Checking the Body of the HTTP Response
 
-![`body` parameter structure][img-body]
+![!`body` parameter structure][img-body]
 
 *   The body of the response should contain any marker.
     
@@ -223,7 +223,7 @@ The body of the response should contain either the `STR_MARKER` or the `demo_str
 
 ### Checking the HTML Markup
 
-![`html` parameter structure][img-html]
+![!`html` parameter structure][img-html]
 
 *   The HTML markup should contain the `STR_MARKER`.
     

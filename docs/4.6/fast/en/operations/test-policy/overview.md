@@ -34,14 +34,13 @@ The policy regulates the following points:
 
     Points not allowed for processing can be used when there is a wide variety of points in the **Where in the request to include** section and it is required to exclude processing of separate elements. For example, if all GET parameters are allowed for processing (`GET_.*`) and it is required to exclude processing of the `uuid` parameter, the `GET_uid_value` expression should be added in the **Where in the request to exclude** section.
 
-> #### Warning:: Policy scope
->
-> When explicitly excluding points, FAST node processes are the only points allowed by the policy.
->
-> Processing of any other points in the request is not performed.
+!!! warning "Policy scope"
+    When explicitly excluding points, FAST node processes are the only points allowed by the policy.
+    
+    Processing of any other points in the request is not performed.
 
 {% collapse title="Policy example" %}
-![Policy example](../../../images/operations/common/test-policy/overview/policy-flow-example.png)
+![!Policy example](../../../images/operations/common/test-policy/overview/policy-flow-example.png)
 
 The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.
 

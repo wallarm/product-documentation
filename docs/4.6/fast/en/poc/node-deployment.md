@@ -44,11 +44,10 @@ Running and configuration of FAST node comprises the following steps:
 
 ##  Deployment of the Docker Container with the FAST Node
 
->   #### Warning:: Grant Access to Wallarm API Servers
->   
->   It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `us1.api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
->   
->   Make sure that your firewall does not restrict the Docker host from accessing the Wallarm API servers.
+!!! warning "Grant Access to Wallarm API Servers"
+    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `us1.api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
+    
+    Make sure that your firewall does not restrict the Docker host from accessing the Wallarm API servers.
 
 Some configuration is required prior to running the Docker container with the FAST node. To configure the node, place the token into the container using the `WALLARM_API_TOKEN` environment variable. Additionally, you could use the `ALLOWED_HOSTS` variable if you need [to limit the number of requests to be recorded][doc-limit-requests].
 

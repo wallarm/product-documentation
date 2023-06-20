@@ -12,7 +12,7 @@ The integration of FAST in CI MODE into the Azure DevOps pipeline is configured 
 
 To securely use the [FAST node token](../../operations/create-node.md), open your current pipeline settings and pass the token value in the [Azure DevOps environment variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables).
 
-![Passing Azure DevOps environment variable](../../../images/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
+![!Passing Azure DevOps environment variable](../../../images/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
 ## Adding the Step of Request Recording
 
@@ -62,9 +62,8 @@ To implement security testing, follow the instructions:
     docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://app-test:3000 --network my-network --rm wallarm/fast
     ```
 
-> #### Warning:: Docker Network
->
-> Before security testing, make sure that the FAST node and test application are running on the same network.
+!!! warning "Docker Network"
+    Before security testing, make sure that the FAST node and test application are running on the same network.
 
 {% collapse title="Example of the automated testing step with running FAST node in the testing mode" %}
 
@@ -101,7 +100,7 @@ stages:
 
 The result of security testing will be displayed on the Azure DevOps interface.
 
-![The result of running FAST node in testing mode](../../../images/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
+![!The result of running FAST node in testing mode](../../../images/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
 ## More Examples
 

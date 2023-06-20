@@ -54,13 +54,13 @@ This document contains the following pieces of information:
 
 The sample application is a web application that allows you to publish posts on a blog and the capability to manage the blog posts.
 
-![The sample application][img-demo-app]
+![!The sample application][img-demo-app]
 
 The application is written in Ruby on Rails and shipped as a Docker container. 
 
 Also, [RSpec][link-rspec] integration tests are created for the application. RSpec employs [Capybara][link-capybara] to interact with the web application and Capybara uses [Selenium][link-selenium] to send HTTP requests to the application:
 
-![Testing flow][img-testing-flow]
+![!Testing flow][img-testing-flow]
 
 RSpec executes a few integration tests to test the following scenarios:
 *   Navigating to the page with posts
@@ -93,7 +93,7 @@ This essentially means that it is possible to augment the steps RSpec takes to t
 
 We can point a Selenium server to a proxy server with the `HTTP_PROXY` environment variable. Thus, HTTP requests to the application will be proxied. Usage of proxying mechanism allows you to pass the requests issued by the integration tests through the FAST node with the minimal intervention into the existing testing flow:
 
-![Testing flow with FAST][img-testing-flow-fast]
+![!Testing flow with FAST][img-testing-flow-fast]
 
 A CircleCI job is built with all the aforementioned facts in mind. The job comprises the following steps (see the `.circleci/config.yml` file):
 
@@ -102,7 +102,7 @@ A CircleCI job is built with all the aforementioned facts in mind. The job compr
     You need to [obtain a token][doc-get-token] and pass its value into the CircleCI project via the `TOKEN` environment variable.
 After a new CI job is in place, the variable’s value is passed to the Docker container, where the job is executed.
     
-    ![Pass the token into the CircleCI][img-cci-pass-token]
+    ![!Pass the token into the CircleCI][img-cci-pass-token]
     
 2.  Build services
     
@@ -139,7 +139,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
         
     All services form following relations between them:
     
-    ![Relations between services][img-services-relations]
+    ![!Relations between services][img-services-relations]
     
 3.  Due to the aforementioned relations, the services should be deployed in a strict order as follows:
     1.  `fast`.
@@ -156,7 +156,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     
     Test and HTTP traffic flows are shown in the image:
     
-    ![Test and HTTP traffics flows][img-test-traffic-flow]
+    ![!Test and HTTP traffics flows][img-test-traffic-flow]
     
     In accordance with the [scenario][link-api-recoding-mode], RSpec tests include all steps that are required to run the FAST security tests (see the `spec/support/fast_hooks.rb` file):
     1.  A test run [is created][doc-testrun-creation] prior to the execution of the RSpec tests.
@@ -177,11 +177,11 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     
     The RSpec process’ exit code is passed to the `docker-compose run` process and then to the CircleCI.     
     
-    ![The job result in CircleCI][img-cci-pass-results]
+    ![!The job result in CircleCI][img-cci-pass-results]
 
 The described CircleCI job closely follows the steps listed [earlier][link-api-recoding-mode]:
 
-![CircleCI job in detail][img-cci-workflow]
+![!CircleCI job in detail][img-cci-workflow]
 
 ##  Demo of the FAST integration
 
@@ -190,21 +190,21 @@ The described CircleCI job closely follows the steps listed [earlier][link-api-r
 3.  Add your GitHub repository to the [CircleCI][link-circleci] (press the “Follow Project” button in CircleCI) so that CI job fires up every time you change the content of the repository. A repository is called “a project” in the CircleCI terminology.
 4.  Add a `TOKEN` environment variable to your CircleCI project. You can do this in the settings of the project. Pass the FAST token as a value of this variable:
     
-    ![Pass the token into the project][img-cci-demo-pass-token]
+    ![!Pass the token into the project][img-cci-demo-pass-token]
     
 5.  Push something to the repository to start the CI job. Make sure that the RSpec integration tests are finished with success (see the console output of the job):
     
-    ![RSpec tests are passed][img-cci-demo-rspec-tests]
+    ![!RSpec tests are passed][img-cci-demo-rspec-tests]
     
 6.  Make sure that the test run is executing.
     
     You can log into the [Wallarm portal][link-wl-portal] using your Wallarm account information and navigate to the [“Testruns” tab][link-wl-portal-testrun-tab] to observe the process of testing the application against vulnerabilities in real time:
     
-    ![Test run execution][img-cci-demo-testrun]
+    ![!Test run execution][img-cci-demo-testrun]
     
 7.  You can see the CI job status reported as “Failed” after the testing process finishes:
     
-    ![The completion of the CI job][img-cci-demo-tests-failed]
+    ![!The completion of the CI job][img-cci-demo-tests-failed]
     
     Given that there is the Wallarm demo application under the test, the failed CI job represents the vulnerabilities FAST detected in the application (the message “FAST tests have failed” should appear in the build log files). The failure is not invoked by any build-related technical issues in this case.
     
@@ -220,6 +220,6 @@ The described CircleCI job closely follows the steps listed [earlier][link-api-r
     
     For example, you can take a look at the completed test run to find out that a few XSS vulnerabilities were found in the sample application:
     
-     ![A detailed information about the vulnerability][img-cci-demo-vuln-details]
+     ![!A detailed information about the vulnerability][img-cci-demo-vuln-details]
     
 To conclude, it has been demonstrated that FAST has strong capabilities of integration into existing CI/CD processes as well as finding vulnerabilities in the application even when the integration tests are passed without any errors.

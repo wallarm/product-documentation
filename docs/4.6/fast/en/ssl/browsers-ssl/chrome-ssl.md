@@ -30,55 +30,55 @@ To install the certificate for the Google Chrome browser, do the following:
 
     The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
 
-    ![Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!Requesting the self-signed FAST node certificate][img-cert-request]
 
 3.  Open the browser's privacy and security settings list. To do this, either navigate to the <chrome://settings/privacy> link or open the browser settings and expand the additional settings by selecting the **Advanced** button in the end of the settings list.
 
-    ![Chrome advanced settings][img-adv-settings]
+    ![!Chrome advanced settings][img-adv-settings]
     
     Select the “Manage certificates” option.
     
-    ![Chrome “Manage certificates” setting][img-cert-mgmt]
+    ![!Chrome “Manage certificates” setting][img-cert-mgmt]
 
 4.  A “Certificates” window will open, containing information about Chrome certificates. Switch to the “Trusted Root Certification Authorities” tab and select the **Import** button. 
 
-    ![“Certificates” window][img-cert-window]
+    ![!“Certificates” window][img-cert-window]
         
     A Certificate Import Wizard should be opened. Select the **Next** button.
         
-    ![Certificate Import Wizard][img-cert-wizard]
+    ![!Certificate Import Wizard][img-cert-wizard]
 
 5.  Select the **Browse** button and then choose the certificate file you downloaded earlier. 
     
-    ![Certificate file import][img-cert-import]
+    ![!Certificate file import][img-cert-import]
 
     Choose “All files” file type if necessary. Select the **Next** button.
 
-    ![Selection of the certificate file][img-cert-select]
+    ![!Selection of the certificate file][img-cert-select]
 
 6.  You will be asked to choose a certificate store. Select the option “Place all certificates in the following store” and set “Trusted Root Certification Authorities” as the store. Select the **Next** button.
 
-    ![Select certificate store][img-store]
+    ![!Select certificate store][img-store]
     
     Make sure that you have selected the appropriate store for the certificate and start the import process by selecting the **Finish** button.
     
-    ![Certificate import wizard resume][img-wizard-resume]
+    ![!Certificate import wizard resume][img-wizard-resume]
 
 7.  You will be presented with a warning message about the inability to validate the fingerprint of the certificate being imported. Select the **Yes** button in order to complete the import process.
 
-    ![Fingerprint validation warning][img-fingerprint-warning]
+    ![!Fingerprint validation warning][img-fingerprint-warning]
 
     Given that the import is successsful, “The import was successful” informational message will appear.
 
-    ![Successful import of the certificate][img-import-ok]
+    ![!Successful import of the certificate][img-import-ok]
     
     Now you will see the imported certificate in the “Trusted Root Certification Authorities” tab of the “Certificates” window. Notice that the name and expiration date of your certificate will differ from those shown in the image.
     
-    ![Installed certificate][img-installed-cert]
+    ![!Installed certificate][img-installed-cert]
 
 8.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
 
     For example, you could browse to the HTTPS version of the Google Gruyere site:
     <https://google-gruyere.appspot.com>
 
-    ![HTTPS is working][img-https-ok]
+    ![!HTTPS is working][img-https-ok]
