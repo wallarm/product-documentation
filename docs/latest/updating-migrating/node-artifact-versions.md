@@ -54,6 +54,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.6.3 (2023-06-20)
+
+* Fixed a bug that caused failure in the sidecar container when the following annotations were not handled properly: `sidecar.wallarm.io/nginx-http-snippet`, `sidecar.wallarm.io/nginx-server-snippet`, `sidecar.wallarm.io/nginx-location-snippet`
+
 ### 4.6.2 (2023-06-19)
 
 * Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
