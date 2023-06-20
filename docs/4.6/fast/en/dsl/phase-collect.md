@@ -28,7 +28,7 @@ The uniqueness condition does not allow those baseline requests that are not uni
 
 The uniqueness of each of the received requests is determined on the basis of the data in the requests that were received earlier.
 
-![The Collect phase with the uniqueness condition][img-collect-uniq]
+![!The Collect phase with the uniqueness condition][img-collect-uniq]
 
 The list of the elements in a request that should be used to determine the uniqueness of the baseline request is defined in the uniqueness condition.
 

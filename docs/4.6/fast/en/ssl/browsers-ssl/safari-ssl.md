@@ -22,37 +22,37 @@ To install the certificate for the Apple Safari browser, do the following:
 
     The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
     
-    ![Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!Requesting the self-signed FAST node certificate][img-cert-request]
     
     Open the downloaded file.
 
-    ![The downloaded certificate][img-downloaded-cert]
+    ![!The downloaded certificate][img-downloaded-cert]
 
 3.  The Keychain Access application will offer to import the certificate.  
 
     You can install the certificate either for the current user or for all users. Choose the appropriate option and select the **Add** button.
 
-    ![Keychain Access “Add Certificates” window][img-keychain-import]
+    ![!Keychain Access “Add Certificates” window][img-keychain-import]
 
 4.  You will see the imported certificate marked as an untrusted certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image.
 
-    ![Untrusted certificate in Keychain Access application][img-untrusted-cert]
+    ![!Untrusted certificate in Keychain Access application][img-untrusted-cert]
 
 5.  To convert the certificate to a trusted one, double-click on it to open the certificate properties window. Expand the “Trust” list and select **Always Trust** for SSL.
 
-    ![The certificate properties window][img-cert-properties]
+    ![!The certificate properties window][img-cert-properties]
 
     You will be asked to enter your password to continue.
 
-    ![Prompt for credentials][img-credentials-prompt]
+    ![!Prompt for credentials][img-credentials-prompt]
 
     Now the imported certificate should be marked as trusted.
     
-    ![Trusted certificate in Keychain Access application][img-trusted-cert]
+    ![!Trusted certificate in Keychain Access application][img-trusted-cert]
 
 6.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
 
     For example, you could browse to the HTTPS version of the Google Gruyere site:
     <https://google-gruyere.appspot.com>
 
-    ![HTTPS is working][img-https-ok]
+    ![!HTTPS is working][img-https-ok]

@@ -67,12 +67,12 @@ To create a test run via your Wallarm account interface, follow the steps below:
 
 5. Select FAST node from the **Node** drop-down list. To create FAST node, please follow this [instruction][link-create-node].
 
-    ![Creating test run][img-test-run-creation]
+    ![!Creating test run][img-test-run-creation]
 
 6. Add **Advanced settings** if required. This block of settings includes the following points:
 --8<-- "../include/fast/test-run-adv-settings.md"
 
-    ![Test run advanced settings][img-testrun-adv-settings]
+    ![!Test run advanced settings][img-testrun-adv-settings]
 
 7.  Click the **Create and run** button.
 

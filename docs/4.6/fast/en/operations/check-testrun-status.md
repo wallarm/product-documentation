@@ -35,23 +35,23 @@ The test run state is displayed in Wallarm UI in real-time mode. To check the st
 1. Log in to your Wallarm account in [US cloud](https://us1.my.wallarm.com/) or [EU cloud](https://my.wallarm.com/).
 2. Open the **Test runs** section and click the required test run.
 
-![Test run example][img-test-runs]
+![!Test run example][img-test-runs]
 
 The state is displayed for each baseline request:
 
-* **Passed** ![Status: Passed][img-status-passed]
+* **Passed** ![!Status: Passed][img-status-passed]
         
     No vulnerabilities were found for the given baseline request.
         
-* **In progress** ![Status: In progress][img-status-inprogress]
+* **In progress** ![!Status: In progress][img-status-inprogress]
               
     The baseline request is being tested for vulnerabilities.
 
-* **Failed** ![Status: Failed][img-status-failed]  
+* **Failed** ![!Status: Failed][img-status-failed]  
         
     Vulnerabilities were found for the given baseline request. The number of vulnerabilities and the link for details are displayed for each baseline request.
             
-* **Error** ![Status: Error][img-status-error]  
+* **Error** ![!Status: Error][img-status-error]  
             
     The testing process was stopped due to the displayed error:
 
@@ -61,11 +61,11 @@ The state is displayed for each baseline request:
     * `Internal exception`: incorrect security testing configuration
     * `Recording error`: incorrect or missed request parameters
 
-* **Waiting** ![Status: Waiting][img-status-waiting]      
+* **Waiting** ![!Status: Waiting][img-status-waiting]      
         
     The baseline request is queued for testing. Only a limited number of requests can be tested simultaneously. 
             
-* **Interrupted** ![Status: Interrupted][img-status-interrupted]
+* **Interrupted** ![!Status: Interrupted][img-status-interrupted]
         
     The testing process was either interrupted by the **Interrupt testing** button or another test run was executed on the same FAST node.
 
@@ -187,8 +187,8 @@ To check a test run's state in an `estimated_time_to_completion` period of time,
     
     To do so, log in to the Wallarm portal and navigate to [the list of test runs][link-wl-portal-testruns-in-progress] which are executing now:
     
-    ![Test run's speed and execution time estimates][img-testrun-velocity]
+    ![!Test run's speed and execution time estimates][img-testrun-velocity]
     
     When the test run's execution is complete, you are presented with the average requests per second value:
     
-    ![Average requests per second value][img-testrun-avg-rps]
+    ![!Average requests per second value][img-testrun-avg-rps]

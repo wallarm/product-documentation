@@ -22,7 +22,7 @@ In this scenario, the FAST node first creates a test record and writes baseline 
 
 This scenario is shown in the picture below:
 
-![An example of a CI/CD job with FAST node in the CI Mode][img-sample-job-ci-mode]
+![!An example of a CI/CD job with FAST node in the CI Mode][img-sample-job-ci-mode]
 
 The corresponding workflow steps are:
 

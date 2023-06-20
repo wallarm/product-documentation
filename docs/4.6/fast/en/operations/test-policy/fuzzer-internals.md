@@ -35,11 +35,11 @@ With the [fuzzer configuration][doc-fuzzer-configuration], the size `M` of the p
 
 If anomalous behavior is detected in the response to the request with the payload, then the fuzzer will send particular requests for each payload byte to the application. Thus, the fuzzer will detect specific bytes that caused anomalous behavior.
 
-![Scheme of checking for anomalous bytes][img-search-for-anomalies]
+![!Scheme of checking for anomalous bytes][img-search-for-anomalies]
 
 All detected bytes are provided in the anomaly description:
 
-![Anomaly description][img-anomaly-description]
+![!Anomaly description][img-anomaly-description]
 
 {% collapse title="Fuzzer operation example" %}
 

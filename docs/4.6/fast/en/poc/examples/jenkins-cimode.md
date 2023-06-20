@@ -17,7 +17,7 @@ The integration of FAST in CI MODE into the Jenkins workflow is configured via t
 
 To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][jenkins-parameterized-build].
 
-![Passing Jenkins environment variable][jenkins-example-env-var]
+![!Passing Jenkins environment variable][jenkins-example-env-var]
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -88,7 +88,7 @@ An example includes the following steps:
 
 The result of security testing will be displayed on the Jenkins interface.
 
-![The result of running FAST node in testing mode][fast-example-jenkins-result]
+![!The result of running FAST node in testing mode][fast-example-jenkins-result]
 
 ## More Examples
 

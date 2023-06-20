@@ -27,7 +27,7 @@ This chapter will guide you through the process of installation and initial conf
 !!! info "Note on the browser to use"
     It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
 
-![FAST node deployment scheme in use][img-qsg-deployment-scheme]    
+![!FAST node deployment scheme in use][img-qsg-deployment-scheme]    
     
     
 ----------    
@@ -60,7 +60,7 @@ It is suggested that you use the Docker Community Edition (CE). However, any Doc
 
 2.  Select the “Nodes” tab, then click the **Create FAST node** button (or the **Add FAST node** link).
 
-    ![Creation of a new node][img-fast-create-node]
+    ![!Creation of a new node][img-fast-create-node]
 
 3.  A dialog window will appear. Give a meaningful name to the node and select the **Create** button. The guide suggests that you use the name `DEMO NODE`.
     
@@ -141,7 +141,7 @@ To set up proxying in the Mozilla Firefox browser, do the following:
 
 1.  Open the browser. Select “Preferences” in the menu. Select the “General” tab and scroll down to the “Network Settings.” Select the **Settings** button.
 
-    ![Mozilla Firefox options][img-firefox-options]
+    ![!Mozilla Firefox options][img-firefox-options]
 
 2.  The “Connection Settings” window should open up. Select the **Manual proxy configuration** option. Configure the proxy by entering the following values:
 
@@ -150,14 +150,14 @@ To set up proxying in the Mozilla Firefox browser, do the following:
         
     Select the **ОК** button to apply the changes you have made.
 
-    ![Mozilla Firefox proxy settings][img-firefox-proxy-options]
+    ![!Mozilla Firefox proxy settings][img-firefox-proxy-options]
     
     
 ##  6.  Install SSL certificates
 
 While working with the [Google Gruyere][link-https-google-gruyere] application via HTTPS you might encounter the following browser message regarding the interruption of a safe connection:
 
-![“Insecure connection” message][img-insecure-connection]
+![!“Insecure connection” message][img-insecure-connection]
 
 You should add a self-signed FAST node SSL certificate to be able to interact with the web application via HTTPS. To do so, navigate to this [link][link-ssl-installation], select your browser from the list, and perform the necessary actions described. This guide suggests that you use the Mozilla Firefox browser.
     

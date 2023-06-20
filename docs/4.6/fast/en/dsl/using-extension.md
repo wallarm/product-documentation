@@ -99,11 +99,11 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     *   POST parameters
     *   the URI parameter
     
-    ![Test policy wizard, the “Insertion points” tab][img-test-policy-insertion-points]
+    ![!Test policy wizard, the “Insertion points” tab][img-test-policy-insertion-points]
     
     Also, the extensions check if the application is vulnerable to an SQLi attack; therefore it may be convenient to check the application for other vulnerabilities with the Wallarm FAST detects (e.g., RCE). This will help you to confirm that the SQLi vulnerability is being detected with the created extensions rather than built-in FAST detects. 
     
-    ![Test policy wizard, the “Attacks to test” tab][img-test-policy-attacks]
+    ![!Test policy wizard, the “Attacks to test” tab][img-test-policy-attacks]
     
     The resulting test policy should look like:
     
@@ -113,7 +113,7 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
 
 3.  Create a test run for your FAST node based on the created testing policy.
     
-    ![Test run][img-test-run]
+    ![!Test run][img-test-run]
 
 4.  Wait until the FAST node writes an informational message to the console similar to the following: `Recording baselines for TestRun#`. This means that the FAST node is ready to record the baseline requests.<br>
 --8<-- "../include/fast/console-include/dsl/fast-node-recording.md"
@@ -144,13 +144,13 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     You can see the full log of request processing by opening the test run information on the Wallarm web interface and clicking the “Details” link.
 <br><br>
     
-    ![Detailed test run information][img-testrun-details]
+    ![!Detailed test run information][img-testrun-details]
     
-    ![Full log of request processing][img-log]
+    ![!Full log of request processing][img-log]
 
 7.  You can also see information about the detected vulnerabilities by clicking the link that contains the number of detected issues, e.g., “2 issues.” The “Vulnerabilities” page will open.
 
-    ![Vulnerabilities on the Wallarm web interface][img-vulns]
+    ![!Vulnerabilities on the Wallarm web interface][img-vulns]
     
     The “Risk,” “Type,” and “Title” columns will contain the values that were specified in the `meta-info` section of the extensions for those vulnerabilities that were detected with the help of the FAST extensions.
 
@@ -158,4 +158,4 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
 
     Example of the information about a vulnerability (detected with the modifying extension):
     
-    ![Vulnerability detailed information][img-vuln-details-mod]
+    ![!Vulnerability detailed information][img-vuln-details-mod]

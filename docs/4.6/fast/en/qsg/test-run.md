@@ -47,7 +47,7 @@ FAST generates and executes a security test set in the following way:
 
 6.  A generated security test set is executed by sending the requests to the target application from the node. Testing results are associated with the test run ID and stored in the cloud.
 
-    ![FAST node internal logic][img-fast-node-internals]
+    ![!FAST node internal logic][img-fast-node-internals]
 
     !!! info "Note on a test run in use"
         In any given period of time, only one test run can be running on the FAST node. If you create another test run for the same node, the current test run execution is interrupted.
@@ -80,7 +80,7 @@ After the test run is saved, its ID will be automatically passed to FAST node. I
 
 You can click on the “Baseline req.” column to see all the baseline requests that are being recorded.
 
-![Viewing recorded baseline requests][img-view-recording-cloud]
+![!Viewing recorded baseline requests][img-view-recording-cloud]
 
 !!! info "The node readiness for the recording"
     You should wait until you see the console output signalling that the FAST node named `DEMO NODE` is ready to record baseline requests for the test run named `DEMO TEST RUN`
@@ -105,7 +105,7 @@ To do that, navigate to the link you [created][link-previous-chapter] using the 
 
 The result of the request execution is shown below:
 
-![The result of the request execution][img-request-exec-result]
+![!The result of the request execution][img-request-exec-result]
 
 It is observable from the console output that the FAST node has recorded a baseline request:
 
@@ -113,7 +113,7 @@ It is observable from the console output that the FAST node has recorded a basel
 
 You can observe some baseline requests being saved to the Wallarm cloud:
 
-![Incoming baseline requests][img-incoming-baselines]
+![!Incoming baseline requests][img-incoming-baselines]
 
 This document suggests that only one request be executed for demonstration purposes. Given that there are no additional requests to the target application, stop the baseline recording process by selecting the **Stop recording** option from the “Actions” drop-down menu.
 
@@ -122,7 +122,7 @@ This document suggests that only one request be executed for demonstration purpo
 
 The test run stops automatically when the testing process is finished, given that no baseline recording is in progress. Some brief information about the detected vulnerabilities will be displayed in the “Result” column. FAST should find some XSS vulnerabilities for the executed HTTPS request:
 
-![The discovered vulnerability][img-xss-found]
+![!The discovered vulnerability][img-xss-found]
     
     
 ----------

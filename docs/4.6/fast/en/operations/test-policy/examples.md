@@ -33,7 +33,7 @@ This is an unchangeable test policy that allows for working with common request 
 
 **This policy has the following specifics:** it does not support fuzzing. To enable the fuzzer, create a separate test policy ([example](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)).
 
-![Policy example](../../../images/operations/en/test-policy/examples/default-policy-example.png)
+![!Policy example](../../../images/operations/en/test-policy/examples/default-policy-example.png)
 
 !!! info "Note"
     Please take the following into account:
@@ -49,7 +49,7 @@ This test policy allows working with all GET (`GET_.*`) and POST parameters (`PO
 
 **This policy has the following specifics:** fuzzer is disabled.
 
-![Policy example](../../../images/operations/en/test-policy/examples/get-post-policy-example.png)
+![!Policy example](../../../images/operations/en/test-policy/examples/get-post-policy-example.png)
 
 !!! info "Note"
     In the Quick Start guide, this policy can be used to conduct security testing of the [Google Gruyere](../../qsg/test-run.md) target application.
@@ -63,7 +63,7 @@ This test policy allows working with URI (`URI`) and `email` POST parameters in 
 * Only custom FAST extensions are allowed to run, no embedded FAST detects will be executed.
 * Fuzzer is disabled.
 
-![Policy example](../../../images/operations/en/test-policy/examples/custom-dsl-example.png)
+![!Policy example](../../../images/operations/en/test-policy/examples/custom-dsl-example.png)
 
 > #### Info: Note
 >
@@ -86,7 +86,7 @@ This policy allows working with `email` POST parameter in a request. The `email`
     * No anomaly is found if the server response code value is less than `500`.
     * Fuzzer stops its execution if either all payloads have been checked or if more than two anomalies are found.
 
-![Policy example](../../../images/operations/en/test-policy/examples/enabled-fuzzer-example.png)
+![!Policy example](../../../images/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
 !!! info "Note"
     This policy can be used to find vulnerabilities in the [OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md).
@@ -101,4 +101,4 @@ It can be useful to configure a behavior like this one if it is necessary to den
 
 **This policy has the following specifics:** fuzzer is disabled.
 
-![Example policy](../../../images/operations/en/test-policy/examples/sessionid-example.png)
+![!Example policy](../../../images/operations/en/test-policy/examples/sessionid-example.png)
