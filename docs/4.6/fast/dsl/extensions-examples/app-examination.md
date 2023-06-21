@@ -1,5 +1,5 @@
-[img-login]:                ../../../images/dsl/common/extension-examples/ojs_broken.png
-[img-wireshark]:            ../../../images/dsl/common/extension-examples/wireshark.png
+[img-login]:                ../../../images/fast/dsl/common/extension-examples/ojs_broken.png
+[img-wireshark]:            ../../../images/fast/dsl/common/extension-examples/wireshark.png
 
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 [link-ojs-install-manual]:  https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part1/running.html

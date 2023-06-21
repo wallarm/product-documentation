@@ -1,4 +1,4 @@
-[img-sample-job-ci-mode]:       ../../images/poc/en/integration-overview/sample-job-ci-mode.png
+[img-sample-job-ci-mode]:       ../../images/fast/poc/en/integration-overview/sample-job-ci-mode.png
 
 [doc-recording-mode]:           ci-mode-recording.md#running-a-fast-node-in-recording-mode
 [doc-testing-mode]:             ci-mode-testing.md#running-a-fast-node-in-testing-mode

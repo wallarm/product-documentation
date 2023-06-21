@@ -1,4 +1,4 @@
-[img-tab-general]:        ../../../images/operations/common/test-policy/policy-editor/tab-general.png
+[img-tab-general]:        ../../../images/fast/operations/common/test-policy/policy-editor/tab-general.png
 
 # Basic Policy Configuration
 

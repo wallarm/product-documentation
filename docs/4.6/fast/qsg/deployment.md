@@ -1,8 +1,8 @@
-[img-qsg-deployment-scheme]:    ../../images/qsg/en/deployment/5-qsg-fast-inst-scheme.png
-[img-fast-create-node]:         ../../images/qsg/common/deployment/6-qsg-fast-inst-create-node.png   
-[img-firefox-options]:          ../../images/qsg/common/deployment/9-qsg-fast-inst-ff-options-window.png
-[img-firefox-proxy-options]:    ../../images/qsg/common/deployment/10-qsg-fast-inst-ff-proxy-options.png
-[img-insecure-connection]:      ../../images/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
+[img-qsg-deployment-scheme]:    ../../images/fast/qsg/en/deployment/5-qsg-fast-inst-scheme.png
+[img-fast-create-node]:         ../../images/fast/qsg/common/deployment/6-qsg-fast-inst-create-node.png   
+[img-firefox-options]:          ../../images/fast/qsg/common/deployment/9-qsg-fast-inst-ff-options-window.png
+[img-firefox-proxy-options]:    ../../images/fast/qsg/common/deployment/10-qsg-fast-inst-ff-proxy-options.png
+[img-insecure-connection]:      ../../images/fast/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
 
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com
 [link-docker-docs]:             https://docs.docker.com/

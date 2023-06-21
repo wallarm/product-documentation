@@ -1,8 +1,8 @@
-[img-enable-fuzzer]:            ../../../images/operations/common/test-policy/fuzzer/fuzzer-slider.png
-[img-manipulate-items]:         ../../../images/operations/common/test-policy/fuzzer/manipulate-fuzzer-items.png
-[img-anomaly-condition]:        ../../../images/operations/common/test-policy/fuzzer/anomaly-condition.png
-[img-not-anomaly-condition]:    ../../../images/operations/common/test-policy/fuzzer/not-anomaly-condition.png
-[img-stop-condition]:           ../../../images/operations/common/test-policy/fuzzer/stop-condition.png
+[img-enable-fuzzer]:            ../../../images/fast/operations/common/test-policy/fuzzer/fuzzer-slider.png
+[img-manipulate-items]:         ../../../images/fast/operations/common/test-policy/fuzzer/manipulate-fuzzer-items.png
+[img-anomaly-condition]:        ../../../images/fast/operations/common/test-policy/fuzzer/anomaly-condition.png
+[img-not-anomaly-condition]:    ../../../images/fast/operations/common/test-policy/fuzzer/not-anomaly-condition.png
+[img-stop-condition]:           ../../../images/fast/operations/common/test-policy/fuzzer/stop-condition.png
 
 [link-ruby-regexp]:             http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html      
 

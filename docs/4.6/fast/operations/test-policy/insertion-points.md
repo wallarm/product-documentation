@@ -1,5 +1,5 @@
-[img-remove-point]:         ../../../images/operations/common/test-policy/policy-editor/remove-point.png         
-[img-point-help]:           ../../../images/operations/common/test-policy/policy-editor/point-help.png                
+[img-remove-point]:         ../../../images/fast/operations/common/test-policy/policy-editor/remove-point.png         
+[img-point-help]:           ../../../images/fast/operations/common/test-policy/policy-editor/point-help.png                
 
 [link-get-point]:           ../../dsl/points/parsers/http.md#get-filter
 [link-post-point]:          ../../dsl/points/parsers/http.md#post-filter

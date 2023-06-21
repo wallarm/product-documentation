@@ -12,7 +12,7 @@ The integration of FAST in CI MODE into the Azure DevOps pipeline is configured 
 
 To securely use the [FAST node token](../../operations/create-node.md), open your current pipeline settings and pass the token value in the [Azure DevOps environment variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables).
 
-![!Passing Azure DevOps environment variable](../../../images/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
+![!Passing Azure DevOps environment variable](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
 ## Adding the Step of Request Recording
 
@@ -100,7 +100,7 @@ stages:
 
 The result of security testing will be displayed on the Azure DevOps interface.
 
-![!The result of running FAST node in testing mode](../../../images/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
+![!The result of running FAST node in testing mode](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
 ## More Examples
 

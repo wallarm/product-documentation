@@ -1,18 +1,18 @@
-[img-demo-app]:                 ../../../images/poc/common/examples/demo-app.png
-[img-testing-flow]:             ../../../images/poc/en/examples/testing-flow.png
-[img-testing-flow-fast]:        ../../../images/poc/en/examples/testing-flow-fast.png
-[img-services-relations]:       ../../../images/poc/common/examples/api-services-relations.png
-[img-test-traffic-flow]:        ../../../images/poc/en/examples/test-traffic-flow.png
+[img-demo-app]:                 ../../../images/fast/poc/common/examples/demo-app.png
+[img-testing-flow]:             ../../../images/fast/poc/en/examples/testing-flow.png
+[img-testing-flow-fast]:        ../../../images/fast/poc/en/examples/testing-flow-fast.png
+[img-services-relations]:       ../../../images/fast/poc/common/examples/api-services-relations.png
+[img-test-traffic-flow]:        ../../../images/fast/poc/en/examples/test-traffic-flow.png
 
-[img-cci-pass-token]:           ../../../images/poc/common/examples/circleci/pass-token.png
-[img-cci-pass-results]:         ../../../images/poc/common/examples/circleci/pass-results.png
-[img-cci-workflow]:             ../../../images/poc/en/examples/circleci/api-workflow.png
+[img-cci-pass-token]:           ../../../images/fast/poc/common/examples/circleci/pass-token.png
+[img-cci-pass-results]:         ../../../images/fast/poc/common/examples/circleci/pass-results.png
+[img-cci-workflow]:             ../../../images/fast/poc/en/examples/circleci/api-workflow.png
 
-[img-cci-demo-pass-token]:      ../../../images/poc/common/examples/circleci/demo-pass-token.png
-[img-cci-demo-rspec-tests]:     ../../../images/poc/common/examples/circleci/api-demo-rspec-tests.png
-[img-cci-demo-testrun]:         ../../../images/poc/common/examples/circleci/demo-testrun.png
-[img-cci-demo-tests-failed]:    ../../../images/poc/common/examples/circleci/demo-tests-failed.png
-[img-cci-demo-vuln-details]:    ../../../images/poc/common/examples/circleci/demo-vuln-details.png
+[img-cci-demo-pass-token]:      ../../../images/fast/poc/common/examples/circleci/demo-pass-token.png
+[img-cci-demo-rspec-tests]:     ../../../images/fast/poc/common/examples/circleci/api-demo-rspec-tests.png
+[img-cci-demo-testrun]:         ../../../images/fast/poc/common/examples/circleci/demo-testrun.png
+[img-cci-demo-tests-failed]:    ../../../images/fast/poc/common/examples/circleci/demo-tests-failed.png
+[img-cci-demo-vuln-details]:    ../../../images/fast/poc/common/examples/circleci/demo-vuln-details.png
 
 [doc-env-variables]:            ../../operations/env-variables.md
 [doc-testrun-steps]:            ../../operations/internals.md#test-run-execution-flow-baseline-requests-recording-takes-place

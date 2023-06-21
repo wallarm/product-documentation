@@ -7,11 +7,11 @@
 
 [jenkins-plugin-wallarm-fast]:   https://plugins.jenkins.io/wallarm-fast/
 
-[jenkins-plugin-install]:       ../../images/poc/common/examples/jenkins-plugin/jenkins-plugin-install.png
-[jenkins-plugin-record-params]: ../../images/poc/common/examples/jenkins-plugin/jenkins-plugin-record-params.png
-[jenkins-plugin-playback-params]: ../../images/poc/common/examples/jenkins-plugin/jenkins-plugin-playback-params.png
+[jenkins-plugin-install]:       ../../images/fast/poc/common/examples/jenkins-plugin/jenkins-plugin-install.png
+[jenkins-plugin-record-params]: ../../images/fast/poc/common/examples/jenkins-plugin/jenkins-plugin-record-params.png
+[jenkins-plugin-playback-params]: ../../images/fast/poc/common/examples/jenkins-plugin/jenkins-plugin-playback-params.png
 [jenkins-manage-plugin]:        https://jenkins.io/doc/book/managing/plugins/
-[fast-example-jenkins-plugin-result]:  ../../images/poc/common/examples/jenkins-plugin/jenkins-plugin-result.png
+[fast-example-jenkins-plugin-result]:  ../../images/fast/poc/common/examples/jenkins-plugin/jenkins-plugin-result.png
 [fast-jenkins-cimode]:          examples/jenkins-cimode.md
 
 # Integration of Wallarm FAST Plugin with Jenkins

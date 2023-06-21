@@ -1,14 +1,14 @@
 [doc-about-tr-token]:   internals.md
 
-[img-testrun-velocity]: ../../images/poc/en/checking-testrun-status/testrun-velocity.png
-[img-testrun-avg-rps]:  ../../images/poc/en/checking-testrun-status/testrun-avg-rps.png
-[img-status-passed]:        ../../images/qsg/common/test-interpretation/passed-colored.png
-[img-status-failed]:        ../../images/qsg/common/test-interpretation/failed-colored.png
-[img-status-inprogress]:    ../../images/qsg/common/test-interpretation/in-progress.png
-[img-status-error]:         ../../images/qsg/common/test-interpretation/error-colored.png
-[img-status-waiting]:       ../../images/qsg/common/test-interpretation/waiting-colored.png
-[img-status-interrupted]:   ../../images/qsg/common/test-interpretation/interrupted-colored.png
-[img-test-runs]:            ../../images/poc/en/checking-testrun-status/test-runs.png
+[img-testrun-velocity]: ../../images/fast/poc/en/checking-testrun-status/testrun-velocity.png
+[img-testrun-avg-rps]:  ../../images/fast/poc/en/checking-testrun-status/testrun-avg-rps.png
+[img-status-passed]:        ../../images/fast/qsg/common/test-interpretation/passed-colored.png
+[img-status-failed]:        ../../images/fast/qsg/common/test-interpretation/failed-colored.png
+[img-status-inprogress]:    ../../images/fast/qsg/common/test-interpretation/in-progress.png
+[img-status-error]:         ../../images/fast/qsg/common/test-interpretation/error-colored.png
+[img-status-waiting]:       ../../images/fast/qsg/common/test-interpretation/waiting-colored.png
+[img-status-interrupted]:   ../../images/fast/qsg/common/test-interpretation/interrupted-colored.png
+[img-test-runs]:            ../../images/fast/poc/en/checking-testrun-status/test-runs.png
 
 [link-wl-portal-testruns-in-progress]:  https://us1.my.wallarm.com/testing/?status=running
 

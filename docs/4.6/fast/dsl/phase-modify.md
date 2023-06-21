@@ -2,7 +2,7 @@
 [link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-ext-logic]:       logic.md
 
-[img-modify]:           ../../images/dsl/common/phases/modify.png
+[img-modify]:           ../../images/fast/dsl/common/phases/modify.png
 
 # The Modify Phase
 
@@ -29,7 +29,7 @@ In the Modify phase, you can assign new values to the element or delete the elem
     {% collapse title="Example 1." %}
 `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-![!Modify phase](../../images/dsl/en/phases/modify.png)
+![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
     {% endcollapse %}
 
 *   If the key's value is not set, then the corresponding baseline request element's value will be cleared.

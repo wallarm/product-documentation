@@ -1,11 +1,11 @@
 [link-markers]:         markers.md
 
-[img-oob]:              ../../../images/dsl/en/phases/detect/oob.png
-[img-response]:         ../../../images/dsl/en/phases/detect/response.png
-[img-http-status]:      ../../../images/dsl/en/phases/detect/http-status.png
-[img-headers]:          ../../../images/dsl/en/phases/detect/headers.png
-[img-body]:             ../../../images/dsl/en/phases/detect/body.png
-[img-html]:             ../../../images/dsl/en/phases/detect/html.png
+[img-oob]:              ../../../images/fast/dsl/en/phases/detect/oob.png
+[img-response]:         ../../../images/fast/dsl/en/phases/detect/response.png
+[img-http-status]:      ../../../images/fast/dsl/en/phases/detect/http-status.png
+[img-headers]:          ../../../images/fast/dsl/en/phases/detect/headers.png
+[img-body]:             ../../../images/fast/dsl/en/phases/detect/body.png
+[img-html]:             ../../../images/fast/dsl/en/phases/detect/html.png
 
 [anchor1]:      #oob
 

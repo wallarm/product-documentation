@@ -1,8 +1,8 @@
 [jenkins-config-pipeline]:      https://jenkins.io/doc/book/pipeline
 [fast-node-token]:              ../../operations/create-node.md
 [jenkins-parameterized-build]:  https://wiki.jenkins.io/display/JENKINS/Parameterized+Build
-[jenkins-example-env-var]:     ../../../images/poc/common/examples/jenkins-cimode/jenkins-add-token-example.png
-[fast-example-jenkins-result]:  ../../../images/poc/common/examples/jenkins-cimode/jenkins-result-example.png
+[jenkins-example-env-var]:     ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-add-token-example.png
+[fast-example-jenkins-result]:  ../../../images/fast/poc/common/examples/jenkins-cimode/jenkins-result-example.png
 [fast-ci-mode-record]:          ../ci-mode-recording.md#environment-variables-in-recording-mode
 [fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com

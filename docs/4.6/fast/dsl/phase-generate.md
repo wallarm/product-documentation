@@ -4,8 +4,8 @@
 [link-markers]:         detect/markers.md
 [link-ext-logic]:       logic.md
 
-[img-generate-methods]:     ../../images/dsl/en/phases/generate-methods.png
-[img-generate-payload]:     ../../images/dsl/en/phases/generate-payload.png
+[img-generate-methods]:     ../../images/fast/dsl/en/phases/generate-methods.png
+[img-generate-payload]:     ../../images/fast/dsl/en/phases/generate-payload.png
 
 #  The Generate Phase
 

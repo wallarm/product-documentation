@@ -1,8 +1,8 @@
 [circleci-config-yaml]:         https://circleci.com/docs/2.0/writing-yaml/#section=configuration
 [fast-node-token]:              ../../operations/create-node.md
 [circleci-set-env-var]:         https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
-[circleci-example-env-var]:     ../../../images/poc/common/examples/circleci-cimode/circleci-env-var-example.png
-[fast-example-result]:          ../../../images/poc/common/examples/circleci-cimode/circleci-example.png
+[circleci-example-env-var]:     ../../../images/fast/poc/common/examples/circleci-cimode/circleci-env-var-example.png
+[fast-example-result]:          ../../../images/fast/poc/common/examples/circleci-cimode/circleci-example.png
 [fast-ci-mode-record]:          ../ci-mode-recording.md#environment-variables-in-recording-mode
 [fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com

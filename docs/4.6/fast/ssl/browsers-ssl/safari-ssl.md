@@ -1,11 +1,11 @@
-[img-cert-request]:         ../../../images/ssl/common/browsers-ssl/safari-ssl/s-certificate-request.png
-[img-downloaded-cert]:      ../../../images/ssl/common/browsers-ssl/safari-ssl/s-downloaded-certificate.png
-[img-keychain-import]:      ../../../images/ssl/common/browsers-ssl/safari-ssl/s-keychain-prompt.png
-[img-untrusted-cert]:       ../../../images/ssl/common/browsers-ssl/safari-ssl/s-keychain-untrusted-certificate.png
-[img-cert-properties]:      ../../../images/ssl/common/browsers-ssl/safari-ssl/s-keychain-certificate-properties.png
-[img-credentials-prompt]:   ../../../images/ssl/common/browsers-ssl/safari-ssl/s-keychain-credentials-prompt.png
-[img-trusted-cert]:         ../../../images/ssl/common/browsers-ssl/safari-ssl/s-keychain-trusted-certificate.png
-[img-https-ok]:             ../../../images/ssl/common/browsers-ssl/safari-ssl/s-https-ok.png
+[img-cert-request]:         ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-certificate-request.png
+[img-downloaded-cert]:      ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-downloaded-certificate.png
+[img-keychain-import]:      ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-prompt.png
+[img-untrusted-cert]:       ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-untrusted-certificate.png
+[img-cert-properties]:      ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-certificate-properties.png
+[img-credentials-prompt]:   ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-credentials-prompt.png
+[img-trusted-cert]:         ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-trusted-certificate.png
+[img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-https-ok.png
 
 #   FAST Node Self-signed SSL-certificate Installation for Apple Safari
 

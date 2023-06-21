@@ -9,8 +9,8 @@
 [link-ext-logic]:       logic.md
 [link-vuln-list]:       ../VULN-LIST.md
 
-[img-vulns]:            ../../images/dsl/en/create-extension/vulnerabilities.png
-[img-vuln-details]:     ../../images/dsl/en/create-extension/vuln_details.png
+[img-vulns]:            ../../images/fast/dsl/en/create-extension/vulnerabilities.png
+[img-vuln-details]:     ../../images/fast/dsl/en/create-extension/vuln_details.png
 
 [anchor-meta-info]:     #structure-of-the-meta-info-section
 

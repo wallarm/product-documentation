@@ -2,9 +2,9 @@
 [doc-integration-ci-mode]:      integration-overview-ci-mode.md
 [doc-concurrent-pipelines]:     ci-mode-concurrent-pipelines.md
 
-[img-api-mode]:                 ../../images/poc/en/integration-overview/api-mode-common.png
-[img-ci-mode]:                  ../../images/poc/en/integration-overview/ci-mode-common.png
-[img-ci-mode-build-id]:         ../../images/poc/en/integration-overview/ci-build-id-common.png
+[img-api-mode]:                 ../../images/fast/poc/en/integration-overview/api-mode-common.png
+[img-ci-mode]:                  ../../images/fast/poc/en/integration-overview/ci-mode-common.png
+[img-ci-mode-build-id]:         ../../images/fast/poc/en/integration-overview/ci-build-id-common.png
 
 [anchor-build-id]:              #deploying-fast-node-with-ci-mode-for-use-in-concurrent-cicd-workflows
 

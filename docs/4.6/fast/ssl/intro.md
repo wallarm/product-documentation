@@ -5,7 +5,7 @@
 [link-ie11-ssl]:                browsers-ssl/ie11-ssl.md
 [link-firefox-ssl]:             browsers-ssl/firefox-ssl.md
 
-[img-insecure-connection]:      ../../images/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
+[img-insecure-connection]:      ../../images/fast/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
 
 
 # Introduction

@@ -4,8 +4,8 @@
 
 [doc-create-testrun]:       create-testrun.md
 
-[img-similar-tr-item]:              ../../images/operations/common/copy-testrun/create-similar-testrun-item.png
-[img-similar-tr-sidebar]:           ../../images/operations/common/copy-testrun/create-similar-testrun-sidebar.png
+[img-similar-tr-item]:              ../../images/fast/operations/common/copy-testrun/create-similar-testrun-item.png
+[img-similar-tr-sidebar]:           ../../images/fast/operations/common/copy-testrun/create-similar-testrun-sidebar.png
 
 #   Copying a Test Run
 

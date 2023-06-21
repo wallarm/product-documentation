@@ -2,11 +2,11 @@
 description: FAST is a two-component solution, comprising of the FAST node and the Wallarm cloud. This guide instructs you on deploying the FAST node.
 ---
 
-[img-fast-integration]:         ../../images/qsg/en/deployment-options/0-qsg-fast-depl.png
-[img-fast-scheme]:              ../../images/qsg/en/deployment-options/1-qsg-fast-work-scheme.png       
-[img-fast-deployment-options]:  ../../images/qsg/en/deployment-options/2-qsg-fast-depl-options.png    
-[img-insecure-connection]:     ../../images/qsg/common/deployment-options/3-qsg-fast-depl-insecure-cert.png    
-[img-qsg-deployment-scheme]:    ../../images/qsg/en/deployment-options/4-qsg-fast-depl-scheme.png
+[img-fast-integration]:         ../../images/fast/qsg/en/deployment-options/0-qsg-fast-depl.png
+[img-fast-scheme]:              ../../images/fast/qsg/en/deployment-options/1-qsg-fast-work-scheme.png       
+[img-fast-deployment-options]:  ../../images/fast/qsg/en/deployment-options/2-qsg-fast-depl-options.png    
+[img-insecure-connection]:     ../../images/fast/qsg/common/deployment-options/3-qsg-fast-depl-insecure-cert.png    
+[img-qsg-deployment-scheme]:    ../../images/fast/qsg/en/deployment-options/4-qsg-fast-depl-scheme.png
     
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com    
 

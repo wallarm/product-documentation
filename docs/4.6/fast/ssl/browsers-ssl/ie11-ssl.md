@@ -1,11 +1,11 @@
-[img-cert-request]:         ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-certificate-request.png
-[img-cert-window]:          ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-certificate-window.png
-[img-store-location]:       ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-store-location.png
-[img-store]:                ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-store-selection.png
-[img-wizard-resume]:        ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-wizard-resume.png
-[img-fingerprint-warning]:  ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-fingerprint-warning.png
-[img-import-ok]:            ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-import-success.png
-[img-https-ok]:             ../../../images/ssl/common/browsers-ssl/ie11-ssl/i-https-ok.png
+[img-cert-request]:         ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-certificate-request.png
+[img-cert-window]:          ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-certificate-window.png
+[img-store-location]:       ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-store-location.png
+[img-store]:                ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-store-selection.png
+[img-wizard-resume]:        ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-wizard-resume.png
+[img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-fingerprint-warning.png
+[img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-import-success.png
+[img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-https-ok.png
         
     
 #   FAST Node Self-signed SSL-certificate Installation for Microsoft Internet Explorer 11

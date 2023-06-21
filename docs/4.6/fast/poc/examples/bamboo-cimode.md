@@ -12,7 +12,7 @@ The example below uses the YAML specification to configure the integration.
 
 To securely use the [FAST node token](../../operations/create-node.md), pass its value in the [Bamboo global variable](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html).
 
-![!Passing Bamboo global variable](../../../images/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![!Passing Bamboo global variable](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -124,7 +124,7 @@ An example includes the following steps:
 
 The result of security testing will be displayed in the build logs in Bamboo UI. Also, Bamboo allows downloading the full `.log` file.
 
-![!The result of running the FAST node in testing mode](../../../images/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
+![!The result of running the FAST node in testing mode](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
 ## More Examples
 

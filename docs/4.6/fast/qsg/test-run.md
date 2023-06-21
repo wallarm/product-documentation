@@ -1,8 +1,8 @@
-[img-fast-node-internals]: ../../images/qsg/en/test-run/18-qsg-fast-test-run-proxy-internals.png
-[img-view-recording-cloud]: ../../images/qsg/common/test-run/20-qsg-fast-test-run-baselines-recording.png
-[img-request-exec-result]:  ../../images/qsg/common/test-run/22-qsg-fast-test-run-gruyere-request.png
-[img-incoming-baselines]:   ../../images/qsg/common/test-run/23-qsg-fast-test-run-processing.png    
-[img-xss-found]:            ../../images/qsg/common/test-run/24-qsg-fast-test-run-vuln.png
+[img-fast-node-internals]: ../../images/fast/qsg/en/test-run/18-qsg-fast-test-run-proxy-internals.png
+[img-view-recording-cloud]: ../../images/fast/qsg/common/test-run/20-qsg-fast-test-run-baselines-recording.png
+[img-request-exec-result]:  ../../images/fast/qsg/common/test-run/22-qsg-fast-test-run-gruyere-request.png
+[img-incoming-baselines]:   ../../images/fast/qsg/common/test-run/23-qsg-fast-test-run-processing.png    
+[img-xss-found]:            ../../images/fast/qsg/common/test-run/24-qsg-fast-test-run-vuln.png
 
 
 [link-deployment]:          deployment.md

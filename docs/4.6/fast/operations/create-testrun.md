@@ -1,5 +1,5 @@
-[img-test-run-creation]:            ../../images/operations/common/create-testrun/test-run-create.png
-[img-testrun-adv-settings]:         ../../images/operations/common/create-testrun/test-run-settings.png
+[img-test-run-creation]:            ../../images/fast/operations/common/create-testrun/test-run-create.png
+[img-testrun-adv-settings]:         ../../images/fast/operations/common/create-testrun/test-run-settings.png
 
 [doc-token-information]:    internals.md#token
 [doc-state-description]:    check-testrun-status.md

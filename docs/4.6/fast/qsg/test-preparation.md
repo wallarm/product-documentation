@@ -1,8 +1,8 @@
-[img-test-scheme]:                  ../../images/qsg/en/test-preparation/12-qsg-fast-test-prep-scheme.png
-[img-google-gruyere-startpage]:     ../../images/qsg/common/test-preparation/13-qsg-fast-test-prep-gruyere.png
-[img-policy-screen]:                ../../images/qsg/common/test-preparation/14-qsg-fast-test-prep-policy-screen.png
-[img-wizard-general]:               ../../images/qsg/common/test-preparation/15-qsg-fast-test-prep-policy-wizard-general.png
-[img-wizard-insertion-points]:      ../../images/qsg/common/test-preparation/16-qsg-fast-test-prep-policy-wizard-ins-points.png
+[img-test-scheme]:                  ../../images/fast/qsg/en/test-preparation/12-qsg-fast-test-prep-scheme.png
+[img-google-gruyere-startpage]:     ../../images/fast/qsg/common/test-preparation/13-qsg-fast-test-prep-gruyere.png
+[img-policy-screen]:                ../../images/fast/qsg/common/test-preparation/14-qsg-fast-test-prep-policy-screen.png
+[img-wizard-general]:               ../../images/fast/qsg/common/test-preparation/15-qsg-fast-test-prep-policy-wizard-general.png
+[img-wizard-insertion-points]:      ../../images/fast/qsg/common/test-preparation/16-qsg-fast-test-prep-policy-wizard-ins-points.png
 
 [link-previous-chapter]:            deployment.md
 [link-https-google-gruyere]:        https://google-gruyere.appspot.com

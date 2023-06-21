@@ -40,7 +40,7 @@ The policy regulates the following points:
     Processing of any other points in the request is not performed.
 
 {% collapse title="Policy example" %}
-![!Policy example](../../../images/operations/common/test-policy/overview/policy-flow-example.png)
+![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
 The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.
 

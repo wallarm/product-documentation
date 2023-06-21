@@ -1,6 +1,6 @@
-[img-cert-request]:     ../../../images/ssl/common/browsers-ssl/firefox-ssl/f-certificate-request.png
-[img-cert-download]:    ../../../images/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
-[img-https-ok]:         ../../../images/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
+[img-cert-request]:     ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-request.png
+[img-cert-download]:    ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
+[img-https-ok]:         ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
     
     
 #   FAST Node Self-signed SSL-certificate Installation for Mozilla Firefox

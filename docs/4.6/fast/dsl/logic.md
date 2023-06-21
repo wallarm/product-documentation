@@ -1,13 +1,13 @@
-[img-phases-mod-overview]:              ../../images/dsl/common/mod-phases.png
-[img-phases-non-mod-overview]:          ../../images/dsl/common/non-mod-phases.png
-[img-mod-workflow]:                     ../../images/dsl/common/mod-workflow.png
-[img-non-mod-workflow]:                 ../../images/dsl/common/non-mod-workflow.png
-[img-workers]:                          ../../images/dsl/en/workers.png
+[img-phases-mod-overview]:              ../../images/fast/dsl/common/mod-phases.png
+[img-phases-non-mod-overview]:          ../../images/fast/dsl/common/non-mod-phases.png
+[img-mod-workflow]:                     ../../images/fast/dsl/common/mod-workflow.png
+[img-non-mod-workflow]:                 ../../images/fast/dsl/common/non-mod-workflow.png
+[img-workers]:                          ../../images/fast/dsl/en/workers.png
 
-[img-incomplete-policy]:                ../../images/dsl/common/incomplete-policy.png
-[img-incomplete-policy-remediation-1]:  ../../images/dsl/common/incomplete-policy-remediation-1.png
-[img-incomplete-policy-remediation-2]:  ../../images/dsl/common/incomplete-policy-remediation-2.png
-[img-wrong-baseline]:                   ../../images/dsl/common/wrong-baseline.png   
+[img-incomplete-policy]:                ../../images/fast/dsl/common/incomplete-policy.png
+[img-incomplete-policy-remediation-1]:  ../../images/fast/dsl/common/incomplete-policy-remediation-1.png
+[img-incomplete-policy-remediation-2]:  ../../images/fast/dsl/common/incomplete-policy-remediation-2.png
+[img-wrong-baseline]:                   ../../images/fast/dsl/common/wrong-baseline.png   
 
 [link-policy]:              ../TERMS-GLOSSARY.md#test-policy
 [doc-policy-in-detail]:     ../operations/test-policy/overview.md

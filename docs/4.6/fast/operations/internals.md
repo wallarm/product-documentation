@@ -1,11 +1,11 @@
-[img-testpolicy-id]:                        ../../images/operations/common/internals/policy-id.png
-[img-execution-timeline-recording]:         ../../images/operations/en/internals/execution-timeline.png
-[img-execution-timeline-no-recording]:      ../../images/operations/en/internals/execution-timeline-existing-testrecord.png
-[img-testrecord]:                           ../../images/operations/en/internals/testrecord-explained.png           
-[img-fast-node]:                            ../../images/operations/common/internals/fast-node.png
-[img-reuse-token]:                          ../../images/operations/common/internals/reuse-token.png
-[img-components-relations]:                 ../../images/operations/common/internals/components-relations.png
-[img-common-timeline-no-recording]:         ../../images/operations/en/internals/common-timeline-existing-testrecord.png
+[img-testpolicy-id]:                        ../../images/fast/operations/common/internals/policy-id.png
+[img-execution-timeline-recording]:         ../../images/fast/operations/en/internals/execution-timeline.png
+[img-execution-timeline-no-recording]:      ../../images/fast/operations/en/internals/execution-timeline-existing-testrecord.png
+[img-testrecord]:                           ../../images/fast/operations/en/internals/testrecord-explained.png           
+[img-fast-node]:                            ../../images/fast/operations/common/internals/fast-node.png
+[img-reuse-token]:                          ../../images/fast/operations/common/internals/reuse-token.png
+[img-components-relations]:                 ../../images/fast/operations/common/internals/components-relations.png
+[img-common-timeline-no-recording]:         ../../images/fast/operations/en/internals/common-timeline-existing-testrecord.png
 
 [doc-ci-intro]:                     ../poc/integration-overview.md
 [doc-node-deployment-api]:          ../poc/node-deployment.md

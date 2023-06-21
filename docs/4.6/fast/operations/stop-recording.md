@@ -1,4 +1,4 @@
-[img-stop-recording-item]:  ../../images/operations/common/stop-recording/stop-recording-gui.png
+[img-stop-recording-item]:  ../../images/fast/operations/common/stop-recording/stop-recording-gui.png
 
 [doc-about-tr-token]:       internals.md
 [doc-testrun-copying-api]:  copy-testrun.md#copying-a-test-run-via-an-api

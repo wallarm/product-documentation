@@ -2,7 +2,7 @@
 [link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-ext-logic]:       logic.md
 
-[img-collect-uniq]:    ../../images/dsl/en/phases/collect-uniq.png
+[img-collect-uniq]:    ../../images/fast/dsl/en/phases/collect-uniq.png
 
 # The Collect Phase
 

@@ -3,7 +3,7 @@
 [recording-mode]:               ci-mode-recording.md
 [fast-node-token]:              ../operations/create-node.md
 [circleci-set-env-var]:         https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
-[circleci-example-env-var]:     ../../images/poc/common/examples/circleci-cimode/circleci-env-var-example.png
+[circleci-example-env-var]:     ../../images/fast/poc/common/examples/circleci-cimode/circleci-env-var-example.png
 [circleci-fast-plugin]:         https://circleci.com/orbs/registry/orb/wallarm/fast
 [circleci-using-orbs]:          https://circleci.com/docs/2.0/using-orbs/
 [mail-to-us]:                   mailto:support@wallarm.com

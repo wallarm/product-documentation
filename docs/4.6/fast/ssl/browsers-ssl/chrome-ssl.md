@@ -1,16 +1,16 @@
-[img-cert-request]:         ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-certificate-request.png
-[img-adv-settings]:         ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-advanced-settings.png
-[img-cert-mgmt]:            ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-manage-certificates.png
-[img-cert-window]:          ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-certificates-window.png
-[img-cert-wizard]:          ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-certificates-wizard.png
-[img-cert-import]:          ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-file-import.png
-[img-cert-select]:          ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-file-selection.png
-[img-store]:                ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-store-selection.png
-[img-wizard-resume]:        ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-wizard-resume.png    
-[img-fingerprint-warning]:  ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-fingerprint-warning.png
-[img-import-ok]:            ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-import-success.png
-[img-installed-cert]:       ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-installed-certificate.png
-[img-https-ok]:             ../../../images/ssl/common/browsers-ssl/chrome-ssl/c-https-ok.png   
+[img-cert-request]:         ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-certificate-request.png
+[img-adv-settings]:         ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-advanced-settings.png
+[img-cert-mgmt]:            ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-manage-certificates.png
+[img-cert-window]:          ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-certificates-window.png
+[img-cert-wizard]:          ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-certificates-wizard.png
+[img-cert-import]:          ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-file-import.png
+[img-cert-select]:          ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-file-selection.png
+[img-store]:                ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-store-selection.png
+[img-wizard-resume]:        ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-wizard-resume.png    
+[img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-fingerprint-warning.png
+[img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-import-success.png
+[img-installed-cert]:       ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-installed-certificate.png
+[img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-https-ok.png   
     
     
     

@@ -1,5 +1,5 @@
-[img-set-policy-in-gui]:    ../../../images/operations/common/test-policy/overview/tr-gui-set-policy.png
-[img-get-policy-id]:        ../../../images/operations/common/test-policy/overview/get-policy-id.png
+[img-set-policy-in-gui]:    ../../../images/fast/operations/common/test-policy/overview/tr-gui-set-policy.png
+[img-get-policy-id]:        ../../../images/fast/operations/common/test-policy/overview/get-policy-id.png
 
 [doc-pol-tr-relations]:     ../internals.md#fast-test-policy
 [doc-tr-creation-gui]:      ../create-testrun.md#creating-a-test-run-via-web-interface
