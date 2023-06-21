@@ -30,11 +30,11 @@
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 
 
-# Installing Wallarm with All-in-One Binary
+# Deploying with All-in-One Installer
 
-These instructions describe the steps to install Wallarm filtering node as a dynamic module for different NGINX versions and on a number of different Linux OS versions using **all-in-one Wallarm binary**.
+An **all-in-one installer** is designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies. All essential components are installed in their own environment, which eliminates the possibility of dependency conflicts and simplifies the potential for future updates to the Wallarm node.
 
-In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distributive NGINX](dynamic-module-from-distr.md), the **all-in-one binary** simplifies the process by automatically performing the following actions:
+In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distributive NGINX](dynamic-module-from-distr.md), the **all-in-one installer** simplifies the process by automatically performing the following actions:
 
 1. Checking your OS and NGINX version.
 1. Adding Wallarm repositories for the detected OS and NGINX version.
@@ -47,8 +47,18 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 ## Requirements
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* Supported OS: Debian 10, 11 and 12.x, Ubuntu LTS 18.04, 20.04, 22.04, CentOS 7, 8 Stream, 9 Stream, Alma/Rocky Linux 9, Oracle Linux 8.x, Redos, SuSe Linux, and other popular Linux variants.
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm binary. Ensure the access is not blocked by a firewall
+* Supported OS:
+
+    * Debian 10, 11 and 12.x
+    * Ubuntu LTS 18.04, 20.04, 22.04
+    * CentOS 7, 8 Stream, 9 Stream
+    * Alma/Rocky Linux 9, 
+    * Oracle Linux 8.x
+    * Redos, 
+    * SuSe Linux
+    * Other popular Linux distributions
+
+* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
 * Executing all commands as a superuser (e.g. `root`)
 
@@ -77,12 +87,12 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
         * Create the node of the **Wallarm node** type and copy the generated token.
         * Use existing node group - copy token using node's menu → **Copy token**.
 
-## 3. Download all-in-one Wallarm binary
+## 3. Download all-in-one Wallarm installer
 
 Wallarm suggests all-in-one installations for the following processors of node machine:
 
 * x86_64
-* ARM64
+* ARM64 (beta)
 
 To download all-in-one Wallarm [installation script](#script-parameters), execute the command:
 
@@ -92,7 +102,7 @@ To download all-in-one Wallarm [installation script](#script-parameters), execut
     curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
     ```
 
-=== "ARM64 version"
+=== "ARM64 version (beta)"
 
     ```bash
     curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
@@ -100,7 +110,7 @@ To download all-in-one Wallarm [installation script](#script-parameters), execut
 
 The steps below describe the x86_64 version installation. The ARM64 script uses all the same options.
 
-## 4. Run all-in-one Wallarm binary
+## 4. Run all-in-one Wallarm installer
 
 1. Run downloaded script:
 
@@ -162,11 +172,19 @@ Below there are a few of the typical settings that you can apply if needed:
 * [Limiting the maximum request size in the NGINX directive `client_max_body_size`](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
 * [Configuring dynamic DNS resolution in NGINX][dynamic-dns-resolution-nginx]
 
-## Appendix
+## Launch options
 
-### Script parameters
+The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
 
-As soon as you have the all-in one script downloaded, you can get help on it with:
+In interactive mode the following is asked by the script:
+
+* Connect to cloud?
+* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
+* Wallarm token
+
+Also interactive mode includes a reminder that you need to configure the installed node.
+
+Note that as soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
 sudo sh ./wallarm-4.6.11.x86_64-glibc.sh -- -h
@@ -192,15 +210,3 @@ OPTION                      DESCRIPTION
 ```
 
 Note that the `filtering/postanalytics` argument allows installing [separately](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. Without the argument filtering and postanalytics part are installed altogether.
-
-### Script mode
-
-The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
-
-In interactive mode the following is asked by the script:
-
-* Connect to cloud?
-* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
-* Wallarm token
-
-Also interactive mode includes a reminder that you need to configure the installed node.
