@@ -1,4 +1,4 @@
-[doc-inactivity-timeout]:           internals.md#test-run
+[doc-inactivity-timeout]:           ../internals.md#test-run
 
 | API call: | `POST /v1/test_run` |      |
 | ------------ | ------------------- | ---- |

@@ -3,8 +3,8 @@
 [gitlabci-set-env-var]:         https://docs.gitlab.com/ee/ci/variables/
 [gitlabci-example-env-var]:     ../../../images/fast/poc/common/examples/gitlabci-cimode/gitlab-ci-env-var-example.png
 [fast-example-gitlab-result]:   ../../../images/fast/poc/common/examples/gitlabci-cimode/gitlab-ci-example.png
-[fast-ci-mode-record]:          ../ci-mode-recording.html#environment-variables-in-recording-mode
-[fast-ci-mode-test]:            ../ci-mode-testing.html#environment-variables-in-testing-mode
+[fast-ci-mode-record]:          ../ci-mode-recording.md#environment-variables-in-recording-mode
+[fast-ci-mode-test]:            ../ci-mode-testing.md#environment-variables-in-testing-mode
 [mail-to-us]:                   mailto:support@wallarm.com
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
 [fast-example-gitlab-cicd]:     https://gitlab.com/wallarm/fast-example-gitlab-dvwa-integration

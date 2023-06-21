@@ -1,4 +1,4 @@
-[img-quick-help-howto]:     ../../images/fast/fast/onboarding/common/1-quick-help.png
+[img-quick-help-howto]:     ../../images/fast/onboarding/common/1-quick-help.png
 [img-fast-5mins-button]:    ../../images/fast/onboarding/common/2-fast-in-5mins.png
 [img-intro]:                ../../images/fast/onboarding/common/3-intro.png
 [img-deploy]:               ../../images/fast/onboarding/common/4-deploy.png
