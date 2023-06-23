@@ -8,8 +8,8 @@
 !!! info "Necessary data" 
     The following values are used as examples in this document:
 
-        * `token_Qwe12345` as a token.
-        * `rec_1111` and `rec_2222` as test records identifiers.
+    * `token_Qwe12345` as a token.
+    * `rec_1111` and `rec_2222` as test records identifiers.
 
 Several FAST nodes can be deployed simultaneously in concurrent CI/CD workflows. These nodes share the same token and work with a single cloud FAST node.
 

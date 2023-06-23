@@ -50,12 +50,9 @@ To install an SSL certificate to th FAST node, follow these steps:
     * The location of the SSL certificate file inside the container by using the `CA_CERT` variable.
     * The location of the private key file inside the container by using the `CA_KEY` variable.
     * The application publishing port.
-    <br><br>
     
     Use the `-v` option of the `docker run` command to mount the Docker host's directory `<path to the directory with the certificate and key>` in the container. The contents of this directory become available inside the container on the path `<internal path to the directory>`. 
-    <br>
-
-    !!! warning "Note"
+        !!! warning "Note"
         The paths to the certificate and key files specified with the `CA_CERT` and `CA_KEY` environment variables must point to the files in the `<internal path to the directory>` parameter that you specified with the `-v` option of the `docker run` command.   
 
 Now your SSL certificate should be successfully installed. Your FAST node instance will now proxy HTTPS requests without any untrusted certificate messages.

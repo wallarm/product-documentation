@@ -13,8 +13,6 @@
 |  | `rps_per_baseline` | This parameter specifies a limit on the number of test requests (*RPS*, *requests per second*) to be sent to the target application (e.g., there might be 100 test requests derived from a single baseline request).<br>The limit is set per baseline request (no more than `N` test requests per second will be sent for an individual baseline request) in the test run.<br>Minimum value: `1`.<br>Maximum value: `500`.<br>Default value: `null` (RPS is unlimited) |
 |  | `rps` | This parameter is similar to the one described above, except that it limits the RPS globally per test run, not just for a single baseline request.<br>In other words, the whole number of test requests per second should not exceed the specified value regardless of how many baseline requests were recorded during the test run.<br>Minimum value: `1`.<br>Maximum value: `1000`.<br>Default value: `null` (RPS is unlimited) |
 
-<!-- -->
-<br><br>
 **Example of a request:**
 
 ```

@@ -5,8 +5,8 @@ The integration of FAST in CI MODE into the Azure DevOps pipeline is configured 
 !!! info "Configured workflow"
     Further instructions require already configured workflow that corresponds to one of the following points:
 
-      * Test automation is implemented. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps should be added.
-      * The set of baseline requests is already recorded. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [security testing](#adding-the-step-of-security-testing) step should be added.
+    * Test automation is implemented. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps should be added.
+    * The set of baseline requests is already recorded. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [security testing](#adding-the-step-of-security-testing) step should be added.
 
 ## Passing FAST Node Token
 
@@ -17,8 +17,6 @@ To securely use the [FAST node token](../../operations/create-node.md), open you
 ## Adding the Step of Request Recording
 
 --8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
-
-<br>
 
 ??? info "Example of the automated testing step with running FAST node in the recording mode"
     ```
@@ -63,7 +61,7 @@ To implement security testing, follow the instructions:
 !!! warning "Docker Network"
     Before security testing, make sure that the FAST node and test application are running on the same network.
 
-??? info "Example of the automated testing step with running FAST node in the testing mode" %}
+??? info "Example of the automated testing step with running FAST node in the testing mode"
     Since the example below tests the application DVWA that requires authentication, the step of security testing is added to the same job as the step of request recording.
 
     ```

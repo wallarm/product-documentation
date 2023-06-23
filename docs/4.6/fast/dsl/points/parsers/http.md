@@ -122,8 +122,8 @@ The **Header** filter refers to the hash table that contains header names and va
 !!! info "A header name in a point"
     A header name can be specified in a point in one of the following ways:
 
-        * In upper case;
-        * The same way it is specified in the request.
+    * In upper case
+    * The same way it is specified in the request
 
 !!! info "Regular expressions in points"
     The header name in the point can be a regular expression of the [Ruby programming language][link-ruby].

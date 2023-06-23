@@ -15,5 +15,5 @@ To create a FAST node in the Wallarm cloud, do the following:
 3.  Enter the name of the node and press the “Create” button.
 4.  Copy the node’s token and press the “OK” button.
 
-!!! warning "Precautions while working with the token
+!!! warning "Precautions while working with the token"
     It is strongly not recommended to make the value of any token public available.

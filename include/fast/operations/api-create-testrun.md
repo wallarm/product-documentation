@@ -15,8 +15,6 @@
 |  | `rps` | The parameter is similar to the one described above, except that it limits the RPS globally, per test run, not just a single baseline request.<br>In other words, the whole number of test requests per second should not exceed the specified value no matter how many baseline requests were recorded during the test run.<br>Minimum value: `1`.<br>Maximum value: `1000`.<br>Default value: `null` (RPS is unlimited) |
 |  | `inactivity_timeout` | The parameter specifies the time interval in seconds during which the FAST node waits for a new baseline request to arrive.<br>This behavior is described [here][doc-inactivity-timeout] in detail.<br>The timeout has no influence on the processes of creation and execution of security tests for baseline requests that has been recorded.<br>Minimum value: `300` (300 seconds or 5 minutes).<br>Maximum value: `86400` (86400 seconds or 1 day).<br>Default value: `1800` (1800 seconds or 30 minutes) |
 
-<!-- -->
-<br><br>
 **Example of a request:**
 
 ```

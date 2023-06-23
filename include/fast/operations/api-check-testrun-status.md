@@ -4,8 +4,7 @@
 | HTTP header with the token: | `X-WallarmAPI-Token` | Serves to pass the token’s value to the API server |
 | Parameters: | `test_run_id` **(required)** | The identifier of the test run whose state to obtain |
 
-<!-- -->
-<br><br>
+
 **Example of a request:**
 ```
 curl --request GET \

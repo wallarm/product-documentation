@@ -74,15 +74,15 @@ The state is displayed for each baseline request:
 !!! info "Necessary data"
     To proceed with the steps described below, the following pieces of data are required:
     
-        * a token
-        * a test run identifier
+    * a token
+    * a test run identifier
     
     You can get detailed information about test run and token [here][doc-about-tr-token].
     
     The following values are used as example values in this document:
 
-        * `token_Qwe12345` as a token.
-        * `tr_1234` as an identifier of a test run.
+    * `token_Qwe12345` as a token.
+    * `tr_1234` as an identifier of a test run.
 
 
 !!! info "How to choose the right period of time to perform check of a test run"
@@ -92,7 +92,7 @@ You could perform a single check of the test run state by issuing the following 
 
 {% api "Do One-Time Check of Test Run State", method="GET", url="https://us1.api.wallarm.com/v1/test_run/test_run_id" %}
 
-!INCLUDE "include/api-check-testrun-status.md"
+--8<-- "../include/fast/operations/api-check-testrun-status.md"
 
 {% endapi %}
 
@@ -152,20 +152,20 @@ There is a separate group of parameters in the API server's response, that allow
 * `avg_rps`—the average speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
 
     This value is the average number of requests per second (RPS) that FAST sent to the target application in *the whole test run's execution time*:
+
     * From the start of the test run's execution to the current moment of time if the test run is still executing (which is equal to `current time`-`start_time`).
     * From the start of the test run's execution to the end of the test run's execution if the test run's execution is complete (which is equal to `end_time`-`start_time`).
-    <br><br>
-    
-    The value of the `avg_rps` parameter is calculated as *(`sended_requests_count`/(the whole test run's execution time))*.
+
+        The value of the `avg_rps` parameter is calculated as *(`sended_requests_count`/(the whole test run's execution time))*.
     
 * `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (in the moment of obtaining the test run's state). 
 
     The parameter's value is `null` if:
+    
     * There are no vulnerability checks in progress yet (e.g., there are no baseline requests recorded for the newly created test run so far).
     * Test run is not executing (i.e., it is in any state, excluding `"state":"running"`).
-    <br><br>
-    
-    The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
+
+        The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
     
 !!! warning "The possible values of the parameters related to test run's execution speed and time estimates"
     The aforementioned parameters' values are `null` in the first 10 seconds of a test run's execution.

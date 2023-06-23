@@ -34,7 +34,6 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
     * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
     * vulnerability type: SQL injection
     * vulnerability threat level: high
-<br><br>
     
     The corresponding `meta-info` section should look as follows:
     
@@ -54,17 +53,17 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
     
     Set up the extension in such a way that it executes once when the API receives the request for logging in. To do so, add the Collect phase with the uniqueness condition to the extension.
 
-    The `/rest/user/login` request to the API for logging in comprises
+    The `/rest/user/login` request to the API for logging in comprises:
+
     1.  the first part of the path with the `rest` value,
     2.  the second part of the path with the `user` value, and
     3.  the `login` action method
-<br><br>
     
     The corresponding points that refer to these values are the following:
+
     1.  `PATH_0_value` for the first part of the path
     2.  `PATH_1_value` for the second part of the path
     3.  `ACTION_NAME_value` for the `login` action method
-<br><br>
     
     If you add the condition that the combination of these three elements must be unique, then the extension will only run for the first `/rest/user/login` baseline request to the API (such request will be treated as unique one, and all the following requests to the API for logging in will not be unique). 
     
@@ -116,28 +115,28 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
     * `admin@juice-sh.op'--`
         
     !!! info "Inserting the payload into the modified request"
-    The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
+        The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
     
-    ```
-     {
-         "email": "'or 1=1 --",
-         "password":"dummy"
-     }
-     ```
+        ```
+        {
+            "email": "'or 1=1 --",
+            "password":"dummy"
+        }
+        ```
     
-    Because any password can be used to log in successfully due to the chosen payloads, it is not necessary to insert the payload into the password field, which will have a `dummy` value after the Modify phase is applied.
+        Because any password can be used to log in successfully due to the chosen payloads, it is not necessary to insert the payload into the password field, which will have a `dummy` value after the Modify phase is applied.
     
-    Add the `generate` section that will create the test requests that meet the requirements discussed above.
+        Add the `generate` section that will create the test requests that meet the requirements discussed above.
     
-    ```
-    generate:
-      - payload:
-        - "'or 1=1 --"
-        - "admin@juice-sh.op'--"
-      - into: "POST_JSON_DOC_HASH_email_value"
-      - method:
-        - replace
-    ```
+        ```
+        generate:
+          - payload:
+            - "'or 1=1 --"
+            - "admin@juice-sh.op'--"
+          - into: "POST_JSON_DOC_HASH_email_value"
+          - method:
+            - replace
+        ```
 
 6.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
     
@@ -166,7 +165,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 !!! info "Escaping the special symbols"
     Remember to escape the special symbols in the strings.
 
- ##  The Extension File
+##  Extension File
 
 Now the `mod-extension.yaml` file contains the complete set of the sections required for the extension to operate. The listing of the file's content is below:
 
@@ -206,6 +205,6 @@ Now the `mod-extension.yaml` file contains the complete set of the sections requ
         - body: "\"bid\":1"
     ```
 
-##  Using the Extension
+##  Using Extension
 
 For detailed information about how to use the created expression, read [this document][link-using-extension]. 

@@ -16,7 +16,7 @@
     
     Read about the extension types in detail [here][link-ext-logic].
 
- !!! info "Request element description syntax"
+!!! info "Request element description syntax"
      When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
      
      To see detailed information, proceed to this [link][link-points].
@@ -51,7 +51,6 @@ generate:
     Let us suppose that the following mutable request elements were extracted from the baseline request according to the test policy:
     * `GET_uid_value`
     * `HEADER_COOKIE_value`
-<br><br>
     
     The extension will sequentially process all of the mutable elements (also known as insertion points). 
     
@@ -104,7 +103,8 @@ generate:
           - "/%5c../%5c../%5c../%5c../%5c../%5c../%5c../etc/passwd/"
         ```
     
-    You can use special markers as a part of the payload to further expand the possibilities of vulnerability detection.
+    You can use special markers as a part of the payload to further expand the possibilities of vulnerability detection:
+
     * **`STR_MARKER`** — insert a random string into the payload exactly in the position where the `STR_MARKER` is specified. 
         
         For example, the `STR_MARKER` can be used to check the application for an XXS vulnerability.

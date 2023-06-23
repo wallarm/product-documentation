@@ -61,7 +61,7 @@ You can limit the number of requests to be recorded by the FAST node by filterin
 
 You can filter out all non-baseline requests by configuring the `ALLOWED_HOSTS` environment variable.
 
-!INCLUDE "include/env-vars-allowed-hosts.md"
+--8<--  "../include/fast/operations/env-vars-allowed-hosts.md"
 
 The FAST node employs this environment variable in the following way:
 * If the value of the incoming request's `Host` header matches the value specified in the `ALLOWED_HOSTS` variable, then the FAST node considers the request to be a baseline one. The request is then recorded and proxied.

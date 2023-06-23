@@ -30,13 +30,14 @@ This chapter will provide you with an overview of test result interpreting tools
 
     <!-- See the [link][link-how-to-search] for more information about using the search tool. -->
 
-2.  If you select the “Test runs” tab, you can observe the list of all the test runs along with some brief information about each of them, such as
-    -   Test run status (in progress, successful, or failed)
-    -   If a baseline request recording is in progress
-    -   How many baseline requests were recorded
-    -   What vulnerabilities were found (if any)
-    -   The domain name of the target application
-    -   Where the test generation and execution process took place (node or cloud)
+2.  If you select the “Test runs” tab, you can observe the list of all the test runs along with some brief information about each of them, such as:
+
+    * Test run status (in progress, successful, or failed)
+    * If a baseline request recording is in progress
+    * How many baseline requests were recorded
+    * What vulnerabilities were found (if any)
+    * The domain name of the target application
+    * Where the test generation and execution process took place (node or cloud)
 
     ![!Testruns][img-testrun]
 
@@ -45,32 +46,34 @@ This chapter will provide you with an overview of test result interpreting tools
     ![!Test run expanded][img-test-run-expanded]
 
     You can obtain the following information from an expanded test run:
-    -   The number of processed baseline requests
-    -   The test run creation date
-    -   The test run duration
-    -   The number of requests that were sent to the target application
-    -   The status of the baseline requests testing process:
-        -   **Passed** ![!Status: Passed][img-status-passed]
+
+    * The number of processed baseline requests
+    * The test run creation date
+    * The test run duration
+    * The number of requests that were sent to the target application
+    * The status of the baseline requests testing process:
+
+        * **Passed** ![!Status: Passed][img-status-passed]
         
             No vulnerabilities were found for the given baseline request (it depends on the chosen test policy- if you choose another one, then some vulnerabilities might be found) or the test policy is not applicable to the request.
         
-        -   **Failed** ![!Status: Failed][img-status-failed]  
+        * **Failed** ![!Status: Failed][img-status-failed]  
         
             Vulnerabilities were found for the given baseline request.
             
-        -   **In progress** ![!Status: In progress][img-status-inprogress]
+        * **In progress** ![!Status: In progress][img-status-inprogress]
               
             The baseline request is being tested for vulnerabilities.
             
-        -   **Error** ![!Status: Error][img-status-error]  
+        * **Error** ![!Status: Error][img-status-error]  
             
             The testing process was stopped due to errors.
             
-        -   **Waiting** ![!Status: Waiting][img-status-waiting]      
+        * **Waiting** ![!Status: Waiting][img-status-waiting]      
         
             The baseline request is queued for testing. Only a limited number of requests can be tested simultaneously. 
             
-        -   **Interrupted** ![!Status: Interrupted][img-status-interrupted]
+        * **Interrupted** ![!Status: Interrupted][img-status-interrupted]
         
             The testing process was either interrupted manually («Actions» → «Interrupt») or another test run was executed on the same FAST node.   
 
@@ -79,10 +82,11 @@ This chapter will provide you with an overview of test result interpreting tools
     ![!Test run expanded][img-testrun-expanded]
     
     For each individual baseline request the following information is provided:
-    -   Creation time
-    -   The number of test requests that were generated and sent to the target application
-    -   The test policy in use
-    -   The request processing status
+
+    * Creation time
+    * The number of test requests that were generated and sent to the target application
+    * The test policy in use
+    * The request processing status
 
 5.  To view the full log of the request processing, select the “Details” link on the very right:
 
@@ -96,9 +100,4 @@ This chapter will provide you with an overview of test result interpreting tools
 
     ![!Vulnerability details][img-vuln-details]
             
-            
----------
-    
-        
 Now, you should be familiar with the tools that help you to interpret the testing results.
-    

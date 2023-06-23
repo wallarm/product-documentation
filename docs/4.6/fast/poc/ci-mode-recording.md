@@ -20,8 +20,9 @@ FAST node determines the baseline requests among the proxied ones and places the
     To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
     
     The following values are used as examples throughout this chapter:
-      * `token_Qwe12345` as a token.
-      * `rec_0001` as an identifier of a test record.
+
+    * `token_Qwe12345` as a token.
+    * `rec_0001` as an identifier of a test record.
 
 !!! info "Install `docker-compose`"
     The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how FAST node operates in the recording mode.

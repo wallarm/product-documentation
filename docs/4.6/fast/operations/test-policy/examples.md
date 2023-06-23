@@ -38,8 +38,8 @@ This is an unchangeable test policy that allows for working with common request 
 !!! info "Note"
     Please take the following into account:
 
-        * When you create a new test policy, its settings will be identical to those used in the default policy. You can modify the settings of the new policy as needed.
-        * This policy can be used in the [example](../../poc/examples/circleci.md) of FAST integration into CI/CD.
+    * When you create a new test policy, its settings will be identical to those used in the default policy. You can modify the settings of the new policy as needed.
+    * This policy can be used in the [example](../../poc/examples/circleci.md) of FAST integration into CI/CD.
 
 ## Policy that Allows Working with All GET and POST Parameters
 
@@ -81,6 +81,7 @@ This policy allows working with `email` POST parameter in a request. The `email`
 
 * Payloads up to 123 bytes are to be inserted at the beginning of the decoded value of a point (in this particular case, there is the single point `POST_JSON_DOC_HASH_email_value`).
 * It is assumed that
+
     * An anomaly is found if the `SQLITE_ERROR` string is presented in the server response body.
     * No anomaly is found if the server response code value is less than `500`.
     * Fuzzer stops its execution if either all payloads have been checked or if more than two anomalies are found.

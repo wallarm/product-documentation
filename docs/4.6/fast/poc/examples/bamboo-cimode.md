@@ -16,8 +16,6 @@ To securely use the [FAST node token](../../operations/create-node.md), pass its
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-<br>
-
 ## Adding the Step of Request Recording
 
 To implement the request recording, apply the following settings to the job of automated application testing:
@@ -80,7 +78,7 @@ To implement the security testing, add the corresponding separate step to your w
 !!! warning "Docker Network"
     Before security testing, make sure that the FAST node and the test application are running on the same network.
 
-??? info "Example of the security testing step" %}
+??? info "Example of the security testing step"
     The commands are running on the `my-network` network created at the request recording step. The test app, `app-test`, is also running at the request recording step.
 
     1. Add `security_testing` to the list of `stages`. In the example, this step finalizes the workflow.

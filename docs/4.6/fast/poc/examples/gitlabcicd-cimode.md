@@ -21,13 +21,9 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-<br>
-
 ## Adding the Step of Request Recording
 
 --8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
-
-<br>
 
 ??? info "Example of the automated testing step with running FAST node in the recording mode"
     ```
@@ -53,8 +49,6 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 ## Adding the Step of Security Testing
 
 --8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
-
-<br>
 
 ??? info "Example of the security testing step"
     1. Add `security_test` to the list of `stages`.

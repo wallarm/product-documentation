@@ -20,6 +20,7 @@ The policy regulates the following points:
 * The way tests are performed
     
     During testing, FAST follows one or more methods listed below:
+    
     * vulnerabilities detection using built-in FAST extensions, also known as *detects*
     * vulnerabilities detection using custom extensions
     * [anomaly][gl-anomaly] detection using FAST fuzz testing
@@ -39,7 +40,7 @@ The policy regulates the following points:
     
     Processing of any other points in the request is not performed.
 
-??? info "Policy example" %}
+??? info "Policy example"
     ![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
     The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.

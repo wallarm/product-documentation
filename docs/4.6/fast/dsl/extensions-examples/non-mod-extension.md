@@ -31,7 +31,6 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
     * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
     * vulnerability type: SQL injection
     * vulnerability threat level: high
-<br><br>
     
     The corresponding `meta-info` section should look as follows:
     
@@ -123,7 +122,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 !!! info "Escaping the special symbols"
     Remember to escape the special symbols in the strings.
 
- ##  The Extension File
+##  Extension File
 
 Now the `non-mod-extension.yaml` file contains a complete set of the sections required for the extension to operate. The list of the file's contents is shown below:
 
@@ -153,6 +152,6 @@ Now the `non-mod-extension.yaml` file contains a complete set of the sections re
         - body: "\"bid\":1"
     ```
 
-##  Using the Extension
+##  Using Extension
 
 For detailed information about how to use the created expression, read [this document][link-using-extension].

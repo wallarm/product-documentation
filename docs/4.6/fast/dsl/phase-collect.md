@@ -13,7 +13,7 @@
     
     Read about the extension types in detail [here][link-ext-logic].
 
- !!! info "Request elements description syntax
+!!! info "Request elements description syntax"
     When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
     
     To see detailed information, proceed to this [link][link-points].
@@ -87,7 +87,6 @@ The uniqueness condition parameters are as follows:
         * `"PATH_0_value": "en-us"`
         * `"PATH_1_value": "apps"`
         * `"PATH_2_value": "banking"`
-        <br><br>
             
         Thus, the uniqueness condition for the `[PATH_0_value, PATH_1_value]` will be satisfied by any request that contains different values in the first and the second element of the path.
 

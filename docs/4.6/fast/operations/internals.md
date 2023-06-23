@@ -91,7 +91,7 @@ You can [create][link-create-policy] a new policy or [use an existing][link-use-
 !!! info "Choosing the Appropriate Test Policy"
     The choice of the test policy depends on how the tested target application works. It is recommended that you create a distinct test policy for each of the applications you test.
 
- !!! info "Additional Information"
+!!! info "Additional Information"
 
     * [Test policy example][doc-testpolicy-creation-example] from the Quick Start guide
     * [Test policy details][doc-policy-in-detail]
@@ -101,8 +101,9 @@ You can [create][link-create-policy] a new policy or [use an existing][link-use-
 A *test run* describes the single iteration of the vulnerability testing process.
 
 A test run contains:
-* a [test policy][anchor-testpolicy] identifier
-* a [test record][anchor-testrecord] identifier
+
+* [Test policy][anchor-testpolicy] identifier
+* [Test record][anchor-testrecord] identifier
 
 FAST node employs these values while conducting a security test of a target application.
 

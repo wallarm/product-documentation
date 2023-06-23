@@ -23,9 +23,9 @@ While in testing mode, the FAST node creates a test run based on the test record
     
     The following values are used as examples throughout this chapter:
         
-        * `tr_1234` as an identifier of a test run
-        * `rec_0001` as an identifier of a test record
-        * `bl_7777` as an identifier of a baseline request
+    * `tr_1234` as an identifier of a test run
+    * `rec_0001` as an identifier of a test record
+    * `bl_7777` as an identifier of a baseline request
 
 !!! info "Install `docker-compose`"
     The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how the FAST node operates in the testing mode.

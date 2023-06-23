@@ -34,9 +34,9 @@
     
     The following values are used as examples throughout this chapter:
     
-        * `token_Qwe12345` as a token.
-        * `tr_1234` as an identifier of a test run.
-        * `rec_0001` as an identifier of a test record.
+    * `token_Qwe12345` as a token.
+    * `tr_1234` as an identifier of a test run.
+    * `rec_0001` as an identifier of a test record.
 
 Running and configuration of FAST node comprises the following steps:
 1.  [Deployment of the Docker Container with the FAST Node.][anchor-node]
@@ -125,7 +125,7 @@ To do so, periodically check the test run status by issuing the following API ca
 
 {% api "Do One-Time Check of Test Run State", method="GET", url="https://us1.api.wallarm.com/v1/test_run/test_run_id" %}
 
-!INCLUDE "include/api-check-testrun-status-recording.md"
+--8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
 
 {% endapi %}
 

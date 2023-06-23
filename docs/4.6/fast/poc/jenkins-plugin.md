@@ -16,11 +16,10 @@
 
 # Integration of Wallarm FAST Plugin with Jenkins
 
-> ####  Warning:: Compatibility
->
-> Please note that the Wallarm FAST plugin only works with Freestyle Jenkins projects.
-> If your project is a Pipeline type, then please check out the [example of integration with Jenkins via FAST node][fast-jenkins-cimode].
->
+!!! warning "Compatibility"
+    Please note that the Wallarm FAST plugin only works with Freestyle Jenkins projects.
+    
+    If your project is a Pipeline type, then please check out the [example of integration with Jenkins via FAST node][fast-jenkins-cimode].
 
 ## Step 1: Installing Plugin
 
@@ -50,8 +49,8 @@ If problems have been encountered during installation, then build the plugin man
 !!! info "Configured workflow"
     Further instructions will require the configured Jenkins workflow to correspond to one of the following points:
 
-        * Test automation must be implemented. In this case, the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps will be added.
-        * Set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
+    * Test automation must be implemented. In this case, the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps will be added.
+    * Set of baseline requests must be recorded. In this case, the [security testing](#adding-the-step-of-security-testing) step will be added.
 
 ### Adding the Step of Request Recording
 

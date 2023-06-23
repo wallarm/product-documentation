@@ -31,6 +31,7 @@ You can do this in either of the following ways:
     **Example:**
     
     Run the command below to launch the FAST node in the Docker container with the following arguments:
+
     1.  The name of the container: `fast-node`.
     2.  The environment variables file: `/home/user/fast.cfg`.
     3.  The FAST extensions directory path: `/home/user/extensions`.
@@ -63,10 +64,10 @@ You can do this in either of the following ways:
         **Example:**
         
         Run the command below to launch the FAST node in the Docker container with the following arguments:
+
         1.  The name of the container: `fast-node`.
         2.  The environment variables file: `/home/user/fast.cfg`.
         3.  The port to which the `8080` port of the container is published: `9090`.
-        <br><br>
         
         ```
         $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
@@ -135,14 +136,14 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     !!! info "Stopping the baseline request recording process"
         After sending the baseline request, it is recommended to stop the recording process. This procedure is described [here][link-stop-recording].
 
-     6.  In the FAST node console output you will see how:  
+6.  In the FAST node console output you will see how:  
+
     * the target application is tested using the built-in FAST detects,
     * the modifying FAST extension executes for the POST parameters in the baseline request, and
-    * the non-modifying FAST extension executes for the URI parameter in the baseline request.<br><br>
---8<-- "../include/fast/console-include/dsl/fast-node-working.md"    
-    
+    * the non-modifying FAST extension executes for the URI parameter in the baseline request.
+    --8<-- "../include/fast/console-include/dsl/fast-node-working.md"
+
     You can see the full log of request processing by opening the test run information on the Wallarm web interface and clicking the “Details” link.
-<br><br>
     
     ![!Detailed test run information][img-testrun-details]
     

@@ -24,9 +24,8 @@ To install the certificate for the Google Chrome browser, do the following:
 2.  Request the file `cert.der` from any domain via HTTP using the browser.
 
     For example, you can use one of the following links:
-    -   <http://wallarm.get/cert.der>
-    -   <http://example.com/cert.der>
-    <br><br>
+    * <http://wallarm.get/cert.der>
+    * <http://example.com/cert.der>
 
     The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
 

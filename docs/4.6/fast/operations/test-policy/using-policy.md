@@ -28,7 +28,6 @@ You can specify the test policy in the following ways:
     * in the API request if the test is [created][doc-tr-creation-api] or [copied][doc-tr-copying-api] via API methods
     * in the [`TEST_RUN_POLICY_ID`][doc-tr-pid-envvar] environment variable if you manage testing in [FAST node][doc-ci-mode]
         
-    <br>
     You can find test policy ID in the list of policies on your Wallarm account for the [EU cloud][link-pol-list-eu] or the [US cloud][link-pol-list-us].
 
     ![!Getting policy ID][img-get-policy-id]

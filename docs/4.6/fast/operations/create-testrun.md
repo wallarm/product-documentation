@@ -31,7 +31,7 @@ Create a test run by issuing the following API call:
 
 {% api "Create New Test Run", method="POST", url="https://us1.api.wallarm.com/v1/test_run" %}
 
-!INCLUDE "include/api-create-testrun.md"
+--8<-- "../include/fast/operations/api-create-testrun.md"
 
 {% endapi %}
 

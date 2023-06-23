@@ -12,8 +12,8 @@
 !!! info "Necessary Data"
     To copy a test run via an API call, the following pieces of data are required:
     
-        * a token
-        * an existing test record identifier
+    * a token
+    * an existing test record identifier
 
     To copy a test run via a web interface, a Wallarm account is required.
 
@@ -21,8 +21,8 @@
     
     The following values are used as examples in this document:
 
-        * `token_Qwe12345` as a token.
-        * `rec_0001` as a test record.
+    * `token_Qwe12345` as a token.
+    * `rec_0001` as a test record.
 
 When a test run is being copied, an existing [test record][doc-testrecord] is reused.
 
@@ -59,7 +59,7 @@ To copy and execute a test run, issue this API call:
 
 {% api "Copy test run", method="POST", url="https://us1.api.wallarm.com/v1/test_run" %}
 
-!INCLUDE "include/api-copy-testrun.md"
+--8<-- "../include/fast/operations/api-copy-testrun.md"
 
 {% endapi %}     
 

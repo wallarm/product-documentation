@@ -17,4 +17,3 @@
     * The “RPS per test run” slider defines the request per second limit for the test run. This setting can take values from `1` to `1000`. The default value is `1000`.
     * The “RPS per baseline” slider defines the request per second limit for one baseline request. This setting can take values from `1` to `500`. The default value is `500`.
     * The “Stop baseline recording after” slider defines the test run time limit. This setting can take values from `5 min` (5 minutes) to `1 day` (24 hours). The default value is `30 min` (30 minutes).
-    <br><br>

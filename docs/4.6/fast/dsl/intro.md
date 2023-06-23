@@ -14,7 +14,7 @@ The logic of the extensions may include elements described with regular expressi
 
 --8<-- "../include/fast/cloud-note.md"
 
-  !!! info "Request element description syntax"
-      When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+!!! info "Request element description syntax"
+    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
 
-      To see detailed information, proceed to this [link][link-points].
+    To see detailed information, proceed to this [link][link-points].

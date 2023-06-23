@@ -57,20 +57,19 @@ The use of the Detect phase is obligatory for each extension type. This phase re
 
 During a modifying extension operation, a baseline request sequentially proceeds through the Collect, Match, Modify, and Generate phases, all of which are optional and may not be included in the extension. A single test request or multiple test requests will be formed as a result of proceeding through these phases. These requests will be sent to the target application to check it for vulnerabilities.
 
-<!-- -->
-!!! info "An extension without optional phases
->   
->   If no optional phases are applied to the baseline request, the test request matches the baseline request. 
- ![!Modifying extension phases overview][img-phases-mod-overview]
+!!! info "An extension without optional phases"
+    If no optional phases are applied to the baseline request, the test request matches the baseline request. 
+
+![!Modifying extension phases overview][img-phases-mod-overview]
 
 If a baseline request satisfies a defined FAST [test policy][doc-policy-in-detail] then the request contains one or more parameters that are allowed for processing. The modifying extension iterates through these parameters:
+
  1. Each parameter passes through the extension phases and the corresponding test requests are created and executed.
  2. The extension proceeds with the next parameter until all parameters that comply with the policy are processed.  
 
 The image below shows a POST request with some POST parameters as an example.
 
 ![!Modifying extension workflow overview][img-mod-workflow]
-
 
 ##  How a Nonmodifying Extension Works
 
