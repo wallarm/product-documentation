@@ -41,29 +41,27 @@ All detected bytes are provided in the anomaly description:
 
 ![!Anomaly description][img-anomaly-description]
 
-{% collapse title="Fuzzer operation example" %}
+??? info "Fuzzer operation example"
+    Let the payload size of 250 bytes [replace](fuzzer-configuration.md#payloads-section) the first 250 bytes of some point value.
 
-Let the payload size of 250 bytes [replace](fuzzer-configuration.md#payloads-section) the first 250 bytes of some point value.
+    In these conditions, the fuzzer creates two requests to send all known anomalous bytes: one with the payload of 250 bytes and another with the payload of 5 bytes.
 
-In these conditions, the fuzzer creates two requests to send all known anomalous bytes: one with the payload of 250 bytes and another with the payload of 5 bytes.
+    The initial point value in the baseline request will be modified as follows:
 
-The initial point value in the baseline request will be modified as follows:
+    * If the value is longer than 250 bytes: initially the first 250 bytes of the value will be replaced by 250 bytes of the payload, then the first 250 bytes will be replaced by 5 bytes of the payload.
+    * If the value is shorter than 250 bytes: initially the value will be fully replaced by 250 bytes of the payload, then the value will be fully replaced by 5 bytes of the payload.
 
-* If the value is longer than 250 bytes: initially the first 250 bytes of the value will be replaced by 250 bytes of the payload, then the first 250 bytes will be replaced by 5 bytes of the payload.
-* If the value is shorter than 250 bytes: initially the value will be fully replaced by 250 bytes of the payload, then the value will be fully replaced by 5 bytes of the payload.
+    Suppose that the 5 bytes `ABCDE` payload replaced the first 250 bytes of the long point value `_250-bytes-long-head_qwerty` and caused an anomaly. In other words, test request with the point value `ABCDEqwerty` caused an anomaly.
 
-Suppose that the 5 bytes `ABCDE` payload replaced the first 250 bytes of the long point value `_250-bytes-long-head_qwerty` and caused an anomaly. In other words, test request with the point value `ABCDEqwerty` caused an anomaly.
+    In this case the fuzzer will create 5 additional requests to check  each byte with the following point values:
 
-In this case the fuzzer will create 5 additional requests to check  each byte with the following point values:
+    * `Aqwerty`
+    * `Bqwerty`
+    * `Cqwerty`
+    * `Dqwerty`
+    * `Eqwerty`
 
-* `Aqwerty`
-* `Bqwerty`
-* `Cqwerty`
-* `Dqwerty`
-* `Eqwerty`
-
-One or more such requests will cause an anomaly again and the fuzzer will form the list of detected anomalous bytes, for example: `A`, `C`.
-{% endcollapse %}
+    One or more such requests will cause an anomaly again and the fuzzer will form the list of detected anomalous bytes, for example: `A`, `C`.
 
  Next, you can get information about the [fuzzing configuration][doc-fuzzer-configuration] and the description of rules that define whether the anomaly was found.
 

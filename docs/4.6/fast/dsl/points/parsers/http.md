@@ -22,13 +22,13 @@ The implicit **HTTP parser** performs the annual request processing. Its name sh
 
 The HTTP parser builds a complex data structure on the basis of the baseline request. You can use the following filters to address the elements of this data structure:
 
-*   [URI][anchor1];
-*   [Path][anchor2];
-*   [Action_name][anchor3];
-*   [Action_ext][anchor4];
-*   [Get][anchor5];
-*   [Header][anchor6];
-*   [Post][anchor7].
+* [URI][anchor1];
+* [Path][anchor2];
+* [Action_name][anchor3];
+* [Action_ext][anchor4];
+* [Get][anchor5];
+* [Header][anchor6];
+* [Post][anchor7].
 
 !!! info "Using filters in points"
     Add the name of the filter in upper case to the point to use the filter in the point.
@@ -60,8 +60,8 @@ For the `GET http://example.com/main/login/index.php HTTP/1.1` request, the Path
 | 0      | main     |
 | 1      | login    |
 
-*   The `PATH_0_value` point refers to the `main` value that is located in the array addressed by the Path filter with the `0` index.
-*   The `PATH_1_value` point refers to the `login` value that is located in the array addressed by the Path filter with the `1` index.
+* The `PATH_0_value` point refers to the `main` value that is located in the array addressed by the Path filter with the `0` index.
+* The `PATH_1_value` point refers to the `login` value that is located in the array addressed by the Path filter with the `1` index.
 
 If the request URI contains only one part, the Path filter addresses the empty array.
 
@@ -77,9 +77,9 @@ The Action_name filter refers to a string value. This filter cannot refer to com
 
 
 **Example:** 
-*   The `ACTION_NAME_value` point refers to the `index` value for the `GET http://example.com/login/index.php` request.
+* The `ACTION_NAME_value` point refers to the `index` value for the `GET http://example.com/login/index.php` request.
 
-*   The `ACTION_NAME_value` point refers to the empty value for the `GET http://example.com/login/` request.
+* The `ACTION_NAME_value` point refers to the empty value for the `GET http://example.com/login/` request.
 
 
 ## Action_ext Filter
@@ -90,8 +90,8 @@ The Action_ext filter refers to a string value. This filter cannot refer to comp
 
 **Example:** 
 
-*   The `ACTION_EXT_value` point refers to the `php` value for the `GET http://example.com/main/login/index.php` request.
-*   The Action_ext filter cannot be used in the point that refers the `GET http://example.com/main/login/` request.
+* The `ACTION_EXT_value` point refers to the `php` value for the `GET http://example.com/main/login/index.php` request.
+* The Action_ext filter cannot be used in the point that refers the `GET http://example.com/main/login/` request.
 
 ## Get Filter
 
@@ -111,8 +111,8 @@ For the `POST http://example.com/login?id=01234&username=admin` request, the Get
 | id             | 01234 |
 | username       | admin |
 
-*   The `GET_id_value` point refers to the `01234` value that corresponds to the `id` parameter from the hash table addressed by the Get filter.
-*   The `GET_username_value` point refers to the `admin` value that corresponds to the `username` parameter from the hash table addressed by the Get filter.
+* The `GET_id_value` point refers to the `01234` value that corresponds to the `id` parameter from the hash table addressed by the Get filter.
+* The `GET_username_value` point refers to the `admin` value that corresponds to the `username` parameter from the hash table addressed by the Get filter.
 
 
 ## Header Filter
@@ -150,9 +150,9 @@ request, the Header filter refers to the following hash table:
 | Host            | example.com |
 | Accept-Encoding | gzip        |
 
-*   The `HEADER_Connection_value` point refers to the `keep-alive` value that corresponds to the `Connection` header from the hash table addressed by the Header filter.
-*   The `HEADER_Host_value` point refers to the `example.com` value that corresponds to the `Host` header from the hash table addressed by the Header filter.
-*   The `HEADER_Accept-Encoding_value` point refers to the `gzip` value that corresponds to the `Accept-Encoding` header from the hash table addressed by the Header filter.
+* The `HEADER_Connection_value` point refers to the `keep-alive` value that corresponds to the `Connection` header from the hash table addressed by the Header filter.
+* The `HEADER_Host_value` point refers to the `example.com` value that corresponds to the `Host` header from the hash table addressed by the Header filter.
+* The `HEADER_Accept-Encoding_value` point refers to the `gzip` value that corresponds to the `Accept-Encoding` header from the hash table addressed by the Header filter.
 
 
 
@@ -181,7 +181,7 @@ This is a simple body text.
 body, the `POST_value` point refers to the `This is a simple body text.` value from the request body.
 
 You can also work with a request body that contains complex data structures. Use the following filters and parsers in the point after the Post filter to address the elements of the corresponding data structures: 
-*   The [Form_urlencoded][link-formurlencoded] parser for the request body in the **form-urlencoded** format
-*   The [Multipart][link-multipart] parser for the request body in the **multipart** format
-*   The [filters that are provided by the XML parser][link-xml] for the request body in the **XML** format
-*   The [filters that are provided by the Json_doc parser][link-json] for the request body in the **JSON** format 
+* The [Form_urlencoded][link-formurlencoded] parser for the request body in the **form-urlencoded** format
+* The [Multipart][link-multipart] parser for the request body in the **multipart** format
+* The [filters that are provided by the XML parser][link-xml] for the request body in the **XML** format
+* The [filters that are provided by the Json_doc parser][link-json] for the request body in the **JSON** format 

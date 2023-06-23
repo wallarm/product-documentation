@@ -39,15 +39,14 @@ The policy regulates the following points:
     
     Processing of any other points in the request is not performed.
 
-{% collapse title="Policy example" %}
-![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
+??? info "Policy example" %}
+    ![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
-The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.
+    The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.
 
-Furthermore, the policy allows you to use the built-in FAST extensions and custom extensions while the fuzzer is inactive.
+    Furthermore, the policy allows you to use the built-in FAST extensions and custom extensions while the fuzzer is inactive.
 
-Thus, testing for vulnerabilities using detects and extensions will be performed only for the baseline request **A** (`/app.php?uid=1234`)
-.
+    Thus, testing for vulnerabilities using detects and extensions will be performed only for the baseline request **A** (`/app.php?uid=1234`)
+    .
 
-Testing for vulnerabilities on the baseline request **B** (`/app.php?token=qwe1234`) will not be performed since it does not contain GET parameters allowed for processing. It instead contains the excluded parameter `token`.
-{% endcollapse %}
+    Testing for vulnerabilities on the baseline request **B** (`/app.php?token=qwe1234`) will not be performed since it does not contain GET parameters allowed for processing. It instead contains the excluded parameter `token`.

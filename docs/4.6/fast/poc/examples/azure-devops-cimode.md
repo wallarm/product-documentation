@@ -20,25 +20,23 @@ To securely use the [FAST node token](../../operations/create-node.md), open you
 
 <br>
 
-{% collapse title="Example of the automated testing step with running FAST node in the recording mode" %}
-
-```
-- job: tests
-  steps:
-  - script: docker network create my-network
-    displayName: 'Create my-network'
-  - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-    displayName: 'Run test application on my-network'
-  - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-    displayName: 'Run FAST node in recording mode on my-network'
-  - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-    displayName: 'Run Selenium with FAST node as a proxy on my-network'
-  - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-    displayName: 'Run automated tests on my-network'
-  - script: docker stop selenium fast
-    displayName: 'Stop Selenium and FAST node in recording mode'
-```
-{% endcollapse %}
+??? info "Example of the automated testing step with running FAST node in the recording mode"
+    ```
+    - job: tests
+      steps:
+      - script: docker network create my-network
+        displayName: 'Create my-network'
+      - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
+        displayName: 'Run test application on my-network'
+      - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
+        displayName: 'Run FAST node in recording mode on my-network'
+      - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
+        displayName: 'Run Selenium with FAST node as a proxy on my-network'
+      - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
+        displayName: 'Run automated tests on my-network'
+      - script: docker stop selenium fast
+        displayName: 'Stop Selenium and FAST node in recording mode'
+    ```
 
 ## Adding the Step of Security Testing
 
@@ -65,36 +63,34 @@ To implement security testing, follow the instructions:
 !!! warning "Docker Network"
     Before security testing, make sure that the FAST node and test application are running on the same network.
 
-{% collapse title="Example of the automated testing step with running FAST node in the testing mode" %}
+??? info "Example of the automated testing step with running FAST node in the testing mode" %}
+    Since the example below tests the application DVWA that requires authentication, the step of security testing is added to the same job as the step of request recording.
 
-Since the example below tests the application DVWA that requires authentication, the step of security testing is added to the same job as the step of request recording.
-
-```
-stages:
-- stage: testing
-  jobs:
-  - job: tests
-    steps:
-    - script: docker network create my-network
-      displayName: 'Create my-network'
-    - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-      displayName: 'Run test application on my-network'
-    - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-      displayName: 'Run FAST node in recording mode on my-network'
-    - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-      displayName: 'Run Selenium with FAST node as a proxy on my-network'
-    - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-      displayName: 'Run automated tests on my-network'
-    - script: docker stop selenium fast
-      displayName: 'Stop Selenium and FAST node in recording mode'
-    - script: docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
-      displayName: 'Run FAST node in testing mode on my-network'
-    - script: docker stop dvwa
-      displayName: 'Stop test application'
-    - script: docker network rm my-network
-      displayName: 'Delete my-network'
-```
-{% endcollapse %}
+    ```
+    stages:
+    - stage: testing
+      jobs:
+      - job: tests
+        steps:
+        - script: docker network create my-network
+          displayName: 'Create my-network'
+        - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
+          displayName: 'Run test application on my-network'
+        - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
+          displayName: 'Run FAST node in recording mode on my-network'
+        - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
+          displayName: 'Run Selenium with FAST node as a proxy on my-network'
+        - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
+          displayName: 'Run automated tests on my-network'
+        - script: docker stop selenium fast
+          displayName: 'Stop Selenium and FAST node in recording mode'
+        - script: docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
+          displayName: 'Run FAST node in testing mode on my-network'
+        - script: docker stop dvwa
+          displayName: 'Stop test application'
+        - script: docker network rm my-network
+          displayName: 'Delete my-network'
+    ```
 
 ## Getting the Result of Testing
 
@@ -106,5 +102,5 @@ The result of security testing will be displayed on the Azure DevOps interface.
 
 You can find examples of integrating FAST to Azure DevOps workflow on our [GitHub](https://github.com/wallarm/fast-examples).
 
-> #### Info::
-> If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).
+!!! info "Further questions"
+    If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).

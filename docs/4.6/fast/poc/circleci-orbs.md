@@ -59,31 +59,28 @@ To configure security testing, add the separate step `fast/run_security_tests` t
 | wallarm_fast_port | The port of the FAST node.<br>Default value is 8080. | No |
 | wallarm_version | The version of the used Wallarm FAST Orbs.<br>The versions list is available by clicking the [link][circleci-fast-plugin].<br>Default value is latest.| No|
 
-{% collapse title="Example of ~/.circleci/config.yml" %}
+??? info "Example of ~/.circleci/config.yml"
+    ```
+    version: 2.1
+    jobs:
+      build:
+        machine:
+          image: 'ubuntu-1604:201903-01'
+        steps:
+          - checkout
+          - run:
+              command: >
+                docker run -d --name app-test -p 3000:3000
+                wallarm/fast-example-rails
+              name: Run application
+          - fast/run_security_tests:
+              app_port: '3000'
+              test_record_id: '9058'
+    orbs:
+      fast: 'wallarm/fast@dev:1.1.0'
+    ```
 
-```
-version: 2.1
-jobs:
-  build:
-    machine:
-      image: 'ubuntu-1604:201903-01'
-    steps:
-      - checkout
-      - run:
-          command: >
-            docker run -d --name app-test -p 3000:3000
-            wallarm/fast-example-rails
-          name: Run application
-      - fast/run_security_tests:
-          app_port: '3000'
-          test_record_id: '9058'
-orbs:
-  fast: 'wallarm/fast@dev:1.1.0'
-```
+    You can find more examples of integrating FAST to CircleCI workflow in our [GitHub](https://github.com/wallarm/fast-examples) and [CircleCI](https://circleci.com/gh/wallarm/fast-example-circleci-orb-rails-integration).
 
-You can find more examples of integrating FAST to CircleCI workflow in our [GitHub](https://github.com/wallarm/fast-examples) and [CircleCI](https://circleci.com/gh/wallarm/fast-example-circleci-orb-rails-integration).
-
-{% endcollapse %}
-
-> #### Info::
-> If you have questions related to FAST integration, please [contact us][mail-to-us].
+!!! info "Further questions"
+    If you have questions related to FAST integration, please [contact us][mail-to-us].

@@ -12,28 +12,28 @@
 
 To enable integrating FAST into a CI/CD workflow, you will need
 
-*   Access to the Wallarm portal and a Wallarm account.
+* Access to the Wallarm portal and a Wallarm account.
     
     Create an [account][link-fast-trial] if you do not have one (this account will be tied to the American cloud)
     
-*   The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)
+* The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)
 --8<-- "../include/fast/cloud-note.md"
 
- *   Permissions to create and run Docker containers for your CI/CD workflow
+ * Permissions to create and run Docker containers for your CI/CD workflow
     
-*   A web application or API to test for vulnerabilities (a *target application*)
+* A web application or API to test for vulnerabilities (a *target application*)
     
     It is mandatory that this application use the HTTP or HTTPS protocol for communication.
     
     The target application should remain available until the FAST security testing finishes.
     
-*   A test tool that will test the target application using HTTP and HTTPS requests (a *request source*).
+* A test tool that will test the target application using HTTP and HTTPS requests (a *request source*).
     
     A request source should be able to work with an HTTP or HTTPS proxy server.
     
     [Selenium][link-selenium] is an example of a test tool that satisfies the mentioned requirements.
     
-*   One or more [tokens][doc-about-token].
+* One or more [tokens][doc-about-token].
     <p id="anchor-token"></p>
 
     [Create a FAST node][doc-create-node] in the Wallarm cloud and use the corresponding token in the Docker container when performing a CI/CD task.  

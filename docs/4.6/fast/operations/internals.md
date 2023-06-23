@@ -41,16 +41,16 @@
 
 FAST makes use of the following entities:
 
-*   [Test record.][anchor-testrecord]
-*   [FAST test policy.][anchor-testpolicy]
-*   [Test run.][anchor-testrun]
-*   [Token.][anchor-token]
+* [Test record.][anchor-testrecord]
+* [FAST test policy.][anchor-testpolicy]
+* [Test run.][anchor-testrun]
+* [Token.][anchor-token]
 
 There are a few important relationships between the entities mentioned earlier:
-*   A test policy and a test record may be used by several test runs and FAST nodes.
-*   A token relates to a single FAST node in the Wallarm cloud, a single Docker container with that FAST node, and a single test run.
-*   You can pass the existing token value into a Docker container with the FAST node, provided that the token is not in use by any other Docker container with the node.
-*   If you create a new test run for the FAST node while another test run is in place, then the current test run will stop and be replaced by the new one.
+* A test policy and a test record may be used by several test runs and FAST nodes.
+* A token relates to a single FAST node in the Wallarm cloud, a single Docker container with that FAST node, and a single test run.
+* You can pass the existing token value into a Docker container with the FAST node, provided that the token is not in use by any other Docker container with the node.
+* If you create a new test run for the FAST node while another test run is in place, then the current test run will stop and be replaced by the new one.
 
 ![!Relations between the components][img-components-relations]
 
@@ -76,8 +76,8 @@ Alternatively, it is possible to populate a test record without creation of a te
 Given that the test record is populated with requests, it is possible to use it with another test run if an application under the test can be evaluated for vulnerabilities using a subset of the baseline requests stored in the test record.  
 
 A single test record could be employed by multiple FAST nodes and test runs. This may be useful if:
-*   The same target application is being tested again.
-*   Multiple target applications are being tested concurrently with the same baseline requests.
+* The same target application is being tested again.
+* Multiple target applications are being tested concurrently with the same baseline requests.
 
 ![!Working with a test record][img-testrecord]
  
@@ -94,26 +94,26 @@ You can [create][link-create-policy] a new policy or [use an existing][link-use-
  !!! info "Additional Information"
 
     * [Test policy example][doc-testpolicy-creation-example] from the Quick Start guide
-    *   [Test policy details][doc-policy-in-detail]
+    * [Test policy details][doc-policy-in-detail]
 
 ### Test Run
 
 A *test run* describes the single iteration of the vulnerability testing process.
 
 A test run contains:
-*   a [test policy][anchor-testpolicy] identifier
-*   a [test record][anchor-testrecord] identifier
+* a [test policy][anchor-testpolicy] identifier
+* a [test record][anchor-testrecord] identifier
 
 FAST node employs these values while conducting a security test of a target application.
 
 Each test run is tightly coupled with a single FAST node. If you create a new test run `B` for the FAST node while there is another test run `A` in progress for this node, then the test run `A`’s execution is aborted and replaced by test run `B`.
 
 It is possible to create a test run for two different testing scenarios:
-*   In the first scenario, a target application is being tested for vulnerabilities and the baseline requests' recordings are taking place simultaneously (to a new test record). The requests should flow from the request source to the target application through the FAST node for the baseline requests to be recorded. 
+* In the first scenario, a target application is being tested for vulnerabilities and the baseline requests' recordings are taking place simultaneously (to a new test record). The requests should flow from the request source to the target application through the FAST node for the baseline requests to be recorded. 
 
     A creation of a test run for this scenario will be referred to as “test run creation”  throughout the guide.
 
-*   In the second scenario, a target application is being tested for vulnerabilities with the baseline requests extracted from an existing, non-empty test record. In this scenario, it is not necessary to deploy any request source.
+* In the second scenario, a target application is being tested for vulnerabilities with the baseline requests extracted from an existing, non-empty test record. In this scenario, it is not necessary to deploy any request source.
 
     A creation of a test run for this scenario will be referred to as “test run copying”  throughout the guide.
 
@@ -140,8 +140,8 @@ When you create a test run, its execution begins immediately and follows the fol
     There is a special timeout value set after the creation of a test run. It determines how long FAST should wait for new baseline requests before stopping the recording process due to the absence of baseline requests (the [`inactivity_timeout`][doc-about-timeout] parameter).
     
     If you do not stop the recording process manually, then: 
-    *   The test run continues its execution until the timeout value expires, even if the FAST security tests are already finished.
-    *   Other test runs are not able to reuse the test record until this test run stops. 
+    * The test run continues its execution until the timeout value expires, even if the FAST security tests are already finished.
+    * Other test runs are not able to reuse the test record until this test run stops. 
     
     You could stop the recording process on the FAST node if there are no more baseline requests awaiting. Note the following:
      *  The processes of creation and execution of the security tests are not to be stopped. Test run execution stops when the evaluation of the target application against the vulnerabilities finishes. This behavior helps to decrease the execution time of the CI/CD job.
@@ -192,19 +192,19 @@ The chart below shows the most commonly encountered CI/CD workflow, which compli
 ##  Working with Test Runs
 
 While reading this guide, you will learn how to manage the test run execution process using API calls, specifically:
-*   How to stop the baseline requests recording process if there are no more requests from the request source.
-*   How to check the test run execution status.
+* How to stop the baseline requests recording process if there are no more requests from the request source.
+* How to check the test run execution status.
 
 You need to obtain a [*token*][anchor-token] in order to make such API calls and to bind the test run to the FAST node.
 
 ### Token
 
 A FAST node comprises of:
-*   The up and running Docker container with FAST software.
+* The up and running Docker container with FAST software.
     
     This is where the process of traffic proxying, security test creation, execution take place.
     
-*   The Wallarm cloud FAST node.
+* The Wallarm cloud FAST node.
 
 A token binds the running Docker container with the FAST node in the cloud:
 
@@ -215,8 +215,8 @@ To deploy a FAST node, do the following:
 2.  Deploy a Docker container with the node and pass the token value into the container (this process is described in detail [here][doc-node-deployment]).
 
 The token serves the following purposes as well:
-*   Connecting the test run with the FAST node.
-*   Allowing you to manage the test run execution process by making API calls.
+* Connecting the test run with the FAST node.
+* Allowing you to manage the test run execution process by making API calls.
 
 You could create as many FAST nodes in the Wallarm cloud as you need and obtain a token for each of the nodes. For example, if you have several CI/CD jobs where FAST is required, you may spin up a FAST node in the cloud for each job.
 

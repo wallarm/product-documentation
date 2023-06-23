@@ -71,48 +71,44 @@ detect:
 This section contains the set of the parameters. Each of the parameters describes a single element of the response. Some of the parameters can contain an array of other parameters as a value, creating a hierarchy.
 
 The parameter may have the following characteristics:
-*   Be optional (the parameter can be either present or absent from the request). All of the parameters in the `detect` section satisfy this characteristic.
+* Be optional (the parameter can be either present or absent from the request). All of the parameters in the `detect` section satisfy this characteristic.
  
     !!! warning "A note on the parameters that are required in the `detect` section"
         Despite the fact that both `oob` and `response` parameters are optional, one of them must be present in the `detect` section. Otherwise, the Detect phase will be unable to operate. The `detect` section might also contain both of these parameters.
 
-*   Not have an assigned value.  
+* Not have an assigned value.  
     
-    {% collapse title="Example." %}
-```
-- response
-```    
-    {% endcollapse %}
+    ??? info "Example"
+        ```
+        - response
+        ```    
 
-*   Have a single value specified as a string or number.
+* Have a single value specified as a string or number.
     
-    {% collapse title="Example." %}
-```
-- status: 500
-```
-    {% endcollapse %}
+    ??? info "Example"
+        ```
+        - status: 500
+        ```
 
-*   Have one of multiple assigned values that are specified as a string or number array. 
+* Have one of multiple assigned values that are specified as a string or number array. 
     
-    {% collapse title="Example." %}
-```
-    - status: 
-        - 404
-        - 500
-```
-    {% endcollapse %}
+    ??? info "Example"
+        ```
+            - status: 
+                - 404
+                - 500
+        ```
 
-*   Contain other parameters as a value (the parameters are specified as an array).
+* Contain other parameters as a value (the parameters are specified as an array).
     
-    {% collapse title="Example." %}
-```
-    - headers: 
-        - "Cookie": "example"
-        - "User-Agent":
-            - "Mozilla"
-            - "Chrome"
-```
-    {% endcollapse %}
+    ??? info "Example"
+        ```
+            - headers: 
+                - "Cookie": "example"
+                - "User-Agent":
+                    - "Mozilla"
+                    - "Chrome"
+        ```
 
 The acceptable values for the parameters of the detect section are described in the following sections:
 * [oob][anchor1],

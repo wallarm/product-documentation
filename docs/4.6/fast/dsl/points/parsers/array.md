@@ -13,12 +13,12 @@
 The **Array** filter refers to the values array in any of the baseline request elements that may contain arrays.
 
 The Array filter can be used in the point together with the following filters and parsers:
-*   [Get][anchor1];
-*   [Header][anchor2];
-*   [Form_urlencoded][anchor3];
-*   [Multipart][anchor4];
-*   [Xml_tag][anchor5];
-*   [Json_obj][anchor6].
+* [Get][anchor1];
+* [Header][anchor2];
+* [Form_urlencoded][anchor3];
+* [Multipart][anchor4];
+* [Xml_tag][anchor5];
+* [Json_obj][anchor6].
 
 The elements of this array need to be referred to by using the indexes. The array indexing starts with `0`.
 
@@ -40,8 +40,8 @@ request, the Array filter applied to the `id` query string parameter refers to t
 | 0      | 01234    |
 | 1      | 56789    |
 
-*   The `GET_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` query string parameter values array addressed by the Array filter.
-*   The `GET_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` query string parameter values array addressed by the Array filter.
+* The `GET_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` query string parameter values array addressed by the Array filter.
+* The `GET_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` query string parameter values array addressed by the Array filter.
 
 ## The Example of Using the Header Filter with the Array Filter
 
@@ -60,8 +60,8 @@ request, the Array filter applied to the `X-Identifier` header refers to the fol
 | 0      | 01234    |
 | 1      | 56789    |
 
-*   The `HEADER_X-Identifier_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `X-Identifier` header values array addressed by the Array filter.
-*   The `HEADER_X-Identifier_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `X-Identifier` header values array addressed by the Array filter.
+* The `HEADER_X-Identifier_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `X-Identifier` header values array addressed by the Array filter.
+* The `HEADER_X-Identifier_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `X-Identifier` header values array addressed by the Array filter.
 
 ## The Example of Using the Form_urlencoded Parser and the Array Filter
 
@@ -85,8 +85,8 @@ body, the Array filter applied to the `id` parameter from the request body in th
 | 0      | 01234    |
 | 1      | 56789    |
 
-*   The `POST_FORM_URLENCODED_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` parameter values array addressed by the Array filter.
-*   The `POST_FORM_URLENCODED_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` parameter values array addressed by the Array filter.
+* The `POST_FORM_URLENCODED_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` parameter values array addressed by the Array filter.
+* The `POST_FORM_URLENCODED_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` parameter values array addressed by the Array filter.
 
 ## The Example of Using the Multipart Parser and the Array Filter
 
@@ -113,8 +113,8 @@ request, the Array filter applied to the `id` parameter from the request body in
 | 0      | 01234    |
 | 1      | 56789    |
 
-*   The `POST_MULTIPART_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` parameter values array addressed by the Array filter.
-*   The `POST_MULTIPART_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` parameter values array addressed by the Array filter.
+* The `POST_MULTIPART_id_ARRAY_0_value` refers to the `01234` value that corresponds with the `0` index from the `id` parameter values array addressed by the Array filter.
+* The `POST_MULTIPART_id_ARRAY_1_value` refers to the `56789` value that corresponds with the `1` index from the `id` parameter values array addressed by the Array filter.
 
 ## The Example of Using the Xml_tag Filter and the Array Filter
 
@@ -147,8 +147,8 @@ body, the Array filter applied to the `text` tag from the request body in the XM
 | 0      | Sample text. |
 | 1      | aaaa         |
 
-*   The `POST_XML_XML_TAG_text_ARRAY_0_value` point refers to the `Sample text.` value that corresponds with the `0` index from the `text` tag values array addressed by the Array filter.
-*   The `POST_XML_XML_TAG_text_ARRAY_1_value` point refers to the `aaaa` value that corresponds with the `1` index from the `text` tag values array addressed by the Array filter.
+* The `POST_XML_XML_TAG_text_ARRAY_0_value` point refers to the `Sample text.` value that corresponds with the `0` index from the `text` tag values array addressed by the Array filter.
+* The `POST_XML_XML_TAG_text_ARRAY_1_value` point refers to the `aaaa` value that corresponds with the `1` index from the `text` tag values array addressed by the Array filter.
 
 ## The Example of Using the Json_obj Filter and the Array Filter
 
@@ -175,6 +175,6 @@ body, the Array filter applied to the `rights` JSON object from the request body
 | 0      | read     |
 | 1      | write    |
 
-*   The `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_0_value` point refers to the `read` value that corresponds with the `0` index from the `rights` JSON object values array addressed by the Array
+* The `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_0_value` point refers to the `read` value that corresponds with the `0` index from the `rights` JSON object values array addressed by the Array
 filter.
-*   The `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_1_value` point refers to the `write` value that corresponds with the `1` index from the `rights` JSON object values array addressed by the Array filter.
+* The `POST_JSON_DOC_JSON_OBJ_rights_ARRAY_1_value` point refers to the `write` value that corresponds with the `1` index from the `rights` JSON object values array addressed by the Array filter.

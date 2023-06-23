@@ -44,13 +44,13 @@ generate:
     - payload N
 ```
 
-*   The `into` parameter allows the specification of single or multiple request elements that the payload should be inserted into. This parameter's value can be a string or an array of strings. You can use a [Ruby-formatted regular expression][link-ruby-regexp] as the `into` parameter's value.
+* The `into` parameter allows the specification of single or multiple request elements that the payload should be inserted into. This parameter's value can be a string or an array of strings. You can use a [Ruby-formatted regular expression][link-ruby-regexp] as the `into` parameter's value.
     
     This parameter is optional and it may be absent in the section. If the `into` parameter is omitted, the payload is inserted into the request element that is allowed to be modified according to the given test policy.
     
     Let us suppose that the following mutable request elements were extracted from the baseline request according to the test policy:
-    *   `GET_uid_value`
-    *   `HEADER_COOKIE_value`
+    * `GET_uid_value`
+    * `HEADER_COOKIE_value`
 <br><br>
     
     The extension will sequentially process all of the mutable elements (also known as insertion points). 
@@ -67,11 +67,11 @@ generate:
     
     `into: 'GET_uid_value'`
 
-*   `method` — this optional parameter specifies the list of the methods that will be used to insert the payload into the baseline request element. 
-    *   `prefix` — insert the payload before the baseline request element value.
-    *   `postfix` — insert the payload after the baseline request element value.
-    *   `random` — insert the payload into a random place in the baseline request element value.
-    *   `replace` — replace the baseline request element value with the payload.
+* `method` — this optional parameter specifies the list of the methods that will be used to insert the payload into the baseline request element. 
+    * `prefix` — insert the payload before the baseline request element value.
+    * `postfix` — insert the payload after the baseline request element value.
+    * `random` — insert the payload into a random place in the baseline request element value.
+    * `replace` — replace the baseline request element value with the payload.
     
     ![!Payload insertion methods][img-generate-methods]
     
@@ -89,7 +89,7 @@ generate:
     
     then for a single payload, two test requests are created; for two payloads, four test requests are created (two test requests for each payload), and so on.
 
-*   The `payload` parameter specifies the list of payloads to be inserted into the request parameter to create a test request that will then test the target application for vulnerabilities.
+* The `payload` parameter specifies the list of payloads to be inserted into the request parameter to create a test request that will then test the target application for vulnerabilities.
     
     This parameter is obligatory, and it should always be present in the section. The list should contain at least one payload. If there are multiple payloads, the FAST node sequentially inserts payloads into the request parameter and tests the target application for vulnerabilities using each of the test requests created.
     
@@ -97,38 +97,34 @@ generate:
     
     The payload is a string that is inserted into one of the parameters during the request processing.
     
-    {% collapse title="Example of multiple payloads." %}
-```
-payload:
-  - "') or 1=('1"
-  - "/%5c../%5c../%5c../%5c../%5c../%5c../%5c../etc/passwd/"
-```
-    {% endcollapse %}
+    ??? info "Example of multiple payloads"
+        ```
+        payload:
+          - "') or 1=('1"
+          - "/%5c../%5c../%5c../%5c../%5c../%5c../%5c../etc/passwd/"
+        ```
     
     You can use special markers as a part of the payload to further expand the possibilities of vulnerability detection.
-    *   **`STR_MARKER`** — insert a random string into the payload exactly in the position where the `STR_MARKER` is specified. 
+    * **`STR_MARKER`** — insert a random string into the payload exactly in the position where the `STR_MARKER` is specified. 
         
         For example, the `STR_MARKER` can be used to check the application for an XXS vulnerability.
         
-        {% collapse title="Example." %}
-`'userSTR_MARKER'`
-        {% endcollapse %}
+        ??? info "Example"
+            `'userSTR_MARKER'`
     
-    *   **`CALC_MARKER`** — insert a string containing a random arithmetic expression (for example, `1234*100`) into the payload exactly in the position where the `CALC_MARKER` is specified.
+    * **`CALC_MARKER`** — insert a string containing a random arithmetic expression (for example, `1234*100`) into the payload exactly in the position where the `CALC_MARKER` is specified.
         
         For example, the `CALC_MARKER` can be used to check the application for an RCE vulnerability.
         
-        {% collapse title="Example." %}
-`'; bc <<< CALC_MARKER'`
-        {% endcollapse %}
+        ??? info "Example"
+            `'; bc <<< CALC_MARKER'`
     
-    *   **`DNS_MARKER`** — insert a string containing a random domain (for example, `r4nd0m.wlrm.tl`) into the payload exactly in the position where the `DNS_MARKER` is specified.
+    * **`DNS_MARKER`** — insert a string containing a random domain (for example, `r4nd0m.wlrm.tl`) into the payload exactly in the position where the `DNS_MARKER` is specified.
         
         For example, the `DNS_MARKER` can be used to check the application for DNS Out-of-Bound vulnerabilities.
 
-        {% collapse title="Example." %}
-`'; ping DNS_MARKER'`
-    {% endcollapse %}
+        ??? info "Example"
+            `'; ping DNS_MARKER'`
     
     !!! info "Markers operation logic"
         If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].

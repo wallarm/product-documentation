@@ -53,49 +53,49 @@ The request element in the list may contain [regular expressions in the Ruby reg
 The `uniq` uniqueness condition comprises the array of the request elements that contain the data that is used to check the uniqueness of the baseline request. The `testrun` parameter may be used as well.
 
 The uniqueness condition parameters are as follows:
-*   **`- [request element]`**
+* **`- [request element]`**
     
     The request should contain unique data in the request element for the request to be treated as unique.
     
-    {% collapse title="Example." %}
-`- [GET_uid_value]` — the request’s uniqueness is defined by the `uid` GET parameter data (in other words, the extension should run for each of the baseline requests with a unique value of the `uid` GET parameter).
+    ??? info "Example"
+        `- [GET_uid_value]` — the request’s uniqueness is defined by the `uid` GET parameter data (in other words, the extension should run for each of the baseline requests with a unique value of the `uid` GET parameter).
 
-*   `example.com/example/app.php?uid=1` is a unique request.
-*   `example.com/demo/app.php?uid=1` is not a unique request.
-*   `example.com/demo/app.php?uid=` is a unique request.
-*   `example.org/billing.php?uid=1` is not a unique request.
-*   `example.org/billing.php?uid=abc` is a unique request.
-    {% endcollapse %}
+        * `example.com/example/app.php?uid=1` is a unique request.
+        * `example.com/demo/app.php?uid=1` is not a unique request.
+        * `example.com/demo/app.php?uid=` is a unique request.
+        * `example.org/billing.php?uid=1` is not a unique request.
+        * `example.org/billing.php?uid=abc` is a unique request.
 
-*   **`- [request element 1, request element 2, …, request element N]`**
+* **`- [request element 1, request element 2, …, request element N]`**
     
     The request should contain the set of N elements, and the request element data in each of these sets should be unique for the request to be treated as unique.
     
-    {% collapse title="Example 1." %}
-`- [GET_uid_value, HEADER_COOKIE_value]` — the request’s uniqueness is determined by the `uid` GET parameter data and the `Cookie` HTTP header data (in other words, the extension should run for each of the baseline requests with the unique value of the `uid` GET parameter and the `Cookie` header).
-*   `example.org/billing.php?uid=1, Cookie: client=john` is a unique request.
-*   `example.org/billing.php?uid=1, Cookie: client=ann` is a unique request.
-*   `example.com/billing.aspx?uid=1, Cookie: client=john` is not a unique request.
-    {% endcollapse %}
+    ??? info "Example 1"
+        `- [GET_uid_value, HEADER_COOKIE_value]` — the request’s uniqueness is determined by the `uid` GET parameter data and the `Cookie` HTTP header data (in other words, the extension should run for each of the baseline requests with the unique value of the `uid` GET parameter and the `Cookie` header).
+
+        * `example.org/billing.php?uid=1, Cookie: client=john` is a unique request.
+        * `example.org/billing.php?uid=1, Cookie: client=ann` is a unique request.
+        * `example.com/billing.aspx?uid=1, Cookie: client=john` is not a unique request.
     
-    {% collapse title="Example 2." %}
-`- [PATH_0_value, PATH_1_value]` — define the request’s uniqueness by the pair of the first and the second elements of the path (in other words, run the extension for each of the baseline requests with the unique value of the pair containing the `PATH_0` and `PATH_1` parameters).
+    ??? info "Example 2"
+        `- [PATH_0_value, PATH_1_value]` — define the request’s uniqueness by the pair of the first and the second elements of the path (in other words, run the extension for each of the baseline requests with the unique value of the pair containing the `PATH_0` and `PATH_1` parameters).
+            
+        Wallarm performs the parsing of the request elements during element processing. For each of the URI paths in the form of `/en-us/apps/banking/` the Path parser puts each of the path elements into the PATH array.
+            
+        You can access each of the array element values using its index. For the `/en-us/apps/banking/` path mentioned earlier, the parser provides the following data:
+
+        * `"PATH_0_value": "en-us"`
+        * `"PATH_1_value": "apps"`
+        * `"PATH_2_value": "banking"`
+        <br><br>
+            
+        Thus, the uniqueness condition for the `[PATH_0_value, PATH_1_value]` will be satisfied by any request that contains different values in the first and the second element of the path.
+
+        * `example.com/en-us/apps/banking/charge.php` is a unique request.
+        * `example.com/en-us/apps/banking/vip/charge.php` is not a unique request.
+        * `example.com/de-de/apps/banking/vip/charge.php` is a unique request.
     
-Wallarm performs the parsing of the request elements during element processing. For each of the URI paths in the form of `/en-us/apps/banking/` the Path parser puts each of the path elements into the PATH array.
-    
-You can access each of the array element values using its index. For the `/en-us/apps/banking/` path mentioned earlier, the parser provides the following data:
-*   `"PATH_0_value": "en-us"`
-*   `"PATH_1_value": "apps"`
-*   `"PATH_2_value": "banking"`
-<br><br>
-    
-Thus, the uniqueness condition for the `[PATH_0_value, PATH_1_value]` will be satisfied by any request that contains different values in the first and the second element of the path.
-*   `example.com/en-us/apps/banking/charge.php` is a unique request.
-*   `example.com/en-us/apps/banking/vip/charge.php` is not a unique request.
-*   `example.com/de-de/apps/banking/vip/charge.php` is a unique request.
-    {% endcollapse%}
-    
-*   **`- testrun`**
+* **`- testrun`**
     
     The extension will be executed once in a test run if the test request is successfully created (in other words, if all the other phases are passed).
     

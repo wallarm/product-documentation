@@ -21,8 +21,8 @@
     
     The following values are used as example values in this document:
         
-        *   `token_Qwe12345` as a token.
-        *   `tr_1234` as an identifier of a test run.
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
 
 The need to stop baseline requests recording is described by the [link][link-stop-explained]. 
 
@@ -37,8 +37,8 @@ Stop the recording process by issuing the following API call:
 {% endapi %}
 
 If the request to the API server is successful, you are presented with the server’s response. The response provides useful information, including:
-*   the state of the recording process (the `recording` parameter’s value).
-*   the identifier of the corresponding test record (the `test_record_id` parameter).
+* the state of the recording process (the `recording` parameter’s value).
+* the identifier of the corresponding test record (the `test_record_id` parameter).
 
 If the parameter’s value is `false`, then the stop is successful.
 

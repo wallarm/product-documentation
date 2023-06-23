@@ -21,8 +21,8 @@
     
     The following values are used as examples in this document:
 
-        *   `token_Qwe12345` as a token.
-        *   `rec_0001` as a test record.
+        * `token_Qwe12345` as a token.
+        * `rec_0001` as a test record.
 
 When a test run is being copied, an existing [test record][doc-testrecord] is reused.
 
@@ -32,10 +32,10 @@ This method of test run creation should be used if it is necessary to test a tar
 ##  Rules of Test Run Copying
 
 The things to be taken into account when copying a test run are:
-*   You can specify any test policy to be used by a copied test run. This policy may differ from the policy used in the original test run.
-*   You can copy test runs in the following states: `failed`, `interrupted`, `passed`, `paused`, `running`. Descriptions of these test run states are given [here][doc-state-description]. 
-*   It is not possible to copy a test run using an empty test record with no baseline requests in it.
-*   If some baseline requests are being recorded in a test record, this record cannot be used to copy a test run.
+* You can specify any test policy to be used by a copied test run. This policy may differ from the policy used in the original test run.
+* You can copy test runs in the following states: `failed`, `interrupted`, `passed`, `paused`, `running`. Descriptions of these test run states are given [here][doc-state-description]. 
+* It is not possible to copy a test run using an empty test record with no baseline requests in it.
+* If some baseline requests are being recorded in a test record, this record cannot be used to copy a test run.
  
     If you try to copy a test run based on an unfinished test record, you will get the `400` error code (`Bad Request`) from the API server and an error message similar to the one below:
 
@@ -86,9 +86,9 @@ To copy and execute a test run via the Wallarm portal's web interface:
     ![!The “Create similar test run” menu entry][img-similar-tr-item]
 
 4.  Select the following items in the opened sidebar:
-    *   the name of the test run's copy
-    *   the policy to use with the test run's copy
-    *   the node on which the test run's copy will be executed
+    * the name of the test run's copy
+    * the policy to use with the test run's copy
+    * the node on which the test run's copy will be executed
     
     ![!The “Test run” sidebar][img-similar-tr-sidebar]
     

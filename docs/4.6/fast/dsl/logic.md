@@ -36,11 +36,11 @@ The logic of the extension can be described using several phases:
 6.  [Detect][link-phase-detect]
 
 By combining these phases, FAST DSL allows you to describe two extension types:
-*   The first one creates one or more test requests by changing the parameters of an incoming baseline request.
+* The first one creates one or more test requests by changing the parameters of an incoming baseline request.
 
     This extension will be referred to as a “modifying extension” throughout this guide.
 
-*   The second one uses predefined test requests and does not change the parameters of an incoming baseline request.
+* The second one uses predefined test requests and does not change the parameters of an incoming baseline request.
 
     This extension will be referred to as a “non-modifying extension” throughout this guide.
 

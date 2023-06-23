@@ -68,25 +68,23 @@ This guide assumes that the container runs only once for the given CI/CD job and
 
 Please refer to the “Quick Start” guide for a [detailed description][doc-docker-run-fast] of the command’s parameters.
 
-{% collapse title="Example." %}
+??? info "Example"
+    This example assumes that the FAST node uses the `token_Qwe12345` token and is set up to record all the incoming baseline requests which have `example.local` as a substring of the `Host` header’s value.  
 
-This example assumes that the FAST node uses the `token_Qwe12345` token and is set up to record all the incoming baseline requests which have `example.local` as a substring of the `Host` header’s value.  
+    The content of a file with environment variables is shown in the following example:
 
-The content of a file with environment variables is shown in the following example:
+    | fast.cfg |
+    | -------- |
+    | `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
 
-| fast.cfg |
-| -------- |
-| `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
+    The command below runs the Docker container named `fast-poc-demo` with the following behavior:
+    * The container is removed after its job is done.
+    * The environment variables are passed to the container using the `fast.cfg` file. 
+    * The container’s `8080` port is published to the Docker host’s `9090` port.
 
-The command below runs the Docker container named `fast-poc-demo` with the following behavior:
-*   The container is removed after its job is done.
-*   The environment variables are passed to the container using the `fast.cfg` file. 
-*   The container’s `8080` port is published to the Docker host’s `9090` port.
-
-```
-docker run --rm --name fast-poc-demo --env-file=fast.cfg -p 9090:8080  wallarm/fast
-```
-{% endcollapse %}
+    ```
+    docker run --rm --name fast-poc-demo --env-file=fast.cfg -p 9090:8080  wallarm/fast
+    ```
 
 If the FAST node deployment is successful, the container’s console and log file will contain the following informational messages:
 

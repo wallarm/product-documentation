@@ -36,32 +36,30 @@ To implement the request recording, apply the following settings to the job of a
 !!! warning "Docker Network"
     Before recording requests, make sure that the FAST node and the tool for automated testing are running on the same network.
 
-{% collapse title="Example of the automated testing step with running FAST node in the recording mode" %}
+??? info "Example of the automated testing step with running FAST node in the recording mode"
+    ```
+    test:
+    key: TST
+    tasks:
+        - script:
+            interpreter: /bin/sh
+            scripts:
+            - docker network create my-network
+            - docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
+            - docker run --name fast -d -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
+            - docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
+            - docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
+            - docker stop selenium fast
+    ```
 
-```
-test:
-  key: TST
-  tasks:
-    - script:
-        interpreter: /bin/sh
-        scripts:
-          - docker network create my-network
-          - docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-          - docker run --name fast -d -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-          - docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-          - docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-          - docker stop selenium fast
-```
+    An example includes the following steps:
 
-An example includes the following steps:
-
-1. Create the Docker network `my-network`.
-2. Run the test app `dvwa` on the `my-network` network.
-3. Run the FAST node in the recording mode on the network `my-network`.
-4. Run the tool for automated testing Selenium with FAST node as a proxy on the network `my-network`.
-5. Run the automated tests on the network `my-network`.
-6. Stop the tool for automated testing Selenium and FAST node in the recording mode.
-{% endcollapse %}
+    1. Create the Docker network `my-network`.
+    2. Run the test app `dvwa` on the `my-network` network.
+    3. Run the FAST node in the recording mode on the network `my-network`.
+    4. Run the tool for automated testing Selenium with FAST node as a proxy on the network `my-network`.
+    5. Run the automated tests on the network `my-network`.
+    6. Stop the tool for automated testing Selenium and FAST node in the recording mode.
 
 ## Adding the Step of Security Testing
 
@@ -82,43 +80,41 @@ To implement the security testing, add the corresponding separate step to your w
 !!! warning "Docker Network"
     Before security testing, make sure that the FAST node and the test application are running on the same network.
 
-{% collapse title="Example of the security testing step" %}
+??? info "Example of the security testing step" %}
+    The commands are running on the `my-network` network created at the request recording step. The test app, `app-test`, is also running at the request recording step.
 
-The commands are running on the `my-network` network created at the request recording step. The test app, `app-test`, is also running at the request recording step.
+    1. Add `security_testing` to the list of `stages`. In the example, this step finalizes the workflow.
 
-1. Add `security_testing` to the list of `stages`. In the example, this step finalizes the workflow.
+        ```
+        stages:
+        - testing:
+            manual: false
+            jobs:
+                - test
+        - security_testing:
+            final: true
+            jobs:
+                - security_test
+        ```
+    2. Define the body of the new job `security_test`.
 
-    ```
-    stages:
-      - testing:
-          manual: false
-          jobs:
-            - test
-      - security_testing:
-          final: true
-          jobs:
-            - security_test
-    ```
-2. Define the body of the new job `security_test`.
+        ```
+        security_test:
+        key: SCTST
+        tasks:
+            - script:
+                interpreter: /bin/sh
+                scripts:
+                - docker run --name fast -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
+                - docker stop dvwa
+                - docker network rm my-network
+        ```
 
-    ```
-    security_test:
-    key: SCTST
-    tasks:
-        - script:
-            interpreter: /bin/sh
-            scripts:
-             - docker run --name fast -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
-             - docker stop dvwa
-             - docker network rm my-network
-    ```
+    An example includes the following steps:
 
-An example includes the following steps:
-
-1. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-2. Stop the test application `dvwa`.
-3. Delete the `my-network` network.
-{% endcollapse %}
+    1. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
+    2. Stop the test application `dvwa`.
+    3. Delete the `my-network` network.
 
 ## Getting the Result of Testing
 
@@ -130,5 +126,5 @@ The result of security testing will be displayed in the build logs in Bamboo UI.
 
 You can find more examples of integrating FAST to Bamboo workflow on our [GitHub](https://github.com/wallarm/fast-examples).
 
-> #### Info::
-> If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).
+!!! info "Further questions"
+    If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).

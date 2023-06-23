@@ -36,6 +36,6 @@ body, the Form_urlencoded parser applied to the request body creates the followi
 | id       | 01234    |
 | username | John     |
 
-*   The `POST_FORM_URLENCODED_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Form_urlencoded parser.
-*   The `POST_FORM_URLENCODED_username_value` point refers to the `John` value that corresponds to the `username` key from the hash table created by the Form_urlencoded parser.
+* The `POST_FORM_URLENCODED_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Form_urlencoded parser.
+* The `POST_FORM_URLENCODED_username_value` point refers to the `John` value that corresponds to the `username` key from the hash table created by the Form_urlencoded parser.
 

@@ -23,9 +23,9 @@ In this scenario, the FAST node is managed via the Wallarm API. The API is also 
 ![!Integration via API][img-api-mode] 
 
 In this scenario, FAST demonstrates the following behavior:
-*   A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you are planning to deploy.
-*   If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
-*   A test policy and a test record may be used by several test runs and FAST nodes.
+* A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you are planning to deploy.
+* If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
+* A test policy and a test record may be used by several test runs and FAST nodes.
     
 See [this document][doc-integration-api] for details on how FAST integration is made in this case. 
 
@@ -38,10 +38,10 @@ See the image below for a schematic explanation of this scenario:
 ![!Integration with CI MODE][img-ci-mode]
 
 In this scenario, FAST demonstrates the following behavior:
-*   A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you plan to deploy.
+* A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you plan to deploy.
     To correctly deploy many FAST nodes for use in concurrent CI/CD workflows, you will need to use a different approach that is similar to the CI MODE [described below][anchor-build-id].
-*   If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
-*   A test policy and a test record may be used by several test runs and FAST nodes.
+* If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
+* A test policy and a test record may be used by several test runs and FAST nodes.
 
 See [this document][doc-integration-ci-mode] for details on how FAST integration is made in this case. 
     
@@ -57,9 +57,9 @@ See the image below for a schematic explanation of this scenario:
 ![!Integration with BUILD_ID][img-ci-mode-build-id]
 
 In this scenario, FAST demonstrates the following behavior:
-*   A few FAST nodes can operate via a single cloud FAST node to work in concurrent CI/CD workflows. Note that **the same token is used** by all of these FAST nodes.
-*   Test runs use different test records marked with distinct `BUILD_ID` identifiers.
-*   These test runs execute in parallel; moreover, they may employ different test policies, if necessary.
+* A few FAST nodes can operate via a single cloud FAST node to work in concurrent CI/CD workflows. Note that **the same token is used** by all of these FAST nodes.
+* Test runs use different test records marked with distinct `BUILD_ID` identifiers.
+* These test runs execute in parallel; moreover, they may employ different test policies, if necessary.
 
 See [this document][doc-concurrent-pipelines] for detailed explanation about how to use FAST in concurrent CI/CD workflows.
 

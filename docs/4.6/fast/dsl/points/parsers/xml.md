@@ -49,13 +49,13 @@ body, the `POST_XML_value` point refers to the following data in raw format:
 ```
 
 The XML parser builds a complex data structure on the basis of the input data. You can use the following filters to address the elements of this data structure:
-*   [Xml_comment filter][anchor1];
-*   [Xml_dtd filter][anchor2];
-*   [Xml_dtd_entity filter][anchor3];
-*   [Xml_pi filter][anchor4];
-*   [Xml_tag filter][anchor5];
-*   [Xml_tag_array filter][anchor6];
-*   [Xml_attr filter][anchor7].
+* [Xml_comment filter][anchor1];
+* [Xml_dtd filter][anchor2];
+* [Xml_dtd_entity filter][anchor3];
+* [Xml_pi filter][anchor4];
+* [Xml_tag filter][anchor5];
+* [Xml_tag_array filter][anchor6];
+* [Xml_attr filter][anchor7].
 
 Add the names of the XML parser and the filter provided by it in upper case to the point to use the filter in the point.
 
@@ -98,8 +98,8 @@ body, the Xml_comment applied together with the XML parser refers to the followi
 | 0      | first    |
 | 1      | second   |
 
-*   The `POST_XML_XML_COMMENT_0_value` point refers to the `first` value that corresponds to the `0` index from the array addressed by the Xml_comment filter.
-*   The `POST_XML_XML_COMMENT_1_value` point refers to the `second` value that corresponds to the `1` index from the array addressed by the Xml_comment filter.
+* The `POST_XML_XML_COMMENT_0_value` point refers to the `first` value that corresponds to the `0` index from the array addressed by the Xml_comment filter.
+* The `POST_XML_XML_COMMENT_1_value` point refers to the `second` value that corresponds to the `1` index from the array addressed by the Xml_comment filter.
 
 ## Xml_dtd Filter
 
@@ -175,13 +175,13 @@ body, the Xml_dtd_entity filter applied to the request body together with the XM
 | 1      | sample | This is sample text. |
 
 In this array, each index refers to the name-value pair that corresponds with the name and the value of the DTD schema.
-*   Add the `_name` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the name of the schema directive.
-*   Add the `_value` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the value of the schema directive.
+* Add the `_name` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the name of the schema directive.
+* Add the `_value` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the value of the schema directive.
 
 
 
-*   The `POST_XML_XML_DTD_ENTITY_0_name` point refers to the `xxe` directive name that corresponds to the `0` index from the array addressed by the Xml_dtd_entity filter.
-*   The `POST_XML_XML_DTD_ENTITY_1_value` point refers to the `This is sample text.` directive value that corresponds to the `1` index from the array addressed by the Xml_dtd_entity filter.
+* The `POST_XML_XML_DTD_ENTITY_0_name` point refers to the `xxe` directive name that corresponds to the `0` index from the array addressed by the Xml_dtd_entity filter.
+* The `POST_XML_XML_DTD_ENTITY_1_value` point refers to the `This is sample text.` directive value that corresponds to the `1` index from the array addressed by the Xml_dtd_entity filter.
 
 ## Xml_pi Filter
 
@@ -222,13 +222,13 @@ body, the Xml_pi filter applied to the request body together with the XML parser
 | 1      | last-edit      | user="John" date="2019-05-11"    |
 
 In this array, each index refers to the name-value pair that corresponds with the name and the value of the data processing instruction.
-*   Add the `_name` postfix at the end of the point that uses the Xml_pi filter to refer to the name of the processing instruction.
-*   Add the `_value` postfix at the end of the point that uses the Xml_pi filter to refer to the value of the processing instruction.
+* Add the `_name` postfix at the end of the point that uses the Xml_pi filter to refer to the name of the processing instruction.
+* Add the `_value` postfix at the end of the point that uses the Xml_pi filter to refer to the value of the processing instruction.
 
 
 
-*   The `POST_XML_XML_PI_0_name` point refers to the `xml-stylesheet` instruction name that corresponds to the `0` index from the array addressed by the Xml_pi filter.
-*   The `POST_XML_XML_PI_1_value` point refers to the `user="John" date="2019-05-11"` instruction value that corresponds to the `1` index from the array addressed by the Xml_pi filter.
+* The `POST_XML_XML_PI_0_name` point refers to the `xml-stylesheet` instruction name that corresponds to the `0` index from the array addressed by the Xml_pi filter.
+* The `POST_XML_XML_PI_1_value` point refers to the `user="John" date="2019-05-11"` instruction value that corresponds to the `1` index from the array addressed by the Xml_pi filter.
 
 ## Xml_tag Filter
 
@@ -270,8 +270,8 @@ body, the Xml_tag filter applied to the request body together with the XML parse
 | text   | Sample text. |
 | sample | aaaa         |
 
-*   The `POST_XML_XML_TAG_text_value` point refers to the `Sample text.` value that corresponds to the `text` key from the hash table addressed by the Xml_tag filter.
-*   The `POST_XML_XML_TAG_sample_value` point refers to the `aaaa` value that corresponds to the `sample` key from the hash table addressed by the Xml_tag filter.
+* The `POST_XML_XML_TAG_text_value` point refers to the `Sample text.` value that corresponds to the `text` key from the hash table addressed by the Xml_tag filter.
+* The `POST_XML_XML_TAG_sample_value` point refers to the `aaaa` value that corresponds to the `sample` key from the hash table addressed by the Xml_tag filter.
 
 ## Xml_tag_array Filter
 
@@ -318,8 +318,8 @@ body, the Xml_tag_array applied to the `text` tag in the request body refers to 
 | 0      | Sample text. |
 | 1      | aaaa         |
 
-*   The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` point refers to the `Sample text.` value that corresponds to the `0` index from the text tag values array addressed by the Xml_tag_array filter.
-*   The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` point refers to the `aaaa` value that corresponds to the `1` index from the text tag values array addressed by the Xml_tag_array filter.
+* The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` point refers to the `Sample text.` value that corresponds to the `0` index from the text tag values array addressed by the Xml_tag_array filter.
+* The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` point refers to the `aaaa` value that corresponds to the `1` index from the text tag values array addressed by the Xml_tag_array filter.
 
 ## Xml_attr Filter
 
@@ -358,5 +358,5 @@ body, the Xml_attr filter applied to the `text` tag from the request body togeth
 | category | informational |
 | font     | 12            |
 
-*   The `POST_XML_XML_TAG_text_XML_ATTR_category_value` point refers to the `informational` value that corresponds with the `category` key from the `text` tag attributes hash table addressed by the Xml_attr filter.
-*   The `POST_XML_XML_TAG_text_XML_ATTR_font_value` point refers to the `12` value that corresponds with the `font` key from the `text` tag attributes hash table addressed by the Xml_attr filter.
+* The `POST_XML_XML_TAG_text_XML_ATTR_category_value` point refers to the `informational` value that corresponds with the `category` key from the `text` tag attributes hash table addressed by the Xml_attr filter.
+* The `POST_XML_XML_TAG_text_XML_ATTR_font_value` point refers to the `12` value that corresponds with the `font` key from the `text` tag attributes hash table addressed by the Xml_attr filter.

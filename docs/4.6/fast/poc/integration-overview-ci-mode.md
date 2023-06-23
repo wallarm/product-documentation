@@ -15,8 +15,8 @@ To conduct a security testing in CI mode, a FAST node must be sequentially run i
 2.  [Testing mode][doc-testing-mode]
 
 The `CI_MODE` environment variable defines the operation mode of a FAST node. This variable can take the following values:
-*   `recording`
-*   `testing`
+* `recording`
+* `testing`
 
 In this scenario, the FAST node first creates a test record and writes baseline requests to it. When the recording is finished, the node creates a test run that uses the prerecorded baseline requests as a basis for its security testing.  
 
@@ -31,8 +31,8 @@ The corresponding workflow steps are:
 2.  [Running the FAST node in recording mode][doc-recording-mode].
 
     In recording mode the FAST node performs the following actions:
-    *   Proxies baseline requests from the requests' source to the target application.
-    *   Records these baseline requests in the test record to later create the security test set based on them.
+    * Proxies baseline requests from the requests' source to the target application.
+    * Records these baseline requests in the test record to later create the security test set based on them.
     
     !!! info "Note on Test Runs"
         A test run is not created in the recording mode.
@@ -56,8 +56,9 @@ The corresponding workflow steps are:
 6.  [Running the FAST node in testing mode][doc-testing-mode].
 
     In testing mode, the FAST node performs the following actions:
-    *   Creates a test run based on the baseline requests recorded on the step 4.
-    *   Starts to create and execute a security test set.
+    
+    * Creates a test run based on the baseline requests recorded on the step 4.
+    * Starts to create and execute a security test set.
     
 7.  Obtaining the results of the testing. Stopping the FAST node container.    
     

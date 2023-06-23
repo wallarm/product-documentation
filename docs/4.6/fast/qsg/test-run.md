@@ -51,18 +51,11 @@ FAST generates and executes a security test set in the following way:
 
     !!! info "Note on a test run in use"
         In any given period of time, only one test run can be running on the FAST node. If you create another test run for the same node, the current test run execution is interrupted.
-    
-    
-----------
-    
        
 To start the security test set generation and execution process, do the following:
+
 1.  [Create and run the test run][anchor1]
 2.  [Execute the HTTPS baseline request you created earlier][anchor2]
-    
-    
-----------
-    
     
 ##  1.  Create and run the test run  
 
@@ -70,9 +63,9 @@ Create a test run via Wallarm account web interface following the [instructions]
 
 After following the instruction, set the following basic parameters when creating a test run:
 
-*   test run name: `DEMO TEST RUN`;
-*   test policy: `DEMO POLICY`;
-*   FAST node: `DEMO NODE`.
+* test run name: `DEMO TEST RUN`;
+* test policy: `DEMO POLICY`;
+* FAST node: `DEMO NODE`.
 
 These instructions do not contain advanced settings.
 
@@ -123,10 +116,6 @@ This document suggests that only one request be executed for demonstration purpo
 The test run stops automatically when the testing process is finished, given that no baseline recording is in progress. Some brief information about the detected vulnerabilities will be displayed in the “Result” column. FAST should find some XSS vulnerabilities for the executed HTTPS request:
 
 ![!The discovered vulnerability][img-xss-found]
-    
-    
-----------
-    
     
 Now, you should have all of the chapter goals completed, along with the result of testing the HTTPS request to the Google Gruyere application. The result shows three found XSS vulnerabilities.
     

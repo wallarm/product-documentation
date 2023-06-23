@@ -12,8 +12,8 @@
 Configure your request source to use the FAST node as an HTTP proxy for all the requests issued towards the target application.
 
 Depending on the way your CI/CD infrastructure interacts with the FAST node’s Docker container, you can address the node by one of the following means:
-*   IP address.
-*   Domain name.
+* IP address.
+* Domain name.
 
 !!! info "Example"
     If your test tool runs as a Linux Docker container, you can pass the following environment variable into the container to enable proxying of all the HTTP requests from that container through the FAST node:

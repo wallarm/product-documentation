@@ -27,32 +27,32 @@
 
 # How to Build a Point
 Let us recall the list of FAST DSL parsers and filters available for use in the point.
-*   [HTTP parser][link-http]:
-    *   [URI filter][link-uri];
-    *   [Path filter][link-path];
-    *   [Action_name filter][link-actionname];
-    *   [Action_ext filter][link-actionext];
-    *   [Get filter][link-get];
-    *   [Header filter][link-header];
-    *   [Post filter][link-post];
-*   [Form_urlencoded parser][link-formurlencoded];
-*   [Multipart parser][link-multipart];
-*   [Cookie parser][link-cookie];
-*   [XML parser][link-xml]:
-    *   [Xml_comment filter][link-xmlcomment];
-    *   [Xml_dtd filter][link-xmldtd];
-    *   [Xml_dtd_entity filter][link-xmldtdentity];
-    *   [Xml_pi filter][link-xmlpi];
-    *   [Xml_tag filter][link-xmltag];
-    *   [Xml_tag_array filter][link-xmltagarray];
-    *   [Xml_attr filter][link-xmlattr];
-*   [Json_doc parser][link-jsondoc]:
-    *   [Json_obj filter][link-jsonobj];
-    *   [Json_array filter][link-jsonarray];
-*   [GZIP parser][link-gzip];
-*   [Base64 parser][link-base64];
-*   [Array filter][link-array];
-*   [Hash filter][link-hash].
+* [HTTP parser][link-http]:
+    * [URI filter][link-uri];
+    * [Path filter][link-path];
+    * [Action_name filter][link-actionname];
+    * [Action_ext filter][link-actionext];
+    * [Get filter][link-get];
+    * [Header filter][link-header];
+    * [Post filter][link-post];
+* [Form_urlencoded parser][link-formurlencoded];
+* [Multipart parser][link-multipart];
+* [Cookie parser][link-cookie];
+* [XML parser][link-xml]:
+    * [Xml_comment filter][link-xmlcomment];
+    * [Xml_dtd filter][link-xmldtd];
+    * [Xml_dtd_entity filter][link-xmldtdentity];
+    * [Xml_pi filter][link-xmlpi];
+    * [Xml_tag filter][link-xmltag];
+    * [Xml_tag_array filter][link-xmltagarray];
+    * [Xml_attr filter][link-xmlattr];
+* [Json_doc parser][link-jsondoc]:
+    * [Json_obj filter][link-jsonobj];
+    * [Json_array filter][link-jsonarray];
+* [GZIP parser][link-gzip];
+* [Base64 parser][link-base64];
+* [Array filter][link-array];
+* [Hash filter][link-hash].
 
 It is recommended that points be assembled from right to left for an easier understanding of which parsers and filters should be included in the point. Move from smaller to larger parts of the request when building a point.
 
@@ -88,9 +88,9 @@ where `MDEyMzQ=` is the Base64-encoded `01234` string.
 
 
 To meet the conditions of the example, the point obtained in the fourth step can be added to the extension in one of the following ways:
-*   not surrounded by any of the service symbols.
-*   surrounded by apostrophes (`'GET_uid_BASE64_value'`).
-*   surrounded by quotation marks (`"GET_uid_BASE64_value"`).
+* not surrounded by any of the service symbols.
+* surrounded by apostrophes (`'GET_uid_BASE64_value'`).
+* surrounded by quotation marks (`"GET_uid_BASE64_value"`).
 
 
 
@@ -130,9 +130,9 @@ body.
 
 
 To meet the conditions of the example, the point obtained in the fourth step can be added to the extension in one of the following ways:
-*   not surrounded by any of the service symbols.
-*   surrounded by apostrophes (`'POST_FORM_URLENCODED_passwd_value'`).
-*   surrounded by quotation marks (`"POST_FORM_URLENCODED_passwd_value"`).
+* not surrounded by any of the service symbols.
+* surrounded by apostrophes (`'POST_FORM_URLENCODED_passwd_value'`).
+* surrounded by quotation marks (`"POST_FORM_URLENCODED_passwd_value"`).
 
 
 
@@ -169,7 +169,7 @@ Cookie: username=John. secret-word=abcde.
 
 
 To meet the conditions of the example, the point obtained in the fourth step can be added to the extension in one of the following ways:
-*   not surrounded by any of the service symbols.
-*   surrounded by apostrophes (`'HEADER_Cookie_COOKIE_secret-word_value'`).
-*   surrounded by quotation marks (`"HEADER_Cookie_COOKIE_secret-word_value"`).
+* not surrounded by any of the service symbols.
+* surrounded by apostrophes (`'HEADER_Cookie_COOKIE_secret-word_value'`).
+* surrounded by quotation marks (`"HEADER_Cookie_COOKIE_secret-word_value"`).
 

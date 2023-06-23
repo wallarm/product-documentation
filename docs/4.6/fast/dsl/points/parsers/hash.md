@@ -40,8 +40,8 @@ request, the Hash filter applied to the `id` query string parameter refers to th
 | user  | 01234    |
 | group | 56789    |
 
-*   The `GET_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the `id` query string parameter values hash table addressed by the Hash filter.
-*   The `GET_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the `id` query string parameter values hash table addressed by the Hash filter.
+* The `GET_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the `id` query string parameter values hash table addressed by the Hash filter.
+* The `GET_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the `id` query string parameter values hash table addressed by the Hash filter.
 
 
 ## The Example of Using the Form_urlencoded parser with the Hash Filter
@@ -66,8 +66,8 @@ body, the Hash filter applied to the `id` parameter from the request body in the
 | user  | 01234    |
 | group | 56789    |
 
-*   The `POST_FORM_URLENCODED_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the request body parameters hash table addressed by the Hash filter.
-*   The `POST_FORM_URLENCODED_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the request body parameters hash table addressed by the Hash filter. 
+* The `POST_FORM_URLENCODED_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the request body parameters hash table addressed by the Hash filter.
+* The `POST_FORM_URLENCODED_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the request body parameters hash table addressed by the Hash filter. 
 
 ## The Example of Using the Multipart Filter and the Hash Filter
 
@@ -94,8 +94,8 @@ request, the Hash filter applied to the `id` parameter from the request body tog
 | user  | 01234    |
 | group | 56789    |
 
-*   The `POST_MULTIPART_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the request body parameters hash table addressed by the Hash filter.
-*   The `POST_MULTIPART_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the request body parameters hash table addressed by the Hash filter.
+* The `POST_MULTIPART_id_HASH_user_value` point refers to the `01234` value that corresponds with the `user` key from the request body parameters hash table addressed by the Hash filter.
+* The `POST_MULTIPART_id_HASH_group_value` point refers to the `56789` value that corresponds with the `group` key from the request body parameters hash table addressed by the Hash filter.
 
 ## The Example of Using the Json_doc Parser and the Hash Filter
 
@@ -122,8 +122,8 @@ body, the Hash filter applied to the request body in the JSON format together wi
 | username | user     |
 | rights   | read     |
 
-*   The `POST_JSON_DOC_HASH_username_value` point refers to the `user` value that corresponds with the `username` key from the request body parameters hash table addressed by the Hash filter.
-*   The `POST_JSON_DOC_HASH_rights_value` point refers to the `read` value that corresponds with the `rights` key from the request body parameters hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_HASH_username_value` point refers to the `user` value that corresponds with the `username` key from the request body parameters hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_HASH_rights_value` point refers to the `read` value that corresponds with the `rights` key from the request body parameters hash table addressed by the Hash filter.
 
 ## The Example of Using the Json_obj Filter and the Hash Filter
 
@@ -153,8 +153,8 @@ body, the Hash filter applied to the request body in the JSON format together wi
 | status | active   |
 | rights | read     |
 
-*   The `POST_JSON_DOC_JSON_OBJ_info_HASH_status_value` point refers to the `active` value that corresponds with the `status` key from the info JSON object child objects hash table addressed by the Hash filter.
-*   The `POST_JSON_DOC_JSON_OBJ_info_HASH_rights_value` point refers to the `read` value that corresponds with the `rights` key from the info JSON object child objects hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_JSON_OBJ_info_HASH_status_value` point refers to the `active` value that corresponds with the `status` key from the info JSON object child objects hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_JSON_OBJ_info_HASH_rights_value` point refers to the `read` value that corresponds with the `rights` key from the info JSON object child objects hash table addressed by the Hash filter.
 
 ## The Example of Using the Json_array Filter and the Hash Filter
 
@@ -189,5 +189,5 @@ body, the Hash filter applied to the first element of the `posts` JSON objects a
 | title  | Greeting |
 | length | 256      |
 
-*   The `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_title_value` point refers to the `Greeting` value that corresponds with the `title` key from the JSON objects hash table addressed by the Hash filter.
-*   The `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_length_value` point refers to the `256` value that corresponds with the `length` key from the JSON objects hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_title_value` point refers to the `Greeting` value that corresponds with the `title` key from the JSON objects hash table addressed by the Hash filter.
+* The `POST_JSON_DOC_JSON_OBJ_posts_JSON_ARRAY_0_HASH_length_value` point refers to the `256` value that corresponds with the `length` key from the JSON objects hash table addressed by the Hash filter.

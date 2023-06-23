@@ -45,7 +45,7 @@ FAST node configuration is done via environment variables. The table below holds
 !!! info "See also"
     The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
- ## Deployment of a FAST Node in Recording Mode
+## Deployment of a FAST Node in Recording Mode
 
 A sample `docker-compose.yaml` configuration file will be used to demonstrate how FAST operates in recording mode (note the value of the `CI_MODE` environment variable):
 

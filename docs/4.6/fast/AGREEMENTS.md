@@ -4,7 +4,7 @@ Throughout the guides you will be presented with a certain number of text string
 
 
 | Formatting rule                 | Description |
-| -----------------------------:  | ------------------------------------------------------------    |
+| -----------------------------  | ------------------------------------------------------------    |
 |                       `regular` | Strings that are written in regular monospaced font are informational and are not supposed to be entered by the reader.<br>Such strings could represent a command output or other piece of information.|
 |                        Example: | The invitation of a Bash shell:<br>`$`                     |
 |                 **`boldface`**  | Strings that are written in boldface monospaced font should be entered by the reader “as is.” |

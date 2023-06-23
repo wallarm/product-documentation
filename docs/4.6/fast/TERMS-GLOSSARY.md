@@ -58,8 +58,8 @@ The Wallarm Cloud is one of the FAST components.
 The cloud provides the user with an interface for creating test policies, managing the test execution process and observing the testing results.
 
 **See also:**
-*   [relations between FAST components][doc-internals],
-*   [working with test policies][doc-policies].
+* [relations between FAST components][doc-internals],
+* [working with test policies][doc-policies].
 
 
 ##  Baseline requests
@@ -82,18 +82,18 @@ Each test run is tightly coupled with a single FAST node by the token.
 A test policy is a set of rules, according to which the process of vulnerability detection is conducted. In particular, you can select the vulnerability types which the application should be tested for. In addition to that, the policy determines which parameters in the baseline request are eligible to be modified while creating a security test set. These pieces of data are utilized by the FAST node to create test requests that are used to find out if the target application is exploitable.
 
 **See also:**
-*   [relations between FAST components][doc-internals],
-*   [working with test policies][doc-policies].
+* [relations between FAST components][doc-internals],
+* [working with test policies][doc-policies].
 
 ##  Baseline Request Element
 
 A request element is a part of a baseline request.
 Some examples of elements:
 
-*   HTTP header, 
-*   HTTP response body, 
-*   GET parameters, 
-*   POST parameters.
+* HTTP header, 
+* HTTP response body, 
+* GET parameters, 
+* POST parameters.
 
 ##  Point
 
@@ -104,8 +104,8 @@ The points are described in more detail [here][doc-points].
 ##  Token
 
 A token is the unique secret identifier that serves the following purposes:
-*   Binding a test run with the FAST node.
-*   Creating and managing a test run.
+* Binding a test run with the FAST node.
+* Creating and managing a test run.
 
 Token is one of the essential FAST node's properties.
 

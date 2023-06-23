@@ -29,31 +29,29 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 
 <br>
 
-{% collapse title="Example of the automated testing step with running FAST node in the recording mode" %}
+??? info "Example of the automated testing step with running FAST node in the recording mode"
+    ```
+    stage('Run autotests with recording FAST node') {
+          steps {
+             sh label: 'create network', script: 'docker network create my-network'
+             sh label: 'run fast with recording', script: 'docker run --rm  --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -p 8088:8080 --network my-network wallarm/fast'
+             sh label: 'run selenium', script: 'docker run --rm -d --name selenium -p 4444:4444 --network my-network -e http_proxy=\'http://fast:8080\' -e https_proxy=\'https://fast:8080\' selenium/standalone-firefox:latest'
+             sh label: 'run application', script: 'docker run --rm --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test bundle exec rspec spec/features/posts_spec.rb'
+             sh label: 'stop selenium', script: 'docker stop selenium'
+             sh label: 'stop fast', script: 'docker stop fast'
+             sh label: 'remove network', script: 'docker network rm my-network'
+          }
+       }
+    ```
 
-```
-stage('Run autotests with recording FAST node') {
-      steps {
-         sh label: 'create network', script: 'docker network create my-network'
-         sh label: 'run fast with recording', script: 'docker run --rm  --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -p 8088:8080 --network my-network wallarm/fast'
-         sh label: 'run selenium', script: 'docker run --rm -d --name selenium -p 4444:4444 --network my-network -e http_proxy=\'http://fast:8080\' -e https_proxy=\'https://fast:8080\' selenium/standalone-firefox:latest'
-         sh label: 'run application', script: 'docker run --rm --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test bundle exec rspec spec/features/posts_spec.rb'
-         sh label: 'stop selenium', script: 'docker stop selenium'
-         sh label: 'stop fast', script: 'docker stop fast'
-         sh label: 'remove network', script: 'docker network rm my-network'
-      }
-   }
-```
+    An example includes the following steps:
 
-An example includes the following steps:
-
-1. Create the Docker network `my-network`.
-2. Run the FAST node in the recording mode on the network `my-network`.
-3. Run the tool for automated testing Selenium with the FAST node as a proxy on the network `my-network`.
-4. Run the test application and automated tests.
-5. Stop Selenium and FAST node.
-6. Delete the `my-network` network.
-{% endcollapse %}
+    1. Create the Docker network `my-network`.
+    2. Run the FAST node in the recording mode on the network `my-network`.
+    3. Run the tool for automated testing Selenium with the FAST node as a proxy on the network `my-network`.
+    4. Run the test application and automated tests.
+    5. Stop Selenium and FAST node.
+    6. Delete the `my-network` network.
 
 ## Adding the Step of Security Testing
 
@@ -61,28 +59,27 @@ An example includes the following steps:
 
 <br>
 
-{% collapse title="Example of the security testing step" %}
+??? info "Example of the security testing step" %}
 
-```
-stage('Run security tests') {
-      steps {
-         sh label: 'create network', script: 'docker network create my-network'
-         sh label: 'start application', script: ' docker run --rm -d --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test'
-         sh label: 'run fast in testing mode', script: 'docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE="testing" -e WALLARM_API_HOST="us1.api.wallarm.com"  --network my-network -e TEST_RUN_URI="http://app-test:3000" --rm wallarm/fast'
-         sh label: 'stop application', script: ' docker stop app-test '
-         sh label: 'remove network', script: ' docker network rm my-network '
-      }
-   }
-```
+    ```
+    stage('Run security tests') {
+          steps {
+             sh label: 'create network', script: 'docker network create my-network'
+             sh label: 'start application', script: ' docker run --rm -d --name app-test --network my-network -e CAPYBARA_SERVER_HOST=app-test -p 3000:3000 app-test'
+             sh label: 'run fast in testing mode', script: 'docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE="testing" -e WALLARM_API_HOST="us1.api.wallarm.com"  --network my-network -e TEST_RUN_URI="http://app-test:3000" --rm wallarm/fast'
+             sh label: 'stop application', script: ' docker stop app-test '
+            sh label: 'remove network', script: ' docker network rm my-network '
+          }
+       }
+    ```
 
-An example includes the following steps:
+    An example includes the following steps:
 
-1. Create the Docker network `my-network`.
-2. Run the test application on the `my-network` network.
-3. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-4. Stop the test application.
-5. Delete the `my-network` network.
-{% endcollapse %}
+    1. Create the Docker network `my-network`.
+    2. Run the test application on the `my-network` network.
+    3. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
+    4. Stop the test application.
+    5. Delete the `my-network` network.
 
 ## Getting the Result of Testing
 
@@ -94,5 +91,5 @@ The result of security testing will be displayed on the Jenkins interface.
 
 You can find examples of integrating FAST to the Jenkins workflow on our [GitHub][fast-examples-github] and [Jenkins][fast-example-jenkins].
 
-> #### Info::
-> If you have questions related to FAST integration, please [contact us][mail-to-us].
+!!! info "Further questions"
+    If you have questions related to FAST integration, please [contact us][mail-to-us].

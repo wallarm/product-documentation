@@ -63,10 +63,10 @@ Also, [RSpec][link-rspec] integration tests are created for the application. RSp
 ![!Testing flow][img-testing-flow]
 
 RSpec executes a few integration tests to test the following scenarios:
-*   Navigating to the page with posts
-*   Creating a new post
-*   Updating an existing post
-*   Deleting an existing post
+* Navigating to the page with posts
+* Creating a new post
+* Updating an existing post
+* Deleting an existing post
 
 Capybara and Selenium help to convert these tests into a set of HTTP requests to the application.
 
@@ -110,19 +110,19 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     
     The following services are built (see the `docker-compose.yaml` file):
     
-    *   `app-test`: a service for the target application and the test tool.
+    * `app-test`: a service for the target application and the test tool.
         
         A Docker image for the service comprises the following components:
         
-        *   The target application (it is reachable via HTTP at `app-test:3000` after deployment).
+        * The target application (it is reachable via HTTP at `app-test:3000` after deployment).
         
-        *   The RSpec test tool combined with Capybara; The tool contains all of the functions required to run the FAST security tests.
+        * The RSpec test tool combined with Capybara; The tool contains all of the functions required to run the FAST security tests.
         
-        *   Capybara: configured to send HTTP requests to the target application `app-test:3000` with the use of Selenium server `selenium:4444` (see the `spec/support/capybara_settings.rb` file).
+        * Capybara: configured to send HTTP requests to the target application `app-test:3000` with the use of Selenium server `selenium:4444` (see the `spec/support/capybara_settings.rb` file).
         
         The token is passed into the service’s container by the `WALLARM_API_TOKEN=$TOKEN` environment variable. The token is used by the functions, which are described in the `config.before` and `config.after` sections (see the `spec/support/fast-helper.rb` file), to perform manipulations with a test run.
     
-    *   `fast`: a service for the FAST node.
+    * `fast`: a service for the FAST node.
         
         The node is reachable via HTTP at `fast:8080` after deployment. 
         
@@ -131,7 +131,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
         !!! info "Note on baseline requests"
             The provided example does not employ the `ALLOWED_HOSTS` [environment variable][doc-env-variables]. Therefore, the FAST node recognizes all incoming requests as the baseline ones.
     
-    *   `selenium`: a service for the Selenium server. Capybara from the `app-test` container uses the server for its operation.
+    * `selenium`: a service for the Selenium server. Capybara from the `app-test` container uses the server for its operation.
         
         The `HTTP_PROXY=http://fast:8080` environment variable is passed into the service’s container to enable requests’ proxying through the FAST node.
         
@@ -170,8 +170,8 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     3.  The following actions are performed after the RSpec tests are done:
         1.  The baseline requests recording process [is stopped][doc-stopping-recording]; 
         2.  The test run state [is being monitored periodically][doc-waiting-for-tests]:
-            *   If FAST security tests are completed successfully (the test run’s state is `state: passed`), thene an exit code `0` is returned to the RSpec.
-            *   If FAST security tests are completed unsuccessfully (some vulnerabilities were detected and the test run’s state is `state: failed`), then an exit code `1` is returned to the RSpec.
+            * If FAST security tests are completed successfully (the test run’s state is `state: passed`), thene an exit code `0` is returned to the RSpec.
+            * If FAST security tests are completed unsuccessfully (some vulnerabilities were detected and the test run’s state is `state: failed`), then an exit code `1` is returned to the RSpec.
     
 5.  The testing result is obtained:
     

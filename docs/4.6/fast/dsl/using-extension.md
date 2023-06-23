@@ -22,7 +22,7 @@
 To use the created extensions, you need to connect them to the FAST node.
 
 You can do this in either of the following ways:
-*   Place the extensions in a directory and mount this directory into the FAST node Docker container using the `-v` option of the `docker run` command.
+* Place the extensions in a directory and mount this directory into the FAST node Docker container using the `-v` option of the `docker run` command.
     
     ```
     $ sudo docker run --name <container name> --env-file=<file with environment variables> -v <directory with extensions>:/opt/custom_extensions -p <target port>:8080 wallarm/fast
@@ -40,7 +40,7 @@ You can do this in either of the following ways:
     $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -v /home/user/extensions:/opt/custom_extensions -p 9090:8080 wallarm/fast
     ```
 
-*   Place the extensions into a public Git repository and define the environment variable, which refers to the necessary repository, in the FAST node Docker container.
+* Place the extensions into a public Git repository and define the environment variable, which refers to the necessary repository, in the FAST node Docker container.
     
     To do this, perform the following:
     
@@ -96,8 +96,8 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     Let us remind you that the connected modifying extension changes the `POST_JSON_DOC_HASH_email_value` point in a baseline request, and the non-modifying extension requires the permissions to work with the `URI` point.
     
     Therefore, to make both extensions execute during a single test run, a test policy should allow working with:
-    *   POST parameters
-    *   the URI parameter
+    * POST parameters
+    * the URI parameter
     
     ![!Test policy wizard, the “Insertion points” tab][img-test-policy-insertion-points]
     
@@ -136,9 +136,9 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
         After sending the baseline request, it is recommended to stop the recording process. This procedure is described [here][link-stop-recording].
 
      6.  In the FAST node console output you will see how:  
-    *   the target application is tested using the built-in FAST detects,
-    *   the modifying FAST extension executes for the POST parameters in the baseline request, and
-    *   the non-modifying FAST extension executes for the URI parameter in the baseline request.<br><br>
+    * the target application is tested using the built-in FAST detects,
+    * the modifying FAST extension executes for the POST parameters in the baseline request, and
+    * the non-modifying FAST extension executes for the URI parameter in the baseline request.<br><br>
 --8<-- "../include/fast/console-include/dsl/fast-node-working.md"    
     
     You can see the full log of request processing by opening the test run information on the Wallarm web interface and clicking the “Details” link.

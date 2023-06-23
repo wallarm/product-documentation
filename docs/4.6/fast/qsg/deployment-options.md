@@ -63,13 +63,13 @@ This guide aims to demonstrate the FAST operation by exploiting the deployment o
 
 The installation that is used in this guide has the following specifics:
 
-*   The Mozilla Firefox browser serves as the baseline request source.
-*   One HTTPS baseline request is constructed.
-*   A self-signed SSL certificate from the FAST node is installed into the browser.
-*   Google Gruyere serves as the target application.
-*   The target application is tested against XSS vulnerabilities.
-*   The policy is created with the web interface of Wallarm cloud.
-*   The testing process is started with the web interface of Wallarm cloud.
+* The Mozilla Firefox browser serves as the baseline request source.
+* One HTTPS baseline request is constructed.
+* A self-signed SSL certificate from the FAST node is installed into the browser.
+* Google Gruyere serves as the target application.
+* The target application is tested against XSS vulnerabilities.
+* The policy is created with the web interface of Wallarm cloud.
+* The testing process is started with the web interface of Wallarm cloud.
 
 ![!Quick Start guide deployment scheme][img-qsg-deployment-scheme]
 

@@ -30,10 +30,10 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 1.  [**The `meta-info` section**][link-meta-info].
 
     Prepare the description of the vulnerability that the extension will try to detect.
-    *   vulnerability header: `OWASP Juice Shop SQLi (mod extension)`
-    *   vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
-    *   vulnerability type: SQL injection
-    *   vulnerability threat level: high
+    * vulnerability header: `OWASP Juice Shop SQLi (mod extension)`
+    * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * vulnerability type: SQL injection
+    * vulnerability threat level: high
 <br><br>
     
     The corresponding `meta-info` section should look as follows:
@@ -92,8 +92,8 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 4.  **The `modify` section, the [Modify phase][doc-modify-phase]**.
     
     Let us suggest that it is required to modify the baseline request to reach the following goals:
-    *   To clear the `Accept-Language` HTTP header value (this value is not required for vulnerability to be detected).
-    *   To replace the real values of the `email` and `password` parameters with the neutral `dummy` values.
+    * To clear the `Accept-Language` HTTP header value (this value is not required for vulnerability to be detected).
+    * To replace the real values of the `email` and `password` parameters with the neutral `dummy` values.
     
     Add to the extension the following `modify` section that alters the request to meet the goals described above:
     
@@ -112,8 +112,8 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 5.  **The `generate` section, the [Generate phase][doc-generate-phase]**.
 
     It is known that there are two payloads that should replace the value of the `email` parameter in the baseline request in order to exploit the SQL injection vulnerability in the target application:
-    *   `'or 1=1 --`
-    *   `admin@juice-sh.op'--`
+    * `'or 1=1 --`
+    * `admin@juice-sh.op'--`
         
     !!! info "Inserting the payload into the modified request"
     The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
@@ -142,7 +142,7 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 6.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
     
     The following conditions indicate that the user authentication with administrator's rights was successful:
-    *   The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in the JSON format and should look the following way:
+    * The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in the JSON format and should look the following way:
     
         ```
         "bid":1
@@ -170,42 +170,41 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
 
 Now the `mod-extension.yaml` file contains the complete set of the sections required for the extension to operate. The listing of the file's content is below:
 
-{% collapse title="mod-extension.yaml" %}
-```
-meta-info:
-  - type: sqli
-  - threat: 80
-  - title: 'OWASP Juice Shop SQLi (mod extension)'
-  - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
+??? info "mod-extension.yaml"
+    ```
+    meta-info:
+      - type: sqli
+      - threat: 80
+      - title: 'OWASP Juice Shop SQLi (mod extension)'
+      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
 
-collect:
-  - uniq:
-    - [PATH_0_value, PATH_1_value, ACTION_NAME_value]
+    collect:
+      - uniq:
+        - [PATH_0_value, PATH_1_value, ACTION_NAME_value]
 
-match:
-  - PATH_0_value: 'rest'
-  - PATH_1_value: 'user'
-  - ACTION_NAME_value: 'login'
+    match:
+      - PATH_0_value: 'rest'
+      - PATH_1_value: 'user'
+      - ACTION_NAME_value: 'login'
 
-modify:
-  - "HEADER_ACCEPT-LANGUAGE_value": ""
-  - "POST_JSON_DOC_HASH_email_value": "dummy"
-  - "POST_JSON_DOC_HASH_password_value": "dummy"
+    modify:
+      - "HEADER_ACCEPT-LANGUAGE_value": ""
+      - "POST_JSON_DOC_HASH_email_value": "dummy"
+      - "POST_JSON_DOC_HASH_password_value": "dummy"
 
-generate:
-  - payload:
-    - "'or 1=1 --"
-    - "admin@juice-sh.op'--"
-  - into: "POST_JSON_DOC_HASH_email_value"
-  - method:
-    - replace
+    generate:
+      - payload:
+        - "'or 1=1 --"
+        - "admin@juice-sh.op'--"
+      - into: "POST_JSON_DOC_HASH_email_value"
+      - method:
+        - replace
 
-detect:
-  - response:
-    - body: "\"umail\":\"admin@juice-sh.op\""
-    - body: "\"bid\":1"
-```
-{% endcollapse %}
+    detect:
+      - response:
+        - body: "\"umail\":\"admin@juice-sh.op\""
+        - body: "\"bid\":1"
+    ```
 
 ##  Using the Extension
 

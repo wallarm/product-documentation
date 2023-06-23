@@ -81,8 +81,8 @@ The state is displayed for each baseline request:
     
     The following values are used as example values in this document:
 
-        *   `token_Qwe12345` as a token.
-        *   `tr_1234` as an identifier of a test run.
+        * `token_Qwe12345` as a token.
+        * `tr_1234` as an identifier of a test run.
 
 
 !!! info "How to choose the right period of time to perform check of a test run"
@@ -98,71 +98,71 @@ You could perform a single check of the test run state by issuing the following 
 
 If the request to the API server is successful, you are presented with the server’s response. The response provides a lot of useful information, including:
 
-*   `vulns`: an array that contains information about the detected vulnerabilities in the target application. Each of the vulnerability records holds the following data regarding the certain vulnerability:
-    *   `id`: an identifier of the vulnerability.
+* `vulns`: an array that contains information about the detected vulnerabilities in the target application. Each of the vulnerability records holds the following data regarding the certain vulnerability:
+    * `id`: an identifier of the vulnerability.
     
-    *   `threat`: the number in the range from 1 to 100, that describes the threat level for the vulnerability. The higher the level, the more severe the vulnerability.
-    *   `code`: a code assigned to the vulnerability.
+    * `threat`: the number in the range from 1 to 100, that describes the threat level for the vulnerability. The higher the level, the more severe the vulnerability.
+    * `code`: a code assigned to the vulnerability.
 
-    *   `type`: the vulnerability type. The parameter can take one of the values which are described [here][link-vuln-list].
+    * `type`: the vulnerability type. The parameter can take one of the values which are described [here][link-vuln-list].
     
-*   `state`: the test run’s state. The parameter can take one of the following values:
-    *   `cloning`: cloning of the baseline requests is in progress (when [creating a copy][doc-testrun-copying] of a test run).
-    *   `running`: the test run is running and executing.
-    *   `paused`: the test run execution is paused.
-    *   `interrupted`: the test run execution is interrupted (e.g. a new test run for the FAST node was created while the current test run was being conducted by this node).
-    *   `passed`: the test run execution has completed successfully (no vulnerabilities were found).
-    *   `failed`: the test run execution has completed unsuccessfully (some vulnerabilities were found).
+* `state`: the test run’s state. The parameter can take one of the following values:
+    * `cloning`: cloning of the baseline requests is in progress (when [creating a copy][doc-testrun-copying] of a test run).
+    * `running`: the test run is running and executing.
+    * `paused`: the test run execution is paused.
+    * `interrupted`: the test run execution is interrupted (e.g. a new test run for the FAST node was created while the current test run was being conducted by this node).
+    * `passed`: the test run execution has completed successfully (no vulnerabilities were found).
+    * `failed`: the test run execution has completed unsuccessfully (some vulnerabilities were found).
     
-*   `baseline_check_all_terminated_count`: the number of baseline requests for which all of the test request checks are completed.
+* `baseline_check_all_terminated_count`: the number of baseline requests for which all of the test request checks are completed.
     
-*   `baseline_check_fail_count`: the number of baseline requests for which some of the test request checks are failed (in other words, FAST found a vulnerability).
+* `baseline_check_fail_count`: the number of baseline requests for which some of the test request checks are failed (in other words, FAST found a vulnerability).
     
-*   `baseline_check_tech_fail_count`: the number of baseline requests for which some of the test request checks are failed due to the technical issues (e.g. if the target application was unavailable for some period of time).
+* `baseline_check_tech_fail_count`: the number of baseline requests for which some of the test request checks are failed due to the technical issues (e.g. if the target application was unavailable for some period of time).
     
-*   `baseline_check_passed_count`: the number of baseline requests for which all of the test request checks are passed (in other words, FAST did not find a vulnerability). 
+* `baseline_check_passed_count`: the number of baseline requests for which all of the test request checks are passed (in other words, FAST did not find a vulnerability). 
     
-*   `baseline_check_running_count`: the number of baseline requests for which the test request checks are still in progress.
+* `baseline_check_running_count`: the number of baseline requests for which the test request checks are still in progress.
     
-*   `baseline_check_interrupted_count`: the number of baseline requests for which all of the test request checks were interrupted (e.g. due to interruption of the test run)
+* `baseline_check_interrupted_count`: the number of baseline requests for which all of the test request checks were interrupted (e.g. due to interruption of the test run)
     
-*   `sended_requests_count`: the total number of test requests that were sent to the target application.
+* `sended_requests_count`: the total number of test requests that were sent to the target application.
     
-*   `start_time` and `end_time`: time when the test run started and ended, respectively. The time is specified in the UNIX time format.
+* `start_time` and `end_time`: time when the test run started and ended, respectively. The time is specified in the UNIX time format.
     
-*   `domains`: the list of the target application’s domain names the baseline requests were targeted to. 
+* `domains`: the list of the target application’s domain names the baseline requests were targeted to. 
     
-*   `baseline_count`: the number of recorded baseline requests.
+* `baseline_count`: the number of recorded baseline requests.
     
-*   `baseline_check_waiting_count`: the number of baseline requests that are waiting to be checked;
+* `baseline_check_waiting_count`: the number of baseline requests that are waiting to be checked;
 
-*   `planing_requests_count`: the total number of test requests that are queued to be sent to the target application.
+* `planing_requests_count`: the total number of test requests that are queued to be sent to the target application.
 
 ###  Estimates of test run's execution speed and time to completion
 
 There is a separate group of parameters in the API server's response, that allows you to estimate a test run's execution speed and time to completion. The group comprises the following parameters:
 
-*   `current_rps`—the current speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
+* `current_rps`—the current speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
 
     This value is the average requests per second (RPS). This average RPS is calculated as the number of requests FAST sent to the target application in the 10 second interval before the test run's state was acquired. 
 
     **Example:**
     If the test run's state is acquired in 12:03:01 that the `current_rps` parameter's value is calculated as *(the number of requests sent in [12:02:51-12:03:01] time interval)/10*.
 
-*   `avg_rps`—the average speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
+* `avg_rps`—the average speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
 
     This value is the average number of requests per second (RPS) that FAST sent to the target application in *the whole test run's execution time*:
-    *   From the start of the test run's execution to the current moment of time if the test run is still executing (which is equal to `current time`-`start_time`).
-    *   From the start of the test run's execution to the end of the test run's execution if the test run's execution is complete (which is equal to `end_time`-`start_time`).
+    * From the start of the test run's execution to the current moment of time if the test run is still executing (which is equal to `current time`-`start_time`).
+    * From the start of the test run's execution to the end of the test run's execution if the test run's execution is complete (which is equal to `end_time`-`start_time`).
     <br><br>
     
     The value of the `avg_rps` parameter is calculated as *(`sended_requests_count`/(the whole test run's execution time))*.
     
-*   `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (in the moment of obtaining the test run's state). 
+* `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (in the moment of obtaining the test run's state). 
 
     The parameter's value is `null` if:
-    *   There are no vulnerability checks in progress yet (e.g., there are no baseline requests recorded for the newly created test run so far).
-    *   Test run is not executing (i.e., it is in any state, excluding `"state":"running"`).
+    * There are no vulnerability checks in progress yet (e.g., there are no baseline requests recorded for the newly created test run so far).
+    * Test run is not executing (i.e., it is in any state, excluding `"state":"running"`).
     <br><br>
     
     The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.

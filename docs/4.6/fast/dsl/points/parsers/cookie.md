@@ -42,6 +42,6 @@ The Cookie parser creates the following hash table:
 
 The Cookie parser creates a hash table on the basis of the Cookie header data that is taken from the hash table addressed by the Header filter. In this hash table, the cookie names are the keys and the corresponding cookies’ values are the hash table values.
 
-*   The `HEADER_Cookie_COOKIE_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Cookie parser.
-*   The `HEADER_Cookie_COOKIE_username_value` point refers to the `admin` value that corresponds to the `username` key from the hash table created by the Cookie parser.
+* The `HEADER_Cookie_COOKIE_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Cookie parser.
+* The `HEADER_Cookie_COOKIE_username_value` point refers to the `admin` value that corresponds to the `username` key from the hash table created by the Cookie parser.
 

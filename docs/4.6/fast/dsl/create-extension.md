@@ -28,22 +28,22 @@ The FAST extensions are created by describing all of the sections that are requi
 ### Modifying Extension
 
 This type of extension makes use of the following sections:
-*   The obligatory sections:
-    *   `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
-    *   `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
-*   The optional sections (may be absent):
-    *   `collect`—contains a description of the optional Collect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-collect].
-    *   `match`—contains a description of the optional Match phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-match].
-    *   `modify`—contains a description of the optional Modify phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-modify].
-    *   `generate`—contains a description of the optional Generate phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-generate].
+* The obligatory sections:
+    * `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
+    * `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
+* The optional sections (may be absent):
+    * `collect`—contains a description of the optional Collect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-collect].
+    * `match`—contains a description of the optional Match phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-match].
+    * `modify`—contains a description of the optional Modify phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-modify].
+    * `generate`—contains a description of the optional Generate phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-generate].
 
 
 ### Nonmodifying Extension
 
 This type of extension makes use of the following obligatory sections:
-*   `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
-*   `send`—contains predefined test requests to be sent to a host that is listed in a baseline request. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-send].
-*   `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
+* `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
+* `send`—contains predefined test requests to be sent to a host that is listed in a baseline request. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-send].
+* `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
 
 
 ##  Structure of the `meta-info` Section
@@ -58,34 +58,29 @@ meta-info:
   - description:
 ```
 
-*   `title` — an optional title string that describes a vulnerability. The specified value will be shown in the list of the detected vulnerabilities on the Wallarm web interface in the “Title” column. It can be used to identify either the vulnerability or the certain extension that detected the vulnerability.
+* `title` — an optional title string that describes a vulnerability. The specified value will be shown in the list of the detected vulnerabilities on the Wallarm web interface in the “Title” column. It can be used to identify either the vulnerability or the certain extension that detected the vulnerability.
 
-    {% collapse title="Example." %}
-`title: "Example vulnerability"`
-    {% endcollapse %}
+    ??? info "Example"
+        `title: "Example vulnerability"`
 
-*   `type` — an obligatory parameter that describes the type of vulnerability that the extension is trying to exploit. The specified value will be shown in the “Type” column of the list of detected vulnerabilities on the Wallarm web interface. The parameter can The parameter can take one of the values which are described [here][link-vuln-list].
+* `type` — an obligatory parameter that describes the type of vulnerability that the extension is trying to exploit. The specified value will be shown in the “Type” column of the list of detected vulnerabilities on the Wallarm web interface. The parameter can The parameter can take one of the values which are described [here][link-vuln-list].
    
-    {% collapse title="Example." %}
-`type: sqli`    
-    {% endcollapse %}
+    ??? info "Example"
+        `type: sqli`    
 
-*   `threat` — optional parameter that defines the vulnerability threat level. The specified value will be graphically displayed in the list of the detected vulnerabilities on the Wallarm web interface in the “Risk” column. The parameter can be assigned an integer value in a range from 1 to 100. The larger the value, the higher the threat level of the vulnerability. 
+* `threat` — optional parameter that defines the vulnerability threat level. The specified value will be graphically displayed in the list of the detected vulnerabilities on the Wallarm web interface in the “Risk” column. The parameter can be assigned an integer value in a range from 1 to 100. The larger the value, the higher the threat level of the vulnerability. 
 
-    {% collapse title="Example." %}
-`threat: 20`
-    {% endcollapse %}
+    ??? info "Example"
+        `threat: 20`
     
     ![!The list of the vulnerabilities found][img-vulns]
 
-*   `description` — optional string parameter that contains the description of the vulnerability that the extension detects. This information will be shown in the detailed description of the vulnerability.
+* `description` — optional string parameter that contains the description of the vulnerability that the extension detects. This information will be shown in the detailed description of the vulnerability.
     
-    {% collapse title="Example." %}
-`description: "A demonstrational vulnerability"`    
-    {% endcollapse %}
+    ??? info "Example"
+        `description: "A demonstrational vulnerability"`    
     
     ![!Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
-
 
 !!! info "Plugging in FAST extensions"
     To plug an extension to FAST, you need to mount the directory containing the extension's YAML file to the FAST node Docker container. To see detailed information about the mounting procedure, navigate to this [link][link-extensions].

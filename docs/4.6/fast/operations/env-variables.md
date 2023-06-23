@@ -9,7 +9,7 @@
 Plenty of parameters are used to configure FAST node. These parameters' values can be changed via the corresponding environment variables.
 
 You can set environment variables' values, and pass those variables to FAST node either
-*   via the `-e` argument
+* via the `-e` argument
     
     ```
     docker run --name <container name> \
@@ -19,7 +19,7 @@ You can set environment variables' values, and pass those variables to FAST node
     -p <target port>:8080 wallarm/fast
     ```
     
-*   or via the `--env-file` argument that specifies the path to a file containing the environment variables
+* or via the `--env-file` argument that specifies the path to a file containing the environment variables
 
     ```
     docker run --name <container name> \
@@ -64,8 +64,8 @@ You can filter out all non-baseline requests by configuring the `ALLOWED_HOSTS` 
 !INCLUDE "include/env-vars-allowed-hosts.md"
 
 The FAST node employs this environment variable in the following way:
-*   If the value of the incoming request's `Host` header matches the value specified in the `ALLOWED_HOSTS` variable, then the FAST node considers the request to be a baseline one. The request is then recorded and proxied.
-*   All other requests are proxied through the FAST node but are not recorded.
+* If the value of the incoming request's `Host` header matches the value specified in the `ALLOWED_HOSTS` variable, then the FAST node considers the request to be a baseline one. The request is then recorded and proxied.
+* All other requests are proxied through the FAST node but are not recorded.
 
 !!! info "Example of ALLOWED_HOSTS Environment Variable Usage"
     If the variable is defined as `ALLOWED_HOSTS=google-gruyere.appspot.com`, then the requests targeted to the `google-gruyere.appspot.com` domain will be considered baseline ones.

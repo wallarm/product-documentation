@@ -65,9 +65,8 @@ This test policy allows working with URI (`URI`) and `email` POST parameters in 
 
 ![!Policy example](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
 
-> #### Info: Note
->
-> This policy can be used to run the [sample custom extensions](../../dsl/using-extension.md).
+!!! info "Note"
+    This policy can be used to run the [sample custom extensions](../../dsl/using-extension.md).
 
 ## Policy that Allows Working with URI and Encoded email POST Parameters (Fuzzer is Enabled)
 

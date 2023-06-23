@@ -17,8 +17,8 @@ Let us perform an inspection of the OWASP Juice Shop application to find out a f
 To do this, proceed to the login page (`http://ojs.example.local/#/login`) using a browser, enter the `'` symbol into the “Email” field and the `12345` password into the “Password” field, and press the “Log in” button. With the help of the browser's developer tools or Wireshark traffic capturing software, we can figure out that using the apostrophe symbol in the “Email” field causes an internal error in the server. 
 
 After analyzing all information from the request to the server, we can come to the following conclusions:
-*   The REST API method `POST /rest/user/login` is called when a user is trying to log in.
-*   The credentials for logging in are transferred to this API method in JSON format as shown below.
+* The REST API method `POST /rest/user/login` is called when a user is trying to log in.
+* The credentials for logging in are transferred to this API method in JSON format as shown below.
     
     ```
     {
@@ -53,8 +53,8 @@ Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL in
     }
     ```
  To understand how to detect the case of a successful vulnerability exploitation, log in to the site as the administrator using the email and password values mentioned above. Intercept the API server's response using the Wireshark application:
-*   The HTTP status of the response: `200 OK` (if there are any issues during login, then the server will respond with the `401 Unauthorized` status). 
-*   The server's response in JSON format that informs about a successful authentication:
+* The HTTP status of the response: `200 OK` (if there are any issues during login, then the server will respond with the `401 Unauthorized` status). 
+* The server's response in JSON format that informs about a successful authentication:
 
     ```
     {

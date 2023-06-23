@@ -70,19 +70,19 @@ The detected anomaly indicates a weak and potentially vulnerable area of the app
 The XXE vulnerability allows an attacker to inject an external entity in an XML document to be evaluated by an XML parser and then executed on the target web server.
 
 As the result of a successful attack, an attacker will be able to
-*   get access to the web application's confidential data
-*   scan internal data networks
-*   read the files located on the web server
-*   perform an [SSRF][anchor-ssrf] attack
-*   perform a Denial of Service (DoS) attack
+* get access to the web application's confidential data
+* scan internal data networks
+* read the files located on the web server
+* perform an [SSRF][anchor-ssrf] attack
+* perform a Denial of Service (DoS) attack
 
 This vulnerability occurs due to a lack of restriction on the parsing of XML external entities in a web application.
 
 ####    Remediation
 
 You may follow these recommendations:
-*   Disable the parsing of XML external entities when working with the XML documents supplied by a user.
-*   Apply the recommendations from the [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet].
+* Disable the parsing of XML external entities when working with the XML documents supplied by a user.
+* Apply the recommendations from the [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet].
 
 
 ### Server-Side Template Injection (SSTI)
@@ -119,9 +119,9 @@ As a result, the intruder can send a request to the vulnerable web application f
 ####    Remediation
 
 You may follow these recommendations:
-*   Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
-*   Set the `SameSite` cookie attribute.
-*   Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
+* Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
+* Set the `SameSite` cookie attribute.
+* Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
 
 
 ### Cross-site Scripting (XSS)
@@ -134,13 +134,13 @@ You may follow these recommendations:
 A cross-site scripting attack allows an intruder to execute a prepared arbitrary code in a user's browser.
 
 There are a few XSS attack types:
-*   Stored XSS is when a malicious code is pre-embedded in the web application's page.
+* Stored XSS is when a malicious code is pre-embedded in the web application's page.
 
     If the web application is vulnerable to the stored XSS attack, then it is possible for an attacker to inject a malicious code into the web application's HTML page; moreover, this code will persist and be executed by the browser of any user who requests the infected webpage.
     
-*   Reflected XSS is when an intruder tricks a user into opening a specially crafted link.      
+* Reflected XSS is when an intruder tricks a user into opening a specially crafted link.      
 
-*   DOM-based XSS is when a JavaScript code snippet built into the web application's page parses the input and executes it as a JavaScript command due to errors in this code snippet.
+* DOM-based XSS is when a JavaScript code snippet built into the web application's page parses the input and executes it as a JavaScript command due to errors in this code snippet.
 
 Exploiting any of the vulnerabilities listed above leads to the execution of an arbitrary JavaScript code. Provided that the XSS attack was successful, an intruder may steal a user's session or credentials, make requests on behalf of the user, and perform other malicious actions. 
 
@@ -150,9 +150,9 @@ This class of vulnerabilities occurs due to the incorrect validation and parsing
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
-*   Apply the recommendations from the [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
+* Apply the recommendations from the [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
 
 
 ### Insecure Direct Object References (IDOR)
@@ -171,10 +171,10 @@ To exploit this vulnerability, an intruder manipulates the request string to gai
 ####    Remediation
 
 You may follow these recommendations:
-*   Implement proper access control mechanisms for the web application's resources.
-*   Implement role-based access control mechanisms to grant access to resources based on roles that are assigned to the users.
-*   Use indirect object references.
-*   Apply the recommendations from the [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet].
+* Implement proper access control mechanisms for the web application's resources.
+* Implement role-based access control mechanisms to grant access to resources based on roles that are assigned to the users.
+* Use indirect object references.
+* Apply the recommendations from the [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet].
 
 
 ### Open Redirect
@@ -191,8 +191,8 @@ Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   Notify users about all pending redirects, and ask for explicit permission.
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Notify users about all pending redirects, and ask for explicit permission.
 
 
 ### Server-Side Request Forgery (SSRF)
@@ -207,8 +207,8 @@ A successful SSRF attack may allow an intruder to make requests on behalf of the
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
 
 
 ### Information Exposure
@@ -235,9 +235,9 @@ You may follow the recommendation to prohibit a web application from having the 
 An intruder can inject malicious code into a request to a web application, and the application will execute this code. Also, the intruder can try to execute certain commands for the operating system that the vulnerable web application runs on. 
 
 Provided that an RCE attack is successful, an intruder can perform a wide range of actions, including
-*   Compromising the confidentiality, accessibility, and integrity of the vulnerable web application's data.
-*   Taking control of the operating system and the server that the web application runs on.
-*   Other possible actions.
+* Compromising the confidentiality, accessibility, and integrity of the vulnerable web application's data.
+* Taking control of the operating system and the server that the web application runs on.
+* Other possible actions.
 
 This vulnerability occurs due to incorrect validation and parsing of user input.
 
@@ -260,9 +260,9 @@ A successful authentication bypass attack potentially leads to disclosing users'
 ####    Remediation
 
 You may follow these recommendations:
-*   Improve and strengthen existing authentication mechanisms.
-*   Eliminate any alternative authentication methods that may allow attackers to access an application while bypassing the required authentication procedure via pre-defined mechanisms.
-*   Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
+* Improve and strengthen existing authentication mechanisms.
+* Eliminate any alternative authentication methods that may allow attackers to access an application while bypassing the required authentication procedure via pre-defined mechanisms.
+* Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
 
 
 ### LDAP Injection
@@ -281,8 +281,8 @@ This vulnerability occurs due to the incorrect validation and parsing of user in
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   Apply the recommendations from the [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet].
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Apply the recommendations from the [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet].
 
 
 ### NoSQL Injection
@@ -313,8 +313,8 @@ Vulnerability to this attack occurs due to insufficient filtering of user input 
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   Additional recommendations for mitigating such attacks are available [here][link-ptrav-mitigation].
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Additional recommendations for mitigating such attacks are available [here][link-ptrav-mitigation].
 
 
 ### SQL Injection
@@ -331,5 +331,5 @@ An SQL injection attack allows an intruder to inject arbitrary SQL code into an 
 ####    Remediation
 
 You may follow these recommendations:
-*   Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-*   Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].
+* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
+* Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].

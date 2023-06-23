@@ -96,7 +96,7 @@ To get a quick introduction to FAST, do the following:
     
     ![!The result of testing][img-results]
     
-    !!! info "Analyzing the vulnerability
+    !!! info "Analyzing the vulnerability"
         You can click on the value in the “Results” column of the test run to get some insights into the discovered vulnerability:
         
         ![!The detailed information about the vulnerability][img-detailed-results]
@@ -111,5 +111,5 @@ To get a quick introduction to FAST, do the following:
     
     Click the “Finish” button to complete the onboarding process.
     
-    !!! info "Additional actions to take
+    !!! info "Additional actions to take"
         You can shut down the FAST node’s Docker container and disable proxying in the browser upon successful detection of the vulnerability.

@@ -63,8 +63,8 @@ The **Json_obj** filter refers to the hash table of the JSON objects. The elemen
 The [Hash][link-hash] filter applied to the JSON data works similarly to the Json_obj.
 
 The values from the hash tables in JSON format may also contain the following complex data structures: arrays and hash tables. Use the following filters to address the elements in these structures:
-*   The [Array][link-jsonobj-array] filter or the [Json_array][anchor2] filter for arrays
-*   The [Hash][link-jsonobj-hash] filter or the [Json_obj][anchor1] filter for hash tables
+* The [Array][link-jsonobj-array] filter or the [Json_array][anchor2] filter for arrays
+* The [Hash][link-jsonobj-hash] filter or the [Json_obj][anchor1] filter for hash tables
 
 **Example:** 
 
@@ -91,8 +91,8 @@ body, the Json_obj filter applied to the request body together with the Json_doc
 | username | user     |
 | rights   | read     |
 
-*   The `POST_JSON_DOC_JSON_OBJ_username_value` point refers to the `user` value.
-*   The `POST_JSON_DOC_JSON_OBJ_rights_value` point refers to the `read` value.
+* The `POST_JSON_DOC_JSON_OBJ_username_value` point refers to the `user` value.
+* The `POST_JSON_DOC_JSON_OBJ_rights_value` point refers to the `read` value.
 
 ## Json_array Filter
 
@@ -130,5 +130,5 @@ body, the Json_array filter applied to the `rights` JSON object together with th
 | 0      | read     |
 | 1      | write    |
 
-*   The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` point refers to the `read` value that corresponds with the `0` index from the array of the `rights` JSON object values addressed by the Json_array filter.
-*   The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` point refers to the `write` value that corresponds with the `1` index from the array of the `rights` JSON object values addressed by the Json_array filter.
+* The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` point refers to the `read` value that corresponds with the `0` index from the array of the `rights` JSON object values addressed by the Json_array filter.
+* The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` point refers to the `write` value that corresponds with the `1` index from the array of the `rights` JSON object values addressed by the Json_array filter.

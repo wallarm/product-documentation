@@ -24,28 +24,26 @@ The `modify` section in the extension YAML file contains an array of `<key: valu
 
 In the Modify phase, you can assign new values to the element or delete the element's data.
 
-*   If the key's value is set, then this value will be assigned to the corresponding baseline request element. If there is no element corresponding to the key in the baseline request, then no new element insertion will be performed.
+* If the key's value is set, then this value will be assigned to the corresponding baseline request element. If there is no element corresponding to the key in the baseline request, then no new element insertion will be performed.
     
-    {% collapse title="Example 1." %}
-`'HEADER_COOKIE_value': 'C=qwerty123'`
+    ??? info "Example 1"
+        `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
-    {% endcollapse %}
+        ![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
 
-*   If the key's value is not set, then the corresponding baseline request element's value will be cleared.
+* If the key's value is not set, then the corresponding baseline request element's value will be cleared.
     
-    {% collapse title="Example." %}
-`'HEADER_COOKIE_value': ""`
-    {% endcollapse %}
+    ??? info "Example"
+        `'HEADER_COOKIE_value': ""`
 
-{% collapse title="Example." %}
-In the example below, the baseline request will be modified in the following way:
-1.  The `Content-Type` header's value will be replaced with `application/xml`.
-2.  The `uid` GET parameter's value will be cleared (the parameter itself will not be removed).
+??? info "Example"
+    In the example below, the baseline request will be modified in the following way:
 
-```
-modify:
-  - "HEADER_CONTENT-TYPE_value": "application/xml"
-  - "GET_uid_value": ""
-```
-{% endcollapse %}
+    1.  The `Content-Type` header's value will be replaced with `application/xml`.
+    2.  The `uid` GET parameter's value will be cleared (the parameter itself will not be removed).
+
+    ```
+    modify:
+    - "HEADER_CONTENT-TYPE_value": "application/xml"
+    - "GET_uid_value": ""
+    ```

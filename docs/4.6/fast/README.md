@@ -21,7 +21,8 @@ Given the automatization capabilities combined with the built-in vulnerabilities
 !!! info "Text formatting conventions"
     This guides contain a variety of text strings and commands that need to be entered or run to get the desired result. For your convenience, all of them are formatted according to the text formatting conventions. To see the conventions, proceed to this [link][link-agreements].
 
-!!! info "Attack types validated by the libdetection library"
-    <div class="video-wrapper">
-      <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+Attack types validated by the libdetection library:
+
+<div class="video-wrapper">
+  <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

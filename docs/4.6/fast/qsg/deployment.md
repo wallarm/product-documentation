@@ -28,23 +28,16 @@ This chapter will guide you through the process of installation and initial conf
     It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
 
 ![!FAST node deployment scheme in use][img-qsg-deployment-scheme]    
-    
-    
-----------    
-    
-    
+        
 To install and configure the FAST node, do the following:
+
 1.  [Install the Docker software][anchor1].
 2.  [Obtain a token that will be used to connect your FAST node to the Wallarm cloud][anchor2].
 3.  [Prepare a file containing the necessary environment variables][anchor3].
 4.  [Deploy the FAST node Docker container][anchor4].
 5.  [Configure the browser to work with the proxy][anchor5].
 6.  [Install SSL certificates][anchor6].
-    
-       
---------    
-    
-        
+            
 ##  1.  Install the Docker software 
 
 Set up the Docker software on your machine. See the official Docker [installation guide][link-docker-docs] for more information.
@@ -99,19 +92,19 @@ docker run --name <name> --env-file=<environment variables file created on the p
 
 You should provide several arguments to the command:
     
-*   **`--name`** *`<name>`*
+* **`--name`** *`<name>`*
         
     Specifies the name of the Docker container.
     
     It should be unique among all existing containers' names.
     
-*   **`--env-file=`** *`<environment variables file created in the previous step>`*
+* **`--env-file=`** *`<environment variables file created in the previous step>`*
     
     Specifies a file containing all the environment variables to export into the container.
     
     You should specify a path to the file you created in the [previous step][anchor3].
 
-*   **`-p`** *`<target port>`* **`:8080`**
+* **`-p`** *`<target port>`* **`:8080`**
     
     Specifies a port of the Docker host to which the container’s 8080 port should be mapped. None of the container ports are available to the Docker host by default. 
     
@@ -145,8 +138,8 @@ To set up proxying in the Mozilla Firefox browser, do the following:
 
 2.  The “Connection Settings” window should open up. Select the **Manual proxy configuration** option. Configure the proxy by entering the following values:
 
-    *   **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
-    *   **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
+    * **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
+    * **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
         
     Select the **ОК** button to apply the changes you have made.
 
@@ -160,10 +153,6 @@ While working with the [Google Gruyere][link-https-google-gruyere] application v
 ![!“Insecure connection” message][img-insecure-connection]
 
 You should add a self-signed FAST node SSL certificate to be able to interact with the web application via HTTPS. To do so, navigate to this [link][link-ssl-installation], select your browser from the list, and perform the necessary actions described. This guide suggests that you use the Mozilla Firefox browser.
-    
-        
-----------
-    
         
 Having run and configured your FAST node, you should now have all of the chapter goals completed. In the next chapter, you will learn what is required to generate a set of security tests based on a few baseline requests.
     

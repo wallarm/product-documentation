@@ -19,10 +19,10 @@ The FAST node interrupts HTTPS requests from a client and initiates connection t
 If a FAST node does not have a certificate that is trusted by the browser you are using, then attempting to send HTTPS requests to the server from that browser will result in an unsecured connection warning. 
 
 For successful work with web applications via HTTPS you can use one of the following solutions:
-*   If you have your own SSL certificate that your browser already trusts, you can [add it to the FAST node][link-node-installation].
-*   If you don't have your own SSL certificate, you can add the self-signed root certificate of the FAST node to your browser. To do this, follow the instructions for your browser:
-    *   [Apple Safari][link-safari-ssl]
-    *   [Google Chrome][link-chrome-ssl]
-    *   [Microsoft Edge][link-edge-ssl]
-    *   [Microsoft Internet Explorer 11][link-ie11-ssl]
-    *   [Mozilla Firefox][link-firefox-ssl]
+* If you have your own SSL certificate that your browser already trusts, you can [add it to the FAST node][link-node-installation].
+* If you don't have your own SSL certificate, you can add the self-signed root certificate of the FAST node to your browser. To do this, follow the instructions for your browser:
+    * [Apple Safari][link-safari-ssl]
+    * [Google Chrome][link-chrome-ssl]
+    * [Microsoft Edge][link-edge-ssl]
+    * [Microsoft Internet Explorer 11][link-ie11-ssl]
+    * [Mozilla Firefox][link-firefox-ssl]

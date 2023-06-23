@@ -23,10 +23,10 @@
 This chapter will guide you through the process of configuring FAST to detect XSS vulnerabilities in the Google Gruyere application. Upon completion of all necessary steps, you will be ready to proxy an HTTPS baseline request through the FAST node in order to find XSS vulnerabilities.
 
 To generate a security test set, Wallarm FAST requires the following:
-*   A deployed FAST node, proxying baseline requests
-*   A connection of the FAST node to the Wallarm cloud 
-*   A baseline request
-*   A test policy
+* A deployed FAST node, proxying baseline requests
+* A connection of the FAST node to the Wallarm cloud 
+* A baseline request
+* A test policy
 
 You have successfully deployed a FAST node and connected it to the cloud in the [previous chapter][link-previous-chapter]. In this chapter you will focus on creating a [test policy][gl-testpolicy] and a baseline request.
 
@@ -34,10 +34,6 @@ You have successfully deployed a FAST node and connected it to the cloud in the 
 
 !!! info "Creating a test policy"
     It is strongly recommended that you create a dedicated policy for each target application under the test. However, you could make use of the default policy that is automatically created by the Wallarm cloud. This document will guide you through the process of creating a dedicated policy, while the default policy is beyond the scope of this guide.
-    
-    
-----------
-    
     
 To set the environment for testing, do the following:
 
@@ -106,8 +102,4 @@ To set the environment for testing, do the following:
 !!! info "Test policy details"
     Detailed information about test policies is available by the [link][doc-policy-in-detail].
 
-----------
-    
-        
-Now you should have all of the chapter goals completed, with the HTTPS baseline request to the Google Gruyere application and the test policy targeted at XSS vulnerabilities. 
-    
+Now you should have all of the chapter goals completed, with the HTTPS baseline request to the Google Gruyere application and the test policy targeted at XSS vulnerabilities.    

@@ -39,8 +39,8 @@ request, the Multipart parser applied to the request body creates the following 
 | id        | 01234    |
 | username  | admin    |
 
-*   The `POST_MULTIPART_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Multipart parser.
-*   The `POST_MULTIPART_username_value` point refers to the `admin` value that corresponds to the `username` key from the hash table created by the Multipart parser.
+* The `POST_MULTIPART_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Multipart parser.
+* The `POST_MULTIPART_username_value` point refers to the `admin` value that corresponds to the `username` key from the hash table created by the Multipart parser.
 
 The request body in the multipart format may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-multipart-array] and [Hash][link-multipart-hash] filters correspondingly to address the elements in these structures.
 
