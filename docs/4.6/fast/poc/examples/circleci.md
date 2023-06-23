@@ -159,6 +159,7 @@ After a new CI job is in place, the variable’s value is passed to the Docker c
     ![!Test and HTTP traffics flows][img-test-traffic-flow]
     
     In accordance with the [scenario][link-api-recoding-mode], RSpec tests include all steps that are required to run the FAST security tests (see the `spec/support/fast_hooks.rb` file):
+    
     1.  A test run [is created][doc-testrun-creation] prior to the execution of the RSpec tests.
         
         Then the API call [is issued][doc-node-ready-for-recording] to check if the FAST node is ready to record the baseline requests. The existing tests’ execution process is not started until the node is ready.

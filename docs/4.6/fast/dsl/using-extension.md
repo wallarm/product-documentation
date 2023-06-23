@@ -1,5 +1,5 @@
 [link-points]:                  points/intro.md
-[link-stop-recording]:          ../qsg/test-run.md#2--execute-the-https-baseline-request-you-created-earlier 
+[link-stop-recording]:          ../qsg/test-run.md#2-execute-the-https-baseline-request-you-created-earlier 
 
 [doc-mod-extension]:            extensions-examples/mod-extension.md
 [doc-non-mod-extension]:        extensions-examples/non-mod-extension.md
@@ -25,7 +25,7 @@ You can do this in either of the following ways:
 * Place the extensions in a directory and mount this directory into the FAST node Docker container using the `-v` option of the `docker run` command.
     
     ```
-    $ sudo docker run --name <container name> --env-file=<file with environment variables> -v <directory with extensions>:/opt/custom_extensions -p <target port>:8080 wallarm/fast
+    sudo docker run --name <container name> --env-file=<file with environment variables> -v <directory with extensions>:/opt/custom_extensions -p <target port>:8080 wallarm/fast
     ```
     
     **Example:**
@@ -38,7 +38,7 @@ You can do this in either of the following ways:
     4.  The port to which the `8080` port of the container is published: `9090`.
 
     ```
-    $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -v /home/user/extensions:/opt/custom_extensions -p 9090:8080 wallarm/fast
+    sudo docker run --name fast-node --env-file=/home/user/fast.cfg -v /home/user/extensions:/opt/custom_extensions -p 9090:8080 wallarm/fast
     ```
 
 * Place the extensions into a public Git repository and define the environment variable, which refers to the necessary repository, in the FAST node Docker container.
@@ -58,7 +58,7 @@ You can do this in either of the following ways:
     2.  Run the FAST node Docker container using the file containing the environment variables as follows:
         
         ```
-        $ sudo docker run --name <container name> --env-file=<file with environment variables> -p <target port>:8080 wallarm/fast
+        sudo docker run --name <container name> --env-file=<file with environment variables> -p <target port>:8080 wallarm/fast
         ```
         
         **Example:**
@@ -70,7 +70,7 @@ You can do this in either of the following ways:
         3.  The port to which the `8080` port of the container is published: `9090`.
         
         ```
-        $ sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
+        sudo docker run --name fast-node --env-file=/home/user/fast.cfg -p 9090:8080 wallarm/fast
         ```
 
 --8<-- "../include/fast/wallarm-api-host-note.md"
@@ -97,6 +97,7 @@ To check the operation of the [`mod-extension.yaml`][doc-mod-extension] and [`no
     Let us remind you that the connected modifying extension changes the `POST_JSON_DOC_HASH_email_value` point in a baseline request, and the non-modifying extension requires the permissions to work with the `URI` point.
     
     Therefore, to make both extensions execute during a single test run, a test policy should allow working with:
+    
     * POST parameters
     * the URI parameter
     

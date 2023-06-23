@@ -11,13 +11,13 @@
     * Names and keys that match the `name` and `value` service words 
 
 There are several universal points building principles that must be considered when developing a custom extension.
+
 * All Points are treated as regular expressions.
     
     **Example:**
+
     * The `HEADER_A.*_value` point refers to the header with the name starting with `A` if such a header is present in the request.
     * The `PATH_\d_value` point refers to the first 10 parts of the request's URI path.
-
-
 
 * The parts of the point should be divided using the `_` symbol.
     
@@ -72,6 +72,7 @@ There are several universal points building principles that must be considered w
     * The `name` service word must be specified to work with the name of the request element. 
         
         The `name` service word can be used together with the following filters:
+        
         * Xml_pi;
         * Xml_dtd_entity.
         

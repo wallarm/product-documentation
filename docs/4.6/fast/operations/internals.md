@@ -22,7 +22,7 @@
 [anchor-token]:         #token
 [anchor-testrecord]:    #test-record
 
-[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2--create-a-test-policy-targeted-at-xss-vulnerabilities
+[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
 [doc-about-timeout]:                create-testrun.md
 [doc-node-deployment]:              ../poc/node-deployment.md#run-docker-container-with-the-fast-node
 
@@ -141,12 +141,14 @@ When you create a test run, its execution begins immediately and follows the fol
     There is a special timeout value set after the creation of a test run. It determines how long FAST should wait for new baseline requests before stopping the recording process due to the absence of baseline requests (the [`inactivity_timeout`][doc-about-timeout] parameter).
     
     If you do not stop the recording process manually, then: 
+    
     * The test run continues its execution until the timeout value expires, even if the FAST security tests are already finished.
     * Other test runs are not able to reuse the test record until this test run stops. 
     
     You could stop the recording process on the FAST node if there are no more baseline requests awaiting. Note the following:
-     *  The processes of creation and execution of the security tests are not to be stopped. Test run execution stops when the evaluation of the target application against the vulnerabilities finishes. This behavior helps to decrease the execution time of the CI/CD job.
-     *  Other test runs gain the ability to reuse the test record once recording is stopped.
+
+    *  The processes of creation and execution of the security tests are not to be stopped. Test run execution stops when the evaluation of the target application against the vulnerabilities finishes. This behavior helps to decrease the execution time of the CI/CD job.
+    *  Other test runs gain the ability to reuse the test record once recording is stopped.
     
 5.  The FAST node creates one or more test requests based on each of the incoming baseline requests (only if the baseline request satisfies the applied test policy).
      

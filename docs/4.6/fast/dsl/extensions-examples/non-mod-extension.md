@@ -27,6 +27,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 1.  [**The `meta-info` section**][link-meta-info].
 
     Prepare the description of the vulnerability that the extension will try to detect.
+    
     * vulnerability header: `OWASP Juice Shop SQLi (non-mod extension)`
     * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
     * vulnerability type: SQL injection
@@ -45,10 +46,12 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
 2.  **The `send` section, the [Send phase][doc-send-phase]**
 
     There are two payloads that should be sent as an `email` parameter value alongside any `password` value in order to exploit the SQL injection vulnerability in the target application:
+    
     * `'or 1=1 --`
     * `admin@juice-sh.op'--`
     
     You can craft two test requests, each containing
+    
     * the `email` parameter with one of the values described above and 
     * the `password` parameter with an arbitrary value.
 
@@ -98,6 +101,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
      3.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
     
     The following conditions indicate that the user authentication with administrator's rights was successful:
+    
     * The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in JSON format and should look like this:
     
         ```

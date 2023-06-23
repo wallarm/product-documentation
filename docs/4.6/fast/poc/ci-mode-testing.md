@@ -1,5 +1,5 @@
 [doc-testpolicy]:                   ../operations/internals.md#fast-test-policy
-[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2--create-a-test-policy-targeted-at-xss-vulnerabilities
+[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
 [doc-waiting-for-tests]:            waiting-for-tests.md
 [doc-get-token]:                    prerequisites.md#anchor-token
 [doc-concurrent-pipelines]:         ci-mode-concurrent-pipelines.md
@@ -56,7 +56,7 @@ FAST node configuration is done via environment variables. The table below holds
 !!! info "See also"
     The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
 
- ## Acquiring a Test Policy Identifier
+## Acquiring a Test Policy Identifier
 
 If you plan to employ your own [test policy][doc-testpolicy], then [create one][link-wl-portal-new-policy] in the Wallarm cloud. Later, pass the identifier to the FAST node's Docker container via the `TEST_RUN_POLICY_ID` environment variable when running the FAST node in testing mode. 
 
@@ -67,11 +67,9 @@ Otherwise, if you choose to use the default test policy, then do not set the `TE
 
 ## Obtaining a test record identifier
  
-To use a specific test record in testing mode, you can pass the test record's identifier to the FAST node using the [`TEST_RECORD_ID`][anchor-testing-variables] parameter.
-Thus, there is no need to run the FAST node in the recording mode first. Rather, you can use a pre-formed test record to perform the same security tests several times in different nodes and test runs.
+To use a specific test record in testing mode, you can pass the test record's identifier to the FAST node using the [`TEST_RECORD_ID`][anchor-testing-variables] parameter. Thus, there is no need to run the FAST node in the recording mode first. Rather, you can use a pre-formed test record to perform the same security tests several times in different nodes and test runs.
  
-You can get the identifier of the test record in the Wallarm portal interface or from the FAST node log in the testing mode.
-If you do not use the `TEST_RECORD_ID` parameter, then the FAST node will use the last test record of the node.
+You can get the identifier of the test record in the Wallarm portal interface or from the FAST node log in the testing mode. If you do not use the `TEST_RECORD_ID` parameter, then the FAST node will use the last test record of the node.
 
 ## Deployment of a FAST Node in the Testing Mode
 

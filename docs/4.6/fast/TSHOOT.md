@@ -17,6 +17,7 @@
 --8<-- "../include/fast/console-include/tshoot/access-denied.md"
     
     **Solution:** make sure that
+
     * the FAST node and corresponding Docker host have internet access (particularly, the Wallarm `api.wallarm.com` and `us1.api.wallarm.com` API servers should be accessible via `TCP/443`), and
     * you are using the correct [token][link-token] value and communicating with the appropriate Wallarm API server. Note that FAST employs *different* tokens to connect to the API servers depending on whether they reside in the European or the American clouds.
     
@@ -27,6 +28,7 @@
 * **...the FAST node is up and running but no baseline requests are being recorded?**
 
     **Solution:** check the following:
+
     * The request source is configured to use the FAST node as a proxy server and is supplied with the correct port, domain name, or IP address of the node to connect to.
     * The request source is using the FAST node as a proxy server for every protocol that is in use by the source (a common situation is that the FAST node is employed as an HTTP proxy, while the request source is trying to send HTTPS requests).
     * The [`ALLOWED_HOST`][doc-allowed-host] environment variable is configured correctly.
@@ -40,6 +42,7 @@
 If you either cannot find your issue in the list above, or consider the solution unhelpful, contact the Wallarm support team.
 
 You can either [write an email](mailto:support@wallarm.com) or fill in the form on the Wallarm portal. To send a feedback through the portal, do the following:
+
 * Click the question mark in the top right corner of the portal.
 * In the opened sidebar, select the “Wallarm Support” entry.
 * Write and send an email.

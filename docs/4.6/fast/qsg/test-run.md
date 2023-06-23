@@ -10,8 +10,8 @@
 [link-previous-chapter]:    test-preparation.md
 [link-create-tr-gui]:       ../operations/create-testrun.md#creating-a-test-run-via-web-interface
 
-[anchor1]:  #1--create-and-run-the-test-run  
-[anchor2]:  #2--execute-the-https-baseline-request-you-created-earlier 
+[anchor1]:  #1-create-and-run-the-test-run  
+[anchor2]:  #2-execute-the-https-baseline-request-you-created-earlier 
 
     
     

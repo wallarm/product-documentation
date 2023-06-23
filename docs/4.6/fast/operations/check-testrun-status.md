@@ -161,7 +161,7 @@ There is a separate group of parameters in the API server's response, that allow
     * There are no vulnerability checks in progress yet (e.g., there are no baseline requests recorded for the newly created test run so far).
     * Test run is not executing (i.e., it is in any state, excluding `"state":"running"`).
 
-        The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
+    The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
     
 !!! warning "The possible values of the parameters related to test run's execution speed and time estimates"
     The aforementioned parameters' values are `null` in the first 10 seconds of a test run's execution.

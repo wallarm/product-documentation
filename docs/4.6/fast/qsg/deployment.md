@@ -12,12 +12,12 @@
 
 [wl-cloud-list]:    ../CLOUD-LIST.md
       
-[anchor1]:  #1--install-the-docker-software              
-[anchor2]:  #2--obtain-a-token-that-will-be-used-to-connect-your-fast-node-to-the-wallarm-cloud
-[anchor3]:  #3--prepare-a-file-containing-the-necessary-environment-variables 
-[anchor4]:  #4--deploy-the-fast-node-docker-container 
-[anchor5]:  #5--configure-the-browser-to-work-with-the-proxy
-[anchor6]:  #6--install-ssl-certificates 
+[anchor1]:  #1-install-the-docker-software              
+[anchor2]:  #2-obtain-a-token-that-will-be-used-to-connect-your-fast-node-to-the-wallarm-cloud
+[anchor3]:  #3-prepare-a-file-containing-the-necessary-environment-variables 
+[anchor4]:  #4-deploy-the-fast-node-docker-container 
+[anchor5]:  #5-configure-the-browser-to-work-with-the-proxy
+[anchor6]:  #6-install-ssl-certificates 
     
     
 # FAST node deployment

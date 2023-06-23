@@ -14,8 +14,8 @@
 [gl-element]:                       ../TERMS-GLOSSARY.md#baseline-request-element
 [gl-testpolicy]:                    ../TERMS-GLOSSARY.md#test-policy
 
-[anchor1]:  #1--prepare-the-baseline-request                       
-[anchor2]:  #2--create-a-test-policy-targeted-at-xss-vulnerabilities
+[anchor1]:  #1-prepare-the-baseline-request                       
+[anchor2]:  #2-create-a-test-policy-targeted-at-xss-vulnerabilities
     
     
 #   Setting the environment for testing

@@ -1,5 +1,3 @@
-[doc-inactivity-timeout]:           ../internals.md#test-run
-
 | API call: | `POST /v1/test_run` |      |
 | ------------ | ------------------- | ---- |
 | Authorization: | Required | With the token |

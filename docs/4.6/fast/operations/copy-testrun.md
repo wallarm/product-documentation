@@ -40,16 +40,16 @@ The things to be taken into account when copying a test run are:
     If you try to copy a test run based on an unfinished test record, you will get the `400` error code (`Bad Request`) from the API server and an error message similar to the one below:
 
     ```
-     {
-       "status": 400,
-       "body": {
-         "test_record_id": {
-         "error": "not_ready_for_cloning",
-         "value": rec_0001
-         }
-       }
-     }
-     ```
+    {
+        "status": 400,
+        "body": {
+            "test_record_id": {
+            "error": "not_ready_for_cloning",
+            "value": rec_0001
+            }
+        }
+    }
+    ```
     
     It is not possible to copy a test run from the web interface unless the recording process has been stopped.
 
@@ -89,7 +89,8 @@ To copy and execute a test run via the Wallarm portal's web interface:
     ![!The “Test run” sidebar][img-similar-tr-sidebar]
     
     You may configure additional settings by selecting “Advanced settings” (if necessary):
---8<-- "../include/fast/test-run-adv-settings.md"    
+    
+--8<-- "../include/fast/test-run-adv-settings.md"
     
 5.  Make sure that the “Use baselines from `<the name of the test record to reuse>`” option is checked.
 

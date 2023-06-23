@@ -26,12 +26,12 @@ To delete the point, use the «—» symbol next to it:
 !!! info "Basic points"
     When creating a policy, typical points are automatically added to the **Where in the request to include** section:
 
-        * `URI_value`: [URI][link-uri-point]
-        * `PATH_.*`: any part of the URI [path][link-path-point]
-        * `ACTION_NAME`: [action][link-action-name-point]
-        * `ACTION_EXT`: [extension][link-action-ext-point]
-        * `GET_.*`: any [GET parameter][link-get-point]
-        * `POST_.*`: any [POST parameter][link-post-point]
+    * `URI_value`: [URI][link-uri-point]
+    * `PATH_.*`: any part of the URI [path][link-path-point]
+    * `ACTION_NAME`: [action][link-action-name-point]
+    * `ACTION_EXT`: [extension][link-action-ext-point]
+    * `GET_.*`: any [GET parameter][link-get-point]
+    * `POST_.*`: any [POST parameter][link-post-point]
     
     The list of points in the **Where in the request to exclude** section is empty by default.
 

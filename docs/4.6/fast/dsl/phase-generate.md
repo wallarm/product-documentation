@@ -49,6 +49,7 @@ generate:
     This parameter is optional and it may be absent in the section. If the `into` parameter is omitted, the payload is inserted into the request element that is allowed to be modified according to the given test policy.
     
     Let us suppose that the following mutable request elements were extracted from the baseline request according to the test policy:
+    
     * `GET_uid_value`
     * `HEADER_COOKIE_value`
     

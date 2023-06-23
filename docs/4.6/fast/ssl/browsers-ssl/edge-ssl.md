@@ -17,6 +17,7 @@ To install the certificate for the Microsoft Edge browser, do the following:
 2.  Request the file `cert.der` from any domain via HTTP using the browser.
 
     For example, you can use one of the following links:
+    
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der> 
 

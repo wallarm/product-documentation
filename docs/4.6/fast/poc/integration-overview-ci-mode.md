@@ -31,6 +31,7 @@ The corresponding workflow steps are:
 2.  [Running the FAST node in recording mode][doc-recording-mode].
 
     In recording mode the FAST node performs the following actions:
+    
     * Proxies baseline requests from the requests' source to the target application.
     * Records these baseline requests in the test record to later create the security test set based on them.
     

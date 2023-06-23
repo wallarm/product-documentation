@@ -15,12 +15,13 @@ To pass credentials for test run authentication, perform the following steps bef
             If a token is used for request authentication and its value is passed in the `token` parameter in the `Cookie` request header, the point may look like `HEADER_COOKIE_COOKIE_token_value`.
     
     3. Specify values of authentication parameters in the following way:
-    ```
-    modify:
-        - HEADER_COOKIE_COOKIE_token_value:  "fl49qam93mfu0uhgh00gilssj2"
-    ```
+        
+        ```
+        modify:
+            - HEADER_COOKIE_COOKIE_token_value:  "fl49qam93mfu0uhgh00gilssj2"
+        ```
 
-    The number of used authentication parameters is not limited.
+        The number of used authentication parameters is not limited.
 3. Mount the directory with the `.yml`/`.yaml` file into the FAST node Docker container using the `-v {path_to_folder}:/opt/dsl_auths` option when deploying the container. For example:
     ```
     docker run --name fast-proxy -e WALLARM_API_TOKEN='dfjyt8C79DxZptWwQS3/0RHiuJLNFrqTdgCIzPPZq' -v /home/username/dsl_auth:/opt/dsl_auths -p 8080:8080 wallarm/fast

@@ -325,7 +325,7 @@ body, the Xml_tag_array applied to the `text` tag in the request body refers to 
 
 The **Xml_attr** filter refers to the hash table of the tag attributes from the XML data. The elements of this hash table need to be referred to by using the names of the attributes.
 
-!!! info "Regular expressions in points
+!!! info "Regular expressions in points"
     The attribute name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
 
 This filter can only be used in the point together with the Xml_tag filter.

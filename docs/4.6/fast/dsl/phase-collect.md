@@ -53,6 +53,7 @@ The request element in the list may contain [regular expressions in the Ruby reg
 The `uniq` uniqueness condition comprises the array of the request elements that contain the data that is used to check the uniqueness of the baseline request. The `testrun` parameter may be used as well.
 
 The uniqueness condition parameters are as follows:
+
 * **`- [request element]`**
     
     The request should contain unique data in the request element for the request to be treated as unique.

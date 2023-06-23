@@ -7,9 +7,9 @@
 [doc-get-token]:                    prerequisites.md#anchor-token
 [doc-testpolicy]:                   ../operations/internals.md#fast-test-policy
 [doc-inactivity-timeout]:           ../operations/internals.md#test-run
-[doc-allowed-hosts-example]:        ../qsg/deployment.md#3--prepare-a-file-containing-the-necessary-environment-variables
-[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2--create-a-test-policy-targeted-at-xss-vulnerabilities
-[doc-docker-run-fast]:              ../qsg/deployment.md#4--deploy-the-fast-node-docker-container
+[doc-allowed-hosts-example]:        ../qsg/deployment.md#3-prepare-a-file-containing-the-necessary-environment-variables
+[doc-testpolicy-creation-example]:  ../qsg/test-preparation.md#2-create-a-test-policy-targeted-at-xss-vulnerabilities
+[doc-docker-run-fast]:              ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
 [doc-state-description]:            ../operations/check-testrun-status.md
 [doc-testing-scenarios]:            ../operations/internals.md#test-run
 [doc-testrecord]:                   ../operations/internals.md#test-record
@@ -45,7 +45,7 @@ Running and configuration of FAST node comprises the following steps:
 ##  Deployment of the Docker Container with the FAST Node
 
 !!! warning "Grant Access to Wallarm API Servers"
-    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `us1.api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
+    It is crucial for the proper operation for the FAST node to have access to the `us1.api.wallarm.com` or `api.wallarm.com` Wallarm API servers via the HTTPS protocol (`TCP/443`).
     
     Make sure that your firewall does not restrict the Docker host from accessing the Wallarm API servers.
 
@@ -78,6 +78,7 @@ Please refer to the “Quick Start” guide for a [detailed description][doc-doc
     | `WALLARM_API_TOKEN=token_Qwe12345`<br>`ALLOWED_HOSTS=example.local` |
 
     The command below runs the Docker container named `fast-poc-demo` with the following behavior:
+    
     * The container is removed after its job is done.
     * The environment variables are passed to the container using the `fast.cfg` file. 
     * The container’s `8080` port is published to the Docker host’s `9090` port.
@@ -121,7 +122,7 @@ The FAST node needs a certain amount of time to pass after the creation of the t
 
 Make sure that the FAST node is ready to record requests before you send any requests to the target application using the test tool.
 
-To do so, send the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
+To do so, periodically check the test run status by sending the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
 
 --8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
 
