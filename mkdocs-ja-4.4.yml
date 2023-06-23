@@ -376,7 +376,7 @@ nav:
       - Running the example application and API Firewall with Docker Compose: api-firewall/demos/docker-compose.md
       - Wallarm API Firewall demo with Kubernetes: api-firewall/demos/kubernetes-cluster.md
     - API Firewall changelog: api-firewall/release-notes.md
-  - "Security testing: FAST": https://docs.fast.wallarm.com/en/
+  - Security testing: https://docs.wallarm.com/fast/
   - API docs:
     - Wallarm API overview: api/overview.md
     - Wallarm API request examples: api/request-examples.md 
