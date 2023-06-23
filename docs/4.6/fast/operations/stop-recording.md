@@ -28,13 +28,9 @@ The need to stop baseline requests recording is described by the [link][link-sto
 
 ## Stopping the Recording Process via API
 
-Stop the recording process by issuing the following API call:
-
-{% api "Stop Recording Process", method="POST", url="https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop" %}
+To stop the recording process, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop`:
 
 --8<-- "../include/fast/operations/api-stop-recording.md"
-
-{% endapi %}
 
 If the request to the API server is successful, you are presented with the server’s response. The response provides useful information, including:
 * the state of the recording process (the `recording` parameter’s value).

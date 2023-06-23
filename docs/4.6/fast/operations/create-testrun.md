@@ -27,13 +27,9 @@ This way of test run creation is to be used if it is required to test a target a
 
 ## Creating a Test Run via API
 
-Create a test run by issuing the following API call:
-
-{% api "Create New Test Run", method="POST", url="https://us1.api.wallarm.com/v1/test_run" %}
+To create a test run, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run`:
 
 --8<-- "../include/fast/operations/api-create-testrun.md"
-
-{% endapi %}
 
 If the request to the API server is successful, you are presented with the server’s response. The response provides useful information, including:
 

@@ -55,13 +55,9 @@ The things to be taken into account when copying a test run are:
 
 ##  Copying a Test Run via an API
 
-To copy and execute a test run, issue this API call:
-
-{% api "Copy test run", method="POST", url="https://us1.api.wallarm.com/v1/test_run" %}
+To copy and execute a test run, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run`:
 
 --8<-- "../include/fast/operations/api-copy-testrun.md"
-
-{% endapi %}     
 
 If the request to the API server is successful, you will be presented with the server’s response. The response provides useful information, including:
 

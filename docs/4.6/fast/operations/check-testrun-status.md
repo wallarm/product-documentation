@@ -88,13 +88,9 @@ The state is displayed for each baseline request:
 !!! info "How to choose the right period of time to perform check of a test run"
     You can check the state of the test run in the pre-defined period of time (e.g., 15 seconds). Alternatively, you can employ the estimated time of completion for a test run to determine when the next check is to be done. You can obtain this estimate while checking the state of a test run. [See details below.][anchor-testrun-estimates]
 
-You could perform a single check of the test run state by issuing the following API call:
-
-{% api "Do One-Time Check of Test Run State", method="GET", url="https://us1.api.wallarm.com/v1/test_run/test_run_id" %}
+To perform a single check of the test run state, send the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
 
 --8<-- "../include/fast/operations/api-check-testrun-status.md"
-
-{% endapi %}
 
 If the request to the API server is successful, you are presented with the server’s response. The response provides a lot of useful information, including:
 

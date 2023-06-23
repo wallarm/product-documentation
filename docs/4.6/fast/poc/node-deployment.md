@@ -121,13 +121,9 @@ The FAST node needs a certain amount of time to pass after the creation of the t
 
 Make sure that the FAST node is ready to record requests before you send any requests to the target application using the test tool.
 
-To do so, periodically check the test run status by issuing the following API call:
-
-{% api "Do One-Time Check of Test Run State", method="GET", url="https://us1.api.wallarm.com/v1/test_run/test_run_id" %}
+To do so, send the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
 
 --8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
-
-{% endapi %}
 
 If the request to the API server is successful, you will be presented with the server’s response. This response provides useful information, including the state of the recording process (the `ready_for_recording` parameter’s value).
 
