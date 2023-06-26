@@ -151,7 +151,7 @@ sudo systemctl restart nginx
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## 8. Fine-tune the deployed solution
+## 9. Fine-tune the deployed solution
 
 The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
 
@@ -174,17 +174,7 @@ Below there are a few of the typical settings that you can apply if needed:
 
 ## Launch options
 
-The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
-
-In interactive mode the following is asked by the script:
-
-* Connect to cloud?
-* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
-* Wallarm token
-
-Also interactive mode includes a reminder that you need to configure the installed node.
-
-Note that as soon as you have the all-in one script downloaded, you can get help on it with:
+As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
 sudo sh ./wallarm-4.6.11.x86_64-glibc.sh -- -h
@@ -208,5 +198,15 @@ OPTION                      DESCRIPTION
 -h, --help
     --version
 ```
+
+The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
+
+In interactive mode the following is asked by the script:
+
+* Connect to cloud?
+* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
+* Wallarm token
+
+Also interactive mode includes a reminder that you need to configure the installed node.
 
 Note that the `filtering/postanalytics` argument allows installing [separately](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. Without the argument filtering and postanalytics part are installed altogether.
