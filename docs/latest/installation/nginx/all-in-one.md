@@ -68,7 +68,24 @@ Install the latest NGINX version of:
 
 * **NGINX `stable`** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
 * **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* **Distribution-Provided NGINX** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-package).
+* **Distribution-Provided NGINX** - to install, use the following commands:
+
+    === "Debian 10.x (buster)"
+        ```bash
+        sudo apt -y install --no-install-recommends nginx
+        ```
+    === "Debian 11.x (bullseye)"
+        ```bash
+        sudo apt -y install --no-install-recommends nginx
+        ```
+    === "CentOS 7.x"
+        ```bash
+        sudo yum install -y nginx
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum install -y nginx
+        ```
 
 ## 2. Prepare Wallarm token
 
@@ -118,7 +135,7 @@ To download all-in-one Wallarm installation script, execute the command:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh
         ```        
 
-        Where `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+        Commands for x86_64 and ARM64 versions. `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         ```bash
@@ -126,10 +143,10 @@ To download all-in-one Wallarm installation script, execute the command:
         sudo sh wallarm-4.6.11.aarch64-glibc.sh
         ```
 
+        Commands for x86_64 and ARM64 versions.
+
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 1. Enter Wallarm token.
-
-    The script finishes installation and reminds about necessity to configure the installed node via `/etc/nginx/nginx.conf`.
 
 Commands in the further steps are the same for x86_64 and ARM64 installations.
 
@@ -189,26 +206,24 @@ Which returns:
 Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
 
 OPTION                      DESCRIPTION
--b, --batch                 batch mode, non-interactive installation
--t, --token TOKEN           Node token. only used in batch mode
--c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default EU, only used in batch mode
--H, --host HOST             Wallarm API address, fore example api.wallarm.com or us1.api.wallarm.com, only used in batch mode
--P, --port PORT             Wallarm API pot, fore example 443
-    --no-ssl                disable SSL for Wallarm API access
-    --no-verify             disable SSL certificates verification
--f, --force                 always create a new instance in Cloud
+-b, --batch                 Batch mode, non-interactive installation.
+-t, --token TOKEN           Node token, only used in a batch mode.
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default is EU, only used in a batch mode.
+-H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
+-P, --port PORT             Wallarm API pot, for example, 443.
+    --no-ssl                Disable SSL for Wallarm API access.
+    --no-verify             Disable SSL certificates verification.
+-f, --force                 Always create a new instance in a Cloud.
 -h, --help
     --version
 ```
 
-The all-in-one installation script can work in **interactive mode** (default), when it asks several questions, and **batch (non-interactive) mode** when the node is installed into the EU cloud completely automatically.
+Note that: 
 
-In interactive mode the following is asked by the script:
+* The `--batch` option enables a **batch (non-interactive) mode**. In this mode, if you do not use additional parameters, the node is installed immediately after script laungh, requiring no additional interaction or data input from the user. Batch mode:
+ 
+    * Requires `--token`
+    * Installs node into EU Cloud by default
+    * Allows script behavior modifications with additional options
 
-* Connect to cloud?
-* To which cloud: [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)?
-* Wallarm token
-
-Also interactive mode includes a reminder that you need to configure the installed node.
-
-Note that the `filtering/postanalytics` argument allows installing [separately](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. Without the argument filtering and postanalytics part are installed altogether.
+* The `filtering/postanalytics` switcher allows installing [separately](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script) the postanalytics module. If switcher is not used, filtering and postanalytics part are installed altogether.

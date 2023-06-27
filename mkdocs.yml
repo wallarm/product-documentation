@@ -184,7 +184,7 @@ nav:
           - NGINX stable: installation/nginx/dynamic-module.md
           - NGINX Plus: installation/nginx-plus.md
           - Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
-          - All‑in‑one Installer: installation/nginx/all-in-one.md
+          - All‑in‑One Installer: installation/nginx/all-in-one.md
         - Cloud Images:
           - AWS AMI: installation/packages/aws-ami.md
           - GCP Machine Image: installation/packages/gcp-machine-image.md

@@ -15,7 +15,6 @@ Depending on the system architecture, the NGINX-Wallarm and postanalytics module
 
 These instructions provide the steps to install the postanalytics module on a separate server. This option is available only for the following Wallarm artifacts:
 
-* [DEB/RPM packages via all-in-one Wallarm binary](../installation/nginx/all-in-one.md)
 * [DEB/RPM packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
 * [DEB/RPM packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
