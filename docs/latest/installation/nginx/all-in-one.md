@@ -32,9 +32,9 @@
 
 # Deploying with All-in-One Installer
 
-An **all-in-one installer** is designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies. All essential components are installed in their own environment, which eliminates the possibility of dependency conflicts and simplifies the potential for future updates to the Wallarm node.
+An **all-in-one installer** is designed to streamline and standardize the process of installing Wallarm node as a dynamic module for NGINX in various environments. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
-In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distributive NGINX](dynamic-module-from-distr.md), the **all-in-one installer** simplifies the process by automatically performing the following actions:
+In comparison to the individual Linux packages offered by Wallarm for [NGINX](dynamic-module.md), [NGINX Plus](../nginx-plus.md), and [distribution-provided NGINX](dynamic-module-from-distr.md), the **all-in-one installer** simplifies the process by automatically performing the following actions:
 
 1. Checking your OS and NGINX version.
 1. Adding Wallarm repositories for the detected OS and NGINX version.
@@ -42,7 +42,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+<! --![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png) -->
 
 ## Requirements
 
@@ -56,7 +56,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
     * Oracle Linux 8.x
     * Redos, 
     * SuSe Linux
-    * Other popular Linux distributions
+    * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall
 * Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
@@ -68,7 +68,7 @@ Install the latest NGINX version of:
 
 * **NGINX `stable`** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
 * **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* **NGINX Distro** - see how to install in the Wallarm [documentation](../../installation/nginx/dynamic-module-from-distr.md).
+* **Distribution-Provided NGINX** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/#installing-a-prebuilt-package).
 
 ## 2. Prepare Wallarm token
 
@@ -94,7 +94,7 @@ Wallarm suggests all-in-one installations for the following processors of node m
 * x86_64
 * ARM64 (beta)
 
-To download all-in-one Wallarm [installation script](#script-parameters), execute the command:
+To download all-in-one Wallarm installation script, execute the command:
 
 === "x86_64 version"
 
@@ -108,8 +108,6 @@ To download all-in-one Wallarm [installation script](#script-parameters), execut
     curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
     ```
 
-The steps below describe the x86_64 version installation. The ARM64 script uses all the same options.
-
 ## 4. Run all-in-one Wallarm installer
 
 1. Run downloaded script:
@@ -117,19 +115,23 @@ The steps below describe the x86_64 version installation. The ARM64 script uses 
     === "API token"
         ```bash
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh
-        ```
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh
+        ```        
 
-        Where `WALLARM_LABELS` variable sets group into which the node will be added. (used for logical grouping of nodes in the Wallarm Console UI).
+        Where `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         ```bash
         sudo sh wallarm-4.6.11.x86_64-glibc.sh
+        sudo sh wallarm-4.6.11.aarch64-glibc.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 1. Enter Wallarm token.
 
     The script finishes installation and reminds about necessity to configure the installed node via `/etc/nginx/nginx.conf`.
+
+Commands in the further steps are the same for x86_64 and ARM64 installations.
 
 ## 5. Enable Wallarm to analyze the traffic
 
