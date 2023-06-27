@@ -28,6 +28,12 @@ config:
     parseWebsocket: "off"
     unpackResponse: "on"
     ...
+postanalytics:
+  external:
+    enabled: false
+    host: ""
+    port: 3313
+  ...
 ```
 
 ## config.wallarm.api.token
@@ -141,3 +147,32 @@ Whether to decompress compressed data returned in the application response:
 * `off`
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+
+## postanalytics.external.enabled
+
+Determines whether to use the Wallarm postanalytics (Tarantool) module installed on an external host or the one installed during the Sidecar solution deployment.
+
+This feature is supported starting from Helm release 4.6.4.
+
+Possible values:
+
+* `false` (default): use the postanalytics module deployed by the Sidecar solution.
+* `true`: If enabled, please provide the external address of the postanalytics module in the `postanalytics.external.host` and `postanalytics.external.port` values.
+
+  If set to `true`, the Sidecar solution does not run the postanalytics module, but expects to reach it at the specified `postanalytics.external.host` and `postanalytics.external.port`.
+
+## postanalytics.external.host
+
+The domain or IP address of the separately installed postanalytics module. This field is required if `postanalytics.external.enabled` is set to `true`.
+
+This feature is supported starting from Helm release 4.6.4.
+
+Example values: `tarantool.domain.external` or `10.10.0.100`.
+
+The specified host must be accessible from the Kubernetes cluster where the Sidecar Helm chart is deployed.
+
+## postanalytics.external.port
+
+The TCP port on which the Wallarm postanalytics module is running. By default, it uses port 3313 as the Sidecar solution deploys the module on this port.
+
+If `postanalytics.external.enabled` is set to `true`, specify the port on which the module is running on the specified external host.

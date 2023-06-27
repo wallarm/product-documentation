@@ -54,6 +54,10 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.6.4 (2023-06-27)
+
+* Added support for [external postanalytics (Tarantool) module usage](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticsexternalenabled)
+
 ### 4.6.3 (2023-06-20)
 
 * Fixed a bug that caused failure in the sidecar container when the following annotations were not handled properly: `sidecar.wallarm.io/nginx-http-snippet`, `sidecar.wallarm.io/nginx-server-snippet`, `sidecar.wallarm.io/nginx-location-snippet`
