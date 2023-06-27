@@ -150,17 +150,29 @@ Whether to decompress compressed data returned in the application response:
 
 ## postanalytics.external.enabled
 
-Determines whether to use the Wallarm postanalytics module installed [separately](../../../admin-en/installation-postanalytics-en.md) on an external host or the one installed inside the pod, which is available on port 3313. Possible values:
+Determines whether to use the Wallarm postanalytics (Tarantool) module installed on an external host or the one installed during the Sidecar solution deployment.
 
-* `false` (default): use the postanalytics module running on the same pod on port 3313.
+This feature is supported starting from Helm release 4.6.4.
+
+Possible values:
+
+* `false` (default): use the postanalytics module deployed by the Sidecar solution.
 * `true`: If enabled, please provide the external address of the postanalytics module in the `postanalytics.external.host` and `postanalytics.external.port` values.
+
+  If set to `true`, the Sidecar solution does not run the postanalytics module, but expects to reach it at the specified `postanalytics.external.host` and `postanalytics.external.port`.
 
 ## postanalytics.external.host
 
-The host address of the separate postanalytics installation that is external to the K8s pod with the sidecar solution. This field is required if `postanalytics.external.enabled` is set to `true`.
+The domain or IP address of the separately installed postanalytics module. This field is required if `postanalytics.external.enabled` is set to `true`.
+
+This feature is supported starting from Helm release 4.6.4.
+
+Example values: `tarantool.domain.external` or `10.10.0.100`.
+
+The specified host must be accessible from the Kubernetes cluster where the Sidecar Helm chart is deployed.
 
 ## postanalytics.external.port
 
-The port on which the Wallarm postanalytics module is running. By default, it uses port 3313 inside the sidecar pod.
+The TCP port on which the Wallarm postanalytics module is running. By default, it uses port 3313 as the Sidecar solution deploys the module on this port.
 
 If `postanalytics.external.enabled` is set to `true`, specify the port on which the module is running on the specified external host.
