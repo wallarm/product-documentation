@@ -28,6 +28,12 @@ config:
     parseWebsocket: "off"
     unpackResponse: "on"
     ...
+postanalytics:
+  external:
+    enabled: false
+    host: ""
+    port: 3313
+  ...
 ```
 
 ## config.wallarm.api.token
@@ -141,3 +147,20 @@ Whether to decompress compressed data returned in the application response:
 * `off`
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+
+## postanalytics.external.enabled
+
+Determines whether to use the Wallarm postanalytics module installed [separately](../../../admin-en/installation-postanalytics-en.md) on an external host or the one installed inside the pod, which is available on port 3313. Possible values:
+
+* `false` (default): use the postanalytics module running on the same pod on port 3313.
+* `true`: If enabled, please provide the external address of the postanalytics module in the `postanalytics.external.host` and `postanalytics.external.port` values.
+
+## postanalytics.external.host
+
+The host address of the separate postanalytics installation that is external to the K8s pod with the sidecar solution. This field is required if `postanalytics.external.enabled` is set to `true`.
+
+## postanalytics.external.port
+
+The port on which the Wallarm postanalytics module is running. By default, it uses port 3313 inside the sidecar pod.
+
+If `postanalytics.external.enabled` is set to `true`, specify the port on which the module is running on the specified external host.
