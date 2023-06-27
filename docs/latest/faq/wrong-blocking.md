@@ -6,13 +6,14 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
 
 1. Request the user to provide **as text** (not screenshot) the information related to the blocked request, which is one of the following:
 
-    * Copy of user's client response (may include blocking code and other information). Browser page source code or terminal client textual response suits well.
     * Information provided by the Wallarm [blocking page](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) if it is configured (may include user’s IP address, request UUID and other pre-configured elements).
 
         ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
         !!! warning "Blocking page usage"
             If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such page to help users collect important information.
+    
+    * Copy of user's client response (may include blocking code and other information). Browser page source code or terminal client textual response suits well.
 
 1. In Wallarm Console → [**Events**](../user-guides/events/check-attack.md) section, [search](../user-guides/search-and-filters/use-search.md) for the event related to the blocked request. For example, [search by request ID](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
 
