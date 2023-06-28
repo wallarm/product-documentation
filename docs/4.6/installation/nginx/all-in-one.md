@@ -1,0 +1,1 @@
+--8<-- "latest/installation/nginx/all-in-one.md"
