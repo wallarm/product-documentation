@@ -15,9 +15,10 @@ Depending on the system architecture, the NGINX-Wallarm and postanalytics module
 
 These instructions provide the steps to install the postanalytics module on a separate server. This option is available only for the following Wallarm artifacts:
 
-* [DEB/RPM packages for NGINX stable](../installation/nginx/dynamic-module.md)
-* [DEB/RPM packages for NGINX Plus](../installation/nginx-plus.md)
-* [DEB/RPM packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
+* [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
+* [Individual packages for NGINX Plus](../installation/nginx-plus.md)
+* [Individual packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
+* [All-in-one installer](../installation/nginx/all-in-one.md)
 
 ## Installation methods
 
@@ -26,7 +27,7 @@ You can install the postanalytics module on a separate server in two different w
 * [Using all-in-one automatic installer](#all-in-one-automatic-installation) (available starting from Wallarm node 4.6) - automates a lot of activities and makes postanalytics module deployment much easier. Thus this is a recommended installation method.
 * [Manually](#manual-installation) - use for older node versions.
 
-When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the filtering part (without postanalytics) manually and then postanalytics with all-in-one script and vise versa. When doing so, you need always manually [perform the step of connecting the NGINX-Wallarm module to the postanalytics module](#7-connect-the-nginx-wallarm-module-to-the-postanalytics-module).
+When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the filtering part (without postanalytics) manually and then postanalytics with all-in-one script and vise versa.
 
 ## Requirements
 
@@ -47,34 +48,136 @@ Starting from Wallarm node 4.6, to install postanalytics separately, it is recom
 To download all-in-one Wallarm installation script, execute the command:
 
 ```bash
+# The x86_64 version:
 curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+
+# The ARM64 version:
+curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
 ```
 
-### 2. Run all-in-one Wallarm binary to install postanalytics
+### 2. Prepare Wallarm token
+
+To install node, you will need a Wallarm token of the [appropriate type][wallarm-token-types]. To prepare a token:
+
+=== "API token"
+
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+
+=== "Node token"
+
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. Do one of the following: 
+        * Create the node of the **Wallarm node** type and copy the generated token.
+        * Use existing node group - copy token using node's menu → **Copy token**.
+
+### 3. Run all-in-one Wallarm binary to install postanalytics
 
 To install postanalytics separately via all-in-one script, use:
 
 ```
+# If using the x86_64 version:
 sudo sh ./wallarm-4.6.11.x86_64-glibc.sh postanalytics
+
+# If using the ARM64 version:
+sudo sh ./wallarm-4.6.11.aarch64-glibc.sh postanalytics
 ```
 
-### 3-5. Automated
-
-The following is automated by the all-in-one script:
-
-* Connect the postanalytics module to Wallarm Cloud
-* Update postanalytics module configuration
-* Restart Wallarm services
-
-### 6. Install the NGINX-Wallarm module on a separate server
+### 4. Install the NGINX-Wallarm module on a separate server
 
 Once the postanalytics module is installed on the separate server, install the NGINX-Wallarm module on a different server:
 
 ```
+# If using the x86_64 version:
 sudo sh ./wallarm-4.6.11.x86_64-glibc.sh filtering
+
+# If using the ARM64 version:
+sudo sh ./wallarm-4.6.11.aarch64-glibc.sh filtering
 ```
 
-Proceed to the [remaining steps](#remaining-steps), common for all-in-one and manual installation.
+### 5. Connect the NGINX-Wallarm module to the postanalytics module
+
+On the server with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
+
+```
+upstream wallarm_tarantool {
+    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
+    
+    keepalive 2;
+    }
+
+    # omitted
+
+wallarm_tarantool_upstream wallarm_tarantool;
+```
+
+* `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
+* `keepalive` value must not be lower than the number of the Tarantool servers.
+* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
+
+Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
+
+=== "Debian"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo service nginx restart
+    ```
+=== "CentOS"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo systemctl restart nginx
+    ```
+
+### 6. Check the NGINX‑Wallarm and separate postanalytics modules interaction
+
+To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
+
+```bash
+curl http://localhost/etc/passwd
+```
+
+If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
+
+![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
+
+If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
+
+* Make sure that the postanalytics service `wallarm-tarantool` is in the status `active`
+
+    ```bash
+    sudo systemctl status wallarm-tarantool
+    ```
+
+    ![!wallarm-tarantool status][tarantool-status]
+* Analyze the postanalytics module logs
+
+    ```bash
+    sudo cat /var/log/wallarm/tarantool.log
+    ```
+
+    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
+* On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
+
+    ```bash
+    sudo cat /var/log/nginx/error.log
+    ```
+
+    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
+* On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
+
+    ```bash
+    curl http://127.0.0.8/wallarm-status
+    ```
+
+    [Description of all parameters returned by the statistics service →](configure-statistics-service.md)
 
 ## Manual installation
 
@@ -296,10 +399,6 @@ Once the postanalytics module is installed on the separate server, install the o
     In the package installation step, specify `wallarm-node-nginx` and `libnginx-mod-http-wallarm/nginx-mod-http-wallarm`.
 
 --8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
-
-## Remaining steps
-
-The remaining steps must be fulfilled both for [all-in-one automatic](#all-in-one-automatic-installation) and for [manual](#manual-installation) installation.
 
 ### 7. Connect the NGINX-Wallarm module to the postanalytics module
 

@@ -72,18 +72,22 @@ Install the latest NGINX version of:
 
     === "Debian 10.x (buster)"
         ```bash
+        sudo apt-get update | 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "Debian 11.x (bullseye)"
         ```bash
+        sudo apt update | 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "CentOS 7.x"
         ```bash
+        sudo yum -y update | 
         sudo yum install -y nginx
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
+        sudo yum -y update | 
         sudo yum install -y nginx
         ```
 
@@ -131,19 +135,23 @@ To download all-in-one Wallarm installation script, execute the command:
 
     === "API token"
         ```bash
+        # If using the x86_64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh
+
+        # If using the ARM64 version:
         sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh
         ```        
 
-        Commands for x86_64 and ARM64 versions. `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
     === "Node token"
         ```bash
+        # If using the x86_64 version:
         sudo sh wallarm-4.6.11.x86_64-glibc.sh
+
+        # If using the ARM64 version:
         sudo sh wallarm-4.6.11.aarch64-glibc.sh
         ```
-
-        Commands for x86_64 and ARM64 versions.
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 1. Enter Wallarm token.
@@ -208,12 +216,12 @@ Usage: setup.sh [options]... [arguments]... [filtering/postanalytics]
 OPTION                      DESCRIPTION
 -b, --batch                 Batch mode, non-interactive installation.
 -t, --token TOKEN           Node token, only used in a batch mode.
--c, --cloud CLOUD           Wallarm Cloud, one of US/EU/EU2, default is EU, only used in a batch mode.
+-c, --cloud CLOUD           Wallarm Cloud, one of US/EU, default is EU, only used in a batch mode.
 -H, --host HOST             Wallarm API address, for example, api.wallarm.com or us1.api.wallarm.com, only used in a batch mode.
 -P, --port PORT             Wallarm API pot, for example, 443.
     --no-ssl                Disable SSL for Wallarm API access.
     --no-verify             Disable SSL certificates verification.
--f, --force                 Always create a new instance in a Cloud.
+-f, --force                 If there is a node with the same name, create a new instance.
 -h, --help
     --version
 ```
