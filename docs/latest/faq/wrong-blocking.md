@@ -11,9 +11,9 @@ To resolve the issue of a legitimate request being blocked by Wallarm, follow th
         ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
         !!! warning "Blocking page usage"
-            If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such page to help users collect important information.
+            If you do not use the default or customized Wallarm blocking page, it is highly recommended to [configure](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) it to get the appropriate info from user. Remember that even a sample page collects and allows easy copying of meaningful information related to the blocked request. Additionally, you can customize or fully rebuild such page to return users the informative blocking message.
     
-    * Copy of user's client response (may include blocking code and other information). Browser page source code or terminal client textual response suits well.
+    * Copy of user's client request and response. Browser page source code or terminal client textual input and output suits well.
 
 1. In Wallarm Console → [**Events**](../user-guides/events/check-attack.md) section, [search](../user-guides/search-and-filters/use-search.md) for the event related to the blocked request. For example, [search by request ID](../user-guides/search-and-filters/use-search.md#search-by-request-identifier):
 
