@@ -47,13 +47,17 @@ Starting from Wallarm node 4.6, to install postanalytics separately, it is recom
 
 To download all-in-one Wallarm installation script, execute the command:
 
-```bash
-# The x86_64 version:
-curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+=== "x86_64 version"
 
-# The ARM64 version:
-curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
-```
+    ```bash
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+    ```
+
+=== "ARM64 version:
+
+    ```bash
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
+    ```
 
 ### 2. Prepare Wallarm token
 
@@ -76,25 +80,57 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 
 To install postanalytics separately via all-in-one script, use:
 
-```
-# If using the x86_64 version:
-sudo sh ./wallarm-4.6.11.x86_64-glibc.sh postanalytics
+    === "API token"
+        ```bash
+        # If using the x86_64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh postanalytics
 
-# If using the ARM64 version:
-sudo sh ./wallarm-4.6.11.aarch64-glibc.sh postanalytics
-```
+        # If using the ARM64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh postanalytics
+        ```        
+
+        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+
+    === "Node token"
+        ```bash
+        # If using the x86_64 version:
+        sudo sh wallarm-4.6.11.x86_64-glibc.sh postanalytics
+
+        # If using the ARM64 version:
+        sudo sh wallarm-4.6.11.aarch64-glibc.sh postanalytics
+        ```
 
 ### 4. Install the NGINX-Wallarm module on a separate server
 
-Once the postanalytics module is installed on the separate server, install the NGINX-Wallarm module on a different server:
+Once the postanalytics module is installed on the separate server
 
-```
-# If using the x86_64 version:
-sudo sh ./wallarm-4.6.11.x86_64-glibc.sh filtering
+1. Install the NGINX-Wallarm module on a different server:
 
-# If using the ARM64 version:
-sudo sh ./wallarm-4.6.11.aarch64-glibc.sh filtering
-```
+    === "API token"
+        ```bash
+        # If using the x86_64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh filtering
+        ```        
+
+        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+
+    === "Node token"
+        ```bash
+        # If using the x86_64 version:
+        sudo sh wallarm-4.6.11.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo sh wallarm-4.6.11.aarch64-glibc.sh filtering
+        ```
+
+1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described here:
+
+    * [NGINX stable](../installation/nginx/dynamic-module.md)
+    * [NGINX Plus](../installation/nginx-plus.md)
+    * [Distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
 ### 5. Connect the NGINX-Wallarm module to the postanalytics module
 

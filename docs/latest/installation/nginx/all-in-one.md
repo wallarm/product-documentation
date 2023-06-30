@@ -42,11 +42,11 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-<! --![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png) -->
+![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Requirements
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Supported OS:
 
     * Debian 10, 11 and 12.x
@@ -58,9 +58,9 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
     * SuSe Linux
     * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Executing all commands as a superuser (e.g. `root`)
+* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
+* Executing all commands as a superuser (e.g. `root`).
 
 ## 1. Install NGINX and dependencies
 
@@ -72,22 +72,22 @@ Install the latest NGINX version of:
 
     === "Debian 10.x (buster)"
         ```bash
-        sudo apt-get update | 
+        sudo apt-get update 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        sudo apt update | 
+        sudo apt update 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "CentOS 7.x"
         ```bash
-        sudo yum -y update | 
+        sudo yum -y update 
         sudo yum install -y nginx
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        sudo yum -y update | 
+        sudo yum -y update 
         sudo yum install -y nginx
         ```
 

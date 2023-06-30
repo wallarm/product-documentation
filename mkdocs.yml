@@ -181,9 +181,9 @@ nav:
           - NGINX-based: admin-en/installation-docker-en.md
           - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
         - Linux Packages:
-          - NGINX stable: installation/nginx/dynamic-module.md
-          - NGINX Plus: installation/nginx-plus.md
-          - Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
+          - Individual packages for NGINX stable: installation/nginx/dynamic-module.md
+          - Individual packages for NGINX Plus: installation/nginx-plus.md
+          - Individual packages for Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
           - All‑in‑One Installer: installation/nginx/all-in-one.md
         - Cloud Images:
           - AWS AMI: installation/packages/aws-ami.md
