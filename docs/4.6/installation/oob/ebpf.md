@@ -1,1 +1,0 @@
---8<-- "latest/installation/oob/ebpf.md"
