@@ -120,13 +120,13 @@ To download all-in-one Wallarm installation script, execute the command:
 === "x86_64 version"
 
     ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.x86_64-glibc.sh
     ```
 
 === "ARM64 version (beta)"
 
     ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.aarch64-glibc.sh
     ```
 
 ## 4. Run all-in-one Wallarm installer
@@ -136,10 +136,10 @@ To download all-in-one Wallarm installation script, execute the command:
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -147,10 +147,10 @@ To download all-in-one Wallarm installation script, execute the command:
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.6.11.x86_64-glibc.sh
+        sudo sh wallarm-4.6.12.x86_64-glibc.sh
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.6.11.aarch64-glibc.sh
+        sudo sh wallarm-4.6.12.aarch64-glibc.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
@@ -204,7 +204,7 @@ Below there are a few of the typical settings that you can apply if needed:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.6.11.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.6.12.x86_64-glibc.sh -- -h
 ```
 
 Which returns:

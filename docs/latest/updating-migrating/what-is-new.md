@@ -2,6 +2,20 @@
 
 The new minor version of the Wallarm node has been released! It features an important API rate limiting function to prevent DoS, brute force, and API overuse attacks. Learn all released changes from this document.
 
+## All-in-one installer
+
+Now, when installing Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+
+The installer simplifies the process by automatically performing the following actions:
+
+1. Checking your OS and NGINX version.
+1. Adding Wallarm repositories for the detected OS and NGINX version.
+1. Installing Wallarm packages from these repositories.
+1. Connecting the installed Wallarm module to your NGINX.
+1. Connecting the filtering node to Wallarm Cloud using the provided token.
+
+[See details on how to deploy the node with all-in-one installer →](../installation/nginx/all-in-one.md)
+
 ## Rate limits
 
 The lack of proper rate limiting has been a significant problem for API security, as attackers can launch high-volume requests causing a denial of service (DoS) or overload the system, which hurts legitimate users.
