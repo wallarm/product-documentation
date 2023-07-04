@@ -42,25 +42,25 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-<! --![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png) -->
+![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Requirements
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Supported OS:
 
     * Debian 10, 11 and 12.x
     * Ubuntu LTS 18.04, 20.04, 22.04
     * CentOS 7, 8 Stream, 9 Stream
-    * Alma/Rocky Linux 9, 
+    * Alma/Rocky Linux 9
     * Oracle Linux 8.x
-    * Redos, 
+    * Redos
     * SuSe Linux
     * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Executing all commands as a superuser (e.g. `root`)
+* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
+* Executing all commands as a superuser (e.g. `root`).
 
 ## 1. Install NGINX and dependencies
 
@@ -72,22 +72,22 @@ Install the latest NGINX version of:
 
     === "Debian 10.x (buster)"
         ```bash
-        sudo apt-get update | 
+        sudo apt-get update 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "Debian 11.x (bullseye)"
         ```bash
-        sudo apt update | 
+        sudo apt update 
         sudo apt -y install --no-install-recommends nginx
         ```
     === "CentOS 7.x"
         ```bash
-        sudo yum -y update | 
+        sudo yum -y update 
         sudo yum install -y nginx
         ```
     === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
         ```bash
-        sudo yum -y update | 
+        sudo yum -y update 
         sudo yum install -y nginx
         ```
 
@@ -120,13 +120,13 @@ To download all-in-one Wallarm installation script, execute the command:
 === "x86_64 version"
 
     ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.x86_64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.x86_64-glibc.sh
     ```
 
 === "ARM64 version (beta)"
 
     ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.11.aarch64-glibc.sh
+    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.aarch64-glibc.sh
     ```
 
 ## 4. Run all-in-one Wallarm installer
@@ -136,10 +136,10 @@ To download all-in-one Wallarm installation script, execute the command:
     === "API token"
         ```bash
         # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.x86_64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh
 
         # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.11.aarch64-glibc.sh
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh
         ```        
 
         The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
@@ -147,10 +147,10 @@ To download all-in-one Wallarm installation script, execute the command:
     === "Node token"
         ```bash
         # If using the x86_64 version:
-        sudo sh wallarm-4.6.11.x86_64-glibc.sh
+        sudo sh wallarm-4.6.12.x86_64-glibc.sh
 
         # If using the ARM64 version:
-        sudo sh wallarm-4.6.11.aarch64-glibc.sh
+        sudo sh wallarm-4.6.12.aarch64-glibc.sh
         ```
 
 1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
@@ -204,7 +204,7 @@ Below there are a few of the typical settings that you can apply if needed:
 As soon as you have the all-in one script downloaded, you can get help on it with:
 
 ```
-sudo sh ./wallarm-4.6.11.x86_64-glibc.sh -- -h
+sudo sh ./wallarm-4.6.12.x86_64-glibc.sh -- -h
 ```
 
 Which returns:
