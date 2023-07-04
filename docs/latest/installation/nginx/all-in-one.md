@@ -52,9 +52,9 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
     * Debian 10, 11 and 12.x
     * Ubuntu LTS 18.04, 20.04, 22.04
     * CentOS 7, 8 Stream, 9 Stream
-    * Alma/Rocky Linux 9, 
+    * Alma/Rocky Linux 9
     * Oracle Linux 8.x
-    * Redos, 
+    * Redos
     * SuSe Linux
     * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 

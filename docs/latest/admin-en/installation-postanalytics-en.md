@@ -80,29 +80,29 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 
 To install postanalytics separately via all-in-one script, use:
 
-    === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
+=== "API token"
+    ```bash
+    # If using the x86_64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
 
-        # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
-        ```        
+    # If using the ARM64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
+    ```        
 
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
-    === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
+=== "Node token"
+    ```bash
+    # If using the x86_64 version:
+    sudo sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
 
-        # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
-        ```
+    # If using the ARM64 version:
+    sudo sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
+    ```
 
 ### 4. Install the NGINX-Wallarm module on a separate server
 
-Once the postanalytics module is installed on the separate server
+Once the postanalytics module is installed on the separate server:
 
 1. Install the NGINX-Wallarm module on a different server:
 
@@ -126,11 +126,7 @@ Once the postanalytics module is installed on the separate server
         sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
         ```
 
-1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described here:
-
-    * [NGINX stable](../installation/nginx/dynamic-module.md)
-    * [NGINX Plus](../installation/nginx-plus.md)
-    * [Distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
+1. Perform the after-installation steps, such as enabling analyzing the traffic, restarting NGINX, configuring sending traffic to the Wallarm instance, test and fine tune, as described [here](../installation/nginx/all-in-one.md).
 
 ### 5. Connect the NGINX-Wallarm module to the postanalytics module
 

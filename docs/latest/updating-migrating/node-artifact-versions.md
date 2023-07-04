@@ -8,12 +8,7 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 ### 4.6.12 (2023-06-30)
 
-* Initial public release 4.6, [see changelog](what-is-new.md)
-* Changes since first beta 4.6.6 (2023-04-28):
-    * Ability to specify custom Wallarm Cloud API host is added
-    * The `nginx.conf` update problem is fixed
-    * The register-node script update problem is fixed
-    * Minor bug fixes
+* Initial release 4.6, [see changelog](what-is-new.md)
 
 ## DEB/RPM packages for NGINX
 
