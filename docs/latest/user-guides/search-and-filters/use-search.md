@@ -378,6 +378,6 @@ To get the list of attacks detected by [regexp-based customer rules](../../user-
 
 For any of such attacks, in its details, the links to the corresponding rules are presented (there can be more than one). Click the link to access the rule details and edit them if necessary.
 
-<! --![!Event detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png) -->
+![!Event detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
 You can use `!custom_rule` to get the list of attacks not related to any regexp-based customer rules.
