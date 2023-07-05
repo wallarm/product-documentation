@@ -125,7 +125,7 @@ By default, the deployed solution does not analyze any traffic. To enable traffi
 * For a pod
 * For a node name or a container
 
-There are two ways to enable traffic mirroring: using dynamic filters as namespace labels or pod annotations, or controlling it through the `config.agent.mirror.filters` block in the `values.yaml` file. You can also combine these approaches, where the lower configuration will take precedence.
+There are two ways to enable traffic mirroring: using dynamic filters as namespace labels or pod annotations, or controlling it through the `config.agent.mirror.filters` block in the `values.yaml` file. You can also combine these approaches. [More details](selecting-packets.md)
 
 #### For a namespace using a label
 
@@ -172,7 +172,7 @@ spec:
 
 #### For a namespace, pod, container, or node using `values.yaml`
 
-For more granular control, you can use the `config.agent.mirror.filters` block in the `values.yaml` file of the Wallarm eBPF to specify the mirroring level. [Learn more](helm-chart-for-wallarm.md#configagentmirrorfilters)
+For more granular control, you can use the `config.agent.mirror.filters` block in the `values.yaml` file of the Wallarm eBPF to specify the mirroring level. Read the [article](selecting-packets.md) on how to configure filters and how they interact with Wallarm namespace labels and pod annotations.
 
 ### Step 4: Test the Wallarm eBPF operation
 

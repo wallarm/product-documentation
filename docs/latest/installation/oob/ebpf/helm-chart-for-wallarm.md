@@ -82,20 +82,7 @@ Enables traffic mirroring for all namespaces. The default value is `false`. It i
 
 ## config.agent.mirror.filters
 
-Controls the level of traffic mirroring. The Wallarm eBPF solution inspects the traffic that is mirrored according to these filters.
-
-You can configure filters to mirror traffic from the following entities:
-
-* Namespace
-* Pod labels
-* Pod annotations
-* Pod name
-* Node name
-* Container name
-
-All filters are applied together using the AND logic, except for those with multiple values specified using a comma. Filters with multiple values are processed based on the OR logic. - it is not a truth !!!
-
-Here is an example of the `filters` parameter:
+Controls the level of traffic mirroring. Here is an example of the `filters` parameter:
 
 ```yaml
 ...
@@ -114,7 +101,7 @@ Here is an example of the `filters` parameter:
             annotation_name2: 'annotation_value_2,annotation_value_4'
 ```
 
-The `filters` parameter has the lowest priority among all the possible ways to enable traffic mirroring.
+[More details](selecting-packets.md)
 
 ## processing.metrics
 
