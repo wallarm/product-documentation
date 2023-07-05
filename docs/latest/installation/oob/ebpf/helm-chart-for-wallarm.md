@@ -93,7 +93,7 @@ You can configure filters to mirror traffic from the following entities:
 * Node name
 * Container name
 
-All filters are applied together using the AND logic, except for those with multiple values specified using a comma. Filters with multiple values are processed based on the OR logic.
+All filters are applied together using the AND logic, except for those with multiple values specified using a comma. Filters with multiple values are processed based on the OR logic. - it is not a truth !!!
 
 Here is an example of the `filters` parameter:
 
