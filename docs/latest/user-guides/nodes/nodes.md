@@ -16,7 +16,7 @@ Wallarm node UI management options:
 ![!Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Administrator access"
-    The creating, deleting, and regenerating of Wallarm nodes/tokens is only available to users with the **Administrator** role. Viewing the details of installed nodes is available to all users.
+    The creating, deleting, and regenerating of Wallarm nodes/tokens is only available to users with the **Administrator** or **Global Administrator** role. Viewing the details of installed nodes is available to all users.
 
 !!! warning "Removed regular and cloud types of nodes"
     Starting from the release 4.6, only the [**Wallarm node** type is available](../../updating-migrating/what-is-new.md#removal-of-the-email-password-based-node-registration).
@@ -64,7 +64,7 @@ The following node properties and metrics are available:
 * The average number of requests per second (RPS)
 * Node IP address
 * Unique node identifier (UUID)
-* Token of the Wallarm node
+* Token of the Wallarm node (visible only for users with the **Administrator** or **Global Administrator** [role](../settings/users.md))
 * Time of the last synchronization of the filtering node and Wallarm Cloud
 * Date of the filtering node creation
 * Number of requests processed by the node in the current month
