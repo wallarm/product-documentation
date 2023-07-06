@@ -176,6 +176,8 @@ nav:
         #   - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
         # - Envoy:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
+      - API Gateways:
+        - Mulesoft: installation/api-gateways/mulesoft.md
       - Packages:
         - Docker Images:
           - NGINX-based: admin-en/installation-docker-en.md
