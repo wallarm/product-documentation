@@ -13,7 +13,7 @@ The diagram below illustrates the high-level traffic flow when Wallarm policy is
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
 
-* Securing APIs deployed on the MuleSoft Anypoint platform.
+* Securing APIs deployed on the MuleSoft Anypoint platform with only one policy.
 * Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
 
 ## Limitations
