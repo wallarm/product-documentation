@@ -120,13 +120,28 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](cloud-image.md)
 
+### 4.6.4-1 (2023-07-06)
+
+* Fixed the [CVE-2021-3177](https://nvd.nist.gov/vuln/detail/CVE-2021-3177) vulnerability
+
+    Due to the presence of this vulnerability in previous AMI versions, versions 4.0.6, 4.0.7, 4.2.1, 4.4.2-1, and 4.6.0-1 have been deleted.
+* Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
+
 ### 4.6.0-1 (2023-03-28)
+
+!!! warning "Version deleted"
+    This AMI version has been deleted due to the presence of the [CVE-2021-3177](https://nvd.nist.gov/vuln/detail/CVE-2021-3177) vulnerability. Instead, a newer version, 4.6.4-1, with the necessary fix has been released.
 
 * Initial release 4.6, [see changelog](what-is-new.md)
 
 ## Google Cloud Platform Image
 
 [How to upgrade](cloud-image.md)
+
+### wallarm-node-4-6-20230630-122224 (2023-07-06)
+
+* Fixed the [CVE-2021-3177](https://nvd.nist.gov/vuln/detail/CVE-2021-3177) vulnerability
+* Added support for the latest [compromised secret key set](https://github.com/wallarm/jwt-secrets) with over 100,000 recently discovered compromised keys, further enhancing our [weak JWT detection](../attacks-vulns-list.md#weak-jwt) capabilities
 
 ### wallarm-node-4-6-20230324-114215 (2023-03-28)
 
