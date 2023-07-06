@@ -97,8 +97,8 @@ Token regeneration creates a new token for the node.
 When the node is deleted, filtration of requests to your application will be stopped. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
 
 1. Open Wallarm Console → **Nodes**.
-2. Select one or more nodes and click **Delete**. You can also delete the filtering node by selecting a button of the node menu or node card.
-3. Confirm the action.
+1. Select one or more nodes and click **Delete**. You can also delete the filtering node by selecting a button of the node menu or node card.
+1. Confirm the action.
 
 ## API and node tokens for node creation
 

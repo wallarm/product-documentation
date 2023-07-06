@@ -16,6 +16,10 @@
 [nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../user-guides/ip-lists/graylist.md
+[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[oob-docs]:                         ../installation//oob/overview.md
+[sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 
 # Upgrading Wallarm NGINX modules
 
@@ -27,16 +31,158 @@ These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x t
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/nginx-modules.md).
 
-## Requirements
+## Upgrade methods
+
+You can upgrade the Wallarm NGINX modules 4.x to version 4.6 in two different ways:
+
+* [Using all-in-one automatic installer](#upgrade-with-all-in-one-automatic-installer) - recommended
+* [Manually](#manual-upgrade)
+
+To select the method, consider the differences:
+
+| Position to compare | All-in-one installer | Manual upgrade |
+|---------------------|----------------------|----------------|
+| Machine         | New or cleared from previous installation | The same  |
+| Checking your OS and NGINX version | Automatically | Manually  |
+| Adding Wallarm repositories for the detected OS and NGINX version | Automatically | Run CLI script manually  |
+| Installing Wallarm packages | Automatically | Run CLI script manually  |
+| Connecting the installed Wallarm module to your NGINX| Automatically | Run CLI script manually  |
+| Connecting the filtering node to Wallarm Cloud using the provided token | Automatically | Run CLI script manually  |
+| Future updates of your node components | Run a new version of all-in-one installer | Download and install components via CLI manually |
+
+* "Automatically" means you only once run all-in-one installer, the remaining it does by itself.
+* **Future updates become extremely easy with all-in-one installer**: your neither search for appropriate repositories, nor download them manually, nor install them by yourself - thus no errors can be expected during such installation.
+
+## Upgrade with all-in-one automatic installer
+
+Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using all-in-one automatic installer.
+
+### Requirements
+
+--8<-- "../include/waf/installation/all-in-one-requirements.md"
+
+### Upgrade procedure
+
+* If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all.
+* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](TBD).
+
+### Step 1: Prepare clean machine
+
+When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the [appropriate OS](#requirements) within you environment.
+
+This will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
+
+**Alternative (not recommended)**
+
+You can also clean the old machine from installed Wallarm packages and then install the new node into this cleaned machine.
+
+The following packages should be removed:
+
+* `nginx-module-wallarm` for the NGINX-Wallarm module
+* `wallarm-node` for the [postanalytics][install-postanalytics-docs] module, Tarantool database, and additional NGINX-Wallarm packages
+
+=== "Debian"
+    ```bash
+    sudo apt remove wallarm-node nginx-module-wallarm
+    ```
+=== "Ubuntu"
+    ```bash
+    sudo apt remove wallarm-node nginx-module-wallarm
+    ```
+=== "CentOS or Amazon Linux 2.0.2021x and lower"
+    ```bash
+    sudo yum remove wallarm-node nginx-module-wallarm
+    ```
+=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    ```bash
+    sudo yum remove wallarm-node nginx-module-wallarm
+    ```
+
+### Step 2: Install NGINX and dependencies
+
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
+
+### Step 3: Prepare Wallarm token
+
+--8<-- "../include/waf/installation/all-in-one-token.md"
+
+### Step 4: Download all-in-one Wallarm installer
+
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
+
+### Step 5: Run all-in-one Wallarm installer
+
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
+
+Commands in the further steps are the same for x86_64 and ARM64 installations.
+
+### Step 6: Enable Wallarm node to analyze traffic
+
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+
+### Step 7: Restart NGINX
+
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+
+### Step 8: Configure sending traffic to Wallarm node
+
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+
+### Step 9: Test Wallarm node operation
+
+To test the new node operation:
+
+1. Send the request with test [SQLI][sqli-attack-docs] and [XSS][xss-attack-docs] attacks to the protected resource address:
+
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+
+1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform the next steps.
+1. In the **Events** section, make sure the node behaves as the old one did.
+1. Perform some test attacks to make sure your rules work as expected.
+
+### Step 10: Remove old node
+
+1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Confirm the action.
+    
+    When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
+
+1. Delete machine with the old node or just clean it from Wallarm node components:
+
+    === "Debian"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+
+## Manual upgrade
+
+Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to version 4.6.
+
+### Requirements
 
 --8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
-## Upgrade procedure
+### Upgrade procedure
 
 * If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
 * If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
 
-## Step 1: Upgrade NGINX to the latest version
+### Step 1: Upgrade NGINX to the latest version
 
 Upgrade NGINX to the latest version using the relevant instructions:
 
@@ -62,7 +208,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the Wallarm module for a custom version of NGINX.
 
-## Step 2: Add new Wallarm repository
+### Step 2: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
@@ -111,9 +257,9 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
         ```
 
-## Step 3: Upgrade Wallarm packages
+### Step 3: Upgrade Wallarm packages
 
-### Filtering node and postanalytics on the same server
+#### Filtering node and postanalytics on the same server
 
 1. Execute the following command to upgrade the filtering node and postanalytics modules:
 
@@ -149,7 +295,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
-### Filtering node and postanalytics on different servers
+#### Filtering node and postanalytics on different servers
 
 !!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
     If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
@@ -189,7 +335,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
     By default, the package manager uses the option `N` but the option `Y` is required for correct RPS counting.
 
-## Step 4: Update the node type
+### Step 4: Update the node type
 
 !!! info "Only for nodes installed using the `addnode` script"
     Only follow this step if a node of a previous version is connected to the Wallarm Cloud using the `addnode` script. This script has been [removed](what-is-new.md#removal-of-the-email-password-based-node-registration) and replaced by the `register-node`, which requires a token to register the node in the Cloud.
@@ -249,21 +395,21 @@ Delete the previous Wallarm repository address and add a repository with a new W
     ```
     </p></li></div>
 
-## Step 5: Update the Wallarm blocking page
+### Step 5: Update the Wallarm blocking page
 
 In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
 If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-## Step 6: Restart NGINX
+### Step 6: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 7: Test Wallarm node operation
+### Step 7: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## Settings customization
+### Settings customization
 
 The Wallarm modules are updated to version 4.6. Previous filtering node settings will be applied to the new version automatically. To make additional settings, use the [available directives](../admin-en/configure-parameters-en.md).
 

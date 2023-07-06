@@ -46,139 +46,43 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](dy
 
 ## Requirements
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-* Supported OS:
+--8<-- "../include/waf/installation/all-in-one-requirements.md"
 
-    * Debian 10, 11 and 12.x
-    * Ubuntu LTS 18.04, 20.04, 22.04
-    * CentOS 7, 8 Stream, 9 Stream
-    * Alma/Rocky Linux 9
-    * Oracle Linux 8.x
-    * Redos
-    * SuSe Linux
-    * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
+## Step 1: Install NGINX and dependencies
 
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
-* Executing all commands as a superuser (e.g. `root`).
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
 
-## 1. Install NGINX and dependencies
+## Step 2: Prepare Wallarm token
 
-Install the latest NGINX version of:
+--8<-- "../include/waf/installation/all-in-one-token.md"
 
-* **NGINX `stable`** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/).
-* **NGINX Plus** - see how to install it in the NGINX [documentation](https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-plus/).
-* **Distribution-Provided NGINX** - to install, use the following commands:
+## Step 3: Download all-in-one Wallarm installer
 
-    === "Debian 10.x (buster)"
-        ```bash
-        sudo apt-get update 
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "Debian 11.x (bullseye)"
-        ```bash
-        sudo apt update 
-        sudo apt -y install --no-install-recommends nginx
-        ```
-    === "CentOS 7.x"
-        ```bash
-        sudo yum -y update 
-        sudo yum install -y nginx
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo yum -y update 
-        sudo yum install -y nginx
-        ```
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-## 2. Prepare Wallarm token
+## Step 4: Run all-in-one Wallarm installer
 
-To install node, you will need a Wallarm token of the [appropriate type][wallarm-token-types]. To prepare a token:
-
-=== "API token"
-
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
-    1. Copy this token.
-
-=== "Node token"
-
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. Do one of the following: 
-        * Create the node of the **Wallarm node** type and copy the generated token.
-        * Use existing node group - copy token using node's menu → **Copy token**.
-
-## 3. Download all-in-one Wallarm installer
-
-Wallarm suggests all-in-one installations for the following processors of node machine:
-
-* x86_64
-* ARM64 (beta)
-
-To download all-in-one Wallarm installation script, execute the command:
-
-=== "x86_64 version"
-
-    ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.x86_64-glibc.sh
-    ```
-
-=== "ARM64 version (beta)"
-
-    ```bash
-    curl -O https://meganode.wallarm.com/4.6/wallarm-4.6.12.aarch64-glibc.sh
-    ```
-
-## 4. Run all-in-one Wallarm installer
-
-1. Run downloaded script:
-
-    === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh
-
-        # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh
-        ```        
-
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-
-    === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh
-
-        # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh
-        ```
-
-1. Select [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-1. Enter Wallarm token.
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
 Commands in the further steps are the same for x86_64 and ARM64 installations.
 
-## 5. Enable Wallarm to analyze the traffic
+## Step 5: Enable Wallarm node to analyze traffic
 
 --8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
-## 6. Restart NGINX
+## Step 6: Restart NGINX
 
-Restart NGINX using the following command:
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-```bash
-sudo systemctl restart nginx
-```
-
-## 7. Configure sending traffic to the Wallarm instance
+## Step 7: Configure sending traffic to Wallarm node
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
-## 8. Test Wallarm node operation
+## Step 8: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-## 9. Fine-tune the deployed solution
+## Step 9: Fine-tune deployed solution
 
 The dynamic Wallarm module with default settings is installed. The filtering node may require some additional configuration after deployment.
 

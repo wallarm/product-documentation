@@ -141,7 +141,7 @@ Once the postanalytics module is installed on the separate server:
 
 ### 5. Connect the NGINX-Wallarm module to the postanalytics module
 
-On the server with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
 
 ```
 upstream wallarm_tarantool {
@@ -445,7 +445,7 @@ Once the postanalytics module is installed on the separate server, install the o
 
 ### 7. Connect the NGINX-Wallarm module to the postanalytics module
 
-On the server with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
 
 ```
 upstream wallarm_tarantool {
