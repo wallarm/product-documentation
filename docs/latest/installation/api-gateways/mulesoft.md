@@ -153,3 +153,7 @@ To update the deployed Wallarm policy, follow these steps:
 1. Restart attached applications in the **Runtime Manager** to apply new policy.
 
 To uninstall the policy, simply perform the first step of the update process.
+
+## Need assistance?
+
+If you encounter any issues or require assistance with the described deployment of Wallarm's policy in conjunction with MuleSoft, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
