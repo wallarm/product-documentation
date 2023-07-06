@@ -26,6 +26,7 @@ The solution has certain limitations as it only works with incoming requests:
     * [Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)
     * [Active Threat Verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)
 * The [Wallarm API Discovery](../../about-wallarm/api-discovery.md) cannot explore API inventory based on your traffic, as the solution lacks access to the server responses required for its operation.
+* The [protection against brute-force attacks and forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response analysis, which is currently not feasible.
 
 ## Requirements
 
