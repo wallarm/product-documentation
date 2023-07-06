@@ -1,0 +1,112 @@
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
+
+# Apigee with Wallarm Proxy Bundle
+
+[Apigee](https://docs.apigee.com/) is a comprehensive API platform that offers a wide range of tools and services for building, managing, and securing APIs. To enhance the security of APIs managed by Apigee, you can leverage the capabilities of Wallarm's API proxy bundle. This article explains how to integrate Wallarm with Apigee for improved API security.
+
+## Use cases
+
+Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
+
+* Securing APIs deployed on the Apigee platform with only one proxy.
+* Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
+
+## Limitations
+
+The solution has certain limitations as it only works with incoming requests:
+
+* Most of  capabilities for vulnerability discovery do not function properly, as the solution lacks access to the server responses necessary for identifying vulnerabilities. This limitation affects the following features:
+
+    * [Passive detection](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)
+    * [Vulnerability Scanner](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)
+    * [Active Threat Verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)
+* The [Wallarm API Discovery](../../about-wallarm/api-discovery.md) cannot explore API inventory based on your traffic, as the solution lacks access to the server responses required for its operation.
+* The [protection against brute-force attacks and forced browsing](../../admin-en/configuration-guides/protecting-against-bruteforce.md) is not available since it requires response analysis, which is currently not feasible.
+
+## Requirements
+
+To proceed with the deployment, ensure that you meet the following requirements:
+
+* Understanding of the Apigee platform.
+* Your APIs are running on Apigee.
+
+## Deployment
+
+To secure APIs on the Apigee platform with, follow these steps:
+
+1. Deploy a Wallarm node on the GCP instance.
+1. Obtain the Wallarm proxy bundle and upload it to Apigee.
+
+### 1. Deploy a Wallarm node
+
+When using the Wallarm proxy on Apigee, the traffic flow operates in-line. Therefore, choose one of the supported Wallarm node deployment artifacts for in-line deployment on Google Cloud Platform:
+
+* [GCP Machine Image](../packages/gcp-machine-image.md)
+* [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
+
+Configure the deployed node using the following template:
+
+```
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+
+	access_log off;
+	wallarm_mode off;
+
+	location / {
+		proxy_set_header Host $http_x_forwarded_host;
+		proxy_pass http://127.0.0.1:18080;
+	}
+}
+
+server {
+	listen 127.0.0.1:18080;
+	
+	server_name _;
+	
+	wallarm_mode block;
+	real_ip_header X-LAMBDA-REAL-IP;
+	set_real_ip_from 127.0.0.1;
+
+	location / {
+		echo_read_request_body;
+	}
+}
+```
+
+After the deployment is finished, take note of the IP address of the node instance as it will be necessary for configuring incoming request forwarding. Please note that the IP can be internal; there is no requirement for it to be external.
+
+### 2. Obtain the Wallarm proxy bundle and upload it to Apigee
+
+The integration involves creating an API proxy on Apigee that will route legitimate traffic to your APIs. To accomplish this, Wallarm provides a custom configuration bundle. Follow these steps to acquire and [use](https://docs.apigee.com/api-platform/fundamentals/build-simple-api-proxy) the Wallarm bundle for the API proxy on Apigee:
+
+1. Contact [support@wallarm.com](mailto:support@wallarm.com) to obtain the Wallarm proxy bundle for Apigee.
+1. In the Apigee Edge UI, navigate to **Develop** → **API Proxies** → **+Proxy** → **Upload proxy bundle**.
+1. Upload the bundle provided by the Wallarm support team.
+1. Open the imported configuration file and specify the [IP address of the Wallarm node instance](#1-deploy-a-wallarm-node) in `prewall.js` and `postwall.js`.
+1. Save and deploy the configuration.
+
+## Testing
+
+To test the functionality of the deployed policy, follow these steps:
+
+1. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to your API:
+
+    ```
+    curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
+    ```
+1. Open Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
+    
+    ![!Attacks in the interface][attacks-in-ui-image]
+
+    If the Wallarm node mode is set to blocking, the request will also be blocked.
+
+## Need assistance?
+
+If you encounter any issues or require assistance with the described deployment of Wallarm's policy in conjunction with Apigee, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
+
+

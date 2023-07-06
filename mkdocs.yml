@@ -178,6 +178,7 @@ nav:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
       - API Gateways:
         - Mulesoft: installation/api-gateways/mulesoft.md
+        - Apigee: installation/api-gateways/apigee.md
       - Packages:
         - Docker Images:
           - NGINX-based: admin-en/installation-docker-en.md
