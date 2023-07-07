@@ -5,6 +5,8 @@
 
 [Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) is an API management platform with an API gateway serving as the entry point for client applications to access APIs. To enhance API security in Apigee, you can integrate Wallarm's API proxy bundle as detailed in this article.
 
+The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
+
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:

@@ -5,6 +5,8 @@
 
 [Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs) is a powerful edge computing platform that allows for the execution of custom logic and the deployment of lightweight JavaScript functions at the edge of the platform. For customers who have their APIs and traffic running on Akamai EdgeWorkers, Wallarm provides a code bundle that can be deployed on Akamai EdgeWorkers to secure their infrastructure.
 
+The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
+
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
