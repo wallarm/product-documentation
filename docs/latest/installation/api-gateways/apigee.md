@@ -1,15 +1,15 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Apigee with Wallarm Proxy Bundle
+# Apigee Edge with Wallarm Proxy Bundle
 
-[Apigee](https://docs.apigee.com/) is a comprehensive API platform that offers a wide range of tools and services for building, managing, and securing APIs. To enhance the security of APIs managed by Apigee, you can leverage the capabilities of Wallarm's API proxy bundle. This article explains how to integrate Wallarm with Apigee for improved API security.
+[Apigee Edge](https://docs.apigee.com/api-platform/get-started/what-apigee-edge) is an API management platform with an API gateway serving as the entry point for client applications to access APIs. To enhance API security in Apigee, you can integrate Wallarm's API proxy bundle as detailed in this article.
 
 ## Use cases
 
 Among all supported [Wallarm deployment options](../supported-deployment-options.md), this solution is the recommended one for the following use cases:
 
-* Securing APIs deployed on the Apigee platform with only one proxy.
+* Securing APIs deployed on the Apigee platform with only one API proxy.
 * Requiring a security solution that offers comprehensive attack observation, reporting, and instant blocking of malicious requests.
 
 ## Limitations
@@ -107,6 +107,4 @@ To test the functionality of the deployed policy, follow these steps:
 
 ## Need assistance?
 
-If you encounter any issues or require assistance with the described deployment of Wallarm's policy in conjunction with Apigee, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.
-
-
+If you encounter any issues or require assistance with the described deployment of Wallarm in conjunction with Apigee, you can reach out to the [Wallarm support](mailto:support@wallarm.com) team. They are available to provide guidance and help resolve any problems you may face during the implementation process.

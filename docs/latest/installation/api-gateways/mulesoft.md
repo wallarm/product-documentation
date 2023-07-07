@@ -1,9 +1,9 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Mulesoft with Automated Wallarm Policy
+# Mulesoft with Wallarm Policy
 
-[MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between systems, applications, and services. With Wallarm, you can secure APIs on the Mulesoft Anypoint platform using the Wallarm policy. This article explains how to attach and utilize the policy.
+[MuleSoft](https://www.mulesoft.com/) is an integration platform that enables seamless connectivity and data integration between services with an API gateway serving as the entry point for client applications to access APIs. With Wallarm, you can secure APIs on the Mulesoft Anypoint platform using the Wallarm policy. This article explains how to attach and utilize the policy.
 
 The diagram below illustrates the high-level traffic flow when Wallarm policy is attached to APIs on the MuleSoft Anypoint platform, and Wallarm is configured to block malicious activity.
 
@@ -67,8 +67,63 @@ When utilizing the Wallarm policy, the traffic flow is in-line. Therefore, choos
     * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
     * [Microsoft Azure Container Instances](../cloud-platforms/azure/docker-container.md)
     * [Alibaba Elastic Compute Service (ECS)](../cloud-platforms/alibaba-cloud/docker-container.md)
+* Kubernetes:
+    * [NGINX Ingress Controller](../../admin-en/installation-kubernetes-en.md)
+    * [Kong Ingress Controller](../kubernetes/kong-ingress-controller/deployment.md)
+    * [Sidecar proxy](../kubernetes/sidecar-proxy/deployment.md)
 
-In the deployed node configuration, please ensure to pay attention to the following configurations:
+Configure the deployed node using the following template:
+
+```
+server {
+    listen 80;
+
+    server_name _;
+
+	access_log off;
+	wallarm_mode off;
+
+	location / {
+		proxy_set_header Host $http_x_forwarded_host;
+		proxy_pass http://127.0.0.1:18080;
+	}
+}
+
+server {
+    listen 443 ssl;
+
+    server_name yourdomain-for-wallarm-node.tld;
+
+	### SSL configuration here
+
+	access_log off;
+	wallarm_mode off;
+
+	location / {
+		proxy_set_header Host $http_x_forwarded_host;
+		proxy_pass http://127.0.0.1:18080;
+	}
+}
+
+
+server {
+	listen 127.0.0.1:18080;
+	
+	server_name _;
+	
+	wallarm_mode monitoring;
+	#wallarm_mode block;
+
+	real_ip_header X-FORWARDED-FOR;
+	set_real_ip_from 127.0.0.1;
+
+	location / {
+		echo_read_request_body;
+	}
+}
+```
+
+Please ensure to pay attention to the following configurations:
 
 * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
 * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
