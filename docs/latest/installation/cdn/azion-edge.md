@@ -51,9 +51,7 @@ When utilizing Wallarm on Azion Edge, the traffic flow is in-line. Therefore, ch
     * [All‑in‑One Installer](../nginx/all-in-one.md)
 * Public clouds:
     * [AWS AMI](../packages/aws-ami.md)
-    * Terraform Module for AWS:
-        * [Proxy in AWS VPC](../cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md)
-        * [Proxy for Amazon API Gateway](../cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md)
+    * [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)
     * [GCP Machine Image](../packages/gcp-machine-image.md)
     * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
     * [Microsoft Azure Container Instances](../cloud-platforms/azure/docker-container.md)

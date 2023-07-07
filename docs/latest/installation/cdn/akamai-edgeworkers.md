@@ -1,7 +1,7 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Deploying Wallarm Node on Akamai EdgeWorkers
+# Akamai EdgeWorkers with Wallarm Code Bundle
 
 [Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs) is a powerful edge computing platform that allows for the execution of custom logic and the deployment of lightweight JavaScript functions at the edge of the platform. For customers who have their APIs and traffic running on Akamai EdgeWorkers, Wallarm provides a code bundle that can be deployed on Akamai EdgeWorkers to secure their infrastructure.
 
@@ -59,9 +59,7 @@ When utilizing Wallarm on Akami EdgeWorkers, the traffic flow is in-line. Theref
     * [All‑in‑One Installer](../nginx/all-in-one.md)
 * Public clouds:
     * [AWS AMI](../packages/aws-ami.md)
-    * Terraform Module for AWS:
-        * [Proxy in AWS VPC](../cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md)
-        * [Proxy for Amazon API Gateway](../cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md)
+    * [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)
     * [GCP Machine Image](../packages/gcp-machine-image.md)
     * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
     * [Microsoft Azure Container Instances](../cloud-platforms/azure/docker-container.md)
