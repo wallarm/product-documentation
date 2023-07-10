@@ -2,9 +2,9 @@
 
 This article explains how to deploy Wallarm as the [OOB](../overview.md) solution if you choose to produce a traffic mirror by your NGINX, Envoy or similar solution.
 
-<!-- Traffic mirroring can be implemented by configuring a web server to copy incoming traffic to the Wallarm services for analysis. With this approach, traffic flow looks as follows: -->
+Traffic mirroring can be implemented by configuring a web, proxy or similar server to copy incoming traffic to the Wallarm services for analysis. With this approach, typical traffic flow looks as follows:
 
-<!-- ![!OOB scheme](../../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png) -->
+![!OOB scheme](../../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png)
 
 ## Deployment procedure
 

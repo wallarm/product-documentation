@@ -9,7 +9,7 @@ This article demonstrates the **example** on how to deploy Wallarm to AWS as an 
 
 ## Solution architecture
 
-![Wallarm for mirrored traffic](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-for-mirrored-traffic.png?raw=true)
+![Wallarm for mirrored traffic][wallarm-for-traffic-mirrored-by-server-terraform-img]
 
 This example Wallarm solution has the following components:
 
