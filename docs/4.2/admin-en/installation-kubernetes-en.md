@@ -2,6 +2,10 @@
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution involves the default functionality of [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services.
 
+The solution has the following architecture:
+
+![!Solution architecture](../images/waf-installation/kubernetes/nginx-ingress-controller.png)
+
 The solution is deployed from the Wallarm Helm chart.
 
 ## Use cases

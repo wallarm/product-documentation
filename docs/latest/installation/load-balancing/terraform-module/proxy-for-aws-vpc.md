@@ -13,7 +13,7 @@ You can see the solution flexibility in action by trying the [proxy advanced sol
 
 ## Solution architecture
 
-![Wallarm proxy scheme](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
+![Wallarm proxy scheme][wallarm-proxy-terraform-img]
 
 The example Wallarm proxy solution has the following components:
 

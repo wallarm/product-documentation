@@ -11,7 +11,7 @@ Wallarm proxy solution provides an additional functional network layer serving a
 
 ## Solution architecture
 
-![Wallarm proxy scheme](https://github.com/wallarm/terraform-aws-wallarm/blob/main/images/wallarm-as-proxy.png?raw=true)
+![Wallarm proxy scheme][wallarm-proxy-for-aws-api-gateway-img]
 
 The example Wallarm proxy solution has the following components:
 
