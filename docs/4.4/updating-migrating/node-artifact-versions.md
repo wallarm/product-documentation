@@ -148,6 +148,9 @@ This document lists available [patch versions](versioning-policy.md#version-form
 
 ### 4.4.2-1 (2023-02-10)
 
+!!! warning "Version deleted"
+    This AMI version has been deleted due to the presence of the [CVE-2021-3177](https://nvd.nist.gov/vuln/detail/CVE-2021-3177) vulnerability.
+
 * Support for [Mass Assignment](../attacks-vulns-list.md#mass-assignment) and [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf) attack detection
 * New parameter `custom_ruleset_ver` returned by the [Wallarm statistics service](../admin-en/configure-statistics-service.md) in both JSON and Prometheus formats
 
