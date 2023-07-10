@@ -110,7 +110,7 @@ To deploy the Wallarm eBPF solution:
 1. Deploy the Wallarm Helm chart:
 
     ``` bash
-    helm install --version 0.13.2 <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
+    helm install <RELEASE_NAME> wallarm/wallarm-oob --wait -n wallarm-ebpf --create-namespace -f <PATH_TO_VALUES>
     ```
 
     * `<RELEASE_NAME>` is the name for the Helm release of the Wallarm eBPF chart
