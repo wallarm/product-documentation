@@ -40,21 +40,26 @@
 /2.12/api/* /api/:splat 301!
 /2.12/faq/* /faq/:splat 301!
 /2.12/demo-videos/* /demo-videos/:splat 301!
+/2.12/fast/* /fast/:splat 301!
 /2.14/api/* /api/:splat 301!
 /2.14/faq/* /faq/:splat 301!
 /2.14/demo-videos/* /demo-videos/:splat 301!
+/2.14/fast/* /fast/:splat 301!
 /2.14/api-firewall/* /api-firewall/:splat 301!
 /2.16/api/* /api/:splat 301!
 /2.16/faq/* /faq/:splat 301!
 /2.16/demo-videos/* /demo-videos/:splat 301!
+/2.16/fast/* /fast/:splat 301!
 /2.16/api-firewall/* /api-firewall/:splat 301!
 /2.18/api/* /api/:splat 301!
 /2.18/faq/* /faq/:splat 301!
 /2.18/demo-videos/* /demo-videos/:splat 301!
+/2.18/fast/* /fast/:splat 301!
 /2.18/api-firewall/* /api-firewall/:splat 301!
 /3.0/api/* /api/:splat 301!
 /3.0/faq/* /faq/:splat 301!
 /3.0/demo-videos/* /demo-videos/:splat 301!
+/3.0/fast/* /fast/:splat 301!
 /3.0/api-firewall/* /api-firewall/:splat 301!
 /2.12/admin-en/* /2.12
 /2.12/quickstart-en/* /2.12
@@ -96,14 +101,17 @@
 /3.2/api/* /api/:splat 301!
 /3.2/faq/* /faq/:splat 301!
 /3.2/demo-videos/* /demo-videos/:splat 301!
+/3.2/fast/* /fast/:splat 301!
 /3.2/api-firewall/* /api-firewall/:splat 301!
 /3.4/api/* /api/:splat 301!
 /3.4/faq/* /faq/:splat 301!
 /3.4/demo-videos/* /demo-videos/:splat 301!
+/3.4/fast/* /fast/:splat 301!
 /3.4/api-firewall/* /api-firewall/:splat 301!
 /3.6/api/* /api/:splat 301!
 /3.6/faq/* /faq/:splat 301!
 /3.6/demo-videos/* /demo-videos/:splat 301!
+/3.6/fast/* /fast/:splat 301!
 /3.6/api-firewall/* /api-firewall/:splat 301!
 /3.6/news/ /news/
 /3.0/admin-en/* /2.18
@@ -136,12 +144,15 @@
 /4.0/api/* /api/:splat 301!
 /4.0/faq/* /faq/:splat 301!
 /4.0/demo-videos/* /demo-videos/:splat 301!
+/4.0/fast/* /fast/:splat 301!
 /4.0/api-firewall/* /api-firewall/:splat 301!
 /4.2/api/* /api/:splat 301!
 /4.2/faq/* /faq/:splat 301!
+/4.2/fast/* /fast/:splat 301!
 /4.2/api-firewall/* /api-firewall/:splat 301!
 /4.2/news/ /news/ 301!
 /4.4/demo-videos/* /demo-videos/:splat 301!
+/4.4/fast/* /fast/:splat 301!
 /4.4/api/* /api/:splat 301!
 /4.4/faq/* /faq/:splat 301!
 /4.4/api-firewall/* /api-firewall/:splat 301!
