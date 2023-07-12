@@ -25,20 +25,18 @@
 
 These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
-* [NGINX `stable` module](../installation/nginx/dynamic-module.md)
-* [Module for NGINX from CentOS/Debian repositories](../installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plus module](../installation/nginx-plus.md)
+* [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
+* [Individual packages for NGINX Plus](../installation/nginx-plus.md)
+* [Individual packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 
 To upgrade the end‑of‑life node (3.6 or lower), please use the [different instructions](older-versions/nginx-modules.md).
 
 ## Upgrade methods
 
-You can upgrade the Wallarm NGINX modules 4.x to version 4.6 in two different ways:
+You can upgrade the Wallarm NGINX modules 4.x installed from individual DEB/RPM packages to version 4.6 in two different ways:
 
-* [Using all-in-one automatic installer](#upgrade-with-all-in-one-automatic-installer) - recommended
-* [Manually](#manual-upgrade)
-
-To select the method, consider the differences:
+* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification and others (see the table below).
+* Keep using the current [manual](#manual-upgrade) installation method If you prefer to stick with the current installation method using individual DEB/RPM packages. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new method for Wallarm node installation on Debian/Ubuntu operating systems.
 
 | Position to compare | All-in-one installer | Manual upgrade |
 |---------------------|----------------------|----------------|
@@ -51,28 +49,30 @@ To select the method, consider the differences:
 | Future updates of your node components | Run a new version of all-in-one installer | Download and install components via CLI manually |
 
 * "Automatically" means you only once run all-in-one installer, the remaining it does by itself.
-* **Future updates become extremely easy with all-in-one installer**: your neither search for appropriate repositories, nor download them manually, nor install them by yourself - thus no errors can be expected during such installation.
 
 ## Upgrade with all-in-one automatic installer
 
-Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using all-in-one automatic installer.
+Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using [all-in-one automatic installer](../installation/nginx/all-in-one.md).
 
-### Requirements
+### Requirements for all-in-one upgrade
 
 --8<-- "../include/waf/installation/all-in-one-requirements.md"
 
 ### Upgrade procedure
 
 * If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all.
-* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](TBD).
+
+    You will need to run a node of the newer version using all-in-one installer on a clean machine, test that it works well and stop the previous one and configure traffic to flow through the new machine instead of the previous one.
+
+* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](../updating-migrating/separate-postanalytics.md).
 
 ### Step 1: Prepare clean machine
 
-When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the [appropriate OS](#requirements) within you environment.
+When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the [appropriate OS](#requirements-for-all-in-one-upgrade) within you environment.
 
 This will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
 
-**Alternative (not recommended)**
+**Alternative**
 
 You can also clean the old machine from installed Wallarm packages and then install the new node into this cleaned machine.
 
@@ -124,11 +124,7 @@ Commands in the further steps are the same for x86_64 and ARM64 installations.
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### Step 8: Configure sending traffic to Wallarm node
-
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
-
-### Step 9: Test Wallarm node operation
+### Step 8: Test Wallarm node operation
 
 To test the new node operation:
 
@@ -139,9 +135,21 @@ To test the new node operation:
     ```
 
 1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
-1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform the next steps.
-1. In the **Events** section, make sure the node behaves as the old one did.
-1. Perform some test attacks to make sure your rules work as expected.
+1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
+
+### Step 9: Configure sending traffic to Wallarm node
+
+Depending on the deployment approach being used, perform the following settings:
+
+=== "In-line"
+    Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
+
+    Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
+
+=== "Out-of-Band"
+    Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
+
+    Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
 
 ### Step 10: Remove old node
 
@@ -173,7 +181,7 @@ To test the new node operation:
 
 Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to version 4.6.
 
-### Requirements
+### Requirements for manual upgrade
 
 --8<-- "../include/waf/installation/requirements-docker-4.0.md"
 
