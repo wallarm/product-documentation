@@ -40,11 +40,11 @@ You can upgrade the Wallarm NGINX modules 4.x installed from individual DEB/RPM 
 * Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
 * Keep using the current [manual](#manual-upgrade) installation method If you prefer to stick with the current installation method using individual DEB/RPM packages. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new method for Wallarm node installation on Debian/Ubuntu operating systems.
 
-## Upgrade with all-in-one automatic installer
+## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using [all-in-one automatic installer](../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 using [all-in-one installer](../installation/nginx/all-in-one.md).
 
-### Requirements for all-in-one upgrade
+### Requirements for upgrade using all-in-one installer
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
@@ -91,7 +91,37 @@ Using new clean machine will lead to that at some moment you will have both old 
 
 ### Step 5: Run all-in-one Wallarm installer
 
+#### Filtering node and postanalytics on the same server
+
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
+
+#### Filtering node and postanalytics on different servers
+
+!!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
+    If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
+
+1. Upgrade postanalytics module following these [instructions](separate-postanalytics.md).
+1. Upgrade filtering node:
+
+    === "API token"
+        ```bash
+        # If using the x86_64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        ```        
+
+        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+
+    === "Node token"
+        ```bash
+        # If using the x86_64 version:
+        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        ```
 
 Commands in the further steps are the same for x86_64 and ARM64 installations.
 
@@ -99,11 +129,35 @@ Commands in the further steps are the same for x86_64 and ARM64 installations.
 
 --8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
-### Step 7: Restart NGINX
+### Step 7: Transfer NGINX and postanalytics configuration from old node machine to new
+
+Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
+
+**Source files**
+
+On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
+
+* `/etc/nginx/conf.d/default.conf` with NGINX settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, the `default.conf` is usually used or new configuration file is created for each domain group (for example, `example.com.conf` and `test.com.conf`). Detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+    
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+
+Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:
+
+* `/etc/default/wallarm-tarantool` or
+* `/etc/sysconfig/wallarm-tarantool`
+
+**Target files**
+
+As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the target files may have different names and be located in different directories.
+
+### Step 8: Restart NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### Step 8: Test Wallarm node operation
+### Step 9: Test Wallarm node operation
 
 To test the new node operation:
 
@@ -116,7 +170,7 @@ To test the new node operation:
 1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
 1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
 
-### Step 9: Configure sending traffic to Wallarm node
+### Step 10: Configure sending traffic to Wallarm node
 
 Depending on the deployment approach being used, perform the following settings:
 
@@ -130,7 +184,7 @@ Depending on the deployment approach being used, perform the following settings:
 
     Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
 
-### Step 10: Remove old node
+### Step 11: Remove old node
 
 1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.

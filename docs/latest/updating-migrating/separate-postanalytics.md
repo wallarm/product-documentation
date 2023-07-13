@@ -17,11 +17,11 @@ You can upgrade the postanalytics module 4.x installed on a separate server to v
 * Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module installation and upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
 * Keep using the current [manual](#manual-upgrade) installation method. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new all-in-one method.
 
-## Upgrade with all-in-one automatic installer
+## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the postanalytics module 4.x installed on a separate server to version 4.6 using [all-in-one automatic installer](../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the postanalytics module 4.x installed on a separate server to version 4.6 using [all-in-one installer](../installation/nginx/all-in-one.md).
 
-### Requirements for all-in-one upgrade
+### Requirements for upgrade using all-in-one installer
 
 * Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
 * Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.

@@ -35,7 +35,7 @@ The schemes below depict module interaction in two scenarios: when installed on 
 
 You can install the postanalytics module on a separate server in two different ways:
 
-* [Using all-in-one automatic installer](#all-in-one-automatic-installation) (available starting from Wallarm node 4.6) - automates a lot of activities and makes postanalytics module deployment much easier. Thus this is a recommended installation method.
+* [Using all-in-one installer](#all-in-one-automatic-installation) (available starting from Wallarm node 4.6) - automates a lot of activities and makes postanalytics module deployment much easier. Thus this is a recommended installation method.
 * [Manually](#manual-installation) - use for older node versions.
 
 When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the postanalytics part manually and then the filtering part with all-in-one installer, and vise versa: the postanalytics part with all-in-one installer and then then the filtering part manually.
