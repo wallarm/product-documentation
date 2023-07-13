@@ -6,19 +6,30 @@
 
 # Separate Postanalytics Module Installation
 
-The processing of requests in the Wallarm node is divided into two stages:
+In Wallarm's request processing, two stages are involved, including the postanalytics stage for statistical request analysis. Postanalytics is memory-intensive, which may require it to be performed on a dedicated server for optimized performance. This article explains how to install the postanalytics module on a separate server.
 
-* Primary processing in the NGINX-Wallarm module. The processing is not memory demanding and can be put on frontend servers without changing the server requirements.
-* Statistical analysis of the processed requests in the postanalytics module. Postanalytics is memory demanding, which may require changes in the server configuration or installation of postanalytics on a separate server.
-
-Depending on the system architecture, the NGINX-Wallarm and postanalytics modules can be installed on the **same server** or on **different servers**. By default, Wallarm deployment instructions cover the steps to install all modules on the same server.
-
-These instructions provide the steps to install the postanalytics module on a separate server. This option is available only for the following Wallarm artifacts:
+The option to install the postanalytics module on a separate server is available for the following Wallarm artifacts:
 
 * [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../installation/nginx-plus.md)
 * [Individual packages for distribution-provided NGINX](../installation/nginx/dynamic-module-from-distr.md)
 * [All-in-one installer](../installation/nginx/all-in-one.md)
+
+By default, Wallarm deployment instructions guide you to install both modules on the same server.
+
+## Overview
+
+The processing of requests in the Wallarm node consists of two stages:
+
+* Primary processing in the NGINX-Wallarm module, which is not memory demanding and can be executed on frontend servers without altering server requirements.
+* Statistical analysis of the processed requests in the postanalytics module which is memory demanding.
+
+The schemes below depict module interaction in two scenarios: when installed on the same server and on different servers.
+
+=== "NGINX-Wallarm and postanalytics on the same server"
+    ![!Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+=== "NGINX-Wallarm and postanalytics on different servers"
+    ![!Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## Installation methods
 
@@ -27,7 +38,7 @@ You can install the postanalytics module on a separate server in two different w
 * [Using all-in-one automatic installer](#all-in-one-automatic-installation) (available starting from Wallarm node 4.6) - automates a lot of activities and makes postanalytics module deployment much easier. Thus this is a recommended installation method.
 * [Manually](#manual-installation) - use for older node versions.
 
-When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the filtering part (without postanalytics) manually and then postanalytics with all-in-one script and vise versa.
+When installing filtering and postanalytics modules separately, you can combine manual and automatic approaches: install the filtering part (without postanalytics) manually and then postanalytics with all-in-one script and vise versa.
 
 ## Requirements
 
