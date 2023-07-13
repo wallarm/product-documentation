@@ -20,10 +20,12 @@
 [oob-docs]:                         ../installation//oob/overview.md
 [sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
+[web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+
 
 # Upgrading Wallarm NGINX modules
 
-These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
+These instructions describe the steps to upgrade the Wallarm NGINX modules 4.x installed from the individual packages to version 4.6. These are the modules installed in accordance with one of the following instructions:
 
 * [Individual packages for NGINX stable](../installation/nginx/dynamic-module.md)
 * [Individual packages for NGINX Plus](../installation/nginx-plus.md)
@@ -35,20 +37,8 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 You can upgrade the Wallarm NGINX modules 4.x installed from individual DEB/RPM packages to version 4.6 in two different ways:
 
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification and others (see the table below).
+* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
 * Keep using the current [manual](#manual-upgrade) installation method If you prefer to stick with the current installation method using individual DEB/RPM packages. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new method for Wallarm node installation on Debian/Ubuntu operating systems.
-
-| Position to compare | All-in-one installer | Manual upgrade |
-|---------------------|----------------------|----------------|
-| Machine         | New or cleared from previous installation | The same  |
-| Checking your OS and NGINX version | Automatically | Manually  |
-| Adding Wallarm repositories for the detected OS and NGINX version | Automatically | Run CLI script manually  |
-| Installing Wallarm packages | Automatically | Run CLI script manually  |
-| Connecting the installed Wallarm module to your NGINX| Automatically | Run CLI script manually  |
-| Connecting the filtering node to Wallarm Cloud using the provided token | Automatically | Run CLI script manually  |
-| Future updates of your node components | Run a new version of all-in-one installer | Download and install components via CLI manually |
-
-* "Automatically" means you only once run all-in-one installer, the remaining it does by itself.
 
 ## Upgrade with all-in-one automatic installer
 
@@ -56,7 +46,11 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 
 
 ### Requirements for all-in-one upgrade
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
+* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
+* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
+* Executing all commands as a superuser (e.g. `root`).
+* Using [new clean machine](#step-1-prepare-clean-machine) for node installation.
 
 ### Upgrade procedure
 
@@ -68,35 +62,20 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 
 
 ### Step 1: Prepare clean machine
 
-When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the [appropriate OS](#requirements-for-all-in-one-upgrade) within you environment.
+When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the appropriate OS within you environment.
 
-This will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
+Supported OS:
 
-**Alternative**
+    * Debian 10, 11 and 12.x
+    * Ubuntu LTS 18.04, 20.04, 22.04
+    * CentOS 7, 8 Stream, 9 Stream
+    * Alma/Rocky Linux 9
+    * Oracle Linux 8.x
+    * Redos
+    * SuSe Linux
+    * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
-You can also clean the old machine from installed Wallarm packages and then install the new node into this cleaned machine.
-
-The following packages should be removed:
-
-* `nginx-module-wallarm` for the NGINX-Wallarm module
-* `wallarm-node` for the [postanalytics][install-postanalytics-docs] module, Tarantool database, and additional NGINX-Wallarm packages
-
-=== "Debian"
-    ```bash
-    sudo apt remove wallarm-node nginx-module-wallarm
-    ```
-=== "Ubuntu"
-    ```bash
-    sudo apt remove wallarm-node nginx-module-wallarm
-    ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo yum remove wallarm-node nginx-module-wallarm
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum remove wallarm-node nginx-module-wallarm
-    ```
+Using new clean machine will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
 
 ### Step 2: Install NGINX and dependencies
 
