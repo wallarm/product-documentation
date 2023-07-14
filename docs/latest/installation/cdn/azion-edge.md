@@ -38,85 +38,65 @@ To secure APIs on Azion Edge with Wallarm, follow these steps:
 
 ### 1. Deploy a Wallarm node
 
-When utilizing Wallarm on Azion Edge, the traffic flow is in-line. Therefore, choose one of the supported Wallarm node deployment solutions or artifacts for in-line deployment and follow the provided deployment instructions.
+When utilizing Wallarm on Azion Edge, the traffic flow is in-line.
 
-* Docker images:
-    * [NGINX-based](../../admin-en/installation-docker-en.md)
-    * [Envoy-based](../../admin-en/installation-guides/envoy/envoy-docker.md)
-* Linux packages:
-    * [Individual packages for NGINX stable](../nginx/dynamic-module.md)
-    * [Individual packages for NGINX Plus](../nginx-plus.md)
-    * [Individual packages for Distribution-Provided NGINX](../nginx/dynamic-module-from-distr.md)
-    * [All‑in‑One Installer](../nginx/all-in-one.md)
-* Public clouds:
-    * [AWS AMI](../packages/aws-ami.md)
-    * [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)
-    * [GCP Machine Image](../packages/gcp-machine-image.md)
-    * [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
-    * [Microsoft Azure Container Instances](../cloud-platforms/azure/docker-container.md)
-    * [Alibaba Elastic Compute Service (ECS)](../cloud-platforms/alibaba-cloud/docker-container.md)
-* Kubernetes:
-    * [NGINX Ingress Controller](../../admin-en/installation-kubernetes-en.md)
-    * [Kong Ingress Controller](../kubernetes/kong-ingress-controller/deployment.md)
-    * [Sidecar proxy](../kubernetes/sidecar-proxy/deployment.md)
+1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md) for in-line deployment and follow the provided deployment instructions.
+1. Configure the deployed node using the following template:
 
-Configure the deployed node using the following template:
+    ```
+    server {
+        listen 80;
 
-```
-server {
-    listen 80;
+        server_name _;
 
-    server_name _;
+        access_log off;
+        wallarm_mode off;
 
-	access_log off;
-	wallarm_mode off;
+        location / {
+            proxy_set_header Host $http_x_forwarded_host;
+            proxy_pass http://127.0.0.1:18080;
+        }
+    }
 
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://127.0.0.1:18080;
-	}
-}
+    server {
+        listen 443 ssl;
 
-server {
-    listen 443 ssl;
+        server_name yourdomain-for-wallarm-node.tld;
 
-    server_name yourdomain-for-wallarm-node.tld;
+        ### SSL configuration here
 
-	### SSL configuration here
+        access_log off;
+        wallarm_mode off;
 
-	access_log off;
-	wallarm_mode off;
-
-	location / {
-		proxy_set_header Host $http_x_forwarded_host;
-		proxy_pass http://127.0.0.1:18080;
-	}
-}
+        location / {
+            proxy_set_header Host $http_x_forwarded_host;
+            proxy_pass http://127.0.0.1:18080;
+        }
+    }
 
 
-server {
-	listen 127.0.0.1:18080;
-	
-	server_name _;
-	
-	wallarm_mode monitoring;
-	#wallarm_mode block;
+    server {
+        listen 127.0.0.1:18080;
+        
+        server_name _;
+        
+        wallarm_mode monitoring;
+        #wallarm_mode block;
 
-	real_ip_header X-EDGEWRK-REAL-IP;
-	set_real_ip_from 127.0.0.1;
+        real_ip_header X-EDGEWRK-REAL-IP;
+        set_real_ip_from 127.0.0.1;
 
-	location / {
-		echo_read_request_body;
-	}
-}
-```
+        location / {
+            echo_read_request_body;
+        }
+    }
+    ```
 
-Please ensure to pay attention to the following configurations:
+    Please ensure to pay attention to the following configurations:
 
-* TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
-* [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
-
-Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
+    * TLS/SSL certificates for HTTPS traffic: To enable the Wallarm node to handle secure HTTPS traffic, configure the TLS/SSL certificates accordingly. The specific configuration will depend on the chosen deployment method. For example, if you are using NGINX, you can refer to [its article](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/) for guidance.
+    * [Wallarm operation mode](../../admin-en/configure-wallarm-mode.md) configuration.
+1. Once the deployment is complete, make a note of the node instance IP as you will need it later to set the address for incoming request forwarding.
 
 ### 2. Obtain the Wallarm code for Edge Functions and run it on Azion
 
