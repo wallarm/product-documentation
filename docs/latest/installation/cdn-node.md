@@ -21,9 +21,9 @@
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
 [using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache
 
-# Deploying Wallarm CDN Node
+# Deploying Wallarm Node with Section.io
 
-Wallarm CDN node operating as a reverse proxy mitigates malicious traffic without placing any third‑party components in the application's infrastructure.
+[Section](https://www.section.io/) is a Cloud-Native Hosting system that enables easy deployment of a Wallarm node. By routing traffic through it as a reverse proxy, you can effectively mitigate malicious traffic without adding third-party components to your application's infrastructure.
 
 !!! info "CDN nodes under Free tier"
     Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).

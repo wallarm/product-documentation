@@ -145,7 +145,11 @@ nav:
           - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
         - Alibaba Cloud:
           - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
-      - CDN: installation/cdn-node.md
+      - Edge:
+        - Section.io: installation/cdn-node.md
+        - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
+        - Azion Edge: installation/cdn/azion-edge.md
+        - AWS Lambda: installation/cdn/aws-lambda.md
       - Kubernetes:
         - Ingress:
           - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
@@ -176,6 +180,15 @@ nav:
         #   - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
         # - Envoy:
         #   - Docker image: installation/load-balancing/envoy/docker-image.md
+      - API Gateways:
+        - Mulesoft: installation/api-gateways/mulesoft.md
+        - Apigee: installation/api-gateways/apigee.md
+      - Connectors:
+        - Mulesoft: installation/connectors/mulesoft.md
+        - Apigee: installation/connectors/apigee.md
+        - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+        - Azion Edge: installation/connectors/azion-edge.md
+        - AWS Lambda: installation/connectors/aws-lambda.md
       - Packages:
         - Docker Images:
           - NGINX-based: admin-en/installation-docker-en.md

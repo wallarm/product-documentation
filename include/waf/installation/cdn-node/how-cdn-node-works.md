@@ -7,7 +7,7 @@ Wallarm CDN node operates as a reverse proxy to the protected server. It analyze
 
 As for the other characteristics of the Wallarm CDN node:
 
-* Hosted by the third-party cloud provider, so no resources are required from your infrastructure to deploy the CDN node.
+* Hosted by the third-party cloud provider (Section.io), so no resources are required from your infrastructure to deploy the CDN node.
 
     !!! info "Uploading request data to the third-party cloud provider"
         Some data on processed requests is uploaded to the Lumen service.
