@@ -519,14 +519,32 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     </div>
 </div>
 
-## CDN
+## Edge
 
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/cdn-node/">
-            <img src="../../images/platform-icons/cdn-node.png" />
-            <h3>CDN</h3>
-            <p>Deploy Wallarm without placing any third‑party components in your infrastructure</p>
+            <img src="../../images/platform-icons/section-io.svg" />
+            <h3>Section.io</h3>
+            <p>Deploy Wallarm node on Section.io without third-party components in your infrastructure</p>
+        </a>
+
+        <a class="do-card" href="../../installation/cdn/akamai-edgeworkers/">
+            <img src="../../images/platform-icons/akamai.svg" />
+            <h3>Akamai EdgeWorkers</h3>
+            <p>Deploy Wallarm to secure APIs running on Akamai EdgeWorkers</p>
+        </a>
+
+        <a class="do-card" href="../../installation/cdn/azion-edge/">
+            <img src="../../images/platform-icons/azion-edge.svg" />
+            <h3>Azion Edge</h3>
+            <p>Deploy Wallarm to secure APIs running on Azion Edge</p>
+        </a>
+        
+        <a class="do-card" href="../../installation/cdn/aws-lambda/">
+            <img src="../../images/platform-icons/aws-lambda.svg" />
+            <h3>AWS Lambda</h3>
+            <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
         </a>
     </div>
 </div>
@@ -569,6 +587,60 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/kubernetes/kong-ingress-controller/deployment/">
             <h3>Kong Ingress Controller</h3>
             <p>Deploy the Kong Ingress Controller with integrated Wallarm services</p>
+        </a>
+    </div>
+</div>
+
+## API Gateways
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../../installation/api-gateways/mulesoft/">
+            <img src="../../images/platform-icons/mulesoft.svg" />
+            <h3>Mulesoft</h3>
+            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
+        </a>
+
+        <a class="do-card" href="../../installation/api-gateways/apigee/">
+            <img src="../../images/platform-icons/apigee.svg" />
+            <h3>Apigee</h3>
+            <p>Deploy Wallarm to secure APIs running on Apigee</p>
+        </a>
+    </div>
+</div>
+
+## Connectors
+
+<div class="do-section">
+    <div class="do-main">
+        <a class="do-card" href="../../installation/api-gateways/mulesoft/">
+            <img src="../../images/platform-icons/mulesoft.svg" />
+            <h3>Mulesoft</h3>
+            <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
+        </a>
+
+        <a class="do-card" href="../../installation/api-gateways/apigee/">
+            <img src="../../images/platform-icons/apigee.svg" />
+            <h3>Apigee</h3>
+            <p>Deploy Wallarm to secure APIs running on Apigee</p>
+        </a>
+
+        <a class="do-card" href="../../installation/cdn/akamai-edgeworkers/">
+            <img src="../../images/platform-icons/akamai.svg" />
+            <h3>Akamai EdgeWorkers</h3>
+            <p>Deploy Wallarm to secure APIs running on Akamai EdgeWorkers</p>
+        </a>
+
+        <a class="do-card" href="../../installation/cdn/azion-edge/">
+            <img src="../../images/platform-icons/azion-edge.svg" />
+            <h3>Azion Edge</h3>
+            <p>Deploy Wallarm to secure APIs running on Azion Edge</p>
+        </a>
+        
+        <a class="do-card" href="../../installation/cdn/aws-lambda/">
+            <img src="../../images/platform-icons/aws-lambda.svg" />
+            <h3>AWS Lambda</h3>
+            <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
         </a>
     </div>
 </div>
