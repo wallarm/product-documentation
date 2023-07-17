@@ -62,18 +62,16 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 
 
 ### Step 1: Prepare clean machine
 
-When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with the appropriate OS within you environment.
+When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with one of the supported OS:
 
-Supported OS:
-
-    * Debian 10, 11 and 12.x
-    * Ubuntu LTS 18.04, 20.04, 22.04
-    * CentOS 7, 8 Stream, 9 Stream
-    * Alma/Rocky Linux 9
-    * Oracle Linux 8.x
-    * Redos
-    * SuSe Linux
-    * Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
+* Debian 10, 11 and 12.x
+* Ubuntu LTS 18.04, 20.04, 22.04
+* CentOS 7, 8 Stream, 9 Stream
+* Alma/Rocky Linux 9
+* Oracle Linux 8.x
+* Redos
+* SuSe Linux
+* Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
 
 Using new clean machine will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
 
@@ -123,13 +121,7 @@ Using new clean machine will lead to that at some moment you will have both old 
         sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
         ```
 
-Commands in the further steps are the same for x86_64 and ARM64 installations.
-
-### Step 6: Enable Wallarm node to analyze traffic
-
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
-
-### Step 7: Transfer NGINX and postanalytics configuration from old node machine to new
+### Step 6: Transfer NGINX and postanalytics configuration from old node machine to new
 
 Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
 
@@ -153,11 +145,11 @@ Also, the configuration of the postanalytics module (Tarantool database settings
 
 As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the target files may have different names and be located in different directories.
 
-### Step 8: Restart NGINX
+### Step 7: Restart NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### Step 9: Test Wallarm node operation
+### Step 8: Test Wallarm node operation
 
 To test the new node operation:
 
@@ -170,7 +162,7 @@ To test the new node operation:
 1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
 1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
 
-### Step 10: Configure sending traffic to Wallarm node
+### Step 9: Configure sending traffic to Wallarm node
 
 Depending on the deployment approach being used, perform the following settings:
 
@@ -184,7 +176,7 @@ Depending on the deployment approach being used, perform the following settings:
 
     Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
 
-### Step 11: Remove old node
+### Step 10: Remove old node
 
 1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
 1. Confirm the action.

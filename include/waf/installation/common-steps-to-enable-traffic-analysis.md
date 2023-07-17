@@ -2,7 +2,7 @@ By default, the deployed Wallarm node does not analyze incoming traffic.
 
 Depending on the selected Wallarm deployment approach (in-line or [Out-of-Band][oob-docs]), configure Wallarm to either proxy traffic or process the traffic mirror.
 
-On the machine with the NGINX-Wallarm module, in the NGINX configuration file, perform the following configuration:
+Perform the following configuration in the `/etc/nginx/conf.d/default.conf` file on the machine with the installed node:
 
 === "In-line"
     1. Set an IP address for Wallarm to proxy legitimate traffic to. It can be an IP of an application instance, load balancer, or DNS name, etc., depending on your architecture.
