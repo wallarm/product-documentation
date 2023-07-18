@@ -446,6 +446,25 @@ If the time exceeds the limit, data about NGINX workers is written to the `stall
     
     **Default value**: `5` (five seconds)
 
+### wallarm_status
+
+Controls the [Wallarm statistics service](configure-statistics-service.md) operation.
+
+The directive value has the following format:
+
+```
+wallarm_status [on|off] [format=json|prometheus];
+```
+
+It is highly recommended to configure the statistics service in the separate configuration file `/etc/nginx/conf.d/wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
+
+Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
+
+!!! info
+    The directive can be configured in the NGINX context of `server` and/or `location`.
+
+    The `format` parameter has the `json` value by default.
+
 ### wallarm_process_time_limit
 
 Sets the time limit of a single request processing by the Wallarm node.
