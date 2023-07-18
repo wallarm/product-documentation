@@ -236,12 +236,12 @@ nav:
             - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
             - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
         - Specification of the Wallarm cloud-init Script: installation/cloud-platforms/cloud-init.md
-        - Wallarm Deployment to Private Clouds: installation/cloud-platforms/private-cloud.md
         - Separate Postanalytics Module Installation: admin-en/installation-postanalytics-en.md
         - Multi‑Tenant Node:
           - Multitenancy Overview: installation/multi-tenant/overview.md
           - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
           - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
+        - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
     - Administrator Guide:
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
