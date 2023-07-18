@@ -1,28 +1,44 @@
-# Deployment of the filtering node to the private clouds
+# Deploying Wallarm in Private Clouds
 
-Private clouds are cloud environments deployed solely to your infrastructure. This document overviews the principles of deploying the filtering node to the private clouds.
+Private clouds are cloud environments deployed solely to a single organization or entity, providing exclusive use and control over the resources. This article overviews the principles of deploying the Wallarm node to the private clouds.
 
-## Principles of deploying the Wallarm node Docker container to the private cloud
+## Step 1: Understand your scope and approach to Wallarm deployment
 
-One of the methods of deploying the filtering node to the private cloud is deploying the [Docker image of the NGINX-based Wallarm node](../../admin-en/installation-docker-en.md).
+Before deploying Wallarm in your private cloud, it is essential to understand the scope of your application landscape and determine the most suitable approach for Wallarm deployment. Consider the following characteristics during this assessment:
 
-Depending on the private cloud platform architecture and your application deployment scheme, you can deploy the Docker container to the private cloud in the following ways:
+* Assessment of a scope to secure: evaluate your application landscape and identify the critical applications that require protection. Consider factors such as the sensitivity of data, potential impact of breaches, and compliance requirements. This assessment helps you prioritize and focus your efforts on protecting the most important assets in your private cloud.
+* In-line vs. [out-of-band (OOB)](../oob/overview.md) analysis: determine whether you want to deploy Wallarm for in-line analysis or out-of-band traffic analysis. In-line analysis involves deploying Wallarm nodes in the traffic path of your applications, while OOB analysis involves capturing and analyzing mirrored traffic.
+* Placement of Wallarm nodes: Based on your chosen approach (in-line or OOB analysis), determine the appropriate placement of Wallarm nodes within your private cloud infrastructure. For in-line analysis, consider placing Wallarm nodes close to your applications, such as within the same VLAN or subnet. For OOB analysis, ensure that the mirrored traffic will be properly routed to the Wallarm nodes for analysis.
 
-* Using a separate container deployment service provided by the cloud
-* Using the standard `docker run` command in the instance based on any operating system
+## Step 2: Allow incoming and outgoing connections for Wallarm
 
-Before deploying the Wallarm node Docker container to the private cloud, it is recommended to review the container deployment methods described in the documentation of this cloud and select the most suitable one. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](../../installation/supported-deployment-options.md#cloud-platforms).
+Since private clouds usually have restrictions on incoming connections, it is necessary to allow connections from Wallarm to enable vulnerability testing of your system. In private clouds, access is typically granted based on IP addresses rather than domains. Below is the list of IP addresses you need to allow access for Wallarm to operate correctly:
 
-## Principles of installing the Wallarm node from DEB and RPM packages on the private cloud
+THE LIST
 
-One of the methods of installing the filtering node on the private cloud is installing from source DEB or RPM packages. Since the filtering node operates as the web server or [API gateway](https://www.wallarm.com/what/the-concept-of-an-api-gateway) module, web server or API gateway packages should be installed on the operating system along with the filtering node packages.
+Additionally, as private clouds often restrict incoming connections, you must also allow connections to Wallarm for nodes to communicate with the Wallarm Cloud and download packages from external sources during installation. Below is the list of IP addresses:
 
-You can install the filtering node from DEB and RPM packages on the private cloud as follows:
+THE LIST
 
-1. On the private cloud, create an instance from the [supported operating system](../../installation/supported-deployment-options.md#deb-and-rpm-packages) image.
-2. In the instance, install the packages of the filtering node and of the web server or API gateway suitable for your application architecture and supported by Wallarm. You can use one of the following instructions:
+## Step 3: Choose the deployment model and Wallarm artifact
 
-      * [Installing the filtering node as the NGINX Stable module](../../installation/nginx/dynamic-module.md)
-      * [Installing the filtering node as the NGINX Plus module](../../installation/nginx-plus.md)
+Wallarm offers flexible deployment models, allowing organizations to select the most suitable option for their private cloud environment. Two common deployment models are **virtual appliance deployment** and **Kubernetes deployment**.
 
-Before installing the filtering node on the private cloud, it is recommended to review the instructions on creating and managing instances on the deployed cloud. If you deployed a well-known cloud platform as the private cloud, you can follow the [ready-made instructions developed by Wallarm](../../installation/supported-deployment-options.md#cloud-platforms).
+### Virtual appliance deployment
+
+In this model, you deploy Wallarm as a virtual appliance within your private cloud infrastructure. The virtual appliance can be installed as a VM or container. You can choose to deploy the Wallarm node using one of the following artifacts:
+
+* NGINX-based Docker image
+* Envoy-based Docker image
+* Individual Linux packages for NGINX stable
+* Individual Linux packages for NGINX Plus
+* Individual Linux packages for Distribution-Provided NGINX
+* All‑in‑One Installer for Linux
+
+### Kubernetes deployment
+
+If your private cloud utilizes Kubernetes for container orchestration, Wallarm can be deployed as a Kubernetes-native solution. It seamlessly integrates with Kubernetes clusters, leveraging features such as ingress controllers, sidecar containers, or custom Kubernetes resources. You can choose to deploy Wallarm using one of the following solutions:
+
+* NGINX-based Ingress controller
+* Kong-based Ingress controller
+* Sidecar proxy
