@@ -7,6 +7,20 @@ This page lists the changes available when upgrading the node of the deprecated 
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
+## All-in-one installer
+
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+
+The installer simplifies the process by automatically performing the following actions:
+
+1. Checking your OS and NGINX version.
+1. Adding Wallarm repositories for the detected OS and NGINX version.
+1. Installing Wallarm packages from these repositories.
+1. Connecting the installed Wallarm module to your NGINX.
+1. Connecting the filtering node to Wallarm Cloud using the provided token.
+
+[See details on how to deploy the node with all-in-one installer →](../../installation/nginx/all-in-one.md)
+
 ## Breaking changes due to the deleted metrics
 
 Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:

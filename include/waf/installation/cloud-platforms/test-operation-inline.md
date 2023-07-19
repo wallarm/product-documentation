@@ -1,4 +1,4 @@
-1. The the request with test [Path Traversal][ptrav-attack-docs] attack to an address of either the load balancer or the machine with the Wallarm node:
+1. The request with test [Path Traversal][ptrav-attack-docs] attack to an address of either the load balancer or the machine with the Wallarm node:
 
     ```
     curl http://<ADDRESS>/etc/passwd

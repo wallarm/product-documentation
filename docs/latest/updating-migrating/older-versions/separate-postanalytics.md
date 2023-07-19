@@ -6,6 +6,7 @@
 [wallarm-token-types]:          ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [tarantool-status]:             ../../images/tarantool-status.png
 [statistics-service-all-parameters]: ../../admin-en/configure-statistics-service.md
+[configure-proxy-balancer-instr]:    ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 
 
 # Upgrading the EOL postanalytics module
@@ -14,7 +15,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Inform Wallarm technical support that you are upgrading EOL node
+## Inform Wallarm technical support that you are upgrading EOL postanalytics module
 
 If upgrading the end‑of‑life postanalytics module (version 3.6 and lower) to version 4.6, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
 
@@ -22,8 +23,8 @@ If upgrading the end‑of‑life postanalytics module (version 3.6 and lower) to
 
 You can upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6 in two different ways:
 
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module installation and upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) installation method. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new all-in-one method.
+* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
+* Keep using the current [manual](#manual-upgrade) upgrade method to continue with individual DEB/RPM packages.
 
 ## Upgrade with all-in-one installer
 
@@ -58,22 +59,26 @@ When upgrading from the end‑of‑life postanalytics module (version 3.6 and lo
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
-### Step 5: Upgrade the NGINX-Wallarm module on a separate server
+### Step 5: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+### Step 6: Upgrade the NGINX-Wallarm module on a separate server
 
 Once the postanalytics module is installed on the separate server, [upgrade its related NGINX-Wallarm module](nginx-modules.md) running on a different server.
 
 !!! info "Combining upgrade methods"
     Both manual and automatic approaches can be used to upgrade the related NGINX-Wallarm module.
 
-### Step 6: Re-connect the NGINX-Wallarm module to the postanalytics module
+### Step 7: Re-connect the NGINX-Wallarm module to the postanalytics module
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
 
-### Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
+### Step 8: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
 
-### Step 8: Remove old postanalytics module
+### Step 9: Remove old postanalytics module
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
 
