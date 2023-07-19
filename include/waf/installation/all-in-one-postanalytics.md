@@ -1,4 +1,4 @@
-To install postanalytics separately via all-in-one script, use:
+To install postanalytics separately with all-in-one installer, use:
 
 === "API token"
     ```bash

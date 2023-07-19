@@ -1,4 +1,4 @@
-Wallarm suggests all-in-one installations for the following processors of node machine:
+Wallarm suggests all-in-one installations for the following processors:
 
 * x86_64
 * ARM64 (beta)

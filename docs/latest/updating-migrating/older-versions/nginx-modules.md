@@ -43,7 +43,7 @@ You can upgrade the the end‑of‑life Wallarm NGINX modules (version 3.6 and l
 
 ## Upgrade with all-in-one installer
 
-Use the procedure below to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6 using [all-in-one installer](../installation/nginx/all-in-one.md).
+Use the procedure below to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6 using [all-in-one installer](../../installation/nginx/all-in-one.md).
 
 ### Requirements for upgrade using all-in-one installer
 
