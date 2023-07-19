@@ -48,7 +48,18 @@ Under the **Global administrator** account, you can create tenants via Wallarm C
 
 ![!Creating tenant via Wallarm Console](../../images/partner-waf-node/tenant-create-via-ui.png)
 
-You can create a new **Administrator** [user](../../user-guides/settings/users.md#user-roles) for your new tenant. The invitation email will be sent to the specified address.
+Tenants can represent [different entities](overview.md), thus select:
+
+* **Partner** - to represent an independent company that installs a filtering node within its system infrastructure to provide it's clients with attack mitigation.
+* **Multi-tenant customer** - to represent an independent company that wants to isolate the data on protected environments from each other by creating further sub-tenants.
+* **Ordinary tenant** (default) - to represent:
+
+    * An independent company that does not plan to isolate the data on protected environments from each other and thus does not plan to create further sub-tenants.
+    * An isolated environment itself.
+
+You can create a new **Administrator** user for your new tenant via the **Create a new user** option. The invitation email will be sent to the specified address.
+
+For the newly created tenant
 
 #### Via the Wallarm API
 
