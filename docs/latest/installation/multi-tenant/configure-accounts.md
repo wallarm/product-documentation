@@ -40,9 +40,30 @@ After getting your request, the Wallarm technical support will:
 
     Received UUID will be required in the further steps.
 
-### Step 2: Create the tenant via the Wallarm API
+### Step 2: Create the tenant
 
-To create the tenant, it is required to send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from your own API client or from the [Wallarm API Console](../../api/overview.md) that defines the authentication method:
+#### Via Wallarm Console
+
+Under the **Global administrator** account, you can create tenants via Wallarm Console → tenant selector → **Create tenant**.
+
+![!Creating tenant via Wallarm Console](../../images/partner-waf-node/tenant-create-via-ui.png)
+
+Tenants can represent [different entities](overview.md), thus select:
+
+* **Partner** - to represent an independent company that installs a filtering node within its system infrastructure to provide it's clients with attack mitigation.
+* **Multi-tenant customer** - to represent an independent company that wants to isolate the data on protected environments from each other by creating further sub-tenants.
+* **Ordinary tenant** (default) - to represent:
+
+    * An independent company that does not plan to isolate the data on protected environments from each other and thus does not plan to create further sub-tenants.
+    * An isolated environment itself.
+
+You can create a new **Administrator** user for your new tenant via the **Create a new user** option. The invitation email will be sent to the specified address.
+
+For the newly created tenant
+
+#### Via the Wallarm API
+
+To create the tenant, you can send authenticated requests to Wallarm API. Authenticated requests to Wallarm API can be sent from your own API client or from the [Wallarm API Console](../../api/overview.md) that defines the authentication method:
 
 * For requests to be sent from the **Wallarm API Console**, it is required to sign in to Wallarm Console with the **Global administrator** user role and update the Wallarm API Console page available at:
     * https://apiconsole.us1.wallarm.com/ for the US Cloud
