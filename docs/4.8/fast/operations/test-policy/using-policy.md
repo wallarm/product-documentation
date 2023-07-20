@@ -1,0 +1,1 @@
+--8<-- "latest/fast/operations/test-policy/using-policy.md"
