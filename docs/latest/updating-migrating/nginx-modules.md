@@ -35,10 +35,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Upgrade methods
 
-You can upgrade the Wallarm NGINX modules 4.x installed from individual DEB/RPM packages to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) upgrade method to continue with individual DEB/RPM packages.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 

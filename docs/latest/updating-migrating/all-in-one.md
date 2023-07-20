@@ -12,7 +12,7 @@ These instructions describe the steps to upgrade the Wallarm node 4.6.x installe
 
 ## Prepare Wallarm token
 
-To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
+In any upgrade scenario, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
 
 === "API token"
 
@@ -31,7 +31,7 @@ To upgrade node, you will need a Wallarm token of [one of the types](../user-gui
 
 The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
 
-*  [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
+* [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
 * [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module
 
 ## Filtering node and postanalytics on the same server
@@ -70,39 +70,47 @@ To test the new node operation:
 
 ### Step 1: Download newest version of all-in-one Wallarm installer to postanalytics machine
 
+This step is performed on the postanalytics machine.
+
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
 ### Step 2: Run all-in-one Wallarm installer to upgrade postanalytics
+
+This step is performed on the postanalytics machine.
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
 ### Step 3: Download newest version of all-in-one Wallarm installer to filtering node machine
 
+This step is performed on the filtering node machine.
+
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
 ### Step 4: Run all-in-one Wallarm installer to upgrade filtering node
 
+This step is performed on the filtering node machine.
+
 To upgrade filtering node separately with all-in-one installer, use:
 
-    === "API token"
-        ```bash
-        # If using the x86_64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+=== "API token"
+    ```bash
+    # If using the x86_64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
 
-        # If using the ARM64 version:
-        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
-        ```        
+    # If using the ARM64 version:
+    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+    ```        
 
-        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
 
-    === "Node token"
-        ```bash
-        # If using the x86_64 version:
-        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+=== "Node token"
+    ```bash
+    # If using the x86_64 version:
+    sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
 
-        # If using the ARM64 version:
-        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
-        ```
+    # If using the ARM64 version:
+    sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+    ```
 
 ### Step 5: Check the filtering node and separate postanalytics modules interaction
 

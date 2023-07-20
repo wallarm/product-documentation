@@ -40,10 +40,7 @@ Besides any other help, ask to enable new IP lists logic for your Wallarm accoun
 
 ## Upgrade methods
 
-You can upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) installed from individual DEB/RPM packages to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) upgrade method to continue with individual DEB/RPM packages.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 
@@ -217,25 +214,25 @@ server {
 
 [More details on the statistics service configuration](../../admin-en/configure-statistics-service.md)
 
-#### Update API port
+#### Update the Wallarm blocking page
+
+In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+
+If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+## Step 9: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-### Step 9: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+### Step 10: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
-### Step 10: Restart NGINX
+### Step 11: Restart NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
-
-### Step 11: Update the Wallarm blocking page
-
-In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
-
-If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
 ### Step 12: Test Wallarm node operation
 

@@ -14,10 +14,7 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 
 ## Upgrade methods
 
-You can upgrade the postanalytics module 4.x installed on a separate server to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) upgrade method to continue with individual DEB/RPM packages.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 

@@ -409,7 +409,7 @@ nav:
       - Filtering node upgrade instructions:
         - Upgrading Wallarm NGINX modules: updating-migrating/nginx-modules.md
         - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
-        - Upgrading with All‑in‑One Installer: updating-migrating/all-in-one.md
+        - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
         - Upgrading Kong Ingress controller with integrated Wallarm modules: updating-migrating/kong-ingress-controller.md

@@ -15,16 +15,9 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Inform Wallarm technical support that you are upgrading EOL postanalytics module
-
-If upgrading the end‑of‑life postanalytics module (version 3.6 and lower) to version 4.6, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
-
 ## Upgrade methods
 
-You can upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) upgrade method to continue with individual DEB/RPM packages.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 
