@@ -46,7 +46,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 ## Viewing endpoint parameters
 
-<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including required and optional parameters with the relevant data types:
+<a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, required and optional parameters with the relevant data types:
 
 ![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
