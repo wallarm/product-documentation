@@ -48,7 +48,9 @@ Wallarm offers the following artifacts and solutions for running Wallarm on comp
 * Amazon Web Services (AWS)
     * [AMI](compute-instances/aws/aws-ami.md)
     * [ECS](compute-instances/aws/aws-ecs.md)
-    * Terraform module
+    * Terraform module:
+        * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
+        * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
 * Google Cloud Platform (GCP)
     * [Machine image](compute-instances/gcp/machine-image.md)
     * [GCE](compute-instances/gcp/gce.md)
