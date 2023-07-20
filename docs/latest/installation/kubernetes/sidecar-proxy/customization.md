@@ -35,7 +35,7 @@ Wallarm provides two options for deployment of Wallarm containers to a Pod:
 * Single deployment (by default)
 * Split deployment
 
-![!Single and split containers](../../../images/waf-installation/kubernetes/sidecar-controller/single-split-deployment.png)
+![!Single and split containers][single-split-containers-img]
 
 You can set the container deployment options both on the global and per-pod basis:
 
@@ -92,11 +92,11 @@ By default, the Wallarm sidecar controller routes traffic as follows:
 
 Incoming traffic capture is implemented using the init container running iptables which is the best practice for automatic port forwarding. This container is run as privileged, with the `NET_ADMIN` capability.
 
-![!Default port forwarding with iptables](../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-with-iptables.png)
+![!Default port forwarding with iptables][port-forwarding-with-iptables-img]
 
 However, this approach is incompatible with the service mesh like Istio since Istio already has iptables-based traffic capture implemented. In this case, you can disable iptables and port forwarding will work as follows:
 
-![!Port forwarding without iptables](../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-without-iptables.png)
+![!Port forwarding without iptables][port-forwarding-without-iptables-img]
 
 !!! info "Unprotected application container"
     If iptables is disabled, an exposed application container will not be protected by Wallarm. As a result, malicious "east-west" traffic may reach the application container if its IP address and port are known to an attacker.
@@ -156,7 +156,7 @@ spec:
 
 ### Allocating resources for containers
 
-The amount of memory allocated for the Wallarm sidecar containers determines the quality and speed of request processing. To allocate enough resources for memory requests and limits, [learn our recommendations](../../../admin-en/configuration-guides/allocate-resources-for-node.md).
+The amount of memory allocated for the Wallarm sidecar containers determines the quality and speed of request processing. To allocate enough resources for memory requests and limits, [learn our recommendations][allocate-resources-for-node-docs].
 
 Resource allocation is allowed on both the global and per-pod levels.
 
@@ -385,7 +385,7 @@ To specify custom settings via snippets, use the following per-pod's annotations
 | server               | `sidecar.wallarm.io/nginx-server-snippet`   |
 | location             | `sidecar.wallarm.io/nginx-location-snippet` |
 
-Example of the annotation changing the [`disable_acl`](../../../admin-en/configure-parameters-en.md#disable_acl) NGINX directive value:
+Example of the annotation changing the [`disable_acl`][disable-acl-directive-docs] NGINX directive value:
 
 ```yaml hl_lines="18"
 apiVersion: apps/v1
@@ -473,7 +473,7 @@ spec:
 
 ### Configuring Wallarm features
 
-In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration](../../../about-wallarm/deployment-best-practices.md).
+In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration][wallarm-deployment-best-practices-docs].
 
 This configuration is performed via [annotations](pod-annotations.md) and the Wallarm Console UI.
 

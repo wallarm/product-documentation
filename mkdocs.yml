@@ -162,8 +162,21 @@ nav:
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
         - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
-      # - Load Balancers:  
-      #   - NGINX Stable:
+      - In-line:  
+        - Overview: installation/inline/overview.md
+        # - Compute Instances:
+        #   - 
+        - Kubernetes:
+          - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
+          - Kong Ingress Controller:
+            - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
+            - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
+          - Sidecar:
+            - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
+            - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
+            - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+            - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
+          
       #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
       #     - Docker image: installation/load-balancing/nginx-stable/docker-image.md
       #     - Ingress Controller: installation/load-balancing/nginx-stable/ingress-controller.md
