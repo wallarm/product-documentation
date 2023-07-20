@@ -1,6 +1,6 @@
 # Customizing Kong Ingress Controller with Integrated Wallarm Services
 
-This article instructs you on the safe and effective customization of the [Kong Ingress Controller with integrated Wallarm services](deployment.md).
+This article instructs you on the safe and effective customization of the [Kong Ingress Controller with integrated Wallarm services][kong-ing-controller-customization-docs].
 
 ## Configuration area
 
@@ -146,12 +146,12 @@ Below is the list of annotations supported in the Open-Source Kong Ingress contr
 
 | Annotation | Description | 
 |----------- |------------ |
-| `wallarm.com/wallarm-mode` | [Traffic filtration mode](../../../admin-en/configure-wallarm-mode.md): `off` (default), `monitoring`, `safe_blocking`, or `block`. |
-| `wallarm.com/wallarm-application` | [Wallarm application ID](../../../user-guides/settings/applications.md). The value can be a positive integer except for `0`. |
-| `wallarm.com/wallarm-parse-response` | Whether to analyze the application responses for attacks: `true` (default) or `false`. Response analysis is required for vulnerability detection during [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification). |
-| `wallarm.com/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../../../about-wallarm/subscription-plans.md#subscription-plans) and use this annotation: `true` or `false` (default). |
+| `wallarm.com/wallarm-mode` | [Traffic filtration mode][wallarm-mode-docs]: `off` (default), `monitoring`, `safe_blocking`, or `block`. |
+| `wallarm.com/wallarm-application` | [Wallarm application ID][applications-docs]. The value can be a positive integer except for `0`. |
+| `wallarm.com/wallarm-parse-response` | Whether to analyze the application responses for attacks: `true` (default) or `false`. Response analysis is required for vulnerability detection during [passive detection][passive-vuln-detection-docs] and [active threat verification][active-threat-ver-docs]. |
+| `wallarm.com/wallarm-parse-websocket` | Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan][subscription-docs] and use this annotation: `true` or `false` (default). |
 | `wallarm.com/wallarm-unpack-response` | Whether to decompress compressed data returned in the application response: `true` (default) or `false`. |
-| `wallarm.com/wallarm-partner-client-uuid` | Unique identifier of the tenant for the [multi-tenant](../../multi-tenant/overview.md) Wallarm node. The value should be a string in the UUID format, e.g. `123e4567-e89b-12d3-a456-426614174000`.<br><br>Know how to:<ul><li>[Get the UUID of the tenant during tenant creation](../../multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)</li><li>[Get the list of UUIDs of existing tenants](../../../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)</li></ul> |
+| `wallarm.com/wallarm-partner-client-uuid` | Unique identifier of the tenant for the [multi-tenant][multitenancy-overview] Wallarm node. The value should be a string in the UUID format, e.g. `123e4567-e89b-12d3-a456-426614174000`.<br><br>Know how to:<ul><li>[Get the UUID of the tenant during tenant creation][get-tenant-via-api-docs]</li><li>[Get the list of UUIDs of existing tenants][get-tenant-uuids-docs]</li></ul> |
 
 ### Fine-tuning of traffic analysis via the Wallarm Console UI
 
@@ -159,15 +159,15 @@ The Wallarm Console UI enables you to fine-tune the traffic analysis performed b
 
 * Configure the traffic filtration mode
     
-    Once the [solution is deployed](deployment.md), it starts filtering all incoming requests in the **monitoring** [mode](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes).
+    Once the [solution is deployed](deployment.md), it starts filtering all incoming requests in the **monitoring** [mode][available-filtration-modes].
 
     The Wallarm Console UI enables you to change the mode:
 
-    * [Globally for all incoming requests](../../../user-guides/settings/general.md)
-    * On a per-Ingress basis using the [rule](../../../user-guides/rules/wallarm-mode-rule.md)
+    * [Globally for all incoming requests][general-settings-ui-docs]
+    * On a per-Ingress basis using the [rule][wallarm-mode-rule-docs]
 
     !!! info "Priorities of per-Ingress' settings and the ones specified in the Wallarm Console UI"
         If the mode for the Kong Open-Source based solution is specified via the `wallarm-mode` annotation and the Wallarm Console UI, the last will take precedence over the annotation.
-* Set up [notifications on security events](../../../user-guides/settings/integrations/integrations-intro.md)
-* [Manage access to APIs by the request sources](../../../user-guides/ip-lists/overview.md)
-* [Customize traffic filtration rules](../../../user-guides/rules/intro.md)
+* Set up [notifications on security events][integrations-docs]
+* [Manage access to APIs by the request sources][ip-lists-docs]
+* [Customize traffic filtration rules][rules-docs]

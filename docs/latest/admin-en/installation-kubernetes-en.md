@@ -1,19 +1,16 @@
-[ip-list-docs]:                     ../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:         ../installation/supported-deployment-options.md
-
 # Deploying NGINX Ingress Controller with Integrated Wallarm Services
 
 These instructions provide you with the steps to deploy the Wallarm NGINX-based Ingress controller to your K8s cluster. The solution involves the default functionality of [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) with integrated Wallarm services.
 
 The solution has the following architecture:
 
-![!Solution architecture](../images/waf-installation/kubernetes/nginx-ingress-controller.png)
+![!Solution architecture][nginx-ing-image]
 
 The solution is deployed from the Wallarm Helm chart.
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../installation/supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
 * There is no Ingress controller and security layer routing traffic to Ingress resources compatible with [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx).
 * You are using [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx) and looking for a security solution compatible with your technology stack.
@@ -46,7 +43,7 @@ Among all supported [Wallarm deployment options](../installation/supported-deplo
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![!Creation of a Wallarm node][nginx-ing-create-node-img]
 1. Create a Kubernetes namespace to deploy the Helm chart with the Wallarm Ingress controller:
 
     ```bash
@@ -56,7 +53,7 @@ Among all supported [Wallarm deployment options](../installation/supported-deplo
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-4. Create the `values.yaml` file with the [Wallarm configuration](configure-kubernetes-en.md).
+4. Create the `values.yaml` file with the [Wallarm configuration][configure-nginx-ing-controller-docs].
 
     Example of the file with the minimum configuration:
 
@@ -76,7 +73,7 @@ Among all supported [Wallarm deployment options](../installation/supported-deplo
             token: "<NODE_TOKEN>"
         ```    
     
-    Starting from Helm chart version 4.4.1, you can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more](configure-kubernetes-en.md#controllerwallarmexistingsecret)
+    Starting from Helm chart version 4.4.1, you can also store the Wallarm node token in Kubernetes secrets and pull it to the Helm chart. [Read more][controllerwallarmexistingsecret-docs]
     
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
 1. Install the Wallarm packages:
@@ -97,7 +94,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 ```
 * `<YOUR_INGRESS_NAME>` is the name of your Ingress
 * `<YOUR_INGRESS_NAMESPACE>` is the namespace of your Ingress
-* `<APPLICATION>` is a positive number that is unique to each of [your applications or application groups](../user-guides/settings/applications.md). This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
+* `<APPLICATION>` is a positive number that is unique to each of [your applications or application groups][application-docs]. This will allow you to obtain separate statistics and to distinguish between attacks aimed at the corresponding applications
 
 ### Step 3: Checking the Wallarm Ingress Controller operation
 
@@ -113,7 +110,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-2. Send the request with the test [Path Traversal](../attacks-vulns-list.md#path-traversal) attack to the Ingress Controller Service:
+2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the Ingress Controller Service:
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
@@ -125,9 +122,9 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 
 After the Wallarm Ingress controller is successfully installed and checked, you can make advanced configurations to the solution such as:
 
-* [Proper reporting of end user public IP address](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-* [Management of IP addresses blocking](../user-guides/ip-lists/overview.md)
-* [High availability considerations](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
-* [Ingress Controller monitoring](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [Proper reporting of end user public IP address][best-practices-for-public-ip]
+* [Management of IP addresses blocking][ip-lists-docs]
+* [High availability considerations][best-practices-for-high-availability]
+* [Ingress Controller monitoring][best-practices-for-ingress-monitoring]
 
-To find parameters used for advanced configuration and appropriate instructions, please follow the [link](configure-kubernetes-en.md).
+To find parameters used for advanced configuration and appropriate instructions, please follow the [link][configure-nginx-ing-controller-docs].
