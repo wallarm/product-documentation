@@ -1,25 +1,3 @@
-[doc-wallarm-mode]:           configure-parameters-en.md#wallarm_mode
-[doc-config-params]:          configure-parameters-en.md
-[doc-monitoring]:             monitoring/intro.md
-[waf-mode-instr]:                   configure-wallarm-mode.md
-[logging-instr]:                    configure-logging.md
-[proxy-balancer-instr]:             using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
-[nginx-waf-directives]:             configure-parameters-en.md
-[mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            configure-wallarm-mode.md
-[application-configuration]:        ../user-guides/settings/applications.md
-[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
-[attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
-[node-status-docs]:                 configure-statistics-service.md
-[node-token]:                       ../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../installation/supported-deployment-options.md
-
 # Running Docker NGINX‑based Image
 
 The Wallarm NGINX-based filtering node can be deployed as a Docker container. The Docker container is fat and contains all subsystems of the filtering node.
@@ -69,7 +47,7 @@ The command does the following:
 
 You can mount the prepared configuration file to the Docker container via the `-v` option. The file must contain the following settings:
 
-* [Filtering node directives](configure-parameters-en.md)
+* [Filtering node directives][nginx-directives-docs]
 * [NGINX settings](https://nginx.org/en/docs/beginners_guide.html)
 
 To run the container:
@@ -143,7 +121,7 @@ The logging is enabled by default. The log directories are:
 * `/var/log/nginx` — NGINX logs
 * `/var/log/wallarm` — Wallarm node logs
 
-To configure extended logging of the filtering node variables, please use these [instructions](configure-logging.md).
+To configure extended logging of the filtering node variables, please use these [instructions][logging-instr].
 
 By default, the logs rotate once every 24 hours. To set up the log rotation, change the configuration files in `/etc/logrotate.d/`. Changing the rotation parameters through environment variables is not possible. 
 
@@ -169,6 +147,6 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Configuring the use cases
 
-The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive](configure-parameters-en.md). Below are some commonly used filtering node configuration options:
+The configuration file mounted to the Docker container should describe the filtering node configuration in the [available directive][nginx-directives-docs]. Below are some commonly used filtering node configuration options:
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"

@@ -1,15 +1,3 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../installation/supported-deployment-options.md
-
 # Deployment of the Wallarm Docker Image to Alibaba Cloud
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Alibaba Cloud platform using the [Alibaba Cloud Elastic Compute Service (ECS)](https://www.alibabacloud.com/product/ecs).
@@ -108,7 +96,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     }
     ```
 
-    [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
+    [Set of filtering node directives that can be specified in the configuration file →][nginx-waf-directives]
 1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm US Cloud"
@@ -139,16 +127,16 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances** and copy the public IP address of the instance from the **IP address** column.
 
-    ![!Settig up container instance](../../../images/waf-installation/alibaba-cloud/container-copy-ip.png)
+    ![!Settig up container instance][copy-container-ip-alibaba-img]
 
     If the IP address is empty, please ensure the instance is in the **Running** status.
 
-2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied address:
+2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the copied address:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in UI][attacks-in-ui-image]
 
-To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs](../../../admin-en/configure-logging.md). If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
+To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs][logging-docs]. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

@@ -164,8 +164,25 @@ nav:
         - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
       - In-line:  
         - Overview: installation/inline/overview.md
-        # - Compute Instances:
-        #   - 
+        - Compute Instances:
+          - AWS:
+            - AMI: installation/inline/compute-instances/aws/aws-ami.md
+            - ECS: installation/inline/compute-instances/aws/aws-ecs.md
+          - GCP:
+            - Machine Image: installation/inline/compute-instances/gcp/machine-image.md
+            - GCE: installation/inline/compute-instances/gcp/gce.md
+          - Microsoft Azure:
+            - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
+          - Alibaba Cloud:
+            - ECS: installation/inline/compute-instances/alibaba/docker-image.md
+          - Docker:
+            - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
+            - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
+          - Linux:
+            - Individual Packages for NGINX stable: installation/inline/compute-instances/linux/individual-packages-nginx-stable.md
+            - Individual Packages for NGINX Plus: installation/inline/compute-instances/linux/individual-packages-nginx-plus.md
+            - Individual Packages for Disribution-Provided NGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
+            - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
         - Kubernetes:
           - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
           - Kong Ingress Controller:
