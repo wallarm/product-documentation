@@ -46,24 +46,24 @@ Load balancers can be classified into two types: L4 and L7. The load balancer ty
 Wallarm offers the following artifacts and solutions for running Wallarm on compute instances:
 
 * Amazon Web Services (AWS)
-    * [AMI](aws/ami.md)
-    * [ECS](aws/ecs.md)
+    * [AMI](compute-instances/aws/aws-ami.md)
+    * [ECS](compute-instances/aws/aws-ecs.md)
     * Terraform module
 * Google Cloud Platform (GCP)
-    * [Machine image](gcp/machine-image.md)
-    * [GCE](gcp/gce.md)
+    * [Machine image](compute-instances/gcp/machine-image.md)
+    * [GCE](compute-instances/gcp/gce.md)
 * Microsoft Azure
-    * Azure Container Instances
+    * [Azure Container Instances](compute-instances/azure/docker-image.md)
 * Alibaba Cloud
-    * ECS
+    * [ECS](compute-instances/alibaba/docker-image.md)
 * Docker images
-    * NGINX-based
-    * Envoy-based
+    * [NGINX-based](compute-instances/docker/nginx-based.md)
+    * [Envoy-based](compute-instances/docker/envoy-based.md)
 * Linux packages
-    * Individual packages for NGINX stable
-    * Individual packages for NGINX Plus
-    * Individual packages for distribution-provided NGINX
-    * All-in-one installer
+    * [Individual packages for NGINX stable](compute-instances/linux/individual-packages-nginx-stable.md)
+    * [Individual packages for NGINX Plus](compute-instances/linux/individual-packages-nginx-plus.md)
+    * [Individual packages for distribution-provided NGINX](compute-instances/linux/individual-packages-nginx-distro.md)
+    * [All-in-one installer](compute-instances/linux/all-in-one.md)
 
 ### Running Wallarm on Kubernetes
 

@@ -1,15 +1,3 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../installation/supported-deployment-options.md
-
 # Deployment of the Wallarm Docker Image to GCP
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Google Cloud Platform using the [component Google Compute Engine (GCE)](https://cloud.google.com/compute).
@@ -129,7 +117,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
     }
     ```
 
-    [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
+    [Set of filtering node directives that can be specified in the configuration file →][nginx-waf-directives]
 1. Run the Wallarm node Docker container by using the `docker run` command with passed environment variables and mounted configuration file:
 
     === "Command for the Wallarm US Cloud"
@@ -160,16 +148,16 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and copy the instance IP address from the **External IP** column.
 
-    ![!Settig up container instance](../../../images/waf-installation/gcp/container-copy-ip.png)
+    ![!Settig up container instance][copy-container-ip-gcp-img]
 
     If the IP address is empty, please ensure the instance is in the **RUNNING** status.
 
-2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied address:
+2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the copied address:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in UI][attacks-in-ui-image]
 
 Details on errors that occurred during the container deployment are displayed in the **View logs** instance menu. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
