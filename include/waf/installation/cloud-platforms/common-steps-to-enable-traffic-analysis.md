@@ -1,6 +1,6 @@
 By default, the deployed Wallarm node does not analyze incoming traffic.
 
-Depending on the selected Wallarm deployment approach (in-line or [Out-of-Band][oob-docs]), configure Wallarm to either proxy traffic or process the traffic mirror.
+Depending on the selected Wallarm deployment approach ([in-line][inline-docs] or [Out-of-Band][oob-docs]), configure Wallarm to either proxy traffic or process the traffic mirror.
 
 Perform the following configuration in the `/etc/nginx/sites-enabled/default` file on the Wallarm instance:
 
