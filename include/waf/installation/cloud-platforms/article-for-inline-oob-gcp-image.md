@@ -1,6 +1,6 @@
 # Deploying Wallarm from GCP Machine Image
 
-This article provides instructions for deploying Wallarm on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution can be deployed either in-line or [Out-of-Band][oob-docs].
+This article provides instructions for deploying Wallarm on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution can be deployed either [in-line][inline-docs] or [Out-of-Band][oob-docs].
 
 <!-- ???
 say that all regions are supported -->
