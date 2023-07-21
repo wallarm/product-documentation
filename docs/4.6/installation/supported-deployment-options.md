@@ -75,19 +75,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <p>Use the official Machine Image to deploy Wallarm OOB on AWS</p>
         </a>
 
-        <div id="mirroring-by-web-servers-public-clouds-aws-kubernetes" class="do-card">
-            <h3>Kubernetes</h3>
-            <p>Artifacts for Wallarm OOB deployment on Kubernetes running on AWS</p>
-        </div>
-    </div>
-
-    <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws-kubernetes">
-        <div class="do-card">
-            <img src="../../images/platform-icons/kubernetes.svg" />
-            <h3>Kubernetes</h3>
-            <p>Artifacts for Wallarm OOB deployment on Kubernetes running on AWS</p>
-        </div>
-
         <a class="do-card" href="../../installation/oob/terraform-module/mirroring-by-web-server/">
             <h3>Terraform module</h3>
             <p>Use the Terraform module to deploy Wallarm OOB on Kubernetes running on AWS</p>
@@ -563,12 +550,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <img src="../../images/platform-icons/pod.svg" />
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
-        </a>
-
-        <a class="do-card" href="../../installation/kubernetes/terraform-module-for-aws/">
-            <img src="../../images/platform-icons/terraform.svg" />
-            <h3>Terraform module</h3>
-            <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </a>
     </div>
 
