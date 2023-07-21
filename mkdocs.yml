@@ -118,8 +118,7 @@ nav:
           - Public Clouds:
             - AWS:
               - AMI: installation/oob/web-server-mirroring/aws-ami.md
-              - Kubernetes:
-                - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+              - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
             - GCP:
               - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
           - Docker: installation/oob/web-server-mirroring/docker-image.md
@@ -161,7 +160,6 @@ nav:
           - Customization: installation/kubernetes/sidecar-proxy/customization.md
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
-        - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
       - In-line:  
         - Overview: installation/inline/overview.md
         - Compute Instances:
