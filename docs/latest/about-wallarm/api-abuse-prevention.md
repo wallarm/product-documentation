@@ -29,6 +29,9 @@ The following detectors may be involved:
 * **Suspicious behavior score** analyzing usual and unusual business logic API requests taken during a session. 
 * **Business logic score** analyzing usage of the critical or sensitive API endpoints within the context of your application behavior.
 
+!!! info "Confidence"
+    As a result of detectors' work, every [detected](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks) bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
+
 ![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 If one or several detectors point to [bot attack signs](#automated-threats-blocked-by-api-abuse-prevention), the module [denylists or graylists](#reaction-to-malicious-bots) the source of the anomaly traffic for 1 hour. Wallarm counts bot IPs that were deny- and graylisted within 30 days and displays how many percents these amounts increased or decreased compared to the previous 30 day period.
