@@ -38,6 +38,8 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 !!! info "All-in-one installation"
     Starting from Wallarm node 4.6, it is recommended to use [all-in-one installation](all-in-one.md) which automates all the activities listed in the steps below and makes node deployment much easier.
 
+## Requirements
+
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 
 --8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"

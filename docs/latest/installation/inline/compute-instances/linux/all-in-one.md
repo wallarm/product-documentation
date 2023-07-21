@@ -25,7 +25,7 @@
 [platform]:                         ../../../../admin-en/supported-platforms.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 
 # Deploying with All-in-One Installer
 
