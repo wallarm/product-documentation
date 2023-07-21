@@ -1,3 +1,5 @@
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
+
 # Deploying Wallarm in Private Clouds
 
 Private clouds are cloud environments deployed solely to a single organization or entity, providing exclusive use and control over the resources. This article overviews the principles of deploying the Wallarm node to the private clouds.
@@ -7,18 +9,21 @@ Private clouds are cloud environments deployed solely to a single organization o
 Before deploying Wallarm in your private cloud, it is essential to understand the scope of your application landscape and determine the most suitable approach for Wallarm deployment. Consider the following characteristics during this assessment:
 
 * Assessment of a scope to secure: evaluate your application landscape and identify the critical applications that require protection. Consider factors such as the sensitivity of data, potential impact of breaches, and compliance requirements. This assessment helps you prioritize and focus your efforts on protecting the most important assets in your private cloud.
-* In-line vs. [out-of-band (OOB)](../oob/overview.md) analysis: determine whether you want to deploy Wallarm for in-line analysis or out-of-band traffic analysis. In-line analysis involves deploying Wallarm nodes in the traffic path of your applications, while OOB analysis involves capturing and analyzing mirrored traffic.
+* [In-line](../inline/overview.md) vs. [out-of-band (OOB)](../oob/overview.md) analysis: determine whether you want to deploy Wallarm for in-line analysis or out-of-band traffic analysis. In-line analysis involves deploying Wallarm nodes in the traffic path of your applications, while OOB analysis involves capturing and analyzing mirrored traffic.
 * Placement of Wallarm nodes: Based on your chosen approach (in-line or OOB analysis), determine the appropriate placement of Wallarm nodes within your private cloud infrastructure. For in-line analysis, consider placing Wallarm nodes close to your applications, such as within the same VLAN or subnet. For OOB analysis, ensure that the mirrored traffic will be properly routed to the Wallarm nodes for analysis.
 
-## Step 2: Allow incoming and outgoing connections for Wallarm
+## Step 2: Allow outgoing connections for Wallarm
 
-Since private clouds usually have restrictions on incoming connections, it is necessary to allow connections from Wallarm to enable vulnerability testing of your system. In private clouds, access is typically granted based on IP addresses rather than domains. Below is the list of IP addresses you need to allow access for Wallarm to operate correctly:
+In private clouds, there are often restrictions on outgoing connections. To ensure that Wallarm functions properly, it is necessary to enable outgoing connections, allowing it to download packages during installation, establish network connectivity between local node instances and Wallarm Cloud, and fully operationalize Wallarm features.
 
-THE LIST
+Access in private clouds is typically granted based on IP addresses. Wallarm requires access to the following DNS records:
 
-Additionally, as private clouds often restrict incoming connections, you must also allow connections to Wallarm for nodes to communicate with the Wallarm Cloud and download packages from external sources during installation. Below is the list of IP addresses:
-
-THE LIST
+* `35.235.66.155` to have access to the US Wallarm Cloud (`us1.api.wallarm.com`) to get security rules, upload attack data, etc.
+* `34.90.110.226` to have access to the EU Wallarm Cloud (`api.wallarm.com`) to get security rules, upload attack data, etc.
+* IP addresses used by Docker Hub if you choose to run Wallarm from a Docker image.
+* `34.111.12.147` (`repo.wallarm.com`) if you choose to install Wallarm node from individual Linux packages for [NGINX stable](../nginx/dynamic-module.md)/[NGINX Plus](../nginx-plus.md)/[distribution-provided NGINX](../nginx/dynamic-module-from-distr.md). Packages for node installation are downloaded from this address.
+* `35.244.197.238` (`https://meganode.wallarm.com`) if you choose to install Wallarm from [all-in-one installer](../nginx/all-in-one.md). The installer is downloaded from this address.
+* The IP addresses of Google Cloud Storage listed within the [link](https://www.gstatic.com/ipranges/goog.json). When you [allowlist, denylist, or graylist][ip-lists-docs] entire countries, regions, or data centers instead of individual IP addresses, the Wallarm node retrieves precise IP addresses related to the entries in the IP lists from the aggregated database hosted on Google Storage.
 
 ## Step 3: Choose the deployment model and Wallarm artifact
 
@@ -28,12 +33,14 @@ Wallarm offers flexible deployment models, allowing organizations to select the 
 
 In this model, you deploy Wallarm as a virtual appliance within your private cloud infrastructure. The virtual appliance can be installed as a VM or container. You can choose to deploy the Wallarm node using one of the following artifacts:
 
-* [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
-* [Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md)
-* [Individual Linux packages for NGINX stable](../nginx/dynamic-module.md)
-* [Individual Linux packages for NGINX Plus](../nginx-plus.md)
-* [Individual Linux packages for Distribution-Provided NGINX](../nginx/dynamic-module-from-distr.md)
-* [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
+* Docker images:
+    * [NGINX-based Docker image](../../admin-en/installation-docker-en.md)
+    * [Envoy-based Docker image](../../admin-en/installation-guides/envoy/envoy-docker.md)
+* Linux packages:
+    * [Individual Linux packages for NGINX stable](../nginx/dynamic-module.md)
+    * [Individual Linux packages for NGINX Plus](../nginx-plus.md)
+    * [Individual Linux packages for Distribution-Provided NGINX](../nginx/dynamic-module-from-distr.md)
+    * [All‑in‑One Installer for Linux](../nginx/all-in-one.md)
 
 ### Kubernetes deployment
 
@@ -41,4 +48,4 @@ If your private cloud utilizes Kubernetes for container orchestration, Wallarm c
 
 * [NGINX-based Ingress controller](../../admin-en/installation-kubernetes-en.md)
 * [Kong-based Ingress controller](../kubernetes/kong-ingress-controller/deployment.md)
-* [Sidecar proxy](../kubernetes/sidecar-proxy/deployment.md)
+* [Sidecar controller](../kubernetes/sidecar-proxy/deployment.md)
