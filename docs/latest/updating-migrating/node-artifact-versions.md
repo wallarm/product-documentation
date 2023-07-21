@@ -54,6 +54,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](kong-ingress-controller.md)
 
+### 4.6.1 (2023-07-21)
+
+* Fix the bug with labels overlap for Tarantool component
+
 ### 4.6.0 (2023-03-28)
 
 * Initial release 4.6, [see changelog](what-is-new.md)
