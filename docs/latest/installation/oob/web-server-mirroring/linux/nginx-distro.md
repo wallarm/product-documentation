@@ -41,6 +41,8 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
 * CentOS 7.x
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
 
+## Requirements
+
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 
 --8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"

@@ -29,7 +29,7 @@
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 
 # Deploying with All-in-One Installer
 
