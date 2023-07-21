@@ -38,34 +38,43 @@ When deploying a Wallarm node, you have the flexibility to position it in differ
 
 Load balancers can be classified into two types: L4 and L7. The load balancer type determines how SSL offloading is handled, which is crucial when integrating Wallarm into your existing infrastructure.
 
-* If you use an L4 load balancer, commonly SSL offloading is handled by a web server placed behind the load balancer or through other means in your infrastructure without the Wallarm instance. However, when deploying the Wallarm node, you need to consider the following configurations:
-    * Configure SSL offloading on the Wallarm instance.
-    * Place private L4 load balancer between Wallarm instance and your application workload (web servers) to distribute traffic efficiently.
-* If you use an L7 load balancer, commonly SSL offloading is handled by the load balancer itself, and the Wallarm node will receive plain HTTP. When deploying Wallarm node, you need to place private L4 load balancer between Wallarm instance and your application workload (web servers) to distribute traffic efficiently.
+* If you use an L4 load balancer, commonly SSL offloading is handled by a web server placed behind the load balancer or through other means in your infrastructure without the Wallarm instance. However, when deploying the Wallarm node, you need to configure SSL offloading on the Wallarm instance.
+* If you use an L7 load balancer, commonly SSL offloading is handled by the load balancer itself, and the Wallarm node will receive plain HTTP.
 
 Wallarm offers the following artifacts and solutions for running Wallarm on compute instances:
 
-* Amazon Web Services (AWS)
-    * [AMI](compute-instances/aws/aws-ami.md)
-    * [ECS](compute-instances/aws/aws-ecs.md)
-    * Terraform module:
-        * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
-        * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
-* Google Cloud Platform (GCP)
-    * [Machine image](compute-instances/gcp/machine-image.md)
-    * [GCE](compute-instances/gcp/gce.md)
-* Microsoft Azure
-    * [Azure Container Instances](compute-instances/azure/docker-image.md)
-* Alibaba Cloud
-    * [ECS](compute-instances/alibaba/docker-image.md)
-* Docker images
-    * [NGINX-based](compute-instances/docker/nginx-based.md)
-    * [Envoy-based](compute-instances/docker/envoy-based.md)
-* Linux packages
-    * [Individual packages for NGINX stable](compute-instances/linux/individual-packages-nginx-stable.md)
-    * [Individual packages for NGINX Plus](compute-instances/linux/individual-packages-nginx-plus.md)
-    * [Individual packages for distribution-provided NGINX](compute-instances/linux/individual-packages-nginx-distro.md)
-    * [All-in-one installer](compute-instances/linux/all-in-one.md)
+**Amazon Web Services (AWS)**
+
+* [AMI](compute-instances/aws/aws-ami.md)
+* [ECS](compute-instances/aws/aws-ecs.md)
+* Terraform module:
+    * [Proxy in AWS VPC](compute-instances/aws/terraform-module-for-aws-vpc.md)
+    * [Proxy for Amazon API Gateway](compute-instances/aws/terraform-module-for-aws-api-gateway.md)
+
+**Google Cloud Platform (GCP)**
+
+* [Machine image](compute-instances/gcp/machine-image.md)
+* [GCE](compute-instances/gcp/gce.md)
+
+**Microsoft Azure**
+
+* [Azure Container Instances](compute-instances/azure/docker-image.md)
+
+**Alibaba Cloud**
+
+* [ECS](compute-instances/alibaba/docker-image.md)
+
+**Docker images**
+
+* [NGINX-based](compute-instances/docker/nginx-based.md)
+* [Envoy-based](compute-instances/docker/envoy-based.md)
+
+**Linux packages**
+
+* [Individual packages for NGINX stable](compute-instances/linux/individual-packages-nginx-stable.md)
+* [Individual packages for NGINX Plus](compute-instances/linux/individual-packages-nginx-plus.md)
+* [Individual packages for distribution-provided NGINX](compute-instances/linux/individual-packages-nginx-distro.md)
+* [All-in-one installer](compute-instances/linux/all-in-one.md)
 
 ### Running Wallarm on Kubernetes
 
