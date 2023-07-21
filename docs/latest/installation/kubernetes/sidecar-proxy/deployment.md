@@ -1,6 +1,3 @@
-[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
-
 # Deploying Wallarm Sidecar Proxy
 
 To secure an application deployed as a Pod in a Kubernetes cluster, you can run the NGINX-based Wallarm node in front of the application as a sidecar controller. Wallarm sidecar controller will filter incoming traffic to the application Pod by allowing only legitimate requests and mitigating malicious ones.
@@ -21,9 +18,9 @@ The **key features** of the Wallarm Sidecar proxy solution:
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../../installation/supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
+Among all supported [Wallarm deployment options][deployment-platform-docs], this solution is the recommended one for the following **use cases**:
 
-* You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based](../../../admin-en/installation-kubernetes-en.md) or [Wallarm Kong-based Ingress controller](../kong-ingress-controller/deployment.md)
+* You are looking for the security solution to be deployed to the infrastructure with the existing Ingress controller (e.g. AWS ALB Ingress Controller) preventing you from deployment of either [Wallarm NGINX-based][nginx-ing-controller-docs] or [Wallarm Kong-based Ingress controller][kong-ing-controller-docs]
 * Zero-trust environment that requires each microservice (including internal APIs) to be protected by the security solution
 * The security solution should allow pods to reach VPCs to access your APIs
 * The security solution should be compatible with third-party services routing your traffic like AWS API Gateway
@@ -32,11 +29,11 @@ Among all supported [Wallarm deployment options](../../../installation/supported
 
 Traffic flow without Wallarm Sidecar proxy:
 
-![!Traffic flow without Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-without-wallarm.png)
+![!Traffic flow without Wallarm Sidecar proxy][traffic-flow-without-wallarm-sidecar-img]
 
 Traffic flow with Wallarm Sidecar proxy:
 
-![!Traffic flow with Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.png)
+![!Traffic flow with Wallarm Sidecar proxy][traffic-flow-with-wallarm-sidecar-img]
 
 ## Solution architecture
 
@@ -47,7 +44,7 @@ The Wallarm Sidecar proxy solution is arranged by the following Deployment objec
     Once a new pod with the `wallarm-sidecar: enabled` label in Kubernetes starts, the controller automatically injects the additional container filtering incoming traffic into the pod.
 * **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar proxy solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
-![!Wallarm deployment objects](../../../images/waf-installation/kubernetes/sidecar-controller/deployment-objects.png)
+![!Wallarm deployment objects][sidecar-deployment-objects-img]
 
 The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
 
@@ -75,7 +72,7 @@ To deploy the Wallarm Sidecar proxy solution:
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![!Creation of a Wallarm node][create-wallarm-node-img]
 
 ### Step 2: Deploy the Wallarm Helm chart
 
@@ -182,17 +179,17 @@ To test that the Wallarm Sidecar proxy operates correctly:
     NAME                     READY   STATUS    RESTARTS   AGE
     myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
     ```
-1. Send the test  [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the application cluster address Wallarm is enabled to filter traffic:
+1. Send the test  [Path Traversal][ptrav-attack-docs] attack to the application cluster address Wallarm is enabled to filter traffic:
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
-    Since the Wallarm proxy operates in the **monitoring** [filtration mode](../../../admin-en/configure-wallarm-mode.md) by default, the Wallarm node will not block the attack but will register it.
+    Since the Wallarm proxy operates in the **monitoring** [filtration mode][filtration-mode-docs] by default, the Wallarm node will not block the attack but will register it.
 
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in the interface][attacks-in-ui-image]
 
 ## Customization
 

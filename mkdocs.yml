@@ -162,24 +162,40 @@ nav:
           - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
           - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
         - Terraform Module for AWS: installation/kubernetes/terraform-module-for-aws.md
-      # - Load Balancers:  
-      #   - NGINX Stable:
-      #     - DEB/RPM packages: installation/load-balancing/nginx-stable/deb-rpm-packages.md
-      #     - Docker image: installation/load-balancing/nginx-stable/docker-image.md
-      #     - Ingress Controller: installation/load-balancing/nginx-stable/ingress-controller.md
-        #   - Sidecar proxy:
-        #     - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
-        #     - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
-        #     - Wallarm-specific Helm chart values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-        #     - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
-          # - Proxy in AWS VPC: installation/load-balancing/terraform-module/proxy-for-aws-vpc.md
-          # - Proxy for AWS API Gateway: installation/load-balancing/terraform-module/proxy-for-aws-api-gateway.md
-          # - AWS AMI: installation/load-balancing/nginx-stable/aws-ami.md
-          # - GCP Marketplace image: installation/load-balancing/nginx-stable/gcp-machine-image.md
-        # - NGINX Plus: 
-        #   - DEB/RPM packages: installation/load-balancing/nginx-plus/deb-rpm-packages.md
-        # - Envoy:
-        #   - Docker image: installation/load-balancing/envoy/docker-image.md
+      - In-line:  
+        - Overview: installation/inline/overview.md
+        - Compute Instances:
+          - Amazon Web Services:
+            - AMI: installation/inline/compute-instances/aws/aws-ami.md
+            - ECS: installation/inline/compute-instances/aws/aws-ecs.md
+            - Terraform module:
+              - Proxy in AWS VPC: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
+              - Proxy for Amazon API Gateway: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
+          - Google Cloud:
+            - Machine Image: installation/inline/compute-instances/gcp/machine-image.md
+            - GCE: installation/inline/compute-instances/gcp/gce.md
+          - Microsoft Azure:
+            - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
+          - Alibaba Cloud:
+            - ECS: installation/inline/compute-instances/alibaba/docker-image.md
+          - Docker images:
+            - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
+            - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
+          - Linux packages:
+            - Individual Packages for NGINX stable: installation/inline/compute-instances/linux/individual-packages-nginx-stable.md
+            - Individual Packages for NGINX Plus: installation/inline/compute-instances/linux/individual-packages-nginx-plus.md
+            - Individual Packages for Disribution-Provided NGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
+            - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
+        - Kubernetes:
+          - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
+          - Kong Ingress Controller:
+            - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
+            - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
+          - Sidecar Controller:
+            - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
+            - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
+            - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+            - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
       - API Gateways:
         - Mulesoft: installation/api-gateways/mulesoft.md
         - Apigee: installation/api-gateways/apigee.md

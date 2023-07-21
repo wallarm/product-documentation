@@ -1,0 +1,1 @@
+Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.

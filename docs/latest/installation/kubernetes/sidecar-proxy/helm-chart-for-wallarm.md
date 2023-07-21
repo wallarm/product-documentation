@@ -1,6 +1,6 @@
 # Wallarm-Specific Values of the Sidecar Proxy Helm Chart
 
-This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade](../../../updating-migrating/sidecar-proxy.md). The Wallarm-specific and other chart values are for global configuration of the Sidecar proxy Helm chart.
+This document describes Wallarm-specific Helm chart values you can change during [Wallarm Sidecar deployment](deployment.md) or [upgrade][sidecar-upgrade-docs]. The Wallarm-specific and other chart values are for global configuration of the Sidecar proxy Helm chart.
 
 !!! info "Priorities of global and per-pod's settings"
     Per-pod's annotations [take precedence](customization.md#configuration-area) over Helm chart values.
@@ -46,8 +46,8 @@ The parameter is ignored if [`config.wallarm.api.existingSecret.enabled: true`](
 
 Wallarm API endpoint. Can be:
 
-* `us1.api.wallarm.com` for the [US cloud](../../../about-wallarm/overview.md#us-cloud)
-* `api.wallarm.com` for the [EU cloud](../../../about-wallarm/overview.md#eu-cloud) (default)
+* `us1.api.wallarm.com` for the [US cloud][us-cloud-docs]
+* `api.wallarm.com` for the [EU cloud][eu-cloud-docs] (default)
 
 ## config.wallarm.api.existingSecret
 
@@ -89,7 +89,7 @@ With the value set to `on` (default), NGINX services have the ability to enter a
 
 ## config.wallarm.mode
 
-Global [traffic filtration mode](../../../admin-en/configure-wallarm-mode.md). Possible values:
+Global [traffic filtration mode][configure-wallarm-mode-docs]. Possible values:
 
 * `monitoring` (default)
 * `safe_blocking`
@@ -100,7 +100,7 @@ Global [traffic filtration mode](../../../admin-en/configure-wallarm-mode.md). P
 
 ## config.wallarm.modeAllowOverride
 
-Manages the [ability to override the `wallarm_mode` values via settings in the Cloud](../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override). Possible values:
+Manages the [ability to override the `wallarm_mode` values via settings in the Cloud][filtration-mode-priorities-docs]. Possible values:
 
 * `on` (default)
 * `off`
@@ -110,7 +110,7 @@ Manages the [ability to override the `wallarm_mode` values via settings in the C
 
 ## config.wallarm.enableLibDetection
 
-Whether to additionally validate the SQL Injection attacks using the [libdetection](../../../about-wallarm/protecting-against-attacks.md#libdetection-overview) library. Possible values:
+Whether to additionally validate the SQL Injection attacks using the [libdetection][libdetection-docs] library. Possible values:
 
 * `on` (default)
 * `off`
@@ -124,13 +124,13 @@ Whether to analyze the application responses for attacks. Possible values:
 * `on` (default)
 * `off`
 
-Response analysis is required for vulnerability detection during [passive detection](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection) and [active threat verification](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification).
+Response analysis is required for vulnerability detection during [passive detection][passive-detection-docs] and [active threat verification][active-threat-verification-docs].
 
 [**Pod's annotation**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
 
 ## config.wallarm.parseWebsocket
 
-Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan](../../../about-wallarm/subscription-plans.md#subscription-plans) and use this setting.
+Wallarm has full WebSockets support. By default, the WebSockets' messages are not analyzed for attacks. To force the feature, activate the API Security [subscription plan][subscriptions-docs] and use this setting.
 
 Possible values:
 

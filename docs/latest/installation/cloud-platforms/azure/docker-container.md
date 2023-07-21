@@ -1,15 +1,3 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../installation/supported-deployment-options.md
-
 # Deployment of the Wallarm Docker Image to Azure
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Microsoft Azure cloud platform using the [Azure **Container Instances** service](https://docs.microsoft.com/en-us/azure/container-instances/).
@@ -135,7 +123,7 @@ To deploy the container with environment variables and mounted configuration fil
     }
     ```
 
-    [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
+    [Set of filtering node directives that can be specified in the configuration file →][nginx-waf-directives]
 1. Locate the configuration file in one of the ways suitable for mounting data volumes in Azure. All methods are described in the [**Mount data volumes** section of the Azure documentation](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-volume-azure-files).
 
     In these instructions, the configuration file is mounted from the Git repository.
@@ -195,16 +183,16 @@ To deploy the container with environment variables and mounted configuration fil
 
 1. Open the created resource on the Azure portal and copy the **FQDN** value.
 
-    ![!Settig up container instance](../../../images/waf-installation/azure/container-copy-domain-name.png)
+    ![!Settig up container instance][copy-container-ip-azure-img]
 
     If the **FQDN** field is empty, please ensure the container is in the **Running** status.
 
-2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied domain:
+2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the copied domain:
 
     ```
     curl http://<COPIED_DOMAIN>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in UI][attacks-in-ui-image]
 
 Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

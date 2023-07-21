@@ -1,15 +1,3 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
-[node-token]:                       ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                         ../../../installation/supported-deployment-options.md
-
 # Deployment of the Wallarm Docker Image to AWS
 
 This quick guide provides the steps to deploy the [Docker image of the NGINX-based Wallarm node](https://hub.docker.com/r/wallarm/node) to the Amazon cloud platform using the [Amazon Elastic Container Service (Amazon ECS)](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/).
@@ -200,7 +188,7 @@ To deploy the container with environment variables and configuration file mounte
     }
     ```
 
-    [Set of filtering node directives that can be specified in the configuration file →](../../../admin-en/configure-parameters-en.md)
+    [Set of filtering node directives that can be specified in the configuration file →][nginx-waf-directives]
 1. Encrypt the sensitive data required to connect to the Wallarm Cloud (node token) by using the [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html) or [AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html).
 
     In these instructions, sensitive data is stored in the AWS Secrets Manager.
@@ -348,16 +336,16 @@ To deploy the container with environment variables and configuration file mounte
 
 1. In the AWS Management Console, open the running task and copy the container IP address from the field **External Link**.
 
-    ![!Settig up container instance](../../../images/waf-installation/aws/container-copy-ip.png)
+    ![!Settig up container instance][aws-copy-container-ip-img]
 
     If the IP address is empty, please ensure the container is in the **RUNNING** status.
 
-2. Send the request with the test [Path Traversal](../../../attacks-vulns-list.md#path-traversal) attack to the copied address:
+2. Send the request with the test [Path Traversal][ptrav-attack-docs] attack to the copied address:
 
     ```
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![!Attacks in UI][attacks-in-ui-image]
 
 Details on errors that occurred during the container deployment are displayed in the task details in the AWS Management Console. If the container is unavailable, please ensure required filtering node parameters with correct values are passed to the container.
