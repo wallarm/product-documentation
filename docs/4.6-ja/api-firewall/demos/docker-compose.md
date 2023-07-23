@@ -1,1 +1,0 @@
---8<-- "latest-ja/api-firewall/demos/docker-compose.md"

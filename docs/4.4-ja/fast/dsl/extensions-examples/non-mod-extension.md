@@ -1,1 +1,0 @@
---8<-- "latest/fast/dsl/extensions-examples/non-mod-extension.md"

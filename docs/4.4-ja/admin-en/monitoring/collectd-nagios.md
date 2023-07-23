@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/monitoring/collectd-nagios.md"

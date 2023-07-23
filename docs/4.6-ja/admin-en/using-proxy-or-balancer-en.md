@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/using-proxy-or-balancer-en.md"
