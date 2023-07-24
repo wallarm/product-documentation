@@ -13,7 +13,7 @@ Wallarmクラウドは非常に安定しており、スケーラブルなサー�
 
 続けて動作するもの：
 
-* ノードとクラウド間の最後の成功した[同期](../admin-ja/configure-cloud-node-synchronization-ja.md)中にノードにアップロードされたルールを使った設定[モード](../admin-ja/configure-wallarm-mode.md#利用可能なフィルタリングモード)でのトラフィック処理。ノードは次の要素の最新バージョンがスケジュールに従ってクラウドからアップロードされ、ノード上にローカルに保存されるため、作業を続けることができます：
+* ノードとクラウド間の最後の成功した[同期](../admin-en/configure-cloud-node-synchronization-en.ja.md)中にノードにアップロードされたルールを使った設定[モード](../admin-en/configure-wallarm-mode.md#利用可能なフィルタリングモード)でのトラフィック処理。ノードは次の要素の最新バージョンがスケジュールに従ってクラウドからアップロードされ、ノード上にローカルに保存されるため、作業を続けることができます：
 
     * [カスタムルールセット](../user-guides/rules/compiling.md)
     * [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)
@@ -22,23 +22,23 @@ Wallarmクラウドは非常に安定しており、スケーラブルなサー�
 
     これらの日付/時刻は、クラウドが復元されて同期されるまで更新されず、新規/削除されたアドレスもクラウドの復元/同期までありません。
 
-    [ブルートフォース攻撃](../admin-ja/configuration-guides/protecting-against-bruteforce.md)からの保護を停止するために、リスト内の一部のIPアドレスの有効期限が切れることに注意してください。
+    [ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)からの保護を停止するために、リスト内の一部のIPアドレスの有効期限が切れることに注意してください。
 
 動作を停止するもの：
 
-* ノードは検出された攻撃と脆弱性に関するデータを収集しますが、そのデータをクラウドに送信することはできません。お客様のノードの[postanalyticsモジュール](../admin-ja/installation-postanalytics-ja.md)は、クラウドへの送信前に収集したデータを一時的に保存するためのインメモリストレージ（Tarantool）を持っています。クラウドが復元されると、バッファ化されたデータがクラウドに送信されます。
+* ノードは検出された攻撃と脆弱性に関するデータを収集しますが、そのデータをクラウドに送信することはできません。お客様のノードの[postanalyticsモジュール](../admin-en/installation-postanalytics-en.ja.md)は、クラウドへの送信前に収集したデータを一時的に保存するためのインメモリストレージ（Tarantool）を持っています。クラウドが復元されると、バッファ化されたデータがクラウドに送信されます。
 
     !!! warning "ノードのインメモリストレージの制限"
-        バッファのサイズは[限定的](../admin-ja/configuration-guides/allocate-resources-for-node.md#tarantool)であり、超過すると古いデータが削除されます。したがって、クラウドがダウンしていた時間とその間に収集された情報の量によって、クラウドの復元後にWallarmコンソールで一部のデータのみが得られる状況が発生する可能性があります。
+        バッファのサイズは[限定的](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool)であり、超過すると古いデータが削除されます。したがって、クラウドがダウンしていた時間とその間に収集された情報の量によって、クラウドの復元後にWallarmコンソールで一部のデータのみが得られる状況が発生する可能性があります。
 
-* ノードは処理されたトラフィックの[指標](../admin-ja/monitoring/intro.md)を収集しますが、それをクラウドに送信することはできません。
+* ノードは処理されたトラフィックの[指標](../admin-en/monitoring/intro.md)を収集しますが、それをクラウドに送信することはできません。
 * [露出資産](../user-guides/scanner.md)と[一般的な脆弱性](../user-guides/vulnerabilities.md)のスキャンが停止します。
 * [トリガー](../user-guides/triggers/triggers.md)が動作を停止し、その結果として：
     * [IPリスト](../user-guides/ip-lists/overview.md)の更新が停止します。
     * [トリガーベースの通知](../user-guides/triggers/triggers.md)は表示されません。
 * [APIインベントリの発見](../about-wallarm/api-discovery.md)は機能しません。
 * [アクティブな脅威の検証](../about-wallarm/detecting-vulnerabilities.md#アクティブな脅威の検証)が停止します。
-* [ブルートフォース攻撃](../admin-ja/configuration-guides/protecting-against-bruteforce.md)は検出されません。
+* [ブルートフォース攻撃](../admin-en/configuration-guides/protecting-against-bruteforce.md)は検出されません。
 * インテグレーションが停止し、以下が含まれます：
     * 即時およびメールによる[通知](../user-guides/settings/integrations/integrations-intro.md)が表示されません。
     * レポートの作成が停止します。
@@ -60,7 +60,7 @@ Wallarmクラウドは非常に安定しており、スケーラブルなサー�
 
 ## Wallarmクラウドがダウンする前にWallarmコンソールに保存された設定をノードが取得しないケースはありますか？
 
-はい、可能です。たとえば、[同期](../admin-ja/configure-cloud-node-synchronization-ja.md)間隔が3分であるとします：
+はい、可能です。たとえば、[同期](../admin-en/configure-cloud-node-synchronization-en.ja.md)間隔が3分であるとします：
 
 1. カスタムルールセットの最後のビルドがクラウドで21分前に終了し、それが20分前にノードにアップロードされました。
 2. 次の6回の同期では、新しいものが何もなかったので、クラウドから何も取得しませんでした。

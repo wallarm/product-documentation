@@ -1,13 +1,13 @@
-[wallarm-status-instr]:             ../admin-ja/configure-statistics-service.md
-[memory-instr]:                     ../admin-ja/configuration-guides/allocate-memory-for-waf-node.md
-[waf-directives-instr]:             ../admin-ja/configure-parameters-ja.md
+[wallarm-status-instr]:             ../admin-en/configure-statistics-service.md
+[memory-instr]:                     ../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[waf-directives-instr]:             ../admin-en/configure-parameters-en.ja.md
 [ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]:    ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                   ../admin-ja/configure-wallarm-mode.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 
 # クラウドノードイメージのアップグレード
 
@@ -51,13 +51,13 @@
       * `/etc/environment`と環境変数のある
       * `/etc/default/wallarm-tarantool`とTarantool設定のある
       * リクエストの処理とプロキシ設定のある他のカスタム設定ファイル
-1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに戻されている場合、その新しいバージョンを[コピーしてカスタマイズ](../admin-ja/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
+1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに戻されている場合、その新しいバージョンを[コピーしてカスタマイズ](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
 
       新しいノードバージョンでは、Wallarmのサンプルブロッキングページが[変更され](what-is-new.md#new-blocking-page)ました。ページ上のロゴとサポートメールは、デフォルトでは空白になっています。
 
 NGINX設定ファイルを操作する詳細情報は、[公式NGINXドキュメンテーション](https://nginx.org/docs/beginners_guide.html)で利用可能です。
 
-フィルタリングノード指令のリストは[ここ](../admin-ja/configure-parameters-ja.md)で利用可能です。
+フィルタリングノード指令のリストは[ここ](../admin-en/configure-parameters-en.ja.md)で利用可能です。
 
 ## ステップ4：NGINXをリスタートする
 
@@ -73,7 +73,7 @@ sudo systemctl restart nginx
 
 ## ステップ6：AWSまたはGCPでフィルタリングノード4.6をベースに仮想マシンイメージを作成する
 
-フィルタリングノード4.6をベースに仮想マシンイメージを作成するには、[AWS](../admin-ja/installation-guides/amazon-cloud/create-image.md)または[GCP](../admin-ja/installation-guides/google-cloud/create-image.md)の指示に従ってください。
+フィルタリングノード4.6をベースに仮想マシンイメージを作成するには、[AWS](../admin-en/installation-guides/amazon-cloud/create-image.md)または[GCP](../admin-en/installation-guides/google-cloud/create-image.md)の指示に従ってください。
 
 ## ステップ7：前のWallarmノードインスタンスを削除する
 

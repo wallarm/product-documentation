@@ -1,13 +1,13 @@
-[wallarm-status-instr]:             ../../admin-ja/configure-statistics-service.md
-[memory-instr]:                     ../../admin-ja/configuration-guides/allocate-memory-for-waf-node.md
-[waf-directives-instr]:             ../../admin-ja/configure-parameters-ja.md
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[waf-directives-instr]:             ../../admin-en/configure-parameters-en.ja.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
-[nginx-process-time-limit-docs]:    ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit_block
+[nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                   ../../admin-ja/configure-wallarm-mode.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
 
 # EOLクラウドノードイメージのアップグレード
 
@@ -49,10 +49,10 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
 ## ステップ5：Wallarmノードのフィルトレーションモード設定を最新バージョンでリリースされた変更に合わせて調整します（ノード2.18以下をアップグレードする場合のみ）
 
 1. 以下の設定が、[`off`と`monitoring`フィルトレーションモードの変更されたロジック](what-is-new.md#filtration-modes)に対応する期待される動作であることを確認します：
-      * [`wallarm_mode`ディレクティブ](../../admin-ja/configure-parameters-ja.md#wallarm_mode)
+      * [`wallarm_mode`ディレクティブ](../../admin-en/configure-parameters-en.ja.md#wallarm_mode)
       * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
       * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
-2. 期待される動作が変更されたフィルトレーションモードのロジックに対応していない場合は、[指示](../../admin-ja/configure-wallarm-mode.md)を使用して、フィルトレーションモードの設定をリリースされた変更に調整してください。
+2. 期待される動作が変更されたフィルトレーションモードのロジックに対応していない場合は、[指示](../../admin-en/configure-wallarm-mode.md)を使用して、フィルトレーションモードの設定をリリースされた変更に調整してください。
 
 ## ステップ6：フィルタリングノードをWallarm Cloudに接続します
 
@@ -70,32 +70,32 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
       * グローバルなフィルタリングノード設定を含む`/etc/nginx/conf.d/wallarm.conf`
       * フィルタリングノードの監視サービス設定を含む`/etc/nginx/conf.d/wallarm-status.conf`
 
-        コピーしたファイルの内容が、[推奨されるセキュアな設定](../../admin-ja/configure-statistics-service.md#configuring-the-statistics-service)に対応していることを確認してください。
+        コピーしたファイルの内容が、[推奨されるセキュアな設定](../../admin-en/configure-statistics-service.md#configuring-the-statistics-service)に対応していることを確認してください。
 
       * 環境変数を含む`/etc/environment`
       * Tarantool設定を含む`/etc/default/wallarm-tarantool`
       * その他のリクエストの処理とプロキシ設定を含むファイル
 1. 次のNGINXディレクティブの名前を変更します（設定ファイルで明示的に指定されている場合）：
 
-    * `wallarm_instance` → [`wallarm_application`](../../admin-ja/configure-parameters-ja.md#wallarm_application)
-    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-ja/configure-parameters-ja.md#wallarm_custom_ruleset_path)
-    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-ja/configure-parameters-ja.md#wallarm_protondb_path)
-    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-ja/configure-parameters-ja.md#wallarm_general_ruleset_memory_limit)
+    * `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.ja.md#wallarm_application)
+    * `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.ja.md#wallarm_custom_ruleset_path)
+    * `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.ja.md#wallarm_protondb_path)
+    * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.ja.md#wallarm_general_ruleset_memory_limit)
 
     これらのディレクティブの名前だけが変更されたので、そのロジックは同じままです。以前の名前のディレクティブは近いうちに非推奨になる予定なので、その前に名前を変更することをお勧めします。
-1. [拡張ロギングフォーマット](../../admin-ja/configure-logging.md#filter-node-variables)が設定されている場合は、`wallarm_request_time`変数が設定で明示的に指定されているかどうかを確認してください。
+1. [拡張ロギングフォーマット](../../admin-en/configure-logging.md#filter-node-variables)が設定されている場合は、`wallarm_request_time`変数が設定で明示的に指定されているかどうかを確認してください。
 
       もし指定されている場合は、それを`wallarm_request_cpu_time`に変更してください。
 
       変数名だけが変更されたので、そのロジックは同じままです。古い名前も一時的にサポートされていますが、それでも変数の名前を変更することをお勧めします。
 1. ノード2.18以下をアップグレードする場合は、許可リストと拒否リストの設定を前のWallarmノードバージョンから4.6へ[移行](../migrate-ip-lists-to-node-3.md)します。
-1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに返される場合は、その[新しいバージョンをコピーしてカスタマイズ](../../admin-ja/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
+1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに返される場合は、その[新しいバージョンをコピーしてカスタマイズ](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
 
       新しいノードバージョンでは、Wallarm のサンプルブロックページが[変更され](what-is-new.md#new-blocking-page)ました。ページ上のロゴとサポートメールは、デフォルトでは空になっています。
 
 NGINX設定ファイルの使用に関する詳細な情報は、[公式のNGINXドキュメンテーション](https://nginx.org/docs/beginners_guide.html)で利用可能です。
 
-フィルタリングノードディレクティブのリストは、[こちら](../../admin-ja/configure-parameters-ja.md)で利用可能です。
+フィルタリングノードディレクティブのリストは、[こちら](../../admin-en/configure-parameters-en.ja.md)で利用可能です。
 
 ## ステップ8： `overlimit_res`攻撃検出設定をディレクティブからルールに転送します
 

@@ -29,7 +29,7 @@
     helm install --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    正しい Ingress コントローラーのインストールには、他の[追加設定](../configure-kubernetes-ja.md#additional-settings-for-helm-chart)も必要です。それらも `--set` オプションで渡してください。
+    正しい Ingress コントローラーのインストールには、他の[追加設定](../configure-kubernetes-en.ja.md#additional-settings-for-helm-chart)も必要です。それらも `--set` オプションで渡してください。
 === "Ingress コントローラーパラメータの更新"
     ```bash
     helm upgrade --reuse-values --set controller.wallarm.tarantool.arena='0.4' <INGRESS_CONTROLLER_NAME> ingress-chart/wallarm-ingress -n <KUBERNETES_NAMESPACE>
