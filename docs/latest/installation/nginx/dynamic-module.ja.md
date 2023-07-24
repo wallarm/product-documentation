@@ -28,11 +28,11 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/nginx-requirements-4.0.md"
+--8<-- "../include/waf/installation/nginx-requirements-4.0.ja.md"
 
 ## インストールオプション
 
---8<-- "../include-ja/waf/installation/nginx-installation-options.md"
+--8<-- "../include/waf/installation/nginx-installation-options.ja.md"
 
 両オプションのインストールコマンドは、以下の説明で説明されています。
 
@@ -124,7 +124,7 @@ NGINX リポジトリからの NGINX `stable` のインストールには、以�
 
 Wallarm ノードは、Wallarm リポジトリからインストールおよび更新されます。リポジトリを追加するには、プラットフォーム用のコマンドを使用してください。
 
---8<-- "../include-ja/waf/installation/add-nginx-waf-repos-4.4.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-4.4.ja.md"
 
 ### 3. Wallarm パッケージのインストール
 
@@ -207,24 +207,24 @@ Wallarm ノードは、Wallarm リポジトリからインストールおよび�
 
 ### 5. フィルタリングノードを Wallarm Cloud に接続
 
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.4.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.ja.md"
 
 ### 6. Wallarm ノード設定を更新
 
---8<-- "../include-ja/waf/installation/nginx-waf-min-configuration-3.6.md"
+--8<-- "../include/waf/installation/nginx-waf-min-configuration-3.6.ja.md"
 
 ### 7. NGINX の再起動
 
---8<-- "../include-ja/waf/root_perm_info.md"
+--8<-- "../include/waf/root_perm_info.ja.md"
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 ### 8. Wallarm ノード動作のテスト
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## 設定のカスタマイズ
 
 デフォルト設定のダイナミック Wallarm モジュールが NGINX `stable` 用にインストールされています。Wallarm ノード設定のカスタマイズには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

@@ -77,11 +77,11 @@ postanalyticsモジュールの障害や不安定な動作は、以下の機能�
     ```
 1. オペレーティングシステムのディストリビューションの種類に応じてこのファイルの場所は、`collectd`設定ファイルの `URL`パラメータが正しく設定されていることを確認します。
 
-    --8<-- "../include-ja/monitoring/collectd-config-location.md"
+    --8<-- "../include/monitoring/collectd-config-location.ja.md"
 
 Tarantool用の非標準のIPアドレスかポートが使用されている場合、そのTarantoolの設定ファイルを適切に修正する必要があります。このファイルの場所は、オペレーティングシステムのディストリビューションのタイプによって異なります。
 
---8<-- "../include-ja/monitoring/tarantool-config-location.md"
+--8<-- "../include/monitoring/tarantool-config-location.ja.md"
 
 フィルタリングノードのホストにSELinuxがインストールされている場合は、SELinuxが[設定または無効化][doc-selinux]されていることを確認してください。簡単のため、このドキュメントではSELinuxが無効化されていることを前提としています。
 

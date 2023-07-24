@@ -4,7 +4,7 @@ Wallarm を設定して、Wallarm Console で適切なインテグレーショ�
 
 Logstash に送信されるイベントを次のように選択できます。
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 通知フォーマット
 
@@ -97,7 +97,7 @@ output {
 1. 対象の Logstash URL（Webhook URL）を指定します。
 1. 必要に応じて、詳細設定を構成します。
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 1. 指定された URL に通知を送信するトリガーとなるイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
 1. [統合テスト](#testing-integration) を行い、設定が正しいことを確認します。
 1. **Add integration** をクリックします。
@@ -106,7 +106,7 @@ output {
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 テスト Logstash ログ：
 
@@ -157,19 +157,19 @@ output {
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"
 
 ## Logstash を中間データ収集器として使用する
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 例：
 

@@ -102,4 +102,4 @@ Wallarmノードのクイックデプロイが成功しました！
 
 デプロイされたノードをさらに微調整するために、以下の機能を学びます。
 
---8<-- "../include-ja/waf/installation/quick-start-configuration-options-4.4.md"
+--8<-- "../include/waf/installation/quick-start-configuration-options-4.4.ja.md"

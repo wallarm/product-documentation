@@ -2,7 +2,7 @@
 
 以下のイベントがトリガーされたときに、Wallarm から Microsoft Teams チャンネルへの通知を設定できます。
 
---8<-- "../include-ja/integrations/events-for-integrations.md"
+--8<-- "../include/integrations/events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -19,7 +19,7 @@
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 ユーザ **wallarm** からの Microsoft Teams メッセージをテスト:
 
@@ -37,12 +37,12 @@
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

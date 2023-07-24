@@ -23,15 +23,15 @@ Wallarm NGINXベースのフィルタリングノードは、Dockerコンテナ�
 
 Dockerコンテナ内にインストールされたフィルタリングノードの機能は、他のデプロイオプションの機能と完全に同じです。
 
---8<-- "../include-ja/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## コンテナの実行オプション
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"
+--8<-- "../include/waf/installation/docker-running-options.ja.md"
 
 ## 環境変数を渡してコンテナを実行する
 
@@ -54,7 +54,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
 `-e` オプションを使用して、次の基本的なフィルタリングノード設定をコンテナに渡すことができます。
 
---8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
 
 コマンドは以下を実行します。
 
@@ -90,7 +90,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
     * `-e` オプションは、次の必須環境変数をコンテナに渡します。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
     
     * `-v` オプションは、設定ファイル `default` が含まれるディレクトリを `/etc/nginx/sites-enabled` コンテナディレクトリにマウントします。
 
@@ -166,10 +166,10 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Wallarmノード操作のテスト
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## 使用ケースの設定
 
 Dockerコンテナにマウントされた設定ファイルには、[使用可能なディレクティブ]（configure-parameters-en.md）でフィルタリングノードの設定が記述されている必要があります。以下は、フィルタリングノードの設定オプションの一般的な使用例です。
 
---8<-- "../include-ja/waf/installation/common-customization-options-docker-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-4.4.ja.md"

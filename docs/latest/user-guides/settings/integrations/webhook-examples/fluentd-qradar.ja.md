@@ -2,7 +2,7 @@
 
 これらの手順は、WallarmとFluentdデータコレクタを統合し、QRadar SIEMシステムにイベントをさらに転送する例を提供します。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
@@ -12,7 +12,7 @@
 * [QRadar V7.3.3](#qradar-configuration-optional) は Linux Red Hat にインストールされ、IPアドレス `https://109.111.35.11:514`で使用可能です。
 * [EU cloud](https://my.wallarm.com) の Wallarm Console への管理者アクセスで、[Fluentd integration の設定が可能](#configuration-of-fluentd-integration)です。
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 Fluentd および QRadar サービスへのリンクは例として挙げられているため、応答しません。
 
@@ -101,7 +101,7 @@ QRadarログソースの詳細な説明は、[公式 IBM ドキュメント](htt
 
 ### Fluentd 連携の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.ja.md"
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -109,7 +109,7 @@ QRadarログソースの詳細な説明は、[公式 IBM ドキュメント](htt
 
 ## 例のテスト
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md")
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.ja.md")
 
 Fluentd は次のようにイベントをログします。
 

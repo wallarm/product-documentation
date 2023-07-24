@@ -9,7 +9,7 @@
 
 これらの手順は、デプロイ済みの統合された 4.4 のWallarmノードを含む新しいバージョンにエンドオブライフのWallarm Ingress Controller（バージョン3.6およびそれ以前）をアップグレードする手順を説明しています。
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 !!! warning "Community Ingress NGINX Controllerのアップグレードバージョン"
     ノードをバージョン3.4以前からアップグレードする場合は、Wallarm Ingressコントローラが基づいているCommunity Ingress NGINX Controllerのバージョンが0.26.2から1.6.4にアップグレードされていることに注意してください。
@@ -20,7 +20,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.ja.md"
 
 ## ステップ1: フィルタリングノードモジュールをアップグレードしていることをWallarmの技術サポートに通知する（ノード2.18以前をアップグレードする場合のみ）
 
@@ -36,7 +36,7 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarm Cons
 
 ## ステップ3: APIポートを更新する
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ4: Wallarm Helmチャートリポジトリを更新する
 
@@ -179,7 +179,7 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
 
 ## ステップ6：`overlimit_res`攻撃検出設定をディレクティブからルールに移行
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-ingress-controller.ja.md"
 
 ## ステップ7：すべての来るK8sマニフェスト変更をチェックアウトする
 

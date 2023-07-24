@@ -10,7 +10,7 @@ End-of-lifeモジュール（3.6以下）をアップグレードするには、
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1：新しいWallarmリポジトリの追加
 
@@ -69,18 +69,18 @@ End-of-lifeモジュール（3.6以下）をアップグレードするには、
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "CentOSまたはAmazon Linux 2.0.2021x以下"
     ```bash
     sudo yum update

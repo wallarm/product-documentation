@@ -30,7 +30,7 @@ GCP で Wallarm フィルタリングノードを含むイメージを作成す�
         * US クラウドを使用している場合、ノードは `https://us1.api.wallarm.com` にアクセスできる必要があります。
         * EU クラウドを使用している場合、ノードは `https://api.wallarm.com` にアクセスできる必要があります。
 
-    --8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 2.  フィルタリングノードを [Wallarm クラウドに接続][link-cloud-connect-guide]。
 

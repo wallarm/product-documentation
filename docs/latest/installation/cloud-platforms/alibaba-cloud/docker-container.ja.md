@@ -20,7 +20,7 @@
 
 ## WallarmノードDockerコンテナの構成オプション
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"
+--8<-- "../include/waf/installation/docker-running-options.ja.md"
 
 ## 環境変数を介して構成されたWallarmノードDockerコンテナのデプロイ
 
@@ -57,7 +57,7 @@
     * `-p`: フィルタリングノードがリッスンするポート。値はインスタンスポートと同じである必要があります。
     * `-e`: フィルタリングノードの設定を持つ環境変数（利用可能な変数は以下の表に示すようにされています）。`WALLARM_API_TOKEN`の値を直接渡すことはお勧めできません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
 1. [フィルタリングノードの操作をテストします](#testing-the-filtering-node-operation)。## マウントされたファイルを通じて設定された Wallarm ノード Docker コンテナのデプロイ
 
 環境変数とマウントされたファイルを介して設定されたコンテナ化された Wallarm フィルタリングノードをデプロイするには、Alibaba Cloud インスタンスを作成し、このインスタンスのファイルシステムにフィルタリングノードの設定ファイルを配置し、このインスタンスで Docker コンテナを実行する必要があります。これらの手順は、Alibaba Cloud Console または [Alibaba Cloud CLI](https://www.alibabacloud.com/help/doc-detail/25499.htm) を使用して実行できます。これらの手順では、Alibaba Cloud Console を使用しています。
@@ -130,7 +130,7 @@
     * `-p`: フィルタリングノードがリッスンするポート。値はインスタンスのポートと同じである必要があります。
     * `-e`: フィルタリングノードの設定を持つ環境変数（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN` の値を明示的に渡すことはお勧めできません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
 1. [フィルタリングノードの操作をテストする](#フィルタリングノードの操作をテストする)。
 
 ## フィルタリングノードの操作をテストする

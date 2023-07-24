@@ -4,7 +4,7 @@ Wallarmを設定して、適切な統合を作成することで、検出され�
 
 以下のイベントをDatadogに送信することができます:
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -21,7 +21,7 @@ Wallarmを設定して、適切な統合を作成することで、検出され�
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 テストDatadogログ:
 
@@ -31,12 +31,12 @@ Datadog Logsサービスで`source:wallarm_cloud`検索タグを使用して、�
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

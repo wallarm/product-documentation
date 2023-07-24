@@ -296,7 +296,7 @@ proton.dbとカスタムルールセットファイルの暗号化/復号化に�
 * `safe_blocking`
 * `block`
 
---8<-- "../include-ja/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.ja.md"
 
 `wallarm_mode`の使用は、`wallarm_mode_allow_override`ディレクティブによって制限されることがあります。
 

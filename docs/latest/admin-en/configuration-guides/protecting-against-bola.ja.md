@@ -81,7 +81,7 @@ BOLA 保護のために、異なるフィルタを持つ複数のトリガを設
 
 ![!BOLAトリガー](../../images/user-guides/bola-protection/trigger-enabled-state.png)
 
---8<-- "../include-ja/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
+--8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.ja.md"
 
 **BOLA保護**セクションのUIでは、[BOLA自動検出テンプレートの編集](../../user-guides/bola-protection.md)により、デフォルトのWallarm動作（BOLA攻撃のブロックを含む）を微調整できます。
 

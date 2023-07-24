@@ -7,7 +7,7 @@
 * Wallarmをパートナーとして統合している場合の独立した企業（**クライアント**）。
 * Wallarmをクライアントとして統合している場合の分離された環境。
 
---8<-- "../include-ja/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include/waf/features/multi-tenancy/partner-client-term.ja.md"
 
 ## マルチテナントが対処する問題
 

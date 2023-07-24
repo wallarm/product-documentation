@@ -105,15 +105,15 @@ AWS でインスタンスを起動する方法の詳細については、この 
 
 ## 6. フィルタリングノードを Wallarm クラウドに接続する
 
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.ja.md"
 
 ## 7. プロキシサーバーを使用するようにフィルタリングノードを設定する
 
---8<-- "../include-ja/setup-proxy.md"
+--8<-- "../include/setup-proxy.ja.md"
 
 ## 8. フィルタリングおよびプロキシングルールを設定する
 
---8<-- "../include-ja/setup-filter-nginx-en-latest.md"
+--8<-- "../include/setup-filter-nginx-en-latest.ja.md"
 
 ## 9. Wallarm ノードのインスタンスメモリ割り当て
 
@@ -151,7 +151,7 @@ Tarantool に割り当てられる RAM の量を変更することができま�
 
 ## 10. ロギングを設定する
 
---8<-- "../include-ja/installation-step-logging.md"
+--8<-- "../include/installation-step-logging.ja.md"
 
 ## 11. NGINX を再起動する
 
@@ -165,8 +165,8 @@ sudo systemctl restart nginx
 
 インストールが完了しました。
 
---8<-- "../include-ja/check-setup-installation-en.md"
+--8<-- "../include/check-setup-installation-en.ja.md"
 
---8<-- "../include-ja/filter-node-defaults.md"
+--8<-- "../include/filter-node-defaults.ja.md"
 
---8<-- "../include-ja/installation-extra-steps.md"
+--8<-- "../include/installation-extra-steps.ja.md"

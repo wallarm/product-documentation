@@ -30,7 +30,7 @@ Wallarmは、攻撃サインを含むリクエストを使用して、次の方�
 
 #### 動作方法
 
---8<-- "../include-ja/how-attack-rechecker-works.md"
+--8<-- "../include/how-attack-rechecker-works.ja.md"
 
 !!! warning "アクティブ脅威検証：攻撃がIPでグループ化されている場合"
     攻撃が[グループ化](protecting-against-attacks.md#attack)された場合、この攻撃のアクティブ検証は利用できません。#### 「アクティブ脅威検証」モジュールからの潜在的なリスク

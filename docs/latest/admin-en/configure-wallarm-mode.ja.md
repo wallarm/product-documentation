@@ -13,7 +13,7 @@ Wallarmフィルタリングノードは、以下のモード（最も緩いも�
 * **安全ブロッキング**（`safe_blocking`）
 * **ブロッキング**（`block`）
 
---8<-- "../include-ja/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.ja.md"
 
 ## フィルタリングモード設定の方法
 

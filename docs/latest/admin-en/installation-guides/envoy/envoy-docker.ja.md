@@ -109,4 +109,4 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
 ## Wallarmノードの動作テスト
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"

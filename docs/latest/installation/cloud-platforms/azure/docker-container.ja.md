@@ -21,7 +21,7 @@
 
 ## WallarmノードDockerコンテナ設定のオプション
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"
+--8<-- "../include/waf/installation/docker-running-options.ja.md"
 
 ## 環境変数で設定されたWallarmノードDockerコンテナをデプロイする
 
@@ -84,7 +84,7 @@
     * `--image`: WallarmノードDockerイメージの名前です。
     * `--environment-variables`: フィルタリングノードの設定に使用される環境変数（使用可能な変数は下の表に記載されています）。ただし、 `WALLARM_API_TOKEN` の値は明示的に渡すことはお勧めしません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
 1. [Azureポータル](https://portal.azure.com/)を開き、作成したリソースがリソースリストに表示されることを確認します。
 1. [フィルタリングノードの動作をテスト](#testing-the-filtering-node-operation).## マウントされたファイルを介して設定されたWallarmノードDockerコンテナーの展開
 
@@ -185,7 +185,7 @@
 
     * `--environment-variables`：フィルタリングノードおよびWallarm Cloud接続の設定を含む環境変数（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN`の値を明示的に渡すことはお勧めしません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
 1. [Azureポータル](https://portal.azure.com/)を開き、作成されたリソースがリソースのリストに表示されることを確認します。
 1. [フィルタリングノードの動作をテストします](#フィルタリングノードの動作のテスト)。
 

@@ -26,11 +26,11 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/nginx-distr-requirements-4.0.md"
+--8<-- "../include/waf/installation/nginx-distr-requirements-4.0.ja.md"
 
 ## インストールオプション
 
---8<-- "../include-ja/waf/installation/nginx-installation-options.md"
+--8<-- "../include/waf/installation/nginx-installation-options.ja.md"
 
 両方のオプションのインストールコマンドは、さらなる指示に記載されています。
 
@@ -137,7 +137,7 @@ postanalyticsとリクエスト処理を別々のサーバーで実行するに�
 
 ### 4. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.4.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.4.ja.md"
 
 ### 5. Wallarmノードの設定を更新する
 
@@ -233,7 +233,7 @@ Wallarmノードは、インメモリストレージであるTarantoolを使用�
 !!! info "同じサーバー上のNGINX-Wallarmとpostanalytics"
     NGINX-Wallarmとpostanalyticsモジュールが同じサーバーにインストールされている場合は、この手順をスキップしてください。
 
---8<-- "../include-ja/waf/configure-separate-postanalytics-address-nginx.md"
+--8<-- "../include/waf/configure-separate-postanalytics-address-nginx.ja.md"
 
 #### その他の設定
 
@@ -241,7 +241,7 @@ NGINX と Wallarm ノードの他の設定を更新するには、NGINX のド�
 
 ### 6. NGINX を再起動
 
---8<-- "../include-ja/waf/root_perm_info.md"
+--8<-- "../include/waf/root_perm_info.ja.md"
 
 === "Debian"
     ```bash
@@ -258,10 +258,10 @@ NGINX と Wallarm ノードの他の設定を更新するには、NGINX のド�
 
 ### 7. Wallarmノードの動作をテスト
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## 設定のカスタマイズ
 
 Debian/CentOS リポジトリからの NGINX 用のデフォルト設定で動的 Wallarm モジュールがインストールされています。Wallarm ノードの設定をカスタマイズするには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

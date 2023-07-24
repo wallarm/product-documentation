@@ -6,7 +6,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/kong-ingress-controller-reqs.md"
+--8<-- "../include/waf/installation/kong-ingress-controller-reqs.ja.md"
 
 ## ステップ1：Wallarm Helmチャートリポジトリを更新する
 

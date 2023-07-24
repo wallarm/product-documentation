@@ -18,7 +18,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.ja.md"
 
 !!! info "参照"
     * [Ingressとは？](https://kubernetes.io/docs/concepts/services-networking/ingress/)
@@ -74,7 +74,7 @@
     
     Helmチャートのバージョン4.4.1から、WallarmノードのトークンをKubernetesシークレットに保存し、Helmチャートに引っ張ってくることができます。[詳細はこちら](configure-kubernetes-en.md#controllerwallarmexistingsecret)
     
-    --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.ja.md"
 1. Wallarmパッケージをインストールします：
 
     ``` bash

@@ -13,11 +13,11 @@
 
 これらの手順では、AWSまたはGCPでデプロイされた、ライフサイクルが終了したクラウドノードイメージ（バージョン3.6以前）を4.4にアップグレードする方法について説明しています。
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1: フィルタリングノードモジュールのアップグレードをWallarm技術サポートに通知（ノード2.18以前の場合のみ）
 
@@ -31,7 +31,7 @@
 
 ## ステップ3: APIポートを更新する
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ4: フィルタリングノード4.4を搭載した新しいインスタンスを起動する
 
@@ -97,7 +97,7 @@ NGINX設定ファイルの操作に関する詳細情報は [公式NGINXドキ�
 
 フィルタリングノードディレクティブのリストは [ここ](../../admin-en/configure-parameters-en.md) で入手できます。## ステップ8: 攻撃検出設定 `overlimit_res` をディレクティブからルールに転送する
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.ja.md"
 
 ## ステップ9: NGINX を再起動する
 
@@ -109,7 +109,7 @@ sudo systemctl restart nginx
 
 ## ステップ10: Wallarmノードの動作をテストする
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## ステップ11: AWS か GCP でフィルタリングノード 4.4 をベースにした仮想マシンイメージを作成する
 

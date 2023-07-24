@@ -30,11 +30,11 @@
 
 ## CDNノードの仕組み
 
---8<-- "../include-ja/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-deployment-requirements.ja.md"
 
 ## CDNノードの展開
 
@@ -80,8 +80,8 @@ Wallarm CDNノードが正常に展開されました！
 
 Wallarmの設定オプションについて学びます。
 
---8<-- "../include-ja/waf/installation/cdn-node/cdn-node-configuration-options.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-configuration-options.ja.md"
 
 ## CDNノードのトラブルシューティング
 
---8<-- "../include-ja/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.ja.md"

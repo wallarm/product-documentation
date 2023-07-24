@@ -40,7 +40,7 @@ API Discoveryモジュールで探索されたエンドポイントをBOLAの脆
 
 ## 自動BOLA保護ロジック
 
---8<-- "../include-ja/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
+--8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.ja.md"
 
 ## 自動BOLA保護の無効化
 

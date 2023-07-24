@@ -29,7 +29,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## アップグレード手順
 
@@ -124,18 +124,18 @@
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
         sudo yum update
@@ -162,18 +162,18 @@
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "CentOSまたはAmazon Linux 2.0.2021x以前"
         ```bash
         sudo yum update
@@ -190,14 +190,14 @@
 
 ## ステップ4: NGINXの再起動
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 ## ステップ5: Wallarmノードの動作確認
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## 設定のカスタマイズ
 
 Wallarmモジュールがバージョン4.4に更新されます。以前のフィルタリングノードの設定は、新しいバージョンに自動的に適用されます。追加の設定を行うには、[利用可能なディレクティブ](../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

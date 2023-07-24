@@ -6,7 +6,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include/waf/installation/sidecar-proxy-reqs.ja.md"
 
 ## ステップ1：Wallarm Helmチャートリポジトリを更新する
 

@@ -12,7 +12,7 @@ Google Cloud Platform（GCP）で Wallarm フィルタリングノードのオ�
 
     GCP 上で Wallarm フィルタリングノードを備えた仮想マシンのイメージを作成する詳細については、この[リンク][link-doc-image-creation]に進んでください。
 
---8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 Google Cloud Platform でフィルタリングノードをオートスケールするには、次の手順を実行します：
 1.  フィルタリングノードのオートスケーリングを設定する:

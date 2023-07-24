@@ -56,7 +56,7 @@ Wallarmサイドカープロキシは、そのライフサイクルで2つの標
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include/waf/installation/sidecar-proxy-reqs.ja.md"
 
 ## デプロイメント
 
@@ -105,7 +105,7 @@ Wallarmサイドカープロキシソリューションをデプロイするに�
     
     `<NODE_TOKEN>`は、Kubernetesで実行されるWallarmノードのトークンです。
 
-    --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
+    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.ja.md"
 1. Wallarm Helmチャートをデプロイする:
 
     ``` bash

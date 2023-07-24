@@ -2,7 +2,7 @@
 
 これらの指示は、Fluentd データ収集器を使用した Wallarm との例の統合を提供し、その後、ArcSight Logger システムにイベントを転送します。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
@@ -15,7 +15,7 @@
 * [Fluentd](#fluentd-configuration) を Debian 11.x (bullseye) にインストールし、`https://fluentd-example-domain.com` で利用可能
 * [Fluentd 統合の設定](#configuration-of-fluentd-integration)を行うために [EU クラウド](https://my.wallarm.com) での Wallarm Console への管理者アクセス
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 ArcSight Logger および Fluentd サービスへのリンクは、例として引用されているため、応答しません。
 
@@ -99,7 +99,7 @@ Fluentd は `td-agent.conf` ファイルで設定されています。
 
 ### Fluentd 統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.ja.md"
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -107,7 +107,7 @@ Fluentd は `td-agent.conf` ファイルで設定されています。
 
 ## 例のテスト
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.ja.md"
 
 Fluentd は次のようにイベントをログに記録します。
 

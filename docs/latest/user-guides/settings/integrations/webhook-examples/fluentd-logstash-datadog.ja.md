@@ -2,7 +2,7 @@
 
 Wallarm を Fluentd または Logstash の中間データコレクターを介して Datadog に検出されたイベントの通知を送信するように設定できます。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 ![!Wallarm からデータコレクター経由で Datadog へ通知を送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
@@ -15,7 +15,7 @@ Wallarm を Fluentd または Logstash の中間データコレクターを介�
 * 公開URLで利用可能な Datadog サービス
 * [Fluentd/Logstash との統合の設定](#fluentd-or-logstash-との統合を設定する)を行うための [EU クラウド](https://my.wallarm.com) の Wallarm Console への管理者アクセス
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 ## 要件
 
@@ -108,7 +108,7 @@ Wallarm が Webhooks 経由で中間データコレクターにログを送信�
 1. 対象の Fluentd または Logstash URL（Webhook URL）を指定します。
 1. 必要に応じて、詳細設定を構成します。
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 1. 指定された URL に通知を送信するイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
 1. [統合をテスト](#統合をテストする)して、設定が正しいことを確認します。
 1. **統合を追加**をクリックします。
@@ -119,7 +119,7 @@ Fluentd の統合例：
 
 ## 統合をテストする
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 Fluentd または Logstash の中間データコレクターのテストログ：
 

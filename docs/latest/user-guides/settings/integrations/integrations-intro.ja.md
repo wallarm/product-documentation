@@ -89,7 +89,7 @@ Wallarmノードとともに「collectd」サービスが配布され、[処理�
 
 1つのシステムとのインテグレーション数に制限はありません。 例：3つのSlackチャンネルにセキュリティレポートを送信するには、Slackとの3つの異なるインテグレーションを作成できます。
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 !!! info "高度な通知設定"
     高度な通知設定には、[トリガー](../../triggers/triggers.md)を使用できます。

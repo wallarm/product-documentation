@@ -5,7 +5,7 @@
 
 # 別個の postanalytics モジュールのインストール
 
---8<-- "../include-ja/waf/installation/nginx-installation-options.md"
+--8<-- "../include/waf/installation/nginx-installation-options.ja.md"
 
 これらの手順では、別のサーバーに postanalytics モジュールをインストールする方法を説明しています。
 
@@ -98,7 +98,7 @@ postanalytics モジュールと Tarantool データベース用の Wallarmリ�
     sudo yum install -y wallarm-node-tarantool
     ```
 
---8<-- "../include-ja/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.md"
+--8<-- "../include/waf/installation/checking-compatibility-of-separate-postanalytics-and-primary-packages.ja.md"
 
 ### 3. postanalyticsモジュールをWallarm Cloudに接続する
 

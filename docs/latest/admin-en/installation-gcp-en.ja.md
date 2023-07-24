@@ -83,19 +83,19 @@ Wallarm GCP画像を使用して、Terraformなどのツールを使ってフィ
 
 インスタンスへの接続方法の詳細については、この[リンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)を参照してください。
 
---8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 ## 5. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.0-only-with-postanalytics.ja.md"
 
 ## 6. プロキシサーバーを使用するためにフィルタリングノードを設定する
 
---8<-- "../include-ja/setup-proxy.md"
+--8<-- "../include/setup-proxy.ja.md"
 
 ## 7. フィルタリングおよびプロキシングルールを設定する
 
---8<-- "../include-ja/setup-filter-nginx-en-latest.md"
+--8<-- "../include/setup-filter-nginx-en-latest.ja.md"
 
 ## 8. Wallarmノード用により多くのメモリを割り当てる
 
@@ -133,7 +133,7 @@ Tarantoolに割り当てるRAM量を変更することができます。 イン�
 
 ## 9. ロギングを設定する
 
---8<-- "../include-ja/installation-step-logging.md"
+--8<-- "../include/installation-step-logging.ja.md"
 
 ## 10. NGINXを再起動する
 
@@ -147,8 +147,8 @@ sudo systemctl restart nginx
 
 インストールが完了しました。
 
---8<-- "../include-ja/check-setup-installation-en.md"
+--8<-- "../include/check-setup-installation-en.ja.md"
 
---8<-- "../include-ja/filter-node-defaults.md"
+--8<-- "../include/filter-node-defaults.ja.md"
 
---8<-- "../include-ja/installation-extra-steps.md"
+--8<-- "../include/installation-extra-steps.ja.md"

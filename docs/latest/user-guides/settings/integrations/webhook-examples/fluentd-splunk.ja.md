@@ -4,7 +4,7 @@
 
 これらの手順は、WallarmとFluentdデータコレクターを統合して、さらにSplunk SIEMシステムにイベントを転送する例を提供しています。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
@@ -14,7 +14,7 @@
 * Debian 11.x（bullseye）にインストールされ、 `https://fluentd-example-domain.com` で利用可能な [Fluentd](#fluentd-configuration)
 * [EU cloud](https://my.wallarm.com) のWallarm Consoleへの管理者アクセス（ [Fluentd統合の設定](#configuration-of-fluentd-integration)）
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 Splunk EnterpriseとFluentdサービスへのリンクは例として示されているため、応答しません。
 
@@ -93,7 +93,7 @@ Fluentdは `td-agent.conf` ファイルで設定されます：
 
 ### Fluentd 統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.ja.md"
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
@@ -101,7 +101,7 @@ Fluentdは `td-agent.conf` ファイルで設定されます：
 
 ## 例のテスト
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.ja.md"
 
 Fluentdは次のようにイベントをログします:
 
@@ -113,4 +113,4 @@ Splunkのイベントには次のエントリが表示されます:
 
 ## Splunk Enterpriseでダッシュボードにまとめられたイベントの取得
 
---8<-- "../include-ja/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.ja.md"

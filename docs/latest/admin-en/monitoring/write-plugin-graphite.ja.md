@@ -13,7 +13,7 @@
 
 ## 例のワークフロー
 
---8<-- "../include-ja/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.ja.md"
 
 ![!Example workflow][img-write-plugin-graphite]
 
@@ -42,7 +42,7 @@
 
 ## Graphiteへのメトリクスのエクスポート設定
 
---8<-- "../include-ja/monitoring/docker-prerequisites.md"
+--8<-- "../include/monitoring/docker-prerequisites.ja.md"
 
 ### GraphiteとGrafanaのデプロイ
 
@@ -110,6 +110,6 @@ Graphiteにメトリクスをダウンロードするように `collectd` を設
     
 3.  適切なコマンドを実行して `collectd` サービスを再起動します。
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.ja.md"
 
 これでGraphiteはフィルターノードのすべてのメトリクスを受信します。関心のあるメトリクスを視覚化し、[Grafanaでそれらを監視する][doc-grafana]ことができます。

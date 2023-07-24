@@ -2,7 +2,7 @@
 
 Wallarm をセットアップして、HTTPS プロトコルを介して Incoming webhooks を受け入れる任意のシステムにインスタント通知を送信できます。これにより、次のイベントタイプの通知を受信するための Webhook URL を指定してください。
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 通知フォーマット
 
@@ -116,7 +116,7 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
 4. ターゲット Webhook URL を入力します。
 5. 必要に応じて、詳細設定を構成します：
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 
     ![!詳細設定の例](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. イベントタイプを選択して、Webhook URL に通知を送信するトリガーにします。イベントが選択されていない場合、通知は送信されません。
@@ -127,7 +127,7 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
 
 ## インテグレーションの例
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 人気のログコレクターを使用して SIEM システムにログを転送する方法についてのいくつかの例を説明しました。
 
@@ -136,7 +136,7 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 テスト Webhook の例：
 
@@ -187,12 +187,12 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

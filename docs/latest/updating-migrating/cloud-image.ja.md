@@ -17,7 +17,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ 1: フィルタリングノード 4.4 を使用した新しいインスタンスの起動
 
@@ -66,7 +66,7 @@ sudo systemctl restart nginx
 
 ## ステップ 5: Wallarm ノードの動作をテストする
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## Step 6: AWS または GCP でフィルタリングノード 4.4 を元にした仮想マシンイメージを作成する
 

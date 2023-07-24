@@ -21,7 +21,7 @@
 
 ## Wallarm ノード Docker コンテナの設定オプション
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"環境変数を介して設定されたWallarmノードDockerコンテナのデプロイ
+--8<-- "../include/waf/installation/docker-running-options.ja.md"環境変数を介して設定されたWallarmノードDockerコンテナのデプロイ
 
 環境変数のみで構成されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、AWS Management ConsoleとAWS CLIが使用されます。
 
@@ -125,7 +125,7 @@
 
         変数`WALLARM_API_TOKEN`は、`secrets`オブジェクトで渡すことをお勧めします。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
     
     * すべての設定ファイルパラメータは、[AWSドキュメント](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)で説明されています。
 1. [`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html)コマンドを使用して、JSON設定ファイルに基づいたタスク定義を登録します:
@@ -316,7 +316,7 @@ AWS EFSから環境変数と設定ファイルをマウントしてコンテナ�
 
         `WALLARM_API_TOKEN`変数は、`secrets`オブジェクトで渡すことをお勧めします。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
     
     * すべての設定ファイルのパラメータは、[AWSドキュメント](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)で説明されています。
 1. JSON設定ファイルに基づいてタスク定義を登録します。コマンドは[`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html)を使用してください。

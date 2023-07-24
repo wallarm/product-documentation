@@ -48,7 +48,7 @@
          
 3.  適切なコマンドを実行して`collectd`サービスを再起動します:
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.ja.md"
 
 !!! info "例"
     ネットワークプラグインを介してInfluxDBにメトリックをエクスポートし、その後Grafanaでメトリックを視覚化する[例][doc-network-plugin-example]を参照してください。
@@ -66,7 +66,7 @@
 
 1.  適切なコマンドを実行して、フィルタノードのあるホストに`collectd-nagios`ユーティリティをインストールします（Linuxにインストールされたフィルタノードの場合）：
 
-    --8<-- "../include-ja/monitoring/install-collectd-utils.md"
+    --8<-- "../include/monitoring/install-collectd-utils.ja.md"
 
     !!! info "Dockerイメージ"
         フィルタノードのDockerイメージには、事前にインストールされた`collectd-nagios`ユーティリティが付属しています。
@@ -91,11 +91,11 @@
 
 4.  適切なコマンドを実行して`collectd`サービスを再起動します:
 
-    --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
+    --8<-- "../include/monitoring/collectd-restart-2.16.ja.md"
 
 5.  適切なコマンドを実行して、必要なメトリックの値を取得します：
 
-    --8<-- "../include-ja/monitoring/collectd-nagios-fetch-metric.md"
+    --8<-- "../include/monitoring/collectd-nagios-fetch-metric.ja.md"
 
     !!! info "DockerコンテナのIDを取得する"
         コンテナ識別子の値は、`docker ps`コマンドを実行して見つけることができます（「CONTAINER ID」列を参照）。
@@ -126,7 +126,7 @@
 
 通知の設定は、以下のファイルで行われます：
 
---8<-- "../include-ja/monitoring/notification-config-location.md"
+--8<-- "../include/monitoring/notification-config-location.ja.md"
 
 通知の動作に関する一般的な説明は[こちら][link-notif-common]にあります。
 

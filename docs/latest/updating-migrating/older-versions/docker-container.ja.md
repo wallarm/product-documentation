@@ -18,11 +18,11 @@
 
 これらの手順は、実行中の終了間近の Docker NGINX または Envoy ベースのイメージ（バージョン 3.6 およびそれ以前）をバージョン 4.4 にアップグレードする手順を説明しています。
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1: Wallarm技術サポートにフィルタリングノードモジュールをアップグレードしていることを報告する（アップグレードノード2.18以下の場合のみ）
 
@@ -36,7 +36,7 @@ Wallarmノード2.16以下をアップグレードする場合、Wallarmコン�
 
 ## ステップ3: APIポートの更新
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ4: 更新されたフィルタリングノードイメージをダウンロードする
 
@@ -110,7 +110,7 @@ Docker コンテナがブロックされたリクエストに `&/usr/share/nginx
 
 ## ステップ 9：`overlimit_res` 攻撃検出設定をディレクティブからルールへ転送
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-docker.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-docker.ja.md"
 
 ## ステップ 10：実行中のコンテナを停止
 
@@ -142,7 +142,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## ステップ 13：フィルタリングノードの動作をテスト
 
---8<-- "../include-ja/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.ja.md"
 
 ## ステップ 14：前のバージョンのフィルタリングノードを削除
 

@@ -57,7 +57,7 @@ Kong Ingress Controller with integrated Wallarm servicesは、以下のDeploymen
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/kong-ingress-controller-reqs.md"
+--8<-- "../include/waf/installation/kong-ingress-controller-reqs.ja.md"
 
 ## 展開
 
@@ -170,7 +170,7 @@ Kong Ingress Controller を統合された Wallarm サービスに展開する�
 
     * `<NODE_TOKEN>`は、Wallarm Console UIからコピーしたWallarmノードトークンです
 
-        --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
+        --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.ja.md"
 
     * `<KONG-ENTERPRISE-LICENSE>`は[Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)です
 1. WallarmのHelmチャートをデプロイします:

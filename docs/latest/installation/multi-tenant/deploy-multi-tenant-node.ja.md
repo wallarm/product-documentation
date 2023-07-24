@@ -18,7 +18,7 @@
 
     * 1つのWallarmノードが複数のテナントのトラフィック（テナント1、テナント2）を処理します。
         
-        --8<-- "../include-ja/waf/features/multi-tenancy/partner-client-term.md"
+        --8<-- "../include/waf/features/multi-tenancy/partner-client-term.ja.md"
         
     * Wallarmノードは、テナントの一意の識別子（[`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) またはEnvoyインストール時の [`partner_client_uuid`](../../admin-en/configuration-guides/envoy/fine-tuning.md#configuration-options-for-the-envoy‑based-wallarm-node)）によって、トラフィックを受信するテナントを識別します。
     * `https://tenant1.com` および `https://tenant2.com` のドメインには、パートナーまたはクライアントのIPアドレス `225.130.128.241` を持つDNS Aレコードが設定されています。この設定は例として示されており、パートナーとテナントの両方で異なる設定が使用されている場合があります。
@@ -148,4 +148,4 @@
 
 フィルタリングノードの設定をカスタマイズするには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

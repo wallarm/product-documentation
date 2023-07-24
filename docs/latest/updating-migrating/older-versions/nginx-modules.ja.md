@@ -26,11 +26,11 @@
 * [CentOS/DebianリポジトリからのNGINXモジュール](../../installation/nginx/dynamic-module-from-distr.md)
 * [NGINX Plusモジュール](../../installation/nginx-plus.md)
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## アップグレード手順
 
@@ -49,7 +49,7 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
 
 ## ステップ3: APIポートを更新する
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ4: NGINXを最新バージョンにアップグレードする
 
@@ -147,18 +147,18 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "CentOS または Amazon Linux 2.0.2021x 以下"
     ```bash
     sudo yum update
@@ -182,18 +182,18 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
     === "CentOS または Amazon Linux 2.0.2021x 以下"
         ```bash
         sudo yum update
@@ -309,7 +309,7 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
 
 ## ステップ 13: `overlimit_res` アタック検出設定をディレクティブからルールに転送する
 
---8<-- "../include-ja/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.ja.md"
 
 ## ステップ 14: `wallarm-status.conf`ファイルの内容を更新する
 
@@ -337,11 +337,11 @@ server {
 
 ## ステップ 15: NGINXを再起動する
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 ## ステップ 16: Wallarmノード動作をテストする
 
---8<-- "../include-ja/waf/installation/test-after-node-type-upgrade.md"
+--8<-- "../include/waf/installation/test-after-node-type-upgrade.ja.md"
 
 ## ステップ 17: アクティブな脅威検証モジュールを再度有効化する（ノード 2.16 以下をアップグレードする場合のみ）
 
@@ -359,4 +359,4 @@ postanalyticsモジュールが別のサーバーにインストールされて�
 
 Wallarmモジュールはバージョン4.4に更新されます。以前のフィルタリングノード設定は新しいバージョンに自動的に適用されます。追加の設定を行うには、[使用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

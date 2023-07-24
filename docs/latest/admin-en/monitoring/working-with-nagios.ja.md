@@ -25,15 +25,15 @@
 
     Nagiosに表示されているメトリック値（「Performance Data」行）が、フィルタノード上の`wallarm-status`出力と一致していることを確認します：
 
-    --8<-- "../include-ja/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-check-latest.ja.md"
 
 5. フィルタノードで保護されたアプリケーションに対してテスト攻撃を実行します。これには、curlユーティリティまたはブラウザを使用して、アプリケーションに悪意のあるリクエストを送信します。
 
-    --8<-- "../include-ja/monitoring/sample-malicious-request.md"
+    --8<-- "../include/monitoring/sample-malicious-request.ja.md"
     
 6. Nagiosでの「Performance Data」値が増加し、フィルタノード上の`wallarm-status`に表示される値と一致していることを確認します：
 
-    --8<-- "../include-ja/monitoring/wallarm-status-output-latest.md"
+    --8<-- "../include/monitoring/wallarm-status-output-latest.ja.md"
 
     ![!Updated Performance Data value][img-nagios-service-perfdata-updated]
 

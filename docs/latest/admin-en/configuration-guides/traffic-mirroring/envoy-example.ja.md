@@ -85,4 +85,4 @@ static_resources:
 
 ## ステップ2： Wallarm ノードを構成して、ミラーリングされたトラフィックのフィルタリングを行う
 
-`--8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"`
+`--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.ja.md"`

@@ -9,7 +9,7 @@
 
 `TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
 
---8<-- "../include-ja/api-request-examples/get-attacks-en.md"
+--8<-- "../include/api-request-examples/get-attacks-en.ja.md"
 
 ## 大量の攻撃（100以上）を取得する
 
@@ -150,55 +150,55 @@
 
 `TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
 
---8<-- "../include-ja/api-request-examples/get-incidents-en.md"
+--8<-- "../include/api-request-examples/get-incidents-en.ja.md"
 
 ## 過去24時間以内にステータスが「アクティブ」である最初の50件の脆弱性を取得する
 
 `TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
 
---8<-- "../include-ja/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include/api-request-examples/get-vulnerabilities.ja.md"
 
 ## すべての設定済みルールを取得する
 
---8<-- "../include-ja/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include/api-request-examples/get-all-configured-rules.ja.md"
 
 ## すべてのルールの条件のみを取得する
 
---8<-- "../include-ja/api-request-examples/get-conditions.md"
+--8<-- "../include/api-request-examples/get-conditions.ja.md"
 
 ## 特定の条件に関連付けられたルールを取得する
 
 特定の条件を指定するには、そのIDを使用します。すべてのルールの条件を要求するときにそれを取得することができます（上記参照）。
 
---8<-- "../include-ja/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.ja.md"
 
 ## `/my/api/*`に送信されるすべてのリクエストをブロックする仮想パッチを作成する
 
---8<-- "../include-ja/api-request-examples/create-rule-en.md"
+--8<-- "../include/api-request-examples/create-rule-en.ja.md"
 
 ## 特定のアプリケーションインスタンスIDに対して `/my/api/*` に送信されるすべてのリクエストをブロックする仮想パッチを作成する
 
 アプリケーションは、このリクエストを送信する前に[設定](../user-guides/settings/applications.md)する必要があります。`action.point[instance].value`に既存のアプリケーションのIDを指定します。
 
---8<-- "../include-ja/api-request-examples/create-rule-for-app-id.md"`X-FORWARDED-FOR` ヘッダーの特定の値を持つリクエストを攻撃として考慮するルールを作成する
+--8<-- "../include/api-request-examples/create-rule-for-app-id.ja.md"`X-FORWARDED-FOR` ヘッダーの特定の値を持つリクエストを攻撃として考慮するルールを作成する
 
 次のリクエストは、正規表現 `^(~(44[.]33[.]22[.]11))$` に基づく[カスタム攻撃指標](../user-guides/rules/regex-rule.md)を作成します。
 
 ドメイン `MY.DOMAIN.COM` へのリクエストが HTTP ヘッダー `X-FORWARDED-FOR: 44.33.22.11` を持っている場合、Wallarm ノードはそれらをスキャナー攻撃とみなし、対応する[フィルタリングモード](../admin-en/configure-wallarm-mode.md)が設定されている場合、攻撃をブロックします。
 
---8<-- "../include-ja/api-request-examples/create-rule-scanner.md"
+--8<-- "../include/api-request-examples/create-rule-scanner.ja.md"
 
 特定のアプリケーションに対してフィルタリングモードを監視に設定するルールを作成する
 
 次のリクエストは、ID `3` の [アプリケーション](../user-guides/settings/applications.md) に対して [トラフィックのフィルタリングを行うノードの設定](../user-guides/rules/wallarm-mode-rule.md)をするルールを作成します。
 
---8<-- "../include-ja/api-request-examples/create-filtration-mode-rule-for-app.md"
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.ja.md"
 
 IDでルールを削除する
 
 削除するルールのIDを[すべての設定済みルールを取得する](#get-all-configured-rules)ことでコピーできます。また、ルール作成リクエストに対する返答の `id` レスポンスパラメータにもルールIDが入っています。
 
---8<-- "../include-ja/api-request-examples/delete-rule-by-id.md"
+--8<-- "../include/api-request-examples/delete-rule-by-id.ja.md"
 
 IP リストオブジェクトを取得し、追加、削除するための API コール
 
@@ -208,25 +208,25 @@ IP リストオブジェクトを取得し、追加、削除するための API 
 
 IP リストを読み取り、変更する API リクエストで渡すパラメータ：
 
---8<-- "../include-ja/api-request-examples/ip-list-request-params.md"
+--8<-- "../include/api-request-examples/ip-list-request-params.ja.md"
 
 ### `.csv` ファイルからリストにエントリを追加する
 
 `.csv` ファイルから IP やサブネットをリストに追加するには、次の bash スクリプトを使用してください：
 
---8<-- "../include-ja/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.ja.md"
 
 ### リストに単一の IP またはサブネットを追加する
 
---8<-- "../include-ja/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.ja.md"
 
 ### リストに複数の国を追加する
 
---8<-- "../include-ja/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.ja.md"
 
 ### リストに複数のプロキシサービスを追加する
 
---8<-- "../include-ja/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.ja.md"
 
 ### IP リストからオブジェクトを削除する
 
@@ -234,10 +234,10 @@ IP リストを読み取り、変更する API リクエストで渡すパラメ
 
 オブジェクト ID を取得するには、IP リストの内容を要求し、レスポンスから必要なオブジェクトの `objects.id` をコピーしてください：
 
---8<-- "../include-ja/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include/api-request-examples/get-ip-list-contents.ja.md"
 
 オブジェクト ID を持っていれば、次のリクエストを使用してリストから削除できます：
 
---8<-- "../include-ja/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.ja.md"
 
 削除リクエストにおいて、ID を配列として渡すことで複数のオブジェクトを一度に削除できます。

@@ -13,7 +13,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.ja.md"
 
 ## ステップ1: Wallarm Helmチャートリポジトリを更新する
 

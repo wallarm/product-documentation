@@ -36,4 +36,4 @@ location /mirror-test {
 
 ## ステップ2：Wallarm ノードのミラーリングされたトラフィックをフィルタリングするように設定する
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.ja.md"

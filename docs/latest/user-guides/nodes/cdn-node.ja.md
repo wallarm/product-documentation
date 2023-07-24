@@ -25,7 +25,7 @@ WallarmコンソールUIの**ノード**セクションでは、[**Wallarmノー
 !!! info "Free tierプランでのCDNノード"
     CDNノードタイプの展開は、[Free tierプラン](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)ではサポートされていません。
 
---8<-- "../include-ja/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.ja.md"
 
 ## ノードの作成
 
@@ -87,4 +87,4 @@ Wallarmは、CDNノードドメインでHTTPSを有効にする[Let's Encrypt](h
 
 ## CDNノードのトラブルシューティング
 
---8<-- "../include-ja/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.ja.md"

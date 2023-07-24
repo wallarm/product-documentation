@@ -10,7 +10,7 @@
 
 ## ルールの作成と適用
 
---8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/waf/features/rules/rule-creation-options.ja.md"
 
 **Rules** セクションでのルールの作成と適用：
 
@@ -20,7 +20,7 @@
       * 指定されたリクエスト要素に対して無効化/有効化されるべきパーサー。
       * **Part of request** は、選択されたパーサーで解析/未解析とする元のリクエスト要素を指します。
 
-         --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
+         --8<-- "../include/waf/features/rules/request-part-reference.ja.md"
 2. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
 
 ## ルールの例

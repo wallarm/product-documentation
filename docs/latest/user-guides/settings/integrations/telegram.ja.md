@@ -4,7 +4,7 @@ Wallarmを使用して、スケジュールされたレポートやインスタ�
 
 * スケジュールされたレポートは、毎日、毎週、または毎月の基本で送信できます。レポートには、選択した期間中にシステムで検出された脆弱性、攻撃、インシデントに関する詳細な情報が含まれます。
 * 通知には、トリガーされたイベントの簡単な詳細が含まれます。
-    --8<-- "../include-ja/integrations/events-for-integrations.md"
+    --8<-- "../include/integrations/events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -24,7 +24,7 @@ Wallarmを使用して、スケジュールされたレポートやインスタ�
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 インテグレーションがすでに作成されている場合にのみ、Telegramでのインテグレーションをテストできます。テスト Telegram メッセージ：
 
@@ -42,12 +42,12 @@ Wallarmを使用して、スケジュールされたレポートやインスタ�
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

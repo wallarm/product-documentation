@@ -29,7 +29,7 @@
     !!! info "ファイアウォールの設定"
         ファイアウォールが作成されたテンプレートへのHTTP通信をブロックしないようにしてください。HTTP通信を有効にするには、**Allow HTTP traffic** チェックボックスを選択します。
 
-    --8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 6. **Create** ボタンをクリックし、テンプレート作成プロセスが完了するのを待ちます。
 

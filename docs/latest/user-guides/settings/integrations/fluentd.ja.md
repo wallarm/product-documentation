@@ -4,7 +4,7 @@ Wallarmを設定して、適切な統合を作成することで、検出され�
 
 Fluentdに送信する以下のイベントを選択できます。
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 通知フォーマット
 
@@ -100,7 +100,7 @@ Fluentdの設定例：
 1. ターゲットFluentd URL（Webhook URL）を指定します。
 1. 必要に応じて、詳細設定を構成します：
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 1. 指定されたURLに通知を送信するイベントの種類を選択します。 イベントが選択されていない場合、通知は送信されません。
 1. [統合をテスト](#testing-integration)して、設定が正しいことを確認します。
 1. **Add integration**をクリックします。
@@ -109,7 +109,7 @@ Fluentdの設定例：
 
 ## 統合のテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include/integrations/test-integration.ja.md"
 
 テストFluentdログ：
 
@@ -160,19 +160,19 @@ Fluentdの設定例：
 
 ## 統合の更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## 統合の無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## 統合の削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"
 
 ## Fluentdを中間データ収集者として使用する
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 例：
 

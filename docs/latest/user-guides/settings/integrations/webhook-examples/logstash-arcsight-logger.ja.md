@@ -2,7 +2,7 @@
 
 これらの指示は、WallarmとLogstashデータコレクタとの間の例示的な統合を提供し、さらにイベントをArcSight Loggerシステムに転送します。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 ![!Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
@@ -15,7 +15,7 @@
 * [Logstash 7.7.0](#logstash-configuration) をDebian 11.x（bullseye）にインストールし、`https://logstash.example.domain.com`で利用可能
 * [EUクラウド](https://my.wallarm.com)のWallarmコンソールへの管理者アクセスを使用して、[Logstash統合を設定](#configuration-of-logstash-integration)
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 ArcSight LoggerとLogstashサービスへのリンクは例示的なものであり、応答しません。
 
@@ -92,7 +92,7 @@ output {
 
 ### Logstash統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-logstash-webhook.ja.md"
 
 ![!LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -100,7 +100,7 @@ output {
 
 ## 例のテスト
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.ja.md"
 
 Logstashは次のようにイベントをログします。
 

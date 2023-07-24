@@ -78,7 +78,7 @@ NGINXログフォーマットを定義する際に、次のフィルターノー
         
 3.  使用している OS に応じて、次のコマンドのいずれかを実行して NGINX を再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 !!! info "詳細情報"
     NGINX のログ設定に関する詳細情報については、次の[リンク][link-nginx-logging-docs]を参照してください。

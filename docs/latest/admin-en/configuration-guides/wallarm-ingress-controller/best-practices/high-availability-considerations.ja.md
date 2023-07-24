@@ -2,7 +2,7 @@
 
 この記事では、Wallarm Ingressコントローラーが高可用性を持ち、ダウンタイムを防ぐための設定推奨事項を提供しています。
 
---8<-- "../include-ja/ingress-controller-best-practices-intro.md"
+--8<-- "../include/ingress-controller-best-practices-intro.ja.md"
 
 ## 設定推奨事項
 

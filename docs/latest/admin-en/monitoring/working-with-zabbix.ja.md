@@ -56,17 +56,17 @@
 4.  監視操作を確認します:
     1.  Zabbixウィジェットの現在の処理済みリクエスト数が、フィルタリングノードでの `wallarm-status` の出力と一致していることを確認します。
     
-        --8<-- "../include-ja/monitoring/wallarm-status-check-padded-latest.md"
+        --8<-- "../include/monitoring/wallarm-status-check-padded-latest.ja.md"
 
         ![!メトリック値を表示する][img-global-view-0]
 
     2.  フィルタリングノードで保護されたアプリケーションにテスト攻撃を実行します。これを行うには、`curl`ユーティリティまたはブラウザを使用して、アプリケーションに悪意のあるリクエストを送信します。
         
-        --8<-- "../include-ja/monitoring/sample-malicious-request.md"
+        --8<-- "../include/monitoring/sample-malicious-request.ja.md"
         
     3.  `wallarm-status`の出力とZabbixウィジェットの両方で、リクエストカウンタが増加していることを確認します。
     
-        --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
+        --8<-- "../include/monitoring/wallarm-status-output-padded-latest.ja.md"
 
         ![!変更されたメトリック値を表示する][img-global-view-16]
 

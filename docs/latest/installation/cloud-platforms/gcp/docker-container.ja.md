@@ -23,7 +23,7 @@
 
 ## Wallarm ノード Docker コンテナ設定のオプション
 
---8<-- "../include-ja/waf/installation/docker-running-options.md"
+--8<-- "../include/waf/installation/docker-running-options.ja.md"
 
 ## 環境変数を通じて設定された Wallarm ノード Docker コンテナの展開
 
@@ -66,7 +66,7 @@
     * `--container-image`: フィルタリングノードの Docker イメージへのリンク。
     * `--container-env`: フィルタリングノードの設定を持つ環境変数（使用可能な変数は下の表にリストされています）。`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されていません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
 
     * `gcloud compute instances create-with-container` コマンドのすべてのパラメーターは、[GCP ドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)で説明されています。
 1. [GCP コンソール → **Compute Engine** → VM インスタンス](https://console.cloud.google.com/compute/instances) を開き、インスタンスがリストに表示されることを確認します。
@@ -151,7 +151,7 @@
     * `-p`: フィルタリングノードがリッスンするポート。値はインスタンスポートと同じでなければなりません。
     * `-e`: フィルタリングノードの設定を持つ環境変数（利用可能な変数は下の表にリストされています）。`WALLARM_API_TOKEN` の値を明示的に渡すことはお勧めしません。
 
-        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
 1. [フィルタリングノードの動作をテストする](#フィルタリングノードの動作をテストする)。
 
 ## フィルタリングノードの動作をテストする

@@ -108,7 +108,7 @@
     ```
 2. 同期プロセスに更新された設定を適用するために、NGINXを再起動します。
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 ### フィルタリングノードとWallarm Cloudの同期間隔
 

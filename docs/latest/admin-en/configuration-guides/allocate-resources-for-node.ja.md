@@ -9,11 +9,11 @@
 
 ## タランツール
 
---8<-- "../include-ja/allocate-resources-for-waf-node/tarantool-memory.md"
+--8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.ja.md"
 
 ### Kubernetes Ingress Controller のリソース割り当て
 
---8<-- "../include-ja/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.ja.md"
 
 ### その他のデプロイメントオプションでのリソース割り当て
 

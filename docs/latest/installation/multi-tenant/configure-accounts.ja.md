@@ -9,7 +9,7 @@
 
 これらの手順は、テナントアカウントの正しい構成に関する手順を提供します。
 
---8<-- "../include-ja/waf/features/multi-tenancy/partner-client-term.md"
+--8<-- "../include/waf/features/multi-tenancy/partner-client-term.ja.md"
 
 ## テナントアカウント構造
 

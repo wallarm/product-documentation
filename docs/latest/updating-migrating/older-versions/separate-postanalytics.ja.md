@@ -7,15 +7,15 @@
 
 これらの手順は、別のサーバーにインストールされたエンドオブライフのpostanalyticsモジュール（バージョン3.6およびそれ以前）をアップグレードするための手順を説明しています。Postanalyticsモジュールは、[Wallarm NGINXモジュールのアップグレード][docs-module-update]を行う前にアップグレードする必要があります。
 
---8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1：APIポートの更新
 
---8<-- "../include-ja/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ2：新しいWallarmリポジトリの追加
 
@@ -81,18 +81,18 @@
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.4.md"
+    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.4.ja.md"
 
-    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.ja.md"
 === "CentOSまたはAmazon Linux 2.0.2021xおよびそれ以前"
     ```bash
     sudo yum update

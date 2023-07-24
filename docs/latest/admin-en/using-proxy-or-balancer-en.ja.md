@@ -75,7 +75,7 @@ NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法�
    ```
 5. NGINXを再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
     NGINXは、`real_ip_header`ディレクティブで指定されたヘッダーの値を`$remote_addr`変数に割り当てるため、Wallarmノードはこの変数からオリジナルクライアントIPアドレスを読み取ります。
 6. [設定をテストします](#testing-the-configuration)。### ヘッダー `PROXY` を読み取るように NGINX を設定する
@@ -110,7 +110,7 @@ NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法�
     * アドレス `<IP_ADDRESS_OF_YOUR_PROXY>` からのリクエストについて、NGINX はヘッダー `PROXY` で渡されたソースアドレスを変数 `$remote_addr` に割り当てるため、Wallarm ノードはこの変数から元のクライアント IP アドレスを読み取ります。
 5. NGINX を再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.ja.md"
 6. [設定をテストする](#testing-the-configuration)。
 
 オリジナルのクライアント IP アドレスをログに含めるには、ディレクティブ `proxy_set_header` を追加し、NGINX の設定に記載されている [NGINX ロギングの手順](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address) に従って、`log_format` ディレクティブ内の変数リストを編集する必要があります。

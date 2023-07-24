@@ -25,7 +25,7 @@
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1：更新されたフィルタリングノードイメージをダウンロードする
 
@@ -63,7 +63,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## ステップ4：フィルタリングノードの操作をテストする
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## ステップ5：前のバージョンのフィルタリングノードを削除する
 

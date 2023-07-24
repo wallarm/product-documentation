@@ -17,7 +17,7 @@
 
 ## ルールの作成と適用
 
---8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/waf/features/rules/rule-creation-options.ja.md"
 
 **ルール** セクションでルールを作成および適用するには：
 
