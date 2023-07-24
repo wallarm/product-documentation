@@ -1,4 +1,4 @@
-					!!! warning "CentOS GPGキーに関する問題"
+!!! warning "CentOS GPGキーに関する問題"
     既にWallarmリポジトリを追加し、無効なCentOS GPGキーに関連するエラーが発生している場合は、次の手順に従ってください：
 
     1. `yum remove wallarm-node-repo`コマンドを使用して追加したリポジトリを削除します。
