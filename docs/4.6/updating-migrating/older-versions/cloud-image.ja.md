@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/older-versions/cloud-image.ja.md"

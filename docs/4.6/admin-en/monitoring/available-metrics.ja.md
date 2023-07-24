@@ -1,0 +1,1 @@
+--8<-- "latest/admin-en/monitoring/available-metrics.ja.md"

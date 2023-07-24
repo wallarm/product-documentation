@@ -1,0 +1,1 @@
+--8<-- "latest/fast/TSHOOT.ja.md"

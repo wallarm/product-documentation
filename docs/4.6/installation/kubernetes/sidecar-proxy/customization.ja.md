@@ -1,0 +1,1 @@
+--8<-- "latest/installation/kubernetes/sidecar-proxy/customization.ja.md"
