@@ -4,8 +4,8 @@ EXPOSE 8000
 WORKDIR /tmp
 
 # Plugin for image zoom
-RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
-RUN python setup.py install
+# RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
+# RUN python setup.py install
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
