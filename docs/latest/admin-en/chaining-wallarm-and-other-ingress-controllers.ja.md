@@ -1,4 +1,4 @@
-					# Wallarmおよび追加Ingressコントローラの同じKubernetesクラスタでの連鎖
+# Wallarmおよび追加Ingressコントローラの同じKubernetesクラスタでの連鎖
 
 これらの手順は、Wallarm IngressコントローラをK8sクラスタにデプロイし、すでに環境で実行されている他のコントローラとチェーンする方法を提供します。
 
