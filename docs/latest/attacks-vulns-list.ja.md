@@ -1,4 +1,4 @@
-					#   攻撃と脆弱性のタイプ
+# 攻撃と脆弱性のタイプ
 
 [cwe-20]:   https://cwe.mitre.org/data/definitions/20.html
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
