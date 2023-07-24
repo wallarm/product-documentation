@@ -16,16 +16,16 @@
 [platform]:                         ../../installation/supported-deployment-options.md
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#パストラバーサル
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
-[wallarm-nginx-directives]:         ../../admin-et/configure-parameters-jp.md
-[autoscaling-docs]:                 ../../admin-jp/installation-guides/amazon-cloud/autoscaling-overview.md
-[real-ip-docs]:                     ../../admin-jp/using-proxy-or-balancer-jp.md
-[allocate-memory-docs]:             ../../admin-jp/configuration-guides/allocate-resources-for-node.md
+[wallarm-nginx-directives]:         ../../admin-en/configure-parameters-en.ja.md
+[autoscaling-docs]:                 ../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+[real-ip-docs]:                     ../../admin-en/using-proxy-or-balancer-en.ja.md
+[allocate-memory-docs]:             ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../user-guides/rules/configure-overlimit-res-detection.md
-[logs-docs]:                        ../../admin-jp/configure-logging.md
+[logs-docs]:                        ../../admin-en/configure-logging.md
 [oob-advantages-limitations]:       ../oob/overview.md#利点と制限事項
-[wallarm-mode]:                     ../../admin-jp/configure-wallarm-mode.md
+[wallarm-mode]:                     ../../admin-en/configure-wallarm-mode.md
 [oob-docs]:                         ../oob/overview.md
-[wallarm-api-via-proxy]:            ../../admin-jp/configuration-guides/access-to-wallarm-api-via-proxy.md
+[wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#トラフィックミラーリングのWebサーバー設定の事例
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
