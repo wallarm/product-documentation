@@ -1,8 +1,9 @@
 [build]
 publish = "site"
 command = """
-git clone https://github.com/g-provost/lightgallery-markdown.git &&
+(git clone https://github.com/g-provost/lightgallery-markdown.git || true) &&
 cd lightgallery-markdown &&
+git pull &&
 python setup.py install &&
 cd .. &&
 pip3 install --no-cache-dir -r requirements.txt &&
