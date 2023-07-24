@@ -26,11 +26,432 @@ plugins:
         ja:
           name: 日本語
           build: true
+          site_name: Wallarmのドキュメント
       nav_translations:
         ja:
+          Product guides: 製品ガイド
           Home: ホーム
-
-
+          How Wallarm Works: Wallarmの仕組み
+          Wallarm platform overview: Wallarmプラットフォーム概要
+          Detecting attacks: 攻撃の検出
+          Detecting vulnerabilities: 脆弱性の検出
+          Discovering API inventory: APIインベントリの発見
+          API Leaks Remediation: APIリークの対処
+          API Abuse Prevention: API乱用の防止
+          Attack and vulnerability types: 攻撃と脆弱性のタイプ
+          Data management policies: データ管理ポリシー
+          Security model of shared responsibility for clients' data: クライアントデータの共有責任セキュリティモデル
+          Data retention policy: データ保持ポリシー
+          Wallarm subscription plans: Wallarmサブスクリプションプラン
+          Wallarm solution deployment and maintenance best practices: Wallarmソリューションの展開とメンテナンスのベストプラクティス
+          Quick Start: クイックスタート
+          Deployment: デプロイメント
+          Deployment Options: デプロイメントオプション
+          Out-of-Band: アウトオブバンド
+          Overview: 概要
+          Mirroring by Web Servers: Webサーバーによるミラーリング
+          AWS Terraform Module: AWS Terraformモジュール
+          AWS AMI: AWS AMI
+          GCP Machine Image: GCPマシンイメージ
+          Mirroring by Cloud Platforms: クラウドプラットフォームによるミラーリング
+          AWS VPC Mirroring: AWS VPCミラーリング
+          Public Clouds: パブリッククラウド
+          Amazon Web Services: Amazon Webサービス
+          AMI: AMI
+          ECS: ECS
+          Terraform Module: Terraformモジュール
+          Proxy in AWS VPC: AWS VPC内のプロキシ
+          Proxy for Amazon API Gateway: Amazon APIゲートウェイ用プロキシ
+          OOB for Web Server Mirroring: Webサーバーミラーリング用OOB
+          OOB for AWS VPC Mirroring: AWS VPCミラーリング用OOB
+          Google Cloud: Googleクラウド
+          Machine Image: マシンイメージ
+          GCE: GCE
+          Microsoft Azure: Microsoft Azure
+          Azure Container Instances: Azureコンテナインスタンス
+          Alibaba Cloud: Alibaba Cloud
+          CDN: CDN
+          Kubernetes: Kubernetes
+          Ingress: イングレス
+          NGINX Ingress Controller: NGINXイングレスコントローラー
+          Kong Ingress Controller: Kongイングレスコントローラー
+          Deploy: デプロイ
+          Customization: カスタマイズ
+          Sidecar: サイドカー
+          Helm Chart Values: ヘルムチャートの値
+          Pod's Annotations: ポッドの注釈
+          Packages: パッケージ
+          Docker Image (NGINX): Dockerイメージ（NGINX）
+          Docker Image (Envoy): Dockerイメージ（Envoy）
+          Linux Packages for NGINX: NGINX用Linuxパッケージ
+          Linux Packages for NGINX Plus: NGINX Plus用Linuxパッケージ
+          Linux Packages for NGINX Distro: NGINXディストロ用Linuxパッケージ
+          Terraform Module for AWS: AWS用Terraformモジュール
+          Additional: 追加
+          Chaining Wallarm and Ingress Controllers: Wallarmとイングレスコントローラーの連鎖
+          Auto Scaling: オートスケーリング
+          Creating an Amazon Machine Image: Amazonマシンイメージの作成
+          Setting up Filtering Node Auto Scaling: フィルタリングノードのオートスケーリング設定
+          Setting up Incoming Request Balancing: 着信リクエストバランシングの設定
+          Google Cloud Platform: Google Cloud Platform
+          Creating an Image with the Wallarm Filtering Node: Wallarm フィルタリングノードを使用してイメージを作成する
+          Creating a Filtering Node Instance Template: フィルタリングノードインスタンステンプレートの作成
+          Creating a Managed Instance Group with Enabled Auto Scaling: オートスケーリングが有効なマネージドインスタンスグループの作成
+          Specification of the Wallarm cloud-init Script: Wallarm cloud-init スクリプトの仕様
+          Wallarm Deployment to Private Clouds: Wallarm のプライベートクラウドへのデプロイ
+          Separate Postanalytics Module Installation: 別の Postanalytics モジュールのインストール
+          Multi‑Tenant Node: マルチテナントノード
+          Multitenancy overview: マルチテナンシーの概要
+          Creating tenant accounts in Wallarm Console: Wallarm コンソールでテナントアカウントを作成する
+          Deploying and configuring multi-tenant node: マルチテナントノードのデプロイと構成
+          Administrator Guide: 管理者ガイド
+          Configuration: 構成
+          Configuration options for the NGINX‑based Wallarm node: NGINX ベースの Wallarm ノードの構成オプション
+          Configuration options for the Envoy‑based Wallarm node: Envoy ベースの Wallarm ノードの構成オプション
+          Configuration of filtration mode: フィルタリングモードの構成
+          Configuration of the blocking page and error code: ブロックページとエラーコードの構成
+          Configuration of the Statistics Service: 統計サービスの構成
+          Configuration of brute force protection: ブルートフォース保護の構成
+          Configuration of BOLA (IDOR) protection: BOLA (IDOR) 保護の構成
+          DDoS protection: DDoS 保護
+          Fine‑tuning of Wallarm Ingress Controller: Wallarm イングレスコントローラーの微調整
+          Configuration Parameters: 構成パラメータ
+          Best Practices in NGINX-based Wallarm Ingress Controller Configuration: NGINXベースの Wallarm イングレスコントローラー構成のベストプラクティス
+          Proper Reporting of End‑user Public IP Address: エンドユーザーの Public IP アドレスの適切な報告
+          High Availability Considerations: 高可用性に関する考慮事項
+          Ingress Controller Monitoring: イングレスコントローラーの監視
+          Allocating Resources for Wallarm Node: Wallarm ノードへのリソースの割り当て
+          Configuration of Filter Node for Separated Customer Environments: 分離された顧客環境用のフィルター・ノードの設定
+          How Filtering Node Works in Separated Environments: 分離された環境でのフィルタリングノードの動作方法
+          Recommendations on Configuring the Filter Node for Separated Environments: 分離された環境でフィルタリングノードを設定するための推奨事項
+          Access to Wallarm API via Proxy: プロキシ経由で Wallarm API にアクセスする
+          Identifying an original client IP address if using a proxy or load balancer: プロキシやロードバランサを使用している場合のオリジナルクライアントIPアドレスの特定
+          Configuring synchronization between Wallarm node and Cloud: Wallarm ノードとクラウド間の同期を設定する
+          Configuring access to files needed for node operation: ノード操作に必要なファイルへのアクセスを設定する
+          Working with Filter Node Logs: フィルターノードログを操作する
+          Configuring dynamic DNS resolution in NGINX: NGINX で動的 DNS 解決を設定する
+          Using Single Sign‑On (SSO): シングルサインオン (SSO) を使用する
+          Overview of integration with the SAML SSO solution: SAML SSO ソリューションとの統合の概要
+          Connecting SSO with G Suite: G Suite との SSO 接続
+          Overview of Steps for Connecting SSO with G Suite: G Suite との SSO 接続手順の概要
+          'Step 1: Generating Parameters on the Wallarm Side (G Suite)': 手順1：Wallarm 側でのパラメータ生成（G Suite）
+          'Step 2: Creating and Configuring an Application in G Suite': 手順2：G Suite でのアプリケーションの作成と設定
+          'Step 3: Transferring G Suite Metadata to the Wallarm Setup Wizard': 手順3：G Suite メタデータを Wallarm 設定ウィザードに転送する
+          'Step 4: Allowing Access to the Wallarm Application on the G Suite Side': 手順4：G Suite 側で Wallarm アプリケーションへのアクセスを許可する
+          Connecting SSO with Okta: Okta との SSO 接続
+          Overview of Steps for Connecting SSO with Okta: Okta との SSO 接続手順の概要
+          'Step 1: Generating Parameters on the Wallarm Side (Okta)': 手順1：Wallarm 側でのパラメータの生成（Okta）
+          'Step 2: Creating and Configuring an Application in Okta': 手順2：Okta でのアプリケーションの作成と設定
+          'Step 3: Transferring Okta Metadata to the Wallarm Setup Wizard': 手順3：Okta メタデータを Wallarm 設定ウィザードに転送する
+          'Step 4: Allowing Access to the Wallarm Application on the Okta Side': 手順4：Okta 側で Wallarm アプリケーションへのアクセスを許可する
+          Configuring SSO Authentication for Users: ユーザーの SSO 認証を設定する
+          Changing the Configured SSO Authentication: 設定済みの SSO 認証を変更する
+          Monitoring & Failover: 監視とフェイルオーバー
+          Checking the filtering node operation: フィルタリングノード操作の確認
+          Configuring a Failover Method: フェイルオーバー方法の設定
+          Using a Mirrored Wallarm Repository: ミラーリングされた Wallarm リポジトリを使用する
+          How to Mirror the Wallarm Repository for CentOS: CentOS用のWallarmリポジトリをミラーする方法
+          How to Install Wallarm Packages from the Local JFrog Artifactory Repository for CentOS: CentOSのローカルJFrog ArtifactoryリポジトリからWallarmパッケージをインストールする方法
+          Monitoring the Filter Node: フィルターノードの監視
+          Introduction to the filtering node monitoring: フィルタリングノード監視の紹介
+          How to Fetch Metrics: メトリクスの取得方法
+          Available Metrics: 利用可能なメトリクス
+          Examples of Exporting and Working with Metrics: メトリクスのエクスポートと操作の例
+          Grafana: Grafana
+          Exporting Metrics to InfluxDB via the `collectd` Network Plugin: collectdのネットワークプラグイン経由でInfluxDBにメトリクスをエクスポートする
+          Exporting Metrics to Graphite via the `collectd` Write Plugin: collectdのWriteプラグインを経由してGraphiteにメトリクスをエクスポートする方法
+          Working with the Filter Node Metrics in Grafana: Grafanaでフィルタノードのメトリクスを操作する
+          Nagios: Nagios
+          Exporting Metrics to Nagios via the `collectd-nagios` Utility: collectd-nagiosユーティリティを経由したNagiosへのメトリクスのエクスポート
+          Working with the Filter Node Metrics in Nagios: Nagiosでのフィルターノードメトリクスの操作
+          Zabbix: Zabbix
+          Exporting Metrics to Zabbix via the `collectd-nagios` Utility: collectd-nagiosユーティリティを使用してZabbixにメトリクスをエクスポートする
+          Working with the Filter Node in Zabbix: Zabbixのフィルタノードでの作業
+          Operations: 操作
+          Configuring SELinux: SELinuxの設定
+          Wallarm User Acceptance Testing Checklist: Wallarmユーザーアクセプタンステストチェックリスト
+          Learning the amount of requests per month handled by the application: アプリケーションが処理する月次リクエスト数の確認方法
+          Support of the Scanner Operation: スキャナ操作のサポート
+          Best practices for configuring the Active threat verification feature: アクティブな脅威検証機能の設定のベストプラクティス
+          Scanner Addresses: スキャナーのアドレス
+          Scanner Addresses for EU Cloud: EUクラウド用のスキャナーアドレス
+          Scanner Addresses for US Cloud: USクラウド用のスキャナーアドレス
+          Contacting Wallarm Support to Stop the Resource Scanner: リソーススキャナーの停止をWallarmサポートに依頼する
+          Managing Wallarm using Terraform: Terraformを使ってWallarmを管理する
+          User Guide: ユーザーガイド
+          Introduction to the User Guide: ユーザーガイドの紹介
+          Dashboards: ダッシュボード
+          Threat Prevention: 脅威防止
+          API Discovery: APIディスカバリ
+          "OWASP API Security Top\_10": OWASP APIセキュリティトップ10
+          Events: イベント
+          Checking Events: イベントを確認する
+          Analyzing Attacks: 攻撃を分析する
+          Working with False Attacks: 誤った攻撃の操作
+          Verifying Attacks: 攻撃の確認
+          Vulnerabilities: 脆弱性
+          API Leaks: APIの漏洩
+          Search and Filters: 検索とフィルタ
+          Using Search and Filters: 検索とフィルタの使用
+          Creating a Custom Report: カスタムレポートの作成
+          Scanner: スキャナ
+          Nodes: ノード
+          Wallarm nodes: Wallarmノード
+          CDN filtering nodes: CDNフィルタリングノード
+          Rules: ルール
+          Application Profile Rules: アプリケーションプロファイルルール
+          Inspecting Application Profile Rules: アプリケーションプロファイルルールの検査
+          Adding Rules in the Application Profile: アプリケーションプロファイルのルール追加
+          Building and unloading of a custom ruleset: カスタムルールセットの構築と解除
+          Custom ruleset backup and restore: カスタムルールセットのバックアップと復元
+          Analyzing and Parsing Requests: リクエストの分析と解析
+          Available rule types: 利用可能なルールタイプ
+          Managing request parsers: リクエストパーサーの管理
+          Setting response headers: レスポンスヘッダーの設定
+          Filtration mode rule: フィルタリングモードルール
+          Rules for Data Masking: データマスキング用のルール
+          Customizing the module for active threat verification: アクティブな脅威検証のモジュールのカスタマイズ
+          Virtual Patching: 仮想パッチ
+          User‑Defined Detection Rules: ユーザー定義検出ルール
+          Ignoring certain attack types: 特定の攻撃タイプの無視
+          Ignoring attack signs in the binary data: バイナリデータの攻撃サインの無視
+          The overlimit_res attack detection fine‑tuning: overlimit_res攻撃検出の細かい調整
+          Setting rate limit: レート制限の設定
+          Triggers: トリガー
+          Working with triggers: トリガーの操作
+          Trigger examples: トリガーの例
+          IP lists: IPリスト
+          Types and core logic of IP lists: IPリストのタイプと核心ロジック
+          IP address allowlist: IPアドレス許可リスト
+          IP address graylist: IPアドレスグレーリスト
+          IP address denylist: IPアドレス拒否リスト
+          API Abuse Prevention profile management: API Abuse Preventionプロフィール管理
+          BOLA protection: BOLA対策
+          Integrations: インテグレーション
+          Integrations Overview: インテグレーション概要
+          Email Report: Emailレポート
+          Slack: Slack
+          Telegram: Telegram
+          Microsoft Teams: Microsoft Teams
+          InsightConnect: InsightConnect
+          Opsgenie: Opsgenie
+          PagerDuty: PagerDuty
+          Jira: Jira
+          Sumo Logic: Sumo Logic
+          Splunk: Splunk
+          Datadog: Datadog
+          Microsoft Sentinel: Microsoft Sentinel
+          Fluentd: Fluentd
+          Logstash: Logstash
+          Webhook: Webhook
+          Examples of integrations via intermediate data collectors: 中間データコレクター経由のインテグレーション例
+          IBM QRadar via Fluentd: IBM QRadar via Fluentd
+          IBM QRadar via Logstash: IBM QRadar via Logstash
+          Splunk Enterprise via Fluentd: Splunk Enterprise via Fluentd
+          Splunk Enterprise via Logstash: Splunk Enterprise via Logstash
+          Micro Focus ArcSight Logger via Fluentd: Micro Focus ArcSight Logger via Fluentd
+          Micro Focus ArcSight Logger via Logstash: Micro Focus ArcSight Logger via Logstash
+          Datadog via Fluentd/Logstash: Datadog via Fluentd/Logstash
+          Settings: 設定
+          Profile: プロフィール
+          General: 一般
+          Subscriptions: サブスクリプション
+          Applications: アプリケーション
+          Users: ユーザー
+          API tokens: APIトークン
+          Activity Log: アクティビティログ
+          Using single sign‑on to Wallarm portal: Wallarmポータルへのシングルサインオンの使用
+          Upgrading and Migrating: アップグレードと移行
+          What is new in Wallarm node 4.6: Wallarmノード4.6の新機能
+          Filtering node versioning policy: フィルタリングノードのバージョンポリシー
+          Recommendations for a safe node upgrade process: 安全なノードアップグレードプロセスのための推奨事項
+          Filtering node upgrade instructions: フィルタリングノードのアップグレード手順
+          Upgrading Wallarm NGINX modules: Wallarm NGINXモジュールのアップグレード
+          Upgrading the postanalytics module: postanalyticsモジュールのアップグレード
+          Upgrading the Wallarm Docker NGINX- or Envoy-based image: Wallarm Docker NGINX-またはEnvoyベースの画像のアップグレード
+          Upgrading NGINX Ingress controller with integrated Wallarm modules: 統合されたWallarmモジュールを持つNGINX Ingressコントローラのアップグレード
+          Upgrading Kong Ingress controller with integrated Wallarm modules: 統合されたWallarmモジュールを持つKong Ingressコントローラのアップグレード
+          Upgrading Wallarm Sidecar proxy: Wallarm Sidecarプロキシのアップグレード
+          Upgrading the cloud node image: クラウドノード画像のアップグレード
+          Upgrading Wallarm CDN node: Wallarm CDNノードのアップグレード
+          Upgrading the multi‑tenant node: マルチテナントノードのアップグレード
+          Upgrading EOL Wallarm nodes (3.6 and lower): EOL Wallarmノード（3.6および以下）のアップグレード
+          What is new in Wallarm node (if upgrading an EOL node): EOLノードをアップグレードする場合のWallarmノードの新機能
+          Upgrading EOL Wallarm NGINX modules: EOL Wallarm NGINXモジュールのアップグレード
+          Upgrading the EOL postanalytics module: EOL postanalyticsモジュールのアップグレード
+          Upgrading an EOL Docker NGINX- or Envoy-based image: EOL Docker NGINX-またはEnvoyベース画像のアップグレード
+          Upgrading EOL NGINX Ingress controller with integrated Wallarm modules: EOL NGINX Ingressコントローラー（統合されたWallarmモジュール付き）のアップグレード
+          Upgrading an EOL cloud node image: EOLクラウドノード画像のアップグレード
+          Upgrading the EOL multi‑tenant node: EOLマルチテナントノードのアップグレード
+          Migrating allowlists and denylists from EOL Wallarm node: EOL Wallarmノードからの許可リストと拒否リストの移行
+          Inventory of node artifact versions: ノードアーティファクトバージョンのインベントリ
+          Appendix: 付録
+          Glossary: 用語集
+          'Open source: API Firewall': オープンソース：APIファイアウォール
+          API Firewall overview: APIファイアウォールの概要
+          Running API Firewall on Docker: DockerでのAPIファイアウォールの実行
+          Demos: デモ
+          Running the example application and API Firewall with Docker Compose: Docker ComposeでのサンプルアプリケーションとAPIファイアウォールの実行
+          Wallarm API Firewall demo with Kubernetes: KubernetesでのWallarm APIファイアウォールデモ
+          API Firewall changelog: APIファイアウォールの変更ログ
+          'Security testing: FAST': セキュリティテスト：FAST
+          API docs: APIドキュメント
+          Wallarm API overview: Wallarm APIの概要
+          Wallarm API request examples: Wallarm APIリクエスト例
+          FAQ: よくある質問
+          Compatibility of Wallarm filtering node with NGINX versions: WallarmフィルタリングノードとNGINXバージョンの互換性
+          Installing Wallarm Ingress controller: Wallarm Ingressコントローラのインストール
+          Errors after Wallarm node installation: Wallarmノードのインストール後のエラー
+          Wallarm platform and third-party services interaction: Wallarmプラットフォームとサードパーティサービスの相互作用
+          Wallarm service status page: Wallarmサービスステータスページ
+          Wallarm Cloud is down: Wallarmクラウドがダウン
+          Tarantool troubleshooting: Tarantoolトラブルシューティング
+          CPU high usage troubleshooting: CPU使用率が高いトラブルシューティング
+          Attacks are not uploaded to the Wallarm Cloud: 攻撃がWallarmクラウドにアップロードされない
+          Demo videos: デモビデオ
+          Wallarm platform settings: Wallarmプラットフォーム設定
+          Analyzing CVEs and related attacks: CVEおよび関連攻撃の分析
+          API Discovery overview: APIディスカバリーの概要
+          API Abuse Prevention overview: API悪用の防止概要
+          API Leaks overview: APIリークの概要
+          Changelog & news: 変更履歴とニュース
+          'Mirroring by NGINX, Envoy and Similar': NGINX、Envoyなどによるミラーリング
+          AWS: AWS
+          GCP: GCP
+          Docker: Docker
+          Linux: Linux
+          NGINX Stable: NGINX安定版
+          NGINX Plus: NGINX Plus
+          Distribution-Provided NGINX: ディストリビューション提供のNGINX
+          'OOB for NGINX, Envoy, etc. Mirroring': NGINX、EnvoyなどのOOBミラーリング
+          Edge: エッジ
+          Section.io: Section.io
+          Akamai EdgeWorkers: Akamai EdgeWorkers
+          Azion Edge: Azionエッジ
+          AWS Lambda: AWS Lambda
+          API Gateways: APIゲートウェイ
+          Mulesoft: Mulesoft
+          Apigee: Apigee
+          Connectors: コネクタ
+          Docker Images: Dockerイメージ
+          NGINX-based: NGINXベース
+          Envoy-based: Envoyベース
+          Linux Packages: Linuxパッケージ
+          Individual packages for NGINX stable: NGINX安定版の個別パッケージ
+          Individual packages for NGINX Plus: NGINX Plusの個別パッケージ
+          Individual packages for Distribution-Provided NGINX: ディストリビューション提供のNGINX用の個別パッケージ
+          All‑in‑One Installer: 全て一つにまとめたインストーラ
+          Cloud Images: クラウドイメージ
+          Custom Deployment: カスタムデプロイメント
+          Custom NGINX Packages: カスタムNGINXパッケージ
+          Custom Deployment Options: カスタムデプロイメントオプション
+          Additional Options: 追加オプション
+          Multitenancy Overview: マルチテナント概観
+          Creating Tenant Accounts in Wallarm Console: Wallarmコンソールでのテナントアカウントの作成
+          Deploying and Configuring Multi-tenant Node: マルチテナントノードのデプロイメントと設定
+          Docker Image Security: Dockerイメージのセキュリティ
+          Verifying Docker Image Signatures: Dockerイメージの署名の確認
+          Generating an SBOM for Wallarm Docker Images: Wallarm DockerイメージのSBOM生成
+          API Specifications: APIスペック
+          ServiceNow: ServiceNow
+          Amazon S3: Amazon S3
+          Security testing: セキュリティテスト
+          Wallarm FAST Overview: Wallarm FAST概説
+          FAST Onboarding: FAST導入
+          Quick start guide: クイックスタートガイド
+          Deployment options: デプロイメントオプション
+          FAST node deployment: FASTノードデプロイメント
+          Setting the environment for testing: テスト環境の設定
+          Running the test: テストの実行
+          Interpreting the testing results: テスト結果の解釈
+          FAST basic operations: FAST基本動作
+          'How FAST operates: overview': FASTがどのように動作するかの概要
+          Test Policies: テストポリシー
+          Basic Policy Configuration: 基本ポリシー設定
+          Configuration of Point Processing Rules: ポイント処理ルールの設定
+          Configuration of Vulnerability Detection Process: 脆弱性検出プロセスの設定
+          Configuration of Anomaly Detection Process: 異常検出プロセスの設定
+          Principles of Fuzzer Operation: ファズ運用の原則
+          Fuzzer Configuration: Fuzzerの設定
+          Using Test Policies: テストポリシーの使用
+          Test Policy Examples: テストポリシーの例
+          Creating FAST Node And Getting A Token: FASTノードの作成とトークンの取得
+          List of Environment Variables Used by a FAST Node: FASTノードで使用される環境変数のリスト
+          Configuring Authentication of Test Runs: テストランの認証設定
+          Creating A Test Run: テストランの作成
+          Copying A Test Run: テストランの複製
+          Stopping The Recording Process: レコーディングプロセスの停止
+          Checking of Test Run State: テストランの状態の確認
+          Getting the Report with Test Results: テスト結果のレポート取得
+          Integration into CI/CD: CI/CDへの統合
+          Introduction: 紹介
+          Integration Prerequisites: 統合の前提条件
+          Integration via Wallarm API: Wallarm APIを介した統合
+          Principles and Stages: 原則と段階
+          Running FAST Node: FASTノードの実行
+          Waiting For The Testing to Finish: テスト完了待ち
+          Integration Examples: 統合の例
+          Integration of FAST with CircleCI: CircleCIとFASTの統合
+          Integration via FAST Node: FASTノードを介した統合
+          Running FAST Node in Recording Mode: 記録モードでのFASTノードの実行
+          Running FAST Node in Testing Mode: テストモードでのFASTノードの実行
+          Using FAST in Concurrent CI/CD Workflows: 並行CI / CDワークフローでのFASTの使用
+          Examples of Integration: 統合の例
+          CircleCI: CircleCI
+          GitLab CI/CD: GitLab CI/CD
+          Jenkins: Jenkins
+          Bamboo: Bamboo
+          Azure DevOps: Azure DevOps
+          Integration via Plugins: プラグイン経由での統合
+          FAST DSL: FAST DSL
+          FAST DSL Overview: FAST DSL概要
+          The Logic of Extensions: 拡張のロジック
+          The Phases Description: フェーズの説明
+          The Collect Phase: 収集フェーズ
+          The Match Phase: マッチフェーズ
+          The Modify Phase: 修正フェーズ
+          The Generate Phase: 生成フェーズ
+          The Send Phase: 送信フェーズ
+          The Detect Phase: 検出フェーズ
+          The Detect Phase Description: 検出フェーズの説明
+          The Detect Phase Parameters Description: 検出フェーズのパラメーターの説明
+          How the Detect Phase Operates with Markers: マーカーで検出フェーズがどのように機能するか
+          The Creation of FAST Extensions: FAST拡張の作成
+          Examples of the FAST Extensions: FAST拡張の例
+          Examination of the Sample Application: サンプルアプリケーションの調査
+          Creation of Modifying Extension: 修正拡張の作成
+          Creation of Nonmodifying Extension: 非修正拡張の作成
+          Using the FAST Extensions: FAST拡張の使用
+          Creating Points for FAST Extensions: FAST拡張のためのポイントの作成
+          Basic Concepts: 基本概念
+          Parsers and Filters: パーサーとフィルター
+          HTTP Parser and Its Filters: HTTPパーサーとそのフィルター
+          Form-urlencoded parser: フォーム-urlencodedパーサー
+          Multipart parser: マルチパートパーサー
+          Cookie parser: Cookieパーサー
+          XML Parser and Its Filters: XMLパーサーとそのフィルター
+          Json_doc Parser and Its Filters: Json_docパーサーとそのフィルター
+          Base64 parser: Base64パーサー
+          GZIP parser: GZIPパーサー
+          Array filter: 配列フィルター
+          Hash filter: ハッシュフィルター
+          Points Building Principles: ポイント作成の原則
+          How to Build a Point: ポイントの作成方法
+          Text Formatting Conventions: テキスト書式規則
+          Wallarm Clouds List: Wallarm Clouds一覧
+          Vulnerabilities List: 脆弱性一覧
+          Configuration of Proxying Rules: プロキシルールの設定
+          Installing SSL Certificates: SSL証明書のインストール
+          Installing Own Certificate for FAST Node: FASTノード用の独自証明書のインストール
+          Installing the FAST Node Certificate for a Browser: ブラウザ用のFASTノード証明書のインストール
+          Apple Safari: Apple Safari
+          Google Chrome: Google Chrome
+          Microsoft Edge: Microsoft Edge
+          Microsoft Internet Explorer 11: Microsoft Internet Explorer 11
+          Mozilla Firefox: Mozilla Firefox
+          Troubleshooting: トラブルシューティング
+          Addressing Wallarm node issues alerted by OWASP dashboards: OWASPダッシュボードで警告されたWallarmノードの問題に対処
+          Legitimate request is blocked: 正当なリクエストがブロックされる
 
 dev_addr: '127.0.0.1:8000'
 

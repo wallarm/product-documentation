@@ -15,7 +15,7 @@
 Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTPフィルタとして設計されています。
 
 !!! warning "サポートされている設定パラメータ"
-   NGINXベースのフィルタリングノード設定用の最も [ディレクティブ](../../../admin-ja/configure-parameters-ja.md) は、Envoyベースのフィルタリングノード設定ではサポートされていません。 [Envoyベースのフィルタリングノード設定 →](../../../admin-ja/configuration-guides/envoy/fine-tuning.md)で利用可能なパラメータのリストをご覧ください。
+   NGINXベースのフィルタリングノード設定用の最も [ディレクティブ](../../../admin-en/configure-parameters-ja.md) は、Envoyベースのフィルタリングノード設定ではサポートされていません。 [Envoyベースのフィルタリングノード設定 →](../../../admin-en/configuration-guides/envoy/fine-tuning.md)で利用可能なパラメータのリストをご覧ください。
 
 ## 必要条件
 
@@ -26,8 +26,8 @@ Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTP
 
 フィルタリングノードの設定パラメータは、以下の方法で `docker run` コマンドに渡すことができます：
 
-* **環境変数にて**。このオプションは基本的なフィルタリングノードパラメータの設定のみを可能にします、最も [パラメータ](../../../admin-ja/configuration-guides/envoy/fine-tuning.md) は環境変数を通じては変更できません。
-* **マウントされた設定ファイルにて**。このオプションを使用すると、フィルタリングノードのすべての [パラメータ](../../../admin-ja/configuration-guides/envoy/fine-tuning.md) を設定できます。
+* **環境変数にて**。このオプションは基本的なフィルタリングノードパラメータの設定のみを可能にします、最も [パラメータ](../../../admin-en/configuration-guides/envoy/fine-tuning.md) は環境変数を通じては変更できません。
+* **マウントされた設定ファイルにて**。このオプションを使用すると、フィルタリングノードのすべての [パラメータ](../../../admin-en/configuration-guides/envoy/fine-tuning.md) を設定できます。
 
 ## 環境変数を渡してコンテナを実行する
 
@@ -53,9 +53,9 @@ Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTP
 `WALLARM_API_TOKEN` | WallarmノードまたはAPIトークン。 | 必須
 `ENVOY_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレス。 | 必須
 `WALLARM_API_HOST` | Wallarm APIサーバー：<ul><li>`us1.api.wallarm.com`（米国クラウド向け）</li><li>`api.wallarm.com`（ヨーロッパクラウド向け）</li></ul>デフォルトは `api.wallarm.com`。 | 任意
-`WALLARM_MODE` | ノードモード：<ul><li>`block`（悪意のあるリクエストをブロック）</li><li>`safe_blocking`（[グレーリスト化されたIPアドレス](../../../ユーザーガイド/ip-リスト/グレーリスト.md)からの悪意のあるリクエストのみをブロック）</li><li>`monitoring`（リクエストを分析するがブロックしない）</li><li>`off`（トラフィックの解析と処理を無効化）</li></ul>デフォルトは `monitoring`。<br>[フィルタリングモードの詳細説明 →](../../../admin-ja/configure-wallarm-mode.md) | 任意
+`WALLARM_MODE` | ノードモード：<ul><li>`block`（悪意のあるリクエストをブロック）</li><li>`safe_blocking`（[グレーリスト化されたIPアドレス](../../../ユーザーガイド/ip-リスト/グレーリスト.md)からの悪意のあるリクエストのみをブロック）</li><li>`monitoring`（リクエストを分析するがブロックしない）</li><li>`off`（トラフィックの解析と処理を無効化）</li></ul>デフォルトは `monitoring`。<br>[フィルタリングモードの詳細説明 →](../../../admin-en/configure-wallarm-mode.md) | 任意
 `WALLARM_LABELS` | <p>ノード4.6から利用可能。 `WALLARM_API_TOKEN` が `Deploy` ロールの [APIトークン](../../../ユーザーガイド/設定/api-トークン.md) に設定されている場合にのみ機能します。Nodeインスタンスのグループ化に `group` ラベルを設定します。例えば：</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...これは、ノードインスタンスを `<GROUP>` インスタンスグループ（既存のもの、または存在しない場合は新規作成されたもの）に配置します。</p> | APIトークンの場合は必須
-`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる [メモリの量](../../../admin-ja/configuration-guides/allocate-resources-for-node.md)。値は整数または浮動小数点数（小数点 <code>.</code> を使用）にできます。デフォルトは0.2ギガバイト。 | 任意
+`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる [メモリの量](../../../admin-en/configuration-guides/allocate-resources-for-node.md)。値は整数または浮動小数点数（小数点 <code>.</code> を使用）にできます。デフォルトは0.2ギガバイト。 | 任意
 
 このコマンドは次の操作を行います：
 
@@ -69,12 +69,12 @@ Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTP
 
 `envoy.yaml` ファイルを `-v` オプションを通じてDockerコンテナにマウントできます。ファイルには以下の設定を含む必要があります：
 
-* [指示書](../../../admin-ja/configuration-guides/envoy/fine-tuning.md)に記載されているフィルタリングノードの設定
+* [指示書](../../../admin-en/configuration-guides/envoy/fine-tuning.md)に記載されているフィルタリングノードの設定
 * [Envoyの指示書](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)に記載されているEnvoyの設定
 
 コンテナを実行するには：
 
---8<-- "../include/waf/install/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 1. ノードを含むコンテナを実行します：
 
@@ -110,4 +110,4 @@ Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTP
 
 ## Wallarmノード操作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"

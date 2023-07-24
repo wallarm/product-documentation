@@ -205,7 +205,7 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
 
 デフォルトの設定により、動的なWallarmモジュールがNGINX Plusにインストールされています。フィルタリングノードは、デプロイ後に追加の設定が必要な場合があります。
 
-Wallarmの設定は、[NGINXディレクティブ](../../../admin-ja/configure-parameters-ja.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードが存在するマシンの以下のファイルに設定すべきです：
+Wallarmの設定は、[NGINXディレクティブ](../../../admin-en/configure-parameters-ja.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードが存在するマシンの以下のファイルに設定すべきです：
 
 * NGINXの設定がある `/etc/nginx/conf.d/default.conf` 
 * グローバルなフィルタリングノードの設定がある `/etc/nginx/conf.d/wallarm.conf` 

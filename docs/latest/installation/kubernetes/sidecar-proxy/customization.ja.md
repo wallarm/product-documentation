@@ -385,8 +385,8 @@ spec:
         wallarm-sidecar: enabled
       annotations:
         sidecar.wallarm.io/proxy-extra-volumes: "[{'name': 'nginx-http-extra-config', 'configMap': {'name': 'nginx-http-include-cm'}}]"
-        sidecar.wallarm.io/proxy-extra-volume-mounts: "[{'name': 'nginx-http-extra-config', 'mountPath': '/nginx_include-ja/http.conf', 'subPath': 'http.conf'}]"
-        sidecar.wallarm.io/nginx-http-include: "['/nginx_include-ja/http.conf']"
+        sidecar.wallarm.io/proxy-extra-volume-mounts: "[{'name': 'nginx-http-extra-config', 'mountPath': '/nginx_include/http.conf', 'subPath': 'http.conf'}]"
+        sidecar.wallarm.io/nginx-http-include: "['/nginx_include/http.conf']"
     spec:
       containers:
         - name: application

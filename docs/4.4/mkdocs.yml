@@ -5,6 +5,12 @@ site_dir: ../../site/4.4
 theme:
   version: "4.4"
 
+plugins:
+  - i18n:
+      languages:
+        ja:
+          build: false
+
 nav:
   - Product guides:
     - Home: index.md

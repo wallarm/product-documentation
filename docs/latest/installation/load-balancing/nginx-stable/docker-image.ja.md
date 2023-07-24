@@ -1,20 +1,20 @@
-[doc-wallarm-mode]:           ../../../admin-ja/configure-parameters-ja.md#wallarm_mode
-[doc-config-params]:          ../../../admin-ja/configure-parameters-ja.md
-[doc-monitoring]:             ../../../admin-ja/monitoring/intro.md
-[waf-mode-instr]:             ../../../admin-ja/configure-wallarm-mode.md
-[logging-instr]:              ../../../admin-ja/configure-logging.md
-[proxy-balancer-instr]:       ../../../admin-ja/using-proxy-or-balancer-ja.md
-[process-time-limit-instr]:   ../../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
-[allocating-memory-guide]:    ../../../admin-ja/configuration-guides/allocate-resources-for-node.md
-[nginx-waf-directives]:       ../../../admin-ja/configure-parameters-ja.md
+[doc-wallarm-mode]:           ../../../admin-en/configure-parameters-ja.md#wallarm_mode
+[doc-config-params]:          ../../../admin-en/configure-parameters-ja.md
+[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
+[waf-mode-instr]:             ../../../admin-en/configure-wallarm-mode.md
+[logging-instr]:              ../../../admin-en/configure-logging.md
+[proxy-balancer-instr]:       ../../../admin-en/using-proxy-or-balancer-ja.md
+[process-time-limit-instr]:   ../../../admin-en/configure-parameters-ja.md#wallarm_process_time_limit
+[allocating-memory-guide]:    ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[nginx-waf-directives]:       ../../../admin-en/configure-parameters-ja.md
 [mount-config-instr]:         #run-the-container-mounting-the-configuration-file
 [graylist-docs]:              ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:      ../../../admin-ja/configure-wallarm-mode.md
+[filtration-modes-docs]:      ../../../admin-en/configure-wallarm-mode.md
 [application-configuration]:  ../../../user-guides/settings/applications.md
 [ptrav-attack-docs]:          ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:        ../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:          ../../../updating-migrating/versioning-policy.md#version-list
-[node-status-docs]:           ../../../admin-ja/configure-statistics-service.md
+[node-status-docs]:           ../../../admin-en/configure-statistics-service.md
 [node-token]:                 ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                  ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:        ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
@@ -69,7 +69,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
 準備済みの設定ファイルを、`-v`オプションを使ってDockerコンテナにマウントすることができます。ファイルには以下の設定が含まれている必要があります：
 
-* [フィルタリングノードのディレクティブ](../../../admin-ja/configure-parameters-ja.md)
+* [フィルタリングノードのディレクティブ](../../../admin-en/configure-parameters-ja.md)
 * [NGINXの設定](https://nginx.org/en/docs/beginners_guide.html)
 
 コンテナを実行するには：
@@ -145,7 +145,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 * `/var/log/nginx` — NGINXのログ
 * `/var/log/wallarm` — Wallarmノードのログ
 
-フィルタリングノード変数の詳細なログを設定するには、これらの[手順](../../../admin-ja/configure-logging.md)を使用してください。
+フィルタリングノード変数の詳細なログを設定するには、これらの[手順](../../../admin-en/configure-logging.md)を使用してください。
 
 デフォルトでは、ログは24時間ごとに1回ローテーションします。ログのローテーションを設定するには、`/etc/logrotate.d/`の設定ファイルを変更します。環境変数を通じてローテーションパラメータを変更することはできません。
 
@@ -171,6 +171,6 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## ユースケースの設定
 
-Dockerコンテナにマウントされた設定ファイルには、[利用可能なディレクティブ](../../../admin-ja/configure-parameters-ja.md)でフィルタリングノードの設定を記述する必要があります。以下に一般的に使用されるフィルタリングノード設定オプションのいくつかを示します：
+Dockerコンテナにマウントされた設定ファイルには、[利用可能なディレクティブ](../../../admin-en/configure-parameters-ja.md)でフィルタリングノードの設定を記述する必要があります。以下に一般的に使用されるフィルタリングノード設定オプションのいくつかを示します：
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"

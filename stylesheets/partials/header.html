@@ -42,6 +42,12 @@
         {% endif %}
       </div>
 
+      {% if "i18n" in config.plugins %}
+      <div style="margin-left: 10px; margin-right: 10px;">
+          {% include "partials/i18n_languages.html" %}
+      </div>
+      {% endif %}
+
       <!-- Button to open search dialogue -->
       {% if "material/search" in config.plugins %}
       <label class="md-header__button md-icon" for="__search">
