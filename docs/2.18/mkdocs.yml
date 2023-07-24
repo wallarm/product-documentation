@@ -5,12 +5,6 @@ site_dir: ../../site/2.18
 theme:
   version: "2.18"
 
-plugins:
-  - search
-  - minify:
-      minify_html: true
-  - meta-descriptions
-
 nav:
   - Product guides:
     - Home: index.md

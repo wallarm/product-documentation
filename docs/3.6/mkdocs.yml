@@ -4,7 +4,6 @@ site_dir: ../../site/3.6
 
 theme:
   version: "3.6"
-
 plugins:
   - search
   - minify:
