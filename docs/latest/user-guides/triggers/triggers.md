@@ -6,6 +6,7 @@ Triggers are tools that are used to set up custom notifications and reactions to
 * Block IP addresses from which a certain number of requests or attack vectors were sent.
 * Identify [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks) by the number of requests sent to the certain API endpoints.
 * Optimize the event list by [grouping](../../about-wallarm/protecting-against-attacks.md#attack) hits originating from the same IP address into one attack
+* Monitor for increased malicious requests detected by Wallarm nodes that may indicate an ongoing attack and to take timely action, such as manually blocking attacker IP addresses, to mitigate the threat
 
 You can configure all the trigger components:
 
