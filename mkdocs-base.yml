@@ -407,8 +407,8 @@ nav:
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
-        - Upgrading Wallarm NGINX modules: updating-migrating/nginx-modules.md
-        - Upgrading the postanalytics module: updating-migrating/separate-postanalytics.md
+        - Upgrading Wallarm NGINX Modules Installed from Individual Packages: updating-migrating/nginx-modules.md
+        - Upgrading Postanalytics Module Installed from Individual Packages: updating-migrating/separate-postanalytics.md
         - Upgrading Node Installed via All-in-One Installer: updating-migrating/all-in-one.md
         - Upgrading the Wallarm Docker NGINX- or Envoy-based image: updating-migrating/docker-container.md
         - Upgrading NGINX Ingress controller with integrated Wallarm modules: updating-migrating/ingress-controller.md
