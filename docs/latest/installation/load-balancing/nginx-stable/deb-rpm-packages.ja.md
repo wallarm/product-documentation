@@ -1,22 +1,22 @@
 [img-wl-console-users]:             ../../../images/check-user-no-2fa.png
-[wallarm-status-instr]:             ../../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]:             ../../../admin-en/configure-parameters-ja.md
+[wallarm-status-instr]:             ../../../admin-ja/configure-statistics-service.md
+[memory-instr]:                     ../../../admin-ja/configuration-guides/allocate-resources-for-node.md
+[waf-directives-instr]:             ../../../admin-ja/configure-parameters-ja.md
 [ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                    ../../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../../admin-en/using-proxy-or-balancer-ja.md
-[process-time-limit-instr]:         ../../../admin-en/configure-parameters-ja.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../../../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]:   ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[waf-mode-instr]:                   ../../../admin-ja/configure-wallarm-mode.md
+[logging-instr]:                    ../../../admin-ja/configure-logging.md
+[proxy-balancer-instr]:             ../../../admin-ja/using-proxy-or-balancer-ja.md
+[process-time-limit-instr]:         ../../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
+[configure-selinux-instr]:          ../../../admin-ja/configure-selinux.md
+[configure-proxy-balancer-instr]:   ../../../admin-ja/configuration-guides/access-to-wallarm-api-via-proxy.md
 [update-instr]:                     ../../../updating-migrating/nginx-modules.md
-[install-postanalytics-docs]:       ../../../../admin-en/installation-postanalytics-ja/
-[dynamic-dns-resolution-nginx]:     ../../../admin-en/configure-dynamic-dns-resolution-nginx.md
+[install-postanalytics-docs]:       ../../../../admin-ja/installation-postanalytics-ja/
+[dynamic-dns-resolution-nginx]:     ../../../admin-ja/configure-dynamic-dns-resolution-nginx.md
 [waf-mode-recommendations]:         ../../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
 [ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 [versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
-[install-postanalytics-instr]:      ../../../admin-en/installation-postanalytics-ja.md
+[install-postanalytics-instr]:      ../../../admin-ja/installation-postanalytics-ja.md
 [waf-installation-instr-latest]:    /installation/nginx/dynamic-module/
 [img-node-with-several-instances]:  ../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:          ../../../images/user-guides/nodes/create-cloud-node.png
@@ -131,12 +131,12 @@
 WallarmノードはWallarmリポジトリからインストールおよび更新されます。リポジトリを追加するには、プラットフォームごとに以下のコマンドを使用します：
 
 --8<-- "../include/waf/installation/add-nginx-waf-repos-4.6.md"
-## 3. Wallarmパッケージのインストール
+## 3. Wallarmのパッケージをインストールします
 
-必要なパッケージは以下の通りです：
+次のパッケージが必要です：
 
 * NGINX-Wallarmモジュールのための`nginx-module-wallarm`
-* [投稿解析](../../../admin-en/installation-postanalytics-en.md)モジュール、Tarantoolデータベース、および追加のNGINX-Wallarmパッケージのための`wallarm-node`
+* [postanalytics](../../../admin-en/installation-postanalytics-en.md)モジュール、Tarantoolデータベース、そして追加のNGINX-Wallarmパッケージのための`wallarm-node`
 
 === "Debian"
     ```bash
@@ -146,28 +146,30 @@ WallarmノードはWallarmリポジトリからインストールおよび更新
     ```bash
     sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
     ```
-=== "CentOSまたはAmazon Linux 2.0.2021x 以前"
+=== "CentOSまたはAmazon Linux 2.0.2021xとそれ以前"
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
     ```
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y wallarm-node nginx-module-wallarm
-    ```## 4. Wallarm モジュールの接続
+    ```
 
-1. ファイル `/etc/nginx/nginx.conf` を開きます：
+## 4. Wallarmモジュールを接続します
+
+1. ファイル`/etc/nginx/nginx.conf`を開きます：
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. ファイルに `include /etc/nginx/conf.d/*;` の行が追加されていることを確認します。そのような行がない場合は、追加します。
-3. 以下のディレクティブを `worker_processes` ディレクティブの直後に追加します：
+2. ファイルに`include /etc/nginx/conf.d/*;`行が追加されていることを確認します。もしそのような行がなければ、それを追加します。
+3. 次のディレクティブを`worker_processes`ディレクティブのすぐ後ろに追加します：
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    追加したディレクティブを含む設定例：
+    追加したディレクティブを持つ設定の例：
 
     ```
     user  nginx;
@@ -178,21 +180,25 @@ WallarmノードはWallarmリポジトリからインストールおよび更新
     pid        /var/run/nginx.pid;
     ```
 
-4. システム設定のために設定ファイルをコピーします：
+4. システムセットアップのための設定ファイルをコピーします：
 
     ``` bash
     sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
-    ```## 5. フィルタリングノードをWallarm Cloudに接続する
+    ```
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"## 6. Wallarmによるトラフィック解析の有効化
+## 5. フィルタリングノードをWallarm Cloudに接続します
 
-デフォルトでは、デプロイされたWallarmノードは受信トラフィックを解析しません。
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
 
-Wallarmがトラフィックをプロキシするように設定するには、インストール済みのノードがあるマシン上の`/etc/nginx/conf.d/default.conf`ファイルを以下のように変更します：
+## 6. トラフィックの分析をWallarmに許可します
 
-1. Wallarmが正当なトラフィックをプロキシするIPアドレスを設定します。これはアプリケーションインスタンス、ロードバランサー、DNS名など、あなたのアーキテクチャに依存するものです。
+デフォルトでは、デプロイされたWallarmノードは着信トラフィックを分析しません。
 
-    これを行うには、`proxy_pass`の値を編集します。例えば、Wallarmは正当なリクエストを`http://10.80.0.5`に送信するべきです：
+以下のように、インストールされたノードを持つマシン上の`/etc/nginx/conf.d/default.conf`ファイルを変更することで、Wallarmにトラフィックのプロキシを設定します：
+
+1. Wallarmが合法的なトラフィックをプロキシするためのIPアドレスを設定します。これはアプリケーションインスタンス、ロードバランサー、またはDNS名など、あなたのアーキテクチャに依存することができます。
+
+    これを行うには、`proxy_pass`の値を編集します。例えば、Wallarmは合法的なリクエストを`http://10.80.0.5`に送るべきです：
 
     ```
     server {
@@ -207,7 +213,7 @@ Wallarmがトラフィックをプロキシするように設定するには、�
         }
     }
     ```
-2. Wallarmノードが受信トラフィックを解析するために、`wallarm_mode`ディレクティブを`monitoring`に設定します：
+1. Wallarmノードが着信トラフィックを分析できるように、`wallarm_mode`ディレクティブを`monitoring`に設定します：
 
     ```
     server {
@@ -219,31 +225,39 @@ Wallarmがトラフィックをプロキシするように設定するには、�
     }
     ```
 
-    監視モードは、最初のデプロイメントとソリューションテストに推奨されるモードです。Wallarmは安全なブロッキングとブロッキングモードも提供します、[詳細はこちら][waf-mode-instr]をご覧ください。## 7. NGINXの再開
+    モニタリングモードは、最初のデプロイとソリューションのテストには推奨されています。安全なブロッキングとブロッキングモードもWallarmは提供します、[詳細][waf-mode-instr]をご覧ください。
+
+## 7. NGINXを再起動します
 
 --8<-- "../include/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"## 8. Wallarmインスタンスへのトラフィック送信の設定
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
-負荷分散装置のターゲットを更新して、Wallarmインスタンスへのトラフィックを送信します。詳細については、ご使用の負荷分散装置のドキュメンテーションを参照してください。## 9. Wallarmノードの動作をテストする
+## 8. トラフィックの送信をWallarmインスタンスに設定します
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"## 10. 展開されたソリューションの微調整
+ロードバランサーのターゲットを更新して、トラフィックをWallarmインスタンスに送信します。詳細については、ロードバランサーのドキュメンテーションを参照してください。
 
-デフォルトの設定を持つ動的なWallarmモジュールはNGINX `stable`にインストールされています。フィルタリングノードは、展開後に追加の設定を必要とする場合があります。
+## 9. Wallarmノードの操作をテストします
 
-Wallarmの設定は、[NGINXディレクティブ](../../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードがあるマシン上の次のファイルに設定する必要があります：
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-* `/etc/nginx/conf.d/default.conf` にはNGINXの設定があります
-* `/etc/nginx/conf.d/wallarm.conf` には全体のフィルタリングノード設定があります
+## 10. 展開されたソリューションを微調整します
 
-    このファイルは、すべてのドメインに適用される設定用です。異なる設定を異なるドメイングループに適用するには、ファイル `default.conf` を使用するか、各ドメイングループ用に新しい設定ファイル（例えば `example.com.conf` と `test.com.conf`）を作成します。NGINX設定ファイルについての詳細な情報は[公式NGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)で利用できます。
-* `/etc/nginx/conf.d/wallarm-status.conf` にはWallarmノードの監視設定があります。詳細な説明は[リンク][wallarm-status-instr]の中にあります
-* `/etc/default/wallarm-tarantool`あるいは`/etc/sysconfig/wallarm-tarantool` にはTarantoolデータベースの設定があります
+デフォルト設定でNGINX `stable`にインストールされる動的Wallarmモジュールです。フィルタリングノードは展開後にいくつかの追加設定を必要とするかもしれません。
 
-以下に、必要に応じて適用できる典型的な設定がいくつかあります：
+Wallarmの設定は[NGINXディレクティブ](../../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードを持つマシン上の次のファイルに設定するべきです：
+
+* NGINX設定とともに`/etc/nginx/conf.d/default.conf`
+* グローバルフィルタリングノード設定とともに`/etc/nginx/conf.d/wallarm.conf`
+
+    このファイルはすべてのドメインに適用される設定に使用されます。異なる設定を異なるドメイングループに適用するためには、ファイル`default.conf`を使用するか、それぞれのドメイングループに対して新しい設定ファイルを作成します（例えば、`example.com.conf`と`test.com.conf`）。NGINX設定ファイルについての詳細情報は[公式NGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)で利用可能です。
+* Wallarmノードモニタリング設定とともに`/etc/nginx/conf.d/wallarm-status.conf`。詳細な説明は[リンク][wallarm-status-instr]内にあります。
+* Tarantoolデータベース設定とともに`/etc/default/wallarm-tarantool`または`/etc/sysconfig/wallarm-tarantool`
+
+以下は適用することができる典型的な設定のいくつかです：
 
 * [フィルタリングモードの設定][waf-mode-instr]
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
 
-* [NGINXでの動的DNS解決の設定][dynamic-dns-resolution-nginx]
+* [NGINXで動的DNS解決を設定する][dynamic-dns-resolution-nginx]

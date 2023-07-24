@@ -1,8 +1,8 @@
 [link-doc-ami-creation]:        create-image.md
 [link-doc-lb-guide]:            load-balancing-guide.md
 
-[link-ssh-keys-guide]:          ../../installation-ami-en.md#2-create-a-pair-of-ssh-keys
-[link-security-group-guide]:    ../../installation-ami-en.md#3-create-a-security-group
+[link-ssh-keys-guide]:          ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
+[link-security-group-guide]:    ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
 
 [link-doc-as-faq]:              https://aws.amazon.com/autoscaling/faqs/
 
@@ -17,48 +17,48 @@
 [anchor-lt]:    #1-creating-a-launch-template
 [anchor-asg]:   #2-creating-an-auto-scaling-group
 
-#   フィルタリングノードのオートスケーリング設定
+#   フィルタリングノードのオートスケーリングの設定
 
 !!! info "必要な権限"
-    オートスケーリングを設定する前に、Amazon AWSアカウントに以下の権限のいずれかが付与されていることを確認してください：
+    オートスケーリングを設定する前に、Amazon AWSアカウントが以下のいずれかの権限を保持していることを確認してください。
     
     *   `AutoScalingFullAccess`
     *   `AutoScalingConsoleFullAccess`
 
-フィルタリングノードのオートスケーリングを設定するには、以下の手順に従ってください:
-1.  [Launch Templateの作成][anchor-lt]
-2.  [Auto Scaling Groupの作成][anchor-asg]
+フィルタリングノードのオートスケーリングを設定するには、次の手順を実行します：
+1.  [ローンチテンプレートを作成する][anchor-lt]
+2.  [オートスケーリンググループを作成する][anchor-asg]
 
-##  1.  Launch Templateの作成
+##  1.  ローンチテンプレートの作成
 
-Launch Templateは、Amazon Machine Image（AMI）の展開時に使用されるインスタンスタイプを定義し、一般的な仮想マシンパラメータを設定します。
+ローンチテンプレートは、Amazon Machine Image（AMI）のデプロイメント中に使用されるインスタンスタイプを定義し、一部の一般的な仮想マシンのパラメータを設定します。
 
-Launch Templateを作成するには、以下の手順を行ってください:
+ローンチテンプレートの作成方法は下記の通りです：
 
 1.  Amazon EC2ダッシュボードの**Launch Templates**タブに移動し、**Create launch template**ボタンをクリックします。
 
-2.  **Launch template name**フィールドにテンプレート名を入力します。
+2.  **Launch template name**フィールドにテンプレートの名前を入力します。
 
-3.  [事前に作成された][link-doc-ami-creation] Amazon Machine Imageを選択します。これを行うには、**Search for AMI**リンクをクリックし、**My AMIs**カタログから必要なイメージを選択します。
+3.  [前に作成した][link-doc-ami-creation] Amazon Machine Imageを選択します。これを行うには、**Search for AMI**リンクをクリックし、**My AMIs**カタログから必要なイメージを選択します。
 
-4.  **Instance type**リストから、フィルタリングノードの仮想マシンを起動するインスタンスタイプを選択します。
+4.  **Instance type**リストから、フィルタリングノードの仮想マシンを起動するためのインスタンスタイプを選択します。
 
     !!! warning "適切なインスタンスタイプを選択してください"
-        フィルタリングノードを初めて設定する際に使用したインスタンスタイプと同じもの、またはそれ以上のものを選択してください。
+        当初フィルタリングノードを設定した際に使用した同じインスタンスタイプ、またはより強力なものを選択してください。
         
-        より低性能なインスタンスタイプを使用すると、フィルタリングノードの動作に問題が発生する可能性があります。
+        より弱力なインスタンスタイプの使用は、フィルタリングノードの操作に問題を引き起こす可能性があります。 
 
-5.  [事前に作成された][link-ssh-keys-guide] SSHキーペアの名前を**Key pair name**リストから選択します。
+5.  **Key pair name**リストから、フィルタリングノードにアクセスするための[前に作成した][link-ssh-keys-guide] SSHキーペアの名前を選択します。
 
-6.  [事前に作成された][link-security-group-guide]セキュリティグループを**Security Groups**リストから選択します。
+6.  **Security Groups**リストから[前に作成した][link-security-group-guide]セキュリティグループを選択します。
 
 7.  **Create launch template**ボタンをクリックします。
 
-    ![!Launch Templateの作成][img-create-lt-wizard]
+    ![!ローンチテンプレートの作成][img-create-lt-wizard]
     
-テンプレート作成プロセスが完了するのを待ちます。
+テンプレート作成プロセスが終わるまで待ちます。
 
-Launch Templateを作成したら、Auto Scaling Groupの作成に進むことができます。## 2. オートスケーリンググループの作成
+ローンチテンプレートを作成したら、オートスケーリンググループの作成に進むことができます。## 2. オートスケーリンググループの作成
 
 !!! info "オートスケーリング方式の選択"
     このセクションでは、EC2オートスケーリング方式を使用してオートスケーリンググループを作成するプロセスを説明します。

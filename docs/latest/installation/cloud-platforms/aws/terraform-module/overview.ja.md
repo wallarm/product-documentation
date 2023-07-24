@@ -1,35 +1,25 @@
-# Terraformを使用してAWSにWallarmをデプロイする方法
+# Terraformを使用してAWSにWallarmを展開
 
-Wallarmは、Terraform互換の環境から[AWS](https://aws.amazon.com/)にノードをデプロイするための[Terraformモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を提供しています。この手順を使用して、モジュールを試し、提供されたデプロイメント例を試してください。
+Wallarmは、Terraformと互換性のある環境から[AW](https://aws.amazon.com/)にノードを展開するための[Terraformモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を提供しています。 これらの指示に従ってモジュールを調査し、提供されたデプロイメント例を試してみてください。
 
-WallarmのTerraformモジュールを実装することで、**プロキシ** と **ミラー** のセキュリティソリューションという2つの主要なWallarmデプロイメントオプションを有効にするソリューションを提供しています。デプロイメントオプションは、`preset` Wallarmモジュール変数で簡単に制御できます。モジュール自体を設定するか、[提供された例](examples.md)をデプロイすることで両方のオプションを試すことができます。
+WallarmのTerraformモジュールを実装することで、2つの主要なWallarmデプロイメントオプション、すなわち**プロキシ**と**ミラー**のセキュリティソリューションを可能にするソリューションを提供しました。デプロイメントオプションは、`preset` Wallarmモジュール変数によって容易に制御できます。
 
-=== "プロキシソリューションの例示アーキテクチャ"
+## 必要条件
 
-    ![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
-=== "ミラーソリューションの例示アーキテクチャ"
-    
-    ![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+* ローカルに[インストールされた](https://learn.hashicorp.com/tutorials/terraform/install-cli) Terraform 1.0.5以上
+* Wallarm Consoleで**管理者** [役割](../../../../user-guides/settings/users.md#user-roles)を持つアカウントへのアクセス、米国またはEU [クラウド](../../../../about-wallarm/overview.md#cloud)
+* 米国のWallarm Cloudで作業している場合は`https://us1.api.wallarm.com`へ、EUのWallarm Cloudで作業している場合は`https://api.wallarm.com`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
 
-[提供された例示アーキテクチャをどのようにデプロイしますか？](examples.md)
+このトピックには、Wallarmをデプロイするために必要なすべてのAWSリソースを作成するための指示は含まれていません。詳しくは、関連する[Terraformガイド](https://learn.hashicorp.com/tutorials/terraform/module-use)を参照してください。## Wallarm AWS Terraformモジュールの使い方は？
 
-## 前提条件
+AWS Terraformモジュールを使用してWallarmをプロダクション用にデプロイするには:
 
-* Terraform 1.0.5 以上が[ローカルにインストールされている](https://learn.hashicorp.com/tutorials/terraform/install-cli)
-* Wallarm ConsoleでUSまたはEU [クラウド](../../../../about-wallarm/overview.md#cloud)の**管理者** [ロール](../../../../user-guides/settings/users.md#user-roles)を持つアカウントへのアクセス
-* US Wallarm Cloudと連携する場合は `https://us1.api.wallarm.com` に、EU Wallarm Cloudと連携する場合は `https://api.wallarm.com` にアクセスしてください。ファイアウォールでアクセスがブロックされていないことを確認してください
+1. [USクラウド](https://us1.my.wallarm.com/signup)または[EUクラウド](https://my.wallarm.com/signup)のWallarmコンソールにサインアップします。
+1. Wallarmコンソール→ **ノード**を開き、**Wallarmノード**タイプのノードを作成します。
 
-このトピックには、Wallarmをデプロイするために必要なすべてのAWSリソースを作成する手順が含まれていません。詳細については、関連する[Terraformガイド](https://learn.hashicorp.com/tutorials/terraform/module-use)を参照してください。
-## How to use the Wallarm AWS Terraform Module?
-
-To deploy Wallarm for production using the AWS Terraform module:
-
-1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
-1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
-
-    ![!Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. Copy the generated node token.
-1. Add the `wallarm` module code to your Terraform configuration:
+    ![!Wallarmノードの作成](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+1. 生成されたノードトークンをコピーします。
+1. `wallarm`モジュールコードをTerraform設定に追加します:
 
     ```conf
     module "wallarm" {
@@ -46,65 +36,67 @@ To deploy Wallarm for production using the AWS Terraform module:
       ...
     }
     ```
-1. Set variable values in the `wallarm` module configuration:
+1. `wallarm`モジュール設定の変数値を設定します:
 
-| Variable  | Description | Type | Required? |
+| 変数  | 説明 | タイプ | 必須? |
 | --------- | ----------- | --------- | --------- |
-| `instance_type` | [Amazon EC2 instance type](https://aws.amazon.com/ec2/instance-types/) to be used for the Wallarm deployment, e.g.: `t3.small`. | string | Yes
-| `vpc_id` | [ID of the AWS Virtual Private Cloud](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html) to deploy the Wallarm EC2 instance to. | string | Yes
-| `token` | [Wallarm node token](../../../../user-guides/nodes/nodes.md#creating-a-node) copied from the Wallarm Console UI.<br><div class="admonition info"> <p class="admonition-title">Using one token for several installations</p> <p>You can use one token in several installations regardless of the selected [platform](../../../../installation/supported-deployment-options.md). It allows logical grouping of node instances in the Wallarm Console UI. Example: you deploy several Wallarm nodes to a development environment, each node is on its own machine owned by a certain developer.</p></div> | string | Yes
-| **Wallarm-specific variables** | | | |
-| `host` | [Wallarm API server](../../../../about-wallarm/overview.md#cloud). Possible values:<ul><li>`us1.api.wallarm.com` for the US Cloud</li><li>`api.wallarm.com` for the EU Cloud</li></ul>By default, `api.wallarm.com`. | string | No
-`upstream` | The [Wallarm node version](../../../../updating-migrating/versioning-policy.md#version-list) to be deployed. Minimum supported version is `4.0`.<br><br>By default, `4.4`. | string | No
-| `preset` | Wallarm deployment scheme. Possible values:<ul><li>`proxy`</li><li>`mirror`</li></ul>By default, `proxy`. | string | No
-| `proxy_pass` | Proxied server protocol and address. Wallarm node will process requests sent to the specified address and proxy legitimate ones to. As a protocol, 'http' or 'https' can be specified. The address can be specified as a domain name or IP address, and an optional port. | string | Yes, if `preset` is `proxy`
-| `mode` | [Traffic filtration mode](../../../../admin-en/configure-wallarm-mode.md). Possible values: `off`, `monitoring`, `safe_blocking`, `block`.<br><br>By default, `monitoring`. | string | No
-|`libdetection` | Whether to [use the libdetection library](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection) during the traffic analysis.<br><br>By default, `true`. | bool | No
-|`global_snippet` | Custom configuration to be added to the NGINX global configuration. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17). | string | No
-|`http_snippet` | Custom configuration to be added to the `http` configuration block of NGINX. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18). | string | No
-|`server_snippet` | Custom configuration to be added to the `server` configuration block of NGINX. You can put the file with the configuration to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19). | string | No
-|`post_script` | Custom script to be run after the [Wallarm node initialization script (`cloud-init.py`)](../../cloud-init.md). You can put the file with any script to the Terraform code directory and specify the path to this file in this variable.<br><br>You will find the variable configuration example in the [example of the proxy advanced solution deployment](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34). | string | No
-| **AWS deployment configuration** | | | |
-| `app_name` | Prefix for the AWS resource names the Wallarm module will create.<br><br>By default, `wallarm`. | string | No
-| `app_name_no_template` | Whether to use upper-case letters, numbers and special characters in the AWS resource names the Wallarm module will create. If `false`, resource names will include only lower-case letters.<br><br>By default, `false`. | bool | No
-| `lb_subnet_ids` | [List of AWS Virtual Private Cloud subnets IDs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) to deploy an Application Load Balancer in. The recommended value is public subnets associated with a route table that has a route to an internet gateway. | list(string) | No
-| `instance_subnet_ids` | [List of AWS Virtual Private Cloud subnets IDs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html) to deploy Wallarm EC2 instances in. The recommended value is private subnets configured for egress-only connections. | list(string) | No
-| `lb_enabled` | Whether to create an AWS Application Load Balancer. A target group will be created with any value passed in this variable unless a custom target group is specified in the `custom_target_group` variable.<br><br>By default, `true`. | bool | No
-| `lb_internal` | Whether to make an Application Load Balancer an [internal load balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internal-load-balancers.html). By default, an ALB has the internet-facing type. If using the asynchronous approach to handle connections, the recommended value is `true`.<br><br>By default, `false`. | bool | No
-| `lb_deletion_protection` | Whether to enable protection for an [Application Load Balancer to be prevented from being deleted accidentally](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#deletion-protection). For production deployments, the recommended value is `true`.<br><br>By default, `true`. | bool | No
-| `lb_ssl_enabled` | Whether to [negotiate SSL connections](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies) between a client and an Application Load Balancer. If `true`, the `lb_ssl_policy` and `lb_certificate_arn` variables are required. Recommended for production deployments.<br><br>By default, `false`. | bool | No
-| `lb_ssl_policy` | [Security policy for an Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies). | string | Yes, if `lb_ssl_enabled` is `true`
-| `lb_certificate_arn` | [Amazon Resource Name (ARN)](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) of an AWS Certificate Manager (ACM) certificate. | string | Yes, if `lb_ssl_enabled` is `true`
-| `custom_target_group` | Name of existing target group to [attach to the created Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html). By default, a new target group will be created and attached. If the value is non-default, AWS ALB creation will be disabled. | string | No
-| `inbound_allowed_ip_ranges` | List of source IPs and networks to allow inbound connections to Wallarm instances from. Please keep in mind that AWS masks load balancer traffic even if it is originated from public subnets.<br><br>By default:<ul><li>`"10.0.0.0/8",`</li><li>`"172.16.0.0/12",`</li><li>`"192.168.0.0/16"`</li></ul> | list(string) | No
-| `outbound_allowed_ip_ranges` | List of source IPs and networks to allow Wallarm instance outbount connections to.<br><br>By default: `"0.0.0.0/0"`. | list(string) | No
-| `extra_ports` | List of internal network extra ports to allow inbound connections to Wallarm instances from. The configuration will be applied to a security group. | list(number) | No
-| `extra_public_ports` | List of public network extra ports to allow inbound connections to Wallarm instances from.| list(number) | No
-| `extra_policies` | AWS IAM policies to be associated with the Wallarm stack. Can be helpful to use together with the `post_script` variable running the script that requests data from Amazon S3. | list(string) | No
-| `source_ranges` | List of source IPs and networks to allow an AWS Application Load Balancer traffic from.<br><br>By default, `"0.0.0.0/0"`. | list(string) | No
-| `https_redirect_code` | Code for HTTP request redirection to HTTPS. Possible values: <ul><li>`0` - redirect is disabled</li><li>`301` - permanent redirect</li><li>`302` - temporary redirect</li></ul>By default, `0`. | number | No
-| `asg_enabled` | Whether to create an [AWS Auto Scaling group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html).<br><br>By default, `true` | bool | No
-| `min_size` | Minimum number of instances in the created AWS Auto Scaling group.<br><br>By default, `1`.| number | No
-| `max_size` | Maximum number of instances in the created AWS Auto Scaling group.<br><br>By default, `3`.| number | No
-| `desired_capacity` | Inital number of instances in the created AWS Auto Scaling group. Must be greater than or equal to `min_size` and less than or equal to `max_size`.<br><br>By default, `1`.| number | No
-| `autoscaling_enabled` | Whether to enable [Amazon EC2 Auto Scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html) for the Wallarm cluster.<br><br>By default, `false`. | bool | No
-| `autoscaling_cpu_target` | Average CPU utilization percentage to keep the AWS Auto Scaling group at. By default, `70.0`. | string | No
-| `ami_id` | [ID of Amazon Machine Image](https://docs.aws.amazon.com/managedservices/latest/userguide/find-ami.html) to be used for the Wallarm instance deployment. By default (empty string), the latest image from upstream is used. You are welcome to create the custom AMI based on the Wallarm node. | string | No
-| `key_name` | Name of [AWS key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) to be used to connect to the Wallarm instances via SSH. By default, SSH connection is disabled. | string | No
-| `tags` | Tags for AWS resources the Wallarm module will create.| map(string) | No
-## Wallarm Terraformモジュールの使用例を試す
+| `instance_type` | Wallarmのデプロイメントに使用する[Amazon EC2インスタンスタイプ](https://aws.amazon.com/ec2/instance-types/)。例：`t3.small`。 | string | はい |
+| `vpc_id` | Wallarm EC2インスタンスをデプロイする[AWS Virtual Private CloudのID](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html)。 | string | はい |
+| `token` | WallarmコンソールUIからコピーした[Wallarmノードトークン](../../../../user-guides/nodes/nodes.md#creating-a-node)。<br><div class="admonition info"> <p class="admonition-title">一つのトークンを複数のインストールで使用する</p><p>選択した[プラットフォーム](../../../../installation/supported-deployment-options.md)に関係なく、一つのトークンを複数のインストールで使用できます。それにより、WallarmコンソールUIでノードインスタンスを論理的にグループ化することが可能になります。例：開発環境に複数のWallarmノードをデプロイし、各ノードは特定の開発者が所有する独自のマシンにあります。</p></div> | string | はい |
+| **Wallarm固有の変数** | | | |
+| `host` | [Wallarm APIサーバ](../../../../about-wallarm/overview.md#cloud)。可能な値:<ul><li>`us1.api.wallarm.com` - USクラウド用</li><li>`api.wallarm.com` - EUクラウド用</li></ul>デフォルトは `api.wallarm.com`。| string | いいえ |
+`upstream` | デプロイする[Wallarmノードバージョン](../../../../updating-migrating/versioning-policy.md#version-list)。最低サポートバージョンは `4.0`。<br><br>デフォルトは、`4.6`。| string | いいえ |
+| `preset` | Wallarmのデプロイメントスキーム。可能な値:<ul><li>`proxy`</li><li>`mirror`</li></ul>デフォルトは`proxy`。 | string | いいえ |
+| `proxy_pass` | プロキシ化されるサーバーのプロトコルとアドレス。Wallarmノードは指定されたアドレスに送られたリクエストを処理し、正当なものをプロキシ化します。プロトコルとしては、'http'または'https'を指定できます。アドレスは、ドメイン名またはIPアドレスを指定し、オプションでポートを追加できます。 | string | はい、`preset`が `proxy`の場合 |
+| `mode` | [トラフィックフィルタリングモード](../../../../admin-en/configure-wallarm-mode.md)。可能な値: `off`、`monitoring`、`safe_blocking`、`block`。<br><br>デフォルトは、`monitoring`。 | string | いいえ |
+|`libdetection` | トラフィック解析中に[libdetectionライブラリを使用するかどうか](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection)。<br><br>デフォルトは、`true`。| bool | いいえ |
+|`global_snippet` | NGINXのグローバル設定に追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17)で見つけることができます。| string | いいえ |
+|`http_snippet` | NGINXの `http` 設定ブロックに追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18)で見つけることができます。| string | いいえ |
+|`server_snippet` | NGINXの `server` 設定ブロックに追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19)で見つけることができます。| string | いいえ |
+|`post_script` | [Wallarmノード初期化スクリプト (`cloud-init.py`)](../../cloud-init.md)の後に実行するカスタムスクリプト。Terraformコードディレクトリに任意のスクリプトのファイルを置き、この変数でそのファイルへのパスを指定します。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34)で見つけることができます。| string | いいえ |
+| **AWSデプロイメント設定** | | | |
+| `app_name` | Wallarmモジュールが作成するAWSリソース名のプレフィクス。<br><br>デフォルトは、`wallarm`。| string | いいえ |
+| `app_name_no_template` | Wallarmモジュールが作成するAWSリソース名に大文字、数字、特殊文字を使用するかどうか。`false`の場合、リソース名は小文字のみを含む。<br><br>デフォルトは、`false`。 | bool | いいえ |
+| `lb_subnet_ids` | Application Load Balancerをデプロイする[AWS Virtual Private CloudのサブネットIDのリスト](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)。推奨値は、インターネットゲートウェイへのルートが設定されたルートテーブルに関連付けられたパブリックサブネットです。 | list(string) | いいえ |
+| `instance_subnet_ids` | Wallarm EC2インスタンスをデプロイする[AWS Virtual Private CloudのサブネットIDのリスト](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)。推奨値は、egress-only接続が設定されたプライベートサブネットです。 | list(string) | いいえ |
+| `lb_enabled` | AWS Application Load Balancerを作成するかどうか。この変数に任意の値を渡すと、ターゲットグループが作成されます（`custom_target_group`変数でカスタムターゲットグループが指定されていない場合）。<br><br>デフォルトは、`true`。 | bool | いいえ |
+| `lb_internal` | Application Load Balancerを[内部ロードバランサー](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internal-load-balancers.html)にするかどうか。デフォルトでは、ALBはインターネット向けのタイプになっています。接続の非同期処理を使用している場合、推奨値は`true`です。<br><br>デフォルトは、`false`。 | bool | いいえ |
+| `lb_deletion_protection` | [Application Load Balancerの誤って削除されることを防ぐための保護](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html#deletion-protection)を有効にするかどうか。本番環境へのデプロイメントでは、推奨値は`true`です。<br><br>デフォルトは、`true`。 | bool | いいえ |
+| `lb_ssl_enabled` | クライアントとApplication Load Balancerとの間で[SSLコネクションをネゴシエート](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies)するかどうか。`true`の場合、`lb_ssl_policy`および`lb_certificate_arn`変数が必要です。本番環境へのデプロイメントでは推奨されます。<br><br>デフォルトは、`false`。| bool | いいえ |
+| `lb_ssl_policy` | Application Load Balancerの[セキュリティポリシー](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies)。 | string | はい、`lb_ssl_enabled`が `true`の場合 |
+| `lb_certificate_arn` | [Amazonリソースネーム (ARN)](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html)のAWS証明書マネージャー (ACM)証明書。 | string | はい、`lb_ssl_enabled`が `true`の場合 |
+| `custom_target_group` | 作成したAuto Scalingグループに[アタッチする既存のターゲットグループの名前](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html)。デフォルトでは、新しいターゲットグループが作成され、アタッチされます。値が非デフォルトの場合、AWS ALBの作成は無効になります。 | string | いいえ |
+| `inbound_allowed_ip_ranges` | Wallarmインスタンスへのインバウンド接続を許可するソースIPとネットワークのリスト。AWSは、パブリックサブネットから来るロードバランサートラフィックをマスクすることを念頭に置いてください。<br><br>デフォルトは:<ul><li>`"10.0.0.0/8",`</li><li>`"172.16.0.0/12",`</li><li>`"192.168.0.0/16"`</li></ul> | list(string) | いいえ |
+| `outbound_allowed_ip_ranges` | Wallarmインスタンスがアウトバウンド接続を許可するソースIPとネットワークのリスト。<br><br>デフォルトは: `"0.0.0.0/0"`。 | list(string) | いいえ |
+| `extra_ports` | セキュリティグループに適用される設定で、Wallarmインスタンスへのインバウンド接続を許可する内部ネットワークの追加ポートのリスト。 | list(number) | いいえ |
+| `extra_public_ports` | Wallarmインスタンスへのインバウンド接続を許可する公開ネットワークの追加ポートのリスト。| list(number) | いいえ |
+| `extra_policies` | Wallarmスタックに関連付けられるAWS IAMポリシー。Amazon S3からデータをリクエストするスクリプトを実行する`post_script`変数と一緒に使用すると便利です。 | list(string) | いいえ |
+| `source_ranges` | AWS Application Load Balancerからのトラフィックを許可するソースIPとネットワークのリスト。<br><br>デフォルトは、`"0.0.0.0/0"`。 | list(string) | いいえ |
+| `https_redirect_code` | HTTPリクエストをHTTPSにリダイレクトするコード。可能な値: <ul><li>`0` - リダイレクトは無効</li><li>`301` - 恒久的なリダイレクト</li><li>`302` - 一時的なリダイレクト</li></ul>デフォルトは `0`。 | number | いいえ |
+| `asg_enabled` | AWS Auto Scalingグループ](https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-groups.html)を作成するかどうか。<br><br>デフォルトは、`true` | bool | いいえ |
+| `min_size` | 作成するAWS Auto Scalingグループ内のインスタンスの最小数。<br><br>デフォルトは、`1`。| number | いいえ |
+| `max_size` | 作成するAWS Auto Scalingグループ内のインスタンスの最大数。<br><br>デフォルトは、`3`。| number | いいえ |
+| `desired_capacity` | 作成するAWS Auto Scalingグループ内の初期インスタンス数。`min_size`以上`max_size`以下でなければなりません。<br><br>デフォルトは、`1`。| number | いいえ |
+| `autoscaling_enabled` | Wallarmクラスターの[Amazon EC2オートスケーリング](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html)を有効にするかどうか。<br><br>デフォルトは、`false`。 | bool | いいえ |
+| `autoscaling_cpu_target` | AWSオートスケーリンググループを維持するための平均CPU利用率のパーセンテージ。デフォルトは `70.0`。| string | いいえ |
+| `ami_id` | Wallarmインスタンスのデプロイメントに使用する[AmazonマシンイメージのID](https://docs.aws.amazon.com/managedservices/latest/userguide/find-ami.html)。デフォルト（空文字列）の場合、上流からの最新のイメージが使用されます。Wallarmノードに基づいたカスタムAMIを作成することも可能です。| string | いいえ |
+| `key_name` | WallarmインスタンスへのSSH接続に使用する[AWSキーペア](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)の名前。デフォルトでは、SSH接続は無効になっています。 | string | いいえ |
+| `tags` | Wallarmモジュールが作成するAWSリソースのタグ。 | map(string) | いいえ |## Wallarm Terraform モジュールの例を試す
 
-Wallarmモジュールを使用するさまざまな方法の例を用意しましたので、本番環境にデプロイする前に試していただけます。
+Wallarm モジュールの異なる使用方法の例を用意しましたので、本番環境にデプロイする前に試してみてください：
 
-[Wallarm AWS Terraformモジュールのデプロイ例を参照](examples.md)
+* [AWS VPCでのプロキシ](proxy-in-aws-vpc.md)
+* [Amazon API Gateway用プロキシ](proxy-for-aws-api-gateway.md)
+* [NGINX、Envoyまたは類似のミラーリングを持つOOB](oob-for-web-server-mirroring.md)
+* [AWS VPCミラーリング用のOOB](oob-for-aws-vpc-mirroring.md)
 
-## WallarmとTerraformに関するさらなる情報
+## Wallarm と Terraform についての詳細情報
 
-Terraformは、多くの統合（**プロバイダ**）と、公開[レジストリ](https://www.terraform.io/registry#navigating-the-registry)を介してユーザーが利用できる構成済みの設定（**モジュール**）に対応しています。これらはさまざまなベンダーによって提供されています。
+Terraformは、利用者がパブリック[レジストリ](https://www.terraform.io/registry#navigating-the-registry)を通じて利用できる、いくつかの統合 (**プロバイダー**) とすぐに利用できる設定 (**モジュール**) をサポートしています。これらはいくつかのベンダーによって供給されています。
 
-このレジストリには、Wallarmが以下を公開しています：
+このレジストリに、Wallarmは以下を公開しています：
 
-* Terraformと互換性のある環境からAWSへのノードデプロイ用の[Wallarmモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)。本記事で説明しています。
-* Terraform経由でWallarmを管理するための[Wallarmプロバイダ](../../../../admin-en/managing/terraform-provider.md)
+* Terraformと互換性のある環境からAWSにノードをデプロイするための[Wallarmモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)。本記事で説明されています。
+* Terraformを介してWallarmを管理するための[Wallarmプロバイダー](../../../../admin-en/managing/terraform-provider.md)。
 
-これら2つは、それぞれ別々の目的で使用される独立した要素であり、互いに必要としません。
+これら二つは独立した要素であり、それぞれ異なる目的で使用され、お互いには必要としません。

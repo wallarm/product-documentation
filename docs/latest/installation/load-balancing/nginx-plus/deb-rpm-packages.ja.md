@@ -118,20 +118,20 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
 === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y wallarm-node nginx-plus-module-wallarm
-    ```## 4. Wallarm モジュールを接続する
+    ```## 4. Wallarmモジュールの接続
 
-1. ファイル`/etc/nginx/nginx.conf`を開きます：
+1. ファイル `/etc/nginx/nginx.conf` を開きます：
 
     ```bash
     sudo vim /etc/nginx/nginx.conf
     ```
-2. `worker_processes`ディレクティブの直後に次のディレクティブを追加します：
+2. `worker_processes` ディレクティブの直後に下記のディレクティブを追加します：
 
     ```bash
     load_module modules/ngx_http_wallarm_module.so;
     ```
 
-    追加ディレクティブが含まれた設定例：
+    追加されたディレクティブを含む設定例：
 
     ```
     user  nginx;
@@ -142,24 +142,25 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
     pid        /var/run/nginx.pid;
     ```
 
-3. システムセットアップのための設定ファイルをコピーします：
+3. システム設定のための設定ファイルをコピーします：
 
-    ```bash
+    ``` bash
     sudo cp /usr/share/doc/nginx-plus-module-wallarm/examples/*.conf /etc/nginx/conf.d/
     ```
 
-## 5. フィルタリングノードを Wallarm Cloud に接続する
+## 5. フィルタリングノードをWallarm Cloudに接続する
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
-## 6. Wallarmによるトラフィックの分析を有効にする
+
+## 6. Wallarmにトラフィック分析を許可する
 
 デフォルトでは、デプロイされたWallarmノードは受信トラフィックを分析しません。
 
-インストールされたノードを持つマシンの`/etc/nginx/conf.d/default.conf`ファイルを変更して、Wallarmがトラフィックをプロキシするように設定します：
+Wallarmにトラフィックプロキシを設定します。設定には、インストールされたノードのマシン上の `/etc/nginx/conf.d/default.conf` ファイルを下記のように変更します：
 
-1. Wallarmが正当なトラフィックをプロキシするためのIPアドレスを設定します。これは、アプリケーションインスタンス、ロードバランサー、またはDNS名など、アーキテクチャに応じたIPです。
+1. Wallarmに有効なトラフィックをプロキシするIPアドレスを設定します。これは、アプリケーションのインスタンス、ロードバランサーやDNS名など、あなたのアーキテクチャに依存したものかもしれません。
 
-    次のように`proxy_pass`の値を編集し、Wallarmが正当なリクエストを`http://10.80.0.5`に送信するようにします：
+    これを行うには、`proxy_pass` の値を編集します。例えば、Wallarmには有効なリクエストを `http://10.80.0.5` に送信するように指示します：
 
     ```
     server {
@@ -174,7 +175,7 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
         }
     }
     ```
-1. Wallarmノードが受信トラフィックを分析するためには、`wallarm_mode`ディレクティブを`monitoring`に設定します:
+1. Wallarmノードが着信トラフィックを分析するように、`wallarm_mode` ディレクティブを `monitoring` に設定します：
 
     ```
     server {
@@ -186,7 +187,7 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
     }
     ```
 
-    モニタリングモードは、初回のデプロイメントとソリューションテストに推奨されるモードです。Wallarmは、安全なブロッキングモードとブロッキングモードも提供しています。詳細については、[こちらを読む][waf-mode-instr]。
+    モニタリングモードは、初回のデプロイメントおよびソリューションのテストに推奨されます。Wallarmは安全なブロックとブロックモードも提供しています。詳細は[こちら][waf-mode-instr]をご覧ください。
 
 ## 7. NGINX Plusを再起動する
 
@@ -194,27 +195,28 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## 8. Wallarmインスタンスへのトラフィック送信を設定する
+## 8. トラフィックの送信先をWallarmインスタンスに設定する
 
-ロードバランサーのターゲットを更新して、トラフィックをWallarmインスタンスに送信します。詳細については、ロードバランサーのドキュメンテーションを参照してください。
+あなたのロードバランサーのターゲットを更新して、トラフィックをWallarmインスタンスに送信します。詳細については、あなたのロードバランサーのドキュメンテーションを参照してください。
 
 ## 9. Wallarmノードの動作をテストする
 
 --8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
-## 10. デプロイされたソリューションの微調整
 
-デフォルトの設定により、動的なWallarmモジュールがNGINX Plusにインストールされています。フィルタリングノードは、デプロイ後に追加の設定が必要な場合があります。
+## 10. デプロイしたソリューションの微調整
 
-Wallarmの設定は、[NGINXディレクティブ](../../../admin-en/configure-parameters-ja.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードが存在するマシンの以下のファイルに設定すべきです：
+デフォルト設定でNGINX Plusに対して動的なWallarmモジュールがインストールされます。フィルタリングノードは、デプロイ後に追加の設定が必要な場合があります。
 
-* NGINXの設定がある `/etc/nginx/conf.d/default.conf` 
-* グローバルなフィルタリングノードの設定がある `/etc/nginx/conf.d/wallarm.conf` 
+Wallarmの設定は、[NGINXのディレクティブ](../../../admin-en/configure-parameters-en.md) または Wallarm Console UI を使用して定義されます。ディレクティブは、Wallarmノードが存在するマシン上の次のファイルに設定する必要があります：
 
-    このファイルは、すべてのドメインに適用する設定に使用されます。異なる設定を異なるドメイングループに適用するには、`default.conf` ファイルを使用するか、各ドメイングループ（例: `example.com.conf` 、`test.com.conf` など）の新しい設定ファイルを作成します。NGINX設定ファイルの詳細情報は、[公式NGINXドキュメンテーション](https://nginx.org/ja/docs/beginners_guide.html)で利用可能です。
-* Wallarmノードの監視設定がある `/etc/nginx/conf.d/wallarm-status.conf` 。詳細な説明は[リンク][wallarm-status-instr]内にあります。
-* Tarantoolデータベースの設定がある `/etc/default/wallarm-tarantool` または `/etc/sysconfig/wallarm-tarantool` 
+* NGINX設定を含む `/etc/nginx/conf.d/default.conf` 
+* グローバルなフィルタリングノード設定を含む `/etc/nginx/conf.d/wallarm.conf` 
 
-以下に、必要に応じて適用できる典型的な設定をいくつか示します：
+    このファイルは全ドメインに適用される設定に使用します。異なる設定を異なるドメイングループに適用するには、`default.conf` ファイルを使用するか、各ドメイングループ（例えば、`example.com.conf` や `test.com.conf`）の新しい設定ファイルを作成します。NGINXの設定ファイルについての詳しい情報は、[公式NGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)で入手できます。
+* Wallarmノードの監視設定を含む `/etc/nginx/conf.d/wallarm-status.conf`。詳細な説明は[リンク][wallarm-status-instr]内にあります。
+* Tarantoolデータベース設定を含む `/etc/default/wallarm-tarantool` または `/etc/sysconfig/wallarm-tarantool` 
+
+以下に、必要に応じて適用できる一部の典型的な設定を示します：
 
 * [フィルタリングモードの設定][waf-mode-instr]
 

@@ -1,34 +1,35 @@
-# ユーザー活動ログ
+# ユーザーの活動履歴ログ
 
-Wallarm Consoleの **設定** → **アクティビティログ** タブで、Wallarmシステム内のユーザーアクションの履歴を確認できます。ログには、以下のオブジェクトの作成、更新、および削除に関する情報が含まれています。
+Wallarmコンソールの **設定** → **アクティビティログ** タブでは、Wallarmシステム内のユーザーアクションの履歴を確認できます。ログには次のオブジェクトの作成、更新、削除についての情報が含まれます：
 
-* [ネットワークパリメーター](../scanner/check-scope.md)からのIPアドレスまたはサブネット
-* ネットワークパリメーターからのドメイン
-* ネットワークパリメーターからのサービス（ポート）
-* ネットワークパリメーターからのドメインと関連するIPアドレス
+* [公開資産](../scanner.md)からのIPアドレスまたはサブネット
+* ネットワークパリメータからのドメイン
+* ネットワークパリメータからのサービス（ポート）
+* ネットワークパリメータからのドメインと関連するIPアドレス
 * [二要素認証](account.md#enabling-two-factor-authentication)
+* [APIトークン](api-tokens.md)
 * [ユーザー](users.md)
 * トラフィック処理[ルール](../rules/intro.md)
 * [カスタムルールセットのバックアップ](../rules/backup.md)
 * [Wallarmノード](../nodes/nodes.md)
 * [CDNノード](../nodes/cdn-node.md)
 * [トリガー](../triggers/triggers.md)
-* [統合](integrations/integrations-intro.md)
+* [インテグレーション](integrations/integrations-intro.md)
 * [ブロックされたIPアドレス](../ip-lists/denylist.md)
-* [ヒットサンプリング](../events/analyze-attack.md#sampling-of-hits)
+* [ヒットのサンプリング](../events/analyze-attack.md#sampling-of-hits)
 
-ログには、以下のアクションとオブジェクトに関する情報も含まれています。
+ログには以下のアクションとオブジェクトに関する情報も含まれます：
 
-* [偽陽性としてマークされた脆弱性](../vulnerabilities/false-vuln.md)
+* [偽陽性とマークされた脆弱性](../vulnerabilities.md#marking-vulnerabilities-as-false-positives)
 * [再チェックされた攻撃](../events/verify-attack.md)
 
 ![!アクティビティログ](../../images/user-guides/settings/audit-log.png)
 
-**アクティビティログレコードをフィルタリングするには**、以下のパラメータを使用できます。
+**アクティビティログのレコードをフィルタリングするには**、次のパラメータを使用できます：
 
-* アクションを実行したユーザーに関する大文字と小文字を区別するデータ
+* アクションを実行したユーザーの大文字と小文字のデータ
 
-      アクションがWallarm技術サポートチームによって実行された場合、ユーザー名は`Technical support`です。この値はアクティビティログレコードのソートに使用できません。
+      アクションがWallarmの技術サポートチームによって実行された場合、ユーザー名は `Technical support` です。この値はアクティビティログのレコードをソートするために使用することはできません。
 * アクションタイプ
 * アクションが実行されたオブジェクトの名前
-* アクションが実行された日付
+* アクションが実行された日時

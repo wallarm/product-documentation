@@ -1,26 +1,26 @@
-[doc-wallarm-mode]:             ../../../admin-en/configure-parameters-ja.md#wallarm_mode
-[doc-config-params]:            ../../../admin-en/configure-parameters-ja.md
-[doc-monitoring]:               ../../../admin-en/monitoring/intro.md
-[waf-mode-instr]:               ../../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                ../../../admin-en/configure-logging.md
-[proxy-balancer-instr]:         ../../../admin-en/using-proxy-or-balancer-ja.md
-[process-time-limit-instr]:     ../../../admin-en/configure-parameters-ja.md#wallarm_process_time_limit
-[allocating-memory-guide]:      ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[nginx-waf-directives]:         ../../../admin-en/configure-parameters-ja.md
+[doc-wallarm-mode]:             ../../../admin-ja/configure-parameters-ja.md#wallarm_mode
+[doc-config-params]:            ../../../admin-ja/configure-parameters-ja.md
+[doc-monitoring]:               ../../../admin-ja/monitoring/intro.md
+[waf-mode-instr]:               ../../../admin-ja/configure-wallarm-mode.md
+[logging-instr]:                ../../../admin-ja/configure-logging.md
+[proxy-balancer-instr]:         ../../../admin-ja/using-proxy-or-balancer-ja.md
+[process-time-limit-instr]:     ../../../admin-ja/configure-parameters-ja.md#wallarm_process_time_limit
+[allocating-memory-guide]:      ../../../admin-ja/configuration-guides/allocate-resources-for-node.md
+[nginx-waf-directives]:         ../../../admin-ja/configure-parameters-ja.md
 [graylist-docs]:                ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:        ../../../admin-en/configure-wallarm-mode.md
+[filtration-modes-docs]:        ../../../admin-ja/configure-wallarm-mode.md
 [application-configuration]:    ../../../user-guides/settings/applications.md
 [ptrav-attack-docs]:            ../../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:          ../../../images/admin-guides/test-attacks-quickstart.png
 [versioning-policy]:            ../../../updating-migrating/versioning-policy.md#version-list
-[node-status-docs]:             ../../../admin-en/configure-statistics-service.md
+[node-status-docs]:             ../../../admin-ja/configure-statistics-service.md
 [node-token]:                   ../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                    ../../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:          ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                     ../../supported-deployment-options.md
 [oob-advantages-limitations]:   ../overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:overview.md#examples-of-web-server-configuration-for-traffic-mirroring
-[memory-instr]:                 ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[memory-instr]:                 ../../../admin-ja/configuration-guides/allocate-resources-for-node.md
 
 # DockerイメージからのWallarm OOBのデプロイ
 
@@ -82,7 +82,7 @@ Wallarmノードがミラーリングされたトラフィックを分析でき�
     * `set_real_ip_from`と`real_ip_header`というディレクティブは、Wallarmコンソールで攻撃者のIPアドレス[表示][proxy-balancer-instr]するために必要です。
     * `wallarm_force_response_*`というディレクティブは、ミラーリングされたトラフィックから受信したコピーを除くすべてのリクエストの分析を無効にするために必要です。
     * `wallarm_mode`というディレクティブは、トラフィック分析[モード][waf-mode-instr]です。悪意のあるリクエストは[ブロックできない][oob-advantages-limitations]ため、Wallarmが受け入れる唯一のモードはモニタリングです。インラインデプロイメントでは、安全なブロックとブロックのモードもありますが、`wallarm_mode`ディレクティブをモニタリングとは異なる値に設定しても、ノードは引き続きトラフィックを監視し、悪意のあるトラフィックのみを記録します（モードがオフに設定されている場合を除く）。
-1. 必要に応じて他のWallarmディレクティブを指定します。[Wallarm設定パラメータ](../../../admin-en/configure-parameters-ja.md)のドキュメンテーションと[設定事例の利用](#configuring-the-use-cases)を参照して、どの設定が役立つかを理解します。
+1. 必要に応じて他のWallarmディレクティブを指定します。[Wallarm設定パラメータ](../../../admin-ja/configure-parameters-ja.md)のドキュメンテーションと[設定事例の利用](#configuring-the-use-cases)を参照して、どの設定が役立つかを理解します。
 1. 必要であれば、その他のNGINX設定を変更して振る舞いをカスタマイズします。[NGINXのドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)を参照してください。
 
 必要に応じて、他のファイルを以下のコンテナディレクトリにマウントすることもできます：
@@ -136,7 +136,7 @@ Wallarmノードがミラーリングされたトラフィックを分析でき�
 * `/var/log/nginx` — NGINXログ
 * `/var/log/wallarm` — Wallarmノードログ
 
-フィルタリングノード変数の詳細なログを設定するには、これらの[指示](../../../admin-en/configure-logging.md)を使用します。
+フィルタリングノード変数の詳細なログを設定するには、これらの[指示](../../../admin-ja/configure-logging.md)を使用します。
 
 デフォルトでは、ログは24時間ごとにローテーションします。ログローテーションを設定するには、`/etc/logrotate.d/`内の設定ファイルを変更します。環境変数を介したローテーションパラメータの変更はできません。
 
@@ -158,6 +158,6 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## ユースケースの設定
 
-Dockerコンテナにマウントされた設定ファイルは、[利用可能なディレクティブ](../../../admin-en/configure-parameters-ja.md)でフィルタリングノードの設定を説明している必要があります。以下は一般的に使用されるフィルタリングノード設定オプションの例です:
+Dockerコンテナにマウントされた設定ファイルは、[利用可能なディレクティブ](../../../admin-ja/configure-parameters-ja.md)でフィルタリングノードの設定を説明している必要があります。以下は一般的に使用されるフィルタリングノード設定オプションの例です:
 
 --8<-- "../include/waf/installation/linux-packages/common-customization-options.md"

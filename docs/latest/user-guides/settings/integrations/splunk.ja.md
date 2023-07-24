@@ -1,68 +1,68 @@
 [splunk-dashboard-by-wallarm-img]: ../../../images/user-guides/settings/integrations/splunk-dashboard-by-wallarm.png
 
-# Splunk
+#   Splunk
 
-Wallarmを設定して、以下のイベントがトリガーされたときにSplunkにアラートを送信できます。
+以下のイベントがトリガーされると、WallarmはSplunkへのアラートを設定できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-## インテグレーションの設定
+##  統合の設定
 
 Splunk UIで：
 
-1. **設定** ➝ **データの追加** ➝ **監視**を開きます。
-2. **HTTPイベントコレクター**オプションを選択し、インテグレーション名を入力して**次へ**をクリックします。
-3. **入力設定**ページでデータタイプの選択をスキップして、**設定の確認**に進みます。
-4. 設定を**確認**して**送信**します。
+1. **設定** ➝ **データの追加** ➝ **モニター**を開きます。
+2. **HTTPイベントコレクター**のオプションを選択し、統合名を入力して**次へ**をクリックします。
+3. **入力設定**ページでデータタイプの選択をスキップし、**設定の確認**に進みます。
+4. 設定を**確認**し、**送信**します。
 5. 提供されたトークンをコピーします。
 
 Wallarm UIで：
 
-1. **インテグレーション**セクションを開きます。
-2. **Splunk**ブロックをクリックするか、**インテグレーションを追加**ボタンをクリックして**Splunk**を選択します。
-3. インテグレーション名を入力します。
-4. コピーしたトークンを**HECトークン**欄に貼り付けます。
-5. あなたのSplunkインスタンスのHEC URIとポート番号を**HEC URI:PORT**欄に貼り付けます。例：`https://hec.splunk.com:8088`。
-6. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、Splunkのアラートは送信されません。
-7. [インテグレーションをテスト](#testing-integration)して、設定が正しいことを確認します。
-8. **インテグレーションを追加**をクリックします。
+1. **統合**セクションを開きます。
+2. **Splunk**ブロックをクリックするか、**統合を追加**ボタンをクリックして**Splunk**を選択します。
+3. 統合名を入力します。
+4. コピーしたトークンを**HECトークン**フィールドに貼り付けます。
+5. あなたのSplunkインスタンスのHEC URIおよびポート番号を**HEC URI:PORT**フィールドに貼り付けます。例：`https://hec.splunk.com:8088`。
+6. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、Splunkへのアラートは送信されません。
+7. [統合をテスト](#統合のテスト)して設定が正しいことを確認します。
+8. **統合を追加**をクリックします。
 
-![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+![!Splunk統合](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
---8<-- "../include/cloud-ip-by-request.ja.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-## ダッシュボードにイベントを整理する
+## ダッシュボードにイベントを組織化する
 
---8<-- "../include/integrations/application-for-splunk.ja.md"
+--8<-- "../include/integrations/application-for-splunk.md"
 
-## インテグレーションのテスト
+## 統合のテスト
 
---8<-- "../include/integrations/test-integration.ja.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
-JSON形式のSplunk通知をテストします。
+JSON形式でのSplunk通知をテストします：
 
 ```json
 {
-    summary:"[テストメッセージ] [テストパートナー(US)] 新しい脆弱性が検出されました",
-    description:"通知タイプ: vuln
+    summary:"[テストメッセージ] [テストパートナー(US)] 新規脆弱性を検出",
+    description:"通知タイプ：脆弱性
 
-                システムで新しい脆弱性が検出されました。
+                システム内で新しい脆弱性が发现されました。
 
                 ID: 
-                タイトル: テスト
-                ドメイン: example.com
-                パス: 
+                タイトル：テスト
+                ドメイン：example.com
+                パス：
                 メソッド: 
-                Discovered by: 
-                パラメータ: 
-                タイプ: Info
-                脅威: Medium
+                発見者: 
+                パラメーター: 
+                タイプ: インフォ
+                脅威: ミディアム
 
-                詳細: https://us1.my.wallarm.com/object/555
+                詳細はこちら：https://us1.my.wallarm.com/object/555
 
 
-                クライアント: TestCompany
-                クラウド: US
+                クライアント：TestCompany
+                クラウド：US
                 ",
     details:{
         client_name:"TestCompany",
@@ -75,7 +75,7 @@ JSON形式のSplunk通知をテストします。
             method:null,
             parameter:null,
             path:null,
-            title:"テスト",
+            title:"Test",
             discovered_by:null,
             threat:"Medium",
             type:"Info"
@@ -84,14 +84,14 @@ JSON形式のSplunk通知をテストします。
 }
 ```
 
-## インテグレーションの更新
+## 統合の更新
 
---8<-- "../include/integrations/update-integration.ja.md"
+--8<-- "../include/integrations/update-integration.md"
 
-## インテグレーションの無効化
+## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.ja.md"
+--8<-- "../include/integrations/disable-integration.md"
 
-## インテグレーションの削除
+## 統合の削除
 
---8<-- "../include/integrations/remove-integration.ja.md"
+--8<-- "../include/integrations/remove-integration.md"
