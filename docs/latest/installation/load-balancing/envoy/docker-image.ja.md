@@ -74,7 +74,7 @@ Wallarmモジュールは、リクエストのプロキシング用のEnvoy HTTP
 
 コンテナを実行するには：
 
---8<-- "../include/waf/install/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.md"
 
 1. ノードを含むコンテナを実行します：
 
