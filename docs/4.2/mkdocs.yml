@@ -1,9 +1,14 @@
 INHERIT: ../../mkdocs-base.yml
 
-site_dir: ../../4.2
+site_dir: ../../site/4.2
 
 theme:
   version: "4.2"
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - meta-descriptions
 
 nav:
   - Product guides:
