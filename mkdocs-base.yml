@@ -6,7 +6,7 @@ docs_dir: .
 watch:
   - ../latest
 
-edit_uri: ../../product-docs-en/edit/master/docs/latest/
+edit_uri: ../product-docs-en/edit/master/docs/latest/
 repo_url: https://github.com/wallarm/product-docs-en
 repo_name: GitHub
 
