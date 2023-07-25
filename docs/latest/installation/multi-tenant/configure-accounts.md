@@ -48,7 +48,7 @@ Under the **Global administrator** account, you can create tenants via Wallarm C
 
 ![!Creating tenant via Wallarm Console](../../images/partner-waf-node/tenant-create-via-ui.png)
 
-You can create a new **Administrator** user for your new tenant. The invitation email will be sent to the specified address.
+You can create a new **Administrator** [user](../../user-guides/settings/users.md#user-roles) for your new tenant. The invitation email will be sent to the specified address.
 
 #### Via the Wallarm API
 
