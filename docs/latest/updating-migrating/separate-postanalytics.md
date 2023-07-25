@@ -5,6 +5,7 @@
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [tarantool-status]:             ../images/tarantool-status.png
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
+[configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 
 # Upgrading the postanalytics module
 

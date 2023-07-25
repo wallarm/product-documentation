@@ -1,18 +1,32 @@
 [statistics-service-all-parameters]:        ../admin-en/configure-statistics-service.md
 [img-attacks-in-interface]:                 ../images/admin-guides/test-attacks-quickstart.png
 [tarantool-status]:                         ../images/tarantool-status.png
+[configure-proxy-balancer-instr]:           ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[sqli-attack-docs]:                         ../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                          ../attacks-vulns-list.md#crosssite-scripting-xss
 
 # Upgrading Wallarm node with All-in-One Installer
 
 These instructions describe the steps to upgrade the Wallarm node 4.6.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 4.6.x+.
 
-## Requirements for upgrade using all-in-one installer
+## Requirements
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## Prepare Wallarm token
+## Upgrade procedure
 
-In any upgrade scenario, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
+The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
+
+* [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
+* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module
+
+## Filtering node and postanalytics on the same server
+
+Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server.
+
+### Step 1: Prepare Wallarm token
+
+To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
 
 === "API token"
 
@@ -27,30 +41,19 @@ In any upgrade scenario, you will need a Wallarm token of [one of the types](../
     1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
     1. In your existing node group, copy token using node's menu → **Copy token**.
 
-## Upgrade procedure
-
-The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
-
-* [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
-* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module
-
-## Filtering node and postanalytics on the same server
-
-Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server.
-
-### Step 1: Download newest version of all-in-one Wallarm installer
+### Step 2: Download newest version of all-in-one Wallarm installer
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 2: Run all-in-one Wallarm installer
+### Step 3: Run all-in-one Wallarm installer
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-### Step 3: Restart NGINX
+### Step 4: Restart NGINX
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### Step 4: Test Wallarm node operation
+### Step 5: Test Wallarm node operation
 
 To test the new node operation:
 
@@ -68,25 +71,42 @@ To test the new node operation:
 !!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
     If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
 
-### Step 1: Download newest version of all-in-one Wallarm installer to postanalytics machine
+### Step 1: Prepare Wallarm token
+
+To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
+
+=== "API token"
+
+    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
+    1. Find or create API token with the `Deploy` source role.
+    1. Copy this token.
+
+=== "Node token"
+
+    For upgrade, use the same node token that was used for installation:
+
+    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
+    1. In your existing node group, copy token using node's menu → **Copy token**.
+
+### Step 2: Download newest version of all-in-one Wallarm installer to postanalytics machine
 
 This step is performed on the postanalytics machine.
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 2: Run all-in-one Wallarm installer to upgrade postanalytics
+### Step 3: Run all-in-one Wallarm installer to upgrade postanalytics
 
 This step is performed on the postanalytics machine.
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
-### Step 3: Download newest version of all-in-one Wallarm installer to filtering node machine
+### Step 4: Download newest version of all-in-one Wallarm installer to filtering node machine
 
 This step is performed on the filtering node machine.
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 4: Run all-in-one Wallarm installer to upgrade filtering node
+### Step 5: Run all-in-one Wallarm installer to upgrade filtering node
 
 This step is performed on the filtering node machine.
 
@@ -112,6 +132,6 @@ To upgrade filtering node separately with all-in-one installer, use:
     sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
     ```
 
-### Step 5: Check the filtering node and separate postanalytics modules interaction
+### Step 6: Check the filtering node and separate postanalytics modules interaction
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
