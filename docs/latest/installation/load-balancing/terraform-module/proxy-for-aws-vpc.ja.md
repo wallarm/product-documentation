@@ -1,1 +1,0 @@
-terraform-aws-wallarm/examples/proxy/README.ja.md

@@ -1,1 +1,0 @@
-terraform-aws-wallarm/examples/apigateway/README.ja.md
