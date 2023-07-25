@@ -12,7 +12,7 @@ OOBソリューションは悪意のある行動を記録するだけで、ブ�
 
 * アプリケーションパフォーマンスに影響を与えることなく、ウェブアプリケーションとAPIが遭遇可能なすべての潜在的な脅威についての知識を得る。
 * モジュールをインラインで実行する前に、トラフィックコピーでWallarmソリューションをトレーニングする。
-* 監査目的のセキュリティログをキャプチャします。Wallarmは多くのSIEMシステム、メッセンジャーなどとの[ネイティブな統合](../../user-guides/settings/integrations/integrations-intro.md)を提供します。
+* 監査目的のセキュリティログをキャプチャします。Wallarmは多くのSIEMシステム、メッセンジャーなどとの[ネイティブな統合](../../user-guides/settings/integrations/integrations-intro.ja.md)を提供します。
 
 以下の図は、Wallarmの帯域外展開における一般的なトラフィックフローを視覚的に表しています。この図はすべての可能なインフラストラクチャ変動をカバーしていないかもしれません。トラフィックミラーは、インフラストラクチャの任意の支持層で生成され、Wallarmノードに送られます。また、特定のセットアップは、変動する負荷分散およびその他のインフラストラクチャレベルの設定を伴う可能性があります。
 
@@ -29,14 +29,14 @@ Wallarm展開へのOOBアプローチは、インライン展開など他の展�
 
 * Wallarmは悪意のあるリクエストを即座にブロックせず、実際のトラフィックフローに関係なくトラフィック分析が進行します。
 
-    Wallarmは攻撃のみを観察し、[Wallarm Consoleでの詳細](../..//user-guides/events/analyze-attack.md)を提供します。
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方法を使用した脆弱性発見は正常に機能しません。ソリューションは、それがテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいてAPIが脆弱性があるかどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)はサーバー応答がモジュール操作に必要とされるトラフィックに基づいてAPIインベントリを探索しません。
-* [強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、現在は実行可能でないレスポンスコード分析が必要となるため利用できません。。
+    Wallarmは攻撃のみを観察し、[Wallarm Consoleでの詳細](../..//user-guides/events/analyze-attack.ja.md)を提供します。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection)方法を使用した脆弱性発見は正常に機能しません。ソリューションは、それがテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいてAPIが脆弱性があるかどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md)はサーバー応答がモジュール操作に必要とされるトラフィックに基づいてAPIインベントリを探索しません。
+* [強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)は、現在は実行可能でないレスポンスコード分析が必要となるため利用できません。。
 
 ## サポートされている展開オプション
 
 Wallarmは、さまざまな手段でミラーリングされたトラフィックに対して帯域外（OOB）展開オプションを提供します：
 
-* NGINX、Envoy、Istioなどのほとんどのサービスは、トラフィックミラーリングのための組み込みモジュールまたは機能を提供します。そのようなソリューションでミラーリングされたトラフィックを分析するためにWallarm OOBセキュリティソリューションを使用することを好む場合、[適切な展開オプションの概要](web-server-mirroring/overview.md)を参照してください。
-* クラウドプラットフォームは通常、[AWS VPCトラフィックミラーリング](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)が一例ですが、ネイティブのトラフィックミラーリング機能を提供します。Terraform互換環境からAWSに自身のサービスを展開する人々のために、Wallarmは、必要なVPCミラーリング設定を備えたエージェントレスのWallarm展開を可能にする[Terraformモジュール](terraform-module/aws-vpc-mirroring.md)を提供します。
+* NGINX、Envoy、Istioなどのほとんどのサービスは、トラフィックミラーリングのための組み込みモジュールまたは機能を提供します。そのようなソリューションでミラーリングされたトラフィックを分析するためにWallarm OOBセキュリティソリューションを使用することを好む場合、[適切な展開オプションの概要](web-server-mirroring/overview.ja.md)を参照してください。
+* クラウドプラットフォームは通常、[AWS VPCトラフィックミラーリング](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)が一例ですが、ネイティブのトラフィックミラーリング機能を提供します。Terraform互換環境からAWSに自身のサービスを展開する人々のために、Wallarmは、必要なVPCミラーリング設定を備えたエージェントレスのWallarm展開を可能にする[Terraformモジュール](terraform-module/aws-vpc-mirroring.ja.md)を提供します。

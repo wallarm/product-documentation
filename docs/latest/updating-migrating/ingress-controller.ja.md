@@ -1,15 +1,15 @@
-[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../user-guides/ip-lists/graylist.md
-[ip-list-docs]:                     ../user-guides/ip-lists/overview.md
-[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[nginx-process-time-limit-docs]:    ../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]:  ../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.ja.md
+[graylist-docs]:                     ../user-guides/ip-lists/graylist.ja.md
+[ip-list-docs]:                     ../user-guides/ip-lists/overview.ja.md
+[waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.ja.md
 
 # Wallarm付きのNGINX Ingressコントローラーをアップグレードする
 
 これらの手順は、デプロイ済みのWallarm NGINXベースのIngress Controller 4.xをWallarmノード4.4で新しいバージョンにアップグレードする方法を説明しています。
 
-既にサポートが終了したノード（3.6以下）をアップグレードする場合は、[別の手順](older-versions/ingress-controller.md)を使用してください。
+既にサポートが終了したノード（3.6以下）をアップグレードする場合は、[別の手順](older-versions/ingress-controller.ja.md)を使用してください。
 
 ## 要件
 
@@ -83,7 +83,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-1. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストをWallarm Ingressコントローラーのアドレスに送信します：
+1. テスト[Path Traversal](../attacks-vulns-list.ja.md#path-traversal)攻撃を含むリクエストをWallarm Ingressコントローラーのアドレスに送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd

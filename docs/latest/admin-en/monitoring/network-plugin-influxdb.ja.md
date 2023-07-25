@@ -1,6 +1,6 @@
 [img-network-plugin-influxdb]: ../../images/monitoring/network-plugin-influxdb.png
 
-[doc-grafana]: working-with-grafana.md
+[doc-grafana]: working-with-grafana.ja.md
 
 [link-collectd-networking]: https://collectd.org/wiki/index.php/Networking_introduction
 [link-network-plugin]: https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_network

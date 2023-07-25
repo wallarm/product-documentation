@@ -34,9 +34,9 @@ Alibaba CloudインスタンスにNGINX Stableモジュールとしてフィル�
     * Rocky Linux
     * Oracle Linux 8.x
 2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成されたインスタンスに接続します。
-3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従って、NGINX StableのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
+3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.ja.md)に従って、NGINX StableのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。
 
 ## NGINX Plusモジュールとしてのフィルタリングノードのインストール
 
@@ -53,6 +53,6 @@ Alibaba CloudインスタンスにNGINX Plusモジュールとしてフィルタ
     * Rocky Linux
     * Oracle Linux 8.x
 2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成されたインスタンスに接続します。
-3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従って、NGINX PlusのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
+3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.ja.md)に従って、NGINX PlusのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。

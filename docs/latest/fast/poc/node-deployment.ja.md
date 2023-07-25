@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/node-deployment.md"
+--8<-- "latest/fast/poc/node-deployment.ja.md"

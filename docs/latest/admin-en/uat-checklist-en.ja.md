@@ -30,7 +30,7 @@
    curl http://127.0.0.8/wallarm-status
    ```
 
-参照も[フィルターノード操作の確認](installation-check-operation-en.md)
+参照も[フィルターノード操作の確認](installation-check-operation-en.ja.md)
 
 ## Wallarmのインターフェースにログインできる
 
@@ -39,7 +39,7 @@
     *   EUクラウドを使用している場合、<https://my.wallarm.com/> へ進みます。
 2. 成功したログインが可能かを確認します。
 
-参照も[脅威防止ダッシュボードの概要](../user-guides/dashboards/threat-prevention.md)
+参照も[脅威防止ダッシュボードの概要](../user-guides/dashboards/threat-prevention.ja.md)
 
 ## Wallarmのインターフェースが1秒あたりのリクエストを表示する
 
@@ -62,7 +62,7 @@
 
 2. Wallarmのインターフェースが1秒あたりの検出リクエストを表示していることを確認します。
 
-参照も[脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.md)
+参照も[脅威防止ダッシュボード](../user-guides/dashboards/threat-prevention.ja.md)
 
 ## Wallarmがリクエストを偽物とマークし、それらをブロックするのを停止する
 
@@ -71,7 +71,7 @@
 3. おおよそ3分間待ちます。
 4. 再度リクエストを送信し、Wallarmがそれを攻撃として検出し、ブロックするかどうか確認します。
 
-参照も[偽攻撃の扱い](../user-guides/events/false-attack.md)
+参照も[偽攻撃の扱い](../user-guides/events/false-attack.ja.md)
 
 ## Wallarmが脆弱性を検出し、セキュリティインシデントを作成する
 
@@ -79,34 +79,34 @@
 2. 脆弱性を悪用するための悪意のあるリクエストを送信します。
 3. Wallarmインターフェースでインシデントが検出されているかどうかを確認します。
 
-参照も[攻撃とインシデントの確認](../user-guides/events/check-attack.md)
+参照も[攻撃とインシデントの確認](../user-guides/events/check-attack.ja.md)
 
 ## Wallarmが周辺を検出する
 
 1. *Scanner* タブで、リソースのドメインを追加します。
 2. 追加したドメインに関連するすべてのリソースがWallarmによって発見されているかどうかを確認します。
 
-参照も[スキャナーの使用](../user-guides/scanner.md)
+参照も[スキャナーの使用](../user-guides/scanner.ja.md)
 
 ## IP許可リスト、拒否リスト、およびグレーリストが機能する
 
-1. [IPリストの基本ロジック](../user-guides/ip-lists/overview.md)を理解します。
-2. IPアドレスを[許可リスト](../user-guides/ip-lists/allowlist.md)、[拒否リスト](../user-guides/ip-lists/denylist.md)、および[グレーリスト](../user-guides/ip-lists/graylist.md)に追加します。
+1. [IPリストの基本ロジック](../user-guides/ip-lists/overview.ja.md)を理解します。
+2. IPアドレスを[許可リスト](../user-guides/ip-lists/allowlist.ja.md)、[拒否リスト](../user-guides/ip-lists/denylist.ja.md)、および[グレーリスト](../user-guides/ip-lists/graylist.ja.md)に追加します。
 3. フィルタリングノードが、リストに追加されたIPからのリクエストを正しく処理するかどうかを確認します。
 
 ## ユーザーは設定可能であり、適切なアクセス権を持っています
 
 1. Wallarmシステムで*Administrator*役割を持っていることを確認します。
-2. [ユーザーの設定](../user-guides/settings/users.md)で説明されているようにユーザーを作成、役割を変更、無効化、削除します。
+2. [ユーザーの設定](../user-guides/settings/users.ja.md)で説明されているようにユーザーを作成、役割を変更、無効化、削除します。
 
-参照も[ユーザー設定](../user-guides/settings/users.md)
+参照も[ユーザー設定](../user-guides/settings/users.ja.md)
 
 ## ユーザーアクティビティログに記録があります
 
 1. *Settings* -> *Users*に移動します。
 2. *User Activity Log*に記録があることを確認します。
 
-参照も[ユーザーアクティビティログ](../user-guides/settings/audit-log.md)
+参照も[ユーザーアクティビティログ](../user-guides/settings/audit-log.ja.md)
 
 ## レポート機能が動作します
 
@@ -115,4 +115,4 @@
 3. あなたのメールアドレスを入力し、再度レポートボタンをクリックします。
 5. レポートが届いたかどうかを確認します。
 
-参照も[カスタムレポートの作成](../user-guides/search-and-filters/custom-report.md)
+参照も[カスタムレポートの作成](../user-guides/search-and-filters/custom-report.ja.md)

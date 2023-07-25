@@ -53,9 +53,9 @@
 [link-owasp-inputval-cheatsheet]: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
 
 [link-ptrav-mitigation]: https://www.checkmarx.com/knowledge/knowledgebase/path-traversal
-[link-wl-process-time-limit-directive]: admin-en/configure-parameters-en.md#wallarm_process_time_limit
+[link-wl-process-time-limit-directive]: admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
 
-[doc-vpatch]: user-guides/rules/vpatch-rule.md
+[doc-vpatch]: user-guides/rules/vpatch-rule.ja.md
 
 [anchor-main-list]: #the-main-list-of-attacks-and-vulnerabilities
 [anchor-special-list]: #the-list-of-special-attacks-and-vulnerabilities
@@ -140,7 +140,7 @@ XXEの脆弱性は、攻撃者がXMLパーサーに評価され、ターゲッ�
 * 失敗した試行の一定数の後に新しい認証/認可の試行をブロックします。
 * アプリケーションの範囲内のものを除いて、ウェブアプリケーションがそれが運用されているサーバー上の任意のファイルやディレクトリにアクセスするのを制限します。
 
-[ブルートフォースからアプリケーションを保護するための Wallarm ソリューションの設定方法 →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[ブルートフォースからアプリケーションを保護するための Wallarm ソリューションの設定方法 →](admin-en/configuration-guides/protecting-against-bruteforce.ja.md)
 
 ### リソーススキャニング
 
@@ -262,7 +262,7 @@ APIエンドポイントのロジックによって、攻撃者はウェブア�
 
 この脆弱性はIDOR（不安全な直接オブジェクト参照）とも呼ばれます。
 
-[脆弱性の詳細](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.md)
+[脆弱性の詳細](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa1-broken-object-level-authorization.ja.md)
 
 **対策：**
 
@@ -273,7 +273,7 @@ APIエンドポイントのロジックによって、攻撃者はウェブア�
 **Wallarmの動作：**
 
 * Wallarmはこのタイプの脆弱性を自動的に発見します。
-* Wallarmは、この脆弱性を悪用する攻撃をデフォルトでは検出しません。BOLA攻撃を検出しブロックするには、[**BOLA**トリガー](admin-en/configuration-guides/protecting-against-bola.md)を設定します。
+* Wallarmは、この脆弱性を悪用する攻撃をデフォルトでは検出しません。BOLA攻撃を検出しブロックするには、[**BOLA**トリガー](admin-en/configuration-guides/protecting-against-bola.ja.md)を設定します。
 
 ### オープンリダイレクト
 
@@ -307,7 +307,7 @@ APIエンドポイントのロジックによって、攻撃者はウェブア�
 
 成功したSSRF攻撃によって攻撃者は、攻撃されたウェブサーバーを代表してリクエストを行うことが可能となります。このことは、ウェブアプリケーションの使用中のネットワークポートの公開、内部ネットワークのスキャン、また認証のバイパスにつながる可能性があります。
 
-リリース4.4.3から、WallarmはSSRF攻撃の試みを軽減します。SSRFの脆弱性は、すべての[サポートされているWallarmバージョン](updating-migrating/versioning-policy.md)によって検出されます。
+リリース4.4.3から、WallarmはSSRF攻撃の試みを軽減します。SSRFの脆弱性は、すべての[サポートされているWallarmバージョン](updating-migrating/versioning-policy.ja.md)によって検出されます。
 
 **対策：**
 
@@ -372,7 +372,7 @@ CSRFはブラウザーによって解決され、他の保護方法はあまり�
 *   失敗した試行の一定数を超えると新たな認証/承認試行をブロックします。
 *   ウェブアプリケーションのファイルとディレクトリに対して必要かつ十分なアクセス権を設定します。
 
-[brute forceからのアプリケーション保護に向けたWallarmソリューションの設定方法 →](admin-en/configuration-guides/protecting-against-bruteforce.md)
+[brute forceからのアプリケーション保護に向けたWallarmソリューションの設定方法 →](admin-en/configuration-guides/protecting-against-bruteforce.ja.md)
 
 ### 情報漏洩
 
@@ -386,7 +386,7 @@ CSRFはブラウザーによって解決され、他の保護方法はあまり�
 
 アプリケーションは故意にまたはうっかりと、それにアクセスする権限のない対象に敏感な情報を開示します。
 
-このタイプの脆弱性は、[パッシブ検出](about-wallarm/detecting-vulnerabilities.md#passive-detection)の方法だけで検出できます。リクエストに対する応答が敏感な情報を開示する場合、Wallarmはインシデントと、情報公開タイプのアクティブな脆弱性を記録します。Wallarmが検出できる敏感な情報の一部は以下の通りです:
+このタイプの脆弱性は、[パッシブ検出](about-wallarm/detecting-vulnerabilities.ja.md#passive-detection)の方法だけで検出できます。リクエストに対する応答が敏感な情報を開示する場合、Wallarmはインシデントと、情報公開タイプのアクティブな脆弱性を記録します。Wallarmが検出できる敏感な情報の一部は以下の通りです:
 
 * システムと環境の状態 (例: スタックトレース, 警告, 致命的なエラー)
 * ネットワークの状態と構成
@@ -632,7 +632,7 @@ SSIインジェクションは、HTMLページへの悪意のあるペイロー�
 
 マスアサインメント攻撃では、攻撃者はHTTPリクエストパラメーターをプログラムコードの変数やオブジェクトにバインドしようとします。もしAPIが脆弱でバインドを許可しているなら、攻撃者は公開を意図していない敏感なオブジェクトプロパティを変更することができ、これは特権昇格やセキュリティ機構のバイパスなどを引き起こす可能性があります。
 
-クライアント入力を内部変数やオブジェクトプロパティに適切にフィルタリングせずに変換するAPIは、マスアサインメント攻撃に対して脆弱です。この脆弱性は[OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa6-mass-assignment.md)に含まれているAPIセキュリティリスクの中でも最も深刻なものの一つです。
+クライアント入力を内部変数やオブジェクトプロパティに適切にフィルタリングせずに変換するAPIは、マスアサインメント攻撃に対して脆弱です。この脆弱性は[OWASP API Top 10 (API6:2019 Mass Assignment)](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa6-mass-assignment.ja.md)に含まれているAPIセキュリティリスクの中でも最も深刻なものの一つです。
 
 リリース4.4.3から、Wallarmはマスアサインメントの試みを軽減します。
 
@@ -661,14 +661,14 @@ JWTの妨害は、攻撃者の共通の目標であり、認証メカニズム�
 
 **Wallarmの振る舞い:**
 
-フィルタリングノードがバージョン4.4以上であり、[**Weak JWT**トリガー](user-guides/triggers/trigger-examples.md#detect-weak-jwts)が有効にされている場合にのみ、Wallarmは弱いJWTを検出します。
+フィルタリングノードがバージョン4.4以上であり、[**Weak JWT**トリガー](user-guides/triggers/trigger-examples.ja.md#detect-weak-jwts)が有効にされている場合にのみ、Wallarmは弱いJWTを検出します。
 
 Wallarmは、次の場合にJWTを弱いと見なします：
 
 * 未暗号化 - 署名アルゴリズムが存在しない（`alg`フィールドが`none`または欠落）。
 * 強制的な秘密鍵を使用して署名されています。
 
-弱いJWTが検出されると、Wallarmは対応する[脆弱性](user-guides/vulnerabilities.md)を記録します。
+弱いJWTが検出されると、Wallarmは対応する[脆弱性](user-guides/vulnerabilities.ja.md)を記録します。
 
 **修正:**
 
@@ -688,13 +688,13 @@ Wallarmは、次の場合にJWTを弱いと見なします：
 
 フィルタリングノードがバージョン4.2以上でなければ、WallarmはAPIの悪用を検出しません。
 
-[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) モジュールは、以下のボットタイプを検出するために複雑なボット検出モデルを利用します：
+[API Abuse Prevention](about-wallarm/api-abuse-prevention.ja.md) モジュールは、以下のボットタイプを検出するために複雑なボット検出モデルを利用します：
 
 * APIの悪用は、通常、悪意のあるトラフィックの急増によって達成される、サーバー応答時間の増加またはサーバーの使用不可を目的としています。
 * [偽アカウントの作成](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-019_Account_Creation) および [スパミング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-017_Spamming) は、通常サービスが使用できなくなる結果ではなく、サポートチームによるリアルユーザーのリクエストの処理やマーケティングチームによるリアルユーザー統計の収集など、通常のビジネスプロセスを遅くしたり、劣化させる偽アカウントの作成または偽コンテンツの確認（例えば、フィードバック）です。
 * [スキャルピング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-005_Scalping)は、ボットがオンラインストアの製品を本物の顧客にとって利用できなくすることが特徴で、例えばすべてのアイテムを予約して在庫切れにさせているが利益を得ていません。
 
-メトリクスがボット攻撃の兆候を示している場合、モジュールは異常なトラフィックの発信元を1時間[denylistまたはgraylist](about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots)します。
+メトリクスがボット攻撃の兆候を示している場合、モジュールは異常なトラフィックの発信元を1時間[denylistまたはgraylist](about-wallarm/api-abuse-prevention.ja.md#reaction-to-malicious-bots)します。
 
 **修復策：**
 
@@ -720,7 +720,7 @@ Wallarmは、次の場合にJWTを弱いと見なします：
 
 フィルタリングノードがバージョン4.2以上でなければ、WallarmはAPIの悪用を検出しません。
 
-[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) モジュールは、以下のアカウント乗っ取りボットタイプを検出するために複雑なボット検出モデルを使用しています：
+[API Abuse Prevention](about-wallarm/api-abuse-prevention.ja.md) モジュールは、以下のアカウント乗っ取りボットタイプを検出するために複雑なボット検出モデルを使用しています：
 
 * [資格情報のクラッキング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-007_Credential_Cracking.html)は、有効なアカウントの資格情報を特定するために、アプリケーションの認証プロセスに対して使用される、ブルートフォース、辞書（ワードリスト）および推測攻撃を含みます。
 * [資格情報の詰め込み](https://owasp.org/www-community/attacks/Credential_stuffing)は、盗まれたユーザー資格情報を自動的にウェブサイトのログインフォームに注入し、不正にユーザーアカウントへのアクセスを得ることです。
@@ -752,7 +752,7 @@ Wallarmは、次の場合にJWTを弱いと見なします：
 
 フィルタリングノードがバージョン4.2以上でなければ、WallarmはAPIの悪用を検出しません。
 
-[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) モジュールは、以下のセキュリティクローラーボットタイプを検出するために複雑なボット検出モデルを利用します：
+[API Abuse Prevention](about-wallarm/api-abuse-prevention.ja.md) モジュールは、以下のセキュリティクローラーボットタイプを検出するために複雑なボット検出モデルを利用します：
 
 * [フィンガープリンティング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-004_Fingerprinting.html)は、アプリケーションのプロファイルを作成するための情報を引き出す特定のリクエストを利用しています。
 * [フットプリンティング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-018_Footprinting.html)は、アプリケーションの構成、設定、およびセキュリティメカニズムについて可能な限り多くの情報を学ぶことを目的とした情報収集です。
@@ -787,7 +787,7 @@ Webスクレイピングは悪意のある目的に使用される可能性が�
 
 フィルタリングノードがバージョン4.2以上でなければ、WallarmはAPIの悪用を検出しません。
 
-[API Abuse Prevention](about-wallarm/api-abuse-prevention.md) モジュールは、[スクレイピング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) ボットタイプを検出するための複雑なボット検出モデルを使用しています。これにより、アプリケーションからアクセス可能なデータおよび/または処理された出力が収集され、非公開または非無料のコンテンツが全ユーザーが利用可能になる可能性があります。
+[API Abuse Prevention](about-wallarm/api-abuse-prevention.ja.md) モジュールは、[スクレイピング](https://owasp.org/www-project-automated-threats-to-web-applications/assets/oats/EN/OAT-011_Scraping) ボットタイプを検出するための複雑なボット検出モデルを使用しています。これにより、アプリケーションからアクセス可能なデータおよび/または処理された出力が収集され、非公開または非無料のコンテンツが全ユーザーが利用可能になる可能性があります。
 
 **修復策：**
 
@@ -835,7 +835,7 @@ Wallarmのノードは、リクエストを `overlimit_res` 攻撃とマーク�
 
 * Wallarmのノードは、受信リクエストの処理に `N` ミリ秒以上を費やすように設定されています（デフォルト値： `1000`）。指定した時間内にリクエストが処理されなかった場合、リクエストの処理が停止し、リクエストは `overlimit_res` 攻撃としてマークされます。
 
-    [ルール **overlimit_res攻撃検出の調整**](user-guides/rules/configure-overlimit-res-detection.md) を使用してカスタムのタイムリミットを指定し、制限超過時のデフォルトのノードの振る舞いを変更することができます。
+    [ルール **overlimit_res攻撃検出の調整**](user-guides/rules/configure-overlimit-res-detection.ja.md) を使用してカスタムのタイムリミットを指定し、制限超過時のデフォルトのノードの振る舞いを変更することができます。
 
     リクエストの処理時間を制限することにより、Wallarmノードを狙ったバイパス攻撃が防止されます。場合によっては、 `overlimit_res`とマークされたリクエストは、リクエストの処理時間が長い原因としてWallarmノードモジュールに割り当てられたリソースが不足していることを示す可能性があります。
 * リクエストが512 MB以上のgzipファイルをアップロードします。### DDoS（分散型サービス拒否）攻撃
@@ -844,4 +844,4 @@ DDoS（分散型サービス拒否）攻撃は、攻撃者が複数のソース�
 
 攻撃者がDDoS攻撃を開始するために使用できる手法は多数あり、使用する方法やツールは大きく異なることがあります。一部の攻撃は比較的簡単で、サーバーへの大量の接続要求の送信などの低レベルの手法を使用しますが、他の攻撃はより高度で、IPアドレスのなりすましやネットワークインフラの脆弱性を悪用するなどの複雑な戦術を使用します。
 
-[DDoS攻撃から資源を保護するためのガイドをお読みください](admin-en/configuration-guides/protecting-against-ddos.md)
+[DDoS攻撃から資源を保護するためのガイドをお読みください](admin-en/configuration-guides/protecting-against-ddos.ja.md)

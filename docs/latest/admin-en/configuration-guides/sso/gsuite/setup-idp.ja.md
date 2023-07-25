@@ -7,8 +7,8 @@
 [img-app-page]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
 [img-create-attr-mapping]:  ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-attr-mapping.png
 
-[doc-setup-sp]:             setup-sp.md
-[doc-metadata-transfer]:    metadata-transfer.md
+[doc-setup-sp]:             setup-sp.ja.md
+[doc-metadata-transfer]:    metadata-transfer.ja.md
 
 [link-gsuite-adm-console]:  https://admin.google.com
 

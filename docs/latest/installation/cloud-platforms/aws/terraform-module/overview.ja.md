@@ -7,7 +7,7 @@ WallarmのTerraformモジュールを実装することで、2つの主要なWal
 ## 必要条件
 
 * ローカルに[インストールされた](https://learn.hashicorp.com/tutorials/terraform/install-cli) Terraform 1.0.5以上
-* Wallarm Consoleで**管理者** [役割](../../../../user-guides/settings/users.md#user-roles)を持つアカウントへのアクセス、米国またはEU [クラウド](../../../../about-wallarm/overview.md#cloud)
+* Wallarm Consoleで**管理者** [役割](../../../../user-guides/settings/users.ja.md#user-roles)を持つアカウントへのアクセス、米国またはEU [クラウド](../../../../about-wallarm/overview.ja.md#cloud)
 * 米国のWallarm Cloudで作業している場合は`https://us1.api.wallarm.com`へ、EUのWallarm Cloudで作業している場合は`https://api.wallarm.com`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
 
 このトピックには、Wallarmをデプロイするために必要なすべてのAWSリソースを作成するための指示は含まれていません。詳しくは、関連する[Terraformガイド](https://learn.hashicorp.com/tutorials/terraform/module-use)を参照してください。## Wallarm AWS Terraformモジュールの使い方は？
@@ -42,18 +42,18 @@ AWS Terraformモジュールを使用してWallarmをプロダクション用に
 | --------- | ----------- | --------- | --------- |
 | `instance_type` | Wallarmのデプロイメントに使用する[Amazon EC2インスタンスタイプ](https://aws.amazon.com/ec2/instance-types/)。例：`t3.small`。 | string | はい |
 | `vpc_id` | Wallarm EC2インスタンスをデプロイする[AWS Virtual Private CloudのID](https://docs.aws.amazon.com/managedservices/latest/userguide/find-vpc.html)。 | string | はい |
-| `token` | WallarmコンソールUIからコピーした[Wallarmノードトークン](../../../../user-guides/nodes/nodes.md#creating-a-node)。<br><div class="admonition info"> <p class="admonition-title">一つのトークンを複数のインストールで使用する</p><p>選択した[プラットフォーム](../../../../installation/supported-deployment-options.md)に関係なく、一つのトークンを複数のインストールで使用できます。それにより、WallarmコンソールUIでノードインスタンスを論理的にグループ化することが可能になります。例：開発環境に複数のWallarmノードをデプロイし、各ノードは特定の開発者が所有する独自のマシンにあります。</p></div> | string | はい |
+| `token` | WallarmコンソールUIからコピーした[Wallarmノードトークン](../../../../user-guides/nodes/nodes.ja.md#creating-a-node)。<br><div class="admonition info"> <p class="admonition-title">一つのトークンを複数のインストールで使用する</p><p>選択した[プラットフォーム](../../../../installation/supported-deployment-options.ja.md)に関係なく、一つのトークンを複数のインストールで使用できます。それにより、WallarmコンソールUIでノードインスタンスを論理的にグループ化することが可能になります。例：開発環境に複数のWallarmノードをデプロイし、各ノードは特定の開発者が所有する独自のマシンにあります。</p></div> | string | はい |
 | **Wallarm固有の変数** | | | |
-| `host` | [Wallarm APIサーバ](../../../../about-wallarm/overview.md#cloud)。可能な値:<ul><li>`us1.api.wallarm.com` - USクラウド用</li><li>`api.wallarm.com` - EUクラウド用</li></ul>デフォルトは `api.wallarm.com`。| string | いいえ |
-`upstream` | デプロイする[Wallarmノードバージョン](../../../../updating-migrating/versioning-policy.md#version-list)。最低サポートバージョンは `4.0`。<br><br>デフォルトは、`4.6`。| string | いいえ |
+| `host` | [Wallarm APIサーバ](../../../../about-wallarm/overview.ja.md#cloud)。可能な値:<ul><li>`us1.api.wallarm.com` - USクラウド用</li><li>`api.wallarm.com` - EUクラウド用</li></ul>デフォルトは `api.wallarm.com`。| string | いいえ |
+`upstream` | デプロイする[Wallarmノードバージョン](../../../../updating-migrating/versioning-policy.ja.md#version-list)。最低サポートバージョンは `4.0`。<br><br>デフォルトは、`4.6`。| string | いいえ |
 | `preset` | Wallarmのデプロイメントスキーム。可能な値:<ul><li>`proxy`</li><li>`mirror`</li></ul>デフォルトは`proxy`。 | string | いいえ |
 | `proxy_pass` | プロキシ化されるサーバーのプロトコルとアドレス。Wallarmノードは指定されたアドレスに送られたリクエストを処理し、正当なものをプロキシ化します。プロトコルとしては、'http'または'https'を指定できます。アドレスは、ドメイン名またはIPアドレスを指定し、オプションでポートを追加できます。 | string | はい、`preset`が `proxy`の場合 |
-| `mode` | [トラフィックフィルタリングモード](../../../../admin-en/configure-wallarm-mode.md)。可能な値: `off`、`monitoring`、`safe_blocking`、`block`。<br><br>デフォルトは、`monitoring`。 | string | いいえ |
-|`libdetection` | トラフィック解析中に[libdetectionライブラリを使用するかどうか](../../../../about-wallarm/protecting-against-attacks.md#library-libdetection)。<br><br>デフォルトは、`true`。| bool | いいえ |
+| `mode` | [トラフィックフィルタリングモード](../../../../admin-en/configure-wallarm-mode.ja.md)。可能な値: `off`、`monitoring`、`safe_blocking`、`block`。<br><br>デフォルトは、`monitoring`。 | string | いいえ |
+|`libdetection` | トラフィック解析中に[libdetectionライブラリを使用するかどうか](../../../../about-wallarm/protecting-against-attacks.ja.md#library-libdetection)。<br><br>デフォルトは、`true`。| bool | いいえ |
 |`global_snippet` | NGINXのグローバル設定に追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L17)で見つけることができます。| string | いいえ |
 |`http_snippet` | NGINXの `http` 設定ブロックに追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L18)で見つけることができます。| string | いいえ |
 |`server_snippet` | NGINXの `server` 設定ブロックに追加するカスタム設定。Terraformコードディレクトリに設定ファイルを置き、この変数でそのファイルへのパスを指定することができます。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L19)で見つけることができます。| string | いいえ |
-|`post_script` | [Wallarmノード初期化スクリプト (`cloud-init.py`)](../../cloud-init.md)の後に実行するカスタムスクリプト。Terraformコードディレクトリに任意のスクリプトのファイルを置き、この変数でそのファイルへのパスを指定します。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34)で見つけることができます。| string | いいえ |
+|`post_script` | [Wallarmノード初期化スクリプト (`cloud-init.py`)](../../cloud-init.ja.md)の後に実行するカスタムスクリプト。Terraformコードディレクトリに任意のスクリプトのファイルを置き、この変数でそのファイルへのパスを指定します。<br><br>変数設定の例は、[プロキシ高度なソリューションのデプロイ例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced/main.tf#L34)で見つけることができます。| string | いいえ |
 | **AWSデプロイメント設定** | | | |
 | `app_name` | Wallarmモジュールが作成するAWSリソース名のプレフィクス。<br><br>デフォルトは、`wallarm`。| string | いいえ |
 | `app_name_no_template` | Wallarmモジュールが作成するAWSリソース名に大文字、数字、特殊文字を使用するかどうか。`false`の場合、リソース名は小文字のみを含む。<br><br>デフォルトは、`false`。 | bool | いいえ |
@@ -85,10 +85,10 @@ AWS Terraformモジュールを使用してWallarmをプロダクション用に
 
 Wallarm モジュールの異なる使用方法の例を用意しましたので、本番環境にデプロイする前に試してみてください：
 
-* [AWS VPCでのプロキシ](proxy-in-aws-vpc.md)
-* [Amazon API Gateway用プロキシ](proxy-for-aws-api-gateway.md)
-* [NGINX、Envoyまたは類似のミラーリングを持つOOB](oob-for-web-server-mirroring.md)
-* [AWS VPCミラーリング用のOOB](oob-for-aws-vpc-mirroring.md)
+* [AWS VPCでのプロキシ](proxy-in-aws-vpc.ja.md)
+* [Amazon API Gateway用プロキシ](proxy-for-aws-api-gateway.ja.md)
+* [NGINX、Envoyまたは類似のミラーリングを持つOOB](oob-for-web-server-mirroring.ja.md)
+* [AWS VPCミラーリング用のOOB](oob-for-aws-vpc-mirroring.ja.md)
 
 ## Wallarm と Terraform についての詳細情報
 
@@ -97,6 +97,6 @@ Terraformは、利用者がパブリック[レジストリ](https://www.terrafor
 このレジストリに、Wallarmは以下を公開しています：
 
 * Terraformと互換性のある環境からAWSにノードをデプロイするための[Wallarmモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)。本記事で説明されています。
-* Terraformを介してWallarmを管理するための[Wallarmプロバイダー](../../../../admin-en/managing/terraform-provider.md)。
+* Terraformを介してWallarmを管理するための[Wallarmプロバイダー](../../../../admin-en/managing/terraform-provider.ja.md)。
 
 これら二つは独立した要素であり、それぞれ異なる目的で使用され、お互いには必要としません。

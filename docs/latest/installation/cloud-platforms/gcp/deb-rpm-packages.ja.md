@@ -36,9 +36,9 @@ Google EngineインスタンスにNGINX Stableモジュールをフィルタリ�
     * Rocky Linux
     * Oracle Linux 8.x
 2. [GCPの手順](https://cloud.google.com/compute/docs/instances/connecting-to-instance)に従って作成したインスタンスに接続します。
-3. インスタンス内で、NGINX StableパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
+3. インスタンス内で、NGINX StableパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.ja.md)に従ってインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。
 
 ## NGINX Plusモジュールとしてフィルタリングノードをインストールする
 
@@ -55,6 +55,6 @@ Google EngineインスタンスにNGINX Plusモジュールをフィルタリン
     * Rocky Linux
     * Oracle Linux 8.x
 2. [GCPの手順](https://cloud.google.com/compute/docs/instances/connecting-to-instance)に従って作成したインスタンスに接続します。
-3. インスタンス内で、NGINX PlusパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
+3. インスタンス内で、NGINX PlusパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.ja.md)に従ってインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。

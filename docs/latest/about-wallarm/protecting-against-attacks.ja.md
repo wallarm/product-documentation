@@ -9,11 +9,11 @@ Wallarmプラットフォームはアプリケーショントラフィックを�
 * 同じ攻撃タイプ、悪意のあるペイロードを含むパラメータ、および送信先のアドレス。ヒットは同じまたは異なるIPアドレスから送信され、攻撃タイプ内の悪意のあるペイロードの値が異なることがあります。
 
     このヒットグループ化方法は基本的なもので、すべてのヒットに適用されます。
-* 適切な[トリガー](../user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack)が有効になっている場合、同じ送信元IPアドレス。他のヒットパラメータの値は異なる場合があります。
+* 適切な[トリガー](../user-guides/triggers/trigger-examples.ja.md#group-hits-originating-from-the-same-ip-into-one-attack)が有効になっている場合、同じ送信元IPアドレス。他のヒットパラメータの値は異なる場合があります。
 
     このヒットグループ化方法は、Brute force、Forced browsing、BOLA（IDOR）、Resource overlimit、Data bomb、およびVirtual patch攻撃タイプのヒットを除外したすべてのヒットに適用されます。
 
-    この方法でグループ化された場合、[**誤検知としてマーク**](../user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive)ボタンと[アクティブな検証](detecting-vulnerabilities.md#active-threat-verification)オプションは攻撃に対して利用できません。
+    この方法でグループ化された場合、[**誤検知としてマーク**](../user-guides/events/false-attack.ja.md#mark-an-attack-as-a-false-positive)ボタンと[アクティブな検証](detecting-vulnerabilities.ja.md#active-threat-verification)オプションは攻撃に対して利用できません。
 
 リストされたヒットグループ化方法は互いに排他的ではありません。ヒットに両方の特徴がある場合は、すべてが1つの攻撃にグループ化されます。
 
@@ -28,7 +28,7 @@ Wallarmプラットフォームはアプリケーショントラフィックを�
 
 ## 攻撃タイプ
 
-Wallarmで検出可能な[すべての攻撃](../attacks-vulns-list.md)は、以下のグループに分類されます。
+Wallarmで検出可能な[すべての攻撃](../attacks-vulns-list.ja.md)は、以下のグループに分類されます。
 
 * 入力検証攻撃
 * 行動攻撃
@@ -76,14 +76,14 @@ Wallarmで検出可能な[すべての攻撃](../attacks-vulns-list.md)は、以
 
 リソースを行動攻撃から保護するために、相関分析の閾値と、行動攻撃に対して脆弱な URL を設定する必要があります：
 
-* [ブルートフォース攻撃保護の構成手順](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* [BOLA（IDOR）保護の構成手順](../admin-en/configuration-guides/protecting-against-bola.md)
+* [ブルートフォース攻撃保護の構成手順](../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)
+* [BOLA（IDOR）保護の構成手順](../admin-en/configuration-guides/protecting-against-bola.ja.md)
 
 !!! warning "行動攻撃防御の制限事項"
     Wallarm ノードでは、行動攻撃の兆候を検索する際、他の攻撃タイプの兆候が含まれていない HTTP リクエストのみが分析されます。たとえば、以下の場合は行動攻撃の一部とは見なされません：
 
     * これらのリクエストには [入力検証攻撃の兆候](#input-validation-attacks) が含まれている場合。
-    * これらのリクエストが、[ルール **正規表現に基づく攻撃指標作成**](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule) で指定された正規表現に一致する場合。
+    * これらのリクエストが、[ルール **正規表現に基づく攻撃指標作成**](../user-guides/rules/regex-rule.ja.md#adding-a-new-detection-rule) で指定された正規表現に一致する場合。
 
 ## 保護リソースの種類
 
@@ -92,11 +92,11 @@ Wallarm ノードは、次のような HTTP 及び WebSocket トラフィック�
 * HTTP トラフィックの分析は、デフォルトで有効になっています。
 
     Wallarm ノードは、HTTP トラフィックを [入力検証攻撃](#input-validation-attacks) 及び [行動攻撃](#behavioral-attacks) に対して分析します。
-* WebSocket トラフィックの分析は、[`wallarm_parse_websocket`](../admin-en/configure-parameters-en.md#wallarm_parse_websocket) 指令を使用して追加で有効化する必要があります。
+* WebSocket トラフィックの分析は、[`wallarm_parse_websocket`](../admin-en/configure-parameters-en.ja.md#wallarm_parse_websocket) 指令を使用して追加で有効化する必要があります。
 
     Wallarm ノードは、WebSocket トラフィックを [入力検証攻撃](#input-validation-attacks) のみに対して分析します。
 
-保護されたリソース API は、以下の技術を基に設計されることができます（WAAP [サブスクリプションプラン](subscription-plans.md#subscription-plans) で制限されます）：
+保護されたリソース API は、以下の技術を基に設計されることができます（WAAP [サブスクリプションプラン](subscription-plans.ja.md#subscription-plans) で制限されます）：
 
 * GraphQL
 * gRPC
@@ -111,7 +111,7 @@ Wallarm ノードは、次のような HTTP 及び WebSocket トラフィック�
 
 Wallarm では、次のプロセスを使用して攻撃を検出しています。
 
-1. リクエストの形式を決定し、[リクエスト解析に関するドキュメント](../user-guides/rules/request-processing.md) で説明されている通りに、各リクエストパーツを解析します。
+1. リクエストの形式を決定し、[リクエスト解析に関するドキュメント](../user-guides/rules/request-processing.ja.md) で説明されている通りに、各リクエストパーツを解析します。
 2. リクエストが送信されたエンドポイントを決定します。
 3. Wallarm コンソールで構成された [リクエスト分析用カスタムルール](#custom-rules-for-request-analysis) を適用します。
 4. [デフォルトとカスタム検出ルール](#tools-for-attack-detection)に基づき、リクエストが悪意のあるものかどうかを判断します。
@@ -166,58 +166,58 @@ curl "http://localhost/?id=1' UNION SELECT"
 * **libdetection**ライブラリでリクエストを分析するように設定されている場合、SQL Injection攻撃の符号はこのリクエストでは認められません。リクエストは正当なものと見なされ、攻撃はWallarm Cloudにアップロードされず、ブロックされません(フィルタリングノードが`block`モードで動作している場合)。#### libdetection モードの管理
 
 !!! info "**libdetection** デフォルト・モード"
-    **libdetection** ライブラリのデフォルト・モードは `on/true`（有効）で、すべての [展開オプション](../installation/supported-deployment-options.md) に適用されます。
+    **libdetection** ライブラリのデフォルト・モードは `on/true`（有効）で、すべての [展開オプション](../installation/supported-deployment-options.ja.md) に適用されます。
 
 **libdetection** モードを制御するには、以下を使用できます:
 
-* NGINX 用 [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.md#wallarm_enable_libdetection) ディレクティブ
-* Envoy 用 [`enable_libdetection`](../admin-en/configuration-guides/envoy/fine-tuning.md#request-filtering-settings) パラメータ
-* Wallarm NGINX Ingress controller の 1 つの [オプション](../admin-en/configure-kubernetes-en.md#managing-libdetection-mode):
+* NGINX 用 [`wallarm_enable_libdetection`](../admin-en/configure-parameters-en.ja.md#wallarm_enable_libdetection) ディレクティブ
+* Envoy 用 [`enable_libdetection`](../admin-en/configuration-guides/envoy/fine-tuning.ja.md#request-filtering-settings) パラメータ
+* Wallarm NGINX Ingress controller の 1 つの [オプション](../admin-en/configure-kubernetes-en.ja.md#managing-libdetection-mode):
 
     * Ingress リソースの `nginx.ingress.kubernetes.io/server-snippet` アノテーション
     * Helm チャートの `controller.config.server-snippet` パラメータ
 
-* Wallarm Sidecar proxy ソリューションの [pod アノテーション](../installation/kubernetes/sidecar-proxy/pod-annotations.md#annotation-list) `wallarm-enable-libdetection`
-* [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.md#how-to-use-the-wallarm-aws-terraform-module) デプロイメントの `libdetection` 変数
+* Wallarm Sidecar proxy ソリューションの [pod アノテーション](../installation/kubernetes/sidecar-proxy/pod-annotations.ja.md#annotation-list) `wallarm-enable-libdetection`
+* [AWS Terraform](../installation/cloud-platforms/aws/terraform-module/overview.ja.md#how-to-use-the-wallarm-aws-terraform-module) デプロイメントの `libdetection` 変数
 
 ### リクエスト分析のためのカスタム規則
 
 Wallarm クライアントは、次のタイプのカスタム規則を使用して、Wallarm 規定のリクエスト分析を保護されたアプリケーションの特異性に合わせて調整できます:
 
-* [仮想パッチの作成](../user-guides/rules/vpatch-rule.md)
-* [正規表現ベースの攻撃指標の作成](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)
-* [正規表現ベースの攻撃検出の無効化](../user-guides/rules/regex-rule.md#partial-disabling-of-a-new-detection-rule)
-* [特定の攻撃タイプを無視](../user-guides/rules/ignore-attack-types.md)
-* [バイナリデータとファイルタイプを許可](../user-guides/rules/ignore-attacks-in-binary-data.md)
-* [パーサーの無効化/有効化](../user-guides/rules/disable-request-parsers.md)
-* [overlimit_res 攻撃検出の微調整](../user-guides/rules/configure-overlimit-res-detection.md)
+* [仮想パッチの作成](../user-guides/rules/vpatch-rule.ja.md)
+* [正規表現ベースの攻撃指標の作成](../user-guides/rules/regex-rule.ja.md#adding-a-new-detection-rule)
+* [正規表現ベースの攻撃検出の無効化](../user-guides/rules/regex-rule.ja.md#partial-disabling-of-a-new-detection-rule)
+* [特定の攻撃タイプを無視](../user-guides/rules/ignore-attack-types.ja.md)
+* [バイナリデータとファイルタイプを許可](../user-guides/rules/ignore-attacks-in-binary-data.ja.md)
+* [パーサーの無効化/有効化](../user-guides/rules/disable-request-parsers.ja.md)
+* [overlimit_res 攻撃検出の微調整](../user-guides/rules/configure-overlimit-res-detection.ja.md)
 
-[コンパイル済み](../user-guides/rules/compiling.md) のカスタム規則セットは、リクエストの分析時に **proton.db** の標準規則とともに適用されます。## 攻撃の監視とブロック
+[コンパイル済み](../user-guides/rules/compiling.ja.md) のカスタム規則セットは、リクエストの分析時に **proton.db** の標準規則とともに適用されます。## 攻撃の監視とブロック
 
 Wallarmは、次のモードで攻撃を処理できます。
 
 * 監視モード：攻撃を検出しますが、ブロックしません。
-* 安全なブロックモード：攻撃を検出しますが、[グレーリストされたIP](../user-guides/ip-lists/graylist.md)からだけ発生した攻撃のみをブロックします。グレーリストされたIPからの正当なリクエストはブロックされません。
+* 安全なブロックモード：攻撃を検出しますが、[グレーリストされたIP](../user-guides/ip-lists/graylist.ja.md)からだけ発生した攻撃のみをブロックします。グレーリストされたIPからの正当なリクエストはブロックされません。
 * ブロックモード：攻撃を検出してブロックします。
 
 Wallarmは、高品質なリクエスト解析と低レベルの誤検知を保証します。ただし、保護されたアプリケーションには固有の仕様がありますので、ブロックモードを有効にする前に監視モードでWallarmの動作を分析することをお勧めします。
 
-フィルタリングモードを制御するには、ディレクティブ `wallarm_mode` を使用します。フィルタリングモード構成の詳細情報は、[リンク](../admin-en/configure-wallarm-mode.md)で確認できます。
+フィルタリングモードを制御するには、ディレクティブ `wallarm_mode` を使用します。フィルタリングモード構成の詳細情報は、[リンク](../admin-en/configure-wallarm-mode.ja.md)で確認できます。
 
-行動攻撃のフィルタリングモードは、特定の[トリガー](../admin-en/configuration-guides/protecting-against-bruteforce.md)を介して個別に構成します。
+行動攻撃のフィルタリングモードは、特定の[トリガー](../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)を介して個別に構成します。
 
 ## 誤検知
 
-**誤検知**とは、正当なリクエストに攻撃の兆候が検出されるか、正当なエンティティが脆弱性として認定される場合に発生します。[脆弱性スキャンにおける誤検知の詳細についてはこちらを参照→](detecting-vulnerabilities.md#false-positives)
+**誤検知**とは、正当なリクエストに攻撃の兆候が検出されるか、正当なエンティティが脆弱性として認定される場合に発生します。[脆弱性スキャンにおける誤検知の詳細についてはこちらを参照→](detecting-vulnerabilities.ja.md#false-positives)
 
 攻撃リクエストの分析にあたり、Wallarmは、超低誤検知率で最適なアプリケーション保護を提供する標準ルールセットを使用します。ただし、保護されたアプリケーションの仕様により、標準ルールが正当なリクエストで攻撃の兆候を誤検知する場合があります。たとえば、SQLインジェクション攻撃は、悪意のあるSQLクエリ記述を含むリクエストをデータベース管理者フォーラムに投稿することで検出される場合があります。
 
 そのような場合は、次の方法を使用して、保護されたアプリケーションの仕様に合わせて標準ルールを調整する必要があります。
 
-* [タグ `!known`](../user-guides/search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)ですべての攻撃をフィルタリングして潜在的な誤検知を分析し、誤検知を確認した場合は、[特定の攻撃やヒットを適切にマーク](../user-guides/events/false-attack.md)します。これにより、同じリクエストに対し、攻撃の兆候を検出する分析を無効にするルールが自動的に作成されます。
-* 特定のリクエストでの[特定の攻撃タイプの検出を無効化](../user-guides/rules/ignore-attack-types.md)します。
-* バイナリデータでの[特定の攻撃兆候の検出無効化](../user-guides/rules/ignore-attacks-in-binary-data.md)。
-* [リクエストに誤って適用されたパーサーを無効化](../user-guides/rules/disable-request-parsers.md)します。
+* [タグ `!known`](../user-guides/search-and-filters/use-search.ja.md#search-by-known-attacks-cve-and-wellknown-exploits)ですべての攻撃をフィルタリングして潜在的な誤検知を分析し、誤検知を確認した場合は、[特定の攻撃やヒットを適切にマーク](../user-guides/events/false-attack.ja.md)します。これにより、同じリクエストに対し、攻撃の兆候を検出する分析を無効にするルールが自動的に作成されます。
+* 特定のリクエストでの[特定の攻撃タイプの検出を無効化](../user-guides/rules/ignore-attack-types.ja.md)します。
+* バイナリデータでの[特定の攻撃兆候の検出無効化](../user-guides/rules/ignore-attacks-in-binary-data.ja.md)。
+* [リクエストに誤って適用されたパーサーを無効化](../user-guides/rules/disable-request-parsers.ja.md)します。
 
 誤検知の特定と処理は、Wallarmをファインチューニングしてアプリケーションを保護するための一部です。最初のWallarmノードを監視[モード](#monitoring-and-blocking-attacks)で展開し、検出された攻撃を分析することをお勧めします。攻撃が誤検知として認識された場合は、それらを誤検知としてマークし、フィルタリングノードをブロックモードに切り替えます。## 検出された攻撃の管理
 
@@ -228,7 +228,7 @@ Wallarmは、高品質なリクエスト解析と低レベルの誤検知を保�
 * 攻撃を誤検知としてマークするか、分離されたヒットを誤検知としてマークする
 * 分離されたヒットのカスタム処理のためのルールを作成する
 
-攻撃の管理について詳しくは、[working with attacks](../user-guides/events/analyze-attack.md)の説明を参照してください。
+攻撃の管理について詳しくは、[working with attacks](../user-guides/events/analyze-attack.ja.md)の説明を参照してください。
 
 ![!Attacks view](../images/user-guides/events/check-attack.png)## 検知された攻撃、ヒット、および悪意のあるペイロードに関する通知
 
@@ -236,7 +236,7 @@ Wallarmは、検知された攻撃、ヒット、および悪意のあるペイ�
 
 通知の設定方法：
 
-1. 通知を送信するシステムとの[native integrations](../user-guides/settings/integrations/integrations-intro.md)を構成します（例：PagerDuty、Opsgenie、Splunk、Slack、Telegram）。
+1. 通知を送信するシステムとの[native integrations](../user-guides/settings/integrations/integrations-intro.ja.md)を構成します（例：PagerDuty、Opsgenie、Splunk、Slack、Telegram）。
 2. 通知を送信する条件を設定します。
 
     * 検出されたヒットごとに通知を受信するには、連携設定で適切なオプションを選択します。
@@ -293,9 +293,9 @@ Wallarmは、検知された攻撃、ヒット、および悪意のあるペイ�
             ]
             ```
     
-    * 攻撃、ヒット、または悪意のあるペイロード数のしきい値を設定し、しきい値を超えた場合に通知を受信するには、適切な[トリガー](../user-guides/triggers/triggers.md)を構成します。
+    * 攻撃、ヒット、または悪意のあるペイロード数のしきい値を設定し、しきい値を超えた場合に通知を受信するには、適切な[トリガー](../user-guides/triggers/triggers.ja.md)を構成します。
 
-        [構成されたトリガーと通知の例を参照 →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)## デモ動画
+        [構成されたトリガーと通知の例を参照 →](../user-guides/triggers/trigger-examples.ja.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)## デモ動画
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/27CBsTQUE-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -12,7 +12,7 @@ Wallarm Consoleの**IPリスト**セクションでは、許可リスト、拒�
 
 フィルタリングノードは、受信リクエストのソースIPがIPリストのエントリと一致するかどうかを以下のように検査します。
 
-* リクエストのフィルタリングは、**オフ[モード](../../admin-en/configure-wallarm-mode.md)で実行されます。
+* リクエストのフィルタリングは、**オフ[モード](../../admin-en/configure-wallarm-mode.ja.md)で実行されます。
 
     1. 受信リクエストのソースIPが許可リストに追加されている場合、フィルタリングノードは受信リクエストをアプリケーションに転送します。IPアドレスがリストにない場合は、次のステップが実行されます。
     1. 受信リクエストのソースIPが拒否リストに追加されている場合、フィルタリングノードは受信リクエストをブロックします。
@@ -48,16 +48,16 @@ IPリストを設定するには：
 
 1. WallarmノードがロードバランサーまたはCDNの背後にある場合は、WallarmノードがエンドユーザーのIPアドレスを適切に報告するように設定してください。
 
-    * [NGINXベースのWallarmノード用の手順](../../admin-en/using-proxy-or-balancer-en.md) (AWS / GCPイメージおよびDockerノードコンテナを含む)
-    * [Wallarm Kubernetes Ingressコントローラとして展開されたフィルタリングノード用の手順](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+    * [NGINXベースのWallarmノード用の手順](../../admin-en/using-proxy-or-balancer-en.ja.md) (AWS / GCPイメージおよびDockerノードコンテナを含む)
+    * [Wallarm Kubernetes Ingressコントローラとして展開されたフィルタリングノード用の手順](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.ja.md)
 2. IPリストにリクエストソースを追加してください。
 
-    * [許可リスト](allowlist.md)
-    * [拒否リスト](denylist.md)
-    * [グレーリスト](graylist.md)
+    * [許可リスト](allowlist.ja.md)
+    * [拒否リスト](denylist.ja.md)
+    * [グレーリスト](graylist.ja.md)
 
 !!! warning "追加のトラフィックフィルタリング設備の使用"
-    追加の設備(ソフトウェアまたはハードウェア)を使用して自動的にトラフィックをフィルタリングおよびブロックする場合は、[Wallarmスキャナ](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)のIPアドレスを許可リストに設定することをお勧めします。これにより、Wallarmコンポーネントがシームレスにリソースの脆弱性をスキャンできます。
+    追加の設備(ソフトウェアまたはハードウェア)を使用して自動的にトラフィックをフィルタリングおよびブロックする場合は、[Wallarmスキャナ](../../about-wallarm/detecting-vulnerabilities.ja.md#vulnerability-scanner)のIPアドレスを許可リストに設定することをお勧めします。これにより、Wallarmコンポーネントがシームレスにリソースの脆弱性をスキャンできます。
 
-    * [Wallarm US Cloudに登録されたスキャナのIPアドレス](../../admin-en/scanner-address-us-cloud.md)
-    * [Wallarm EU Cloudに登録されたスキャナのIPアドレス](../../admin-en/scanner-address-eu-cloud.md)
+    * [Wallarm US Cloudに登録されたスキャナのIPアドレス](../../admin-en/scanner-address-us-cloud.ja.md)
+    * [Wallarm EU Cloudに登録されたスキャナのIPアドレス](../../admin-en/scanner-address-eu-cloud.ja.md)

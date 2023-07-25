@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/test-policy/insertion-points.md"
+--8<-- "latest/fast/operations/test-policy/insertion-points.ja.md"

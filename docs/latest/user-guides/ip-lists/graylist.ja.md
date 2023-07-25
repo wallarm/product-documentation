@@ -1,19 +1,19 @@
-[access-wallarm-api-docs]: ../../api/overview.md#your-own-client
-[application-docs]: ../settings/applications.md
+[access-wallarm-api-docs]: ../../api/overview.ja.md#your-own-client
+[application-docs]: ../settings/applications.ja.md
 
 # IPアドレスのグレイリスト
 
-**グレイリスト**は、**セーフブロッキング**の[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)でノードによって処理される疑わしいIPアドレスのリストです。グレイリストされたIPが悪意のあるリクエストを生成した場合、ノードはそれらをブロックし、正当なリクエストは許可されます。
+**グレイリスト**は、**セーフブロッキング**の[フィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md)でノードによって処理される疑わしいIPアドレスのリストです。グレイリストされたIPが悪意のあるリクエストを生成した場合、ノードはそれらをブロックし、正当なリクエストは許可されます。
 
 グレイリストされたIPからの悪意のあるリクエストは、以下の攻撃の兆候を含むものです：
 
-* [入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
-* [vpatchタイプの攻撃](../rules/vpatch-rule.md)
-* [正規表現に基づいて検出される攻撃](../rules/regex-rule.md)
+* [入力検証攻撃](../../about-wallarm/protecting-against-attacks.ja.md#input-validation-attacks)
+* [vpatchタイプの攻撃](../rules/vpatch-rule.ja.md)
+* [正規表現に基づいて検出される攻撃](../rules/regex-rule.ja.md)
 
-グレイリストとは対照的に、[denylist](../ip-lists/denylist.md)は、アプリケーションにまったく到達できないようにしなければならないIPアドレスを指します。ノードは、denylistedソースによって生成された正当なトラフィックもブロックします。IPのグレイリストは、[誤検出](../../about-wallarm/protecting-against-attacks.md#false-positives)を減らすことを目的としたいくつかのオプションのうちの一つです。
+グレイリストとは対照的に、[denylist](../ip-lists/denylist.ja.md)は、アプリケーションにまったく到達できないようにしなければならないIPアドレスを指します。ノードは、denylistedソースによって生成された正当なトラフィックもブロックします。IPのグレイリストは、[誤検出](../../about-wallarm/protecting-against-attacks.ja.md#false-positives)を減らすことを目的としたいくつかのオプションのうちの一つです。
 
-許可リストにもグレイリストされたIPアドレスがある場合、フィルタリングノードの動作が異なる可能性があります。[リストの優先順位についてさらに詳しく知りましょう](overview.md#algorithm-of-ip-lists-processing)。
+許可リストにもグレイリストされたIPアドレスがある場合、フィルタリングノードの動作が異なる可能性があります。[リストの優先順位についてさらに詳しく知りましょう](overview.ja.md#algorithm-of-ip-lists-processing)。
 
 Wallarm Console → **IPリスト** → **グレイリスト**で、グレイリストされたIPアドレスを次のように管理できます。
 
@@ -28,9 +28,9 @@ Wallarm Console → **IPリスト** → **グレイリスト**で、グレイリ
 
 * 連続した複数の攻撃が発生したIPアドレス
 
-    攻撃には、1つのIPアドレスから発生し、異なるタイプの悪意のあるペイロードを含む複数のリクエストが含まれる場合があります。このIPアドレスから発生したほとんどの悪意のあるリクエストをブロックし、正当なリクエストを許可する方法の1つは、このIPをグレイリストに登録することです。ソースIPのグレイリストのしきい値と適切な反応を設定することで、自動的にソースIPをグレイリストに登録するように設定できます。（[トリガー](../triggers/trigger-examples.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)）。
+    攻撃には、1つのIPアドレスから発生し、異なるタイプの悪意のあるペイロードを含む複数のリクエストが含まれる場合があります。このIPアドレスから発生したほとんどの悪意のあるリクエストをブロックし、正当なリクエストを許可する方法の1つは、このIPをグレイリストに登録することです。ソースIPのグレイリストのしきい値と適切な反応を設定することで、自動的にソースIPをグレイリストに登録するように設定できます。（[トリガー](../triggers/trigger-examples.ja.md#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)）。
 
-    ソースIPのグレイリストは、[誤検出](../../about-wallarm/protecting-against-attacks.md#false-positives)の数を大幅に減らすことができます。
+    ソースIPのグレイリストは、[誤検出](../../about-wallarm/protecting-against-attacks.ja.md#false-positives)の数を大幅に減らすことができます。
 * 悪意のあるトラフィックを生成することが多いIPアドレス、国、地域、データセンター、ネットワーク（例えば、Tor）をグレイリストに登録します。Wallarmノードは、グレイリストに登録されたオブジェクトから生成された正当なリクエストを許可し、悪意のあるリクエストをブロックします。
 
 ## リストへのオブジェクトの追加
@@ -38,17 +38,17 @@ Wallarm Console → **IPリスト** → **グレイリスト**で、グレイリ
 IPアドレスを**自動的に疑わしいトラフィックがある場合にグレイリスト登録するためにWallarmを使用させることもできますし**、オブジェクトを**手動で**グレイリスト登録することもできます。
 
 !!! info "マルチテナントノードにIPアドレスをリストに追加する方法"
-    [マルチテナントノード](../../installation/multi-tenant/overview.md)をインストールした場合は、リストにIPアドレスが追加される[テナントのアカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)に最初に切り替えてください。
+    [マルチテナントノード](../../installation/multi-tenant/overview.ja.md)をインストールした場合は、リストにIPアドレスが追加される[テナントのアカウント](../../installation/multi-tenant/configure-accounts.ja.md#tenant-account-structure)に最初に切り替えてください。
 
     自動的なIPのグレイリスト登録のトリガーも、テナントレベルで設定する必要があります。
 
 ### 自動グレイリスト登録（推奨）
 
-[トリガー](../../user-guides/triggers/triggers.md)機能は、以下の条件によってIPの自動グレイリスト登録を可能にします：
+[トリガー](../../user-guides/triggers/triggers.ja.md)機能は、以下の条件によってIPの自動グレイリスト登録を可能にします：
 
-* 次のタイプの悪意のあるリクエスト： [`Brute force`, `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md), [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md)。
+* 次のタイプの悪意のあるリクエスト： [`Brute force`, `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md), [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.ja.md)。
 * IPによって生成される`悪意のあるペイロードの数`。
-* 新しい企業アカウントは、1時間以内に3つ以上の異なる悪意のあるペイロードを生成した場合にIPをグレイリストに登録する[設定済みの（デフォルト）トリガー](../../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers)が付属しています。
+* 新しい企業アカウントは、1時間以内に3つ以上の異なる悪意のあるペイロードを生成した場合にIPをグレイリストに登録する[設定済みの（デフォルト）トリガー](../../user-guides/triggers/triggers.ja.md#pre-configured-triggers-default-triggers)が付属しています。
 
 `IPアドレスのグレイリスト登録`という反応を持つトリガーは、リストされたイベントに対して指定された期間に自動的にIPをグレイリストに登録します。トリガーは、Wallarm Console → **トリガー**で設定できます。
 

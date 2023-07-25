@@ -1,10 +1,10 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
+[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.ja.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.ja.md
+[application-configuration]:        ../../../user-guides/settings/applications.ja.md
+[node-status-docs]:                 ../../../admin-en/configure-statistics-service.ja.md
 
 # WallarmノードDockerイメージのAlibaba Cloudへのデプロイ
 
@@ -106,7 +106,7 @@
     }
     ```
 
-    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.md)
+    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.ja.md)
 1. 環境変数とマウントされた設定ファイルが渡された `docker run` コマンドを使用して、Wallarm ノード Docker コンテナを実行します：
 
     === "Wallarm US Cloud のコマンド"
@@ -141,7 +141,7 @@
 
     IP アドレスが空の場合は、インスタンスが **Running** ステータスにあることを確認してください。
 
-2. コピーしたアドレスにテスト [Path Traversal](../../../attacks-vulns-list.md#path-traversal) 攻撃を含むリクエストを送信します：
+2. コピーしたアドレスにテスト [Path Traversal](../../../attacks-vulns-list.ja.md#path-traversal) 攻撃を含むリクエストを送信します：
 
     ```
     curl http://<COPIED_IP>/etc/passwd
@@ -149,4 +149,4 @@
 3. [US Cloud](https://us1.my.wallarm.com/search) または [EU Cloud](https://my.wallarm.com/search) の Wallarm Console → **Events** を開き、攻撃がリストに表示されていることを確認します。
     ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
-コンテナのデプロイ中に発生したエラーの詳細を表示するには、[メソッドのいずれかでインスタンスに接続](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)して、[コンテナのログ](../../../admin-en/configure-logging.md)を確認してください。インスタンスが利用できない場合は、コンテナに正しい値で必要なフィルタリングノードパラメータが渡されていることを確認してください。
+コンテナのデプロイ中に発生したエラーの詳細を表示するには、[メソッドのいずれかでインスタンスに接続](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l)して、[コンテナのログ](../../../admin-en/configure-logging.ja.md)を確認してください。インスタンスが利用できない場合は、コンテナに正しい値で必要なフィルタリングノードパラメータが渡されていることを確認してください。

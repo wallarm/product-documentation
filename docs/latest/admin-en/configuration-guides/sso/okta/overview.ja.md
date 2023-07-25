@@ -1,14 +1,14 @@
 # Okta との SSO 接続
 
-[doc-setup-sp]:                     setup-sp.md
-[doc-setup-idp]:                    setup-idp.md    
-[doc-metadata-transfer]:            metadata-transfer.md
-[doc-allow-access-to-wl]:           allow-access-to-wl.md
+[doc-setup-sp]:                     setup-sp.ja.md
+[doc-setup-idp]:                    setup-idp.ja.md    
+[doc-metadata-transfer]:            metadata-transfer.ja.md
+[doc-allow-access-to-wl]:           allow-access-to-wl.ja.md
 
-[doc-user-sso-guide]:               ../../../../user-guides/use-sso.md
+[doc-user-sso-guide]:               ../../../../user-guides/use-sso.ja.md
 
-[doc-employ-sso]:                   ../employ-user-auth.md
-[doc-disable-sso]:                  ../change-sso-provider.md
+[doc-employ-sso]:                   ../employ-user-auth.ja.md
+[doc-disable-sso]:                  ../change-sso-provider.ja.md
 
 [link-okta]:                        https://www.okta.com/
 

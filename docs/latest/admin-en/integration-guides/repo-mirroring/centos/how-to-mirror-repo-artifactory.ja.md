@@ -7,7 +7,7 @@
 [link-jfrog-comparison-matrix]:         https://www.jfrog.com/confluence/display/RTF/Artifactory+Comparison+Matrix
 [link-artifactory-naming-agreement]:    https://jfrog.com/whitepaper/best-practices-structuring-naming-artifactory-repositories/
 
-[doc-installation-from-artifactory]:    how-to-use-mirrored-repo.md
+[doc-installation-from-artifactory]:    how-to-use-mirrored-repo.ja.md
 
 [anchor-fetch-repo]:                    #1-wallarm-リポジトリのローカルコピーを作成する
 [anchor-setup-repo-artifactory]:        #2-JFrog-アーティファクトリーでローカル-RPMリポジトリを作成する

@@ -1,10 +1,10 @@
 # メールレポート
 
-予定された[PDFレポート](../../../user-guides/search-and-filters/custom-report.md)とインスタント通知を配信するために使用される追加のメールアドレスを設定することができます。メッセージの送信は、デフォルトで設定されたプライマリメールに対して行われます。
+予定された[PDFレポート](../../../user-guides/search-and-filters/custom-report.ja.md)とインスタント通知を配信するために使用される追加のメールアドレスを設定することができます。メッセージの送信は、デフォルトで設定されたプライマリメールに対して行われます。
 
 * スケジュールされたPDFレポートは、毎日、毎週、または毎月送信されることができます。PDFレポートには、選択した期間中にシステムで検出された脆弱性、攻撃、およびインシデントについての詳細な情報が含まれます。
 * 通知には、トリガーされたイベントの簡単な詳細が含まれています：
-    --8<-- "../include/integrations/events-for-integrations-mail.md"
+    --8<-- "../include/integrations/events-for-integrations-mail.ja.md"
 
 ## インテグレーションの設定
 
@@ -21,7 +21,7 @@
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-with-email.md"
+--8<-- "../include/integrations/test-integration-with-email.ja.md"
 
 テスト通知の例：
 
@@ -29,12 +29,12 @@
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

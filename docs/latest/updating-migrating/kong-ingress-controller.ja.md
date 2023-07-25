@@ -1,4 +1,4 @@
-[ip-lists-docs]: ../user-guides/ip-lists/overview.md
+[ip-lists-docs]: ../user-guides/ip-lists/overview.ja.md
 
 # Wallarm統合Kong Ingressコントローラをアップグレードする
 
@@ -74,7 +74,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.4.3 -f <PATH
     wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
     wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃をKong Ingress Controller Serviceに送信します：
+1. テスト[Path Traversal](../attacks-vulns-list.ja.md#path-traversal)攻撃をKong Ingress Controller Serviceに送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd

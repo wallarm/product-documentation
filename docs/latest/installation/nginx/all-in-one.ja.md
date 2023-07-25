@@ -1,40 +1,40 @@
 [img-wl-console-users]:             ../../images/check-user-no-2fa.png
-[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.ja.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
+[waf-directives-instr]:             ../../admin-en/configure-parameters-en.ja.md
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                    ../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]:                     ../../updating-migrating/nginx-modules.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.ja.md
+[logging-instr]:                    ../../admin-en/configure-logging.ja.md
+[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.ja.md
+[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.ja.md
+[update-instr]:                     ../../updating-migrating/nginx-modules.ja.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
-[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
-[versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
-[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.ja.md
+[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.ja.md#follow-recommended-onboarding-steps
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.ja.md
+[versioning-policy]:                ../../updating-migrating/versioning-policy.ja.md#version-list
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.ja.md
 [waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
-[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                        ../../user-guides/settings/api-tokens.md
-[platform]:                         ../../admin-en/supported-platforms.md
-[oob-docs]:                         ../oob/overview.md
-[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[nginx-custom]:                 ../../faq/nginx-compatibility.ja.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
+[node-token]:                       ../../quickstart.ja.md#deploy-the-wallarm-filtering-node
+[api-token]:                        ../../user-guides/settings/api-tokens.ja.md
+[platform]:                         ../../admin-en/supported-platforms.ja.md
+[oob-docs]:                         ../oob/overview.ja.md
+[oob-advantages-limitations]:       ../oob/overview.ja.md#advantages-and-limitations
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.ja.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
-[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.ja.md#api-and-node-tokens-for-node-creation
 
 
 # オールインワンインストーラーでのデプロイ 
 
 **オールインワンインストーラー**は、さまざまな環境のNGINXにWallarmノードを動的モジュールとしてインストールするプロセスを簡潔化し、標準化するために設計されています。このインストーラーは自動的にお使いのオペレーティングシステムとNGINXのバージョンを識別し、必要な依存関係すべてをインストールします。 
 
-Wallarmが提供する個々のLinuxパッケージ[NGINX](dynamic-module.md)、[NGINX Plus](../nginx-plus.md)、[お使いのディストリビューションが提供するNGINX](dynamic-module-from-distr.md)と比較して、**オールインワンインストーラー**は次のアクションを自動的に実行することにより、プロセスを簡素化します：
+Wallarmが提供する個々のLinuxパッケージ[NGINX](dynamic-module.ja.md)、[NGINX Plus](../nginx-plus.ja.md)、[お使いのディストリビューションが提供するNGINX](dynamic-module-from-distr.ja.md)と比較して、**オールインワンインストーラー**は次のアクションを自動的に実行することにより、プロセスを簡素化します：
 
 1. お使いのOSとNGINXのバージョンを確認します。
 1. 検出されたOSとNGINXのバージョンのためのWallarmリポジトリを追加します。 
@@ -46,47 +46,47 @@ Wallarmが提供する個々のLinuxパッケージ[NGINX](dynamic-module.md)、
 
 ## 要件
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include/waf/installation/all-in-one-requirements.ja.md"
 
 ## ステップ1：NGINXと依存関係をインストールする
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include/waf/installation/all-in-one-nginx.ja.md"
 
 ## ステップ2：Wallarmトークンの準備
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include/waf/installation/all-in-one-token.ja.md"
 
 ## ステップ3：オールインワンのWallarmインストーラーをダウンロードする
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include/waf/installation/all-in-one-installer-download.ja.md"
 
 ## ステップ4：オールインワンのWallarmインストーラーを実行する
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include/waf/installation/all-in-one-installer-run.ja.md"
 
 今後の手順でのコマンドはx86_64とARM64のインストールの両方で同じです。
 
 ## ステップ5：Wallarmノードでのトラフィック分析を有効にする
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.ja.md"
 
 ## ステップ6：NGINXを再起動する
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include/waf/installation/restart-nginx-systemctl.ja.md"
 
 ## ステップ7：トラフィックのWallarmノードへの送信を設定する
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.ja.md"
 
 ## ステップ8：Wallarmノードの動作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## ステップ9：デプロイされたソリューションを微調整する
 
 デフォルト設定の動的Wallarmモジュールがインストールされます。フィルタリングノードはデプロイ後に追加の設定が必要な場合があります。
 
-Wallarmの設定は、[NGINXのディレクティブ](../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードがあるマシンの以下のファイルで設定する必要があります。
+Wallarmの設定は、[NGINXのディレクティブ](../../admin-en/configure-parameters-en.ja.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードがあるマシンの以下のファイルで設定する必要があります。
 
 * NGINX設定の`/etc/nginx/nginx.conf`
 * Wallarmノードの監視設定の`/etc/nginx/wallarm-status.conf`。詳細な説明は[リンク][wallarm-status-instr]内で利用可能です。
@@ -138,4 +138,4 @@ sudo sh ./wallarm-4.6.12.x86_64-glibc.sh -- -h
    * デフォルトでノードをEUクラウドにインストールします
    * 追加オプションでスクリプトの動作を変更できます
 
-* `filtering/postanalytics`スイッチャーはpostanalyticsモジュールを[別々に](../../admin-en/installation-postanalytics-en.md#postanalytics-module-installation-via-all-in-one-installation-script)インストールすることができます。スイッチャーが使用されていない場合、フィルタリング部とpostanalytics部は一緒にインストールされます。
+* `filtering/postanalytics`スイッチャーはpostanalyticsモジュールを[別々に](../../admin-en/installation-postanalytics-en.ja.md#postanalytics-module-installation-via-all-in-one-installation-script)インストールすることができます。スイッチャーが使用されていない場合、フィルタリング部とpostanalytics部は一緒にインストールされます。

@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers/cookie.md"
+--8<-- "latest/fast/dsl/points/parsers/cookie.ja.md"

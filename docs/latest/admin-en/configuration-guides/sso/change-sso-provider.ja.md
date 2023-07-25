@@ -2,8 +2,8 @@
 
 [img-disable-sso-provider]:     ../../../images/admin-guides/configuration-guides/sso/disable-sso-provider.png
 
-[doc-setup-sso-gsuite]:     gsuite/overview.md
-[doc-setup-sso-okta]:       okta/overview.md
+[doc-setup-sso-gsuite]:     gsuite/overview.ja.md
+[doc-setup-sso-okta]:       okta/overview.ja.md
 
 [anchor-edit]:      #editing
 [anchor-disable]:   #disabling

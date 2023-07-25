@@ -1,10 +1,10 @@
 # Wallarmプラットフォームの概要
 Wallarmプラットフォームは、クラウドアプリケーションとAPIを保護するために最適なものです。そのハイブリッドアーキテクチャにより、次の機能を提供し、リソースを保護します。
 
-* [超低偽陽性](protecting-against-attacks.md)のハッカー攻撃対策
-* [API乱用を行うボットに対する保護](api-abuse-prevention.md)
-* [API検出](api-discovery.md)
-* [脆弱性の自動検出](detecting-vulnerabilities.md)
+* [超低偽陽性](protecting-against-attacks.ja.md)のハッカー攻撃対策
+* [API乱用を行うボットに対する保護](api-abuse-prevention.ja.md)
+* [API検出](api-discovery.ja.md)
+* [脆弱性の自動検出](detecting-vulnerabilities.ja.md)
 
 Wallarmには、以下の主要コンポーネントがあります。
 
@@ -18,7 +18,7 @@ Wallarmフィルタリングノードは、以下のような機能を提供し�
 * ネットワークトラフィックのメトリックを収集し、それらをWallarm Cloudにアップロードします。
 * Wallarm Cloudで定義したリソース固有のセキュリティルールをダウンロードし、トラフィック分析時に適用します。
 
-Wallarmフィルタリングノードをネットワークインフラストラクチャに展開するには、[サポートされているデプロイオプション](../installation/supported-deployment-options.md)のいずれかを使用します。
+Wallarmフィルタリングノードをネットワークインフラストラクチャに展開するには、[サポートされているデプロイオプション](../installation/supported-deployment-options.ja.md)のいずれかを使用します。
 
 ## Cloud
 Wallarm Cloudは、以下のような機能を提供します。

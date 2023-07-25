@@ -10,9 +10,9 @@
 [link-allowroot]: https://www.zabbix.com/documentation/4.0/manual/appendix/config/zabbix_agentd
 [link-sed-docs]: https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview
 [link-visudo]: https://www.sudo.ws/man/1.8.17/visudo.man.html
-[link-metric]: available-metrics.md#number-of-requests
+[link-metric]: available-metrics.ja.md#number-of-requests
 
-[doc-unixsock]: fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
+[doc-unixsock]: fetching-metrics.ja.md#exporting-metrics-using-the-collectd-nagios-utility
 
 # `collectd-nagios`ユーティリティを使用したZabbixへのメトリックのエクスポート
 

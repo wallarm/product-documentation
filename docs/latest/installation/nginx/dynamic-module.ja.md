@@ -1,26 +1,26 @@
 [img-wl-console-users]:             ../../images/check-user-no-2fa.png
-[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.ja.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
+[waf-directives-instr]:             ../../admin-en/configure-parameters-en.ja.md
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                    ../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]:                     ../../updating-migrating/nginx-modules.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.ja.md
+[logging-instr]:                    ../../admin-en/configure-logging.ja.md
+[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.ja.md
+[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[configure-selinux-instr]:          ../../admin-en/configure-selinux.ja.md
+[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.ja.md
+[update-instr]:                     ../../updating-migrating/nginx-modules.ja.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
-[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
-[versioning-policy]:                ../../updating-migrating/versioning-policy.md#version-list
-[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.ja.md
+[waf-mode-recommendations]:          ../../about-wallarm/deployment-best-practices.ja.md#follow-recommended-onboarding-steps
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.ja.md
+[versioning-policy]:                ../../updating-migrating/versioning-policy.ja.md#version-list
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.ja.md
 [waf-installation-instr-latest]:     /installation/nginx/dynamic-module/
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../custom/custom-nginx-version.md
+[nginx-custom]:                 ../custom/custom-nginx-version.ja.md
 
 # NGINX リポジトリからの NGINX 安定版に対する動的 Wallarm モジュールのインストール
 
@@ -172,7 +172,7 @@ Wallarm ノードは、Wallarm リポジトリからインストールおよび�
         sudo yum install -y wallarm-node-nginx nginx-module-wallarm
         ```
 
-* ポストアナリティクスモジュールと Tarantool データベース用に別のサーバーに `wallarm-node-tarantool` をインストール（インストール手順は[こちらの説明文書](../../admin-en/installation-postanalytics-en.md)に記載されています）。
+* ポストアナリティクスモジュールと Tarantool データベース用に別のサーバーに `wallarm-node-tarantool` をインストール（インストール手順は[こちらの説明文書](../../admin-en/installation-postanalytics-en.ja.md)に記載されています）。
 
 ### 4. Wallarm モジュールの接続
 
@@ -225,6 +225,6 @@ Wallarm ノードは、Wallarm リポジトリからインストールおよび�
 
 ## 設定のカスタマイズ
 
-デフォルト設定のダイナミック Wallarm モジュールが NGINX `stable` 用にインストールされています。Wallarm ノード設定のカスタマイズには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
+デフォルト設定のダイナミック Wallarm モジュールが NGINX `stable` 用にインストールされています。Wallarm ノード設定のカスタマイズには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.ja.md)を使用してください。
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

@@ -6,10 +6,10 @@
 
 [link-grafana]: https://grafana.com/
 
-[doc-network-plugin-influxdb]: network-plugin-influxdb.md
-[doc-network-plugin-graphite]: write-plugin-graphite.md
-[doc-gauge-abnormal]: available-metrics.md#number-of-requests
-[doc-available-metrics]: available-metrics.md
+[doc-network-plugin-influxdb]: network-plugin-influxdb.ja.md
+[doc-network-plugin-graphite]: write-plugin-graphite.ja.md
+[doc-gauge-abnormal]: available-metrics.ja.md#number-of-requests
+[doc-available-metrics]: available-metrics.ja.md
 
 [anchor-query]: #fetching-the-required-metrics-from-the-data-source
 [anchor-verify-monitoring]: #verifying-monitoring

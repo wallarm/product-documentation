@@ -1,1 +1,1 @@
---8<-- "latest/fast/qsg/test-run.md"
+--8<-- "latest/fast/qsg/test-run.ja.md"

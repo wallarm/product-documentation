@@ -4,15 +4,15 @@
 [link-nagios-core]:         https://www.nagios.org/downloads/nagios-core/
 [link-collectd-nagios]:     https://collectd.org/wiki/index.php/Collectd-nagios
 [link-nagios-core-install]: https://support.nagios.com/kb/article/nagios-core-installing-nagios-core-from-source-96.html
-[link-nrpe-docs]:           https://github.com/NagiosEnterprises/nrpe/blob/master/README.md
+[link-nrpe-docs]:           https://github.com/NagiosEnterprises/nrpe/blob/master/README.ja.md
 [link-visudo]:              https://www.sudo.ws/man/1.8.17/visudo.man.html
 [link-collectd-docs]:       https://collectd.org/documentation/manpages/collectd-nagios.1.shtml
 [link-nrpe-readme]:         https://github.com/NagiosEnterprises/nrpe
 [link-nrpe-pdf]:            https://assets.nagios.com/downloads/nagioscore/docs/nrpe/NRPE.pdf
-[link-metric]:              ../../admin-en/monitoring/available-metrics.md#number-of-requests
+[link-metric]:              ../../admin-en/monitoring/available-metrics.ja.md#number-of-requests
 
-[doc-gauge-abnormal]:        available-metrics.md#number-of-requests
-[doc-unixsock]:             fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
+[doc-gauge-abnormal]:        available-metrics.ja.md#number-of-requests
+[doc-unixsock]:             fetching-metrics.ja.md#exporting-metrics-using-the-collectd-nagios-utility
 
 [anchor-header-7]:          #7-add-commands-to-the-nrpe-service-configuration-file-on-the-filter-node-to-get-the-required-metrics
 

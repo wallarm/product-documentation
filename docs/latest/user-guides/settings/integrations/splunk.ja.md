@@ -4,7 +4,7 @@
 
 以下のイベントがトリガーされると、WallarmはSplunkへのアラートを設定できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ##  統合の設定
 
@@ -29,15 +29,15 @@ Wallarm UIで：
 
 ![!Splunk統合](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.ja.md"
 
 ## ダッシュボードにイベントを組織化する
 
---8<-- "../include/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.ja.md"
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 JSON形式でのSplunk通知をテストします：
 
@@ -86,12 +86,12 @@ JSON形式でのSplunk通知をテストします：
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

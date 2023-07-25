@@ -1,6 +1,6 @@
 [tarantool-status]:           ../images/tarantool-status.png
-[configure-selinux-instr]:    configure-selinux.md
-[configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.md
+[configure-selinux-instr]:    configure-selinux.ja.md
+[configure-proxy-balancer-instr]:   configuration-guides/access-to-wallarm-api-via-proxy.ja.md
 [img-wl-console-users]:             ../images/check-user-no-2fa.png
 
 # 別個の postanalytics モジュールのインストール
@@ -11,7 +11,7 @@
 
 ## 要件
 
-* [NGINXの安定版からNGINXリポジトリ](../installation/nginx/dynamic-module.md)、[Debian/CentOSリポジトリからのNGINX](../installation/nginx/dynamic-module-from-distr.md)、または [NGINX Plus](../installation/nginx-plus.md) でインストールされた NGINX-Wallarm モジュール
+* [NGINXの安定版からNGINXリポジトリ](../installation/nginx/dynamic-module.ja.md)、[Debian/CentOSリポジトリからのNGINX](../installation/nginx/dynamic-module-from-distr.ja.md)、または [NGINX Plus](../installation/nginx-plus.ja.md) でインストールされた NGINX-Wallarm モジュール
 
     NGINX-Wallarm パッケージは、別途回インストールする postanalytics モジュールと同じかそれ以下のバージョンでなければなりません。この要件は、[postanalyticsパッケージのインストール](#2-install-packages-for-the-postanalytics-module)の間に確認してください。
 * [USクラウド](https://us1.my.wallarm.com/)または[EUクラウド](https://my.wallarm.com/)のWallarm Consoleで **Administrator** ロールを持つアカウントへのアクセス
@@ -19,7 +19,7 @@
 * すべてのコマンドをスーパーユーザー（例：`root`）として実行
 * パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
 * 米国 Wallarm Cloud と連携している場合は `https://us1.api.wallarm.com`、EU Wallarm Cloud と連携している場合は `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[指示][configure-proxy-balancer-instr] を使用してください
-* [許可されたリスト, 拒否リスト, グレーリスト化された](../user-guides/ip-lists/overview.md) 国、地域、データセンターに登録されている IP アドレスの実際のリストをダウンロードするための [GCP ストレージアドレス](https://www.gstatic.com/ipranges/goog.json) へのアクセス
+* [許可されたリスト, 拒否リスト, グレーリスト化された](../user-guides/ip-lists/overview.ja.md) 国、地域、データセンターに登録されている IP アドレスの実際のリストをダウンロードするための [GCP ストレージアドレス](https://www.gstatic.com/ipranges/goog.json) へのアクセス
 * インストールされたテキストエディタ **vim**、**nano**、またはそれ以外のもの。この指示では、**vim** を使用しています
 
 ## インストール
@@ -168,7 +168,7 @@ postanalytics モジュールはインメモリストレージ Tarantool を使�
     SLAB_ALLOC_ARENA=24
     ```
 
-Tarantool へのメモリ割り当てに関する詳細な推奨事項は、[この手順書](configuration-guides/allocate-resources-for-node.md) で説明されています。
+Tarantool へのメモリ割り当てに関する詳細な推奨事項は、[この手順書](configuration-guides/allocate-resources-for-node.ja.md) で説明されています。
 
 #### 別の postanalytics サーバーのアドレス
 
@@ -211,9 +211,9 @@ Tarantool へのメモリ割り当てに関する詳細な推奨事項は、[こ
     ```
 4. NGINX‑Wallarm パッケージがあるサーバー上の設定ファイルに postanalytics モジュールサーバーのアドレスを追加し、適切なインストール形態の手順に従ってください：
 
-    * [NGINX リポジトリからの NGINX 安定版](../installation/nginx/dynamic-module.md#address-of-the-separate-postanalytics-server)
-    * [Debian/CentOS リポジトリからの NGINX](../installation/nginx/dynamic-module-from-distr.md#address-of-the-separate-postanalytics-server)
-    * [NGINX Plus](../installation/nginx-plus.md#address-of-the-separate-postanalytics-server)
+    * [NGINX リポジトリからの NGINX 安定版](../installation/nginx/dynamic-module.ja.md#address-of-the-separate-postanalytics-server)
+    * [Debian/CentOS リポジトリからの NGINX](../installation/nginx/dynamic-module-from-distr.ja.md#address-of-the-separate-postanalytics-server)
+    * [NGINX Plus](../installation/nginx-plus.ja.md#address-of-the-separate-postanalytics-server)
 
 ### 5. Wallarm サービスの再起動
 
@@ -297,7 +297,7 @@ NGINX‑Wallarm と別の postanalytics モジュールが適切に設定され�
     curl http://127.0.0.8/wallarm-status
     ```
 
-    [統計サービスによって返されるすべてのパラメータの説明 →](configure-statistics-service.md)
+    [統計サービスによって返されるすべてのパラメータの説明 →](configure-statistics-service.ja.md)
 
 ## Postanalytics モジュールの保護
 
@@ -318,4 +318,4 @@ NGINX‑Wallarm と別の postanalytics モジュールが適切に設定され�
 
 ## Tarantool トラブルシューティング
 
-[Tarantool トラブルシューティング](../faq/tarantool.md)
+[Tarantool トラブルシューティング](../faq/tarantool.ja.md)

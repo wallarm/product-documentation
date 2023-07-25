@@ -64,8 +64,8 @@ WallarmのGCPイメージを使用してTerraformなどのツールからフィ�
 
 インスタンスへの接続方法の詳細情報については、[このリンク](https://cloud.google.com/compute/docs/instances/connecting-to-instance)をご覧ください。
 
---8<-- "../include/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 ## 4. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.ja.md"

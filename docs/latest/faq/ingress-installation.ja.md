@@ -1,6 +1,6 @@
 # NGINXベースのWallarm Ingressコントローラーのインストール
 
-このトラブルシューティングガイドでは、[Wallarm NGINXベースのIngressコントローラのデプロイメント](../admin-en/installation-kubernetes-en.md)中に遭遇する可能性のある一般的な問題を記載しています。ここで適切な詳細が見つからない場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。
+このトラブルシューティングガイドでは、[Wallarm NGINXベースのIngressコントローラのデプロイメント](../admin-en/installation-kubernetes-en.ja.md)中に遭遇する可能性のある一般的な問題を記載しています。ここで適切な詳細が見つからない場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。
 
 ## Ingressコントローラーが検出/使用しているクライアントのIPアドレスを確認する方法は？
 
@@ -13,7 +13,7 @@
 
     ![!リクエストが送信されたIPアドレス](../images/request-ip-address.png)
 
-    攻撃のリストが空の場合は、Wallarm Ingressコントローラで保護されたアプリケーションに対して[テスト攻撃](../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信できます。
+    攻撃のリストが空の場合は、Wallarm Ingressコントローラで保護されたアプリケーションに対して[テスト攻撃](../admin-en/installation-check-operation-en.ja.md#2-run-a-test-attack)を送信できます。
 
 ## IngressコントローラーがX-FORWARDED-FORリクエストヘッダーを受信しているかどうかを確認する方法は？
 
@@ -21,4 +21,4 @@
 
 ![!リクエストのX-FORWARDED-FORヘッダー](../images/x-forwarded-for-header.png)
 
-攻撃のリストが空の場合は、Wallarm Ingressコントローラで保護されたアプリケーションに対して[テスト攻撃](../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信できます。
+攻撃のリストが空の場合は、Wallarm Ingressコントローラで保護されたアプリケーションに対して[テスト攻撃](../admin-en/installation-check-operation-en.ja.md#2-run-a-test-attack)を送信できます。

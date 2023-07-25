@@ -1,1 +1,1 @@
---8<-- "latest/fast/qsg/test-interpretation.md"
+--8<-- "latest/fast/qsg/test-interpretation.ja.md"

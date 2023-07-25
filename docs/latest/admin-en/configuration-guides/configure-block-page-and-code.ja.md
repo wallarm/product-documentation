@@ -2,9 +2,9 @@
 
 これらの手順は、以下の理由でブロックされたリクエストに返されるブロックページとエラーコードをカスタマイズする方法を説明しています。
 
-* 次のタイプの悪意のあるペイロードが含まれたリクエスト：[入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[vpatch攻撃](../../user-guides/rules/vpatch-rule.md)、または [正規表現に基づいて検出された攻撃](../../user-guides/rules/regex-rule.md)。
-* 上記の悪意のあるペイロードを含むリクエストが [グレーリスト化されたIPアドレス](../../user-guides/ip-lists/graylist.md) から送信され、ノードは安全なブロッキング[モード](../configure-wallarm-mode.md)でリクエストをフィルタリングします。
-* リクエストが [ブラックリスト化されたIPアドレス](../../user-guides/ip-lists/denylist.md) から送信された場合。
+* 次のタイプの悪意のあるペイロードが含まれたリクエスト：[入力検証攻撃](../../about-wallarm/protecting-against-attacks.ja.md#input-validation-attacks)、[vpatch攻撃](../../user-guides/rules/vpatch-rule.ja.md)、または [正規表現に基づいて検出された攻撃](../../user-guides/rules/regex-rule.ja.md)。
+* 上記の悪意のあるペイロードを含むリクエストが [グレーリスト化されたIPアドレス](../../user-guides/ip-lists/graylist.ja.md) から送信され、ノードは安全なブロッキング[モード](../configure-wallarm-mode.ja.md)でリクエストをフィルタリングします。
+* リクエストが [ブラックリスト化されたIPアドレス](../../user-guides/ip-lists/denylist.ja.md) から送信された場合。
 
 ## 設定の制限事項
 
@@ -27,9 +27,9 @@
 * `response_code`：レスポンスコード。
 * `type`：指定された設定が返されるべきブロックされたリクエストのタイプ。パラメータは、リストから1つまたは複数の値（カンマで区切る）を受け入れます。
 
-    * `attack`(デフォルト)：ブロッキングまたはセーフブロッキング[モード](../configure-wallarm-mode.md)でリクエストをフィルタリングする際にフィルタリングノードによってブロックされたリクエスト。
-    * `acl_ip`：[ブラックリスト](../../user-guides/ip-lists/denylist.md)に単一のオブジェクトまたはサブネットとして追加されたIPアドレスから発信されたリクエスト。
-    * `acl_source`：[ブラックリスト化された](../../user-guides/ip-lists/denylist.md)国、地域、またはデータセンターに登録されたIPアドレスから発信されたリクエスト。
+    * `attack`(デフォルト)：ブロッキングまたはセーフブロッキング[モード](../configure-wallarm-mode.ja.md)でリクエストをフィルタリングする際にフィルタリングノードによってブロックされたリクエスト。
+    * `acl_ip`：[ブラックリスト](../../user-guides/ip-lists/denylist.ja.md)に単一のオブジェクトまたはサブネットとして追加されたIPアドレスから発信されたリクエスト。
+    * `acl_source`：[ブラックリスト化された](../../user-guides/ip-lists/denylist.ja.md)国、地域、またはデータセンターに登録されたIPアドレスから発信されたリクエスト。
 
 `wallarm_block_page`ディレクティブは、以下の形式でリストされたパラメータを受け入れます。
 
@@ -44,7 +44,7 @@
     ブロッキングページで [NGINX変数](https://nginx.org/en/docs/varindex.html) を使用できます。これには、ブロックページコードに形式 `${variable_name}` の変数名を追加します。たとえば、 `${remote_addr}` を使ってブロックされたリクエストが送信されたIPアドレスを表示します。
 
     !!! warning "DebianおよびCentOSユーザーへの重要な情報"
-        [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.md) リポジトリからインストールされた1.11よりも低いバージョンのNGINXを使用する場合は、動的ブロッキングページを正しく表示するために、ページコードから `request_id` 変数を削除する必要があります。
+        [CentOS/Debian](../../installation/nginx/dynamic-module-from-distr.ja.md) リポジトリからインストールされた1.11よりも低いバージョンのNGINXを使用する場合は、動的ブロッキングページを正しく表示するために、ページコードから `request_id` 変数を削除する必要があります。
         ```
         UUID ${request_id}
         ```
@@ -331,7 +331,7 @@ Therefore, to modify the sample blocking page or provide your own, do the follow
 
 1. Before the first run, [prepare](#copy) your modified `wallarm_blocked_renamed.html`.
 1. Prepare NGINX configuration file with the path to your blocking page. See [configuration example](#path-to-the-htm-or-html-file-with-the-blocking-page-and-error-code).
-1. Run the container [mounting](../installation-docker-en.md#run-the-container-mounting-the-configuration-file) the prepared blocking page and configuration file.
+1. Run the container [mounting](../installation-docker-en.ja.md#run-the-container-mounting-the-configuration-file) the prepared blocking page and configuration file.
 1. If you need later to update your blocking page in a running container, on the host machine, change the referenced `wallarm_blocked_renamed.html` then restart NGINX in the container.
 
 **Ingress controller**
@@ -381,7 +381,7 @@ To modify the sample blocking page or provide your own, do the following:
 
 以下は、ディレクティブ`wallarm_block_page`および`wallarm_block_page_add_dynamic_path`を使用して、ブロックページとエラーコードを構成する例です。
 
-各例で`wallarm_block_page`ディレクティブの`type`パラメータが明示的に指定されています。`type`パラメータを削除すると、構成済みのブロックページ、メッセージなどは、ブロッキングまたはセーフブロッキング[モード](../configure-wallarm-mode.md)でリクエストがフィルタリングノードによってブロックされた場合にのみレスポンスで返されます。
+各例で`wallarm_block_page`ディレクティブの`type`パラメータが明示的に指定されています。`type`パラメータを削除すると、構成済みのブロックページ、メッセージなどは、ブロッキングまたはセーフブロッキング[モード](../configure-wallarm-mode.ja.md)でリクエストがフィルタリングノードによってブロックされた場合にのみレスポンスで返されます。
 
 ### ブロックページとエラーコードのHTMまたはHTMLファイルへのパス
 
@@ -397,7 +397,7 @@ location @block {
 }
 ```
 
-Dockerコンテナに設定を適用するには、適切な設定が記載されたNGINX設定ファイルをコンテナにマウントする必要があります。[設定ファイルをマウントしてコンテナを実行する →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定が記載されたNGINX設定ファイルをコンテナにマウントする必要があります。[設定ファイルをマウントしてコンテナを実行する →](../installation-docker-en.ja.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingressアノテーション
 
@@ -444,7 +444,7 @@ map $http_user_agent $block_page {
 wallarm_block_page $block_page response_code=445 type=acl_ip;
 ```
 
-Dockerコンテナに設定を適用するには、適切な設定が記載されたNGINX設定ファイルを、`wallarm_blocked_renamed.html`、`block_page_firefox.html`、および`block_page_chrome.html`ファイルとともにコンテナにマウントする必要があります。[設定ファイルをマウントしてコンテナを実行する →](../installation-docker-en.md#run-the-container-mounting-the-configuration-file)
+Dockerコンテナに設定を適用するには、適切な設定が記載されたNGINX設定ファイルを、`wallarm_blocked_renamed.html`、`block_page_firefox.html`、および`block_page_chrome.html`ファイルとともにコンテナにマウントする必要があります。[設定ファイルをマウントしてコンテナを実行する →](../installation-docker-en.ja.md#run-the-container-mounting-the-configuration-file)
 
 #### Ingressコントローラ
 

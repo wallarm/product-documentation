@@ -95,4 +95,4 @@ wallarm_proton_instances{status="failed"} 0
 wallarm_startid 3226376659815907920
 ```
 
-監視設定と利用可能なメトリックのリストに関する詳細情報は、この[ドキュメント](../../../monitoring/intro.md)で提供されています。
+監視設定と利用可能なメトリックのリストに関する詳細情報は、この[ドキュメント](../../../monitoring/intro.ja.md)で提供されています。

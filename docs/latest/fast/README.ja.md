@@ -1,1 +1,1 @@
---8<-- "latest/fast/README.md"
+--8<-- "latest/fast/README.ja.md"

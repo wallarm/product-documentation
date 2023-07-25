@@ -1,37 +1,37 @@
-[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-memory-for-waf-node.md
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.ja.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-memory-for-waf-node.ja.md
 [waf-directives-instr]:             ../../admin-en/configure-parameters-en.ja.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.ja.md
+[graylist-docs]:                     ../../user-guides/ip-lists/graylist.ja.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.ja.md
 
 # EOLクラウドノードイメージのアップグレード
 
 これらの指示は、AWSまたはGCPにデプロイされた製品寿命の終わりのクラウドノードイメージ（バージョン3.6以下）を4.6までアップグレードする手順を説明しています。
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.ja.md"
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## ステップ1：フィルタリングノードモジュールをアップグレードすることをWallarm技術サポートに通知します（ノード2.18以下をアップグレードする場合のみ）
 
-ノード2.18以下をアップグレードする場合は、最新バージョンまでフィルタリングノードモジュールをアップグレードすることを[Wallarm技術サポート](mailto:support@wallarm.com)に伝え、Wallarmアカウントの新しいIPリストロジックを有効にするように依頼してください。新しいIPリストロジックが有効になったら、Wallarmコンソールの[**IPリスト**](../../user-guides/ip-lists/overview.md)セクションが利用可能であることを確認してください。
+ノード2.18以下をアップグレードする場合は、最新バージョンまでフィルタリングノードモジュールをアップグレードすることを[Wallarm技術サポート](mailto:support@wallarm.com)に伝え、Wallarmアカウントの新しいIPリストロジックを有効にするように依頼してください。新しいIPリストロジックが有効になったら、Wallarmコンソールの[**IPリスト**](../../user-guides/ip-lists/overview.ja.md)セクションが利用可能であることを確認してください。
 
 ## ステップ2：アクティブな脅威検証モジュールを無効にします（ノード2.16以下をアップグレードする場合のみ）
 
-Wallarmノード2.16以下をアップグレードする場合は、Wallarmコンソール→ **脆弱性** → **設定** で[アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールを無効にしてください。
+Wallarmノード2.16以下をアップグレードする場合は、Wallarmコンソール→ **脆弱性** → **設定** で[アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)モジュールを無効にしてください。
 
-モジュールの操作により、アップグレードプロセス中に[偽陽性](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
+モジュールの操作により、アップグレードプロセス中に[偽陽性](../../about-wallarm/protecting-against-attacks.ja.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
 
 ## ステップ3：APIポートを更新します
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include/waf/upgrade/api-port-443.ja.md"
 
 ## ステップ4：フィルタリングノード4.6を使った新しいインスタンスを開始します
 
@@ -41,18 +41,18 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
 2. 起動ステップでは、次の設定を行います：
 
       * イメージバージョン`4.6.x`を選択します
-      * AWSの場合、フィールド**Security Group Settings**では[作成したセキュリティグループ](../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group)を選択します
-      * AWSの場合、フィールド**Key Pair Settings**では、[作成したキーペア](../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys)の名前を選択します
+      * AWSの場合、フィールド**Security Group Settings**では[作成したセキュリティグループ](../../installation/cloud-platforms/aws/ami.ja.md#2-create-a-security-group)を選択します
+      * AWSの場合、フィールド**Key Pair Settings**では、[作成したキーペア](../../installation/cloud-platforms/aws/ami.ja.md#1-create-a-pair-of-ssh-keys)の名前を選択します
 3. インスタンスの起動を確認します。
-4. GCPの場合は、次の[指示](../../installation/cloud-platforms/gcp/machine-image.md#2-configure-the-filtering-node-instance)に従ってインスタンスを設定します。
+4. GCPの場合は、次の[指示](../../installation/cloud-platforms/gcp/machine-image.ja.md#2-configure-the-filtering-node-instance)に従ってインスタンスを設定します。
 
 ## ステップ5：Wallarmノードのフィルトレーションモード設定を最新バージョンでリリースされた変更に合わせて調整します（ノード2.18以下をアップグレードする場合のみ）
 
-1. 以下の設定が、[`off`と`monitoring`フィルトレーションモードの変更されたロジック](what-is-new.md#filtration-modes)に対応する期待される動作であることを確認します：
+1. 以下の設定が、[`off`と`monitoring`フィルトレーションモードの変更されたロジック](what-is-new.ja.md#filtration-modes)に対応する期待される動作であることを確認します：
       * [`wallarm_mode`ディレクティブ](../../admin-en/configure-parameters-en.ja.md#wallarm_mode)
-      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
-2. 期待される動作が変更されたフィルトレーションモードのロジックに対応していない場合は、[指示](../../admin-en/configure-wallarm-mode.md)を使用して、フィルトレーションモードの設定をリリースされた変更に調整してください。
+      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.ja.md)
+      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.ja.md)
+2. 期待される動作が変更されたフィルトレーションモードのロジックに対応していない場合は、[指示](../../admin-en/configure-wallarm-mode.ja.md)を使用して、フィルトレーションモードの設定をリリースされた変更に調整してください。
 
 ## ステップ6：フィルタリングノードをWallarm Cloudに接続します
 
@@ -60,8 +60,8 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
       * [AWSドキュメンテーション](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
       * [GCPドキュメンテーション](https://cloud.google.com/compute/docs/instances/connecting-to-instance)
 2. 生成されたトークンを使用して新しいWallarmノードを作成し、クラウドプラットフォームの指示に従ってWallarm Cloudに接続します：
-      * [AWS](../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
-      * [GCP](../../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [AWS](../../installation/cloud-platforms/aws/ami.ja.md#5-connect-the-filtering-node-to-the-wallarm-cloud)
+      * [GCP](../../installation/cloud-platforms/gcp/machine-image.ja.md#4-connect-the-filtering-node-to-the-wallarm-cloud)
 
 ## ステップ7：フィルタリングノードの設定を前のバージョンから新しいバージョンにコピーします
 
@@ -70,7 +70,7 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
       * グローバルなフィルタリングノード設定を含む`/etc/nginx/conf.d/wallarm.conf`
       * フィルタリングノードの監視サービス設定を含む`/etc/nginx/conf.d/wallarm-status.conf`
 
-        コピーしたファイルの内容が、[推奨されるセキュアな設定](../../admin-en/configure-statistics-service.md#configuring-the-statistics-service)に対応していることを確認してください。
+        コピーしたファイルの内容が、[推奨されるセキュアな設定](../../admin-en/configure-statistics-service.ja.md#configuring-the-statistics-service)に対応していることを確認してください。
 
       * 環境変数を含む`/etc/environment`
       * Tarantool設定を含む`/etc/default/wallarm-tarantool`
@@ -83,15 +83,15 @@ Wallarmノード2.16以下をアップグレードする場合は、Wallarmコ�
     * `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.ja.md#wallarm_general_ruleset_memory_limit)
 
     これらのディレクティブの名前だけが変更されたので、そのロジックは同じままです。以前の名前のディレクティブは近いうちに非推奨になる予定なので、その前に名前を変更することをお勧めします。
-1. [拡張ロギングフォーマット](../../admin-en/configure-logging.md#filter-node-variables)が設定されている場合は、`wallarm_request_time`変数が設定で明示的に指定されているかどうかを確認してください。
+1. [拡張ロギングフォーマット](../../admin-en/configure-logging.ja.md#filter-node-variables)が設定されている場合は、`wallarm_request_time`変数が設定で明示的に指定されているかどうかを確認してください。
 
       もし指定されている場合は、それを`wallarm_request_cpu_time`に変更してください。
 
       変数名だけが変更されたので、そのロジックは同じままです。古い名前も一時的にサポートされていますが、それでも変数の名前を変更することをお勧めします。
-1. ノード2.18以下をアップグレードする場合は、許可リストと拒否リストの設定を前のWallarmノードバージョンから4.6へ[移行](../migrate-ip-lists-to-node-3.md)します。
-1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに返される場合は、その[新しいバージョンをコピーしてカスタマイズ](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
+1. ノード2.18以下をアップグレードする場合は、許可リストと拒否リストの設定を前のWallarmノードバージョンから4.6へ[移行](../migrate-ip-lists-to-node-3.ja.md)します。
+1. ページ`&/usr/share/nginx/html/wallarm_blocked.html`がブロックされたリクエストに返される場合は、その[新しいバージョンをコピーしてカスタマイズ](../../admin-en/configuration-guides/configure-block-page-and-code.ja.md#customizing-sample-blocking-page)します。
 
-      新しいノードバージョンでは、Wallarm のサンプルブロックページが[変更され](what-is-new.md#new-blocking-page)ました。ページ上のロゴとサポートメールは、デフォルトでは空になっています。
+      新しいノードバージョンでは、Wallarm のサンプルブロックページが[変更され](what-is-new.ja.md#new-blocking-page)ました。ページ上のロゴとサポートメールは、デフォルトでは空になっています。
 
 NGINX設定ファイルの使用に関する詳細な情報は、[公式のNGINXドキュメンテーション](https://nginx.org/docs/beginners_guide.html)で利用可能です。
 
@@ -99,7 +99,7 @@ NGINX設定ファイルの使用に関する詳細な情報は、[公式のNGINX
 
 ## ステップ8： `overlimit_res`攻撃検出設定をディレクティブからルールに転送します
 
---8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.ja.md"
 
 ## ステップ9：NGINXを再起動します
 
@@ -111,10 +111,10 @@ sudo systemctl restart nginx
 
 ## ステップ10：Wallarmノードの動作をテストします
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 ## ステップ11：AWSまたはGCPでフィルタリングノード4.6に基づく仮想マシンのイメージを作成する
 
-フィルタリングノード4.6に基づく仮想マシンイメージを作成するには、[AWS](../../admin-en/installation-guides/amazon-cloud/create-image.md)または[GCP](../../admin-en/installation-guides/google-cloud/create-image.md)の指示に従ってください。
+フィルタリングノード4.6に基づく仮想マシンイメージを作成するには、[AWS](../../admin-en/installation-guides/amazon-cloud/create-image.ja.md)または[GCP](../../admin-en/installation-guides/google-cloud/create-image.ja.md)の指示に従ってください。
 
 ## ステップ12：以前のWallarmノードインスタンスを削除する
 
@@ -122,6 +122,6 @@ sudo systemctl restart nginx
 
 ## ステップ13：アクティブな脅威検証モジュールを再有効化する（ノード2.16またはそれ以下をアップグレードする場合のみ）
 
-[アクティブな脅威検証モジュールの設定に関する推奨事項](../../admin-en/attack-rechecker-best-practices.md)を学び、必要に応じて再有効化します。
+[アクティブな脅威検証モジュールの設定に関する推奨事項](../../admin-en/attack-rechecker-best-practices.ja.md)を学び、必要に応じて再有効化します。
 
 しらべて、モジュールの操作が偽の陽性を引き起こさないことを確認します。偽の陽性を発見した場合、[Wallarm技術サポート](mailto:support@wallarm.com)にご連絡ください。

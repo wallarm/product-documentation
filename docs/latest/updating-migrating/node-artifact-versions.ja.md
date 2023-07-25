@@ -1,23 +1,23 @@
 					# ノードアーティファクトバージョンの目録
 
-このドキュメントは、異なる形態でのWallarmノード4.4の[パッチバージョン](versioning-policy.md#version-format)をリストしています。新しいパッチバージョンのリリースを追跡し、このドキュメントに基づいて適時アップグレードを計画できます。
+このドキュメントは、異なる形態でのWallarmノード4.4の[パッチバージョン](versioning-policy.ja.md#version-format)をリストしています。新しいパッチバージョンのリリースを追跡し、このドキュメントに基づいて適時アップグレードを計画できます。
 
 ## DEB/RPMパッケージ for NGINX
 
-[アップグレード方法](nginx-modules.md)
+[アップグレード方法](nginx-modules.ja.md)
 
 ### 4.4.3 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.0
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## Helmチャート for NGINX Ingressコントローラー
 
-[アップグレード方法](ingress-controller.md)
+[アップグレード方法](ingress-controller.ja.md)
 
 ### 4.4.8 (2023-02-23)
 
@@ -43,8 +43,8 @@
 
 ### 4.4.3 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.2 (2023-01-19)
 
@@ -52,7 +52,7 @@
 
 ### 4.4.1 (2023-01-16)
 
-* WallarmノードトークンをKubernetesシークレットとして保存し、`existingSecret`機能を使用してHelmチャートにプルする機能。[詳細](../admin-en/configure-kubernetes-en.md#controllerwallarmexistingsecret)
+* WallarmノードトークンをKubernetesシークレットとして保存し、`existingSecret`機能を使用してHelmチャートにプルする機能。[詳細](../admin-en/configure-kubernetes-en.ja.md#controllerwallarmexistingsecret)
 * Tarantoolリソース用の新しいHelmチャートパラメーター：
 
     * [`controller.wallarm.tarantool.terminationGracePeriodSeconds`](https://github.com/wallarm/ingress/blob/main/charts/ingress-nginx/values.yaml#L789) - [K8sドキュメント](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#configure-probes)で詳細をご覧ください
@@ -62,16 +62,16 @@
 
 ### 4.4.0
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## Helmチャート for Kong Ingressコントローラー
 
-[アップグレード方法](kong-ingress-controller.md)
+[アップグレード方法](kong-ingress-controller.ja.md)
 
 ### 4.4.3 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.1
 
@@ -81,24 +81,24 @@
 
 ### 4.4.0
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## Helmチャート for Sidecarプロキシ
 
-[アップグレード方法](sidecar-proxy.md)
+[アップグレード方法](sidecar-proxy.ja.md)
 
 ### 4.4.5 (2023-02-13)
 
-* [`config.wallarm.fallback`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmfallback)および[`config.wallarm.enableLibDetection`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmenablelibdetection)のHelm値をデフォルトで`on`に設定
+* [`config.wallarm.fallback`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.ja.md#configwallarmfallback)および[`config.wallarm.enableLibDetection`](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.ja.md#configwallarmenablelibdetection)のHelm値をデフォルトで`on`に設定
 
 ### 4.4.4 (2023-02-13）
 
-* WallarmノードトークンをKubernetesシークレットとして保存し、`existingSecret`機能を使用してHelmチャートにプルする機能。[詳細](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#configwallarmapiexistingsecret)
+* WallarmノードトークンをKubernetesシークレットとして保存し、`existingSecret`機能を使用してHelmチャートにプルする機能。[詳細](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.ja.md#configwallarmapiexistingsecret)
 
 ### 4.4.3 (2023-02-10）
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.1
 
@@ -106,11 +106,11 @@
 
 ### 1.1.5
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## NGINXベースのDockerイメージ
 
-[アップグレード方法](docker-container.md)
+[アップグレード方法](docker-container.ja.md)
 
 ### 4.4.5-1 (2023-03-03)
 
@@ -118,48 +118,48 @@
 
 ### 4.4.3-1 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.0-1
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## EnvoyベースのDockerイメージ
 
-[アップグレード方法](docker-container.md)
+[アップグレード方法](docker-container.ja.md)
 
 ### 4.4.3 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.0
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## Amazon Machine Image（AMI）
 
-[アップグレード方法](cloud-image.md)
+[アップグレード方法](cloud-image.ja.md)
 
 ### 4.4.2-1 (2023-02-10)
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### 4.4.1-1
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)
 
 ## Google Cloud Platformイメージ
 
-[アップグレード方法](cloud-image.md)
+[アップグレード方法](cloud-image.ja.md)
 
 ### wallarm-node-4-4-20230131-154432
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)および[SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)攻撃検出のサポート
-* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.md)によって返される新しいパラメーター `custom_ruleset_ver`
+* [Mass Assignment](../attacks-vulns-list.ja.md#mass-assignment)および[SSRF](../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)攻撃検出のサポート
+* JSONおよびPrometheusフォーマットの両方で[Wallarm統計サービス](../admin-en/configure-statistics-service.ja.md)によって返される新しいパラメーター `custom_ruleset_ver`
 
 ### wallarm-node-4-4-20221122-092419
 
-* 4.4の初回リリース、[変更履歴を参照](what-is-new.md)
+* 4.4の初回リリース、[変更履歴を参照](what-is-new.ja.md)

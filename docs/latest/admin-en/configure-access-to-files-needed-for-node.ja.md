@@ -4,7 +4,7 @@
 
 ## ファイルへのアクセスの設定
 
-ノードの操作に必要なファイルへのアクセスを提供するパラメータは、`node.yaml`ファイル内で明示的に設定することができます。このファイルは、`register-node`スクリプトを実行した後に自動的に作成されます。ファイルへのデフォルトのパスは`/etc/wallarm/node.yaml`です。このパスは[`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf)ディレクティブを介して変更することができます。
+ノードの操作に必要なファイルへのアクセスを提供するパラメータは、`node.yaml`ファイル内で明示的に設定することができます。このファイルは、`register-node`スクリプトを実行した後に自動的に作成されます。ファイルへのデフォルトのパスは`/etc/wallarm/node.yaml`です。このパスは[`wallarm_api_conf`](configure-parameters-en.ja.md#wallarm_api_conf)ディレクティブを介して変更することができます。
 
 `node.yaml`ファイルには、以下のファイルアクセスパラメータを含めることができます：
 
@@ -21,7 +21,7 @@
     `(TYPE)`を使用して、パラメータが設定されている特定のファイルを指定できます。可能な値は`proton.db`または`lom`です。
 
     !!! 警告： "`lom`の値の意味"
-        `lom`の値が[カスタムルールセット](../user-guides/rules/compiling.md)ファイル`/etc/wallarm/custom_ruleset`を指していることに注意してください。
+        `lom`の値が[カスタムルールセット](../user-guides/rules/compiling.ja.md)ファイル`/etc/wallarm/custom_ruleset`を指していることに注意してください。
 
 1. `node.yaml`ファイル内で明示的に設定された`syncnode.(user,group,mode)`パラメータ。
 1. NGINXベースのインストールの場合、`/usr/share/wallarm-common/engine/*`ファイル内の`nginx_group`の値。
@@ -43,6 +43,6 @@
 
 ## 設定例
 
-`node.yaml`ファイルには、この記事で説明されているファイルアクセスパラメータ（`syncnode`セクション）のほかに、フィルタリングノードが[クラウドへのアクセス](configure-cloud-node-synchronization-en.md)を提供するパラメータ（一般および`api`セクション）も含まれることに注意してください。
+`node.yaml`ファイルには、この記事で説明されているファイルアクセスパラメータ（`syncnode`セクション）のほかに、フィルタリングノードが[クラウドへのアクセス](configure-cloud-node-synchronization-en.ja.md)を提供するパラメータ（一般および`api`セクション）も含まれることに注意してください。
 
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include/node-cloud-sync-configuration-example.ja.md"

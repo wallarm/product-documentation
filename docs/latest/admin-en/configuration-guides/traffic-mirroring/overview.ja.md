@@ -21,7 +21,7 @@ Wallarmノードのデプロイ方法の1つは、ミラーリングされたHTT
 
 * ミラーリングされたトラフィックのフィルタリングは、NGINXベースのWallarmノードのみがサポートしています。
 * Wallarmノードは、実際のトラフィックフローに関係なくトラフィック分析が進行しているため、悪意のあるリクエストを即座にブロックしません。
-* Wallarmは、ノードが受信リクエストのコピーしか持っておらず、サーバーの応答がミラーリングされないため、アプリケーションとAPIの[脆弱性] (../../../about-wallarm/detecting-vulnerabilities.md) を検出しません。
+* Wallarmは、ノードが受信リクエストのコピーしか持っておらず、サーバーの応答がミラーリングされないため、アプリケーションとAPIの[脆弱性] (../../../about-wallarm/detecting-vulnerabilities.ja.md) を検出しません。
 * ソリューションには、追加のコンポーネントが必要です - トラフィックミラーリングまたはそれに類似したツール（例：NGINX、Envoy、Istio、Traefik、カスタムKongモジュールなど）を提供するウェブサーバー。
 
 ## 設定
@@ -29,11 +29,11 @@ Wallarmノードのデプロイ方法の1つは、ミラーリングされたHTT
 ミラーリングされたトラフィックのフィルタリングにWallarmを実装するには：
 
 1. 入力トラフィックを追加のバックエンドにミラーリングするようにウェブサーバーを設定します。
-1. Wallarmノードを追加のバックエンドとして[インストール] (../../../installation/supported-deployment-options.md)し、ミラーリングされたトラフィックをフィルタリングするように設定します。
+1. Wallarmノードを追加のバックエンドとして[インストール] (../../../installation/supported-deployment-options.ja.md)し、ミラーリングされたトラフィックをフィルタリングするように設定します。
 
 トラフィックミラーリングは、多くのウェブサーバーでサポートされています。以下のリンクの中には、最も人気のあるものの**サンプル設定**が含まれています。
 
-* [NGINX](nginx-example.md)
-* [Traefik](traefik-example.md)
-* [Envoy](envoy-example.md)
-* [Istio](istio-example.md)
+* [NGINX](nginx-example.ja.md)
+* [Traefik](traefik-example.ja.md)
+* [Envoy](envoy-example.ja.md)
+* [Istio](istio-example.ja.md)

@@ -2,8 +2,8 @@
 
 フィルタリングノードは定期的にWallarmクラウドと同期して以下を実現します。
 
-* [トラフィック処理ルール（LOM）](../about-wallarm/protecting-against-attacks.md#custom-rules-for-request-analysis)の更新を取得
-* [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton)の更新を取得
+* [トラフィック処理ルール（LOM）](../about-wallarm/protecting-against-attacks.ja.md#custom-rules-for-request-analysis)の更新を取得
+* [proton.db](../about-wallarm/protecting-against-attacks.ja.md#library-libproton)の更新を取得
 * 検出された攻撃と脆弱性のデータを送信
 * 処理されたトラフィックのメトリクスを送信
 
@@ -35,7 +35,7 @@
 | `WALLARM_API_TOKEN`              | Wallarm APIにアクセスするためのクラウドノードトークン。                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `WALLARM_API_CA_VERIFY`          | Wallarm APIサーバー証明書の検証を有効/無効にするかどうか。以下のようになります:<ul><li>`true`、`yes`、および`1`は検証を有効にする</li><li>その他の値は検証を無効にする</li></ul>デフォルト値は`yes`です。                                                                                                                                                                                                                                                                                          |
 | `WALLARM_API_CA_PATH`            | Wallarm API認証局ファイルへのパス。                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `WALLARM_SYNCNODE`               | Wallarmノード固有データの同期を有効/無効にするかどうか。同期が有効になっている場合、クラウドノードの動作に必要なファイル（たとえば、[LOMファイル](../glossary-en.md#custom-ruleset-the-former-term-is-lom)）は定期的にクラウドからダウンロードされます。同期が無効になっている場合、クラウドノードの動作に必要なファイルはダウンロードされません。以下のようになります:<ul><li>`true`、`yes`、および`1`は同期を有効にする</li><li>その他の値は同期を無効にする</li></ul>デフォルト値は`yes`です。 |
+| `WALLARM_SYNCNODE`               | Wallarmノード固有データの同期を有効/無効にするかどうか。同期が有効になっている場合、クラウドノードの動作に必要なファイル（たとえば、[LOMファイル](../glossary-en.ja.md#custom-ruleset-the-former-term-is-lom)）は定期的にクラウドからダウンロードされます。同期が無効になっている場合、クラウドノードの動作に必要なファイルはダウンロードされません。以下のようになります:<ul><li>`true`、`yes`、および`1`は同期を有効にする</li><li>その他の値は同期を無効にする</li></ul>デフォルト値は`yes`です。 |
 | `WALLARM_SYNCNODE_INTERVAL`      | フィルタリングノードとWallarmクラウドの同期間隔（秒）。値はデフォルト値より小さくすることはできません。デフォルト値は`120`です。                                                                                                                                                                                                                                                                                                                                                                   |
 | `WALLARM_SYNCNODE_RAND_DELAY`    | 同期遅延ジッタ（秒）。デフォルト値は`120`です。                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `WALLARM_SYNCNODE_TIMEOUT`       | 同期持続時間の制限。この制限により、クラウドノード操作のためのファイルのダウンロードプロセス中に問題が発生した場合に同期を中断できます。たとえば、ネットワーク障害によってこのような問題が発生することがあります。デフォルト値は`900`です。                                                                                                                                                                                                                                                                           |
@@ -66,7 +66,7 @@
 
 * [Wallarm Cloudへのアクセスのための認証情報](#credentials-to-access-the-wallarm-cloud)は、`node.yaml`ファイルに設定されます。通常のフィルタリングノード名とUUID、およびWallarm APIへのアクセスのための秘密鍵が含まれる`node.yaml`ファイルは、`addnode`スクリプトの実行後に作成されます。
 
-    ファイルへのデフォルトのパスは`/etc/wallarm/node.yaml`です。このパスは、[`wallarm_api_conf`](configure-parameters-en.md#wallarm_api_conf)ディレクティブを介して変更することができます。
+    ファイルへのデフォルトのパスは`/etc/wallarm/node.yaml`です。このパスは、[`wallarm_api_conf`](configure-parameters-en.ja.md#wallarm_api_conf)ディレクティブを介して変更することができます。
 * [フィルタリングノードとWallarm Cloud同期間隔](#interval-between-filtering-node-and-wallarm-cloud-synchronizations)は、システム環境変数`WALLARM_SYNCNODE_INTERVAL`を介して設定されます。変数値は`/etc/environment`ファイルで設定する必要があります。デフォルトの変数値は`120`秒です。
 
 ### Wallarm Cloudへのアクセスのための認証情報
@@ -145,7 +145,7 @@
             `（TYPE）`で、パラメータが設定される特定のファイルを指定できます。可能な値は`proton.db`または`lom`です。
 
             !!! warning "`lom` value meaning"
-                `lom`の値が、`/etc/wallarm/custom_ruleset`ファイルの[カスタムルールセット](../user-guides/rules/compiling.md)を指していることに注意してください。
+                `lom`の値が、`/etc/wallarm/custom_ruleset`ファイルの[カスタムルールセット](../user-guides/rules/compiling.ja.md)を指していることに注意してください。
         1. `node.yaml`ファイル内の`syncnode.(user,group,mode)`パラメータ。
 1. NGINXベースのインストールの場合、`/usr/share/wallarm-common/engine/*`ファイル内の`nginx_group`の値。
 

@@ -33,11 +33,11 @@
 
 エンドポイントにリンクされていない指定されたアクションを持つルールを作成できます。これらは **デフォルトルール** と呼ばれます。このようなルールは、すべてのエンドポイントに適用されます。
 
-* デフォルトルールを作成するには、[標準手順](add-rule.md)に従ってURIを空白のままにします。 新しいルールがエンドポイントにリンクされずに作成されます。
+* デフォルトルールを作成するには、[標準手順](add-rule.ja.md)に従ってURIを空白のままにします。 新しいルールがエンドポイントにリンクされずに作成されます。
 * 作成されたデフォルトルールのリストを表示するには、**デフォルトルール**ボタンをクリックします。
 
 !!! info "トラフィックフィルタリングモードデフォルトルール"
-    Wallarmは、[一般フィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいて、すべてのクライアントの`Set filtration mode`デフォルトルールを自動的に[作成](wallarm-mode-rule.md#default-instance-of-rule)します。
+    Wallarmは、[一般フィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいて、すべてのクライアントの`Set filtration mode`デフォルトルールを自動的に[作成](wallarm-mode-rule.ja.md#default-instance-of-rule)します。
 
 デフォルトのルールは、すべてのブランチで[継承](#distinct-and-inherited-rules)されます。
 
@@ -48,8 +48,8 @@
 * すべてのブランチが[既定](#default-rules)のルールを継承します。
 * ブランチ内の子エンドポイントは親からルールを継承します。
 * 明確は継承よりも優先されます。
-* 直接指定されたものは、[regex](add-rule.md#condition-type-regex)よりも優先されます。
-* ケース[センシティブ](add-rule.md#condition-type-equal)が、[インセンシティブ](add-rule.md#condition-type-iequal-aa) よりも優先されます。
+* 直接指定されたものは、[regex](add-rule.ja.md#condition-type-regex)よりも優先されます。
+* ケース[センシティブ](add-rule.ja.md#condition-type-equal)が、[インセンシティブ](add-rule.ja.md#condition-type-iequal-aa) よりも優先されます。
 
 ルールブランチでの作業方法の詳細をいくつか示します。
 
@@ -65,7 +65,7 @@
 
 ## ルールを取得するためのAPI呼び出し
 
-カスタムルールを取得するには、WallarmコンソールUIを使用する他に、[Wallarm APIを直接呼び出す](../../api/overview.md)こともできます。以下は、対応するAPI呼び出しの例です。
+カスタムルールを取得するには、WallarmコンソールUIを使用する他に、[Wallarm APIを直接呼び出す](../../api/overview.ja.md)こともできます。以下は、対応するAPI呼び出しの例です。
 
 **すべての設定済みルールを取得**
 

@@ -6,11 +6,11 @@
 [anchor2]:      #2-create-a-pair-of-ssh-keys
 
 [img-create-sg]:                ../images/installation-ami/common/create_sg.png
-[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
+[versioning-policy]:            ../updating-migrating/versioning-policy.ja.md#version-list
 [installation-instr-latest]:    /admin-en/installation-ami-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:    ../installation/supported-deployment-options.md
+[deployment-platform-docs]:    ../installation/supported-deployment-options.ja.md
 
 # Amazon Machine Image (AMI) としてデプロイする
 

@@ -1,5 +1,5 @@
 [link-selinux]:     https://www.redhat.com/en/topics/linux/what-is-selinux
-[doc-monitoring]:   monitoring/intro.md
+[doc-monitoring]:   monitoring/intro.ja.md
 
 # SELinuxの設定
 

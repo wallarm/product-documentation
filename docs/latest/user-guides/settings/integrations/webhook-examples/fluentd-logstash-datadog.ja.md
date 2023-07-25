@@ -7,7 +7,7 @@ Wallarm を Fluentd または Logstash の中間データコレクターを介�
 ![!Wallarm からデータコレクター経由で Datadog へ通知を送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "Datadog とのネイティブな統合"
-    Wallarm はまた、[Datadog API 経由での Datadog とのネイティブな統合](../datadog.md)もサポートしています。ネイティブな統合では、中間データコレクターを使用する必要はありません。
+    Wallarm はまた、[Datadog API 経由での Datadog とのネイティブな統合](../datadog.ja.md)もサポートしています。ネイティブな統合では、中間データコレクターを使用する必要はありません。
 
 ## 使用されるリソース
 

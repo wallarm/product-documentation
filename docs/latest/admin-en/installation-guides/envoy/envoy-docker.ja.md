@@ -1,5 +1,5 @@
-					[versioning-policy]:                ../../../updating-migrating/versioning-policy.md#version-list
-[ptrav-attack-docs]:                ../../../attacks-vulns-list.md#path-traversal
+					[versioning-policy]:                ../../../updating-migrating/versioning-policy.ja.md#version-list
+[ptrav-attack-docs]:                ../../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../../images/admin-guides/test-attacks-quickstart.png
 
 # Docker Envoyベースのイメージの実行
@@ -13,7 +13,7 @@
 Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTPフィルタとして設計されています。
 
 !!! warning "サポートされている設定パラメータ"
-    [ディレクティブ](../../configure-parameters-en.md)のほとんどは、NGINXベースのフィルタリングノード設定用ではなく、Envoyベースのフィルタリングノード設定用にサポートされていません。[Envoyベースのフィルタリングノード設定用 →](../../configuration-guides/envoy/fine-tuning.md)で利用できるパラメータのリストを参照してください。
+    [ディレクティブ](../../configure-parameters-en.ja.md)のほとんどは、NGINXベースのフィルタリングノード設定用ではなく、Envoyベースのフィルタリングノード設定用にサポートされていません。[Envoyベースのフィルタリングノード設定用 →](../../configuration-guides/envoy/fine-tuning.ja.md)で利用できるパラメータのリストを参照してください。
 
 ## 要件
 
@@ -24,8 +24,8 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
 フィルタリングノードの設定パラメータは、以下の方法で `docker run` コマンドに渡すことができます。
 
-* **環境変数で**。このオプションでは、基本的なフィルタリングノードのパラメータのみが設定できます。[パラメータ](../../configuration-guides/envoy/fine-tuning.md)のほとんどは、環境変数を介して変更することはできません。
-* **マウントされた設定ファイルで**。このオプションでは、すべてのフィルタリングノード[パラメータ](../../configuration-guides/envoy/fine-tuning.md)を設定することができます。
+* **環境変数で**。このオプションでは、基本的なフィルタリングノードのパラメータのみが設定できます。[パラメータ](../../configuration-guides/envoy/fine-tuning.ja.md)のほとんどは、環境変数を介して変更することはできません。
+* **マウントされた設定ファイルで**。このオプションでは、すべてのフィルタリングノード[パラメータ](../../configuration-guides/envoy/fine-tuning.ja.md)を設定することができます。
 
 ## 環境変数を渡してコンテナを実行する
 
@@ -48,11 +48,11 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
 環境変数 | 説明 | 必要
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
+`WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.ja.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
 `ENVOY_BACKEND` | Wallarmソリューションで保護するリソースのドメインまたはIPアドレス。 | はい
 `WALLARM_API_HOST` | Wallarm APIサーバ：<ul><li>米国クラウドの場合は `us1.api.wallarm.com`</li><li>EUクラウドの場合は `api.wallarm.com`</li></ul>デフォルト： `api.wallarm.com`。 | いいえ
-`WALLARM_MODE` | ノードモード：<ul><li>`block` で悪意のあるリクエストをブロック</li><li>`safe_blocking` で[グレーリスト化されたIPアドレス](../../../user-guides/ip-lists/graylist.md)からの悪意のあるリクエストのみをブロック</li><li>`monitoring` でリクエストを解析するがブロックしない</li><li>`off` でトラフィックの解析と処理を無効にする</li></ul>デフォルト： `monitoring`。<br>[フィルタリングモードの詳細説明 →](../../configure-wallarm-mode.md) | いいえ
-`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる[メモリの量](../../configuration-guides/allocate-resources-for-node.md)。整数または小数（小数点は <code>.</code>）を指定できます。デフォルト： 0.2ギガバイト。 | いいえ
+`WALLARM_MODE` | ノードモード：<ul><li>`block` で悪意のあるリクエストをブロック</li><li>`safe_blocking` で[グレーリスト化されたIPアドレス](../../../user-guides/ip-lists/graylist.ja.md)からの悪意のあるリクエストのみをブロック</li><li>`monitoring` でリクエストを解析するがブロックしない</li><li>`off` でトラフィックの解析と処理を無効にする</li></ul>デフォルト： `monitoring`。<br>[フィルタリングモードの詳細説明 →](../../configure-wallarm-mode.ja.md) | いいえ
+`TARANTOOL_MEMORY_GB` | Tarantoolに割り当てる[メモリの量](../../configuration-guides/allocate-resources-for-node.ja.md)。整数または小数（小数点は <code>.</code>）を指定できます。デフォルト： 0.2ギガバイト。 | いいえ
 
 このコマンドは、以下の操作を行います。
 
@@ -66,7 +66,7 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
 `envoy.yaml` ファイルを `-v` オプションを使用して Docker コンテナにマウントできます。このファイルには、以下の設定が含まれている必要があります。
 
-* [指示](../../configuration-guides/envoy/fine-tuning.md)に記載されているように、フィルタリングノード設定
+* [指示](../../configuration-guides/envoy/fine-tuning.ja.md)に記載されているように、フィルタリングノード設定
 * [Envoyの指示](https://www.envoyproxy.io/docs/envoy/v1.15.0/configuration/overview/overview)に記載されているように、Envoy設定
 
 コンテナを実行するには：
@@ -90,7 +90,7 @@ Wallarmモジュールは、リクエストのプロキシに対するEnvoy HTTP
 
     環境変数 | 説明 | 必要
     --- | ---- | ----
-    `WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
+    `WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択した[プラットフォーム](../../../installation/supported-deployment-options.ja.md)に関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードが特定の開発者が所有する独自のマシン上に配置されている場合。</p></div> | はい
     `WALLARM_API_HOST` | Wallarm APIサーバ：<ul><li>米国クラウドの場合は `us1.api.wallarm.com`</li><li>EUクラウドの場合は `api.wallarm.com`</li></ul>デフォルト： `api.wallarm.com`。 | いいえ
 
     * `-v` オプションで、設定ファイル `envoy.yaml` を含むディレクトリを `/etc/envoy` コンテナディレクトリにマウントします。

@@ -1,6 +1,6 @@
 # NGINX、EnvoyなどでミラーリングされたトラフィックのためのWallarm OOB
 
-この記事では、NGINX、Envoyまたは類似のソリューションでトラフィックミラーを生成するための[OOB](../overview.md)ソリューションとしてWallarmをデプロイする方法を解説します。
+この記事では、NGINX、Envoyまたは類似のソリューションでトラフィックミラーを生成するための[OOB](../overview.ja.md)ソリューションとしてWallarmをデプロイする方法を解説します。
 
 トラフィックミラーリングは、Webサーバー、プロキシサーバーなどを設定して、入ってきたトラフィックをWallarmのサービスにコピーしたり分析したりすることで実現できます。このアプローチでは、通常のトラフィックのフローは以下のようになります：
 
@@ -12,12 +12,12 @@
 
 1. 以下のいずれかの方法でWallarmノードをインフラにデプロイします：
 
-    * [Terraformモジュールを使用してAWSに](../terraform-module/mirroring-by-web-server.md)
-    * [マシンイメージを使用してAWSに](aws-ami.md)
-    * [マシンイメージを使用してGCPに](gcp-machine-image.md)
+    * [Terraformモジュールを使用してAWSに](../terraform-module/mirroring-by-web-server.ja.md)
+    * [マシンイメージを使用してAWSに](aws-ami.ja.md)
+    * [マシンイメージを使用してGCPに](gcp-machine-image.ja.md)
 
-    <!-- * [NGINXベースのDockerイメージを使用してコンテナベースの環境に](docker-image.md)
-    * [DEB/RPMパッケージからDebianまたはUbuntu OSのマシンに](packages.md) -->
+    <!-- * [NGINXベースのDockerイメージを使用してコンテナベースの環境に](docker-image.ja.md)
+    * [DEB/RPMパッケージからDebianまたはUbuntu OSのマシンに](packages.ja.md) -->
 
     !!! info "ミラーリングされたトラフィック解析のサポート"
         ミラーリングされたトラフィックのフィルタリングは、NGINXベースのWallarmノードのみがサポートしています。

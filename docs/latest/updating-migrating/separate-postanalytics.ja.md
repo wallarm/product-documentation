@@ -1,4 +1,4 @@
-[docs-module-update]:   nginx-modules.md
+[docs-module-update]:   nginx-modules.ja.md
 [img-wl-console-users]:             ../images/check-users.png 
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
 
@@ -6,7 +6,7 @@
 
 これらの指示は、別のサーバーにインストールされたpostanalyticsモジュール4.xをアップグレードする手順を説明しています。Postanalyticsモジュールは、[Wallarm NGINXモジュールのアップグレード][docs-module-update]の前にアップグレードする必要があります。
 
-End-of-lifeモジュール（3.6以下）をアップグレードするには、[別の手順](older-versions/separate-postanalytics.md)を使用してください。
+End-of-lifeモジュール（3.6以下）をアップグレードするには、[別の手順](older-versions/separate-postanalytics.ja.md)を使用してください。
 
 ## 要件
 
@@ -43,7 +43,7 @@ End-of-lifeモジュール（3.6以下）をアップグレードするには、
 
     === "Debian 10.x（buster）"
         !!! warning "NGINX安定版およびNGINXプラスではサポートされません"
-            公式のNGINXバージョン（安定およびプラス）および、結果として、Wallarmノード4.4およびそれ以降はDebian 10.x（buster）にインストールできません。 [Debian / CentOSリポジトリからNGINXがインストールされている場合は、](../installation/nginx/dynamic-module-from-distr.md)このOSを使用してください。
+            公式のNGINXバージョン（安定およびプラス）および、結果として、Wallarmノード4.4およびそれ以降はDebian 10.x（buster）にインストールできません。 [Debian / CentOSリポジトリからNGINXがインストールされている場合は、](../installation/nginx/dynamic-module-from-distr.ja.md)このOSを使用してください。
 
         ```bash
         deb https://repo.wallarm.com/debian/wallarm-node buster/4.4/

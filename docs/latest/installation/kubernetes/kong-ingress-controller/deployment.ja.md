@@ -1,5 +1,5 @@
-[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
+[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.ja.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.ja.md
 
 # Kong Ingress Controllerを統合されたWallarmサービスと展開する
 
@@ -9,21 +9,21 @@ Kong API Gatewayで管理されているAPIを保護するには、Kubernetesク
 
 統合された Wallarm サービスを持つ Kong Ingress Controller の **主要機能** は以下の通りです。
 
-* リアルタイムでの [攻撃検出と軽減](../../../about-wallarm/protecting-against-attacks.md)
-* [脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.md)
-* [APIインベントリの発見](../../../about-wallarm/api-discovery.md)
+* リアルタイムでの [攻撃検出と軽減](../../../about-wallarm/protecting-against-attacks.ja.md)
+* [脆弱性検出](../../../about-wallarm/detecting-vulnerabilities.ja.md)
+* [APIインベントリの発見](../../../about-wallarm/api-discovery.ja.md)
 * Wallarmサービスは、オープンソース版とエンタープライズ版の両方の [Kong API Gateway](https://docs.konghq.com/gateway/latest/) にネイティブに統合されています。
 * このソリューションは、Kong API Gatewayの機能をフルサポートする [公式Kong Ingress Controller](https://docs.konghq.com/kubernetes-ingress-controller/latest/) に基づいています。
 * Kong API Gateway 3.1.x (オープンソース版とエンタープライズ版の両方) のサポート
 * Wallarm Console UIを介したWallarmレイヤの微調整およびアノテーションを介したIngressごとの調整
 
     !!! エラード "アノテーションのサポート"
-        Ingressアノテーションは、オープンソースのKong Ingressコントローラを基盤としたソリューションでのみサポートされています。[ サポートされているアノテーションのリストは限定されています ](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition)。
+        Ingressアノテーションは、オープンソースのKong Ingressコントローラを基盤としたソリューションでのみサポートされています。[ サポートされているアノテーションのリストは限定されています ](customization.ja.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition)。
 * ソリューションにおいて、CPUの使用率が最も高いローカルデータ解析バックエンドのpostanalyticsモジュールに専用のエンティティを提供
 
 ## ユースケース
 
-すべての [Wallarm 展開オプション](../../../installation/supported-deployment-options.md) をサポートする中で、このソリューションは以下の **ユースケース** において推奨されるものです。
+すべての [Wallarm 展開オプション](../../../installation/supported-deployment-options.ja.md) をサポートする中で、このソリューションは以下の **ユースケース** において推奨されるものです。
 
 * Kong で管理されている Ingress リソースへの トラフィックをルーティングするIngressコントローラとセキュリティレイヤがありません。
 * オープンソース版またはエンタープライズ版の公式Kong Ingressコントローラを使用しており、技術スタックと互換性のあるセキュリティソリューションを探しています。
@@ -49,11 +49,11 @@ Kong Ingress Controller with integrated Wallarm servicesは、以下のDeploymen
 
 しかし、Wallarmプラットフォームの一部の機能では、現在のエンタープライズソリューション実装でサポートされていない設定ファイルを変更する必要があります。これにより、次のWallarm機能が利用できなくなります。
 
-* [マルチテナント機能](../../multi-tenant/overview.md)
-* [アプリケーション設定](../../../user-guides/settings/applications.md)
-* [カスタムブロックページとコード設定](../../../admin-en/configuration-guides/configure-block-page-and-code.md) - 両方のエンタープライズおよびオープンソース版Kong IngressコントローラとWallarmサービスではサポートされていません
+* [マルチテナント機能](../../multi-tenant/overview.ja.md)
+* [アプリケーション設定](../../../user-guides/settings/applications.ja.md)
+* [カスタムブロックページとコード設定](../../../admin-en/configuration-guides/configure-block-page-and-code.ja.md) - 両方のエンタープライズおよびオープンソース版Kong IngressコントローラとWallarmサービスではサポートされていません
 
-オープンソースKong IngressコントローラとWallarmサービスについては、[アノテーション](customization.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition) を介して Ingress ごとのマルチテナントおよびアプリケーション設定をサポートしています。
+オープンソースKong IngressコントローラとWallarmサービスについては、[アノテーション](customization.ja.md#fine-tuning-of-traffic-analysis-via-ingress-annotations-only-for-the-open-source-edition) を介して Ingress ごとのマルチテナントおよびアプリケーション設定をサポートしています。
 
 ## 要件
 
@@ -82,7 +82,7 @@ Kong Ingress Controller を統合された Wallarm サービスに展開する�
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-1. `values.yaml`ファイルを、[ソリューション構成](customization.md)とともに作成します。
+1. `values.yaml`ファイルを、[ソリューション構成](customization.ja.md)とともに作成します。
 
     **オープンソース**のKong Ingressコントローラに統合されたWallarmサービスを実行するための最小構成のファイルの例：
 
@@ -172,7 +172,7 @@ Kong Ingress Controller を統合された Wallarm サービスに展開する�
 
         --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.ja.md"
 
-    * `<KONG-ENTERPRISE-LICENSE>`は[Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.md#kong-enterprise-license)です
+    * `<KONG-ENTERPRISE-LICENSE>`は[Kong Enterprise License](https://github.com/Kong/charts/blob/master/charts/kong/README.ja.md#kong-enterprise-license)です
 1. WallarmのHelmチャートをデプロイします:
 
     ``` bash
@@ -212,13 +212,13 @@ kubectl annotate ingress <KONG_INGRESS_NAME> -n <KONG_INGRESS_NAMESPACE> wallarm
     wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
     wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. Kong Ingressコントローラサービスにテスト[Path Traversal](../../../attacks-vulns-list.md#path-traversal)攻撃を送信します。
+1. Kong Ingressコントローラサービスにテスト[Path Traversal](../../../attacks-vulns-list.ja.md#path-traversal)攻撃を送信します。
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    Wallarmレイヤーは**monitoring** [フィルタリングモード](../../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作しているため、Wallarmノードは攻撃をブロックせず、登録するだけです。
+    Wallarmレイヤーは**monitoring** [フィルタリングモード](../../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)で動作しているため、Wallarmノードは攻撃をブロックせず、登録するだけです。
 
     攻撃が登録されたことを確認するには、Wallarm Console →**イベント**に進んでください。
 
@@ -230,4 +230,4 @@ Wallarmポッドは、[デフォルトの`values.yaml`](https://github.com/walla
 
 Kong API GatewayとWallarmの動作をさらにカスタマイズして、Wallarmを徹底的に活用できます。
 
-[Kong Ingress Controllerソリューションカスタマイゼーションガイド](customization.md)に進んでください。
+[Kong Ingress Controllerソリューションカスタマイゼーションガイド](customization.ja.md)に進んでください。

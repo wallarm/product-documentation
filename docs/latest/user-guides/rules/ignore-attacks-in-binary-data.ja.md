@@ -17,18 +17,18 @@
 
 1. 指定されたリクエスト要素で伝達されるバイナリデータの攻撃検出ルールを任意の方法で調整するには、Wallarmコンソールの**Rules**セクションで**バイナリデータを許可**のルールを作成します。ルールは以下の要素で構成されます：
 
-      ＊ルールを適用するエンドポイントを [説明](add-rule.md#branch-description) する**Condition**。
+      ＊ルールを適用するエンドポイントを [説明](add-rule.ja.md#branch-description) する**Condition**。
       ＊バイナリデータを含む元のリクエスト要素を指す**Part of request**。
 
          --8<-- "../include/waf/features/rules/request-part-reference.ja.md"
 2. 指定のリクエスト要素で伝達される特定のファイルタイプの攻撃検出ルールを調整するには、Wallarmコンソールの**Rules**セクションで**特定のファイルタイプを許可**のルールを作成します。ルールは以下の要素で構成されます：
 
-      ＊ルールを適用するエンドポイントを [説明](add-rule.md#branch-description) する**Condition**。
+      ＊ルールを適用するエンドポイントを [説明](add-rule.ja.md#branch-description) する**Condition**。
       ＊攻撃兆候を無視するファイルタイプ。
       ＊指定されたファイルタイプを含む元のリクエスト部分を指す**Part of request**。
 
          --8<-- "../include/waf/features/rules/request-part-reference.ja.md"
-3. [ルールのコンパイルが完了](compiling.md)するのを待ちます。
+3. [ルールのコンパイルが完了](compiling.ja.md)するのを待ちます。
 
 ## ルールの例
 

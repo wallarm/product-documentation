@@ -1,8 +1,8 @@
 # API Abuse Preventionプロファイル管理 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmコンソールの**API Abuse Prevention**セクションでは、[**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md)モジュールの設定に必要なAPI abuseプロファイルを管理できます。
+Wallarmコンソールの**API Abuse Prevention**セクションでは、[**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.ja.md)モジュールの設定に必要なAPI abuseプロファイルを管理できます。
 
-このセクションは、次の[ロール](../user-guides/settings/users.md#user-roles)のユーザーのみが利用できます:
+このセクションは、次の[ロール](../user-guides/settings/users.ja.md#user-roles)のユーザーのみが利用できます:
 
 * 通常アカウント用の**管理者**または**アナリスト**
 * マルチテナンシー機能があるアカウント用の**グローバル管理者**または**グローバルアナリスト**
@@ -13,14 +13,14 @@ API abuseプロファイルを作成するには：
 
 1. Wallarm Console → **API Abuse Prevention** で、**Create profile** をクリックします。
 1. 保護するアプリケーションを選択します。
-1. [トレランス](../about-wallarm/api-abuse-prevention.md#tolerance)レベルを選択します。
-1. 必要に応じて、**Protect from** セクションで、保護対象の [ボットの種類](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) を制限します。
-1. [denylistやgraylistにボットを追加](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots)するかを選択します。
+1. [トレランス](../about-wallarm/api-abuse-prevention.ja.md#tolerance)レベルを選択します。
+1. 必要に応じて、**Protect from** セクションで、保護対象の [ボットの種類](../about-wallarm/api-abuse-prevention.ja.md#automated-threats-blocked-by-api-abuse-prevention) を制限します。
+1. [denylistやgraylistにボットを追加](../about-wallarm/api-abuse-prevention.ja.md#reaction-to-malicious-bots)するかを選択します。
 1. 名前とオプションで説明を設定します。
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-    API abuseプロファイルが設定されると、モジュールは[トラフィック分析と対応する自動化脅威のブロック](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)を開始します。
+    API abuseプロファイルが設定されると、モジュールは[トラフィック分析と対応する自動化脅威のブロック](../about-wallarm/api-abuse-prevention.ja.md#how-api-abuse-prevention-works)を開始します。
 
 ## API abuseプロファイルの無効化
 
@@ -36,13 +36,13 @@ API abuseプロファイルを作成するには：
 
 ## ブロックされた悪意のあるボットとその攻撃の調査
 
-**API Abuse Prevention** モジュールは、[denylist](../user-guides/ip-lists/denylist.md) または [graylist](../user-guides/ip-lists/graylist.md) に追加されたボットを 1 時間ブロックします。
+**API Abuse Prevention** モジュールは、[denylist](../user-guides/ip-lists/denylist.ja.md) または [graylist](../user-guides/ip-lists/graylist.ja.md) に追加されたボットを 1 時間ブロックします。
 
 Wallarm Console → **IP lists** → **Denylist** もしくは **Graylist** でブロックされたボットの IP を調査できます。`Bot` **Reason**で追加されたIPを見ます。
 
 ![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
-ボット保護プロセスに干渉することができます。denylistやgraylistのIPが実際には悪意のあるボットに使用されていない場合、リストからIPを削除するか、[allowlist](../user-guides/ip-lists/allowlist.md)に追加できます。Wallarmは、allowlisted IPからのいかなるリクエストもブロックしません (悪意のあるものを含む)。
+ボット保護プロセスに干渉することができます。denylistやgraylistのIPが実際には悪意のあるボットに使用されていない場合、リストからIPを削除するか、[allowlist](../user-guides/ip-lists/allowlist.ja.md)に追加できます。Wallarmは、allowlisted IPからのいかなるリクエストもブロックしません (悪意のあるものを含む)。
 
 また、Wallarm Console → **Events** セクションで、ボットによるAPI Abuse攻撃を調査できます。`api_abuse` 検索キーを使用するか、**Type** フィルタから `API Abuse` を選択します。
 

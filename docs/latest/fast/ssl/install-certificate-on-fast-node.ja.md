@@ -1,1 +1,1 @@
---8<-- "latest/fast/ssl/install-certificate-on-fast-node.md"
+--8<-- "latest/fast/ssl/install-certificate-on-fast-node.ja.md"

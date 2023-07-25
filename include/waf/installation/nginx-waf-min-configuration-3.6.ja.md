@@ -84,7 +84,7 @@ To allocate memory for Tarantool:
 !!! info "NGINX-Wallarm and postanalytics on the same server"
     If the NGINX-Wallarm and postanalytics modules are installed on the same server, then skip this step.
 
---8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
+--8<-- "../include/waf/configure-separate-postanalytics-address-nginx.ja.md"
 
 #### Other configurations
 

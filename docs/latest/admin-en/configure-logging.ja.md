@@ -1,7 +1,7 @@
 [link-nginx-logging-docs]:  https://docs.nginx.com/nginx/admin-guide/monitoring/logging/
-[doc-vuln-list]:            ../attacks-vulns-list.md
-[doc-monitor-node]:         monitoring/intro.md
-[doc-lom]:                  ../user-guides/rules/compiling.md
+[doc-vuln-list]:            ../attacks-vulns-list.ja.md
+[doc-monitor-node]:         monitoring/intro.ja.md
+[doc-lom]:                  ../user-guides/rules/compiling.ja.md
 
 
 #   フィルターノードログの操作
@@ -14,13 +14,13 @@
 *   `export-environment.log`: インストールされたWallarmパッケージのバージョンを収集し、このデータをWallarmクラウドにアップロードして、Wallarmコンソールでフィルタリングノードの詳細に表示するログ。これらのプロセスは1時間ごとに実行されます。
 *   `syncnode.log`: Wallarmクラウドとのフィルターノードの同期ログ（[LOM][doc-lom]およびproton.dbファイルをクラウドから取得する）。
 *   `tarantool.log`: postanalyticsモジュールの操作ログ。
-*   `sync-ip-lists.log`（以前のノードバージョンでは`sync-blacklist.log`）： [IPリスト](../user-guides/ip-lists/overview.md)に単一オブジェクトまたはサブネットとして追加されたIPアドレスでフィルタリングノードを同期するログ。
-*   `sync-ip-lists-source.log`（以前のノードバージョンでは`sync-mmdb.log`）： [IPリスト](../user-guides/ip-lists/overview.md)内の国、地域、データセンターで登録されたIPアドレスでフィルタリングノードを同期するログ。
-*   `appstructure.log`（Dockerコンテナー内のみ）： [APIディスカバリー](../about-wallarm/api-discovery.md)モジュールのアクティビティログ。
+*   `sync-ip-lists.log`（以前のノードバージョンでは`sync-blacklist.log`）： [IPリスト](../user-guides/ip-lists/overview.ja.md)に単一オブジェクトまたはサブネットとして追加されたIPアドレスでフィルタリングノードを同期するログ。
+*   `sync-ip-lists-source.log`（以前のノードバージョンでは`sync-mmdb.log`）： [IPリスト](../user-guides/ip-lists/overview.ja.md)内の国、地域、データセンターで登録されたIPアドレスでフィルタリングノードを同期するログ。
+*   `appstructure.log`（Dockerコンテナー内のみ）： [APIディスカバリー](../about-wallarm/api-discovery.ja.md)モジュールのアクティビティログ。
 *   `registernode_loop.log`（Dockerコンテナ内のみ）： `register-node`スクリプトを実行するラッパースクリプトのアクティビティログ。成功するまで繰り返し実行されます。
 
     Wallarmノード画像4.0およびそれ以前のバージョンでは、ファイル名は`addnode_loop.log`です。
-*   `weak-jwt-detect.log`： [JWT脆弱性](../attacks-vulns-list.md#weak-jwt)検出のログ。
+*   `weak-jwt-detect.log`： [JWT脆弱性](../attacks-vulns-list.ja.md#weak-jwt)検出のログ。
 
 ##  NGINXベースのフィルターノードの拡張ロギングの設定
 
@@ -45,8 +45,8 @@ NGINXログフォーマットを定義する際に、次のフィルターノー
 |`wallarm_request_mono_time`|浮動小数点数|CPUがリクエストの処理にかかった時間+キュー内の時間。たとえば、リクエストがキュー内に3秒間あり、CPUが1秒間処理していた場合：<ul><li>`"wallarm_request_cpu_time":1`</li><li>`"wallarm_request_mono_time":4`</li></ul>|
 |`wallarm_serialized_size`|整数|シリアル化されたリクエストのバイト単位のサイズ|
 |`wallarm_is_input_valid`|整数|リクエストの有効性<br>`0`：リクエストは有効です。 リクエストはフィルターノードでチェックされ、LOMルールと一致しています。<br>`1`：リクエストは無効です。 リクエストはフィルターノードでチェックされ、LOMルールと一致しません。|
-| `wallarm_attack_type_list` | 文字列 | [リクエストで検出された攻撃タイプ][doc-vuln-list]の[libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)ライブラリ。 タイプはテキスト形式で示されます。<ul><li>xss</li><li>sqli</li><li>rce</li><li>xxe</li><li>ptrav</li><li>crlf</li><li>redir</li><li>nosqli</li><li>infoleak</li><li>overlimit_res</li><li>data_bomb</li><li>vpatch</li><li>ldapi</li><li>scanner</li><li>mass_assignment</li><li>ssrf</li><li>ssi</li><li>mail_injection</li><li>ssti</li><li>invalid_xml</li></ul>リクエストで複数の攻撃タイプが検出された場合、 `|`記号で一覧表示されます。 例： XSSとSQLi攻撃が検出された場合、変数の値は `xss|sqli` です。 |
-|`wallarm_attack_type`|整数|[リクエストで検出された攻撃タイプ][doc-vuln-list]の[libproton](../about-wallarm/protecting-against-attacks.md#library-libproton)ライブラリ。 タイプはビット文字列形式で示されます。<ul><li>`0x00000000`: 攻撃なし: `"0"`</li><li>`0x00000002`: xss: `"2"`</li><li>`0x00000004`: sqli: `"4"`</li><li>`0x00000008`: rce: `"8"`</li><li>`0x00000010`: xxe: `"16"`</li><li>`0x00000020`: ptrav: `"32"`</li><li>`0x00000040`: crlf: `"64"`</li><li>`0x00000080`: redir: `"128"`</li><li>`0x00000100`: nosqli: `"256"`</li><li>`0x00000200`: infoleak: `"512"`</li><li>`0x20000000`: overlimit_res: `"536870912"`</li><li>`0x40000000`: data_bomb: `"1073741824"`</li><li>`0x80000000`: vpatch: `"2147483648"`</li><li>`0x00002000`: ldapi: `"8192"`</li><li>`0x4000`: scanner: `"16384"`</li><li>`0x20000`: mass_assignment: `"131072"`</li><li>`0x80000`: ssrf: `"524288"`</li><li>`0x02000000`: ssi: `"33554432"`</li><li>`0x04000000`: mail_injection: `"67108864"`</li><li>`0x08000000`: ssti: `"134217728"`</li><li>`0x10000000`: invalid_xml: `"268435456"`</li></ul>リクエストで複数の攻撃タイプが検出された場合、値が合計されます。 例： XSSとSQLi攻撃が検出された場合、変数の値は `6` です。 |### 設定例
+| `wallarm_attack_type_list` | 文字列 | [リクエストで検出された攻撃タイプ][doc-vuln-list]の[libproton](../about-wallarm/protecting-against-attacks.ja.md#library-libproton)ライブラリ。 タイプはテキスト形式で示されます。<ul><li>xss</li><li>sqli</li><li>rce</li><li>xxe</li><li>ptrav</li><li>crlf</li><li>redir</li><li>nosqli</li><li>infoleak</li><li>overlimit_res</li><li>data_bomb</li><li>vpatch</li><li>ldapi</li><li>scanner</li><li>mass_assignment</li><li>ssrf</li><li>ssi</li><li>mail_injection</li><li>ssti</li><li>invalid_xml</li></ul>リクエストで複数の攻撃タイプが検出された場合、 `|`記号で一覧表示されます。 例： XSSとSQLi攻撃が検出された場合、変数の値は `xss|sqli` です。 |
+|`wallarm_attack_type`|整数|[リクエストで検出された攻撃タイプ][doc-vuln-list]の[libproton](../about-wallarm/protecting-against-attacks.ja.md#library-libproton)ライブラリ。 タイプはビット文字列形式で示されます。<ul><li>`0x00000000`: 攻撃なし: `"0"`</li><li>`0x00000002`: xss: `"2"`</li><li>`0x00000004`: sqli: `"4"`</li><li>`0x00000008`: rce: `"8"`</li><li>`0x00000010`: xxe: `"16"`</li><li>`0x00000020`: ptrav: `"32"`</li><li>`0x00000040`: crlf: `"64"`</li><li>`0x00000080`: redir: `"128"`</li><li>`0x00000100`: nosqli: `"256"`</li><li>`0x00000200`: infoleak: `"512"`</li><li>`0x20000000`: overlimit_res: `"536870912"`</li><li>`0x40000000`: data_bomb: `"1073741824"`</li><li>`0x80000000`: vpatch: `"2147483648"`</li><li>`0x00002000`: ldapi: `"8192"`</li><li>`0x4000`: scanner: `"16384"`</li><li>`0x20000`: mass_assignment: `"131072"`</li><li>`0x80000`: ssrf: `"524288"`</li><li>`0x02000000`: ssi: `"33554432"`</li><li>`0x04000000`: mail_injection: `"67108864"`</li><li>`0x08000000`: ssti: `"134217728"`</li><li>`0x10000000`: invalid_xml: `"268435456"`</li></ul>リクエストで複数の攻撃タイプが検出された場合、値が合計されます。 例： XSSとSQLi攻撃が検出された場合、変数の値は `6` です。 |### 設定例
 
 次の変数を含む `wallarm_combined` という名前の拡張ログ形式を指定する必要があると仮定します：
 *   `combined` 形式で使用されるすべての変数

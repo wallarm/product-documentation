@@ -15,7 +15,7 @@
 
 * [リソース識別](#リソース識別)
 * [別々のWallarmアカウントとサブアカウント](#別々のwallarmアカウントとサブアカウント)
-* [フィルタノード操作モード](../../configure-wallarm-mode.md)
+* [フィルタノード操作モード](../../configure-wallarm-mode.ja.md)
 
 ### リソース識別
 
@@ -35,8 +35,8 @@
     ![!環境を追加](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. フィルタノードでID設定を指定します:
 
-    * Linuxベース、Kubernetesサイドカー、Dockerベースのデプロイメント用の [`wallarm_application`](../../configure-parameters-en.md#wallarm_application) ディレクティブを使用してください。
-    * Kubernetes NGINX Ingressコントローラデプロイメント用の [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.md#ingress-annotations) アノテーションを使用してください。これで、新しいフィルタノードルールを作成する際に、特定のアプリケーションIDのセットにルールが割り当てられるように指定できます。属性がない場合、新しいルールは自動的にWallarmアカウント内のすべての保護対象リソースに適用されます。
+    * Linuxベース、Kubernetesサイドカー、Dockerベースのデプロイメント用の [`wallarm_application`](../../configure-parameters-en.ja.md#wallarm_application) ディレクティブを使用してください。
+    * Kubernetes NGINX Ingressコントローラデプロイメント用の [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.ja.md#ingress-annotations) アノテーションを使用してください。これで、新しいフィルタノードルールを作成する際に、特定のアプリケーションIDのセットにルールが割り当てられるように指定できます。属性がない場合、新しいルールは自動的にWallarmアカウント内のすべての保護対象リソースに適用されます。
 
 ![!ID用のルールを作成](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 

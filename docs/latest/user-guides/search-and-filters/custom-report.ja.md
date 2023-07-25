@@ -1,6 +1,6 @@
 [img-custom-report]:        ../../images/user-guides/search-and-filters/custom-report.png
 
-[link-using-search]:        use-search.md
+[link-using-search]:        use-search.ja.md
 
 # カスタムレポートの作成
 

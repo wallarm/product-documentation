@@ -10,8 +10,8 @@
 
 **関連するドキュメント記事**
 
-* [Wallarmが検出する攻撃と脆弱性のリスト](../attacks-vulns-list.md)
-* [Wallarmがアプリケーションの脆弱性を検出する方法](../about-wallarm/detecting-vulnerabilities.md)
+* [Wallarmが検出する攻撃と脆弱性のリスト](../attacks-vulns-list.ja.md)
+* [Wallarmがアプリケーションの脆弱性を検出する方法](../about-wallarm/detecting-vulnerabilities.ja.md)
 
 ## Wallarmコンソールの機能概要
 
@@ -21,4 +21,4 @@
 
 **関連するドキュメント記事**
 
-* [Wallarmコンソールセクションのドキュメント](../user-guides/user-intro.md)
+* [Wallarmコンソールセクションのドキュメント](../user-guides/user-intro.ja.md)

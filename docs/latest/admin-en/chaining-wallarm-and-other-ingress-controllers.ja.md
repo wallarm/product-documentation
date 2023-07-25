@@ -4,9 +4,9 @@
 
 ## この解決策が対処する課題
 
-Wallarmは、コミュニティIngress NGINXコントローラをベースにした[Ingressコントローラ](installation-kubernetes-en.md)を含む、さまざまなフォームファクタでノードソフトウェアを提供します。
+Wallarmは、コミュニティIngress NGINXコントローラをベースにした[Ingressコントローラ](installation-kubernetes-en.ja.md)を含む、さまざまなフォームファクタでノードソフトウェアを提供します。
 
-すでにIngressコントローラを使用している場合、既存のIngressコントローラとWallarmコントローラを置き換えることは難しいかもしれません（たとえば、AWS ALB Ingressコントローラを使用している場合）。この場合、[Wallarmサイドカープロキシソリューション](../installation/kubernetes/sidecar-proxy/deployment.md)を試すことができますが、これもインフラストラクチャに適合しない場合は、複数のIngressコントローラをチェーンすることができます。
+すでにIngressコントローラを使用している場合、既存のIngressコントローラとWallarmコントローラを置き換えることは難しいかもしれません（たとえば、AWS ALB Ingressコントローラを使用している場合）。この場合、[Wallarmサイドカープロキシソリューション](../installation/kubernetes/sidecar-proxy/deployment.ja.md)を試すことができますが、これもインフラストラクチャに適合しない場合は、複数のIngressコントローラをチェーンすることができます。
 
 Ingressコントローラのチェーンでは、既存のコントローラを利用してエンドユーザーリクエストをクラスタに転送し、追加のWallarm Ingressコントローラをデプロイして必要なアプリケーション保護を提供できます。
 
@@ -18,7 +18,7 @@ Ingressコントローラのチェーンでは、既存のコントローラを�
 * US Wallarm Cloudで作業するには`https://us1.api.wallarm.com`、EU Wallarm Cloudで作業するには`https://api.wallarm.com`へのアクセス
 * Wallarm Helmチャートを追加するための`https://charts.wallarm.com`へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
 * Docker HubのWallarmリポジトリ `https://hub.docker.com/r/wallarm`へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
-* [許可リスト、拒否リスト、またはグレーリスト](../user-guides/ip-lists/overview.md)の国、地域、またはデータセンターに登録されているIPアドレスの実際のリストをダウンロードするための[GCPストレージアドレス](https://www.gstatic.com/ipranges/goog.json)へのアクセス
+* [許可リスト、拒否リスト、またはグレーリスト](../user-guides/ip-lists/overview.ja.md)の国、地域、またはデータセンターに登録されているIPアドレスの実際のリストをダウンロードするための[GCPストレージアドレス](https://www.gstatic.com/ipranges/goog.json)へのアクセス
 * Ingressコントローラを実行しているKubernetesクラスタがデプロイされていること
 
 ## Wallarm Ingressコントローラをデプロイし、追加のIngressコントローラとチェーンする
@@ -88,7 +88,7 @@ Wallarm Ingressコントローラをデプロイし、追加のコントロー�
     
     `<NODE_TOKEN>`はWallarmノードトークンです。
 
-    より多くの構成オプションを学ぶには、[リンク](configure-kubernetes-en.md)を使用してください。
+    より多くの構成オプションを学ぶには、[リンク](configure-kubernetes-en.ja.md)を使用してください。
 1. Wallarm Ingress Helmチャートをインストールします：
     ``` bash
     helm install --version 4.4.8 internal-ingress wallarm/wallarm-ingress -n wallarm-ingress -f values.yaml --create-namespace

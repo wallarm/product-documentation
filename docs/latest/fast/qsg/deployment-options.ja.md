@@ -1,1 +1,1 @@
---8<-- "latest/fast/qsg/deployment-options.md"
+--8<-- "latest/fast/qsg/deployment-options.ja.md"

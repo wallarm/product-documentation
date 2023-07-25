@@ -87,9 +87,9 @@ kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESP
 
 注釈 `nginx.ingress.kubernetes.io/wallarm-block-page`は、次の理由でブロックされたリクエストへの応答で返されるブロックページとエラーコードを設定するために使用されます。
 
-* 次の種類の悪意のあるペイロードを含むリクエスト：[入力検証攻撃](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、[vpatch攻撃](../user-guides/rules/vpatch-rule.md)、または[正規表現に基づいて検出される攻撃](../user-guides/rules/regex-rule.md)。
-* 上記リストからの悪意のあるペイロードを含むリクエストは、[グレーリストIPアドレス](../user-guides/ip-lists/graylist.md)から発信され、ノードはセーフブロック[モード](configure-wallarm-mode.md)でリクエストをフィルタリングします。
-* リクエストは、[拒否リストIPアドレス](../user-guides/ip-lists/denylist.md)から発信されます。
+* 次の種類の悪意のあるペイロードを含むリクエスト：[入力検証攻撃](../about-wallarm/protecting-against-attacks.ja.md#input-validation-attacks)、[vpatch攻撃](../user-guides/rules/vpatch-rule.ja.md)、または[正規表現に基づいて検出される攻撃](../user-guides/rules/regex-rule.ja.md)。
+* 上記リストからの悪意のあるペイロードを含むリクエストは、[グレーリストIPアドレス](../user-guides/ip-lists/graylist.ja.md)から発信され、ノードはセーフブロック[モード](configure-wallarm-mode.ja.md)でリクエストをフィルタリングします。
+* リクエストは、[拒否リストIPアドレス](../user-guides/ip-lists/denylist.ja.md)から発信されます。
 
 たとえば、ブロックされたすべてのリクエストへの応答で、デフォルトのWallarmブロックページとエラーコード445を返すには、次のようにします。
 
@@ -97,14 +97,14 @@ kubectl annotate --overwrite ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESP
 kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-block-page="&/usr/share/nginx/html/wallarm_blocked.html response_code=445 type=attack,acl_ip,acl_source"
 ```
 
-[ブロックページとエラーコードの設定方法の詳細 →](configuration-guides/configure-block-page-and-code.md)
+[ブロックページとエラーコードの設定方法の詳細 →](configuration-guides/configure-block-page-and-code.ja.md)
 
 #### libdetectionモードの管理
 
 !!! info "**libdetection** デフォルトモード"
     **libdetection**ライブラリのデフォルトモードは`on`（有効）です。
 
-[**libdetection**](../about-wallarm/protecting-against-attacks.md#library-libdetection)モードを制御するには、次のオプションのいずれかを使用します。
+[**libdetection**](../about-wallarm/protecting-against-attacks.ja.md#library-libdetection)モードを制御するには、次のオプションのいずれかを使用します。
 
 * Ingressリソースに次の[`nginx.ingress.kubernetes.io/server-snippet`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet)注釈を適用します。
 

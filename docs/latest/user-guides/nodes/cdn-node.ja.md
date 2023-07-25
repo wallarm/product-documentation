@@ -1,35 +1,35 @@
 [cdn-node-operation-scheme]:        ../../images/waf-installation/quickstart/cdn-node-scheme.png
-[data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.md
-[operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../rules/wallarm-mode-rule.md
-[wallarm-cloud-docs]:               ../../about-wallarm/overview.md#cloud
+[data-to-wallarm-cloud-docs]:       ../rules/sensitive-data-rule.ja.md
+[operation-modes-docs]:             ../../admin-en/configure-wallarm-mode.ja.md
+[operation-mode-rule-docs]:         ../rules/wallarm-mode-rule.ja.md
+[wallarm-cloud-docs]:               ../../about-wallarm/overview.ja.md#cloud
 [cdn-node-creation-modal]:          ../../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../../images/admin-guides/test-attacks-quickstart.png
-[user-roles-docs]:                  ../settings/users.md
+[user-roles-docs]:                  ../settings/users.ja.md
 [update-origin-ip-docs]:            #updating-the-origin-address-of-the-protected-resource
-[rules-docs]:                       ../rules/intro.md
-[ip-lists-docs]:                    ../ip-lists/overview.md
-[integration-docs]:                 ../settings/integrations/integrations-intro.md
-[trigger-docs]:                     ../triggers/triggers.md
-[application-docs]:                 ../settings/applications.md
-[events-docs]:                      ../events/check-attack.md
-[graylist-populating-docs]:         ../ip-lists/graylist.md#managing-graylist
-[link-app-conf]:                    ../settings/applications.md
+[rules-docs]:                       ../rules/intro.ja.md
+[ip-lists-docs]:                    ../ip-lists/overview.ja.md
+[integration-docs]:                 ../settings/integrations/integrations-intro.ja.md
+[trigger-docs]:                     ../triggers/triggers.ja.md
+[application-docs]:                 ../settings/applications.ja.md
+[events-docs]:                      ../events/check-attack.ja.md
+[graylist-populating-docs]:         ../ip-lists/graylist.ja.md#managing-graylist
+[link-app-conf]:                    ../settings/applications.ja.md
 [using-varnish-cache]:              #using-varnish-cache
 
 # CDNフィルタリングノード
 
-WallarmコンソールUIの**ノード**セクションでは、[**Wallarmノード**](nodes.md)と**CDNノード**の2種類のノードを管理できます。この記事はCDNノードについてです。
+WallarmコンソールUIの**ノード**セクションでは、[**Wallarmノード**](nodes.ja.md)と**CDNノード**の2種類のノードを管理できます。この記事はCDNノードについてです。
 
 !!! info "Free tierプランでのCDNノード"
-    CDNノードタイプの展開は、[Free tierプラン](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)ではサポートされていません。
+    CDNノードタイプの展開は、[Free tierプラン](../../about-wallarm/subscription-plans.ja.md#free-tier-subscription-plan-us-cloud)ではサポートされていません。
 
 --8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.ja.md"
 
 ## ノードの作成
 
-CDNノードを作成するには、[インストラクション](../../installation/cdn-node.md)に従ってください。
+CDNノードを作成するには、[インストラクション](../../installation/cdn-node.ja.md)に従ってください。
 
 ## ノードの詳細を表示
 

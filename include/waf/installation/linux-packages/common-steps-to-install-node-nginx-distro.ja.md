@@ -70,4 +70,4 @@
 
 ## 4. フィルタリングノードをWallarmクラウドに接続します
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.ja.md"

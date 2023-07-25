@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers/gzip.md"
+--8<-- "latest/fast/dsl/points/parsers/gzip.ja.md"

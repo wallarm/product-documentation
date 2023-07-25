@@ -1,5 +1,5 @@
-[ip-list-docs]: ../user-guides/ip-lists/overview.md
-[deployment-platform-docs]: ../installation/supported-deployment-options.md
+[ip-list-docs]: ../user-guides/ip-lists/overview.ja.md
+[deployment-platform-docs]: ../installation/supported-deployment-options.ja.md
 
 # Wallarmサービスを統合したNGINX Ingressコントローラのインストール
 
@@ -9,7 +9,7 @@
 
 ## ユースケース
 
-すべてのサポートされる[Wallarm展開オプション](../installation/supported-deployment-options.md)の中で、このソリューションは以下の**ユースケース**において推奨されるものです。
+すべてのサポートされる[Wallarm展開オプション](../installation/supported-deployment-options.ja.md)の中で、このソリューションは以下の**ユースケース**において推奨されるものです。
 
 * [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)と互換性のあるIngressリソースにトラフィックをルーティングするIngressコントローラやセキュリティレイヤがない
 * 開発技術スタックと互換性のあるセキュリティソリューションを探している[Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)を使用している。
@@ -52,7 +52,7 @@
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-4. [Wallarm設定](configure-kubernetes-en.md)を含む`values.yaml`ファイルを作成します。
+4. [Wallarm設定](configure-kubernetes-en.ja.md)を含む`values.yaml`ファイルを作成します。
 
     最小構成のファイルの例：
 
@@ -72,7 +72,7 @@
             token: "<NODE_TOKEN>"
         ```    
     
-    Helmチャートのバージョン4.4.1から、WallarmノードのトークンをKubernetesシークレットに保存し、Helmチャートに引っ張ってくることができます。[詳細はこちら](configure-kubernetes-en.md#controllerwallarmexistingsecret)
+    Helmチャートのバージョン4.4.1から、WallarmノードのトークンをKubernetesシークレットに保存し、Helmチャートに引っ張ってくることができます。[詳細はこちら](configure-kubernetes-en.ja.md#controllerwallarmexistingsecret)
     
     --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.ja.md"
 1. Wallarmパッケージをインストールします：
@@ -93,7 +93,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 ```
 * `<YOUR_INGRESS_NAME>`は、Ingressの名前です
 * `<YOUR_INGRESS_NAMESPACE>`は、Ingressの名前空間です
-* `<APPLICATION>`は、[アプリケーションまたはアプリケーショングループ](../user-guides/settings/applications.md)ごとに固有の正の数です。これにより、個別の統計を取得し、対応するアプリケーションに対する攻撃を区別することができます
+* `<APPLICATION>`は、[アプリケーションまたはアプリケーショングループ](../user-guides/settings/applications.ja.md)ごとに固有の正の数です。これにより、個別の統計を取得し、対応するアプリケーションに対する攻撃を区別することができます
 
 ### ステップ3：Wallarm Ingressコントローラの動作を確認する
 
@@ -109,7 +109,7 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-2. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストをIngress Controller Serviceに送信します：
+2. テスト[Path Traversal](../attacks-vulns-list.ja.md#path-traversal)攻撃を含むリクエストをIngress Controller Serviceに送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
@@ -121,9 +121,9 @@ kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.i
 
 Wallarm Ingressコントローラが正常にインストールされ確認された後、ソリューションに対して高度な設定を行うことができます。
 
-* [エンドユーザーの公開IPアドレスを適切に報告する](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-* [IPアドレスのブロック管理](../user-guides/ip-lists/overview.md)
-* [高可用性に関する考慮事項](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
-* [Ingressコントローラの監視](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [エンドユーザーの公開IPアドレスを適切に報告する](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.ja.md)
+* [IPアドレスのブロック管理](../user-guides/ip-lists/overview.ja.md)
+* [高可用性に関する考慮事項](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.ja.md)
+* [Ingressコントローラの監視](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.ja.md)
 
-高度な設定に使用されるパラメータや適切な手順を見つけるには、[リンク](configure-kubernetes-en.md)をご覧ください。
+高度な設定に使用されるパラメータや適切な手順を見つけるには、[リンク](configure-kubernetes-en.ja.md)をご覧ください。

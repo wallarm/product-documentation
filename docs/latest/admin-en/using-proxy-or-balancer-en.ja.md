@@ -3,7 +3,7 @@
 これらの手順では、HTTPプロキシまたはロードバランサを介してサーバーに接続するクライアントの発信元IPアドレスを識別するために必要なNGINX設定について説明します。
 
 * WallarmノードがDEB / RPMパッケージ、AWS / GCPイメージ、またはNGINXベースのDockerイメージからインストールされている場合は、**現在の手順**を使用してください。
-* WallarmノードがK8s Ingressコントローラーとしてデプロイされている場合は、[これらの指示](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)を使用してください。
+* WallarmノードがK8s Ingressコントローラーとしてデプロイされている場合は、[これらの指示](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.ja.md)を使用してください。
 
 ## WallarmノードがリクエストのIPアドレスを識別する方法
 
@@ -11,21 +11,21 @@ Wallarmノードは、NGINX変数`$remote_addr`からリクエスト元のIPア�
 
 ![!バランサーを使う](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-Wallarmノードによって識別されたリクエスト元のIPアドレスは、Wallarmコンソールの[攻撃の詳細](../user-guides/events/check-attack.md#attacks)に表示されます。
+Wallarmノードによって識別されたリクエスト元のIPアドレスは、Wallarmコンソールの[攻撃の詳細](../user-guides/events/check-attack.ja.md#attacks)に表示されます。
 
 ## プロキシサーバーまたはロードバランサのIPアドレスをリクエスト元のアドレスとして使用する際の問題点
 
 WallarmノードがプロキシサーバーまたはロードバランサのIPアドレスをリクエスト元のIPアドレスとみなす場合、Wallarmの以下の機能が正しく動作しない場合があります。
 
-* [IPアドレスによるアプリケーションへのアクセス制御](../user-guides/ip-lists/overview.md)。例：
+* [IPアドレスによるアプリケーションへのアクセス制御](../user-guides/ip-lists/overview.ja.md)。例：
 
 	元のクライアントIPアドレスがdenylistに登録されていても、WallarmノードはロードバランサのIPアドレスをリクエスト元のIPアドレスとみなすため、それらからのリクエストはブロックされません。
-* [ブルートフォース攻撃対策](configuration-guides/protecting-against-bruteforce.md)。例：
+* [ブルートフォース攻撃対策](configuration-guides/protecting-against-bruteforce.ja.md)。例：
 
 	ロードバランサを経由したリクエストにブルートフォース攻撃の兆候がある場合、WallarmはこのロードバランサのIPアドレスをdenylistに登録し、このロードバランサを経由したすべてのリクエストをブロックします。
-* [アクティブ脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールおよび[脆弱性スキャナー](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)。例：
+* [アクティブ脅威検証](../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)モジュールおよび[脆弱性スキャナー](../about-wallarm/detecting-vulnerabilities.ja.md#vulnerability-scanner)。例：
 
-	Wallarmは、アクティブ脅威検証モジュールおよび脆弱性スキャナーによって生成された[テスト攻撃の発信元IPアドレス](scanner-address-eu-cloud.md)としてロードバランサのIPアドレスを考慮します。したがって、テスト攻撃は、WallarmコンソールでロードバランサのIPアドレスから発信された攻撃として表示され、Wallarmによって追加でチェックされ、アプリケーションに負荷がかかります。
+	Wallarmは、アクティブ脅威検証モジュールおよび脆弱性スキャナーによって生成された[テスト攻撃の発信元IPアドレス](scanner-address-eu-cloud.ja.md)としてロードバランサのIPアドレスを考慮します。したがって、テスト攻撃は、WallarmコンソールでロードバランサのIPアドレスから発信された攻撃として表示され、Wallarmによって追加でチェックされ、アプリケーションに負荷がかかります。
 
 Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_socket)を介して接続されている場合、`0.0.0.0`がリクエスト元として考慮されます。
 
@@ -46,7 +46,7 @@ NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法�
 
    * WallarmノードがDEB / RPMパッケージからインストールされている場合は、`/etc/nginx/conf.d/default.conf`。
    * WallarmノードがAWS / GCPイメージからデプロイされている場合は、`/etc/nginx/nginx.conf`。
-   * WallarmノードがNGINXベースのDockerイメージからデプロイされている場合、ローカルでNGINX設定ファイルを作成および編集し、Dockerコンテナに`/etc/nginx/sites-enabled/default`のパスでマウントする必要があります。初期NGINX設定ファイルのコピーとコンテナへのファイルマウントの手順は、[Wallarm NGINXベースのDocker指示](installation-docker-en.md#run-the-container-mounting-the-configuration-file)で入手できます。
+   * WallarmノードがNGINXベースのDockerイメージからデプロイされている場合、ローカルでNGINX設定ファイルを作成および編集し、Dockerコンテナに`/etc/nginx/sites-enabled/default`のパスでマウントする必要があります。初期NGINX設定ファイルのコピーとコンテナへのファイルマウントの手順は、[Wallarm NGINXベースのDocker指示](installation-docker-en.ja.md#run-the-container-mounting-the-configuration-file)で入手できます。
 2. NGINXのコンテキスト`location`またはそれ以上に、プロキシサーバまたはロードバランサのIPアドレスを持つディレクティブ`set_real_ip_from`を追加します。プロキシサーバまたはロードバランサに複数のIPアドレスがある場合は、適切な数の個別のディレクティブを追加してください。例：
 
    ```bash
@@ -86,7 +86,7 @@ NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法�
 
     * Wallarm ノードが DEB / RPM パッケージからインストールされている場合は、`/etc/nginx/conf.d/default.conf` 。
     * Wallarm ノードが AWS / GCP イメージからデプロイされている場合は、`/etc/nginx/nginx.conf` 。
-    * Wallarm ノードが NGINX ベースの Docker イメージからデプロイされている場合は、ローカルで NGINX 設定ファイルを作成して編集し、Docker コンテナに `/etc/nginx/sites-enabled/default` のパスでマウントする必要があります。初期の NGINX 設定ファイルのコピーと、コンテナへのファイルのマウント方法に関する説明は、[Wallarm の NGINX ベースの Docker の説明書](installation-docker-en.md#run-the-container-mounting-the-configuration-file)から取得できます。
+    * Wallarm ノードが NGINX ベースの Docker イメージからデプロイされている場合は、ローカルで NGINX 設定ファイルを作成して編集し、Docker コンテナに `/etc/nginx/sites-enabled/default` のパスでマウントする必要があります。初期の NGINX 設定ファイルのコピーと、コンテナへのファイルのマウント方法に関する説明は、[Wallarm の NGINX ベースの Docker の説明書](installation-docker-en.ja.md#run-the-container-mounting-the-configuration-file)から取得できます。
 2. NGINX コンテキスト `server` に、ディレクティブ `listen` にパラメーター `proxy_protocol` を追加します。
 3. NGINX コンテキスト `location` またはいずれかの上位に、プロキシサーバーまたはロードバランサーの IP アドレスを指定したディレクティブ `set_real_ip_from` を追加します。プロキシサーバーまたはロードバランサーに複数の IP アドレスがある場合は、適切な数の別々のディレクティブを追加してください。例：
 4. NGINX コンテキスト `location` またはいずれかの上位に、値 `proxy_protocol` を持つディレクティブ `real_ip_header` を追加します。

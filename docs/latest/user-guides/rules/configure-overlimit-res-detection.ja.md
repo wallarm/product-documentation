@@ -1,6 +1,6 @@
 # `overlimit_res` 攻撃検出の微調整
 
-Wallarmノードは、単一の受信リクエストの処理に限られた時間を費やし、時間制限が超過した場合、リクエストを[リソースのオーバーリミット（`overlimit_res`）](../../attacks-vulns-list.md#overlimiting-of-computational-resources)攻撃としてマークします。**overlimit_res 攻撃検出の微調整**ルールを使用すると、単一のリクエスト処理に割り当てられる時間制限と、制限が超過したときのデフォルトのノード動作をカスタマイズできます。
+Wallarmノードは、単一の受信リクエストの処理に限られた時間を費やし、時間制限が超過した場合、リクエストを[リソースのオーバーリミット（`overlimit_res`）](../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources)攻撃としてマークします。**overlimit_res 攻撃検出の微調整**ルールを使用すると、単一のリクエスト処理に割り当てられる時間制限と、制限が超過したときのデフォルトのノード動作をカスタマイズできます。
 
 リクエスト処理時間を制限することで、Wallarmノードを対象としたバイパス攻撃を防ぐことができます。場合によっては、`overlimit_res`としてマークされたリクエストは、Wallarmノードのモジュールに割り当てられたリソースが不足していることを示すことがあり、リクエスト処理に時間がかかってしまいます。
 
@@ -9,10 +9,10 @@ Wallarmノードは、単一の受信リクエストの処理に限られた時�
 
     バージョン 3.4 およびそれ以前では：
 
-    * 単一のリクエスト処理に対するカスタム時間制限は、 [`wallarm_process_time_limit`](../../admin-en/configure-parameters-en.md#wallarm_process_time_limit) NGINX ディレクティブおよび、 [`process_time_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit) Envoy のパラメータを介して設定されます。
-    * `overlimit_res` 攻撃処理モードは、 [`wallarm_process_time_limit_block`](../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block) NGINX ディレクティブおよび、 [`process_time_limit_block`](../../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block) Envoy パラメータを介して設定されます。
+    * 単一のリクエスト処理に対するカスタム時間制限は、 [`wallarm_process_time_limit`](../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit) NGINX ディレクティブおよび、 [`process_time_limit`](../../admin-en/configuration-guides/envoy/fine-tuning.ja.md#process_time_limit) Envoy のパラメータを介して設定されます。
+    * `overlimit_res` 攻撃処理モードは、 [`wallarm_process_time_limit_block`](../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block) NGINX ディレクティブおよび、 [`process_time_limit_block`](../../admin-en/configuration-guides/envoy/fine-tuning.ja.md#process_time_limit_block) Envoy パラメータを介して設定されます。
 
-    Wallarmモジュールを最新バージョンまでアップグレードする際に、ディレクティブからルールに `overlimit_res` 攻撃検出の設定を移行することをお勧めします。各[ノード展開オプション](../../updating-migrating/general-recommendations.md#update-process)に関連する指示が提供されています。
+    Wallarmモジュールを最新バージョンまでアップグレードする際に、ディレクティブからルールに `overlimit_res` 攻撃検出の設定を移行することをお勧めします。各[ノード展開オプション](../../updating-migrating/general-recommendations.ja.md#update-process)に関連する指示が提供されています。
 
 ## デフォルトのノード動作
 
@@ -23,17 +23,17 @@ Wallarmノードは、デフォルトで単一の受信リクエスト処理に 
 1. リクエストの処理を停止。
 1. リクエストを `overlimit_res` 攻撃としてマークし、Wallarm Cloud に攻撃の詳細をアップロード。
 
-    処理されたリクエストの一部に他の[攻撃タイプ](../../attacks-vulns-list.md)も含まれている場合、Wallarmノードはそれらの詳細もCloudにアップロードします。
+    処理されたリクエストの一部に他の[攻撃タイプ](../../attacks-vulns-list.ja.md)も含まれている場合、Wallarmノードはそれらの詳細もCloudにアップロードします。
 
-    対応するタイプの攻撃は、Wallarmコンソールの[イベントリスト](../events/check-attack.md)に表示されます。
-1. <a name="request-blocking"></a>**モニタリング**[モード](../../admin-en/configure-wallarm-mode.md)では、ノードが元のリクエストをアプリケーションのアドレスに転送します。その結果アプリケーションは、処理されたリクエストと未処理のリクエストの両方に含まれる攻撃の被害にあるリスクがあります。
+    対応するタイプの攻撃は、Wallarmコンソールの[イベントリスト](../events/check-attack.ja.md)に表示されます。
+1. <a name="request-blocking"></a>**モニタリング**[モード](../../admin-en/configure-wallarm-mode.ja.md)では、ノードが元のリクエストをアプリケーションのアドレスに転送します。その結果アプリケーションは、処理されたリクエストと未処理のリクエストの両方に含まれる攻撃の被害にあるリスクがあります。
 
-    **セーフブロッキング**モードでは、リクエストが[グレーリスト](../ip-lists/graylist.md)IPアドレスから発信された場合、ノードはリクエストをブロックします。それ以外の場合は、ノードは元のリクエストをアプリケーションのアドレスに転送します。アプリケーションは、処理済みおよび未処理のリクエストの両方に含まれる攻撃に関与するリスクがあります。
+    **セーフブロッキング**モードでは、リクエストが[グレーリスト](../ip-lists/graylist.ja.md)IPアドレスから発信された場合、ノードはリクエストをブロックします。それ以外の場合は、ノードは元のリクエストをアプリケーションのアドレスに転送します。アプリケーションは、処理済みおよび未処理のリクエストの両方に含まれる攻撃に関与するリスクがあります。
 
     **ブロック**モードではノードがリクエストをブロックします。
 
 !!! info "「無効」モードでのリクエストの処理"
-    **無効** [モード](../../admin-en/configure-wallarm-mode.md)では、ノードは受信トラフィックを解析せず、そのためリソースのオーバーリミットを狙った攻撃は検出されません。
+    **無効** [モード](../../admin-en/configure-wallarm-mode.ja.md)では、ノードは受信トラフィックを解析せず、そのためリソースのオーバーリミットを狙った攻撃は検出されません。
 
 ## デフォルトのノード動作の変更
 
@@ -55,7 +55,7 @@ Wallarmノードは、デフォルトで単一の受信リクエスト処理に 
 
 このルールでは、以下のようなことは許可されません。
 
-* `overlimit_res`攻撃に対するブロッキングモードを他の設定とは別に設定する。**イベントで登録および表示**オプションが選択されている場合、ノードは、対応するエンドポイントに設定された[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)に応じて、`overlimit_res`攻撃をブロックするか、アプリケーションアドレスに転送します。
+* `overlimit_res`攻撃に対するブロッキングモードを他の設定とは別に設定する。**イベントで登録および表示**オプションが選択されている場合、ノードは、対応するエンドポイントに設定された[フィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md)に応じて、`overlimit_res`攻撃をブロックするか、アプリケーションアドレスに転送します。
 
 ## ルールの例
 

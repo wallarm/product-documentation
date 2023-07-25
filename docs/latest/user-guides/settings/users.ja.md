@@ -1,7 +1,7 @@
-					[link-audit-log]:               audit-log.md
+					[link-audit-log]:               audit-log.ja.md
 
-[link-glossary-incident]:       ../../glossary-en.md#security-incident
-[link-glossary-vulnerability]:  ../../glossary-en.md#vulnerability
+[link-glossary-incident]:       ../../glossary-en.ja.md#security-incident
+[link-glossary-vulnerability]:  ../../glossary-en.ja.md#vulnerability
 
 [img-configure-user]:       ../../images/user-guides/settings/configure-user.png
 [img-disabled-users]:       ../../images/user-guides/settings/disabled-users.png
@@ -30,13 +30,13 @@ Wallarm クライアントのユーザーには、次のロールがあります
 * **管理者** は、すべての Wallarm セッティングにアクセスできます
 * **アナリスト**は、主要な Wallarm 設定の表示と攻撃、[インシデント][link-glossary-incident] および[脆弱性][link-glossary-vulnerability]に関する情報の管理ができます。
 * **読み取り専用** は、主要な Wallarm 設定を表示できます。
-* **API開発者**は、[APIディスカバリー](../../about-wallarm/api-discovery.md) モジュールで発見されたAPIの目録を表示およびダウンロードできるロールです。このロールでは、Wallarmでの作業がAPIデータの取得に限定されているユーザーを区別することができます。これらのユーザーは、** APIディスカバリー **および**設定 → プロフィール** 以外のWallarmコンソールセクションにアクセスできません。
+* **API開発者**は、[APIディスカバリー](../../about-wallarm/api-discovery.ja.md) モジュールで発見されたAPIの目録を表示およびダウンロードできるロールです。このロールでは、Wallarmでの作業がAPIデータの取得に限定されているユーザーを区別することができます。これらのユーザーは、** APIディスカバリー **および**設定 → プロフィール** 以外のWallarmコンソールセクションにアクセスできません。
 * **デプロイ** は `addnode` スクリプトを使って Wallarm のフィルタリングノードを作成し、Wallarm コンソールにアクセスできません
 
     !!! warning "Wallarmノード 4.0インストールする際のデプロイロールの利用"
         **デプロイ** ユーザーロールは、[バージョン 4.0のリリースで`addnode`スクリプトが廃止された](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)ため、ノード3.6およびそれ以降のノードのインストールにのみ推奨されています。
 
-[多重認証](../../installation/multi-tenant/overview.md) 機能を使って、**グローバル管理者**、**グローバルアナリスト**、**グローバル読み取り専用** といったグローバルロールも使用できます。グローバルロールでは、技術テナントアカウントと関連するテナントアカウントにアクセスできますが、通常のロールでは技術テナントアカウントにのみアクセスできます。
+[多重認証](../../installation/multi-tenant/overview.ja.md) 機能を使って、**グローバル管理者**、**グローバルアナリスト**、**グローバル読み取り専用** といったグローバルロールも使用できます。グローバルロールでは、技術テナントアカウントと関連するテナントアカウントにアクセスできますが、通常のロールでは技術テナントアカウントにのみアクセスできます。
 
 個々のユーザーロールによる Wallarm エンティティへのアクセスの詳細情報は、下記の表に記載されています。エンティティ管理では、エンティティの作成、編集、削除がカバーされています。
 
@@ -91,7 +91,7 @@ Wallarm クライアントのユーザーには、次のロールがあります
 
 新しいユーザーには、パスワードを設定してログインするためのリンクが記載された自動送信メールが届きます。
 
-新しく追加されたユーザーについて通知を受け取るには、適切な[トリガー](../triggers/triggers.md)を設定できます。通知は、メッセージャーやSOARシステム（Slack、Microsoft Teams、OpsGenie など）に送信されます。
+新しく追加されたユーザーについて通知を受け取るには、適切な[トリガー](../triggers/triggers.ja.md)を設定できます。通知は、メッセージャーやSOARシステム（Slack、Microsoft Teams、OpsGenie など）に送信されます。
 
 ## ユーザー情報の変更
 
@@ -121,7 +121,7 @@ Wallarm クライアントのユーザーには、次のロールがあります
 
     ![!Disabling 2-factor authentication][img-user-disable-2fa]
 
-選択されたユーザーの2要素認証機能が無効になります。ユーザーは、[プロファイル設定](account.md#enabling-two-factor-authentication)で2要素認証を再度有効に設定できます。## ユーザーのアクセスを無効にする
+選択されたユーザーの2要素認証機能が無効になります。ユーザーは、[プロファイル設定](account.ja.md#enabling-two-factor-authentication)で2要素認証を再度有効に設定できます。## ユーザーのアクセスを無効にする
 
 ユーザーのアクセスを無効にすると、そのユーザーのWallarmアカウントが無効になります。
 

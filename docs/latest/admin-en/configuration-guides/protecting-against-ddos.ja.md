@@ -39,11 +39,11 @@ DDoS攻撃はさまざまな形態を取り、異なるOSIレイヤーを対象�
 
 Wallarmは、L7 DDoS脅威に対する幅広い保護策を提供しています。
 
-* [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md)。API Abuse Prevention機能を有効にすることで、さまざまなタイプの悪意のあるボットを特定し、停止することができます。
-* [Brute force trigger](protecting-against-bruteforce.md) は、パスワードなどのパラメータ値を大量に試行するリクエストを防止します。
-* [Forced browsing trigger](protecting-against-bruteforce.md) は、ウェブアプリケーションの隠されたリソース、すなわちディレクトリやファイルを検出する悪意のある試行を防止します。
-* [denylistsおよびgraylists](../../user-guides/ip-lists/overview.md) を使ったジオロケーションフィルタリング。攻撃を行っている特定の地域からのアプリケーションやAPIへのアクセスを防止します。
-* [denylistsおよびgraylists](../../user-guides/ip-lists/overview.md) を使って信頼できない送信元をブロックします。ターゲット攻撃からの保護には、攻撃者が場所を隠し、ジオフィルタを迂回することができる信頼できない送信元（Tor、Proxy、VPN）をブロックすることが役立ちます。
+* [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.ja.md)。API Abuse Prevention機能を有効にすることで、さまざまなタイプの悪意のあるボットを特定し、停止することができます。
+* [Brute force trigger](protecting-against-bruteforce.ja.md) は、パスワードなどのパラメータ値を大量に試行するリクエストを防止します。
+* [Forced browsing trigger](protecting-against-bruteforce.ja.md) は、ウェブアプリケーションの隠されたリソース、すなわちディレクトリやファイルを検出する悪意のある試行を防止します。
+* [denylistsおよびgraylists](../../user-guides/ip-lists/overview.ja.md) を使ったジオロケーションフィルタリング。攻撃を行っている特定の地域からのアプリケーションやAPIへのアクセスを防止します。
+* [denylistsおよびgraylists](../../user-guides/ip-lists/overview.ja.md) を使って信頼できない送信元をブロックします。ターゲット攻撃からの保護には、攻撃者が場所を隠し、ジオフィルタを迂回することができる信頼できない送信元（Tor、Proxy、VPN）をブロックすることが役立ちます。
 * [Logic (Data) bomb](#data-bomb) 検出。Wallarmは、ZipまたはXMLボムを含む悪意のあるリクエストを自動的に検出し、ブロックします。
 
 NGINXベースのWallarmノードを使用している場合は、L7 DDoSに対するセキュリティを強化するために、NGINXを以下のように設定することが推奨されます。
@@ -55,4 +55,4 @@ NGINXベースのWallarmノードを使用している場合は、L7 DDoSに対�
 
 [NGINXの設定例や他のおすすめを参照してください](https://www.nginx.com/blog/mitigating-ddos-attacks-with-nginx-and-nginx-plus/)
 
-[Wallarmサービスを使用したKong-based Ingressコントローラー](../../installation/kubernetes/kong-ingress-controller/deployment.md) を使用している場合は、[API Gatewayを安全にするためのベストプラクティス](https://konghq.com/learning-center/api-gateway/secure-api-gateway) に従うことが推奨されています。
+[Wallarmサービスを使用したKong-based Ingressコントローラー](../../installation/kubernetes/kong-ingress-controller/deployment.ja.md) を使用している場合は、[API Gatewayを安全にするためのベストプラクティス](https://konghq.com/learning-center/api-gateway/secure-api-gateway) に従うことが推奨されています。

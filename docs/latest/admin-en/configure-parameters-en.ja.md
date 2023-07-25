@@ -1,6 +1,6 @@
-[doc-nginx-install]: ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[doc-nginx-install]: ../installation/nginx/dynamic-module-from-distr.ja.md
+[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.ja.md
+[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.ja.md
 [acl-access-phase]:            #wallarm_acl_access_phase
 
 # NGINXをベースとしたWallarmノードの設定オプション
@@ -14,7 +14,7 @@ Wallarm NGINXモジュールのカスタマイズオプションを学び、Wall
 
 ### disable_acl
 
-リクエストの起点の解析を無効にすることができます。無効化（`on`）すると、フィルタリングノードは[IPリスト](../user-guides/ip-lists/overview.md)をWallarmクラウドからダウンロードせず、リクエストソースIPの解析をスキップします。
+リクエストの起点の解析を無効にすることができます。無効化（`on`）すると、フィルタリングノードは[IPリスト](../user-guides/ip-lists/overview.ja.md)をWallarmクラウドからダウンロードせず、リクエストソースIPの解析をスキップします。
 
 !!! info
     このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
@@ -23,9 +23,9 @@ Wallarm NGINXモジュールのカスタマイズオプションを学び、Wall
 
 ### wallarm_acl_access_phase
 
-このディレクティブは、NGINXをベースとしたWallarmノードで、[ブラックリスト化された](../user-guides/ip-lists/denylist.md)IPからのリクエストをNGINXアクセス段階でブロックするよう強制します：
+このディレクティブは、NGINXをベースとしたWallarmノードで、[ブラックリスト化された](../user-guides/ip-lists/denylist.ja.md)IPからのリクエストをNGINXアクセス段階でブロックするよう強制します：
 
-* `wallarm_acl_access_phase on`の場合、Wallarmノードは、任意の[フィルタリングモード](configure-wallarm-mode.md)で、ブラックリスト化されたIPからの任意のリクエストをすぐにブロックし、ブラックリスト化されたIPからのリクエストで攻撃の兆候を検索しません。
+* `wallarm_acl_access_phase on`の場合、Wallarmノードは、任意の[フィルタリングモード](configure-wallarm-mode.ja.md)で、ブラックリスト化されたIPからの任意のリクエストをすぐにブロックし、ブラックリスト化されたIPからのリクエストで攻撃の兆候を検索しません。
 
     これが**デフォルトおよび推奨**の値であり、ブラックリストを標準的に動作させ、ノードのCPU負荷を大幅に軽減します。
 
@@ -140,7 +140,7 @@ api:
     }
     ```
 
-[アプリケーションの設定詳細 →](../user-guides/settings/applications.md)
+[アプリケーションの設定詳細 →](../user-guides/settings/applications.ja.md)
 
 !!! info
     このパラメータはhttp, サーバー, およびロケーションブロック内で設定できます。
@@ -151,7 +151,7 @@ api:
 
 ブロックされたリクエストへの応答を設定することができます。
 
-[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.md)
+[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.ja.md)
 
 !!! info
     このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
@@ -160,7 +160,7 @@ api:
 
 このディレクティブは、そのコードとこのブロッキングページへのパスにNGINX変数が含まれているブロッキングページを初期化するために使用されます。それ以外の場合、このディレクティブは使用されません。
 
-[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.md)
+[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.ja.md)
 
 !!! info
     このディレクティブを設定できるのは、NGINX設定ファイルの`http` ブロック内だけです。
@@ -174,7 +174,7 @@ api:
 
 ### wallarm_custom_ruleset_path
 
-保護対象のアプリケーションとフィルタリングノード設定に関する情報が含まれた[カスタムルールセット](../user-guides/rules/intro.md)ファイルへのパス。
+保護対象のアプリケーションとフィルタリングノード設定に関する情報が含まれた[カスタムルールセット](../user-guides/rules/intro.ja.md)ファイルへのパス。
 
 !!! info
     このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
@@ -185,9 +185,9 @@ api:
 
 **libdetection**ライブラリを介したSQL Injection攻撃の追加検証を有効/無効にします。**libdetection**の使用は攻撃の二重検出を保証し、偽陽性の数を減らします。
 
-リクエストの**libdetection**ライブラリによる解析は、すべての[デプロイメントオプション](../installation/supported-deployment-options.md)でデフォルトで有効になっています。 偽陽性の数を減らすために、解析を有効にしたままにすることをお勧めします。
+リクエストの**libdetection**ライブラリによる解析は、すべての[デプロイメントオプション](../installation/supported-deployment-options.ja.md)でデフォルトで有効になっています。 偽陽性の数を減らすために、解析を有効にしたままにすることをお勧めします。
 
-[**libdetection**について詳しく →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
+[**libdetection**について詳しく →](../about-wallarm/protecting-against-attacks.ja.md#library-libdetection)
 
 !!! warning "メモリ消費の増加"
     libdetectionライブラリを使用して攻撃を解析すると、NGINXおよびWallarmプロセスによって消費されるメモリの量が約10%増加する可能性があります。
@@ -195,7 +195,7 @@ api:
 !!! info
     このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
-    すべての[デプロイメントオプション](../installation/supported-deployment-options.md)に対するデフォルト値は`on`です。
+    すべての[デプロイメントオプション](../installation/supported-deployment-options.ja.md)に対するデフォルト値は`on`です。
 
 ### wallarm_fallback
 
@@ -208,7 +208,7 @@ api:
 
 ### wallarm_force
 
-NGINXのミラードトラフィックに基づいてリクエストの解析とカスタムルールの生成を設定します。[Analyzing mirrored traffic with NGINX](../installation/oob/web-server-mirroring/overview.md)を参照してください。
+NGINXのミラードトラフィックに基づいてリクエストの解析とカスタムルールの生成を設定します。[Analyzing mirrored traffic with NGINX](../installation/oob/web-server-mirroring/overview.ja.md)を参照してください。
 
 ### wallarm_general_ruleset_memory_limit
 
@@ -252,7 +252,7 @@ proton.dbとカスタムルールセットファイルの新しいデータを�
     フィルタリングノードのバージョン4.0以前に使用していた設定を更新する場合：
 
     * マルチテナンシーフィーチャーなしでフィルタリングノードをアップグレードし、保護されたアプリケーションの一意の識別子を設定するために `wallarm_instance` を使用している場合、ただ `wallarm_application` に名前を変更してください。
-    * マルチテナンシーフィーチャー付きでフィルタリングノードをアップグレードする場合、すべての `wallarm_instance` を `wallarm_application` と見なし、[マルチテナント再構成手順](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy) に記述されているように構成を再記述してください。
+    * マルチテナンシーフィーチャー付きでフィルタリングノードをアップグレードする場合、すべての `wallarm_instance` を `wallarm_application` と見なし、[マルチテナント再構成手順](../updating-migrating/older-versions/multi-tenant.ja.md#step-3-reconfigure-multitenancy) に記述されているように構成を再記述してください。
 
 ### wallarm_key_path
 
@@ -275,11 +275,11 @@ proton.dbとカスタムルールセットファイルの暗号化/復号化に�
 * `safe_blocking`
 * `block`
 
---8<-- "../include/wallarm-modes-description-latest.md"
+--8<-- "../include/wallarm-modes-description-latest.ja.md"
 
 `wallarm_mode` の使用は `wallarm_mode_allow_override` ディレクティブによって制限されることがあります。
 
-[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.md)
+[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.ja.md)
 
 !!! info
     このパラメータは、httpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
@@ -296,7 +296,7 @@ Wallarm Cloudからダウンロードしたフィルタリングルールを介�
 
 例えば、`wallarm_mode monitoring` と `wallarm_mode_allow_override strict` が設定されている場合、Wallarm Consoleを使用して一部のリクエストをブロックすることができますが、攻撃分析を完全に無効にすることはできません。
 
-[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.md)
+[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.ja.md)
 
 !!! info
     このパラメータは、httpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
@@ -306,7 +306,7 @@ Wallarm Cloudからダウンロードしたフィルタリングルールを介�
 
 ### wallarm_parse_response
 
-アプリケーションのレスポンスを解析するかどうか。レスポンス分析は、[パッシブ検出](../about-wallarm/detecting-vulnerabilities.md#passive-detection) および [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) の際に脆弱性検出が必要です。
+アプリケーションのレスポンスを解析するかどうか。レスポンス分析は、[パッシブ検出](../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection) および [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification) の際に脆弱性検出が必要です。
 
 可能な値は `on`（レスポンス分析が有効）と `off`（レスポンス分析が無効）です。
 
@@ -381,7 +381,7 @@ location /zy {
 
 ### wallarm_partner_client_uuid
 
-[マルチテナント](../installation/multi-tenant/overview.md) Wallarmノードのテナントの一意識別子。値は[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) 形式の文字列である必要があります。例えば：
+[マルチテナント](../installation/multi-tenant/overview.ja.md) Wallarmノードのテナントの一意識別子。値は[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) 形式の文字列である必要があります。例えば：
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
@@ -391,8 +391,8 @@ location /zy {
 
     次の方法を知っておいてください：
     
-    * [テナント作成中にテナントのUUIDを取得する →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
-    * [既存のテナントのUUIDのリストを取得する →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
+    * [テナント作成中にテナントのUUIDを取得する →](../installation/multi-tenant/configure-accounts.ja.md#step-3-create-the-tenant-via-the-wallarm-api)
+    * [既存のテナントのUUIDのリストを取得する →](../updating-migrating/older-versions/multi-tenant.ja.md#get-uuids-of-your-tenants)
     
 設定例：
 
@@ -439,13 +439,13 @@ server {
     これら3つのパスに向けられたトラフィックは対応するアプリケーションに関連付けられ、その残りは最初のクライアントの一般的なトラフィックになります。### wallarm_process_time_limit
 
 !!! warning "このディレクティブは廃止予定です"
-    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md) を使用して微調整することを推奨します。
+    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.ja.md) を使用して微調整することを推奨します。
     
     `wallarm_process_time_limit`ディレクティブは一時的にサポートされていますが、将来のリリースで削除される予定です。
 
 Wallarmノードによる単一リクエスト処理の時間制限を設定します。
 
-もし時間が制限を超えると、エラーがログに記録され、リクエストは [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) 攻撃としてマークされます。 [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) の値により、攻撃はブロックされるか、モニタリングされるか、無視されるかが決まります。
+もし時間が制限を超えると、エラーがログに記録され、リクエストは [`overlimit_res`](../attacks-vulns-list.ja.md#overlimiting-of-computational-resources) 攻撃としてマークされます。 [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) の値により、攻撃はブロックされるか、モニタリングされるか、無視されるかが決まります。
 
 値は単位なしのミリ秒で指定します。例えば：
 
@@ -462,7 +462,7 @@ wallarm_process_time_limit 2000; # 2000 ミリ秒
 ### wallarm_process_time_limit_block
 
 !!! warning "このディレクティブは廃止予定です"
-    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md) を使用して微調整することを推奨します。
+    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.ja.md) を使用して微調整することを推奨します。
     
     `wallarm_process_time_limit_block`ディレクティブは一時的にサポートされていますが、将来のリリースで削除される予定です。
 
@@ -481,7 +481,7 @@ wallarm_process_time_limit 2000; # 2000 ミリ秒
 - `attack`: `wallarm_mode`ディレクティブで設定された攻撃ブロッキングモードに依存します：
     - `off`: リクエストは処理されません。
     - `monitoring`: リクエストは無視されますが、`overlimit_res`攻撃の詳細はWallarmクラウドにアップロードされ、Wallarmコンソールに表示されます。
-    - `safe_blocking`: [graylisted](../user-guides/ip-lists/graylist.md) IPアドレスからのリクエストだけがブロックされ、すべての`overlimit_res`攻撃の詳細はWallarmクラウドにアップロードされ、Wallarmコンソールに表示されます。
+    - `safe_blocking`: [graylisted](../user-guides/ip-lists/graylist.ja.md) IPアドレスからのリクエストだけがブロックされ、すべての`overlimit_res`攻撃の詳細はWallarmクラウドにアップロードされ、Wallarmコンソールに表示されます。
     - `block`: リクエストはブロックされます。
 
 ディレクティブの値に関係なく、 `overlimit_res` 攻撃タイプのリクエストは、 [`wallarm_mode off;`](#wallarm_mode) でない限り、Wallarmクラウドにアップロードされます。
@@ -513,7 +513,7 @@ NGINXワーカープロセスのデバッグログの設定。
 
 ### wallarm_protondb_path
 
-リクエストフィルタリングの全体設定を持つ [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) ファイルへのパス。これらの設定はアプリケーション構造に依存しません。
+リクエストフィルタリングの全体設定を持つ [proton.db](../about-wallarm/protecting-against-attacks.ja.md#library-libproton) ファイルへのパス。これらの設定はアプリケーション構造に依存しません。
 
 !!! info
     このパラメータはhttp、server、およびlocationブロック内で設定できます。
@@ -546,16 +546,16 @@ wallarm_rate_limit "$remote_addr +location_name" rate=10r/s burst=9 delay=5;
 
     このパラメータはhttp、server、locationコンテキスト内で設定できます。
 
-    もし [レート制限](../user-guides/rules/rate-limiting.md) ルールを設定した場合、 `wallarm_rate_limit` ディレクティブは優先度が低くなります。
+    もし [レート制限](../user-guides/rules/rate-limiting.ja.md) ルールを設定した場合、 `wallarm_rate_limit` ディレクティブは優先度が低くなります。
 
 ### wallarm_rate_limit_enabled
 
 Wallarmのレート制限を有効/無効にします。
 
-もし `off` の場合、[レート制限ルール](../user-guides/rules/rate-limiting.md) （推奨）でも `wallarm_rate_limit` ディレクティブでも動作しません。
+もし `off` の場合、[レート制限ルール](../user-guides/rules/rate-limiting.ja.md) （推奨）でも `wallarm_rate_limit` ディレクティブでも動作しません。
 
 !!! info
-    **デフォルト値:** `on` ですが、[レート制限ルール](../user-guides/rules/rate-limiting.md) (推奨)または `wallarm_rate_limit` ディレクティブを設定していない限り、Wallarmのレート制限は機能しません。
+    **デフォルト値:** `on` ですが、[レート制限ルール](../user-guides/rules/rate-limiting.ja.md) (推奨)または `wallarm_rate_limit` ディレクティブを設定していない限り、Wallarmのレート制限は機能しません。
     
     このパラメータはhttp、server、locationコンテキスト内で設定できます。
 
@@ -622,7 +622,7 @@ Wallarmのレート制限モジュールが消費できる共有メモリの最�
 
 NGINX ワーカーの 1 リクエスト処理のタイムリミットを秒単位で設定します。
 
-時間が制限を超えると、NGINX ワーカーのデータが `stalled_workers_count` および `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) パラメータに書き込まれます。
+時間が制限を超えると、NGINX ワーカーのデータが `stalled_workers_count` および `stalled_workers` [statistic](configure-statistics-service.ja.md##working-with-the-statistics-service) パラメータに書き込まれます。
 
 !!! info
     このパラメータは、http、サーバー、および/またはロケーションのブロック内で設定できます。
@@ -631,7 +631,7 @@ NGINX ワーカーの 1 リクエスト処理のタイムリミットを秒単�
 
 ### wallarm_status
 
-[Wallarm statistics service](configure-statistics-service.md) の操作を制御します。
+[Wallarm statistics service](configure-statistics-service.ja.md) の操作を制御します。
 
 ディレクティブの値は次の形式を持ちます：
 

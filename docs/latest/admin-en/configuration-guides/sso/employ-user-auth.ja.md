@@ -3,11 +3,11 @@
 [img-enable-sso-for-user]:  ../../../images/admin-guides/configuration-guides/sso/enable-sso-for-user.png
 [img-disable-sso-for-user]: ../../../images/admin-guides/configuration-guides/sso/disable-sso-for-user.png
 
-[doc-allow-access-gsuite]:  gsuite/allow-access-to-wl.md
-[doc-allow-access-okta]:    okta/allow-access-to-wl.md
+[doc-allow-access-gsuite]:  gsuite/allow-access-to-wl.ja.md
+[doc-allow-access-okta]:    okta/allow-access-to-wl.ja.md
 
-[doc-user-sso-guide]:       ../../../user-guides/use-sso.md
-[doc-disable-sso]:          change-sso-provider.md   
+[doc-user-sso-guide]:       ../../../user-guides/use-sso.ja.md
+[doc-disable-sso]:          change-sso-provider.ja.md   
 
 [anchor-enable]:            #enabling-sso-authentication-for-users
 [anchor-disable]:           #disabling-sso-authentication-for-users
@@ -46,9 +46,9 @@ WallarmユーザーのSSO認証を無効にするには：
 
 ## SSOとAPI認証
 
-ユーザーにSSOが有効になっている場合、[Wallarm APIへのリクエストの認証](../../../api/overview.md#your-own-client)は、このユーザーには利用できません。API認証を動作する資格情報を入手するためには以下の2つの方法があります： 
+ユーザーにSSOが有効になっている場合、[Wallarm APIへのリクエストの認証](../../../api/overview.ja.md#your-own-client)は、このユーザーには利用できません。API認証を動作する資格情報を入手するためには以下の2つの方法があります： 
 
-* **strict SSO**モードが使用されていない場合は、企業アカウント内でSSOオプションが無いユーザーを作成し、このユーザーの[API認証情報](../../../api/overview.md#your-own-client)を使用します。
+* **strict SSO**モードが使用されていない場合は、企業アカウント内でSSOオプションが無いユーザーを作成し、このユーザーの[API認証情報](../../../api/overview.ja.md#your-own-client)を使用します。
 * **strict SSO**モードが使用されている場合は、**Administrator**ロールを持つSSOユーザーのAPI認証を有効にできます。これを行うには、ユーザーメニューから**Enable API access**を選択します。ユーザーに`SSO+API`認証方法が有効になります。
 
     後でユーザーのAPI認証を無効にする場合は、**Disable API access**を選択します。
@@ -74,7 +74,7 @@ SSO経由でログインできない場合、エラーメッセージが表示�
 | エラーコード | 説明 | 修正方法 |
 |--|--|--|
 | `saml_auth_not_found + userid` | ユーザーにはSSOが有効になっていません。 | [上記](#enabling-sso-authentication-for-users)のセクションで説明されているように、SSOを有効化します。 |
-| `saml_auth_not_found + clientid` | **Integrations**セクションでクライアントにSSOインテグレーションがありません。 | [SAML SSOとの統合](intro.md)ドキュメントの手順に従ってください。 |
+| `saml_auth_not_found + clientid` | **Integrations**セクションでクライアントにSSOインテグレーションがありません。 | [SAML SSOとの統合](intro.ja.md)ドキュメントの手順に従ってください。 |
 | `invalid_saml_response`または`no_mail_in_saml_response` | SSOプロバイダーから予期しない応答がありました。 SSO統合の設定が間違っている可能性があります。| 以下のいずれかを行ってください：<br><ul><li>Wallarm Consoleの**Integrations**セクションに設定されているSSO統合に誤りがないことを確認します。</li><li>SSOプロバイダー側の設定に誤りがないことを確認します。</li></ul> |
 | `user_not_found` | Wallarmは指定されたメールアドレスのユーザーを見つけることができませんでした。 | Wallarm Consoleでこのメールアドレスのユーザーを作成します。 |
 | `client_not_found` | Wallarmでは企業アカウントが見つかりませんでした。 | 適切なメールドメインを持つユーザーアカウントを作成し、すぐに企業アカウントが作成されるようにします。 |

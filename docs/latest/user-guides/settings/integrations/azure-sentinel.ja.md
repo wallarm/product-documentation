@@ -2,7 +2,7 @@
 
 [Microsoft Azure Sentinel](https://azure.microsoft.com/en-au/products/microsoft-sentinel/)で次のイベントを記録するようにWallarmを設定できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -31,7 +31,7 @@ Wallarm Console UIで：
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 Microsoft ワークスペース → **ログ** → **カスタムログ**で Wallarm のログを探すことができます。例えば、Microsoft Sentinelのテスト`create_user_CL`ログは以下のように表示されます：
 
@@ -43,37 +43,37 @@ Microsoft ワークスペース → **ログ** → **カスタムログ**で Wal
 
 | イベント | Sentinelのログタイプ |
 | ----- | ----------------- |
-| 新たな[ヒット](../../../glossary-en.md#hit) | `new_hits_CL` |
-| 会社のアカウントで新たな[ユーザー](../../../user-guides/settings/users.md) | `create_user_CL` |
+| 新たな[ヒット](../../../glossary-en.ja.md#hit) | `new_hits_CL` |
+| 会社のアカウントで新たな[ユーザー](../../../user-guides/settings/users.ja.md) | `create_user_CL` |
 | 会社のアカウントからのユーザー削除 | `delete_user_CL` |
 | ユーザー役割の更新 | `update_user_CL` |
-| [インテグレーション](integrations-intro.md)の削除 | `delete_integration_CL` |
+| [インテグレーション](integrations-intro.ja.md)の削除 | `delete_integration_CL` |
 | インテグレーションの無効化 | `disable_integration_CL` または `integration_broken_CL`（設定が不正だったために無効化された場合） |
-| 新たな[アプリケーション](../../../user-guides/settings/applications.md) | `create_application_CL` |
+| 新たな[アプリケーション](../../../user-guides/settings/applications.ja.md) | `create_application_CL` |
 | アプリケーションの削除 | `delete_application_CL` |
 | アプリケーション名の更新 | `update_application_CL` |
-| 高リスクの新しい[脆弱性](../../../glossary-en.md#vulnerability) | `vuln_high_CL` |
+| 高リスクの新しい[脆弱性](../../../glossary-en.ja.md#vulnerability) | `vuln_high_CL` |
 | 中リスクの新しい脆弱性 | `vuln_medium_CL` |
 | 低リスクの新しい脆弱性 | `vuln_low_CL` |
-| 新たな[ルール](../../../user-guides/rules/intro.md) | `rule_create_CL` |
+| 新たな[ルール](../../../user-guides/rules/intro.ja.md) | `rule_create_CL` |
 | ルールの削除 | `rule_delete_CL` |
 | 既存ルールの変更 | `rule_update_CL` |
-| 新たな[トリガー](../../../user-guides/triggers/triggers.md) | `trigger_create_CL` |
+| 新たな[トリガー](../../../user-guides/triggers/triggers.ja.md) | `trigger_create_CL` |
 | トリガーの削除 | `trigger_delete_CL` |
 | 既存トリガーの変更 | `trigger_update_CL` |
-| [公開資産](../../scanner.md)のホスト、サービス、ドメインの更新 | `scope_object_CL` |
-| APIインベントリの変更（対応する[トリガー](../../triggers/triggers.md)がアクティブな場合） | `api_structure_changed_CL` |
-| 攻撃の数が閾値を超えた（対応する[トリガー](../../triggers/triggers.md)がアクティブな場合） | `attacks_exceeded_CL` |
-| 新しいブラックリストIP（対応する[トリガー](../../triggers/triggers.md)がアクティブな場合） | `ip_blocked_CL` |
+| [公開資産](../../scanner.ja.md)のホスト、サービス、ドメインの更新 | `scope_object_CL` |
+| APIインベントリの変更（対応する[トリガー](../../triggers/triggers.ja.md)がアクティブな場合） | `api_structure_changed_CL` |
+| 攻撃の数が閾値を超えた（対応する[トリガー](../../triggers/triggers.ja.md)がアクティブな場合） | `attacks_exceeded_CL` |
+| 新しいブラックリストIP（対応する[トリガー](../../triggers/triggers.ja.md)がアクティブな場合） | `ip_blocked_CL` |
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

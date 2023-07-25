@@ -1,4 +1,4 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 
 # EOL マルチテナントノードのアップグレード
@@ -7,12 +7,12 @@
 
 ## 要件
 
-* [技術テナントアカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)で **Global administrator** 役割が追加されたユーザーによって実行されるその後のコマンド
+* [技術テナントアカウント](../../installation/multi-tenant/configure-accounts.ja.md#tenant-account-structure)で **Global administrator** 役割が追加されたユーザーによって実行されるその後のコマンド
 * 米国 Wallarm クラウドで作業している場合は `https://us1.api.wallarm.com` へのアクセス、またはヨーロッパ Wallarm クラウドで作業している場合は `https://api.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
 
 ## ステップ1：Wallarm サポートチームに連絡する
 
-マルチテナントノードのアップグレード中に、[カスタムルールセットの構築](../../user-guides/rules/compiling.md)機能の最新バージョンを取得するために、[Wallarm サポートチーム](mailto:support@wallarm.com)にサポートを依頼してください。
+マルチテナントノードのアップグレード中に、[カスタムルールセットの構築](../../user-guides/rules/compiling.ja.md)機能の最新バージョンを取得するために、[Wallarm サポートチーム](mailto:support@wallarm.com)にサポートを依頼してください。
 
 !!! info "ブロックされたアップグレード"
     カスタムルールセットの構築機能の誤ったバージョンを使用すると、アップグレードプロセスがブロックされる可能性があります。
@@ -23,10 +23,10 @@
 
 標準手順は以下のとおりです：
 
-* [Wallarm NGINX モジュールのアップグレード](nginx-modules.md)
-* [postanalytics モジュールのアップグレード](separate-postanalytics.md)
-* [Wallarm Docker NGINX または Envoy ベースのインテグレーションされた Wallarm モジュールを含む NGINX Ingress コントローラ](docker-container.md)
-* [クラウドノードイメージのアップグレード](cloud-image.md)
+* [Wallarm NGINX モジュールのアップグレード](nginx-modules.ja.md)
+* [postanalytics モジュールのアップグレード](separate-postanalytics.ja.md)
+* [Wallarm Docker NGINX または Envoy ベースのインテグレーションされた Wallarm モジュールを含む NGINX Ingress コントローラ](docker-container.ja.md)
+* [クラウドノードイメージのアップグレード](cloud-image.ja.md)
 
 !!! warning "マルチテナントノードの作成"
     Wallarm ノードを作成する際には、**Multi-tenant node** オプションを選択してください：
@@ -97,7 +97,7 @@ server {
 
 ### テナントの UUID を取得する
 
-テナントのリストを取得するには、Wallarm APIに認証付きのリクエストを送信します。認証手法は、[テナント作成時に使用されるもの](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)と同じです。
+テナントのリストを取得するには、Wallarm APIに認証付きのリクエストを送信します。認証手法は、[テナント作成時に使用されるもの](../../installation/multi-tenant/configure-accounts.ja.md#step-3-create-the-tenant-via-the-wallarm-api)と同じです。
 
 1. 後で関連する UUID を見つけるために `clientid`(s) を取得します。
 
@@ -127,7 +127,7 @@ server {
                     -H 'x-wallarmapi-uuid: YOUR_UUID'
                     ```
             
-            `PARTNER_ID` は、テナント作成手順の [**ステップ2**](../../installation/multi-tenant/configure-accounts.md#step-2-get-access-to-the-tenant-account-creation) で取得したものです。
+            `PARTNER_ID` は、テナント作成手順の [**ステップ2**](../../installation/multi-tenant/configure-accounts.ja.md#step-2-get-access-to-the-tenant-account-creation) で取得したものです。
 
             レスポンスの例：
 
@@ -201,8 +201,8 @@ server {
 
 NGINX設定ファイルで:
 
-1. 上記で受け取ったテナントUUIDを [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.md#wallarm_partner_client_uuid) ディレクティブで指定します。
-1. 保護対象のアプリケーションIDを [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application) ディレクティブで設定します。 
+1. 上記で受け取ったテナントUUIDを [`wallarm_partner_client_uuid`](../../admin-en/configure-parameters-en.ja.md#wallarm_partner_client_uuid) ディレクティブで指定します。
+1. 保護対象のアプリケーションIDを [`wallarm_application`](../../admin-en/configure-parameters-en.ja.md#wallarm_application) ディレクティブで設定します。 
 
     ノード3.6以前でアプリケーション構成が含まれるNGINX設定を使用している場合は、テナントUUIDのみを指定し、アプリケーション構成を変更しないでください。
 

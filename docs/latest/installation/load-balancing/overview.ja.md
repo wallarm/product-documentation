@@ -12,12 +12,12 @@ Wallarmリバースプロキシはクライアントとサーバの間に配置�
 
 ## 利点と限界
 
-Wallarmのインライン展開へのアプローチは、[OOB](../oob/overview.md) 展開などの他の展開方法と比べていくつかの利点を提供します：
+Wallarmのインライン展開へのアプローチは、[OOB](../oob/overview.ja.md) 展開などの他の展開方法と比べていくつかの利点を提供します：
 
 * Wallarmはトラフィック分析がリアルタイムで進行するため、悪意のあるリクエストを即座にブロックします。
-* Wallarmが着信リクエストとサーバ応答の両方にアクセスできるため、[API Discovery](../../about-wallarm/api-discovery.md) および [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.md) などのすべてのWallarm機能が制限なく動作します。
+* Wallarmが着信リクエストとサーバ応答の両方にアクセスできるため、[API Discovery](../../about-wallarm/api-discovery.ja.md) および [vulnerability detection](../../about-wallarm/detecting-vulnerabilities.ja.md) などのすべてのWallarm機能が制限なく動作します。
 
-一方、[OOB](../oob/overview.md)アプローチとは対照的に、インライン展開は特にハイトラフィックのシナリオでは追加のレイテンシを導入する可能性があります。これは、各リクエストの分析に少しの時間が必要であるためです、それほど重要ではありませんが。 [Wallarmノードのための十分なリソースの割り当て](../../admin-en/configuration-guides/allocate-resources-for-node.md)が問題を防ぎます。
+一方、[OOB](../oob/overview.ja.md)アプローチとは対照的に、インライン展開は特にハイトラフィックのシナリオでは追加のレイテンシを導入する可能性があります。これは、各リクエストの分析に少しの時間が必要であるためです、それほど重要ではありませんが。 [Wallarmノードのための十分なリソースの割り当て](../../admin-en/configuration-guides/allocate-resources-for-node.ja.md)が問題を防ぎます。
 
 ## 使用例
 

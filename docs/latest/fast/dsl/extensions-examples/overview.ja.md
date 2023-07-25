@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/extensions-examples/overview.md"
+--8<-- "latest/fast/dsl/extensions-examples/overview.ja.md"

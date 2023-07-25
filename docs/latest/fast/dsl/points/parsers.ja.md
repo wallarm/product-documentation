@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers.md"
+--8<-- "latest/fast/dsl/points/parsers.ja.md"

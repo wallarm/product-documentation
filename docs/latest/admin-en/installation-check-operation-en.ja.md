@@ -1,7 +1,7 @@
 # フィルタリングノード操作の確認
 
-[doc-configure-parameters]:     ../admin-en/configure-parameters-en.md
-[doc-stat-service]:    ../admin-en/configure-statistics-service.md
+[doc-configure-parameters]:     ../admin-en/configure-parameters-en.ja.md
+[doc-stat-service]:    ../admin-en/configure-statistics-service.ja.md
 
 すべてが正しく設定されている場合、Wallarm はリクエストをフィルタリングし、設定ファイルの設定に従ってフィルタリングされたリクエストをプロキシします。
 
@@ -44,7 +44,7 @@ Wallarm が攻撃を正しく検出しているかどうかを確認するには
 http://<resource_URL>/etc/passwd
 ```
 
-Wallarm は、リクエスト内で [パストラバーサル](../attacks-vulns-list.md#path-traversal) を検出する必要があります。
+Wallarm は、リクエスト内で [パストラバーサル](../attacks-vulns-list.ja.md#path-traversal) を検出する必要があります。
 
 これで、`wallarm-status` のリクエストを実行すると、攻撃の回数カウンタが増加し、フィルタリングノードが正常に動作していることがわかります。
 

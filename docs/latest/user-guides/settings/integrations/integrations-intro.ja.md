@@ -1,19 +1,19 @@
 [integration-pane-img]: ../../../images/user-guides/settings/integrations/integration-panel.png
 
-[email-notifications]: ./email.md
-[slack-notifications]: ./slack.md
-[telegram-notifications]: ./telegram.md
-[ms-teams-notifications]: ./microsoft-teams.md
-[opsgenie-notifications]: ./opsgenie.md
-[insightconnect-notifications]: ./insightconnect.md
-[pagerduty-notifications]: ./pagerduty.md
-[splunk-notifications]: ./splunk.md
-[sumologic-notifications]: ./sumologic.md
-[datadog-notifications]: ./datadog.md
-[fluentd-notifications]: ./fluentd.md
-[logstash-notifications]: ./logstash.md
-[webhook-notifications]: ./webhook.md
-[account]: ../account.md
+[email-notifications]: ./email.ja.md
+[slack-notifications]: ./slack.ja.md
+[telegram-notifications]: ./telegram.ja.md
+[ms-teams-notifications]: ./microsoft-teams.ja.md
+[opsgenie-notifications]: ./opsgenie.ja.md
+[insightconnect-notifications]: ./insightconnect.ja.md
+[pagerduty-notifications]: ./pagerduty.ja.md
+[splunk-notifications]: ./splunk.ja.md
+[sumologic-notifications]: ./sumologic.ja.md
+[datadog-notifications]: ./datadog.ja.md
+[fluentd-notifications]: ./fluentd.ja.md
+[logstash-notifications]: ./logstash.ja.md
+[webhook-notifications]: ./webhook.ja.md
+[account]: ../account.ja.md
 
 # インテグレーションの概要
 
@@ -62,17 +62,17 @@ Wallarm Console の**インテグレーション**セクションでは、スケ
 ### 汎用システム
 
 * HTTPSプロトコルを介して入力Webhookを受け入れるシステムとの統合用に[Webhook][webhook-notifications]があります。たとえば：
-    * [IBM QRadar](webhook-examples/fluentd-qradar.md)、[Splunk Enterprise](webhook-examples/fluentd-splunk.md)、[ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)にログを転送するように構成されたFluentd
-    * [IBM QRadar](webhook-examples/logstash-qradar.md)、[Splunk Enterprise](webhook-examples/logstash-splunk.md)、[ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)にログを転送するように構成されたLogstash
+    * [IBM QRadar](webhook-examples/fluentd-qradar.ja.md)、[Splunk Enterprise](webhook-examples/fluentd-splunk.ja.md)、[ArcSight Logger](webhook-examples/fluentd-arcsight-logger.ja.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.ja.md)にログを転送するように構成されたFluentd
+    * [IBM QRadar](webhook-examples/logstash-qradar.ja.md)、[Splunk Enterprise](webhook-examples/logstash-splunk.ja.md)、[ArcSight Logger](webhook-examples/logstash-arcsight-logger.ja.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.ja.md)にログを転送するように構成されたLogstash
 
 ### モニタリングシステム
 
-Wallarmノードとともに「collectd」サービスが配布され、[処理されたトラフィックのメトリックを収集](../../../admin-en/monitoring/intro.md)します。「collectd」ユーティリティとプラグインを使用して、メトリックをサードパーティのモニタリングシステムおよびデータベースに送信できます。例：
+Wallarmノードとともに「collectd」サービスが配布され、[処理されたトラフィックのメトリックを収集](../../../admin-en/monitoring/intro.ja.md)します。「collectd」ユーティリティとプラグインを使用して、メトリックをサードパーティのモニタリングシステムおよびデータベースに送信できます。例：
 
-* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.md) および Grafana などの他のシステムでのさらなる可視化
-* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.md) および Grafana などの他のシステムでのさらなる可視化
-* [Nagios](../../../admin-en/monitoring/collectd-nagios.md)
-* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.md)
+* [InfluxDB](../../../admin-en/monitoring/network-plugin-influxdb.ja.md) および Grafana などの他のシステムでのさらなる可視化
+* [Graphite](../../../admin-en/monitoring/write-plugin-graphite.ja.md) および Grafana などの他のシステムでのさらなる可視化
+* [Nagios](../../../admin-en/monitoring/collectd-nagios.ja.md)
+* [Zabbix](../../../admin-en/monitoring/collectd-zabbix.ja.md)
 
 ノード側でサードパーティ監視システムおよびデータベースへのメトリクスを送信する設定が実行されます。リストされたシステムはWallarm Console UIに表示されません。
 
@@ -92,7 +92,7 @@ Wallarmノードとともに「collectd」サービスが配布され、[処理�
 --8<-- "../include/cloud-ip-by-request.ja.md"
 
 !!! info "高度な通知設定"
-    高度な通知設定には、[トリガー](../../triggers/triggers.md)を使用できます。
+    高度な通知設定には、[トリガー](../../triggers/triggers.ja.md)を使用できます。
 
 ## インテグレーションのフィルタリング
 

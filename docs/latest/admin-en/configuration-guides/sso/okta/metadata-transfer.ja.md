@@ -4,9 +4,9 @@
 [img-sp-wizard-finish]: ../../../../images/admin-guides/configuration-guides/sso/okta/sp-wizard-finish.png
 [img-integration-tab]: ../../../../images/admin-guides/configuration-guides/sso/okta/integration-tab.png
 
-[doc-allow-access-to-wl]: allow-access-to-wl.md
+[doc-allow-access-to-wl]: allow-access-to-wl.ja.md
 
-[link-metadata]: setup-idp.md#downloading-metadata
+[link-metadata]: setup-idp.ja.md#downloading-metadata
 
 Wallarm ConsoleのOkta SSOセットアップウィザードに戻り、*次へ*をクリックして次の設定手順に進みます。
 

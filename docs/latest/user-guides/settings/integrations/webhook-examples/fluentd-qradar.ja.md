@@ -105,7 +105,7 @@ QRadarログソースの詳細な説明は、[公式 IBM ドキュメント](htt
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd 連携設定の詳しい説明](../fluentd.md)
+[Fluentd 連携設定の詳しい説明](../fluentd.ja.md)
 
 ## 例のテスト
 

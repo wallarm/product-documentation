@@ -4,7 +4,7 @@
 [img-assignments]:  ../../../../images/admin-guides/configuration-guides/sso/okta/assignments.png
 [img-user-list]:    ../../../../images/admin-guides/configuration-guides/sso/okta/user-list.png
 
-[doc-use-user-auth]:   ../employ-user-auth.md 
+[doc-use-user-auth]:   ../employ-user-auth.ja.md 
 
 Okta を介した認証を行うには、Okta 側でアカウントを作成し、ユーザーが Wallarm アプリケーションへのアクセス権を持っている必要があります。アクセス権を付与するための必要な一連の操作は以下のとおりです。
 

@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers/multipart.md"
+--8<-- "latest/fast/dsl/points/parsers/multipart.ja.md"

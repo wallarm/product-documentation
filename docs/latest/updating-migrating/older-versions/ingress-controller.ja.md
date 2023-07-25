@@ -1,9 +1,9 @@
-[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]: ../../user-guides/ip-lists/graylist.md
-[ip-list-docs]: ../../user-guides/ip-lists/overview.md
-[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.md
+[nginx-process-time-limit-docs]: ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[nginx-process-time-limit-block-docs]: ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit_block
+[overlimit-res-rule-docs]: ../../user-guides/rules/configure-overlimit-res-detection.ja.md
+[graylist-docs]: ../../user-guides/ip-lists/graylist.ja.md
+[ip-list-docs]: ../../user-guides/ip-lists/overview.ja.md
+[waf-mode-instr]: ../../admin-en/configure-wallarm-mode.ja.md
 
 # EOL NGINX Ingressコントローラーと統合されたWallarmモジュールのアップグレード
 
@@ -16,7 +16,7 @@
     
     Community Ingress NGINX Controller 1.6.4の動作が大幅に変更されているため、Wallarm Ingressコントローラのアップグレード中に、これらの変更に合わせて設定を調整する必要があります。
 
-    これらの指示には、おそらく変更が必要なCommunity Ingress NGINX Controllerの設定のリストが含まれています。しかし、[Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md)に基づいて、個別の設定移行プランを作成してください。
+    これらの指示には、おそらく変更が必要なCommunity Ingress NGINX Controllerの設定のリストが含まれています。しかし、[Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.ja.md)に基づいて、個別の設定移行プランを作成してください。
 
 ## 要件
 
@@ -26,13 +26,13 @@
 
 ノード 2.18 以前をアップグレードする場合は、[Wallarm の技術サポート](mailto:support@wallarm.com)に連絡して、フィルタリングノードモジュールを 4.4 までアップデートしていることを通知し、Wallarm アカウントで新しい IP リストのロジックを有効にしてもらってください。
 
-新しい IP リストのロジックが有効になったら、Wallarm Console を開いて、[**IP リスト**](../../user-guides/ip-lists/overview.md)セクションが利用可能かどうかを確認してください。
+新しい IP リストのロジックが有効になったら、Wallarm Console を開いて、[**IP リスト**](../../user-guides/ip-lists/overview.ja.md)セクションが利用可能かどうかを確認してください。
 
 ## ステップ2: アクティブな脅威検証モジュールを無効にする（ノード2.16以前をアップグレードする場合のみ）
 
-Wallarmノード2.16以前をアップグレードする場合は、Wallarm Console→**Scanner**→**Settings**で、[アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールを無効にしてください。
+Wallarmノード2.16以前をアップグレードする場合は、Wallarm Console→**Scanner**→**Settings**で、[アクティブな脅威検証](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)モジュールを無効にしてください。
 
-モジュールの操作は、アップグレードプロセス中に[誤検知](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
+モジュールの操作は、アップグレードプロセス中に[誤検知](../../about-wallarm/protecting-against-attacks.ja.md#false-positives)が発生する可能性があります。モジュールを無効にすることで、このリスクを最小限に抑えることができます。
 
 ## ステップ3: APIポートを更新する
 
@@ -61,12 +61,12 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
 
 ### Community Ingress NGINX Controllerの標準設定
 
-1. [Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.md) 0.27.0以降を確認し、`values.yaml`ファイルで変更する必要がある設定を特定します。
+1. [Community Ingress NGINX Controllerのリリースノート](https://github.com/kubernetes/ingress-nginx/blob/main/Changelog.ja.md) 0.27.0以降を確認し、`values.yaml`ファイルで変更する必要がある設定を特定します。
 2. `values.yaml`ファイルで定義された設定を更新します。
 
 以下は、おそらく変更が必要な設定です。
 
-* リクエストが Wallarm Ingress コントローラに送信される前にロードバランサを経由して送信される場合の、[エンドユーザーのパブリック IP アドレスの適切な報告](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)。
+* リクエストが Wallarm Ingress コントローラに送信される前にロードバランサを経由して送信される場合の、[エンドユーザーのパブリック IP アドレスの適切な報告](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.ja.md)。
 
     ```diff
     controller:
@@ -140,7 +140,7 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
 
 `values.yaml`ファイル内のWallarmモジュールの設定を次のように変更してください。
 
-* バージョン2.18以前からアップグレードする場合、IPリスト設定を[移行](../migrate-ip-lists-to-node-3.md)してください。 `values.yaml`から削除される可能性があるパラメータは次のとおりです。
+* バージョン2.18以前からアップグレードする場合、IPリスト設定を[移行](../migrate-ip-lists-to-node-3.ja.md)してください。 `values.yaml`から削除される可能性があるパラメータは次のとおりです。
 
     ```diff
     controller:
@@ -152,14 +152,14 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
     ```
 
     Wallarmノード3.xでIPリストのコアロジックが大幅に変更されたため、IPリスト設定を適切に調整する必要があります。
-* 以下の設定の予想される動作が、[`off`および`monitoring`フィルタリングモード](what-is-new.md#filtration-modes)の変更されたロジックに対応していることを確認してください。
+* 以下の設定の予想される動作が、[`off`および`monitoring`フィルタリングモード](what-is-new.ja.md#filtration-modes)の変更されたロジックに対応していることを確認してください。
 
-      * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
+      * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.ja.md#wallarm_mode)
+      * [Wallarmコンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.ja.md)
+      * [Wallarmコンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.ja.md)
 
-      期待される動作が変更されたフィルタリングモードロジックに対応していない場合は、[Ingressアノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations)および[その他の設定](../../admin-en/configure-wallarm-mode.md)をリリースされた変更に合わせて調整してください。
-* 明示的な[監視サービス設定](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)を削除してください。 新しいWallarm Ingressコントローラのバージョンでは、監視サービスはデフォルトで有効になっており、追加の設定は必要ありません。
+      期待される動作が変更されたフィルタリングモードロジックに対応していない場合は、[Ingressアノテーション](../../admin-en/configure-kubernetes-en.ja.md#ingress-annotations)および[その他の設定](../../admin-en/configure-wallarm-mode.ja.md)をリリースされた変更に合わせて調整してください。
+* 明示的な[監視サービス設定](../../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.ja.md)を削除してください。 新しいWallarm Ingressコントローラのバージョンでは、監視サービスはデフォルトで有効になっており、追加の設定は必要ありません。
 
     ```diff
     controller:
@@ -172,9 +172,9 @@ Wallarm Ingressコントローラー4.4に移行するために、`values.yaml`�
     -    service:
     -      annotations: {}
     ```
-* ConfigMapを介して設定された`&/usr/share/nginx/html/wallarm_blocked.html`ページがブロックされたリクエストに返された場合は、[リリースされた変更に合わせてその設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)してください。
+* ConfigMapを介して設定された`&/usr/share/nginx/html/wallarm_blocked.html`ページがブロックされたリクエストに返された場合は、[リリースされた変更に合わせてその設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.ja.md#customizing-sample-blocking-page)してください。
 
-    新しいノードバージョンでは、Wallarmのサンプルブロックページ[に](what-is-new.md#new-blocking-page)デフォルトでロゴとサポートメールが指定されていない更新されたUIがあります。
+    新しいノードバージョンでは、Wallarmのサンプルブロックページ[に](what-is-new.ja.md#new-blocking-page)デフォルトでロゴとサポートメールが指定されていない更新されたUIがあります。
 * `overlimit_res`攻撃検出を[`wallarm_process_time_limit`][nginx-process-time-limit-docs]および[`wallarm_process_time_limit_block`][nginx-process-time-limit-block-docs] NGINXディレクティブを通じてカスタマイズしていた場合は、この設定をルールに[移行](#step-6-transfer-the-overlimit_res-attack-detection-configuration-from-directives-to-the-rule)して、`values.yaml`ファイルから削除してください。
 
 ## ステップ6：`overlimit_res`攻撃検出設定をディレクティブからルールに移行
@@ -288,7 +288,7 @@ Wallarm Ingressコントローラをアップグレードする方法は3つあ�
 !!! warning "ステージング環境またはminikubeの使用"
     Wallarm Ingressコントローラがステージング環境にデプロイされている場合は、まずそれをアップグレードすることをお勧めします。 すべてのサービスがステージング環境で正しく稼働すると、本番環境でのアップグレード手順に進むことができます。
 
-    それ以外の場合は、minikubeまたは他のサービスを使用して更新された設定で[Wallarm Ingressコントローラ4.4をデプロイ](../../admin-en/installation-kubernetes-en.md)してください。 すべてのサービスが予想通りの動作をすることを確認した後、本番環境でIngressコントローラをアップグレードしてください。
+    それ以外の場合は、minikubeまたは他のサービスを使用して更新された設定で[Wallarm Ingressコントローラ4.4をデプロイ](../../admin-en/installation-kubernetes-en.ja.md)してください。 すべてのサービスが予想通りの動作をすることを確認した後、本番環境でIngressコントローラをアップグレードしてください。
 
     このアプローチは、本番環境でのサービスのダウンタイムを回避するのに役立ちます。### 方法1：一時的なIngressコントローラーのデプロイメント
 
@@ -429,7 +429,7 @@ Ingressコントローラリリースを再作成するには：
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-3. テスト[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストを、Wallarm Ingressコントローラのアドレスに送信します：
+3. テスト[Path Traversal](../../attacks-vulns-list.ja.md#path-traversal)攻撃を含むリクエストを、Wallarm Ingressコントローラのアドレスに送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
@@ -439,23 +439,23 @@ Ingressコントローラリリースを再作成するには：
 
 Ingress コントローラ 4.4 でリリースされた変更に従って、以下の Ingress アノテーションを調整してください。
 
-1. バージョン 2.18 以前からアップグレードする場合は、[IP リストの設定を移行](../migrate-ip-lists-to-node-3.md)してください。 Wallarm ノード 3.x で IP リストのコアロジックが大幅に変更されたため、Ingress アノテーション（適用されている場合）を変更して、適切に IP リストの設定を調整する必要があります。
-1. 以下にリストされている設定の予想される動作が、[`off`および`monitoring` フィルタリングモードの変更されたロジック](what-is-new.md#filtration-modes)に対応していることを確認してください。
+1. バージョン 2.18 以前からアップグレードする場合は、[IP リストの設定を移行](../migrate-ip-lists-to-node-3.ja.md)してください。 Wallarm ノード 3.x で IP リストのコアロジックが大幅に変更されたため、Ingress アノテーション（適用されている場合）を変更して、適切に IP リストの設定を調整する必要があります。
+1. 以下にリストされている設定の予想される動作が、[`off`および`monitoring` フィルタリングモードの変更されたロジック](what-is-new.ja.md#filtration-modes)に対応していることを確認してください。
       
-      * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
-      * [Wallarm コンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.md)
-      * [Wallarm コンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.md)
+      * [ディレクティブ `wallarm_mode`](../../admin-en/configure-parameters-en.ja.md#wallarm_mode)
+      * [Wallarm コンソールで設定された一般的なフィルタリングルール](../../user-guides/settings/general.ja.md)
+      * [Wallarm コンソールで設定された低レベルのフィルタリングルール](../../user-guides/rules/wallarm-mode-rule.ja.md)
 
-      予想される動作が変更されたフィルタリングモードのロジックに対応していない場合は、[Ingress のアノテーション](../../admin-en/configure-kubernetes-en.md#ingress-annotations)をリリースされた変更に合わせて調整してください。
+      予想される動作が変更されたフィルタリングモードのロジックに対応していない場合は、[Ingress のアノテーション](../../admin-en/configure-kubernetes-en.ja.md#ingress-annotations)をリリースされた変更に合わせて調整してください。
 1. Ingress が `nginx.ingress.kubernetes.io/wallarm-instance` と注釈されている場合、このアノテーションを `nginx.ingress.kubernetes.io/wallarm-application` に変更してください。
 
     アノテーション名のみが変更され、そのロジックは変更されていません。旧名のアノテーションは近いうちに廃止されるため、事前に変更することをお勧めします。
-1. Ingress のアノテーション経由で設定されたブロックされたリクエストに対して返されるページ`&/usr/share/nginx/html/wallarm_blocked.html`を、リリースされた変更に合わせて[設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)してください。
+1. Ingress のアノテーション経由で設定されたブロックされたリクエストに対して返されるページ`&/usr/share/nginx/html/wallarm_blocked.html`を、リリースされた変更に合わせて[設定を調整](../../admin-en/configuration-guides/configure-block-page-and-code.ja.md#customizing-sample-blocking-page)してください。
       
-    新しいノードバージョンでは、Wallarm のブロックページにはデフォルトでロゴやサポートメールが指定されていない[更新された UI](what-is-new.md#new-blocking-page) があります。
+    新しいノードバージョンでは、Wallarm のブロックページにはデフォルトでロゴやサポートメールが指定されていない[更新された UI](what-is-new.ja.md#new-blocking-page) があります。
 
 ## ステップ 11: アクティブな脅威検証モジュールを再度有効にする（ノード 2.16 以前をアップグレードする場合のみ）
 
-[アクティブな脅威検証モジュールのセットアップに関する推奨事項](../../admin-en/attack-rechecker-best-practices.md)を確認し、必要に応じて再度有効にしてください。
+[アクティブな脅威検証モジュールのセットアップに関する推奨事項](../../admin-en/attack-rechecker-best-practices.ja.md)を確認し、必要に応じて再度有効にしてください。
 
 しばらくして、モジュールの動作が誤検知を引き起こさないことを確認してください。誤検知が発見された場合は、[Wallarm の技術サポート](mailto:support@wallarm.com)に連絡してください。

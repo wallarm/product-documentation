@@ -81,7 +81,7 @@ NGINXのインストールに関する詳細な情報は、[公式のNGINXドキ
 
 WallarmノードはWallarmリポジトリからインストールおよび更新されます。リポジトリを追加するには、プラットフォームのコマンドを使用します：
 
---8<-- "../include/waf/installation/add-nginx-waf-repos-4.6.md"
+--8<-- "../include/waf/installation/add-nginx-waf-repos-4.6.ja.md"
 
 ## 3. Wallarmパッケージのインストール
 
@@ -140,4 +140,4 @@ WallarmノードはWallarmリポジトリからインストールおよび更新
 
 ## 5. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.ja.md"

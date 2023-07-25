@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/prerequisites.md"
+--8<-- "latest/fast/poc/prerequisites.ja.md"

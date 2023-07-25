@@ -1,10 +1,10 @@
-					[link-docs-aws-autoscaling]:        autoscaling-group-guide.md
-[link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.md
-[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.md#1-create-a-pair-of-ssh-keys
-[link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.md#2-create-a-security-group
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.md#5-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.md#6-enable-wallarm-to-analyze-the-traffic
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+					[link-docs-aws-autoscaling]:        autoscaling-group-guide.ja.md
+[link-docs-aws-node-setup]:         ../../../installation/cloud-platforms/aws/ami.ja.md
+[link-ssh-keys-guide]:              ../../../installation/cloud-platforms/aws/ami.ja.md#1-create-a-pair-of-ssh-keys
+[link-security-group-guide]:        ../../../installation/cloud-platforms/aws/ami.ja.md#2-create-a-security-group
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/aws/ami.ja.md#5-connect-the-filtering-node-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/aws/ami.ja.md#6-enable-wallarm-to-analyze-the-traffic
+[link-docs-check-operation]:        ../../installation-check-operation-en.ja.md
 
 [img-launch-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/launch-ami-wizard.png 
 [img-config-ami-wizard]:        ../../../images/installation-ami/auto-scaling/common/create-image/config-ami-wizard.png  

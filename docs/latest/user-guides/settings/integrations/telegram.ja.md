@@ -4,7 +4,7 @@ Wallarmを設定し、スケジュールに従ったレポートや即時通知�
 
 * スケジュールレポートは、毎日、毎週、または毎月の基準で送信できます。レポートには、選択した期間中にシステムで検出された脆弱性、攻撃、インシデントの詳細情報が含まれます。
 * 通知は、トリガーされたイベントの簡単な詳細を含みます：
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include/integrations/events-for-integrations.ja.md"
 
 ## 統合の設定
 
@@ -24,7 +24,7 @@ Wallarmを設定し、スケジュールに従ったレポートや即時通知�
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include/integrations/test-integration-basic-data.ja.md"
 
 この統合は、すでに作成された場合にのみテストできます。テストメッセージは次のとおりです：
 
@@ -42,12 +42,12 @@ Wallarmを設定し、スケジュールに従ったレポートや即時通知�
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

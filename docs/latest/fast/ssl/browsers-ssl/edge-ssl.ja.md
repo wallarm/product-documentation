@@ -1,1 +1,1 @@
---8<-- "latest/fast/ssl/browsers-ssl/edge-ssl.md"
+--8<-- "latest/fast/ssl/browsers-ssl/edge-ssl.ja.md"

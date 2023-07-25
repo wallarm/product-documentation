@@ -2,9 +2,9 @@
 [img-repo-creds]:               ../../../../images/integration-guides/repo-mirroring/centos/common/repo-creds.png
 [img-repo-code-snippet]:        ../../../../images/integration-guides/repo-mirroring/centos/common/repo-code-snippet.png
 
-[doc-repo-mirroring]:           how-to-mirror-repo-artifactory.md
-[doc-install-nginx]:            ../../../installation-nginx-overview.md
-[doc-install-postanalytics]:    ../../../installation-postanalytics-en.md
+[doc-repo-mirroring]:           how-to-mirror-repo-artifactory.ja.md
+[doc-install-nginx]:            ../../../installation-nginx-overview.ja.md
+[doc-install-postanalytics]:    ../../../installation-postanalytics-en.ja.md
 
 #   CentOSのローカルJFrog ArtifactoryリポジトリからWallarmパッケージをインストールする方法
 

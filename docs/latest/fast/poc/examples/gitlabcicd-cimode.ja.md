@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/examples/gitlabcicd-cimode.md"
+--8<-- "latest/fast/poc/examples/gitlabcicd-cimode.ja.md"

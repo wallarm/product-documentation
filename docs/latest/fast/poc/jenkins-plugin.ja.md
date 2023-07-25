@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/jenkins-plugin.md"
+--8<-- "latest/fast/poc/jenkins-plugin.ja.md"

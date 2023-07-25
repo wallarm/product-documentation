@@ -1,25 +1,25 @@
-[al-sqli]: ../../attacks-vulns-list.md#sql-injection
-[al-xss]: ../../attacks-vulns-list.md#crosssite-scripting-xss
-[al-rce]: ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]: ../../attacks-vulns-list.md#bruteforce-attack
-[al-path-traversal]: ../../attacks-vulns-list.md#path-traversal
-[al-crlf]: ../../attacks-vulns-list.md#crlf-injection
-[al-open-redirect]: ../../attacks-vulns-list.md#open-redirect
-[al-nosqli]: ../../attacks-vulns-list.md#nosql-injection
-[al-logic-bomb]: ../../attacks-vulns-list.md#data-bomb
-[al-xxe]: ../../attacks-vulns-list.md#attack-on-xml-external-entity-xxe
-[al-virtual-patch]: ../../attacks-vulns-list.md#virtual-patch
-[al-forced-browsing]: ../../attacks-vulns-list.md#forced-browsing
-[al-ldapi]: ../../attacks-vulns-list.md#ldap-injection
-[al-port-scanner]: ../../attacks-vulns-list.md#resource-scanning
-[al-infoleak]: ../../attacks-vulns-list.md#information-exposure
-[al-vuln-component]: ../../attacks-vulns-list.md#vulnerable-component
-[al-overlimit]: ../../attacks-vulns-list.md#overlimiting-of-computational-resources
-[email-injection]: ../../attacks-vulns-list.md#email-injection
-[ssi-injection]: ../../attacks-vulns-list.md#ssi-injection
-[invalid-xml]: ../../attacks-vulns-list.md#unsafe-xml-header
-[ssti-injection]: ../../attacks-vulns-list.md#serverside-template-injection-ssti
-[overlimit-res]: ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[al-sqli]: ../../attacks-vulns-list.ja.md#sql-injection
+[al-xss]: ../../attacks-vulns-list.ja.md#crosssite-scripting-xss
+[al-rce]: ../../attacks-vulns-list.ja.md#remote-code-execution-rce
+[al-brute-force]: ../../attacks-vulns-list.ja.md#bruteforce-attack
+[al-path-traversal]: ../../attacks-vulns-list.ja.md#path-traversal
+[al-crlf]: ../../attacks-vulns-list.ja.md#crlf-injection
+[al-open-redirect]: ../../attacks-vulns-list.ja.md#open-redirect
+[al-nosqli]: ../../attacks-vulns-list.ja.md#nosql-injection
+[al-logic-bomb]: ../../attacks-vulns-list.ja.md#data-bomb
+[al-xxe]: ../../attacks-vulns-list.ja.md#attack-on-xml-external-entity-xxe
+[al-virtual-patch]: ../../attacks-vulns-list.ja.md#virtual-patch
+[al-forced-browsing]: ../../attacks-vulns-list.ja.md#forced-browsing
+[al-ldapi]: ../../attacks-vulns-list.ja.md#ldap-injection
+[al-port-scanner]: ../../attacks-vulns-list.ja.md#resource-scanning
+[al-infoleak]: ../../attacks-vulns-list.ja.md#information-exposure
+[al-vuln-component]: ../../attacks-vulns-list.ja.md#vulnerable-component
+[al-overlimit]: ../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources
+[email-injection]: ../../attacks-vulns-list.ja.md#email-injection
+[ssi-injection]: ../../attacks-vulns-list.ja.md#ssi-injection
+[invalid-xml]: ../../attacks-vulns-list.ja.md#unsafe-xml-header
+[ssti-injection]: ../../attacks-vulns-list.ja.md#serverside-template-injection-ssti
+[overlimit-res]: ../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources
 
 # 検索とフィルタの使用
 
@@ -97,14 +97,14 @@ Wallarmは、検出された攻撃、インシデント、および脆弱性を�
 * `mail_injection`: [Eメールインジェクション][email-injection]を検索します。
 * `ssi`: [SSIインジェクション][ssi-injection]を検索します。
 * `overlimit_res`: [リソースオーバーリミット][overlimit-res]タイプの攻撃を検索します。
-* `experimental`: [カスタム正規表現](../rules/regex-rule.md)に基づいて検出された実験的な攻撃を検索します。
-* `idor`: [BOLA（IDOR）](../../attacks-vulns-list.md#broken-object-level-authorization-bola)タイプの脆弱性を検索します。
-* `bola`: [BOLA（IDOR）脆弱性](../../attacks-vulns-list.md#broken-object-level-authorization-bola)を悪用した攻撃を検索します。
-* `weak_auth`: [JWT脆弱性](../../attacks-vulns-list.md#weak-jwt)を検索します。
-* `mass_assignment`: [マスアサインメント](../../attacks-vulns-list.md#mass-assignment)攻撃を検索します。
-* `api_abuse`: [ボットによって実行されたAPIへの攻撃](../../attacks-vulns-list.md#api-abuse)を検索します。
-* `csrf`: [クロスサイトリクエストフォージェリ（CSRF）脆弱性](../../attacks-vulns-list.md#cross-site-request-forgery-csrf)を検索します。
-* `ssrf`: [サーバーサイドリクエストフォージェリ（SSRF）脆弱性および攻撃](../../attacks-vulns-list.md#serverside-request-forgery-ssrf)を検索します。
+* `experimental`: [カスタム正規表現](../rules/regex-rule.ja.md)に基づいて検出された実験的な攻撃を検索します。
+* `idor`: [BOLA（IDOR）](../../attacks-vulns-list.ja.md#broken-object-level-authorization-bola)タイプの脆弱性を検索します。
+* `bola`: [BOLA（IDOR）脆弱性](../../attacks-vulns-list.ja.md#broken-object-level-authorization-bola)を悪用した攻撃を検索します。
+* `weak_auth`: [JWT脆弱性](../../attacks-vulns-list.ja.md#weak-jwt)を検索します。
+* `mass_assignment`: [マスアサインメント](../../attacks-vulns-list.ja.md#mass-assignment)攻撃を検索します。
+* `api_abuse`: [ボットによって実行されたAPIへの攻撃](../../attacks-vulns-list.ja.md#api-abuse)を検索します。
+* `csrf`: [クロスサイトリクエストフォージェリ（CSRF）脆弱性](../../attacks-vulns-list.ja.md#cross-site-request-forgery-csrf)を検索します。
+* `ssrf`: [サーバーサイドリクエストフォージェリ（SSRF）脆弱性および攻撃](../../attacks-vulns-list.ja.md#serverside-request-forgery-ssrf)を検索します。
 
 攻撃名または脆弱性名は大文字と小文字の両方で指定できます。「SQLI」、「sqli」、「SQLi」は同様に正しいです。### 既知の攻撃（CVEおよびよく知られたエクスプロイト）による検索
 
@@ -201,7 +201,7 @@ APIプロトコルによるヒットをフィルタリングするには、`prot
 
         `<unit>`には `week`、`month`、`year` を使用できます。例：今日が水曜日の場合、`this week` は今週の月曜日、火曜日、水曜日に検出されたイベントを返します。
 
-日付と時刻の形式は、あなたの[プロファイル](../settings/account.md#changing-your-date-time-format)で指定された設定に依存します。
+日付と時刻の形式は、あなたの[プロファイル](../settings/account.ja.md#changing-your-date-time-format)で指定された設定に依存します。
 
 * MM/DD/YYYY は **MDY**が選択されている場合。
 * DD/MM/YYYY は **DMY** が選択されている場合。
@@ -333,7 +333,7 @@ HTTPリクエストメソッドで検索するには、`method:` プレフィッ
 * ターゲットパラメータの名前。
 
     例えば、`xss` パラメータを狙った攻撃（XSS攻撃ではなく、例えばGETパラメータに `xss` が含まれるSQLインジェクション攻撃など）を見つける必要がある場合、検索文字列に `attacks sqli p:xss` を指定します。
-* Wallarmノードがパラメータ値を読み取るために使用する[パーサー](../rules/request-processing.md) の名前。名前は大文字でなければなりません。
+* Wallarmノードがパラメータ値を読み取るために使用する[パーサー](../rules/request-processing.ja.md) の名前。名前は大文字でなければなりません。
 
     例えば、`attacks p:*BASE64` で、base64パーサーで解析された任意のパラメータを狙った攻撃を見つけます。
 * パラメータとパーサーのシーケンス。
@@ -373,4 +373,4 @@ HTTPリクエストメソッドで検索するには、`method:` プレフィッ
 
 ### サンプリングされたヒットの検索
 
-[サンプリングされたヒット](../events/analyze-attack.md#sampling-of-hits)を検索するには、検索文字列に `sampled` を追加します。
+[サンプリングされたヒット](../events/analyze-attack.ja.md#sampling-of-hits)を検索するには、検索文字列に `sampled` を追加します。

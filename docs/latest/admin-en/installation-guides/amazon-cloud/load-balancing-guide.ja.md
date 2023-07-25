@@ -1,5 +1,5 @@
-[link-doc-asg-guide]:               autoscaling-group-guide.md  
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-doc-asg-guide]:               autoscaling-group-guide.ja.md  
+[link-docs-check-operation]:        ../../installation-check-operation-en.ja.md
 
 [link-aws-lb-comparison]:           https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html?icmpid=docs_elbv2_console#elb-features   
 

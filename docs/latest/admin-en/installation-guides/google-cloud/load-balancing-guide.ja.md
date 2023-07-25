@@ -11,14 +11,14 @@ Wallarm は API とアプリケーションのセキュリティと運用上の�
 
 開発者や運用チームの働き方やワークフローを変更することなく、シームレスに統合され、継続的デリバリータイムライン内で作業を簡単にこなせるように設計されています。今すぐ始めて、Wallarm で包括的なアプリケーションと API セキュリティを実現しましょう。
 
----[link-doc-asg-guide]: creating-autoscaling-group.md
-[link-docs-check-operation]: /admin-en/installation-check-operation-en.md
+---[link-doc-asg-guide]: creating-autoscaling-group.ja.md
+[link-docs-check-operation]: /admin-en/installation-check-operation-en.ja.md
 [link-lb-comparison]: https://cloud.google.com/load-balancing/docs/load-balancing-overview
-[link-creating-instance-group]: creating-autoscaling-group.md
+[link-creating-instance-group]: creating-autoscaling-group.ja.md
 [link-backup-resource]: https://cloud.google.com/load-balancing/docs/target-pools#backupPool
 [link-health-check]: https://cloud.google.com/load-balancing/docs/health-checks
 [link-session-affinity]: https://cloud.google.com/load-balancing/docs/target-pools#sessionaffinity
-[link-test-attack]: ../../installation-check-operation-en.md
+[link-test-attack]: ../../installation-check-operation-en.ja.md
 [link-network-service-tier]: https://cloud.google.com/network-tiers/docs/
 
 [img-backend-configuration]: ../../../images/installation-gcp/auto-scaling/common/load-balancing-guide/backend-configuration.png

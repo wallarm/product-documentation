@@ -1,7 +1,7 @@
 # SAML SSOソリューションとの統合の概要
 
-[doc-admin-sso-gsuite]:     gsuite/overview.md
-[doc-admin-sso-okta]:       okta/overview.md
+[doc-admin-sso-gsuite]:     gsuite/overview.ja.md
+[doc-admin-sso-okta]:       okta/overview.ja.md
 
 [link-saml]:                https://wiki.oasis-open.org/security/FrontPage
 [link-saml-sso-roles]:      https://www.oasis-open.org/committees/download.php/27819/sstc-saml-tech-overview-2.0-cd-02.pdf     

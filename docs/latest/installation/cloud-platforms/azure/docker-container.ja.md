@@ -1,10 +1,10 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
+[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.ja.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.ja.md
+[application-configuration]:        ../../../user-guides/settings/applications.ja.md
+[node-status-docs]:                 ../../../admin-en/configure-statistics-service.ja.md
 
 # WallarmノードDockerイメージをAzureにデプロイ
 
@@ -133,7 +133,7 @@
     }
     ```
 
-    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.md)
+    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.ja.md)
 1. Azureでデータボリュームをマウントするために適している方法のいずれかで設定ファイルを配置します。すべての方法は[Azureドキュメントの**データボリュームのマウント**セクション](https://docs.microsoft.com/ja-jp/azure/container-instances/container-instances-volume-azure-files)に説明されています。
 
     この手順では、構成ファイルはGitリポジトリからマウントされます。
@@ -197,7 +197,7 @@
 
    **FQDN** フィールドが空の場合は、コンテナが **Running** ステータスであることを確認してください。
 
-2. コピーしたドメインにテスト[Path Traversal](../../../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストを送信します。
+2. コピーしたドメインにテスト[Path Traversal](../../../attacks-vulns-list.ja.md#path-traversal)攻撃を含むリクエストを送信します。
    
     ```
     curl http://<COPIED_DOMAIN>/etc/passwd

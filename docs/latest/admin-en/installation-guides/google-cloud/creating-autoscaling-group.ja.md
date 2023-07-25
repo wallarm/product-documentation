@@ -6,7 +6,7 @@
 [link-http-load-balancing-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing#scaling_based_on_https_load_balancing_serving_capacity
 [link-stackdriver-monitoring-metric-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-stackdriver-monitoring-metrics
 [link-multiple-metrics-policy]: https://cloud.google.com/compute/docs/autoscaler/multiple-policies
-[link-creating-load-balancer]: load-balancing-guide.md
+[link-creating-load-balancer]: load-balancing-guide.ja.md
 
 # オートスケーリングが有効な管理インスタンスグループの作成
 

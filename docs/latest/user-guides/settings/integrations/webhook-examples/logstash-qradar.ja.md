@@ -98,7 +98,7 @@ QRadar ログソース設定の詳細な説明は、[公式 IBM ドキュメン�
 
 ![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-\Logstash 統合設定の詳細はこちら](../logstash.md)
+\Logstash 統合設定の詳細はこちら](../logstash.ja.md)
 
 ## 例のテスト
 

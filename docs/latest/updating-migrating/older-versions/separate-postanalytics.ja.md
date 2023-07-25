@@ -1,7 +1,7 @@
-[docs-module-update]:   nginx-modules.md
+[docs-module-update]:   nginx-modules.ja.md
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../../custom/custom-nginx-version.md
+[nginx-custom]:                 ../../custom/custom-nginx-version.ja.md
 
 # EOL postanalyticsモジュールのアップグレード
 
@@ -33,9 +33,9 @@
     !!! warning "CentOS 8.xの対応が廃止されました"
         CentOS 8.xのサポートは[廃止されました](https://www.centos.org/centos-linux-eol/)。代わりに、AlmaLinux、Rocky Linux、またはOracle Linux 8.xオペレーティング・システムにWallarmノードをインストールできます。
 
-        * [NGINX `stable`用のインストール手順](../../installation/nginx/dynamic-module.md)
-        * [CentOS/DebianリポジトリからのNGINXインストール手順](../../installation/nginx/dynamic-module-from-distr.md)
-        * [NGINX Plus用のインストール手順](../../installation/nginx-plus.md)
+        * [NGINX `stable`用のインストール手順](../../installation/nginx/dynamic-module.ja.md)
+        * [CentOS/DebianリポジトリからのNGINXインストール手順](../../installation/nginx/dynamic-module-from-distr.ja.md)
+        * [NGINX Plus用のインストール手順](../../installation/nginx-plus.ja.md)
 === "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum remove wallarm-node-repo
@@ -55,7 +55,7 @@
 
     === "Debian 10.x (buster)"
         !!! warning "NGINX安定版とNGINX Plusではサポートされていません"
-            公式のNGINXバージョン（stableおよびPlus）およびその結果として、Wallarmノード4.4およびそれ以降はDebian 10.x（buster）でインストールできません。[Debian/CentOSリポジトリからインストールされたNGINX](../../installation/nginx/dynamic-module-from-distr.md)のみを使用してください。
+            公式のNGINXバージョン（stableおよびPlus）およびその結果として、Wallarmノード4.4およびそれ以降はDebian 10.x（buster）でインストールできません。[Debian/CentOSリポジトリからインストールされたNGINX](../../installation/nginx/dynamic-module-from-distr.ja.md)のみを使用してください。
 
         ```bash
         deb https://repo.wallarm.com/debian/wallarm-node buster/4.4/
@@ -104,7 +104,7 @@
 
 ## ステップ4：ノードタイプの更新
 
-デプロイされているpostanalyticsノード3.6またはそれ以前は、[新しい**Wallarmノード**タイプに置き換えられた](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)非推奨の**通常**タイプです。
+デプロイされているpostanalyticsノード3.6またはそれ以前は、[新しい**Wallarmノード**タイプに置き換えられた](what-is-new.ja.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)非推奨の**通常**タイプです。
 
 バージョン4.4に移行する際に、非推奨のものの代わりに新しいノードタイプをインストールすることが推奨されています。通常のノードタイプは今後のリリースで削除される予定です。その前に移行してください。
 

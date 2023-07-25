@@ -1,4 +1,4 @@
-					# Terraformを使用したWallarmの管理
+# Terraformを使用したWallarmの管理
 
 あなたがインフラストラクチャを管理するために[Terraform](https://www.terraform.io/)を使用しているなら、それはWallarmを管理するためにそれを使用するのが快適な選択肢かもしれません。Terraform用の[Wallarmプロバイダ](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs)は、それを可能にします。
 
@@ -7,14 +7,14 @@
 * [Terraform](https://www.terraform.io/)の基本知識
 * Terraform 0.15.5バイナリまたはそれ以上
 * Wallarmアカウントは[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)にあります
-* Wallarm ConsoleのUSまたはEU [Cloud](../../about-wallarm/overview.md#cloud)での**Administrator** [役割](../../user-guides/settings/users.md#user-roles)のアカウントへのアクセス
+* Wallarm ConsoleのUSまたはEU [Cloud](../../about-wallarm/overview.ja.md#cloud)での**Administrator** [役割](../../user-guides/settings/users.ja.md#user-roles)のアカウントへのアクセス
 * `https://us1.api.wallarm.com`へのアクセス（US Wallarm Cloudを使用する場合）または`https://api.wallarm.com`へのアクセス（EU Wallarm Cloudを使用する場合）。アクセスがファイアウォールによってブロックされていないことを確認してください
 
 ## プロバイダのインストール
 
 1. あなたのTerraform設定にコピーして貼り付けます:
 
-    ```zsh
+    ```
     terraform {
       required_version = ">= 0.15.5"
 
@@ -38,7 +38,7 @@
 Wallarm Terraformプロバイダを [US](https://us1.my.wallarm.com/signup)または[EU](https://my.wallarm.com/signup) CloudのあなたのWallarmアカウントに接続するには、Terraform設定でAPIアクセス認証情報を設定します:
 
 === "US Cloud"
-    ```zsh
+    ```
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://us1.api.wallarm.com"
@@ -47,7 +47,7 @@ Wallarm Terraformプロバイダを [US](https://us1.my.wallarm.com/signup)ま�
     }
     ```
 === "EU Cloud"
-    ```zsh
+    ```
     provider "wallarm" {
       api_token = "<WALLARM_API_TOKEN>"
       api_host = "https://api.wallarm.com"
@@ -56,8 +56,8 @@ Wallarm Terraformプロバイダを [US](https://us1.my.wallarm.com/signup)ま�
     }
     ```
 
-* `<WALLARM_API_TOKEN>`はWallarmアカウントのAPIにアクセスするために使用します。 [取得方法 →](../../user-guides/settings/api-tokens.md)
-* `<CLIENT_ID>`はテナント（クライアント）のIDで、[マルチテナンシー](../../installation/multi-tenant/overview.md)機能を使用するときに必要です。 [ここで](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)記述されているように`id`（`uuid`ではなく）を取ります。
+* `<WALLARM_API_TOKEN>`はWallarmアカウントのAPIにアクセスするために使用します。 [取得方法 →](../../user-guides/settings/api-tokens.ja.md)
+* `<CLIENT_ID>`はテナント（クライアント）のIDで、[マルチテナンシー](../../installation/multi-tenant/overview.ja.md)機能を使用するときに必要です。 [ここで](../../installation/multi-tenant/configure-accounts.ja.md#step-3-create-the-tenant-via-the-wallarm-api)記述されているように`id`（`uuid`ではなく）を取ります。
 
 Wallarmプロバイダドキュメンテーションの[詳細](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs)を参照してください。
 
@@ -65,19 +65,19 @@ Wallarmプロバイダドキュメンテーションの[詳細](https://registry
 
 Wallarmプロバイダを通じて、Terraformで次を管理できます:
 
-* アカウントの[ノード](../../user-guides/nodes/nodes.md)
-* [アプリケーション](../../user-guides/settings/applications.md)
-* [ルール](../../user-guides/rules/intro.md)
-* [トリガー](../../user-guides/triggers/triggers.md)
-* [denylist](../../user-guides/ip-lists/denylist.md)、[allowlist](../../user-guides/ip-lists/allowlist.md)、及び[graylist](../../user-guides/ip-lists/graylist.md)内のIPs
-* [ユーザー](../../user-guides/settings/users.md)
-* [インテグレーション](../../user-guides/settings/integrations/integrations-intro.md)
-* グローバルな[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)
-* [スキャナ](../../user-guides/scanner.md)範囲
-* [脆弱性](../../user-guides/vulnerabilities.md)
+* アカウントの[ノード](../../user-guides/nodes/nodes.ja.md)
+* [アプリケーション](../../user-guides/settings/applications.ja.md)
+* [ルール](../../user-guides/rules/intro.ja.md)
+* [トリガー](../../user-guides/triggers/triggers.ja.md)
+* [denylist](../../user-guides/ip-lists/denylist.ja.md)、[allowlist](../../user-guides/ip-lists/allowlist.ja.md)、及び[graylist](../../user-guides/ip-lists/graylist.ja.md)内のIPs
+* [ユーザー](../../user-guides/settings/users.ja.md)
+* [インテグレーション](../../user-guides/settings/integrations/integrations-intro.ja.md)
+* グローバルな[フィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md)
+* [スキャナ](../../user-guides/scanner.ja.md)範囲
+* [脆弱性](../../user-guides/vulnerabilities.ja.md)
 
 !!! info "Wallarm TerraformプロバイダとCDNノード"
-    現在、[CDNノード](../../user-guides/nodes/cdn-node.md)はWallarm Terraformプロバイダを経由しては管理できません。
+    現在、[CDNノード](../../user-guides/nodes/cdn-node.ja.md)はWallarm Terraformプロバイダを経由しては管理できません。
 
 Wallarmプロバイダ [ドキュメンテーション](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs)で一覧操作の実行方法を参照します。
 
@@ -85,7 +85,7 @@ Wallarmプロバイダ [ドキュメンテーション](https://registry.terrafo
 
 以下はWallarmのTerraform設定例です:
 
-```zsh
+```
 provider "wallarm" {
   api_token = "<WALLARM_API_TOKEN>"
   api_host = "https://us1.api.wallarm.com"
@@ -134,6 +134,6 @@ Terraformは、多くのベンダーから利用可能な一連の統合([**プ�
 この登録簿には、Wallarmが公開したものが含まれています:
 
 * Terraformを使用したWallarmの管理用の[Wallarmプロバイダ](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs)。本記事で説明されています。
-* Terraform互換環境からAWSにノードをデプロイするための[Wallarmモジュール](../../installation/cloud-platforms/aws/terraform-module/overview.md)。
+* Terraform互換環境からAWSにノードをデプロイするための[Wallarmモジュール](../../installation/cloud-platforms/aws/terraform-module/overview.ja.md)。
 
 これら2つはそれぞれ異なる目的に使用される独立したツールです。一方を使用するために他方が必要なわけではありません。

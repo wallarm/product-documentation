@@ -7,7 +7,7 @@ Infrastructure as Code（IaC）アプローチに従っている場合、Wallarm
 Wallarmの `cloud-init` スクリプトは、[Wallarm AWSクラウドイメージ](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe) の `/usr/share/wallarm-common/cloud-init.py` パスで利用できます。このスクリプトでは、以下の主要な段階が含まれた初期および高度なインスタンス構成を実行します。
 
 * Wallarm Cloudで事前に作成されたWallarmノードを実行するために、Wallarmの `register-node` スクリプトを実行します
-* `preset` 変数で指定されたプロキシまたはミラーアプローチに従ってインスタンスを構成（[Terraformモジュール](aws/terraform-module/overview.md)を使ってWallarmをデプロイする場合）
+* `preset` 変数で指定されたプロキシまたはミラーアプローチに従ってインスタンスを構成（[Terraformモジュール](aws/terraform-module/overview.ja.md)を使ってWallarmをデプロイする場合）
 * NGINXスニペットに従ってインスタンスを微調整します
 * Wallarmノードを微調整します
 * ロードバランサのヘルスチェックを実行します
@@ -44,7 +44,7 @@ systemctl restart nginx.service
 echo Wallarm Node successfuly configured!
 ```
 
-Infrastructure as Code（IaC）アプローチに対応するために、Wallarmの `cloud-init` スクリプトの使用例として[AWS用Terraformモジュール](aws/terraform-module/overview.md)を実装しました。
+Infrastructure as Code（IaC）アプローチに対応するために、Wallarmの `cloud-init` スクリプトの使用例として[AWS用Terraformモジュール](aws/terraform-module/overview.ja.md)を実装しました。
 
 ## Wallarm cloud-init スクリプトのヘルプデータ
 
@@ -74,7 +74,7 @@ optional arguments:
   --proxy-pass PROXY_PASS
                         Proxied server protocol and address. Required if "proxy" is specified as a preset.
   --libdetection        Whether to use the libdetection library during the traffic analysis: https://docs.wallarm.com/about-wallarm-
-                        waf/protecting-against-attacks.md#library-libdetection.
+                        waf/protecting-against-attacks.ja.md#library-libdetection.
   --global-snippet GLOBAL_SNIPPET_FILE
                         Custom configuration to be added to the NGINX global configuration.
   --http-snippet HTTP_SNIPPET_FILE

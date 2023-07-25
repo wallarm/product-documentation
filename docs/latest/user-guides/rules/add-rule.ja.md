@@ -1,9 +1,9 @@
-[link-request-processing]:      request-processing.md
+[link-request-processing]:      request-processing.ja.md
 [link-regex]:                   https://github.com/yandex/pire
-[link-filter-mode-rule]:        wallarm-mode-rule.md
-[link-sensitive-data-rule]:     sensitive-data-rule.md
-[link-virtual-patch]:           vpatch-rule.md
-[link-regex-rule]:              regex-rule.md
+[link-filter-mode-rule]:        wallarm-mode-rule.ja.md
+[link-sensitive-data-rule]:     sensitive-data-rule.ja.md
+[link-virtual-patch]:           vpatch-rule.ja.md
+[link-regex-rule]:              regex-rule.ja.md
 
 [img-add-rule]:     ../../images/user-guides/rules/add-rule.png
 
@@ -323,14 +323,14 @@ WallarmのURIコンストラクタでワイルドカードを使用できます�
 
 以下のルールがサポートされています：
 
-* [パーサを無効/有効にする](disable-request-parsers.md)
-* [サーバー応答ヘッダーを変更する](add-replace-response-header.md)
+* [パーサを無効/有効にする](disable-request-parsers.ja.md)
+* [サーバー応答ヘッダーを変更する](add-replace-response-header.ja.md)
 * [フィルタリングモードを設定する][link-filter-mode-rule]
 * [機密データをマスクする][link-sensitive-data-rule]
-* [アクティブな脅威検証のモードを設定する](change-request-for-active-verification.md#disabling-enabling-the-active-threat-verification-module)
-* [アクティブ検証前にアタックを書き換える](change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)
+* [アクティブな脅威検証のモードを設定する](change-request-for-active-verification.ja.md#disabling-enabling-the-active-threat-verification-module)
+* [アクティブ検証前にアタックを書き換える](change-request-for-active-verification.ja.md#rewriting-the-request-before-attack-replaying)
 * [仮想パッチを適用する][link-virtual-patch]
 * [ユーザー定義の検出ルール][link-regex-rule]
-* [特定のアタックタイプを無視する](ignore-attack-types.md)
-* [バイナリデータ内の特定の攻撃サインを無視する](ignore-attacks-in-binary-data.md)
-* [overlimit_resアタック検出を微調整する](configure-overlimit-res-detection.md)
+* [特定のアタックタイプを無視する](ignore-attack-types.ja.md)
+* [バイナリデータ内の特定の攻撃サインを無視する](ignore-attacks-in-binary-data.ja.md)
+* [overlimit_resアタック検出を微調整する](configure-overlimit-res-detection.ja.md)

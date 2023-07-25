@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers/base64.md"
+--8<-- "latest/fast/dsl/points/parsers/base64.ja.md"

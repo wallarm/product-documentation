@@ -1,8 +1,8 @@
-[link-docs-gcp-autoscaling]:        autoscaling-overview.md
-[link-docs-gcp-node-setup]:         ../../../installation/cloud-platforms/gcp/machine-image.md
-[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/gcp/machine-image.md#4-connect-the-filtering-node-to-the-wallarm-cloud
-[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.md#5-enable-wallarm-to-analyze-the-traffic
-[link-docs-check-operation]:        ../../installation-check-operation-en.md
+[link-docs-gcp-autoscaling]:        autoscaling-overview.ja.md
+[link-docs-gcp-node-setup]:         ../../../installation/cloud-platforms/gcp/machine-image.ja.md
+[link-cloud-connect-guide]:         ../../../installation/cloud-platforms/gcp/machine-image.ja.md#4-connect-the-filtering-node-to-the-wallarm-cloud
+[link-docs-reverse-proxy-setup]:    ../../../installation/cloud-platforms/gcp/machine-image.ja.md#5-enable-wallarm-to-analyze-the-traffic
+[link-docs-check-operation]:        ../../installation-check-operation-en.ja.md
 
 [img-vm-instance-poweroff]:     ../../../images/installation-gcp/auto-scaling/common/create-image/vm-poweroff.png
 [img-create-image]:             ../../../images/installation-gcp/auto-scaling/common/create-image/create-image.png
@@ -30,7 +30,7 @@ GCPでWallarmフィルタリングノード付きの画像を作成するため�
         * US Cloudを使用している場合、ノードには`https://us1.api.wallarm.com`へのアクセスが必要です。
         * EU Cloudを使用している場合、ノードには`https://api.wallarm.com`へのアクセスが許可されている必要があります。
     
-    --8<-- "../include/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include/gcp-autoscaling-connect-ssh.ja.md"
 
 2.  [フィルタリングノードをWallarm Cloudに接続します][link-cloud-connect-guide]。
 

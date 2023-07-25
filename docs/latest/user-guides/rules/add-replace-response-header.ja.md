@@ -4,7 +4,7 @@
 
 このルールタイプは、アプリケーションのセキュリティの追加レイヤーを設定するために最もよく使用されます。例えば：
 
-* クライアントが特定のページに対してロードできるリソースを制御する応答ヘッダー [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) を追加します。これにより、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃に対する防御が可能になります。
+* クライアントが特定のページに対してロードできるリソースを制御する応答ヘッダー [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) を追加します。これにより、[XSS](../../attacks-vulns-list.ja.md#crosssite-scripting-xss)攻撃に対する防御が可能になります。
 
     サーバーがデフォルトでこのヘッダーを返さない場合は、ルール **サーバー応答ヘッダーの変更** を使用して追加することをお勧めします。MDN Web Docs で、[可能なヘッダー値](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy#directives)と [ヘッダー使用例](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#examples_common_use_cases)の説明を見つけることができます。
 
@@ -23,13 +23,13 @@
 
 1. Wallarm Console の **ルール** セクションで、**サーバー応答ヘッダーの変更** ルールを作成します。ルールは以下のコンポーネントで構成されます。
 
-      * ルールが適用されるエンドポイントを[説明](add-rule.md#branch-description)する **条件** 。
+      * ルールが適用されるエンドポイントを[説明](add-rule.ja.md#branch-description)する **条件** 。
       * 追加するヘッダーの名前または値を置き換える。
       * 指定されたヘッダーの新しい値。
 
         既存の応答ヘッダーを削除するには、**置換** タブでこのヘッダーの値にスペースを指定してください。
 
-2. [ルールのコンパイルが完了する](compiling.md) のを待ちます。
+2. [ルールのコンパイルが完了する](compiling.ja.md) のを待ちます。
 
 ## ルールの例
 

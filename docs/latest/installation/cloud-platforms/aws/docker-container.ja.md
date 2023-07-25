@@ -1,10 +1,10 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
+[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.ja.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.ja.md
+[application-configuration]:        ../../../user-guides/settings/applications.ja.md
+[node-status-docs]:                 ../../../admin-en/configure-statistics-service.ja.md
 
 # Wallarm ノード Docker イメージを AWS にデプロイする
 
@@ -194,7 +194,7 @@ AWS EFSから環境変数と設定ファイルをマウントしてコンテナ�
     }
     ```
 
-    [設定ファイルで指定できるフィルタリングノードのディレクティブのセット →](../../../admin-en/configure-parameters-en.md)
+    [設定ファイルで指定できるフィルタリングノードのディレクティブのセット →](../../../admin-en/configure-parameters-en.ja.md)
 1. [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html)や[AWS Systems Manager → Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html)を使って、Wallarm Cloudに接続するために必要な機密情報（ノードトークン）を暗号化します。
 
     これらの手順では、機密データはAWS Secrets Managerに保存されています。
@@ -344,7 +344,7 @@ AWS EFSから環境変数と設定ファイルをマウントしてコンテナ�
 
     IPアドレスが空の場合は、コンテナが**RUNNING**ステータスにあることを確認してください。
 
-2. テスト用の [パストラバーサル](../../../attacks-vulns-list.md#path-traversal) 攻撃をコピーしたアドレスにリクエストを送信します。
+2. テスト用の [パストラバーサル](../../../attacks-vulns-list.ja.md#path-traversal) 攻撃をコピーしたアドレスにリクエストを送信します。
 
     ```
     curl http://<COPIED_IP>/etc/passwd

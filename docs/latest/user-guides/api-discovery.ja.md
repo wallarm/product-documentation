@@ -1,8 +1,8 @@
 					# API Discovery <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-**API Discovery**セクションは、Wallarm Console で [API インベントリ](../about-wallarm/api-discovery.md) を管理し、その発見を微調整する機能を提供します。このガイドでは、このセクションの使用方法について説明します。
+**API Discovery**セクションは、Wallarm Console で [API インベントリ](../about-wallarm/api-discovery.ja.md) を管理し、その発見を微調整する機能を提供します。このガイドでは、このセクションの使用方法について説明します。
 
-このセクションは、以下の[ロール](../user-guides/settings/users.md#user-roles)のユーザーのみが利用できます。
+このセクションは、以下の[ロール](../user-guides/settings/users.ja.md#user-roles)のユーザーのみが利用できます。
 
 * **管理者**と**アナリスト**は、API Discovery モジュールで発見したデータを表示・管理し、API Discovery の構成部分にアクセスできます。
 
@@ -62,12 +62,12 @@
     * 医療免許番号などの医療データ
     * 氏名、パスポート番号、SSNなどの個人情報（PII）
 
-* このパラメータで送信されるデータの[タイプ/フォーマット](../about-wallarm/api-discovery.md#parameter-types-and-formats)
+* このパラメータで送信されるデータの[タイプ/フォーマット](../about-wallarm/api-discovery.ja.md#parameter-types-and-formats)
 * パラメータ情報が最後に更新された日時
 
 ## API の変更を追跡する
 
-指定された期間内に API で[発生した変更](../about-wallarm/api-discovery.md#tracking-changes-in-api)を確認できます。それには、**Changes since** フィルタから適切な期間または日付を選択してください。エンドポイントリストに以下のマークが表示されます：
+指定された期間内に API で[発生した変更](../about-wallarm/api-discovery.ja.md#tracking-changes-in-api)を確認できます。それには、**Changes since** フィルタから適切な期間または日付を選択してください。エンドポイントリストに以下のマークが表示されます：
 
 * 期間内にリストに追加されたエンドポイントには **New**
 * 新しいパラメータが追加されたり、削除されたりしたエンドポイントには **Changed**。エンドポイントの詳細では、そのようなパラメータに対応するマークが付けられます。
@@ -92,7 +92,7 @@
 * **Changes in API** を ` New endpoints + Removed endpoints` に変更すると、4つのエンドポイントが表示され、3つが **Removed** マーク、1つが **New** マークが付きます。
 * **Changes since** を `Last week` に戻すと、1つのエンドポイントが表示され、**New** マークが付きます。## リスクスコアを使用する方法
 
-[リスクスコア](../about-wallarm/api-discovery.md#endpoint-risk-score) は、どのエンドポイントが攻撃対象となりやすく、そのためセキュリティ対策の焦点とすべきかを理解するのに役立ちます。
+[リスクスコア](../about-wallarm/api-discovery.ja.md#endpoint-risk-score) は、どのエンドポイントが攻撃対象となりやすく、そのためセキュリティ対策の焦点とすべきかを理解するのに役立ちます。
 
 リスクスコアは `1`（最低）から `10`（最高）まであります。
 
@@ -127,7 +127,7 @@
 
 ![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
-**Events** セクションが [フィルタが適用](../user-guides/search-and-filters/use-search.md)された状態で表示されます。
+**Events** セクションが [フィルタが適用](../user-guides/search-and-filters/use-search.ja.md)された状態で表示されます。
 
 ```
 attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
@@ -137,7 +137,7 @@ attacks last 7 days endpoint_id:<YOUR_ENDPOINT_ID>
 
 ## APIインベントリとルール
 
-APIインベントリの任意のエンドポイントから新しい[カスタムルール](../user-guides/rules/intro.md)をすばやく作成できます。
+APIインベントリの任意のエンドポイントから新しい[カスタムルール](../user-guides/rules/intro.ja.md)をすばやく作成できます。
 
 1. エンドポイントのメニューで **Create rule** を選択します。ルール作成ウィンドウが表示されます。エンドポイントのアドレスは、自動的にウィンドウに解析されます。
 1. ルール作成ウィンドウで、ルール情報を指定し、**Create** をクリックします。
@@ -161,7 +161,7 @@ APIインベントリの任意のエンドポイントから新しい[カスタ�
 
 ## 自動BOLA保護
 
-Wallarmは、**API Discovery**モジュールで調査されたエンドポイントの中から、BOLA攻撃に対して脆弱なエンドポイントを[自動的に発見し、保護](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery)することができます。このオプションが有効になっている場合、APIインベントリの保護されたエンドポイントが対応するアイコンで強調表示されます。
+Wallarmは、**API Discovery**モジュールで調査されたエンドポイントの中から、BOLA攻撃に対して脆弱なエンドポイントを[自動的に発見し、保護](../admin-en/configuration-guides/protecting-against-bola.ja.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery)することができます。このオプションが有効になっている場合、APIインベントリの保護されたエンドポイントが対応するアイコンで強調表示されます。
 
 ![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
@@ -173,17 +173,17 @@ BOLA自動保護ステータスによるAPIエンドポイントのフィルタ�
 
 ### API Discovery用のアプリケーションの選択
 
-お客様の企業アカウントに[API Discovery](../about-wallarm/api-discovery.md) サブスクリプションが購入されている場合、Wallarm Console → **API Discovery** → **Configure API Discovery**でAPI Discoveryとともにトラフィックの分析を有効/無効にできます。
+お客様の企業アカウントに[API Discovery](../about-wallarm/api-discovery.ja.md) サブスクリプションが購入されている場合、Wallarm Console → **API Discovery** → **Configure API Discovery**でAPI Discoveryとともにトラフィックの分析を有効/無効にできます。
 
 すべてのアプリケーションまたは選択されたアプリケーションだけに対してAPI Discoveryを有効/無効にすることができます。
 
 ![!API Discovery – 設定](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
-**Settings** → **[Applications](settings/applications.md)**で新しいアプリケーションを追加すると、それは自動的に **disabled** ステートになるAPIディスカバリのアプリケーションリストに追加されます。
+**Settings** → **[Applications](settings/applications.ja.md)**で新しいアプリケーションを追加すると、それは自動的に **disabled** ステートになるAPIディスカバリのアプリケーションリストに追加されます。
 
 ### リスクスコア計算のカスタマイズ
 
-[リスクスコア](../about-wallarm/api-discovery.md#endpoint-risk-score) 計算のそれぞれのファクターの重みと計算方法を設定できます。
+[リスクスコア](../about-wallarm/api-discovery.ja.md#endpoint-risk-score) 計算のそれぞれのファクターの重みと計算方法を設定できます。
 
 デフォルト：
 

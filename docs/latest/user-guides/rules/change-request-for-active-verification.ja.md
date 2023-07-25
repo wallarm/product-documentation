@@ -1,6 +1,6 @@
 # アクティブな脅威検証モジュールのカスタマイズ <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;"></a>
 
-カスタムルールセットを使用すると、[アクティブ脅威検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールの以下の構成を変更することができます。
+カスタムルールセットを使用すると、[アクティブ脅威検証](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)モジュールの以下の構成を変更することができます。
 
 * アプリケーション全体または一部のモジュールを無効にする（Wallarmコンソール → **スキャナ**で全てのアプリケーションに対してモジュールが有効になっている場合のみ）。
 * アタック再生前にリクエストを書き換える。
@@ -9,7 +9,7 @@
 
 ### ルールの概要
 
-ルール **アクティブ脅威確認のモードを設定** は、Wallarm コンソール → **スキャナ** でグローバルに有効になっている場合、特定のアプリケーション、ドメイン、または URL の [アクティブ脅威確認](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールのモードを変更するために使用されます。
+ルール **アクティブ脅威確認のモードを設定** は、Wallarm コンソール → **スキャナ** でグローバルに有効になっている場合、特定のアプリケーション、ドメイン、または URL の [アクティブ脅威確認](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification) モジュールのモードを変更するために使用されます。
 
 ### ルールの作成と適用
 
@@ -17,11 +17,11 @@
 
 1. Wallarmコンソールの **ルール** セクションで、ルール **アクティブ脅威確認のモードを設定** を作成します。ルールは以下のコンポーネントで構成されています。
 
-      * **条件** は、ルールを適用するエンドポイントを[説明](add-rule.md#branch-description)します。
+      * **条件** は、ルールを適用するエンドポイントを[説明](add-rule.ja.md#branch-description)します。
       * **無効化／有効化** は、指定されたエンドポイントに送信される攻撃の **アクティブ脅威検証** モジュールのモードを設定します。
 
         モード **有効化** を、モジュールを無効にするルールの例外設定にのみ使用してください（例： `https://example.com/module/user/*` で既に無効になっている場合、`https://example.com/module/user/create` のモジュールを有効にする）。
-2. [カスタムルールセットのコンパイルが完了する](compiling.md)のを待ちます。
+2. [カスタムルールセットのコンパイルが完了する](compiling.ja.md)のを待ちます。
 
 ### ルール例
 
@@ -37,7 +37,7 @@
 
 ### ルールの概要
 
-ルール **アクティブ検証前のアタックの書き換え** は、[アタック再生](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) の前に、元のリクエストの要素を変更するために使用されます。以下の要素を変更することができます。
+ルール **アクティブ検証前のアタックの書き換え** は、[アタック再生](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification) の前に、元のリクエストの要素を変更するために使用されます。以下の要素を変更することができます。
 
 * リクエスト認証データのヘッダーを、[元の認証データをテストデータに置き換える](#replacing-original-authentication-data-with-test-data)。
 * ヘッダー `HOST` 。例えば、ヘッダー `HOST` を変更して、[ステージングまたはテスト環境](#modifying-the-application-address-for-attack-replaying)でアタックを再生できます。
@@ -72,7 +72,7 @@
 
 1. Wallarmコンソールの**ルール**セクションで、**アクティブ検証前のアタック書き換え**ルールを作成します。ルールは以下のコンポーネントで構成されています。
 
-      * **条件** は、ルールを適用するエンドポイントを[説明](add-rule.md#branch-description)します。
+      * **条件** は、ルールを適用するエンドポイントを[説明](add-rule.ja.md#branch-description)します。
       * **ルール** は、**リクエストのパート** フィールドで選択されたパラメータに新しい値を設定します。設定された値はアタック再生時に使用されます。
 
         値は、[テンプレート言語 Liquid](https://shopify.github.io/liquid/) を使ってデコードして設定する必要があります。つまり、二重中括弧 `{{}}` と シングルクォート `''`で囲みます。例： `{{'example.com'}}`。
@@ -84,7 +84,7 @@
         !!! warning "**リクエストの一部** フィールドの可能な値"
             **リクエストの一部** フィールドの可能な値は、`header`（リクエストヘッダー）と `uri`（リクエストパス）です。
 
-2. [ルールのコンパイルが完了する](compiling.md) のを待ちます。
+2. [ルールのコンパイルが完了する](compiling.ja.md) のを待ちます。
 
 元のリクエストの変更に対する複数の条件を設定するか、または複数のリクエスト要素の値を置き換えるには、複数のルールを作成できます。
 

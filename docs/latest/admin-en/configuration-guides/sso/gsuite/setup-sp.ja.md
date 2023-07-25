@@ -1,7 +1,7 @@
 [img-gsuite-sso-provider-wl]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-sso-provider-wl.png
 [img-sp-metadata]:              ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-metadata.png
 
-[doc-setup-idp]:                setup-idp.md
+[doc-setup-idp]:                setup-idp.ja.md
 
 # ステップ1： Wallarm側でのパラメータ生成（G Suite）
 

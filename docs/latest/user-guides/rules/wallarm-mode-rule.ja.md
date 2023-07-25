@@ -1,4 +1,4 @@
-[link-wallarm-mode-override]: ../../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
+[link-wallarm-mode-override]: ../../admin-en/configure-parameters-en.ja.md#wallarm_mode_allow_override
 
 [img-mode-rule]: ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
@@ -12,8 +12,8 @@
 
 * **デフォルト**: システムは、NGINXの設定ファイルで指定されたパラメータに従って動作します。
 * **無効**: リクエストの解析とフィルタリングが完全に無効化されます。
-* **モニタリング**: リクエストは解析され、インターフェースに表示されますが、[ブロックリスト](../ip-lists/denylist.md)内のIPからのリクエストであっても、ブロックされません。
-* **セーフブロッキング**: 悪意のあるリクエストが[グレイリストのIP](../ip-lists/graylist.md)から発信されている場合にのみブロックされます。
+* **モニタリング**: リクエストは解析され、インターフェースに表示されますが、[ブロックリスト](../ip-lists/denylist.ja.md)内のIPからのリクエストであっても、ブロックされません。
+* **セーフブロッキング**: 悪意のあるリクエストが[グレイリストのIP](../ip-lists/graylist.ja.md)から発信されている場合にのみブロックされます。
 * **ブロッキング**: 悪意のあるリクエストがブロックされ、インターフェイスに表示されます。
 
 このルールを実装するには、NGINXの設定ファイルが[運用モードの一元管理][link-wallarm-mode-override]を許可している必要があります。
@@ -24,11 +24,11 @@
 
 ## デフォルトのルールインスタンス
 
-Wallarmは、[default](../../user-guides/rules/view.md#default-rules)レベルで`フィルタリングモードの設定`ルールのインスタンスを自動的に作成します。システムは、[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいてその値を設定します。
+Wallarmは、[default](../../user-guides/rules/view.ja.md#default-rules)レベルで`フィルタリングモードの設定`ルールのインスタンスを自動的に作成します。システムは、[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md#setting-up-the-general-filtration-rule-in-wallarm-console)の設定に基づいてその値を設定します。
 
-このルールのインスタンスは削除することができません。値を変更するには、システムの[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更してください。
+このルールのインスタンスは削除することができません。値を変更するには、システムの[一般的なフィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更してください。
 
-他のすべてのデフォルトルールと同様に、`フィルタリングモードの設定`デフォルトルールはすべてのブランチで[継承](../../user-guides/rules/view.md)されます。
+他のすべてのデフォルトルールと同様に、`フィルタリングモードの設定`デフォルトルールはすべてのブランチで[継承](../../user-guides/rules/view.ja.md)されます。
 
 ## 例: ユーザー登録中のリクエストブロッキングの無効化
 
@@ -49,8 +49,8 @@ Wallarmは、[default](../../user-guides/rules/view.md#default-rules)レベル�
 
 ## ルールを作成するためのAPI呼び出し
 
-Wallarm Console UIを使用する代わりに、フィルタリングモードのルールを作成するために、[Wallarm APIを直接呼び出す](../../api/overview.md)ことができます。以下は、対応するAPI呼び出しの例です。
+Wallarm Console UIを使用する代わりに、フィルタリングモードのルールを作成するために、[Wallarm APIを直接呼び出す](../../api/overview.ja.md)ことができます。以下は、対応するAPI呼び出しの例です。
 
-次のリクエストは、モニタリングモードでID `3`を持つ[アプリケーション](../settings/applications.md)に向かうトラフィックをフィルタリングするノードを設定するルールを作成します。
+次のリクエストは、モニタリングモードでID `3`を持つ[アプリケーション](../settings/applications.ja.md)に向かうトラフィックをフィルタリングするノードを設定するルールを作成します。
 
 --8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.ja.md"

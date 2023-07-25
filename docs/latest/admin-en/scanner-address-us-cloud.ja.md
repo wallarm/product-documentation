@@ -5,9 +5,9 @@
 !!! info
     このリストは、USクラウド<https://us1.my.wallarm.com>を利用しているユーザーのみ対応しています。
     
-    EUクラウド<https://my.wallarm.com>を利用している場合は、[EUクラウド用スキャナーアドレスのリスト](scanner-address-eu-cloud.md)に進んでください。
+    EUクラウド<https://my.wallarm.com>を利用している場合は、[EUクラウド用スキャナーアドレスのリスト](scanner-address-eu-cloud.ja.md)に進んでください。
 
-WallarmがUSクラウドから企業リソースを[脆弱性](../glossary-en.md#vulnerability)のスキャンおよび攻撃と脆弱性の再チェックを行うIPアドレスのリスト：
+WallarmがUSクラウドから企業リソースを[脆弱性](../glossary-en.ja.md#vulnerability)のスキャンおよび攻撃と脆弱性の再チェックを行うIPアドレスのリスト：
 
 --8<-- "../include/scanner-ip-request-us.ja.md"
 

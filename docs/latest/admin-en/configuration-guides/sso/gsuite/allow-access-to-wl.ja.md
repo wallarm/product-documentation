@@ -5,7 +5,7 @@
 [img-gsuite-navigation-saml]:   ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-navigation-saml.png
 [img-app-page]:                 ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-app-page.png
 
-[doc-use-user-auth]:            ../employ-user-auth.md
+[doc-use-user-auth]:            ../employ-user-auth.ja.md
 
 G Suite を介した認証を行うには、G Suite 側にアカウントが作成されている必要があり、また、ユーザーには Wallarm アプリケーションへのアクセス権が与えられている必要があります。アクセス権限を付与するための必要な一連の操作が以下に説明されています。
 

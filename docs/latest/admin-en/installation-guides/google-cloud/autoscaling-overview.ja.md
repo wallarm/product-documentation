@@ -1,7 +1,7 @@
-[link-doc-image-creation]:               create-image.md
-[link-doc-template-creation]:            creating-instance-template.md
-[link-doc-managed-autoscaling-group]:    creating-autoscaling-group.md
-[link-doc-lb-guide]:                     load-balancing-guide.md
+[link-doc-image-creation]:               create-image.ja.md
+[link-doc-template-creation]:            creating-instance-template.ja.md
+[link-doc-managed-autoscaling-group]:    creating-autoscaling-group.ja.md
+[link-doc-lb-guide]:                     load-balancing-guide.ja.md
 
 # Google Cloud Platform でのフィルタリングノードのオートスケーリング設定：概要
 

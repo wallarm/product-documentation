@@ -1,6 +1,6 @@
-[doc-nagios-details]: fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
+[doc-nagios-details]: fetching-metrics.ja.md#exporting-metrics-using-the-collectd-nagios-utility
 
-[doc-lom]: ../../glossary-en.md#custom-ruleset-the-former-term-is-lom
+[doc-lom]: ../../glossary-en.ja.md#custom-ruleset-the-former-term-is-lom
 
 [anchor-tnt]: #number-of-requests-not-analyzed-by-the-postanalytics-module
 [anchor-api]: #number-of-requests-not-passed-to-the-wallarm-api
@@ -40,7 +40,7 @@
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
-メトリック形式の詳細はこの[リンク](../monitoring/intro.md#how-metrics-look)で利用可能です。
+メトリック形式の詳細はこの[リンク](../monitoring/intro.ja.md#how-metrics-look)で利用可能です。
 
 !!! note
     * 以下に利用可能なメトリックのリストには、ホスト名（`host/` 部分）が省略されています。
@@ -64,11 +64,11 @@ host/plugin[-plugin_instance]/type[-type_instance]
 
 * **メトリック:** `curl_json-wallarm_nginx/gauge-abnormal`
 * **メトリック値:**
-    * `0` は `off` [モード](../configure-wallarm-mode.md#available-filtration-modes)
-    * `>0` は `monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.md#available-filtration-modes)
+    * `0` は `off` [モード](../configure-wallarm-mode.ja.md#available-filtration-modes)
+    * `>0` は `monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.ja.md#available-filtration-modes)
 * **トラブルシューティングの推奨事項:**
     1. フィルタノードの設定が正しいことを確認してください。
-    2. フィルタノードの操作を、[指示書](../installation-check-operation-en.md)に記載されているように確認します。テストアタックを 1 つ送信した後、値が `1` 増加する必要があります。
+    2. フィルタノードの操作を、[指示書](../installation-check-operation-en.ja.md)に記載されているように確認します。テストアタックを 1 つ送信した後、値が `1` 増加する必要があります。
 
 ### 失われたリクエスト数
 
@@ -80,26 +80,26 @@ Postanalyticsモジュールによって解析されず、Wallarm APIに渡さ�
 
 #### Postanalytics モジュールによって解析されなかったリクエスト数
 
-Postanalytics モジュールによって解析されなかったリクエスト数。このメトリックは、Postanalytics モジュールへのリクエストの送信が設定されている場合に収集されます（[`wallarm_upstream_backend tarantool`](../configure-parameters-en.md#wallarm_upstream_backend)）。これらのリクエストにはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
+Postanalytics モジュールによって解析されなかったリクエスト数。このメトリックは、Postanalytics モジュールへのリクエストの送信が設定されている場合に収集されます（[`wallarm_upstream_backend tarantool`](../configure-parameters-en.ja.md#wallarm_upstream_backend)）。これらのリクエストにはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
 
 * **メトリック:** `curl_json-wallarm_nginx/gauge-tnt_errors`
 * **メトリック値:** `0`
 * **トラブルシューティングの推奨事項:**
     * NGINX と Tarantool のログを取得し、エラーがあれば分析してください。
-    * Tarantool サーバーアドレス（[`wallarm_tarantool_upstream`](../configure-parameters-en.md#wallarm_tarantool_upstream)）が正しいことを確認してください。
-    * Tarantool に十分なメモリが[割り当てられていることを確認](../configuration-guides/allocate-resources-for-node.md#tarantool)してください。
+    * Tarantool サーバーアドレス（[`wallarm_tarantool_upstream`](../configure-parameters-en.ja.md#wallarm_tarantool_upstream)）が正しいことを確認してください。
+    * Tarantool に十分なメモリが[割り当てられていることを確認](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)してください。
     * 問題が解決されない場合は、[Wallarm サポートチーム](mailto:support@wallarm.com)に連絡して、上記のデータを提供してください。
 
 #### Wallarm API に渡されなかったリクエスト数
 
-Wallarm APIに渡されなかったリクエスト数。このメトリックは、Wallarm APIへのリクエストの渡し設定がある場合に収集されます（[`wallarm_upstream_backend api`](../configure-parameters-en.md#wallarm_upstream_backend)）。これらのリクエストにはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
+Wallarm APIに渡されなかったリクエスト数。このメトリックは、Wallarm APIへのリクエストの渡し設定がある場合に収集されます（[`wallarm_upstream_backend api`](../configure-parameters-en.ja.md#wallarm_upstream_backend)）。これらのリクエストにはブロックルールが適用されますが、リクエストはWallarmアカウントに表示されず、次のリクエストの分析には考慮されません。
 
 * **メトリック:** `curl_json-wallarm_nginx/gauge-api_errors`
 * **メトリック値:** `0`
 * **トラブルシューティングの推奨事項:**
     * NGINX と Tarantool のログを取得し、エラーがあれば分析してください。
-    * Wallarm API 設定（[`wallarm_api_conf`](../configure-parameters-en.md#wallarm_api_conf)）が正しいことを確認してください。
-    * Tarantool に十分なメモリが[割り当てられていることを確認](../configuration-guides/allocate-resources-for-node.md#tarantool)してください。
+    * Wallarm API 設定（[`wallarm_api_conf`](../configure-parameters-en.ja.md#wallarm_api_conf)）が正しいことを確認してください。
+    * Tarantool に十分なメモリが[割り当てられていることを確認](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)してください。
     * 問題が解決されない場合は、[Wallarm サポートチーム](mailto:support@wallarm.com)に連絡して、上記のデータを提供してください。
 
 ### NGINX ワーカープロセスが異常終了した問題の数
@@ -118,7 +118,7 @@ NGINX ワーカープロセスが異常終了したための問題の数。異�
 
 * **メトリック:**
     * `curl_json-wallarm_nginx/gauge-memfaults` システムで制限を超えた場合
-    * `curl_json-wallarm_nginx/gauge-softmemfaults` proton.db +lom の制限を超えた場合（[`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.md#wallarm_general_ruleset_memory_limit)）
+    * `curl_json-wallarm_nginx/gauge-softmemfaults` proton.db +lom の制限を超えた場合（[`wallarm_general_ruleset_memory_limit`](../configure-parameters-en.ja.md#wallarm_general_ruleset_memory_limit)）
 * **メトリック値:** `0`
 * **トラブルシューティングの推奨事項:**
     1. `/usr/share/wallarm-common/collect-info.sh` スクリプトを使用して、現在の状態のデータを収集します。
@@ -175,8 +175,8 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 * **メトリック値：** `>0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいことを確認してください。
-    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)）。
-    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)）。
+    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.ja.md#wallarm_protondb_path)）。
+    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.ja.md#wallarm_custom_ruleset_path)）。
 
 #### 正常にダウンロードされたproton.dbおよびLOMペアの数
 
@@ -186,8 +186,8 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 * **メトリック値：** [`proton_instances-total`](#number-of-protondb-and-lom-pairs)と等しい
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいことを確認してください。
-    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)）。
-    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)）。
+    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.ja.md#wallarm_protondb_path)）。
+    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.ja.md#wallarm_custom_ruleset_path)）。
 
 #### 最後に保存されたファイルからダウンロードされたproton.dbおよびLOMペアの数
 
@@ -197,8 +197,8 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 * **メトリック値：** `>0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいことを確認してください。
-    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)）。
-    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)）。
+    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.ja.md#wallarm_protondb_path)）。
+    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.ja.md#wallarm_custom_ruleset_path)）。
 
 #### 非アクティブなproton.dbおよびLOMペアの数
 
@@ -208,8 +208,8 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 * **メトリック値：** `0`
 * **トラブルシューティングの推奨事項：**
     1. フィルターノードの設定が正しいことを確認してください。
-    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.md#wallarm_protondb_path)）。
-    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.md#wallarm_custom_ruleset_path)）。
+    2. proton.dbファイルへのパスが正しく指定されていることを確認してください（[`wallarm_protondb_path`](../configure-parameters-en.ja.md#wallarm_protondb_path)）。
+    3. LOMファイルへのパスが正しく指定されていることを確認してください（[`wallarm_custom_ruleset_path`](../configure-parameters-en.ja.md#wallarm_custom_ruleset_path)）。
 
 ##  Postanalyticsモジュールのメトリック
 
@@ -227,19 +227,19 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 
 #### 削除されたリクエストの表示
 
-攻撃が含まれたリクエストがpostanalyticsモジュールから削除され、[クラウド](../../about-wallarm/overview.md#cloud)に送信されなかったことを示すフラグ。
+攻撃が含まれたリクエストがpostanalyticsモジュールから削除され、[クラウド](../../about-wallarm/overview.ja.md#cloud)に送信されなかったことを示すフラグ。
 
 * **メトリック：** `wallarm-tarantool/gauge-export_drops_flag`
 * **メトリック値：**
     * `0`（リクエストが削除されていない場合）
     * `1`（リクエストが削除された場合（メモリ不足、以下の手順に従ってください））
 * **トラブルシューティングの推奨事項：**
-    * [Tarantoolにより多くのメモリを割り当てます](../configuration-guides/allocate-resources-for-node.md#tarantool)。
-    * これらの[指示](../installation-postanalytics-en.md)に従って、別のサーバプールにpostanalyticsモジュールをインストールします。
+    * [Tarantoolにより多くのメモリを割り当てます](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)。
+    * これらの[指示](../installation-postanalytics-en.ja.md)に従って、別のサーバプールにpostanalyticsモジュールをインストールします。
 
 #### 削除されたリクエストの数
 
-攻撃が含まれたリクエストがpostanalyticsモジュールから削除され、[クラウド](../../about-wallarm/overview.md#cloud)に送信されなかったリクエストの数。リクエストの攻撃数は値に影響しません。メトリックは、[`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests)の場合に収集されます。
+攻撃が含まれたリクエストがpostanalyticsモジュールから削除され、[クラウド](../../about-wallarm/overview.ja.md#cloud)に送信されなかったリクエストの数。リクエストの攻撃数は値に影響しません。メトリックは、[`wallarm-tarantool/gauge-export_drops_flag: 1`](#indication-of-deleted-requests)の場合に収集されます。
 
 モニタリング通知の設定時には、[`wallarm-tarantool/gauge-export_drops_flag`](#indication-of-deleted-requests)メトリックを使用することをお勧めします。
 
@@ -247,8 +247,8 @@ proton.dbファイルの最後の更新時刻のUnix時間。
 * **メトリック値：** `0`
 * **変化率：** `wallarm-tarantool/derive-export_drops`
 * **トラブルシューティングの推奨事項：**
-    * [Tarantoolにより多くのメモリを割り当てます](../configuration-guides/allocate-resources-for-node.md#tarantool)。
-    * これらの[指示](../installation-postanalytics-en.md)に従って、別のサーバプールにpostanalyticsモジュールをインストールします。
+    * [Tarantoolにより多くのメモリを割り当てます](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)。
+    * これらの[指示](../installation-postanalytics-en.ja.md)に従って、別のサーバプールにpostanalyticsモジュールをインストールします。
 
 ### リクエストのエクスポート遅延（秒単位）
 
@@ -261,7 +261,7 @@ postanalyticsモジュールによるリクエストの記録と、検出され�
     * クリティカルな場合は`>300`
 * **トラブルシューティングの推奨事項：**
     * `/var/log/wallarm/export-attacks.log`ファイルからのログを読んでエラーを分析します。値が増加する原因として、フィルタノードからWallarmのAPIサービスへのネットワーク帯域幅が低いことが考えられます。
-    * Tarantoolに十分なメモリが[割り当てられていることを確認してください](../configuration-guides/allocate-resources-for-node.md#tarantool)。割り当てられたメモリが超過した場合、[`tnt_errors`][anchor-tnt]メトリックも増加します。### Postanalyticsモジュールでのリクエストの保存時間（秒）
+    * Tarantoolに十分なメモリが[割り当てられていることを確認してください](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)。割り当てられたメモリが超過した場合、[`tnt_errors`][anchor-tnt]メトリックも増加します。### Postanalyticsモジュールでのリクエストの保存時間（秒）
 
 Postanalyticsモジュールがリクエストを保存している時間。この値は、post analyticsモジュールに割り当てられたメモリ量と、処理されるHTTPリクエストのサイズやプロパティに依存します。間隔が短いほど、検出アルゴリズムの性能が低下します。これは、アルゴリズムが履歴データに依存しているためです。結果として、間隔が短すぎると、攻撃者はブルートフォース攻撃を速く、かつ気づかれずに実行できます。この場合、攻撃者の行動履歴に関するデータが少なくなります。
 
@@ -271,5 +271,5 @@ Postanalyticsモジュールがリクエストを保存している時間。こ�
     * 警告: `<900`
     * 危険: `<300`
 * **トラブルシューティング推奨事項:**
-    * [Tarantoolにより多くのメモリを割り当てる](../configuration-guides/allocate-resources-for-node.md#tarantool)。
-    * Postanalyticsモジュールを別のサーバープールにインストールし、[手順](../installation-postanalytics-en.md)に従ってください。
+    * [Tarantoolにより多くのメモリを割り当てる](../configuration-guides/allocate-resources-for-node.ja.md#tarantool)。
+    * Postanalyticsモジュールを別のサーバープールにインストールし、[手順](../installation-postanalytics-en.ja.md)に従ってください。

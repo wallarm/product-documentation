@@ -1,7 +1,7 @@
 [link-collectd]:            https://collectd.org/
 
-[av-bruteforce]:            ../../attacks-vulns-list.md#bruteforce-attack
-[doc-postanalitycs]:        ../installation-postanalytics-en.md
+[av-bruteforce]:            ../../attacks-vulns-list.ja.md#bruteforce-attack
+[doc-postanalitycs]:        ../installation-postanalytics-en.ja.md
 
 [link-collectd-naming]:     https://collectd.org/wiki/index.php/Naming_schema
 [link-data-source]:         https://collectd.org/wiki/index.php/Data_source
@@ -17,22 +17,22 @@
 [link-nagios-format]:       https://nagios-plugins.org/doc/guidelines.html#AEN200
 [link-selinux]:             https://www.redhat.com/en/topics/linux/what-is-selinux
 
-[doc-available-metrics]:    available-metrics.md
-[doc-network-plugin]:       fetching-metrics.md#exporting-metrics-via-the-collectd-network-plugin
-[doc-write-plugins]:        fetching-metrics.md#exporting-metrics-via-the-collectd-write-plugins
-[doc-collectd-nagios]:      fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
-[doc-collectd-notices]:     fetching-metrics.md#sending-notifications-from-collectd
+[doc-available-metrics]:    available-metrics.ja.md
+[doc-network-plugin]:       fetching-metrics.ja.md#exporting-metrics-via-the-collectd-network-plugin
+[doc-write-plugins]:        fetching-metrics.ja.md#exporting-metrics-via-the-collectd-write-plugins
+[doc-collectd-nagios]:      fetching-metrics.ja.md#exporting-metrics-using-the-collectd-nagios-utility
+[doc-collectd-notices]:     fetching-metrics.ja.md#sending-notifications-from-collectd
 
-[doc-selinux]:  ../configure-selinux.md
+[doc-selinux]:  ../configure-selinux.ja.md
 
 # フィルタリングノード監視の概要
 
 フィルタリングノードの状態を、ノードが提供するメトリクスを使用して監視することができます。この記事では、すべてのWallarmフィルタリングノードにインストールされている [`collectd`][link-collectd] サービスによって収集されたメトリクスを操作する方法について説明します。`collectd` サービスは、データ転送方法をいくつか提供し、多くの監視システムのメトリクスソースとして機能し、フィルタリングノードの状態を制御することができます。
 
-`collectd`メトリクスに加えて、WallarmはPrometheusと基本的なJSONメトリクスと互換性のあるメトリクス形式を提供しています。これらの形式については、[別の記事](../configure-statistics-service.md)で説明しています。
+`collectd`メトリクスに加えて、WallarmはPrometheusと基本的なJSONメトリクスと互換性のあるメトリクス形式を提供しています。これらの形式については、[別の記事](../configure-statistics-service.ja.md)で説明しています。
 
 !!! warning "CDNノード上の監視サービスのサポート"
-    なお、`collectd`サービスは、[Wallarm CDNノード](../../installation/cdn-node.md)ではサポートされていません。
+    なお、`collectd`サービスは、[Wallarm CDNノード](../../installation/cdn-node.ja.md)ではサポートされていません。
 
 ##  監視の必要性
 
@@ -61,11 +61,11 @@ postanalyticsモジュールの障害や不安定な動作は、以下の機能�
 
 監視が機能するためには、次の条件が必要です。
 * NGINXがフィルタリングノードに統計情報を返す（`wallarm_status on`）。
-* フィルタリングモードが `monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.md#available-filtration-modes) になっています。
+* フィルタリングモードが `monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.ja.md#available-filtration-modes) になっています。
 
 デフォルトでは、このサービスは `http://127.0.0.8/wallarm-status` でアクセス可能です。
 
-統計サービスを非標準アドレスで利用可能に[設定](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service)する場合は :
+統計サービスを非標準アドレスで利用可能に[設定](../configure-statistics-service.ja.md#changing-an-ip-address-of-the-statistics-service)する場合は :
 
 1. `/etc/wallarm/node.yaml` ファイルに、新しいアドレス値を持つ `status_endpoint` パラメータを追加します。例えば :
 

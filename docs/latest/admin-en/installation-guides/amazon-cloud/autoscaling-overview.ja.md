@@ -2,13 +2,13 @@
 [link-doc-ec2-as]:          https://docs.aws.amazon.com/autoscaling/ec2/userguide/GettingStartedTutorial.html
 [link-doc-as-faq]:          https://aws.amazon.com/autoscaling/faqs/
 
-[link-doc-ami-creation]:    create-image.md
-[link-doc-asg-guide]:       autoscaling-group-guide.md
-[link-doc-lb-guide]:        load-balancing-guide.md
-[link-doc-create-template]: autoscaling-group-guide.md#1-creating-a-launch-template
-[link-doc-create-asg]:      autoscaling-group-guide.md#2-creating-an-auto-scaling-group
-[link-doc-create-lb]:       load-balancing-guide.md#1-creating-a-load-balancer
-[link-doc-set-up-asg]:      load-balancing-guide.md#2-setting-up-an-auto-scaling-group-for-using-the-created-balancer
+[link-doc-ami-creation]:    create-image.ja.md
+[link-doc-asg-guide]:       autoscaling-group-guide.ja.md
+[link-doc-lb-guide]:        load-balancing-guide.ja.md
+[link-doc-create-template]: autoscaling-group-guide.ja.md#1-creating-a-launch-template
+[link-doc-create-asg]:      autoscaling-group-guide.ja.md#2-creating-an-auto-scaling-group
+[link-doc-create-lb]:       load-balancing-guide.ja.md#1-creating-a-load-balancer
+[link-doc-set-up-asg]:      load-balancing-guide.ja.md#2-setting-up-an-auto-scaling-group-for-using-the-created-balancer
 
 # AWSでのフィルタリングノード自動スケーリングの概要
 

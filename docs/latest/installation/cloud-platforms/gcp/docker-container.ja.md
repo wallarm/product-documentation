@@ -1,10 +1,10 @@
-[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:          ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
 [mount-config-instr]:               #deploying-the-wallarm-node-docker-container-configured-through-the-mounted-file
-[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.md
-[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:        ../../../user-guides/settings/applications.md
-[node-status-docs]:                 ../../../admin-en/configure-statistics-service.md
+[nginx-waf-directives]:             ../../../admin-en/configure-parameters-en.ja.md
+[graylist-docs]:                    ../../../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:            ../../../admin-en/configure-wallarm-mode.ja.md
+[application-configuration]:        ../../../user-guides/settings/applications.ja.md
+[node-status-docs]:                 ../../../admin-en/configure-statistics-service.ja.md
 
 # Wallarm の GCP へのノード Docker イメージの展開
 
@@ -127,7 +127,7 @@
     }
     ```
 
-    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.md)
+    [設定ファイルで指定できるフィルタリングノードディレクティブのセット →](../../../admin-en/configure-parameters-en.ja.md)
 1. 環境変数とマウントされた設定ファイルを渡して `docker run` コマンドを使用して Wallarm ノード Docker コンテナを実行します:
 
     === "Wallarm USクラウドのコマンド"
@@ -162,7 +162,7 @@
 
     IPアドレスが空の場合、インスタンスが **RUNNING** ステータスであることを確認してください。
 
-2. コピーしたアドレスにテスト [Path Traversal](../../../attacks-vulns-list.md#path-traversal) 攻撃を含むリクエストを送信します：
+2. コピーしたアドレスにテスト [Path Traversal](../../../attacks-vulns-list.ja.md#path-traversal) 攻撃を含むリクエストを送信します：
 
     ```
     curl http://<COPIED_IP>/etc/passwd

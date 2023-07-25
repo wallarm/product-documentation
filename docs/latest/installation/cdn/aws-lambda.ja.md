@@ -1,4 +1,4 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Wallarm Node.js for AWS Lambda
@@ -11,7 +11,7 @@
 
 ## ユースケース
 
-すべての[supported Wallarm deployment options](../supported-deployment-options.md) の中で、以下のユースケースには、この解決策が最も推奨されます：
+すべての[supported Wallarm deployment options](../supported-deployment-options.ja.md) の中で、以下のユースケースには、この解決策が最も推奨されます：
 
 * Node.jsラムダを使用するAWS上のアプリケーションのセキュリティ確保。
 * 攻撃の観察、レポート作成、悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要。
@@ -20,9 +20,9 @@
 
 この解決策は、次のような制限があるため、送信されたリクエストのみを扱います。
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) 方法を用いた脆弱性の発見が適切に機能しない。この解決策は、脆弱性のテストに典型的な悪意あるリクエストへのサーバーのレスポンスに基づいて、APIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、解決策が応答分析に依存しているため、あなたのトラフィックに基づいたAPIのインベントリを探索することができません。
-* 応答コード分析が必要なため、[強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection) 方法を用いた脆弱性の発見が適切に機能しない。この解決策は、脆弱性のテストに典型的な悪意あるリクエストへのサーバーのレスポンスに基づいて、APIが脆弱かどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md)は、解決策が応答分析に依存しているため、あなたのトラフィックに基づいたAPIのインベントリを探索することができません。
+* 応答コード分析が必要なため、[強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)は利用できません。
 
 また、他にも以下の制限があります:
 
@@ -49,8 +49,8 @@ AWS上のアプリケーションでNode.jsラムダを使用してWallarmを安
 
 AWS LambdaとWallarmを統合する際は、トラフィックの流れはインラインで動作します。したがって、AWSでのインラインデプロイメントに対応したサポートされるWallarmノードデプロイメントアーティファクトの一つを選んでください:
 
-* [AWS AMI](../packages/aws-ami.md)
-* [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)
+* [AWS AMI](../packages/aws-ami.ja.md)
+* [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.ja.md)
 
 次のテンプレートを使用してデプロイしたノードを設定してください:
 
@@ -106,7 +106,7 @@ server {
 以下の設定に注意を払うようにしてください:
 
 * HTTPSトラフィックのためのTLS/SSL証明書: WallarmノードがセキュアなHTTPSトラフィックを扱うことができるように、TLS/SSL証明書を適切に設定してください。具体的な設定は、選択したデプロイメント方法によります。例えば、NGINXを使用している場合は、[こちらの記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照してください。
-* [Wallarmの動作モード](../../admin-en/configure-wallarm-mode.md)の設定。
+* [Wallarmの動作モード](../../admin-en/configure-wallarm-mode.ja.md)の設定。
 
 ### 2. AWS Lambda用のWallarm Node.jsスクリプトの取得と実行
 

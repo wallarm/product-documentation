@@ -1,4 +1,4 @@
-[ptrav-attack-docs]: ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]: ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]: ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Wallarm Proxy Bundleとの連携が可能なApigee Edge
@@ -9,7 +9,7 @@
 
 ## 利用場面
 
-すべての対応[Wallarmのデプロイオプション](../supported-deployment-options.md)の中でも、このソリューションは次のような利用場面で推奨されます。
+すべての対応[Wallarmのデプロイオプション](../supported-deployment-options.ja.md)の中でも、このソリューションは次のような利用場面で推奨されます。
 
 * Apigeeプラットフォーム上でデプロイされているAPIを1つのAPIプロキシで保護する必要がある
 * 攻撃の観察、レポート、悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要な場合
@@ -18,9 +18,9 @@
 
 このソリューションは、入力されるリクエストのみに対応するため、一部の制限があります：
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)を用いた脆弱性の検出は、適切に機能しません。このソリューションは、それがテストしている脆弱性に典型的な悪意のあるリクエストへのサーバーのレスポンスに基づいて、APIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、レスポンスの分析を頼りにしてサービスを拡大するため、あなたのトラフィックに基づいてAPIのインベントリを探索することはできません。
-* 応答コードの分析を必要とするため、[強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)が利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection)を用いた脆弱性の検出は、適切に機能しません。このソリューションは、それがテストしている脆弱性に典型的な悪意のあるリクエストへのサーバーのレスポンスに基づいて、APIが脆弱かどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md)は、レスポンスの分析を頼りにしてサービスを拡大するため、あなたのトラフィックに基づいてAPIのインベントリを探索することはできません。
+* 応答コードの分析を必要とするため、[強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)が利用できません。
 
 ## 要件
 
@@ -40,8 +40,8 @@ ApigeeプラットフォームのAPIを保護するためには、次の手順�
 
 Apigee上でWallarmプロキシを使用する際、トラフィックフローはインラインで動作します。そのため、Google Cloud Platform上でのインラインデプロイメント用のサポートされるWallarmノードのデプロイメントアーティファクトの中から一つを選択してください：
 
-* [GCPマシンイメージ](../packages/gcp-machine-image.md)
-* [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.md)
+* [GCPマシンイメージ](../packages/gcp-machine-image.ja.md)
+* [Google Compute Engine (GCE)](../cloud-platforms/gcp/docker-container.ja.md)
 
 デプロイされたノードを以下のテンプレートを使用して設定します：
 

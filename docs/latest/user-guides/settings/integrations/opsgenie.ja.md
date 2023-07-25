@@ -2,7 +2,7 @@
 
 次のイベントがトリガーされたときに、WallarmからOpsgenieへアラートを送信するように設定することができます：
 
---8<-- "../include/integrations/events-for-integrations.md"
+--8<-- "../include/integrations/events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -28,7 +28,7 @@ Wallarm UIで:
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include/integrations/test-integration-basic-data.ja.md"
 
 Opsgenie通知のテスト:
 
@@ -36,12 +36,12 @@ Opsgenie通知のテスト:
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

@@ -21,7 +21,7 @@ Wallarmモジュールのさらなるデバッグを行うには:
 
     `<FILTERING_NODE_IP>`を確認したいフィルタリングノードのIPに置き換えます。必要に応じてコマンドに`Host:`ヘッダーを追加します。
 1. 攻撃がWallarmコンソール → **イベント**に表示されるまで最大2分間待ちます。すべての100のリクエストが表示された場合、フィルタリングノードは正常に動作しています。
-1. インストールされたフィルタリングノードのサーバーに接続し、[ノードメトリクス](../admin-en/monitoring/intro.md)を取得します：
+1. インストールされたフィルタリングノードのサーバーに接続し、[ノードメトリクス](../admin-en/monitoring/intro.ja.md)を取得します：
 
     ```bash
     curl http://127.0.0.8/wallarm-status
@@ -33,12 +33,12 @@ Wallarmモジュールのさらなるデバッグを行うには:
 
 フィルタリングノードの動作モードを以下のように確認します:
 
-1. フィルタリングノードの[モード](../admin-en/configure-wallarm-mode.md)が`off`とは異なることを確認します。ノードは`off`モードでは受信トラフィックを処理しません。
+1. フィルタリングノードの[モード](../admin-en/configure-wallarm-mode.ja.md)が`off`とは異なることを確認します。ノードは`off`モードでは受信トラフィックを処理しません。
 
     `off`モードは、`wallarm-status`メトリクスが増加しない一般的な理由です。
 1. Wallarmノードの設定が適用されていることを確認するために、NGINXを再起動します（ノードがDEB/RPMパッケージからインストールされている場合）：
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.ja.md"
 1. 攻撃が引き続きクラウドにアップロードされていないことを確認するために、再び[悪意のあるトラフィック](#1-悪意のあるトラフィックを生成する)を生成します。
 
 ## 3. Tarantoolがリクエストを処理するのに十分なリソースがあることを確認する
@@ -64,7 +64,7 @@ Wallarmモジュールのさらなるデバッグを行うには:
 
 もし`wallarm.stat.dropped_before_export`の値が`0`と異なる場合:
 
-* [増やす](../admin-en/configuration-guides/allocate-resources-for-node.md#tarantool) Tarantoolのために割り当てられたメモリ量（`wallarm.stat.timeframe_size`が10分未満の場合）。
+* [増やす](../admin-en/configuration-guides/allocate-resources-for-node.ja.md#tarantool) Tarantoolのために割り当てられたメモリ量（`wallarm.stat.timeframe_size`が10分未満の場合）。
     
     !!! info "推奨メモリ"
         ピーク負荷時に`wallarm.stat.timeframe_size`メトリックが`300`秒以下に下がらないように、Tarantoolに割り当てるメモリを調整することをお勧めします。

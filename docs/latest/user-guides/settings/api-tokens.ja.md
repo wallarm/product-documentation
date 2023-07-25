@@ -1,9 +1,9 @@
-[user-roles-article]:       ../../user-guides/settings/users.md#user-roles
+[user-roles-article]:       ../../user-guides/settings/users.ja.md#user-roles
 [img-api-tokens-edit]:      ../../images/api-tokens-edit.png
 
 # APIトークン
 
-Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト認証](../../api/overview.md)のためのトークンを管理できます。
+Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト認証](../../api/overview.ja.md)のためのトークンを管理できます。
 
 ![!Wallarm APIトークン][img-api-tokens-edit]
 
@@ -21,7 +21,7 @@ Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト�
 * アナリスト
 * API開発者
 * 読み取り専用
-* デプロイ - この役割のAPIトークンは、[Wallarmノードのデプロイ](../../user-guides/nodes/nodes.md#creating-a-node)に使用されます
+* デプロイ - この役割のAPIトークンは、[Wallarmノードのデプロイ](../../user-guides/nodes/nodes.ja.md#creating-a-node)に使用されます
 * カスタム - 手動で権限の選択に切り替えます
 
 !!! info "トークンのプライバシー"
@@ -29,14 +29,14 @@ Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト�
 
 以下のことを考慮してください：
 
-* トークンの所有者が[無効化](../../user-guides/settings/users.md#disable-access-for-a-user)されている場合、その人のすべてのトークンが自動的に無効化されます。
+* トークンの所有者が[無効化](../../user-guides/settings/users.ja.md#disable-access-for-a-user)されている場合、その人のすべてのトークンが自動的に無効化されます。
 * トークンの所有者が権限を削減された場合、対応する権限がその人のすべてのトークンから削除されます。
 * すべての無効化されたトークンは、無効化から1週間後に自動的に削除されます。
 * 以前に無効化されたトークンを有効化するには、新しい有効期限を設定して保存します。
 
 ## グローバルロール権限を持つトークンの作成
 
-グローバル管理者、グローバルアナリスト、またはグローバル読み取り専用などのグローバル[ロール](../../user-guides/settings/users.md#user-roles)に基づく権限でAPIトークンを作成するには、以下の手順を実行します：
+グローバル管理者、グローバルアナリスト、またはグローバル読み取り専用などのグローバル[ロール](../../user-guides/settings/users.ja.md#user-roles)に基づく権限でAPIトークンを作成するには、以下の手順を実行します：
 
 1. [US](https://us1.my.wallarm.com/)または[EU](https://my.wallarm.com/)のWallarm Consoleで、[適切なユーザー](#configuring-tokens)としてログインします。
 1. 右上で`?` → **Wallarm APIコンソール**を選択します。Wallarm APIコンソールが開きます：
@@ -89,7 +89,7 @@ Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト�
         }
         ```
 
-        このリクエストは、[テナント作成](../../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)に使用できるグローバル管理者の権限を持つAPIトークンを作成します。
+        このリクエストは、[テナント作成](../../installation/multi-tenant/configure-accounts.ja.md#step-3-create-the-tenant-via-the-wallarm-api)に使用できるグローバル管理者の権限を持つAPIトークンを作成します。
 
 1. レスポンスから作成したトークンの`id`を取得し、この`id`を使用して`/v2/api_tokens/{id}/secret`ルートにGETリクエストを送信します。
 1. レスポンスから`secret`値をコピーし、リクエスト認証のためのAPIトークンとして使用します。
@@ -102,7 +102,7 @@ Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト�
 以前はUUIDとシークレットキーがリクエスト認証に使用されていましたが、これらは現在トークンで置き換えられています。あなたが使用していたUUIDとシークレットキーは、自動的に **後方互換性のある** トークンに変換されます。このトークンを使用して、UUIDとシークレットキーで認証したリクエストが引き続き動作します。
 
 !!! warning "トークンを更新するか、SSOを有効化する"
-    後方互換性のあるトークンの値を更新するか、このトークンの所有者の[SSO/strict SSO](../../admin-en/configuration-guides/sso/employ-user-auth.md)を有効化すると、後方互換性は終了します - 古いUUIDとシークレットキーで認証したすべてのリクエストが停止します。
+    後方互換性のあるトークンの値を更新するか、このトークンの所有者の[SSO/strict SSO](../../admin-en/configuration-guides/sso/employ-user-auth.ja.md)を有効化すると、後方互換性は終了します - 古いUUIDとシークレットキーで認証したすべてのリクエストが停止します。
 
 リクエストの`X-WallarmApi-Token` ヘッダーパラメータに後方互換性のあるトークンの生成された値を渡すこともできます。
 
@@ -110,9 +110,9 @@ Wallarm Console → **設定** → **APIトークン**で、[APIリクエスト�
 
 ## APIトークン対ノードトークン
 
-この記事で説明されているAPIトークンは、任意のクライアントから、および任意の権限セットで、Wallarm Cloud API[リクエスト認証](../../api/overview.md)に使用できます。
+この記事で説明されているAPIトークンは、任意のクライアントから、および任意の権限セットで、Wallarm Cloud API[リクエスト認証](../../api/overview.ja.md)に使用できます。
 
-Wallarm Cloud APIにアクセスするクライアントの一つとして、Wallarmフィルタリングノード自体があります。APIトークンの他に、ノードトークンを使用してフィルタリングノードにWallarm Cloud APIへのアクセスを許可できます。[違いとどちらが優れているかを理解する→](../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)
+Wallarm Cloud APIにアクセスするクライアントの一つとして、Wallarmフィルタリングノード自体があります。APIトークンの他に、ノードトークンを使用してフィルタリングノードにWallarm Cloud APIへのアクセスを許可できます。[違いとどちらが優れているかを理解する→](../../user-guides/nodes/nodes.ja.md#api-and-node-tokens-for-node-creation)
 
 !!! info "一部のデプロイオプションではAPIトークンがサポートされていません"
-    APIトークンは現在、 [NGINX](../../admin-en/installation-kubernetes-en.md)および [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.md)イングレスコントローラ、 [Sidecarプロキシ](../../installation/kubernetes/sidecar-proxy/deployment.md)デプロイメント、または[Terraformモジュール](../../installation/cloud-platforms/aws/terraform-module/overview.md)に基づくAWSデプロイメントで使用することはできません。代わりにノードトークンを使用してください。
+    APIトークンは現在、 [NGINX](../../admin-en/installation-kubernetes-en.ja.md)および [Kong](../../installation/kubernetes/kong-ingress-controller/deployment.ja.md)イングレスコントローラ、 [Sidecarプロキシ](../../installation/kubernetes/sidecar-proxy/deployment.ja.md)デプロイメント、または[Terraformモジュール](../../installation/cloud-platforms/aws/terraform-module/overview.ja.md)に基づくAWSデプロイメントで使用することはできません。代わりにノードトークンを使用してください。

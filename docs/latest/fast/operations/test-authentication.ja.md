@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/test-authentication.md"
+--8<-- "latest/fast/operations/test-authentication.ja.md"

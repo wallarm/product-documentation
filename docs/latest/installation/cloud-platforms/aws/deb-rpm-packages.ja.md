@@ -36,9 +36,9 @@ Amazon EC2インスタンスにNGINX Stableモジュールとしてフィルタ�
     * Oracle Linux 8.x
     * Amazon Linux 2.0.2021x以下
 2. [AWSの指示](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)に従って作成したインスタンスに接続する。
-3. インスタンスで、NGINX StableとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従ってインストールする。
+3. インスタンスで、NGINX StableとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.ja.md)に従ってインストールする。
 
-別のインスタンスにpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスにpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。
 
 ## NGINX Plusモジュールとしてのフィルタリングノードのインストール
 
@@ -56,6 +56,6 @@ Amazon EC2インスタンスにNGINX Plusモジュールとしてフィルタリ
     * Oracle Linux 8.x
     * Amazon Linux 2.0.2021x以下
 2. [AWSの指示](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)に従って作成したインスタンスに接続する。
-3. インスタンスで、NGINX PlusとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従ってインストールする。
+3. インスタンスで、NGINX PlusとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.ja.md)に従ってインストールする。
 
-別のインスタンスにpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスにpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。

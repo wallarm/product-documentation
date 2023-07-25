@@ -78,4 +78,4 @@ AWSでのインスタンスの立ち上げに関する詳細情報を見るに�
 
 ## 5. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6-only-with-postanalytics.ja.md"

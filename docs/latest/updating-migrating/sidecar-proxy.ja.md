@@ -1,4 +1,4 @@
-[ip-lists-docs]: ../user-guides/ip-lists/overview.md
+[ip-lists-docs]: ../user-guides/ip-lists/overview.ja.md
 
 # Wallarm Sidecar プロキシのアップグレード
 
@@ -75,7 +75,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.4
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. テスト [Path Traversal](../attacks-vulns-list.md#path-traversal) 攻撃をアプリケーションクラスタのアドレスに送信する：
+1. テスト [Path Traversal](../attacks-vulns-list.ja.md#path-traversal) 攻撃をアプリケーションクラスタのアドレスに送信する：
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd

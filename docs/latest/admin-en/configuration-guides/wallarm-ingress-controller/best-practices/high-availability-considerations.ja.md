@@ -54,7 +54,7 @@
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    正しいIngressコントローラのインストールには[他のパラメータ](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。それらも`--set`オプションで渡してください。
+    正しいIngressコントローラのインストールには[他のパラメータ](../../../configure-kubernetes-en.ja.md#additional-settings-for-helm-chart)も必要です。それらも`--set`オプションで渡してください。
 === "Ingressコントローラパラメータの更新"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>

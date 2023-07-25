@@ -1,24 +1,24 @@
 [img-wl-console-users]:             ../../images/check-user-no-2fa.png
-[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.md
-[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]:             ../../admin-en/configure-parameters-en.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[wallarm-status-instr]:             ../../admin-en/configure-statistics-service.ja.md
+[memory-instr]:                     ../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
+[waf-directives-instr]:             ../../admin-en/configure-parameters-en.ja.md
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:           ../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
-[logging-instr]:                    ../../admin-en/configure-logging.md
-[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]:          ../../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]:                     ../../updating-migrating/nginx-modules.md
+[waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.ja.md
+[logging-instr]:                    ../../admin-en/configure-logging.ja.md
+[proxy-balancer-instr]:             ../../admin-en/using-proxy-or-balancer-en.ja.md
+[process-time-limit-instr]:         ../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[configure-selinux-instr]:          ../../admin-en/configure-selinux.ja.md
+[configure-proxy-balancer-instr]:   ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.ja.md
+[update-instr]:                     ../../updating-migrating/nginx-modules.ja.md
 [install-postanalytics-docs]:        ../../../admin-en/installation-postanalytics-en/
-[versioning-policy]:               ../../updating-migrating/versioning-policy.md#version-list
-[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.md
-[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
-[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.md
+[versioning-policy]:               ../../updating-migrating/versioning-policy.ja.md#version-list
+[dynamic-dns-resolution-nginx]:     ../../admin-en/configure-dynamic-dns-resolution-nginx.ja.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.ja.md
+[install-postanalytics-instr]:      ../../admin-en/installation-postanalytics-en.ja.md
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]:                 ../custom/custom-nginx-version.md
+[nginx-custom]:                 ../custom/custom-nginx-version.ja.md
 
 # Debian/CentOSリポジトリからのNGINX用ダイナミックWallarmモジュールのインストール
 
@@ -95,7 +95,7 @@
 
 postanalyticsとリクエスト処理を別々のサーバーで実行するには、次のパッケージが必要です。
 
-* postanalyticsモジュールおよび Tarantool データベース用で別々のサーバーに `wallarm-node-tarantool`（インストール手順は [instructions](../../admin-en/installation-postanalytics-en.md) に記載されています）
+* postanalyticsモジュールおよび Tarantool データベース用で別々のサーバーに `wallarm-node-tarantool`（インストール手順は [instructions](../../admin-en/installation-postanalytics-en.ja.md) に記載されています）
 
 * NGINX-Wallarm モジュール用の `wallarm-node-nginx` と `libnginx-mod-http-wallarm`/`nginx-mod-http-wallarm`
 
@@ -183,7 +183,7 @@ NGINXとWallarmフィルタリングノードの主要な設定ファイルは�
     }
     ```
 
-`monitoring`モードで動作する場合、フィルタリングノードはリクエストの攻撃サインを探しますが、検出された攻撃をブロックしません。フィルタリングノードの展開後、数日間は`monitoring`モードでフィルタリングノードを介したトラフィックを維持し、その後`block`モードを有効にすることをお勧めします。[フィルタリングノード動作モードの設定に関する推奨事項を学ぶ→](../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps)
+`monitoring`モードで動作する場合、フィルタリングノードはリクエストの攻撃サインを探しますが、検出された攻撃をブロックしません。フィルタリングノードの展開後、数日間は`monitoring`モードでフィルタリングノードを介したトラフィックを維持し、その後`block`モードを有効にすることをお勧めします。[フィルタリングノード動作モードの設定に関する推奨事項を学ぶ→](../../about-wallarm/deployment-best-practices.ja.md#follow-recommended-onboarding-steps)
 
 #### メモリ
 
@@ -262,6 +262,6 @@ NGINX と Wallarm ノードの他の設定を更新するには、NGINX のド�
 
 ## 設定のカスタマイズ
 
-Debian/CentOS リポジトリからの NGINX 用のデフォルト設定で動的 Wallarm モジュールがインストールされています。Wallarm ノードの設定をカスタマイズするには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
+Debian/CentOS リポジトリからの NGINX 用のデフォルト設定で動的 Wallarm モジュールがインストールされています。Wallarm ノードの設定をカスタマイズするには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.ja.md)を使用してください。
 
 --8<-- "../include/waf/installation/common-customization-options-nginx-4.4.ja.md"

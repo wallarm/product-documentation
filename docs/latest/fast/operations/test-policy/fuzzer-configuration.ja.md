@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/test-policy/fuzzer-configuration.md"
+--8<-- "latest/fast/operations/test-policy/fuzzer-configuration.ja.md"

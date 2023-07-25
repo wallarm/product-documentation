@@ -1,21 +1,21 @@
 Wallarmのドキュメントの次の部分を英語から日本語に翻訳してください：
-					[doc-wallarm-mode]:           configure-parameters-en.md#wallarm_mode
-[doc-config-params]:          configure-parameters-en.md
-[doc-monitoring]:             monitoring/intro.md
-[waf-mode-instr]:                   configure-wallarm-mode.md
-[logging-instr]:                    configure-logging.md
-[proxy-balancer-instr]:             using-proxy-or-balancer-en.md
-[process-time-limit-instr]:         configure-parameters-en.md#wallarm_process_time_limit
-[allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.md
-[nginx-waf-directives]:             configure-parameters-en.md
+					[doc-wallarm-mode]:           configure-parameters-en.ja.md#wallarm_mode
+[doc-config-params]:          configure-parameters-en.ja.md
+[doc-monitoring]:             monitoring/intro.ja.md
+[waf-mode-instr]:                   configure-wallarm-mode.ja.md
+[logging-instr]:                    configure-logging.ja.md
+[proxy-balancer-instr]:             using-proxy-or-balancer-en.ja.md
+[process-time-limit-instr]:         configure-parameters-en.ja.md#wallarm_process_time_limit
+[allocating-memory-guide]:          configuration-guides/allocate-resources-for-node.ja.md
+[nginx-waf-directives]:             configure-parameters-en.ja.md
 [mount-config-instr]:               #run-the-container-mounting-the-configuration-file
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:            configure-wallarm-mode.md
-[application-configuration]:        ../user-guides/settings/applications.md
-[ptrav-attack-docs]:                ../attacks-vulns-list.md#path-traversal
+[graylist-docs]:                    ../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:            configure-wallarm-mode.ja.md
+[application-configuration]:        ../user-guides/settings/applications.ja.md
+[ptrav-attack-docs]:                ../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../images/admin-guides/test-attacks-quickstart.png
-[versioning-policy]:                ../updating-migrating/versioning-policy.md#version-list
-[node-status-docs]:                 configure-statistics-service.md
+[versioning-policy]:                ../updating-migrating/versioning-policy.ja.md#version-list
+[node-status-docs]:                 configure-statistics-service.ja.md
 
 # Docker NGINXベースのイメージの実行
 
@@ -68,7 +68,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
 `-v` オプションを使用して、準備された設定ファイルをDockerコンテナにマウントできます。ファイルには次の設定が含まれている必要があります。
 
-* [フィルタリングノードディレクティブ](configure-parameters-en.md)
+* [フィルタリングノードディレクティブ](configure-parameters-en.ja.md)
 * [NGINX設定](https://nginx.org/en/docs/beginners_guide.html)
 
 コンテナを実行するには：
@@ -144,7 +144,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 * `/var/log/nginx` — NGINXログ
 * `/var/log/wallarm` — Wallarmノードログ
 
-フィルタリングノード変数の拡張ロギングを設定するには、これらの[手順](configure-logging.md)を使用してください。
+フィルタリングノード変数の拡張ロギングを設定するには、これらの[手順](configure-logging.ja.md)を使用してください。
 
 デフォルトでは、ログは24時間ごとに1回ローテートされます。ログローテーションを設定するには、`/etc/logrotate.d/` の設定ファイルを変更してください。環境変数を介してローテーションパラメータを変更することはできません。
 
@@ -170,6 +170,6 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## 使用ケースの設定
 
-Dockerコンテナにマウントされた設定ファイルには、[使用可能なディレクティブ]（configure-parameters-en.md）でフィルタリングノードの設定が記述されている必要があります。以下は、フィルタリングノードの設定オプションの一般的な使用例です。
+Dockerコンテナにマウントされた設定ファイルには、[使用可能なディレクティブ]（configure-parameters-en.ja.md）でフィルタリングノードの設定が記述されている必要があります。以下は、フィルタリングノードの設定オプションの一般的な使用例です。
 
 --8<-- "../include/waf/installation/common-customization-options-docker-4.4.ja.md"

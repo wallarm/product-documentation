@@ -1,6 +1,6 @@
 					# Wallarm Sidecarプロキシのカスタマイズ
 
-この記事では、一般的なカスタマイズのユースケースの例を示しながら、[Wallarm Kubernetes Sidecarプロキシソリューション](deployment.md) を安全かつ効果的にカスタマイズする方法を説明します。
+この記事では、一般的なカスタマイズのユースケースの例を示しながら、[Wallarm Kubernetes Sidecarプロキシソリューション](deployment.ja.md) を安全かつ効果的にカスタマイズする方法を説明します。
 
 ## 設定領域
 
@@ -12,7 +12,7 @@ Wallarm Sidecarプロキシソリューションは、標準のKubernetesコン�
 
 利用可能なグローバル設定オプションの数に制限はありません。ソリューションのカスタマイズには注意が必要です。結果として得られるPodと不適切なソリューション機能が完全に変更できるからです。グローバル設定の変更時には、HelmおよびKubernetesのドキュメントを参照してください。
 
-[Wallarm固有のチャート値のリストがあります](helm-chart-for-wallarm.md)
+[Wallarm固有のチャート値のリストがあります](helm-chart-for-wallarm.ja.md)
 
 ### ポッドごとの設定
 
@@ -22,7 +22,7 @@ Wallarm Sidecarプロキシソリューションは、標準のKubernetesコン�
 
 サポートされるアノテーションセットは限られていますが、`nginx-*-include`および`nginx-*-snippet`アノテーションにより、[ソリューションで使用可能なカスタムNGINX設定](#using-custom-nginx-configuration) が可能です。
 
-[サポートされているper-podのアノテーションのリストがあります](pod-annotations.md)
+[サポートされているper-podのアノテーションのリストがあります](pod-annotations.ja.md)
 
 ## 設定ユースケース
 
@@ -43,7 +43,7 @@ Wallarmは、WallarmコンテナーをPodにデプロイするための2つの�
 * 適切なアプリケーションPodのアノテーション `sidecar.wallarm.io/sidecar-injection-schema` を `"single"` または `"split"` に設定して、ポッドごとに設定します。
 
 !!! info "Postanalyticsモジュール"
-    postanalyticsモジュールコンテナは[別々に実行され](deployment.md#solution-architecture)、記述されたデプロイメントオプションは他のコンテナにのみ関連しています。
+    postanalyticsモジュールコンテナは[別々に実行され](deployment.ja.md#solution-architecture)、記述されたデプロイメントオプションは他のコンテナにのみ関連しています。
 
 #### シングルデプロイメント（デフォルト）
 
@@ -154,7 +154,7 @@ spec:
 
 ### コンテナのリソース割り当て
 
-Wallarmサイドカーコンテナに割り当てられたメモリの量は、リクエスト処理の品質と速度を決定します。メモリリクエストと制限に十分なリソースを割り当てるために、[こちらの推奨事項を参照してください](../../../admin-en/configuration-guides/allocate-resources-for-node.md).
+Wallarmサイドカーコンテナに割り当てられたメモリの量は、リクエスト処理の品質と速度を決定します。メモリリクエストと制限に十分なリソースを割り当てるために、[こちらの推奨事項を参照してください](../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md).
 
 リソースの割り当ては、グローバルおよび個別のポッドレベルで許可されています。
 
@@ -296,7 +296,7 @@ spec:
 
 ### カスタム NGINX 設定の使用
 
-NGINX 設定の一部に専用の [pod のアノテーション](pod-annotations.md) がない場合、**スニペット**や**インクルード**経由でPod毎に設定を指定できます。
+NGINX 設定の一部に専用の [pod のアノテーション](pod-annotations.ja.md) がない場合、**スニペット**や**インクルード**経由でPod毎に設定を指定できます。
 
 #### スニペット
 
@@ -310,7 +310,7 @@ NGINX 設定の一部に専用の [pod のアノテーション](pod-annotations
 | server               | `sidecar.wallarm.io/nginx-server-snippet`   |
 | location             | `sidecar.wallarm.io/nginx-location-snippet` |
 
-[`disable_acl`](../../../admin-en/configure-parameters-en.md#disable_acl) NGINX ディレクティブの値を変更するアノテーションの例：
+[`disable_acl`](../../../admin-en/configure-parameters-en.ja.md#disable_acl) NGINX ディレクティブの値を変更するアノテーションの例：
 
 ```yaml hl_lines="18"
 apiVersion: apps/v1
@@ -398,12 +398,12 @@ spec:
 
 ### Wallarm 機能の設定
 
-一般的なソリューション設定に加えて、[Wallarm 機能設定のベストプラクティス](../../../about-wallarm/deployment-best-practices.md)も確認することをお勧めします。
+一般的なソリューション設定に加えて、[Wallarm 機能設定のベストプラクティス](../../../about-wallarm/deployment-best-practices.ja.md)も確認することをお勧めします。
 
-この設定は、[アノテーション](pod-annotations.md)と Wallarm Console UI を使用して行われます。
+この設定は、[アノテーション](pod-annotations.ja.md)と Wallarm Console UI を使用して行われます。
 
 ## アノテーションを使用した他の設定
 
 一覧にある設定の使用例に加えて、他のアノテーションを使用して、アプリケーション Pod の Wallarm サイドカー プロキシ ソリューションを微調整できます。
 
-[Pod のアノテーションのサポートされているリスト](pod-annotations.md)です。
+[Pod のアノテーションのサポートされているリスト](pod-annotations.ja.md)です。

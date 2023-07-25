@@ -3,8 +3,8 @@
 [img-creating-template]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-template.png
 [img-selecting-image]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/select-image.png
 
-[link-creating-image]: create-image.md
-[link-creating-instance-group]: creating-autoscaling-group.md
+[link-creating-image]: create-image.ja.md
+[link-creating-instance-group]: creating-autoscaling-group.ja.md
 
 フィルタリングノードインスタンステンプレートは、後で管理インスタンスグループを作成する際のベースとして使用されます。フィルタリングノードインスタンステンプレートを作成するには、次の手順を実行します。
 

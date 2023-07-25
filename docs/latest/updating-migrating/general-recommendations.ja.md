@@ -4,10 +4,10 @@
 
 ## 一般的な推奨事項
 
-* フィルタリングノードの更新プロセスを注意深く計画および監視します。 Wallarmノードの新しいバージョンのリリース予定日は、[Wallarmノードバージョニングポリシー](versioning-policy.md)で公開されています。
+* フィルタリングノードの更新プロセスを注意深く計画および監視します。 Wallarmノードの新しいバージョンのリリース予定日は、[Wallarmノードバージョニングポリシー](versioning-policy.ja.md)で公開されています。
 * インフラストラクチャに複数のWallarmノードがインストールされている場合は、それらを段階的に更新します。 最初のノードを更新した後、1日の間にノードモジュールの動作を監視し、最初のノードが正しく動作している場合は、他のWallarmノードも徐々に更新します。
-* 開発環境と本番環境が分かれているモデルでは、フィルタリングノードを徐々に更新します。 まず、非本番環境で新しいバージョンを適用し、テストを行い、その後、本番環境で実施します。 詳細な推奨事項については、[分離された環境のWallarmノードの設定手順](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md#gradual-rollout-of-new-wallarm-node-changes)を参照してください。
-* フィルタリングノードのアップグレードを行う前に、ノードを通じたトラフィックルーティングを、使用可能な方法（例： [トラフィックフィルタリングモード](../admin-en/configure-wallarm-mode.md)を `off`に設定すること）で無効にします。
+* 開発環境と本番環境が分かれているモデルでは、フィルタリングノードを徐々に更新します。 まず、非本番環境で新しいバージョンを適用し、テストを行い、その後、本番環境で実施します。 詳細な推奨事項については、[分離された環境のWallarmノードの設定手順](../admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.ja.md#gradual-rollout-of-new-wallarm-node-changes)を参照してください。
+* フィルタリングノードのアップグレードを行う前に、ノードを通じたトラフィックルーティングを、使用可能な方法（例： [トラフィックフィルタリングモード](../admin-en/configure-wallarm-mode.ja.md)を `off`に設定すること）で無効にします。
 * フィルタリングノードモジュールがアップグレードされると、ノードのフィルタリングモードを `monitoring`に設定します。 すべてのモジュールが正しく動作し、 `monitoring`モードで1日の間に新たな偽陽性が異常な数でない場合、フィルタリングノードを `block`モードに配置します。
 * Wallarmノードの更新を適用する前に、NGINXを利用可能な最新バージョンに更新します。 インフラストラクチャが特定のバージョンのNGINXを使用する必要がある場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。カスタムバージョンのNGINXのWallarmモジュールを構築するために。
 
@@ -17,8 +17,8 @@
 
 ### 機能の変更
 
-* [Wallarmノード4.4の新機能](what-is-new.md)
-* [EOLノード（3.6またはそれ以下）をアップグレードする場合の新機能](older-versions/what-is-new.md)
+* [Wallarmノード4.4の新機能](what-is-new.ja.md)
+* [EOLノード（3.6またはそれ以下）をアップグレードする場合の新機能](older-versions/what-is-new.ja.md)
 
 ### 新しい偽陽性
 
@@ -26,13 +26,13 @@
 
 更新後の新しい偽陽性の数を分析するには：
 
-1. フィルタリングノードの新しいバージョンを `monitoring` [モード](../admin-en/configure-wallarm-mode.md)でデプロイし、トラフィックをフィルタリングノードに送信します。
+1. フィルタリングノードの新しいバージョンを `monitoring` [モード](../admin-en/configure-wallarm-mode.ja.md)でデプロイし、トラフィックをフィルタリングノードに送信します。
 2. しばらくしてから、Wallarm Console → **イベント**セクションを開き、誤って攻撃と認識されたリクエストの数を分析します。
 3. 偽陽性の数の異常な増加が見つかった場合、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。
 
 ### 使用リソースの増加
 
-新しいフィルタリングノード機能の使用により、使用リソースの量に変化が生じる場合があります。使用リソース量の変化に関する情報は、[新機能](what-is-new.md)セクションで強調されています。
+新しいフィルタリングノード機能の使用により、使用リソースの量に変化が生じる場合があります。使用リソース量の変化に関する情報は、[新機能](what-is-new.ja.md)セクションで強調されています。
 
 また、フィルタリングノードの動作を監視することもお勧めします。ドキュメントで指定されている量と実際に使用されているリソースの量に大きな違いがある場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。
 
@@ -40,10 +40,10 @@
 
 Wallarmノードの更新プロセスは、プラットフォームとインストール形態によって異なります。インストール形態を選択し、適切な手順に従ってください。
 
-* [NGINX、NGINX Plus用モジュール](nginx-modules.md)
-* [NGINXまたはEnvoy用モジュールを含むDockerコンテナー](docker-container.md)
-* [統合されたWallarmモジュールを備えたNGINX Ingressコントローラー](ingress-controller.md)
-* [クラウドノードイメージ](cloud-image.md)
-* [マルチテナントノード](multi-tenant.md)
-* [CDNノード](cdn-node.md)
-* [Wallarmノード2.18およびそれ以下から4.4への許可リストと拒否リストの移行](migrate-ip-lists-to-node-3.md)
+* [NGINX、NGINX Plus用モジュール](nginx-modules.ja.md)
+* [NGINXまたはEnvoy用モジュールを含むDockerコンテナー](docker-container.ja.md)
+* [統合されたWallarmモジュールを備えたNGINX Ingressコントローラー](ingress-controller.ja.md)
+* [クラウドノードイメージ](cloud-image.ja.md)
+* [マルチテナントノード](multi-tenant.ja.md)
+* [CDNノード](cdn-node.ja.md)
+* [Wallarmノード2.18およびそれ以下から4.4への許可リストと拒否リストの移行](migrate-ip-lists-to-node-3.ja.md)

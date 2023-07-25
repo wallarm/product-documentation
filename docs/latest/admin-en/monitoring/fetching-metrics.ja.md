@@ -9,10 +9,10 @@
 [link-influxdb-collectd]:           https://docs.influxdata.com/influxdb/v1.7/supported_protocols/collectd/
 [link-unixsock]:                    https://collectd.org/wiki/index.php/Plugin:UnixSock
 
-[doc-network-plugin-example]:       network-plugin-influxdb.md
-[doc-write-plugin-example]:         write-plugin-graphite.md
-[doc-zabbix-example]:               collectd-zabbix.md
-[doc-nagios-example]:               collectd-nagios.md
+[doc-network-plugin-example]:       network-plugin-influxdb.ja.md
+[doc-write-plugin-example]:         write-plugin-graphite.ja.md
+[doc-zabbix-example]:               collectd-zabbix.ja.md
+[doc-nagios-example]:               collectd-nagios.ja.md
 
 #   メトリックの取得方法
 

@@ -5,24 +5,24 @@
 <!-- ???
 すべての地域が対応していると言います -->
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.ja.md"
 
 ## 5. Wallarmがトラフィックを分析できるようにする
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis.ja.md"
 
 ## 6. NGINXを再起動する
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.ja.md"
 
 ## 7. Wallarmインスタンスへのトラフィック送信を設定する
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.ja.md"
 
 ## 8. Wallarmの操作をテストする
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.ja.md"
 
 ## 9. 展開したソリューションを微調整する
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.ja.md"

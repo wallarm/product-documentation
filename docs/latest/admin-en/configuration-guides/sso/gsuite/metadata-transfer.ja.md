@@ -5,8 +5,8 @@
 [img-sp-wizard-finish]:             ../../../../images/admin-guides/configuration-guides/sso/gsuite/sp-wizard-finish.png
 [img-integration-tab]:               ../../../../images/admin-guides/configuration-guides/sso/gsuite/integration-tab.png
 
-[doc-setup-idp]:                    setup-idp.md
-[doc-allow-access-to-wl]:           allow-access-to-wl.md
+[doc-setup-idp]:                    setup-idp.ja.md
+[doc-allow-access-to-wl]:           allow-access-to-wl.ja.md
 
 [anchor-upload-metadata-xml]:       #uploading-metadata-using-an-xml-file
 [anchor-upload-metadata-manually]:  #copying-parameters-manually

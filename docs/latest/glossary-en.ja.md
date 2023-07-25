@@ -8,7 +8,7 @@
 
 ![!Hit example](images/user-guides/events/analyze-attack-raw.png)
 
-[ヒットパラメータの詳細](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
+[ヒットパラメータの詳細](user-guides/events/analyze-attack.ja.md#analyze-requests-in-an-attack)
 
 ## 攻撃
 
@@ -17,11 +17,11 @@
 * 同じ攻撃タイプ、悪意のあるペイロードが含まれるパラメータ、およびヒットが送信されたアドレス。ヒットは、同じIPアドレスまたは別のIPアドレスから来ることがあり、また、1つの攻撃タイプ内で悪意のあるペイロードの値が異なる場合があります。
 
     このヒット分類方法は基本的で、すべてのヒットに適用されます。
-* 同じソースIPアドレス（適切な[トリガー](user-guides/triggers/trigger-examples.md#group-hits-originating-from-the-same-ip-into-one-attack)が有効になっている場合）。他のヒットパラメータの値が異なることがあります。
+* 同じソースIPアドレス（適切な[トリガー](user-guides/triggers/trigger-examples.ja.md#group-hits-originating-from-the-same-ip-into-one-attack)が有効になっている場合）。他のヒットパラメータの値が異なることがあります。
 
     このヒット分類方法は、Brute force、Forced browsing、BOLA（IDOR）、Resource overlimit、Data bomb、およびVirtual patch攻撃タイプを除くすべてのヒットに適用されます。
 
-    ヒットがこの方法でグループ化されている場合、[**誤検知としてマーク**](user-guides/events/false-attack.md#mark-an-attack-as-a-false-positive)ボタンと[アクティブ検証](about-wallarm/detecting-vulnerabilities.md#active-threat-verification)オプションは、攻撃に使用できません。
+    ヒットがこの方法でグループ化されている場合、[**誤検知としてマーク**](user-guides/events/false-attack.ja.md#mark-an-attack-as-a-false-positive)ボタンと[アクティブ検証](about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)オプションは、攻撃に使用できません。
 
 上記のヒット分類方法は相互に排他的ではありません。ヒットが両方の方法の特徴を持っている場合、それらはすべて1つの攻撃にグループ化されます。
 
@@ -53,9 +53,9 @@
     ;wget+http://s
     ```
 
-    このペイロードでは、`;wget+`が[RCE](attacks-vulns-list.md#remote-code-execution-rce)攻撃サインであり、ペイロードの他の部分は攻撃サインのコンテキストです。
+    このペイロードでは、`;wget+`が[RCE](attacks-vulns-list.ja.md#remote-code-execution-rce)攻撃サインであり、ペイロードの他の部分は攻撃サインのコンテキストです。
 
-攻撃サインは、[行動攻撃](about-wallarm/protecting-against-attacks.md#behavioral-attacks)の検出には使用されないため、行動攻撃の一部として送信されるリクエストはペイロードが空になります。
+攻撃サインは、[行動攻撃](about-wallarm/protecting-against-attacks.ja.md#behavioral-attacks)の検出には使用されないため、行動攻撃の一部として送信されるリクエストはペイロードが空になります。
 
 ## 脆弱性
 脆弱性とは、ウェブアプリケーションの構築や実装において、不注意や情報不足によるエラーで、情報セキュリティ上のリスクにつながるものです。
@@ -89,9 +89,9 @@
 * アクティブな脆弱性を悪用するリクエストをブロックする仮想パッチを適用する
 * 特定のリクエストでの攻撃検出を無効にするなどです。
 
-カスタムルールセットはデフォルトで空ではなく、Wallarm Cloudに登録されたすべてのクライアントのルールが含まれています。例えば、[**Settings → General**タブ](user-guides/settings/general.md)で設定された値のフィルタリングモードルールが含まれています。
+カスタムルールセットはデフォルトで空ではなく、Wallarm Cloudに登録されたすべてのクライアントのルールが含まれています。例えば、[**Settings → General**タブ](user-guides/settings/general.ja.md)で設定された値のフィルタリングモードルールが含まれています。
 
-[カスタムルールセットの詳細](user-guides/rules/intro.md)
+[カスタムルールセットの詳細](user-guides/rules/intro.ja.md)
 
 ## 無効なリクエスト
 フィルターノードでチェックされ、LOMルールに一致しないリクエスト。

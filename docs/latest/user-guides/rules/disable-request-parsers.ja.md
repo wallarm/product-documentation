@@ -2,9 +2,9 @@
 
 ルール **Disable/Enable request parser** では、リクエストの解析中に適用されるパーサーセットを管理することができます。
 
-デフォルトでは、リクエストを解析する際、Wallarm ノードはリクエストの各要素に対して適切な [パーサー](request-processing.md) を順番に適用しようとします。ただし、特定のパーサーが誤って適用されることがあり、その結果、Wallarm ノードはデコードされた値に攻撃の兆候を検出することがあります。
+デフォルトでは、リクエストを解析する際、Wallarm ノードはリクエストの各要素に対して適切な [パーサー](request-processing.ja.md) を順番に適用しようとします。ただし、特定のパーサーが誤って適用されることがあり、その結果、Wallarm ノードはデコードされた値に攻撃の兆候を検出することがあります。
 
-例えば、Wallarm ノードは、未エンコードのデータを [Base64](https://en.wikipedia.org/wiki/Base64) にエンコードされたデータと誤って特定することがあります。なぜなら、Base64 のアルファベットの記号は、通常のテキスト、トークン値、UUID 値、および他のデータ形式でよく使用されるためです。未エンコードのデータをデコードし、結果の値に攻撃の兆候を検出した場合、[誤検出](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生します。
+例えば、Wallarm ノードは、未エンコードのデータを [Base64](https://en.wikipedia.org/wiki/Base64) にエンコードされたデータと誤って特定することがあります。なぜなら、Base64 のアルファベットの記号は、通常のテキスト、トークン値、UUID 値、および他のデータ形式でよく使用されるためです。未エンコードのデータをデコードし、結果の値に攻撃の兆候を検出した場合、[誤検出](../../about-wallarm/protecting-against-attacks.ja.md#false-positives)が発生します。
 
 このようなケースで誤検出を防ぐためには、ルール **Disable/Enable request parser** を使用して、誤って適用されたパーサーを特定のリクエスト要素に対して無効にすることができます。
 
@@ -16,12 +16,12 @@
 
 1. Wallarm Console の **Rules** セクションで、**Disable/Enable request parser** ルールを作成します。このルールは、以下のコンポーネントで構成されています：
 
-      * **Condition** は、ルールを適用するエンドポイントを [記述](add-rule.md#branch-description) します。
+      * **Condition** は、ルールを適用するエンドポイントを [記述](add-rule.ja.md#branch-description) します。
       * 指定されたリクエスト要素に対して無効化/有効化されるべきパーサー。
       * **Part of request** は、選択されたパーサーで解析/未解析とする元のリクエスト要素を指します。
 
          --8<-- "../include/waf/features/rules/request-part-reference.ja.md"
-2. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
+2. [ルールのコンパイルが完了する](compiling.ja.md)のを待ちます。
 
 ## ルールの例
 

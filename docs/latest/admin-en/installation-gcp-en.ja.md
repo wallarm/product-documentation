@@ -1,10 +1,10 @@
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 [img-ssh-key-generation]:       ../images/installation-gcp/common/ssh-key-generation.png
-[versioning-policy]:            ../updating-migrating/versioning-policy.md#version-list
+[versioning-policy]:            ../updating-migrating/versioning-policy.ja.md#version-list
 [installation-instr-latest]:    /admin-en/installation-gcp-en/
 [img-wl-console-users]:         ../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
-[deployment-platform-docs]:    ../installation/supported-deployment-options.md
+[deployment-platform-docs]:    ../installation/supported-deployment-options.ja.md
 
 # Google Cloud Platform（GCP）でのデプロイ
 

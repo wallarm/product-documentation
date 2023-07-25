@@ -4,7 +4,7 @@ Wallarmを設定することで、[Datadog API key](https://docs.datadoghq.com/a
 
 次のイベントをDatadogに送信することを選択できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 統合の設定
 
@@ -21,7 +21,7 @@ Wallarmを設定することで、[Datadog API key](https://docs.datadoghq.com/a
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 テスト用のDatadogログ：
 
@@ -31,12 +31,12 @@ Wallarmを設定することで、[Datadog API key](https://docs.datadoghq.com/a
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

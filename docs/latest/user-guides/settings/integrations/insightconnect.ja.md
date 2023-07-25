@@ -2,7 +2,7 @@
 
 以下のイベントがトリガーされたときにWallarmからInsightConnectへ通知を送るように設定することができます:
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## インテグレーションの設定
 
@@ -32,7 +32,7 @@
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 InsightConnectメッセージをテストします:
 
@@ -40,12 +40,12 @@ InsightConnectメッセージをテストします:
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

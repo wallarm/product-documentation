@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/proxy-configuration.md"
+--8<-- "latest/fast/poc/proxy-configuration.ja.md"

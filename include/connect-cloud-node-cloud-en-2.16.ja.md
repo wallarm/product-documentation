@@ -53,7 +53,7 @@
 !!! info "フィルタリングノードとクラウドの同期設定"
     `addcloudnode`スクリプトを実行した後、フィルタリングノードとクラウドの同期設定が含まれる`/etc/wallarm/syncnode`ファイルが作成されます。フィルタリングノードとクラウドの同期設定は、`/etc/wallarm/syncnode`ファイルを介して変更できます。
     
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md#cloud-node-and-wallarm-cloud-synchronization)
+    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.ja.md#cloud-node-and-wallarm-cloud-synchronization)
 
 #### メールアドレスとパスワードを使用して接続する
 
@@ -91,4 +91,4 @@
 !!! info "フィルタリングノードとクラウドの同期設定"
     `addnode`スクリプトを実行した後、フィルタリングノードとクラウドの同期設定が含まれる`/etc/wallarm/node.yaml`ファイルが作成されます。フィルタリングノードとクラウドの同期設定は、`/etc/wallarm/node.yaml`ファイルとシステム環境変数を介して変更できます。
     
-    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.md#regular-node-and-wallarm-cloud-synchronization)
+    [フィルタリングノードとWallarm Cloudの同期設定の詳細 →](configure-cloud-node-synchronization-en.ja.md#regular-node-and-wallarm-cloud-synchronization)

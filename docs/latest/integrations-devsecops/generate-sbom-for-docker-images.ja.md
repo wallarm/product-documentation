@@ -6,11 +6,11 @@ You may need to obtain the SBOM for Wallarm Docker Images to assess and mitigate
 
 ## The list of Wallarm Docker images
 
-Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker images. You can generate SBOM for any tag of these images.
+Below is the list of [signed](verify-docker-image-signature.ja.md) Wallarm Docker images. You can generate SBOM for any tag of these images.
 
-<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
-* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
-* Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
+<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.ja.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
+* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.ja.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
+* Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.ja.md):
 
     * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
@@ -19,7 +19,7 @@ Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker i
     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
+* Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.ja.md):
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
@@ -51,4 +51,4 @@ syft wallarm/ingress-controller:4.6.2-1 --output cyclonedx-json >> cyclonedx_jso
 
 After generating the SBOM, you can leverage it within your CI/CD pipeline for various actions, such as vulnerability scanning, license compliance checks, security audits, or generating reports.
 
-To verify that all dependencies truly belong to Wallarm, you can simply [check the image's signature](verify-docker-image-signature.md) as a whole. By digitally signing our images, we guarantee that the signed image is indeed ours. Consequently, this assurance extends to the SBOM, as it will be associated with Wallarm's verified image.
+To verify that all dependencies truly belong to Wallarm, you can simply [check the image's signature](verify-docker-image-signature.ja.md) as a whole. By digitally signing our images, we guarantee that the signed image is indeed ours. Consequently, this assurance extends to the SBOM, as it will be associated with Wallarm's verified image.

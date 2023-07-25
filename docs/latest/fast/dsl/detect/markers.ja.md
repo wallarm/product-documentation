@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/detect/markers.md"
+--8<-- "latest/fast/dsl/detect/markers.ja.md"

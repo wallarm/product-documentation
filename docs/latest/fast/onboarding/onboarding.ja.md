@@ -1,1 +1,1 @@
---8<-- "latest/fast/onboarding/onboarding.md"
+--8<-- "latest/fast/onboarding/onboarding.ja.md"

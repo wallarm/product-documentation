@@ -1,6 +1,6 @@
 # Atlassian Jira
 
-Wallarmを設定して、[脆弱性](../../../glossary-en.md#vulnerability)が検出されたとき、または選択したリスクレベルのものだけでJiraに問題を作成するようにすることができます。
+Wallarmを設定して、[脆弱性](../../../glossary-en.ja.md#vulnerability)が検出されたとき、または選択したリスクレベルのものだけでJiraに問題を作成するようにすることができます。
 
 * 高リスク
 * 中リスク
@@ -30,7 +30,7 @@ Wallarm UIで：
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include/integrations/test-integration-basic-data.ja.md"
 
 Jira問題作成のテスト:
 
@@ -38,12 +38,12 @@ Jira問題作成のテスト:
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

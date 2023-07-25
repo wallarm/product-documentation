@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/internals.md"
+--8<-- "latest/fast/operations/internals.ja.md"

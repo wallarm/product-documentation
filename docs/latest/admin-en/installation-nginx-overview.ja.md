@@ -9,9 +9,9 @@
 [anchor-mod-inst-nginxplus]: #module-for-nginx-plus
 [anchor-mod-inst-postanalytics]: #postanalytics-module
 
-[link-ig-nginx]: ../installation/nginx/dynamic-module.md
-[link-ig-nginx-distr]: ../installation/nginx/dynamic-module-from-distr.md
-[link-ig-nginxplus]: ../installation/nginx-plus.md
+[link-ig-nginx]: ../installation/nginx/dynamic-module.ja.md
+[link-ig-nginx-distr]: ../installation/nginx/dynamic-module-from-distr.ja.md
+[link-ig-nginxplus]: ../installation/nginx-plus.ja.md
 
 Wallarmフィルタリングノードは、NGINXまたはNGINX Plusで使用するために以下のモジュールで構成されています：
 *   NGINX (NGINX Plus) に接続するモジュール

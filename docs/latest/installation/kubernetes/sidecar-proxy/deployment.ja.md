@@ -1,5 +1,5 @@
-[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.md
-[deployment-platform-docs]:     ../../../installation/supported-deployment-options.md
+[ip-lists-docs]:                ../../../user-guides/ip-lists/overview.ja.md
+[deployment-platform-docs]:     ../../../installation/supported-deployment-options.ja.md
 
 # Wallarmサイドカーコントローラのデプロイ
 
@@ -21,7 +21,7 @@ Wallarmサイドカープロキシソリューションの**主要機能**:
 
 ## ユースケース
 
-すべてのサポートされている[Wallarmデプロイメントオプション](../../../installation/supported-deployment-options.md)の中で、このソリューションは以下の**ユースケース**に対して推奨されています:
+すべてのサポートされている[Wallarmデプロイメントオプション](../../../installation/supported-deployment-options.ja.md)の中で、このソリューションは以下の**ユースケース**に対して推奨されています:
 
 * 既存のIngressコントローラ（例: AWS ALB Ingressコントローラ）があるインフラストラクチャにセキュリティソリューションをデプロイすることを阻止しているため、セキュリティソリューションを探しています。」 セキュリティソリューション
 * ゼロトラスト環境で、各マイクロサービス（内部APIを含む）がセキュリティソリューションによって保護される必要がある
@@ -83,7 +83,7 @@ Wallarmサイドカープロキシソリューションをデプロイするに�
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-1. `values.yaml`ファイルを作成し、[Wallarmサイドカープロキシ設定](customization.md)を記述する。
+1. `values.yaml`ファイルを作成し、[Wallarmサイドカープロキシ設定](customization.ja.md)を記述する。
 
     最小構成のファイルの例：
 
@@ -180,13 +180,13 @@ Wallarm Sidecarプロキシが正しく動作していることをテストす�
     NAME                     READY   STATUS    RESTARTS   AGE
     myapp-5c48c97b66-lzkwf   2/2     Running   0          3h4m
     ```
-1. Wallarmがトラフィックをフィルタリングするために有効になっているアプリケーションクラスターアドレスにテスト [Path Traversal](../../../attacks-vulns-list.md#path-traversal) 攻撃を送信します：
+1. Wallarmがトラフィックをフィルタリングするために有効になっているアプリケーションクラスターアドレスにテスト [Path Traversal](../../../attacks-vulns-list.ja.md#path-traversal) 攻撃を送信します：
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
-    Wallarmプロキシはデフォルトで **モニタリング**[フィルタリングモード](../../../admin-en/configure-wallarm-mode.md)で動作するため、Wallarmノードは攻撃をブロックせずに登録します。
+    Wallarmプロキシはデフォルトで **モニタリング**[フィルタリングモード](../../../admin-en/configure-wallarm-mode.ja.md)で動作するため、Wallarmノードは攻撃をブロックせずに登録します。
 
     攻撃が登録されたことを確認するには、Wallarmコンソール → **Events** に進みます：
 
@@ -198,4 +198,4 @@ Wallarmポッドは、[デフォルトの`values.yaml`](https://github.com/walla
 
 Wallarmプロキシの動作を、グローバルレベルとper-podレベルの両方でさらにカスタマイズし、Wallarmソリューションを最大限活用できます。
 
-[Wallarmプロキシソリューションのカスタマイズガイド](customization.md)に進んでください。
+[Wallarmプロキシソリューションのカスタマイズガイド](customization.ja.md)に進んでください。

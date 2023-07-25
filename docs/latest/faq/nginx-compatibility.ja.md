@@ -6,9 +6,9 @@
 
 いいえ、WallarmフィルタリングノードはNGINX `mainline` と互換性がありません。次の方法でWallarmノードをインストールできます。
 
-* これらの[インストラクション](../installation/nginx/dynamic-module.md)に従って、公式のオープンソースNGINX `stable` に接続します。
-* これらの[インストラクション](../installation/nginx/dynamic-module-from-distr.md)に従って、Debian/CentOSリポジトリからインストールしたNGINXに接続します。
-* これらの[インストラクション](../installation/nginx-plus.md)に従って、公式の商用NGINX Plusに接続します。
+* これらの[インストラクション](../installation/nginx/dynamic-module.ja.md)に従って、公式のオープンソースNGINX `stable` に接続します。
+* これらの[インストラクション](../installation/nginx/dynamic-module-from-distr.ja.md)に従って、Debian/CentOSリポジトリからインストールしたNGINXに接続します。
+* これらの[インストラクション](../installation/nginx-plus.ja.md)に従って、公式の商用NGINX Plusに接続します。
 
 ## WallarmフィルタリングノードはNGINXのカスタムビルドと互換性がありますか？
 

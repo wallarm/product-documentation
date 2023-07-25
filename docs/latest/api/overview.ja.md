@@ -12,8 +12,8 @@ Wallarm APIは、Wallarmシステムのコンポーネント間の相互作用�
 
 APIメソッドの説明は、リンクのAPIリファレンスで提供されています。
 
-* https://apiconsole.us1.wallarm.com/ は[USクラウド](../about-wallarm/overview.md#us-cloud)向け
-* https://apiconsole.eu1.wallarm.com/ は[EUクラウド](../about-wallarm/overview.md#eu-cloud)向け
+* https://apiconsole.us1.wallarm.com/ は[USクラウド](../about-wallarm/overview.ja.md#us-cloud)向け
+* https://apiconsole.eu1.wallarm.com/ は[EUクラウド](../about-wallarm/overview.ja.md#eu-cloud)向け
 
 ![!Wallarm API Reference](../images/wallarm-api-reference.png)
 
@@ -21,8 +21,8 @@ APIメソッドの説明は、リンクのAPIリファレンスで提供され�
 
 APIリクエストは以下のURLに送信されます。
 
-* [USクラウド](../about-wallarm/overview.md#us-cloud)向け：`https://us1.api.wallarm.com/`
-* [EUクラウド](../about-wallarm/overview.md#eu-cloud)向け：`https://api.wallarm.com/`
+* [USクラウド](../about-wallarm/overview.ja.md#us-cloud)向け：`https://us1.api.wallarm.com/`
+* [EUクラウド](../about-wallarm/overview.ja.md#eu-cloud)向け：`https://api.wallarm.com/`
 
 ## APIリクエストの認証
 
@@ -46,7 +46,7 @@ Wallarm APIリクエストを行うには、確認済みユーザーである必
 ### 独自のクライアント
 
 !!! info "API資格情報とSSO"
-    ユーザーにSSOが有効になっている場合、UUIDとシークレットキーを介したWallarm APIへのリクエストの認証は、このユーザーには利用できません。詳細情報は[SSO設定](../admin-en/configuration-guides/sso/employ-user-auth.md#sso-and-api-authentication)記事を参照してください。
+    ユーザーにSSOが有効になっている場合、UUIDとシークレットキーを介したWallarm APIへのリクエストの認証は、このユーザーには利用できません。詳細情報は[SSO設定](../admin-en/configuration-guides/sso/employ-user-auth.ja.md#sso-and-api-authentication)記事を参照してください。
 
 リクエストの認証には、UUIDとシークレットキーが使用されます。
 

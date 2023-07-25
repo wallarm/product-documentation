@@ -12,7 +12,7 @@
 
 これを行うには、*Create regexp-based attack indicator*ルールを作成し、以下のフィールドに記入する必要があります:
 
-* *Regular expression*: 正規表現 (シグネチャ)。次のパラメータの値がこの表現に一致する場合、そのリクエストは攻撃として検出されます。正規表現の構文と特性は、[rulesを追加する方法](add-rule.md#condition-type-regex)の説明で明らかにされています。
+* *Regular expression*: 正規表現 (シグネチャ)。次のパラメータの値がこの表現に一致する場合、そのリクエストは攻撃として検出されます。正規表現の構文と特性は、[rulesを追加する方法](add-rule.ja.md#condition-type-regex)の説明で明らかにされています。
 
     !!! warning "規則で指定された正規表現を変更すること"
         既存の **Create regexp-based attack indicator** の規則で指定された正規表現を変更すると、以前の表現を使用する、[**Disable regexp-based attack detection**](#partial-disabling-of-a-new-detection-rule)のルールが自動的に削除されます。
@@ -57,7 +57,7 @@
 * `class.module.classLoader.resources.context.parent.pipeline.first.prefix`
 * `class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat`
 
-脆弱なSpring Core Frameworkを使用していて、Wallarmノードの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロックと異なる場合、仮想パッチを使用して脆弱性の悪用を防ぐことができます。次のルールでは、リストされたボディパラメータを含むすべてのリクエストが監視モードおよび安全なブロックモードでもブロックされます。
+脆弱なSpring Core Frameworkを使用していて、Wallarmノードの[mode](../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)がブロックと異なる場合、仮想パッチを使用して脆弱性の悪用を防ぐことができます。次のルールでは、リストされたボディパラメータを含むすべてのリクエストが監視モードおよび安全なブロックモードでもブロックされます。
 
 ![!Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
@@ -67,7 +67,7 @@
 (class[.]module[.]classLoader[.]resources[.]context[.]parent[.]pipeline[.]first[.])(pattern|suffix|directory|prefix|fileDateFormat)
 ```
 
-ブロック[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作するWallarmノードは、デフォルトでそのような脆弱性悪用の試みをブロックします。
+ブロック[mode](../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)で動作するWallarmノードは、デフォルトでそのような脆弱性悪用の試みをブロックします。
 
 Spring Cloud Function コンポーネントにも活発な脆弱性（CVE-2022-22963）があります。このコンポーネントを使用していて、Wallarmノードのモードがブロックと異なる場合、以下で説明されているように仮想パッチを作成してください。
  (#example-block-all-requests-with-the-class-cloud-function-routing-expression-header).
@@ -76,14 +76,14 @@ Spring Cloud Function コンポーネントにも活発な脆弱性（CVE-2022-2
 
 Spring Cloud Functionコンポーネントには、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` や `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` ヘッダーに悪意のあるペイロードを注入することによって悪用できる活発な脆弱性（CVE-2022-22963）があります。
 
-このコンポーネントを使用していて、Wallarmノードの[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロックと異なる場合、仮想パッチを使用して脆弱性悪用を防ぐことができます。次のルールでは、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` ヘッダーが含まれるすべてのリクエストがブロックされます。
+このコンポーネントを使用していて、Wallarmノードの[mode](../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)がブロックと異なる場合、仮想パッチを使用して脆弱性悪用を防ぐことができます。次のルールでは、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` ヘッダーが含まれるすべてのリクエストがブロックされます。
 
 ![!Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` ヘッダーを持つリクエストをブロックする方法"
     このルールは `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` ヘッダーを持つリクエストはブロックしませんが、NGINXはデフォルトでこのヘッダーを持つ不正なリクエストとしてドロップします。
 
-ブロック[mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作するWallarmノードは、デフォルトでそのような脆弱性悪用の試みをブロックします。
+ブロック[mode](../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)で動作するWallarmノードは、デフォルトでそのような脆弱性悪用の試みをブロックします。
 
 [Spring Core Framework](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html)（Spring4Shell）での0-day 脆弱性もあります。[reqexp-based virtual patch](#example-block-all-requests-with-the-classmoduleclassloader-body-parameters)でその悪用試みをブロックする方法を学習してください。
 
@@ -115,10 +115,10 @@ Spring Cloud Functionコンポーネントには、`CLASS-CLOUD-FUNCTION-ROUTING
 
 ![!Regex rule second example][img-regex-example2]## ルールの作成用 API コール
 
-正規表現ベースのアタック指標を作成するには、Wallarm Console UI を使用する他に、[Wallarm API を直接呼び出す](../../api/overview.md)ことができます。以下は、対応する API コールの例です。
+正規表現ベースのアタック指標を作成するには、Wallarm Console UI を使用する他に、[Wallarm API を直接呼び出す](../../api/overview.ja.md)ことができます。以下は、対応する API コールの例です。
 
 次のリクエストで、正規表現 `^(~(44[.]33[.]22[.]11))$` に基づくカスタムアタック指標が作成されます。
 
-ドメイン `MY.DOMAIN.COM` へのリクエストに `X-FORWARDED-FOR: 44.33.22.11` HTTP ヘッダーがある場合、Wallarm ノードはそれらをスキャナ攻撃とみなし、対応する[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)が設定されている場合に攻撃をブロックします。
+ドメイン `MY.DOMAIN.COM` へのリクエストに `X-FORWARDED-FOR: 44.33.22.11` HTTP ヘッダーがある場合、Wallarm ノードはそれらをスキャナ攻撃とみなし、対応する[フィルタリングモード](../../admin-en/configure-wallarm-mode.ja.md)が設定されている場合に攻撃をブロックします。
 
 --8<-- "../include/api-request-examples/create-rule-scanner.ja.md"

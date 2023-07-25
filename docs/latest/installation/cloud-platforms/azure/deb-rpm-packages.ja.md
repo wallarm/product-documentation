@@ -33,9 +33,9 @@ AzureインスタンスでNGINX Stableモジュールとしてフィルタリン
     * Rocky Linux
     * Oracle Linux 8.x
 2. [Azureの手順](https://docs.microsoft.com/ja-jp/azure/bastion/bastion-connect-vm-ssh)に従って作成したインスタンスに接続します。
-3. インスタンスで、[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従って、NGINX StableとWallarmフィルタリングノードのパッケージをインストールします。
+3. インスタンスで、[Wallarmの手順](../../../installation/nginx/dynamic-module.ja.md)に従って、NGINX StableとWallarmフィルタリングノードのパッケージをインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。
 
 ## NGINX Plusモジュールとしてフィルタリングノードをインストールする
 
@@ -52,6 +52,6 @@ AzureインスタンスでNGINX Plusモジュールとしてフィルタリン�
     * Rocky Linux
     * Oracle Linux 8.x
 2. [Azureの手順](https://docs.microsoft.com/ja-jp/azure/bastion/bastion-connect-vm-ssh)に従って作成したインスタンスに接続します。
-3. インスタンスで、[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従って、NGINX PlusとWallarmフィルタリングノードのパッケージをインストールします。
+3. インスタンスで、[Wallarmの手順](../../../installation/nginx/dynamic-module.ja.md)に従って、NGINX PlusとWallarmフィルタリングノードのパッケージをインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.ja.md)に従ってpostanalyticsモジュールをインストールしてください。

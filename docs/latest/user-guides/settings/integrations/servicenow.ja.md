@@ -1,1 +1,1 @@
---8<-- "latest/user-guides/settings/integrations/servicenow.md"
+--8<-- "latest/user-guides/settings/integrations/servicenow.ja.md"

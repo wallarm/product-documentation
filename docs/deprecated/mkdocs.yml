@@ -5,6 +5,12 @@ site_dir: ../../site/4.0
 theme:
   version: "4.0"
 
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - meta-descriptions
+
 nav:
   - Product guides:
     - Home: index.md

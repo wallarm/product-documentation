@@ -1,6 +1,6 @@
 # IPアドレスの拒否リスト
 
-**拒否リスト**は、正当なリクエストが発生してもアプリケーションにアクセスが許可されていないIPアドレスのリストです。任意の [モード](../../admin-en/configure-wallarm-mode.md)でのフィルタリングノードは、拒否リストに含まれるIPアドレスからのすべてのリクエストをブロックします(ただし、IPアドレスが [許可リスト](allowlist.md) に重複している場合を除く)。
+**拒否リスト**は、正当なリクエストが発生してもアプリケーションにアクセスが許可されていないIPアドレスのリストです。任意の [モード](../../admin-en/configure-wallarm-mode.ja.md)でのフィルタリングノードは、拒否リストに含まれるIPアドレスからのすべてのリクエストをブロックします(ただし、IPアドレスが [許可リスト](allowlist.ja.md) に重複している場合を除く)。
 
 Wallarm Console → **IPリスト** → **拒否リスト**では、次の方法でブロックされたIPアドレスを管理できます。
 
@@ -15,26 +15,26 @@ Wallarm Console → **IPリスト** → **拒否リスト**では、次の方法
 
 * 連続した攻撃が発生したIPアドレスをブロックする。
 
-    攻撃は、1つのIPアドレスから発生し、さまざまなタイプの悪意のあるペイロードを含む複数のリクエストで構成される場合があります。このような攻撃をブロックする方法の1つは、リクエストの発生元をブロックすることです。[トリガー](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)でソースIPブロックの閾値と適切な反応を設定することで、自動的にソースIPをブロックするように構成できます。
+    攻撃は、1つのIPアドレスから発生し、さまざまなタイプの悪意のあるペイロードを含む複数のリクエストで構成される場合があります。このような攻撃をブロックする方法の1つは、リクエストの発生元をブロックすることです。[トリガー](../triggers/trigger-examples.ja.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)でソースIPブロックの閾値と適切な反応を設定することで、自動的にソースIPをブロックするように構成できます。
   
 * ブロックベースの攻撃をブロックする。
 
     Wallarmフィルタリングノードは、悪意のあるペイロードが検出された場合、リクエストごとにほとんどの有害なトラフィックをブロックできます。ただし、すべての単一のリクエストが正当である行動ベースの攻撃\(例: ユーザー名/パスワードのペアを使用したログイン試行\)では、発生元によるブロックが必要になる場合があります。
 
-    デフォルトでは、行動攻撃源の自動ブロックが無効になっています。[ブルートフォース保護の設定方法 →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
+    デフォルトでは、行動攻撃源の自動ブロックが無効になっています。[ブルートフォース保護の設定方法 →](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md#configuration-steps)
 
 ## リストへのオブジェクト追加方法
 
 **いくつか疑わしいトラフィックが生成された場合、WallarmによるIPアドレスの自動拒否リスト**と**手動**でリストに追加されたオブジェクトの両方を利用できます。
 
 !!! info "マルチテナントノードでのIPアドレスの追加方法"
-    [マルチテナントノード](../../installation/multi-tenant/overview.md)をインストールした場合は、まずリストにIPアドレスを追加するテナントの[アカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)に切り替えてください。
+    [マルチテナントノード](../../installation/multi-tenant/overview.ja.md)をインストールした場合は、まずリストにIPアドレスを追加するテナントの[アカウント](../../installation/multi-tenant/configure-accounts.ja.md#tenant-account-structure)に切り替えてください。
 
 ### 自動拒否リストの設定（推奨）
 
- [トリガー](../../user-guides/triggers/triggers.md)機能は、次の条件でIPアドレスの自動拒否リストを有効にできます:
+ [トリガー](../../user-guides/triggers/triggers.ja.md)機能は、次の条件でIPアドレスの自動拒否リストを有効にできます:
 
-ログイン試行* 次のタイプの悪意のあるリクエスト: [`Brute force` , `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) , [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) 。
+ログイン試行* 次のタイプの悪意のあるリクエスト: [`Brute force` , `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md) , [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.ja.md) 。
 * IPによって生成された `悪意のあるペイロードの数`。
 
 リストされたイベントへの`Denylist IP address`リアクションを持つトリガーは、指定された時間枠でIPアドレスを自動的に拒否リストに登録します。Wallarm Console → **Triggers**でトリガーを設定できます。
@@ -71,7 +71,7 @@ IPアドレス、サブネット、またはIPアドレスのグループをリ�
 
 ## 拒否リストに登録されたIPへの通知の受け取り方
 
-メッセンジャーや使用中のSIEMシステムを介して新たに拒否リストに登録されたIPについての通知を受け取ることができます。通知を有効にするには、適切な [トリガー](../triggers/triggers.md) を設定します。例えば：
+メッセンジャーや使用中のSIEMシステムを介して新たに拒否リストに登録されたIPについての通知を受け取ることができます。通知を有効にするには、適切な [トリガー](../triggers/triggers.ja.md) を設定します。例えば：
 
 ![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 

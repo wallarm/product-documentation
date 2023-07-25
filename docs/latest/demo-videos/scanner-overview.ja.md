@@ -1,6 +1,6 @@
 # Wallarmスキャナーの概要
 
-[Wallarmスキャナー](../user-guides/scanner.md)についてさらに詳しく知るためにデモビデオをご覧ください。
+[Wallarmスキャナー](../user-guides/scanner.ja.md)についてさらに詳しく知るためにデモビデオをご覧ください。
 
 ## Wallarmスキャナーの概要
 
@@ -10,8 +10,8 @@
 
 **関連するドキュメンテーション記事**
 
-* [スキャナーの概要](../user-guides/scanner.md)
-* [スキャナーの設定](../user-guides/scanner.md)
+* [スキャナーの概要](../user-guides/scanner.ja.md)
+* [スキャナーの設定](../user-guides/scanner.ja.md)
 
 ## Wallarmスキャナーの設定
 
@@ -21,5 +21,5 @@
 
 **関連するドキュメンテーション記事**
 
-* [スキャナーの概要](../user-guides/scanner.md)
-* [スキャナーの設定](../user-guides/scanner.md)
+* [スキャナーの概要](../user-guides/scanner.ja.md)
+* [スキャナーの設定](../user-guides/scanner.ja.md)

@@ -95,7 +95,7 @@ SLAB_ALLOC_ARENA=10.4
     sudo systemctl restart wallarm-tarantool
     ```
 
-現在のフィルタリングノードの負荷レベルで、Tarantoolインスタンスがトラフィックの詳細をどのくらいの期間保持できるかを知るには、[`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds)モニタリングメトリックを使用できます。
+現在のフィルタリングノードの負荷レベルで、Tarantoolインスタンスがトラフィックの詳細をどのくらいの期間保持できるかを知るには、[`wallarm-tarantool/gauge-timeframe_size`](../monitoring/available-metrics.ja.md#time-of-storing-requests-in-the-postanalytics-module-in-seconds)モニタリングメトリックを使用できます。
 
 ## NGINX
 
@@ -137,7 +137,7 @@ NGINXのメモリ消費量は次のように推定できます。
         helm install --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
         ```
 
-        正しい Ingress コントローラのインストールには、[その他のパラメーター](../configure-kubernetes-en.md#additional-settings-for-helm-chart)が必要です。`--set`オプションでもそれらを渡してください。
+        正しい Ingress コントローラのインストールには、[その他のパラメーター](../configure-kubernetes-en.ja.md#additional-settings-for-helm-chart)が必要です。`--set`オプションでもそれらを渡してください。
     === "Updating Ingress controller parameters"
         ```bash
         helm upgrade --reuse-values --set controller.resources.limits.cpu='2000m',controller.resources.limits.memory='3280Mi' <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>

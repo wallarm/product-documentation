@@ -1,5 +1,5 @@
 [access-wallarm-api-docs]: #your-own-client
-[application-docs]:        ../user-guides/settings/applications.md
+[application-docs]:        ../user-guides/settings/applications.ja.md
 
 # Wallarm APIリクエスト例
 
@@ -178,19 +178,19 @@
 
 ## 特定のアプリケーションインスタンスIDに対して `/my/api/*` に送信されるすべてのリクエストをブロックする仮想パッチを作成する
 
-アプリケーションは、このリクエストを送信する前に[設定](../user-guides/settings/applications.md)する必要があります。`action.point[instance].value`に既存のアプリケーションのIDを指定します。
+アプリケーションは、このリクエストを送信する前に[設定](../user-guides/settings/applications.ja.md)する必要があります。`action.point[instance].value`に既存のアプリケーションのIDを指定します。
 
 --8<-- "../include/api-request-examples/create-rule-for-app-id.ja.md"`X-FORWARDED-FOR` ヘッダーの特定の値を持つリクエストを攻撃として考慮するルールを作成する
 
-次のリクエストは、正規表現 `^(~(44[.]33[.]22[.]11))$` に基づく[カスタム攻撃指標](../user-guides/rules/regex-rule.md)を作成します。
+次のリクエストは、正規表現 `^(~(44[.]33[.]22[.]11))$` に基づく[カスタム攻撃指標](../user-guides/rules/regex-rule.ja.md)を作成します。
 
-ドメイン `MY.DOMAIN.COM` へのリクエストが HTTP ヘッダー `X-FORWARDED-FOR: 44.33.22.11` を持っている場合、Wallarm ノードはそれらをスキャナー攻撃とみなし、対応する[フィルタリングモード](../admin-en/configure-wallarm-mode.md)が設定されている場合、攻撃をブロックします。
+ドメイン `MY.DOMAIN.COM` へのリクエストが HTTP ヘッダー `X-FORWARDED-FOR: 44.33.22.11` を持っている場合、Wallarm ノードはそれらをスキャナー攻撃とみなし、対応する[フィルタリングモード](../admin-en/configure-wallarm-mode.ja.md)が設定されている場合、攻撃をブロックします。
 
 --8<-- "../include/api-request-examples/create-rule-scanner.ja.md"
 
 特定のアプリケーションに対してフィルタリングモードを監視に設定するルールを作成する
 
-次のリクエストは、ID `3` の [アプリケーション](../user-guides/settings/applications.md) に対して [トラフィックのフィルタリングを行うノードの設定](../user-guides/rules/wallarm-mode-rule.md)をするルールを作成します。
+次のリクエストは、ID `3` の [アプリケーション](../user-guides/settings/applications.ja.md) に対して [トラフィックのフィルタリングを行うノードの設定](../user-guides/rules/wallarm-mode-rule.ja.md)をするルールを作成します。
 
 --8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.ja.md"
 
@@ -202,7 +202,7 @@ IDでルールを削除する
 
 IP リストオブジェクトを取得し、追加、削除するための API コール
 
-以下は、 [IP リスト](../user-guides/ip-lists/overview.md) オブジェクトを取得、追加、削除する API コールの例です。
+以下は、 [IP リスト](../user-guides/ip-lists/overview.ja.md) オブジェクトを取得、追加、削除する API コールの例です。
 
 ### API リクエストパラメータ
 

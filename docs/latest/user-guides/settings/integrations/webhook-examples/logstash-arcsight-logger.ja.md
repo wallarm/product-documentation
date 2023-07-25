@@ -96,7 +96,7 @@ output {
 
 ![!LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[Logstash統合設定の詳細](../logstash.md)
+[Logstash統合設定の詳細](../logstash.ja.md)
 
 ## 例のテスト
 

@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/phase-modify.md"
+--8<-- "latest/fast/dsl/phase-modify.ja.md"

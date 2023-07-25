@@ -12,6 +12,6 @@
 1. Wallarm Console → **ノード**からCDNノードを削除します。
    
    ![!ノードの削除](../images/user-guides/nodes/delete-cdn-node.png)
-1. 同じドメインを保護する新しいバージョンのCDNノードを作成し、 [手順](../installation/cdn-node.md)に従ってください。
+1. 同じドメインを保護する新しいバージョンのCDNノードを作成し、 [手順](../installation/cdn-node.ja.md)に従ってください。
 
 すべてのCDNノード設定がWallarm Cloudに保存されているため、新しいCDNノードはそれらを自動的に取得します。 保護されたドメインが変更されなかった場合、ノード構成を手動で移動する必要はありません。

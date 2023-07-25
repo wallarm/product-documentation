@@ -1,1 +1,1 @@
---8<-- "latest/fast/ssl/browsers-ssl/ie11-ssl.md"
+--8<-- "latest/fast/ssl/browsers-ssl/ie11-ssl.ja.md"

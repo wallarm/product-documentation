@@ -2,7 +2,7 @@
 
 Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意のシステムへの瞬時の通知を送信するように設定することができます。このために、以下のイベントタイプの通知を受信するためのWebhook URLを指定します：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 通知の形式
 
@@ -116,7 +116,7 @@ Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意の
 4. ターゲットWebhook URLを入力します。
 5. 必要に応じて、詳細設定を設定します：
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 
     ![!詳細設定の例](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. 通知送信をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
@@ -127,16 +127,16 @@ Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意の
 
 ## インテグレーションの例
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 人気のログコレクターとのインテグレーションの設定例をいくつか紹介します。これらのログコレクターはログをSIEMシステムに転送します：
 
-* **Fluentd**は、ログを [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
-* **Logstash**は、ログを [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
+* **Fluentd**は、ログを [IBM QRadar](webhook-examples/fluentd-qradar.ja.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.ja.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.ja.md), [Datadog](webhook-examples/fluentd-logstash-datadog.ja.md) へ転送するように設定されています。
+* **Logstash**は、ログを [IBM QRadar](webhook-examples/logstash-qradar.ja.md), [Splunk Enterprise](webhook-examples/logstash-splunk.ja.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.ja.md), [Datadog](webhook-examples/fluentd-logstash-datadog.ja.md) へ転送するように設定されています。
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 Webhookのテスト例：
 
@@ -186,12 +186,12 @@ Webhookのテスト例：
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"

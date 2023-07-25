@@ -1,6 +1,6 @@
 [img-write-plugin-graphite]: ../../images/monitoring/write-plugin-graphite.png
 
-[doc-grafana]: working-with-grafana.md
+[doc-grafana]: working-with-grafana.ja.md
 
 [link-docker-ce]: https://docs.docker.com/install/
 [link-docker-compose]: https://docs.docker.com/compose/install/

@@ -1,6 +1,6 @@
 # レート制限の設定
 
-レート制限の不足は、[OWASP API Top 10 2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting.md)の最も深刻なAPIセキュリティリスクのリストに含まれています。適切なレート制限対策がないと、APIはサービス拒否（DoS）、ブルートフォース攻撃、APIの過度な使用といった攻撃に対して脆弱となります。この記事では、Wallarmのレート制限規則を用いて、あなたのAPIとユーザーを保護する方法を説明します。
+レート制限の不足は、[OWASP API Top 10 2019](https://github.com/OWASP/API-Security/blob/master/editions/2019/en/0xa4-lack-of-resources-and-rate-limiting.ja.md)の最も深刻なAPIセキュリティリスクのリストに含まれています。適切なレート制限対策がないと、APIはサービス拒否（DoS）、ブルートフォース攻撃、APIの過度な使用といった攻撃に対して脆弱となります。この記事では、Wallarmのレート制限規則を用いて、あなたのAPIとユーザーを保護する方法を説明します。
 
 Wallarmは、APIへの過度なトラフィックを防ぐための**レート制限を設定**するルールを提供しています。このルールでは、特定のスコープに対して接続可能な最大数を設定できるだけでなく、着信リクエストが均等に分配されることも保証します。リクエストが定義した制限を超えると、Wallarmはそれを拒否し、ルールで選択したコードを返します。
 
@@ -11,7 +11,7 @@ Wallarmは、クッキーまたはJSONフィールドなどのさまざまなリ
 レート制限を設定し適用するには：
 
 1. Wallarmコンソールに進み、**ルール** → **ルールの追加**を選択します。
-1. **リクエストが** の部分で、ルールを適用するスコープを[記述します](add-rule.md#branch-description)。
+1. **リクエストが** の部分で、ルールを適用するスコープを[記述します](add-rule.ja.md#branch-description)。
 1. **次に**で、**レート制限の設定**を選び、スコープへの接続における希望する限度を設定します。
     * 秒または分ごとのリクエストの最大数。
     * **バースト** - 指定されたRPS/RPMを超えてバッファされるべき過度なリクエストの最大数、およびレートが正常に戻ったときに処理されるリクエスト。デフォルトでは`0`。
@@ -23,14 +23,14 @@ Wallarmは、クッキーまたはJSONフィールドなどのさまざまなリ
     * **応答コード** - 拒否されたリクエストに返答するコード。デフォルトでは`503`。
 1. **リクエストのこの部分で**という部分で、制限を設定したいリクエストポイントを指定します。Wallarmは、選択したリクエストパラメーターの値が同じであるリクエストを制限します。
 
-    利用可能なすべてのポイントは[ここに](request-processing.md)記載されており、特定の利用ケースに合うものを選ぶことができます。例えば：
+    利用可能なすべてのポイントは[ここに](request-processing.ja.md)記載されており、特定の利用ケースに合うものを選ぶことができます。例えば：
 
     * オリジンIPによる接続の制限には`remote_addr`
     * `api_key` JSON本文パラメータによる接続の制限には `json` → `json_doc` → `hash` → `api_key`
 
     !!! info "値長の制限について"
         あなたが制限を測定するパラメータ値の許容最大長は、8000文字です。
-1. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
+1. [ルールのコンパイルが完了する](compiling.ja.md)のを待ちます。
 
 ## ルールの例
 
@@ -52,9 +52,9 @@ Wallarmは、クッキーまたはJSONフィールドなどのさまざまなリ
 
 ![!Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
-`Authorization`の値に使用される[正規表現](add-rule.md#condition-type-regex)は`^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`です。
+`Authorization`の値に使用される[正規表現](add-rule.ja.md#condition-type-regex)は`^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`です。
 
-ユーザーセッションを管理するためにJWT（JSON Web Tokens）を使用している場合、ルールを調整して、JWTを[復号化して](request-processing.md#jwt)そのペイロードからセッションIDを抽出するようにできます：
+ユーザーセッションを管理するためにJWT（JSON Web Tokens）を使用している場合、ルールを調整して、JWTを[復号化して](request-processing.ja.md#jwt)そのペイロードからセッションIDを抽出するようにできます：
 
 ![!Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
@@ -70,17 +70,17 @@ Wallarmは、クッキーまたはJSONフィールドなどのさまざまなリ
 
 オンラインショッピングプラットフォームの顧客の注文データへのアクセスを提供するウェブサービスを考えてみましょう。顧客IDによるレート制限は、顧客が短時間に多くの注文を出すのを防ぎ、在庫管理や注文の履行に負担をかけることを防ぐのに役立ちます。
 
-たとえば、各顧客が分あたり10回のPOSTリクエストを `https://example-domain.com/orders`に制限するルールは、以下のようになります。この例では、顧客IDが`data.customer_id`のJSON本文オブジェクトを[経由して](request-processing.md#json_doc)渡されると仮定しています。
+たとえば、各顧客が分あたり10回のPOSTリクエストを `https://example-domain.com/orders`に制限するルールは、以下のようになります。この例では、顧客IDが`data.customer_id`のJSON本文オブジェクトを[経由して](request-processing.ja.md#json_doc)渡されると仮定しています。
 
 ![!Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 ## 制限と特性
 
 レート制限機能には以下の制限と特性があります：
 
-* レート制限ルールは、すべての [Wallarmのデプロイメント形式](../../installation/supported-deployment-options.md)でサポートされていますが、EnvoyベースのDockerイメージを除きます。
+* レート制限ルールは、すべての [Wallarmのデプロイメント形式](../../installation/supported-deployment-options.ja.md)でサポートされていますが、EnvoyベースのDockerイメージを除きます。
 * 制限を測定するためのパラメータ値の最大許容長さは8000文字です。
 * 複数のWallarmノードがあり、それぞれのノードで受信したトラフィックがレート制限ルールを満たした場合、それらは独立して制限されます。
 * 複数のレート制限ルールが受信リクエストに適用される場合、レート制限が最も低いルールがリクエストを制限するために使用されます。
 * 受信したリクエストが**In this part of request**ルールセクションに指定された項目を持っていない場合、そのリクエストに対する制限としてこのルールは適用されません。
 * Webサーバーが接続を制限するように設定されている場合（例えば、 [`ngx_http_limit_req_module`](http://nginx.org/en/docs/http/ngx_http_limit_req_module.html) NGINXモジュールを使用して）とWallarmルールも適用している場合、Webサーバーは設定したルールによりリクエストを拒否しますが、Wallarmはそれを行いません。
-* Wallarmはレート制限を超えるリクエストを保存せず、ルールで選択したコードを返すことでそれらを拒否します。例外は[攻撃の兆候](../../about-wallarm/protecting-against-attacks.md)を持つリクエスト - レート制限ルールにより拒否されてもWallarmにより記録されます。
+* Wallarmはレート制限を超えるリクエストを保存せず、ルールで選択したコードを返すことでそれらを拒否します。例外は[攻撃の兆候](../../about-wallarm/protecting-against-attacks.ja.md)を持つリクエスト - レート制限ルールにより拒否されてもWallarmにより記録されます。

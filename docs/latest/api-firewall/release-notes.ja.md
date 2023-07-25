@@ -15,9 +15,9 @@
 
 ### 新機能
 
-* OpenAPI 3.0 仕様の URL アドレスを指定し、Docker コンテナに仕様ファイルをマウントする代わりに行います（環境変数 [`APIFW_API_SPECS`](installation-guides/docker-container.md#apifw-api-specs) を介して）。
-* トークンイントロスペクションサービスにリクエストを送信する際に、カスタム `Content-Type` ヘッダーを使用する機能（環境変数 [`APIFW_SERVER_OAUTH_INTROSPECTION_CONTENT_TYPE`](installation-guides/docker-container.md#apifw-server-oauth-introspection-content-type) を介して）。
-* [認証トークンの denylist 対応](installation-guides/docker-container.md#blocking-requests-with-compromised-authentication-tokens)。
+* OpenAPI 3.0 仕様の URL アドレスを指定し、Docker コンテナに仕様ファイルをマウントする代わりに行います（環境変数 [`APIFW_API_SPECS`](installation-guides/docker-container.ja.md#apifw-api-specs) を介して）。
+* トークンイントロスペクションサービスにリクエストを送信する際に、カスタム `Content-Type` ヘッダーを使用する機能（環境変数 [`APIFW_SERVER_OAUTH_INTROSPECTION_CONTENT_TYPE`](installation-guides/docker-container.ja.md#apifw-server-oauth-introspection-content-type) を介して）。
+* [認証トークンの denylist 対応](installation-guides/docker-container.ja.md#blocking-requests-with-compromised-authentication-tokens)。
 
 ## v0.6.7 (2022-01-25)
 
@@ -30,8 +30,8 @@ Wallarm API Firewall は、オープンソースになりました。[このリ�
 
 ### 新機能
 
-* [OAuth 2.0 トークン検証](installation-guides/docker-container.md#validation-of-request-authentication-tokens) のサポート。
-* カスタム CA 証明書で署名されたサーバーへの[接続](installation-guides/docker-container.md#protected-application-ssltls-settings)と、安全でない接続フラグのサポート。
+* [OAuth 2.0 トークン検証](installation-guides/docker-container.ja.md#validation-of-request-authentication-tokens) のサポート。
+* カスタム CA 証明書で署名されたサーバーへの[接続](installation-guides/docker-container.ja.md#protected-application-ssltls-settings)と、安全でない接続フラグのサポート。
 
 ### バグフィックス
 
@@ -44,7 +44,7 @@ Wallarm API Firewall は、オープンソースになりました。[このリ�
 * fasthttp クライアントの最大数を設定します（環境変数 `APIFW_SERVER_CLIENT_POOL_CAPACITY` を介して）。
 * API Firewall コンテナの 9667 ポートでのヘルスチェック（ポートは環境変数 `APIFW_HEALTH_HOST` を介して変更できます）。
 
-[新しい環境変数で API Firewall を実行する方法](installation-guides/docker-container.md)
+[新しい環境変数で API Firewall を実行する方法](installation-guides/docker-container.ja.md)
 
 ### バグ修正
 
@@ -60,7 +60,7 @@ Wallarm API Firewall は、オープンソースになりました。[このリ�
 * リクエストのブロック理由を含むヘッダーを返す機能（環境変数 `APIFW_ADD_VALIDATION_STATUS_HEADER` を介して）。この機能は**実験的**です。
 * API Firewall のログ形式の設定（環境変数 `APIFW_LOG_FORMAT` を介して）。
 
-[新しい環境変数で API Firewall を実行する方法](installation-guides/docker-container.md)
+[新しい環境変数で API Firewall を実行する方法](installation-guides/docker-container.ja.md)
 
 ### 最適化
 

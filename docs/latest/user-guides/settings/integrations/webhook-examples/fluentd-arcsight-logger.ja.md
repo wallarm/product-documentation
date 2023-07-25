@@ -103,7 +103,7 @@ Fluentd は `td-agent.conf` ファイルで設定されています。
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd 統合の設定の詳細について](../fluentd.md)
+[Fluentd 統合の設定の詳細について](../fluentd.ja.md)
 
 ## 例のテスト
 

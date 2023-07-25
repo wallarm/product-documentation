@@ -14,16 +14,16 @@ API Discoveryモジュールは実際のトラフィックをデータソース�
 **WallarmによってAPIインベントリが発見された場合は、次のことができます。**
 
 * [内部および外部](#external-and-internal-apis)APIリストを含む、全体のAPIエステートの完全な可視性を持ちます。
-* [APIに入力されるデータ](../user-guides/api-discovery.md#params)を確認できます。
+* [APIに入力されるデータ](../user-guides/api-discovery.ja.md#params)を確認できます。
 * [攻撃のターゲットに最もなりやすい](#endpoint-risk-score)エンドポイントを理解できます。
 * 過去7日間で最も攻撃されたAPIを表示できます。
 * 攻撃されたAPIのみをフィルタリングし、ヒット数で並べ替えることができます。
 * 機密データを消費および運搬するAPIをフィルタリングできます。
-* [APIインベントリを最新の状態に保ち](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory)、OpenAPI v3へエクスポートするオプションを持っています。あなたは次のことを発見することができます：
+* [APIインベントリを最新の状態に保ち](../user-guides/api-discovery.ja.md#download-openapi-specification-oas-of-your-api-inventory)、OpenAPI v3へエクスポートするオプションを持っています。あなたは次のことを発見することができます：
     * Wallarmによって発見されたエンドポイントのリストがありますが、仕様書に存在しない（欠落しているエンドポイント、別名「シャドーAPI」）。
     * 仕様書に表示されているが、Wallarmによって発見されていないエンドポイント（使用されていないエンドポイント、別名「ゾンビAPI」）のリスト。
 * 選択した期間内に発生したAPIの[変更を追跡](#tracking-changes-in-api)できます。
-* [任意のAPIエンドポイントに対してルール](../user-guides/api-discovery.md#api-inventory-and-rules)をすばやく作成できます。
+* [任意のAPIエンドポイントに対してルール](../user-guides/api-discovery.ja.md#api-inventory-and-rules)をすばやく作成できます。
 * 任意のAPIエンドポイントごとに悪意のあるリクエストの完全なリストを取得できます。
 * 構築されたAPIインベントリのレビューおよびダウンロードに関する開発者へのアクセスを提供できます。
 
@@ -35,7 +35,7 @@ API Discovery は、ローカルとクラウドの両方で解析を実行する
 
 1. API Discovery は正規のトラフィックをローカルで解析します。Wallarm はリクエストが行われたエンドポイントと渡されたパラメータを解析します。
 1. このデータに基づいて統計情報が作成され、クラウドに送信されます。
-1. Wallarmクラウドは、受信した統計情報を集計し、その基に[APIの説明書](../user-guides/api-discovery.md)を作成します。
+1. Wallarmクラウドは、受信した統計情報を集計し、その基に[APIの説明書](../user-guides/api-discovery.ja.md)を作成します。
 
     !!! info "ノイズ検出"
         まれまたは単発のリクエストは、[ノイズ検出](#noise-detection)され、APIの在庫リストには含まれません。
@@ -130,23 +130,23 @@ API Discoveryのサブスクリプションプランを購入する前に、サ�
 * 特定のエンドポイントに対するカスタムルールの作成
 * あなたのAPIインベントリのOpenAPI仕様（OAS）を`swagger.json`ファイルとしてダウンロード
 
-利用可能なオプションについて詳しくは[ユーザーガイド](../user-guides/api-discovery.md)を参照してください。## エンドポイントのリスクスコア
+利用可能なオプションについて詳しくは[ユーザーガイド](../user-guides/api-discovery.ja.md)を参照してください。## エンドポイントのリスクスコア
 
 API Discoveryは、APIインベントリ内の各エンドポイントに対して、自動的に**リスクスコア**を計算します。リスクスコアにより、攻撃の対象となりやすいエンドポイントを理解し、セキュリティ対策の焦点を置くことができます。
 
 リスクスコアは、次の要因から構成されています。
 
-* 認可されていないデータアクセスや破壊をもたらす可能性がある[**アクティブな脆弱性**](detecting-vulnerabilities.md)の存在。
-* サーバーへの**ファイルのアップロード能力**- エンドポイントは、悪意のあるコードを含むファイルがサーバーにアップロードされる[リモートコード実行（RCE）](../attacks-vulns-list.md#remote-code-execution-rce)攻撃の標的になることがよくあります。これらのエンドポイントを保護するには、アップロードされたファイルの拡張子や内容を[OWASPチートシート](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)で推奨されるように適切に検証する必要があります。
-* ユーザーIDなどの[**可変パス部分**](#variability-in-endpoints)の存在、「/ api / articles / author / {parameter_X}」など。攻撃者はオブジェクトIDを操作し、不十分なリクエストの認証の場合、オブジェクトの機密データを読み取るか変更するかのいずれかに対処することができます([**BOLA攻撃**](../admin-en/configuration-guides/protecting-against-bola.md)）。
+* 認可されていないデータアクセスや破壊をもたらす可能性がある[**アクティブな脆弱性**](detecting-vulnerabilities.ja.md)の存在。
+* サーバーへの**ファイルのアップロード能力**- エンドポイントは、悪意のあるコードを含むファイルがサーバーにアップロードされる[リモートコード実行（RCE）](../attacks-vulns-list.ja.md#remote-code-execution-rce)攻撃の標的になることがよくあります。これらのエンドポイントを保護するには、アップロードされたファイルの拡張子や内容を[OWASPチートシート](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)で推奨されるように適切に検証する必要があります。
+* ユーザーIDなどの[**可変パス部分**](#variability-in-endpoints)の存在、「/ api / articles / author / {parameter_X}」など。攻撃者はオブジェクトIDを操作し、不十分なリクエストの認証の場合、オブジェクトの機密データを読み取るか変更するかのいずれかに対処することができます([**BOLA攻撃**](../admin-en/configuration-guides/protecting-against-bola.ja.md)）。
 * [**機密データ**](#api-inventory-elements)を含むパラメータの存在- APIを直接攻撃する代わりに、攻撃者は機密データを盗んで、シームレスにリソースに到達することができます。
 * 攻撃の方向数を増やす**多数のパラメータ**。
 * エンドポイントリクエストで渡される**XMLまたはJSONオブジェクト**は、攻撃者が悪意のあるXML外部エンティティおよびインジェクションをサーバーに転送するために使用する可能性があります。
 
 !!! info "リスクスコア計算の設定"
-    リスクスコアの推定を、各要因の重み付けと計算方法を[設定](../user-guides/api-discovery.md#customizing-risk-score-calculation)することで、あなた自身の理解に合わせて適応することができます。
+    リスクスコアの推定を、各要因の重み付けと計算方法を[設定](../user-guides/api-discovery.ja.md#customizing-risk-score-calculation)することで、あなた自身の理解に合わせて適応することができます。
 
-[リスクスコアの操作方法を学ぶ→](../user-guides/api-discovery.md#working-with-risk-score)## API の変更の追跡
+[リスクスコアの操作方法を学ぶ→](../user-guides/api-discovery.ja.md#working-with-risk-score)## API の変更の追跡
 
 API を更新してトラフィック構造を調整すると、API Discovery が構築された API インベントリを更新します。
 
@@ -165,9 +165,9 @@ Wallarm の **API Discovery** モジュールを使用すると、次の操作�
 * 変更を追跡し、現在の業務プロセスを妨げないことを確認します。
 * インフラストラクチャに潜在的な脅威ベクターとなるエンドポイントが登場していないことを確認します。
 * PII および予期しないパラメーターがエンドポイントに送信されていないことを確認します。
-* **API に変更がある場合**の条件に従って、[トリガー](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory)を介して API の変更の通知を設定します。
+* **API に変更がある場合**の条件に従って、[トリガー](../user-guides/triggers/trigger-examples.ja.md#new-endpoints-in-your-api-inventory)を介して API の変更の通知を設定します。
 
-[ユーザーガイド](../user-guides/api-discovery.md#tracking-changes-in-api)で、変更を追跡する機能の使用方法について学びます。
+[ユーザーガイド](../user-guides/api-discovery.ja.md#tracking-changes-in-api)で、変更を追跡する機能の使用方法について学びます。
 
 ## 外部および内部 API
 
@@ -200,11 +200,11 @@ URLには、ユーザーのIDなど、さまざまな要素が含まれる場合
 
 ## 自動BOLA保護
 
-[Broken Object Level Authorization (BOLA)](../attacks-vulns-list.md#broken-object-level-authorization-bola)のような行動タイプの攻撃は、脆弱性を悪用します。この脆弱性により、APIリクエストを介して識別子によるオブジェクトへのアクセスが可能になり、認証メカニズムをバイパスしてデータを読み取ったり変更したりすることができます。
+[Broken Object Level Authorization (BOLA)](../attacks-vulns-list.ja.md#broken-object-level-authorization-bola)のような行動タイプの攻撃は、脆弱性を悪用します。この脆弱性により、APIリクエストを介して識別子によるオブジェクトへのアクセスが可能になり、認証メカニズムをバイパスしてデータを読み取ったり変更したりすることができます。
 
 BOLA攻撃の潜在的なターゲットは、可変性のあるエンドポイントです。Wallarmは、API Discoveryモジュールで探索された中から、このようなエンドポイントを自動的に検出および保護できます。
 
-自動BOLA保護を有効にするには、[Wallarmコンソール → **BOLA protection**](../user-guides/bola-protection.md)に進み、スイッチを有効な状態に切り替えてください。
+自動BOLA保護を有効にするには、[Wallarmコンソール → **BOLA protection**](../user-guides/bola-protection.ja.md)に進み、スイッチを有効な状態に切り替えてください。
 
 ![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
@@ -223,11 +223,11 @@ API Discovery はほとんどのトラフィックをローカルで解析しま
 !!! warning "重要"
     Wallarm は、パラメータで指定された値をクラウドに送信しません。エンドポイント、パラメータ名、およびその統計データだけが送信されます。## APIディスカバリを有効にし、構成する
 
-`wallarm-appstructure`パッケージは、Debian 11.xおよびUbuntu 22.04パッケージを除く、Wallarmノードのすべての[フォーム](../installation/supported-deployment-options.md)に含まれています。ノードのデプロイ時にAPIディスカバリモジュールがインストールされますが、デフォルトでは無効化された状態になっています。
+`wallarm-appstructure`パッケージは、Debian 11.xおよびUbuntu 22.04パッケージを除く、Wallarmノードのすべての[フォーム](../installation/supported-deployment-options.ja.md)に含まれています。ノードのデプロイ時にAPIディスカバリモジュールがインストールされますが、デフォルトでは無効化された状態になっています。
 
 APIディスカバリを正常に有効化、実行するには以下の手順を行ってください。
 
-1. Wallarmノードが[サポートされているバージョン](../updating-migrating/versioning-policy.md#version-list)であることを確認してください。
+1. Wallarmノードが[サポートされているバージョン](../updating-migrating/versioning-policy.ja.md#version-list)であることを確認してください。
 
 APIディスカバリの全機能にアクセスできるようにするために、正常にAPIディスカバリの機能を利用できるようにするために、`wallarm-appstructure`パッケージの更新を定期的に確認することをお勧めします。 
 
@@ -243,9 +243,9 @@ APIディスカバリの全機能にアクセスできるようにするため�
         sudo yum install wallarm-appstructure
         ```
 
-1. [サブスクリプションプラン](subscription-plans.md#subscription-plans)に**APIディスカバリ**が含まれていることを確認してください。サブスクリプションプランを変更するには、[sales@wallarm.com](mailto:sales@wallarm.com)へリクエストを送信してください。
+1. [サブスクリプションプラン](subscription-plans.ja.md#subscription-plans)に**APIディスカバリ**が含まれていることを確認してください。サブスクリプションプランを変更するには、[sales@wallarm.com](mailto:sales@wallarm.com)へリクエストを送信してください。
 
-1. 選択したアプリケーションのみでAPIディスカバリを有効にする場合は、[アプリケーションを設定する](../user-guides/settings/applications.md)の記事に記載されているように、アプリケーションが追加されていることを確認してください。
+1. 選択したアプリケーションのみでAPIディスカバリを有効にする場合は、[アプリケーションを設定する](../user-guides/settings/applications.ja.md)の記事に記載されているように、アプリケーションが追加されていることを確認してください。
 
     アプリケーションが構成されていない場合、すべてのAPIの構造が1つのツリーにグループ化されます。
 

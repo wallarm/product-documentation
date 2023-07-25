@@ -9,8 +9,8 @@
 [img-xml-metadata]:         ../../../../images/admin-guides/configuration-guides/sso/okta/xml-metadata-example.png
 [img-fetch-metadata-manually]:  ../../../../images/admin-guides/configuration-guides/sso/okta/fetch-metadata-manually.png
 
-[doc-setup-sp]:             setup-sp.md
-[doc-metadata-transfer]:    metadata-transfer.md
+[doc-setup-sp]:             setup-sp.ja.md
+[doc-metadata-transfer]:    metadata-transfer.ja.md
 
 [link-okta-docs]:           https://help.okta.com/en/prod/Content/Topics/Apps/Apps_App_Integration_Wizard.htm
 

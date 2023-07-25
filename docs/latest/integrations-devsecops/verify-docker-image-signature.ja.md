@@ -7,7 +7,7 @@ Wallarm signs and shares the [public key](https://repo.wallarm.com/cosign.pub) f
 Starting from the release 4.4, Wallarm signs the following Docker images:
 
 <!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image] that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
-* All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
+* All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.ja.md):
 
     * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
@@ -16,7 +16,7 @@ Starting from the release 4.4, Wallarm signs the following Docker images:
     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* All Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
+* All Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.ja.md):
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
@@ -51,7 +51,7 @@ The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docke
 
 <!-- ## Automation of verification procedure
 
-To automate the verification of Docker images used in [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md), you can use the provided script.
+To automate the verification of Docker images used in [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.ja.md), you can use the provided script.
 
 1. Before running the script, set the desired image tag in the `IMAGES_TAG` environment variable. All images used by the Helm chart share the same versions, so choose the appropriate one from the available [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx) image tags.
 

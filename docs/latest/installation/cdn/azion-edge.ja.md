@@ -1,4 +1,4 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Wallarm機能付きAzionエッジファイアウォール
@@ -9,7 +9,7 @@
 
 ## 使用ケース
 
-サポートされているすべての[Wallarmデプロイメントオプション](../supported-deployment-options.md)の中でも、このソリューションは次の使用ケースにおいて推奨されています：
+サポートされているすべての[Wallarmデプロイメントオプション](../supported-deployment-options.ja.md)の中でも、このソリューションは次の使用ケースにおいて推奨されています：
 
 * Azionエッジで稼働しているAPIやトラフィックのセキュリティを強化する。
 * 攻撃の観測、レポート、悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要とする。
@@ -18,9 +18,9 @@
 
 このソリューションは、受信リクエストだけを対象とするため、いくつかの制限があります：
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) 方法を使用した脆弱性の発見は適切に機能しません。このソリューションはAPIが脆弱であるか否かを決定します、それはテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいています。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md) は、このソリューションが応答分析に依存しているため、トラフィックに基づいてAPIインベントリを探索することはできません。
-* [強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、この対応が応答コードの分析を必要とするため利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection) 方法を使用した脆弱性の発見は適切に機能しません。このソリューションはAPIが脆弱であるか否かを決定します、それはテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいています。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md) は、このソリューションが応答分析に依存しているため、トラフィックに基づいてAPIインベントリを探索することはできません。
+* [強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)は、この対応が応答コードの分析を必要とするため利用できません。
 
 ## 要件
 
@@ -40,4 +40,4 @@ AzionエッジのAPIをWallarmで保護するためのステップは以下の�
 
 AzionエッジでWallarmを利用する際には、トラフィックの流れはインラインです。
 
-1. インラインデプロイメントのための[サポートされているWallarmノードデプロイメントソリューションまたはアーティファクト](../supported-deployment-options.md)のうち、一つを選んで、提供されているデプロイメント手順に従います。
+1. インラインデプロイメントのための[サポートされているWallarmノードデプロイメントソリューションまたはアーティファクト](../supported-deployment-options.ja.md)のうち、一つを選んで、提供されているデプロイメント手順に従います。

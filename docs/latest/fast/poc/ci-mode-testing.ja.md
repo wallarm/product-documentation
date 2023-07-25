@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/ci-mode-testing.md"
+--8<-- "latest/fast/poc/ci-mode-testing.ja.md"

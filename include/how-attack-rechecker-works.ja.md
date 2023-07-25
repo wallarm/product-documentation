@@ -1,6 +1,6 @@
 最初に検出された攻撃に基づいて、**アクティブ脅威検証**モジュールは、同じエンドポイントへの攻撃を異なるペイロードで行う多くの新しいテストリクエストを作成します。この仕組みにより、Wallarmは攻撃中に潜在的に悪用される可能性のある脆弱性を検出することができます。アクティブ脅威検証プロセスでは、特定の攻撃ベクタに対してアプリケーションが脆弱でないことを確認するか、実際のアプリケーションセキュリティ問題を見つけます。
 
-[モジュールが検出できる脆弱性のリスト](../attacks-vulns-list.md)
+[モジュールが検出できる脆弱性のリスト](../attacks-vulns-list.ja.md)
 
 **アクティブ脅威検証**プロセスは、WebおよびAPIセキュリティの脆弱性を持つ可能性のある保護されたアプリケーションを確認するために、以下のロジックを使用しています:
 
@@ -32,8 +32,8 @@
 
     !!! info "悪意のあるペイロードはリソースを損傷させません"
         生成されたリクエストの悪意のあるペイロードは、実際の悪意のある構文は含まれておらず、攻撃原理を模倣することを目的としています。その結果、リソースには損傷を与えません。
-3. **アクティブ脅威検証**モジュールは、Wallarm保護を迂回してアプリケーションに生成されたテストリクエストを送信し([allowlisting feature][allowlist-scanner-addresses]を使用して)、特定のエンドポイントでアプリケーションが特定の攻撃タイプに対して脆弱でないことを確認します。モジュールがアプリケーションに実際のセキュリティ脆弱性があると疑われる場合、[incident](../user-guides/events/check-attack.md#incidents)タイプのイベントを作成します。
+3. **アクティブ脅威検証**モジュールは、Wallarm保護を迂回してアプリケーションに生成されたテストリクエストを送信し([allowlisting feature][allowlist-scanner-addresses]を使用して)、特定のエンドポイントでアプリケーションが特定の攻撃タイプに対して脆弱でないことを確認します。モジュールがアプリケーションに実際のセキュリティ脆弱性があると疑われる場合、[incident](../user-guides/events/check-attack.ja.md#incidents)タイプのイベントを作成します。
 
     !!! info "リクエストの`User-Agent` HTTPSヘッダ値"
         **アクティブ脅威検証**モジュールのリクエストにおける`User-Agent`HTTPヘッダは、`Wallarm Threat-Verification (v1.x)`という値になります。
-4. 検出されたセキュリティインシデントはWallarm Consoleで報告され、利用可能なサードパーティの[Integrations](../user-guides/settings/integrations/integrations-intro.md)および[Triggers](../user-guides/triggers/triggers.md)を介してセキュリティチームに通知することができます。
+4. 検出されたセキュリティインシデントはWallarm Consoleで報告され、利用可能なサードパーティの[Integrations](../user-guides/settings/integrations/integrations-intro.ja.md)および[Triggers](../user-guides/triggers/triggers.ja.md)を介してセキュリティチームに通知することができます。

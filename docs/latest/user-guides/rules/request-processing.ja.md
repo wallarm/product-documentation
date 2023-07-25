@@ -50,7 +50,7 @@ HTTPリクエストのトップレベルから始めて、フィルタリング�
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        これを修正するには、URIコンストラクタの[advanced edit form](add-rule.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
+        これを修正するには、URIコンストラクタの[advanced edit form](add-rule.ja.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
 
 * `?`シンボルの後の[query string parameters](#query-string-parameters)用の **query** 。
 
@@ -322,7 +322,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-[ルール](add-rule.md)が適用されるリクエスト要素を定義するときには、
+[ルール](add-rule.ja.md)が適用されるリクエスト要素を定義するときには、
 
 * 最初にJWTを含むリクエスト部分のパーサを選択します
 * `jwt`パーサの値として上記の`jwt_*`パラメータの1つを指定します。例：JWTペイロードの`name`パラメータ値を指定する場合：

@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/examples/jenkins-cimode.md"
+--8<-- "latest/fast/poc/examples/jenkins-cimode.ja.md"

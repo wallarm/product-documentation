@@ -1,6 +1,6 @@
 # Wallarmノード
 
-Wallarm Console UIの**ノード**セクションでは、**Wallarmノード**と[**CDNノード**](cdn-node.md)タイプのノードを管理できます。この記事では、Wallarmノードについて説明します。
+Wallarm Console UIの**ノード**セクションでは、**Wallarmノード**と[**CDNノード**](cdn-node.ja.md)タイプのノードを管理できます。この記事では、Wallarmノードについて説明します。
 
 Wallarmノードモジュールは、Wallarmが悪意のあるトラフィックを軽減するために、顧客の環境にデプロイされるべきです。Wallarmノードは、悪意のあるリクエストを軽減しながら、正当なリクエストを保護対象のリソースに転送するプロキシとして機能します。
 
@@ -20,7 +20,7 @@ WallarmノードのUI管理オプション：
 !!! warning "通常とクラウドノードの種類"
     バージョン4.0のリリース前では、Wallarmノードは通常タイプまたはクラウドタイプのいずれかである可能性がありました。新しいリリースから、[通常タイプが非推奨となり、クラウドタイプが**Wallarmノード**に改名されました](/4.0/updating-migrating/what-is-new/#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)。
 
-    **Wallarmノード**は、[すべてのサポートされている環境](../../installation/supported-deployment-options.md)で登録および設定を統一されたアプローチを利用します。
+    **Wallarmノード**は、[すべてのサポートされている環境](../../installation/supported-deployment-options.ja.md)で登録および設定を統一されたアプローチを利用します。
 
 ## ノードの作成
 
@@ -31,11 +31,11 @@ Wallarmノードを作成するには：
     ![!Wallarmノード作成](../../images/user-guides/nodes/create-cloud-node.png)
 
     !!! info "マルチテナントオプション"
-        **マルチテナント**オプションでは、Wallarmを使用して、複数の独立した会社のインフラストラクチャや隔離された環境を同時に保護できます。[詳細を読む](../../installation/multi-tenant/overview.md)
+        **マルチテナント**オプションでは、Wallarmを使用して、複数の独立した会社のインフラストラクチャや隔離された環境を同時に保護できます。[詳細を読む](../../installation/multi-tenant/overview.ja.md)
 
         ノードを作成時や既存のノードのメニューから、マルチテナントモードに切り替えることができます。
 1. 生成されたトークンをコピーします。
-1. 生成されたトークンを使用して、作成したノードを [好適な環境](../../installation/supported-deployment-options.md)にデプロイします。
+1. 生成されたトークンを使用して、作成したノードを [好適な環境](../../installation/supported-deployment-options.ja.md)にデプロイします。
 
 ## ノードの詳細を表示する
 

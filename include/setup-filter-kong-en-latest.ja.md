@@ -2,7 +2,7 @@
 
 NGINX設定ファイルの詳細な情報については、[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)に進んでください。
 
-Wallarmディレクティブは、Wallarmフィルタリングノードの動作ロジックを定義します。使用可能なWallarmディレクティブのリストについては、[Wallarm設定オプション](../admin-en/configure-parameters-en.md)ページに進んでください。
+Wallarmディレクティブは、Wallarmフィルタリングノードの動作ロジックを定義します。使用可能なWallarmディレクティブのリストについては、[Wallarm設定オプション](../admin-en/configure-parameters-en.ja.md)ページに進んでください。
 
 **設定ファイルの例**
 

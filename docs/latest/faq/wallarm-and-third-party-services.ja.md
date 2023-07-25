@@ -6,7 +6,7 @@ Wallarmプラットフォームとサードパーティサービスのやり取�
 
 Wallarmプラットフォームは、以下のサードパーティサービスとやり取りします：
 
-* [許可リスト、拒否リスト、またはグレーリスト](../user-guides/ip-lists/overview.md)に登録されている国、地域、データセンターのIPアドレスの実際のリストをダウンロードするためのGCPストレージ。
+* [許可リスト、拒否リスト、またはグレーリスト](../user-guides/ip-lists/overview.ja.md)に登録されている国、地域、データセンターのIPアドレスの実際のリストをダウンロードするためのGCPストレージ。
 
     Wallarmをインストールする前に、お使いのマシンが[GCPストレージIPアドレス](https://www.gstatic.com/ipranges/goog.json)にアクセスできることを確認することをお勧めします。
 * 標準のTarantoolインスタンスデータをアップロードするためのTarantoolフィードバックサーバ(`https://feedback.tarantool.io`)。

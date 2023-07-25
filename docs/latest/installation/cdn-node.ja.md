@@ -1,32 +1,32 @@
 [cdn-node-operation-scheme]:        ../images/waf-installation/quickstart/cdn-node-scheme.png
-[data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.md
-[operation-modes-docs]:             ../admin-en/configure-wallarm-mode.md
-[operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.md
-[wallarm-cloud-docs]:               ../about-wallarm/overview.md#cloud
+[data-to-wallarm-cloud-docs]:       ../user-guides/rules/sensitive-data-rule.ja.md
+[operation-modes-docs]:             ../admin-en/configure-wallarm-mode.ja.md
+[operation-mode-rule-docs]:         ../user-guides/rules/wallarm-mode-rule.ja.md
+[wallarm-cloud-docs]:               ../about-wallarm/overview.ja.md#cloud
 [cdn-node-creation-modal]:          ../images/waf-installation/quickstart/cdn-node-creation-modal.png
 [cname-required-modal]:             ../images/waf-installation/quickstart/cname-required-modal.png
 [attacks-in-ui]:                    ../images/admin-guides/test-attacks-quickstart.png
-[user-roles-docs]:                  ../user-guides/settings/users.md
-[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.md#updating-the-origin-address-of-the-protected-resource
-[rules-docs]:                       ../user-guides/rules/intro.md
-[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
-[integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.md
-[trigger-docs]:                     ../user-guides/triggers/triggers.md
-[application-docs]:                 ../user-guides/settings/applications.md
-[nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.md
-[events-docs]:                      ../user-guides/events/check-attack.md
-[graylist-populating-docs]:         ../user-guides/ip-lists/graylist.md#managing-graylist
-[graylist-docs]:                    ../user-guides/ip-lists/graylist.md
-[link-app-conf]:                    ../user-guides/settings/applications.md
+[user-roles-docs]:                  ../user-guides/settings/users.ja.md
+[update-origin-ip-docs]:            ../user-guides/nodes/cdn-node.ja.md#updating-the-origin-address-of-the-protected-resource
+[rules-docs]:                       ../user-guides/rules/intro.ja.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.ja.md
+[integration-docs]:                 ../user-guides/settings/integrations/integrations-intro.ja.md
+[trigger-docs]:                     ../user-guides/triggers/triggers.ja.md
+[application-docs]:                 ../user-guides/settings/applications.ja.md
+[nodes-ui-docs]:                    ../user-guides/nodes/cdn-node.ja.md
+[events-docs]:                      ../user-guides/events/check-attack.ja.md
+[graylist-populating-docs]:         ../user-guides/ip-lists/graylist.ja.md#managing-graylist
+[graylist-docs]:                    ../user-guides/ip-lists/graylist.ja.md
+[link-app-conf]:                    ../user-guides/settings/applications.ja.md
 [varnish-cache]:                    #why-is-there-a-delay-in-the-update-of-the-content-protected-by-the-cdn-node
-[using-varnish-cache]:              ../user-guides/nodes/cdn-node.md#using-varnish-cache
+[using-varnish-cache]:              ../user-guides/nodes/cdn-node.ja.md#using-varnish-cache
 
 # Wallarm CDNノードの展開
 
 アプリケーションのインフラストラクチャに第三者のコンポーネントを設置せずに、Wallarm CDNノードをリバースプロキシとして運用し、悪意のあるトラフィックを軽減します。
 
 !!! info "無料枠のCDNノード"
-    [無料枠プラン](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)では、CDNノードタイプの展開はサポートされていません。
+    [無料枠プラン](../about-wallarm/subscription-plans.ja.md#free-tier-subscription-plan-us-cloud)では、CDNノードタイプの展開はサポートされていません。
 
 ## CDNノードの仕組み
 

@@ -1,32 +1,32 @@
 [img-wl-console-users]: ../../../images/check-user-no-2fa.png
-[wallarm-status-instr]: ../../../admin-en/configure-statistics-service.md
-[memory-instr]: ../../../admin-en/configuration-guides/allocate-resources-for-node.md
-[waf-directives-instr]: ../../../admin-en/configure-parameters-en.md
-[ptrav-attack-docs]: ../../../attacks-vulns-list.md#path-traversal
+[wallarm-status-instr]: ../../../admin-en/configure-statistics-service.ja.md
+[memory-instr]: ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
+[waf-directives-instr]: ../../../admin-en/configure-parameters-en.ja.md
+[ptrav-attack-docs]: ../../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]: ../../../images/admin-guides/test-attacks-quickstart.png
-[waf-mode-instr]: ../../../admin-en/configure-wallarm-mode.md
-[logging-instr]: ../../../admin-en/configure-logging.md
-[proxy-balancer-instr]: ../../../admin-en/using-proxy-or-balancer-en.md
-[process-time-limit-instr]: ../../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
-[configure-selinux-instr]: ../../../admin-en/configure-selinux.md
-[configure-proxy-balancer-instr]: ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[update-instr]: ../../../updating-migrating/nginx-modules.md
+[waf-mode-instr]: ../../../admin-en/configure-wallarm-mode.ja.md
+[logging-instr]: ../../../admin-en/configure-logging.ja.md
+[proxy-balancer-instr]: ../../../admin-en/using-proxy-or-balancer-en.ja.md
+[process-time-limit-instr]: ../../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
+[configure-selinux-instr]: ../../../admin-en/configure-selinux.ja.md
+[configure-proxy-balancer-instr]: ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.ja.md
+[update-instr]: ../../../updating-migrating/nginx-modules.ja.md
 [install-postanalytics-docs]: ../../../admin-en/installation-postanalytics-en/
-[waf-mode-recommendations]: ../../../about-wallarm/deployment-best-practices.md#follow-recommended-onboarding-steps
-[ip-lists-docs]: ../../../user-guides/ip-lists/overview.md
-[versioning-policy]: ../../../updating-migrating/versioning-policy.md#version-list
-[install-postanalytics-instr]: ../../../admin-en/installation-postanalytics-en.md
+[waf-mode-recommendations]: ../../../about-wallarm/deployment-best-practices.ja.md#follow-recommended-onboarding-steps
+[ip-lists-docs]: ../../../user-guides/ip-lists/overview.ja.md
+[versioning-policy]: ../../../updating-migrating/versioning-policy.ja.md#version-list
+[install-postanalytics-instr]: ../../../admin-en/installation-postanalytics-en.ja.md
 [waf-installation-instr-latest]: /installation/nginx-plus/
 [img-node-with-several-instances]: ../../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]: ../../../images/user-guides/nodes/create-cloud-node.png
-[nginx-custom]: ../../custom/custom-nginx-version.md
-[node-token]: ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]: ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]: ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]: ../../../installation/supported-deployment-options.md
-[oob-docs]: ../../oob/overview.md
-[oob-advantages-limitations]: ../../oob/overview.md#advantages-and-limitations
-[web-server-mirroring-examples]: ../../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[nginx-custom]: ../../custom/custom-nginx-version.ja.md
+[node-token]: ../../../quickstart.ja.md#deploy-the-wallarm-filtering-node
+[api-token]: ../../../user-guides/settings/api-tokens.ja.md
+[wallarm-token-types]: ../../../user-guides/nodes/nodes.ja.md#api-and-node-tokens-for-node-creation
+[platform]: ../../../installation/supported-deployment-options.ja.md
+[oob-docs]: ../../oob/overview.ja.md
+[oob-advantages-limitations]: ../../oob/overview.ja.md#advantages-and-limitations
+[web-server-mirroring-examples]: ../../oob/web-server-mirroring/overview.ja.md#examples-of-web-server-configuration-for-traffic-mirroring
 
 # NGINX Plus 用 Wallarm 動的モジュールのインストール
 
@@ -150,7 +150,7 @@ WallarmノードはWallarmのリポジトリからインストールおよび更
 
 ## 5. フィルタリングノードをWallarm Cloudに接続する
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+--8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.ja.md"
 
 ## 6. Wallarmにトラフィック分析を許可する
 
@@ -191,9 +191,9 @@ Wallarmにトラフィックプロキシを設定します。設定には、イ�
 
 ## 7. NGINX Plusを再起動する
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include/waf/root_perm_info.ja.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-3.6.ja.md"
 
 ## 8. トラフィックの送信先をWallarmインスタンスに設定する
 
@@ -201,13 +201,13 @@ Wallarmにトラフィックプロキシを設定します。設定には、イ�
 
 ## 9. Wallarmノードの動作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## 10. デプロイしたソリューションの微調整
 
 デフォルト設定でNGINX Plusに対して動的なWallarmモジュールがインストールされます。フィルタリングノードは、デプロイ後に追加の設定が必要な場合があります。
 
-Wallarmの設定は、[NGINXのディレクティブ](../../../admin-en/configure-parameters-en.md) または Wallarm Console UI を使用して定義されます。ディレクティブは、Wallarmノードが存在するマシン上の次のファイルに設定する必要があります：
+Wallarmの設定は、[NGINXのディレクティブ](../../../admin-en/configure-parameters-en.ja.md) または Wallarm Console UI を使用して定義されます。ディレクティブは、Wallarmノードが存在するマシン上の次のファイルに設定する必要があります：
 
 * NGINX設定を含む `/etc/nginx/conf.d/default.conf` 
 * グローバルなフィルタリングノード設定を含む `/etc/nginx/conf.d/wallarm.conf` 
@@ -220,4 +220,4 @@ Wallarmの設定は、[NGINXのディレクティブ](../../../admin-en/configur
 
 * [フィルタリングモードの設定][waf-mode-instr]
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.ja.md"

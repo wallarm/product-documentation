@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/extensions-examples/app-examination.md"
+--8<-- "latest/fast/dsl/extensions-examples/app-examination.ja.md"

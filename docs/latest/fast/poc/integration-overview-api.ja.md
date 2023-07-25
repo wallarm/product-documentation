@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/integration-overview-api.md"
+--8<-- "latest/fast/poc/integration-overview-api.ja.md"

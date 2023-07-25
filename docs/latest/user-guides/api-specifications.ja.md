@@ -2,11 +2,11 @@
 
 WallarmコンソールUIの**API Specifications**セクションでは、WallarmがシャドウAPIを見つけるために使用するAPI仕様を保持できます。この記事では、このセクションの使用方法について情報を提供します。
 
-**管理者**と**グローバル管理者**は仕様の追加、削除、ダウンロードおよびシャドウAPI検出の設定変更ができます。他の[役割](../user-guides/settings/users.md#user-roles)のユーザーは、アップロードされた仕様のリストのみを閲覧できます。
+**管理者**と**グローバル管理者**は仕様の追加、削除、ダウンロードおよびシャドウAPI検出の設定変更ができます。他の[役割](../user-guides/settings/users.ja.md#user-roles)のユーザーは、アップロードされた仕様のリストのみを閲覧できます。
 
 ## シャドウAPIの検出
 
-[**API Discovery**](../about-wallarm/api-discovery.md)を使用して、**API Specifications**セクションにアップロードされたAPI仕様がAPI Discoveryによって自動的に検出されたものと比較される可能性があります。この比較の結果、Wallarmは[見つけて**シャドウAPI**を表示します](../about-wallarm/api-discovery.md#shadow-api) - Wallarmによって発見されましたが、あなたの仕様には存在しないエンドポイント（欠落しているエンドポイント）。
+[**API Discovery**](../about-wallarm/api-discovery.ja.md)を使用して、**API Specifications**セクションにアップロードされたAPI仕様がAPI Discoveryによって自動的に検出されたものと比較される可能性があります。この比較の結果、Wallarmは[見つけて**シャドウAPI**を表示します](../about-wallarm/api-discovery.ja.md#shadow-api) - Wallarmによって発見されましたが、あなたの仕様には存在しないエンドポイント（欠落しているエンドポイント）。
 
 比較を行うには：
 
@@ -27,7 +27,7 @@ WallarmコンソールUIの**API Specifications**セクションでは、Wallarm
 
 1. アップロードを開始します。
 
-    アップロードが完了すると、**API Specifications**のリストにある各仕様に対するシャドウAPIの数が表示されます。また、見つかった一意のシャドウAPIの総数も表示されます。さらに、シャドウAPIは**API Discovery**セクションの[表示](api-discovery.md#displaying-shadow-api)されます。
+    アップロードが完了すると、**API Specifications**のリストにある各仕様に対するシャドウAPIの数が表示されます。また、見つかった一意のシャドウAPIの総数も表示されます。さらに、シャドウAPIは**API Discovery**セクションの[表示](api-discovery.ja.md#displaying-shadow-api)されます。
 
     ![!API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 

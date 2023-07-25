@@ -1,4 +1,4 @@
-[link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
+[link-config-parameters]:       ../../admin-en/configure-wallarm-mode.ja.md
 
 [img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/ja/general-settings-page-with-safe-blocking.png
 
@@ -16,7 +16,7 @@
 すべてのWallarmノードは、HTTPリクエストレベルで攻撃を識別し、ブロックすることができます。この[フィルタリングモード][link-config-parameters]は、ローカルまたはグローバル設定で定義されます。
 
 * **ローカル設定（デフォルト）**：このモードはフィルタノード設定ファイルの設定を利用します。
-* **セーフブロッキング**：[グレーリストに登録されたIP](../ip-lists/graylist.md)からのすべての悪意のあるリクエストがブロックされます。
+* **セーフブロッキング**：[グレーリストに登録されたIP](../ip-lists/graylist.ja.md)からのすべての悪意のあるリクエストがブロックされます。
 * **モニタリング**：すべてのリクエストが処理されますが、攻撃が検出された場合でもブロックされることはありません。
 * **ブロッキング**：攻撃が検出されたすべてのリクエストがブロックされます。
 
@@ -25,4 +25,4 @@
 
 ## ログアウト管理
 
-[管理者](users.md#user-roles)は、会社アカウントのログアウトタイムアウトを設定できます。設定はすべてのアカウントユーザに影響します。アイドルタイムアウトと絶対タイムアウトを設定できます。
+[管理者](users.ja.md#user-roles)は、会社アカウントのログアウトタイムアウトを設定できます。設定はすべてのアカウントユーザに影響します。アイドルタイムアウトと絶対タイムアウトを設定できます。

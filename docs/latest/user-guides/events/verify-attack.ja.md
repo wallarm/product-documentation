@@ -6,12 +6,12 @@
 [img-sheduled-icon]:            ../../images/user-guides/events/sheduled.png#mini
 [img-cloud-icon]:           ../../images/user-guides/events/cloud.png#mini
 
-[al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
-[al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
+[al-brute-force-attack]:      ../../attacks-vulns-list.ja.md#bruteforce-attack
+[al-forced-browsing]:         ../../attacks-vulns-list.ja.md#forced-browsing
 
 # アタックの検証
 
-Wallarmは、アクティブ脆弱性検出のために攻撃を自動的に[再チェック](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)します。
+Wallarmは、アクティブ脆弱性検出のために攻撃を自動的に[再チェック](../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)します。
 
 *イベント*タブで、攻撃検証のステータスを確認し、攻撃の再チェックを強制できます。選択された攻撃は、テスト攻撃セット生成の基本になります。
 
@@ -57,4 +57,4 @@ Wallarmは、キュー内の攻撃検証の優先度を上げます。
 * 次の方法と異なる方法で送信された攻撃: GET、POST、PUT、HEAD、PATCH、OPTIONS、DELETE、LOCK、UNLOCK、MOVE、TRACE
 * オリジナルリクエストのアドレスに到達できなかった
 * 攻撃サインが `HOST` ヘッダーにある
-* 攻撃サインを含む[リクエスト要素](../rules/request-processing.md)が次のいずれかと異なる: `uri` 、`header`、 `query`、`post`、`path`、 `action_name`、 `action_ext`
+* 攻撃サインを含む[リクエスト要素](../rules/request-processing.ja.md)が次のいずれかと異なる: `uri` 、`header`、 `query`、`post`、`path`、 `action_name`、 `action_ext`

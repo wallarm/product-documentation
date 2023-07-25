@@ -22,7 +22,7 @@ Wallarmにあなたの会社の公開アセットを発見させるためには�
     * SPFレコードデータの受信
     * サブドメイン辞書の検索
     * SSL証明書の解析
-* 手動データ入力（Wallarm Console UIまたは[Wallarm API](../api/overview.md)を介して）。
+* 手動データ入力（Wallarm Console UIまたは[Wallarm API](../api/overview.ja.md)を介して）。
 
 あなたは**設定**セクションで[アセット発見方法を制御](#fine-tuning-asset-scanning)することができます。
 
@@ -65,7 +65,7 @@ Wallarmは、公開アセットをドメイン、IP、サービスグループ�
 
 Wallarmはあなたに、公開アセットリストの変更に関する通知をお送りすることができます：新たに発見された公開アセット、無効化されたものと削除されたもの。
 
-通知を受け取るためには、適切な[ネイティブインテグレーション](settings/integrations/integrations-intro.md)をメッセンジャーやSOARシステム（例：PagerDuty、Opsgenie、Slack、Telegram）と設定してください。
+通知を受け取るためには、適切な[ネイティブインテグレーション](settings/integrations/integrations-intro.ja.md)をメッセンジャーやSOARシステム（例：PagerDuty、Opsgenie、Slack、Telegram）と設定してください。
 
 Slackメッセージの例：
 
@@ -93,7 +93,7 @@ Wallarmスキャナーには**基本的なスキャナー機能**と呼ばれる
 
 Wallarmは、あなたのインフラストラクチャにおけるセキュリティ上の問題を発見するために複数の方法を使用します。これには、公開アセットを典型的な脆弱性に対してスキャンすることが含まれます。スキャナーは、公開アセットを収集した後、すべてのIPアドレスとドメインを自動的に脆弱性に対して確認します。
 
-Wallarm Consoleの [**脆弱性**セクション](vulnerabilities.md) は、発見した脆弱性を表示し、どの脆弱性を発見すべきか制御することを可能にします。
+Wallarm Consoleの [**脆弱性**セクション](vulnerabilities.ja.md) は、発見した脆弱性を表示し、どの脆弱性を発見すべきか制御することを可能にします。
 
 ### 特定のアセットに対する脆弱性スキャニングの無効化
 

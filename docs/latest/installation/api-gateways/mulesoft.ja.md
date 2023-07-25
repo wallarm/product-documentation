@@ -1,4 +1,4 @@
-					[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+					[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Wallarm ポリシーと共に使う Mulesoft 
@@ -13,7 +13,7 @@
 
 ## 使用ケース
 
-すべてのサポートされている [Wallarm デプロイメントオプション](../supported-deployment-options.md) の中から、次の使用ケースのためにこのソリューションが推奨されます：
+すべてのサポートされている [Wallarm デプロイメントオプション](../supported-deployment-options.ja.md) の中から、次の使用ケースのためにこのソリューションが推奨されます：
 
 * MuleSoft Anypoint プラットフォームにデプロイされた API を一つのポリシーだけで保護する。
 * 攻撃の観察、報告、悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要。
@@ -22,9 +22,9 @@
 
 このソリューションは、受信リクエストだけで動作するため、いくつかの制限があります：
 
-* [受動検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection) 方法を使用したバルネラビリティの発見は正しく機能しません。このソリューションは、サーバーのレスポンスを基にAPIがバルネラビリティがあるかどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md) は、レスポンス分析に依存しているため、あなたのトラフィックに基づいたAPIのリストを作成することはできません。
-* レスポンスコードの解析が必要なため、[強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md) は利用できません。
+* [受動検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection) 方法を使用したバルネラビリティの発見は正しく機能しません。このソリューションは、サーバーのレスポンスを基にAPIがバルネラビリティがあるかどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md) は、レスポンス分析に依存しているため、あなたのトラフィックに基づいたAPIのリストを作成することはできません。
+* レスポンスコードの解析が必要なため、[強制ブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md) は利用できません。
 
 ## 要件
 
@@ -48,7 +48,7 @@ Mulesoft Anypoint プラットフォーム上のAPIを Wallarm ポリシーを�
 
 Wallarm ポリシーを利用すると、トラフィックフローはインラインになります。
 
-1. インラインデプロイメント用の [サポートされている Wallarm ノードのデプロイメントソリューションやアーティファクト](../supported-deployment-options.md) の中から一つを選び、提供されているデプロイメント手順に従います。
+1. インラインデプロイメント用の [サポートされている Wallarm ノードのデプロイメントソリューションやアーティファクト](../supported-deployment-options.ja.md) の中から一つを選び、提供されているデプロイメント手順に従います。
 1. 以下のテンプレートを使用してデプロイしたノードを設定します：
 
     ```
@@ -103,7 +103,7 @@ Wallarm ポリシーを利用すると、トラフィックフローはインラ
     以下の設定に注意してください：
 
     * HTTPS トラフィックのための TLS/SSL の証明書：Wallarm ノードがセキュアな HTTPS トラフィックを処理できるようにするには、TLS/SSL の証明書を適切に設定します。具体的な設定は選択したデプロイメント方法によります。たとえば、NGINXを使用している場合は、[その記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参考にすることができます。
-    * [Wallarm の動作モード](../../admin-en/configure-wallarm-mode.md)の設定。
+    * [Wallarm の動作モード](../../admin-en/configure-wallarm-mode.ja.md)の設定。
 
 1. デプロイメントが完了したら、後で受信リクエストの転送先のアドレスを設定するために、ノードインスタンスのIPをメモしておきます。
 

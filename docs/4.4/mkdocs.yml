@@ -6,12 +6,10 @@ theme:
   version: "4.4"
 
 plugins:
-  - i18n:
-      default_language: en
-      languages:
-        en:
-          name: English
-          build: true
+  - search
+  - minify:
+      minify_html: true
+  - meta-descriptions
 
 nav:
   - Product guides:

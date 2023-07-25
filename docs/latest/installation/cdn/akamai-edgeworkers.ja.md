@@ -1,4 +1,4 @@
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
+[ptrav-attack-docs]:                ../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
 # Akamai EdgeWorkersとWallarmコードバンドル
@@ -9,7 +9,7 @@
 
 ## 使用例
 
-全てのサポートされている[Wallarmのデプロイオプション](../supported-deployment-options.md)の中で、以下の使用例に対して、このソリューションが推奨されます：
+全てのサポートされている[Wallarmのデプロイオプション](../supported-deployment-options.ja.md)の中で、以下の使用例に対して、このソリューションが推奨されます：
 
 * Akamai EdgeWorkers上で稼働するAPIまたはトラフィックを保護する。
 * 攻撃の観察、報告、および悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションを必要とする。
@@ -18,9 +18,9 @@
 
 このソリューションは、受信リクエストのみで動作するため、一部の制約があります：
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)法を用いた脆弱性発見は、正常に機能しません。ソリューションは、テスト対象の脆弱性に対する典型的な悪意のあるリクエストへのサーバーの応答に基づいて、APIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、ソリューションがレスポンス分析に依存しているため、トラフィックに基づいたAPIインベントリーを探索することができません。
-* [強制ブラウジングへの保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、レスポンスコード分析が必要なため、利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection)法を用いた脆弱性発見は、正常に機能しません。ソリューションは、テスト対象の脆弱性に対する典型的な悪意のあるリクエストへのサーバーの応答に基づいて、APIが脆弱かどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.ja.md)は、ソリューションがレスポンス分析に依存しているため、トラフィックに基づいたAPIインベントリーを探索することができません。
+* [強制ブラウジングへの保護](../../admin-en/configuration-guides/protecting-against-bruteforce.ja.md)は、レスポンスコード分析が必要なため、利用できません。
 
 また、[EdgeWorkersプロダクトの制約](https://techdocs.akamai.com/edgeworkers/docs/limitations)と[http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request)による制約もあります：
 
@@ -48,7 +48,7 @@ Akamai EdgeWorkers上のAPIをWallarmで保護するには、以下の手順に�
 
 Akami EdgeWorkersでWallarmを使用する際、トラフィックフローはインライン方式です。
 
-1. インラインデプロイのための[supported Wallarmノードデプロイソリューションまたはアーティファクト](../supported-deployment-options.md)のいずれかを選択し、提供されたデプロイ指示に従います。
+1. インラインデプロイのための[supported Wallarmノードデプロイソリューションまたはアーティファクト](../supported-deployment-options.ja.md)のいずれかを選択し、提供されたデプロイ指示に従います。
 1. デプロイしたノードに以下のテンプレートを使用して設定します：
 
     ```
@@ -103,7 +103,7 @@ Akami EdgeWorkersでWallarmを使用する際、トラフィックフローは�
     次の設定に注意してください：
 
     * HTTPSトラフィックのためのTLS/SSL証明書：WallarmノードがセキュアなHTTPSトラフィックを処理できるようにするため、TLS/SSL証明書を適切に設定します。具体的な設定は、選択したデプロイ方法によります。たとえば、NGINXを使用している場合、ガイダンスのために[こちらの記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照できます。
-    * [Wallarmの操作モード](../../admin-en/configure-wallarm-mode.md)の設定。
+    * [Wallarmの操作モード](../../admin-en/configure-wallarm-mode.ja.md)の設定。
     * デプロイが完了したら、後でリクエストの転送先アドレスを設定するために、ノードインスタンスのIPをメモしておきます。
 
 ### 2. Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で実行する
@@ -133,7 +133,7 @@ Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で[実行](h
     X-EDGEWRK-REAL-IP 
     exist
     ```
-1. 新たなプロパティ変数`PMUSER_WALLARM_MODE`を追加し、[値](../../admin-en/configure-wallarm-mode.md)を`monitoring`(デフォルト)または`block`に設定します。
+1. 新たなプロパティ変数`PMUSER_WALLARM_MODE`を追加し、[値](../../admin-en/configure-wallarm-mode.ja.md)を`monitoring`(デフォルト)または`block`に設定します。
 
     セキュリティ設定には**Hidden**を選択します。
 1. 新しいバージョンを保存し、初めにステージング環境にデプロイし、[その後](https://techdocs.akamai.com/api-acceleration/docs/test-stage)本番環境にデプロイします。

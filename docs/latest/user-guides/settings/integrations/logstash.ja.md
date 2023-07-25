@@ -4,7 +4,7 @@ Wallarm Consoleで適切な統合を作成することにより、検出され�
 
 Logstashに送信する次のイベントを選択できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.ja.md"
 
 ## 通知形式
 
@@ -97,7 +97,7 @@ output {
 1. ターゲットLogstash URL (Webhook URL)を指定します。
 1. 必要に応じて、詳細設定を設定します：
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.ja.md"
 1. 指定されたURLに通知を送信するトリガーとなるイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
 1. [統合をテスト](#統合のテスト)し、設定が正しいことを確認します。
 1. **統合を追加**をクリックします。
@@ -106,7 +106,7 @@ output {
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.ja.md"
 
 テストLogstashログ：
 
@@ -157,19 +157,19 @@ output {
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.ja.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.ja.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.ja.md"
 
 ## Logstashを中間データコレクタとして使用する
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.ja.md"
 
 例えば：
 
@@ -185,13 +185,13 @@ output {
 
     FluentdまたはLogstashとWallarmを統合するには、Wallarm Console UIの対応する統合カードを使用することができます。
 
-    他のデータコレクタとWallarmを統合するには、Wallarm Console UIの[webhook統合カード](webhook.md)を使用することができます。
+    他のデータコレクタとWallarmを統合するには、Wallarm Console UIの[webhook統合カード](webhook.ja.md)を使用することができます。
 
 私たちは人気のあるデータコレクタを設定してSIEMシステムにログを転送する統合のいくつかの例を紹介しました：
 
-* [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.md)
-* [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.md)
-* [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)
-* [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.md)
+* [Wallarm → Logstash → IBM QRadar](webhook-examples/logstash-qradar.ja.md)
+* [Wallarm → Logstash → Splunk Enterprise](webhook-examples/logstash-splunk.ja.md)
+* [Wallarm → Logstash → Micro Focus ArcSight Logger](webhook-examples/logstash-arcsight-logger.ja.md)
+* [Wallarm → Logstash → Datadog](webhook-examples/fluentd-logstash-datadog.ja.md)
 
-    Wallarmはまた、[Datadog APIを通じたDatadogとのネイティブな統合](datadog.md)もサポートしています。ネイティブ統合では、中間データコレクタの使用が必要ありません。
+    Wallarmはまた、[Datadog APIを通じたDatadogとのネイティブな統合](datadog.ja.md)もサポートしています。ネイティブ統合では、中間データコレクタの使用が必要ありません。

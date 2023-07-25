@@ -1,9 +1,9 @@
 # Wallarm特有のSidecarプロキシHelmチャートの値
 
-このドキュメントでは、[Wallarm Sidecarのデプロイ](deployment.md)や[アップグレード](../../../updating-migrating/sidecar-proxy.md)の際に変更できるWallarm特有のHelmチャートの値について説明します。Wallarm固有の他のチャートの値は、SidecarプロキシHelmチャートのグローバル設定用です。
+このドキュメントでは、[Wallarm Sidecarのデプロイ](deployment.ja.md)や[アップグレード](../../../updating-migrating/sidecar-proxy.ja.md)の際に変更できるWallarm特有のHelmチャートの値について説明します。Wallarm固有の他のチャートの値は、SidecarプロキシHelmチャートのグローバル設定用です。
 
 !!! info "グローバルとper-podの設定の優先順位"
-     Per-podのアノテーションは、Helmチャートの値よりも[優先されます](customization.md#configuration-area)。
+     Per-podのアノテーションは、Helmチャートの値よりも[優先されます](customization.ja.md#configuration-area)。
 
 Wallarm特有の[デフォルトの`values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)は以下のようになります。
 
@@ -40,8 +40,8 @@ config:
 
 Wallarm APIエンドポイント。次のいずれかが使用できます。
 
-* [USクラウド](../../../about-wallarm/overview.md#us-cloud)の場合: `us1.api.wallarm.com`
-* [EUクラウド](../../../about-wallarm/overview.md#eu-cloud)の場合（デフォルト）: `api.wallarm.com`
+* [USクラウド](../../../about-wallarm/overview.ja.md#us-cloud)の場合: `us1.api.wallarm.com`
+* [EUクラウド](../../../about-wallarm/overview.ja.md#eu-cloud)の場合（デフォルト）: `api.wallarm.com`
 
 ## config.wallarm.api.existingSecret
 
@@ -79,37 +79,37 @@ K8sのシークレットにノードトークンを保存して、Helmチャー�
 
 この値を`on`（デフォルト）に設定すると、NGINXサービスは緊急モードに入ることができます。proton.dbまたはカスタムルールセットがWallarm Cloudからダウンロードできない場合、この設定はWallarmモジュールを無効にし、NGINXを稼働させ続けます。
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-fallback`。
+[**Podのアノテーション**](pod-annotations.ja.md)：`sidecar.wallarm.io/wallarm-fallback`。
 
 ## config.wallarm.mode
 
-グローバルな[トラフィックフィルターモード](../../../admin-en/configure-wallarm-mode.md)。値の選択肢：
+グローバルな[トラフィックフィルターモード](../../../admin-en/configure-wallarm-mode.ja.md)。値の選択肢：
 
 * `monitoring` (デフォルト)
 * `safe_blocking`
 * `block`
 * `off`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-mode`。
+[**Podのアノテーション**](pod-annotations.ja.md)：`sidecar.wallarm.io/wallarm-mode`。
 
 ## config.wallarm.modeAllowOverride
 
-Cloud上の設定で `wallarm_mode`の値を上書きする[機能を管理する](../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override)。値の選択肢：
+Cloud上の設定で `wallarm_mode`の値を上書きする[機能を管理する](../../../admin-en/configure-wallarm-mode.ja.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override)。値の選択肢：
 
 * `on` (デフォルト)
 * `off`
 * `strict`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-mode-allow-override`。
+[**Podのアノテーション**](pod-annotations.ja.md)：`sidecar.wallarm.io/wallarm-mode-allow-override`。
 
 ## config.wallarm.enableLibDetection
 
-[libdetection](../../../about-wallarm/protecting-against-attacks.md#libdetection-overview) ライブラリを使用してSQLインジェクション攻撃の検証を追加で行うかどうか。値の選択肢：
+[libdetection](../../../about-wallarm/protecting-against-attacks.ja.md#libdetection-overview) ライブラリを使用してSQLインジェクション攻撃の検証を追加で行うかどうか。値の選択肢：
 
 * `on`(デフォルト)
 * `off`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-enable-libdetection`。
+[**Podのアノテーション**](pod-annotations.ja.md)：`sidecar.wallarm.io/wallarm-enable-libdetection`。
 
 ## config.wallarm.parseResponse
 
@@ -118,20 +118,20 @@ Cloud上の設定で `wallarm_mode`の値を上書きする[機能を管理す�
 * `on`(デフォルト)
 * `off`
 
-レスポンス解析は、[受動検出](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection)と[アクティブ脅威検証](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)の間の脆弱性検出に必要です。
+レスポンス解析は、[受動検出](../../../about-wallarm/detecting-vulnerabilities.ja.md#passive-detection)と[アクティブ脅威検証](../../../about-wallarm/detecting-vulnerabilities.ja.md#active-threat-verification)の間の脆弱性検出に必要です。
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-parse-response`。
+[**Podのアノテーション**](pod-annotations.ja.md)：`sidecar.wallarm.io/wallarm-parse-response`。
 
 ## config.wallarm.parseWebsocket
 
-WallarmはWebSocketsを完全にサポートしています。デフォルトでは、WebSocketsのメッセージは攻撃の解析対象にはなりません。この機能を強制するには、APIセキュリティ[サブスクリプションプラン](../../../about-wallarm/subscription-plans.md#subscription-plans)を有効にして、この設定を使用してください。
+WallarmはWebSocketsを完全にサポートしています。デフォルトでは、WebSocketsのメッセージは攻撃の解析対象にはなりません。この機能を強制するには、APIセキュリティ[サブスクリプションプラン](../../../about-wallarm/subscription-plans.ja.md#subscription-plans)を有効にして、この設定を使用してください。
 
 値の選択肢：
 
 * `on`
 * `off` (デフォルト)
 
-[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket` 。
+[**Podのアノテーション**](pod-annotations.ja.md): `sidecar.wallarm.io/wallarm-parse-websocket` 。
 
 ## config.wallarm.unpackResponse
 
@@ -140,4 +140,4 @@ WallarmはWebSocketsを完全にサポートしています。デフォルトで
 * `on`(デフォルト)
 * `off` 
 
-[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`。
+[**Podのアノテーション**](pod-annotations.ja.md): `sidecar.wallarm.io/wallarm-unpack-response`。

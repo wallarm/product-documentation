@@ -1,24 +1,24 @@
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.ja.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.ja.md
-[doc-monitoring]:             ../../../admin-en/monitoring/intro.md
-[waf-mode-instr]:             ../../../admin-en/configure-wallarm-mode.md
-[logging-instr]:              ../../../admin-en/configure-logging.md
+[doc-monitoring]:             ../../../admin-en/monitoring/intro.ja.md
+[waf-mode-instr]:             ../../../admin-en/configure-wallarm-mode.ja.md
+[logging-instr]:              ../../../admin-en/configure-logging.ja.md
 [proxy-balancer-instr]:       ../../../admin-en/using-proxy-or-balancer-en.ja.md
 [process-time-limit-instr]:   ../../../admin-en/configure-parameters-en.ja.md#wallarm_process_time_limit
-[allocating-memory-guide]:    ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[allocating-memory-guide]:    ../../../admin-en/configuration-guides/allocate-resources-for-node.ja.md
 [nginx-waf-directives]:       ../../../admin-en/configure-parameters-en.ja.md
 [mount-config-instr]:         #run-the-container-mounting-the-configuration-file
-[graylist-docs]:              ../../../user-guides/ip-lists/graylist.md
-[filtration-modes-docs]:      ../../../admin-en/configure-wallarm-mode.md
-[application-configuration]:  ../../../user-guides/settings/applications.md
-[ptrav-attack-docs]:          ../../../attacks-vulns-list.md#path-traversal
+[graylist-docs]:              ../../../user-guides/ip-lists/graylist.ja.md
+[filtration-modes-docs]:      ../../../admin-en/configure-wallarm-mode.ja.md
+[application-configuration]:  ../../../user-guides/settings/applications.ja.md
+[ptrav-attack-docs]:          ../../../attacks-vulns-list.ja.md#path-traversal
 [attacks-in-ui-image]:        ../../../images/admin-guides/test-attacks-quickstart.png
-[versioning-policy]:          ../../../updating-migrating/versioning-policy.md#version-list
-[node-status-docs]:           ../../../admin-en/configure-statistics-service.md
-[node-token]:                 ../../../quickstart.md#deploy-the-wallarm-filtering-node
-[api-token]:                  ../../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:        ../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
-[platform]:                   ../../../installation/supported-deployment-options.md
+[versioning-policy]:          ../../../updating-migrating/versioning-policy.ja.md#version-list
+[node-status-docs]:           ../../../admin-en/configure-statistics-service.ja.md
+[node-token]:                 ../../../quickstart.ja.md#deploy-the-wallarm-filtering-node
+[api-token]:                  ../../../user-guides/settings/api-tokens.ja.md
+[wallarm-token-types]:        ../../../user-guides/nodes/nodes.ja.md#api-and-node-tokens-for-node-creation
+[platform]:                   ../../../installation/supported-deployment-options.ja.md
 
 # Docker NGINXベースのイメージの実行
 
@@ -26,21 +26,21 @@ Wallarm NGINXベースのフィルタリングノードは、Dockerコンテナ�
 
 Dockerコンテナ内にインストールされたフィルタリングノードの機能は、他のデプロイメントオプションの機能と全く同一です。
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.ja.md"
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-4.0.ja.md"
 
 ## コンテナを実行するためのオプション
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include/waf/installation/docker-running-options.ja.md"
 
 ## 環境変数を渡してコンテナを実行する
 
 コンテナを実行するには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.ja.md"
 
 1. ノードと共にコンテナを実行します：
 
@@ -55,7 +55,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
 以下の基本的なフィルタリングノード設定を、オプション`-e`を介してコンテナに渡すことができます：
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.ja.md"
 
 このコマンドは以下の操作を行います：
 
@@ -76,7 +76,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
 コンテナを実行するには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include/waf/installation/get-api-or-node-token.ja.md"
 
 1. ノードと共にコンテナを実行します：
 
@@ -91,7 +91,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 
     * `-e`オプションは、必要な環境変数をコンテナに渡します：
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.ja.md"
     
     * `-v`オプションは、設定ファイル`default`を含むディレクトリをコンテナディレクトリ`/etc/nginx/sites-enabled`にマウントします。
 
@@ -145,7 +145,7 @@ Dockerコンテナ内にインストールされたフィルタリングノー�
 * `/var/log/nginx` — NGINXのログ
 * `/var/log/wallarm` — Wallarmノードのログ
 
-フィルタリングノード変数の詳細なログを設定するには、これらの[手順](../../../admin-en/configure-logging.md)を使用してください。
+フィルタリングノード変数の詳細なログを設定するには、これらの[手順](../../../admin-en/configure-logging.ja.md)を使用してください。
 
 デフォルトでは、ログは24時間ごとに1回ローテーションします。ログのローテーションを設定するには、`/etc/logrotate.d/`の設定ファイルを変更します。環境変数を通じてローテーションパラメータを変更することはできません。
 
@@ -167,10 +167,10 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Wallarmノードの動作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.ja.md"
 
 ## ユースケースの設定
 
 Dockerコンテナにマウントされた設定ファイルには、[利用可能なディレクティブ](../../../admin-en/configure-parameters-en.ja.md)でフィルタリングノードの設定を記述する必要があります。以下に一般的に使用されるフィルタリングノード設定オプションのいくつかを示します：
 
---8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"
+--8<-- "../include/waf/installation/common-customization-options-docker-4.4.ja.md"

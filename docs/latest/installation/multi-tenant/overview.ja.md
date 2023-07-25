@@ -38,5 +38,5 @@ Wallarmは、Wallarm Consoleおよびその他のコンポーネントのカス�
 マルチテナント機能はデフォルトでは非アクティブです。機能を有効にして構成するには：
 
 1. サブスクリプションプランに**マルチテナントシステム**機能を追加するために [sales@wallarm.com](mailto:sales@wallarm.com) にリクエストを送信します。
-2. Wallarm Consoleでテナントアカウントを[構成](configure-accounts.md)します。
-3. マルチテナントWallarmノードを[展開および構成](deploy-multi-tenant-node.md)します。
+2. Wallarm Consoleでテナントアカウントを[構成](configure-accounts.ja.md)します。
+3. マルチテナントWallarmノードを[展開および構成](deploy-multi-tenant-node.ja.md)します。

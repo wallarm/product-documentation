@@ -1,11 +1,11 @@
-[link-check-attack]: check-attack.md
-[link-false-attack]: false-attack.md
+[link-check-attack]: check-attack.ja.md
+[link-false-attack]: false-attack.ja.md
 
 [img-analyze-attack]: ../../images/user-guides/events/analyze-attack.png
 [img-analyze-attack-raw]: ../../images/user-guides/events/analyze-attack-raw.png
 [img-current-attack]: ../../images/user-guides/events/analyze-current-attack.png
 
-[glossary-attack-vector]: ../../glossary-en.md#malicious-payload
+[glossary-attack-vector]: ../../glossary-en.ja.md#malicious-payload
 
 # アタックの分析
 
@@ -33,7 +33,7 @@ Wallarmは、関連する悪意のあるリクエストを1つのエンティテ
 * *Source*：リクエストが発信されたIPアドレス。IPアドレスをクリックすると、IPアドレスの値が検索フィールドに追加されます。また、IP2Locationなどのデータベースに見つかった場合には、以下の情報も表示されます。
      * IPアドレスが登録されている国/地域。
      * ソースタイプ（例：**Proxy**、**Tor**、IPが登録されているクラウドプラットフォームなど）。
-* *Code*：リクエストからのサーバーのレスポンスステータスコード。フィルタリングノードがリクエストをブロックした場合、コードは`403`または別の[カスタム値](../../admin-en/configuration-guides/configure-block-page-and-code.md)になります。
+* *Code*：リクエストからのサーバーのレスポンスステータスコード。フィルタリングノードがリクエストをブロックした場合、コードは`403`または別の[カスタム値](../../admin-en/configuration-guides/configure-block-page-and-code.ja.md)になります。
 * *Size*：サーバーのレスポンスサイズ。
 * *Time*：サーバーのレスポンス時間。
 
@@ -43,11 +43,11 @@ Wallarmは、関連する悪意のあるリクエストを1つのエンティテ
 
 リクエストビューには、Wallarm動作の微調整に役立つ以下のオプションが提供されています。
 
-* [**偽陽性としてマーク**および**False**](false-attack.md)で、アタックとしてフラグされた正当なリクエストを報告します。
+* [**偽陽性としてマーク**および**False**](false-attack.ja.md)で、アタックとしてフラグされた正当なリクエストを報告します。
 * **Disable base64**で、base64パーサーがリクエスト要素に誤って適用されたことを示します。
 
-    ボタンは、[パーサーを無効にするルール](../rules/disable-request-parsers.md)を設定するための事前入力済みのフォームを開きます。
-* **Rule**で、特定のリクエストを処理するための[任意の個別ルール](../rules/add-rule.md#rule)を作成します。
+    ボタンは、[パーサーを無効にするルール](../rules/disable-request-parsers.ja.md)を設定するための事前入力済みのフォームを開きます。
+* **Rule**で、特定のリクエストを処理するための[任意の個別ルール](../rules/add-rule.ja.md#rule)を作成します。
 
     ボタンは、リクエストデータが事前入力されたルール設定フォームを開きます。
 
@@ -61,21 +61,21 @@ Wallarmは、関連する悪意のあるリクエストを1つのエンティテ
 
 ## ヒットのサンプリング
 
-悪意のあるトラフィックは、多くの場合比較可能で同一の[ヒット](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)で構成されています。全てのヒットを保存すると、イベントリストに重複したエントリが追加され、Wallarm Cloudのアナリティクスの時間と負荷が増加します。
+悪意のあるトラフィックは、多くの場合比較可能で同一の[ヒット](../../about-wallarm/protecting-against-attacks.ja.md#what-is-attack-and-what-are-attack-components)で構成されています。全てのヒットを保存すると、イベントリストに重複したエントリが追加され、Wallarm Cloudのアナリティクスの時間と負荷が増加します。
 
 ヒットサンプリングは、非ユニークなヒットをWallarm Cloudにアップロードされないようにすることで、データの保存と分析を最適化します。
 
 !!! warning "RPS内のドロップされたヒット"
     送信されたリクエストは、Wallarmノードによって処理されたリクエストであるため、RPS値は、ドロップされたリクエストごとにノード詳細UIが増加します。
 
-    [Threat Preventionダッシュボード](../dashboards/threat-prevention.md)のリクエスト数とヒット数には、ドロップされたヒット数も含まれます。
+    [Threat Preventionダッシュボード](../dashboards/threat-prevention.ja.md)のリクエスト数とヒット数には、ドロップされたヒット数も含まれます。
 
-ヒットサンプリングは、アタック検出の品質に影響せず、遅延を回避するだけです。Wallarmノードは、ヒットサンプリングが有効になっている場合でも、アタック検出と[ブロック](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を続行します。
+ヒットサンプリングは、アタック検出の品質に影響せず、遅延を回避するだけです。Wallarmノードは、ヒットサンプリングが有効になっている場合でも、アタック検出と[ブロック](../../admin-en/configure-wallarm-mode.ja.md#available-filtration-modes)を続行します。
 
 ### サンプリングアルゴリズムの有効化
 
-* [入力検証攻撃](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)の場合、ヒットサンプリングはデフォルトでは無効です。トラフィック内のアタックの割合が高い場合、ヒットサンプリングは**極端**と**通常**の2つの段階で行われます。
-* [行動攻撃](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[Data bomb](../../attacks-vulns-list.md#data-bomb)および[Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources)の攻撃の場合：**通常**のサンプリングアルゴリズムがデフォルトで有効になっています。**極端**なサンプリングは、トラフィック内の攻撃の割合が高い場合にのみ開始されます。
+* [入力検証攻撃](../../about-wallarm/protecting-against-attacks.ja.md#input-validation-attacks)の場合、ヒットサンプリングはデフォルトでは無効です。トラフィック内のアタックの割合が高い場合、ヒットサンプリングは**極端**と**通常**の2つの段階で行われます。
+* [行動攻撃](../../about-wallarm/protecting-against-attacks.ja.md#behavioral-attacks)、[Data bomb](../../attacks-vulns-list.ja.md#data-bomb)および[Resource overlimiting](../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources)の攻撃の場合：**通常**のサンプリングアルゴリズムがデフォルトで有効になっています。**極端**なサンプリングは、トラフィック内の攻撃の割合が高い場合にのみ開始されます。
 
 サンプリングアルゴリズムが有効になっていると、**エベント**セクションでは、**ヒットサンプリングが有効**という通知が表示されます。
 
@@ -83,14 +83,14 @@ Wallarmは、関連する悪意のあるリクエストを1つのエンティテ
 
 ヒットサンプリングは、**極端**および**通常**の2つの段階で順次実行されます。
 
-通常のアルゴリズムは、極端な段階の後に保存されたヒットのみを処理し、ヒットが[行動](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[データ爆弾](../../attacks-vulns-list.md#data-bomb)、または[リソースオーバーリミット](../../attacks-vulns-list.md#overlimiting-of-computational-resources)のタイプでない限りです。これらのタイプのヒットに対して極端なサンプリングが無効になっている場合、通常のアルゴリズムは元のヒットセットを処理します。
+通常のアルゴリズムは、極端な段階の後に保存されたヒットのみを処理し、ヒットが[行動](../../about-wallarm/protecting-against-attacks.ja.md#behavioral-attacks)、[データ爆弾](../../attacks-vulns-list.ja.md#data-bomb)、または[リソースオーバーリミット](../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources)のタイプでない限りです。これらのタイプのヒットに対して極端なサンプリングが無効になっている場合、通常のアルゴリズムは元のヒットセットを処理します。
 
 **極端なサンプリング**
 
 極端なサンプリングアルゴリズムには、次のコアロジックがあります：
 
-* ヒットが[入力検証](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks)タイプの場合、アルゴリズムはユニークな[悪意のあるペイロード](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)を持つものだけをクラウドにアップロードします。同じペイロードを持つ複数のヒットが1時間以内に検出された場合、最初のヒットのみがクラウドにアップロードされ、他のヒットは破棄されます。
-* ヒットが[行動](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)、[データ爆弾](../../attacks-vulns-list.md#data-bomb)、または[リソースオーバーリミット](../../attacks-vulns-list.md#overlimiting-of-computational-resources)タイプの場合、アルゴリズムは、1時間以内に検出された最初の10％のみをクラウドにアップロードします。
+* ヒットが[入力検証](../../about-wallarm/protecting-against-attacks.ja.md#input-validation-attacks)タイプの場合、アルゴリズムはユニークな[悪意のあるペイロード](../../about-wallarm/protecting-against-attacks.ja.md#what-is-attack-and-what-are-attack-components)を持つものだけをクラウドにアップロードします。同じペイロードを持つ複数のヒットが1時間以内に検出された場合、最初のヒットのみがクラウドにアップロードされ、他のヒットは破棄されます。
+* ヒットが[行動](../../about-wallarm/protecting-against-attacks.ja.md#behavioral-attacks)、[データ爆弾](../../attacks-vulns-list.ja.md#data-bomb)、または[リソースオーバーリミット](../../attacks-vulns-list.ja.md#overlimiting-of-computational-resources)タイプの場合、アルゴリズムは、1時間以内に検出された最初の10％のみをクラウドにアップロードします。
 
 **通常のサンプリング**
 
@@ -106,13 +106,13 @@ Wallarmは、関連する悪意のあるリクエストを1つのエンティテ
     * 要求メソッド
     * レスポンスコード
     * 発信元IPアドレス
-2. ヒットサンプルがイベントリスト内の[攻撃](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components)にグループ化されます。
+2. ヒットサンプルがイベントリスト内の[攻撃](../../about-wallarm/protecting-against-attacks.ja.md#what-is-attack-and-what-are-attack-components)にグループ化されます。
 
 グループ化されたヒットは、Wallarm Consoleの**イベント**セクションに次のように表示されます：
 
 ![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
-サンプリングされたヒットのみを表示するイベントリストをフィルタリングするには、**ヒットサンプリングが有効**通知をクリックします。`sampled` 属性が検索フィールドに[追加](../search-and-filters/use-search.md#search-for-sampled-hits)され、イベントリストにサンプリングされたヒットのみが表示されます。
+サンプリングされたヒットのみを表示するイベントリストをフィルタリングするには、**ヒットサンプリングが有効**通知をクリックします。`sampled` 属性が検索フィールドに[追加](../search-and-filters/use-search.ja.md#search-for-sampled-hits)され、イベントリストにサンプリングされたヒットのみが表示されます。
 
 !!! info "イベントリストでドロップされたヒットを表示する"
      ドロップされたヒットはWallarmクラウドにアップロードされないため、特定のヒットまたは全体の攻撃がイベントリストに欠落している場合があります。

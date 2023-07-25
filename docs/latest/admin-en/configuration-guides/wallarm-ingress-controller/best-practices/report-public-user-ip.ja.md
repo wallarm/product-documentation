@@ -4,7 +4,7 @@
 
 デフォルトでは、Ingressコントローラーは、インターネットに直接公開されており、接続するクライアントのIPアドレスが実際のIPアドレスであると想定しています。ただし、リクエストは、ロードバランサー（例: AWS ELBまたはGoogle Network Load Balancer）を経由して、Ingressコントローラーに送信されることがあります。
 
-コントローラーがロードバランサーの背後に配置されている場合、IngressコントローラーはロードバランサーのIPを実際のエンドユーザーIPとみなし、[一部のWallarm機能の誤動作](../../../using-proxy-or-balancer-en.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address)につながる可能性があります。適切なエンドユーザーIPアドレスをIngressコントローラーに報告するには、以下のようにコントローラーを設定してください。
+コントローラーがロードバランサーの背後に配置されている場合、IngressコントローラーはロードバランサーのIPを実際のエンドユーザーIPとみなし、[一部のWallarm機能の誤動作](../../../using-proxy-or-balancer-en.ja.md#possible-problems-of-using-a-proxy-server-or-load-balancer-ip-address-as-a-request-source-address)につながる可能性があります。適切なエンドユーザーIPアドレスをIngressコントローラーに報告するには、以下のようにコントローラーを設定してください。
 
 ## ステップ1：ネットワークレイヤーで実際のクライアントIPの通過を有効にする
 

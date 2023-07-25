@@ -1,8 +1,8 @@
 # API漏洩対策
 
-Wallarmプラットフォームの**API漏洩**モジュールは、公開リポジトリや情報源を積極的にスキャンし、APIトークンの漏洩をチェックします。そして、デプロイされたWallarm [ノード](../installation/supported-deployment-options.md)を用いて漏洩した認証情報の使用をブロックすることが可能にします。この記事では、API漏洩が対応する問題、その目的、および主な可能性について概説します。
+Wallarmプラットフォームの**API漏洩**モジュールは、公開リポジトリや情報源を積極的にスキャンし、APIトークンの漏洩をチェックします。そして、デプロイされたWallarm [ノード](../installation/supported-deployment-options.ja.md)を用いて漏洩した認証情報の使用をブロックすることが可能にします。この記事では、API漏洩が対応する問題、その目的、および主な可能性について概説します。
 
-**API漏洩**モジュールの使用方法については、それの[ユーザーガイド](../user-guides/api-leaks.md)をご参照ください。
+**API漏洩**モジュールの使用方法については、それの[ユーザーガイド](../user-guides/api-leaks.ja.md)をご参照ください。
 
 ![!API漏洩](../images/about-wallarm-waf/api-leaks/api-leaks.png)
 
@@ -29,5 +29,5 @@ Wallarmの**API漏洩**モジュールは、以下を提供することでこれ
 
 ## API漏洩へのアクセス
 
-* 漏洩したAPIトークンの脅威を軽減するために、Wallarm [ノード](../user-guides/nodes/nodes.md)をデプロイする必要があります。
+* 漏洩したAPIトークンの脅威を軽減するために、Wallarm [ノード](../user-guides/nodes/nodes.ja.md)をデプロイする必要があります。
 * デフォルトでは、API漏洩モジュールは無効化されています。モジュールにアクセスするには、[Wallarmテクニカルサポート](mailto:support@wallarm.com)にリクエストを送ってください。
