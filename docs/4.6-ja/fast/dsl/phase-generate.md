@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/phase-generate.md"
+--8<-- "latest-ja/fast/dsl/phase-generate.md"

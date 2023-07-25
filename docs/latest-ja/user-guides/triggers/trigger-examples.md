@@ -1,18 +1,18 @@
-					# トリガーの例
+# トリガーの例
 
-[Wallarm のトリガー](triggers.md) の実例を学び、この機能を理解し、適切にトリガーを設定してください。
+[Wallarmトリガー](triggers.md)の実際の例を学び、この機能を理解し、トリガーを適切に設定するためのリファレンスとしてください。
 
-## 1時間で4つ以上の悪意のあるペイロードが検出された場合、IPをグレーリストに登録
+## 1時間に4つ以上の悪意のあるペイロードが検出された場合、IPをグレーリストに登録
 
-1つのIPアドレスから保護されたリソースに4つ以上の異なる悪意のあるペイロードが送信されると、このIPアドレスは1時間のグレーリストに登録されます。
+IPアドレスから保護されたリソースに対して4つ以上の異なる悪意のあるペイロードが送信された場合、そのIPアドレスは1時間グレーリストに登録されます。
 
-最近 Wallarm のアカウントを作成した場合、この[トリガーは既に作成され、有効化されています](triggers.md#pre-configured-triggers-default-triggers)。手動で作成したトリガーと同様に、このトリガーを編集、無効化、削除、またはコピーできます。
+最近Wallarmのアカウントを作成した場合、この[トリガーは既に作成され、有効化](triggers.md#pre-configured-triggers-default-triggers)されています。このトリガーを編集、無効化、削除、またはコピーしたり、手動で作成したトリガーを編集できます。
 
-![!グレーリストへのトリガー](../../images/user-guides/triggers/trigger-example-graylist.png)
+![!グレーリスティングトリガー](../../images/user-guides/triggers/trigger-example-graylist.png)
 
-**トリガーのテスト方法：**
+**トリガーのテスト方法:**
 
-1. 以下のリクエストを保護されたリソースに送信します。
+1. 以下のリクエストを保護されたリソースに送信します:
 
     ```bash
     curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
@@ -20,25 +20,25 @@
     curl http://localhost/instructions.php/etc/passwd
     ```
 
-    [SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、および[Path Traversal](../../attacks-vulns-list.md#path-traversal)タイプの4つの悪意のあるペイロードがあります。
-1. Wallarm Console → **IPリスト** → **グレーリスト**を開いて、リクエストの発信元となるIPアドレスが1時間のグレーリストに登録されていることを確認してください。
-1. **イベント**セクションを開いて、リストに表示されている攻撃を確認します。
+    上記は、[SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、及び [Path Traversal](../../attacks-vulns-list.md#path-traversal) の4つの悪意のあるペイロードの例です。
+1. Wallarm Consoleを開き、**IPリスト** → **グレーリスト**を選択し、リクエストが送信されたIPアドレスが1時間グレーリストに登録されていることを確認します。
+1. **イベント**セクションを開き、攻撃がリストに表示されていることを確認します:
 
-    ![!UIでの3つの悪意のあるペイロード](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![!UI内の3つの悪意あるパヨロード](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    攻撃を検索するために、フィルタを使用できます。例えば、[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃の場合は `sqli`、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃の場合は `xss`、[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃の場合は `ptrav`。すべてのフィルタは、[検索の使用に関する説明書](../../user-guides/search-and-filters/use-search.md)で説明されています。
+    攻撃を検索するためにはフィルタを使用できます。例えば、[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃の場合は`sqli`、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃の場合は`xss`、[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃の場合は`ptrav`を用います。全てのフィルタについては、[検索使用に関する説明](../../user-guides/search-and-filters/use-search.md)をご覧ください。
 
-トリガーは、任意のノードフィルタリングモードでリリースされ、ノードモードに関係なくIPをグレーリストに登録します。ただし、ノードは **安全なブロック** モードでのみグレーリストを解析します。グレーリストに登録されたIPからの悪意のあるリクエストをブロックするには、まずその機能を学んでから、ノード[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を安全ブロックに切り替えてください。
+トリガーは、ノードのフィルタリングモードに関係なく適用され、IPアドレスをグレーリストに追加します。ただし、ノードは**安全ブロッキング**モード時のみグレーリストを分析します。グレーリスト化されたIPからの悪意のあるリクエストをブロックするには、ノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)を安全ブロッキングに切り替え、その特性を理解してから使用します。
 
-## 1時間で4つ以上の悪意のあるペイロードが検出された場合、IPをブラックリストに登録
+## 1時間に4つ以上の悪意のあるペイロードが検出された場合、IPをブロックリストに登録
 
-1つのIPアドレスから保護されたリソースに[4つ以上の異なる悪意のあるペイロード](../../glossary-en.md#malicious-payload)が送信されると、このIPアドレスは1時間のブラックリストに登録されます。
+IPアドレスから保護されたリソースに対して4つ以上の異なる[悪意のあるペイロード](../../glossary-en.md#malicious-payload)が送信された場合、そのIPアドレスは1時間ブロックリストに登録されます。
 
 ![!デフォルトのトリガー](../../images/user-guides/triggers/trigger-example-default.png)
 
 **トリガーのテスト方法：**
 
-1. 以下のリクエストを保護されたリソースに送信します。
+1. 以下のリクエストを保護されたリソースに送信:
 
     ```bash
     curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
@@ -46,202 +46,202 @@
     curl http://localhost/instructions.php/etc/passwd
     ```
 
-    [SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、および[Path Traversal](../../attacks-vulns-list.md#path-traversal)タイプの4つの悪意のあるペイロードがあります。
-2. Wallarm Console → **IPリスト** → **ブラックリスト**を開いて、リクエストの発信元となるIPアドレスが1時間のブラックリストに登録されていることを確認してください。
-1. **イベント**セクションを開いて、リストに表示されている攻撃を確認します。
+    上記は、[SQLi](../../attacks-vulns-list.md#sql-injection)、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)、及び [Path Traversal](../../attacks-vulns-list.md#path-traversal) の4つの悪意のあるペイロードの例です。
+2. Wallarm Consoleを開き、**IPリスト** → **ブロックリスト**を選択し、リクエストが送信されたIPアドレスが1時間ブロックリストに登録されていることを確認します。
+1. **イベント**セクションを開き、攻撃がリストに表示されていることを確認します:
 
-    ![!UIでの3つの悪意のあるペイロード](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
+    ![!UI内の3つの悪意あるパヨロード](../../images/user-guides/triggers/test-3-attack-vectors-events.png)
 
-    攻撃を検索するために、フィルタを使用できます。例えば、[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃の場合は `sqli`、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃の場合は `xss`、[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃の場合は `ptrav`。すべてのフィルタは、[検索の使用に関する説明書](../../user-guides/search-and-filters/use-search.md)で説明されています。
+    攻撃を検索するためにはフィルタを使用できます。例えば、[SQLi](../../attacks-vulns-list.md#sql-injection)攻撃の場合は`sqli`、[XSS](../../attacks-vulns-list.md#crosssite-scripting-xss)攻撃の場合は`xss`、[Path Traversal](../../attacks-vulns-list.md#path-traversal)攻撃の場合は`ptrav`を用います。全てのフィルタについては、[検索使用に関する説明](../../user-guides/search-and-filters/use-search.md)をご覧ください。
 
-このトリガーによってIPアドレスがブラックリストに登録された場合、フィルタリングノードはこのIPからのすべての悪意のあるリクエストと正当なリクエストをブロックします。正当なリクエストを許可するには、[グレーリストトリガー](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)を設定してください。
+このトリガーによりIPアドレスがブロックリストに登録された場合、フィルタリングノードはそのIPから発信された全ての悪意のあるリクエストと正当なリクエストをブロックします。正当なリクエストを許可するには、[グレーリスティングトリガー](#graylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)を設定できます。
 
-## 保護対象リソースに対して31回以上リクエストが送信された場合、ブルートフォース攻撃としてリクエストをマーク
+## 保護されたリソースに対して31回以上のリクエストが送信された場合、リクエストを総力攻撃としてマーク
 
-リクエストを通常のブルートフォース攻撃としてマークするには、**ブルートフォース**の条件を持つトリガーを設定する必要があります。
+リクエストを通常の総力攻撃としてマークするためには、**総力攻撃**の条件でトリガーを設定すべきです。
 
-`https://example.com/api/v1/login` に30秒間で31回以上リクエストが送信されると、これらのリクエストは[ブルートフォース攻撃](../../attacks-vulns-list.md#bruteforce-attack)としてマークされ、リクエストの発信元となるIPアドレスがブラックリストに登録されます。
+`https://example.com/api/v1/login`に対して30秒間に31回以上のリクエストが送信された場合、これらのリクエストは[総力攻撃](../../attacks-vulns-list.md#bruteforce-attack)としてマークされ、それらのリクエストが始まったIPアドレスがブロックリストに追加されます。
 
-![!カウンター付きブルートフォーストリガー](../../images/user-guides/triggers/trigger-example6.png)
+![!カウンター付き総力攻撃トリガー](../../images/user-guides/triggers/trigger-example6.png)
 
-[ブルートフォース保護の設定とトリガーテストの詳細→](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+[総力攻撃防御とトリガーテストに関する詳細 →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## 404コードが31回以上のリクエストに対して返された場合、強制ブラウジング攻撃としてリクエストをマーク
+## 404コードが31回以上返されたリクエストを強制ブラウジング攻撃としてマーク
 
-リクエストを強制ブラウジング攻撃としてマークするには、**強制ブラウジング**の条件を持つトリガーを設定する必要があります。
+リクエストを強制ブラウジング攻撃としてマークするためには、**強制ブラウジング**の条件でトリガーを設定すべきです。
 
-エンドポイント `https://example.com/**.*` が30秒間で31回以上の404レスポンスコードを返すと、適切なリクエストは[強制ブラウジング攻撃](../../attacks-vulns-list.md#forced-browsing)としてマークされ、これらのリクエストのソースIPアドレスがブロックされます。
+エンドポイント `https://example.com/**.**` が30秒間に31回以上404応答コードを返した場合、該当するリクエストは[強制ブラウジング攻撃](../../attacks-vulns-list.md#forced-browsing)としてマークされ、これらのリクエストの送信元IPアドレスはブロックされます。
 
-URIの値と一致するエンドポイントの例は、`https://example.com/config.json`、`https://example.com/password.txt` などです。
+URIの値に適合するエンドポイントの例としては `https://example.com/config.json`、`https://example.com/password.txt`があります。
 
-![!強制ブラウジングトリガー](../../images/user-guides/triggers/trigger-example5.png)
+![!強制ブラウジングトトリガー](../../images/user-guides/triggers/trigger-example5.png)
 
-[ブルートフォース保護の設定とトリガーテストの詳細→](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
+[総力攻撃防御とトリガーテストに関する詳細 →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
-## BOLA攻撃としてリクエストをマーク
+## リクエストをBOLA攻撃としてマーク
 
-`https://example.com/shops/{shop_id}/financial_info` に30秒間で31回以上のリクエストが送信されると、これらのリクエストは [BOLA攻撃](../../attacks-vulns-list.md#broken-object-level-authorization-bola)としてマークされ、リクエストの発信元となるIPアドレスがブラックリストに登録されます。
+`https://example.com/shops/{shop_id}/financial_info`に対して30秒間に31回以上のリクエストが送信された場合、これらのリクエストは[BOLA攻撃](../../attacks-vulns-list.md#broken-object-level-authorization-bola)としてマークされ、それらのリクエストが始まったIPアドレスがブロックリストに追加されます。
 
 ![!BOLAトリガー](../../images/user-guides/triggers/trigger-example7.png)
 
-[BOLA保護の設定とトリガーテストの詳細→](../../admin-en/configuration-guides/protecting-against-bola.md)
+[BOLAの保護とトリガーテストの設定詳細 →](../../admin-en/configuration-guides/protecting-against-bola.md)
 
-## 弱い JWT を検出
+## 弱いJWTの検出
 
-ノード4.4によって処理される大量の受信リクエストに弱い JWT が含まれている場合は、対応する[脆弱性](../vulnerabilities/check-vuln.md)を記録します。
+ノード4.4以上によって処理される着信リクエストのかなりの割合が弱いJWTを含む場合、対応する[脆弱性](../vulnerabilities.md)を記録します。
 
-弱い JWT とは、次の条件に該当するものです。
+弱いJWTとは、次のようなものです:
 
-* 暗号化されていない - 署名アルゴリズムがない（`alg` フィールドが `none` または欠落している）。
-* 侵害された秘密鍵を使用して署名されている
+* 未暗号化 - 署名アルゴリズムがない（`alg`フィールドが`none`または存在しない）。
+* コンプロミスされた秘密キーを使用して署名されている
 
-最近 Wallarm のアカウントを作成した場合、この[トリガーは既に作成され、有効化されています](triggers.md#pre-configured-triggers-default-triggers)。手動で作成したトリガーと同様に、このトリガーを編集、無効化、削除、またはコピーできます。
+最近Wallarmのアカウントを作成した場合、この[トリガーは既に作成され、有効化](triggers.md#pre-configured-triggers-default-triggers)されています。このトリガーを編集、無効化、削除、またはコピーしたり、手動で作成したトリガーを編集できます。
 
-![!JWTを弱いと判断するトリガーの例](../../images/user-guides/triggers/trigger-example-weak-jwt.png)
+![!弱いJWTに対するトリガーの例](../../images/user-guides/triggers/trigger-example-weak-jwt.png)
 
 **トリガーのテスト方法：**
 
-1. [侵害された秘密鍵](https://github.com/wallarm/jwt-secrets)を使用して署名された JWT を生成します。例：
+1. [コンプロミスされた秘密キー](https://github.com/wallarm/jwt-secrets)を使用してJWTを生成します。例えば:
 
     ```
     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlIjoiQWRtaW5pc3RyYXRvciJ9.p5DrumkF6oTBiUmdtDRT5YHqYL2D7p5YOp6quUrULYg
     ```
-1. 侵害されたJWTを使用して認証されたリクエストのトラフィックを生成します。
-1. ノード4.4によって処理される受信リクエストの大部分に弱いJWTが含まれている場合、Wallarm は脆弱性を登録します。例：
+1. コンプロミスされたJWTを使用して認証されたリクエストで一定のトラフィックを生成します。
+1. ノード4.4以上によって処理される着信リクエストのかなりの割合が弱いJWTを含む場合、Wallarmは脆弱性を登録します。例えば:
 
-    ![!JWT脆弱性の例](../../images/user-guides/vulnerabilities/weak-auth-vuln.png)## 1分以内に2回以上のSQLiヒットが検出された場合のSlack通知
+    ![!JWT 脆弱性の例](../../images/user-guides/vulnerabilities/weak-auth-vuln.png)## 1分間に2回以上のSQLiヒットが検出された場合のSlack通知
 
-2回以上のSQLi[ヒット](../../glossary-en.md#hit)が保護されたリソースに送信される場合、このイベントに関する通知がSlackチャンネルに送信されます。
+保護されたリソースに2回以上のSQLi[ヒット](../../glossary-en.md#hit)が送信されると、そのイベントについての通知がSlackチャンネルに送信されます。
 
-![!Slackに通知を送信するトリガーの例](../../images/user-guides/triggers/trigger-example1.png)
+![!Slackへの通知を送信するトリガーの例](../../images/user-guides/triggers/trigger-example1.png)
 
-**トリガーをテストするには：**
+**トリガーのテストをするには:**
 
-以下のリクエストを保護されたリソースに送信します。
+下記のリクエストを保護されたリソースに送信します:
 
 ```bash
 curl 'http://localhost/?id=1%27%20UNION%20SELECT%20username,%20password%20FROM%20users--<script>prompt(1)</script>'
 curl 'http://localhost/?id=1%27%20select%20version();'
 ```
-Slackチャンネルを開いて、**wallarm**からの次の通知を確認してください：
+その後、Slackチャンネルを開き、ユーザー**wallarm**から以下の通知が届いたことを確認します。
 
 ```
-[Wallarm] トリガー：検出されたヒット数が閾値を超えました
+[Wallarm] トリガー: 検出されたヒットの数が閾値を超えました
 
-通知タイプ：attacks_exceeded
+通知タイプ: attacks_exceeded
 
-1分間に検出されたヒット数が1を超えました。
-この通知は、「SQLiヒットに関する通知」トリガーによって引き起こされました。
+1分間で検出されたヒット数が1を超えました。
+この通知は「SQLiヒットに関する通知」のトリガーにより引き起こされました。
 
-追加のトリガーの条件：
-攻撃タイプ：SQLi。
+追加のトリガーの条項:
+攻撃タイプ: SQLi。
 
-イベントの表示：
+イベントを見る:
 https://my.wallarm.com/search?q=attacks&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
-クライアント：TestCompany
-クラウド：EU
+クライアント: TestCompany
+クラウド: EU
 ```
 
-* `SQLiヒットに関する通知` は、トリガー名です
-* `TestCompany` は、Wallarm Consoleのあなたの会社アカウントの名前です
-* `EU` は、あなたの会社アカウントが登録されているWallarmクラウドです
+* `SQLiヒットに関する通知`はトリガーの名前 
+* `TestCompany`はWallarm Console上のあなたの企業アカウントの名前
+* `EU`はあなたの企業アカウントが登録されているWallarm Cloud
 
-## 新しいユーザーがアカウントに追加された場合のSlackとメール通知
+## 新規ユーザーがアカウントに追加された場合のSlackとメール通知 
 
-Wallarm Consoleで**管理者**または**アナリスト**役割の新しいユーザーが会社のアカウントに追加される場合、このイベントに関する通知が統合のメールアドレスとSlackチャンネルに送信されます。
+Wallarm Console の企業アカウントに**管理者**または**アナリスト** 役割を持つ新規ユーザーが追加されると、このイベントについての通知が統合設定で指定されたメールアドレスとSlackチャンネルに送信されます。
 
-![!Slackおよび電子メールで通知を送信するトリガーの例](../../images/user-guides/triggers/trigger-example2.png)
+![!Slack およびメールへ通知を送信するトリガーの例](../../images/user-guides/triggers/trigger-example2.png)
 
-**トリガーをテストするには：**
+**トリガーをテストするには:**
 
-1. Wallarm Consoleを開いて → **設定** → **ユーザー** で新しいユーザーを追加します。例：
+1. Wallarm Consoleを開き、**設定** → **ユーザー**を選択し、新規ユーザーを追加します。例:
 
-    ![!追加されたユーザー](../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
-２．メールの受信箱を開いて、次のメッセージが届いたことを確認します：
+    ![!ユーザーの追加](../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+2. メールの受信トレイを開き、以下のメッセージが届いたことを確認します:
 
-    ![!新しいユーザーが追加されたことに関するメール](../../images/user-guides/triggers/test-new-user-email-message.png)
-３．Slackチャンネルを開いて、**wallarm**からの次の通知が届いたことを確認してください：
+    ![!新規ユーザー追加に関するメール](../../images/user-guides/triggers/test-new-user-email-message.png)
+3. Slack チャンネルを開き、ユーザー **wallarm**から以下の通知が届いたことを確認します:
 
     ```
-    [Wallarm] トリガー：新しいユーザーが会社アカウントに追加されました
+    [Wallarm] トリガー: 新規ユーザーが企業アカウントに追加されました
     
-    通知タイプ：create_user
+    通知タイプ: create_user
+    
+    新規ユーザー John Smith <johnsmith@example.com>がJohn Doe <johndoe@example.com> により、アナリスト 役割で企業アカウントに追加されました。
+    この通知は「ユーザー追加」のトリガーにより引き起こされました。
 
-    新しいユーザーJohn Smith <johnsmith@example.com>が、John Doe <johndoe@example.com>によって会社アカウントに追加されました。追加されたユーザーの役割はアナリストです。
-    この通知は、「ユーザー追加」トリガーによって引き起こされました。
-
-    クライアント：TestCompany
-    クラウド：EU
+    クライアント: TestCompany
+    クラウド: EU
     ```
 
-    * `John Smith` と `johnsmith@example.com` は、追加されたユーザーに関する情報です
-    * `アナリスト` は、追加されたユーザーの役割です
-    * `John Doe` と `johndoe@example.com` は、新しいユーザーを追加したユーザーに関する情報です
-    * `ユーザー追加` は、トリガー名です
-    * `TestCompany` は、Wallarm Consoleのあなたの会社アカウントの名前です
-    * `EU` は、あなたの会社アカウントが登録されているWallarmクラウドです
+    * `John Smith`と`johnsmith@example.com`は追加されたユーザーの情報
+    * `Analyst`は追加されたユーザーの役割
+    * `John Doe`と`johndoe@example.com`は新規ユーザーを追加したユーザーの情報
+    * `ユーザー追加`はトリガーの名前
+    * `TestCompany`はWallarm Console上のあなたの企業アカウントの名前
+    * `EU`はあなたの企業アカウントが登録されているWallarm Cloud
 
-## １秒以内に２回以上のインシデントが検出された場合のOpsgenie通知
+## 1秒以内に2回以上のインシデントが検出された場合のOpsgenie通知
 
-1秒以内にアプリケーションサーバーまたはデータベースのインシデントが2回以上検出された場合、このイベントに関する通知がOpsgenieに送信されます。
+1秒以内にアプリケーションサーバーまたはデータベースで2回以上のインシデントが検出されると、そのイベントについての通知が Opsgenie に送信されます。
 
-![!Splunkにデータを送信するトリガーの例](../../images/user-guides/triggers/trigger-example3.png)
+![!Splunkへのデータを送信するトリガーの例](../../images/user-guides/triggers/trigger-example3.png)
 
-**トリガーをテストするには**、保護されたリソースにアクティブな脆弱性を悪用する攻撃を送信する必要があります。Wallarm Console → **脆弱性**セクションでは、アプリケーションで検出されたアクティブな脆弱性と、これらの脆弱性を悪用する攻撃の例が表示されます。
+**トリガーをテストするには**、 保護されるリソースに対してアクティブな脆弱性を利用した攻撃を送信する必要があります。 Wallarm Console → **脆弱性**セクションでは、アプリケーションで検出されたアクティブな脆弱性と、これらの脆弱性を利用した攻撃の例が表示されます。
 
-攻撃例が保護対象のリソースに送信されると、Wallarmはインシデントを記録します。 2回以上の記録されたインシデントが、次の通知をOpsgenieに送信するトリガーになります：
+攻撃の例が保護されたリソースに送信されると、 Wallarmはインシデントを記録します。 記録された2回以上のインシデントが、Opsgenieに次の通知を送信するトリガーを引きます:
 
 ```
-[Wallarm] トリガー：インシデント数が閾値を超えました
+[Wallarm] トリガー: インシデントの数が閾値を超えました
 
-通知タイプ：incidents_exceeded
+通知タイプ: incidents_exceeded
 
-検出されたインシデント数が1を超えました。
-この通知は、「インシデントに関する通知」トリガーによって引き起こされました。
+検出されたインシデントの数が1秒以内に1を超えました。
+この通知は「インシデントに関する通知」のトリガーにより引き起こされました。
 
-追加のトリガーの条件：
-ターゲット：サーバー、データベース。
+追加のトリガーの条項:
+対象: サーバー, データベース。
 
-イベントの表示：
+イベントを見る:
 https://my.wallarm.com/search?q=incidents&time_from=XXXXXXXXXX&time_to=XXXXXXXXXX
 
-クライアント：TestCompany
-クラウド：EU
+クライアント: TestCompany
+クラウド: EU
 ```
 
-* `インシデントに関する通知` は、トリガー名です
-* `TestCompany` は、Wallarm Consoleのあなたの会社アカウントの名前です
-* `EU` は、あなたの会社アカウントが登録されているWallarmクラウドです
+* `インシデントに関する通知` はトリガーの名前
+* `TestCompany`はWallarm Console上のあなたの企業アカウントの名前
+* `EU`はあなたの企業アカウントが登録されているWallarm Cloud
 
-!!! info "アクティブな脆弱性の悪用からリソースを保護する"
-    リソースをアクティブな脆弱性の悪用から保護するために、タイムリーに脆弱性を修正することをお勧めします。アプリケーション側で脆弱性を修正できない場合は、この脆弱性を悪用する攻撃をブロックするために[仮想パッチ](../rules/vpatch-rule.md)を設定してください。
+!!! info "アクティブな脆弱性の悪用からのリソースの保護"
+    アクティブな脆弱性の悪用からリソースを保護するために、私たちは脆弱性を適時にパッチすることをお勧めします。 アプリケーション側で脆弱性をパッチすることができない場合、この脆弱性を悪用する攻撃をブロックするために、[仮想パッチ](../rules/vpatch-rule.md)を設定してください。
 
-## IPアドレスがdenylistに追加された場合のWebhook URLへの通知
+## IPアドレスが拒否リストに追加された場合のWebhook URLへの通知
 
-IPアドレスがdenylistに追加された場合、このイベントに関するウェブフックがWebhook URLに送信されます。
+IPアドレスが拒否リストに追加された場合、そのイベントについてのウェブフックがWebhook URLに送信されます。
 
-![!denylistに登録されたIP用のトリガーの例](../../images/user-guides/triggers/trigger-example4.png)
+![!拒否リストに追加されたIPのトリガーの例](../../images/user-guides/triggers/trigger-example4.png)
 
-**トリガーをテストするには：**
+**トリガーのテストをするには:**
 
-1. Wallarm Consoleを開いて → **IPリスト** → **Denylist** でIPアドレスをdenylistに追加します。例：
+1. Wallarm Consoleを開き、**IP リスト** → **拒否リスト**を選択し、IP アドレスを拒否リストに追加します。例:
 
-    ![!IPをdenylistに追加する](../../images/user-guides/triggers/test-ip-blocking.png)
-2. 次のウェブフックがWebhook URLに送信されたことを確認します：
+    ![!IPを拒否リストに追加](../../images/user-guides/triggers/test-ip-blocking.png)
+2. 以下のウェブフックがWebhook URLに送信されたことを確認します:
 
     ```
     [
         {
-            "summary": "[Wallarm] トリガー：新しいIPアドレスがdenylistに追加されました",
-            "description": "通知タイプ：ip_blocked\n\nIPアドレス1.1.1.1が2021-06-10 02:27:15 +0300までdenylistに登録されました。理由は多数の攻撃を発生させるためです。Wallarm Consoleの「Denylist」セクションで、ブロックされたIPアドレスを確認することができます。\nこの通知は、「denylisted IPに関する通知」トリガーによって引き起こされました。アプリケーション8番に対してIPがブロックされました。\n\nクライアント：TestCompany\nクラウド：EU\n",
+            "summary": "[Wallarm] トリガー: 新しいIPアドレスが拒否リストに追加されました",
+            "description": "通知タイプ: ip_blocked\n\nIPアドレス1.1.1.1は 多くの攻撃が発生したため2021-06-10 02:27:15 +0300まで拒否リストに追加されました。 Wallarm Consoleの 「拒否リスト」セクションで拒否されたIPアドレスを確認できます。\nこの通知は「拒否リストに追加されたIPの通知」のトリガーにより引き起こされました。 アプリケーション#8はIPをブロックしました。\n\nクライアント: TestCompany\nクラウド: EU\n",
             "details": {
             "client_name": "TestCompany",
             "cloud": "EU",
             "notification_type": "ip_blocked",
-            "trigger_name": "denylisted IPに関する通知",
-            "application": "Application #8",
-            "reason": "多数の攻撃を発生させる",
+            "trigger_name": "拒否リストに追加されたIPの通知",
+            "application": "アプリケーション#8",
+            "reason": "多くの攻撃が発生",
             "expire_at": "2021-06-10 02:27:15 +0300",
             "ip": "1.1.1.1"
             }
@@ -249,62 +249,62 @@ IPアドレスがdenylistに追加された場合、このイベントに関す�
     ]
     ```
 
-    * `denylisted IPに関する通知` は、トリガー名です
-    * `TestCompany` は、Wallarm Consoleのあなたの会社アカウントの名前です
-    * `EU` は、あなたの会社アカウントが登録されているWallarmクラウドです同じIPからのグループ化されたヒットを1つの攻撃にまとめる
+    * `拒否リストに追加されたIPの通知`はトリガーの名前 
+    * `TestCompany`はWallarm Console上のあなたの企業アカウントの名前
+    * `EU`はあなたの企業アカウントが登録されているWallarm Cloud
 
-15分間で同じIPアドレスから50回以上の[ヒット](../../about-wallarm/protecting-against-attacks.md#hit)が検出された場合、同じIPからの次のヒットは[イベントリスト](../events/check-attack.md)で1つの攻撃にグループ化されます。
+## 同じIPからのヒットを1つの攻撃にグループ化する
 
-Wallarmアカウントを最近作成した場合、この[トリガーは既に作成および有効化されています](triggers.md#pre-configured-triggers-default-triggers)。手動で作成されたトリガーと同様に、このトリガーを編集、無効化、削除、またはコピーすることができます。
+15分間に同じIPアドレスから50回以上の[ヒット](../../about-wallarm/protecting-against-attacks.md#hit)が検出されると、そのIPからの次のヒットは[イベントリスト](../events/check-attack.md)内で1つの攻撃にグループ化します。
 
-![!ヒットのグループ化のためのトリガー例](../../images/user-guides/triggers/trigger-example-group-hits.png)
+Wallarmアカウントを最近作成した場合は、この[トリガーはすでに作成されており、有効化されています](triggers.md#pre-configured-triggers-default-triggers)。手動で作成したトリガーと同様に、このトリガーを編集、無効化、削除、またはコピーすることができます。
 
-**トリガーをテストするには**、以下のように51回以上のヒットを送信します。
+![!ヒットのグルーピングのためのトリガーの例](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
-* すべてのヒットが15分間で送信される
-* ヒットの送信元のIPアドレスが同じである
-* 攻撃タイプや悪意のあるペイロード、ヒットが送信されるアドレスが異なるヒットが含まれる（基本的な方法によってヒットが[グループ化](../../about-wallarm/protecting-against-attacks.md#attack)されないようにするため）
-* 攻撃タイプは、Brute force、Forced browsing、Resource overlimit、Data bomb、Virtual patchとは異なる
+**トリガーをテストするには**、 以下の方法で51回以上のヒットを送信します:
 
-例：
+* 全てのヒットは15分間で送信されます
+* ヒット元のIPアドレスはすべて同じ
+* ヒットには異なる攻撃タイプや、悪意のあるペイロードを持つパラメータ、またはヒットが送信されるアドレスが含まれています(つまり、基本的な方法によってヒットが[グループ化](../../about-wallarm/protecting-against-attacks.md#attack)されないようにします)
+* 攻撃タイプは、ブルートフォース、フォースドブラウジング、リソース上限超過、データボム、仮想パッチとは異なります
 
-* `example.com`への10回のヒット
-* `test.com`への20回のヒット
-* `example-domain.com`への40回のヒット
+例えば:
 
-最初の50回のヒットは、イベントリストに個々のヒットとして表示されます。それ以降のヒットはすべて1つの攻撃にグループ化されます。例えば：
+* 10回のヒットを`example.com`に送る
+* 20回のヒットを`test.com`に送る
+* 40回のヒットを`example-domain.com`に送る
 
-![!IPでグループ化されたヒットを1つの攻撃として表示](../../images/user-guides/events/attack-from-grouped-hits.png)
+最初の50回のヒットは個々のヒットとしてイベントリストに表示されます。 次に送信されるすべてのヒットは1つの攻撃にグループ化されます。例えば:
 
-[**偽陽性としてマークする**](../events/false-attack.md#mark-an-attack-as-a-false-positive)ボタンと[アクティブな検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)オプションは、攻撃に対して使用できなくなります。
+![!同じIPからのヒットが1つの攻撃にグループ化される](../../images/user-guides/events/attack-from-grouped-hits.png)
 
-あなたのAPIインベントリの新しいエンドポイント
+攻撃に対する [**誤検出としてマーク**(../events/false-attack.md#mark-an-attack-as-a-false-positive) ボタンと、[アクティブ検証](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)オプションは利用できません。## APIインベントリの新しいエンドポイント
 
-APIに変更が発生することがあります。それらは [**API Discovery**](../../about-wallarm/api-discovery.md) モジュールによって検出されます。[変更](../../user-guides/api-discovery.md#tracking-changes-in-api)の例は以下の通りです。
+API内で変更が発生することがあります。これらは[**APIディスカバリ**](../../about-wallarm/api-discovery.md)モジュールによって発見されます。考えられる[変更](../../user-guides/api-discovery.md#tracking-changes-in-api)は以下の通りです：
 
-* 新しいエンドポイントが検出される
-* エンドポイントに変更がある（新しいパラメータまたは削除されたパラメータ）
-* エンドポイントが削除される
+* 新しいエンドポイントが発見された
+* エンドポイントに変更があった（新規または削除されたパラメーター）
+* エンドポイントが未使用とマークされた
 
-これらの変更の一部またはすべてについて、メールやメッセンジャーに通知を受け取りたい場合は、**APIの変更**条件が設定されたトリガーを構成する必要があります。
+これらの変更の一部または全部について、メールやメッセンジャーで通知を受け取るためには、**APIの変更**条件を持つトリガーを設定する必要があります。
 
-この例では、`example.com`のAPIホストの新しいエンドポイントがAPI Discoveryモジュールによって検出された場合、通知が設定されたSlackチャンネルに送信されます。
+この例では、`example.com` APIホストの新しいエンドポイントがAPIディスカバリモジュールによって発見された場合、その通知は設定されたSlackチャンネルに送信されます。
 
-![!APIの変更を伴うトリガー](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
+![!API triggerの変更](../../images/user-guides/triggers/trigger-example-changes-in-api.png)
 
-**トリガーをテストする方法：**
+**トリガーのテスト方法：**
 
-1. **インテグレーション**で、[Slackとの連携を設定します](../../user-guides/settings/integrations/slack.md)。
-2. **トリガー**で、上記のようにトリガーを作成します。
-3. `example.com/users` エンドポイントにいくつかのリクエストを送信して、`200`（`OK`）の応答を取得します。
-4. **API Discovery**セクションで、エンドポイントが**新しい**マークで追加されたかを確認します。
-5. Slackチャンネルで以下のようなメッセージを確認します。
+1. **インテグレーション**で、[Slackとの連携](../../user-guides/settings/integrations/slack.md)を設定します。
+1. **トリガー**で、上記のようにトリガーを作成します。
+1. `example.com/users` エンドポイントに数回リクエストを送信して、`200` （`OK`）レスポンスを取得します。
+1. **APIディスカバリ**セクションで、エンドポイントが**新規**マーク付きで追加されたことを確認します。
+1. Slackチャンネルで次のようなメッセージを確認します：
     ```
-    [wallarm] あなたのAPIで新しいエンドポイントが発見されました
+    [wallarm] APIに新たなエンドポイントが発見されました
 
     通知タイプ：api_structure_changed
 
-    あなたのAPIで新しいGET example.com/usersエンドポイントが発見されました。
+    新しいGET example.com/usersエンドポイントがAPIで発見されました。
 
         クライアント：Client 001
         クラウド：US
@@ -313,8 +313,8 @@ APIに変更が発生することがあります。それらは [**API Discovery
 
           アプリケーション：Application 1802
           ドメイン：example.com
-          エンドポイントパス：/users
-          HTTPメソッド：GET
+          エンドポイントのパス：/users
+          http_method：GET
           変更タイプ：追加
           リンク：https://my.wallarm.com/api-discovery?instance=1802&method=GET&q=example.com%2Fusers
     ```

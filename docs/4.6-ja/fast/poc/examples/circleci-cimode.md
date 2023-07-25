@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/examples/circleci-cimode.md"
+--8<-- "latest-ja/fast/poc/examples/circleci-cimode.md"

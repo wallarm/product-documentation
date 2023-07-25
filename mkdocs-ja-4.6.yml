@@ -21,6 +21,7 @@ nav:
         - Detecting attacks: about-wallarm/protecting-against-attacks.md
         - Detecting vulnerabilities: about-wallarm/detecting-vulnerabilities.md
         - Discovering API inventory: about-wallarm/api-discovery.md
+        - API Leaks Remediation: about-wallarm/api-leaks.md
         - API Abuse Prevention: about-wallarm/api-abuse-prevention.md
         - Attack and vulnerability types: attacks-vulns-list.md
         - Data management policies:
@@ -29,69 +30,138 @@ nav:
         - Wallarm subscription plans: about-wallarm/subscription-plans.md
         - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
     - Quick Start: quickstart.md
-    - Administrator Guide:
-      - Introduction to the administrator guide: admin-en/admin-intro-en.md
-      - Installation:
-        - Deployment options: installation/supported-deployment-options.md
-        - NGINX:
-          - NGINX installation options overview: admin-en/installation-nginx-overview.md
-          - Installing as a dynamic module for NGINX stable: installation/nginx/dynamic-module.md
-          - Installing as a dynamic module for NGINX from Debian/CentOS repositories: installation/nginx/dynamic-module-from-distr.md
-          - Installing as a dynamic module for NGINX Plus: installation/nginx-plus.md
-          - Running Docker NGINX‑based image: admin-en/installation-docker-en.md 
-        - Kubernetes:
-          - Installing NGINX Ingress Controller with integrated Wallarm services: admin-en/installation-kubernetes-en.md
-          - Chaining of the Wallarm and additional Ingress Controllers in the same Kubernetes cluster: admin-en/chaining-wallarm-and-other-ingress-controllers.md
-          - Deploying Wallarm as Kubernetes Sidecar proxy:
-            - Deploying Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/deployment.md
-            - Customizing Wallarm Sidecar proxy: installation/kubernetes/sidecar-proxy/customization.md
-            - Wallarm-specific Helm chart values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
-            - Supported per-pod's annotation: installation/kubernetes/sidecar-proxy/pod-annotations.md
-          - Deploying Wallarm for Kong:
-            - Deploying Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/deployment.md
-            - Customizing Kong Ingress Controller with integrated Wallarm services: installation/kubernetes/kong-ingress-controller/customization.md
-        - Cloud platforms:
-          - Amazon AWS:
-            - AWS Marketplace image deployment:
-              - Creating and configuring an AMI with the Wallarm node: admin-en/installation-ami-en.md
-              - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
-              - Setting up filtering node auto scaling:
-                - Overview of the filtering node auto scaling configuration on AWS: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
-                - Setting up filtering node auto scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
-                - Setting up incoming request balancing on AWS: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to AWS: installation/cloud-platforms/aws/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on AWS: installation/cloud-platforms/aws/deb-rpm-packages.md
-          - Google Cloud Platform:
-            - GCP Marketplace image deployment:
-              - Creating and configuring a GCP instance with the Wallarm node: admin-en/installation-gcp-en.md
-              - Creating an image with the Wallarm filtering node: admin-en/installation-guides/google-cloud/create-image.md
-              - Setting up filtering node auto scaling:
-                - Overview of the filtering node auto scaling configuration on GCP: admin-en/installation-guides/google-cloud/autoscaling-overview.md
-                - Creating a filtering node instance template on GCP: admin-en/installation-guides/google-cloud/creating-instance-template.md
-                - Creating a managed instance group with enabled auto scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
-                - Setting up incoming request balancing on GCP: admin-en/installation-guides/google-cloud/load-balancing-guide.md
-            - Deployment of the Wallarm node Docker image to GCP: installation/cloud-platforms/gcp/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on GCP: installation/cloud-platforms/gcp/deb-rpm-packages.md
+    - Deployment:
+      - Deployment Options: installation/supported-deployment-options.md
+      - Out-of-Band:
+        - Overview: installation/oob/overview.md
+        - Mirroring by NGINX, Envoy and Similar:
+          - Overview: installation/oob/web-server-mirroring/overview.md
+          - Public Clouds:
+            - AWS:
+              - AMI: installation/oob/web-server-mirroring/aws-ami.md
+              - Terraform Module: installation/oob/terraform-module/mirroring-by-web-server.md
+            - GCP:
+              - Machine Image: installation/oob/web-server-mirroring/gcp-machine-image.md
+          - Docker: installation/oob/web-server-mirroring/docker-image.md
+          - Linux:
+            - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
+            - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
+            - Distribution-Provided NGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
+        - AWS VPC Mirroring:
+          - Terraform Module: installation/oob/terraform-module/aws-vpc-mirroring.md
+      - Public Clouds:
+        - Amazon Web Services:
+          - AMI: installation/cloud-platforms/aws/ami.md
+          - ECS: installation/cloud-platforms/aws/docker-container.md
+          - Terraform Module:
+            - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
+            - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
+            - OOB for NGINX, Envoy, etc. Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
+            - OOB for AWS VPC Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
+        - Google Cloud:
+          - Machine Image: installation/cloud-platforms/gcp/machine-image.md
+          - GCE: installation/cloud-platforms/gcp/docker-container.md
+        - Microsoft Azure:
+          - Azure Container Instances: installation/cloud-platforms/azure/docker-container.md
+        - Alibaba Cloud:
+          - ECS: installation/cloud-platforms/alibaba-cloud/docker-container.md
+      - Edge:
+        - Section.io: installation/cdn-node.md
+        - Akamai EdgeWorkers: installation/cdn/akamai-edgeworkers.md
+        - Azion Edge: installation/cdn/azion-edge.md
+        - AWS Lambda: installation/cdn/aws-lambda.md
+      - Kubernetes:
+        - Ingress:
+          - NGINX Ingress Controller: admin-en/installation-kubernetes-en.md
+          - Kong Ingress Controller:
+            - Deploy: installation/kubernetes/kong-ingress-controller/deployment.md
+            - Customization: installation/kubernetes/kong-ingress-controller/customization.md
+        - Sidecar:
+          - Deploy: installation/kubernetes/sidecar-proxy/deployment.md
+          - Customization: installation/kubernetes/sidecar-proxy/customization.md
+          - Helm Chart Values: installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+          - Pod's Annotations: installation/kubernetes/sidecar-proxy/pod-annotations.md
+      - In-line:  
+        - Overview: installation/inline/overview.md
+        - Compute Instances:
+          - Amazon Web Services:
+            - AMI: installation/inline/compute-instances/aws/aws-ami.md
+            - ECS: installation/inline/compute-instances/aws/aws-ecs.md
+            - Terraform module:
+              - Proxy in AWS VPC: installation/inline/compute-instances/aws/terraform-module-for-aws-vpc.md
+              - Proxy for Amazon API Gateway: installation/inline/compute-instances/aws/terraform-module-for-aws-api-gateway.md
+          - Google Cloud:
+            - Machine Image: installation/inline/compute-instances/gcp/machine-image.md
+            - GCE: installation/inline/compute-instances/gcp/gce.md
           - Microsoft Azure:
-            - Deployment of the Wallarm node Docker image to Azure: installation/cloud-platforms/azure/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Azure: installation/cloud-platforms/azure/deb-rpm-packages.md
+            - Azure Container Instances: installation/inline/compute-instances/azure/docker-image.md
           - Alibaba Cloud:
-            - Deployment of the Wallarm node Docker image to Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/docker-container.md
-            - Installation of the filtering node from DEB or RPM packages on Alibaba Cloud: installation/cloud-platforms/alibaba-cloud/deb-rpm-packages.md
-          - Deployment of the filtering node to the private clouds: installation/cloud-platforms/private-cloud.md
-          - Specification of the Wallarm cloud-init script: installation/cloud-platforms/cloud-init.md
-        - Deploying Wallarm on AWS using Terraform:
-          - Overview: installation/cloud-platforms/aws/terraform-module/overview.md
-          - Trying Wallarm Terraform Module with examples: installation/cloud-platforms/aws/terraform-module/examples.md
-        - Running Docker Envoy‑based image: admin-en/installation-guides/envoy/envoy-docker.md
-        - Separate postanalytics module installation: admin-en/installation-postanalytics-en.md
-        - Checking the filtering node operation: admin-en/installation-check-operation-en.md
-        - Deploying the multi‑tenant node:
-          - Multitenancy overview: installation/multi-tenant/overview.md
-          - Creating tenant accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
-          - Deploying and configuring multi-tenant node: installation/multi-tenant/deploy-multi-tenant-node.md
-        - Deploying Wallarm CDN node: installation/cdn-node.md
-        - Building Wallarm Packages for Custom NGINX: installation/custom/custom-nginx-version.md
+            - ECS: installation/inline/compute-instances/alibaba/docker-image.md
+          - Docker images:
+            - NGINX-based: installation/inline/compute-instances/docker/nginx-based.md
+            - Envoy-based: installation/inline/compute-instances/docker/envoy-based.md
+          - Linux packages:
+            - Individual Packages for NGINX stable: installation/inline/compute-instances/linux/individual-packages-nginx-stable.md
+            - Individual Packages for NGINX Plus: installation/inline/compute-instances/linux/individual-packages-nginx-plus.md
+            - Individual Packages for Disribution-Provided NGINX: installation/inline/compute-instances/linux/individual-packages-nginx-distro.md
+            - All-in-One Installer: installation/inline/compute-instances/linux/all-in-one.md
+        - Kubernetes:
+          - NGINX Ingress Controller: installation/inline/kubernetes/nginx-ingress-controller.md
+          - Kong Ingress Controller:
+            - Deploy: installation/inline/kubernetes/kong-ingress-controller/deployment.md
+            - Customization: installation/inline/kubernetes/kong-ingress-controller/customization.md
+          - Sidecar Controller:
+            - Deploy: installation/inline/kubernetes/sidecar-proxy/deployment.md
+            - Customization: installation/inline/kubernetes/sidecar-proxy/customization.md
+            - Helm Chart Values: installation/inline/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md
+            - Pod's Annotations: installation/inline/kubernetes/sidecar-proxy/pod-annotations.md
+      - API Gateways:
+        - Mulesoft: installation/api-gateways/mulesoft.md
+        - Apigee: installation/api-gateways/apigee.md
+      - Connectors:
+        - Mulesoft: installation/connectors/mulesoft.md
+        - Apigee: installation/connectors/apigee.md
+        - Akamai EdgeWorkers: installation/connectors/akamai-edgeworkers.md
+        - Azion Edge: installation/connectors/azion-edge.md
+        - AWS Lambda: installation/connectors/aws-lambda.md
+      - Packages:
+        - Docker Images:
+          - NGINX-based: admin-en/installation-docker-en.md
+          - Envoy-based: admin-en/installation-guides/envoy/envoy-docker.md
+        - Linux Packages:
+          - Individual packages for NGINX stable: installation/nginx/dynamic-module.md
+          - Individual packages for NGINX Plus: installation/nginx-plus.md
+          - Individual packages for Distribution-Provided NGINX: installation/nginx/dynamic-module-from-distr.md
+          - All‑in‑One Installer: installation/nginx/all-in-one.md
+        - Cloud Images:
+          - AWS AMI: installation/packages/aws-ami.md
+          - GCP Machine Image: installation/packages/gcp-machine-image.md
+        - Terraform Module for AWS: installation/cloud-platforms/aws/terraform-module/overview.md
+      - Custom Deployment:
+        - Custom NGINX Packages: installation/custom/custom-nginx-version.md
+        - Custom Deployment Options: installation/custom/request-custom-deployment.md
+      - Additional Options:
+        - Chaining Wallarm and Ingress Controllers: admin-en/chaining-wallarm-and-other-ingress-controllers.md
+        - Auto Scaling:
+          - Amazon Web Services:
+            - Overview: admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
+            - Creating an Amazon Machine Image: admin-en/installation-guides/amazon-cloud/create-image.md
+            - Setting up Filtering Node Auto Scaling: admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md
+            - Setting up Incoming Request Balancing: admin-en/installation-guides/amazon-cloud/load-balancing-guide.md
+          - Google Cloud Platform:
+            - Overview: admin-en/installation-guides/google-cloud/autoscaling-overview.md
+            - Creating an Image with the Wallarm Filtering Node: admin-en/installation-guides/google-cloud/create-image.md
+            - Creating a Filtering Node Instance Template: admin-en/installation-guides/google-cloud/creating-instance-template.md
+            - Creating a Managed Instance Group with Enabled Auto Scaling: admin-en/installation-guides/google-cloud/creating-autoscaling-group.md
+            - Setting up Incoming Request Balancing: admin-en/installation-guides/google-cloud/load-balancing-guide.md
+        - Specification of the Wallarm cloud-init Script: installation/cloud-platforms/cloud-init.md
+        - Separate Postanalytics Module Installation: admin-en/installation-postanalytics-en.md
+        - Multi‑Tenant Node:
+          - Multitenancy Overview: installation/multi-tenant/overview.md
+          - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
+          - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
+        - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
+    - Administrator Guide:
       - Configuration:
         - Configuration options for the NGINX‑based Wallarm node: admin-en/configure-parameters-en.md
         - Configuration options for the Envoy‑based Wallarm node: admin-en/configuration-guides/envoy/fine-tuning.md
@@ -108,18 +178,13 @@ nav:
             - High Availability Considerations: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md
             - Ingress Controller Monitoring: admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md
         - Allocating Resources for Wallarm Node: admin-en/configuration-guides/allocate-resources-for-node.md
-        - Filtering mirrored traffic:
-          - Configuration of mirrored traffic filtration: admin-en/configuration-guides/traffic-mirroring/overview.md
-          - Example of NGINX configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/nginx-example.md
-          - Example of Envoy configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/envoy-example.md
-          - Example of Traefik configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/traefik-example.md
-          - Example of Istio configuration for traffic mirroring: admin-en/configuration-guides/traffic-mirroring/istio-example.md
         - Configuration of Filter Node for Separated Customer Environments:
           - How Filtering Node Works in Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md
           - Recommendations on Configuring the Filter Node for Separated Environments: admin-en/configuration-guides/wallarm-in-separated-environments/configure-wallarm-in-separated-environments.md
         - Access to Wallarm API via Proxy: admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
         - Identifying an original client IP address if using a proxy or load balancer: admin-en/using-proxy-or-balancer-en.md
-        - Filtering node and Wallarm Cloud synchronization configuration: admin-en/configure-cloud-node-synchronization-en.md
+        - Configuring synchronization between Wallarm node and Cloud: admin-en/configure-cloud-node-synchronization-en.md
+        - Configuring access to files needed for node operation: admin-en/configure-access-to-files-needed-for-node.md
         - Working with Filter Node Logs: admin-en/configure-logging.md
         - Configuring dynamic DNS resolution in NGINX: admin-en/configure-dynamic-dns-resolution-nginx.md
         - Using Single Sign‑On (SSO):
@@ -139,6 +204,7 @@ nav:
           - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
           - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md 
       - Monitoring & Failover:
+        - Checking the filtering node operation: admin-en/installation-check-operation-en.md
         - Configuring a Failover Method: admin-en/configure-backup-en.md
         - Using a Mirrored Wallarm Repository:
           - How to Mirror the Wallarm Repository for CentOS: admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md
@@ -169,6 +235,9 @@ nav:
           - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
         - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
       - Managing Wallarm using Terraform: admin-en/managing/terraform-provider.md
+      - Docker Image Security:
+        - Verifying Docker Image Signatures: integrations-devsecops/verify-docker-image-signature.md
+        - Generating an SBOM for Wallarm Docker Images: integrations-devsecops/generate-sbom-for-docker-images.md
     - User Guide:
       - Introduction to the User Guide: user-guides/user-intro.md
       - Dashboards:
@@ -180,23 +249,14 @@ nav:
         - Analyzing Attacks: user-guides/events/analyze-attack.md
         - Working with False Attacks: user-guides/events/false-attack.md
         - Verifying Attacks: user-guides/events/verify-attack.md
-      - Vulnerabilities:
-        - Checking Vulnerabilities: user-guides/vulnerabilities/check-vuln.md
-        - Analyzing Vulnerabilities: user-guides/vulnerabilities/analyze-vuln.md
-        - Closing and Opening Vulnerabilities: user-guides/vulnerabilities/close-open-vuln.md
-        - Rechecking Vulnerabilities: user-guides/vulnerabilities/recheck-vuln.md
-        - Working with False Vulnerabilities: user-guides/vulnerabilities/false-vuln.md
+      - Vulnerabilities: user-guides/vulnerabilities.md
       - API Discovery: user-guides/api-discovery.md
+      - API Specifications: user-guides/api-specifications.md
+      - API Leaks: user-guides/api-leaks.md
       - Search and Filters:
         - Using Search and Filters: user-guides/search-and-filters/use-search.md
         - Creating a Custom Report: user-guides/search-and-filters/custom-report.md
-      - Scanner:
-        - Scanner Overview: user-guides/scanner/intro.md
-        - Working with the Scope: user-guides/scanner/check-scope.md
-        - Reserved Domains: user-guides/scanner/reserved-domains.md
-        - Scanner Settings: 
-          - General Scanner Settings: user-guides/scanner/configure-scanner.md
-          - Configuring Scanner Modules: user-guides/scanner/configure-scanner-modules.md
+      - Scanner: user-guides/scanner.md
       - Nodes:
         - Wallarm nodes: user-guides/nodes/nodes.md
         - CDN filtering nodes: user-guides/nodes/cdn-node.md
@@ -218,6 +278,7 @@ nav:
           - Ignoring certain attack types: user-guides/rules/ignore-attack-types.md
           - Ignoring attack signs in the binary data: user-guides/rules/ignore-attacks-in-binary-data.md
           - The overlimit_res attack detection fine‑tuning: user-guides/rules/configure-overlimit-res-detection.md
+          - Setting rate limit: user-guides/rules/rate-limiting.md
       - Triggers:
         - Working with triggers: user-guides/triggers/triggers.md
         - Trigger examples: user-guides/triggers/trigger-examples.md
@@ -242,7 +303,7 @@ nav:
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Datadog: user-guides/settings/integrations/datadog.md
-        # - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
+        - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
         - Fluentd: user-guides/settings/integrations/fluentd.md
         - Logstash: user-guides/settings/integrations/logstash.md
         - Webhook: user-guides/settings/integrations/webhook.md
@@ -265,7 +326,7 @@ nav:
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
-      - What is new in Wallarm node 4.4: updating-migrating/what-is-new.md
+      - What is new in Wallarm node 4.6: updating-migrating/what-is-new.md
       - Filtering node versioning policy: updating-migrating/versioning-policy.md
       - Recommendations for a safe node upgrade process: updating-migrating/general-recommendations.md
       - Filtering node upgrade instructions:
@@ -413,16 +474,16 @@ nav:
     - Wallarm service status page: faq/wallarm-status-page.md
     - Wallarm Cloud is down: faq/wallarm-cloud-down.md
     - Tarantool troubleshooting: faq/tarantool.md
-    - CPU high usage troubleshooting: faq/cpu.md    
+    - CPU high usage troubleshooting: faq/cpu.md
     - Attacks are not uploaded to the Wallarm Cloud: faq/attacks-not-uploaded-to-cloud.md
     - Addressing Wallarm node issues alerted by OWASP dashboards: faq/node-issues-on-owasp-dashboards.md
     - Legitimate request is blocked: faq/wrong-blocking.md
-  # - Demo videos:
-  #   - Wallarm platform settings: demo-videos/overview.md
-  #   - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
+  - Demo videos:
+    - Wallarm platform settings: demo-videos/overview.md
+    - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
 #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
 #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
-    # - API Discovery overview: demo-videos/api-discovery.md
-    # - API Abuse Prevention overview: demo-videos/api-abuse-prevention.md
-#   - API Leaks overview: demo-videos/api-leaks.md
+    - API Discovery overview: demo-videos/api-discovery.md
+    - API Abuse Prevention overview: demo-videos/api-abuse-prevention.md
+    - API Leaks overview: demo-videos/api-leaks.md
   - Changelog & news: news.md

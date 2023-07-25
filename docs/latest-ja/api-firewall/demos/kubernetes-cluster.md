@@ -1,1 +1,1 @@
-../api-firewall/demo/kubernetes/README.md
+../api-firewall/demo/kubernetes/README.ja.md

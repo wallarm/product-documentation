@@ -1,4 +1,4 @@
-					# API Firewall 変更履歴
+# API Firewall 変更履歴
 
 このページでは、Wallarm API Firewall の新しいリリースについて説明しています。
 

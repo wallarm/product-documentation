@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/logic.md"
+--8<-- "latest-ja/fast/dsl/logic.md"

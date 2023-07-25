@@ -1,1 +1,1 @@
-../api-firewall/demo/docker-compose/README.md
+../api-firewall/demo/docker-compose/README.ja.md

@@ -1,42 +1,42 @@
-# Datadog
+					# Datadog
 
-Wallarmを設定して、適切な統合を作成することで、検出されたイベントの通知を直接Datadog Logsサービスに送信できます。[Datadog APIキー](https://docs.datadoghq.com/account_management/api-app-keys/)をWallarmコンソールで使用してください。
+Wallarmを設定することで、[Datadog API key](https://docs.datadoghq.com/account_management/api-app-keys/)をWallarmコンソールで適切に統合を作成することで、検出されたイベントの通知を直接Datadog Logsサービスに送信することができます。
 
-以下のイベントをDatadogに送信することができます:
+次のイベントをDatadogに送信することを選択できます：
 
 --8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
 
-## インテグレーションの設定
+## 統合の設定
 
-1. Datadog UIを開き、**組織設定** → **APIキー**に移動し、Wallarmとのインテグレーション用にAPIキーを生成します。
-1. Wallarmコンソールを開き、**インテグレーション**に進み、**Datadog**のインテグレーション設定を行います。
-1. インテグレーション名を入力します。
-1. **APIキー**フィールドにDatadog APIキーを貼り付けます。
-1. [Datadogリージョン](https://docs.datadoghq.com/getting_started/site/) を選択します。
-1. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
-1. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認してください。
-1. **インテグレーションを追加**をクリックします。
+1. Datadog UIを開きます → **組織設定** → **APIキー** を選択して、Wallarmとの統合のためのAPIキーを生成します。
+1. Wallarmコンソールを開きます → **インテグレーション** を選択して、**Datadog** の統合設定に進みます。
+1. 統合名を入力します。
+1. **APIキー** フィールドにDatadog APIキーを貼り付けます。
+1. [Datadog region](https://docs.datadoghq.com/getting_started/site/)を選択します。
+1. 通知をトリガするイベントタイプを選択します。 イベントが選択されていない場合、通知は送信されません。
+1. [統合をテスト](#testing-integration)して、設定が正しいことを確認します。
+1. **統合を追加**をクリックします。
 
-![!Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+![!Datadog統合](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
-## インテグレーションのテスト
+## 統合のテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
-テストDatadogログ:
+テスト用のDatadogログ：
 
-![!The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![!テスト用Datadogログ](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
-Datadog Logsサービスで`source:wallarm_cloud`検索タグを使用して、他のレコードの中からWallarmログを見つけることができます。
+他の記録の中からWallarmのログを見つけるために、Datadog Logsサービスで`source:wallarm_cloud`の検索タグを使用することができます。
 
-## インテグレーションの更新
+## 統合の更新
 
 --8<-- "../include-ja/integrations/update-integration.md"
 
-## インテグレーションの無効化
+## 統合の無効化
 
 --8<-- "../include-ja/integrations/disable-integration.md"
 
-## インテグレーションの削除
+## 統合の削除
 
 --8<-- "../include-ja/integrations/remove-integration.md"

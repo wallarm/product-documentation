@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/create-extension.md"
+--8<-- "latest-ja/fast/dsl/create-extension.md"

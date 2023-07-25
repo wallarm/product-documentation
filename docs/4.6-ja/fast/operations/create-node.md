@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/create-node.md"
+--8<-- "latest-ja/fast/operations/create-node.md"

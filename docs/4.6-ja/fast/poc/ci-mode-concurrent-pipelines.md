@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/ci-mode-concurrent-pipelines.md"
+--8<-- "latest-ja/fast/poc/ci-mode-concurrent-pipelines.md"

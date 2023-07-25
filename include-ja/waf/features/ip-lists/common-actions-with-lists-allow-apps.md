@@ -55,25 +55,25 @@ IPリストオブジェクトの取得、追加、削除については、Wallar
 
 APIリクエストでIPリストの読み取りと変更に渡すパラメーター：
 
---8<-- "../include-ja/api-request-examples/ip-list-request-params.md"
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
 
 ### `.csv`ファイルからのエントリをリストに追加する
 
 `.csv`ファイルからIPまたはサブネットをリストに追加するには、次のbashスクリプトを使用します：
 
---8<-- "../include-ja/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
 
 ### リストに単一のIPまたはサブネットを追加する
 
---8<-- "../include-ja/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
 
 ### リストに複数の国を追加する
 
---8<-- "../include-ja/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
 
 ### リストに複数のプロキシサービスを追加する
 
---8<-- "../include-ja/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
 
 ### IPリストからオブジェクトを削除する
 
@@ -81,10 +81,10 @@ APIリクエストでIPリストの読み取りと変更に渡すパラメータ
 
 オブジェクトIDを取得するには、IPリストの内容を要求して、必要なオブジェクトの`objects.id` をレスポンスからコピーします：
 
---8<-- "../include-ja/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
 
 オブジェクトIDを取得したら、次のリクエストを送信してリストから削除します：
 
---8<-- "../include-ja/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
 削除リクエストでIDを配列として渡すことで、一度に複数のオブジェクトを削除できます。

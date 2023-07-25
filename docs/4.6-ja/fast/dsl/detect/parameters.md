@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/detect/parameters.md"
+--8<-- "latest-ja/fast/dsl/detect/parameters.md"
