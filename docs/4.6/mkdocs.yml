@@ -445,6 +445,18 @@ plugins:
           Troubleshooting: トラブルシューティング
           Addressing Wallarm node issues alerted by OWASP dashboards: OWASPダッシュボードで警告されたWallarmノードの問題に対処
           Legitimate request is blocked: 正当なリクエストがブロックされる
+          In-line: インライン
+          Compute Instances: 計算インスタンス
+          Terraform module: Terraformモジュール
+          Docker images: Dockerイメージ
+          Linux packages: Linuxパッケージ
+          Individual Packages for NGINX stable: NGINX安定版の個別パッケージ
+          Individual Packages for NGINX Plus: NGINX Plus の個別パッケージ
+          Individual Packages for Disribution-Provided NGINX: 配布用 NGINX の個別パッケージ
+          All-in-One Installer: オールインワンインストーラー
+          Sidecar Controller: サイドカーコントローラー
+          Wallarm Deployment in Private Clouds: プライベートクラウドでのWallarmのデプロイメント
+          OWASP API Security Top 10: OWASP APIセキュリティトップ10
 
 nav:
   - Product guides:
