@@ -1,14 +1,13 @@
 # build stage
 FROM python:3.8.0 as build
 EXPOSE 8000
-WORKDIR /tmp
 
 # Plugin for image zoom
 # RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
 # RUN python setup.py install
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /tmp
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # Set working directory
 WORKDIR /docs
