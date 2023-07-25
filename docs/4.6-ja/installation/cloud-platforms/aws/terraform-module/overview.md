@@ -1,1 +1,0 @@
---8<-- "latest-ja/installation/cloud-platforms/aws/terraform-module/overview.md"

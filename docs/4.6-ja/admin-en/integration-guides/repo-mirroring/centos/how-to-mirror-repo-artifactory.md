@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/integration-guides/repo-mirroring/centos/how-to-mirror-repo-artifactory.md"

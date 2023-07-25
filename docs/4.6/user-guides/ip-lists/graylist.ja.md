@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/ip-lists/graylist.ja.md"

@@ -1,1 +1,0 @@
---8<-- "latest-ja/admin-en/configure-cloud-node-synchronization-en.md"

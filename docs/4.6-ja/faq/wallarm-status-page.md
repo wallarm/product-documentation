@@ -1,1 +1,0 @@
---8<-- "latest-ja/faq/wallarm-status-page.md"

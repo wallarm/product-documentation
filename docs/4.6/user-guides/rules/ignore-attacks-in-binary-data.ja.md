@@ -1,0 +1,1 @@
+--8<-- "latest/user-guides/rules/ignore-attacks-in-binary-data.ja.md"

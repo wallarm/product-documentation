@@ -1,0 +1,1 @@
+--8<-- "latest/installation/cloud-platforms/alibaba-cloud/docker-container.ja.md"

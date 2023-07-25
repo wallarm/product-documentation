@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/ingress-controller.ja.md"

@@ -1,0 +1,1 @@
+--8<-- "latest/updating-migrating/multi-tenant.ja.md"
