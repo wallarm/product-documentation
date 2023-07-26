@@ -60,5 +60,19 @@
       <a href="https://us1.my.wallarm.com/signup?utm_source=wallarm_docs&utm_medium=button&utm_campaign=wallarm_docs_experiment_2" class="demo-button mobile-button">
         {{ config.theme.try_button_name }}
       </a>
+
+      <div id="languagesDiv" class="languages">
+        <button type="button" id="languagesMain" class="languages-main" onClick="languageClicked(event)">
+            {{ config.theme.language_name }}
+          <svg class="languages-drop" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2.25" fill="none">
+            <path d="M8 10.5L12 14.5L16 10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          </button>
+      <span class="divider"></span>
+      <div id="languagesList" style="display: none;" class="languages-list" tabindex="-1">
+        <a href="" onClick="goToLanguage(event, '{{ config.theme.language_name }}', 'English')">English</a>
+        <a href="" onClick="goToLanguage(event, '{{ config.theme.language_name }}', '日本語')">日本語</a>
+      </div>
+      </div>        
     </nav>
   </header>
