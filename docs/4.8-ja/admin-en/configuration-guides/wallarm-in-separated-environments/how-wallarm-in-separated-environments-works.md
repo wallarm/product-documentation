@@ -1,0 +1,1 @@
+--8<-- "latest-ja/admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md"

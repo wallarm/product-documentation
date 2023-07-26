@@ -1,0 +1,1 @@
+--8<-- "latest-ja/user-guides/rules/change-request-for-active-verification.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-ja/updating-migrating/general-recommendations.md"

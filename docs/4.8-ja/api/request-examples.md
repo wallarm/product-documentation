@@ -1,0 +1,1 @@
+--8<-- "latest-ja/api/request-examples.md"
