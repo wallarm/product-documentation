@@ -89,7 +89,7 @@ To install node, you will need a Wallarm token of the [appropriate type][wallarm
 
 ### Step 3: Run all-in-one Wallarm installer to install postanalytics
 
-To install postanalytics separately via all-in-one script, use:
+To install postanalytics separately with all-in-one installer, use:
 
 === "API token"
     ```bash

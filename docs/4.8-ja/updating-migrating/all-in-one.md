@@ -1,0 +1,1 @@
+--8<-- "latest-ja/updating-migrating/all-in-one.md"

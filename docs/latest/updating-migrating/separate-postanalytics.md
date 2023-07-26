@@ -1,10 +1,13 @@
 [docs-module-update]:           nginx-modules.md
 [img-wl-console-users]:         ../images/check-users.png 
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]:     ../images/admin-guides/test-attacks-quickstart.png
 [wallarm-token-types]:          ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [tarantool-status]:             ../images/tarantool-status.png
+[statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
+[configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 
-#   Upgrading the postanalytics module
+# Upgrading the postanalytics module
 
 These instructions describe the steps to upgrade the postanalytics module 4.x installed on a separate server. Postanalytics module must be upgraded before [Upgrading Wallarm NGINX modules][docs-module-update].
 
@@ -12,10 +15,7 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 
 ## Upgrade methods
 
-You can upgrade the postanalytics module 4.x installed on a separate server to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various postanalytics module installation and upgrade activities, such as OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) installation method. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new all-in-one method.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 
@@ -23,25 +23,11 @@ Use the procedure below to upgrade the postanalytics module 4.x installed on a s
 
 ### Requirements for upgrade using all-in-one installer
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
-* Access to the IP addresses of Google Cloud Storage listed within the [link](https://www.gstatic.com/ipranges/goog.json). When you [allowlist, denylist, or graylist](../user-guides/ip-lists/overview.md) entire countries, regions, or data centers instead of individual IP addresses, the Wallarm node retrieves precise IP addresses related to the entries in the IP lists from the aggregated database hosted on Google Storage.
-* Executing all commands as a superuser (e.g. `root`).
-* Using [new clean machine](#step-1-prepare-clean-machine) for node installation.
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### Step 1: Prepare clean machine
 
-When upgrading from postanalytics module 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with one of the supported OS:
-
-* Debian 10, 11 and 12.x
-* Ubuntu LTS 18.04, 20.04, 22.04
-* CentOS 7, 8 Stream, 9 Stream
-* Alma/Rocky Linux 9
-* Oracle Linux 8.x
-* Redos
-* SuSe Linux
-* Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
+--8<-- "../include/waf/installation/all-in-one-clean-machine.md"
 
 ### Step 2: Prepare Wallarm token
 
@@ -53,27 +39,7 @@ When upgrading from postanalytics module 4.x to 4.6 with all-in-one installer, y
 
 ### Step 4: Run all-in-one Wallarm installer to install postanalytics
 
-To install postanalytics separately via all-in-one script, use:
-
-=== "API token"
-    ```bash
-    # If using the x86_64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
-
-    # If using the ARM64 version:
-    sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
-    ```        
-
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
-
-=== "Node token"
-    ```bash
-    # If using the x86_64 version:
-    sudo sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
-
-    # If using the ARM64 version:
-    sudo sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
-    ```
+--8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
 ### Step 5: Upgrade the NGINX-Wallarm module on a separate server
 
@@ -84,112 +50,15 @@ Once the postanalytics module is installed on the separate server, [upgrade its 
 
 ### Step 6: Re-connect the NGINX-Wallarm module to the postanalytics module
 
-On the machine with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
-
-```
-upstream wallarm_tarantool {
-    server <ip1>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    server <ip2>:3313 max_fails=0 fail_timeout=0 max_conns=1;
-    
-    keepalive 2;
-    }
-
-    # omitted
-
-wallarm_tarantool_upstream wallarm_tarantool;
-```
-
-* `max_conns` value must be specified for each of the upstream Tarantool servers to prevent the creation of excessive connections.
-* `keepalive` value must not be lower than the number of the Tarantool servers.
-* The `# wallarm_tarantool_upstream wallarm_tarantool;` string is commented by default - please delete `#`.
-
-Once the configuration file changed, restart NGINX/NGINX Plus on the NGINX-Wallarm module server:
-
-=== "Debian"
-    ```bash
-    sudo systemctl restart nginx
-    ```
-=== "Ubuntu"
-    ```bash
-    sudo service nginx restart
-    ```
-=== "CentOS"
-    ```bash
-    sudo systemctl restart nginx
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo systemctl restart nginx
-    ```
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
 
 ### Step 7: Check the NGINX‑Wallarm and separate postanalytics modules interaction
 
-To check the NGINX‑Wallarm and separate postanalytics modules interaction, you can send the request with test attack to the address of the protected application:
-
-```bash
-curl http://localhost/etc/passwd
-```
-
-If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
-
-![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
-
-If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
-
-* Make sure that the postanalytics service `wallarm-tarantool` is in the status `active`
-
-    ```bash
-    sudo systemctl status wallarm-tarantool
-    ```
-
-    ![!wallarm-tarantool status][tarantool-status]
-* Analyze the postanalytics module logs
-
-    ```bash
-    sudo cat /var/log/wallarm/tarantool.log
-    ```
-
-    If there is the record like `SystemError binary: failed to bind: Cannot assign requested address`, make sure that the server accepts connection on specified address and port.
-* On the server with the NGINX‑Wallarm module, analyze the NGINX logs:
-
-    ```bash
-    sudo cat /var/log/nginx/error.log
-    ```
-
-    If there is the record like `[error] wallarm: <address> connect() failed`, make sure that the address of separate postanalytics module is specified correctly in the NGINX‑Wallarm module configuration files and separate postanalytics server accepts connection on specified address and port.
-* On the server with the NGINX‑Wallarm module, get the statistics on processed requests using the command below and make sure that the value of `tnt_errors` is 0
-
-    ```bash
-    curl http://127.0.0.8/wallarm-status
-    ```
-
-    [Description of all parameters returned by the statistics service →](../admin-en/configure-statistics-service.md)
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
 
 ### Step 8: Remove old postanalytics module
 
-1. Delete old postanalytics module in Wallarm Console → **Nodes** by selecting your postanalytics module node and clicking **Delete**.
-1. Confirm the action.
-    
-    When the postanalytics module node is deleted from Cloud, it will stop participation in filtration of requests to your applications. Deleting cannot be undone. The postanalytics module node will be deleted from the list of nodes permanently.
-
-1. Delete machine with the old postanalytics module or just clean it from Wallarm postanalytics module components:
-
-    === "Debian"
-        ```bash
-        sudo apt remove wallarm-node-tarantool
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo apt remove wallarm-node-tarantool
-        ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
-        ```bash
-        sudo yum remove wallarm-node-tarantool
-        ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-        ```bash
-        sudo yum remove wallarm-node-tarantool
-        ```
+--8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
 
 ## Manual upgrade
 

@@ -1,0 +1,4 @@
+You can upgrade in two different ways:
+
+* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories, installing packages, and others.
+* Keep using the current [manual](#manual-upgrade) installation method via individual DEB/RPM packages. However, it's important to note that in further upgrades this approach will require additional effort and manual configuration in comparison to the new method.
