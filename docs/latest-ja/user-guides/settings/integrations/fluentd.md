@@ -1,16 +1,16 @@
 # Fluentd
 
-Wallarmを設定して、適切な統合を作成することで、検出されたイベントの通知をFluentdに送信できます。
+Wallarmを設定してFluentdに検出されたイベントの通知を送信するには、Wallarm Consoleで適切な統合を作成します。
 
-Fluentdに送信する以下のイベントを選択できます。
+Fluentdに送信する次のイベントを選択できます。
 
 --8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
 
-## 通知フォーマット
+## 通知の形式
 
-Wallarmは、JSON形式で**Webhooks**を介してFluentdに通知を送信します。 JSONオブジェクトのセットは、Wallarmが通知するイベントによって異なります。
+Wallarmは**webhooks**を介してFluentdにJSON形式の通知を送信します。 JSONオブジェクトのセットは、Wallarmが通知するイベントに依存します。
 
-新しいヒットの検出を通知する例：
+新しいヒットが検出された通知の例：
 
 ```json
 [
@@ -65,7 +65,7 @@ Wallarmは、JSON形式で**Webhooks**を介してFluentdに通知を送信し�
 
 ## 要件
 
-Fluentdの設定は、以下の要件を満たす必要があります。
+Fluentdの構成は次の要件を満たす必要があります：
 
 * POSTまたはPUTリクエストを受け入れる
 * HTTPSリクエストを受け入れる
@@ -75,9 +75,9 @@ Fluentdの設定例：
 
 ```bash linenums="1"
 <source>
-  @type http # input plugin for HTTP and HTTPS traffic
-  port 9880 # port for incoming requests
-  <transport tls> # configuration for connections handling
+  @type http # HTTPおよびHTTPSトラフィックの入力プラグイン
+  port 9880 # 受信リクエストのポート
+  <transport tls> # 接続の処理を設定
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -85,33 +85,33 @@ Fluentdの設定例：
 <match **>
   @type copy
   <store>
-     @type stdout # output plugin to print Fluentd logs on the command line
-     output_type json # format of logs printed on the command line
+     @type stdout # コマンドラインでFluentdログを出力するプラグイン
+     output_type json # コマンドラインで出力するログの形式
   </store>
 </match>
 ```
 
-詳細については、[公式Fluentdドキュメント](https://docs.datadoghq.com/integrations/fluentd)を参照してください。
+詳細は[公式のFluentdドキュメンテーション](https://docs.datadoghq.com/integrations/fluentd)で確認できます。
 
 ## 統合の設定
 
-1. Wallarm Console → **Integrations** → **Fluentd**でFluentd統合の設定に進みます。
-1. 統合名を入力します。
-1. ターゲットFluentd URL（Webhook URL）を指定します。
-1. 必要に応じて、詳細設定を構成します：
+1. Wallarm Console → **Integrations** → **Fluentd**でFluentd統合の設定に進みます。
+1. 統合の名前を入力します。
+1. Fluentd URL（Webhook URL）を指定します。
+1. 必要に応じて、詳細設定を行います：
 
     --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
-1. 指定されたURLに通知を送信するイベントの種類を選択します。 イベントが選択されていない場合、通知は送信されません。
+1. 指定したURLに通知を送るためにトリガーするイベントの種類を選びます。イベントが選ばれていない場合、通知は送信されません。
 1. [統合をテスト](#testing-integration)して、設定が正しいことを確認します。
-1. **Add integration**をクリックします。
+1. **統合を追加**をクリックします。
 
 ![!Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## 統合のテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
-テストFluentdログ：
+Fluentdのログをテスト。
 
 ```json
 [
@@ -170,31 +170,31 @@ Fluentdの設定例：
 
 --8<-- "../include-ja/integrations/remove-integration.md"
 
-## Fluentdを中間データ収集者として使用する
+## Fluentdを中間データコレクターとして使用する
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-例：
+例えば：
 
 ![!Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 このスキームを使用してWallarmイベントをログに記録するには：
 
-1. データ収集者を構成して、Webhooksで届くデータを次のシステムに転送します。 WallarmはWebhooksを介してデータ収集者へイベントを送信します。
-1. SIEMシステムを構成して、データ収集者からログを取得および読み取ります。
-1. Wallarmを構成して、データ収集者にログを送信します。
+1. データコレクターを設定して、受け入れ先のwebhookを読み取り、ログを次のシステムに転送します。 Wallarmは、webhookを介してデータコレクターにイベントを送信します。
+1. SIEMシステムを設定して、データコレクターからログを取得して読み取ります。
+1. Wallarmを設定して、データコレクターにログを送信します。
 
-    WallarmはWebhooksを介して任意のデータ収集者にログを送信できます。
+    Wallarmは、webhookを利用して任意のデータコレクターにログを送信できます。
 
-    WallarmをFluentdやLogstashと統合するには、Wallarm Console UIで対応する統合カードを使用できます。
+    FluentdまたはLogstashとWallarmを統合するには、Wallarm Console UIの対応する統合カードを使用できます。
 
-    Wallarmを他のデータ収集者と統合するには、Wallarm Console UIで[webhook統合カード](webhook.md)を使用できます。
+    Wallarmと他のデータコレクターを統合するには、Wallarm Console UIの[webhook統合カード](webhook.md)を使用できます。
 
-SIEMシステムにログを転送する人気のあるデータ収集者との統合を設定する方法のいくつかの例を説明しました：
+私たちは人気のあるデータコレクターを統合し、SIEMシステムにログを転送する方法のいくつかの例を説明しました：
 
 * [Wallarm → Fluentd → IBM QRadar](webhook-examples/fluentd-qradar.md)
 * [Wallarm → Fluentd → Splunk Enterprise](webhook-examples/fluentd-splunk.md)
 * [Wallarm → Fluentd → Micro Focus ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)
 * [Wallarm → Fluentd → Datadog](webhook-examples/fluentd-logstash-datadog.md)
 
-    Wallarmは、[Datadog API経由のDatadogとのネイティブ統合](datadog.md)もサポートしています。このネイティブ統合では、中間データ収集者を使用する必要はありません。
+    Wallarmはまた、[Datadog APIを経由したDatadogとのネイティブな統合](datadog.md)もサポートしています。ネイティブな統合では、中間データコレクターを使用する必要はありません。

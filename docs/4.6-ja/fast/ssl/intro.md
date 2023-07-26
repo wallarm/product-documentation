@@ -1,1 +1,1 @@
---8<-- "latest/fast/ssl/intro.md"
+--8<-- "latest-ja/fast/ssl/intro.md"

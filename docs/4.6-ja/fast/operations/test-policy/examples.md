@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/test-policy/examples.md"
+--8<-- "latest-ja/fast/operations/test-policy/examples.md"

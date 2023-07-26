@@ -1,6 +1,6 @@
 # Opsgenie
 
-Wallarm を次のイベントがトリガーされたときに Opsgenie にアラートを送信するように設定できます:
+次のイベントがトリガーされたときに、WallarmからOpsgenieへアラートを送信するように設定することができます：
 
 --8<-- "../include-ja/integrations/events-for-integrations.md"
 
@@ -8,31 +8,31 @@ Wallarm を次のイベントがトリガーされたときに Opsgenie にア�
 
 [Opsgenie UI](https://app.opsgenie.com/teams/list)で:
 
-1. あなたのチーム ➝ **Integrations** に進みます。
-2. **Add integration** ボタンをクリックし、**API** を選択します。
-3. 新しいインテグレーションに名前を入力し、**Save Integration** をクリックします。
-4. 提供された API キーをコピーします。
+1. あなたのチーム ➝ **インテグレーション** に進みます。
+2. **インテグレーションを追加** ボタンをクリックして、**API** を選択します。
+3. 新しいインテグレーションの名前を入力し、**Save Integration** をクリックします。
+4. 提供されたAPIキーをコピーします。
 
 Wallarm UIで:
 
 1. **Integrations** セクションを開きます。
-2. **Opsgenie** ブロックをクリックするか、**Add integration** ボタンをクリックして **Opsgenie** を選択します。
+2. **Opsgenie** ブロックをクリックするか、**Add integration** ボタンをクリックして、**Opsgenie** を選択します。
 3. インテグレーションの名前を入力します。
-4. コピーした API キーを **API key** フィールドに貼り付けます。
-5. Opsgenie の[EU インスタンス](https://docs.opsgenie.com/docs/european-service-region) を使用している場合は、リストから適切な Opsgenie API エンドポイントを選択します。デフォルトでは、US インスタンスのエンドポイントが設定されています。
-6. 通知をトリガするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
-7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認してください。
-8. **Add integration** をクリックします。
+4. コピーしたAPIキーを **API key** 欄に貼り付けます。
+5. Opsgenieの[EU instance](https://docs.opsgenie.com/docs/european-service-region)を使用している場合、リストから該当するOpsgenie APIエンドポイントを選択します。デフォルトでは、USインスタンスエンドポイントが設定されています。
+6. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
+7. [インテグレーションをテスト](#testing-integration)して設定が正しいことを確認します。
+8. **インテグレーションを追加** をクリックします。
 
-    ![!Opsgenie インテグレーション](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![!Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include-ja/integrations/test-integration-basic-data.md"
 
-Opsgenie 通知のテスト：
+Opsgenie通知のテスト:
 
-![!Test Opsgenie メッセージ](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+![!Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 ## インテグレーションの更新
 

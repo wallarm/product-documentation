@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/env-variables.md"
+--8<-- "latest-ja/fast/operations/env-variables.md"

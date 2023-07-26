@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/copy-testrun.md"
+--8<-- "latest-ja/fast/operations/copy-testrun.md"

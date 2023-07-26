@@ -1,1 +1,1 @@
---8<-- "latest/fast/qsg/deployment.md"
+--8<-- "latest-ja/fast/qsg/deployment.md"

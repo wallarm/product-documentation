@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/ci-mode-recording.md"
+--8<-- "latest-ja/fast/poc/ci-mode-recording.md"

@@ -1,1 +1,1 @@
---8<-- "latest/fast/ssl/browsers-ssl/chrome-ssl.md"
+--8<-- "latest-ja/fast/ssl/browsers-ssl/chrome-ssl.md"

@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/detect/phase-detect.md"
+--8<-- "latest-ja/fast/dsl/detect/phase-detect.md"

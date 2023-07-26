@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/parsers/form-urlencoded.md"
+--8<-- "latest-ja/fast/dsl/points/parsers/form-urlencoded.md"

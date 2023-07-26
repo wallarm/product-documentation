@@ -1,111 +1,111 @@
-# Wallarmサブスクリプションプラン
+# Wallarm サブスクリプションプラン
 
-Wallarmに登録する際に、最もビジネスニーズに適したプランを選択します。このドキュメントでは、利用可能なサブスクリプションプランとそれらが有効にする機能について学ぶことができます。
+Wallarmにサブスクリプションする際には、あなたのビジネスニーズに最も適したプランを選択します。この文書からは、使用可能なサブスクリプションプランとそれらが活性化する機能について学ぶことができます。
 
-Wallarmは次のサブスクリプションプランを提供しています：
+Wallarmは以下のサブスクリプションプランを提供しています：
 
-* **クラウドネイティブWAAP(Webアプリケーション＆API保護)** は、一般的な脅威からの保護を提供する次世代WAFです。
-* **アドバンストAPIセキュリティ** は、プロトコルに関係なく、ポートフォリオ全体でのAPIの発見と脅威の防止を総合的に提供します。
+* **Cloud Native WAAP（Webアプリケーション＆API保護）**は、一般的な脅威からWebアプリケーションとAPIを保護する次世代型WAF（Web Application Firewall）です。
+* **Advanced API Security**は、プロトコルに関係なく、あなたのポートフォリオ全体にわたる包括的なAPI検出と脅威防止を提供します。
 
-    アドバンストAPIセキュリティのサブスクリプションプランは、クラウドネイティブWAAPのアドオンとして販売されています。
+    Advanced API Securityサブスクリプションプランは、Cloud Native WAAPの追加オプションとして販売されています。
 
 ## サブスクリプションプラン
 
-| 機能 | クラウドネイティブWAAP | WAAP + アドバンストAPIセキュリティ |
+| 機能 | Cloud Native WAAP | WAAP + Advanced API Security |
 | ------- | ----------------- | --------------------- |
-| **OWASP対応** | | |
+| **OWASPカバレッジ** | | |
 | [OWASP Top 10](https://owasp.org/www-project-top-ten/) | はい | はい |
-| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | 一部<sup>⁕</sup> | はい |
-| **保護されたリソースタイプ** | | |
+| [OWASP API Top 10](https://owasp.org/www-project-api-security/) | 部分的<sup>⁕</sup> | はい |
+| **保護対象のリソースの種類** | | |
 | Webアプリケーション | はい | はい |
-| API | 一部<sup>⁕</sup> | はい |
-| **APIプロトコルのサポート** | | |
-| レガシー（SOAP、XML-RPC、WebDAV、WebForm） | はい | はい |
-| メインストリーム（REST、GraphQL） | はい | はい |
-| モダンおよびストリーミング（gRPC、WebSocket） | いいえ | はい |
+| API | 部分的<sup>⁕</sup> | はい |
+| **API プロトコルのサポート** | | |
+| Legacy (SOAP, XML-RPC, WebDAV, WebForm) | はい | はい |
+| Mainstream (REST, GraphQL) | はい | はい |
+| Modern and streaming (gRPC, WebSocket) | いいえ | はい |
 | **リアルタイム脅威防止** | | |
-| [入力検証アタック](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、例えばSQLインジェクション、RCE | はい | はい |
-| [仮想パッチング](../user-guides/rules/vpatch-rule.md) | はい | はい |
-| [ジオロケーションフィルタリング](../user-guides/ip-lists/overview.md) | はい | はい |
+| [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)、例えば SQL injection、RCE | はい | はい |
+| [Virtual patching](../user-guides/rules/vpatch-rule.md) | はい | はい |
+| [Geolocation filtering](../user-guides/ip-lists/overview.md) | はい | はい |
 | **自動化された脅威からの保護** | | |
-| [ブルートフォース保護](../admin-en/configuration-guides/protecting-against-bruteforce.md) | はい | はい |
-| [BOLA（IDOR）保護](../admin-en/configuration-guides/protecting-against-bola.md) | 手動設定 | 自動保護 |
-| [API悪用防止](../about-wallarm/api-abuse-prevention.md) | いいえ | はい |
-| **可観測性オプション** | | |
-| [API発見](../about-wallarm/api-discovery.md) | いいえ | はい |
-| [機密データ検出](../about-wallarm/api-discovery.md) | いいえ | はい |
-| **セキュリティテストと脆弱性評価** | | |
-| [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | いいえ | はい |
-| [脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | いいえ | はい |
-| **セキュリティイベント監視** | | |
-| [インテグレーション](../user-guides/settings/integrations/integrations-intro.md) SIEM、メッセンジャーなど | すべて | すべて |
-| [監査ログ](../user-guides/settings/audit-log.md) | はい | はい |
+| [Brute-force protection](../admin-en/configuration-guides/protecting-against-bruteforce.md) | はい | はい |
+| [BOLA (IDOR) protection](../admin-en/configuration-guides/protecting-against-bola.md) | 手動設定 | 自動保護 |
+| [API Abuse Prevention](../about-wallarm/api-abuse-prevention.md) | いいえ | はい |
+| **観察可能性オプション** | | |
+| [API Discovery](../about-wallarm/api-discovery.md) | いいえ | はい |
+| [Finding shadow API](../about-wallarm/api-discovery.md#shadow-api) with API Discovery | いいえ | はい |
+| [Sensitive data detection](../about-wallarm/api-discovery.md) | いいえ | はい |
+| **セキュリティーテストおよび脆弱性評価** | | |
+| [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | いいえ | はい |
+| [Vulnerability Scanner](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) | いいえ | はい |
+| **セキュリティーイベントの監視** | | |
+| [Integrations](../user-guides/settings/integrations/integrations-intro.md) with SIEMs, messengers, etc | 全部 | 全部 |
+| [Audit log](../user-guides/settings/audit-log.md) | はい | はい |
 | **デプロイメント** | | |
-| [デプロイメントオプション](../installation/supported-deployment-options.md) | すべて | すべて |
-| [マルチテナント](../installation/multi-tenant/overview.md) | 要求により | 要求により |
-| **ユーザー管理** | | |
-| [ユーザー用のSSO（SAML）認証](../admin-en/configuration-guides/sso/intro.md) | はい | はい |
+| [Deployment options](../installation/supported-deployment-options.md) | 全部 | 全部 |
+| [Multitenancy](../installation/multi-tenant/overview.md) |	要請によりあり | 要請によりあり |
+| **ユーザーマネージメント** | | |
+| [SSO (SAML) authentication for users](../admin-en/configuration-guides/sso/intro.md) | はい | はい |
 | **Wallarm API** | | |
-| [Wallarm APIへのアクセス](../api/overview.md) | はい | はい |
+| [Access to Wallarm API](../api/overview.md) | はい | はい |
 
-`⁕` 機能は、利用できない機能に依存する場合に**一部**動作する場合があります。例えば、WAAPはAPIプロトコルのセットに制限があるため、APIを一部保護します。
+`⁕` 機能は**部分的に**機能し、利用可能な機能に依存します。例えば、WAAPはAPIプロトコルの一部のリクエストを分析するため、APIを部分的に保護します。
 
-サブスクリプションプランをアクティブにするには、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送信してください。サブスクリプションのコストは、選択したプラン、その期間、および[着信トラフィック量](../admin-en/operation/learn-incoming-request-number.md)に基づいて決定されます。
+サブスクリプションプランを有効化するためには、選択したプラン、その期間、[受信トラフィック量](../admin-en/operation/learn-incoming-request-number.md)に基づいたサブスクリプションの費用を判断した上で、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送信してください。
 
-アクティブなプランに関する情報は、Wallarmコンソール→**設定**→[**サブスクリプション**](../user-guides/settings/subscriptions.md)に表示されます。
+有効なプランに関する情報は、Wallarm Console → **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md)で表示されます。
 
 ## サブスクリプション通知
 
-Wallarmは、サブスクリプションに関する問題について、アカウントの**管理者**および**グローバル管理者**にメールで通知します：
+Wallarmはあなたのアカウントの**管理者**と**グローバル管理者**に、サブスクリプションの問題についてメールで通知します：
 
-* サブスクリプション期間の有効期限（5日前と期限が切れた場合）
-* 月次処理リクエストの上限（85%および100%のクオータに達した場合）
+* サブスクリプション期間の終了（60日、30日、15日前および期間が終了したとき）
+* 処理したリクエストの月間クオータを超過（クオータの85％と100％が達成したとき）
 
-さらに、WallarmコンソールUIでは、すべてのユーザーにサブスクリプションの問題に関するメッセージが表示されます。
+このほかにも、Wallarm Console UIは、すべてのユーザーに対してサブスクリプションの問題についてのメッセージを表示します。
 
-## Free tierサブスクリプションプラン（USクラウド）
+## 無料層サブスクリプションプラン（US Cloud）
 
-新しいユーザーが**[US Cloud](overview.md#cloud)**のWallarmコンソールに登録されると、Wallarmシステムで新しいクライアントアカウントが自動的に**Free Tier**サブスクリプションプランで作成されます。
+**[US Cloud](overview.md#cloud)**のWallarm Consoleに新規ユーザーが登録されると、Wallarmシステム内に**Free Tier**サブスクリプションプランを持つ新規クライアントアカウントが自動的に作成されます。
 
-Free Tierサブスクリプションには以下が含まれます：
+Free Tier サブスクリプションには以下が含まれます：
 
-* 毎月**500,000リクエスト**の上限まで無料で利用できるWallarmの機能。上限は毎月の最初の日にリセットされます。
-* 次のものを除く、Wallarmプラットフォームへの[Advanced API Security](#subscription-plans)としてのアクセス：
+* Wallarmの機能が、期間に関係なく**それぞれの月に500,000リクエスト**まで無料で利用可能です。このクオータは毎月最初の日にリセットされます。
+* [Advanced API Security](#subscription-plans)としてのWallarmプラットフォームへのアクセス、ただし以下は除く：
 
-    * [脆弱性](detecting-vulnerabilities.md#vulnerability-scanner)および[公開アセット](../user-guides/scanner/check-scope.md)スキャナ
-    * [アクティブな脅威防止](detecting-vulnerabilities.md#active-threat-verification)機能
-    * [API悪用防止](api-abuse-prevention.md)モジュール
-    * [CDNノード](../installation/cdn-node.md)タイプのデプロイメント
-    * 脆弱性スキャナの利用不可によるOWASP API Top 10の部分的なカバレッジ
+    * [Vulnerability](detecting-vulnerabilities.md#vulnerability-scanner)と[Exposed asset](../user-guides/scanner.md)スキャナー
+    * [Active threat prevention](detecting-vulnerabilities.md#active-threat-verification)機能
+    * [API Abuse Prevention](api-abuse-prevention.md)モジュール
+    * [CDN node](../installation/cdn-node.md)タイプのデプロイメント
+    * Vulnerability Scannerの利用不可によるOWASP API Top 10の部分的なカバレッジ
     * Wallarm APIへのアクセス
 
-**クオータが超過した場合はどうなるか？**
+**クオータが超過した場合はどうなりますか？**
 
-企業アカウントがFree Tierの月次クオータを超過した場合：
+会社のアカウントがFree Tierの月間クオータの100％を超えた場合、Wallarm Consoleへのアクセスが無効になり、すべての統合も無効になります。200％を達すると、Wallarmノード上の保護が無効になります。
 
-* 企業アカウントへのアクセスが一時的に無効になります。
-* インテグレーションが一時的に無効になります。
+これらの制限は次の月の最初の日まで適用されます。Wallarmの[sales team](mailto:sales@wallarm.com)に連絡して、有料のサブスクリプションプランに切り替えることで、すぐにサービスを復旧することができます。
 
-これらの制限は、翌月の最初の日まで適用されます。サービスをすぐに復元するには、Wallarmの[営業チーム](mailto:sales@wallarm.com)に連絡し、有料のサブスクリプションプランのいずれかに切り替えてください。
+Free Tierサブスクリプションの使用情報は、Wallarm Console→ **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md)で表示されます。
 
-Free Tierサブスクリプションの使用に関する情報は、Wallarmコンソール→**設定**→[**サブスクリプション**](../user-guides/settings/subscriptions.md)に表示されます。
+Wallarmは、あなたのアカウントの**管理者**と**グローバル管理者**に、無償リクエストのクオータが85％、100％、185％、200％を超えたときにメールで通知します。
 
-Wallarmは、無料リクエストのクオータが85%および100%超過した場合、アカウントの**管理者**および**グローバル管理者**にメールで通知します。## トライアル期間（EUクラウド）
+## 試用期間（EU Cloud）
 
-新規ユーザーが**[EUクラウド](overview.md#cloud)**の Wallarmコンソールに登録されると、Wallarmシステムでアクティブなトライアル期間を持つ新しいクライアントアカウントが自動的に作成されます。
+**[EU Cloud](overview.md#cloud)**のWallarm Consoleに新規ユーザーが登録されると、Wallarmシステム内に試用期間が設定された新規クライアントアカウントが自動的に作成されます。
 
-* トライアル期間は無料です。
-* トライアル期間は14日間です。
-* Wallarm トライアルは、API セキュリティ[プラン](#subscription-plans) に含めることができるモジュールと機能の最大セットを提供します。
-* トライアル期間は、もう一度だけ14日間延長できます。
+* 試用期間は無料です。
+* 試用期間は14日間です。
+* Wallarmの試用はAPI Security [plan](#subscription-plans)に含められるモジュールと機能の最大セットを提供します。
+* 試用期間は1度だけさらに14日間延長することができます。
 
-    トライアル期間の延長は、Wallarmコンソール → **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md)セクションと、トライアル期間終了の通知メールのボタンから行うことができます。このメールは、[**Administrator** および **Global Administrator**の役割](../user-guides/settings/users.md#user-roles) を持つユーザーにのみ送信されます。
-* トライアル期間が終了した場合：
+    試用期間は、Wallarm Console → **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md)セクションと、試用期間終了について通知するメールからのボタンを通じて延長できます。このメールは[role **管理者**および**グローバル管理者**](../user-guides/settings/users.md#user-roles)を持つユーザーにのみ送信されます。
+* 試用期間が終了した場合：
 
-    * Wallarmコンソールのアカウントがブロックされます。
-    * WallarmノードとWallarmクラウドの同期が停止されます。
-    * Wallarmノードはローカルで動作しますが、Wallarmクラウドからのアップデートを受け取らず、クラウドにデータをアップロードすることもありません。
+    * Wallarm Consoleのアカウントがブロックされます。
+    * WallarmノードとWallarm Cloudの同期が停止します。
+    * Wallarmノードはローカルで動作しますが、Wallarm Cloudからの更新を受けることも、Cloudへデータをアップロードすることもありません。
+    
+    Wallarmへの有料サブスクリプションが有効化されると、すべてのユーザーにクライアントアカウントへのアクセスが復元されます。
 
-    Wallarmへの有料サブスクリプションがアクティブになると、すべてのユーザーのクライアントアカウントへのアクセスが復元されます。
-
-トライアル期間に関する情報は、Wallarmコンソール → **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md) で表示されます。
+試用期間に関する情報は、Wallarm Console → **設定** → [**サブスクリプション**](../user-guides/settings/subscriptions.md)に表示されます。

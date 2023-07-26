@@ -1,70 +1,70 @@
-[doc-nginx-install]： ../installation/nginx/dynamic-module-from-distr.md
-[doc-eu-scanner-ip-addresses]：scanner-address-eu-cloud.md
-[doc-us-scanner-ip-addresses]：scanner-address-us-cloud.md
-[acl-access-phase]： #wallarm_acl_access_phase
+[doc-nginx-install]: ../installation/nginx/dynamic-module-from-distr.md
+[doc-eu-scanner-ip-addresses]: scanner-address-eu-cloud.md
+[doc-us-scanner-ip-addresses]: scanner-address-us-cloud.md
+[acl-access-phase]:            #wallarm_acl_access_phase
 
-# NGINXベースのWallarmノードの設定オプション
+# NGINXをベースとしたWallarmノードの設定オプション
 
-Wallarm NGINXモジュールで利用可能な微調整オプションを学び、Wallarmソリューションを最大限に活用しましょう。
+Wallarm NGINXモジュールのカスタマイズオプションを学び、Wallarmソリューションを最大限に活用しましょう。
 
-!!! info "NGINX公式ドキュメント"
-    Wallarmの設定はNGINXの設定と非常に似ています。[公式のNGINXドキュメントを参照してください](https://www.nginx.com/resources/admin-guide/)。Wallarm特有の設定オプションに加えて、NGINX設定の全機能が利用できます。
+!!! info "NGINX公式ドキュメンテーション"
+    Wallarmの設定はNGINXの設定と非常に類似しています。[公式NGINXドキュメンテーションをご覧ください](https://www.nginx.com/resources/admin-guide/)。Wallarm固有の設定オプションとともに、NGINX設定の全機能が利用可能です。
 
 ## Wallarmディレクティブ
 
 ### disable_acl
 
-リクエストの起源の分析を無効にすることができます。無効にした場合（`on`）、フィルタリングノードはWallarmクラウドから[IPリスト](../user-guides/ip-lists/overview.md)をダウンロードせず、リクエスト元のIPアドレスの分析をスキップします。
+リクエストの起点の解析を無効にすることができます。無効化（`on`）すると、フィルタリングノードは[IPリスト](../user-guides/ip-lists/overview.md)をWallarmクラウドからダウンロードせず、リクエストソースIPの解析をスキップします。
 
 !!! info
-    このパラメータはhttp, server, locationブロック内で設定できます。
+    このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
-    デフォルト値は `off` です。
+    デフォルト値は`off`です。
 
 ### wallarm_acl_access_phase
 
-このディレクティブは、NGINXベースのWallarmノードによって、[ブラックリストに載った](../user-guides/ip-lists/denylist.md) IPアドレスからのリクエストをNGINXアクセスフェーズでブロックするよう強制します。つまり：
+このディレクティブは、NGINXをベースとしたWallarmノードで、[ブラックリスト化された](../user-guides/ip-lists/denylist.md)IPからのリクエストをNGINXアクセス段階でブロックするよう強制します：
 
-* `wallarm_acl_access_phase on` の場合、Wallarmノードはすべての[フィルタリングモード](configure-wallarm-mode.md)でブラックリストに載ったIPアドレスからのリクエストを即座にブロックし、ブラックリストに載ったIPアドレスからのリクエストに攻撃の兆候を検索しません。
+* `wallarm_acl_access_phase on`の場合、Wallarmノードは、任意の[フィルタリングモード](configure-wallarm-mode.md)で、ブラックリスト化されたIPからの任意のリクエストをすぐにブロックし、ブラックリスト化されたIPからのリクエストで攻撃の兆候を検索しません。
 
-    これは、ブラックリストが標準的に機能し、ノードのCPU負荷を大幅に軽減するため、**デフォルトで推奨**される値です。
+    これが**デフォルトおよび推奨**の値であり、ブラックリストを標準的に動作させ、ノードのCPU負荷を大幅に軽減します。
 
-* `wallarm_acl_access_phase off` の場合、Wallarmノードは最初にリクエストに攻撃の兆候を分析し、`block`または`safe_blocking`モードで動作している場合、ブラックリストに載ったIPアドレスからのリクエストをブロックします。
+* `wallarm_acl_access_phase off`の場合、Wallarmノードは最初にリクエストで攻撃の兆候を解析し、`block`または`safe_blocking`モードで操作している場合、ブラックリスト化されたIPからのリクエストをブロックします。
 
-    `off` のフィルタリングモードでは、ノードはリクエストを分析せず、ブラックリストを確認しません。
+    `off`フィルタリングモードでは、ノードはリクエストを解析せず、ブラックリストをチェックしません。
 
-    `monitoring` のフィルタリングモードでは、ノードはすべてのリクエストで攻撃の兆候を検索しますが、ソースIPがブラックリストに載っていてもリクエストをブロックしません。
+    `monitoring`フィルタリングモードでは、ノードはすべてのリクエストで攻撃の兆候を検索しますが、ソースIPがブラックリストに載っていてもブロックしません。
 
-    `wallarm_acl_access_phase off` でのWallarmノードの動作は、ノードのCPU負荷を大幅に増加させます。
+    `wallarm_acl_access_phase off`でのWallarmノードの動作は、ノードのCPU負荷を大幅に増加させます。
 
 !!! info "デフォルト値と他のディレクティブとの相互作用"
-    **デフォルト値**： `on` （Wallarmノード4.2から）
+    **デフォルト値**: `on` (Wallarm node 4.2から)
 
-    このディレクティブは、NGINX設定ファイルのhttpブロック内でのみ設定できます。
+    このディレクティブはNGINX設定ファイルのhttpブロック内でのみ設定できます。
 
-    * [`disable_acl on`](#disable_acl) では、IPリストは処理されず、`wallarm_acl_access_phase` を有効にする意味はありません。
-    * `wallarm_acl_access_phase` ディレクティブは、[`wallarm_mode`](#wallarm_mode) よりも優先順位が高く、ブラックリストに載ったIPアドレスからのリクエストをブロックします（`wallarm_acl_access_phase on` の場合）。
+    * [`disable_acl on`](#disable_acl)の場合、`wallarm_acl_access_phase`を有効にすることは意味がありません。
+    * `wallarm_acl_access_phase`ディレクティブは、[`wallarm_mode`](#wallarm_mode)を上書きし、フィルタリングノードモードが`off`または`monitoring`であっても(`wallarm_acl_access_phase on`の場合)、ブラックリスト化されたIPからのリクエストをブロックします。
 
 ### wallarm_api_conf
 
-Wallarm APIのアクセス要件を記載した `node.yaml` ファイルへのパスです。
+Wallarm APIへのアクセス要件が含まれる`node.yaml`ファイルへのパス。
 
-**例**：
+**例**:
 ```
 wallarm_api_conf /etc/wallarm/node.yaml
 ```
 
-フィルタリングノードからのシリアライズされたリクエストを、postanalyticsモジュール（Tarantool）にアップロードする代わりに、Wallarm API（クラウド）に直接アップロードするために使用されます。**攻撃が含まれたリクエストのみがAPIに送信されます。** 攻撃のないリクエストは保存されません。
+フィルタリングノードからの直列化されたリクエストを、ポストアナリティクスモジュール（Tarantool）にアップロードする代わりに、直接Wallarm API（クラウド）にアップロードするために使用されます。**攻撃を含むリクエストのみがAPIに送信されます。** 攻撃のないリクエストは保存されません。
 
-**node.yamlファイルの内容の例：**
+**node.yamlファイルの内容の例:**
 ``` bash
-# API接続の資格情報
+# API接続の認証情報
 
-hostname: <何らかの名前>
-uuid: <何らかのuuid>
-secret: <何らかの秘密>
+hostname: <ある名前>
+uuid: <あるuuid>
+secret: <あるシークレット>
 
-# API接続パラメータ（以下のパラメータはデフォルトで使用されます）
+# API接続のパラメータ (以下のパラメータはデフォルトで使用)
 
 api:
   host: api.wallarm.com
@@ -74,60 +74,49 @@ api:
 
 ### wallarm_application
 
-!!! warning "ディレクティブの前身と変更された動作"
-    Wallarmノード3.4以前では、このディレクティブの役割は `wallarm_instance`ディレクティブ（現在非推奨）が担っていました。
+保護対象のアプリケーションの一意識別子で、Wallarmクラウドで使用します。値は`0`を除く正の整数が可能です。
 
-    Wallarmノード3.6では、このディレクティブは、このセクションで説明されているようなその主要な目的に加えて、マルチテナントノードのテナントを指定するために使用されていました。現在、第二の役割は削除され、新しい [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) ディレクティブに移行しています。第一の役割は変わりありません。
+アプリケーションのドメインとドメインのパスに対して一意識別子を設定することができます。例えば:
 
-    4.0以前のバージョンのフィルタリングノードに使用していた設定を更新する場合：
+=== "ドメインの識別子"
+    ドメイン **example.com**の設定ファイル:
 
-    * マルチテナント機能を持たないフィルタリングノードをアップグレードする場合で、保護されたアプリケーションの一意の識別子を設定するために`wallarm_instance`を使用している場合、それを`wallarm_application`にリネームしてください。
-    * マルチテナント機能を持つフィルタリングノードをアップグレードする場合は、`wallarm_instance` を `wallarm_application` とみなし、[マルチテナント再設定手順](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy)に従って設定を書き直してください。
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
 
-Wallarmクラウドで使用する保護対象アプリケーションの一意識別子です。値は、`0` を除く正の整数であることができます。
+        ...
 
-アプリケーションのドメインとドメインパスの両方に一意の識別子を設定できます。例えば：
+        wallarm_mode monitoring;
+        wallarm_application 1;
+        location / {
+                proxy_pass http://example.com;
+                include proxy_params;
+        }
+    }
+    ```
 
-=== "Identifiers for domains"
+    ドメイン **test.com**の設定ファイル:
 
-​    **example.com** ドメインの設定ファイル：
+    ```bash
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+        listen 443 ssl;
 
-​    ```bash
-​    server {
-​        listen 80 default_server;
-​        listen [::]:80 default_server ipv6only=on;
-​        listen 443 ssl;
+        ...
 
-​        ...
-
-​        wallarm_mode monitoring;
-​        wallarm_application 1;
-​        location / {
-​                proxy_pass http://example.com;
-​                include proxy_params;
-​        }
-​    }
-​    ```
-
-​    **test.com** ドメインの設定ファイル：
-
-​    ```bash
-​    server {
-​        listen 80 default_server;
-​        listen [::]:80 default_server ipv6only=on;
-​        listen 443 ssl;
-
-​        ...
-
-​        wallarm_mode monitoring;
-​        wallarm_application 2;
-​        location / {
-​                proxy_pass http://test.com;
-​                include proxy_params;
-​        }
-​    }
-​    ```
-=== "Identifiers for domain paths"
+        wallarm_mode monitoring;
+        wallarm_application 2;
+        location / {
+                proxy_pass http://test.com;
+                include proxy_params;
+        }
+    }
+    ```
+=== "ドメインのパスの識別子"
     ```bash
     server {
         listen 80 default_server;
@@ -151,141 +140,131 @@ Wallarmクラウドで使用する保護対象アプリケーションの一意�
     }
     ```
 
-[アプリケーションの設定の詳細についてはこちら →](../user-guides/settings/applications.md)
+[アプリケーションの設定詳細 →](../user-guides/settings/applications.md)
 
 !!! info
-    このパラメータはhttp, server, locationブロック内で設定できます。
+    このパラメータはhttp, サーバー, およびロケーションブロック内で設定できます。
 
-    **デフォルト値**： `-1`。
+    **デフォルト値**: `-1`.
 
 ### wallarm_block_page
 
 ブロックされたリクエストへの応答を設定することができます。
 
-[ブロッキングページとエラーコードの設定の詳細 →](configuration-guides/configure-block-page-and-code.md)
+[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
-    このパラメータはhttp, server, locationブロック内で設定できます。
+    このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
 ### wallarm_block_page_add_dynamic_path
 
-このディレクティブは、コードにNGINX変数が含まれているブロッキングページを初期化し、このブロッキングページへのパスも変数を使用して設定するために使用されます。それ以外の場合、ディレクティブは使用されません。
+このディレクティブは、そのコードとこのブロッキングページへのパスにNGINX変数が含まれているブロッキングページを初期化するために使用されます。それ以外の場合、このディレクティブは使用されません。
 
-[ブロッキングページとエラーコードの設定の詳細 →](configuration-guides/configure-block-page-and-code.md)
+[ブロッキングページとエラーコードの設定詳細 →](configuration-guides/configure-block-page-and-code.md)
 
 !!! info
-    このディレクティブは、NGINX設定ファイルの`http`ブロック内で設定できます。
+    このディレクティブを設定できるのは、NGINX設定ファイルの`http` ブロック内だけです。
 
 ### wallarm_cache_path
 
-サーバー起動時に、proton.dbとカスタムルールセットファイルのバックアップカタログが作成されるディレクトリです。このディレクトリは、NGINXを実行するクライアントが書き込み可能である必要があります。
+サーバーが起動時にproton.dbとカスタムルールセットファイルのコピーを保存するためのバックアップカタログを作成するディレクトリ。このディレクトリは、NGINXを実行するクライアントが書き込むことができる必要があります。
 
 !!! info
-    このパラメータは、httpブロック内でのみ設定されます。### wallarm_custom_ruleset_path
+    このパラメータはhttpブロック内でのみ設定されます。
 
-保護対象のアプリケーションとフィルタリングノード設定に関する情報を含む [custom ruleset](../user-guides/rules/intro.md) ファイルへのパス。
+### wallarm_custom_ruleset_path
+
+保護対象のアプリケーションとフィルタリングノード設定に関する情報が含まれた[カスタムルールセット](../user-guides/rules/intro.md)ファイルへのパス。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
-    **デフォルト値**： `/etc/wallarm/custom_ruleset` (Wallarmノード3.4およびそれ以前では、`/etc/wallarm/lom`)
-
-!!! warning "ディレクティブの以前の名前"
-    Wallarmノード3.4およびそれ以前では、このディレクティブは `wallarm_local_trainingset_path` という名前です。この名前を使用している場合は、[ノードモジュールのアップグレード](../updating-migrating/general-recommendations.md#update-process)時に変更することをお勧めします。`wallarm_local_trainingset_path`ディレクティブは近日中に廃止予定です。ディレクティブのロジックは変更されません。
+    **デフォルト値**: `/etc/wallarm/custom_ruleset`
 
 ### wallarm_enable_libdetection
 
-**libdetection** ライブラリを使用してSQLインジェクション攻撃の追加検証を有効/無効にします。**libdetection** を使用することで、攻撃の二重検出が可能になり、誤検出が減ります。
+**libdetection**ライブラリを介したSQL Injection攻撃の追加検証を有効/無効にします。**libdetection**の使用は攻撃の二重検出を保証し、偽陽性の数を減らします。
 
-**libdetection** ライブラリを使用したリクエストの解析は、すべての [展開オプション](../installation/supported-deployment-options.md) でデフォルトで有効になっています。誤検出の数を減らすために、解析を有効にしておくことをお勧めします。
+リクエストの**libdetection**ライブラリによる解析は、すべての[デプロイメントオプション](../installation/supported-deployment-options.md)でデフォルトで有効になっています。 偽陽性の数を減らすために、解析を有効にしたままにすることをお勧めします。
 
-[**libdetection** の詳細 →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
+[**libdetection**について詳しく →](../about-wallarm/protecting-against-attacks.md#library-libdetection)
 
 !!! warning "メモリ消費の増加"
-    libdetectionライブラリを使用して攻撃を解析すると、NGINXおよびWallarmプロセスによって消費されるメモリ量が約10%増加する場合があります。
+    libdetectionライブラリを使用して攻撃を解析すると、NGINXおよびWallarmプロセスによって消費されるメモリの量が約10%増加する可能性があります。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
-    すべての [展開オプション](../installation/supported-deployment-options.md) ではデフォルト値が `on` です。
+    すべての[デプロイメントオプション](../installation/supported-deployment-options.md)に対するデフォルト値は`on`です。
 
 ### wallarm_fallback
 
-値が `on` に設定されている場合、NGINXは緊急モードに入る機能があります。proton.dbまたはカスタムルールセットがダウンロードできない場合、この設定は、データがダウンロードできない http、server、location ブロックに対して Wallarm モジュールを無効にします。NGINXは動作し続けます。
+値が`on`に設定されている場合、NGINXは緊急モードに入る能力を持ちます。proton.dbやカスタムルールセットがダウンロードできない場合、この設定はhttp、サーバー、および位置ブロックのWallarmモジュールを無効にします。NGINXは機能し続けます。
 
 !!! info
-    デフォルト値は `on` です。
+    デフォルト値は`on`です。
 
-    このパラメータは、http、server、locationブロック内で設定できます。
+    このパラメータはhttp、サーバー、およびロケーションブロック内で設定できます。
 
 ### wallarm_force
 
-NGINXのミラーリングされたトラフィックに基づいてリクエスト分析とカスタムルールの生成を設定します。[Analyzing mirrored traffic with NGINX](configuration-guides/traffic-mirroring/nginx-example.md)を参照してください。
+NGINXのミラードトラフィックに基づいてリクエストの解析とカスタムルールの生成を設定します。[Analyzing mirrored traffic with NGINX](../installation/oob/web-server-mirroring/overview.md)を参照してください。
 
 ### wallarm_general_ruleset_memory_limit
 
-!!! warning "ディレクティブの以前の名前"
-    Wallarmノード3.6およびそれ以前では、このディレクティブは `wallarm_ts_request_memory_limit` という名前です。この名前を使用している場合は、[ノードモジュールのアップグレード](../updating-migrating/general-recommendations.md#update-process)時に変更することをお勧めします。`wallarm_ts_request_memory_limit`ディレクティブは近日中に廃止予定です。ディレクティブのロジックは変更されません。
+proton.dbとカスタムルールセットの1インスタンスが使用できる最大メモリ量の制限を設定します。
 
-proton.dbとカスタムルールセットの1つのインスタンスによって使用できる最大メモリ量の制限を設定します。
+メモリ制限が一部のリクエストの処理中に超過した場合、ユーザは500エラーを受け取ります。
 
-メモリ制限を超えて処理されるリクエストがある場合、ユーザーは500エラーを受け取ります。
+このパラメータでは以下のサフィックスを使用できます:
+* `k` or `K` キロバイト
+* `m` or `M` メガバイト
+* `g` or `G` ギガバイト
 
-このパラメータでは、次の接尾辞を使用できます。
-* キロバイトの場合は `k` または `K`
-* メガバイトの場合は `m` または `M`
-* ギガバイトの場合は `g` または `G`
-
-**0** の値は制限をオフにします。
+**0**の値は、制限を無効にします。
 
 !!! info
-    このパラメータは、http、server、および/または location ブロック内で設定できます。
+    このパラメータはhttp、サーバー、および/またはロケーションブロック内で設定できます。
 
-    **デフォルト値**： `1` GB
+    **デフォルト値**: `1` GB### wallarm_global_trainingset_path
 
-### wallarm_global_trainingset_path
-
-!!! warning "ディレクティブは近日中に廃止されます"
-    Wallarmノード3.6から、代わりに [`wallarm_protondb_path`](#wallarm_protondb_path) ディレクティブを使用してください。
-
-    `wallarm_global_trainingset_path`ディレクティブは引き続きサポートされていますが、将来のリリースで廃止される予定です。ディレクティブを使用している場合は、名前を変更することをお勧めします。ディレクティブのロジックは変更されません。
+!!! warning "このディレクティブは廃止されました"
+    Wallarmノード3.6以降で、代わりに [`wallarm_protondb_path`](#wallarm_protondb_path) ディレクティブを使用してください。ディレクティブ名を変更するだけで、そのロジックは変わりません。
 
 ### wallarm_file_check_interval
 
-proton.dbとカスタムルールセットファイルの新しいデータをチェックする間隔を定義します。単位は次のように接尾辞で指定されます。
-* 分の場合はサフィックスがありません
-* 秒の場合は `s`
-* ミリ秒の場合は `ms`
+proton.dbとカスタムルールセットファイルの新しいデータをチェックする間隔を定義します。測定単位は以下のようにサフィックスで指定します：
+* サフィックスなし：分
+* `s`：秒
+* `ms`：ミリ秒
 
 !!! info
     このパラメータは、httpブロック内でのみ設定されます。
 
-    **デフォルト値**： `1` (1分)
+    **デフォルト値**： `1`（1分）
 
 ### wallarm_instance
 
-!!! warning "ディレクティブが廃止されました"
-    * 保護対象のアプリケーションの一意の識別子を設定するためにディレクティブが使用されていた場合は、単純に [`wallarm_application`](#wallarm_application) に名前を変更してください。
-    * マルチテナントノードのテナントの一意の識別子を設定するためには、`wallarm_instance` の代わりに [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) ディレクティブを使用してください。
+!!! warning "このディレクティブは廃止されました"
+    * ディレクティブが保護対象のアプリケーションの一意の識別子を設定するために使用されていた場合、ただ [`wallarm_application`](#wallarm_application) に名前を変更してください。
+    * マルチテナントノードのテナントの一意の識別子を設定するために `wallarm_instance` の代わりに [`wallarm_partner_client_uuid`](#wallarm_partner_client_uuid) ディレクティブを使用してください。
 
-    バージョン 4.0 以前のフィルタリングノードに使用していた設定を更新する場合：
-    
-    * マルチテナンシー機能を持たないフィルタリングノードをアップグレードし、保護対象アプリケーションの一意の識別子を設定するために `wallarm_instance` を使用している場合は、ただ `wallarm_application` に名前を変更してください。
-    * マルチテナンシー機能を持つフィルタリングノードをアップグレードする場合は、すべての `wallarm_instance` を `wallarm_application` とみなし、[multitenancy reconfiguration instruction](../updating-migrating/multi-tenant.md#step-3-reconfigure-multitenancy)で説明されているように設定を書き換えます。
+    フィルタリングノードのバージョン4.0以前に使用していた設定を更新する場合：
+
+    * マルチテナンシーフィーチャーなしでフィルタリングノードをアップグレードし、保護されたアプリケーションの一意の識別子を設定するために `wallarm_instance` を使用している場合、ただ `wallarm_application` に名前を変更してください。
+    * マルチテナンシーフィーチャー付きでフィルタリングノードをアップグレードする場合、すべての `wallarm_instance` を `wallarm_application` と見なし、[マルチテナント再構成手順](../updating-migrating/older-versions/multi-tenant.md#step-3-reconfigure-multitenancy) に記述されているように構成を再記述してください。
 
 ### wallarm_key_path
 
-proton.dbとカスタムルールセットファイルの暗号化/復号化に使用されるWallarmの秘密鍵へのパス。
+proton.dbとカスタムルールセットファイルの暗号化/復号化に使用されるWallarmのプライベートキーへのパス。
 
 !!! info
-    **デフォルト値**： `/etc/wallarm/private.key` (Wallarmノード3.6およびそれ以前では、`/etc/wallarm/license.key`)
+    **デフォルト値**： `/etc/wallarm/private.key`（Wallarmノード3.6およびそれ以前では `/etc/wallarm/license.key`）
 
 ### wallarm_local_trainingset_path
 
-!!! warning "ディレクティブは近日中に廃止されます"
-    Wallarmノード3.6から、代わりに [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) ディレクティブを使用してください。
-
-    `wallarm_local_trainingset_path`ディレクティブは引き続きサポートされていますが、将来のリリースで廃止される予定です。ディレクティブを使用している場合は、名前を変更することをお勧めします。ディレクティブのロジックは変更されません。
+!!! warning "このディレクティブは廃止されました"
+    Wallarmノード3.6以降で、代わりに [`wallarm_custom_ruleset_path`](#wallarm_custom_ruleset_path) ディレクティブを使用してください。ディレクティブ名を変更するだけで、そのロジックは変わりません。
 
 ### wallarm_mode
 
@@ -298,63 +277,66 @@ proton.dbとカスタムルールセットファイルの暗号化/復号化に�
 
 --8<-- "../include-ja/wallarm-modes-description-latest.md"
 
-`wallarm_mode`の使用は、`wallarm_mode_allow_override`ディレクティブによって制限されることがあります。
+`wallarm_mode` の使用は `wallarm_mode_allow_override` ディレクティブによって制限されることがあります。
 
-[フィルタリングモードの詳細設定方法 →](configure-wallarm-mode.md)
+[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.md)
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータは、httpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
 
-    **デフォルト値**は、フィルタリングノードの展開方法によって異なります（`off` または `monitoring`）
+    **デフォルト値**はフィルタリングノードのデプロイ方法によります（ `off` または `monitoring` になることがあります）
 
 ### wallarm_mode_allow_override
 
-Walarm Cloudからダウンロードされたフィルタリングルール（カスタムルールセット）を介して [`wallarm_mode`](#wallarm_mode) の値を上書きする能力を管理します.
+Wallarm Cloudからダウンロードしたフィルタリングルールを介して [`wallarm_mode`](#wallarm_mode) の値をオーバーライドする能力を管理します:
 
 - `off` - カスタムルールは無視されます。
-- `strict` - カスタムルールは運用モードを強化することしかできません。
-- `on` - 運用モードを強化することも緩和することもできます。
+- `strict` - カスタムルールは操作モードを強化することしかできません。
+- `on` - 操作モードを強化することも緩和することも可能です。
 
-たとえば、`wallarm_mode monitoring` と `wallarm_mode_allow_override strict` が設定されている場合、Wallarm Consoleを使用していくつかのリクエストのブロックを有効にできますが、攻撃解析を完全に無効にすることはできません。
+例えば、`wallarm_mode monitoring` と `wallarm_mode_allow_override strict` が設定されている場合、Wallarm Consoleを使用して一部のリクエストをブロックすることができますが、攻撃分析を完全に無効にすることはできません。
 
-[フィルタリングモードの詳細設定方法 →](configure-wallarm-mode.md)
+[フィルタリングモード設定の詳細な手順 →](configure-wallarm-mode.md)
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータは、httpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
 
     **デフォルト値**： `on`
+
 
 ### wallarm_parse_response
 
-アプリケーションの応答を解析するかどうかします。応答解析は、[passive detection](../about-wallarm/detecting-vulnerabilities.md#passive-detection) および [active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) 中の脆弱性検出に必要です。
+アプリケーションのレスポンスを解析するかどうか。レスポンス分析は、[パッシブ検出](../about-wallarm/detecting-vulnerabilities.md#passive-detection) および [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) の際に脆弱性検出が必要です。
 
-可能な値は `on`（応答解析が有効）、`off`（応答解析が無効）です。
+可能な値は `on`（レスポンス分析が有効）と `off`（レスポンス分析が無効）です。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータはhttpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
 
     **デフォルト値**： `on`
 
-!!! warning "パフォーマンスの向上"
-    パフォーマンスを向上させるために、`location` を介した静的ファイルの処理を無効にすることをお勧めします。### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
+!!! warning "パフォーマンスを向上させる"
+    パフォーマンスを向上させるために、`location`を通じて静的ファイルの処理を無効にすることを推奨します。
 
-Wallarmは、API Securityサブスクリプションプランの下でWebSocketsの完全なサポートを提供します。デフォルトでは、WebSocketsのメッセージは攻撃のために解析されません。
+### wallarm_parse_websocket <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;height: 24px;margin-bottom: -4px;"></a>
 
-この機能を強制するには、API Securityサブスクリプションプランを有効にし、`wallarm_parse_websocket`ディレクティブを使用してください。
+WallarmはAPIセキュリティサブスクリプションプラン下で完全なWebSocketのサポートを提供します。デフォルトでは、WebSocketのメッセージは攻撃の対象として解析されません。
 
-可能な値:
+この機能を強制するには、APIセキュリティサブスクリプションプランを有効化し、 `wallarm_parse_websocket` ディレクティブを使用します。
 
-- `on`: メッセージ解析が有効になります。
-- `off`: メッセージ解析が無効になります。
+可能な値：
+
+- `on`：メッセージ解析が有効。
+- `off`：メッセージ解析が無効。
 
 !!! info
-    このパラメータは、http、server、locationブロック内で設定できます。
+    このパラメータはhttpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
     
-    **デフォルト値**: `off`
+    **デフォルト値**： `off`
 
 ### wallarm_parser_disable
 
-パーサを無効にするためのディレクティブです。ディレクティブの値は、無効にするパーサの名前に対応します:
+パーサを無効にすることができます。ディレクティブの値は無効にするパーサの名前に対応します：
 
 - `cookie`
 - `zlib`
@@ -384,33 +366,33 @@ location /zy {
 ```
 
 !!! info
-    このパラメータは、http、server、locationブロック内で設定できます。
+    このパラメータはhttpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
 
 ### wallarm_parse_html_response
 
-アプリケーションのレスポンスで受信したHTMLコードにHTMLパーサを適用するかどうか。可能な値は`on`（HTMLパーサが適用される）と`off`（HTMLパーサが適用されない）です。
+アプリケーションがレスポンスとして受け取ったHTMLコードにHTMLパーサを適用するかどうか。可能な値は `on`（HTMLパーサが適用されます）と `off`（HTMLパーサが適用されません）です。
 
-このパラメータは、`wallarm_parse_response on`の場合にのみ効果があります。
+このパラメータは `wallarm_parse_response on` の場合にのみ効果があります。
 
 !!! info
-    このパラメータは、http、server、locationブロック内で設定できます。
-    
-    **デフォルト値**: `on`
+    このパラメータはhttpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
+
+    **デフォルト値**： `on`
 
 ### wallarm_partner_client_uuid
 
-[マルチテナント](../installation/multi-tenant/overview.md) Wallarmノードのテナントの一意の識別子。値は、[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format)形式の文字列である必要があります。例:
+[マルチテナント](../installation/multi-tenant/overview.md) Wallarmノードのテナントの一意識別子。値は[UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) 形式の文字列である必要があります。例えば：
 
 * `11111111-1111-1111-1111-111111111111`
 * `123e4567-e89b-12d3-a456-426614174000`
 
 !!! info
-    このパラメータは、http、server、locationブロック内で設定できます。
+    このパラメータはhttpブロック、サーバーブロック、およびロケーションブロック内で設定できます。
 
-    次の方法を知っておく必要があります。
+    次の方法を知っておいてください：
     
-    * [テナント作成時にテナントのUUIDを取得する →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
-    * [既存のテナントのUUIDのリストを取得する →](../updating-migrating/multi-tenant.md#get-uuids-of-your-tenants)
+    * [テナント作成中にテナントのUUIDを取得する →](../installation/multi-tenant/configure-accounts.md#step-3-create-the-tenant-via-the-wallarm-api)
+    * [既存のテナントのUUIDのリストを取得する →](../updating-migrating/older-versions/multi-tenant.md#get-uuids-of-your-tenants)
     
 設定例：
 
@@ -444,70 +426,68 @@ server {
 }
 ```
 
-上記の設定では:
+上記の設定では：
 
-* テナントは、パートナーのクライアントを指します。パートナーには2つのクライアントがあります。
-* `tenant1.com`および`tenant1-1.com`に向けられたトラフィックは、`11111111-1111-1111-1111-111111111111`のクライアントに関連付けられます。
-* `tenant2.com`に向けられたトラフィックは、`22222222-2222-2222-2222-222222222222`のクライアントに関連付けられます。
-* 最初のクライアントには、[`wallarm_application`](#wallarm_application)ディレクティブを介して指定された3つのアプリケーションもあります。
+* テナントはパートナーのクライアントを表します。パートナーには2人のクライアントがいます。
+* `tenant1.com` と `tenant1-1.com` に向けられたトラフィックはクライアント `11111111-1111-1111-1111-111111111111` に関連付けられます。
+* `tenant2.com` に向けられたトラフィックはクライアント `22222222-2222-2222-2222-222222222222` に関連付けられます。
+* 最初のクライアントにはまた、[`wallarm_application`](#wallarm_application) ディレクティブを経由して指定された3つのアプリケーションがあります：
     * `tenant1.com/login` – `wallarm_application 21`
     * `tenant1.com/users` – `wallarm_application 22`
     * `tenant1-1.com` – `wallarm_application 23`
 
-    これら3つのパスに対するトラフィックは、対応するアプリケーションに関連付けられ、残りは最初のクライアントの一般的なトラフィックになります。
+    これら3つのパスに向けられたトラフィックは対応するアプリケーションに関連付けられ、その残りは最初のクライアントの一般的なトラフィックになります。### wallarm_process_time_limit
 
-### wallarm_process_time_limit
-
-!!! warning "ディレクティブは廃止されました"
-    バージョン3.6以降、[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md)を使用して`overlimit_res`攻撃検出を微調整することをお勧めします。
+!!! warning "このディレクティブは廃止予定です"
+    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md) を使用して微調整することを推奨します。
     
-    `wallarm_process_time_limit`ディレクティブは一時的にサポートされていますが、今後のリリースで削除される予定です。
+    `wallarm_process_time_limit`ディレクティブは一時的にサポートされていますが、将来のリリースで削除される予定です。
 
-Wallarmノードによる単一リクエスト処理の制限時間を設定します。
+Wallarmノードによる単一リクエスト処理の時間制限を設定します。
 
-時間が制限を超えると、ログにエラーが記録され、リクエストは[`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources)攻撃としてマークされます。 [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block)値によって、攻撃をブロック、監視、無視することができます。
+もし時間が制限を超えると、エラーがログに記録され、リクエストは [`overlimit_res`](../attacks-vulns-list.md#overlimiting-of-computational-resources) 攻撃としてマークされます。 [`wallarm_process_time_limit_block`](#wallarm_process_time_limit_block) の値により、攻撃はブロックされるか、モニタリングされるか、無視されるかが決まります。
 
-値は、ミリ秒単位で単位なしで指定されます。例えば:
+値は単位なしのミリ秒で指定します。例えば：
 
 ```bash
-wallarm_process_time_limit 1200; # 1200ミリ秒
-wallarm_process_time_limit 2000; # 2000ミリ秒
+wallarm_process_time_limit 1200; # 1200 ミリ秒
+wallarm_process_time_limit 2000; # 2000 ミリ秒
 ```
 
 !!! info
-    このパラメータは、http、server、およびlocationブロック内で設定できます。
+    このパラメータはhttp、server、およびlocationブロック内で設定することができます。
     
-    **デフォルト値**: 1000ms（1秒）。
+    **デフォルト値**: 1000ms (1 秒)。
 
 ### wallarm_process_time_limit_block
 
-!!! warning "ディレクティブは廃止されました"
-    バージョン3.6以降、[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md)を使用して`overlimit_res`攻撃検出を微調整することをお勧めします。
+!!! warning "このディレクティブは廃止予定です"
+    バージョン3.6以降、 `overlimit_res` 攻撃検出は[ルール **overlimit_res攻撃検出の微調整**](../user-guides/rules/configure-overlimit-res-detection.md) を使用して微調整することを推奨します。
     
-    `wallarm_process_time_limit_block`ディレクティブは一時的にサポートされていますが、今後のリリースで削除される予定です。
+    `wallarm_process_time_limit_block`ディレクティブは一時的にサポートされていますが、将来のリリースで削除される予定です。
 
-[`wallarm_process_time_limit`](#wallarm_process_time_limit)ディレクティブで設定された制限時間を超えるリクエストのブロックを管理する機能:
+[`wallarm_process_time_limit`](#wallarm_process_time_limit) ディレクティブで設定された時間制限を超えるリクエストのブロックを管理する能力：
 
-- `on`: `wallarm_mode off`でない限り、リクエストは常にブロックされます
-- `off`: リクエストは常に無視されます
+- `on`: `wallarm_mode off`でなければ、リクエストは常にブロックされます。
+- `off`: リクエストは常に無視されます。
 
     !!! warning "保護バイパスのリスク"
-        `off`値は、`overlimit_res`攻撃からの保護が無効になるため、注意して使用してください。
+        `off` 値は、 `overlimit_res` 攻撃からの保護を無効にするので慎重に使用する必要があります。
         
-        大きなファイルのアップロードが行われ、保護のバイパスと脆弱性の悪用のリスクがない、実際に必要な厳密に特定の場所でのみ、`off`値を使用することをお勧めします。
+        大きなファイルのアップロードが行われ、保護の回避や脆弱性の悪用のリスクがない場所など、本当に必要な厳密な特定のロケーションでのみ `off` 値を使用することを推奨します。
         
-        httpまたはserverブロックで`wallarm_process_time_limit_block`を`off`に設定することは**強くお勧めできません**。
+        httpまたはserverブロック全体で `wallarm_process_time_limit_block` を `off` に設定することは**強くお勧めしません**。
     
-- `attack`: `wallarm_mode`ディレクティブで設定された攻撃ブロックモードに依存します。
+- `attack`: `wallarm_mode`ディレクティブで設定された攻撃ブロッキングモードに依存します：
     - `off`: リクエストは処理されません。
-    - `monitoring`: リクエストは無視されますが、`overlimit_res`攻撃の詳細はWallarm Cloudにアップロードされ、Wallarm Consoleに表示されます。
-    - `safe_blocking`: [グレイリストに登録された](../user-guides/ip-lists/graylist.md)IPアドレスからのリクエストのみがブロックされ、すべての`overlimit_res`攻撃の詳細がWallarm Cloudにアップロードされ、Wallarm Consoleに表示されます。
-    - `block`: リクエストがブロックされます。
+    - `monitoring`: リクエストは無視されますが、`overlimit_res`攻撃の詳細はWallarmクラウドにアップロードされ、Wallarmコンソールに表示されます。
+    - `safe_blocking`: [graylisted](../user-guides/ip-lists/graylist.md) IPアドレスからのリクエストだけがブロックされ、すべての`overlimit_res`攻撃の詳細はWallarmクラウドにアップロードされ、Wallarmコンソールに表示されます。
+    - `block`: リクエストはブロックされます。
 
-ディレクティブの値に関係なく、`overlimit_res`攻撃タイプのリクエストは、[`wallarm_mode off;`](#wallarm_mode)以外はWallarm Cloudにアップロードされます。
+ディレクティブの値に関係なく、 `overlimit_res` 攻撃タイプのリクエストは、 [`wallarm_mode off;`](#wallarm_mode) でない限り、Wallarmクラウドにアップロードされます。
 
 !!! info
-    このパラメータは、http、server、およびlocationブロック内で設定できます。
+    このパラメータはhttp、server、およびlocationブロック内で設定することができます。
     
     **デフォルト値**: `wallarm_process_time_limit_block attack`
 
@@ -516,94 +496,161 @@ wallarm_process_time_limit 2000; # 2000ミリ秒
 NGINXマスタープロセスのデバッグログの設定。
 
 !!! warning "ディレクティブの使用"
-    Wallarmサポートチームのメンバーが指示する場合にのみ、ディレクティブを設定する必要があります。彼らは、ディレクティブで使用する値を提供します。
+    Wallarmのサポートチームのメンバーに指示された場合にのみ、ディレクティブを設定する必要があります。彼らはディレクティブで使用する値を提供します。
 
 !!! info
-    このパラメータは、メインレベルでのみ設定できます。
+    このパラメータはメインレベルでのみ設定可能です。
 
 ### wallarm_proton_log_mask_worker
 
 NGINXワーカープロセスのデバッグログの設定。
 
 !!! warning "ディレクティブの使用"
-    Wallarmサポートチームのメンバーが指示する場合にのみ、ディレクティブを設定する必要があります。彼らは、ディレクティブで使用する値を提供します。
+    Wallarmのサポートチームのメンバーに指示された場合にのみ、ディレクティブを設定する必要があります。彼らはディレクティブで使用する値を提供します。
 
 !!! info
-    このパラメータは、メインレベルでのみ設定できます。### wallarm_protondb_path
+    このパラメータはメインレベルでのみ設定可能です。
 
-アプリケーション構造に依存しないリクエストフィルタリングのグローバル設定が含まれる [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) ファイルへのパス。
+### wallarm_protondb_path
+
+リクエストフィルタリングの全体設定を持つ [proton.db](../about-wallarm/protecting-against-attacks.md#library-libproton) ファイルへのパス。これらの設定はアプリケーション構造に依存しません。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータはhttp、server、およびlocationブロック内で設定できます。
     
     **デフォルト値**: `/etc/wallarm/proton.db`
 
-!!! warning "ディレクティブの以前の名称"
-    Wallarm ノード 3.4 以前では、このディレクティブは `wallarm_global_trainingset_path` という名称になっています。この名前を使用している場合は、[ノードモジュールのアップグレード](../updating-migrating/general-recommendations.md#update-process)時に変更することをお勧めします。`wallarm_global_trainingset_path`ディレクティブは間もなく非推奨になります。 ディレクティブのロジックは変わっていません。
+### wallarm_rate_limit
+
+次の形式でレート制限設定を設定します：
+
+```
+wallarm_rate_limit <KEY_TO_MEASURE_LIMITS_FOR> rate=<RATE> burst=<BURST> delay=<DELAY>;
+```
+
+* `KEY_TO_MEASURE_LIMITS_FOR` - 制限を計測するキー。テキスト、[NGINX変数](http://nginx.org/en/docs/varindex.html)、またはその組み合わせを含めることができます。
+
+    例：同じIPからのリクエストと `/login` エンドポイントへのリクエストを制限するには、 `"$remote_addr +login"` を使用します。
+* `rate=<RATE>` (必須) - レート制限。 `rate=<number>r/s` または `rate=<number>r/m` にすることができます。
+* `burst=<BURST>` (オプション) - RPS/RPMが指定された数値を超えた場合にバッファリングされ、レートが正常に戻ったときに処理される過剰なリクエストの最大数。デフォルトは `0` です。
+* `delay=<DELAY>` - `<BURST>` 値が `0` でない場合、バッファリングされた過剰なリクエストの実行間で定義されたRPS/RPMを維持するかどうかを制御できます。 `nodelay` は、すべてのバッファリングされた過剰なリクエストをレート制限の遅延なしで同時に処理することを示します。数値値は、指定された数の過剰なリクエストを同時に処理し、他のリクエストはRPS/RPMで設定された遅延で処理されます。
+
+例：
+
+```
+wallarm_rate_limit "$remote_addr +location_name" rate=10r/s burst=9 delay=5;
+```
+
+!!! info
+    **デフォルト値:** なし。
+
+    このパラメータはhttp、server、locationコンテキスト内で設定できます。
+
+    もし [レート制限](../user-guides/rules/rate-limiting.md) ルールを設定した場合、 `wallarm_rate_limit` ディレクティブは優先度が低くなります。
+
+### wallarm_rate_limit_enabled
+
+Wallarmのレート制限を有効/無効にします。
+
+もし `off` の場合、[レート制限ルール](../user-guides/rules/rate-limiting.md) （推奨）でも `wallarm_rate_limit` ディレクティブでも動作しません。
+
+!!! info
+    **デフォルト値:** `on` ですが、[レート制限ルール](../user-guides/rules/rate-limiting.md) (推奨)または `wallarm_rate_limit` ディレクティブを設定していない限り、Wallarmのレート制限は機能しません。
+    
+    このパラメータはhttp、server、locationコンテキスト内で設定できます。
+
+### wallarm_rate_limit_log_level
+
+レート制限制御によって拒否されたリクエストのロギングレベル。 `info`、`notice`、`warn`、`error` が可能です。
+
+!!! info
+    **デフォルト値:** `error`。
+    
+    このパラメータはhttp、server、locationコンテキスト内で設定できます。
+
+### wallarm_rate_limit_status_code
+
+Wallarmのレート制限モジュールによって拒否されたリクエストに対するレスポンスのコード。
+
+!!! info
+    **デフォルト値:** `503`。
+    
+    このパラメータはhttp、server、locationコンテキスト内で設定できます。
+
+### wallarm_rate_limit_shm_size
+
+Wallarmのレート制限モジュールが消費できる共有メモリの最大量を設定します。
+
+平均キー長が64バイト（文字）で、 `wallarm_rate_limit_shm_size`が64MBの場合、モジュールは同時に約130,000のユニークキーを処理できます。メモリを2倍にすると、モジュールのキャパシティが線形に2倍になります。
+
+キーとは、モジュールが制限を計測するために使用するリクエストポイントの固有値です。たとえば、モジュールがIPアドレスに基づいて接続を制限している場合、各一意のIPアドレスは1つのキーとみなされます。デフォルトのディレクティブ値では、モジュールは同時に約130,000の異なるIPからのリクエストを処理できます。
+
+!!! info
+    **デフォルト値:** `64m` (64 MB)。
+    
+    このパラメータはhttpコンテキスト内でのみ設定できます。
 
 ### wallarm_request_chunk_size
 
-1つの反復で処理されるリクエストの一部のサイズを制限します。`wallarm_request_chunk_size`ディレクティブのカスタム値をバイト単位で設定するには、整数を割り当てます。このディレクティブは以下の接尾辞もサポートしています。
-* `k` または `K` キロバイト
-* `m` または `M` メガバイト
-* `g` または `G` ギガバイト
+一つの反復で処理されるリクエストの部分のサイズを制限します。 `wallarm_request_chunk_size` ディレクティブの値をバイト単位で設定するには、整数を指定します。また、次の接尾辞もサポートしています：
+* `k` または `K` はキロバイトを意味します
+* `m` または `M` はメガバイトを意味します
+* `g` または `G` はギガバイトを意味します
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
-    **デフォルト値**: `8k` (8キロバイト)。
+    このパラメータはhttp、server、およびlocationブロック内で設定できます。
+    **デフォルト値**: `8k` (8 キロバイト)。### wallarm_request_memory_limit
 
-### wallarm_request_memory_limit
+1つのリクエストの処理に使用できるメモリの最大量を制限します。
 
-1つのリクエストの処理に使用できるメモリの最大量に制限を設定します。
+制限を超えると、リクエストの処理が中断され、ユーザーには500のエラーが返されます。
 
-制限を超えると、リクエストの処理が中断され、ユーザーは 500 エラーを受け取ります。
-
-以下の接尾辞がこのパラメータで使用できます：
-* `k` または `K` キロバイト
-* `m` または `M` メガバイト
-* `g` または `G` ギガバイト
+このパラメータでは次の接尾語を使用できます：
+* `k` または `K` はキロバイト用
+* `m` または `M` はメガバイト用
+* `g` または `G` はギガバイト用
 
 `0` の値は制限をオフにします。
 
-デフォルトでは、制限はオフです。 
+デフォルトでは、制限はオフになっています。
 
 !!! info
-    このパラメータは、http、server、および/または location ブロック内で設定できます。
+    このパラメータは、http、サーバー、および/またはロケーションのブロック内で設定できます。
 
 
 ### wallarm_stalled_worker_timeout
 
-NGINX ワーカーが 1 つのリクエストを処理するための制限時間を秒単位で設定します。
+NGINX ワーカーの 1 リクエスト処理のタイムリミットを秒単位で設定します。
 
-時間が制限を超えると、NGINX ワーカーに関するデータが `stalled_workers_count` および `stalled_workers` [統計](configure-statistics-service.md##working-with-the-statistics-service)パラメータに書き込まれます。
+時間が制限を超えると、NGINX ワーカーのデータが `stalled_workers_count` および `stalled_workers` [statistic](configure-statistics-service.md##working-with-the-statistics-service) パラメータに書き込まれます。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
+    このパラメータは、http、サーバー、および/またはロケーションのブロック内で設定できます。
     
-    **デフォルト値**: `5` (5秒)
+    **デフォルト値**： `5` (5 秒)
 
 ### wallarm_status
 
-Controls the [Wallarm statistics service](configure-statistics-service.md) operation.
+[Wallarm statistics service](configure-statistics-service.md) の操作を制御します。
 
-The directive value has the following format:
+ディレクティブの値は次の形式を持ちます：
 
 ```
 wallarm_status [on|off] [format=json|prometheus];
 ```
 
-It is highly recommended to configure the statistics service in the separate configuration file `/etc/nginx/conf.d/wallarm-status.conf` and not to use the `wallarm_status` directive in other files that you use when setting up NGINX, because the latter may be insecure.
+統計サービスは、別の設定ファイル `/etc/nginx/conf.d/wallarm-status.conf` に設定することを強く推奨し、NGINXの設定を行う際に他のファイルで `wallarm_status` ディレクティブを使用しないでください。なぜなら、後者は安全でない可能性があるからです。
 
-Also, it is strongly advised not to alter any of the existing lines of the default `wallarm-status` configuration as it may corrupt the process of metric data upload to the Wallarm cloud.
+また、デフォルトの `wallarm-status` 設定の既存の行を変更しないことを強く推奨します。なぜなら、これは Wallarm クラウドへのメトリックデータのアップロードのプロセスを破壊する可能性があるからです。
 
 !!! info
-    The directive can be configured in the NGINX context of `server` and/or `location`.
+    ディレクティブは、 `server` および/または `location` の NGINX コンテキストで設定できます。
 
-    The `format` parameter has the `json` value by default.
+    `format` パラメータのデフォルト値は `json` です。
 
 ### wallarm_tarantool_upstream
 
-`wallarm_tarantool_upstream` を使用して、いくつかの postanalytics サーバー間でリクエストのバランスを取ることができます。
+`wallarm_tarantool_upstream` を使って、いくつかの postanalytics サーバー間でリクエストをバランス調整できます。
 
 **例：**
 
@@ -613,32 +660,107 @@ upstream wallarm_tarantool {
     keepalive 1;
 }
 
-# 省略
+# omitted
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
 [Module ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html)も参照してください。
 
-!!! warning "必要な条件"
-    `max_conns` および `keepalive` パラメータには、次の条件が満たされることが求められます：
+!!! warning "必須条件"
+    `max_conns` と `keepalive` パラメータに対して次の条件が満たされていることが必要です：
 
-    * `keepalive` パラメータの値は、Tarantool サーバーの数よりも低くしてはならない。
-    * サーバーが過剰な接続を作成しないよう、各上流 Tarantool サーバーに対して `max_conns` パラメータの値を指定する必要があります。
+    * `keepalive` パラメータの値は Tarantool サーバーの数より低くないこと。
+    * `max_conns` パラメータは上流の各 Tarantool サーバーに対して指定され、過度の接続の作成を防ぎます。
 
 !!! info
-    このパラメータは、http ブロック内でのみ構成されます。
+    このパラメータは、http ブロック内でのみ設定されます。
 
 ### wallarm_timeslice
 
-フィルタリングノードがキュー内の次のリクエストに切り替える前に、1回のリクエスト処理の反復を実行するために費やす時間の制限。時間制限に達すると、フィルタリングノードはキュー内の次のリクエストを処理し始めます。キュー内の各リクエストで 1 回の反復処理が完了すると、ノードはキュー内の最初のリクエストで 2 回目の反復処理を実行します。
+フィルタリングノードがリクエストの1回の処理に費やす時間の制限。次のリクエストに切り替わる前にリクエストの一回の処理に費やす時間の制限。時間制限に達すると、フィルタリングノードはキュー内の次のリクエストの処理に進みます。キュー内のすべてのリクエストの一回目の処理を実行した後、ノードはキュー内の最初のリクエストの二回目の処理を実行します。
 
-ディレクティブに異なる時間単位の値を割り当てるために、[NGINX ドキュメント](https://nginx.org/en/docs/syntax.html)で説明されている時間間隔の接尾辞を使用できます。
+ディレクティブに異なる時間単位の値を割り当てるために、[NGINX documentation](https://nginx.org/en/docs/syntax.html) で説明されている時間間隔の接尾語を使用できます。
 
 !!! info
-    このパラメータは、http、server、location ブロック内で設定できます。
-    **デフォルト値**: `0` (1回の反復の制限時間は無効)。
-----
+    このパラメータは、http、サーバー、および/またはロケーションのブロック内で設定できます。
+    **デフォルト値**： `0` (一回の処理の時間制限は無効)。
+
+-----
 
 !!! warning
-    NGINX サーバーの制限のため、`wallarm_timeslice`ディレクティブを機能させるためには、`proxy_request_buffering`NGINXディレクティブに`off`値を割り当てることでリクエストのバッファリングを無効にする必要があります。
+    NGINX サーバーの制限のため、`proxy_request_buffering` NGINX ディレクティブに `off` 値を割り当ててリクエストのバッファリングを無効にする必要があります。これは `wallarm_timeslice` ディレクティブが機能するための必要条件です。
+
+### wallarm_ts_request_memory_limit
+
+!!! warning "このディレクティブは非推奨です"
+    Wallarm ノード 4.0 からは、代わりに [`wallarm_general_ruleset_memory_limit`](#wallarm_general_ruleset_memory_limit) ディレクティブを使用してください。ディレクティブ名だけを変更して、そのロジックは変更しないでください。
+
+### wallarm_unpack_response
+
+アプリケーションの応答で返される圧縮データを解凍するかどうかを指定します。可能な値は `on` (解凍が有効) と `off` (解凍が無効) です。
+
+このパラメータは `wallarm_parse_response on` の場合のみ有効です。
+
+!!! info
+    **デフォルト値**： `on`。
+
+### wallarm_upstream_backend
+
+シリアル化されたリクエストを送信する方法を指定します。リクエストは、タラントゥールか API へ送信することができます。
+
+ディレクティブの可能な値は：
+*   `tarantool`
+*   `api`
+
+他のディレクティブにより、デフォルト値は以下のように割り当てられます：
+*   `tarantool` - 設定に `wallarm_api_conf` ディレクティブがない場合。
+*   `api` - 設定に `wallarm_api_conf` ディレクティブがあり、 `wallarm_tarantool_upstream` ディレクティブがない場合。
+
+    !!! note
+        `wallarm_api_conf` と `wallarm_tarantool_upstream` のディレクティブが同時に設定に存在する場合、**directive ambiguous wallarm upstream backend** 形式の設定エラーが発生します。
+
+!!! info
+    このパラメータは、http ブロック内でのみ設定できます。
+
+### wallarm_upstream_connect_attempts
+
+Tarantool または Wallarm API への再接続の即時試行回数を定義します。
+Tarantool または API への接続が終了すると、再接続の試みは行われません。ただし、これは接続が終了していない場合や、シリアル化されたリクエストのキューが空でない場合には当てはまりません。
+
+!!! note
+    再接続は別のサーバーを経由して行われる可能性があります。なぜなら、サーバーの選択は "アップストリーム" サブシステムが担当しているからです。
+    
+    このパラメータは、http ブロック内でのみ設定できます。
+
+### wallarm_upstream_reconnect_interval
+
+`wallarm_upstream_connect_attempts` のしきい値を超えた不成功な試行の後、Tarantool または Wallarm API への再接続の試行間での間隔を定義します。
+
+!!! info
+    このパラメータは、http ブロック内でのみ設定できます。
+
+### wallarm_upstream_connect_timeout
+
+Tarantool または Wallarm API への接続のタイムアウトを定義します。
+
+!!! info
+    このパラメータは、http ブロック内でのみ設定できます。
+
+### wallarm_upstream_queue_limit
+
+シリアル化されたリクエストの数の上限を定義します。
+`wallarm_upstream_queue_limit` パラメータを設定し、`wallarm_upstream_queue_memory_limit` パラメータを設定しないと、後者には上限がないことを意味します。
+
+!!! info
+    このパラメータは、http ブロック内でのみ設定できます。
+
+### wallarm_upstream_queue_memory_limit
+
+シリアル化されたリクエストの総量の上限を定義します。
+`wallarm_upstream_queue_memory_limit` パラメータを設定し、`wallarm_upstream_queue_limit` パラメータを設定しないと、後者には上限がないことを意味します。
+
+!!! info
+    **デフォルト値：** `100m`。
+    
+    このパラメータは、http ブロック内でのみ設定できます。

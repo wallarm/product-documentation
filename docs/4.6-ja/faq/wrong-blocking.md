@@ -1,1 +1,1 @@
---8<-- "latest/faq/wrong-blocking.md"
+--8<-- "latest-ja/faq/wrong-blocking.md"

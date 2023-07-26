@@ -1,1 +1,1 @@
---8<-- "latest/fast/poc/waiting-for-tests.md"
+--8<-- "latest-ja/fast/poc/waiting-for-tests.md"

@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/oob/web-server-mirroring/linux/nginx-distro.md"

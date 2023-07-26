@@ -1,51 +1,51 @@
 [allowlist-scanner-addresses]: ../user-guides/ip-lists/allowlist.md
 
-# アクティブな脅威検証機能の設定におけるベストプラクティス <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# Active Threat検証機能の設定に対する最良の手法 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmが[脆弱性を検出する](../about-wallarm/detecting-vulnerabilities.md)ために使用する方法の一つは、**アクティブな脅威検証**で、攻撃者をペネトレーションテスターに変え、アプリ/APIの脆弱性を探る彼らの活動から可能なセキュリティ問題を発見することができます。このモジュールは、トラフィックからの実際の攻撃データを使用してアプリケーションのエンドポイントを探ることで、可能な脆弱性を見つけます。モジュールを安全に操作するために、この記事から設定のベストプラクティスを学んでください。
+Wallarmが[脆弱性を検出](../about-wallarm/detecting-vulnerabilities.md) する一つの方法は、**Active Threat Verification**という機能を使用して攻撃者をペネトレーションテスターに変え、アプリ/APIの脆弱性を探る彼らの活動から考えられるセキュリティ問題を特定することです。この機能は、トラフィックからの実際の攻撃データを使用して、アプリケーションのエンドポイントを探ることにより、可能性のある脆弱性を見つけます。この機能を安全に使用するため、本記事でその設定の最良の手法を学んでください。
 
-デフォルトでは、**アクティブな脅威検証**は無効になっています。モジュールを有効にするには、[Attack rechecker を制御する方法](#know-how-to-control-the-attack-rechecker)を知っておく必要があります。
+デフォルトでは、**Active Threat Verification**は無効になっています。この機能を有効にするには、[攻撃リチェッカーの制御方法](#攻撃リチェッカーの制御方法)を知る必要があります。
 
-!!! warning "攻撃がIPでグループ化されている場合のアクティブな脅威検証"
-    アタックが発信元IPによって [グループ化](../about-wallarm/protecting-against-attacks.md#attack)されている場合、この攻撃のアクティブな検証は利用できません。
+!!! warning "Active Threat検証はIPでグループ化されたヒットがある場合"
+    攻撃が起源のIPで[グループ化](../about-wallarm/protecting-against-attacks.md#attack)された場合、この攻撃のActiveな検証は使用できません。
 
-## アクティブな脅威検証機能の仕組み
+## Active Threat検証機能の作用方法
 
 --8<-- "../include-ja/how-attack-rechecker-works.md"
 
-## Attack recheckerの活動による潜在的なリスク
+## 攻撃リチェッカーの活動から見た潜在的なリスク
 
-* Wallarmが正当なリクエストを攻撃として検出した場合、そのリクエストは **Attack rechecker** によって再実行されます。リクエストが冪等ではない場合（例えば、アプリケーションで新しいオブジェクトを作成する認証済みリクエストなど）、**Attack rechecker** のリクエストは、ユーザーアカウント内で多数の新しい望ましくないオブジェクトを作成したり、他の予期しない操作を実行したりする可能性があります。
+* 貴重なケースでは、壁略が正規のリクエストを攻撃として検出した場合、そのリクエストは**攻撃リチェッカー**によって再生されます。リクエストが冪等でない場合（例えば、アプリケーション内で新しいオブジェクトを作成する認証済みリクエスト）、**攻撃リチェッカー**のリクエストによって、ユーザーアカウントに多数の新規の不要なオブジェクトが作成されたり、予期せぬ操作が実行される可能性があります。
 
-    このような状況のリスクを最小限に抑えるために、**Attack rechecker** は再実行されるリクエストから以下のHTTPヘッダーを自動的に削除します。
-  
+    このような事態のリスクを最小限に抑えるため、**攻撃リチェッカー**は再生されたリクエストから以下のHTTPヘッダーを自動的に取り除きます：
+
     * `Cookie`
     * `Authorization: Basic`
     * `Viewstate`
-* アプリケーションが非標準の認証方法を使用する場合やリクエストの認証が必要でない場合、**Attack rechecker** はトラフィックからの任意のリクエストを再実行してシステムに悪影響を及ぼす可能性があります。例：100以上のお金の取引や注文を繰り返す。このような状況のリスクを最小限に抑えるために、[攻撃再生用のテスト環境やステージング環境を使用する](#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application)ことや、[非標準のリクエスト認証パラメーターをマスクする](#configure-proper-data-masking-rules)ことが推奨されます。
+* アプリケーションが一般的でない認証方式を使用したり、リクエストを認証する必要がない場合、**攻撃リチェッカー**はトラフィックから発行される任意のリクエストを再生してシステムに害を与える可能性があります。例えば: 100回以上の重複した金額の取引や注文を繰り返すことがあります。このような事態のリスクを最小限に抑えるため、[攻撃再生用にテスト環境やステージング環境を使用する](#optional-configure-attack-rechecker-request-rewriting-rules-run-tests-against-a-copy-of-the-application)ことと、[一般的でないリクエスト認証パラメーターのマスクを行う](#正しいデータマスキングルールを設定)ことが推奨されます。
 
-## Attack rechecker の設定におけるベストプラクティス
+## 攻撃リチェッカーの設定のためのベストプラクティス
 
-### 適切なデータマスキングルールを設定する
+### 正しいデータマスキングルールを設定
 
-あなたのアプリケーションが非標準の認証タイプ（例えば、リクエスト文字列トークンやカスタムHTTPリクエストヘッダー、POST本文のJSON属性など）を使用している場合、適切な[データマスキングルール](../user-guides/rules/sensitive-data-rule.md)を設定して、フィルタリングノードが情報をWallarm Cloudに送信するのを防ぐ必要があります。この場合、再実行された **Attack rechecker** のリクエストは、アプリケーションによって承認されず、システムに悪影響を与えることはありません。
+アプリケーションが一般的でない種類の認証（例えば、リクエスト文字列トークンやカスタムHTTPリクエストヘッダ、POSTボディに含まれるJSON属性）を使用している場合は、情報をWallarm クラウドに送信するフィルタリングノードを防ぐために、適切な[data masking rule](../user-guides/rules/sensitive-data-rule.md)を設定するべきです。その場合、再生された**攻撃リチェッカー**のリクエストは、アプリケーションによって認証されず、システムに迷惑をかけることなくなります。
 
-### Attack recheckerを制御する方法を知っておく
+### 攻撃リチェッカーの制御方法
 
-**Attack rechecker** モジュールのグローバルなオン/オフスイッチは、Wallarm Console → [**Scanner** セクション](../user-guides/scanner/configure-scanner-modules.md)にあります。デフォルトでは、このモジュールは無効になっています。
+**攻撃リチェッカー**モジュールのグローバルなオン/オフスイッチは、Wallarmコンソール → [**脆弱性**](../user-guides/vulnerabilities.md) に位置しています。デフォルトでは、このモジュールは無効になっています。
 
-### 検出されたセキュリティインシデントに対して適切な通知及びエスカレーションルールを設定する
+### 検出したセキュリティインシデントに対する適切な通知とエスカレーションのルールを設定
 
-Wallarmは、Slack、Telegram、PagerDuty、Opsgenieなどの[サードパーティ製のメッセージングやインシデント管理サービスとの統合](../user-guides/settings/integrations/integrations-intro.md)を提供しています。情報セキュリティチームに発見されたセキュリティインシデントに関する通知を送信するために、Wallarm Cloudインスタンスを統合を使用するように設定することを強くお勧めします。
+WallarmはSlackやTelegram、PagerDuty、Opsgenieなどの[サードパーティのメッセージングおよびインシデント管理サービスとの統合](../user-guides/settings/integrations/integrations-intro.md)を提供しています。Wallarmクラウドインスタンスを設定して、発見されたセキュリティインシデントに対する通知を情報セキュリティチームに送信するよう統合を使用することを強く推奨します。
 
-### フィルタリングノードからWallarm Cloudへの潜在的な機密データ漏れを処理する方法を知っておく
+### フィルタリングノードからWallarmクラウドまでの機密データ漏洩の対処方法
 
-フィルタリングノードが、認証トークンやユーザー名/パスワード資格情報などの機密データを含む偽陽性リクエストをWallarm Cloudに送信してしまったことがわかった場合、[Wallarm技術サポート](mailto:support@wallarm.com)に連絡して、Wallarm Cloudのストレージからリクエストを削除するよう依頼することができます。また、適切な[データマスキングルール](../user-guides/rules/sensitive-data-rule.md)を設定することができます。既に保存されているデータを変更することはできません。
+フィルタリングノードが誤ったポジティブなリクエストを見つけて、認証トークンやユーザー名/パスワードの資格情報等の機密情報を含むリクエストをWallarm クラウドに送信してしまった事を発見した場合、あなたは[Wallarmの技術サポート](mailto:support@wallarm.com)に依頼して、Wallarmクラウドストレージからそのリクエストを削除することができます。また、適切な[data masking rules](../user-guides/rules/sensitive-data-rule.md)を設定することもできます。すでに格納されたデータを修正することはできません。
 
-### オプション：特定のアプリケーション、ドメイン、URLに対してAttack recheckerのテストを有効/無効にする
+### オプション: 特定のアプリケーション、ドメイン、URLで攻撃リチェッカーテストを有効/無効に設定
 
-アプリケーションのエンドポイントが冪等でなく、リクエストの認証メカニズムを使用していない場合（例えば、新規顧客アカウントの自動登録など）、特定のエンドポイントに対して**Attack rechecker** 機能を無効にすることが推奨されます。Wallarmは、**Attack rechecker** スキャナを特定の顧客アプリケーション、ドメイン、またはURLで有効または無効にすることができるかどうかを制御する機能を提供しています。[**アクティブな脅威検証のモードを設定** というルール](../user-guides/rules/change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)を使用して行います。
+特定のアプリケーションエンドポイントが冪等ではなく、いかなるリクエスト認証メカニズムも使用しない場合（例えば、新顾客アカウントの自己登録）、特定のエンドポイントに対する**攻撃リチェッカー**機能を無効化することが推奨されます。Wallarmは、顧客がどの顧客アプリケーション、ドメイン、URLに**攻撃リチェッカー**スキャナーを有効または無効にするか制御する機能を提供しています。これは、[**Active Threat検証のモードを設定する**というルール](../user-guides/rules/change-request-for-active-verification.md#rewriting-the-request-before-attack-replaying)を使用します。
 
-### オプション：Attack recheckerリクエストの書き換えルールを設定する（アプリケーションのコピーに対してテストを実行する）
+### オプション: 攻撃リチェッカーのリクエスト書き換えルールを設定（アプリケーションのコピーに対してテストを実行）
 
-アプリケーションのコピーに対してチェックを実行し、本番アプリケーションのスキャンを完全に回避したい場合、再実行される攻撃リクエストの特定の要素を変更するように指示する[ルール](../user-guides/rules/change-request-for-active-verification.md)を作成することができます。
+製品アプリケーションへのスキャンを完全に避けて、アプリケーションのコピーに対してチェックを実行したい場合は、再生される攻撃リクエストの特定の要素を変更するように**攻撃リチェッカー**に指示する[ルール](../user-guides/rules/change-request-for-active-verification.md)を作成することが可能です。

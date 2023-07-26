@@ -1,1 +1,1 @@
---8<-- "latest/fast/dsl/points/intro.md"
+--8<-- "latest-ja/fast/dsl/points/intro.md"

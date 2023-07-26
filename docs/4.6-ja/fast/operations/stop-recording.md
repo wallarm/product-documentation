@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/stop-recording.md"
+--8<-- "latest-ja/fast/operations/stop-recording.md"

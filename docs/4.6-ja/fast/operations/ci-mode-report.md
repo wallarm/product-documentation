@@ -1,1 +1,1 @@
---8<-- "latest/fast/operations/ci-mode-report.md"
+--8<-- "latest-ja/fast/operations/ci-mode-report.md"

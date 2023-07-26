@@ -1,19 +1,19 @@
 # Webhook
 
-Wallarm をセットアップして、HTTPS プロトコルを介して Incoming webhooks を受け入れる任意のシステムにインスタント通知を送信できます。これにより、次のイベントタイプの通知を受信するための Webhook URL を指定してください。
+Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意のシステムへの瞬時の通知を送信するように設定することができます。このために、以下のイベントタイプの通知を受信するためのWebhook URLを指定します：
 
 --8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
 
-## 通知フォーマット
+## 通知の形式
 
-通知は JSON 形式で送信されます。JSON オブジェクトのセットは、通知が送信されるイベントによって異なります。例：
+通知はJSONフォーマットで送信されます。JSONオブジェクトのセットは、通知が送信されるイベントに依存します。例えば：
 
 * ヒット検出
 
     ```json
     [
         {
-            "summary": "[Wallarm] 新しいヒットが検出されました",
+            "summary": "[Wallarm] New hit detected",
             "details": {
             "client_name": "TestCompany",
             "cloud": "EU",
@@ -60,32 +60,32 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
         }
     ]
     ```
-
 * 脆弱性検出
 
     ```json
     [
         {
-            summary:"[Wallarm] 新しい脆弱性が検出されました",
-            description:"通知タイプ：vuln
+            summary:"[Wallarm] New vulnerability detected",
+            description:"Notification type: vuln
 
-                        あなたのシステムで新しい脆弱性が見つかりました。
+                        　　システムに新しい脆弱性が検出されました。
 
                         ID: 
-                        タイトル：テスト
-                        ドメイン：example.com
-                        パス：
-                        メソッド：
-                        検出者：
-                        パラメータ：
-                        タイプ：情報
-                        脅威：中
+                        タイトル: Test
+                        ドメイン: example.com
+                        パス: 
+                        メソッド: 
+                        発見者: 
+                        パラメーター: 
+                        タイプ: Info
+                        脅威: Medium
 
-                        詳細：https://us1.my.wallarm.com/object/555
+                        詳細情報：https://us1.my.wallarm.com/object/555
 
 
                         クライアント：TestCompany
                         クラウド：US
+
                         ",
             details:{
                 client_name:"TestCompany",
@@ -110,59 +110,58 @@ Wallarm をセットアップして、HTTPS プロトコルを介して Incoming
 
 ## インテグレーションの設定
 
-1. Wallarm UI → **Integrations** を開きます。
+1. Wallarm UI → **インテグレーション**を開きます。
 2. **Webhook** ブロックをクリックするか、**インテグレーションを追加** ボタンをクリックして **Webhook** を選択します。
-3. インテグレーション名を入力します。
-4. ターゲット Webhook URL を入力します。
-5. 必要に応じて、詳細設定を構成します：
+3. インテグレーションの名前を入力します。
+4. ターゲットWebhook URLを入力します。
+5. 必要に応じて、詳細設定を設定します：
 
     --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
 
     ![!詳細設定の例](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
-6. イベントタイプを選択して、Webhook URL に通知を送信するトリガーにします。イベントが選択されていない場合、通知は送信されません。
-7. [インテグレーションをテスト](#testing-integration) して、設定が正しいことを確認します。
+6. 通知送信をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
+7. [インテグレーションをテスト](#integration-testing)し、設定が正しいことを確認します。
 8. **インテグレーションを追加** をクリックします。
 
-    ![!Webhook インテグレーション](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
 ## インテグレーションの例
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-人気のログコレクターを使用して SIEM システムにログを転送する方法についてのいくつかの例を説明しました。
+人気のログコレクターとのインテグレーションの設定例をいくつか紹介します。これらのログコレクターはログをSIEMシステムに転送します：
 
-* **Fluentd** が設定されていて、[IBM QRadar](webhook-examples/fluentd-qradar.md)、[Splunk Enterprise](webhook-examples/fluentd-splunk.md)、[ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md) にログを転送します。
-* **Logstash** が設定されていて、[IBM QRadar](webhook-examples/logstash-qradar.md)、[Splunk Enterprise](webhook-examples/logstash-splunk.md)、[ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md) にログを転送します。
+* **Fluentd**は、ログを [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
+* **Logstash**は、ログを [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
-テスト Webhook の例：
+Webhookのテスト例：
 
 ```json
 [
     {
-        summary:"[テストメッセージ] [テストパートナー(US)] 新しい脆弱性が検出されました",
-        description:"通知タイプ: vuln
+        summary:"[Test message] [Test partner(US)] New vulnerability detected",
+        description:"Notification type: vuln
 
-                    あなたのシステムで新しい脆弱性が見つかりました。
+                    　　システムに新しい脆弱性が検出されました。
 
                     ID: 
-                    タイトル：テスト
+                    タイトル：Test
                     ドメイン：example.com
                     パス：
                     メソッド：
-                    検出者：
-                    パラメータ：
-                    タイプ：情報
-                    脅威：中
+                    発見者：
+                    パラメーター：
+                    タイプ：Info
+                    脅威：Medium
 
-                    詳細：https://us1.my.wallarm.com/object/555
+                    詳細情報：https://us1.my.wallarm.com/object/555
 
-
-                    クライアント：TestCompany
-                    クラウド：US
+                    クライアント: TestCompany
+                    クラウド: US                    
                     ",
         details:{
             client_name:"TestCompany",
