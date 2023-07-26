@@ -335,8 +335,9 @@ nav:
       - フィルタリングノードのバージョニングポリシー: updating-migrating/versioning-policy.md
       - 安全なノードアップグレードプロセスの推奨事項: updating-migrating/general-recommendations.md
       - フィルタリングノードのアップグレード手順:
-        - Wallarm NGINX モジュールのアップグレード: updating-migrating/nginx-modules.md
-        - postanalytics モジュールのアップグレード: updating-migrating/separate-postanalytics.md
+        - 個別パッケージからインストールされたWallarm NGINXモジュールのアップグレード: updating-migrating/nginx-modules.md
+        - 個別パッケージからインストールされたPostanalyticsモジュールのアップグレード: updating-migrating/separate-postanalytics.md
+        - オールインワンインストーラーを介してインストールされたNodeのアップグレード: updating-migrating/all-in-one.md
         - Wallarm Docker NGINX-または Envoy ベースのイメージのアップグレード: updating-migrating/docker-container.md
         - NGINX Ingressコントローラのアップグレードと統合されたWallarmモジュール: updating-migrating/ingress-controller.md
         - Kong Ingressコントローラのアップグレードと統合されたWallarmモジュール: updating-migrating/kong-ingress-controller.md
