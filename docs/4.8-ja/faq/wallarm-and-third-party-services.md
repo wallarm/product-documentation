@@ -1,0 +1,1 @@
+--8<-- "latest-ja/faq/wallarm-and-third-party-services.md"

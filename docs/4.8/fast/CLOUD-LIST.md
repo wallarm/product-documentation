@@ -1,0 +1,1 @@
+--8<-- "latest/fast/CLOUD-LIST.md"

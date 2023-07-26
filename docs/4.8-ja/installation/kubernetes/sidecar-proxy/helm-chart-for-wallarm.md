@@ -1,0 +1,1 @@
+--8<-- "latest-ja/installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md"

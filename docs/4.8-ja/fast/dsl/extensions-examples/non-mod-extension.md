@@ -1,0 +1,1 @@
+--8<-- "latest-ja/fast/dsl/extensions-examples/non-mod-extension.md"

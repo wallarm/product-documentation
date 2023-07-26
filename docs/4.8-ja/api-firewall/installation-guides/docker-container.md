@@ -1,0 +1,1 @@
+--8<-- "latest-ja/api-firewall/installation-guides/docker-container.md"

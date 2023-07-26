@@ -1,0 +1,1 @@
+--8<-- "latest/index.md"

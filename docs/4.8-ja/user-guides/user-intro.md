@@ -1,0 +1,1 @@
+--8<-- "latest-ja/user-guides/user-intro.md"
