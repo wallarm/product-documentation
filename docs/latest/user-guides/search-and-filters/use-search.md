@@ -377,3 +377,13 @@ Examples:
     Only attacks detected after May 31, 2023 will be displayed when searching by node UUID.
 
 You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it<!-- or just select **Show events from this node** from the node menu-->.
+
+### Search by regexp-based customer rule
+
+To get the list of attacks detected by [regexp-based customer rules](../../user-guides/rules/regex-rule.md), in the search field specify `custom_rule`.
+
+For any of such attacks, in its details, the links to the corresponding rules are presented (there can be more than one). Click the link to access the rule details and edit them if necessary.
+
+![!Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+
+You can use `!custom_rule` to get the list of attacks not related to any regexp-based customer rules.

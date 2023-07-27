@@ -50,6 +50,12 @@ Request view provides the following options for Wallarm behavior fine-tuning:
 
     The button opens a rule setup form pre-filled with the request data.
 
+* **Detected by custom rules** section is displayed if the attack was detected by a [regexp-based customer rule](../../user-guides/rules/regex-rule.md). The section contains the link to the corresponding rule (there can be more than one) - click the link to access the rule details and edit them if necessary.
+
+    ![!Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+
+    [Learn how to search for such attacks →](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule)
+
 ## Analyze a Request in Raw Format
 
 The raw format of a request is the maximum possible level of detail. Raw format view in Wallarm Console also enables copying of a request in a cURL format.
