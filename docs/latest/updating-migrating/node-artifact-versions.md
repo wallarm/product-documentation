@@ -60,6 +60,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](kong-ingress-controller.md)
 
+### 4.6.2 (2023-07-27)
+
+* Custom annotations can now be added to the Tarantool pod using the chart value `wallarm.tarantool.podAnnotations`. By default, it is set to `sidecar.istio.io/inject: false`
+
 ### 4.6.1 (2023-07-21)
 
 * Fix the bug with labels overlap for Tarantool component
