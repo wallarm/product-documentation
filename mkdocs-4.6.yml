@@ -478,6 +478,7 @@ nav:
 #   - Wallarm Scanner overview: demo-videos/scanner-overview.md
 #   - Wallarm FAST overview and integration options: demo-videos/fast-overview.md
     - API Discovery overview: demo-videos/api-discovery.md
+    - Shadow API detection: demo-videos/shadow-api.md
     - API Abuse Prevention overview: demo-videos/api-abuse-prevention.md
     - API Leaks overview: demo-videos/api-leaks.md
   - Changelog & news: news.md
