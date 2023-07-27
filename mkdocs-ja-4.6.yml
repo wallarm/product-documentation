@@ -487,8 +487,6 @@ nav:
   - デモビデオ:
     - ウォールアームプラットフォームの設定: demo-videos/overview.md
     - CVEの分析と関連攻撃: demo-videos/events-inspection.md
-#   - Wallarmスキャナーの概要: demo-videos/scanner-overview.md
-#   - Wallarm FASTの概要と統合オプション: demo-videos/fast-overview.md
     - APIディスカバリーの概要: demo-videos/api-discovery.md
     - API乱用防止の概要: demo-videos/api-abuse-prevention.md
     - API情報漏洩の概要: demo-videos/api-leaks.md
