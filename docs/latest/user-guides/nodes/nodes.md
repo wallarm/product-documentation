@@ -11,7 +11,6 @@ Wallarm node UI management options:
 * Regenerate node tokens
 * Rename nodes
 * Delete nodes
-<!--* View attacks detected by the selected node (in the **Events** section)-->
 
 ![!Nodes](../../images/user-guides/nodes/table-nodes.png)
 
@@ -67,7 +66,7 @@ The following node properties and metrics are available:
 * Token of the Wallarm node (visible only for users with the **Administrator** or **Global Administrator** [role](../settings/users.md))
 * Time of the last synchronization of the filtering node and Wallarm Cloud
 * Date of the filtering node creation
-* Number of requests processed by the node in the current month
+* Number of requests processed by the node in the current month, you can also **View events from this node for the day** (switches to the **Events** section)
 * Versions of used LOM and proton.db
 * Versions of installed Wallarm packages, NGINX, and Envoy (if any)
 

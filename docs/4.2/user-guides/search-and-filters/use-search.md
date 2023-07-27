@@ -373,7 +373,7 @@ Examples:
 !!! info "Search only for new attacks"
     Only attacks detected after May 31, 2023 will be displayed when searching by node UUID.
 
-You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it<!-- or just select **Show events from this node** from the node menu-->.
+You can find the node UUID in the **Nodes** section, [node details](../../user-guides/nodes/nodes.md#viewing-details-of-a-node). Click UUID to copy it or click **View events from this node for the day** (switches to the **Events** section).
 
 ### Search by regexp-based customer rule
 
