@@ -948,29 +948,3 @@ a.navigation-card:hover {
   vertical-align: middle;
   margin-left: 8px;
 }
-
-@media screen and (max-width: 1219px) {
-  .languages  {
-    position: relative;
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-bottom: 0px;
-    font-size: 16px;
-    line-height: inherit;
-  }
-  .languages-main {
-    width: 100%;
-    border-color: #FC7303;
-    text-align: left;
-  }
-  .languages-drop {
-    float: right;
-    transition: none;
-  }
-  .languages-list {
-    width: 100%;
-  }
-  .languages-main-active .languages-drop {
-    transform: none;
-  }
-}
