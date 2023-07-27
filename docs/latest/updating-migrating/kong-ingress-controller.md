@@ -60,7 +60,7 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.6.2 -f <PATH
 
     Where `<NAMESPACE>` is the namespace the Helm chart with the Ingress controller is deployed to.
 
-    The chart version should correspond to `kong-4.6.0`.
+    The chart version should correspond to `kong-4.6.2`.
 1. Get the Wallarm pod details to check they have been successfully started:
 
     ```bash
