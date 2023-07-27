@@ -124,6 +124,7 @@ nav:
         - Mulesoft: installation/api-gateways/mulesoft.md
         - Apigee: installation/api-gateways/apigee.md
       - コネクタ:
+        - 概要: installation/connectors/overview.md
         - Mulesoft: installation/connectors/mulesoft.md
         - Apigee: installation/connectors/apigee.md
         - Akamaiエッジワーカー: installation/connectors/akamai-edgeworkers.md
