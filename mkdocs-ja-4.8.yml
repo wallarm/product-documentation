@@ -53,8 +53,6 @@ nav:
             - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
             - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
             - ディストリビューションが提供するNGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
-        - AWS VPCミラーリング:
-          - Terraformモジュール: installation/oob/terraform-module/aws-vpc-mirroring.md
       - パブリッククラウド:
         - Amazon Web Services:
           - AMI: installation/cloud-platforms/aws/ami.md
@@ -63,7 +61,6 @@ nav:
             - AWS VPC内のプロキシ: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
             - Amazon API Gateway用のプロキシ: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
             - NGINX、Envoyなどのミラーリング用OOB: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
-            - AWS VPCミラーリング用OOB: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
         - Googleクラウド:
           - マシンイメージ: installation/cloud-platforms/gcp/machine-image.md
           - GCE: installation/cloud-platforms/gcp/docker-container.md

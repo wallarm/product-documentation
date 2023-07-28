@@ -4,7 +4,7 @@
 
 トラフィックミラーリングは、Webサーバー、プロキシサーバーなどを設定して、入ってきたトラフィックをWallarmのサービスにコピーしたり分析したりすることで実現できます。このアプローチでは、通常のトラフィックのフローは以下のようになります：
 
-![!OOBスキーム](../../../images/waf-installation/oob/oob-for-traffic-mirrored-by-server.png)
+![!OOBスキーム](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## デプロイメント手順
 

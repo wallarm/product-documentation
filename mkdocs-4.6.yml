@@ -40,8 +40,6 @@ nav:
             - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
             - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
             - Distribution-Provided NGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
-        - AWS VPC Mirroring:
-          - Terraform Module: installation/oob/terraform-module/aws-vpc-mirroring.md
       - Public Clouds:
         - Amazon Web Services:
           - AMI: installation/cloud-platforms/aws/ami.md
@@ -50,7 +48,6 @@ nav:
             - Proxy in AWS VPC: installation/cloud-platforms/aws/terraform-module/proxy-in-aws-vpc.md
             - Proxy for Amazon API Gateway: installation/cloud-platforms/aws/terraform-module/proxy-for-aws-api-gateway.md
             - OOB for NGINX, Envoy, etc. Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring.md
-            - OOB for AWS VPC Mirroring: installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring.md
         - Google Cloud:
           - Machine Image: installation/cloud-platforms/gcp/machine-image.md
           - GCE: installation/cloud-platforms/gcp/docker-container.md

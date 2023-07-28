@@ -39,4 +39,3 @@ Wallarm展開へのOOBアプローチは、インライン展開など他の展�
 Wallarmは、さまざまな手段でミラーリングされたトラフィックに対して帯域外（OOB）展開オプションを提供します：
 
 * NGINX、Envoy、Istioなどのほとんどのサービスは、トラフィックミラーリングのための組み込みモジュールまたは機能を提供します。そのようなソリューションでミラーリングされたトラフィックを分析するためにWallarm OOBセキュリティソリューションを使用することを好む場合、[適切な展開オプションの概要](web-server-mirroring/overview.md)を参照してください。
-* クラウドプラットフォームは通常、[AWS VPCトラフィックミラーリング](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)が一例ですが、ネイティブのトラフィックミラーリング機能を提供します。Terraform互換環境からAWSに自身のサービスを展開する人々のために、Wallarmは、必要なVPCミラーリング設定を備えたエージェントレスのWallarm展開を可能にする[Terraformモジュール](terraform-module/aws-vpc-mirroring.md)を提供します。
