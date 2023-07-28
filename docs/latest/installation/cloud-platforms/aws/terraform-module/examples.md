@@ -7,7 +7,6 @@ There are 4 examples representing frequent deployment approaches:
 * Proxy solution
 * Proxy advanced solution
 * Mirror solution
-* Solution for AWS VPC Traffic Mirroring
 
 ## Proxy solution
 
@@ -54,16 +53,3 @@ Key characteristics of the solution:
 * The Wallarm solution is deployed as a separate network layer that enables you to control it independently from other layers and place the layer in almost any network structure position. The recommended position is in the private network.
 
 [Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)
-
-## Solution for AWS VPC Traffic Mirroring
-
-[This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing [traffic mirrored by Amazon VPC](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html).
-
-![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-traffic-mirrored-by-vpc.png)
-
-Key characteristics of the solution:
-
-* Wallarm processes traffic in the asynchronous mode (`preset=mirror`) without affecting the current traffic flow that makes the approach the safest one.
-* The Wallarm solution is deployed as a separate network layer that enables you to configure it independently from other layers and place the layer in almost any network structure position. The recommended position is in the private network.
-
-[Refer to the example deployment guide on GitHub](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)

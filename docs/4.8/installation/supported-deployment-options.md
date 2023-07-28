@@ -13,12 +13,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Mirroring by NGINX, Envoy and similar</h3>
             <p>Out-of-band deployment for traffic mirrored by NGINX, Envoy and similar</p>
         </div>
-
-        <div id="mirroring-by-cloud-platforms" class="do-card">
-            <img src="../../images/platform-icons/cloud-mirroring.svg" />
-            <h3>AWS VPC Mirroring</h3>
-            <p>Out-of-band deployment for traffic mirrored by AWS VPC</p>
-        </div>
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers">
@@ -379,19 +373,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         </a>
     </div>
 
-    <div class="do-nested" data-for="mirroring-by-cloud-platforms">
-        <div class="do-card">
-            <img src="../../images/platform-icons/cloud-mirroring.svg" />
-            <h3>AWS VPC Mirroring</h3>
-            <p>Out-of-band deployment for traffic mirrored by AWS VPC</p>
-        </div>
-
-        <a class="do-card" href="../../installation/oob/terraform-module/aws-vpc-mirroring/">
-            <h3>Terraform module</h3>
-            <p>Deploy Wallarm OOB for AWS VPC Mirroring with Terraform Module</p>
-        </a>
-
-    </div>
 </div>
 
 ## Public clouds
@@ -466,11 +447,6 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
         <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/oob-for-web-server-mirroring/">
             <h3>OOB for NGINX, Envoy and similar mirroring</h3>
             <p>Wallarm OOB for traffic mirrored by NGINX, Envoy and similar in AWS</p>
-        </a>
-
-        <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/oob-for-aws-vpc-mirroring/">
-            <h3>OOB for AWS VPC Mirroring</h3>
-            <p>Wallarm OOB for AWS VPC Mirroring</p>
         </a>
     </div>
 
