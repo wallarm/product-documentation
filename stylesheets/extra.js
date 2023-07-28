@@ -250,3 +250,46 @@ document.querySelector('.md-nav--primary').addEventListener('click', () => {
   // Reset the "Deployment options" opened states
   localStorage.removeItem('do');
 });
+
+
+// Show the list of languages
+
+var rootLanguage = 'en';
+
+function languageClicked (event) {
+  if (document.getElementById('languagesList').style.display === 'none') {
+    document.getElementById('languagesList').style.display = 'block'
+    document.getElementById('languagesMain').classList.add("languages-main-active")
+  } else {
+    document.getElementById('languagesList').style.display = 'none'
+    document.getElementById('languagesMain').classList.remove("languages-main-active")
+  }
+}
+
+// Open the docs for selected language and change value in the selector
+function goToLanguage (event, currentLanguage, language) {
+  event.preventDefault()
+
+  if (currentLanguage === language) {
+    window.location.reload(false);
+  }
+  else {
+    let tmp = window.location.pathname.split('/');
+    window.top.location.href = tmp.join('/');
+    if (language === rootLanguage) {
+      window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/');
+    } else {
+      if (currentLanguage === rootLanguage) {
+        if (tmp[1].startsWith('docs')) {
+          window.top.location.href = window.location.pathname.replace('/'+'docs'+'/','/'+'docs'+'/'+language+'/');
+        }
+        else {
+          window.top.location.href = window.location.pathname.replace('/','/'+language+'/');
+        }
+      }
+      else {
+          window.top.location.href = window.location.pathname.replace('/'+currentLanguage+'/','/'+language+'/')
+      }
+    }
+  }
+}
