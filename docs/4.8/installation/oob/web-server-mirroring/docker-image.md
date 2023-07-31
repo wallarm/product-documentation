@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [doc-wallarm-mode]:           ../../../admin-en/configure-parameters-en.md#wallarm_mode
 [doc-config-params]:          ../../../admin-en/configure-parameters-en.md
 [doc-monitoring]:             ../../../admin-en/monitoring/intro.md

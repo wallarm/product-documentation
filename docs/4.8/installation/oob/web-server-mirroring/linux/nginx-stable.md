@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [img-wl-console-users]:             ../../../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
