@@ -4,7 +4,7 @@ The new minor version of the Wallarm node has been released! It features an impo
 
 ## All-in-one installer
 
-Now, when installing Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
 
 The installer simplifies the process by automatically performing the following actions:
 

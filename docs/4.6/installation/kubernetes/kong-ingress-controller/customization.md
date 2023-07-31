@@ -72,6 +72,8 @@ wallarm:
       successThreshold: 1
       timeoutSeconds: 1
     resources: {}
+    podAnnotations:
+      sidecar.istio.io/inject: false
   heartbeat:
     resources: {}
   wallarm-appstructure:

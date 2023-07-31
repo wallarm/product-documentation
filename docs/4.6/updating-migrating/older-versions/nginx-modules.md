@@ -15,43 +15,289 @@
 [nginx-custom]:                 ../../installation/custom/custom-nginx-version.md
 [nginx-process-time-limit-docs]:    ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit
 [nginx-process-time-limit-block-docs]:  ../../admin-en/configure-parameters-en.md#wallarm_process_time_limit_block
-[overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
-[graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
+[overlimit-res-rule-docs]:          ../../user-guides/rules/configure-overlimit-res-detection.md
+[graylist-docs]:                    ../../user-guides/ip-lists/graylist.md
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[sqli-attack-docs]:                 ../../attacks-vulns-list.md#sql-injection
+[xss-attack-docs]:                  ../../attacks-vulns-list.md#crosssite-scripting-xss
+[web-server-mirroring-examples]:    ../../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 
 # Upgrading EOL Wallarm NGINX modules
 
 These instructions describe the steps to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6. Wallarm NGINX modules are the modules installed in accordance with one of the following instructions:
 
-* [NGINX `stable` module](../../installation/nginx/dynamic-module.md)
-* [Module for NGINX from CentOS/Debian repositories](../../installation/nginx/dynamic-module-from-distr.md)
-* [NGINX Plus module](../../installation/nginx-plus.md)
+* [Individual packages for NGINX stable](../../installation/nginx/dynamic-module.md)
+* [Individual packages for NGINX Plus](../../installation/nginx-plus.md)
+* [Individual packages for distribution-provided NGINX](../../installation/nginx/dynamic-module-from-distr.md)
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Requirements
+## Inform Wallarm technical support that you are upgrading EOL  node
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+If upgrading the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6, inform [Wallarm technical support](mailto:support@wallarm.com) about that and ask for assistance.
 
-## Upgrade procedure
+Besides any other help, ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
 
-* If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
-* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
+## Upgrade methods
 
-## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
-If upgrading node 2.18 or lower, inform [Wallarm technical support](mailto:support@wallarm.com) that you are updating filtering node modules up to the latest version and ask to enable new IP lists logic for your Wallarm account. When new IP lists logic is enabled, please open Wallarm Console and ensure that the section [**IP lists**](../../user-guides/ip-lists/overview.md) is available.
+## Upgrade with all-in-one installer
 
-## Step 2: Disable the Active threat verification module (if upgrading node 2.16 or lower)
+Use the procedure below to upgrade the end‑of‑life Wallarm NGINX modules (version 3.6 and lower) to version 4.6 using [all-in-one installer](../../installation/nginx/all-in-one.md).
+
+### Requirements for upgrade using all-in-one installer
+
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+
+### Upgrade procedure
+
+* If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all.
+
+    You will need to run a node of the newer version using all-in-one installer on a clean machine, test that it works well and stop the previous one and configure traffic to flow through the new machine instead of the previous one.
+
+* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module and **then** the filtering module following these [instructions](separate-postanalytics.md).
+
+### Step 1: Disable the Active threat verification module (if upgrading node 2.16 or lower)
 
 If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
 
 The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
 
-## Step 3: Update API port
+### Step 2: Prepare clean machine
+
+--8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+
+### Step 3: Install NGINX and dependencies
+
+--8<-- "../include/waf/installation/all-in-one-nginx.md"
+
+### Step 4: Prepare Wallarm token
+
+--8<-- "../include/waf/installation/all-in-one-token.md"
+
+### Step 5: Download all-in-one Wallarm installer
+
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
+
+### Step 6: Run all-in-one Wallarm installer
+
+#### Filtering node and postanalytics on the same server
+
+--8<-- "../include/waf/installation/all-in-one-installer-run.md"
+
+#### Filtering node and postanalytics on different servers
+
+!!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
+    If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
+
+1. Upgrade postanalytics module following these [instructions](separate-postanalytics.md).
+1. Upgrade filtering node:
+
+    === "API token"
+        ```bash
+        # If using the x86_64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        ```        
+
+        The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+
+    === "Node token"
+        ```bash
+        # If using the x86_64 version:
+        sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
+
+        # If using the ARM64 version:
+        sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
+        ```
+
+### Step 7: Migrate allowlists and denylists from the previous Wallarm node version to 4.6 (only if upgrading node 2.18 or lower)
+
+If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
+
+### Step 8: Transfer NGINX and postanalytics configuration from old node machine to new
+
+Transfer node-related NGINX configuration and postanalytics configuration from the configuration files on the old machine to the files on a new machine. You can do that by copying the required directives.
+
+**Source files**
+
+On an old machine, depending on OS and NGINX version, the NGINX configuration files may be located in different directories and have different names. Most common are the following:
+
+* `/etc/nginx/conf.d/default.conf` with NGINX settings
+* `/etc/nginx/conf.d/wallarm.conf` with global filtering node settings
+
+    The file is used for settings applied to all domains. To apply different settings to different domain groups, the `default.conf` is usually used or new configuration file is created for each domain group (for example, `example.com.conf` and `test.com.conf`). Detailed information about NGINX configuration files is available in the [official NGINX documentation](https://nginx.org/en/docs/beginners_guide.html).
+    
+* `/etc/nginx/conf.d/wallarm-status.conf` with Wallarm node monitoring settings. Detailed description is available within the [link][wallarm-status-instr]
+
+Also, the configuration of the postanalytics module (Tarantool database settings) is usually located here:
+
+* `/etc/default/wallarm-tarantool` or
+* `/etc/sysconfig/wallarm-tarantool`
+
+**Target files**
+
+As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the target files may have different names and be located in different directories.
+
+When transferring configuration, you need to perform steps listed below.
+
+#### Rename deprecated NGINX directives
+
+Rename the following NGINX directives if they are explicitly specified in configuration files:
+
+* `wallarm_instance` → [`wallarm_application`](../../admin-en/configure-parameters-en.md#wallarm_application)
+* `wallarm_local_trainingset_path` → [`wallarm_custom_ruleset_path`](../../admin-en/configure-parameters-en.md#wallarm_custom_ruleset_path)
+* `wallarm_global_trainingset_path` → [`wallarm_protondb_path`](../../admin-en/configure-parameters-en.md#wallarm_protondb_path)
+* `wallarm_ts_request_memory_limit` → [`wallarm_general_ruleset_memory_limit`](../../admin-en/configure-parameters-en.md#wallarm_general_ruleset_memory_limit)
+
+We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
+
+#### Update the node logging variables
+
+In the new node version the following changes to the [node logging variables](../../admin-en/configure-logging.md#filter-node-variables) have been implemented:
+
+* The `wallarm_request_time` variable has been renamed to `wallarm_request_cpu_time`.
+
+    We only changed the variable name, its logic remains the same. The old name is temporarily supported as well, but still it is recommended to rename the variable.
+* The `wallarm_request_mono_time` variable has been added – place it in the configuration of the logging format if you need log information about total time being the sum of:
+
+    * Time in the queue
+    * Time in seconds the CPU spent processing the request
+
+#### Adjust Wallarm node filtration mode settings to changes released in the latest versions
+
+1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
+      * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
+      * [General filtration rule configured in Wallarm Console](../../user-guides/settings/general.md)
+      * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
+2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
+
+#### Transfer the `overlimit_res` attack detection configuration from directives to the rule
+
+--8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
+
+#### Update the `wallarm-status.conf` file contents
+
+Update the `/etc/nginx/conf.d/wallarm-status.conf` contents as follows:
+
+```
+server {
+  listen 127.0.0.8:80;
+  server_name localhost;
+
+  allow 127.0.0.0/8;   # Access is only available for loopback addresses of the filter node server  
+  deny all;
+
+  wallarm_mode off;
+  disable_acl "on";   # Checking request sources is disabled, denylisted IPs are allowed to request the wallarm-status service. https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  access_log off;
+
+  location ~/wallarm-status$ {
+    wallarm_status on;
+  }
+}
+```
+
+[More details on the statistics service configuration](../../admin-en/configure-statistics-service.md)
+
+#### Update the Wallarm blocking page
+
+In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
+
+If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
+
+### Step 9: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 4: Upgrade NGINX to the latest version
+### Step 10: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+
+Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
+
+After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
+
+### Step 11: Restart NGINX
+
+--8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+
+### Step 12: Test Wallarm node operation
+
+To test the new node operation:
+
+1. Send the request with test [SQLI][sqli-attack-docs] and [XSS][xss-attack-docs] attacks to the protected resource address:
+
+    ```
+    curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
+    ```
+
+1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
+1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
+
+### Step 13: Configure sending traffic to Wallarm node
+
+Depending on the deployment approach being used, perform the following settings:
+
+=== "In-line"
+    Update targets of your load balancer to send traffic to the Wallarm instance. For details, please refer to the documentation on your load balancer.
+
+    Before full redirecting of the traffic to the new node, it is recommended to first redirect it partially and check that the new node behaves as expected.
+
+=== "Out-of-Band"
+    Configure your web or proxy server (e.g. NGINX, Envoy) to mirror incoming traffic to the Wallarm node. For configuration details, we recommend to refer to your web or proxy server documentation.
+
+    Inside the [link][web-server-mirroring-examples], you will find the example configuration for the most popular of web and proxy servers (NGINX, Traefik, Envoy).
+
+### Step 14: Remove old node
+
+1. Delete old node in Wallarm Console → **Nodes** by selecting your node and clicking **Delete**.
+1. Confirm the action.
+    
+    When the node is deleted from Cloud, it will stop filtration of requests to your applications. Deleting the filtering node cannot be undone. The node will be deleted from the list of nodes permanently.
+
+1. Delete machine with the old node or just clean it from Wallarm node components:
+
+    === "Debian"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "Ubuntu"
+        ```bash
+        sudo apt remove wallarm-node nginx-module-wallarm
+        ```
+    === "CentOS or Amazon Linux 2.0.2021x and lower"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+        ```bash
+        sudo yum remove wallarm-node nginx-module-wallarm
+        ```
+
+## Manual upgrade
+
+### Requirements for manual upgrade
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
+
+### Upgrade procedure
+
+* If filtering node and postanalytics modules are installed on the same server, then follow the instructions below to upgrade all packages.
+* If filtering node and postanalytics modules are installed on different servers, **first** upgrade the postanalytics module following these [instructions](separate-postanalytics.md) and then perform the steps below for filtering node modules.
+
+### Step 1: Disable the Active threat verification module (if upgrading node 2.16 or lower)
+
+If upgrading Wallarm node 2.16 or lower, please disable the [Active threat verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) module in Wallarm Console → **Vulnerabilities** → **Configure**.
+
+The module operation can cause [false positives](../../about-wallarm/protecting-against-attacks.md#false-positives) during the upgrade process. Disabling the module minimizes this risk.
+
+### Step 2: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+### Step 3: Upgrade NGINX to the latest version
 
 Upgrade NGINX to the latest version using the relevant instructions:
 
@@ -77,7 +323,7 @@ Upgrade NGINX to the latest version using the relevant instructions:
 
 If your infrastructure needs to use a specific version of NGINX, please contact the [Wallarm technical support](mailto:support@wallarm.com) to build the Wallarm module for a custom version of NGINX.
 
-## Step 5: Add new Wallarm repository
+### Step 4: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version package. Please use the commands for the appropriate platform.
 
@@ -133,13 +379,13 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
         ```
 
-## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.6 (only if upgrading node 2.18 or lower)
+### Step 5: Migrate allowlists and denylists from the previous Wallarm node version to 4.6 (only if upgrading node 2.18 or lower)
 
 If upgrading node 2.18 or lower, [migrate](../migrate-ip-lists-to-node-3.md) allowlist and denylist configuration from previous Wallarm node version to the latest version.
 
-## Step 7: Upgrade Wallarm packages
+### Step 6: Upgrade Wallarm packages
 
-### Filtering node and postanalytics on the same server
+#### Filtering node and postanalytics on the same server
 
 Execute the following command to upgrade the filtering node and postanalytics modules:
 
@@ -170,7 +416,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
     sudo yum update
     ```
 
-### Filtering node and postanalytics on different servers
+#### Filtering node and postanalytics on different servers
 
 !!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
     If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
@@ -213,7 +459,7 @@ Execute the following command to upgrade the filtering node and postanalytics mo
 
         By default, the package manager uses the option `N` but the option `Y` is required for the correct IP address denylist operation in Wallarm node 3.x.
 
-## Step 8: Update the node type
+### Step 7: Update the node type
 
 The deployed node has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
@@ -275,13 +521,13 @@ To replace the regular node with the Wallarm node:
     ```
     </p></li></div>
 
-## Step 9: Update the Wallarm blocking page
+### Step 8: Update the Wallarm blocking page
 
 In new node version, the Wallarm sample blocking page has [been changed](what-is-new.md#new-blocking-page). The logo and support email on the page are now empty by default.
 
 If the page `&/usr/share/nginx/html/wallarm_blocked.html` was configured to be returned in response to blocked requests, [copy and customize](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page) the new version of a sample page.
 
-## Step 10: Rename deprecated NGINX directives
+### Step 9: Rename deprecated NGINX directives
 
 Rename the following NGINX directives if they are explicitly specified in configuration files:
 
@@ -292,7 +538,7 @@ Rename the following NGINX directives if they are explicitly specified in config
 
 We only changed the names of the directives, their logic remains the same. Directives with former names will be deprecated soon, so you are recommended to rename them before.
 
-## Step 11: Update the node logging variables
+### Step 10: Update the node logging variables
 
 In the new node version the following changes to the [node logging variables](../../admin-en/configure-logging.md#filter-node-variables) have been implemented:
 
@@ -304,7 +550,7 @@ In the new node version the following changes to the [node logging variables](..
     * Time in the queue
     * Time in seconds the CPU spent processing the request
 
-## Step 12: Adjust Wallarm node filtration mode settings to changes released in the latest versions
+### Step 11: Adjust Wallarm node filtration mode settings to changes released in the latest versions
 
 1. Ensure that the expected behavior of settings listed below corresponds to the [changed logic of the `off` and `monitoring` filtration modes](what-is-new.md#filtration-modes):
       * [Directive `wallarm_mode`](../../admin-en/configure-parameters-en.md#wallarm_mode)
@@ -312,11 +558,11 @@ In the new node version the following changes to the [node logging variables](..
       * [Low-level filtration rules configured in Wallarm Console](../../user-guides/rules/wallarm-mode-rule.md)
 2. If the expected behavior does not correspond to the changed filtration mode logic, please adjust the filtration mode settings to released changes using the [instructions](../../admin-en/configure-wallarm-mode.md).
 
-## Step 13: Transfer the `overlimit_res` attack detection configuration from directives to the rule
+### Step 12: Transfer the `overlimit_res` attack detection configuration from directives to the rule
 
 --8<-- "../include/waf/upgrade/migrate-to-overlimit-rule-nginx.md"
 
-## Step 14: Update the `wallarm-status.conf` file contents
+### Step 13: Update the `wallarm-status.conf` file contents
 
 Update the `/etc/nginx/conf.d/wallarm-status.conf` contents as follows:
 
@@ -340,21 +586,21 @@ server {
 
 [More details on the statistics service configuration](../../admin-en/configure-statistics-service.md)
 
-## Step 15: Restart NGINX
+### Step 14: Restart NGINX
 
 --8<-- "../include/waf/restart-nginx-3.6.md"
 
-## Step 16: Test Wallarm node operation
+### Step 15: Test Wallarm node operation
 
 --8<-- "../include/waf/installation/test-after-node-type-upgrade.md"
 
-## Step 17: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
+### Step 16: Re-enable the Active threat verification module (only if upgrading node 2.16 or lower)
 
 Learn the [recommendation on the Active threat verification module setup](../../admin-en/attack-rechecker-best-practices.md) and re-enable it if required.
 
 After a while, ensure the module operation does not cause false positives. If discovering false positives, please contact the [Wallarm technical support](mailto:support@wallarm.com).
 
-## Step 18: Delete the node of the previous version
+### Step 17: Delete the node of the previous version
 
 Once the operation of the new node is properly tested, open the **Nodes** section of Wallarm Console and delete the regular node of the previous version from the list.
 

@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [link-launch-instance]:     https://cloud.google.com/deep-learning-vm/docs/quickstart-marketplace
 
 [img-ssh-key-generation]:       ../../../images/installation-gcp/common/ssh-key-generation.png

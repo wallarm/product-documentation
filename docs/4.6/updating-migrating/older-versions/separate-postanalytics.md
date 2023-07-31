@@ -1,7 +1,13 @@
 [docs-module-update]:   nginx-modules.md
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
+[img-attacks-in-interface]:     ../../images/admin-guides/test-attacks-quickstart.png
 [nginx-custom]:                 ../../custom/custom-nginx-version.md
+[wallarm-token-types]:          ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[tarantool-status]:             ../../images/tarantool-status.png
+[statistics-service-all-parameters]: ../../admin-en/configure-statistics-service.md
+[configure-proxy-balancer-instr]:    ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+
 
 # Upgrading the EOL postanalytics module
 
@@ -9,15 +15,70 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 --8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
-## Requirements
+## Upgrade methods
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
-## Step 1: Update API port
+## Upgrade with all-in-one installer
+
+Use the procedure below to upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6 using [all-in-one installer](../../installation/nginx/all-in-one.md).
+
+### Requirements for upgrade using all-in-one installer
+
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+
+### Step 1: Prepare clean machine
+
+--8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+
+### Step 2: Prepare Wallarm token
+
+--8<-- "../include/waf/installation/all-in-one-token.md"
+
+### Step 3: Download all-in-one Wallarm installer
+
+--8<-- "../include/waf/installation/all-in-one-installer-download.md"
+
+### Step 4: Run all-in-one Wallarm installer to install postanalytics
+
+--8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+
+### Step 5: Update API port
 
 --8<-- "../include/waf/upgrade/api-port-443.md"
 
-## Step 2: Add new Wallarm repository
+### Step 6: Upgrade the NGINX-Wallarm module on a separate server
+
+Once the postanalytics module is installed on the separate server, [upgrade its related NGINX-Wallarm module](nginx-modules.md) running on a different server.
+
+!!! info "Combining upgrade methods"
+    Both manual and automatic approaches can be used to upgrade the related NGINX-Wallarm module.
+
+### Step 7: Re-connect the NGINX-Wallarm module to the postanalytics module
+
+--8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+
+### Step 8: Check the NGINX‑Wallarm and separate postanalytics modules interaction
+
+--8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+
+### Step 9: Remove old postanalytics module
+
+--8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
+
+## Manual upgrade
+
+Use the procedure below to manually upgrade the end‑of‑life postanalytics module (version 3.6 and lower) installed on a separate server to version 4.6.
+
+### Requirements
+
+--8<-- "../include/waf/installation/requirements-docker-4.0.md"
+
+### Step 1: Update API port
+
+--8<-- "../include/waf/upgrade/api-port-443.md"
+
+### Step 2: Add new Wallarm repository
 
 Delete the previous Wallarm repository address and add a repository with a new Wallarm node version packages. Please use the commands for the appropriate platform.
 
@@ -73,7 +134,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
         deb https://repo.wallarm.com/ubuntu/wallarm-node focal/4.6/
         ```
 
-## Step 3: Upgrade the Tarantool packages
+### Step 3: Upgrade the Tarantool packages
 
 === "Debian"
     ```bash
@@ -102,7 +163,7 @@ Delete the previous Wallarm repository address and add a repository with a new W
     sudo yum update
     ```
 
-## Step 4: Update the node type
+### Step 4: Update the node type
 
 The deployed postanalytics node 3.6 or lower has the deprecated **regular** type that is [now replaced with the new **Wallarm node** type](what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens).
 
@@ -134,7 +195,7 @@ To replace the regular postanalytics node with the Wallarm node:
     ```
     </p></li></div>
 
-## Step 5: Restart the postanalytics module
+### Step 5: Restart the postanalytics module
 
 === "Debian"
     ```bash

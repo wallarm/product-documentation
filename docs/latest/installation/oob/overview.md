@@ -38,4 +38,4 @@ Despite the OOB deployment approach safety, it has some limitations:
 
 Wallarm offers the Out-of-Band (OOB) deployment options for traffic mirorred by services such as NGINX, Envoy, Istio, etc. They usually offer built-in modules or features for traffic mirroring.
 
-+If you are looking for OOB security solution to analyze traffic mirrored by such solutions, refer to the [appropriate Wallarm deployment option overview](web-server-mirroring/overview.md).
+If you are looking for OOB security solution to analyze traffic mirrored by such solutions, refer to the [appropriate Wallarm deployment option overview](web-server-mirroring/overview.md).
