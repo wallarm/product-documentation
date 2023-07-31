@@ -4,9 +4,9 @@ In the **API Specifications** section of the Wallarm Console UI, you can keep yo
 
 **Administrators** and **Global administrators** can add, remove and download specifications and change settings of shadow API detection. Users of other [roles](../user-guides/settings/users.md#user-roles) can only view the list of uploaded specifications.
 
-## Revealing shadow API
+## Revealing shadow and orphan API
 
-With [**API Discovery**](../about-wallarm/api-discovery.md) in use, your API specifications uploaded at the **API Specifications** section may be compared with what was automatically detected by API Discovery. As the result of this comparison, Wallarm [finds and shows **shadow APIs**](../about-wallarm/api-discovery.md#shadow-api) - endpoints discovered by Wallarm, but absent in your specification (missing endpoints).
+With [**API Discovery**](../about-wallarm/api-discovery.md) in use, your API specifications uploaded at the **API Specifications** section may be compared with what was automatically detected by API Discovery. As the result of this comparison, Wallarm [finds and shows **shadow** and **orphan** APIs](../about-wallarm/api-discovery.md#shadow-and-orphan-apis).
 
 To perform comparison:
 
@@ -21,13 +21,13 @@ To perform comparison:
     * From where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
     * Whether the comparison should be performed once after specification upload or every hour (the **Perform regular comparison** option is selected by default). Hourly comparison allows finding additional shadow APIs as API Discovery discovers more endpoints. Specification uploaded from URL is updated before each comparison.
 
-    ![!API Discovery - API Specifications - uploading API specification to find shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![!API Discovery - API Specifications - uploading API specification to find shadow and orphan API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
     Note that you can re-start comparison at any moment manually via specification menu → **Restart comparison**.
 
 1. Start uploading.
 
-    As uploading is finished, the number of shadow APIs will be displayed for each specification in the list of **API Specifications** as well as the overall number of found unique shadow APIs. Also shadow APIs will be [displayed](api-discovery.md#displaying-shadow-api) in the **API Discovery** section.
+    As uploading is finished, the number of shadow and orphan APIs will be displayed for each specification in the list of **API Specifications** as well as the overall number of found unique shadow and orphan APIs. Also shadow and orphan APIs will be [displayed](api-discovery.md#displaying-shadow-and-orphan-api) in the **API Discovery** section.
 
     ![!API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 

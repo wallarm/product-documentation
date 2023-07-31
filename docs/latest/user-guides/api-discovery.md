@@ -154,17 +154,17 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 
 ![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
-## Displaying shadow API
+## Displaying shadow and orphan API
 
-The **API Discovery** module automatically uncovers shadow APIs by comparing the discovered API inventory with [customers' provided specifications](../user-guides/api-specifications.md). To display [shadow APIs](../about-wallarm/api-discovery.md#shadow-api) among endpoints discovered by Wallarm:
+The **API Discovery** module automatically uncovers shadow and orphan APIs by comparing the actual registered traffic with the [customers' provided specifications](../user-guides/api-specifications.md). To display [shadow and orphan APIs](../about-wallarm/api-discovery.md#shadow-and-orphan-apis) among endpoints discovered by Wallarm:
 
-* Use the **Compare to...** filter to select specification comparisons - only for them the shadow APIs will be highlighted by the special mark in the **Issues** column.
+* Use the **Compare to...** filter to select specification comparisons - only for them the shadow and orphan APIs will be highlighted by the special marks in the **Issues** column.
 
-    ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow.png)
+    ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
 
-* Use the **Other → Shadow API** filter to see only shadow APIs related to the selected comparisons and filter out the remaining endpoints.
+* Use the **Other** → **Shadow API** and **Orphan API** filters to see only shadow and orphan APIs related to the selected comparisons and filter out the remaining endpoints.
 
-In the details of the endpoint that was defined as Shadow API, the uploaded specifications in which this endpoint is absent are listed in the **Specification conflicts** section (there may be several).
+The endpoint is defined as shadow or orphan API as the result of the comparison of the actual traffic with some specifications (there may be several). They will be listed in the endpoint details, in the **Specification conflicts** section.
 
 Shadow APIs are also displayed among the riskiest endpoints at the [API Discovery Dashboard](../user-guides/dashboards/api-discovery.md).
 
