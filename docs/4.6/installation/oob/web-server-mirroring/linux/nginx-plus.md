@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [img-wl-console-users]:             ../../../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
@@ -41,6 +46,8 @@ Wallarm supports the following operating systems:
 * CentOS 7.x
 * Amazon Linux 2.0.2021x and lower
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
+
+## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-plus.md"
 

@@ -47,7 +47,7 @@ To secure with Wallarm applications on AWS that use Node.js lambdas, follow thes
 
 ### 1. Deploy a Wallarm node
 
-When integrating Wallarm with AWS Lambda, the traffic flow operates in-line. Therefore, choose one of the supported Wallarm node deployment artifacts for in-line deployment on AWS:
+When integrating Wallarm with AWS Lambda, the traffic flow operates [in-line](../inline/overview.md). Therefore, choose one of the supported Wallarm node deployment artifacts for in-line deployment on AWS:
 
 * [AWS AMI](../packages/aws-ami.md)
 * [Amazon Elastic Container Service (ECS)](../cloud-platforms/aws/docker-container.md)

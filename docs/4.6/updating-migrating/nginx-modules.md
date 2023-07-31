@@ -35,10 +35,7 @@ To upgrade the end‑of‑life node (3.6 or lower), please use the [different in
 
 ## Upgrade methods
 
-You can upgrade the Wallarm NGINX modules 4.x installed from individual DEB/RPM packages to version 4.6 in two different ways:
-
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-automatic-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories and installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) installation method If you prefer to stick with the current installation method using individual DEB/RPM packages. However, it's important to note that this approach might require additional effort and manual configuration during the upgrade process in comparison to the new method for Wallarm node installation on Debian/Ubuntu operating systems.
+--8<-- "../include/waf/installation/upgrade-methods.md"
 
 ## Upgrade with all-in-one installer
 
@@ -46,11 +43,7 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 
 
 ### Requirements for upgrade using all-in-one installer
 
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/).
-* Access to `https://meganode.wallarm.com` to download all-in-one Wallarm installer. Ensure the access is not blocked by a firewall.
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr].
-* Executing all commands as a superuser (e.g. `root`).
-* Using [new clean machine](#step-1-prepare-clean-machine) for node installation.
+--8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### Upgrade procedure
 
@@ -62,18 +55,7 @@ Use the procedure below to upgrade the Wallarm NGINX modules 4.x to version 4.6 
 
 ### Step 1: Prepare clean machine
 
-When upgrading from node 4.x to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with one of the supported OS:
-
-* Debian 10, 11 and 12.x
-* Ubuntu LTS 18.04, 20.04, 22.04
-* CentOS 7, 8 Stream, 9 Stream
-* Alma/Rocky Linux 9
-* Oracle Linux 8.x
-* Redos
-* SuSe Linux
-* Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
-
-Using new clean machine will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
+--8<-- "../include/waf/installation/all-in-one-clean-machine.md"
 
 ### Step 2: Install NGINX and dependencies
 

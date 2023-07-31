@@ -25,6 +25,7 @@
 [api-token]:                        ../../user-guides/settings/api-tokens.md
 [wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../installation/supported-deployment-options.md
+[inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
@@ -36,6 +37,8 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 !!! info "All-in-one installation"
     Starting from Wallarm node 4.6, it is recommended to use [all-in-one installation](all-in-one.md) which automates all the activities listed in the steps below and makes node deployment much easier.
+
+## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 

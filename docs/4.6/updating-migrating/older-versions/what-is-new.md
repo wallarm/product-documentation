@@ -7,6 +7,20 @@ This page lists the changes available when upgrading the node of the deprecated 
 
     Node configuration and traffic filtration have been significantly simplified in the Wallarm node of version 4.x. Some settings of node 4.x are **incompatible** with the nodes of older versions. Before upgrading the modules, please carefully review the list of changes and [general recommendations](../general-recommendations.md).
 
+## All-in-one installer
+
+Now, when installing and upgrading Wallarm node as a dynamic module for NGINX in various environments, you can use the **all-in-one installer** designed to streamline and standardize the process of installation. This installer automatically identifies your operating system’s and NGINX versions, and install all the necessary dependencies.
+
+The installer simplifies the process by automatically performing the following actions:
+
+1. Checking your OS and NGINX version.
+1. Adding Wallarm repositories for the detected OS and NGINX version.
+1. Installing Wallarm packages from these repositories.
+1. Connecting the installed Wallarm module to your NGINX.
+1. Connecting the filtering node to Wallarm Cloud using the provided token.
+
+[See details on how to deploy the node with all-in-one installer →](../../installation/nginx/all-in-one.md)
+
 ## Breaking changes due to the deleted metrics
 
 Starting from version 4.0, the Wallarm node does not collect the following collectd metrics:
@@ -80,7 +94,7 @@ Wallarm node 4.2 and above find the JWT anywhere in the request, [decodes](../..
 
 ## Supported installation options
 
-* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.8.0.
+* Wallarm Ingress controller based on the latest version of Community Ingress NGINX Controller, 1.8.1.
 
     [Instructions on migrating to the Wallarm Ingress controller →](ingress-controller.md)
 * Added support for AlmaLinux, Rocky Linux and Oracle Linux 8.x instead of the [deprecated](https://www.centos.org/centos-linux-eol/) CentOS 8.x.
@@ -149,7 +163,7 @@ Starting from release 4.0, you can easily deploy Wallarm to [AWS](https://aws.am
 
 The Wallarm Terraform module is the scalable solution meeting the best industry standards of security and failover ensuring. During its deployment, you can choose either the **proxy** or **mirror** deployment option based on your requirements for the traffic flow.
 
-We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC.
+We have also prepared the usage examples for both deployment options involving basic deployment configurations as well as advanced ones compatible with such solutions as AWS VPC Traffic Mirroring.
 
 [Documentation on the Wallarm Terraform module for AWS](../../installation/cloud-platforms/aws/terraform-module/overview.md)
 

@@ -46,9 +46,9 @@ To secure APIs on the Mulesoft Anypoint platform using Wallarm policy, follow th
 
 ### 1. Deploy a Wallarm node
 
-When utilizing the Wallarm policy, the traffic flow is in-line.
+When utilizing the Wallarm policy, the traffic flow is [in-line](../inline/overview.md).
 
-1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md) for in-line deployment and follow the provided deployment instructions.
+1. Choose one of the [supported Wallarm node deployment solutions or artifacts](../supported-deployment-options.md#in-line) for in-line deployment and follow the provided deployment instructions.
 1. Configure the deployed node using the following template:
 
     ```

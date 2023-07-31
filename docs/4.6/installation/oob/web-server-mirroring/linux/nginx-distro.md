@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 [img-wl-console-users]:             ../../../../images/check-user-no-2fa.png
 [wallarm-status-instr]:             ../../../../admin-en/configure-statistics-service.md
 [memory-instr]:                     ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
@@ -40,6 +45,8 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
 * Debian 11.x (bullseye)
 * CentOS 7.x
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
+
+## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 

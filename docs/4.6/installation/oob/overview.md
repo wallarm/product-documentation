@@ -11,7 +11,7 @@ Traffic mirroring is a key component of the OOB approach. A mirror (copy) of the
 As the OOB solution only records malicious activity but does not block it, it is an effective way to implement web application and API security for organizations with less stringent real-time protection requirements. The OOB solution is suitable for the following use cases:
 
 * Get knowledge about all the potential threats web applications and APIs may encounter, without affecting the application performance.
-* Train the Wallarm solution on the traffic copy before running the module in-line.
+* Train the Wallarm solution on the traffic copy before running the module [in-line](../inline/overview.md).
 * Capture security logs for auditing purposes. Wallarm provides [native integrations](../../user-guides/settings/integrations/integrations-intro.md) with many SIEM systems, messengers, etc.
 
 The diagram below provides a visual representation of the general traffic flow in an out-of-band deployment of Wallarm. The diagram may not capture all possible infrastructure variations. The traffic mirror can be generated at any supporting layer of the infrastructure and sent to the Wallarm nodes. Additionally, specific setups may involve varying load balancing and other infrastructure-level configurations.
