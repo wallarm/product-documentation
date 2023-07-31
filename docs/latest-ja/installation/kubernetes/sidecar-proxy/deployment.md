@@ -30,10 +30,6 @@ Wallarmサイドカープロキシソリューションの**主要機能**:
 
 ## トラフィックの流れ
 
-Wallarmサイドカープロキシなしのトラフィックフロー:
-
-![!Wallarmサイドカープロキシなしのトラフィックフロー](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-without-wallarm.png)
-
 Wallarmサイドカープロキシ付きのトラフィックフロー:
 
 ![!Wallarmサイドカープロキシ付きのトラフィックフロー](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.png)
