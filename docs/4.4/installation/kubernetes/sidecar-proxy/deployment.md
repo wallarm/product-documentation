@@ -30,10 +30,6 @@ Among all supported [Wallarm deployment options](../../../installation/supported
 
 ## Traffic flow
 
-Traffic flow without Wallarm Sidecar proxy:
-
-![!Traffic flow without Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-without-wallarm.png)
-
 Traffic flow with Wallarm Sidecar proxy:
 
 ![!Traffic flow with Wallarm Sidecar proxy](../../../images/waf-installation/kubernetes/sidecar-controller/traffic-flow-with-wallarm.png)

@@ -27,10 +27,6 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 ## Traffic flow
 
-Traffic flow without Wallarm Sidecar proxy:
-
-![!Traffic flow without Wallarm Sidecar proxy][traffic-flow-without-wallarm-sidecar-img]
-
 Traffic flow with Wallarm Sidecar proxy:
 
 ![!Traffic flow with Wallarm Sidecar proxy][traffic-flow-with-wallarm-sidecar-img]
