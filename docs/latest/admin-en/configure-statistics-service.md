@@ -209,7 +209,7 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     wallarm_lom_id 386
     # HELP wallarm_custom_ruleset_id Custom Ruleset file id
     # TYPE wallarm_custom_ruleset_id gauge
-    wallarm_custom_ruleset_id 386
+    wallarm_custom_ruleset_id{format="51"} 386
     # HELP wallarm_custom_ruleset_ver custom ruleset file format version
     # TYPE wallarm_custom_ruleset_ver gauge
     wallarm_custom_ruleset_ver 51
@@ -255,6 +255,8 @@ The following response parameters are available (Prometheus metrics have the `wa
 *   `db_id`: proton.db version.
 *   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
 *   `custom_ruleset_id`: version of the [custom ruleset][gl-lom] build.
+
+    Starting from release 4.8, it appears as `wallarm_custom_ruleset_id{format="51"} 386` in Prometheus format, with `custom_ruleset_ver` inside the `format` attribute and the main value being the ruleset build version.
 *   `custom_ruleset_ver` (available starting from the Wallarm release 4.4.3): the [custom ruleset][gl-lom] format:
 
     * `4x` - for Wallarm nodes 2.x which are [out-of-date](../updating-migrating/versioning-policy.md#version-list).
