@@ -1,6 +1,6 @@
 # What is new in Wallarm node (if upgrading an EOL node)
 
-This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.6. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
+This page lists the changes available when upgrading the node of the deprecated version (3.6 and lower) up to version 4.8. Listed changes are available for both the regular (client) and multi-tenant Wallarm nodes. 
 
 !!! warning "Wallarm nodes 3.6 and lower are deprecated"
     Wallarm nodes 3.6 and lower are recommended to be upgraded since they are [deprecated](../versioning-policy.md#version-list).
@@ -306,6 +306,11 @@ The NGINX-based Wallarm Docker image 4.2 and above supports the new environment 
 
 ## Parameters of the statistics service
 
+* The Prometheus metric `wallarm_custom_ruleset_id` has been enhanced with the addition of a `format` attribute. This new attribute represents the custom ruleset format. Meanwhile, the principal value continues to be the custom ruleset build version. Here is an example of the updated `wallarm_custom_ruleset_id` value:
+
+    ```
+    wallarm_custom_ruleset_id{format="51"} 386
+    ```
 * The Wallarm statistics service returns the new `rate_limit` parameters with the [Wallarm rate limiting](#rate-limits) module data. New parameters cover rejected and delayed requests, as well as indicate any problems with the module's operation.
 * The number of requests originating from denylisted IPs is now displayed in the statistic service output, in the new parameter `blocked_by_acl` and in the existing parameters `requests`, `blocked`.
 * The service return one more new parameter `custom_ruleset_ver` which points to the [custom ruleset](../../glossary-en.md#custom-ruleset-the-former-term-is-lom) format being used by Wallarm nodes.
