@@ -69,7 +69,7 @@ wallarm_db_id 71
 wallarm_lom_id 386
 # HELP wallarm_custom_ruleset_id Custom Ruleset file id
 # TYPE wallarm_custom_ruleset_id gauge
-wallarm_custom_ruleset_id 386
+wallarm_custom_ruleset_id{format="51"} 386
 # HELP wallarm_custom_ruleset_ver custom ruleset file format version
 # TYPE wallarm_custom_ruleset_ver gauge
 wallarm_custom_ruleset_ver 51
