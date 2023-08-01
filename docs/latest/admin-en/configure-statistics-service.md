@@ -229,6 +229,7 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     wallarm_proton_instances{status="failed"} 0
     # HELP wallarm_stalled_worker_time_seconds time a worker stalled in libproton
     # TYPE wallarm_stalled_worker_time_seconds gauge
+    wallarm_stalled_worker_time_seconds{pid="3169104"} 25
 
     # HELP wallarm_startid unique start id
     # TYPE wallarm_startid gauge
