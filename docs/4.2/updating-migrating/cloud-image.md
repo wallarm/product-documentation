@@ -8,6 +8,7 @@
 [overlimit-res-rule-docs]:           ../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../user-guides/ip-lists/graylist.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading the cloud node image
 
@@ -17,7 +18,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Step 1: Update API port
 

@@ -15,7 +15,7 @@
 
 ## アップグレード方法
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## 全体一式インストーラーによるアップグレード
 

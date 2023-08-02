@@ -13,7 +13,7 @@ By implementing the Wallarm Terraform module, we have provided the solution enab
     
 [How to deploy the provided example architecture?](examples.md)
 
-## Prerequisites
+## Requirements
 
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 * Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)

@@ -72,7 +72,7 @@ Use the procedure below to manually upgrade the end‑of‑life postanalytics mo
 
 ### Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Step 1: Update API port
 

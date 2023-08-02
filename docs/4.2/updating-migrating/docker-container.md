@@ -14,6 +14,7 @@
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 [envoy-process-time-limit-docs]:    ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit
 [envoy-process-time-limit-block-docs]: ../admin-en/configuration-guides/envoy/fine-tuning.md#process_time_limit_block
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading the Docker NGINX- or Envoy-based image
 
@@ -26,7 +27,7 @@ To upgrade the node 2.18 or lower, please use the [different instructions](older
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Step 1: Update API port
 

@@ -33,7 +33,9 @@
 
 終了ノード（3.6以下）をアップグレードするには、[異なる手順](older-versions/nginx-modules.md)を使用してください。
 
-## アップグレード方法
+## 要件
+
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 --8<-- "../include/waf/installation/upgrade-methods.md"
 

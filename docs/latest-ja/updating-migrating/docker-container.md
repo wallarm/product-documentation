@@ -25,7 +25,7 @@ End‑of‑lifeノード（3.6以下）をアップグレードするには、[�
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## ステップ1：更新されたフィルタリングノードイメージのダウンロード
 

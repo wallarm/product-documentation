@@ -28,7 +28,7 @@ Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker i
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
 
-## Prerequisites
+## Requirements
 
 To generate an SBOM for Wallarm Docker images, you will need to use the [syft](https://github.com/anchore/syft) CLI utility.
 

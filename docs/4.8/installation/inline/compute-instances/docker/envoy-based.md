@@ -14,5 +14,6 @@ search:
 [api-tokens-docs]:                  ../../../../user-guides/settings/api-tokens.md
 [allocate-resources-for-wallarm-docs]: ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [supported-deployments]:            ../../../../installation/supported-deployment-options.md
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 
 --8<-- "latest/admin-en/installation-guides/envoy/envoy-docker.md"

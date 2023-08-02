@@ -25,7 +25,7 @@ Starting from the release 4.4, Wallarm signs the following Docker images:
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
 
-## Prerequisites
+## Requirements
 
 To ensure the authenticity of Wallarm Docker images, [Cosign](https://docs.sigstore.dev/cosign/overview/) is used for both signing and verification. 
 

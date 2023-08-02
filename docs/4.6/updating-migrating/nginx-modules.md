@@ -21,7 +21,7 @@
 [sqli-attack-docs]:                 ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                  ../attacks-vulns-list.md#crosssite-scripting-xss
 [web-server-mirroring-examples]:    ../installation/oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
-
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading Wallarm NGINX modules
 
@@ -190,7 +190,7 @@ Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to ver
 
 ### Requirements for manual upgrade
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Upgrade procedure
 

@@ -17,7 +17,7 @@
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## ステップ1：フィルタリングノード4.6を含む新しいインスタンスを起動する
 

@@ -8,7 +8,7 @@ Dockerコンテナー内にインストールされたフィルタリングノ�
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## コンテナの実行オプション
 

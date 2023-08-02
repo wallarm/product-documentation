@@ -66,7 +66,7 @@ Use the procedure below to manually upgrade the postanalytics module 4.x install
 
 ### Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Step 1: Add new Wallarm repository
 

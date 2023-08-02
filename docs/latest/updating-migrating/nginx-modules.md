@@ -190,7 +190,7 @@ Use the procedure below to manually upgrade the Wallarm NGINX modules 4.x to ver
 
 ### Requirements for manual upgrade
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Upgrade procedure
 
