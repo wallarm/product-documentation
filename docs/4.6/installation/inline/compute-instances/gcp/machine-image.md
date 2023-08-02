@@ -30,8 +30,9 @@ search:
 
 This article provides instructions for deploying Wallarm on GCP in-line using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node).
 
-<!-- ???
-say that all regions are supported -->
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/gcp-machine-image-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
