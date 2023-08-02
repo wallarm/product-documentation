@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[platform]:                         ../../../../admin-en/supported-platforms.md
+[platform]:                         ../../../supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
@@ -40,6 +40,10 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](in
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
 ![!All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+
+## Use cases
+
+--8<-- "../include/waf/installation/all-in-one/use-cases.md"
 
 ## Requirements
 
