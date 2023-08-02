@@ -20,6 +20,7 @@
 [wallarm-token-types]:              ../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../installation/supported-deployment-options.md
 [nginx-directives-docs]:            configure-parameters-en.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Running Docker NGINX‑based Image
 
@@ -29,9 +30,13 @@ The functionality of the filtering node installed inside the Docker container is
 
 --8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
 
+## Use cases
+
+--8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
+
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Options for running the container
 

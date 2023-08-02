@@ -36,13 +36,7 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) usin
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../supported-deployment-options.md), NGINX-based Docker image is recommended for out-of-band Wallarm deployment in these **use cases**:
-
-1. Deploying Wallarm using the NGINX-based Docker image aligns with your Docker-based infrastructure.
-1. Your services are built around NGINX and you need to extend its functionalities with Wallarm's security features.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. The security solution should be intergrated into CI/CD pipelines. The Docker image integrates seamlessly into CI/CD pipelines for automated deployment.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+--8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
 
 ## Requirements
 
