@@ -99,6 +99,9 @@ Specify in the search string:
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
 * `blocked_source`: to search for events blocked because their source IPs are [denylisted](../../user-guides/ip-lists/denylist.md) or [graylisted](../../user-guides/ip-lists/graylist.md).
+
+    [Learn more about how you can analyze these events →](../../user-guides/events/analyze-attack.md#analyze-requests-in-events-from-denylisted-ips)
+
 * `payload_trigger`: to search for events blocked because their source IPs are [denylisted](../../user-guides/ip-lists/denylist.md) or [graylisted](../../user-guides/ip-lists/graylist.md) with the trigger with the [Number of malicious payloads](../../user-guides/triggers/triggers.md#step-1-choosing-a-condition) condition.
 
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.

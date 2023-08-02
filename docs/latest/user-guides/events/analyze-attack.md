@@ -64,6 +64,27 @@ To view a request in a raw format, expand a required attack and then the request
 
 ![!Raw format of the request][img-analyze-attack-raw]
 
+## Analyze requests in events from denylisted IPs
+
+[Denylisting](../../user-guides/ip-lists/denylist.md) is a very effective defensive measure against high-volume attacks (e.g., brute-force, path traversal, bot attacks, etc.) To give you full information about requests blocked because their source IPs were denylisted, Wallarm is able to gather and display such requests' detailed information and statistics. This allows evaluating the power of attacks from denylisted IPs and more accurate analysis of these IPs' requests by exploring their various parameters.
+
+!!! info "Feature availability"
+    This feature is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
+
+By default, collecting extended information is not enabled - no request details or statistics are presented in the event details.
+
+You can configure node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). This configuration is done on the node side using the following directives:
+
+* `wallarm_acl_export_enable` (main switch, `off` by default)
+* `wallarm_acl_export_shm_size` (memory consumption limit)
+* Sampling:
+    * `wallarm_acl_export_sample_limit`
+    * `wallarm_acl_export_sample_group_lifetime`
+    * `wallarm_acl_export_stats_bucket_interval`
+    * `wallarm_acl_export_stats_bucket_lifetime`
+
+[See the directives detailed description →](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable)
+
 ## Sampling of hits
 
 Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
@@ -81,6 +102,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 * For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
+* For events from denylisted IPs, sampling is configured [on the node side](../../admin-en/configure-parameters-en.md#wallarm_acl_export_sample_limit).
 
 When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
 
