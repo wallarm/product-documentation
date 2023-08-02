@@ -9,7 +9,7 @@ This article demonstrates the **example** on how to deploy Wallarm to AWS as an 
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../supported-deployment-options.md), Terraform module is recommended for out-of-band Wallarm deployment in these **use cases**:
+Among all supported [Wallarm deployment options](../../supported-deployment-options.md), Terraform module is recommended for Wallarm deployment in these **use cases**:
 
 1. Your existing infrastructure resides on AWS. In this case, using Wallarm Terraform module is a natural extension as the module is specifically designed for the AWS public cloud.
 1. You leverage the Infrastructure as Code (IaC) practice. Wallarm's Terraform module allows for the automated management and provisioning of the Wallarm node on AWS, enhancing efficiency and consistency.
