@@ -44,12 +44,7 @@ Wallarm supports the following operating systems:
 
 ## Use cases
 
-Among all supported [Wallarm deployment options](../../../supported-deployment-options.md), DEB/RPM packages for NGINX Stable is recommended for out‑of‑band Wallarm deployment in these **use cases**:
-
-1. Your infrastructure is on Debian, Ubuntu, or CentOS and you are familiar with the `apt` or `yum` package management systems. In this case, Wallarm packages will blend seamlessly into your current infrastructure.
-1. Your services are built around NGINX Stable. Wallarm can extend its functionalities using these packages.
-1. If you prefer having control over deployment, configuration, and hosting locally for reasons such as security or latency, Wallarm packages offer flexibility.
-1. You aim to deploy a security solution as a virtual appliance either on the cloud or locally.
+--8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
 
 ## Requirements
 

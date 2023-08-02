@@ -39,6 +39,10 @@ These instructions describe the steps to install Wallarm filtering node as a dyn
 
 NGINX Open Source can be obtained from nginx.org or the default repositories of Debian/CentOS depending on your requirements, NGINX version preferences, and repository management policies. Wallarm provides packages for both [nginx.org](individual-packages-nginx-stable.md) and distribution‑provided versions. This guide focuses on NGINX from Debian/CentOS repositories.
 
+## Use cases
+
+--8<-- "../include/waf/installation/linux-packages/nginx-distro-use-cases.md"
+
 ## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
