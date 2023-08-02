@@ -14,6 +14,7 @@ search:
 [api-tokens-docs]:                  ../../../../user-guides/settings/api-tokens.md
 [allocate-resources-for-wallarm-docs]: ../../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [supported-deployments]:            ../../../../installation/supported-deployment-options.md
+[ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
 
 # Running Docker Envoy‑based Image
 
@@ -28,10 +29,13 @@ The Wallarm module is designed as an Envoy HTTP filter for requests proxying.
 !!! warning "Supported configuration parameters"
     Please note that the most [directives][nginx-directives-docs] for the NGINX‑based filtering node configuration are not supported for the Envoy‑based filtering node configuration. See the list of parameters available for the [Envoy‑based filtering node configuration →][docker-envoy-configuration-docs]
 
+## Use cases
+
+--8<-- "../include/waf/installation/docker-images/envoy-based-use-cases.md"
+
 ## Requirements
 
-* Access to the account with the **Administrator** role in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/) 
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. Please ensure the access is not blocked by a firewall
+--8<-- "../include/waf/installation/docker-images/envoy-requirements.md"
 
 ## Options for running the container
 
