@@ -5,6 +5,10 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 !!! warning "The instructions limitations"
     These instructions do not cover the configuration of load balancing and node autoscaling. If setting up these components yourself, we recommend that you review an appropriate part of the [AWS instructions](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/).
 
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/aws-ecs-use-cases.md"
+
 ## Requirements
 
 * AWS account and user with the **admin** permissions

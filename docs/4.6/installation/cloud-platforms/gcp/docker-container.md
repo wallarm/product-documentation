@@ -20,6 +20,10 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 !!! warning "The instructions limitations"
     These instructions do not cover the configuration of load balancing and node autoscaling. If setting up these components yourself, we recommend that you read the appropriate [GCP documentation](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling).
 
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/google-gce-use-cases.md"
+
 ## Requirements
 
 * Active GCP account
