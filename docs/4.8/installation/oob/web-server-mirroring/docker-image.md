@@ -26,5 +26,6 @@ search:
 [oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
 
 --8<-- "latest/installation/oob/web-server-mirroring/docker-image.md"

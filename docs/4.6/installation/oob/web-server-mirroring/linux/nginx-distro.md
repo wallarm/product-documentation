@@ -46,6 +46,15 @@ The Wallarm module is compatible with distribution-provided NGINX on the followi
 * CentOS 7.x
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
 
+## Use cases
+
+Among all supported [Wallarm deployment options](../../../supported-deployment-options.md), DEB/RPM packages for distribution-provided NGINX is recommended for out‑of‑band Wallarm deployment in these **use cases**:
+
+1. Your infrastructure is on Debian or CentOS and you are familiar with the `apt` or `yum` package management systems. In this case, Wallarm packages will blend seamlessly into your current infrastructure.
+1. Your services are built around distribution-provided NGINX. Wallarm can extend its functionalities using these packages.
+1. If you prefer having control over deployment, configuration, and hosting locally for reasons such as security or latency, Wallarm packages offer flexibility.
+1. You aim to deploy a security solution as a virtual appliance either on the cloud or locally.
+
 ## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"

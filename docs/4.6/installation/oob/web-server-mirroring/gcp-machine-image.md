@@ -29,7 +29,15 @@ search:
 
 # Deploying Wallarm OOB from GCP Machine Image
 
-This article provides instructions for deploying [Wallarm OOB](overview.md) on GCP using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
+This article provides instructions for deploying [Wallarm OOB](overview.md) on Google Cloud Platform using the [official Machine Image](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
+
+## Use cases
+
+Among all supported [Wallarm deployment options](../../supported-deployment-options.md), GCP Machine Image is recommended for out-of-band Wallarm deployment in these **use cases**:
+
+1. Your existing infrastructure resides on GCP. In this case, using Wallarm Machine Image for deploying a Wallarm node is a natural extension.
+1. You aim to deploy a security solution as a virtual appliance using a virtual machine image.
+1. You leverage a simplified deployment process. With Machine Image, you launch a pre-configured server image, that makes the deployment process both faster and more reliable.
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
