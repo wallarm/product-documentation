@@ -2,8 +2,9 @@
 
 This article provides instructions for deploying Wallarm on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution can be deployed either [in-line][inline-docs] or [Out-of-Band][oob-docs].
 
-<!-- ???
-say that all regions are supported -->
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
