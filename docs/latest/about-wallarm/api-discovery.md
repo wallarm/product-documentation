@@ -20,7 +20,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 * View most attacked APIs for the last 7 days.
 * Filter out only attacked APIs, sort them by number of hits.
 * Filter APIs that consume and carry sensitive data.
-* Find [shadow and orphan APIs](#orphan-api).
+* Find [shadow and orphan APIs](#shadow-and-orphan-apis).
 * [Download](../user-guides/api-discovery.md#download-openapi-specification-oas-of-your-api-inventory) discovered endpoints as specification in the OpenAPI v3 format and compare with your own API specifications to find endpoints presented in your specifications but not discovered by Wallarm (endpoints that are not in use, also known as "Zombie API").
 * [Track changes](#tracking-changes-in-api) in API that took place within the selected period of time.
 * Quickly [create rules](../user-guides/api-discovery.md#api-inventory-and-rules) per any given API endpoint.
@@ -235,7 +235,7 @@ The API Discovery module automatically uncovers shadow and orphan APIs by compar
 
 As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
 
-Found orphan APIs can be a reason to verify the applications' business logic and/or check the Wallarm traffic checking settings to understand whether traffic actually does not received or it is just not visible to the Wallarm node.
+The presence of orphan APIs can be a compelling reason to conduct a thorough verification process. This involves determining whether certain applications genuinely should not receive any traffic at these specific endpoints. Additionally, it is essential to inspect the Wallarm traffic checking settings to gain a comprehensive understanding of whether the traffic is truly not being received, or if it's simply not visible to the Wallarm node. This diligent examination ensures enhanced application security and robust traffic management.
 
 ## Security of data uploaded to the Wallarm Cloud
 
