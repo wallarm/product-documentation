@@ -171,6 +171,11 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
             <h3>Oracle Linux 8.x</h3>
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
+
+        <a class="do-card" href="../../installation/oob/web-server-mirroring/linux/all-in-one/">
+            <h3>All-in-one installation</h3>
+            <p>Let Wallarm automatically check your OS and NGINX version and install appropriate packages</p>
+        </a>
     </div>
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-10">
