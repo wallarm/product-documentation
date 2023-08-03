@@ -66,9 +66,9 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Analyze requests from denylisted IPs
 
-[Denylisting](../../user-guides/ip-lists/denylist.md) is a very effective defensive measure against high-volume attacks (e.g., brute force, forced browsing, BOLA, or API abuse). In the **Events** section, you can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the events related to denylisted IPs using `blocked_source` or `payload_trigger` in a search string.
+[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an incredibly effective defensive measure against high-volume attacks, such as brute force, forced browsing, BOLA (Breach of Logic Attack), or API abuse. In the **Events** section, you have the capability to easily [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for events associated with denylisted IPs using either the `blocked_source` or `payload_trigger` in a search string.
 
-To give you full information about requests blocked because their source IPs were denylisted, Wallarm is able to gather and display such requests' detailed information and statistics. This allows evaluating the power of attacks from denylisted IPs and more accurate analysis of these IPs' requests by exploring their various parameters.
+To provide you with comprehensive information regarding blocked requests due to denylisted source IPs, Wallarm offers the ability to collect and display detailed information and statistics for these requests. This empowers you to evaluate the potency of attacks originating from denylisted IPs and conduct a more precise analysis of the requests from these IPs, exploring various parameters.
 
 !!! info "Feature availability"
     This feature is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
