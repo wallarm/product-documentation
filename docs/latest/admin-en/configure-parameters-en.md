@@ -49,11 +49,11 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
 The directive enables `on` / disables `off` sending of the requests/statistics from the [denylisted](../user-guides/ip-lists/denylist.md) IPs from node to the Cloud.
 
-* With `wallarm_acl_export_enable on` the full information about the request from the denylisted IP will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-in-events-from-denylisted-ips) in the corresponding event in the **Events** section.
+* With `wallarm_acl_export_enable on` the full information about the request from the denylisted IP will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the corresponding event in the **Events** section.
 
     Thus, you can [search](../user-guides/search-and-filters/use-search.md#search-by-attack-type) for these events using the `blocked_source` in the search string and then open found event details to get full information on the request.
 
-* With `wallarm_acl_export_enable off` only the generic information about the event will be displayed - no request details will be presented.
+* With `wallarm_acl_export_enable off` only the event will its status will be displayed - no request details will be presented.
 
 !!! info
     This parameter is set inside the http block.
@@ -66,8 +66,6 @@ Applicable when `wallarm_acl_export_enable on`.
 
 Sets the maximum amount of shared memory that the Wallarm upload of the requests/statistics from the denylisted IPs can consume.
 
-With an average record size of 400 bytes, and `wallarm_acl_export_shm_size` of 64MB, the process can handle approximately 160,000 records simultaneously. Increasing the memory by two doubles the module's capacity in a linear fashion.
-
 !!! info
     This parameter is set inside the http block.
     
@@ -77,9 +75,9 @@ With an average record size of 400 bytes, and `wallarm_acl_export_shm_size` of 6
 
 Applicable when `wallarm_acl_export_enable on`.
 
-Number of comparable and identical requests within time set by `wallarm_acl_export_sample_group_lifetime` which when exceeded the node stops sending requests from the denylisted IPs to the Cloud and starts sending only statistics.
+Number of comparable and identical requests within time set by `wallarm_acl_export_sample_group_lifetime` which when exceeded the node stops sending requests from the denylisted IPs to the Cloud: already sent requests are kept and thus used as **sample**, remaining are not sent - only the number of them is recorded in a separate parameter.
 
-Sending statistics instead of requests is called **sampling**. This and related directives configure sampling on the node side and only for requests from the denylisted IPs - on the contrary, sampling for other requests is [configured](../user-guides/events/analyze-attack.md#sampling-of-hits) in the Cloud. Cloud sampling always skips denylisted IPs requests, so two configurations do not interfere.
+This and related directives configure sampling on the node side and only for requests from the denylisted IPs - on the contrary, sampling for other requests is [configured](../user-guides/events/analyze-attack.md#sampling-of-hits) in the Cloud. Cloud sampling always skips denylisted IPs requests, so two configurations do not interfere.
 
 !!! info
     This parameter is set inside the http block.
@@ -90,7 +88,7 @@ Sending statistics instead of requests is called **sampling**. This and related 
 
 Applicable with `wallarm_acl_export_enable on`.
 
-Sets time in seconds within which if number of comparable and identical requests exceeds `wallarm_acl_export_sample_limit` the node stops sending requests from the denylisted IPs to the Cloud and starts sending only statistics.
+Sets time in seconds - if number of comparable and identical requests within this time exceeds `wallarm_acl_export_sample_limit` the node stops sending requests from the denylisted IPs to the Cloud and sends only the number of alike/identical requests.
 
 !!! info
     This parameter is set inside the http block.
@@ -110,7 +108,7 @@ Sets interval in seconds for sending statistics to the Tarantool. Statistics ins
 
 ### wallarm_acl_export_stats_bucket_lifetime
 
-Sets time in seconds to store statistics within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tatantool connection is not restored, the statistics is considered outdated and deleted.
+Sets time in seconds to store statistics within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tarantool connection is not restored, the statistics is considered outdated and deleted.
 
 !!! info
     This parameter is set inside the http block.

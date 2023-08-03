@@ -64,16 +64,18 @@ To view a request in a raw format, expand a required attack and then the request
 
 ![!Raw format of the request][img-analyze-attack-raw]
 
-## Analyze requests in events from denylisted IPs
+## Analyze requests from denylisted IPs
 
-[Denylisting](../../user-guides/ip-lists/denylist.md) is a very effective defensive measure against high-volume attacks (e.g., brute-force, path traversal, bot attacks, etc.) To give you full information about requests blocked because their source IPs were denylisted, Wallarm is able to gather and display such requests' detailed information and statistics. This allows evaluating the power of attacks from denylisted IPs and more accurate analysis of these IPs' requests by exploring their various parameters.
+[Denylisting](../../user-guides/ip-lists/denylist.md) is a very effective defensive measure against high-volume attacks (e.g., brute force, forced browsing, BOLA, or API abuse). In the **Events** section, you can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the events related to denylisted IPs using `blocked_source` or `payload_trigger` in a search string.
+
+To give you full information about requests blocked because their source IPs were denylisted, Wallarm is able to gather and display such requests' detailed information and statistics. This allows evaluating the power of attacks from denylisted IPs and more accurate analysis of these IPs' requests by exploring their various parameters.
 
 !!! info "Feature availability"
     This feature is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
 
-By default, collecting extended information is not enabled - no request details or statistics are presented in the event details.
+By default, collecting extended information is not enabled - requests themselves are not presented in the event details.
 
-You can configure node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). This configuration is done on the node side using the following directives:
+You can configure the node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). This configuration is done on the node side using the following directives:
 
 * `wallarm_acl_export_enable` (main switch, `off` by default)
 * `wallarm_acl_export_shm_size` (memory consumption limit)
