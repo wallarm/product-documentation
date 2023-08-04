@@ -32,10 +32,10 @@
 
 Among all supported [Wallarm deployment options](supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
 
-1. You prefer a hands-off approach to deployment and maintenance.
-1. You do not have a robust hosting infrastructure or do not wish to invest in additional infrastructure.
-1. If rapid deployment is a priority, changing the CNAME record to point to a third-party hosted Wallarm node is a quicker solution compared to traditional deployment methods.
-1. If your team lacks the technical expertise to manage and maintain a Wallarm filtering node, a third-party hosted solution ensures you have access to experts dedicated to the maintenance and uptime of your node.
+* You prefer a hands-off approach to deployment and maintenance.
+* You do not have a robust hosting infrastructure or do not wish to invest in additional infrastructure.
+* If rapid deployment is a priority, changing the CNAME record to point to a third-party hosted Wallarm node is a quicker solution compared to traditional deployment methods.
+* If your team lacks the technical expertise to manage and maintain a Wallarm filtering node, a third-party hosted solution ensures you have access to experts dedicated to the maintenance and uptime of your node.
 
 ## Requirements
 
