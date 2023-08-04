@@ -12,9 +12,11 @@ You can see the solution flexibility in action by trying the [proxy advanced sol
 
 Among all supported [Wallarm deployment options](../../../supported-deployment-options.md), Terraform module is recommended for Wallarm deployment on AWS VPC in these **use cases**:
 
-1. Your existing infrastructure resides on AWS. In this case, using Wallarm Terraform module is a natural extension as the module is specifically designed for the AWS public cloud.
-1. You leverage the Infrastructure as Code (IaC) practice. Wallarm's Terraform module allows for the automated management and provisioning of the Wallarm node on AWS, enhancing efficiency and consistency.
-1. You leverage automated deployment process. The module allows for the creation and changing of both the Wallarm node and the corresponding resources on AWS in an automatic manner.
+* Your existing infrastructure resides on AWS.
+* You leverage the Infrastructure as Code (IaC) practice. Wallarm's Terraform module allows for the automated management and provisioning of the Wallarm node on AWS, enhancing efficiency and consistency.
+* You leverage automated deployment process. The module allows for the creation and changing of both the Wallarm node and the corresponding resources on AWS in an automatic manner.
+* You aim to deploy a security solution as a virtual appliance using a virtual machine image.
+* You prefer not to install a security solution directly on your frontend, such as NGINX, and instead wish to establish it as a standalone instance or a group of instances.
 
 ## Requirements
 
