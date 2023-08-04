@@ -26,6 +26,10 @@ search:
 [platform]:                         ../../../supported-deployment-options.md
 [nginx-directives-docs]:            ../../../../admin-en/configure-parameters-en.md
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
+[aws-ecs-docs]:                     ../../../cloud-platforms/aws/docker-container.md
+[gcp-gce-docs]:                     ../../../cloud-platforms/gcp/docker-container.md
+[azure-container-docs]:             ../../../cloud-platforms/azure/docker-container.md
+[alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
 
 # Running Docker NGINX‑based Image
 

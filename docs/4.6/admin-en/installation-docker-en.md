@@ -21,6 +21,10 @@
 [platform]:                         ../installation/supported-deployment-options.md
 [nginx-directives-docs]:            configure-parameters-en.md
 [ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
+[aws-ecs-docs]:                     ../installation/cloud-platforms/aws/docker-container.md
+[gcp-gce-docs]:                     ../installation/cloud-platforms/gcp/docker-container.md
+[azure-container-docs]:             ../installation/cloud-platforms/azure/docker-container.md
+[alibaba-ecs-docs]:                 ../installation/cloud-platforms/alibaba-cloud/docker-container.md
 
 # Running Docker NGINX‑based Image
 

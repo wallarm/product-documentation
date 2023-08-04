@@ -25,5 +25,9 @@ search:
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../../supported-deployment-options.md
 [nginx-directives-docs]:            ../../../../admin-en/configure-parameters-en.md
+[aws-ecs-docs]:                     ../../../cloud-platforms/aws/docker-container.md
+[gcp-gce-docs]:                     ../../../cloud-platforms/gcp/docker-container.md
+[azure-container-docs]:             ../../../cloud-platforms/azure/docker-container.md
+[alibaba-ecs-docs]:                 ../../../cloud-platforms/alibaba-cloud/docker-container.md
 
 --8<-- "latest/admin-en/installation-docker-en.md"

@@ -1,7 +1,6 @@
 Among all supported [Wallarm deployment options][platform], NGINX-based Docker image is recommended for Wallarm deployment in these **use cases**:
 
-1. Deploying Wallarm using the NGINX-based Docker image aligns with your Docker-based infrastructure.
-1. Your services are built around NGINX and you need to extend its functionalities with Wallarm's security features.
-1. Your application follows a microservices architecture. With Wallarm's NGINX-based Docker image you can get granular security at the level of individual services.
-1. The security solution should be intergrated into CI/CD pipelines. The Docker image integrates seamlessly into CI/CD pipelines for automated deployment.
-1. Resource optimization is essential. The lightweight nature of Docker containers, including the NGINX-based Docker image, uses fewer resources than traditional VM-based deployments, allowing for more efficient use of system resources.
+* If your organization utilizes Docker-based infrastructure, Wallarm Docker image is the ideal choice. It integrates effortlessly into your existing setup, whether you are employing a microservice architecture running on AWS ECS, Alibaba ECS, or other similar services. This solution also applies to those using virtual machines seeking a more streamlined management through Docker containers.
+* If you require fine-grained control over each container, the Docker image excels. It affords a greater level of resource isolation than typically possible with traditional VM-based deployments.
+
+For more information on running Wallarm's NGINX-based Docker image on popular public cloud container orchestration services, refer to our guides: [AWS ECS][aws-ecs-docs], [GCP GCE][gcp-gce-docs], [Azure Container Instances][azure-container-docs], [Alibaba ECS][alibaba-ecs-docs].
