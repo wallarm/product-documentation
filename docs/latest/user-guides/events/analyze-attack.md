@@ -66,7 +66,16 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Analyze requests from denylisted IPs
 
-[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an incredibly effective defensive measure against high-volume attacks, such as brute force, forced browsing, BOLA (Breach of Logic Attack), or API abuse. In the **Events** section, you have the capability to easily [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for events associated with denylisted IPs using either the `blocked_source` or `payload_trigger` in a search string.
+[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an incredibly effective defensive measure against high-volume attacks of different types. You can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for those attacks and analyze them in the **Events** section:
+
+| How IP is added | Description | Search key | Filter |
+|--|--|--|--|
+| Manually | You can [denylist](../../user-guides/ip-lists/denylist.md#manual-denylist-population) objects **manually**. | `blocked_source` | Blocked Source |
+| [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) | The Wallarm's [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md) module automatically populates either the graylist or denylist with the malicious bots' IPs. | `api_abuse` | API Abuse |
+| [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of brute‑force attacks (basing on the number of requests originated from the same IP address). | `brute` | Brute force |
+| [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of forced browsing attacks (same as brute-force, but basing on the number of the 404 response codes returned to the requests having the same origin IP requests). | `dirbust` | Forced browsing |
+| [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger | Events are results of manual or automatic BOLA protection. | `bola` | BOLA |
+| `Number of malicious payloads` trigger | Trigger basing on the number of malicious payloads originating from the same IP. | `payload_trigger` | Payload Trigger |
 
 To provide you with comprehensive information regarding blocked requests due to denylisted source IPs, Wallarm offers the ability to collect and display detailed information and statistics for these requests. This empowers you to evaluate the potency of attacks originating from denylisted IPs and conduct a more precise analysis of the requests from these IPs, exploring various parameters.
 
@@ -75,17 +84,14 @@ To provide you with comprehensive information regarding blocked requests due to 
 
 By default, collecting extended information is not enabled - requests themselves are not presented in the event details.
 
-You can configure the node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). This configuration is done on the node side using the following directives:
+You can configure the node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). You can enable sending full information and configure transfer parameters using the [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) and a set of relative directives.
 
-* `wallarm_acl_export_enable` (main switch, `off` by default)
-* `wallarm_acl_export_shm_size` (memory consumption limit)
-* Sampling:
-    * `wallarm_acl_export_sample_limit`
-    * `wallarm_acl_export_sample_group_lifetime`
-    * `wallarm_acl_export_stats_bucket_interval`
-    * `wallarm_acl_export_stats_bucket_lifetime`
+As soon as sending full information is enabled, for each denylisted IP you will have two events:
 
-[See the directives detailed description →](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable)
+* The one in the `Monitoring` status displaying information related to the reason of putting this IP into the denylist.
+* The one in the `Blocked` status displaying information about hits from this blocked IP that took place after putting it in denylist. This includes full request or - if there are too much requests - several requests as samples and the remaining as counter for the number of hits.
+
+![!Events related to denylisted IPs - export of full data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
 ## Sampling of hits
 

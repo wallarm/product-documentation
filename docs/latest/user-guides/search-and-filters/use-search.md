@@ -98,7 +98,7 @@ Specify in the search string:
 * `mass_assignment`: to search for [Mass Assignment](../../attacks-vulns-list.md#mass-assignment) attack attempts.
 * `api_abuse`: to search for [attacks on API performed by bots](../../attacks-vulns-list.md#api-abuse).
 * `ssrf`: to search for [Server‑side Request Forgery (SSRF) and attacks](../../attacks-vulns-list.md#serverside-request-forgery-ssrf).
-* `blocked_source`: to search for events blocked because their source IPs are [denylisted](../../user-guides/ip-lists/denylist.md) or [graylisted](../../user-guides/ip-lists/graylist.md) as a result of sending requests with brute force, forced browsing, BOLA, or API abuse attack signs.
+* `blocked_source`: to search for events blocked because their source IPs were **manually** [denylisted](../../user-guides/ip-lists/denylist.md) or [graylisted](../../user-guides/ip-lists/graylist.md).
 
     [Learn more about how you can analyze these events →](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips)
 

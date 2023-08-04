@@ -60,11 +60,19 @@ The directive enables `on` / disables `off` sending of the requests/statistics f
     
     **Default value**: `off`
 
+Relative directives to control memory consumption and sampling:
+
+* wallarm_acl_export_shm_size
+* wallarm_acl_export_sample_limit
+* wallarm_acl_export_sample_group_lifetime
+* wallarm_acl_export_stats_bucket_interval
+* wallarm_acl_export_stats_bucket_lifetime
+
 ### wallarm_acl_export_shm_size
 
 Applicable when `wallarm_acl_export_enable on`.
 
-Sets the maximum amount of shared memory that the Wallarm upload of the requests/statistics from the denylisted IPs can consume.
+Sets the maximum amount of memory that the Wallarm can use to store the internal statistics data prepared for export.
 
 !!! info
     This parameter is set inside the http block.
