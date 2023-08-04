@@ -50,9 +50,10 @@ nav:
               - マシンイメージ: installation/oob/web-server-mirroring/gcp-machine-image.md
           - Docker: installation/oob/web-server-mirroring/docker-image.md
           - Linux:
-            - NGINX Stable: installation/oob/web-server-mirroring/linux/nginx-stable.md
-            - NGINX Plus: installation/oob/web-server-mirroring/linux/nginx-plus.md
-            - ディストリビューションが提供するNGINX: installation/oob/web-server-mirroring/linux/nginx-distro.md
+            - NGINX安定版用個別パッケージ: installation/oob/web-server-mirroring/linux/nginx-stable.md
+            - NGINX Plus用個別パッケージ: installation/oob/web-server-mirroring/linux/nginx-plus.md
+            - 提供元提供のNGINX用個別パッケージ: installation/oob/web-server-mirroring/linux/nginx-distro.md
+            - すべて一つのインストーラ: installation/oob/web-server-mirroring/linux/all-in-one.md
       - パブリッククラウド:
         - Amazon Web Services:
           - AMI: installation/cloud-platforms/aws/ami.md
