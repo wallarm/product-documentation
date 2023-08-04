@@ -1,6 +1,6 @@
 # Running API Firewall on Docker
 
-This guide walks through downloading, installing, and starting Wallarm API Firewall on Docker.
+This guide walks through downloading, installing, and starting [Wallarm API Firewall](../overview.md) on Docker.
 
 ## Requirements
 
@@ -92,6 +92,9 @@ Pass API Firewall configuration in **docker-compose.yml** → `services.api-fire
 | `APIFW_ADD_VALIDATION_STATUS_HEADER`<br>(EXPERIMENTAL) | Whether to return the header `Apifw-Validation-Status` containing the reason for the request blocking in the response to this request. The value can be `true` or `false`. The default value is `false`.| No
 | `APIFW_LOG_FORMAT` | The format of API Firewall logs. The value can be `TEXT` or `JSON`. The default value is `TEXT`. | No |
 | `APIFW_SHADOW_API_EXCLUDE_LIST`<br>(only if API Firewall is operating in the `LOG_ONLY` mode for both the requests and responses) | [HTTP response status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) indicating that the requested API endpoint that is not included in the specification is NOT a shadow one. You can specify several status codes separated by a semicolon (e.g. `404;401`). The default value is `404`.<br><br>By default, API Firewall operating in the `LOG_ONLY` mode for both the requests and responses marks all endpoints that are not included in the specification and are returning the code different from `404` as the shadow ones. | No
+| `APIFW_MODE` | Sets the general API Firewall mode. Possible values are `PROXY` (default) and [`API`](#validating-individual-requests-without-proxying-for-v0612-and-above). | No |
+| `APIFW_PASS_OPTIONS` | When set to `true`, the API Firewall will permit all requests using the OPTIONS method. The default value is `false`. | No |
+| `APIFW_SHADOW_API_UNKNOWN_PARAMETERS_DETECTION` | This specifies whether requests are identified as non-matching the specification if their parameters do not align with those defined in the OpenAPI specification. The default value is `true`.<br><br>If running API Firewall in the [`API` mode](#validating-individual-requests-without-proxying-for-v0612-and-above), this variable takes on a different name `APIFW_API_MODE_UNKNOWN_PARAMETERS_DETECTION`. | No |
 
 More API Firewall configuration options are described within the [link](#api-firewall-fine-tuning-options).
 
@@ -186,6 +189,25 @@ To set up SSL/TLS for the server with the running API Firewall, use the followin
 | `APIFW_TLS_CERTS_PATH`            | The path to the container directory with the mounted certificate and private key generated for API Firewall.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `APIFW_TLS_CERT_FILE`             | The name of the file with the SSL/TLS certificate generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `APIFW_TLS_CERT_KEY`              | The name of the file with the SSL/TLS private key generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
+### Validating individual requests without proxying (for v0.6.12 and above)
+
+If you need to validate individual API requests based on a given OpenAPI specification without further proxying, you can utilize Wallarm API Firewall in a non-proxy mode. In this case, the solution does not validate requests.
+
+To do so, run the container with the environment variable `APIFW_MODE=API` and if needed, with other variables that specifically designed for this mode:
+
+| Environment variable | Description |
+| -------------------- | ----------- |
+| `APIFW_MODE` | Sets the general API Firewall mode. Possible values are `PROXY` (default) and `API`. |
+| `APIFW_SPECIFICATION_UPDATE_PERIOD` | Determines the frequency of OpenAPI file updates. The default value is `1m` (1 minute). |
+| `APIFW_API_MODE_UNKNOWN_PARAMETERS_DETECTION` | Specifies whether to return an error code if the request parameters do not match those defined in the OpenAPI specification. The default value is `true`. |
+| `APIFW_PASS_OPTIONS` | When set to `true`, the API Firewall will permit all requests using the OPTIONS method. The default value is `false`. |
+
+API Firewall validates requests as follows:
+
+* If the request matches the specification, an empty response with a 200 status code is returned.
+* If the request matches the specification, a JSON document is returned in the response along with a 403 status code.
+* If it is unable to handle or validate the request, an empty response with a 500 status code is returned.
 
 ### System settings
 
