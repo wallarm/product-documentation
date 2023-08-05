@@ -10,23 +10,23 @@
 [fast-example-circleci]:        https://circleci.com/gh/wallarm/fast-example-circleci-dvwa-integration
 
 
-# Integration of FAST with CircleCI
+# FASTとCircleCIの統合
 
-The integration of FAST in CI MODE into the CircleCI workflow is configured via the `~/.circleci/config.yml` file. More details about CircleCI workflow configuration are available in the [CircleCI official documentation][circleci-config-yaml].
+FASTをCI MODEでCircleCIワークフローに統合する設定は、`~/.circleci/config.yml`ファイルを通じて行われます。CircleCIワークフロー設定の詳細については、[CircleCI公式ドキュメンテーション][circleci-config-yaml]をご覧ください。
 
-## Passing FAST Node Token
+## FASTノートトークンの通過
 
-To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][circleci-set-env-var].
+[FASTノードトークン][fast-node-token]を安全に利用するためには、その値を[プロジェクト設定の環境変数][circleci-set-env-var]に渡してください。
 
-![!Passing CircleCI environment variable][circleci-example-env-var]
+![!CircleCI環境変数の通過][circleci-example-env-var]
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## Adding the Step of Request Recording
+## リクエスト記録のステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Example of the automated testing step with running FAST node in the recording mode"
+??? info "レコーディングモードでFASTノードを実行しながら自動化テストステップの例"
     ```
     - run:
           name: Start tests & FAST record
@@ -38,19 +38,19 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
             && docker stop selenium fast 
     ```
 
-    An example includes the following steps:
+    例には次のステップが含まれています：
 
-    1. Create the Docker network `my-network`.
-    2. Run the FAST node in the recording mode on the network `my-network`.
-    3. Run the tool for automated testing Selenium with FAST node as a proxy on the network `my-network`.
-    4. Run the test application and automated tests on the network `my-network`.
-    5. Stop the tool for automated testing Selenium and FAST node in the recording mode.
+    1. Dockerネットワーク `my-network`を作成します。
+    2. ネットワーク`my-network`上でレコーディングモードのFASTノードを実行します。
+    3. ネットワーク`my-network`上でFASTノードをプロキシとして使用する自動テストツールSeleniumを実行します。
+    4. ネットワーク`my-network`でテストアプリケーションと自動テストを実行します。
+    5. レコーディングモードのFASTノードと自動テストツールSeleniumを停止します。
 
-## Adding the Step of Security Testing
+## セキュリティテストのステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
-??? info "Example of the security testing step"
+??? info "セキュリティテストステップの例"
     ```
     - run:
         name: Start FAST tests
@@ -60,21 +60,21 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
           && docker stop app-test
     ```
 
-    An example includes the following steps:
+    例には次のステップが含まれています：
 
-    1. Run the test application on the `my-network` network.
-    2. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-    3. Stop the test application.
+    1. `my-network`ネットワーク上でテストアプリケーションを実行します。
+    2. `my-network`ネットワーク上でテストモードのFASTノードを実行します。「TEST_RECORD_ID」変数は、ベースラインリクエストのセットが現在のパイプラインで作成され、最後に記録されたため、省略されます。テストが終了するとFASTノードは自動的に停止します。
+    3. テストアプリケーションを停止します。
 
-## Getting the Result of Testing
+## テストの結果の取得
 
-The result of security testing will be displayed in CircleCI interface.
+セキュリティテストの結果は、CircleCIインターフェースに表示されます。
 
-![!The result of running FAST node in testing mode][fast-example-result]
+![!テストモードでFASTノードを実行する結果][fast-example-result]
 
-## More Examples
+## その他の例
 
-You can find examples of integrating FAST to CircleCI workflow in our [GitHub][fast-examples-github] and [CircleCI][fast-example-circleci].
+FASTのCircleCIワークフローへの統合の例は、私たちの[GitHub][fast-examples-github]と[CircleCI][fast-example-circleci]で見つけることができます。
 
-!!! info "Further questions"
-    If you have questions related to FAST integration, please [contact us][mail-to-us].
+!!! info "他にご質問がありますか？"
+    FASTの統合に関連したご質問がある場合は、[お問い合わせください][mail-to-us]。

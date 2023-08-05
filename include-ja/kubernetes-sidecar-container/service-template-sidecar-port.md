@@ -1,8 +1,8 @@
 ```
 ...
   - port: {{ .Values.service.port }}
-    # Wallarmサイドカーコンテナのポート;
-    # この値は、Wallarmサイドカーコンテナの定義の
-    # ports.containerPortと同じでなければなりません
+    # Wallarm サイドカー コンテナ のポート;
+    # この値は ports.containerPort の定義と
+    # Wallarm サイドカー コンテナと同一でなければならない
     targetPort: 80
 ```

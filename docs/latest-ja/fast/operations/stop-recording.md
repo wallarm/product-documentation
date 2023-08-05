@@ -7,53 +7,53 @@
 [link-stop-explained]:      internals.md#test-run-execution-flow-baseline-requests-recording-takes-place
 
 
-#   Stopping the Recording Process
+#   録画プロセスの停止
 
-!!! info "Necessary data"
-    To stop recording via API, the following pieces of data are required:
+!!! info "必要なデータ"
+    API経由で録画を停止するには、以下のデータが必要です：
     
-    * a token
-    * a test run identifier
+    * プトークン
+    * テスト実行の識別子
 
-    To stop recording via web interface, you need a Wallarrm account.
+    ウェブインタフェース経由で録画を停止するには、Wallarmアカウントが必要です。
     
-    You can get detailed information about test run and token [here][doc-about-tr-token].
+    テスト実行とトークンについての詳細な情報は[ここ][doc-about-tr-token]で入手できます。
     
-    The following values are used as example values in this document:
+    この文書では以下の値が例として使用されています：
         
-    * `token_Qwe12345` as a token.
-    * `tr_1234` as an identifier of a test run.
+    * `token_Qwe12345` をトークンとして。
+    * `tr_1234` をテスト実行の識別子として。
 
-The need to stop baseline requests recording is described by the [link][link-stop-explained]. 
+基本リクエストの録画を停止する必要性は[リンク][link-stop-explained]で説明されています。 
 
-## Stopping the Recording Process via API
+## APIを介した録画プロセスの停止
 
-To stop the recording process, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop`:
+録画プロセスを停止するには、POSTリクエストをURL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop`に送信します：
 
---8<-- "../include-ja/fast/operations/api-stop-recording.md"
+--8<-- "../include/fast/operations/api-stop-recording.md"
 
-If the request to the API server is successful, you are presented with the server’s response. The response provides useful information, including:
-* the state of the recording process (the `recording` parameter’s value).
-* the identifier of the corresponding test record (the `test_record_id` parameter).
+APIサーバーへのリクエストが成功した場合、サーバーのレスポンスが表示されます。レスポンスには、以下を含む有用な情報が提供されます：
+* 録画プロセスの状態（`recording`パラメータの値）。
+* 対応するテストレコードの識別子（`test_record_id`パラメータ）。
 
-If the parameter’s value is `false`, then the stop is successful.
+パラメータの値が`false`の場合、停止は成功しています。
 
-If the stop is successful, it is possible to use the test record with the `test_record_id` identifier to [copy test runs][doc-testrun-copying-api].
+停止が成功した場合、`test_record_id`識別子を持つテストレコードを使って[テストランをコピーする][doc-testrun-copying-api]ことが可能です。
 
-## Stopping the Recording Process via Web Interface
+## Webインタフェースを介した録画プロセスの停止
 
-To stop the recording process via the web interface, please follow the steps below:
+Webインタフェースを介した録画プロセスの停止には、以下の手順に従ってください：
 
-1. Go to your Wallarm account > **Test runs** by [this link](https://my.wallarm.com/testing/testruns) for the EU cloud or by [this link](https://us1.my.wallarm.com/testing/testruns) for the US cloud.
+1. Wallarmアカウントにアクセスし、[このリンク](https://my.wallarm.com/testing/testruns)よりEUクラウド、または[このリンク](https://us1.my.wallarm.com/testing/testruns)よりUSクラウドで**Test runs**にアクセスします。
 
-2. Select the test run to stop recording for and open the action menu.
+2. 録音を停止するテストランを選択し、アクションメニューを開きます。
 
-3. Select **Stop recording**.
+3. ** Stop recording**を選択します。
 
-    ![!Stopping the recording via web interface][img-stop-recording-item]
+    ![!ウェブインタフェースでの録音停止][img-stop-recording-item]
 
-The REQ indicator to the left of the **Baseline req.** column will be switched off when the recording is stopped.
+録画が停止したときに、**Baseline req.**の列の左側にあるREQインジケーターがオフになります。
 
-ID of the test record is displayed in the **Test record name/Test record ID** column.
+テストレコードのIDは**Test record name/Test record ID**列で表示されます。
 
-If required, you can [copy this test run][doc-testrun-copying-gui] using the web interface and the new test will reuse the mentioned test record.
+必要に応じて、ウェブインタフェースを使用して[このテストランをコピーする][doc-testrun-copying-gui]ことができ、新しいテストは上記のテストレコードを再利用します。

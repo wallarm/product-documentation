@@ -1,27 +1,27 @@
-# Wallarmプラットフォームとサードパーティサービスのやり取り
+# Wallarmプラットフォームとサードパーティサービスの相互作用
 
-Wallarmプラットフォームとサードパーティサービスのやり取り中に何らかの問題が発生した場合は、このトラブルシューティングガイドを確認して対処してください。ここで関連する詳細が見つからない場合は、[Wallarm技術サポート](mailto:support@wallarm.com)にお問い合わせください。
+Wallarmプラットフォームとサードパーティサービスの相互作用中に何か問題が発生した場合、それらを解決するためのこのトラブルシューティングガイドをご覧ください。ここで関連する詳細を見つけられなかった場合は、どうか[Wallarm技術サポート](mailto:support@wallarm.com)までご連絡ください。
 
-## Wallarmプラットフォームがどのサードパーティサービスとやり取りするか？
+## Wallarmプラットフォームが対話するサードパーティサービスは何ですか？
 
-Wallarmプラットフォームは、以下のサードパーティサービスとやり取りします：
+Wallarmプラットフォームは以下のサードパーティサービスと相互作用します：
 
-* [許可リスト、拒否リスト、またはグレーリスト](../user-guides/ip-lists/overview.md)に登録されている国、地域、データセンターのIPアドレスの実際のリストをダウンロードするためのGCPストレージ。
+* [許可された、拒否された、またはグレーリスト化された](../user-guides/ip-lists/overview.md)国、地域、データセンターに登録されたIPアドレスの実際のリストをダウンロードするためのGCPストレージ。
 
-    Wallarmをインストールする前に、お使いのマシンが[GCPストレージIPアドレス](https://www.gstatic.com/ipranges/goog.json)にアクセスできることを確認することをお勧めします。
-* 標準のTarantoolインスタンスデータをアップロードするためのTarantoolフィードバックサーバ(`https://feedback.tarantool.io`)。
+    Wallarmをインストールする前に、お使いのマシンが[GCPストレージのIPアドレス](https://www.gstatic.com/ipranges/goog.json)にアクセスできることを確認することをお勧めします。
+* 標準的なTarantoolインスタンスのデータをアップロードするためのTarantoolフィードバックサーバー (`https://feedback.tarantool.io`)。
 
-    インメモリストレージTarantoolは、お使いのマシンにデプロイされたWallarmのpostanalyticsモジュールで使用されます。これは`wallarm-tarantool`パッケージからデプロイされます。Tarantoolストレージは、カスタム(`wallarm-tarantool`)と標準(`tarantool`)の2つのインスタンスとしてデプロイされます。標準インスタンスは、デフォルトでカスタムインスタンスとともにデプロイされ、Wallarmコンポーネントでは使用されません。
+    インメモリストレージTarantoolは、`wallarm-tarantool`パッケージからあなたのマシンにデプロイされたWallarmのpostanalyticsモジュールによって使用されます。 Tarantoolストレージは2つのインスタンス、カスタム（`wallarm-tarantool`）と標準（`tarantool`）としてデプロイされます。標準インスタンスはデフォルトでカスタムインスタンスと一緒にデプロイされ、Wallarmのコンポーネントには使用されません。
 
-    Wallarmは、カスタムTarantoolインスタンスのみを使用し、`https://feedback.tarantool.io`にはデータを送信しません。ただし、デフォルトインスタンスは、Tarantoolフィードバックサーバーに1時間ごとにデータを送信することができます（[詳細](https://www.tarantool.io/en/doc/latest/reference/configuration/#feedback)）。
+    WallarmはカスタムTarantoolインスタンスのみを使用し、`https://feedback.tarantool.io`へデータを送信しません。ただし、デフォルトのインスタンスは、1時間に1回、Tarantoolフィードバックサーバーにデータを送信することができます（[詳細](https://www.tarantool.io/en/doc/latest/reference/configuration/#feedback)）。
 
-## 標準Tarantoolインスタンスデータの送信を`https://feedback.tarantool.io`に無効にすることができますか？
+## 標準的なTarantoolインスタンスのデータを`https://feedback.tarantool.io`に送信するのを無効にできますか？
 
-はい、`https://feedback.tarantool.io`への標準Tarantoolインスタンスデータの送信を以下のように無効にすることができます：
+はい、次のようにして標準的なTarantoolインスタンスのデータを`https://feedback.tarantool.io`に送信することを無効にできます：
 
-* 標準的なTarantoolインスタンスを使用していない場合は、それを無効にできます：
+* 標準的なTarantoolインスタンスを使用していない場合、それを無効にできます：
 
     ```bash
     systemctl stop tarantool
     ```
-* 標準Tarantoolインスタンスが問題に対処している場合は、パラメータ[`feedback_enabled`](https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-logging-feedback-enabled)を使用して、`https://feedback.tarantool.io`へのデータ送信を無効にできます。
+* 標準的なTarantoolインスタンスがあなたの問題に対処している場合、[`feedback_enabled`](https://www.tarantool.io/en/doc/latest/reference/configuration/#cfg-logging-feedback-enabled)パラメータを使用して、データを`https://feedback.tarantool.io`に送信するのを無効にできます。

@@ -2,74 +2,74 @@
 [link-pem-encoding]:            https://www.ssl.com/guide/pem-der-crt-and-cer-x-509-encodings-and-conversions/
 
 
-#   Installing Your Own SSL Certificate to the FAST Node
+#   自分のSSL証明書をFASTノードにインストールする
 
-!!! info "Prerequisites"
-    This guide assumes that:
+!!! info "前提条件"
+    このガイドは以下を前提としています：
     
-    * Your browser is configured to use a FAST node as an HTTP or HTTPS proxy.
-    * Your browser already trusts the SSL certificate you are going to install for the FAST node.
+    * ブラウザがHTTPまたはHTTPSプロキシとしてFASTノードを使用するように設定されています。
+    * ブラウザはすでに、FASTノードにインストールする予定のSSL証明書を信頼しています。
 
-!!! warning "Certificate requirements"
-    To successfully complete this installation, your SSL certificate must be either a root certificate or an intermediate certificate.
+!!! warning "証明書の要件"
+    このインストールを成功させるためには、SSL証明書はルート証明書または中間証明書のいずれかでなければなりません。
     
-    The certificate and the corresponding private key must be [encoded using PEM][link-pem-encoding]. If your certificate has a different encoding, you can use any available certificate conversion tool, such as [OpenSSL][link-openssl] to convert it to a PEM encoded certificate.
+    証明書および対応する秘密鍵は、[PEMでエンコード][link-pem-encoding]されていなければなりません。証明書が異なるエンコーディングを持っている場合は、[OpenSSL][link-openssl]などの利用可能な証明書変換ツールを使用して、PEMエンコード証明書に変換することができます。
 
-##  Installing SSL Certificate
+##  SSL証明書のインストール
 
-To install an SSL certificate to th FAST node, follow these steps:
-1.  Make sure that you already have an SSL certificate, as well as the private key that signed the certificate, in the PEM format.
+FASTノードにSSL証明書をインストールするには、以下の手順に従ってください：
+1.  すでにSSL証明書と、その証明書を署名した秘密鍵をPEM形式で持っていることを確認します。
 
-2.  Place the certificate file and the key file in the same directory on the Docker host. It will be necessary to mount this directory to the Docker container with the FAST node in the next steps.
+2.  証明書ファイルと鍵ファイルをDockerホストの同一ディレクトリに配置します。次の手順でこのディレクトリをFASTノードを持つDockerコンテナにマウントする必要があります。
 
-3.  Specify the FAST node where the certificate and key are located using the following environment variables:
+3.  下記の環境変数を使用して、証明書と鍵が存在するFASTノードを特定します：
 
     ```
-    CA_CERT=<internal path to the certificate>
-    CA_KEY=<internal path to the key>
+    CA_CERT=<証明書への内部パス>
+    CA_KEY=<鍵への内部パス>
     ```
     
-    In the lines above, replace the values `<internal path to the certificate>` and `<internal path to the key>` with the expected path to the certificate and key after mounting the directory in the Docker container.
+    上記の行の`<証明書への内部パス>`と`<鍵への内部パス>`をDockerコンテナでディレクトリをマウントした後の証明書と鍵への予定パスに置き換えます.
 
-4.  Deploy the Docker container with the FAST node by running the following command:
+4.  下記のコマンドを実行してFASTノードを持つDockerコンテナをデプロイします：
 
     ```
-    docker run --name <name> \ 
-    -e WALLARM_API_TOKEN=<token> \
-    -e ALLOWED_HOSTS=<host list> \
-    -e CA_CERT=<internal path to the certificate> \
-    -e CA_KEY=<internal path to the key> \
-    -v <path to the directory with the certificate and key>:<internal path to the directory> \
-    -p <publishing port>:8080 \
+    docker run --name <名前> \ 
+    -e WALLARM_API_TOKEN=<トークン> \
+    -e ALLOWED_HOSTS=<ホストリスト> \
+    -e CA_CERT=<証明書への内部パス> \
+    -e CA_KEY=<鍵への内部パス> \
+    -v <証明書と鍵のあるディレクトリへのパス>:<ディレクトリへの内部パス> \
+    -p <公開ポート>:8080 \
     wallarm/fast
     ```
     
-    This command defines the following parameters:
+    このコマンドは次のパラメータを定義します：
     
-    * The container's name.
-    * The token and host list of the target application using the `WALLARM_API_TOKEN` and `ALLOWED_HOSTS` environment variables (the last one is not mandatory).
-    * The location of the SSL certificate file inside the container by using the `CA_CERT` variable.
-    * The location of the private key file inside the container by using the `CA_KEY` variable.
-    * The application publishing port.
+    * コンテナの名前。
+    * `WALLARM_API_TOKEN`と`ALLOWED_HOSTS`環境変数を使用して、ターゲットアプリケーションのトークンとホストリスト（後者は任意です）。
+    * `CA_CERT`変数を使用したコンテナ内のSSL証明書ファイルの位置。
+    * `CA_KEY`変数を使用したコンテナ内の秘密鍵ファイルの位置。
+    * アプリケーションの公開ポート。
     
-    Use the `-v` option of the `docker run` command to mount the Docker host's directory `<path to the directory with the certificate and key>` in the container. The contents of this directory become available inside the container on the path `<internal path to the directory>`. 
+    `docker run`コマンドの`-v`オプションを使用して、Dockerホストの`<証明書と鍵のあるディレクトリへのパス>`のディレクトリをコンテナにマウントします。このディレクトリの内容は、`<ディレクトリへの内部パス>`のパス内のコンテナ内で利用可能になります。
         
-    !!! warning "Note"
-        The paths to the certificate and key files specified with the `CA_CERT` and `CA_KEY` environment variables must point to the files in the `<internal path to the directory>` parameter that you specified with the `-v` option of the `docker run` command.   
+    !!! warning "注意"
+        `CA_CERT`および`CA_KEY`環境変数で指定した証明書と鍵ファイルへのパスは、`docker run`コマンドの`-v`オプションで指定した`<ディレクトリへの内部パス>`パラメータの中にあるファイルを指していなければなりません。   
 
-Now your SSL certificate should be successfully installed. Your FAST node instance will now proxy HTTPS requests without any untrusted certificate messages.
+これで、SSL証明書が正常にインストールされたはずです。FASTノードのインスタンスは、これで信頼されていない証明書メッセージなしにHTTPSリクエストをプロキシするようになります。
 
 
-##  An Example of Installing an SSL Certificate.
+##  SSL証明書のインストールの例
 
-The following is supposed to be the case:
-* The `cert.pem` and `cert.key` files with the SSL certificate and corresponding private key are located in the `/home/user/certs` directory of the Docker host where the FAST node is launched,
-* The contents of the `/home/user/certs` directory will be available inside the container with the FAST node on the `/tmp/certs` path,
-* The `fast_token` token is used,
-* Only `example.com` is included in the host list, and
-* The FAST node will run in the container named `fast-node` and its internal port `8080` will be published in `localhost:8080`,
+以下は、次のとおりであると想定されています：
+* SSL証明書と対応する秘密鍵の`cert.pem`と`cert.key`ファイルが、FASTノードが起動しているDockerホストの`/home/user/certs`ディレクトリにあります。
+* `/home/user/certs`ディレクトリの内容は、FASTノードを持つコンテナ内の`/tmp/certs`パスで利用可能になります。
+* `fast_token`トークンが使用されています。
+* ホストリストには`example.com`のみが含まれています。
+* FASTノードは`fast-node`という名前のコンテナで実行され、その内部ポート`8080`は`localhost:8080`で公開されます。
 
-then you need to execute the following command to connect the SSL certificate to the FAST node:
+次に、SSL証明書をFASTノードに接続するために次のコマンドを実行する必要があります：
 
 ```
 docker run --name fast-node \
@@ -80,4 +80,4 @@ docker run --name fast-node \
 -v /home/user/certs:/tmp/certs \
 -p 8080:8080 \
 wallarm/fast
-```   
+```

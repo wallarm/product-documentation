@@ -1,132 +1,142 @@
-# Wallarm ソリューションの展開とメンテナンスのベストプラクティス
+# Wallarmのソリューションの導入と保守のベストプラクティス
 
-本記事は、Wallarm ソリューションの展開とメンテナンスのベストプラクティスを定式化しています。
+この記事では、Wallarmソリューションの導入と保守のためのベストプラクティスを定式化します。
 
-## NGINX の力を理解する
+## NGINXの力を理解する
 
-Wallarm フィルタリングノードの展開オプションの大部分は、リバースプロキシサーバーである NGINX を使用しています (Wallarm モジュールの基礎)。NGINX には多くの機能、モジュール、パフォーマンス/セキュリティガイドがあります。以下は、役立つインターネット記事のコレクションです：
+Wallarmのフィルタリングノードの導入の多くのオプションでは、リバースプロキシサーバーとしてNGINXを使用します（これはWallarmモジュールの基盤）。これは多くの機能、モジュール、パフォーマンス/セキュリティガイドを提供します。以下に便利なインターネット記事の一部をまとめます：
 
-- [Awesome NGINX](https://github.com/agile6v/awesome-nginx)
-- [NGINX: Basics and Best Practices slide show](https://www.slideshare.net/Nginx/nginx-basics-and-best-practices-103340015)
-- [How to optimize NGINX configuration](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)
-- [3 quick steps to optimize the performance of your NGINX server](https://www.techrepublic.com/article/3-quick-steps-to-optimize-the-performance-of-your-nginx-server/)
-- [How to Build a Tough NGINX Server in 15 Steps](https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps)
-- [How to Tune and Optimize Performance of NGINX Web Server](https://hostadvice.com/how-to/how-to-tune-and-optimize-performance-of-nginx-web-server/)
-- [Powerful ways to supercharge your NGINX server and improve its performance](https://www.freecodecamp.org/news/powerful-ways-to-supercharge-your-nginx-server-and-improve-its-performance-a8afdbfde64d/)
-- [TLS Deployment Best Practices](https://www.linode.com/docs/guides/tls-deployment-best-practices-for-nginx/)
-- [NGINX Web Server Security and Hardening Guide](https://geekflare.com/nginx-webserver-security-hardening-guide/)
-- [NGINX Tuning For Best Performance](https://github.com/denji/nginx-tuning)
-- [Top 25 NGINX Web Server Best Security Practices](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html)## 推奨されるオンボーディング手順に従う
+* [Awesome NGINX](https://github.com/agile6v/awesome-nginx)
+* [NGINX：基礎とベストプラクティスのスライドショー](https://www.slideshare.net/Nginx/nginx-basics-and-best-practices-103340015)
+* [Nginx設定の最適化方法](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)
+* [Nginxサーバーのパフォーマンスを最適化するための3つの簡単な手順](https://www.techrepublic.com/article/3-quick-steps-to-optimize-the-performance-of-your-nginx-server/)
+* [15ステップでタフなNginxサーバーを構築する方法](https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps)
+* [Nginx Webサーバーのパフォーマンスを最適化する方法](https://hostadvice.com/how-to/how-to-tune-and-optimize-performance-of-nginx-web-server/)
+* [Nginxサーバーのパフォーマンスを向上させる強力な方法](https://www.freecodecamp.org/news/powerful-ways-to-supercharge-your-nginx-server-and-improve-its-performance-a8afdbfde64d/)
+* [TLSのベストプラクティス](https://www.linode.com/docs/guides/tls-deployment-best-practices-for-nginx/)
+* [NGINX Webサーバーのセキュリティと強化ガイド](https://geekflare.com/nginx-webserver-security-hardening-guide/)
+* [NGINXのパフォーマンス最適化のためのチューニング](https://github.com/denji/nginx-tuning)
+* [NGINX Webサーバーの最高のセキュリティ実践25選](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html)
 
-1. [利用可能な Wallarm ノード展開オプション](../installation/supported-deployment-options.md) について学びます。
-2. [環境ごとに Wallarm ノード構成を分離して管理するためのオプション](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md) について学びます（必要に応じて）。
-3. [operation mode](../admin-en/configure-wallarm-mode.md) を `monitoring` に設定して、監視用の Wallarm フィルタリング・ノードを非本番環境にデプロイします。
-4. Wallarm ソリューションの操作、スケーリングとモニタリングの方法、新しいネットワーク・コンポーネントの安定性を確認します。
-5. [operation mode](../admin-en/configure-wallarm-mode.md) を `monitoring` に設定して、生産環境に Wallarm フィルタリング・ノードをデプロイします。
-6. 新しい Wallarm コンポーネントの適切な構成管理と [モニタリングプロセス](#enable-proper-monitoring-of-the-filtering-nodes) を実施します。
-7. Wallarm クラウドベースのバックエンドがアプリケーションについて学習するのに時間を与えるため、テストと本番環境を含めて、すべての環境でフィルタリング・ノードを介してトラフィックを流し続けます（7-14日）。
-8. 全ての非本番環境で Wallarm `block` [モード](../admin-en/configure-wallarm-mode.md) を有効にし、自動または手動のテストを使用して、保護されたアプリケーションが期待どおりに動作していることを確認します。
-9. 生産環境で Wallarm `block` [mode](../admin-en/configure-wallarm-mode.md) を有効にし、利用可能な方法を使用してアプリケーションが期待通りに動作していることを確認します。
+## 推奨されるオンボーディングステップに従う
 
-## 単に本番環境だけでなく、開発・テスト環境やステージング環境でもフィルタリングノードをデプロイ
+1. 利用可能な[Wallarmノードの導入オプション](../installation/supported-deployment-options.md)について学ぶ。
+2. 必要に応じて、環境ごとに[別々にWallarmノードの設定を管理する](../admin-en/configuration-guides/wallarm-in-separated-environments/how-wallarm-in-separated-environments-works.md)ための利用可能なオプションについて学ぶ。
+3. [運用モード](../admin-en/configure-wallarm-mode.md)すなわち`monitoring`に設定して、Wallarmのフィルタリングノードを非本番環境で導入する。
+4. Wallarmソリューションをどのように運用、拡張、監視するか、そして新しいネットワークコンポーネントの安定性を確認する方法について学ぶ。
+5. [運用モード](../admin-en/configure-wallarm-mode.md)を`monitoring`に設定して、Wallarmのフィルタリングノードを本番環境で導入する。
+6. 新しいWallarmコンポーネントの適切な設定管理と[モニタリングプロセス](#enable-proper-monitoring-of-the-filtering-nodes)を実装する。
+7. 7〜14日間、すべての環境（テスト環境と本番環境を含む）でフィルタリングノードを介してトラフィックを維持する。これにより、Wallarmのクラウドベースのバックエンドがアプリケーションについて学習するための時間が与えられます。
+8. すべての非本番環境でWallarmの`block`[モード](../admin-en/configure-wallarm-mode.md)を有効にし、自動化されたテストまたは手動テストを使用して、保護されたアプリケーションが期待通りに動作していることを確認する。
+9. 本番環境でWallarmの`block`[モード](../admin-en/configure-wallarm-mode.md)を有効にし、利用可能な方法を使用して、アプリケーションが期待通りに動作していることを確認する。
 
-Wallarm サービス契約の大部分では、顧客が展開する Wallarm ノードの数に制限がないため、開発、テスト、ステージングなどすべての環境にフィルタリングノードを展開しない理由はありません。
+## フィルタリングノードを本番環境だけでなくテスト環境とステージング環境にも導入する
 
-ソフトウェア開発やサービス運用活動のすべての段階でフィルタリングノードを展開して使用することで、データフロー全体を適切にテストすることができ、重要な本番環境での予期しない状況のリスクを最小限に抑えることができます。
+Wallarmのサービス契約のほとんどは、顧客が導入するWallarmノードの数を制限していないため、開発、テスト、ステージングなど、全ての環境に対してフィルタリングノードを導入しない理由はありません。
 
-## libdetection ライブラリを有効にする
+ソフトウェア開発および/またはサービス運用活動の全ての段階でフィルタリングノードを導入および使用することで、完全なデータフローを適切にテストし、本番環境での予期せぬ状況のリスクを最小限に抑える可能性が高くなります。
 
-[**libdetection** library](protecting-against-attacks.md#library-libdetection) を使用してリクエストを分析すると、フィルタリングノードの SQLi 攻撃検出能力が大幅に向上します。すべての Wallarm 顧客は最新バージョンのフィルタリングノード・ソフトウェアに[アップグレード](/updating-migrating/general-recommendations/)し、**libdetection** ライブラリを有効にすることを強くお勧めします。
+## libdetectionライブラリを有効にする
 
-* フィルタリングノードバージョン4.4以上では、**libdetection** がデフォルトで有効になっています。
-* ローワーバージョンの場合は、[アプローチ](protecting-against-attacks.md#managing-libdetection-mode)を使用して有効にすることをお勧めします。## 正しいエンドユーザーのIPアドレスの報告の設定
+[**libdetection** ライブラリ](protecting-against-attacks.md#library-libdetection)を使用してリクエストを分析すると、フィルタリングノードがSQLi攻撃を検出する能力が大幅に向上します。全てのWallarmの顧客に対しては、フィルタリングノードソフトウェアの最新バージョンに[アップグレード](/updating-migrating/general-recommendations/)し、**libdetection** ライブラリを有効にして使用することを強く推奨します。
 
-ロードバランサーまたはCDNの背後にあるWallarmフィルタリングノードの場合は、フィルタリングノードを正しくエンドユーザーのIPアドレスを報告するように構成するようにしてください（そうしないと、[IPリストの機能](../user-guides/ip-lists/overview.md)、[アクティブ脅威検証](detecting-vulnerabilities.md#active-threat-verification)、および一部の他の機能が動作しない可能性があります）:
+* フィルタリングノードバージョン4.4以降では、**libdetection** ライブラリはデフォルトで有効になっています。
+* それより低いバージョンでは、導入オプションによる[アプローチ](protecting-against-attacks.md#managing-libdetection-mode)を使用して有効にすることが推奨されます。
 
-* [NGINXベースのWallarmノードの手順](../admin-en/using-proxy-or-balancer-en.md)（AWS / GCPイメージおよびDockerノードコンテナを含む）
-* [Wallarm Kubernetes Ingressコントローラーとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
+## エンドユーザーのIPアドレス報告の正確な設定を行う
 
-## フィルタリングノードの正しいモニタリングを有効にする
+ロードバランサーまたはCDNの背後にあるWallarmフィルタリングノードについては、エンドユーザーのIPアドレスを正確に報告するようにフィルタリングノードを正しく設定するように確認してください（これをしないと、[IPリスト機能](../user-guides/ip-lists/overview.md)、[アクティブ脅威検証](detecting-vulnerabilities.md#active-threat-verification)、およびその他の一部の機能が動作しません）：
 
-Wallarmフィルタリングノードの適切な監視を有効にすることが強くお勧めされます。 Wallarmフィルタリングノードにインストールされた`collectd`サービスは、[リンク](../admin-en/monitoring/available-metrics.md)にリストされているメトリックを収集します。
+* [NGINXベースのWallarmノードのための手順](../admin-en/using-proxy-or-balancer-en.md)（AWS / GCPイメージとDockerノードコンテナを含む）
+* [Wallarm Kubernetes Ingressコントローラーとして導入されたフィルタリングノードのための手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
 
-フィルタリングノードモニタリングの設定方法は、展開オプションによって異なります。
+## フィルタリングノードの適切なモニタリングを有効にする
 
-* [NGINXベースのWallarmノードの手順](../admin-en/monitoring/intro.md) （AWS / GCPイメージおよびKubernetesサイドカーを含む）
-* [Wallarm Kubernetes Ingressコントローラーとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
-* [NGINXベースのDockerイメージの手順](../admin-en/installation-docker-en.md#monitoring-configuration)
+Wallarmのフィルタリングノードの適切なモニタリングを有効にすることを強く推奨します。すべてのWallarmのフィルタリングノードにインストールされる `collectd` サービスは、[リンク](../admin-en/monitoring/available-metrics.md)内に記載されているメトリクスを収集します。
 
-## 適切な冗長性と自動フェイルオーバー機能の実装
+フィルタリングノードの監視設定方法は、そのデプロイメントオプションによります：
 
-生産環境の他の重要なコンポーネントと同様に、Wallarmノードは、適切な冗長性と自動フェイルオーバーのレベルで設計、展開、および操作する必要があります。**少なくとも2つのアクティブなWallarmフィルタリングノード**を使用して、重要なエンドユーザーリクエストを処理します。次の記事は、このトピックに関する関連情報を提供します。
+* [NGINXベースのWallarmノードのための手順](../admin-en/monitoring/intro.md)（AWS / GCPイメージとKubernetesサイドカーを含む）
+* [Wallarm Kubernetes Ingressコントローラーとして導入されたフィルタリングノードのための手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [NGINXベースのDockerイメージのための手順](../admin-en/installation-docker-en.md#monitoring-configuration)
 
-* [NGINXベースのWallarmノードの手順](../admin-en/configure-backup-en.md)（AWS / GCPイメージ、Dockerノードコンテナ、およびKubernetesサイドカーを含む）
-* [Wallarm Kubernetes Ingressコントローラーとして展開されたフィルタリングノードの手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
+## 適切な冗長性と自動フェイルオーバー機能を実装する
 
-## IPアドレスの許可リスト、拒否リスト、およびグレーリストの使用方法の学習
+他のすべての重要なコンポーネントと同様に、Wallarmノードは適切な冗長性と自動フェイルオーバーを持つように設計、導入、運用する必要があります。**少なくとも2つのアクティブなWallarmフィルタリングノード**が重要なエンドユーザーリクエストを処理するようにすべきです。以下の記事に関連する情報が提供されています：
 
-個々の悪意のあるリクエストをブロックするだけでなく、Wallarmフィルタリングノードは個々のエンドユーザーIPアドレスもブロックできます。 IPブロッキングのルールは、許可リスト、拒否リスト、およびグレーリストを使用して構成されます。
+* [NGINXベースのWallarmノードのための手順](../admin-en/configure-backup-en.md) （AWS / GCPイメージ、Dockerノードコンテナ、およびKubernetesサイドカーを含む）
+* [Wallarm Kubernetes Ingressコントローラーとして導入されたフィルタリングノードのための手順](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
 
-[IPリストの詳細については、こちらを参照→](../user-guides/ip-lists/overview.md)## Wallarm設定変更の段階的展開の方法を学ぶ
+## IPアドレスのホワイトリスト、ブラックリスト、グレーリストの使い方を学ぶ
 
-* すべてのフォームファクターでWallarmフィルタリングノードの低レベルの構成変更については、標準のDevOps変更管理と段階的展開ポリシーを使用します。
-* トラフィックフィルタリングルールについては、異なるアプリケーション[IDs](../admin-en/configure-parameters-en.md#wallarm_application) または `Host` リクエストヘッダーの別のセットを使用します。
-* [Create regexp-based attack indicator](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)ルールについては、上記で言及した特定のアプリケーションIDに関連付けられる能力に加えて、Wallarmノードがブロッキングモードで動作している場合でも、監視モード（**実験的**チェックボックス）で有効にすることができます。
-* [Set filtration mode](../user-guides/rules/wallarm-mode-rule.md)ルールにより、Wallarm ConsoleからWallarmノードの操作モード(`monitoring`, `safe_blocking` または `block`)を制御することができます。これはNGINX構成の[`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode)設定に依存します（[`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override)設定に依存）。
+個々の悪意のあるリクエストをブロックするだけでなく、Wallarmのフィルタリングノードは個々のエンドユーザーのIPアドレスをブロックすることもできます。IPのブロックに対するルールは、ホワイトリスト、ブラックリスト、およびグレーリストを使用して設定されます。
 
-## 利用可能な統合を設定して、システムから通知を受信する
+[IPリストの使用に関する詳細 →](../user-guides/ip-lists/overview.md)
 
-Wallarmは、Slack、Telegram、PagerDuty、Opsgenieなどのシステムとの便利な[ネイティブ統合](../user-guides/settings/integrations/integrations-intro.md)を提供し、次のようなプラットフォームによって生成されたさまざまなセキュリティ通知をすばやく送信することができます。
+## Wallarmの設定変更の段階的なロールアウト方法を学ぐ
 
-* 新たに発見されたセキュリティ上の脆弱性
-* 企業のネットワーク境界線の変更
-* Wallarm Consoleを介して企業アカウントに新たに追加されたユーザーなど
+* Wallarmのフィルタリングノードの低レベルの設定変更については、標準的なDevOpsの変更管理と段階的なロールアウトの方針を使用します。
+* フィルタリングルールについては、異なるアプリケーション用に異なる[IDs](../admin-en/configure-parameters-en.md#wallarm_application)または`Host`リクエストヘッダーを使用します。
+* [正規表現を使用した攻撃識別の作成](../user-guides/rules/regex-rule.md#adding-a-new-detection-rule)のルールでは、特定のアプリケーションIDに関連付けることができる上に、Wallarmノードがブロックモードで動作しているときでも、モニタリングモード（**Experimental** チェックボックス）で有効にすることができます。
+* [フィルタモードの設定](../user-guides/rules/wallarm-mode-rule.md)のルールは、Wallarm ConsoleからWallarmノードの運用モード（`monitoring`、`safe_blocking`、または`block`）を制御することを可能にし、NGINXの設定での[`wallarm_mode`](../admin-en/configure-parameters-en.md#wallarm_mode) の設定に似ています（[`wallarm_mode_allow_override`](../admin-en/configure-parameters-en.md#wallarm_mode_allow_override) の設定によります）。
 
-また、[Triggers](../user-guides/triggers/triggers.md)機能を使用して、システムで発生するさまざまなイベントに関するカスタムアラートを設定することもできます。## Triggers機能の威力を学ぶ
+## 利用可能なインテグレーションを設定して、システムからの通知を受け取る
 
-あなたの特定の環境に基づいて、次の [トリガー](../user-guides/triggers/triggers.md) を設定することをお勧めします。
+WallarmはSlack、Telegram、PagerDuty、Opsgenieなどの他のシステムとの便利な[ネイティブインテグレーション](../user-guides/settings/integrations/integrations-intro.md)を提供しています。これにより、プラットフォームが生成するさまざまなセキュリティ通知を、例えば以下のような情報を迅速に送信することができます：
 
-* Wallarmノードで検出された悪意のあるリクエストの増加を監視します。このトリガーは、次の潜在的な問題のいずれかを示す可能性があります。
+* 新たに発見されたセキュリティ脆弱性
+* 会社のネットワークパラメーターの変更
+* Wallarm Consoleを通じて新たに会社アカウントに追加されたユーザーなど
 
-    * 攻撃を受けており、Wallarmノードが悪意のあるリクエストを正常にブロックしています。検出された攻撃をレビューし、報告された攻撃者のIPアドレスを手動でブロックすることを検討してください。
-    * Wallarmノードで検出された偽陽性攻撃のレベルが上昇しています。[Wallarmテクニカルサポートチーム](mailto:support@wallarm.com)にエスカレーションするか、[リクエストを偽陽性としてマーク](../user-guides/events/false-attack.md)することを検討してください。
-    * [denylisting トリガー](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)をアクティブにしているが、攻撃のレベルが上昇したというアラートを受け取っている場合、アラートはトリガーが期待どおりに動作していないことを示している可能性があります。
+さらに、[トリガー](../user-guides/triggers/triggers.md)機能を使用して、システムのさまざまなイベントについてカスタムアラートを設定することもできます。
 
-    [構成済みトリガー例を参照 →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
-* Wallarmコンソールの企業アカウントに新しいユーザーが追加されたことを通知する
+## トリガー機能の力を理解する
 
-    [構成済みトリガー例を参照 →](../user-guides/triggers/trigger-examples.md#slack-and-email-notification-if-new-user-is-added-to-the-account)
-* ブルートフォース攻撃または強制的なブラウジング攻撃としてリクエストをマークし、リクエスト元のIPアドレスをブロックする
+特定の環境に応じて、次の[トリガー](../user-guides/triggers/triggers.md)の設定を推奨します：
 
-    [ブルートフォース保護の設定手順を参照 →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
-* 新しいIPアドレスがブロックされたことを通知する
+* Wallarmノードが検出した有害なリクエストレベルの増加を監視します。このトリガーは、以下の潜在的な問題のいずれかを示す可能性があります：
 
-    [構成済みトリガー例を参照 →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-denylist)
-* [安全ブロック](../admin-en/configure-wallarm-mode.md)モードで使用される[グレーリスト](../user-guides/ip-lists/graylist.md)にIPアドレスを自動的に追加する。
+    * 攻撃を受けていて、Wallarmノードが有害なリクエストを正常にブロックしています。検出された攻撃を確認し、報告された攻撃者のIPアドレスを手動でブラックリストに登録（ブロック）することを検討してみてください。
+    * Wallarmノードによって検出された攻撃の誤検出レベルが上昇しています。この問題を[Wallarmの技術サポートチーム](mailto:support@wallarm.com)にエスカレートするか、手動で[リクエストを誤検出とマーク](../user-guides/events/false-attack.md)することを検討してみてください。
+    * [ブラックリストトリガー](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)がアクティブであるにもかかわらず、攻撃レベルの増加について警告を受け取る場合、その警告はトリガーが期待通りに動作していないことを示している可能性があります。
 
-トラフィック処理と攻撃アップロードの最適化のために、Wallarmは [事前設定済みトリガー（デフォルトトリガー）](../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers)をいくつか用意しています。
+    [設定済みトリガーの例を見る →](../user-guides/triggers/trigger-examples.md#slack-notification-if-2-or-more-sqli-hits-are-detected-in-one-minute)
+* Wallarm Consoleの会社アカウントに新しいユーザーが追加されたことを通知します
 
-## Wallarm ConsoleのアカウントでSAML SSOを有効にする
+    [設定済みトリガーの例を見る →](../user-guides/triggers/trigger-examples.md#slack-and-email-notification-if-new-user-is-added-to-the-account)
+* リクエストをブルートフォース攻撃または強制ブラウジング攻撃としてマークし、リクエストが発生したIPアドレスをブロックします。
 
-G Suite、Okta、またはOneLoginなどのSAML SSOプロバイダーを使用して、Wallarm Consoleアカウントのユーザー認証を一元化できます。
+    [ブルートフォース保護の設定方法 →](../admin-en/configuration-guides/protecting-against-bruteforce.md)
+* 新しいIPアドレスがブロックされたことを通知します
 
-SAML SSOをアカウントで有効にするには、Wallarmアカウントマネージャーまたはテクニカルサポートチームに問い合わせ、[これらの手順](../admin-en/configuration-guides/sso/intro.md)に従ってSAML SSOの構成を実行してください。## Wallarmクラウド構成管理のためのWallarm Terraformプロバイダを使用する
+    [設定済みトリガーの例を見る →](../user-guides/triggers/trigger-examples.md#notification-to-webhook-url-if-ip-address-is-added-to-the-denylist)
+* 自動的にIPアドレスを[safe blocking](../admin-en/configure-wallarm-mode.md) モードで使用される[グレーリスト](../user-guides/ip-lists/graylist.md)に追加します。
 
-[Wallarmの公式Terraformプロバイダ](../admin-en/managing/terraform-provider.md)を使用すると、現代のInfrastructure as Code(IaC)アプローチを使用して、Wallarm Cloudの構成(ユーザー、アプリケーション、ルール、統合など)を管理できます。
+トラフィックの処理と攻撃のアップロードを最適化するために、Wallarmはいくつかのトリガーを[事前に設定します](../user-guides/triggers/triggers.md#pre-configured-triggers-default-triggers)。
 
-## 新しくリリースされたWallarmノードバージョンに迅速に更新する計画を立てる
+## Wallarm Consoleのアカウント用にSAML SSOを有効にする
 
-Wallarmは、新しいリリースが約四半期ごとに利用可能になるフィルタリングノードソフトウェアの改善に取り組んでいます。関連するアップグレード手順とともに、リスクと推奨されるアプローチについては、[このドキュメント](../updating-migrating/general-recommendations.md)を参照してください。
+G Suite、Okta、またはOneLogin などのSAML SSOプロバイダーを使用して、Wallarm Consoleアカウントのユーザー認証を一元化することができます。
 
-## 既知の注意事項を確認する
+SAML SSOをアカウントに有効にするためには、Wallarmのアカウントマネージャーまたは技術サポートチームに連絡してください。そして、それが完了したら、[これらの手順](../admin-en/configuration-guides/sso/intro.md)に従ってSAML SSOの設定を行います。
 
-* 同じWallarmアカウントに接続されているすべてのWallarmノードは、トラフィックフィルタリング用の同じデフォルトおよびカスタムルールセットを受信します。ただし、アプリケーションIDまたはユニークなHTTPリクエストパラメータ(ヘッダー、クエリストリングパラメータなど)を使用して、異なるアプリケーションに異なるルールを適用することができます。
-* IPアドレスを自動的にブロックするトリガー(トリガー例: [1時間に4回以上の悪意のあるペイロードが検出された場合にIPアドレスを拒否リストに入れる](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour))が構成されている場合、システムはWallarmアカウント内のすべてのアプリケーションでIPアドレスをブロックします。
+## WallarmのTerraformプロバイダーを使用してWallarm Cloudの設定管理を行う
 
-## アクティブ脅威検証のベストプラクティスに従う<a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+[Wallarmの公式Terraformプロバイダー](../admin-en/managing/terraform-provider.md)を使用することで、現代のインフラストラクチャー・アズ・コード（IaC）アプローチを使用して、Wallarm Cloudの設定（ユーザー、アプリケーション、ルール、インテグレーションなど）を管理することができます。
 
-Wallarmが[脆弱性を検出する方法](../about-wallarm/detecting-vulnerabilities.md)の1つに使用する方法は**アクティブ脅威検証**です。
+## 新しくリリースされたWallarmノードバージョンに迅速に更新するプランを持つ
 
-**アクティブ脅威検証**により、攻撃者をペネトレーションテスターに変え、彼らが脆弱性を探索するためにアプリ/ APIを探求する過程で、可能なセキュリティ問題を発見できます。このモジュールは、実際の攻撃データを使用してアプリケーションエンドポイントをプローブすることにより、可能な脆弱性を検出します。デフォルトでは、このメソッドは無効になっています。
+Wallarmはフィルタリングノードソフトウェアの改善に絶えず取り組んでおり、新しいリリースは約1四半期に1回提供されます。アップグレードを行うための推奨されるアプローチ、関連するリスク、および関連するアップグレード手順に関する情報は、[このドキュメント](../updating-migrating/general-recommendations.md)をお読みください。
 
-[**アクティブ脅威検証**モジュールの構成のベストプラクティスを学習する →](../admin-en/attack-rechecker-best-practices.md)
+## 既知の注意点を学ぶ
+
+* 同じWallarmアカウントに接続されたすべてのWallarmノードは、トラフィックフィルタリングのための同じデフォルトのルールセットとカスタムルールセットを受け取ります。それでも、適切なアプリケーションIDまたは一意のHTTPリクエストパラメータ（ヘッダー、クエリ文字列パラメータなど）を使用して、異なるアプリケーションに対して異なるルールを適用することができます。
+* IPアドレスを自動的にブロックするように設定されたトリガーがある場合（[トリガーの例](../user-guides/triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)）、そのシステムはWallarmアカウント内のすべてのアプリケーションに対してIPをブロックします。
+
+## アクティブな脅威検証のためのベストプラクティスに従う <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;margin-bottom: -4px;"></a>
+
+Wallarmが[脆弱性を検出する](../about-wallarm/detecting-vulnerabilities.md)方法の1つは **アクティブな脅威検証**です。
+
+**アクティブな脅威検証**では、攻撃者をペネトレーションテスターに変え、アプリやAPIに対する攻撃を形成し、可能なセキュリティ問題を発見します。このモジュールは、トラフィックから得た実際の攻撃データを使用して、アプリケーションのエンドポイントを探り、可能な脆弱性を探します。デフォルトではこの方法は無効になっています。
+
+[**アクティブな脅威検証** モジュールの設定のためのベストプラクティスを学ぶ →](../admin-en/attack-rechecker-best-practices.md)

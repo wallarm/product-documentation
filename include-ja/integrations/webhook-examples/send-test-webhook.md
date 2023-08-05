@@ -1,3 +1,3 @@
-設定をテストするために、新しいユーザーがWallarmコンソールに追加されます。
+設定をテストするために、新しいユーザーをWallarm Consoleに追加します:
 
-![ユーザーの追加](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+![!ユーザー追加](../../../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)

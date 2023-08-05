@@ -1,63 +1,63 @@
-[img-creating-instance-group]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-group.png
-[img-create-instance-group-example]: ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-scalable-instance-group.png
-[img-checking-nodes-operation]: ../../../images/cloud-node-status.png
+[img-creating-instance-group]:          ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-instance-group.png
+[img-create-instance-group-example]:    ../../../images/installation-gcp/auto-scaling/common/autoscaling-group-guide/create-scalable-instance-group.png
+[img-checking-nodes-operation]:         ../../../images/cloud-node-status.png
 
-[link-cpu-usage-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing
-[link-http-load-balancing-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing#scaling_based_on_https_load_balancing_serving_capacity
-[link-stackdriver-monitoring-metric-policy]: https://cloud.google.com/compute/docs/autoscaler/scaling-stackdriver-monitoring-metrics
-[link-multiple-metrics-policy]: https://cloud.google.com/compute/docs/autoscaler/multiple-policies
-[link-creating-load-balancer]: load-balancing-guide.md
+[link-cpu-usage-policy]:                            https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing
+[link-http-load-balancing-policy]:                  https://cloud.google.com/compute/docs/autoscaler/scaling-cpu-load-balancing#scaling_based_on_https_load_balancing_serving_capacity
+[link-stackdriver-monitoring-metric-policy]:        https://cloud.google.com/compute/docs/autoscaler/scaling-stackdriver-monitoring-metrics
+[link-multiple-metrics-policy]:                     https://cloud.google.com/compute/docs/autoscaler/multiple-policies
+[link-creating-load-balancer]:                      load-balancing-guide.md
 
-# オートスケーリングが有効な管理インスタンスグループの作成
+#  オートスケーリングが有効な管理インスタンスグループを作成する
 
-管理インスタンスグループを作成し、オートスケーリングを設定するには、次の手順を実行します。
+管理インスタンスグループを作成し、そのオートスケーリングを設定するには、次の手順を実行します：
 
-1. メニューの**Compute Engine**セクションにある**インスタンスグループ**ページに移動し、**インスタンスグループの作成**ボタンをクリックします。
+1.  メニューの**Compute Engine**セクションにある**Instance groups**ページに移動し、**Create instance group**ボタンをクリックします。
 
-   ![!インスタンスグループの作成][img-creating-instance-group]
+    ![!インスタンスグループを作成する][img-creating-instance-group]
 
-2. **名前**フィールドにインスタンスグループの名前を入力します。
+2.  **名前**フィールドにインスタンスグループ名を記入します。
 
-3. **グループタイプ**設定で**管理インスタンスグループ**を選択します。
+3.  **グループタイプ**設定で**管理インスタンスグループ**を選択します。
 
-4. **オートスケーリング**ドロップダウンリストから**オン**オプションを選択して、インスタンスグループのオートスケーリングを有効にします。
+4.  **Autoscaling**ドロップダウンリストから**On**オプションを選び、インスタンスグループのオートスケーリングを有効にします。
 
-5. **オートスケーリングポリシー**ドロップダウンリストから必要なスケーリングポリシーを選択します。
+5.  **Autoscaling ポリシー**ドロップダウンリストから必要なスケーリングポリシーを選択します。
 
-   スケーリングポリシーには、インスタンスグループのサイズを増やすためのルールと減らすためのルールが含まれます。システムは、ポリシーに基づいてメトリックをユーザーが定義したターゲットレベルに保つために、グループにインスタンスを追加または削除するタイミングを判断します。
+    スケーリングポリシーには、インスタンスグループのサイズを増減するためのルールが含まれています。システムは、ポリシーに基づくメトリックをユーザーが定義したターゲットレベルに保つために、グループからインスタンスを追加または削除するタイミングを決定します。
 
-   次のポリシーのいずれかを選択できます。
+    次のポリシーのいずれかを選択できます：
 
-   1. CPU使用率：グループのサイズは、グループ内の仮想マシンの平均プロセッサ負荷を必要なレベルに保つように制御されます（[CPU使用率ポリシードキュメント][link-cpu-usage-policy]）。
-   2. HTTPロードバランシング使用率  ：グループのサイズは、HTTPトラフィックバランサの負荷を必要なレベルに保つように制御されます（[HTTPロードバランシング使用率ポリシードキュメント][link-http-load-balancing-policy]）。
-   3. Stackdriverモニタリングメトリック ：グループのサイズは、Stackdriverモニタリングの選択したメトリックを必要なレベルに保つように制御されます（[Stackdriverモニタリングメトリックポリシードキュメント][link-stackdriver-monitoring-metric-policy]）。
-   4. 複数のメトリック：複数のメトリックに基づいてグループのサイズを変更する決定が行われます（[複数のメトリックポリシードキュメント][link-multiple-metrics-policy]）。
+    1.  CPU使用率：グループ内の仮想マシンの平均プロセッサ負荷を必要なレベルに保つために、グループのサイズを制御します（[CPU使用率ポリシーのドキュメンテーション][link-cpu-usage-policy]）。
+    2.  HTTPロードバランシングの使用率：HTTPトラフィックバランサの負荷を必要なレベルに保つために、グループのサイズを制御します（[HTTPロードバランシング使用率ポリシーのドキュメンテーション][link-http-load-balancing-policy]）。
+    3.  Stackdriver Monitoring Metric：Stackdriver Monitoringツールから選択したメトリックを必要なレベルに保つために、グループのサイズを制御します（[Stackdriver Monitoring Metricポリシーのドキュメンテーション][link-stackdriver-monitoring-metric-policy]）。
+    4.  複数のメトリクス：グループのサイズを変更する決定は、複数のメトリクスに基づいて行われます（[複数のメトリクスポリシーのドキュメンテーション][link-multiple-metrics-policy]）。
 
-   このガイドでは、オートスケーリングメカニズムでの動作原則を示すために、**CPU使用率**ポリシーを使用しています。
+    このガイドでは、オートスケーリングメカニズムの操作原理を説明するために、**CPU使用率**ポリシーを使用します。
 
-   このポリシーを適用するには、**目標CPU使用率**フィールドに必要な平均プロセッサ負荷レベルを指定します（パーセンテージ）。
+    このポリシーを適用するには、**Target CPU usage**フィールドに必要な平均プロセッサの負荷レベルを指定します（パーセンテージで）。
 
-   !!! info "例"
-       次の構成は、仮想マシンのプロセッサの平均負荷レベルを60パーセントに保つインスタンスグループサイズの制御を説明しています。
-       ![!例：インスタンスグループの作成][img-create-instance-group-example]
+    !!! info "例"
+        以下の設定は、仮想マシンのプロセッサの平均負荷を60パーセントのレベルに保つためのインスタンスグループのサイズ制御を記述しています。
+        ![!例：インスタンスグループを作成する][img-create-instance-group-example]
 
-6. **最小インスタンス数**フィールドに最小インスタンスグループサイズを指定します（例：2つのインスタンス）。
+6.  **Minimum number of instances**フィールドに最小インスタンスグループのサイズを指定します（例：2インスタンス）。
 
-7. **最大インスタンス数**フィールドに最大インスタンスグループサイズを指定します（例：10個のインスタンス）。
+7.  **Maximum number of instances**フィールドに最大インスタンスグループサイズを指定します（例：10インスタンス）。
 
-8. **クールダウン期間**フィールドに、新しく追加されたインスタンスからのメトリック値が記録されない期間を指定します（例：60秒）。新しいインスタンスが追加された後にリソース消費量の大幅な増加が見られる場合があります。
+8.  **Cool down period**フィールドに、新しく追加されたインスタンスからメトリック値を記録しない期間を指定します（例：60秒）。新しいインスタンスの追加後にリソース消費が急増する場合は、この設定が必要になるかもしれません。
 
-   !!! info "クールダウン期間の要件"
-       クールダウン期間は、インスタンスの初期化に必要な時間よりも長くなければなりません。
+    !!! info "Cooldown periodの要件"
+        Cooldown期間は、インスタンス初期化に必要な時間よりも長くなければなりません。
 
-9. インスタンスグループのすべてのパラメータが正しく設定されていることを確認し、**作成**ボタンをクリックします。
+9.  インスタンスグループのすべてのパラメータが正しく設定されていることを確認し、その後**Create**ボタンをクリックします。
 
-オートスケーリンググループの作成が成功すると、指定された数のインスタンスが自動的に起動します。
+オートスケーリンググループの作成が成功すると、指定した数のインスタンスが自動的に起動します。
 
-オートスケーリンググループが正しく作成されたかどうかは、グループ内の起動したインスタンスの数と、Wallarm Cloudに接続されたフィルタリングノードの数を比較して確認できます。
+オートスケーリンググループが正しく作成されたことは、グループ内で起動したインスタンスの数と、Wallarm Cloudに接続されたフィルタリングノードの数を比較することで確認できます。
 
-これはWallarmコンソールを使用して行います。たとえば、2つのインスタンスのフィルタリングノードが同時に動作している場合、Wallarmコンソールでは対応するWallarmノードの**ノード**セクションにこの数が表示されます。
+Wallarmコンソールを使用してこれを行うことができます。例えば、2つのインスタンスでフィルタリングノードが同時に稼働している場合、Wallarmコンソールは対応するWallarmノードの**Nodes**セクションでこの数を表示します。
 
-![!Wallarmウェブインターフェースの**ノード *ノードタブ][img-checking-nodes-operation]
+![!Wallarmウェブインターフェース上の**Nodes**ノードタブ][img-checking-nodes-operation]
 
-次に、[ロードバランサーの作成と構成][link-creating-load-balancer]に進んでください。
+これで、[ロードバランサーの作成と設定][link-creating-load-balancer]に進むことができます。

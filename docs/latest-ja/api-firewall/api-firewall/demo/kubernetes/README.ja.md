@@ -1,6 +1,6 @@
 # Kubernetesを使用したWallarm API Firewallデモ
 
-このデモは、アプリケーション [**httpbin**](https://httpbin.org/)とWallarm API Firewallを**httpbin** APIを保護するプロキシとしてデプロイします。両方のアプリケーションは、KubernetesのDockerコンテナで動作しています。
+このデモは、アプリケーション [**httpbin**](https://httpbin.org/) とWallarm API Firewallを**httpbin** APIを保護するプロキシとしてデプロイします。両方のアプリケーションは、KubernetesのDockerコンテナで動作しています。
 
 ## システム要件
 
@@ -26,13 +26,13 @@
 
 [デモコード](https://github.com/wallarm/api-firewall/tree/main/demo/kubernetes)は、デプロイされた**httpbin**とAPI Firewallを含むKubernetesクラスタを実行します。
 
-Kubernetesクラスタを実行するために、このデモはツール(**kind**)[https://kind.sigs.k8s.io/]を使用します。**kind**は、Dockerコンテナをノードとして使用して、数分でK8sクラスタを実行できるようにします。幾つかの抽象化層を使用して、**kind**とその依存関係は、Kubernetesクラスタを起動するDockerイメージにパックされます。
+Kubernetesクラスタを実行するために、このデモはツール([**kind**](https://kind.sigs.k8s.io/))を使用します。**kind**は、Dockerコンテナをノードとして使用して、数分でK8sクラスタを実行できるようにします。いくつかの抽象化層を使用して、**kind**とその依存関係は、Kubernetesクラスタを起動するDockerイメージにパックされます。
 
 デモのデプロイメントは、以下のディレクトリ/ファイルを通じて設定されます:
 
-* **httpbin** APIのOpenAPI 3.0仕様は、`volumes/helm/api-firewall.yaml` の `manifest.body` パスにあるファイルに位置しています。この仕様を使用して、API Firewallはアプリケーションアドレスに送信されるリクエストとレスポンスがアプリケーションAPIスキーマに一致するかどうかを検証します。
+* **httpbin** APIのOpenAPI 3.0仕様は、`volumes/helm/api-firewall.yaml`の `manifest.body` パスにあるファイルに存在します。この仕様を使用して、API Firewallはアプリケーションアドレスへ送信されるリクエストとレスポンスがアプリケーションAPIスキーマと一致するかどうかを検証します。
 
-    この仕様は、[**httpbin**の元のAPIスキーマ](https://httpbin.org/spec.json)を定義していません。API Firewallの特性をより透明に示すために、元のOpenAPI 2.0スキーマを明示的に変換し、複雑化し、変更した仕様を `volumes/helm/api-firewall.yaml` や `manifest.body`に保存しました。
+    この仕様は、[**httpbin**のもとのAPIスキーマ](https://httpbin.org/spec.json)を定義していません。API Firewallの機能をより透明に示すために、もとのOpenAPI 2.0スキーマを明確に変換し、複雑化し、変更した仕様を `volumes/helm/api-firewall.yaml` や `manifest.body`に保存しました。
 * `Makefile`は、Dockerルーチンを定義する設定ファイルです。
 * `docker-compose.yml`は、一時的なKubernetesクラスタを実行するための以下の設定を定義するファイルです:
 
@@ -63,7 +63,10 @@ Kubernetesクラスタを実行するために、このデモはツール(**kind
 
     * API Firewallによって保護されたアプリケーション **httpbin**は、http://localhost:8080から利用できます。
     * API Firewallによって保護されていないアプリケーション **httpbin**は、http://localhost:8090から利用できます。デモデプロイメントをテストする場合、保護されていないアプリケーションにリクエストを送信して違いを確認できます。
-4. デモのテストに進みます。## ステップ2: デモのテスト
+
+4. デモのテストに進みます。
+
+## ステップ2: デモのテスト
 
 以下のリクエストを使用して、デプロイ済みのAPI Firewallをテストすることができます:
 
@@ -210,7 +213,7 @@ Kubernetesクラスタを実行するために、このデモはツール(**kind
 
 
     # strパラメータの値が定義済みの正規表現に一致するリクエスト
-    curl -sD - http://localhost:8080/get?int=15&str=ri0.2-3ur0-6354
+    curl -sD - "http://localhost:8080/get?int=15&str=ri0.2-3ur0-6354"
 
     # 期待するレスポンス
     HTTP/1.1 200 OK
@@ -225,7 +228,7 @@ Kubernetesクラスタを実行するために、このデモはツール(**kind
 
     # strパラメータの値が定義済みの正規表現に一致しないリクエスト
     # 潜在的な悪意: SQLインジェクション
-    curl -sD - 'http://localhost:8080/get?int=15&str=";SELECT%20*%20FROM%20users.credentials;"'
+    curl -sD - 'http://localhost:8080/get?int=15&str=";SELECT * FROM users.credentials;"'
 
     # 期待するレスポンス
     HTTP/1.1 403 Forbidden

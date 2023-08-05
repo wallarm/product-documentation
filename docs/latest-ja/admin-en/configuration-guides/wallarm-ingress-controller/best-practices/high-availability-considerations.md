@@ -1,19 +1,19 @@
-# 高可用性の配慮事項（NGINXベースのIngressコントローラー）
+# 高可用性に関する考慮事項（NGINXベースのIngressコントローラ）
 
-この記事では、Wallarm Ingressコントローラーが高可用性を持ち、ダウンタイムを防ぐための設定推奨事項を提供しています。
+この記事では、Wallarm Ingressコントローラが高可用性を維持し、ダウンタイムを防ぐための設定推奨事項を提供します。
 
---8<-- "../include-ja/ingress-controller-best-practices-intro.md"
+--8<-- "../include/ingress-controller-best-practices-intro.md"
 
 ## 設定推奨事項
 
-以下の推奨事項は、欠損しているクリティカル（本番）環境に関連します。
+次の推奨事項は、欠落しているクリティカルな（プロダクション）環境に関連しています。
 
-* 複数のIngressコントローラーポッドインスタンスを使用します。この動作は、`values.yaml`ファイルの`controller.replicaCount`属性で制御されます。例えば：
+* 複数のIngressコントローラpodインスタンスを使用します。この動作は、 `values.yaml` ファイルの属性 `controller.replicaCount` を使用して制御されます。例えば:
     ```
     controller:
       replicaCount: 2
     ```
-* Kubernetesクラスターに、異なるノード上のIngressコントローラポッドを配置させる：これにより、ノードの障害発生時にIngressサービスのレジリエンスが向上します。この動作は、`values.yaml`ファイルで設定されるKubernetesのポッドアンチアフィニティ機能を使用して制御されます。例えば：
+* KubernetesクラスターにIngressコントローラポッドを異なるノードに配置するよう強制します。これにより、ノードの障害時にIngressサービスのレジリエンスが向上します。この動作は、Kubernetesのpod反親和性（anti-affinity）機能を使用して制御されますが、`values.yaml` ファイルで設定されます。例えば:
     ```
     controller:
       affinity:
@@ -27,7 +27,7 @@
                   - nginx-ingress
             topologyKey: "kubernetes.io/hostname"
     ```
-* [Kubernetesの水平ポッドオートスケーリング（HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)機能の使用が正当化されるような条件が発生するクラスタでは、`values.yaml`ファイルで以下の例を使用して有効にすることができます：
+* 予期せぬトラフィックの急増やその他の条件が[Kubernetesのホリゾンタルpodオートスケーリング（HPA）](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)機能の使用を正当化する可能性があるクラスタでは、次の例のように `values.yaml` ファイルでこれを有効化できます:
     ```
     controller:
       autoscaling:
@@ -37,7 +37,7 @@
         targetCPUUtilizationPercentage: 50
         targetMemoryUtilizationPercentage: 50
     ```
-* タランツールデータベースに基づくWallarmのpostanalyticsサービスのインスタンスを少なくとも2つ実行します。これらのポッドには、名前に`ingress-controller-wallarm-tarantool`が含まれています。この動作は、`values.yaml`ファイルで`controller.wallarm.tarantool.replicaCount`属性を使用して制御されます。例えば：
+* 少なくとも2つのインスタンスのWallarmのpostanalyticsサービスをTarantoolデータベースに基づいて実行します。これらのポッドは名前に `ingress-controller-wallarm-tarantool` を含みます。この動作は、ファイル `values.yaml` の属性 `controller.wallarm.tarantool.replicaCount` を使用して制御されます。例えば:
     ```
     controller:
       wallarm:
@@ -47,14 +47,14 @@
 
 ## 設定手順
 
-上記の設定を設定するには、`helm install`および`helm upgrade`コマンドの`--set`オプションを使用することをお勧めします。例えば：
+以下の設定を行うには、 `helm install` および `helm upgrade` コマンドのオプション `--set` の使用が推奨されます。例：
 
 === "Ingressコントローラのインストール"
     ```bash
     helm install --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>
     ```
 
-    正しいIngressコントローラのインストールには[他のパラメータ](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart)も必要です。それらも`--set`オプションで渡してください。
+    正しいIngressコントローラのインストールには、他にも[必要なパラメーター](../../../configure-kubernetes-en.md#additional-settings-for-helm-chart)があります。それらも `--set` オプションで渡してください。
 === "Ingressコントローラパラメータの更新"
     ```bash
     helm upgrade --reuse-values --set controller.replicaCount=2 <INGRESS_CONTROLLER_RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE>

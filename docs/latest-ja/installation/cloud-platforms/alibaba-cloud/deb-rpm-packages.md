@@ -1,29 +1,29 @@
-					# Alibaba CloudでのDEBまたはRPMパッケージからのフィルタリングノードのインストール
+# Alibaba CloudでのDEBまたはRPMパッケージからのフィルタリングノードのインストール
 
-このクイックガイドでは、別のAlibaba Cloudインスタンス上のソースパッケージからフィルタリングノードをインストールする手順を説明します。このガイドに従って、対応するオペレーティングシステムのイメージからインスタンスを作成し、そのオペレーティングシステムにWallarmフィルタリングノードをインストールします。
+このクイックガイドは、別のAlibaba Cloudインスタンスでソースパッケージからフィルタリングノードをインストールする手順を提供します。このガイドに従うと、対応するオペレーティングシステムイメージからインスタンスを作成し、そのオペレーティングシステムにWallarmフィルタリングノードをインストールします。
 
 !!! warning "指示の制限"
-    これらの指示では、ロードバランシングおよびノード自動スケーリングの設定はカバーされていません。これらのコンポーネントを設定する場合は、[Alibaba Cloud Elastic Compute Service（ECS）の指示](https://www.alibabacloud.com/product/ecs)を参照することをお勧めします。
+    これらの指示では、ロードバランシングとノードの自動スケーリングの設定はカバーされていません。これらのコンポーネントを自分で設定する場合は、[Alibaba Cloud Elastic Compute Service（ECS）の指示](https://www.alibabacloud.com/product/ecs)を見直すことをお勧めします。
 
-## 要件
+## 必須要件
 
 * [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)へのアクセス
-* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**管理者**の役割を持つアカウントへのアクセス
+* [US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)のWallarm Consoleで**管理者**ロールのアカウントへのアクセス
 
 ## フィルタリングノードのインストールオプション
 
-フィルタリングノードは、Webサーバーまたは[APIゲートウェイ](https://www.wallarm.com/what/the-concept-of-an-api-gateway)モジュールとして動作するため、WebサーバーやAPIゲートウェイのパッケージをフィルタリングノードパッケージと共にオペレーティングシステムにインストールする必要があります。
+フィルタリングノードはWebサーバーまたは[APIゲートウェイ](https://www.wallarm.com/what/the-concept-of-an-api-gateway)モジュールとして動作するため、WebサーバーまたはAPIゲートウェイのパッケージをフィルタリングノードのパッケージとともにオペレーティングシステムにインストールする必要があります。
 
-以下のリストから、アプリケーションのアーキテクチャに最適なWebサーバーまたはAPIゲートウェイを選択できます。
+以下のリストから、アプリケーションアーキテクチャに最も適したWebサーバーまたはAPIゲートウェイを選択できます：
 
-* [フィルタリングノードをNGINX Stableモジュールとしてインストールする](#installing-the-filtering-node-as-the-nginx-stable-module)
-* [フィルタリングノードをNGINX Plusモジュールとしてインストールする](#installing-the-filtering-node-as-the-nginx-plus-module)
+* [フィルタリングノードをNGINX安定モジュールとしてインストールする](#nginx安定モジュールとしてのフィルタリングノードのインストール)
+* [フィルタリングノードをNGINX Plusモジュールとしてインストールする](#nginx-plusモジュールとしてのフィルタリングノードのインストール)
 
-## NGINX Stableモジュールとしてのフィルタリングノードのインストール
+## NGINX安定モジュールとしてのフィルタリングノードのインストール
 
-Alibaba CloudインスタンスにNGINX Stableモジュールとしてフィルタリングノードをインストールするには：
+Alibaba CloudインスタンスでフィルタリングノードをNGINX Stableモジュールとしてインストールするには：
 
-1. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/87190.htm)に従ってWallarmによってサポートされるオペレーティングシステムイメージからAlibaba Cloudインスタンスを作成します。
+1. WallarmがサポートするオペレーティングシステムイメージからAlibaba Cloudインスタンスを作成します。[Alibaba Cloudの命令](https://www.alibabacloud.com/help/doc-detail/87190.htm)に従ってください：
 
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
@@ -33,16 +33,16 @@ Alibaba CloudインスタンスにNGINX Stableモジュールとしてフィル�
     * AlmaLinux
     * Rocky Linux
     * Oracle Linux 8.x
-2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成されたインスタンスに接続します。
-3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従って、NGINX StableのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
+2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成したインスタンスに接続します。
+3. インスタンスで、NGINX StableとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、postanalyticsモジュールを[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってインストールしてください。
 
 ## NGINX Plusモジュールとしてのフィルタリングノードのインストール
 
-Alibaba CloudインスタンスにNGINX Plusモジュールとしてフィルタリングノードをインストールするには：
+Alibaba CloudインスタンスでフィルタリングノードをNGINX Plusモジュールとしてインストールするには：
 
-1. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/87190.htm)に従ってWallarmによってサポートされるオペレーティングシステムイメージからAlibaba Cloudインスタンスを作成します。
+1. WallarmがサポートするオペレーティングシステムイメージからAlibaba Cloudインスタンスを作成します。[Alibaba Cloudの命令](https://www.alibabacloud.com/help/doc-detail/87190.htm)に従ってください：
 
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
@@ -52,7 +52,7 @@ Alibaba CloudインスタンスにNGINX Plusモジュールとしてフィルタ
     * AlmaLinux
     * Rocky Linux
     * Oracle Linux 8.x
-2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成されたインスタンスに接続します。
-3. インスタンス内で、[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従って、NGINX PlusのパッケージとWallarmフィルタリングノードのパッケージをインストールします。
+2. [Alibaba Cloudの指示](https://www.alibabacloud.com/help/doc-detail/71529.htm)に従って作成したインスタンスに接続します。
+3. インスタンスで、NGINX PlusとWallarmフィルタリングノードのパッケージを[Wallarmの指示](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、postanalyticsモジュールを[Wallarmの指示](../../../admin-en/installation-postanalytics-en.md)に従ってインストールしてください。

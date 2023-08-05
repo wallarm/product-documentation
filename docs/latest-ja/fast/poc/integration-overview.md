@@ -10,61 +10,60 @@
 
 [doc-qsg]:              ../qsg/deployment-options.md
 
-#   A CI/CD Workflow with FAST
+#   FASTとCI/CDワークフロー
 
-If you integrate FAST into a CI/CD workflow, several extra steps will be added to the existing CI/CD workflow. These steps can be part of either an existing CI/CD job or a separate job.   
+FASTをCI/CDワークフローに統合すると、既存のCI/CDワークフローにいくつかの追加手順が加わります。これらの手順は、既存のCI/CDジョブの一部であっても、別のジョブであってもかまいません。
 
-The exact extra steps will differ depending on the test run creation scenario in action. All possible scenarios are described below.
+具体的な追加手順は、使用中のテスト実行作成シナリオによって異なります。可能なすべてのシナリオを以下に説明します。
 
-##  Integration via the Wallarm API (aka “Deployment via API”)
+##  Wallarm APIを介した統合（通称「API経由のデプロイ」）
 
-In this scenario, the FAST node is managed via the Wallarm API. The API is also employed to manage test runs. The FAST node can either record baseline requests or work with already recorded baseline requests:
+このシナリオでは、FASTノードはWallarm APIを介して管理されます。APIはまた、テスト実行の管理にも使用されます。FASTノードは、ベースライントリクエストを記録するか、既に記録されたベースライントリクエストを使用することができます：
     
-![!Integration via API][img-api-mode] 
+![!API経由での統合][img-api-mode]
 
-In this scenario, FAST demonstrates the following behavior:
-* A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you are planning to deploy.
-* If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
-* A test policy and a test record may be used by several test runs and FAST nodes.
+このシナリオでは、FASTは以下のような振る舞いを示します：
+* 単一のFASTノードDockerコンテナは、対応する単一のクラウドFASTノードにバインドされます。複数のコンテナにFASTノードを同時に実行するには、デプロイしたいコンテナの数と同じ数のクラウドFASTノードとトークンが必要です。
+* クラウドFASTノードに新しいFASTノードを作成し、そのクラウドノードに既にバインドされた別のFASTノードがある場合、後者のノードのテスト実行は中断されます。
+* テストポリシーとテストレコードは、複数のテスト実行とFASTノードで使用できます。
+
+このケースでのFAST統合の詳細については、[この文書][doc-integration-api]を参照してください。
+
+##  FASTノードを介した統合（通称「CI MODEでのデプロイ」）
+
+このシナリオでは、FASTノードはテストモードと記録モードで使用されます。運用モードは、ノードを持つコンテナをデプロイする際の`CI_MODE`環境変数の操作により切り替えられます。FASTノードはテスト実行を自身で管理するため、CI/CDツールがWallarm APIとやり取りする必要はありません。
+
+以下の画像は、このシナリオの概説的な説明です：
+
+![!CI MODEでの統合][img-ci-mode]
+
+このシナリオでは、FASTは以下のような振る舞いを示します：
+* 単一のFASTノードDockerコンテナは、対応する単一のクラウドFASTノードにバインドされます。複数のコンテナにFASTノードを同時に実行するには、デプロイ計画によるコンテナの数と同じ数のクラウドFASTノードとトークンが必要です。
+    並行CI/CDワークフローでの使用に適した多数のFASTノードを正確にデプロイするには、以下に[説明されている][anchor-build-id]CI MODEと似た別のアプローチを使用する必要があります。
+* クラウドFASTノードに新しいFASTノードを作成し、そのクラウドノードに既にバインドされた別のFASTノードがある場合、後者のノードのテスト実行は中断されます。
+* テストポリシーとテストレコードは、複数のテスト実行とFASTノードで使用できます。
+
+このケースでのFAST統合の詳細については、[この文書][doc-integration-ci-mode]を参照してください。
+
+
+### 並行CI/CDワークフローでの使用に向けたCI MODEを用いたFASTノードのデプロイ
+
+並行CI/CDワークフローに適したようにFASTノードをデプロイするには、上記で説明したようにCI MODEを使用し、ノードのコンテナに追加の`BUILD_ID`環境変数を渡す必要があります。
+
+`BUILD_ID`パラメーターにより、単一のクラウドFASTノードを使用しながら、複数の異なるテストレコードに記録することが可能になり、これらのテストレコードを後でいくつかの同時テスト実行を起動するために再利用できます。
+
+以下の画像は、このシナリオの概説的な説明です：
+
+![!BUILD_IDでの統合][img-ci-mode-build-id]
+
+このシナリオでは、FASTは以下のような振る舞いを示します：
+* 複数のFASTノードが単一のクラウドFASTノードを通じて運用することで、並行なCI/CDワークフローで動作することができます。この際には、これらのFASTノードすべてが**同じトークンを使用**します。
+* テスト実行は、それぞれ異なる`BUILD_ID`識別子でマークされた異なるテストレコードを使用します。
+* これらのテスト実行は並行して実行されます。また、必要に応じて異なるテストポリシーを使用することも可能です。
+
+並行CI/CDワークフローでのFAST使用方法の詳細な説明については、[この文書][doc-concurrent-pipelines]を参照してください。
+
+!!! info "HTTPS対応"
+    この説明では、HTTPプロトコルで動作するアプリケーションをテストするためのFASTとCI/CDの統合について説明しています。 
     
-See [this document][doc-integration-api] for details on how FAST integration is made in this case. 
-
-##  Integration via the FAST Node (aka “Deployment with CI MODE”)
-
-In this scenario, the FAST node is used in the testing and recording modes. The operation mode is switched by manipulating the `CI_MODE` environment variable when deploying a container with the node. The FAST node manages test runs by itself; therefore there is no need for a CI/CD tool to interact with the Wallarm API.
-
-See the image below for a schematic explanation of this scenario:
-
-![!Integration with CI MODE][img-ci-mode]
-
-In this scenario, FAST demonstrates the following behavior:
-* A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you plan to deploy.
-    To correctly deploy many FAST nodes for use in concurrent CI/CD workflows, you will need to use a different approach that is similar to the CI MODE [described below][anchor-build-id].
-* If you create a new FAST node for a cloud FAST node and there is another FAST node tied to that cloud node, the test run execution will be aborted for the latter node.
-* A test policy and a test record may be used by several test runs and FAST nodes.
-
-See [this document][doc-integration-ci-mode] for details on how FAST integration is made in this case. 
-    
-
-### Deploying the FAST Node with CI MODE for Use in Concurrent CI/CD Workflows
-
-To deploy FAST node in a way that is suitable for concurrent CI/CD workflows, you should use CI MODE as described above and pass the additional `BUILD_ID` environment variable to the node's container.
-
-The `BUILD_ID` parameter allows recording to several different test records while using a single cloud FAST node, and reusing these test records later to fire up a few concurrent test runs.
-
-See the image below for a schematic explanation of this scenario:
-
-![!Integration with BUILD_ID][img-ci-mode-build-id]
-
-In this scenario, FAST demonstrates the following behavior:
-* A few FAST nodes can operate via a single cloud FAST node to work in concurrent CI/CD workflows. Note that **the same token is used** by all of these FAST nodes.
-* Test runs use different test records marked with distinct `BUILD_ID` identifiers.
-* These test runs execute in parallel; moreover, they may employ different test policies, if necessary.
-
-See [this document][doc-concurrent-pipelines] for detailed explanation about how to use FAST in concurrent CI/CD workflows.
-
-
-!!! info "HTTPS support"
-    This instruction describes the integration of FAST with CI/CD to test the application working over HTTP protocol.
-    
-    FAST node also supports testing applications working over HTTPS protocol. More details are described in the [Quick Start guide][doc-qsg].
+    FASTノードは、HTTPSプロトコルで動作するアプリケーションのテストにも対応しています。詳細は[クイックスタートガイド][doc-qsg]をご覧ください。

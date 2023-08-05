@@ -1,47 +1,47 @@
-WallarmのフィルタリングノードはWallarm Cloudと連携します。ノードをCloudに接続する必要があります。
+WallarmフィルタリングノードはWallarmクラウドと連携します。ノードをクラウドに接続する必要があります。
 
-ノードをCloudに接続する際には、ノード名を設定して、それがWallarm Console UIで表示されるようにしたり、適切な**ノードグループ**にノードを入れることができます（UIでノードを論理的に整理するために使用されます）。
+ノードをクラウドに接続する際に、ノードの名前を設定し、それがWallarm Console UIに表示されるようにすることができ、ノードを適切な**ノードグループ** (UIでノードを論理的に整理するために使用されます) に配置することができます。
 
 ![!グループ化されたノード][img-grouped-nodes]
 
-ノードをCloudに接続するには、適切なタイプの[Wallarm トークン][wallarm-token-types]を使用します：
+ノードをクラウドに接続するためには、[適切なタイプ][wallarm-token-types]のWallarmトークンを使用します：
 
-=== "API トークン"
+=== "APIトークン"
 
-    1. Wallarm Consoleを開き、**設定** → **API トークン**を選択します [US Cloud](https://us1.my.wallarm.com/settings/api-tokens)もしくは[EU Cloud](https://my.wallarm.com/settings/api-tokens)。
-    1. `Deploy`ソースロールを持つAPIトークンを見つけるか作成します。
+    1. Wallarmコンソールを開く → **設定** → **APIトークン** を[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)で開きます。
+    1. `Deploy` ソースロールを持つAPIトークンを探すか、作成します。
     1. このトークンをコピーします。
-    1. フィルタリングノードをインストールするマシン上で`register-node`スクリプトを実行します：
+    1. フィルタリングノードをインストールするマシン上で `register-node` スクリプトを実行します：
 
-        === "US Cloud"
+        === "USクラウド"
             ``` bash
             sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>' -H us1.api.wallarm.com
             ```
-        === "EU Cloud"
+        === "EUクラウド"
             ``` bash
             sudo /usr/share/wallarm-common/register-node -t <TOKEN> --labels 'group=<GROUP>'
             ```
-
-        * `<TOKEN>`は`Deploy`ロールを持つAPI トークンの複製値です。
-        * `--labels 'group=<GROUP>'`パラメーターはノードを `<GROUP>` ノードグループに追加します（既存の場合、または存在しない場合、作成されます）。
+        
+        * `<TOKEN>` は、 `Deploy` ロールのAPIトークンのコピーバリューです。
+        * `--labels 'group=<GROUP>'` パラメーターは、ノードを `<GROUP>` ノードグループに配置します (既存の場合、または存在しない場合は作成されます)。
 
 === "ノードトークン"
 
-    1. Wallarm Consoleを開き、 **ノード** を選択します [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)。
+    1. Wallarmコンソールを開く → **ノード** を[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)で開きます。
     1. 次のいずれかを行います： 
-        * **Wallarmノード**タイプのノードを作成し、生成されたトークンをコピーします。
-        * 既存のノードグループを使用します - ノードのメニュー  → **トークンをコピー**を使用します。
-    1. フィルタリングノードをインストールするマシン上で`register-node`スクリプトを実行します：
+        * **Wallarmノード**タイプのノードを作成して生成されたトークンをコピーします。
+        * 既存のノードグループを使用します - ノードのメニューから**トークンをコピー**します。
+    1. フィルタリングノードをインストールするマシン上で `register-node` スクリプトを実行します：
 
-        === "US Cloud"
+        === "USクラウド"
             ``` bash
             sudo /usr/share/wallarm-common/register-node -t <TOKEN> -H us1.api.wallarm.com
             ```
-        === "EU Cloud"
+        === "EUクラウド"
             ``` bash
             sudo /usr/share/wallarm-common/register-node -t <TOKEN>
             ```
 
-    * `<TOKEN>`はノードトークンの複製値です。
+    * `<TOKEN>` はノードトークンのコピーバリューです。
 
-* `-n <HOST_NAME>` パラメーターを追加すると、ノードインスタンスに独自の名前を設定できます。最終的なインスタンス名は次のようになります： `HOST_NAME_NodeUUID`。
+* ノードインスタンスのカスタム名を設定するために `-n <HOST_NAME>` パラメーターを追加することができます。 最終的なインスタンス名は `HOST_NAME_NodeUUID` になります。

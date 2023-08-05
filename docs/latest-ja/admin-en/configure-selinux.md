@@ -3,48 +3,47 @@
 
 # SELinuxの設定
 
-[SELinux][link-selinux] がフィルターノードのあるホストで有効になっている場合、フィルターノードの動作に影響を与える可能性があります。
-* フィルターノードの RPS（リクエスト/秒）と APS（攻撃/秒）の値は Wallarm クラウドにエクスポートされません。
-* TCP プロトコルを介してフィルターノードのメトリックを監視システムにエクスポートすることができません（[「フィルターノードの監視」][doc-monitoring]）。
+フィルターノードがホストに存在し、そのホスト上で[SELinux][link-selinux]のメカニズムが有効になっている場合、それがフィルターノードの操作を妨げ、操作不能にする可能性があります:
+* フィルターノードのRPS（リクエスト毎秒）および APS（攻撃毎秒）の値はWallarmクラウドにエクスポートされません。
+* TCPプロトコルを介してフィルターノードのメトリックを監視システムにエクスポートすることはできません（[「フィルターノードの監視」][doc-monitoring]を参照してください）。 
 
-SELinuxは、RedHatベースのLinuxディストリビューション（例：CentOSやAmazon Linux 2.0.2021x およびそれ以下）ではデフォルトでインストールおよび有効化されています。SELinuxは、DebianやUbuntuなどの他のLinuxディストリビューションにもインストールすることができます。
+SELinuxは、RedHatベースのLinuxディストリビューション（例えば、CentOSやAmazon Linux 2.0.2021x以下）ではデフォルトでインストールおよび有効化されています。 SELinuxはDebianやUbuntuなどの他のLinuxディストリビューションにもインストールできます。
 
-SELinuxを無効化するか、フィルターノードの動作を邪魔しないようにSELinuxを設定することが求められます。
+SELinuxを無効にするか、フィルターノードの操作を妨げないように設定することが必須です。
 
-## SELinuxのステータスを確認
+## SELinuxステータスの確認
 
-以下のコマンドを実行します。
+以下のコマンドを実行します:
 
 ``` bash
 sestatus
 ```
 
-出力を確認します。
+出力を確認します:
 * `SELinux status: enabled`
 * `SELinux status: disabled`
 
 ## SELinuxの設定
 
-SELinuxを有効にしてフィルターノードが動作するように、`collectd`ユーティリティがTCPソケットを使用できるように許可します。これを行うには、以下のコマンドを実行します。
+SELinuxが有効な状態でフィルターノードを操作可能にするために、`collectd`ユーティリティがTCPソケットを使用することを許可します。これを行うには、以下のコマンドを実行します:
 
 ``` bash
 setsebool -P collectd_tcp_network_connect 1
 ```
 
-上記のコマンドが正常に実行されたかどうかを確認するには、以下のコマンドを実行します。
+上記のコマンドが正常に実行されたかどうかを確認するには、次のコマンドを実行します:
 
 ``` bash
 semanage export | grep collectd_tcp_network_connect
 ```
 
-出力に次の文字列が含まれている必要があります。
-
+出力には次の文字列が含まれているべきです:
 ```
 boolean -m -1 collectd_tcp_network_connect
 ```
 
-## SELinuxを無効化
+## SELinuxの無効化
 
-SELinuxを無効な状態に設定するには、
-* `setenforce 0` コマンドを実行する（次回の再起動までSELinuxは無効になります）か、
-* `/etc/selinux/config` ファイル内の `SELINUX` 変数の値を `disabled` に設定してから再起動する（SELinuxは恒久的に無効になります）。
+SELinuxを無効化するには
+*   `setenforce 0`コマンドを実行する（次の再起動までSELinuxが無効になる）か、または
+*   `/etc/selinux/config`ファイル内の`SELINUX`変数の値を`disabled`に設定し、その後再起動する（SELinuxが永久に無効になる）。

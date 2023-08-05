@@ -2,21 +2,21 @@
 [link-multipart-array]:             array.md#the-example-of-using-the-multipart-parser-and-the-array-filter
 [link-multipart-hash]:              hash.md#the-example-of-using-the-multipart-filter-and-the-hash-filter
 
-# Multipart Parser
+# マルチパートパーサー
 
-The **Multipart** parser is used for working with the request body in the multipart format. This parser creates a hash table where the names of the request body parameters are the keys and the values of the corresponding parameters are the hash table values. The elements of this hash table need to be referred to by using the names of the parameters.
-
-
-!!! info "Regular expressions in points"
-    The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
-
-!!! warning "Using the Multipart parser in the point"
-    The Multipart parser can only be used in the point together with the Post filter that refers to the baseline request body.
+**Multipart** パーサーは、マルチパート形式のリクエストボディを操作するために使用されます。このパーサーはハッシュテーブルを生成し、リクエストボディのパラメータ名がキーであり、対応するパラメータの値がハッシュテーブルの値になります。このハッシュテーブルの要素は、パラメータの名前を使用して参照する必要があります。
 
 
-**Example:** 
+!!! info "ポイントにおける正規表現"
+    ポイントのパラメータ名は、[Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-For the
+!!! warning "ポイントでのMultipartパーサーの使用"
+    Multipartパーサーは、ベースラインリクエストボディを参照するPostフィルターと一緒に、ポイントでのみ使用できます。
+
+
+**例:**
+
+以下の
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
@@ -32,15 +32,14 @@ Content-Disposition: form-data; name="username"
 admin 
 ```
 
-request, the Multipart parser applied to the request body creates the following hash table:
+リクエストに対して、Multipartパーサーがリクエストボディに適用されると、次のハッシュテーブルが作成されます:
 
-| Key       | Value    |
-|-----------|----------|
-| id        | 01234    |
-| username  | admin    |
+| キー       | 値           |
+|-----------|-------------|
+| id        | 01234      |
+| username  | admin       |
 
-* The `POST_MULTIPART_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Multipart parser.
-* The `POST_MULTIPART_username_value` point refers to the `admin` value that corresponds to the `username` key from the hash table created by the Multipart parser.
+* `POST_MULTIPART_id_value` ポイントは、Multipartパーサーによって作成されたハッシュテーブルから `id` キーに対応する `01234` 値を参照します。
+* `POST_MULTIPART_username_value` ポイントは、Multipartパーサーによって作成されたハッシュテーブルから `username` キーに対応する `admin` 値を参照します。
 
-The request body in the multipart format may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-multipart-array] and [Hash][link-multipart-hash] filters correspondingly to address the elements in these structures.
-
+マルチパート形式のリクエストボディには、次のような複雑なデータ構造も含まれることがあります：配列とハッシュテーブル。これらの構造内の要素に対応するために、それぞれ [配列][link-multipart-array] と [ハッシュ][link-multipart-hash] フィルターを使用してください。

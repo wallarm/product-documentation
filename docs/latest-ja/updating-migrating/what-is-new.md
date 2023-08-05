@@ -1,74 +1,101 @@
-# Wallarmノード4.4の新しい機能
+# Wallarmノード4.6での新機能
 
-Wallarmノードの新しいマイナーバージョンがリリースされました！ Wallarmノード4.4には、JWTの強度チェックやSQLi攻撃の二重検証など、攻撃の軽減をさらに強力で使いやすくする新機能があります。
+新しいWallarmノードのマイナーバージョンがリリースされました！これには、DoS攻撃、総当たり攻撃、APIの過度な使用を防ぐための重要なAPIレート制限機能が含まれています。この文書からリリースされたすべての変更を学びましょう。
 
-## JSON Web Tokenの強度チェック
+## オールインワンインストーラー
 
-[JSON Web Token (JWT)](https://jwt.io/)はAPIなどのリソース間で安全にデータを交換するために使用される一般的な認証標準です。 JWTの妥協は、攻撃者の一般的な目標であり、認証メカニズムを破ることでWebアプリケーションやAPIへのフルアクセスが可能になります。 JWTが弱いほど、妥協の可能性が高くなります。
+さまざまな環境でNGINXの動的モジュールとしてWallarmノードをインストールおよびアップグレードする際には、インストールプロセスを合理化し、標準化するために設計された**オールインワンインストーラー**を使用できます。このインストーラーは、自動的にオペレーティングシステムとNGINXのバージョンを識別し、必要なすべての依存関係をインストールします。
 
-バージョン4.4から、Wallarmで次のようなJWTの弱さを検出できるようになります：
+インストーラーは、以下の操作を自動的に実行することでプロセスを簡素化します：
 
-* 暗号化されていないJWT
-* 妥協した秘密キーを使用して署名されたJWT
+1. あなたのOSとNGINXバージョンをチェックします。
+1. 検出されたOSとNGINXバージョンのためのWallarm リポジトリを追加します。
+1. これらのリポジトリからWallarm パッケージをインストールします。
+1. インストールされたWallarm モジュールをあなたのNGINXに接続します。
+1. 提供されたトークンを使用して、フィルタリングノードをWallarm Cloudに接続します。
 
-有効にするには、[**Weak JWT**トリガー](../user-guides/triggers/trigger-examples.md#detect-weak-jwts)を使用してください。
+[オールインワンインストーラーでノードをデプロイする方法の詳細を参照 →](../installation/nginx/all-in-one.md)
 
-## libdetectionライブラリを使用した攻撃分析の強化
+## レート制限
 
-Wallarmによって実行される攻撃分析は、追加の攻撃確認レイヤーを含むことによって強化されました。 Wallarmノード4.4以降は**libdetection**ライブラリがデフォルトで有効になっており、[SQLi](../attacks-vulns-list.md#sql-injection)攻撃のすべてに対して完全に文法ベースの二次バリデーションを実行し、SQLインジェクションの検出される誤検出数を減らします。
+適切なレート制限の欠如は、APIのセキュリティにとって大きな問題であり、攻撃者が高ボリュームのリクエストを送信してサービスを拒否（DoS）させるか、システムをオーバーロードさせることができ、正当なユーザーに影響を与えます。
 
-!!! warning "メモリ消費の増加"
-    **libdetection**ライブラリが有効になっている場合、NGINX/EnvoyおよびWallarmプロセスによって消費されるメモリ量が約10%増加する場合があります。
+Wallarmノード4.6以降でサポートされるWallarmのレート制限機能を使用すると、セキュリティチームはサービスの負荷を効果的に管理し、サービスが正当なユーザーにとって利用可能で安全であることを確保できます。この機能は、リクエストとセッションのパラメータに基づいて各種の接続制限を提供し、従来のIPベースのレート制限、JSONフィールド、base64エンコードデータ、クッキー、XMLフィールドなどを含みます。
 
-[Wallarmが攻撃を検出する方法の詳細 →](../about-wallarm/protecting-against-attacks.md)
+たとえば、各ユーザーのAPI接続を制限して、1分あたり何千ものリクエストを送信することを防ぐことができます。これはサーバーに重大な負荷をかけ、サービスがクラッシュする可能性があります。レート制限を実装することにより、サーバーをオーバーロードから保護し、すべてのユーザーがAPIに公平にアクセスできることを保証することができます。
 
-## サポートされているインストールオプション
+Wallarm Console UI → **ルール** → **レート制限の設定**で、あなたの特定の使用ケース向けにレート制限範囲、レート、バースト、遅延、応答コードを指定することにより、レート制限を簡単に設定できます。
 
-* Ubuntu 22.04 LTS(jammy)のサポート追加
-* WallarmをNGINX安定版またはNGINX Plusのモジュールとしてインストールする場合のDebian 10.x（buster）のサポートを廃止
+[レート制限設定のガイド →](../user-guides/rules/rate-limiting.md)
 
-[サポートされているインストールオプションの完全リスト →](../installation/supported-deployment-options.md)
+## メールとパスワードに基づくノードの登録の廃止
 
-## 新しい攻撃タイプ
+Wallarmノード4.6のリリースとともに、クラウドでのWallarmノードのメールとパスワードに基づく登録が廃止されました。このメソッドはバージョン4.0のリリース時に廃止され、ほとんどの顧客が新しい登録方法に移行しています。まだ行っていない場合は、Wallarmノード4.6以降を続行するために、必ずトークンベースのノード登録方法に切り替える必要があります。
 
-**リリース4.4.3から**、Wallarmは新しい攻撃タイプを検出します：
+バージョン4.6以降のノードは、Wallarm Cloudへのより安全で迅速な接続を保証するトークンを使用した登録のみ可能です。各移行ガイドには、トークンベースのノード登録方法への移行を支援するための指示が提供されています。
 
-* [Mass Assignment](../attacks-vulns-list.md#mass-assignment)
+ノード登録方法の変更は、ノードタイプの更新をもたらすときもあります。[続きを読む](older-versions/what-is-new.md#unified-registration-of-nodes-in-the-wallarm-cloud-by-tokens)
 
-    Mass Assignment攻撃では、攻撃者はHTTPリクエストパラメータをプログラムコードの変数やオブジェクトにバインドしようとします。APIが脆弱でバインディングを許可している場合、攻撃者は暴露されることのない感受性の高いオブジェクトプロパティを変更でき、特権の昇格、セキュリティメカニズムのバイパスなどにつながる可能性があります。
-* [SSRF](../attacks-vulns-list.md#serverside-request-forgery-ssrf)
+## 新しいブロッキングページ
 
-    SSRF攻撃が成功すると、攻撃者は攻撃されたWebサーバーの代わりにリクエストを行うことができ、Webアプリケーションの使用中のネットワークポートの公開、内部ネットワークのスキャン、および認証のバイパスにつながる可能性があります。
+サンプルブロッキングページ `/usr/share/nginx/html/wallarm_blocked.html` が更新されました。新しいノードバージョンでは、新しいレイアウトが適用され、ロゴとサポートメールのカスタマイズもサポートしています。
 
-## 統計サービスのパラメータ
+新しいレイアウトを持つ新しいブロックページは、デフォルトでは以下のように見えます ：
 
-**リリース4.4.3から**、Wallarmの統計サービスは新しいパラメータ`custom_ruleset_ver`を返します。
+![!Wallarm のブロックページ](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
-このパラメータは、Wallarmノードが使用している[カスタムルールセット](../glossary-en.md#custom-ruleset-the-former-term-is-lom)の形式を示しています。
+[ブロッキングページの設定に関する詳細 →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 
-[統計サービスに関する詳細 →](../admin-en/configure-statistics-service.md)
+## 統計サービスのパラメーターの変更
 
-## ノード3.6以前をアップグレードする場合
+Wallarmの統計サービスは、新しい `rate_limit` パラメータを[Wallarmのレート制限](#rate-limits) モジュールのデータとともに返します。新しいパラメータは、拒否されたリクエストと遅延したリクエストをカバーし、モジュールの動作に問題があるかどうかを示します。
 
-バージョン3.6またはそれ以前からアップグレードする場合は、[別のリスト](older-versions/what-is-new.md)からすべての変更を確認してください。
+[統計サービスの詳細 →](../admin-en/configure-statistics-service.md)
 
-## アップグレードが推奨されるWallarmノード
+## 新しいNGINXディレクティブ
 
-* バージョン4.xのクライアントおよびマルチテナントWallarmノードをWallarmリリースに最新の状態に保ち、[インストールされたモジュールの非推奨](versioning-policy.md#version-support)を防ぐためにアップグレードします。
-* [サポートされていない](versioning-policy.md#version-list)バージョン（3.6およびそれ以前）のクライアントおよびマルチテナントWallarmノード。 Wallarmノード4.4で利用可能な変更は、ノードの構成を簡素化し、トラフィックのフィルタリングを改善します。ただし、ノード4.4の一部の設定は、以前のバージョンのノードと**互換性がありません**。
+[レート制限ルール](#rate-limits) が特性を設定するための推奨される方法であるにもかかわらず、新しいNGINXディレクティブを使ってレート制限を設定することもできます：
+
+* [`wallarm_rate_limit`](../admin-en/configure-parameters-en.md#wallarm_rate_limit)
+* [`wallarm_rate_limit_enabled`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_enabled)
+* [`wallarm_rate_limit_log_level`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_log_level)
+* [`wallarm_rate_limit_status_code`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_status_code)
+* [`wallarm_rate_limit_shm_size`](../admin-en/configure-parameters-en.md#wallarm_rate_limit_shm_size)
+
+## ノードインスタンスの簡単なグルーピング
+
+これで、 `Deploy` 役割を持つ[**APIトークン**](../user-guides/settings/api-tokens.md) と `WALLARM_LABELS` 変数とその `group` ラベルを使って、ノードインスタンスを簡単にグループ化できます。
+
+例えば：
+
+```bash
+docker run -d -e WALLARM_API_TOKEN='<DEPLOY ROLEのAPI TOKEN>' -e NGINX_BACKEND='example.com' -e WALLARM_API_HOST='us1.api.wallarm.com' -e WALLARM_LABELS='group=<GROUP>' -p 80:80 wallarm/node:4.6.2-1
+```
+... このコマンドは、ノードインスタンスを `<GROUP>` インスタンスグループに配置します（既存の場合、または存在しない場合は作成されます）。
+
+## ノード3.6以前からのアップグレード時
+
+バージョン3.6以前からアップグレードする場合は、[別のリスト](older-versions/what-is-new.md)からすべての変更を確認してください。
+
+## アップグレードが推奨されるWallarmノードは？
+
+* クライアントとマルチテナントのWallarmノードのバージョン4.xは、Wallarmのリリースに最新の状態を保つため、また[インストールされたモジュールが非推奨に](versioning-policy.md#version-support)なるのを防ぐため。
+* クライアントとマルチテナントのWallarmノードの[非サポート](versioning-policy.md#version-list)バージョン（3.6以前）。Wallarmノード4.6で利用可能な変更は、ノードの設定を簡略化し、トラフィックのフィルタリングを改善します。ただし、ノード4.6の一部の設定は、古いバージョンのノードと**互換性がありません**。
 
 ## アップグレードプロセス
 
-1. [モジュールのアップグレードに関する推奨事項](general-recommendations.md)を確認してください。
-2. Wallarmノードのデプロイメントオプションに対応した指示に従って、インストールされているモジュールをアップグレードします：
+1. [モジュールのアップグレードのための推奨事項](general-recommendations.md)を確認してください。
+2. Wallarmノードのデプロイオプションの手順に従って、インストールされたモジュールをアップグレードします：
 
-      * [NGINX、NGINX Plus用モジュール](nginx-modules.md)
-      * [NGINXまたはEnvoy用のDockerコンテナ内のモジュール](docker-container.md)
-      * [統合されたWallarmモジュールを備えたNGINX Ingressコントローラ](ingress-controller.md)
+      * [NGINX, NGINX Plusのモジュール](nginx-modules.md)
+      * [NGINXまたはEnvoyのモジュールを持つDockerコンテナ](docker-container.md)
+      * [統合されたWallarmモジュールを持つNGINX Ingressコントローラ](ingress-controller.md)
+      * [統合されたWallarmモジュールを持つKong Ingressコントローラ](kong-ingress-controller.md)
+      * [サイドカープロキシ](sidecar-proxy.md)
       * [クラウドノードイメージ](cloud-image.md)
       * [CDNノード](cdn-node.md)
       * [マルチテナントノード](multi-tenant.md)
 
 ----------
 
-[Wallarm製品およびコンポーネントのその他のアップデート →](https://changelog.wallarm.com/)
+[その他のWallarm製品とコンポーネントの更新 →](https://changelog.wallarm.com/)

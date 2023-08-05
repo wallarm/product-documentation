@@ -8,69 +8,69 @@
 [img-create-image]:             ../../../images/installation-gcp/auto-scaling/common/create-image/create-image.png
 [img-check-image]:              ../../../images/installation-gcp/auto-scaling/common/create-image/image-list.png
 
-[anchor-node]:  #1-creating-and-configuring-the-filtering-node-instance-on-the-google-cloud-platform
-[anchor-gcp]:   #2-creating-a-virtual-machine-image
+[anchor-node]:  #1-google-cloud-platformでフィルタリングノードインスタンスの作成と設定
+[anchor-gcp]:   #2-仮想マシンイメージの作成
 
-#   Google Cloud Platform上でWallarmフィルタリングノードを有する画像を作成する
+#   Google Cloud Platform で Wallarm フィルタリングノードを含むイメージを作成する
 
-Google Cloud Platform(GCP)に展開されているWallarmフィルタリングノードの自動スケーリングを設定するには、最初に仮想マシンイメージが必要です。このドキュメントでは、Wallarmフィルタリングノードがインストールされた仮想マシンの画像の準備方法を説明します。自動スケーリングの詳細な設定については、この[リンク][link-docs-gcp-autoscaling]に進んでください。
+Google Cloud Platform (GCP) でデプロイされた Wallarm フィルタリングノードのオートスケーリングを設定するには、まず仮想マシンのイメージが必要です。本ドキュメントでは、Wallarm フィルタリングノードがインストールされている仮想マシンのイメージを準備する手順について説明します。オートスケーリングの設定について詳しく知るには、こちらの[リンク][link-docs-gcp-autoscaling]を参照してください。
 
-GCPでWallarmフィルタリングノード付きの画像を作成するためには、以下の手順を実行します：
-1.  [Google Cloud Platformでのフィルタリングノードインスタンスの作成と設定][anchor-node]。
-2.  [設定済みのフィルタリングノードインスタンスを基にした仮想マシンイメージの作成][anchor-gcp]。
+GCP で Wallarm フィルタリングノードを含むイメージを作成するには、以下の手順を実行します:
+1.  [Google Cloud Platform でフィルタリングノードインスタンスの作成と設定][anchor-node].
+2.  [設定済みフィルタリングノードインスタンスを基に仮想マシンイメージを作成][anchor-gcp].
 
-##  1.  Google Cloud Platformでのフィルタリングノードインスタンスの作成と設定
+##  1.  Google Cloud Platform でフィルタリングノードインスタンスの作成と設定
 
-画像を作成する前に、単一のWallarmフィルタリングノードの初期設定を行う必要があります。フィルタリングノードを設定するには、以下の手順を実行します：
-1.  [GCP上でフィルタリングノードインスタンスを作成および設定します][link-docs-gcp-node-setup]。
+イメージを作成する前に、まず Wallarm フィルタリングノードを初期設定する必要があります。フィルタリングノードを設定するためには、以下の手順を行います:
+1.  GCP 上に[フィルタリングノードインスタンスを作成して設定][link-docs-gcp-node-setup]します。
 
     !!! warning "フィルタリングノードにインターネット接続を提供する"
-        フィルタリングノードは適切な操作のためにWallarm APIサーバーへのアクセスが必要です。Wallarm APIサーバの選択は使用するWallarm Cloudによります：
-
-        * US Cloudを使用している場合、ノードには`https://us1.api.wallarm.com`へのアクセスが必要です。
-        * EU Cloudを使用している場合、ノードには`https://api.wallarm.com`へのアクセスが許可されている必要があります。
+        フィルタリングノードは適切に動作するために Wallarm API サーバーへのアクセスが必要です。Wallarm API サーバーの選択は使用する Wallarm Cloud によります:
+        
+        * US Cloud を使用している場合、ノードに `https://us1.api.wallarm.com`へのアクセス許可が必要です。
+        * EU Cloud を使用している場合、ノードに `https://api.wallarm.com`へのアクセス許可が必要です。
     
-    --8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
+    --8<-- "../include/gcp-autoscaling-connect-ssh.md"
 
-2.  [フィルタリングノードをWallarm Cloudに接続します][link-cloud-connect-guide]。
+2.  フィルタリングノードを[Wallarm Cloud に接続][link-cloud-connect-guide]します。
 
-    !!! warning "トークンを使用してWallarm Cloudに接続する"
-        フィルタリングノードをトークンを使用してWallarm cloudに接続する必要があることに注意してください。同じトークンを使用して、複数のフィルタリングノードがWallarm cloudに接続することができます。
+    !!! warning "トークンを使って Wallarm Cloud に接続する"
+        フィルタリングノードはトークンを使って Wallarm Cloud に接続する必要があります。複数のフィルタリングノードが同じトークンを使用して Wallarm Cloud に接続することが許されています。
+       
+        したがって、オートスケール時に各フィルタリングノードを手動で Wallarm Cloud に接続する必要はありません。
 
-        従って、自動スケールしたときにフィルタリングノードを手動でWallarm Cloudに接続する必要はありません。
+3.  フィルタリングノードを、Webアプリケーションの逆プロキシとして[設定][link-docs-reverse-proxy-setup]します。
 
-3.  [フィルタリングノードをWebアプリケーションのリバースプロキシとして動作するように設定します][link-docs-reverse-proxy-setup]。
+4.  フィルタリングノードが正しく設定され、悪意のあるリクエストから Web アプリケーションを保護していることを[確認][link-docs-check-operation]します。
 
-4.  [フィルタリングノードが正しく設定され、Webアプリケーションを悪意のあるリクエストから保護していることを確認します][link-docs-check-operation]。
-
-フィルタリングノードの設定が完了したら、以下の手順を完了して仮想マシンをオフにします：
-1.  メニューの**Compute Engine**セクションにある**VM Instances**ページに移動します。
-2.  **Connect**列の右側にあるメニューボタンをクリックしてドロップダウンメニューを開きます。
-3.  ドロップダウンメニューで**Stop**を選択します。
+フィルタリングノードの設定が完了したら、以下の操作を完了させることにより、仮想マシンをオフにします:
+1.  メニューの **Compute Engine** セクションの **VM インスタンス** ページに移動します。
+2.  **接続** 列の右側にあるメニューボタンをクリックしてドロップダウンメニューを開きます。
+3.  ドロップダウンメニューで **停止** を選択します。
 
 ![!仮想マシンをオフにする][img-vm-instance-poweroff]
 
-!!! info "`poweroff`コマンドを使用してオフにする"
-    SSHプロトコルを経由して仮想マシンに接続し、次のコマンドを実行して仮想マシンをオフにすることもできます：
-
+!!! info "`poweroff` コマンドを使用しての停止"
+    SSH プロトコルを通じて接続し、次のコマンドを実行することにより、仮想マシンをオフにすることもできます:
+    
     ``` bash
  	poweroff
  	```
 
 ##  2.  仮想マシンイメージの作成
 
-設定済みのフィルタリングノードインスタンスを基にした仮想マシンイメージを作成することができます。画像を作成するには、以下の手順を実行します：
-1.  メニューの**Compute Engine**セクションにある**Images**ページに移動し、**Create image**ボタンをクリックします。
-2.  **Name**フィールドにイメージ名を入力します。
-3.  **Source**ドロップダウンリストから**Disk**を選択します。
-4.  **Source disk**ドロップダウンリストから[以前に作成された][anchor-node]仮想マシンインスタンスの名前を選択します。
+設定済みのフィルタリングノードインスタンスを基に仮想マシンイメージを作成することができます。イメージを作成するには、以下の手順を行います:
+1.  メニューの **Compute Engine** セクションの **Images** ページに移動し、**イメージ作成** ボタンをクリックします。
+2.  **Name** フィールドにイメージ名を入力します。
+3.  **Source** のドロップダウンリストから **Disk** を選択します。
+4.  **Source disk** のドロップダウンリストから、[事前に作成した][anchor-node] 仮想マシンインスタンスの名前を選択します。
 
-    ![!画像を作成する][img-create-image]
+    ![!イメージの作成][img-create-image]
 
-5.  **Create**ボタンをクリックして、仮想マシン画像の作成プロセスを開始します。
+5.  仮想マシンイメージの作成プロセスを開始するために、**Create** ボタンをクリックします。
 
-画像の作成プロセスが終了すると、利用可能な画像のリストが含まれるページにリダイレクトされます。画像が正常に作成され、リストに表示されていることを確認します。
+イメージ作成プロセスが完了すると、利用可能なイメージのリストが含まれているページに移動します。イメージが正常に作成され、リストに存在することを確認してください。
 
-![!画像リスト][img-check-image]
+![!イメージリスト][img-check-image]
 
-これで、準備したイメージを使用して、Google Cloud Platform上のWallarmフィルタリングノードの自動スケーリングを[設定する][link-docs-gcp-autoscaling]ことができます。
+これで、準備したイメージを使用して、Google Cloud Platform 上の Wallarm フィルタリングノードの[オートスケーリングを設定][link-docs-gcp-autoscaling]することができます。

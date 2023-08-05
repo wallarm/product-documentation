@@ -1,19 +1,19 @@
-トラフィックミラーリングのためのTraefik設定例
+# トラフィックミラーリングのためのTraefik設定例
 
-この記事では、Traefikを使用して[トラフィックをミラーリングし、Wallarmノードにルーティングする](overview.md)ために必要な設定例を提供します。
+この記事では、トラフィックをミラーリングし、[Wallarmノードへルーティングするため](overview.md)に必要なTraefikの設定例を提供します。
 
-## ステップ1: トラフィックのミラーリングを行うようTraefikを設定
+## ステップ1：トラフィックをミラーリングするようにTraefikを設定します
 
-以下の設定例は、[`動的設定ファイル`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)アプローチに基づいています。Traefik Webサーバーは他の設定モードもサポートしており、それらの構造が似ているため、提供されているものを簡単に調整して使用することができます。
+次の設定例は、[`動的設定ファイル`](https://doc.traefik.io/traefik/reference/dynamic-configuration/file/)のアプローチに基づいています。Traefikウェブサーバーは他の設定モードもサポートしており、それらは似た構造を持っているため、提供されたものを簡単にそれらに合わせて調整することができます。
 
 ```yaml
 ### 動的設定ファイル
-### 注: entrypointsは静的設定ファイルに記述されています
+### 注：エントリーポイントは静的設定ファイルで説明されています
 http:
   services:
-    ### オリジナルの`services`とwallarmをマッピングする方法。
-    ### 以下の`routers`設定で (参照)、このサービスの名前（`with_mirroring`）を
-    ### 使用してください。
+    ### オリジナルとwallarm `services`をマッピングする方法です。
+    ### さらなる `routers`設定（下記参照）では、
+    ### このサービスの名前（`with_mirroring`）を使用してください。
     ###
     with_mirroring:
       mirroring:
@@ -23,14 +23,16 @@ http:
             percent: 100
 
     ### トラフィックをミラーリングする`service` - エンドポイント
-    ### は、オリジナルの`service`からミラーリング（複製）されたリクエストを受信する必要があります。
+    ### オリジナルの`service`からミラーリング（コピー）
+    ### されたリクエストを受け取るべきです。
     ###
     wallarm:
       loadBalancer:
         servers:
           - url: "http://wallarm:8445"
 
-    ### オリジナルの`service` 。このサービスはオリジナルのトラフィックを受信する必要があります。
+    ### オリジナルの`service`。このサービスは
+    ### オリジナルのトラフィックを受け取るべきです。
     ###
     httpbin:
       loadBalancer:
@@ -38,7 +40,8 @@ http:
           - url: "http://httpbin:80/"
 
   routers:
-    ### ルーターの名前は、トラフィックミラーリングが機能するために`service`の名前と同じである必要があります（with_mirroring）。
+    ### ルーターの名前は、トラフィックミラーリングが
+    ### 機能するためには`service`の名前と同じである必要があります（with_mirroring）。
     ###
     with_mirroring:
       entryPoints:
@@ -55,8 +58,8 @@ http:
       service: "httpbin"
 ```
 
-[Traefikのドキュメントを調べる](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
+[Traefikのドキュメンテーションを確認する](https://doc.traefik.io/traefik/routing/services/#mirroring-service)
 
-## ステップ2: ミラーリングされたトラフィックをフィルタリングするようWallarmノードを設定
+## ステップ2：Wallarmノードをミラーリングされたトラフィックをフィルタリングするように設定します
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

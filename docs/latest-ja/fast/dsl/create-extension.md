@@ -12,43 +12,43 @@
 [img-vulns]:            ../../images/fast/dsl/en/create-extension/vulnerabilities.png
 [img-vuln-details]:     ../../images/fast/dsl/en/create-extension/vuln_details.png
 
-[anchor-meta-info]:     #structure-of-the-meta-info-section
+[anchor-meta-info]:     #meta-infoセクションの構造
 
-# The Creation of FAST Extensions
+# FAST拡張の作成
 
-!!! info "Request elements description syntax"
-    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+!!! info "リクエスト要素説明シンタックス"
+    FASTの拡張を作成する際、アプリケーションに送信されたHTTPリクエストの構造と、アプリケーションから受信したHTTPレスポンスの構造を理解する必要があります。これにより、pointsを使用して作業する必要があるリクエスト要素を正確に説明することができます。
 
-    To see detailed information, proceed to this [link][link-points].
+    詳細な情報については、この[リンク][link-points]を参照してください。
 
-The FAST extensions are created by describing all of the sections that are required for the extension to operate in the corresponding YAML file. Extensions of a different type use their own set of sections ([detailed information about the extension types][link-ext-logic]).
+FAST拡張は、拡張が操作に必要なすべてのセクションを対応するYAMLファイルに記述して作成されます。違うタイプの拡張はそれぞれのセクションセットを使用します（拡張タイプに関する詳細情報は[こちら][link-ext-logic]をご覧ください）。
 
-##  The Sections in Use
+##  使用されるセクション
 
-### Modifying Extension
+### 修改拡張
 
-This type of extension makes use of the following sections:
-* The obligatory sections:
-    * `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
-    * `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
-* The optional sections (may be absent):
-    * `collect`—contains a description of the optional Collect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-collect].
-    * `match`—contains a description of the optional Match phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-match].
-    * `modify`—contains a description of the optional Modify phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-modify].
-    * `generate`—contains a description of the optional Generate phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-generate].
-
-
-### Nonmodifying Extension
-
-This type of extension makes use of the following obligatory sections:
-* `meta-info`—contains information about the vulnerability that is to be discovered by the extension. The structure of this section is described [below][anchor-meta-info].
-* `send`—contains predefined test requests to be sent to a host that is listed in a baseline request. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-send].
-* `detect`—contains a description of the obligatory Detect phase. To see detailed information about this phase and the structure of the corresponding section, proceed to this [link][link-detect].
+このタイプの拡張は以下のセクションを使用します：
+* 必須のセクション：
+    * `meta-info`—拡張によって発見されるべき脆弱性に関する情報を含みます。このセクションの構造は[こちら][anchor-meta-info]で説明されています。
+    * `detect`—必須のDetectフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-detect]のリンク先を参照してください。
+* オプションのセクション（欠落していても構いません）：
+    * `collect`—オプションのCollectフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-collect]のリンク先を参照してください。
+    * `match`—オプションのMatchフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-match]のリンク先を参照してください。
+    * `modify`—オプションのModifyフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-modify]のリンク先を参照してください。
+    * `generate`—オプションのGenerateフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-generate]のリンク先を参照してください。
 
 
-##  Structure of the `meta-info` Section
+### 非修改拡張
 
-The informational `meta-info` section has the following structure:
+このタイプの拡張は以下の必須セクションを使用します：
+* `meta-info`—拡張によって発見されるべき脆弱性に関する情報を含みます。このセクションの構造は[こちら][anchor-meta-info]で説明されています。
+* `send`—ベースラインリクエストでリストされているホストに送信する予定のテストリクエストを含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-send]のリンク先を参照してください。
+* `detect`—必須のDetectフェーズの説明を含みます。このフェーズと対応するセクションの構造についての詳細な情報については、[こちら][link-detect]のリンク先を参照してください。
+
+
+##  `meta-info`セクションの構造
+
+情報的`meta-info`セクションは次の構造を持っています：
 
 ```
 meta-info:
@@ -58,29 +58,29 @@ meta-info:
   - description:
 ```
 
-* `title` — an optional title string that describes a vulnerability. The specified value will be shown in the list of the detected vulnerabilities on the Wallarm web interface in the “Title” column. It can be used to identify either the vulnerability or the certain extension that detected the vulnerability.
+* `title` — 脆弱性を説明するオプショナルのタイトル文字列です。指定された値は、Wallarmウェブインターフェースの検出された脆弱性のリストの「タイトル」列に表示されます。これは脆弱性または脆弱性を検出した特定のエクステンションを識別するために使用できます。
 
-    ??? info "Example"
-        `title: "Example vulnerability"`
+    ??? info "例"
+        `title: "例の脆弱性"`
 
-* `type` — an obligatory parameter that describes the type of vulnerability that the extension is trying to exploit. The specified value will be shown in the “Type” column of the list of detected vulnerabilities on the Wallarm web interface. The parameter can The parameter can take one of the values which are described [here][link-vuln-list].
-   
-    ??? info "Example"
+* `type` — 拡張が試みている脆弱性のタイプを説明する必須パラメータです。指定された値は、Wallarmウェブインターフェースの検出された脆弱性のリストの「タイプ」列に表示されます。パラメータには[こちら][link-vuln-list]に記述されている値のいずれかを指定できます。
+
+    ??? info "例"
         `type: sqli`    
 
-* `threat` — optional parameter that defines the vulnerability threat level. The specified value will be graphically displayed in the list of the detected vulnerabilities on the Wallarm web interface in the “Risk” column. The parameter can be assigned an integer value in a range from 1 to 100. The larger the value, the higher the threat level of the vulnerability. 
+* `threat` — 脆弱性の脅威レベルを定義するオプショナルパラメータです。指定された値は、Wallarmウェブインターフェースの検出された脆弱性のリストの「リスク」列でグラフィカルに表示されます。パラメータには1から100までの整数値を指定できます。値が大きければ大きいほど、脆弱性の脅威レベルが高くなります。
 
-    ??? info "Example"
+    ??? info "例"
         `threat: 20`
     
-    ![!The list of the vulnerabilities found][img-vulns]
+    ![!見つかった脆弱性のリスト][img-vulns]
 
-* `description` — optional string parameter that contains the description of the vulnerability that the extension detects. This information will be shown in the detailed description of the vulnerability.
-    
-    ??? info "Example"
-        `description: "A demonstrational vulnerability"`    
-    
-    ![!Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
+* `description` — 拡張が検出する脆弱性の説明を含むオプショナルな文字列パラメータです。この情報は脆弱性の詳細説明に表示されます。
 
-!!! info "Plugging in FAST extensions"
-    To plug an extension to FAST, you need to mount the directory containing the extension's YAML file to the FAST node Docker container. To see detailed information about the mounting procedure, navigate to this [link][link-extensions].
+    ??? info "例"
+        `description: "実証的な脆弱性"`
+    
+    ![!Wallarmウェブインターフェース上の脆弱性の詳細説明][img-vuln-details]
+
+!!! info "FAST拡張のプラギング"
+    FASTに拡張をプラグするためには、拡張のYAMLファイルが含まれているディレクトリをFASTノードDockerコンテナにマウントする必要があります。マウント手順の詳細な情報については、[こちら][link-extensions]のリンク先を参照してください。

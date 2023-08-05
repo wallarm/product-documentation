@@ -1,12 +1,12 @@
-When upgrading modules 4.x or lower to 4.6 with all-in-one installer, you cannot upgrade an old package installation - instead you need to use a clean machine. Thus, as step 1, prepare a machine with one of the supported OS:
+既存のパッケージのインストールをアップグレードするのではなく、全体的なインストーラーを使って4.x以下のモジュールを4.6にアップグレードする場合、新しくクリーンなマシンを使用する必要があります。したがって、ステップ1として、サポートされているOSの1つがあるマシンを準備します：
 
-* Debian 10, 11 and 12.x
+* Debian 10, 11および12.x
 * Ubuntu LTS 18.04, 20.04, 22.04
 * CentOS 7, 8 Stream, 9 Stream
 * Alma/Rocky Linux 9
 * Oracle Linux 8.x
 * Redos
 * SuSe Linux
-* Others (the list is constantly widening, contact [Wallarm support team](mailto:support@wallarm.com) to check if your OS is in the list)
+* その他（リストは常に広がっています。OSがリストに含まれているかを確認するために、[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください）
 
-Using new clean machine will lead to that at some moment you will have both old and new node, which is good: you can test the new one working properly without stopping the old one.
+新しいクリーンなマシンを使用すると、ある瞬間には古いノードと新しいノードの両方が存在することになり、これは良いことです：古いノードを停止せずに新しいノードが適切に動作していることをテストできます。

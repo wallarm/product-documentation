@@ -3,25 +3,25 @@ wallarm:
   image:
      repository: wallarm/node
      tag: 2.18.1-5
-     pullPolicy: 常に
-  # Wallarm APIエンドポイント:
+     pullPolicy: いつも
+  # Wallarm APIエンドポイント： 
   # EUクラウドの場合は "api.wallarm.com"
   # USクラウドの場合は "us1.api.wallarm.com"
   wallarm_host_api: "api.wallarm.com"
-  # デプロイ役割を持つユーザーのユーザー名
-  deploy_username: "username"
+  # デプロイ役割を持つユーザーのユーザーネーム
+  deploy_username: "ユーザーネーム"
   # デプロイ役割を持つユーザーのパスワード
-  deploy_password: "password"
-  # コンテナが受信リクエストを受け入れるポート。 
-  # この値は、メインアプリコンテナの定義のports.containerPortと一致する必要があります
+  deploy_password: "パスワード"
+  # コンテナが着信リクエストを受け入れるポート、
+  # この値は、あなたのメインアプリケーションコンテナの定義にあるports.containerPortと同じでなければなりません
   app_container_port: 80
-  # リクエストのフィルタリングモード:
-  # 処理を無効にするには "off"
+  # リクエストフィルタリングモード：
+  # リクエスト処理を無効にするには "off"
   # リクエストを処理するがブロックしない場合は "monitoring"
-  # 全てのリクエストを処理し、不正なリクエストをブロックする場合は "block"
+  # すべてのリクエストを処理し、悪意のあるものをブロックする場合は "block"
   mode: "block"
-  # リクエスト解析データのメモリ量（GB）
+  # リクエスト分析データのメモリ量（GB）
   tarantool_memory_gb: 2
-  # IPブロック機能を有効にするには "true" に設定します
+  # IPブロッキング機能を有効にするには "true" を設定
   enable_ip_blocking: "false"
 ```

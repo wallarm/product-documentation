@@ -36,17 +36,17 @@ NGINX Open Source は、nginx.org もしくはご要望、NGINXバージョン�
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/linux-packages/requirements-nginx-distro.md"
+--8<-- "../include/waf/installation/linux-packages/requirements-nginx-distro.md"
 
---8<-- "../include-ja/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-distro.md"
 
 ## 5. Wallarmによるトラフィック分析の有効化
 
---8<-- "../include-ja/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## 6. NGINXの再起動
 
---8<-- "../include-ja/waf/root_perm_info.md"
+--8<-- "../include/waf/root_perm_info.md"
 
 === "Debian"
     ```bash
@@ -63,11 +63,11 @@ NGINX Open Source は、nginx.org もしくはご要望、NGINXバージョン�
 
 ## 7. Wallarm インスタンスへのトラフィック送信の設定
 
---8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
 
 ## 8. Wallarm ノードの動作テスト
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
 ## 9. 展開したソリューションの微調整
 
@@ -86,6 +86,6 @@ Wallarmの設定は、[NGINX指令](../../../../admin-en/configure-parameters-en
 
 * [フィルタリングモードの設定][waf-mode-instr]
 
---8<-- "../include-ja/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
 
 * [NGINXでのダイナミックDNS解決の設定][dynamic-dns-resolution-nginx]

@@ -1,4 +1,2 @@
-```
-!!! warning "注釈 nginx.ingress.kubernetes.io/wallarm-acl-block-page のサポート"
-    Wallarm Ingress コントローラーの注釈 `nginx.ingress.kubernetes.io/wallarm-acl-block-page` は、[Wallarm ノードバージョン 2.18](/admin-en/configuration-guides/configure-block-page-and-code/)でのみサポートされています。
-```
+!!! 警告 "アノテーション nginx.ingress.kubernetes.io/wallarm-acl-block-pageのサポート"
+    WallarmのIngressコントローラアノテーション `nginx.ingress.kubernetes.io/wallarm-acl-block-page` は [Wallarmノードバージョン 2.18](/admin-en/configuration-guides/configure-block-page-and-code/)でのみサポートされています。

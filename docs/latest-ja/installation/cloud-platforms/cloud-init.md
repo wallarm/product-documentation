@@ -1,27 +1,27 @@
-					# Wallarm cloud-init スクリプトの仕様
+# Wallarm cloud-initスクリプト仕様
 
-Infrastructure as Code（IaC）アプローチに従っている場合、Wallarmノードをパブリッククラウドにデプロイするための [`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html) スクリプトを使用する必要があるかもしれません。リリース4.0以降、Wallarmはこのトピックで説明されている `cloud-init.py` スクリプトを使用準備ができた状態でクラウドイメージを配布しています。
+Infrastructure as Code (IaC)アプローチに従っている場合、パブリッククラウドにWallarmノードをデプロイするために[`cloud-init`](https://cloudinit.readthedocs.io/en/latest/index.html)スクリプトが必要になるかもしれません。リリース4.0から、Wallarmはこのトピックで説明される用意して使い始めることができる`cloud-init.py`スクリプトを含むクラウドイメージを配布しています。
 
-## Wallarm cloud-init スクリプトの概要
+## Wallarm cloud-initスクリプトの概要
 
-Wallarmの `cloud-init` スクリプトは、[Wallarm AWSクラウドイメージ](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe) の `/usr/share/wallarm-common/cloud-init.py` パスで利用できます。このスクリプトでは、以下の主要な段階が含まれた初期および高度なインスタンス構成を実行します。
+Wallarmの`cloud-init`スクリプトは、[Wallarm AWSクラウドイメージ](https://aws.amazon.com/marketplace/pp/prodview-5rl4dgi4wvbfe)の`/usr/share/wallarm-common/cloud-init.py`パスで利用できます。このスクリプトは、初期設定と高度なインスタンス設定を以下の主な段階で実行します：
 
-* Wallarm Cloudで事前に作成されたWallarmノードを実行するために、Wallarmの `register-node` スクリプトを実行します
-* `preset` 変数で指定されたプロキシまたはミラーアプローチに従ってインスタンスを構成（[Terraformモジュール](aws/terraform-module/overview.md)を使ってWallarmをデプロイする場合）
-* NGINXスニペットに従ってインスタンスを微調整します
-* Wallarmノードを微調整します
-* ロードバランサのヘルスチェックを実行します
+* Wallarm `register-node`スクリプトを実行してWallarm Cloudで事前に作成されたWallarmノードを実行 
+* `preset`変数で指定されたプロキシまたはミラーアプローチに従ってインスタンスを設定（Wallarmを[Terraformモジュール](aws/terraform-module/overview.md)でデプロイしている場合）
+* NGINXスニペットに従ってインスタンスを微調整
+* Wallarmノードを微調整
+* ロードバランサーのヘルスチェックを実行
 
-`cloud-init` スクリプトは、インスタンスの起動時に一度だけ実行され、インスタンスの再起動時には実行されません。詳細については、[AWSドキュメントのスクリプトコンセプト](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)を参照してください。
+`cloud-init`スクリプトは、インスタンスブート時に一度だけ実行され、インスタンスの再起動では起動を強制されません。詳細は[AWSドキュメンテーションのスクリプトコンセプト](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)でご覧いただけます。
 
-## Wallarm cloud-init スクリプトの実行方法
+## Wallarm cloud-initスクリプトの実行
 
-Wallarm cloud-init スクリプトは以下のように実行できます。
+Wallarmのcloud-initスクリプトは以下のように実行できます：
 
-* クラウドインスタンスを起動し、そのメタデータを使用して `cloud-init.py` スクリプトの実行を記述します
-* `cloud-init.py` スクリプトを使用したインスタンス起動テンプレートを作成し、それを基に自動スケーリンググループを作成します
+* クラウドインスタンスを起動し、そのメタデータを使用して`cloud-init.py`スクリプトの実行を記述
+* `cloud-init.py`スクリプトと一緒にインスタンスのLaunch Templateを作成し、それを基に自動スケーリンググループを作成
 
-[httpbin.org](https://httpbin.org) のプロキシサーバーとしてWallarmノードを実行するためのスクリプトの実行例：
+[httpbin.org](https://httpbin.org)に対するプロキシサーバーとしてWallarmノードを実行するスクリプトの実行例：
 
 ```bash
 #!/bin/bash
@@ -44,9 +44,9 @@ systemctl restart nginx.service
 echo Wallarm Node successfuly configured!
 ```
 
-Infrastructure as Code（IaC）アプローチに対応するために、Wallarmの `cloud-init` スクリプトの使用例として[AWS用Terraformモジュール](aws/terraform-module/overview.md)を実装しました。
+Infrastructure as Code (IaC)アプローチを満たすために、Wallarmの`cloud-init`スクリプトの使用例となる[AWSのためのTerraformモジュール](aws/terraform-module/overview.md)を実装しました。
 
-## Wallarm cloud-init スクリプトのヘルプデータ
+## Wallarm cloud-initスクリプトヘルプデータ
 
 ```plain
 usage: /usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-register] [-p {proxy,mirror,custom}]
@@ -55,35 +55,32 @@ usage: /usr/share/wallarm-common/cloud-init.py [-h] -t TOKEN [-H HOST] [--skip-r
                                                       [--http-snippet HTTP_SNIPPET_FILE] [--server-snippet SERVER_SNIPPET_FILE]
                                                       [-l LOG_LEVEL]
 
-Runs the Wallarm node with the specified configuration in the PaaS cluster. https://docs.wallarm.com/waf-installation/cloud-
+指定された設定でPaaSクラスタでWallarmノードを実行します。 https://docs.wallarm.com/waf-installation/cloud-
 platforms/cloud-init/
 
-optional arguments:
-  -h, --help            show this help message and exit
+オプション引数：
+  -h, --help            このヘルプメッセージを表示して終了
   -t TOKEN, --token TOKEN
-                        Wallarm node token copied from the Wallarm Console UI.
-  -H HOST, --host HOST  Wallarm API server specific for the Wallarm Cloud being used: https://docs.wallarm.com/about-wallarm-
-                        waf/overview/#cloud. By default, api.wallarm.com.
-  --skip-register       Skips the stage of local running the node created in the Wallarm Cloud (skips the register-node script
-                        execution). This stage is crucial for successful node deployment.
+                        Wallarm Console UIからコピーしたWallarmノードのトークン。
+  -H HOST, --host HOST  使用しているWallarm Cloud専用のWallarm APIサーバー。デフォルトはapi.wallarm.com。 https://docs.wallarm.com/about-wallarm-
+                        waf/overview/#cloud
+  --skip-register       Wallarm Cloudで作成されたノードのローカルの実行ステージをスキップします（register-nodeスクリプトの実行をスキップします）。このステージはノードのデプロイメントの成功にとって重要です。
   -p {proxy,mirror,custom}, --preset {proxy,mirror,custom}
-                        Wallarm node preset: "proxy" for the node to operate as a proxy server, "mirror" for the node to process
-                        mirrored traffic, "custom" for configuration defined via NGINX snippets only.
+                        Wallarmノードのプリセット："proxy"はノードがプロキシサーバーとして動作するため、"mirror"はノードがミラーリングされたトラフィックを処理するため、"custom"はNGINXスニペットのみで定義された設定。
   -m {off,monitoring,safe_blocking,block}, --mode {off,monitoring,safe_blocking,block}
-                        Traffic filtration mode: https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode.
+                        トラフィックフィルタリングモード：https://docs.wallarm.com/admin-en/configure-parameters-en/#wallarm_mode。
   --proxy-pass PROXY_PASS
-                        Proxied server protocol and address. Required if "proxy" is specified as a preset.
-  --libdetection        Whether to use the libdetection library during the traffic analysis: https://docs.wallarm.com/about-wallarm-
-                        waf/protecting-against-attacks.md#library-libdetection.
+                        プロキシサーバーのプロトコルとアドレス。 "proxy"がプリセットとして指定されている場合は必須です。
+  --libdetection        トラフィック分析中にlibdetectionライブラリを使用するかどうか：https://docs.wallarm.com/about-wallarm-
+                        waf/protecting-against-attacks.md#library-libdetection。
   --global-snippet GLOBAL_SNIPPET_FILE
-                        Custom configuration to be added to the NGINX global configuration.
+                        NGINXグローバル設定に追加するカスタム設定。
   --http-snippet HTTP_SNIPPET_FILE
-                        Custom configuration to be added to the "http" configuration block of NGINX.
+                        NGINXの"http"設定ブロックに追加するカスタム設定。
   --server-snippet SERVER_SNIPPET_FILE
-                        Custom configuration to be added to the "server" configuration block of NGINX.
+                        NGINXの"server"設定ブロックに追加するカスタム設定。
   -l LOG_LEVEL, --log LOG_LEVEL
-                        Level of verbosity.
+                        冗長性のレベル。
 
-This script covers a few most popular configurations for AWS, GCP, Azure and other PaaS. If you need a more powerful configuration,
-you are welcome to review Wallarm node public documentation: https://docs.wallarm.com.
+このスクリプトは、AWS、GCP、Azure、その他のPaaSの最も一般的な構成をいくつかカバーしています。 次の構成が必要な場合は、Wallarmノードの公開ドキュメンテーションをご覧ください：https://docs.wallarm.com.
 ```

@@ -2,56 +2,56 @@
 [doc-ssl]:              ssl/intro.md
 [link-token]:           operations/internals.md#token
 
-#   Troubleshooting
+# トラブルシューティング
 
-##  Common Issues and How to Resolve Them
+## 一般的な問題とその解決方法
 
-**What to do if...**
+**もし......**
 
-* **...the FAST node displays one of the following messages on the console output?**
+* **...FASTノードが次のメッセージのいずれかをコンソール出力に表示する場合は?**
 
---8<-- "../include-ja/fast/console-include/tshoot/request-timeout.md"
+--8<-- "../include/fast/console-include/tshoot/request-timeout.md"
     
-    or
+    または
 
---8<-- "../include-ja/fast/console-include/tshoot/access-denied.md"
+--8<-- "../include/fast/console-include/tshoot/access-denied.md"
     
-    **Solution:** make sure that
+    **解決策:** 確認してください:
 
-    * the FAST node and corresponding Docker host have internet access (particularly, the Wallarm `api.wallarm.com` and `us1.api.wallarm.com` API servers should be accessible via `TCP/443`), and
-    * you are using the correct [token][link-token] value and communicating with the appropriate Wallarm API server. Note that FAST employs *different* tokens to connect to the API servers depending on whether they reside in the European or the American clouds.
+    * FASTノードと対応するDockerホストがインターネットアクセスを持っていること（特に、Wallarmの `api.wallarm.com` と `us1.api.wallarm.com` APIサーバーが `TCP/443` でアクセス可能であるべきです）、そして
+    * 適切な[トークン][link-token]値を使用して適切なWallarm APIサーバーと通信していること。FASTは、それらがEuropeanクラウドかAmericanクラウドのどちらに属しているかによって、APIサーバーに接続するための*異なる*トークンを使用します。
     
-* **...a request source does not trust the FAST node's self-signed SSL certificate?**
+* **...リクエストソースがFASTノードの自己署名SSL証明書を信頼しない場合は?**
 
-    **Solution:** set up a trusted SSL certificate by using any method listed in [these instructions][doc-ssl].
+    **解決策:** 任意の方法を使用して信頼できるSSL証明書を設定します。方法は[このドキュメント][doc-ssl]に記載されています。
     
-* **...the FAST node is up and running but no baseline requests are being recorded?**
+* **...FASTノードが起動し動作しているが、ベースラインリクエストが記録されていない場合は?**
 
-    **Solution:** check the following:
+    **解決策:** 次のことを確認してください:
 
-    * The request source is configured to use the FAST node as a proxy server and is supplied with the correct port, domain name, or IP address of the node to connect to.
-    * The request source is using the FAST node as a proxy server for every protocol that is in use by the source (a common situation is that the FAST node is employed as an HTTP proxy, while the request source is trying to send HTTPS requests).
-    * The [`ALLOWED_HOST`][doc-allowed-host] environment variable is configured correctly.
+    * リクエストソースはFASTノードをプロキシサーバーとして使用し、接続するノードの正確なポート、ドメイン名、またはIPアドレスが提供されています。
+    * リクエストソースは、ソースが使用しているすべてのプロトコルについてFASTノードをプロキシサーバーとして使用しています（一般的な状況は、FASTノードがHTTPプロキシとして使用され、一方でリクエストソースがHTTPSリクエストを送信しようとしています）。
+    * [`ALLOWED_HOST`][doc-allowed-host]環境変数が正しく設定されていること。
     
-* **...no FAST tests or custom extensions are running on the FAST node?**
+* **...FASTノード上でFASTテストやカスタム拡張が実行されていない場合は?**
 
-    **Solution:** check that the FAST node records baseline requests and that these baseline requests comply with the test policy that is in use by the node.
+    **解決策:** FASTノードがベースラインリクエストを記録し、これらのベースラインリクエストがノードが使用しているテストポリシーに準拠していることを確認します。
 
-##  Contacting the Support Team
+## サポートチームへのお問い合わせ
 
-If you either cannot find your issue in the list above, or consider the solution unhelpful, contact the Wallarm support team.
+上記のリストに問題が見つからない場合、または解決策が役立たないと思われる場合は、Wallarmのサポートチームにお問い合わせください。
 
-You can either [write an email](mailto:support@wallarm.com) or fill in the form on the Wallarm portal. To send a feedback through the portal, do the following:
+[電子メールを送信する](mailto:support@wallarm.com)か、Wallarmポータルのフォームに記入してください。ポータルを通じてフィードバックを送信するには、以下の手順を行います:
 
-* Click the question mark in the top right corner of the portal.
-* In the opened sidebar, select the “Wallarm Support” entry.
-* Write and send an email.
+* ポータルの右上隅にあるクエスチョンマークをクリックします。
+* 開いたサイドバーで「Wallarm Support」を選択します。
+* メールを書き出して送信します。
 
-##  Collecting Diagnostic Data
+## 診断データの収集
 
-A member of the Wallarm support team may ask you to collect a piece of diagnostic data concerning the FAST node.
+WallarmサポートチームのメンバーがFASTノードに関する診断データの一部の収集をお願いすることがあります。
 
-Set a few environment variables, then execute the following commands to collect the data (replace the `<FAST node container's name>` with the real name of the FAST node container that you want to fetch the diagnostic data from):
+いくつかの環境変数を設定し、次のコマンドを実行してデータを収集します（`<FAST node container's name>` を診断データを取得したいFASTノードコンテナの実際の名前で置き換えてください）:
 
 ```
 FAST_IMAGE_VERSION=`docker image inspect wallarm/fast | grep version | tail -n1 | awk '{print $2}' | sed 's/"//g'`
@@ -62,4 +62,4 @@ docker exec -e IMAGE_VERSION=$FAST_IMAGE_VERSION <FAST node container's name> /u
 docker cp <FAST node container's name>:/opt/diag/fast_supout.tar.gz fast_supout-$TIMESTAMP.tar.gz
 ```
 
-After the successful execution of these commands, the diagnostic data will be placed in the `fast_supout-$TIMESTAMP.tar.gz` archive on the Docker host. The `$TIMESTAMP` in the archive name will represent the collection time.
+これらのコマンドを正常に実行すると、診断データはDockerホストの `fast_supout-$TIMESTAMP.tar.gz` アーカイブに格納されます。アーカイブ名の `$TIMESTAMP` は収集時刻を表します。

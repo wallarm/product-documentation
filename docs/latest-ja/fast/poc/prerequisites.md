@@ -8,39 +8,39 @@
 [doc-integration-overview]: integration-overview.md
 
 
-#   Integration Prerequisites
+#   統合前提条件
 
-To enable integrating FAST into a CI/CD workflow, you will need
+FASTをCI / CDワークフローに統合するには、次のものが必要です：
 
-* Access to the Wallarm portal and a Wallarm account.
+* WallarmポータルへのアクセスとWallarmのアカウント。
     
-    Create an [account][link-fast-trial] if you do not have one (this account will be tied to the American cloud)
+    アカウントがない場合は[ここ][link-fast-trial]から作成してください（このアカウントはAmerican cloudに紐づけられます）
     
-* The FAST node's Docker container should have access to the `us1.api.wallarm.com` Wallarm API server via the HTTPS protocol (`TCP/443`)
---8<-- "../include-ja/fast/cloud-note.md"
+* FASTノードのDockerコンテナは、HTTPSプロトコル（`TCP/443`）を介して`us1.api.wallarm.com` Wallarm APIサーバーにアクセスできる必要があります。
+--8<-- "../include/fast/cloud-note.md"
 
- * Permissions to create and run Docker containers for your CI/CD workflow
+ * CI / CDワークフローにDockerコンテナを作成および運用するための権限
     
-* A web application or API to test for vulnerabilities (a *target application*)
+* 脆弱性をテストするウェブアプリケーションまたはAPI（*ターゲットアプリケーション*）
     
-    It is mandatory that this application use the HTTP or HTTPS protocol for communication.
+    このアプリケーションはHTTPまたはHTTPSプロトコルを使用して通信しなければなりません。
     
-    The target application should remain available until the FAST security testing finishes.
+    ターゲットアプリケーションは、FASTのセキュリティテストが終了するまで利用可能でなければなりません。
     
-* A test tool that will test the target application using HTTP and HTTPS requests (a *request source*).
+* HTTPおよびHTTPSリクエストを使用してターゲットアプリケーションをテストするテストツール（*リクエストソース*）。
     
-    A request source should be able to work with an HTTP or HTTPS proxy server.
+    リクエストソースはHTTPまたはHTTPSプロキシサーバーで動作できる必要があります。
     
-    [Selenium][link-selenium] is an example of a test tool that satisfies the mentioned requirements.
+    [Selenium][link-selenium]は、以上の要件を満たすテストツールの一例です。
     
-* One or more [tokens][doc-about-token].
+* 1つ以上の[トークン][doc-about-token]。
     <p id="anchor-token"></p>
 
-    [Create a FAST node][doc-create-node] in the Wallarm cloud and use the corresponding token in the Docker container when performing a CI/CD task.  
+    Wallarmのクラウドで[FASTノードを作成][doc-create-node]し、CI/CDタスクを実行する際のDockerコンテナで対応するトークンを使用します。
     
-    The token will be employed by the Docker container with the FAST node during the CI/CD job execution.
+    このトークンは、CI/CDジョブ実行中のFASTノードを持つDockerコンテナによって使用されます。
 
-    If you have several CI/CD jobs that are running simultaneously, create an appropriate number of FAST nodes in the Wallarm cloud.
+    同時に実行されているいくつかのCI/CDジョブがある場合は、Wallarmのクラウドで適切な数のFASTノードを作成します。
 
-    !!! info "An example token"
-        The `token_Qwe12345` value is used as an example of a token throughout this guide.    
+    !!! info "トークンの例"
+        このガイド全体で`token_Qwe12345` の値がトークンの例として使用されます。

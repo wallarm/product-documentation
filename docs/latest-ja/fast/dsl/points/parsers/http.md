@@ -16,11 +16,11 @@
 [anchor6]:      #header-filter
 [anchor7]:      #post-filter
 
-# HTTP Parser
+# HTTP パーサー
 
-The implicit **HTTP parser** performs the annual request processing. Its name should not be specified in a point upon using filters provided by it.
+暗黙の**HTTP パーサー**は年間のリクエスト処理を行います。その名前は、それによって提供されるフィルターを使用する際に、ポイントで指定する必要はありません。
 
-The HTTP parser builds a complex data structure on the basis of the baseline request. You can use the following filters to address the elements of this data structure:
+HTTP パーサーは、基本リクエストに基づいて複雑なデータ構造を構築します。このデータ構造の要素にアクセスするために以下のフィルターを使用できます：
 
 * [URI][anchor1];
 * [Path][anchor2];
@@ -30,110 +30,105 @@ The HTTP parser builds a complex data structure on the basis of the baseline req
 * [Header][anchor6];
 * [Post][anchor7].
 
-!!! info "Using filters in points"
-    Add the name of the filter in upper case to the point to use the filter in the point.
+!!! info "ポイントでのフィルターの使用"
+    ポイントでフィルターを使用するには、フィルターの名前を大文字でポイントに追加します。
 
-## URI Filter
+## URI フィルター
 
-The **URI** filter refers to the absolute path to the request target. The absolute path starts with the `/` symbol that follows the domain or the IP address of the target.
+**URI**フィルターは、リクエスト対象への絶対パスを指します。絶対パスは、ターゲットのドメインまたはIPアドレスに続く`/`記号で始まります。
 
-The URI filter refers to a string value. This filter cannot refer to complex data structures (such as arrays or hash tables).
+URIフィルターは文字列値を指します。このフィルターは複雑なデータ構造（配列やハッシュテーブルなど）を参照することはできません。
 
-**Example:** 
+**例：** 
 
-The `URI_value` point refers to the `/login/index.php` string in the `GET http://example.com/login/index.php` request.
-
-
-## Path Filter
-
-The **Path** filter refers to an array containing URI path parts. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`.
-
-!!! info "Regular expressions in points"
-    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
-
-**Example:** 
-
-For the `GET http://example.com/main/login/index.php HTTP/1.1` request, the Path filter refers to the following array:
-
-| Index  | Value    |
-|--------|----------|
-| 0      | main     |
-| 1      | login    |
-
-* The `PATH_0_value` point refers to the `main` value that is located in the array addressed by the Path filter with the `0` index.
-* The `PATH_1_value` point refers to the `login` value that is located in the array addressed by the Path filter with the `1` index.
-
-If the request URI contains only one part, the Path filter addresses the empty array.
-
-**Example:**
-
-For the `GET http://example.com/ HTTP/1.1` request, the Path filter refers to an empty array.
-
-## Action_name Filter
-
-The **Action_name** filter refers to the part of the URI that starts after the last `/` symbol and ends with the period.
-
-The Action_name filter refers to a string value. This filter cannot refer to complex data structures (such as arrays or hash tables).
+`URI_value`ポイントは、`GET http://example.com/login/index.php` リクエスト中の `/login/index.php` 文字列を指します。
 
 
-**Example:** 
-* The `ACTION_NAME_value` point refers to the `index` value for the `GET http://example.com/login/index.php` request.
+## Path フィルター
 
-* The `ACTION_NAME_value` point refers to the empty value for the `GET http://example.com/login/` request.
+**Path** フィルターは、URIパスのパーツを含む配列を参照します。この配列の要素は、そのインデックスを使用して参照する必要があります。配列のインデックス付けは`0`から始まります。
 
+!!! info "ポイントでの正規表現"
+    ポイントでのインデックスは、[Ruby プログラミング言語][link-ruby]の正規表現になることがあります。
 
-## Action_ext Filter
+**例：** 
 
-The **Action_ext** filter refers to the part of the URI that starts after the first period following the last `/` symbol. If this part of the URI is missing from the request, the Action_ext filter cannot be used in the point.
+`GET http://example.com/main/login/index.php HTTP/1.1`のリクエストに対して、Path フィルターは次の配列を参照します：
 
-The Action_ext filter refers to a string value. This filter cannot refer to complex data structures (such as arrays or hash tables).
+| インデックス  | 値       |
+|--------|------------|
+| 0      | main       |
+| 1      | login      |
 
-**Example:** 
+* `PATH_0_value` ポイントは、`0` インデックスの Path フィルターによってアドレス指定された配列内の `main` 値を参照します。
+* `PATH_1_value` ポイントは、`1` インデックスの Path フィルターによってアドレス指定された配列内の `login` 値を参照します。
 
-* The `ACTION_EXT_value` point refers to the `php` value for the `GET http://example.com/main/login/index.php` request.
-* The Action_ext filter cannot be used in the point that refers the `GET http://example.com/main/login/` request.
+リクエストURIが一部のみを含む場合、Path フィルターは空の配列を参照します。
 
-## Get Filter
+**例：**
 
-The **Get** filter refers to the hash table that contains parameters from the request query string. The elements of this hash table need to be referred to by using the names of the parameters.
+`GET http://example.com/ HTTP/1.1` のリクエストに対して、Path フィルターは空の配列を参照します。
 
-!!! info "Regular expressions in points"
-    The name of the parameter in the point can be a regular expression of the [Ruby programming language][link-ruby].
+## Action_name フィルター
 
-Query string parameters may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-get-array] and [Hash][link-get-hash] filters correspondingly to address the elements in these structures.
+**Action_name** フィルターは、URIの最後の`/`記号の後から始まり、ピリオドで終わる部分を参照します。
 
-**Example:** 
+Action_nameフィルタは文字列値を指します。このフィルターは複雑なデータ構造（配列やハッシュテーブルなど）を参照することはできません。
 
-For the `POST http://example.com/login?id=01234&username=admin` request, the Get filter refers to the following hash table:
+**例：** 
+* `ACTION_NAME_value` ポイントは、`GET http://example.com/login/index.php` のリクエストに対して `index` 値を参照します。
+* `ACTION_NAME_value` ポイントは、`GET http://example.com/login/` のリクエストに対して空の値を参照します。
 
-| Parameter name | Value |
-|----------------|-------|
-| id             | 01234 |
-| username       | admin |
+## Action_ext フィルター
 
-* The `GET_id_value` point refers to the `01234` value that corresponds to the `id` parameter from the hash table addressed by the Get filter.
-* The `GET_username_value` point refers to the `admin` value that corresponds to the `username` parameter from the hash table addressed by the Get filter.
+**Action_ext** フィルターは、URIの最後の`/`記号に続く最初のピリオドの後から始まる部分を参照します。このURIの部分がリクエストから欠落している場合、Action_extフィルタはポイントで使用できません。
 
+Action_extフィルターは文字列値を指します。このフィルターは複雑なデータ構造（配列やハッシュテーブルなど）を参照することはできません。
 
-## Header Filter
+**例：** 
 
-The **Header** filter refers to the hash table that contains header names and values. The elements of this hash table need to be referred to by using the names of the headers.
+* `ACTION_EXT_value` ポイントは、`GET http://example.com/main/login/index.php`のリクエストに対して `php` 値を参照します。
+* `GET http://example.com/main/login/` のリクエストを指すポイントでは、Action_ext フィルターは使用できません。
 
-!!! info "A header name in a point"
-    A header name can be specified in a point in one of the following ways:
+## Get フィルター
 
-    * In upper case
-    * The same way it is specified in the request
+**Get** フィルターは、リクエストのクエリ文字列からのパラメータを含むハッシュテーブルを参照します。このハッシュテーブルの要素は、パラメータの名前を使用して参照する必要があります。
 
-!!! info "Regular expressions in points"
-    The header name in the point can be a regular expression of the [Ruby programming language][link-ruby].
+!!! info "ポイントでの正規表現"
+    ポイントでのパラメータ名は、[Ruby プログラミング言語][link-ruby]の正規表現になることがあります。
 
+クエリ文字列のパラメータは、配列やハッシュテーブルといった複雑なデータ構造も含むことがあります。これらの構造内の要素にアクセスするには、それぞれに対応する[Array][link-get-array] フィルターや [Hash][link-get-hash] フィルターを使用します。
 
-The name of the header can also contain an array of values. Use the [Array][link-header-array] filter to address the elements of this array.
+**例：** 
 
-**Example:** 
+`POST http://example.com/login?id=01234&username=admin` のリクエストに対して、Get フィルターは次のハッシュテーブルを参照します：
 
-For the
+| パラメーター名 | 値     |
+|----------------|---------|
+| id             | 01234   |
+| username       | admin   |
+
+* `GET_id_value` ポイントは、Get フィルターによってアドレス指定されたハッシュテーブルから `id` パラメータに対応する `01234` 値を参照します。
+* `GET_username_value` ポイントは、Get フィルターによってアドレス指定されたハッシュテーブルから `username` パラメータに対応する `admin` 値を参照します。
+
+## Header フィルター
+
+**Header** フィルターは、ヘッダー名と値を含むハッシュテーブルを参照します。このハッシュテーブルの要素は、ヘッダーの名前を使用して参照する必要があります。
+
+!!! info "ポイントでのヘッダー名"
+    ヘッダー名は、以下のいずれかの方法でポイントに指定できます：
+
+    * 大文字で
+    * リクエストで指定されているのと同じ方法
+
+!!! info "ポイントでの正規表現"
+    ポイントでのヘッダー名は、[Ruby プログラミング言語][link-ruby]の正規表現になることがあります。
+
+ヘッダーの名前には値の配列も含めることができます。この配列の要素にアクセスするには、[Array][link-header-array] フィルタを使用します。
+
+**例：** 
+
+以下のリクエスト、
 
 ```
 GET /login/index.php HTTP/1.1
@@ -142,29 +137,25 @@ Host: example.com
 Accept-encoding: gzip
 ```
 
-request, the Header filter refers to the following hash table:
+に対して、Header フィルターは次のハッシュテーブルを参照します：
 
-| Header name     | Value       |
-|-----------------|-------------|
-| Connection      | keep-alive  |
-| Host            | example.com |
-| Accept-Encoding | gzip        |
+| ヘッダー名        | 値            |
+|-----------------|----------------|
+| Connection      | keep-alive     |
+| Host            | example.com    |
+| Accept-Encoding | gzip           |
 
-* The `HEADER_Connection_value` point refers to the `keep-alive` value that corresponds to the `Connection` header from the hash table addressed by the Header filter.
-* The `HEADER_Host_value` point refers to the `example.com` value that corresponds to the `Host` header from the hash table addressed by the Header filter.
-* The `HEADER_Accept-Encoding_value` point refers to the `gzip` value that corresponds to the `Accept-Encoding` header from the hash table addressed by the Header filter.
+* `HEADER_Connection_value` ポイントは、Header フィルターによってアドレス指定されたハッシュテーブルから `Connection` ヘッダに対応する `keep-alive` 値を参照します。
+* `HEADER_Host_value` ポイントは、Header フィルターによってアドレス指定されたハッシュテーブルから `Host` ヘッダーに対応する `example.com` 値を参照します。
+* `HEADER_Accept-Encoding_value` ポイントは、Header フィルターによってアドレス指定されたハッシュテーブルから `Accept-Encoding` ヘッダーに対応する `gzip` 値を参照します。
 
+## Post フィルター
 
+**Post** フィルターはリクエストボディの内容を参照します。
 
-## Post Filter
+ポイントで Post フィルターの名前を使用して、リクエストボディの内容を生形式で操作することができます。
 
-The **Post** filter refers to the request body contents.
-
-You can use the name of the Post filter in the point to work with the request body contents in raw format.
-
-**Example:** 
-
-For the
+**例：** 
 
 ```
 POST http://example.com/main/index.php HTTP/1.1
@@ -172,16 +163,16 @@ Content-Type: text/plain
 Content-Length: 28
 ```
 
-request with the
+というリクエストと、
 
 ```
 This is a simple body text.
 ```
 
-body, the `POST_value` point refers to the `This is a simple body text.` value from the request body.
+というボディを持つ場合、`POST_value` ポイントは、リクエストボディから `This is a simple body text.` 値を参照します。
 
-You can also work with a request body that contains complex data structures. Use the following filters and parsers in the point after the Post filter to address the elements of the corresponding data structures: 
-* The [Form_urlencoded][link-formurlencoded] parser for the request body in the **form-urlencoded** format
-* The [Multipart][link-multipart] parser for the request body in the **multipart** format
-* The [filters that are provided by the XML parser][link-xml] for the request body in the **XML** format
-* The [filters that are provided by the Json_doc parser][link-json] for the request body in the **JSON** format 
+また、リクエストボディ内に複雑なデータ構造が含まれている場合も対応可能です。対応するデータ構造の要素をアドレス指定するために、Post フィルターの後のポイントで以下のフィルターやパーサーを使用します： 
+* **form-urlencoded** 形式のリクエストボディに対しては、[Form_urlencoded][link-formurlencoded] パーサー
+* **multipart** 形式のリクエストボディに対しては、[Multipart][link-multipart] パーサー
+* **XML** 形式のリクエストボディに対しては、[XML パーサーが提供するフィルター][link-xml]
+* **JSON** 形式のリクエストボディに対しては、[Json_doc パーサーが提供するフィルター][link-json]

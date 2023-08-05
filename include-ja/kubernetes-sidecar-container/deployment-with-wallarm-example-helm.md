@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    # Wallarm要素：Wallarm ConfigMapを変更した後に実行中のポッドを更新するための注釈
-    checksum/config: '{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}'
+    # Wallarm の要素：Wallarm の ConfigMap を変更した後に実行中のポッドを更新するアノテーション
+    checksum/config: 「{{ include (print $.Template.BasePath "/wallarm-sidecar-configmap.yaml") . | sha256sum }}」
   name: myapp
 spec:
   selector:
@@ -16,7 +16,7 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm要素：Wallarmサイドカーコンテナの定義
+        # Wallarm の要素：Wallarm のサイドカーコンテナの定義
         - name: wallarm
           image: {{ .Values.wallarm.image.repository }}:{{ .Values.wallarm.image.tag }}
           imagePullPolicy: {{ .Values.wallarm.image.pullPolicy | quote }}
@@ -35,7 +35,7 @@ spec:
             value: {{ .Values.wallarm.tarantool_memory_gb | quote }}
           ports:
           - name: http
-            # WallarmサイドカーコンテナがServiceオブジェクトからのリクエストを受け付けるポート
+            # Wallarm のサイドカーコンテナがServiceオブジェクトからのリクエストを受け取るポート
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
@@ -52,7 +52,7 @@ spec:
           # アプリケーションコンテナが受信リクエストを受け入れるポート
           - containerPort: 8080 
       volumes:
-      # Wallarm要素：wallarm-nginx-confボリュームの定義
+      # Wallarm の要素：wallarm-nginx-conf ボリュームの定義
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

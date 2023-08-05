@@ -8,7 +8,7 @@ spec:
     app: myapp
   ports:
   - port: {{ .Values.service.port }}
-    # Wallarmサイドカーコンテナポート;
-    # この値は、Wallarmサイドカーコンテナの定義のports.containerPortと同一である必要があります
+    # Wallarmのサイドカーコンテナポート
+    # この値はWallarmのサイドカーコンテナの定義内のports.containerPortと同一でなければなりません
     targetPort: 8080
 ```

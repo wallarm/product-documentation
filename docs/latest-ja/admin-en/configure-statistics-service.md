@@ -4,41 +4,41 @@
 
 # 統計サービスの設定
 
-フィルターノードに関する統計情報を取得するには、NGINX設定ファイルに記述されている `wallarm_status` ディレクティブを使用します。
+フィルタノードに関する統計情報を取得するには、NGINXの設定ファイルで記述された `wallarm_status` ディレクティブを使用します。
 
 ## 統計サービスの設定
 
 !!! warning "重要"
-    
-    統計サービスは、別々の設定ファイル `/etc/nginx/conf.d/wallarm-status.conf` に設定することを強くお勧めし、NGINXを設定する際に使用する他のファイルで `wallarm_status` ディレクティブを使用しないでください。後者は安全ではない場合があります。
-    
-    また、既存のデフォルト `wallarm-status` 設定ラインを変更しないことを強くお勧めします。それが Wallarm クラウドへのメトリックデータのアップロードプロセスを破損させる可能性があります。
 
-ディレクティブを使用すると、統計情報を JSON 形式または [Prometheus][link-prometheus] と互換性のある形式で提供できます。使用法:
+    統計サービスの設定を `/etc/nginx/conf.d/wallarm-status.conf` という別の設定ファイルで行い、NGINXの設定に使用されている他のファイルで `wallarm_status` ディレクティブを使用しないことを強く推奨します。なぜなら、後者はセキュリティ上問題がある可能性があります。
+
+    また、デフォルトの `wallarm-status` 設定の既存の行を変更しないことを強く推奨します。これは、メトリックデータのアップロードプロセスをWallarmクラウドに壊す可能性があります。
+
+ディレクティブを使用して、統計はJSON形式或いは[Prometheus][link-prometheus]と互換性のある形式で提供することができます。使用法:
 
 ```
 wallarm_status [on|off] [format=json|prometheus];
 ``` 
 
 !!! info
-    ディレクティブは、 `server` および/または `location` のコンテキストで設定できます。
+    ディレクティブは、 `server` 及び/または `location` のコンテキストで設定することができます。
 
-    `format` パラメータのデフォルト値は `json` です。
+    `format` パラメータのデフォルト値は、`json`です。
 
 ### デフォルトの設定
 
-デフォルトでは、フィルターノード統計サービスは最も安全な構成を持っています。 `/etc/nginx/conf.d/wallarm-status.conf` 設定ファイルは次のようになります。
+デフォルトでは、フィルタノード統計サービスは最も安全な設定になっています。 `/etc/nginx/conf.d/wallarm-status.conf` 設定ファイルは次のようになります :
 
 ```
 server {
   listen 127.0.0.8:80;
   server_name localhost;
 
-  allow 127.0.0.0/8;   # フィルタノードサーバーのループバックアドレスのみアクセス可能  
+  allow 127.0.0.0/8;   # フィルタノードサーバーのループバックアドレスのみアクセス可能   
   deny all;
 
   wallarm_mode off;
-  disable_acl "on";   # 要求元のチェックが無効になり、denylisted IPs が wallarm-status サービスをリクエストできるようになります。 https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
+  disable_acl "on";   # リクエストソースのチェックは無効、denylistedのIPはwallarm-statusサービスのリクエストを許可します。https://docs.wallarm.com/admin-en/configure-parameters-en/#disable_acl
   access_log off;
 
   location /wallarm-status {
@@ -47,11 +47,11 @@ server {
 }
 ```
 
-### 統計情報のリクエストが許可される IP アドレスの制限
+### 統計のリクエストが許可されるIPアドレスの制限
 
-`wallarm_status` ディレクティブを設定するとき、統計情報をリクエストすることができる IP アドレスを指定できます。デフォルトでは、 `127.0.0.1` および `::1` の IP アドレスを除くどこからでもアクセスが拒否され、Wallarm がインストールされているサーバーからのみリクエストが実行できます。
+`wallarm_status` ディレクティブを設定する際に、どのIPアドレスから統計情報をリクエストすることができるかを指定することができます。デフォルトでは、Wallarmがインストールされているサーバーからのみリクエストを実行することを許可する `127.0.0.1` および `::1` のIPアドレスを除き、どこからでもアクセスが拒否されます。
 
-別のサーバーからのリクエストを許可するには、設定で `allow` 指示を使用して、目的のサーバーの IP アドレスを追加します。例:
+他のサーバーからのリクエストを許可するには、設定内で望むサーバーのIPアドレスを持つ `allow` 指示を追加します。例 :
 
 ```diff
 ...
@@ -62,16 +62,16 @@ allow 127.0.0.0/8;
 ...
 ```
 
-設定を変更したら、変更を適用するために NGINX を再起動します。
+設定が変更されたら、変更を適用するためにNGINXを再起動します:
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
-### 統計サービスの IP アドレスの変更
+### 統計サービスのIPアドレスを変更する
 
-統計サービスの IP アドレスを変更するには:
+統計サービスのIPアドレスを変更するには :
 
-1. `/etc/nginx/conf.d/wallarm-status.conf` ファイルの `listen` ディレクティブに新しいアドレスを指定します
-1. 新しいアドレス値を持つ `status_endpoint` パラメータを `/etc/wallarm/node.yaml` ファイルに追加します。例:
+1. `/etc/nginx/conf.d/wallarm-status.conf` ファイルの `listen` ディレクティブで新しいアドレスを指定します。
+1. `/etc/wallarm/node.yaml` ファイルに新しいアドレス値を持つ `status_endpoint` パラメータを追加します。例 :
 
     ```bash
     hostname: example-node-name
@@ -79,19 +79,20 @@ allow 127.0.0.0/8;
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. [`collectd`](monitoring/intro.md) 設定ファイルの `URL` パラメータをそれに応じて修正します。このファイルの場所は、あなたが持っているオペレーティングシステム配布のタイプによります:
+1. [`collectd`](monitoring/intro.md)設定ファイルの `URL` パラメータを適宜修正します。このファイルの場所は、あなたが持っているオペレーティングシステムの分布型によります :
 
-    --8<-- "../include-ja/monitoring/collectd-config-location.md"
-1. ループバックアドレス以外のアドレスからのアクセスを許可するように `allow` ディレクティブを追加または変更します(デフォルトの設定ファイルでは、ループバックアドレスのみへのアクセスが許可されています)。
-1. 変更を適用するために NGINX を再起動します:
+    --8<-- "../include/monitoring/collectd-config-location.md"
+1. ループバックアドレス以外のアドレスからのアクセスを許可するために `allow` ディレクティブを追加または変更します (デフォルトの設定ファイルは、ループバックアドレスのみにアクセスを許可します) 。
+1. 変更を適用するためにNGINXを再起動します :
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 
-### Prometheus 形式で統計情報を取得する
+### Prometheus形式で統計情報を取得する
 
-デフォルトでは、統計情報は JSON 形式でのみ返されます。Prometheus 形式で統計情報を取得するには:
+デフォルトでは、統計情報はJSON形式でのみ返されます。 Prometheus形式で統計情報を取得するには :
 
-1. 以下の設定を `/etc/nginx/conf.d/wallarm-status.conf` ファイルに追加します:
+1. `/etc/nginx/conf.d/wallarm-status.conf` ファイルに以下の設定を追加します:
+
 
     ```diff
     ...
@@ -107,26 +108,27 @@ allow 127.0.0.0/8;
     ...
     ```
 
-    !!! warning "デフォルトの `/wallarm-status` 設定を削除または変更しないでください"
-        `/wallarm-status` ロケーションのデフォルト設定を削除または変更しないでください。このエンドポイントのデフォルト動作は、 Wallarm Cloud に正しいデータをアップロードするために重要です。
-1. 変更を適用するために NGINX を再起動します:
+    !!! warning "デフォルトの ` /wallarm-status` 設定を削除または変更しないでください"
+        `/wallarm-status` ロケーションのデフォルト設定を削除または変更しないでください。このエンドポイントのデフォルトの動作は、Wallarmクラウドへの正しいデータのアップロードにとって重要です。
+1. 変更を適用するためにNGINXを再起動します :
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
-1. 新しいエンドポイントを呼び出して Prometheus のメトリックを取得します:
+    --8<-- "../include/waf/restart-nginx-3.6.md"
+1. 新しいエンドポイントを呼び出して、Prometheusメトリクスを取得します:
 
     ```bash
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
-##  Working with the Statistics Service
 
-To obtain the filter node statistics, make a request from one of the allowed IP addresses (see above):
+##  統計サービスとの連携
 
-=== "Statistics in the JSON format"
+フィルタノードの統計情報を取得するには、許可されたIPアドレスの一つからリクエストを行います（上記参照） :
+
+=== "JSON形式での統計情報"
     ```
     curl http://127.0.0.8/wallarm-status
     ```
 
-    As a result, you will get a response of the type:
+    結果として、以下のタイプのレスポンスが得られます :
 
     ```
     { "requests":0,"attacks":0,"blocked":0,"blocked_by_acl":0,"acl_allow_list":0,"abnormal":0,
@@ -137,19 +139,20 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     "failed":0 },"stalled_workers_count":0,"stalled_workers":[],"ts_files":[{"id":102,"size":12624136,
     "mod_time":1598525870,"fname":"\/etc\/wallarm\/custom_ruleset"}],"db_files":[{"id":73,"size":139094,
     "mod_time":1598525865,"fname":"\/etc\/wallarm\/proton.db"}],"startid":1459972331756458216,
-    "timestamp":1664530105.868875,"split":{"clients":[{"client_id":null,"requests": 78,"attacks": 0,
-    "blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0,"applications":
-    [{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,
-    "overlimits_time": 0,"time_detect": 0}]}]} }
+    "timestamp":1664530105.868875,"rate_limit":{"shm_zone_size":67108864,"buckets_count":4,"entries":1,
+    "delayed":0,"exceeded":1,"expired":0,"removed":0,"no_free_nodes":0},"split":{"clients":[
+    {"client_id":null,"requests": 78,"attacks": 0,"blocked": 0,"blocked_by_acl": 0,"overlimits_time": 0,
+    "time_detect": 0,"applications":[{"app_id":4,"requests": 78,"attacks": 0,"blocked": 0,
+    "blocked_by_acl": 0,"overlimits_time": 0,"time_detect": 0}]}]} }
     ```
-=== "Statistics in the Prometheus format"
+=== "Prometheus形式での統計情報"
     ```
     curl http://127.0.0.8/wallarm-status-prometheus
     ```
 
-    The address can be different, please check the `/etc/nginx/conf.d/wallarm-status.conf` file for the actual address.
+    アドレスは異なる場合があります、実際のアドレスについては `/etc/nginx/conf.d/wallarm-status.conf` ファイルを確認してください。
 
-    As a result, you will get a response of the type:
+    結果として、以下のタイプのレスポンスが得られます :
 
 
     ```
@@ -232,53 +235,62 @@ To obtain the filter node statistics, make a request from one of the allowed IP 
     wallarm_startid 3226376659815907920
     ```
 
-The following response parameters are available (Prometheus metrics have the `wallarm_` prefix):
+以下のレスポンスパラメータが利用可能です ( Promethusのメトリクスは `wallarm_` というプレフィックスを持ちます ) :
 
-*   `requests`: the number of requests that have been processed by the filter node.
-*   `attacks`: the number of recorded attacks.
-*   `blocked`: the number of blocked requests including those originated from [denylisted](../user-guides/ip-lists/denylist.md) IPs.
-*   `blocked_by_acl`: the number of requests blocked due to [denylisted](../user-guides/ip-lists/denylist.md) request sources.
-* `acl_allow_list`: the number of requests originating by [allowlisted](../user-guides/ip-lists/allowlist.md) request sources.
-*   `abnormal`: the number of requests the application deems abnormal.
-*   `tnt_errors`: the number of requests not analyzed by a post-analytics module. For these requests, the reasons for blocking are recorded, but the requests themselves are not counted in statistics and behavior checks.
-*   `api_errors`: the number of requests that were not submitted to the API for further analysis. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
-*   `requests_lost`: the number of requests that were not analyzed in a post-analytics module and transferred to API. For these requests, blocking parameters were applied (i.e., malicious requests were blocked if the system was operating in blocking mode); however, data on these events is not visible in the UI. This parameter is only used when the Wallarm Node works with a local post-analytics module.
-*   `overlimits_time`: the number of attacks with the type [Overlimiting of computational resources](../attacks-vulns-list.md#overlimiting-of-computational-resources) detected by the filtering node.
-*   `segfaults`: the number of issues that led to the emergency termination of the worker process.
-*   `memfaults`: the number of issues where the virtual memory limits were reached.
-* `softmemfaults`: the number of issues where the virtual memory limit for proton.db +lom was exceeded ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)).
-* `proton_errors`: the number of the proton.db errors except for those occurred due to the situations when the virtual memory limit was exceeded.
-*   `time_detect`: the total time of requests analysis.
-*   `db_id`: proton.db version.
-*   `lom_id`: will be deprecated soon, please use `custom_ruleset_id`.
-*   `custom_ruleset_id` (in Wallarm node 3.4 and lower, `lom_id`): version of the [custom ruleset][gl-lom] build.
-*   `custom_ruleset_ver` (available starting from the Wallarm release 4.4.3): the [custom ruleset][gl-lom] format:
+*   `requests` : フィルタノードで処理されたリクエスト数。
+*   `attacks` : 収録された攻撃の数。
+*   `blocked` : [denylisted](../user-guides/ip-lists/denylist.md) IPから発生したものを含むブロックされたリクエストの数。
+*   `blocked_by_acl` : [denylisted](../user-guides/ip-lists/denylist.md) リクエストソースによりブロックされたリクエストの数。
+* `acl_allow_list` : [allowlisted](../user-guides/ip-lists/allowlist.md) リクエストソースによるリクエストの数。
+*   `abnormal` : アプリケーションが異常と判断したリクエストの数。
+*   `tnt_errors` : post- analyticsモジュールで分析されていないリクエストの数。これらのリクエストは、ブロックの理由が記録されるが、これら自体は統計に計上されず、行動チェックも行われません。
+*   `api_errors` : これらのリクエストは、API によるさらなる分析が行われませんでした。これらのリクエストに対して、ブロックパラメータが適用されました (つまり、システムがブロックモードで動作している場合、悪意のあるリクエストはブロックされます) ；しかし、これらのイベントに関するデータは UI で見ることができません。このパラメータは、Wallarm Node がローカルの post-analytics モジュールで動作する場合にのみ使用されます。
+*   `requests_lost` : post-analyticsモジュールで分析されず、APIに転送されなかったリクエストの数。これらのリクエストに対して、ブロックパラメータが適用されました (つまり、システムがブロックモードで動作している場合、悪意のあるリクエストはブロックされます) ；しかし、これらのイベントに関するデータは UI で見ることができません。このパラメータは、Wallarm Nodeがローカルのpost-analytics moduleで動作するときのみ使用されます。
+*   `overlimits_time` : フィルタノードによって検出された [計算リソースの過剰制限](../attacks-vulns-list.md#overlimiting-of-computational-resources) タイプの攻撃の数。
+*   `segfaults` : ワーカープロセスが緊急停止した問題の数。
+*   `memfaults` : 仮想メモリの制限に達した問題の数。
+* `softmemfaults` : 仮想メモリの制限がproton.db +lomを超えた問題の数 ([`wallarm_general_ruleset_memory_limit`](configure-parameters-en.md#wallarm_general_ruleset_memory_limit)) 登録商標。
+* `proton_errors` : 仮想メモリ制限超過状況により発生したものを除く proton.db のエラーの数。
+*   `time_detect` : リクエスト分析の全時間。
+*   `db_id` : proton.dbバージョン。
+*   `lom_id` : すぐに非推奨となる予定です、`custom_ruleset_id` を使用してください。
+*   `custom_ruleset_id` : [custom ruleset][gl-lom] のビルドのバージョン。
+*   `custom_ruleset_ver` (Wallarmリリース4.4.3から使用可能) : [custom ruleset][gl-lom] 形式 :
 
-    * `4x` - for Wallarm nodes 2.x which are [out-of-date](../updating-migrating/versioning-policy.md#version-list).
-    * `5x` - for Wallarm nodes 4.x and 3.x (the latter are [out-of-date](../updating-migrating/versioning-policy.md#version-list)).
-*   `db_apply_time`: Unix time of the last update of the proton.db file.
-*   `lom_apply_time`: will be deprecated soon, please use `custom_ruleset_apply_time`.
-*   `custom_ruleset_apply_time` (in Wallarm node 3.4 and lower, `lom_apply_time`): Unix time of the last update of the [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file.
-*   `proton_instances`: information about proton.db + LOM pairs:
-    *   `total`: the number of proton.db + LOM pairs.
-    *   `success`: the number of the successfully uploaded proton.db + LOM pairs.
-    *   `fallback`: the number of proton.db + LOM pairs loaded from the last saved files.
-    *   `failed`: the number of proton.db + LOM pairs that were not initialized and run in the “do not analyze” mode.
-*   `stalled_workers_count`: the quantity of workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive).
-*   `stalled_workers`: the list of the workers that exceeded the time limit for request processing (the limit is set in the [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) directive) and the amount of time spent on request processing.
-*   `ts_files`: information about the [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) file:
-    *   `id`: used LOM version.
-    *   `size`: LOM file size in bytes.
-    *   `mod_time`: Unix time of the last update of the LOM file.
-    *   `fname`: path to the LOM file.
-*   `db_files`: information about the proton.db file:
-    *   `id`: used proton.db version.
-    *   `size`: proton.db file size in bytes.
-    *   `mod_time`: Unix time of the last update of the proton.db file.
-    *   `fname`: path to the proton.db file.
-* `startid`: randomly-generated unique ID of the filtering node.
-* `timestamp`: time when the last incoming request was processed by the node (in the [Unix Timestamp](https://www.unixtimestamp.com/) format).
-* `split.clients`: main statistics on each [tenant](../installation/multi-tenant/overview.md). If the multitenancy feature is not activated, the statistics is returned for the only tenant (your account) with the static value `"client_id":null`.
-* `split.clients.applications`: main statistics on each [application](../user-guides/settings/applications.md). Parameters that are not included into this section returns the statistics on all applications.
+    * `4x` - バージョン2.xの Wallarm ノード用、これらは [旧バージョン](../updating-migrating/versioning-policy.md#version-list) です。
+    * `5x` - バージョン4.xおよび3.xの Wallarm ノード用、後者は [旧バージョン](../updating-migrating/versioning-policy.md#version-list) です。
+*   `db_apply_time` : proton.dbファイルの最終更新の Unix 時間。
+*   `lom_apply_time` : すぐに非推奨となる予定です、`custom_ruleset_apply_time`を使用してください。
+*   `custom_ruleset_apply_time` : [custom ruleset](../glossary-en.md#custom-ruleset-the-former-term-is-lom)文件の最終更新的 Unix时间。
+*   `proton_instances` : proton.db + LOMペアに関する情報 :
+    *   `total` : proton.db + LOMペアの数。
+    *   `success` : 成功したproton.db + LOMペアの数。
+    *   `fallback` : 最後に保存したファイルからロードされた proton.db + LOMペアの数。
+    *   `failed` : 初期化されず、 "解析しない" モードで実行された proton.db + LOMペアの数。
+*   `stalled_workers_count` : リクエスト処理の時間制限を超えたワーカーの数量 (制限は [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) ディレクティブで設定されます。
+*   `stalled_workers` : リクエスト処理の時間制限を超えたワーカーのリスト (制限は [`wallarm_stalled_worker_timeout`](configure-parameters-en.md#wallarm_stalled_worker_timeout) ディレクティブで設定されます)とリクエスト処理に費やした時間の量。
+*   `ts_files` : [LOM](../glossary-en.md#custom-ruleset-the-former-term-is-lom) ファイルに関する情報 :
+    *   `id` : 使用されたLOMバージョン。
+    *   `size` : LOMファイルのバイト単位のサイズ。
+    *   `mod_time` : LOMファイルの最終更新のUnix時間。
+    *   `fname` : LOMファイルへのパス。
+*   `db_files` : proton.dbファイルに関する情報 :
+    *   `id` : 使用されているproton.dbバージョン。
+    *   `size` : proton.dbファイルのバイト単位のサイズ。
+    *   `mod_time` : proton.db ファイルの最終更新の Unix 時間。
+    *   `fname` : proton.dbファイルへのパス。
+* `startid` : フィルタノードのランダムに生成された一意のID。
+* `timestamp` : ノードによって処理された最後の入力リクエストの時間 ( [Unix Timestamp](https://www.unixtimestamp.com/) フォーマット ) 。
+* `rate_limit` : Wallarm [rate limiting](../user-guides/rules/rate-limiting.md) モジュールに関する情報:
+    * `shm_zone_size` : Wallarm レート制限モジュールが消費できる共有メモリの総量をバイト単位で表示 ( これは [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) ディレクティブに基づいていて、デフォルトは `67108864` ) 。
+    * `buckets_count` : バケツの数 ( 通常、 NGINXのワーカー数と等しい、最大は8 ) 。
+    * `entries` : 制限を測定するための一意のリクエストポイント値 ( いわゆるキー )の数 。
+    * `delayed` : `burst` 設定によりレート制限モジュールがバッファリングしたリクエストの数。
+    * `exceeded` : レート制限モジュールによりリクーが制限を超えたためにリジェクトされたリクエストの数。
+    * `expired` : そのキーのレート制限が超過されなかった場合に、定期的に60秒ごとにバケツから削除されるキーの合計数。
+    * `removed` : バケットから急激に削除されたキーの数。この値が `expired` を上回っている場合は、 [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) の値を増やしてください。
+    * `no_free_nodes` : `0` 以外の値は、レート制限モジュール用に割り当てられたメモリが不足していることを示しており、 [`wallarm_rate_limit_shm_size`](configure-parameters-en.md#wallarm_rate_limit_shm_size) の値を増やすことが推奨されます。
+* `split.clients` : 各 [テナント](../installation/multi-tenant/overview.md) に関する主要な統計情報。マルチテナンシー機能がアクティブ化されていない場合は、唯一のテナント (ご自身のアカウント) の統計情報が静的に返されるため `"client_id":null` を返します。
+* `split.clients.applications` : 各 [アプリケーション](../user-guides/settings/applications.md) の主要な統計情報。ここに含まれていないパラメータはすべてのアプリケーションの統計情報を返します。
 
-The data of all counters is accumulated from the moment NGINX is started. If Wallarm has been installed in a ready-made infrastructure with NGINX, the NGINX server must be restarted to start statistics collection.
+全てのカウンターのデータは、NGINXが起動された時点から蓄積されます。Wallarmは既存のインフラストラクチャでNGINXとともにインストールされている場合、統計収集を開始するためにNGINXサーバーを再起動する必要があります。

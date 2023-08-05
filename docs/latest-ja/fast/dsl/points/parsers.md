@@ -25,35 +25,34 @@
 [link-gzip]:                    parsers/gzip.md
 [link-base64]:                  parsers/base64.md
 
-# Parsers and Filters
+# パーサとフィルタ
 
-This section describes parsers and filters that can be used in FAST DSL extension points.
+このセクションでは、FAST DSL拡張ポイントで使用できるパーサとフィルタについて説明します。
 
-The following is a list of parsers and the filters they provide:
-* [HTTP parser][link-http]:
-    * [URI filter][link-uri];
-    * [Path filter][link-path];
-    * [Action_name filter][link-actionname];
-    * [Action_ext filter][link-actionext];
-    * [Get filter][link-get];
-    * [Header filter][link-header];
-    * [Post filter][link-post];
-* [Form_urlencoded parser][link-formurlencoded];
-* [Multipart parser][link-multipart];
-* [Cookie parser][link-cookie];
-* [XML parser][link-xml]:
-    * [Xml_comment filter][link-xmlcomment];
-    * [Xml_dtd filter][link-xmldtd];
-    * [Xml_dtd_entity filter][link-xmldtdentity];
-    * [Xml_pi filter][link-xmlpi];
-    * [Xml_tag filter][link-xmltag];
-    * [Xml_tag_array filter][link-xmltagarray];
-    * [Xml_attr filter][link-xmlattr];
-* [Json_doc parser][link-jsondoc]:
-    * [Json_obj filter][link-jsonobj];
-    * [Json_array filter][link-jsonarray];
-* [GZIP parser][link-gzip];
-* [Base64 parser][link-base64];
-* [Array filter][link-array];
-* [Hash filter][link-hash].
-
+次は、パーサとそれらが提供するフィルタのリストです：
+* [HTTPパーサ][link-http]:
+    * [URIフィルタ][link-uri];
+    * [パスフィルタ][link-path];
+    * [アクション名フィルタ][link-actionname];
+    * [アクション拡張子フィルタ][link-actionext];
+    * [Getフィルタ][link-get];
+    * [ヘッダーフィルタ][link-header];
+    * [Postフィルタ][link-post];
+* [Form_urlencodedパーサ][link-formurlencoded];
+* [Multipartパーサ][link-multipart];
+* [Cookieパーサ][link-cookie];
+* [XMLパーサ][link-xml]:
+    * [Xml_commentフィルタ][link-xmlcomment];
+    * [Xml_dtdフィルタ][link-xmldtd];
+    * [Xml_dtdエンティティフィルタ][link-xmldtdentity];
+    * [Xml_piフィルタ][link-xmlpi];
+    * [Xml_tagフィルタ][link-xmltag];
+    * [Xml_tag配列フィルタ][link-xmltagarray];
+    * [Xml_attrフィルタ][link-xmlattr];
+* [Json_docパーサ][link-jsondoc]:
+    * [Json_objフィルタ][link-jsonobj];
+    * [Json_arrayフィルタ][link-jsonarray];
+* [GZIPパーサ][link-gzip];
+* [Base64パーサ][link-base64];
+* [Arrayフィルタ][link-array];
+* [Hashフィルタ][link-hash].

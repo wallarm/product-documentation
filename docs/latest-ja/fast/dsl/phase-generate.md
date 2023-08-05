@@ -7,125 +7,125 @@
 [img-generate-methods]:     ../../images/fast/dsl/en/phases/generate-methods.png
 [img-generate-payload]:     ../../images/fast/dsl/en/phases/generate-payload.png
 
-#  The Generate Phase
+# 生成フェーズ
 
-!!! info "Scope of the phase"
-    This phase is used in a modifying extension and is optional for its operation (the `generate` section may be either absent or present in the YAML file).
+!!! info "フェーズの範囲"
+    このフェーズは修正型の拡張に使用され、その操作にオプショナルです（`generate`セクションはYAMLファイルに存在してもなくても構いません）。
 
-    This phase should be absent from the non-modifying extension's YAML file.
+    非修正型の拡張のYAMLファイルにはこのフェーズを含めないでください。
     
-    Read about the extension types in detail [here][link-ext-logic].
+    拡張のタイプについて詳しくは[こちら][link-ext-logic]をご覧ください。
 
-!!! info "Request element description syntax"
-     When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+!!! info "リクエスト要素の記述文法"
+     FAST拡張を作成する際には、アプリケーションに送信するHTTPリクエストと、アプリケーションから受信するHTTPレスポンスの構図を理解し、ポイントを使用して作業したいリクエスト要素を正しく記述する必要があります。
      
-     To see detailed information, proceed to this [link][link-points].
+     詳細情報は[こちら][link-points]のリンクをご覧ください。
  
- This phase specifies a payload to be inserted in the particular parameters of a baseline request to create a test requests that are based on this request.
+ このフェーズでは、ベースラインリクエストの特定のパラメーターに挿入するプレイロードが指定されます。これにより、このリクエストを基にしたテストリクエストが作成されます。
 
-The `generate` section has the following structure:
+`generate`セクションの構成は次のとおりです：
 
 ```
 generate:
   - into:
-    - parameter 1
-    - parameter 2
+    - パラメーター 1
+    - パラメーター 2
     - …
-    - parameter N
+    - パラメーター N
   - method:
     - postfix
     - prefix
     - random
     - replace
   - payload:
-    - payload 1
-    - payload 2
+    - プレイロード 1
+    - プレイロード 2
     - …
-    - payload N
+    - プレイロード N
 ```
 
-* The `into` parameter allows the specification of single or multiple request elements that the payload should be inserted into. This parameter's value can be a string or an array of strings. You can use a [Ruby-formatted regular expression][link-ruby-regexp] as the `into` parameter's value.
+* `into`パラメーターは、単一または複数のリクエスト要素を指定でき、これらの要素にプレイロードを挿入します。このパラメーターの値は文字列または文字列の配列にすることができます。[Ruby形式の正規表現][link-ruby-regexp]を`into`パラメーターの値として使用することができます。
     
-    This parameter is optional and it may be absent in the section. If the `into` parameter is omitted, the payload is inserted into the request element that is allowed to be modified according to the given test policy.
+    このパラメーターはオプショナルであり、セクションには含まれていないかもしれません。`into`パラメーターが省略されている場合、プレイロードは、テストポリシーに基づいて変更可能なリクエスト要素に挿入されます。
     
-    Let us suppose that the following mutable request elements were extracted from the baseline request according to the test policy:
+    テストポリシーによりベースラインリクエストから以下の mutable リクエスト要素が抽出されたと仮定します：
     
     * `GET_uid_value`
     * `HEADER_COOKIE_value`
     
-    The extension will sequentially process all of the mutable elements (also known as insertion points). 
+    拡張は、挿入ポイントとも呼ばれる、これらの mutable 要素を順次処理します。
     
-    If the `into` parameter is absent, then the payloads will be sequentially pasted into the `GET_uid_value` parameter and the produced test requests will be used to check the target application for vulnerabilities. Then, after the test request results are processed, the extension processes the `HEADER_COOKIE_value` parameter and similarly inserts the payloads into this parameter.
+    `into`パラメーターが省略されている場合、プレイロードは次に`GET_uid_value`パラメーターに順次貼り付けられ、生成されたテストリクエストを使用して対象アプリケーションに対する脆弱性をチェックします。その後、テストリクエストの結果が処理された後、拡張は`HEADER_COOKIE_value`パラメーターを処理し、このパラメーターにも同様にプレイロードを挿入します。
     
-    If the `into` parameter contains the `GET_uid_value` request parameter, as shown in the following example, then the payload will be inserted into the `GET_uid_value` parameter but not the `HEADER_COOKIE_value` parameter.
+    `into`パラメーターが以下の例のように`GET_uid_value`リクエストパラメーターを含んでいる場合、プレイロードは`GET_uid_value`パラメーターに挿入されますが、`HEADER_COOKIE_value`パラメーターには挿入されません。
     
     ```
     into: 
       - 'GET_uid_value'
     ```
-    Because the following example contains only one parameter, the into parameter value may be written in one line:
+    以下の例にはパラメーターが一つしか含まれていないため、into パラメーターの値は一行で書くことができます：
     
     `into: 'GET_uid_value'`
 
-* `method` — this optional parameter specifies the list of the methods that will be used to insert the payload into the baseline request element. 
-    * `prefix` — insert the payload before the baseline request element value.
-    * `postfix` — insert the payload after the baseline request element value.
-    * `random` — insert the payload into a random place in the baseline request element value.
-    * `replace` — replace the baseline request element value with the payload.
+* `method` — このオプショナルなパラメーターは、プレイロードをベースラインリクエストの要素に挿入する方法を指定します。
+    * `prefix` — ベースラインリクエスト要素の値の前にプレイロードを挿入します。
+    * `postfix` — ベースラインリクエスト要素の値の後にプレイロードを挿入します。
+    * `random` — ベースラインリクエスト要素の値のランダムな位置にプレイロードを挿入します。
+    * `replace` — ベースラインリクエスト要素の値をプレイロードに置き換えます。
+
+    ![プレイロードの挿入方法][img-generate-methods]
     
-    ![!Payload insertion methods][img-generate-methods]
-    
-    If the `method` parameter is absent, the `replace` method will be used by default.
-    
-    The number of test requests created depends on the number of specified `methods`: one test request per insertion method.
-    
-    For example, if the following insertion methods are specified:
+    `method`パラメーターが省略されている場合、デフォルトで`replace`メソッドが使用されます。
+
+    テストリクエストを作成するための要求の数は、指定された`methods`の数に依存します：挿入方法ごとに一つのテストリクエスト。
+
+    例えば、以下の挿入方法が指定されている場合：
     
     ```
     method:
       - prefix
       - replace
     ```
-    
-    then for a single payload, two test requests are created; for two payloads, four test requests are created (two test requests for each payload), and so on.
 
-* The `payload` parameter specifies the list of payloads to be inserted into the request parameter to create a test request that will then test the target application for vulnerabilities.
+    一つのプレイロードに対しては二つのテストリクエストが作成され、二つのプレイロードに対しては四つのテストリクエストが作成されます（プレイロードごとに二つのテストリクエスト）、など。
+
+* `payload`パラメーターは、リクエストパラメーターに挿入するためのプレイロードのリストを指定します。これにより、対象アプリケーションに対する脆弱性をテストするテストリクエストが作成されます。
     
-    This parameter is obligatory, and it should always be present in the section. The list should contain at least one payload. If there are multiple payloads, the FAST node sequentially inserts payloads into the request parameter and tests the target application for vulnerabilities using each of the test requests created.
+    このパラメーターは必須であり、セクションに常に存在していなければなりません。リストには最低一つのプレイロードを含める必要があります。プレイロードが複数ある場合、FASTノードは順次プレイロードをリクエストパラメーターに挿入し、それぞれのテストリクエストを使用して対象アプリケーションに対する脆弱性をテストします。
     
-    ![!Payload generation][img-generate-payload]
+    ![プレイロードの生成][img-generate-payload]
     
-    The payload is a string that is inserted into one of the parameters during the request processing.
+    プレイロードは、リクエストの処理中にパラメーターの一つに挿入される文字列です。
     
-    ??? info "Example of multiple payloads"
+    ??? info "複数のプレイロードの例"
         ```
         payload:
           - "') or 1=('1"
           - "/%5c../%5c../%5c../%5c../%5c../%5c../%5c../etc/passwd/"
         ```
     
-    You can use special markers as a part of the payload to further expand the possibilities of vulnerability detection:
+    プレイロードの一部として特別なマーカーを使用することで、脆弱性検出の可能性がさらに広がります： 
 
-    * **`STR_MARKER`** — insert a random string into the payload exactly in the position where the `STR_MARKER` is specified. 
+    * **`STR_MARKER`** — プレイロードにランダムな文字列を挿入します。これは`STR_MARKER`が指定されている位置に挿入されます。
         
-        For example, the `STR_MARKER` can be used to check the application for an XXS vulnerability.
+        例えば、`STR_MARKER`はアプリケーションをXXS脆弱性の確認に使用することができます。
         
-        ??? info "Example"
+        ??? info "例"
             `'userSTR_MARKER'`
     
-    * **`CALC_MARKER`** — insert a string containing a random arithmetic expression (for example, `1234*100`) into the payload exactly in the position where the `CALC_MARKER` is specified.
+    * **`CALC_MARKER`** — ランダムな算術式（例：`1234*100`）を含む文字列をプレイロードに挿入します。これは`CALC_MARKER`が指定されている位置に挿入されます。
         
-        For example, the `CALC_MARKER` can be used to check the application for an RCE vulnerability.
+        例えば、`CALC_MARKER`はアプリケーションがRCE脆弱性を持っているかチェックするために使用できます。
         
-        ??? info "Example"
+        ??? info "例"
             `'; bc <<< CALC_MARKER'`
     
-    * **`DNS_MARKER`** — insert a string containing a random domain (for example, `r4nd0m.wlrm.tl`) into the payload exactly in the position where the `DNS_MARKER` is specified.
+    * **`DNS_MARKER`** — ランダムなドメイン（例：`r4nd0m.wlrm.tl`）の文字列をプレイロードに挿入します。これは`DNS_MARKER`が指定されている位置に挿入されます。
         
-        For example, the `DNS_MARKER` can be used to check the application for DNS Out-of-Bound vulnerabilities.
-
-        ??? info "Example"
+        例えば、`DNS_MARKER`はアプリケーションがDNS Out-of-Bound脆弱性を持っているかチェックするために使用できます。
+        
+        ??? info "例"
             `'; ping DNS_MARKER'`
     
-    !!! info "Markers operation logic"
-        If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
+    !!! info "マーカーの操作ロジック"
+        Detectフェーズがサーバーのレスポンスから任意のプレイロードのマーカーを検出した場合、攻撃が成功したことを示します。つまり、脆弱性が成功裏に悪用されました。Detectフェーズがマーカーと共に操作する詳細情報については、[こちら][link-markers]のリンクを参照してください。

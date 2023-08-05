@@ -1,75 +1,76 @@
 [img-vpatch-example1]:      ../../images/user-guides/rules/vpatch-rule-1.png
 [img-vpatch-example2]:      ../../images/user-guides/rules/vpatch-rule-2.png
 
-# 仮想パッチング
+# 仮想パッチ
 
-仮想パッチは、監視モードや安全ブロッキングモードでも、またリクエストに既知の攻撃ベクタが含まれていない場合でも、悪意のあるリクエストをブロックすることができます。仮想パッチがブロックしない唯一のリクエストは、[許可リスト](../ip-lists/allowlist.md)に登録されているIPからのものです。
+仮想パッチにより、モニタリングおよび安全なブロックモードであっても、またリクエストが既知の攻撃ベクトルを含んでいないように見える場合でも、悪意のあるリクエストをブロックすることができます。仮想パッチがブロックしないリクエストは、[許可リスト](../ip-lists/allowlist.md)の IP から発生したものだけです。
 
-仮想パッチは、コードの重大な脆弱性を修正することができなかったり、必要なセキュリティアップデートをすぐにインストールできない場合に特に役立ちます。
+仮想パッチは、コードの重大な脆弱性を修正することが不可能であったり、必要なセキュリティ更新を迅速にインストールすることができなかったりする場合に特に役立ちます。
 
-攻撃タイプが選択されている場合、フィルタノードが対応するパラメータのリストにあるタイプの攻撃を1つ検出した場合にのみ、リクエストがブロックされます。
+攻撃の種類が選択された場合、フィルターノードが一覧に表示されている種類の攻撃を検出した場合にのみ、リクエストがブロックされます。
 
-設定で*任意のリクエスト*が選択されている場合、システムは、攻撃ベクタを含まなくても、定義済みのパラメータを持つリクエストをブロックします。
+設定で*任意のリクエスト*が選択された場合、システムは攻撃ベクトルを含んでいない場合でも、定義されたパラメータを持つリクエストをブロックします。
 
 ## ルールの作成と適用
 
---8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-## 例：クエリストリングパラメータ`id`でのSQLi攻撃のブロック
+## 例：クエリ文字列パラメータ `id` 内の SQLi 攻撃のブロック
 
-以下の条件が成立する**場合**:
+次の条件が満たされる**場合**：
 
-* アプリケーションがドメイン*example.com*でアクセス可能であること
-* アプリケーションのパラメータ*id*がSQLインジェクション攻撃に対して脆弱であること
-* フィルタノードが監視モードに設定されていること
-* 脆弱性を悪用する試みをブロックする必要があること
+* アプリケーションはドメイン *example.com* でアクセス可能です
+* アプリケーションのパラメータ *id* は SQL インジェクション攻撃に対して脆弱です
+* フィルターノードは監視モードに設定されています
+* 脆弱性を悪用する試みはブロックされるべきです
+  
+次の手順で仮想パッチを作成します
 
-仮想パッチを作成するには**次に**、
+1. *Rules* タブに移動します
+1. ブランチ `example.com/**/*.*` を探し、*Add rule* をクリックします
+1. *Create a virtual patch* を選択します
+1. 攻撃の種類として *SQLi* を選択します
+1. *QUERY* パラメータを選択し、*in this part of request* の後にその値 `id` を入力します。
 
-1. *Rules*タブに移動します
-1. ブランチ`example.com/**/*.*`を見つけて*Add rule*をクリックします
-1. *Create a virtual patch*を選択します
-1. 攻撃タイプとして*SQLi*を選択します
-1. *QUERY*パラメータを選択し、*in this part of request*の後にその値`id`を入力します
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
 
-    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
-
-1. *Create*をクリックします
+1. *Create* をクリックします
 
 ![!特定のリクエストタイプの仮想パッチ][img-vpatch-example1]
 
-## 例：クエリストリングパラメータ`refresh`を持つすべてのリクエストをブロックする
 
-以下の条件が成立する**場合**:
+## 例：クエリ文字列パラメータ `refresh` を含むすべてのリクエストをブロック
 
-* アプリケーションがドメイン*example.com*でアクセス可能であること
-* アプリケーションがクエリストリングパラメータ`refresh`を処理するとクラッシュすること
-* 脆弱性を悪用する試みをブロックする必要があること
+次の条件が満たされる**場合**：
 
-仮想パッチを作成するには**次に**、
+* アプリケーションはドメイン *example.com* でアクセス可能です
+* アプリケーションは、クエリ文字列パラメータ `refresh` を処理するとクラッシュします
+* 脆弱性を悪用する試みはブロックされるべきです
+  
+次の手順で仮想パッチを作成します
 
-1. *Rules*タブに移動します
-1. ブランチ`example.com/**/*.*`を見つけて*Add rule*をクリックします
-1. *Create a virtual patch*を選択します
-1. *Any request*を選択します
-1. *QUERY*パラメータを選択し、*in this part of request*の後にその値`refresh`を入力します
+1. *Rules* タブに移動します
+1. ブランチ `example.com/**/*.*` を探し、*Add rule* をクリックします
+1. *Create a virtual patch* を選択します
+1. *Any request* を選択します
+1. *QUERY* パラメータを選択し、*in this part of request* の後にその値 `refresh` を入力します。
 
-    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
+    --8<-- "../include/waf/features/rules/request-part-reference.md"
 
-1. *Create*をクリックします
+1. *Create* をクリックします
 
-![!仮想パッチ][img-vpatch-example2]
+![!任意のリクエストタイプの仮想パッチ][img-vpatch-example2]
 
-## ルールを作成するためのAPIコール
+## ルール作成の API コール
 
-仮想パッチルールを作成するために、Wallarm Console UIを使用する代わりに、[Wallarm APIを直接呼び出す](../../api/overview.md)ことができます。以下は、対応するAPI呼び出しの例です。
+仮想パッチルールを作成するためには、Wallarm Console UI を使用する他に、[Wallarm API に直接コール](../../api/overview.md)を行うこともできます。以下に、対応する API コールの一部の例を示します。
 
-**`/my/api/*`に送られる全てのリクエストをブロックする仮想パッチを作成する**
+**`/my/api/*` 宛てのすべてのリクエストをブロックする仮想パッチを作成する**
 
---8<-- "../include-ja/api-request-examples/create-rule-en.md"
+--8<-- "../include/api-request-examples/create-rule-en.md"
 
-**特定のアプリケーションインスタンスIDの仮想パッチを作成し、`/my/api/*`に送信されるすべてのリクエストをブロックする**
+**特定のアプリケーションインスタンス ID のために `/my/api/*` 宛てのすべてのリクエストをブロックする仮想パッチを作成する**
 
-このリクエストを送信する前に、アプリケーションを[設定](../settings/applications.md)する必要があります。`action.point[instance].value`に既存のアプリケーションのIDを指定してください。
+このリクエストを送信する前に、アプリケーションは[設定](../settings/applications.md)されているべきです。`action.point[instance].value` に既存のアプリケーションの ID を指定します。
 
---8<-- "../include-ja/api-request-examples/create-rule-for-app-id.md"
+--8<-- "../include/api-request-examples/create-rule-for-app-id.md"

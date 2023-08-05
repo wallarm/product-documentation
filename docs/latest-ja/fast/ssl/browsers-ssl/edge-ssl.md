@@ -6,51 +6,50 @@
 [img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-fingerprint-warning.png
 [img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-import-success.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/edge-ssl/e-https-ok.png
-    
-    
-#   FAST Node Self-signed SSL-certificate Installation for Microsoft Edge
 
-To install the certificate for the Microsoft Edge browser, do the following:
+#   FASTノード自己署名SSL証明書のMicrosoft Edgeへのインストール
 
-1.  Make sure that you have set up your browser to use the FAST node as the HTTP and HTTPS proxy.
+Microsoft Edgeブラウザ上で証明書をインストールするには、次の手順を実行します：
 
-2.  Request the file `cert.der` from any domain via HTTP using the browser.
+1.  あなたのブラウザがFASTノードをHTTPおよびHTTPSのプロキシとして使用するように設定されていることを確認します。
 
-    For example, you can use one of the following links:
-    
+2.  ブラウザを使用して、任意のドメインからファイル`cert.der`をHTTPを通じてリクエストします。
+
+    例えば、次のリンクの一つを使用することができます：
+   
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der> 
 
-    The browser will give you the choice to open the certificate file or to save it. Select the **Open** button.
+    ブラウザは証明書ファイルを開くか保存するかの選択をするでしょう。**開く**ボタンを選択します。
 
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!自己署名FASTノード証明書のリクエスト][img-cert-request]
 
-3.  A window will open, containing information about the certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image. Select the **Install Certificate** button.
+3.  証明書の情報が記載されているウィンドウが開きます。あなたの証明書の名前と有効期限は、画像に表示されているものと異なります。**証明書のインストール**ボタンを選択します。
 
-    ![!“Certificate” window][img-cert-window]
+    ![!“証明書”ウィンドウ][img-cert-window]
 
-4.  Select the suitable certificate installation option in the opened window. You can install the certificate either for the current user or for all users. Choose the appropriate option and select the **Next** button.
+4.  開いたウィンドウで適した証明書のインストールオプションを選択します。証明書は現在のユーザまたは全てのユーザのためにインストールできます。適切なオプションを選択し、**次へ**ボタンを選択します。
 
-    ![!Select certificate store location][img-store-location]
+    ![!証明書ストアの場所の選択][img-store-location]
 
-5.  You will be asked to choose a certificate store. Select the option “Place all certificates in the following store” and set “Trusted Root Certification Authorities” as the store. Select the **Next** button.    
-    ![!Select certificate store][img-store]
+5.  証明書ストアを選択するよう求められます。“次のストアにすべての証明書を配置する”オプションを選び、“信頼されたルート認証局”をストアとして設定します。**次へ**ボタンを選択します。    
+    ![!証明書ストアの選択][img-store]
 
-    Make sure that you have selected the appropriate store for the certificate and start the import process by selecting the **Finish** button.
+    証明書の適切なストアが選択されていること確認し、**完了**ボタンを選択してインポートプロセスを開始します。
     
-    ![!Certificate import wizard resume][img-wizard-resume]
+    ![!証明書インポートウィザードの再開][img-wizard-resume]
 
-6.  You will be presented with a warning message about the inability to validate the fingerprint of the certificate being imported. Select the **Yes** button in order to complete the import process.
+6.  インポートされる証明書の指紋を確認できないという警告メッセージが表示されます。インポートプロセスを完了するために**はい**ボタンを選択します。
 
-    ![!Fingerprint validation warning][img-fingerprint-warning]
+    ![!指紋検証の警告][img-fingerprint-warning]
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    インポートが成功すれば、“インポートは成功しました”という情報メッセージが表示されます。
 
-    ![!Successful import of the certificate][img-import-ok]
+    ![!証明書の成功したインポート][img-import-ok]
 
-7.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
+7.  証明書が正しくインストールされたことを確認します。それを行うには、HTTPSを介して任意のサイトに移動します。あなたは警告メッセージなしでサイトのHTTPSバージョンにリダイレクトされるはずです。
 
-    For example, you could browse to the HTTPS version of the Google Gruyere site:
+    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![!HTTPSは動作しています][img-https-ok]

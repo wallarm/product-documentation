@@ -1,54 +1,54 @@
-# Generating an SBOM for Wallarm Docker Images
+# Wallarm DockerイメージのSBOMの生成
 
-The Software Bill of Materials (SBOM) is an inventory that lists the software components and their dependencies in an application, including versions, licenses, and vulnerabilities. This article guides you on generating SBOM for Wallarm Docker images.
+ソフトウェアの部品目録（Software Bill of Materials、SBOM）は、バージョン、ライセンス、脆弱性を含むアプリケーション内のソフトウェアコンポーネントとその依存関係を記録する目録です。この記事では、Wallarm DockerイメージのSBOMを生成する方法をガイドいたします。
 
-You may need to obtain the SBOM for Wallarm Docker Images to assess and mitigate potential security risks associated with the dependencies used in the images. The SBOM offers transparency into the software components and helps to ensure compliance.
+Wallarm DockerイメージのSBOMを取得する必要があるかもしれません。これは、イメージで使われている依存関係に関連する潜在的なセキュリティリスクを評価し、軽減するためです。SBOMはソフトウェアコンポーネントの透明性を提供し、コンプライアンスを確保するのに役立ちます。
 
-## The list of Wallarm Docker images
+## Wallarm Dockerイメージのリスト
 
-Below is the list of [signed](verify-docker-image-signature.md) Wallarm Docker images. You can generate SBOM for any tag of these images.
+以下は、[署名された](verify-docker-image-signature.md) Wallarm Dockerイメージのリストです。これらのイメージの任意のタグについてSBOMを生成することができます。
 
-<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image](../admin-en/installation-docker-en.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment
-* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): [Envoy-based Docker image](../admin-en/installation-guides/envoy/envoy-docker.md) that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
-* Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
+<!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): Wallarmの全モジュールが含まれている[NGINXベースのDockerイメージ](../admin-en/installation-docker-en.md)で、Wallarmのデプロイメント用の単体の成果物として機能します。
+* [wallarm/envoy](https://hub.docker.com/r/wallarm/envoy): Wallarmの全モジュールが含まれている[EnvoyベースのDockerイメージ](../admin-en/installation-guides/envoy/envoy-docker.md)で、Wallarmのデプロイメント用の単体の成果物として機能します。 -->
+* [NGINXベースのIngress Controllerデプロイメント](../admin-en/installation-kubernetes-en.md)用のHelmチャートで使用されるDockerイメージ：
 
-    * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
-    * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
-    * [wallarm/ingress-controller-chroot](https://hub.docker.com/r/wallarm/ingress-controller-chroot)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
+     * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
+     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
+     * [wallarm/ingress-controller-chroot](https://hub.docker.com/r/wallarm/ingress-controller-chroot)
+     * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+* [Sidecar proxyデプロイメント](../installation/kubernetes/sidecar-proxy/deployment.md)用のHelmチャートで使用されるDockerイメージ：
 
-    * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
-    * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
-    * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
-    * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
-    * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
-    * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
+     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
+     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
+     * [wallarm/ingress-collectd](https://hub.docker.com/r/wallarm/ingress-collectd)
+     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
+     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
+     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
 
-## Prerequisites
+## 前提条件
 
-To generate an SBOM for Wallarm Docker images, you will need to use the [syft](https://github.com/anchore/syft) CLI utility.
+Wallarm DockerイメージのSBOMを生成するためには、[syft](https://github.com/anchore/syft) CLIユーティリティを使用する必要があります。
 
-Before proceeding with SBOM generation, make sure to [install](https://github.com/anchore/syft#installation) **syft** on your local machine or within your CI/CD pipeline.
+SBOMの生成を進める前に、ローカルマシンまたはCI/CDパイプライン内に**syft**を[インストール](https://github.com/anchore/syft#installation)しておくことを確認してください。
 
-## SBOM generation procedure
+## SBOM生成手順
 
-To generate an SBOM for a Docker image, use the following command, replacing the specified image tag with the desired one:
+DockerイメージのSBOMを生成するには、次のコマンドを使用し、指定されたイメージタグを望ましいものに置き換えます：
 
 ```bash
 syft wallarm/ingress-controller:4.6.2-1
 ```
 
-By default, **syft** returns the SBOM in text format. You can also generate it in other formats like CycloneDX, SPDX, and save the output to a file, e.g.:
+デフォルトでは、**syft**はテキスト形式でSBOMを返します。CycloneDX、SPDXなどの他の形式で生成したり、出力をファイルに保存することもできます。例えば：
 
 ```bash
 syft wallarm/ingress-controller:4.6.2-1 --output spdx-json >> syft_json_sbom.spdx
 syft wallarm/ingress-controller:4.6.2-1 --output cyclonedx-json >> cyclonedx_json_sbom.cyclonedx
 ```
 
-After generating the SBOM, you can leverage it within your CI/CD pipeline for various actions, such as vulnerability scanning, license compliance checks, security audits, or generating reports.
+SBOMを生成した後、そのSBOMを脆弱性スキャン、ライセンス遵守チェック、セキュリティ監査、レポート作成などの様々なアクションのためにCI/CDパイプライン内で活用できます。
 
-To verify that all dependencies truly belong to Wallarm, you can simply [check the image's signature](verify-docker-image-signature.md) as a whole. By digitally signing our images, we guarantee that the signed image is indeed ours. Consequently, this assurance extends to the SBOM, as it will be associated with Wallarm's verified image.
+すべての依存関係が本当にWallarmに属していることを確認するには、[イメージの署名を確認](verify-docker-image-signature.md)するだけで済みます。我々はイメージにデジタル署名を行うことで、署名されたイメージが確かに我々のものであることを保証します。したがって、この保証はSBOMにも及び、Wallarmの検証済みイメージに関連していることになります。

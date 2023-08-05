@@ -1,8 +1,8 @@
 * Kubernetesプラットフォームバージョン1.23-1.25
 * [Helm](https://helm.sh/)パッケージマネージャ
-* [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)バージョン1.6.4以下と互換性があるサービス
-* Wallarm Consoleの**Administrator**ロールを持つアカウントへのアクセスがある[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)
-* US Wallarm Cloudを利用する場合は`https://us1.api.wallarm.com`、EU Wallarm Cloudを利用する場合は`https://api.wallarm.com`へのアクセス
-* Wallarm Helmチャートを追加するための`https://charts.wallarm.com`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
-* Docker HubのWallarmリポジトリ`https://hub.docker.com/r/wallarm`へのアクセス。ファイアウォールでアクセスがブロックされていないことを確認してください
-* [許可リスト、否認リスト、グレーリスト][ip-list-docs]の国、地域、データセンターに登録されたIPアドレスの実際のリストをダウンロードするための[GCP storage addresses](https://www.gstatic.com/ipranges/goog.json)へのアクセス
+* あなたのサービスが[Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)バージョン1.6.4以下と互換性があること
+* Wallarm Consoleにおける**管理者**役割を持つアカウントへのアクセスを持っていること。[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)
+* US Wallarm Cloudで作業するための`https://us1.api.wallarm.com`、またはEU Wallarm Cloudで作業するための`https://api.wallarm.com`へのアクセス
+* Wallarm Helmチャートを追加するための`https://charts.wallarm.com`へのアクセスを持っていること。ファイアウォールによってアクセスがブロックされていないことを確認してください
+* Docker Hub上のWallarmリポジトリ`https://hub.docker.com/r/wallarm`へのアクセス。ファイアウォールによるアクセス制限がないことを確認してください
+* Google Cloud StorageのIPアドレスへのアクセス[link](https://www.gstatic.com/ipranges/goog.json)。個々のIPアドレスの代わりに全国、地域、またはデータセンターを[ip-list-docs]へ許可、拒否、またはグレーリスト化した場合、WallarmノードはGoogle Storageにホストされた集約されたデータベースから関連する正確なIPアドレスを取得します。

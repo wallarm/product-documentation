@@ -1,18 +1,18 @@
-# フィルタリングノード操作の確認
+# フィルタリングノードの動作チェック
 
 [doc-configure-parameters]:     ../admin-en/configure-parameters-en.md
 [doc-stat-service]:    ../admin-en/configure-statistics-service.md
 
-すべてが正しく設定されている場合、Wallarm はリクエストをフィルタリングし、設定ファイルの設定に従ってフィルタリングされたリクエストをプロキシします。
+すべてが正しく設定されている場合、Wallarmは要求をフィルタリングし、設定ファイルの設定に従ってフィルタリングされた要求をプロキシします。
 
-正常な操作を確認するには、次の手順を実行する必要があります：
+正しい動作を確認するためには:
 
 1. `wallarm-status`リクエストを実行します。
-2. テスト攻撃を実行します。
+2. テスト攻撃を行います。
 
-## 1. `wallarm-status`リクエストを実行する
+## 1. `wallarm-status`リクエストの実行
 
-`/wallarm-status` URL をリクエストすることで、フィルタリングノード操作統計を取得できます。
+`/wallarm-status` URLをリクエストすることでフィルタリングノードの動作統計を取得できます。
 
 次のコマンドを実行します：
 
@@ -20,7 +20,7 @@
 curl http://127.0.0.8/wallarm-status
 ```
 
-出力は以下のようになります：
+出力は次のようになります：
 
 ```
 { "requests":0,"attacks":0,"blocked":0,"abnormal":0,"tnt_errors":0,"api_errors":0,
@@ -29,23 +29,23 @@ curl http://127.0.0.8/wallarm-status
 "stalled_workers_count":0,"stalled_workers":[] }
 ```
 
-これは、フィルタリングノード統計サービスが実行中で正常に動作していることを意味します。
+これはフィルタリングノードの統計サービスが実行され、正常に動作していることを意味します。
 
-!!! info "統計サービスについて"
-    統計サービスやその設定方法についての詳細は[こちら][doc-stat-service]をご覧ください。
+!!! info "統計サービス"
+     統計サービスについて詳しく読むことと、それをどのように設定するかについては[ここ][doc-stat-service]で読むことが出来ます。
 
-## 2. テスト攻撃を実行する
+## 2. テスト攻撃の実行
 
-Wallarm が攻撃を正しく検出しているかどうかを確認するには、保護されたリソースに対して悪意のあるリクエストを送信します。
+Wallarmが攻撃を正しく検出しているかを確認するために、保護されたリソースに対して悪意のあるリクエストを送信します。
 
 例えば：
 
 ```
-http://<resource_URL>/etc/passwd
+http://<リソース_URL>/etc/passwd
 ```
 
-Wallarm は、リクエスト内で [パストラバーサル](../attacks-vulns-list.md#path-traversal) を検出する必要があります。
+Wallarmは、リクエストで[パス横断](../attacks-vulns-list.md#path-traversal)を検出する必要があります。
 
-これで、`wallarm-status` のリクエストを実行すると、攻撃の回数カウンタが増加し、フィルタリングノードが正常に動作していることがわかります。
+`wallarm-status`が実行されたときの攻撃の回数のカウンタが増加することは、フィルタリングノードが正常に動作していることを意味します。
 
-Wallarm フィルタリングノード設定の詳細については、[設定オプション][doc-configure-parameters]の章を参照してください。
+Wallarmフィルタリングノード設定の詳細については、[設定オプション][doc-configure-parameters]の章をご覧ください。

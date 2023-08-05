@@ -1,7 +1,6 @@
-					!!! info "その他の推奨事項"
-    WallarmのKubernetes Ingressコントローラーのバージョンは、[Kubernetes用のコミュニティがサポートするNGINX Ingressコントローラー](https://github.com/kubernetes/ingress-nginx)に基づいていますので、公式Ingressコントローラーのドキュメントやインターネット上で見つかる大部分の推奨事項は、WallarmのIngressコントローラーにも適用されます。
+					!!! info "その他のおすすめ"
+    WallarmのKubernetes Ingressコントローラーのバージョンは、[コミュニティがサポートするKubernetes用のNGINX Ingressコントローラー](https://github.com/kubernetes/ingress-nginx)に基づいていますので、公式のIngressコントローラーのドキュメンテーションや一般的なインターネットで見つかるほとんどのお勧めがWallarmのIngressコントローラーにも適用可能です。
 
     おすすめの読み物：
 
-    * [Kubernetes Ingressコントローラに関する記事のコレクション](https://www.aquasec.com/wiki/display/containers/Working+with+Kubernetes+Ingress)
-    * [公式NGINX Ingressコントローラガイド](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)
+    * [公式のNGINX Ingressコントローラーガイド](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/)

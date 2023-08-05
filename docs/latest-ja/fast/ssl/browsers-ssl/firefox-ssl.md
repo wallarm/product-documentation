@@ -2,33 +2,33 @@
 [img-cert-download]:    ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-certificate-download.png
 [img-https-ok]:         ../../../images/fast/ssl/common/browsers-ssl/firefox-ssl/f-https-ok.png
     
-    
-#   FAST Node Self-signed SSL-certificate Installation for Mozilla Firefox
 
-To install the certificate for the Mozilla Firefox browser, do the following:
+#   Mozilla Firefox向けのFASTノード自己署名SSL証明書のインストール
 
-1.  Make sure that you have set up your browser to use the FAST node as the HTTP and HTTPS proxy.
+Mozilla Firefoxブラウザに証明書をインストールするには、以下の手順を実行します：
 
-2.  Request the file `cert.der` from any domain via HTTP using the browser.
+1.  FASTノードをHTTPおよびHTTPSプロキシとして使用するようにブラウザを設定していることを確認します。
 
-    For example, you can use one of the following links:
+2.  ブラウザを使用してHTTP経由で任意のドメインからファイル`cert.der`を要求します。
+
+    例えば、以下のリンクのいずれかを使用できます：
     
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
+    ブラウザは証明書ファイルをダウンロードします。設定により、ファイルはデフォルトのダウンロードディレクトリまたは選択したディレクトリに配置されます。
     
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!自己署名FASTノード証明書の要求][img-cert-request]
 
-3.  A dialog window will open. You will be asked to install the certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image.    
-    
-    Choose the “Trust this CA to identify websites” option and select the **OK** button.
+3.  ダイアログウィンドウが開き、証明書のインストールを求められます。画像に表示されているものとは異なり、証明書の名前と有効期限が表示されます。    
 
-    ![!Downloading the certificate][img-cert-download]
+    「このCAをウェブサイトを識別するために信頼する」というオプションを選択し、**OK**ボタンをクリックします。
 
-4.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
+    ![!証明書のダウンロード][img-cert-download]
 
-    For example, you could browse to the HTTPS version of the Google Gruyere site:
+4.  証明書が正しくインストールされたことを確認します。そのためには、HTTPS経由で任意のサイトにアクセスします。信頼できない証明書に関する警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるはずです。
+
+    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![!HTTPSが機能しています][img-https-ok]

@@ -1,3 +1,3 @@
-					!!! warning "ノードタイプのアップグレードに関する一部の変更とお勧め"
- * Wallarmノード2.18以下をアップグレードする場合は、バージョン3.xには**互換性のない変更**が含まれていることにご注意ください。 2.18以下のモジュールを3.6にアップグレードする前に、[Wallarmノードの変更](older-versions/what-is-new.md)のリストを注意深く確認し、おそらく設定の変更を考慮してください。
- * 通常のクライアントノードと[multi-tenant](../installation/multi-tenant/overview.md)ノードの両方をバージョン3.6までアップグレードすることを推奨します。これにより、Wallarmのリリースを最新の状態に保つことができ、[インストール済みのモジュールの非推奨](versioning-policy.md#version-support)を防ぐことができます。
+					!!! warning "ノードタイプのアップグレードに対する変更内容と推奨事項"
+    * Wallarmノード2.18以前をアップグレードする場合、バージョン3.xには**大きな変更**が含まれています。2.18以前のモジュールを3.6までアップグレードする前に、[Wallarmノードの変更](older-versions/what-is-new.md)のリストを慎重に確認し、可能な設定変更を検討してください。
+    * 標準（クライアント）ノードと[multi-tenant](../installation/multi-tenant/overview.md)ノードの両方をバージョン3.6までアップグレードすることを推奨します。これにより、Wallarmのリリースに最新の状態を保つことができ、[インストールされたモジュールの非推奨](versioning-policy.md#version-support)を防ぐことができます。

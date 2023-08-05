@@ -1,78 +1,77 @@
-# IPアドレスの拒否リスト
+# IPアドレス拒否リスト
 
-**拒否リスト**は、正当なリクエストが発生してもアプリケーションにアクセスが許可されていないIPアドレスのリストです。任意の [モード](../../admin-en/configure-wallarm-mode.md)でのフィルタリングノードは、拒否リストに含まれるIPアドレスからのすべてのリクエストをブロックします(ただし、IPアドレスが [許可リスト](allowlist.md) に重複している場合を除く)。
+**拒否リスト**は、合法的なリクエストを起動してもあなたのアプリケーションにアクセスを許可しないIPアドレスのリストです。任意の[モード](../../admin-en/configure-wallarm-mode.md)でのフィルタリングノードは、拒否リストに記載されているIPアドレスからのすべてのリクエストをブロックします（IPが[許可リスト](allowlist.md)に重複していない限り）。
 
-Wallarm Console → **IPリスト** → **拒否リスト**では、次の方法でブロックされたIPアドレスを管理できます。
+Wallarmのコンソール → **IPリスト** → **拒否リスト**にて、ブロックされたIPアドレスを以下のように管理できます：
 
---8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
+![!IP 拒否リスト](../../images/user-guides/ip-lists/denylist-apps.png)
 
 !!! info "リストの古い名前"
-    IPアドレス拒否リストの古い名前は「IPアドレス ブラックリスト」です。
+    IPアドレスの拒否リストの古い名前は「IPアドレスブラックリスト」です。
 
-## IP拒否リストの使用例
+## IP拒否リスト利用例
 
-* 連続した攻撃が発生したIPアドレスをブロックする。
+* 連続した攻撃が発生したIPアドレスをブロックします。
 
-    攻撃は、1つのIPアドレスから発生し、さまざまなタイプの悪意のあるペイロードを含む複数のリクエストで構成される場合があります。このような攻撃をブロックする方法の1つは、リクエストの発生元をブロックすることです。[トリガー](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)でソースIPブロックの閾値と適切な反応を設定することで、自動的にソースIPをブロックするように構成できます。
-  
-* ブロックベースの攻撃をブロックする。
+    攻撃は、一つのIPアドレスからの複数のリクエストを含み、それらは様々なタイプの悪意のあるペイロードを含むことがあります。このような攻撃をブロックする一つの方法は、リクエストの発信元をブロックすることです。あなたは、発信元IPのブロックの閾値と適切な反応を設定することにより、自動的な発信元IPのブロックを設定できます。[トリガー](../triggers/trigger-examples.md#denylist-ip-if-4-or-more-malicious-payloads-are-detected-in-1-hour)を参照してください。
+* 行動ベースの攻撃をブロックします。
 
-    Wallarmフィルタリングノードは、悪意のあるペイロードが検出された場合、リクエストごとにほとんどの有害なトラフィックをブロックできます。ただし、すべての単一のリクエストが正当である行動ベースの攻撃\(例: ユーザー名/パスワードのペアを使用したログイン試行\)では、発生元によるブロックが必要になる場合があります。
+    Wallarmのフィルタリングノードは、悪意のあるペイロードが検出されれば、最も有害なトラフィックのリクエストをリクエストごとにブロックできます。しかし、個々のリクエストが合法的な場合（例えば、ユーザー名/パスワードのペアでのログイン試行など）では、発信元によるブロックが必要な場合があります。
 
-    デフォルトでは、行動攻撃源の自動ブロックが無効になっています。[ブルートフォース保護の設定方法 →](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
+    デフォルトでは、行動攻撃の源の自動ブロックは無効になっています。[ブルートフォース保護の設定について](../../admin-en/configuration-guides/protecting-against-bruteforce.md#configuration-steps)
 
-## リストへのオブジェクト追加方法
+## リストへのオブジェクトの追加
 
-**いくつか疑わしいトラフィックが生成された場合、WallarmによるIPアドレスの自動拒否リスト**と**手動**でリストに追加されたオブジェクトの両方を利用できます。
+あなたは**疑わしいトラフィックを出すIPアドレスを自動的に拒否リストに登録する**ようにWallarmを設定することも、**手動で**オブジェクトを拒否リストに登録することもできます。
 
-!!! info "マルチテナントノードでのIPアドレスの追加方法"
-    [マルチテナントノード](../../installation/multi-tenant/overview.md)をインストールした場合は、まずリストにIPアドレスを追加するテナントの[アカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)に切り替えてください。
+!!! info "マルチテナントノード上でのIPアドレスのリストへの追加"
+    [マルチテナントノード](../../installation/multi-tenant/overview.md)をインストールした場合は、先にあなたがIPアドレスをリストに追加する[テナントのアカウント](../../installation/multi-tenant/configure-accounts.md#tenant-account-structure)に切り替えてください。
 
-### 自動拒否リストの設定（推奨）
+### 自動拒否リストポピュレーション（おすすめ）
 
- [トリガー](../../user-guides/triggers/triggers.md)機能は、次の条件でIPアドレスの自動拒否リストを有効にできます:
+[トリガー](../../user-guides/triggers/triggers.md)機能を利用して、以下の条件でIPの自動拒否リスト登録が可能です：
 
-ログイン試行* 次のタイプの悪意のあるリクエスト: [`Brute force` , `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) , [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) 。
-* IPによって生成された `悪意のあるペイロードの数`。
+* 以下のタイプの悪意のあるリクエスト：[`Brute force`, `Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md), [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md).
+* IPによって生成された`Number of malicious payloads`。
 
-リストされたイベントへの`Denylist IP address`リアクションを持つトリガーは、指定された時間枠でIPアドレスを自動的に拒否リストに登録します。Wallarm Console → **Triggers**でトリガーを設定できます。
+リストされたイベントに対して`Denylist IP address`反応をもつトリガーは、指定した時間枠で自動的にIPを拒否リストに登録します。Wallarmのコンソール → **トリガー**でトリガーを設定できます。
 
-### 手動拒否リスト登録方法
+### 手動での拒否リストポピュレーション
 
-IPアドレス、サブネット、またはIPアドレスのグループをリストに追加するには：
+IPアドレス、サブネット、又はIPアドレスのグループをリストに追加するには：
 
-1. Wallarm Console→ **IPリスト** → **拒否リスト**を開き、 **オブジェクトの追加**ボタンをクリックします。
+1. Wallarmのコンソール → **IPリスト** → **拒否リスト**を開き、**Add object** ボタンをクリックします。
 2. ドロップダウンリストから、新しいオブジェクトを追加するリストを選択します。
-3. 次のいずれかの方法でIPアドレスまたはIPアドレスのグループを指定します:
+3. 下記の方法のいずれかでIPアドレス又はIPアドレスのグループを指定します：
 
-    * 単一の **IPアドレス**または **サブネット**を入力
+    * **IPアドレス** 又は **サブネット**を入力します
 
-        !!! info "サポートされるサブネットマスク"
-            サポートされる最大サブネットマスクはIPv6アドレスの場合は`/32`、IPv4アドレスの場合は`/12`です。
+        !!! info "サポートされているサブネットマスク"
+            IPv6アドレスの最大サポートサブネットマスクは`/32`、IPv4アドレスの場合は`/12`です。
 
-    * すべてのIPアドレスが登録されている **国**または **地域**（ジオロケーション）を選択して追加
-    * このタイプに属しているすべてのIPアドレスを追加する **ソースタイプ**を選択 \(例：\) ：
-        * **Tor**：TorネットワークのIPアドレス
-        * **Proxy**：パブリックまたはWebプロキシサーバーのIPアドレス
-        * **Search Engine Spiders**：検索エンジンスパイダーのIPアドレス
-        * **VPN**：仮想プライベートネットワークのIPアドレス
-        * **AWS**：Amazon AWSに登録されているIPアドレス
-4. 指定したIPアドレスのアクセス許可または制限するアプリケーションを選択します。
-5. IPアドレスまたはIPアドレスのグループをリストに追加する期間を選択します。最小値は5分、最大値は永遠です。
-6. IPアドレスまたはIPアドレスグループをリストに追加する理由を指定します。
+    * **国** 又は **地域**（ジオロケーション）を選択し、その国又は地域に登録されているすべてのIPアドレスを追加します
+    * このタイプに属するすべてのIPアドレスを追加するための**ソースタイプ**を選択します、例えば：
+        * **Tor** TorネットワークのIPアドレス
+        * **Proxy** 公開又はウェブプロキシサーバのIPアドレス
+        * **Search Engine Spiders** 検索エンジンスパイダーのIPアドレス
+        * **VPN** 仮想プライベートネットワークのIPアドレス
+        * **AWS** Amazon AWSに登録されているIPアドレス
+4. 指定されたIPアドレスのアクセスを許可又は制限するアプリケーションを選択します。
+5. IPアドレス又はIPアドレス群をリストに登録する期間を選択します。最小値は5分です、最大値は永続です。
+6. IPアドレス又はIPアドレス群をリストに登録する理由を明記します。
 
 ![!Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
-### 自動ボットIP拒否リスト登録方法
+### 自動的なボットIPの拒否リスト登録
 
---8<-- "../include-ja/waf/features/ip-lists/autopopulation-by-antibot.md"
+--8<-- "../include/waf/features/ip-lists/autopopulation-by-antibot.md"
 
-## 拒否リストに登録されたIPへの通知の受け取り方
+## 拒否リストに登録されたIPについての通知の受け取り
 
-メッセンジャーや使用中のSIEMシステムを介して新たに拒否リストに登録されたIPについての通知を受け取ることができます。通知を有効にするには、適切な [トリガー](../triggers/triggers.md) を設定します。例えば：
+あなたは日常的に使用するメッセンジャーやSIEMシステムを通じて新たに拒否リストに登録されたIPについての通知を受け取ることができます。通知を有効にするために、適切な[トリガー](../triggers/triggers.md)を設定してください、例えば：
 
 ![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
---8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

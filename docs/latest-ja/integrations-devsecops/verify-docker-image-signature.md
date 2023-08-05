@@ -1,13 +1,13 @@
-# Verifying Wallarm Docker Image Signatures
+# Wallarm Dockerイメージ署名の確認
 
-Wallarm signs and shares the [public key](https://repo.wallarm.com/cosign.pub) for its Docker images, enabling you to verify their authenticity and mitigate risks like compromised images and supply chain attacks. This article provides instructions for verifying Wallarm Docker image signatures.
+Wallarmは、そのDockerイメージのための[公開鍵](https://repo.wallarm.com/cosign.pub)を署名し、共有します。こうすることにより、あなたはその真正性を確認し、侵害されたイメージやサプライチェーン攻撃のようなリスクを緩和できます。本記事では、Wallarm Dockerイメージ署名の確認手順について説明します。
 
-## The list of signed images
+## 署名されたイメージのリスト
 
-Starting from the release 4.4, Wallarm signs the following Docker images:
+リリース4.4から、Wallarmは以下のDockerイメージを署名しています：
 
 <!-- * [wallarm/node](https://hub.docker.com/r/wallarm/node): [NGINX-based Docker image] that includes all Wallarm modules, serving as a standalone artifact for Wallarm deployment -->
-* All Docker images used by the Helm chart for [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md):
+* Helm chartによって使用されるすべてのDockerイメージ（[NGINXベースのIngress Controllerデプロイメント](../admin-en/installation-kubernetes-en.md)）に対して：
 
     * [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx)
     * [wallarm/ingress-controller](https://hub.docker.com/r/wallarm/ingress-controller)
@@ -16,7 +16,7 @@ Starting from the release 4.4, Wallarm signs the following Docker images:
     * [wallarm/ingress-tarantool](https://hub.docker.com/r/wallarm/ingress-tarantool)
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
-* All Docker images used by the Helm chart for [Sidecar proxy deployment](../installation/kubernetes/sidecar-proxy/deployment.md):
+* Helm chartによって使用されるすべてのDockerイメージ（[Sidecarプロキシデプロイメント](../installation/kubernetes/sidecar-proxy/deployment.md)）に対して：
 
     * [wallarm/sidecar](https://hub.docker.com/r/wallarm/sidecar)
     * [wallarm/sidecar-controller](https://hub.docker.com/r/wallarm/sidecar-controller)
@@ -25,22 +25,22 @@ Starting from the release 4.4, Wallarm signs the following Docker images:
     * [wallarm/ingress-ruby](https://hub.docker.com/r/wallarm/ingress-ruby)
     * [wallarm/ingress-python](https://hub.docker.com/r/wallarm/ingress-python)
 
-## Prerequisites
+## 前提条件
 
-To ensure the authenticity of Wallarm Docker images, [Cosign](https://docs.sigstore.dev/cosign/overview/) is used for both signing and verification. 
+Wallarm Dockerイメージの真正性を確保するため、[Cosign](https://docs.sigstore.dev/cosign/overview/)が署名と確認の両方に使用されます。
 
-Before proceeding with Docker image signature verification, make sure to [install](https://docs.sigstore.dev/cosign/installation/) the Cosign command-line utility on your local machine or within your CI/CD pipeline.
+Dockerイメージ署名の確認を始める前に、あなたのローカルマシンかCI/CDパイプライン内でCosignコマンドラインユーティリティを[インストール](https://docs.sigstore.dev/cosign/installation/)してください。
 
-## Running Docker image signature verification
+## Dockerイメージ署名の確認を実行する
 
-To verify a Docker image signature, execute the following commands replacing the `WALLARM_DOCKER_IMAGE` value with the specific image tag:
+Dockerイメージ署名を確認するには、以下のコマンドを実行し、`WALLARM_DOCKER_IMAGE`の値を特定のイメージタグで置き換えてください：
 
 ```bash
 export WALLARM_DOCKER_IMAGE="wallarm/ingress-controller:4.6.2-1"
 cosign verify --key https://repo.wallarm.com/cosign.pub $WALLARM_DOCKER_IMAGE
 ```
 
-The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docker-manifest-digest` object with the image digest, e.g.:
+[出力](https://docs.sigstore.dev/cosign/verify/)は、イメージのダイジェストと共に`docker-manifest-digest`オブジェクトを提供するはずです。例えば：
 
 ```bash
 [{"critical":{"identity":{"docker-reference":"index.docker.io/<WALLARM_DOCKER_IMAGE>"},
@@ -48,43 +48,3 @@ The [output](https://docs.sigstore.dev/cosign/verify/) should provide the `docke
 "optional":{"Bundle":{"SignedEntryTimestamp":"<VALUE>","Payload":{"body":"<VALUE>",
 "integratedTime":<VALUE>,"logIndex":<VALUE>,"logID":"<VALUE>"}}}}]
 ```
-
-<!-- ## Automation of verification procedure
-
-To automate the verification of Docker images used in [NGINX-based Ingress Controller deployment](../admin-en/installation-kubernetes-en.md), you can use the provided script.
-
-1. Before running the script, set the desired image tag in the `IMAGES_TAG` environment variable. All images used by the Helm chart share the same versions, so choose the appropriate one from the available [wallarm/ingress-nginx](https://hub.docker.com/r/wallarm/ingress-nginx) image tags.
-
-    ```bash
-    export IMAGES_TAG="4.6.2-1"
-    ```
-1. Execute the script on your local machine or within your CI/CD pipeline to automatically verify all images used by the Helm chart:
-
-    ```bash
-    #!/usr/bin/env bash
-
-    set +x
-
-    if ! [[ -x "$(command -v cosign)" ]]; then
-        echo "<cosign> could not be found"
-        echo "Did you install it?"
-        exit
-    fi
-
-    if [[ -z "$IMAGES_TAG" ]]; then
-        echo "Please set the images' version to be verified in the env variable, e.g.:"
-        echo "export IMAGES_TAG=\"4.6.2-1\" "
-        exit 1
-    fi
-
-    IMAGES="ingress-ruby ingress-python ingress-tarantool ingress-collectd nginx-ingress-controller ingress-controller"
-
-    for image in $IMAGES; do
-        CURRENT_IMAGE="wallarm/$image:$IMAGES_TAG"
-        echo "--------------------------"
-        echo "Verifying $CURRENT_IMAGE"
-        cosign verify --key https://repo.wallarm.com/cosign.pub "$CURRENT_IMAGE"
-        echo;echo
-    done
-    ```
- -->

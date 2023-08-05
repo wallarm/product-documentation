@@ -1,17 +1,15 @@
-以下は、Wallarmのドキュメントの英語から日本語への変換です。
-
-						=== "米国クラウド"
+					=== "USクラウド"
     ```bash
     #!/bin/bash
 
-    UUID="<YOUR_UUID>"
-    SECRET="<YOUR_SECRET_KEY>"
-    CLIENT="<YOUR_CLIENT_ID>"
-    LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPアドレスまたはサブネットが記載されているCSVファイルへのパス
-    APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
-    REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
-    REASON='<REASON>'
+    UUID="<あなたのUUID>"
+    SECRET="<あなたのシークレットキー>"
+    CLIENT="<あなたのクライアントID>"
+    LIST="<IPリストのタイプ>"
+    PATH_TO_CSV_FILE="<CSVファイルへのパス>" # IPアドレスまたはサブネットのCSVファイルへのパス
+    APPLICATIONS="<カンマで区切ったAPP_ID>"
+    REMOVE_DATE="<削除日時のタイムスタンプ>"
+    REASON='<理由>'
     API="us1.api.wallarm.com"
 
 
@@ -30,8 +28,7 @@
     curl -X POST \
     https://$API/v4/ip_rules \
     -H "Content-Type: application/json" \
-    -H "X-WallarmAPI-Secret: $SECRET"  \
-    -H "X-WallarmAPI-UUID: $UUID" \
+    -H "X-WallarmApi-Token: <あなたのトークン>"  \
     -d '{
     "clientid": '$CLIENT',
     "ip_rule": {
@@ -49,18 +46,18 @@
 
     done
     ```
-=== "EU クラウド"
+=== "EUクラウド"
     ```bash
     #!/bin/bash
 
-    UUID="<YOUR_UUID>"
-    SECRET="<YOUR_SECRET_KEY>"
-    CLIENT="<YOUR_CLIENT_ID>"
-    LIST="<TYPE_OF_IP_LIST>"
-    PATH_TO_CSV_FILE="<PATH_TO_CSV_FILE>" # IPアドレスまたはサブネットが記載されているCSVファイルへのパス
-    APPLICATIONS="<APP_IDS_THROUGH_COMMA>"
-    REMOVE_DATE="TIMESTAMP_REMOVE_DATE"
-    REASON='<REASON>'
+    UUID="<あなたのUUID>"
+    SECRET="<あなたのシークレットキー>"
+    CLIENT="<あなたのクライアントID>"
+    LIST="<IPリストのタイプ>"
+    PATH_TO_CSV_FILE="<CSVファイルへのパス>" # IPアドレスまたはサブネットのCSVファイルへのパス
+    APPLICATIONS="<カンマで区切ったAPP_ID>"
+    REMOVE_DATE="<削除日時のタイムスタンプ>"
+    REASON='<理由>'
     API="api.wallarm.com"
 
 
@@ -79,8 +76,7 @@
     curl -X POST \
     https://$API/v4/ip_rules \
     -H "Content-Type: application/json" \
-    -H "X-WallarmAPI-Secret: $SECRET"  \
-    -H "X-WallarmAPI-UUID: $UUID" \
+    -H "X-WallarmApi-Token: <あなたのトークン>"  \
     -d '{
     "clientid": '$CLIENT',
     "ip_rule": {

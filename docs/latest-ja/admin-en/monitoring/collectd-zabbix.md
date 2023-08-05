@@ -1,139 +1,139 @@
-[img-zabbix-scheme]: ../../images/monitoring/zabbix-scheme.png
+[img-zabbix-scheme]:        ../../images/monitoring/zabbix-scheme.png
 
-[link-zabbix]: https://www.zabbix.com/
-[link-collectd-nagios]: https://collectd.org/wiki/index.php/Collectd-nagios
-[link-zabbix-agent]: https://www.zabbix.com/zabbix_agent
-[link-zabbix-passive]: https://www.zabbix.com/documentation/4.0/manual/appendix/items/activepassive
-[link-zabbix-app]: https://hub.docker.com/r/zabbix/zabbix-appliance
-[link-docker-ce]: https://docs.docker.com/install/
-[link-zabbix-repo]: https://www.zabbix.com/download
-[link-allowroot]: https://www.zabbix.com/documentation/4.0/manual/appendix/config/zabbix_agentd
-[link-sed-docs]: https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview
-[link-visudo]: https://www.sudo.ws/man/1.8.17/visudo.man.html
-[link-metric]: available-metrics.md#number-of-requests
+[link-zabbix]:              https://www.zabbix.com/
+[link-collectd-nagios]:     https://collectd.org/wiki/index.php/Collectd-nagios
+[link-zabbix-agent]:        https://www.zabbix.com/zabbix_agent
+[link-zabbix-passive]:      https://www.zabbix.com/documentation/4.0/manual/appendix/items/activepassive
+[link-zabbix-app]:          https://hub.docker.com/r/zabbix/zabbix-appliance
+[link-docker-ce]:           https://docs.docker.com/install/
+[link-zabbix-repo]:         https://www.zabbix.com/download
+[link-allowroot]:           https://www.zabbix.com/documentation/4.0/manual/appendix/config/zabbix_agentd
+[link-sed-docs]:            https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview
+[link-visudo]:              https://www.sudo.ws/man/1.8.17/visudo.man.html
+[link-metric]:              available-metrics.md#number-of-requests
 
-[doc-unixsock]: fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
+[doc-unixsock]:             fetching-metrics.md#exporting-metrics-using-the-collectd-nagios-utility
 
-# `collectd-nagios`ユーティリティを使用したZabbixへのメトリックのエクスポート
+#   `collectd-nagios` ユーティリティを経由して Zabbix にメトリクスをエクスポート
 
-このドキュメントでは、[`collectd-nagios`][link-collectd-nagios]ユーティリティを使用して、フィルターノードメトリックを[Zabbix][link-zabbix]監視システムにエクスポートする例を説明します。
+この文書は、[`collectd-nagios`][link-collectd-nagios] ユーティリティを使用してフィルターノードのメトリクスを [Zabbix][link-zabbix] 監視システムにエクスポートする例を提供しています。
 
-## 例のワークフロー
+##  例のワークフロー
 
---8<-- "../include-ja/monitoring/metric-example.md"
-
+--8<-- "../include/monitoring/metric-example.md"
 
 ![!Example workflow][img-zabbix-scheme]
 
-このドキュメントでは、次のデプロイメントスキームが使用されます。
-* Wallarmフィルターノードは、`10.0.30.5` IPアドレスおよび`node.example.local`完全修飾ドメイン名を介してアクセス可能なホストにデプロイされます。
+この文書では、以下のデプロイスキームが使用されています：
+*   Wallarm のフィルターノードは、`10.0.30.5` の IP アドレスと、`node.example.local` のフルクオリファイドドメイン名を通じてアクセス可能なホストにデプロイされています。
 
-  このホストには[Zabbixエージェント][link-zabbix-agent] 4.0 LTSがデプロイされており、
+    ホストには [Zabbix エージェント][link-zabbix-agent] 4.0 LTS がデプロイされており
 
-  * `collectd-nagios`ユーティリティを使用してフィルターノードメトリックスをダウンロードします
-  * `10050/TCP`ポートでの受信接続をリッスンします（したがって、Zabbix Applianceを使用して[passive checks][link-zabbix-passive]が行われます）。
-  * メトリック値をZabbix Applianceに渡します。
+    *   `collectd-nagios` ユーティリティを使用してフィルターノードのメトリクスをダウンロードします。
+    *   `10050/TCP` ポートで受信接続をリッスンします（このため、Zabbix アプライアンスの使用により [パッシブチェック][link-zabbix-passive] が行われます）。
+    *   メトリックの値を Zabbix アプライアンスへ渡します。
     
-* `10.0.30.30` IPアドレスの専用ホスト（以下「Dockerホスト」と呼ばれます）に、[Zabbixアプライアンス][link-zabbix-app] 4.0 LTSがDockerコンテナの形式でデプロイされます。
-    
-  Zabbixアプライアンスには、
+*   `10.0.30.30` の IP アドレスを持つ専用ホスト（以下、Docker ホストといいます）では、[Zabbix アプライアンス][link-zabbix-app] 4.0 LTS が Docker コンテナの形でデプロイされています。
 
-  * Zabbixサーバーは、フィルターノードホストにインストールされたZabbixエージェントから監視対象メトリックの変更に関する情報を取得するために、定期的にZabbixエージェントをポーリングします。
-  * Zabbixサーバーの管理Webインターフェイスが`80/TCP`ポートで利用できます。
+    この Zabbix アプライアンスには
     
-## Zabbixへのメトリックエクスポートの設定
+    *   一定期間ごとにフィルターノードのホストにインストールされた Zabbix エージェントに問い合わせて、監視メトリックの変更に関する情報を取得する Zabbix サーバー。
+    *   `80/TCP` ポートで利用可能な Zabbix サーバー管理 Web インターフェースが含まれています。
+
+##  Zabbxi へのメトリクスのエクスポート設定
+
 
 !!! info "前提条件"
-    次のことが前提条件とされています。
+    次が想定されています：
 
-    * `collectd`サービスはUnixドメインソケット経由で動作するように設定されています（詳細については[こちら][doc-unixsock]を参照してください）。
-    * `10.0.30.30`のDockerホストに[Docker Community Edition][link-docker-ce]がすでにインストールされています。
-    * `node.example.local`フィルターノードが既にデプロイされ、設定され、さらなる設定のために利用可能であり（例：SSHプロトコル経由）、正常に動作しています。
+    *   `collectd` サービスは Unix ドメインソケットを介して動作するように設定されています（詳細は [こちら][doc-unixsock] を参照してください）。
+    *   [Docker Community Edition][link-docker-ce] はすでに `10.0.30.30` の Docker ホストにインストールされています。
+    *   `node.example.local` のフィルターノードはすでにデプロイされ、設定され、更なる設定（例えば、SSH プロトコルを経由して）のために利用可能で、稼働しています。
 
-### Zabbixのデプロイ
+### Deploying Zabbix
 
-Zabbixアプライアンス4.0 LTSをデプロイするには、Dockerホストで次のコマンドを実行します：
+Zabbix アプライアンス 4.0 LTS をデプロイするには、Docker ホストで以下のコマンドを実行します：
 
 ``` bash
 docker run --name zabbix-appliance -p 80:80 -d zabbix/zabbix-appliance:alpine-4.0-latest
 ```
 
-これで、Zabbix監視システムが動作している状態になります。
+これで、作業可能な Zabbix モニタリングシステムができました。
 
-### Zabbixエージェントのデプロイ
+### Deploying the Zabbix Agent
 
-フィルターノードを持つホストにZabbixエージェント4.0 LTSをインストールします。
-1. フィルターノードに接続します（例えばSSHプロトコルを使用して）。`root`または別のスーパーユーザー権限を持つアカウントで実行していることを確認してください。
-2. Zabbixリポジトリを接続します（[手順][link-zabbix-repo]の「Install Zabbix repository」エントリをお使いのオペレーティングシステムに合わせて使用してください）。
-3. 適切なコマンドを実行してZabbixエージェントをインストールします：
+フィルターノードを持つホスト上に Zabbix エージェント 4.0 LTS をインストールします：
+1.  フィルターノードに接続します（例えば、SSH プロトコルを使用します）。`root` または他のスーパーユーザの権限を持つアカウントで実行していることを確認します。
+2.  Zabbix リポジトリを接続します（あなたのオペレーティングシステム用の [手順書][link-zabbix-repo] の「Zabbix リポジトリのインストール」エントリを使用します）。
+3.  関連するコマンドを実行して Zabbix エージェントをインストールします：
 
-    --8<-- "../include-ja/monitoring/install-zabbix-agent.md"
+    --8<-- "../include/monitoring/install-zabbix-agent.md"
 
-4. ZabbixエージェントをZabbixアプライアンスと連携させるように設定します。これには、`/etc/zabbix/zabbix_agentd.conf`設定ファイルを次のように編集します：
-   
+4.  Zabbix アプライアンスと連携するために Zabbix エージェントを設定します。これを行うには、`/etc/zabbix/zabbix_agentd.conf` 設定ファイルに以下の変更を行います：
+
     ```
-    Server=10.0.30.30			    # ZabbixのIPアドレス
-    Hostname=node.example.local		# フィルターノードのホストのFQDN
+    Server=10.0.30.30			    # Zabbix IP アドレス
+    Hostname=node.example.local		# フィルターノードを持つホストの FQDN
     ```
+    
+### Configuring Metrics Collection Using the Zabbix Agent
 
-### Zabbixエージェントを使用したメトリック収集の設定
+フィルターノードに接続します（例えば、SSH プロトコルを使用します）し、Zabbix エージェントを使用したメトリクスの収集を設定します。これを行うには、フィルターノードを持つホスト上で以下の手順を実行します：
 
-フィルターノードに接続し（例：SSHプロトコルを使用して）、Zabbixエージェントを使用したメトリック収集の設定を行います。これには、フィルターノードのホストで次の手順を実行します。
+####    1.  `collectd_nagios` ユーティリティをインストール
+    
+関連するコマンドを実行します：
 
-####    1.  `collectd_nagios`ユーティリティのインストール
+--8<-- "../include/monitoring/install-collectd-utils.md"
 
-適切なコマンドを実行します：
-
---8<-- "../include-ja/monitoring/install-collectd-utils.md"
-
-####    2.  `collectd-nagios`ユーティリティを、`zabbix`ユーザー代表で昇格した権限で実行するように設定します。
+####    2.  `zabbix` ユーザーを代表して `collectd-nagios` ユーティリティが特権を持って実行するように設定します
    
-[`visudo`][link-visudo]ユーティリティを使用して、次の行を`/etc/sudoers` ファイルに追加します：
-
+以下の行を `/etc/sudoers` ファイルに追加するために [`visudo`][link-visudo] ユーティリティを使用します：
+    
 ```
 zabbix ALL=(ALL:ALL) NOPASSWD:/usr/bin/collectd-nagios
 ```
-
-これにより、`zabbix`ユーザーは、パスワードを提供することなく、`sudo`ユーティリティを使用して`collectd-nagios`ユーティリティをスーパーユーザー権限で実行できるようになります。
-
-!!! info "`collectd-nagios`をスーパーユーザー権限で実行"
-    このユーティリティは、`collectd`のUnixドメインソケットを使用してデータを受信するため、スーパーユーザー権限で実行する必要があります。このソケットにはスーパーユーザーのみがアクセスできます。
-
-    `sudoers`リストに`zabbix`ユーザーを追加する代わりに、Zabbixエージェントを`root`として実行するように設定できます（これはセキュリティリスクを伴う可能性があるため、推奨されません）。これは、エージェントの設定ファイルで[`AllowRoot`][link-allowroot]オプションを有効にすることで実現できます。
-
-####    3.  `zabbix`ユーザーが`collectd`からメトリック値を取得できることを確認합니다。
     
-フィルターノードで次のテストコマンドを実行します：
+これにより、`zabbix` ユーザは、パスワードを提供する必要なく `sudo` ユーティリティを使用して、`collectd-nagios` ユーティリティをスーパーユーザの特権で実行することができます。
 
+!!! info "スーパーユーザの特権で `collectd-nagios` を実行"
+    このユーティリティは、データを受信するために `collectd` Unix ドメインソケットを使用するため、スーパーユーザの権限で実行する必要があります。このソケットにはスーパーユーザーだけがアクセスできます。
+    
+    `zabbix` ユーザを `sudoers` リストに追加する代わりに、Zabbix エージェントを `root` として実行するように設定することができます（これにはセキュリティリスクが伴う可能性があるため、推奨されません）。これは、エージェントの設定ファイルで [`AllowRoot`][link-allowroot] オプションを有効にすることで達成できます。
+        
+####    3.  `zabbix` ユーザが `collectd` からメトリックの値を受け取ることができることを確認します。
+    
+フィルターノード上で以下のテストコマンドを実行します：
+    
 ``` bash
 sudo -u zabbix sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-このコマンドは、`zabbix`ユーザーがフィルターノードを含む`node.example.local`ホストの[`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] メトリックの値を取得するためのものです。
-
+このコマンドは、フィルターノードを持つホスト `node.example.local` の [`curl_json-wallarm_nginx/gauge-abnormal`][link-metric] メトリックの値を取得するために `zabbix` ユーザを呼び出します。
+    
 **コマンド出力の例：**
 
 ```
 OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
 ```
-
-####    4.  必要なメトリックを取得するために、フィルターノードのZabbixエージェント設定ファイルにカスタムパラメータを追加します。
+    
+####    4.  必要なメトリクスを取得するために、フィルターノードのホスト上の Zabbix エージェントの設定ファイルにカスタムパラメータを追加します。
+    
+例えば、フルクオリファイドドメイン名 `node.example.local` のフィルターノードのメトリック `curl_json-wallarm_nginx/gauge-abnormal` に対応するカスタムパラメータ `wallarm_nginx-gauge-abnormal` を作成するには、設定ファイルに以下の行を追加します：
    
-例えば、`node.example.local`のフィルターノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックに対応するカスタムパラメータ`wallarm_nginx-gauge-abnormal`を作成するには、以下の行を設定ファイルに追加します：
-
 ```
 UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local | sed -n "s/.*value\=\(.*\);;;;.*/\1/p"
 ```
 
 !!! info "メトリック値の抽出"
-    `collectd-nagios`ユーティリティの出力で`value=`の後に続くメトリックの値（例：`OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;`）を抽出するには、この出力を`sed`ユーティリティにパイプし、不必要な文字を取り除く`sed`スクリプトを実行します。
+    メトリックの値を `collectd-nagios` ユーティリティの出力から取得するには（例えば、`OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;`）、この出力を `sed` ユーティリティにパイプし、不要な文字を削除する `sed` スクリプトを実行します。
+    
+    スクリプトの構文については [`sed` 文書][link-sed-docs] を参照してください。
 
-    そのスクリプトの構文については、[`sed`ドキュメント][link-sed-docs]を参照してください。
+####    5.  必要なすべてのコマンドが Zabbix エージェントの設定ファイルに追加されたら、エージェントをリスタートします。
 
-####    5.  すべての必要なコマンドがZabbixエージェント設定ファイルに追加された後、エージェントを再起動します
+--8<-- "../include/monitoring/zabbix-agent-restart-2.16.md"
 
---8<-- "../include-ja/monitoring/zabbix-agent-restart-2.16.md"
+##  設定完了
 
-## セットアップ完了
-
-これで、Zabbixを使ってWallarm固有のメトリックに関連するユーザーパラメータを監視できるようになります。
+これで、Zabbix を使用して、Wallarm に固有のメトリクスに関連するユーザパラメータを監視することができます。

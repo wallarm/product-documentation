@@ -1,69 +1,69 @@
-# Wallarm Terraformモジュールの例を試す
+# Wallarm Terraformモジュールの試用例
 
-異なる方法で[Wallarm Terraformモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を使用する例を用意しましたので、本番環境にデプロイする前に試すことができます。
+私たちは、さまざまな方法で[WallarmのTerraformモジュール](https://registry.terraform.io/modules/wallarm/wallarm/aws/)を使用する例を用意しました。これにより、製品へのデプロイ前に試すことができます。
 
-よくあるデプロイメントアプローチを示す4つの例があります。
+頻繁に利用されるデプロイ方法を表す4つの例を挙げます：
 
 * プロキシソリューション
-* プロキシアドバンストソリューション
+* 高度なプロキシソリューション
 * ミラーソリューション
-* AWS VPCトラフィックミラーリング用ソリューション
+* AWS VPCトラフィックミラーリングのためのソリューション
 
 ## プロキシソリューション
 
-[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy)は、Terraformモジュールを使用して、WallarmをAWS Virtual Private Cloud (VPC)にインラインプロキシとしてデプロイする方法を示しています。
+[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy)は、Terraformモジュールを使用してWallarmをAWSの仮想プライベートクラウド（VPC）へのインラインプロキシとしてデプロイする方法を示しています。
 
-Wallarmプロキシソリューションは、次世代WAFおよびAPIセキュリティ機能を備えた高度なHTTPトラフィックルーターとして機能する追加のネットワーク層を提供します。これは、最も機能的で簡単に実装できるソリューションであるため、**推奨**されるデプロイメントオプションです。
+Wallarmのプロキシソリューションは、Next-Gen WAFとAPIセキュリティ機能を備えた高度なHTTPトラフィックルーターとして機能する、追加の機能ネットワーク層を提供します。これは、最も機能的で実装が容易なソリューションを提供するため、**推奨**のデプロイオプションです。
 
-![!プロキシ構成図](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
+![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
 
-ソリューションの主な特徴:
+ソリューションの主要な特徴：
 
-* Wallarmは、Wallarmの機能を制限しない同期モードでトラフィックを処理し、瞬時に脅威の軽減を可能にします(`preset=proxy`)。
-* Wallarmソリューションは、他の層から独立して制御できる別のネットワーク層としてデプロイされ、ほぼすべてのネットワーク構造位置にレイヤーを配置できます。推奨される位置は、インターネットへのロードバランサーの後ろです。
+* Wallarmは、Wallarmの機能を制限せず、すぐに脅威の軽減を可能にする同期モードでトラフィックを処理します（`preset=proxy`）。
+* Wallarmのソリューションは、他の層から独立して制御できるように、別のネットワーク層としてデプロイされます。この層はほぼ任意のネットワーク構造の位置に配置できます。推奨される位置は、インターネット向けロードバランサーの背後です。
 
-[GitHubでの例のデプロイメントガイドを参照](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy)
+[GitHubのデプロイのガイド参照例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/proxy)
 
-ソリューションの柔軟性を実際に試したい場合は、[プロキシアドバンストソリューション](#proxy-advanced-solution)を試してください。
+[高度なプロキシソリューション](#proxy-advanced-solution)を試すことにより、ソリューションの柔軟性を確認できます。
 
-## プロキシアドバンストソリューション
+## 高度なプロキシソリューション
 
-[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)は、Terraformモジュールを使用して、WallarmをAWS Virtual Private Cloud (VPC)にインラインプロキシとして高度な設定でデプロイする方法を示しています。これは[シンプルなプロキシデプロイメント](#proxy-solution)によく似ていますが、一部のよくある高度な構成オプションが示されています。
+[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)は、AWSのVPCに対して高度な設定でWallarmをインラインプロキシとしてデプロイする方法を示しています。これは、[単純なプロキシデプロイ](#proxy-solution)と非常に似ていますが、よく使われる高度な設定オプションが示されています。
 
-Wallarmプロキシアドバンストソリューション（シンプルなプロキシと同様）は、次世代WAFおよびAPIセキュリティ機能を備えた高度なHTTPトラフィックルーターとして機能する追加のネットワーク層を提供します。
+Wallarmの高度なプロキシソリューション（単純なプロキシと同様に）は、Next-Gen WAFとAPIセキュリティ機能を提供する高度なHTTPトラフィックルーターとして機能する追加のネットワーク層を提供します。
 
-[GitHubでの例のデプロイメントガイドを参照](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)
+[GitHubのデプロイのガイド参照例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/advanced)
 
-## Amazon API Gateway用プロキシソリューション
+## Amazon API Gatewayのためのプロキシソリューション
 
-[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)は、Terraformモジュールを使用して、[Amazon API Gateway](https://aws.amazon.com/api-gateway/)を保護するためにWallarmをAWS Virtual Private Cloud (VPC)にインラインプロキシとしてデプロイする方法を示しています。
+[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)は、[Amazon API Gateway](https://aws.amazon.com/api-gateway/)を保護するために、WallarmをAWSのVPCへのインラインプロキシとしてデプロイする方法を示しています。
 
-Wallarmプロキシソリューションは、次世代WAFおよびAPIセキュリティ機能を備えた高度なHTTPトラフィックルーターとして機能する追加のネットワーク層を提供します。これにより、Amazon API Gatewayをはじめとするほぼすべてのサービスタイプに対してリクエストをルーティングでき、その機能を制限することはありません。
+Wallarmのプロキシソリューションは、Next-Gen WAFとAPIセキュリティを提供する追加の機能ネットワーク層を提供します。それは、Amazon API Gatewayを含むほぼ任意のサービスタイプへのリクエストをルーティングでき、その機能を制限しません。
 
-[GitHubでの例のデプロイメントガイドを参照](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)
+[GitHubのデプロイのガイド参照例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/apigateway)
 
 ## ミラーソリューション
 
-[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)は、ミラーリングされたトラフィックを分析するOutOfBandソリューションとしてWallarm Terraformモジュールをデプロイする方法を示しています。NGINX、Envoy、Istioおよび/またはTraefikウェブサーバーが既にトラフィックミラーリングを提供していることが想定されています。
+[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)は、WallarmのTerraformモジュールをミラードトラフィックを分析する帯域外ソリューションとしてデプロイする方法を示しています。NGINX、Envoy、Istio、および/またはTraefikがすでにトラフィックミラーリングを提供していることが期待されます。
 
-![!ミラー構成図](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
-ソリューションの主な特徴:
+ソリューションの主要な特徴：
 
-* Wallarmは、現在のトラフィックフローに影響を与えず、非同期モードでトラフィックを処理します(`preset=mirror`)。これにより、このアプローチが最も安全であることが保証されます。
-* Wallarmソリューションは、他の層から独立して制御できる別のネットワーク層としてデプロイされ、ほぼすべてのネットワーク構造位置にレイヤーを配置できます。推奨される位置は、プライベートネットワーク内です。
+* Wallarmはトラフィックを非同期モードで処理します（`preset=mirror`）。これにより、現在のトラフィックフローに影響を与えずに最も安全な方法で処理できます。
+* Wallarmのソリューションは、他の層から独立して制御できるように、別のネットワーク層としてデプロイされます。この層はほぼ任意のネットワーク構造の位置に配置できます。推奨される位置はプライベートネットワーク内です。
 
-[GitHubでの例のデプロイメントガイドを参照](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)
+[GitHubのデプロイのガイド参照例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)
 
-## AWS VPCトラフィックミラーリング用ソリューション
+## AWS VPCトラフィックミラーリングのためのソリューション
 
-[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)は、[Amazon VPCによってミラーリングされたトラフィック](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)を分析するOutOfBandソリューションとしてWallarm Terraformモジュールをデプロイする方法を示しています。
+[この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)は、[Amazon VPCによってミラーリングされたトラフィック](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)を分析する帯域外ソリューションとしてWallarmのTerraformモジュールをデプロイする方法を示しています。
 
-![!ミラー構成図](../../../../images/waf-installation/aws/terraform/wallarm-for-traffic-mirrored-by-vpc.png)
+![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-traffic-mirrored-by-vpc.png)
 
-ソリューションの主な特徴:
+ソリューションの主要な特徴：
 
-* Wallarmは、現在のトラフィックフローに影響を与えず、非同期モードでトラフィックを処理します(`preset=mirror`)。これにより、このアプローチが最も安全であることが保証されます。
-* Wallarmソリューションは、他の層から独立して制御できる別のネットワーク層としてデプロイされ、ほぼすべてのネットワーク構造位置にレイヤーを配置できます。推奨される位置は、プライベートネットワーク内です。
+* Wallarmはトラフィックを非同期モードで処理します（`preset=mirror`）。これにより、現在のトラフィックフローに影響を与えずに最も安全な方法で処理できます。
+* Wallarmのソリューションは、他の層から独立して制御できるように、別のネットワーク層としてデプロイされます。この層はほぼ任意のネットワーク構造の位置に配置できます。推奨される位置はプライベートネットワーク内です。
 
-[GitHubでの例のデプロイメントガイドを参照](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)
+[GitHubのデプロイのガイド参照例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)

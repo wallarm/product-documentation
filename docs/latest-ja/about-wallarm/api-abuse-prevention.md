@@ -1,77 +1,96 @@
-# APIの乱用防止<a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# APIの乱用防止 <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmプラットフォームの**APIの乱用防止**モジュールは、クレデンシャルのスタッフィング、偽のアカウント作成、コンテンツスクレイピングなどのAPIの乱用を行うボットの検出および緩和を提供します。
+Wallarmプラットフォームの**APIの乱用防止**モジュールは、クレデンシャルの詰め込み、偽のアカウントの作成、コンテンツのスクレイピングなど、APIに対する悪意のある行為を実行するボットの検出と軽減を提供します。
 
-## APIの乱用防止によってブロックされる自動化された脅威
+## APIの乱用防止によりブロックされる自動化された脅威
 
-**APIの乱用防止** モジュールは、デフォルトで以下のボットタイプを検出します:
+**APIの乱用防止**モジュールは、デフォルトでは以下のボットタイプを検出します：
 
 * [APIの乱用](../attacks-vulns-list.md#api-abuse)
-* [アカウント乗っ取り](../attacks-vulns-list.md#api-abuse-account-takeover)
+* [アカウントの乗っ取り](../attacks-vulns-list.md#api-abuse-account-takeover)
 * [セキュリティクローラー](../attacks-vulns-list.md#api-abuse-security-crawlers)
 * [スクレイピング](../attacks-vulns-list.md#api-abuse-scraping)
 
-[API乱用プロファイルの設定](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile) の間に、**APIの乱用防止** モジュールをすべてのタイプのボットから保護するように構成するか、特定の脅威に対するみを制限して保護するように構成できます。## API 不正アクセス防止の動作方法
+[APIの乱用プロファイル設定](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile)中に、**APIの乱用防止**モジュールを設定して、すべてのタイプのボットからの保護を提供するか、特定の脅威に対する保護のみを制限することができます。
 
-**API 不正アクセス防止** モジュールは、ML ベースの方法をはじめ、統計的、数学的奇妙探索方法や直接的な不正行為のケースなど、複雑なボット検出モデルを使用します。モジュールは、自己学習によって通常のトラフィックのプロファイルを識別し、著しく異なる動作を異常として特定します。
+## APIの乱用防止はどのように動作するのか？
 
-API 不正アクセス防止は、悪意のあるボットを識別するために複数の検出器を使用します。モジュールは、どの検出器がマークされたかの統計情報を提供します。
+**API Abuse Prevention** モジュールは、MLベースの方法を含む複雑なボット検出モデルを使用し、統計的および数学的な異常探索方法と直接の乱用のケースも含みます。このモジュールは正常なトラフィックプロファイルを自己学習し、大幅に異なる行動を異常として特定します。
 
-以下の検出器が関与する可能性があります。
+APIの乱用防止は、悪意のあるボットを特定するために複数の検出器を使用します。このモジュールは、どの検出器がマーキングに関与したかについての統計情報を提供します。
 
-* **リクエストの間隔**-リクエスト間の時間間隔を分析して、ボット動作であることを示すランダム性の欠如を見つけます。
-* **リクエストのユニーク性**-セッション中に訪問した一意のエンドポイントの数を分析します。クライアントが一貫して一定のパーセンテージのエンドポイント（10％以下）を訪問する場合、人間のユーザーではなく、ボットである可能性があります。
-* **リクエストレート**-特定の時間間隔で行われたリクエストの数を分析します。API クライアントが一貫して一定の閾値を超えるリクエストの高い割合を行う場合、人間のユーザーではなく、ボットである可能性があります。
-* **不正なユーザーエージェント**-リクエストに含まれる `User-Agent`ヘッダーを分析します。この検出器は、クローラー、スクレイパー、セキュリティチェッカーなどの特定のシグネチャをチェックします。
-* **更新されていないブラウザー**-リクエストで使用されるブラウザーやプラットフォームを分析します。クライアントが更新されていないまたはサポートされていないブラウザーやプラットフォームを使用している場合、人間のユーザーではなく、ボットである可能性があります。
-* **不審な振る舞いスコア**-セッション中に行われた通常および異常なビジネスロジック API リクエストを分析します。
-* **ビジネスロジックスコア**-「アプリケーションの動作の文脈で、重要なまたは機密性の高い API エンドポイントの使用を分析します。
+以下の検出器が関与する可能性があります：
 
-![!API 不正アクセス防止統計情報](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+* **リクエスト間隔** は、連続したリクエストの間の時間間隔を分析して、ボットの行動の兆候であるランダム性の欠如を見つけます。
+* **リクエストの一意性** は、セッション中に訪問された一意のエンドポイントの数を分析します。クライアントが一貫して一意のエンドポイントの低いパーセンテージ（例えば10%以下）を訪問している場合、それはボットである可能性が高いです。
+* **リクエスト率** は、特定の時間間隔で行われたリクエストの数を分析します。APIクライアントが一定のしきい値以上のリクエストを一貫して大量に行っている場合、それはボットである可能性が高いです。
+* **悪質なユーザーエージェント** は、リクエストに含まれる`User-Agent`ヘッダーを分析します。この検出器は、クローラーやスクレイパー、セキュリティチェッカーなどの特定のシグネチャをチェックします。
+* **古いブラウザ** は、リクエストで使用されるブラウザとプラットフォームを分析します。クライアントが古くなったりサポートされていないブラウザやプラットフォームを使用している場合、それはボットである可能性が高いです。
+* **異常行動スコア** は、セッション中に行われた通常と異常なビジネスロジックAPIリクエストを分析します。
+* **ビジネスロジックスコア** は、アプリケーションの動作の文脈内で重要またはセンシティブなAPIエンドポイントの使用を分析します。
 
-1つ以上の検出器がボット攻撃の兆候を指摘する場合（[#automated-threats-blocked-by-api-abuse-prevention](#automated-threats-blocked-by-api-abuse-prevention)）、モジュールは異常トラフィックの元のソースを1時間の間 [denylistsまたはgraylists](#reaction-to-malicious-bots)します。メトリクス値は、Wallarm Console UIの各ボットのIPの信頼度に反映されます。
+!!! info "信頼度"
+    検出器の動作の結果として、すべての[検出された](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)ボットは**信頼度のパーセンテージ**を得ます：私たちがそれがボットであることをどれほど確認しているか。各ボットタイプでは、検出器は相対的な重要性/投票数を持っています。したがって、信頼度のパーセンテージは、このボットタイプで可能なすべての投票中で得た投票数（動作した検出器によって提供される）です。
 
-モジュールは、トラフィックの異常を深く観察し、悪意のあるボットのアクションとブロックされた元を特定する前に行動をしっかりと観察します。メトリック収集と分析には時間がかかるため、初回の悪意のあるリクエストが起こったときにモジュールは悪意のあるボットをリアルタイムでブロックしませんが、平均して異常なアクティビティを大幅に減らします。## API濫用防止の有効化
+![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
-**API濫用防止**モジュールは、無効化された状態で提供されます。これは、CDNノードを含む[Wallarmノード4.2以上のすべての形式](../installation/supported-deployment-options.md)に含まれます。
+1つまたは複数の検出器が[ボットの攻撃の兆候](#automated-threats-blocked-by-api-abuse-prevention)を指摘した場合、モジュールは異常トラフィックの源を1時間[ブラックリストまたはグレーリスト](#reaction-to-malicious-bots)に登録します。Wallarmは、30日以内にブラックリストとグレーリストに登録されたボットのIPをカウントし、前の30日間と比較してこれらの量がどれだけ増減したかを表示します。
 
-API濫用防止をアクティブにするには以下の手順を実行してください。
+API Abuse Preventionは、それらを悪意のあるボットの行動として認定し、その起源をブロックする前に、トラフィックの異常を深く観察します。メトリクスの収集と分析には時間がかかるため、モジュールは最初の悪意のあるリクエストが発生した直後にリアルタイムで悪意のあるボットをブロックすることはありませんが、平均的には異常な活動を大幅に減らします。
 
-1. Wallarmノード4.2以降でトラフィックがフィルタされていることを確認します。
-1. [サブスクリプションプラン](subscription-plans.md#subscription-plans)にAPI濫用防止が含まれているかを確認してください。サブスクリプションプランの変更は、[sales@wallarm.com](mailto:sales@wallarm.com)までリクエストを送信してください。
-1. Wallarm Console → **API濫用防止**で少なくとも1つの[API濫用プロファイル](../user-guides/api-abuse-prevention.md)を作成または有効にします。
+## API Abuse Preventionの有効化
 
-    !!! info "API濫用防止設定へのアクセス"
-        企業のWallarmアカウントの[管理者](../user-guides/settings/users.md#user-roles)のみが**API濫用防止**セクションにアクセスできます。このアクセス権がない場合は、管理者に問い合わせてください。
+**APIの乱用防止**モジュールはデフォルトで無効になっており、[all forms of the Wallarm node 4.2 and above](../installation/supported-deployment-options.md)に含まれています。
 
-    ![!API濫用防止プロファイル](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+API Abuse Preventionを有効にするには：
 
-## 許容範囲
+1. トラフィックがWallarmノード4.2またはそれ以降でフィルタリングされていることを確認します。
+1. [subscription plan](subscription-plans.md#subscription-plans)が**APIの乱用防止**モジュールを含んでいることを確認します。サブスクリプションプランを変更するには、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送信してください。
+1. Wallarm Console → **APIの乱用防止**で、少なくとも1つの[API Abuse profile](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile)を作成または有効にします。
 
-許容範囲を指定することで、悪意のあるボットの兆候がどの程度監視され、偽陽性検出の数が制御されるかを設定できます。これは、[API濫用プロファイル](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile)内の**許容範囲**パラメータで設定されます。
+    !!! info "APIの乱用防止設定へのアクセス"
+        会社のWallarmアカウントの[管理者](../user-guides/settings/users.md#user-roles)のみが**APIの乱用防止**セクションにアクセスできます。このアクセスがない場合は、管理者に連絡してください。
 
-3つのレベルが用意されています。
+    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-* ボットへの低い許容範囲はアプリケーションへのボットのアクセスが少なくなりますが、偽陽性のため一部の正当なリクエストがブロックされる可能性があります。
-* 標準的な許容範囲は、多くの偽陽性を避け、大部分の悪意のあるボットリクエストをAPIに到達させないための最適なルールを使用します。
-* ボットへの高い許容範囲は、アプリケーションへのボットのアクセスが多くなりますが、正当なリクエストは削除されません。
+## トレランス
 
-## 悪意のあるボットに対する対応
+あなたは、悪意のあるボットの兆候がどれほど厳密に監視されるかを設定し、これによって誤検知の数をコントロールすることができます。これは、[API Abuse profiles](../user-guides/api-abuse-prevention.md#creating-api-abuse-profile)内の**Tolerance**パラメーターで設定します。
 
-以下の方法でAPI濫用防止の対応を設定できます。
+次の3つのレベルが利用可能です：
 
-* **拒否リストに追加**：WallarmはボットのIPを[拒否リスト](../user-guides/ip-lists/denylist.md)に追加し、これらのIPから生成されるすべてのトラフィックをブロックします。
-* **グレーリストに追加**：この対応により、ボットのブロックを回避してAPI濫用防止の機能を試すことができます。
+* **Low** トレランスは、ボットへのアクセスが少ないことを意味しますが、誤検知により一部の正当なリクエストがブロックされることがあります。
+* **Normal** トレランスは、多くの誤検知を避け、大部分の悪意のあるボットのリクエストをAPIに到達することを防ぐための最適なルールを使用します。
+* **High** トレランスは、ボットへのアクセスが多いことを意味しますが、その場合、正当なリクエストは一切ドロップされません。
 
-    Wallarmは、ボットの攻撃を登録し、ボットのIPを[グレーリスト](../user-guides/ip-lists/denylist.md)に置きますが、これらのIPから生成されるトラフィックはブロックされません。
+## 悪意のあるボットに対する反応
 
-    フィルタリングノードをセーフブロック[モード](../admin-en/configure-wallarm-mode.md)で使用している場合、グレーリストから発生した攻撃の一部はブロックされます。[詳細を読む](../user-guides/ip-lists/graylist.md)
+あなたはAPIの乱用防止を設定して、以下の方法のいずれかで悪意のあるボットに対応することができます：
 
-## 悪意のあるボットと攻撃の調査
+* **Add to denylist**：WallarmはボットのIPを[denylist](../user-guides/ip-lists/denylist.md)に追加し、これらのIPが生成するすべてのトラフィックをブロックします。
+* **Add to graylist**：WallarmはボットのIPを[graylist](../user-guides/ip-lists/graylist.md)に追加し、次の攻撃の兆候を含む、これらのIPから発生するリクエストのみをブロックします：
 
-Wallarm Console UIでボットの活動を以下のように調査できます。
+    * [Input validation attacks](../about-wallarm/protecting-against-attacks.md#input-validation-attacks)
+    * [Attacks of the vpatch type](../user-guides/rules/vpatch-rule.md)
+    * [Attacks detected based on regular expressions](../user-guides/rules/regex-rule.md)
 
-* **IPリスト**セクションで悪意のあるボットを調査する
-* **イベント**セクションでボットによって実行されたAPI濫用を調査する
+* **Only monitor**：Wallarmはボットの活動を[**Events**](../user-guides/events/check-attack.md)セクションで表示しますが、ボットのIPをブラックリストにもグレーリストにも追加しません。 
 
-[ボットの活動を調査する方法を学ぶ →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
+    このようなイベントの詳細から、あなたは**Add source IP to denylist**ボタンでボットを素早くブロックすることができます。IPは永久にブラックリストに追加されますが、**IP Lists**セクションでは、それを削除したり、リストに留まる時間を変更したりすることができます。
+
+## 悪意のあるボットとその攻撃の探求
+
+あなたはWallarm Console UIでボットの活動を以下のように調査することができます：
+
+* **IP lists**セクションで悪意のあるボットを探索します
+* **Events**セクションでボットが行ったAPIの乱用を表示します
+
+[Learn how to explore the bots' activity →](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)
+
+## 例外リスト
+
+例外リストとは、正当なボットまたはクローラーに関連していると知られているIPアドレス、サブネット、場所、ソースタイプのリストであり、したがってAPIの乱用防止モジュールによるブロックや制約から除外されます。
+
+あらかじめIPアドレスを例外リストに追加することも、既に誤って悪意のあるボットの活動と関連付けられているとフラグが立てられている場合でも、例外リストに追加することができます。 [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
+
+![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)

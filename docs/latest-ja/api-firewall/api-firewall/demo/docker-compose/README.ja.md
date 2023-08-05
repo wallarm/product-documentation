@@ -1,14 +1,14 @@
 # Docker Composeを使用したWallarm API Firewallのデモ
 
-このデモは、アプリケーション [**httpbin**](https://httpbin.org/) とWallarm API Firewallをプロキシとして、**httpbin** APIを保護する形でデプロイします。両方のアプリケーションは、Docker Composeを使用して接続されたDockerコンテナ内で実行されています。
+このデモでは、アプリケーション [**httpbin**](https://httpbin.org/) とWallarm API Firewallをプロキシとして、**httpbin** APIを保護するようにデプロイします。両方のアプリケーションは、Docker Composeを使用して接続されたDockerコンテナ内で実行されます。
 
 ## システム要件
 
-このデモを実行する前に、システムが以下の要件を満たしていることを確認してください：
+このデモを行う前に、システムが以下の要件を満たすように確認してください。
 
 * [Mac](https://docs.docker.com/docker-for-mac/install/)、[Windows](https://docs.docker.com/docker-for-windows/install/)、または[Linux](https://docs.docker.com/engine/install/#server)用にインストールされたDocker Engine 20.x以上
 * [Docker Compose](https://docs.docker.com/compose/install/)がインストールされていること
-* [Mac](https://formulae.brew.sh/formula/make)、[Windows](https://sourceforge.net/projects/ezwinports/files/make-4.3-without-guile-w32-bin.zip/download)、またはLinux（適切なパッケージ管理ユーティリティを使用）用にインストールされた**make**
+* [Mac](https://formulae.brew.sh/formula/make)、[Windows](https://sourceforge.net/projects/ezwinports/files/make-4.3-without-guile-w32-bin.zip/download)、またはLinux（適切なパッケージ管理ユーティリティを使用）にインストールされた**make**
 
 ## 使用されるリソース
 
@@ -25,45 +25,45 @@
     * `httpbin.json`は、[**httpbin** OpenAPI 2.0の仕様](https://httpbin.org/spec.json)をOpenAPI 3.0の仕様形式に変換したものです。
     * `httpbin-with-constraints.json`は、追加のAPI制約が明示的に追加された**httpbin**のOpenAPI 3.0の仕様です。
 
-    これら両方のファイルはデモデプロイメントのテストに使用されます。
-* `Makefile`はDockerルーチンを定義する設定ファイルです。
+    これらのファイルは両方ともデモデプロイメントのテストに使用されます。
+* `Makefile`はDockerのルーチンを定義するための設定ファイルです。
 * `docker-compose.yml`は、**httpbin**と[API Firewall Docker](https://docs.wallarm.com/api-firewall/installation-guides/docker-container/)イメージの設定を定義するファイルです。
 
 ## ステップ1：デモコードの実行
 
-デモコードを実行するには：
+デモコードを実行するには以下の手順を行います：
 
-1. デモコードを含むGitHubリポジトリをクローンします：
+1. デモコードが含まれているGitHubリポジトリをクローンします。
 
     ```bash
     git clone https://github.com/wallarm/api-firewall.git
     ```
-2. クローンしたリポジトリの`demo/docker-compose`ディレクトリに移動します：
+2. クローンしたリポジトリの`demo/docker-compose`ディレクトリに移動します。
 
     ```bash
     cd api-firewall/demo/docker-compose
     ```
-3. 以下のコマンドを使用してデモコードを実行します：
+3. 以下のコマンドを使用してデモコードを実行します。
 
     ```bash
     make start
     ```
 
-    * API Firewallによって保護されたアプリケーション**httpbin**は、http://localhost:8080で利用可能です。
-    * API Firewallによって保護されていないアプリケーション**httpbin**は、http://localhost:8090で利用可能です。デモデプロイメントをテストする際に、保護されていないアプリケーションにリクエストを送信して差を知ることができます。
+    * API Firewallによって保護されたアプリケーション**httpbin**は、http://localhost:8080で利用できます。
+    * API Firewallによって保護されていないアプリケーション**httpbin**は、http://localhost:8090で利用できます。デモデプロイメントをテストするために、保護されていないアプリケーションにリクエストを送信し、差異を確認します。
 4. デモのテストに進みます。
 
-## ステップ2：オリジナルのOpenAPI 3.0仕様に基づくデモのテスト
+## ステップ2：オリジナルのOpenAPI 3.0仕様に基づいたデモのテスト
 
-デフォルトでは、このデモはオリジナルの**httpbin** OpenAPI 3.0仕様で実行されます。このデモオプションをテストするには、以下のリクエストを使用できます：
+デフォルトでは、このデモはオリジナルの**httpbin** OpenAPI 3.0仕様で実行されます。このデモオプションをテストするために、以下のリクエストを利用してみてください。
 
-* API Firewallが未公開のパスに送信されるリクエストをブロックすることを確認します：
+* API Firewallが公開していないパスに対するリクエストをブロックしていることを確認します。
 
     ```bash
     curl -sD - http://localhost:8080/unexposed/path
     ```
 
-    期待されるレスポンス：
+    予想されるレスポンス：
 
     ```bash
     HTTP/1.1 403 Forbidden
@@ -71,13 +71,14 @@
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
     ```
-* API Firewallが、整数のデータ型が必要なパラメータに文字列の値を渡すリクエストをブロックすることを確認します：
+
+* API Firewallが、整数のデータ型が必要なパラメータに文字列の値を渡すリクエストをブロックしていることを確認します。
 
     ```bash
     curl -sD - http://localhost:8080/cache/arewfser
     ```
 
-    期待されるレスポンス：
+    予想されるレスポンス：
 
     ```bash
     HTTP/1.1 403 Forbidden
@@ -86,9 +87,10 @@
     Content-Length: 0
     ```
 
-    このケースでは、API FirewallがアプリケーションをCache-Poisoned DoS攻撃から保護していることを示しています。## ステップ3：より厳密なOpenAPI 3.0仕様に基づいたデモのテスト
+    このケースでは、API FirewallがCache-Poisoned DoS攻撃からアプリケーションを保護していることを示しています。  
+## ステップ3：より厳密なOpenAPI 3.0仕様に基づいたデモのテスト
 
-最初に、デモで使用されるOpenAPI 3.0仕様へのパスを更新してください。
+最初に、デモで使用されるOpenAPI 3.0仕様へのパスを更新します。
 
 1. `docker-compose.yml` ファイル内で、`APIFW_API_SPECS` 環境変数の値をより厳密なOpenAPI 3.0仕様(`/opt/resources/httpbin-with-constraints.json`)へのパスに置き換えます。
 2. 以下のコマンドを使用してデモを再起動します。
@@ -116,7 +118,7 @@
     },
     ...
     ```
-
+  
     以下のリクエストを使用して定義をテストします。
 
     ```bash
@@ -139,8 +141,6 @@
     Date: Mon, 31 May 2021 07:09:38 GMT
     Content-Type: application/json
     Content-Length: 280
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
     ...
 
 
@@ -222,8 +222,6 @@
     Date: Mon, 31 May 2021 07:11:03 GMT
     Content-Type: application/json
     Content-Length: 331
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
     ...
 
 

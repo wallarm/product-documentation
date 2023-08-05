@@ -1,21 +1,21 @@
 # Docker上でのAPI Firewallの実行
 
-このガイドでは、Docker上でWallarm API Firewallをダウンロード、インストール、開始する方法について説明します。
+このガイドでは、Docker上でWallarm API Firewallをダウンロード、インストール、起動する手順を説明します。
 
 ## 必要条件
 
-* [インストールおよび設定済みのDocker](https://docs.docker.com/get-docker/)
-* Wallarm API Firewallで保護されるべきアプリケーションのREST API用に開発された[OpenAPI 3.0仕様](https://swagger.io/specification/)
+* [Dockerのインストールと設定](https://docs.docker.com/get-docker/)
+* Wallarm API Firewallで保護すべきアプリケーションのREST APIに対して開発された[OpenAPI 3.0規格](https://swagger.io/specification/)
 
-## Docker上でAPI Firewallを実行する方法
+## DockerでAPI Firewallを実行する方法
 
-API FirewallをDockerにデプロイする最速の方法は、[Docker Compose](https://docs.docker.com/compose/)です。以下の手順はこの方法を使用しています。
+API FirewallをDockerでデプロイする最も速い方法は[Docker Compose](https://docs.docker.com/compose/)です。次の手順では、この方法を使用します。
 
-必要に応じて、`docker run`も使用できます。[このセクション](#using-docker-run-to-start-api-firewall)で、同じ環境をデプロイするための適切な`docker run`コマンドを提供しています。
+もし必要であれば、`docker run`も使用することができます。同じ環境をデプロイするための適切な`docker run`コマンドを[このセクション](#using-docker-run-to-start-api-firewall)で提供しています。
 
-## ステップ1. `docker-compose.yml`ファイルを作成する
+## ステップ1. `docker-compose.yml`ファイルを作成
 
-Docker Composeを使用してAPI Firewallと適切な環境をデプロイするには、最初に以下の内容で**docker-compose.yml**を作成します。
+Docker Composeを用いてAPI Firewallと適切な環境をデプロイするために、まず以下の内容で**docker-compose.yml**を作成します：
 
 ```yml
 version: '3.8'
@@ -53,156 +53,179 @@ services:
       - api-firewall-network
 ```
 
-## ステップ2. Dockerネットワークを設定する
+## ステップ2. Dockerネットワークを設定
 
-必要に応じて、**docker-compose.yml** → `networks`で定義されている[Dockerネットワーク](https://docs.docker.com/network/)の設定を変更します。
+必要に応じて、**docker-compose.yml** → `networks`で定義された[Dockerネットワーク](https://docs.docker.com/network/)設定を変更します。
 
-提供された**docker-compose.yml**は、Dockerにネットワーク`api-firewall-network`を作成し、アプリケーションとAPI Firewallコンテナをそれにリンクするよう指示します。
+提供された**docker-compose.yml**は、Dockerに`api-firewall-network`ネットワークを作成し、アプリケーションとAPI Firewallコンテナをそれにリンクするよう指示します。
 
-コンテナ化されたアプリケーションとAPI Firewallの通信を手動リンクせずに可能にするために、別のDockerネットワークを使用することをお勧めします。
+コンテナ化されたアプリケーションとAPI Firewallの通信を手動でリンクすることなく許可するためには、別々のDocker ネットワークを使用することをお勧めします。
 
-## ステップ3. API Firewallで保護されるアプリケーションを設定する
+## ステップ3. API Firewallで保護するアプリケーションを設定
 
-API Firewallで保護されるコンテナ化されたアプリケーションの設定を変更します。この設定は、**docker-compose.yml** → `services.backend`で定義されています。
+API Firewallで保護するコンテナ化されたアプリケーションの設定を変更します。この設定は**docker-compose.yml** → `services.backend`で定義されています。
 
-提供された**docker-compose.yml**は、Dockerに`api-firewall-network`に接続された[kennethreitz/httpbin](https://hub.docker.com/r/kennethreitz/httpbin/) Dockerコンテナを起動するよう指示し、`backend` [ネットワークエイリアス](https://docs.docker.com/config/containers/container-networking/#ip-address-and-hostname)が割り当てられます。コンテナポートは8090です。
+提供された**docker-compose.yml**は、Dockerに[kennethreitz/httpbin](https://hub.docker.com/r/kennethreitz/httpbin/) Dockerコンテナを`api-firewall-network`に接続した状態で起動させるよう指示します。ポートは8090に割り当てられています。
 
-独自のアプリケーションを設定する場合は、正しいアプリケーションコンテナの開始に必要な設定のみを定義してください。API Firewallに特定の設定は必要ありません。## ステップ4. APIファイアウォールの設定
+あなた自身のアプリケーションを設定する場合は、適切なアプリケーションコンテナの起動に必要な設定のみを定義してください。API Firewallに特有の設定は必要ありません。
 
-**docker-compose.yml** → `services.api-firewall`にAPIファイアウォールの設定を次のように渡します：
+## ステップ4. API Firewallを設定
 
-**`services.api-firewall.volumes` を使って**、APIファイアウォールコンテナのディレクトリに [OpenAPI 3.0 仕様](https://swagger.io/specification/) をマウントしてください:
+**docker-compose.yml** → `services.api-firewall`で次のようにAPI Firewall設定を渡します：
 
-* `<HOST_PATH_TO_SPEC>`: ホストマシン上にある、アプリケーションのREST APIのOpenAPI 3.0仕様へのパス。受け入れられるファイル形式はYAMLとJSON（`.yaml`、`.yml`、`.json`のファイル拡張子）。例：`/opt/my-api/openapi3/swagger.json`。
-* `<CONTAINER_PATH_TO_SPEC>`: OpenAPI 3.0 仕様をマウントするためのコンテナディレクトリへのパス。例：`/api-firewall/resources/swagger.json`。
+** `services.api-firewall.volumes`で**、[OpenAPI 3.0規格](https://swagger.io/specification/)をAPI Firewallコンテナディレクトリにマウントしてください：
+    
+* `<HOST_PATH_TO_SPEC>`: ホストマシン上にあるアプリケーションのREST API用のOpenAPI 3.0規格へのパス。受け付けるファイル形式はYAMLとJSON（拡張子は`.yaml`, `.yml`, `.json`）です。例：`/opt/my-api/openapi3/swagger.json`。
+* `<CONTAINER_PATH_TO_SPEC>`: OpenAPI 3.0規格をマウントするコンテナディレクトリへのパス。例：`/api-firewall/resources/swagger.json`。
 
-**`services.api-firewall.environment`を使って**、次の環境変数を通じて一般的なAPIファイアウォールの設定を設定してください：
+** `services.api-firewall.environment`で**、以下の環境変数を通じて一般的なAPI Firewall設定を設定してください：
 
 | 環境変数              | 説明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 必須? |
-|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| <a name="apifw-api-specs"></a>`APIFW_API_SPECS`                 | OpenAPI 3.0 仕様へのパス。パスを指定する方法は次のとおりです:<ul><li>コンテナにマウントされた仕様ファイルへのパス。例: `/api-firewall/resources/swagger.json`。コンテナを実行する際、`-v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>` オプションでこのファイルをマウントします。</li><li>仕様ファイルのURLアドレス。例： `https://example.com/swagger.json`。コンテナを実行する際、`-v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>` オプションを省略します。</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | はい       |
-| `APIFW_URL`                       | APIファイアウォールのURL。例：`http://0.0.0.0:8088/`。ポートの値は、ホストに公開されるコンテナポートに対応するように設定してください。<br><br>API ファイアウォールが HTTPS プロトコルでリッスンしている場合は、生成された SSL/TLS 証明書と秘密鍵をコンテナにマウントし、下記の**APIファイアウォールSSL/TLS設定**をコンテナに渡してください。                                                                                                                                                                                                                                                   | はい       |
-| `APIFW_SERVER_URL`                | APIファイアウォールで保護する必要がある、マウントされたOpenAPI仕様で説明されているアプリケーションのURL。例：`http://backend:80`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | はい       |
-| `APIFW_REQUEST_VALIDATION`        | アプリケーションのURLに送信されるリクエストを検証する際のAPIファイアウォールモード：<ul><li>`BLOCK`: マウントされた OpenAPI 3.0 仕様と一致しないリクエストをブロックおよびログする。ブロックされたリクエストには `403 Forbidden` レスポンスが返されます。ログは [STDOUT および STDERR Docker サービス](https://docs.docker.com/config/containers/logging/) に送信されます。</li><li>`LOG_ONLY`: マウントされた OpenAPI 3.0 仕様と一致しないリクエストをログに記録するがブロックはせず、`STDOUT` および `STDERR` Docker サービス（https://docs.docker.com/config/containers/logging/）に送信する。</li><li>`DISABLE`: リクエストの検証を無効にします。</li></ul>                                                                                                                           | はい       |
-| `APIFW_RESPONSE_VALIDATION`       | APIファイアウォールが届いたリクエストへのアプリケーションのレスポンスを検証するモード：<ul><li>`BLOCK`: アプリケーションのこのリクエストへの応答が、マウントされた OpenAPI 3.0 仕様と一致しない場合、リクエストをブロックおよびログし、クライアントは `403 Forbidden`レスポンスを受け取ります。ログは [`STDOUT` および `STDERR` Docker サービス](https://docs.docker.com/config/containers/logging/)に送信されます。</li><li>`LOG_ONLY`: アプリケーションのこのリクエストへの応答が、マウントされたOpenAPI 3.0 仕様と一致しない場合、ログに記録するがブロックはせず、`STDOUT`および`STDERR`Dockerサービス（https://docs.docker.com/config/containers/logging/）に送信します。</li><li>`DISABLE`: リクエストの検証を無効にします。</li></ul> | はい       |
-| `APIFW_LOG_LEVEL`                 | APIファイアウォールのログレベル。可能な値：<ul><li>`DEBUG`: 任意のタイプのイベント（INFO, ERROR, WARNING, DEBUG）をログに記録する。</li><li>`INFO`: INFO, WARNING, ERRORタイプのイベントをログに記録する。</li><li>`WARNING`: WARNINGおよびERRORタイプのイベントをログに記録する。</li><li>`ERROR`: ERRORタイプのイベントのみをログに記録する。</li></ul>デフォルトの値は `DEBUG`。提供されたスキーマと一致しないリクエストおよびレスポンスのログは、ERRORタイプを持っています。                                                                                                                                                                                                                                       | いいえ        |
-| <a name="apifw-custom-block-status-code"></a>`APIFW_CUSTOM_BLOCK_STATUS_CODE` | `BLOCK` モードで動作しているAPIファイアウォールが、マウントされた OpenAPI 3.0 仕様と一致しないリクエストまたはレスポンスを返す場合の [HTTP レスポンスステータスコード](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)。デフォルトの値は `403`。 | いいえ 
-| `APIFW_ADD_VALIDATION_STATUS_HEADER`<br>(実験的) | リクエストのブロック理由が含まれた `Apifw-Validation-Status` ヘッダ를 반환するかどうか。値は `true` または `false`。デフォルト値は `false`です。| いいえ
-| `APIFW_LOG_FORMAT` | API ファイアウォールのログ形式。値は `TEXT` または `JSON`。 デフォルト値は `TEXT` です。 | いいえ |
-| `APIFW_SHADOW_API_EXCLUDE_LIST`<br>(リクエストとレスポンスの両方に対して `LOG_ONLY` モードで動作する場合のみ) | 仕様に含まれていない要求されたAPI エンドポイントがシャドウではないことを示す [HTTP レスポンスステータスコード](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)。セミコロンで区切って複数のステータスコードを指定できます（例：`404;401`）。デフォルト値は `404`。<br><br>デフォルトで、リクエストとレスポンスの両方に対して `LOG_ONLY` モードで動作する APIファイアウォールは、仕様に含まれていないエンドポイントでコードが `404` と異なるものすべてをシャドウエンドポイントとしてマークします。 | いいえ
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|
+|<a name="apifw-api-specs"></a>`APIFW_API_SPECS`   | OpenAPI 3.0規格へのパス。以下の方法でパスを指定することができます：<ul><li>コンテナにマウントされた規格ファイルへのパス、例：`/api-firewall/resources/swagger.json`。コンテナを実行するとき、このファイルは`-v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>`オプションでマウントします。</li><li>規格ファイルのURLアドレス、例：`https://example.com/swagger.json`。コンテナを実行するとき、`-v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>`オプションは除外します。</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | はい   |
+|`APIFW_URL`         | API Firewall用のURL。例：`http://0.0.0.0:8088/`。ポートの値はホストに公開されるコンテナポートと一致するべきです。<br><br>API FirewallがHTTPSプロトコルをリッスンしている場合、生成されたSSL/TLS証明書と秘密鍵をコンテナにマウントして、下記の**API Firewall SSL/TLS設定**をコンテナに渡してください。                                                                                                                                                                                                                                                   | はい   |
+|`APIFW_SERVER_URL`  | API Firewallで保護するべき、マウントされたOpenAPI規格に記載されているアプリケーションのURL。例：`http://backend:80`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | はい   |
+|`APIFW_REQUEST_VALIDATION` | アプリケーションURLに送信されたリクエストを検証するためのAPI Firewallのモード：<ul><li>`BLOCK`は、マウントされたOpenAPI 3.0規格と一致しないリクエストをブロックしてログに記録します（ブロックされたリクエストには`403 Forbidden`のレスポンスが返されます）。ログは[`STDOUT`および`STDERR` Dockerサービス](https://docs.docker.com/config/containers/logging/)に送信されます。</li><li>`LOG_ONLY`は、マウントされたOpenAPI 3.0規格と一致しないリクエストをログに記録しますがブロックしません。ログは[`STDOUT`および`STDERR` Dockerサービス](https://docs.docker.com/config/containers/logging/)に送信されます。</li><li>`DISABLE`は、リクエスト検証を無効にします。</li></ul>                                                                                                                           | はい   |
+|`APIFW_RESPONSE_VALIDATION` | 送信されたリクエストへのアプリケーションのレスポンスを検証するときのAPI Firewallのモード：<ul><li>`BLOCK`は、このリクエストへのアプリケーションのレスポンスが、マウントされたOpenAPI 3.0規格と一致しない場合に、リクエストをブロックしてログに記録します。このリクエストはアプリケーションURLにプロキシされますが、クライアントは`403 Forbidden`のレスポンスを受け取ります。ログは[`STDOUT`および`STDERR` Dockerサービス](https://docs.docker.com/config/containers/logging/)に送信されます。</li><li>`LOG_ONLY`は、このリクエストへのアプリケーションのレスポンスが、マウントされたOpenAPI 3.0規格と一致しない場合に、リクエストをログに記録しますがブロックしません。ログは[`STDOUT`および`STDERR` Dockerサービス](https://docs.docker.com/config/containers/logging/)に送信されます。</li><li>`DISABLE`は、リクエスト検証を無効にします。</li></ul> | はい   |
+|`APIFW_LOG_LEVEL`  | API Firewallのログレベル。可能な値：<ul><li>`DEBUG`は、あらゆる種類のイベント（INFO、ERROR、WARNING、DEBUG）をログに記録します。</li><li>`INFO`は、INFO、WARNING、ERRORタイプのイベントをログに記録します。</li><li>`WARNING`は、WARNINGとERRORタイプのイベントをログに記録します。</li><li>`ERROR`は、ERRORタイプのイベントのみをログに記録します。</li></ul>デフォルト値は`DEBUG`です。提供されたスキーマと一致しないリクエストとレスポンスのログはERRORタイプになります。                                                                                                                                                                                                                                       | いいえ  |
+|<a name="apifw-custom-block-status-code"></a>`APIFW_CUSTOM_BLOCK_STATUS_CODE` | リクエストまたはレスポンスが、マウントされたOpenAPI 3.0規格と一致しない場合に、`BLOCK`モードで動作しているAPI Firewallによって返される[HTTPレスポンスステータスコード](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)。デフォルト値は`403`。 | いいえ |
+| `APIFW_ADD_VALIDATION_STATUS_HEADER`<br>(実験機能) | リクエストのブロック理由を含む`Apifw-Validation-Status`ヘッダーを、このリクエストのレスポンスに返すかどうか。値は`true`または`false`で、デフォルト値は`false`。| いいえ |
+| `APIFW_LOG_FORMAT` | API Firewallのログの形式。値は `TEXT`または `JSON` で、デフォルト値は `TEXT`。 | いいえ |
+| `APIFW_SHADOW_API_EXCLUDE_LIST`<br>(API Firewallがリクエストとレスポンスの両方で`LOG_ONLY`モードで動作している場合のみ) | 規格に含まれていないAPIエンドポイントがシャドウエンドポイントでは「ない」と示す[HTTP レスポンスステータスコード](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)。複数のステータスコードはセミコロンで区切って指定できます（例：`404;401`）。デフォルト値は `404`。<br><br>デフォルトでは、API Firewallがリクエストとレスポンスの両方で`LOG_ONLY`モードで動作している場合、規格に含まれておらず、コードが`404`とは異なることを返すすべてのエンドポイントをシャドウエンドポイントとしてマークします。 | いいえ |
 
-API ファイアウォールの設定オプションの詳細は[リンク](#api-firewall-fine-tuning-options)内に記載されています。
+API Firewall設定のその他のオプションについては、[リンク](#api-firewall-fine-tuning-options)で詳しく説明しています。
 
-**`services.api-firewall.ports` および `services.api-firewall.networks` で**、APIファイアウォールコンテナポートを設定し、コンテナを作成されたネットワークに接続します。 提供される **docker-compose.yml** は、APIファイアウォールを `api-firewall-network` [ネットワーク](https://docs.docker.com/network/) に接続された状態でポート 8088 で起動するように Docker に指示します。## ステップ5. 構成済み環境のデプロイ
+**`services.api-firewall.ports`と`services.api-firewall.networks`で**、API Firewallコンテナのポートを設定し、コンテナを作成したネットワークに接続します。提供された**docker-compose.yml**は、API Firewallをポート8088で`api-firewall-network`[ネットワーク](https://docs.docker.com/network/)に接続するようにDockerに指示します。
 
-構成済みの環境をビルドし、起動するには、次のコマンドを実行してください。
+## ステップ5. 設定した環境をデプロイ
+
+設定した環境をビルドして起動するには、次のコマンドを実行します：
 
 ```bash
 docker-compose up -d --force-recreate
 ```
 
-ログ出力を確認するには：
+ログの出力を確認するには：
 
 ```bash
 docker-compose logs -f
 ```
 
-## ステップ6. APIファイアウォールの操作をテストする
+## ステップ6. API Firewallの動作をテスト
 
-APIファイアウォールの動作をテストするには、マウントされたOpen API 3.0仕様に一致しないリクエストをAPIファイアウォールDockerコンテナのアドレスに送信します。例えば、integer値を必要とするパラメータにstring値を渡すことができます。
+API Firewallの動作をテストするには、API Firewall Dockerコンテナのアドレスに、マウントされたOpen API 3.0規格と一致しないリクエストを送信します。例えば、整数値が必要なパラメータに文字列値を渡すことができます。
 
-リクエストが提供されたAPIスキーマと一致しない場合、適切なERRORメッセージがAPIファイアウォールDockerコンテナのログに追加されます。
+リクエストが提供されたAPIスキーマと一致しない場合、API Firewall Dockerコンテナのログに適切なERRORメッセージが追加されます。
 
-## ステップ７. APIファイアウォールでトラフィックを有効にする
+## ステップ7. API Firewall上のトラフィックを有効に
 
-APIファイアウォールの設定を最終化するために、アプリケーションのデプロイスキーマ設定を更新して、APIファイアウォールでの受信トラフィックを有効にしてください。たとえば、Ingress、NGINX、またはロードバランサーの設定を更新する必要があります。
+API Firewallの設定を確定するには、あなたのアプリケーションのデプロイメントスキーマ設定を更新して、API Firewallに対する着信トラフィックを有効にしてください。例えば、Ingress、NGINX、またはロードバランサの設定を更新する必要があります。
 
-## APIファイアウォールの微調整オプション
+## API Firewallの微調整オプション
 
-APIファイアウォールを微調整して、より多くのビジネス問題に対処することができます。サポートされている微調整オプションが以下にリストされています。[APIファイアウォールDockerコンテナの設定](#step-4-configure-api-firewall)で環境変数として渡してください。
+API Firewallによりビジネス課題を解決するために、ツールの操作を微調整することができます。サポートされる微調整オプションを以下に示します。それらを環境変数として[API Firewall Dockerコンテナを設定するとき](#step-4-configure-api-firewall)に渡してください。
 
 ### リクエスト認証トークンの検証
 
-OAuth 2.0プロトコルに基づく認証を使用している場合、APIファイアウォールを構成して、アプリケーションサーバーにリクエストをプロキシする前にアクセストークンを検証できます。APIファイアウォールは、アクセストークンが`Authorization: Bearer`リクエストヘッダーで渡されることを期待しています。
+OAuth 2.0プロトコルベースの認証を使用している場合、API Firewallを設定してアクセストークンの検証をアプリケーションのサーバーへのリクエストのプロキシの前に行うことができます。API Firewallはアクセストークンが`Authorization: Bearer`リクエストヘッダーに渡されることを期待します。
 
-APIファイアウォールは、[仕様](https://swagger.io/docs/specification/authentication/oauth2/)で定義されているスコープとトークンのメタ情報のスコープが同じである場合、トークンが有効であると見なします。 `APIFW_REQUEST_VALIDATION`の値が`BLOCK`の場合、APIファイアウォールは無効なトークンを持つリクエストをブロックします。 `LOG_ONLY`モードでは、無効なトークンを持つリクエストはログに記録されるだけです。
+API Firewallは、[規格](https://swagger.io/docs/specification/authentication/oauth2/)とトークンのメタ情報に定義されたスコープが同じである場合、トークンが有効であると判断します。`APIFW_REQUEST_VALIDATION`の値が`BLOCK`である場合、API Firewallは無効なトークンを持つリクエストをブロックします。`LOG_ONLY`モードでは、無効なトークンを持つリクエストはログに記録されるだけです。
 
-OAuth 2.0トークン検証フローの構成には、次のオプションの環境変数を使用します。
+OAuth 2.0トークン検証フローを構成するには、以下のオプションの環境変数を使用します：
 
 | 環境変数 | 説明 |
-| -------------------- | ----------- |
-| `APIFW_SERVER_OAUTH_VALIDATION_TYPE` | 認証トークンの検証のタイプ：<ul><li>`JWT`：リクエスト認証にJWTを使用しています。 `APIFW_SERVER_OAUTH_JWT_*`変数を介してさらなる構成を行ってください。</li><li>`INTROSPECTION`：トークンイントロスペクションサービスで検証できる他のトークンタイプを使用しています。 `APIFW_SERVER_OAUTH_INTROSPECTION_*`変数を介してさらなる構成を行ってください。</li></ul> |
-| `APIFW_SERVER_OAUTH_JWT_SIGNATURE_ALGORITHM` | JWTの署名に使用されているアルゴリズム：`RS256`、`RS384`、`RS512`、`HS256`、`HS384`、または`HS512`。<br><br>`ECDSA`アルゴリズムで署名されたJWTはAPIファイアウォールで検証できません。 |
-| `APIFW_SERVER_OAUTH_JWT_PUB_CERT_FILE` | JWTがRS256、RS384、またはRS512アルゴリズムで署名されている場合、RSA公開鍵ファイル（`*.pem`）へのパス。このファイルはAPIファイアウォールDockerコンテナにマウントする必要があります。 |
-| `APIFW_SERVER_OAUTH_JWT_SECRET_KEY` | JWTがHS256、HS384、またはHS512アルゴリズムで署名されている場合、JWTの署名に使用されている秘密鍵の値。 |
-| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT` | [トークンイントロスペクションエンドポイント](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/)。エンドポイントの例：<ul><li>`https://www.googleapis.com/oauth2/v1/tokeninfo`：Google OAuthを使用する場合</li><li>`http://sample.com/restv1/introspection`：Gluu OAuth 2.0トークン用</li></ul> |
-| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT_METHOD` | イントロスペクションエンドポイントへのリクエストの方法。 `GET`か`POST`になります。<br><br>デフォルト値は`GET`です。 |
-| `APIFW_SERVER_OAUTH_INTROSPECTION_TOKEN_PARAM_NAME` | イントロスペクションエンドポイントへのリクエストでトークン値を含むパラメータの名前。 `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT_METHOD`の値に応じて、APIファイアウォールは自動的にクエリパラメータまたはボディパラメータと見なします。 |
-| `APIFW_SERVER_OAUTH_INTROSPECTION_CLIENT_AUTH_BEARER_TOKEN` |  イントロスペクションエンドポイントへのリクエストに認証するためのBearerトークンの値。 |
-| <a name="apifw-server-oauth-introspection-content-type"></a>`APIFW_SERVER_OAUTH_INTROSPECTION_CONTENT_TYPE` | トークンイントロスペクションサービスのメディアタイプを示す`Content-Type`ヘッダーの値。デフォルト値は`application/octet-stream`です。 |
-| `APIFW_SERVER_OAUTH_INTROSPECTION_REFRESH_INTERVAL` | キャッシュされたトークンメタデータのタイムツーリブ。APIファイアウォールはトークンのメタデータをキャッシュし、同じトークンでリクエストが届くと、キャッシュからメタデータを取得します。<br><br>間隔は、時間（`h`）、分（`m`）、秒（`s`）、または組み合わせた形式で設定できます（例：`1h10m50s`）。<br><br>デフォルト値は`10m`（10分）です。 |
+| ------------------- | -------------------------------- |
+| `APIFW_SERVER_OAUTH_VALIDATION_TYPE` | 認証トークン検証のタイプ：<ul><li>`JWT`はリクエスト認証にJWTを使用している場合。`APIFW_SERVER_OAUTH_JWT_*`変数を通じてさらに構成を行います。</li><li>`INTROSPECTION`は、特定のトークンイントロスペクションサービスにより検証できる他のトークンタイプを使用している場合。`APIFW_SERVER_OAUTH_INTROSPECTION_*`変数を通じてさらに構成を行います。</li></ul> |
+| `APIFW_SERVER_OAUTH_JWT_SIGNATURE_ALGORITHM` | JWTの署名に使用されるアルゴリズム：`RS256`, `RS384`, `RS512`, `HS256`, `HS384`または`HS512`。<br><br>`ECDSA`アルゴリズムで署名されたJWTはAPI Firewallにより検証できません。 |
+| `APIFW_SERVER_OAUTH_JWT_PUB_CERT_FILE` | JWTがRS256, RS384, RS512アルゴリズムで署名されている場合、RSA公開鍵( `*.pem`)が入っているファイルへのパス。このファイルはAPI Firewall Dockerコンテナにマウントしなければなりません。 |
+| `APIFW_SERVER_OAUTH_JWT_SECRET_KEY` | JWTがHS256, HS384, HS512アルゴリズムで署名されている場合、JWTの署名に使用される秘密鍵の値。 |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT` | [トークンイントロスペクションエンドポイント](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/)。エンドポイントの例：<ul><li>`https://www.googleapis.com/oauth2/v1/tokeninfo`はGoogle OAuthを使用する場合</li><li>`http://sample.com/restv1/introspection`はGluu OAuth 2.0トークンを使用する場合</li></ul> |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT_METHOD` | イントロスペクションエンドポイントへのリクエストのメソッド。`GET`または`POST`が可能。<br><br>デフォルト値は`GET`。 |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_TOKEN_PARAM_NAME` | イントロスペクションエンドポイントへのリクエストにおける、トークン値を有するパラメータの名前。`APIFW_SERVER_OAUTH_INTROSPECTION_ENDPOINT_METHOD`の値に応じて、API Firewallは自動的にパラメータがクエリパラメータまたはボディパラメータであると考えます。 |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_CLIENT_AUTH_BEARER_TOKEN` | イントロスペクションエンドポイントへのリクエストを認証するためのBearerトークン値。 |
+| <a name="apifw-server-oauth-introspection-content-type"></a>`APIFW_SERVER_OAUTH_INTROSPECTION_CONTENT_TYPE` | トークンイントロスペクションサービスのメディアタイプを示す、`Content-Type`ヘッダーの値。デフォルト値は`application/octet-stream`。 |
+| `APIFW_SERVER_OAUTH_INTROSPECTION_REFRESH_INTERVAL` | キャッシュされたトークンメタデータの生存時間。API Firewallはトークンメタデータをキャッシュし、同じトークンでリクエストを得ると、そのメタデータはキャッシュから得ます。<br><br>インターバルは時間(`h`)、分(`m`)、秒(`s`)、または組合せ形式（例えば`1h10m50s`）で設定できます。<br><br>デフォルト値は`10m`（10分）。  |
 
-### 暗号化された認証トークンを持つリクエストのブロック
+### コンプロミスした認証トークンを持つリクエストのブロック
 
-APIリークが検出された場合、Wallarm APIファイアウォールは、[妨害された認証トークンの使用を停止できます](https://lab.wallarm.com/oss-api-firewall-unveils-new-feature-blacklist-for-compromised-api-tokens-and-cookies/)。リクエストに妨害されたトークンが含まれている場合、APIファイアウォールは、[`APIFW_CUSTOM_BLOCK_STATUS_CODE`](#apifw-custom-block-status-code)で設定されたコードでこのリクエストに対応します。
+API漏洩が検出された場合、Wallarm API Firewallは[コンプロミスした認証トークンの使用を停止することができます](https://lab.wallarm.com/oss-api-firewall-unveils-new-feature-blacklist-for-compromised-api-tokens-and-cookies/)。リクエストがコンプロミスしたトークンを含んでいる場合、API Firewallはこのリクエストに[`APIFW_CUSTOM_BLOCK_STATUS_CODE`](#apifw-custom-block-status-code)で設定したコードでレスポンスします。
 
-ブラックリスト機能を有効にするには：
+denylist機能を有効にするには：
 
-1. 妨害されたトークンを含むブラックリストファイルをDockerコンテナにマウントします。ブラックリストテキストファイルは次のようになります。
+1. コンプロミスしたトークンを含むdenylistファイルをDockerコンテナにマウントします。denylistのテキストファイルは次のようになったかもしれません：
 
     ```txt
     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZDk5OTk5ODIifQ.CUq8iJ_LUzQMfDTvArpz6jUyK0Qyn7jZ9WCqE0xKTCA
     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZDk5OTk5ODMifQ.BinZ4AcJp_SQz-iFfgKOKPz_jWjEgiVTb9cS8PP4BI0
     eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzb21lIjoicGF5bG9hZDk5OTk5ODQifQ.j5Iea7KGm7GqjMGBuEZc2akTIoByUaQc5SSX7w_qjY8
     ```
-2. Dockerコンテナに以下の変数を渡すことで、ブラックリスト機能の設定を行います。
+2. 次の変数をDockerコンテナに渡して、denylist機能を設定します：
 
     | 環境変数 | 説明 |
-    | -------------------- | ----------- |
-    | `APIFW_DENYLIST_TOKENS_FILE` | コンテナにマウントされたテキストブラックリストファイルのパス。ファイル内のトークンは改行で区切られている必要があります。例：`/api-firewall/resources/tokens-denylist.txt`。 |
+    | ------------------- | -------------------------------- |
+    | `APIFW_DENYLIST_TOKENS_FILE` | コンテナにマウントされたテキストdenylistファイルへのパス。ファイル内のトークンは改行で区切られている必要があります。例の値：`/api-firewall/resources/tokens-denylist.txt`。 |
     | `APIFW_DENYLIST_TOKENS_COOKIE_NAME` | 認証トークンを渡すために使用されるCookieの名前。 |
-    | `APIFW_DENYLIST_TOKENS_HEADER_NAME` | 認証トークンを渡すために使用されるヘッダーの名前。`APIFW_DENYLIST_TOKENS_COOKIE_NAME`と`APIFW_DENYLIST_TOKENS_HEADER_NAME`の両方の変数が指定されている場合、APIファイアウォールは順番に値をチェックします。 |
-    | `APIFW_DENYLIST_TOKENS_TRIM_BEARER_PREFIX` | 認証ヘッダーから`Bearer`プレフィックスをトリムするかどうか。認証ヘッダーに`Bearer`プレフィックスが渡され、ブラックリスト内のトークンにこのプレフィックスが含まれていない場合、トークンは信頼性のある方法で検証されません。<br>値は`true`または`false`になります。デフォルト値は`false`です。 |
+    | `APIFW_DENYLIST_TOKENS_HEADER_NAME` | 認証トークンを渡すために使用されるHeaderの名前。`APIFW_DENYLIST_TOKENS_COOKIE_NAME`と`APIFW_DENYLIST_TOKENS_HEADER_NAME`の両方が指定されている場合、API Firewallはその値を逐次的にチェックします。 |
+    | `APIFW_DENYLIST_TOKENS_TRIM_BEARER_PREFIX` | 認証ヘッダーから`Bearer`プリフィックスをトリムするかどうか。`Bearer`プリフィックスが認証ヘッダーに渡されており、denylist内のトークンがこのプリフィックスを含まない場合、トークンは信頼性を持って検証されません。<br>値は`true`または`false`で、デフォルト値は`false`。 |
 
 ### 保護されたアプリケーションのSSL/TLS設定
 
-カスタムCA証明書で署名された保護されたアプリケーションサーバーとの接続、またはAPIファイアウォールとの安全でない接続を容易にするために、次のオプションの環境変数を使用します。
+API Firewallと、カスタムCA証明書により署名された保護されたアプリケーションのサーバーとの接続を容易にするため、または不安全な接続を容易にするため、次のオプションの環境変数を使用します：
 
 | 環境変数 | 説明 |
 | -------------------- | ----------- |
-| `APIFW_SERVER_INSECURE_CONNECTION` | 保護されたアプリケーションサーバーのSSL/TLS証明書の検証を無効にするかどうか。サーバーアドレスは、変数`APIFW_SERVER_URL`で指定されています。<br><br>デフォルト値は`false`です。デフォルトでインストールされているCA証明書または`APIFW_SERVER_ROOT_CA`で指定されているのものを使用して、アプリケーションへのすべての接続がセキュアにしようとします。 |
-| `APIFW_SERVER_ROOT_CA`<br>(`APIFW_SERVER_INSECURE_CONNECTION`の値が`false`の場合のみ) | Dockerコンテナ内の保護されたアプリケーションサーバーのCA証明書へのパス。まず、CA証明書をAPIファイアウォールDockerコンテナにマウントする必要があります。 |### APIファイアウォール SSL/TLS 設定
+| `APIFW_SERVER_INSECURE_CONNECTION` | 保護されたアプリケーションサーバーのSSL/TLS証明書の検証を無効にするかどうか。サーバーのアドレスは変数`APIFW_SERVER_URL`で指定されます。<br><br>デフォルト値は`false`で、デフォルトでインストールされたCA証明書または`APIFW_SERVER_ROOT_CA`で指定したものを使用して、アプリケーションへの全ての接続は安全であるとしようとします。 |
+| `APIFW_SERVER_ROOT_CA`<br>(`APIFW_SERVER_INSECURE_CONNECTION`の値が`false`の場合のみ) | Dockerコンテナ内で、保護されたアプリケーションサーバーのCA証明書へのパス。CA証明書は最初にAPI Firewall Dockerコンテナにマウントしなければなりません。 |
 
-動作しているAPIファイアウォールのサーバーでSSL/TLSを設定するには、以下のオプションの環境変数を使用してください：
+### API FirewallのSSL/TLS設定
+
+API Firewallで動作しているサーバーに対してSSL/TLSを設定するため、次のオプションの環境変数を使用します：
 
 | 環境変数 | 説明 |
 | -------------------- | ----------- |
-| `APIFW_TLS_CERTS_PATH`            | API Firewall用に生成された証明書と秘密鍵がマウントされたコンテナディレクトリへのパス。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `APIFW_TLS_CERT_FILE`             | APIFW_TLS_CERTS_PATHで指定されたディレクトリにある、API Firewall用に生成されたSSL/TLS証明書のファイル名。                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `APIFW_TLS_CERT_KEY`              | APIFW_TLS_CERTS_PATHで指定されたディレクトリにある、API Firewall用に生成されたSSL/TLS秘密鍵のファイル名。                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `APIFW_TLS_CERTS_PATH` | API Firewallに生成された証明書と秘密鍵がマウントされたコンテナディレクトリへのパス。 |
+| `APIFW_TLS_CERT_FILE` | `APIFW_TLS_CERTS_PATH`で指定されたディレクトリに存在する、API Firewallに生成されたSSL/TLS証明書のファイル名。 |
+| `APIFW_TLS_CERT_KEY` | `APIFW_TLS_CERTS_PATH`で指定されたディレクトリに存在する、API Firewallに生成されたSSL/TLS秘密鍵のファイル名。 |
 
 ### システム設定
 
-APIファイアウォールのシステム設定を調整するために、以下のオプションの環境変数を使用してください：
+API Firewallのシステム設定を微調整するため、次のオプションの環境変数を使用します：
 
 | 環境変数 | 説明 |
 | -------------------- | ----------- |
-| `APIFW_READ_TIMEOUT`              | アプリケーションURLに送信された完全なリクエスト（本文を含む）をAPIファイアウォールが読み取るまでの## `docker run`を使ってAPI Firewallを起動する方法
+| `APIFW_READ_TIMEOUT` | API FirewallがアプリケーションURLに送信された完全なリクエスト（ボディを含む）を読み取るためのタイムアウト。デフォルト値は`5s`。 |
+| `APIFW_WRITE_TIMEOUT` | API FirewallがアプリケーションURLに送信されたリクエストに対するレスポンスを返すためのタイムアウト。デフォルト値は`5s`。 |
+| `APIFW_SERVER_MAX_CONNS_PER_HOST` | API Firewallが同時に処理できる最大の接続数。デフォルト値は`512`。 |
+| `APIFW_SERVER_READ_TIMEOUT` | API Firewallがアプリケーションから返される完全なレスポンス（ボディを含む）を読み取るためのタイムアウト。デフォルト値は`5s`。 |
+| `APIFW_SERVER_WRITE_TIMEOUT` | API Firewallが完全なリクエスト（ボディを含む）をアプリケーションに書き込むためのタイムアウト。デフォルト値は`5s`。 |
+| `APIFW_SERVER_DIAL_TIMEOUT` | API Firewallがアプリケーションに接続するためのタイムアウト。デフォルト値は`200ms`。 |
+| `APIFW_SERVER_CLIENT_POOL_CAPACITY`       | fasthttpクライアントの最大数。デフォルト値は `1000`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `APIFW_HEALTH_HOST`       | ヘルスチェックサービスのホスト。デフォルト値は `0.0.0.0:9667`。Liveness probeサービスのパスは `/v1/liveness`、Readinessサービスのパスは `/v1/readiness`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
-DockerでAPI Firewallを開始するには、以下の例に示すように、通常のDockerコマンドも使用できます。
+## デプロイされた環境の停止
 
-1. [コンテナ化されたアプリケーションとAPI Firewallの通信を手動リンクなしで許可するために、別々のDockerネットワークを作成する](#step-2-configure-the-docker-network)：
+Docker Composeを使用してデプロイした環境を停止するには、次のコマンドを実行します：
+
+```bash
+docker-compose down
+```
+
+## `docker run`を使用してAPI Firewallを開始
+
+Docker上でAPI Firewallを開始するために、次の例のように通常のDockerコマンドも使用することができます：
+
+1. [コンテナ化されたアプリケーションとAPI Firewallの通信を手動でリンクすることなく許可するための別々のDockerネットワークを作成する]のために(#step-2-configure-the-docker-network)：
 
     ```bash
     docker network create api-firewall-network
     ```
-2. [API Firewallで保護されるべきコンテナ化されたアプリケーションを開始する](#step-3-configure-the-application-to-be-protected-with-api-firewall)：
+2. [API Firewallで保護するコンテナ化されたアプリケーションを開始する](#step-3-configure-the-application-to-be-protected-with-api-firewall)：
 
     ```bash
     docker run --rm -it --network api-firewall-network \
         --network-alias backend -p 8090:8090 kennethreitz/httpbin
     ```
-3. [API Firewallを起動する](#step-4-configure-api-firewall)：
+3. [API Firewallを開始する](#step-4-configure-api-firewall)：
 
     ```bash
     docker run --rm -it --network api-firewall-network --network-alias api-firewall \
@@ -211,4 +234,4 @@ DockerでAPI Firewallを開始するには、以下の例に示すように、�
         -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
         -p 8088:8088 wallarm/api-firewall:v0.6.9
     ```
-4. 環境が開始されたら、ステップ6と7に従ってAPI Firewallでトラフィックをテストして有効にします。
+4. 環境が開始されたら、ステップ6と7に従ってそれをテストし、API Firewall上のトラフィックを有効にします。

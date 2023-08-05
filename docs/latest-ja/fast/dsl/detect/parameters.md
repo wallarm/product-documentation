@@ -9,77 +9,77 @@
 
 [anchor1]:      #oob
 
-#   The Detect Phase Parameters Description
+#   検出フェーズのパラメーターの説明
 
-!!! warning "Detecting a vulnerability in the Detect phase"
-    To detect vulnerability in the Detect phase using a server's response, it is necessary either for the response to contain one of the response elements described in the `response` parameter or for one of the Out-of-Band DNS markers described in the `oob` parameter to trigger (see the detailed information about out-of-band markers [below][anchor1]). Otherwise, it will be assumed that no vulnerabilities were found.
+!!! warning "検出フェーズでの脆弱性の検出"
+    検出フェーズでサーバーの応答を使用して脆弱性を検出するには、応答に`response`パラメータで説明されている応答要素の一つが含まれているか、または`oob`パラメータで説明されているバンド外のDNSマーカーの一つがトリガーされる必要があります（バンド外マーカーに関する詳細情報は[下に][anchor1]参照してください）。それ以外の場合、脆弱性は見つからなかったと考えられます。
 
-!!! info "Markers operation logic"
-    If the Detect phase detects a marker from any payload in the server's response, then the attack is successful, meaning that the vulnerability was successfully exploited. To see detailed information about the Detect phase operating with markers, proceed to this [link][link-markers].
+!!! info "マーカーの動作ロジック"
+    検出フェーズでサーバーの応答にペイロードからマーカーが検出されると、攻撃が成功したことを意味し、脆弱性が正常に利用されたことになります。マーカーの動作に関する詳細な情報を見るには、この[リンク][link-markers]に進んでください。
 
 ##  OOB
 
-The `oob` parameter checks the triggering of Out-Of-Band markers by the test request. 
+`oob`パラメータは、テストリクエストによるバンド外マーカーのトリガーをチェックします。
 
-![!`oob` parameter structure][img-oob]
+![!`oob` パラメータの構造][img-oob]
 
-!!! info "Detecting the OOB marker in the server response"
-    If the OOB marker is detected in the server's response, then it will be assumed that the vulnerability was found in the target application. 
+!!! info "サーバーの応答でのOOBマーカーの検出"
+    サーバーの応答でOOBマーカーが検出された場合、ターゲットアプリケーションに脆弱性が見つかったと考えられます。
 
-* If only `oob` is specified, at least one of the Out-of-Band markers triggering is expected.
+* `oob`のみが指定されている場合、バンド外のマーカーのトリガーが最低でも１つ期待されます。
     
     ```
     - oob 
     ```
 
-* You can also specify the exact type of Out-of-Band marker to check for its triggering.
-    
-    At least one of the `DNS_MARKER` markers triggering is expected:
+* 特定の種類のバンド外マーカーがトリガーされることをチェックするために指定することもできます。
+
+    `DNS_MARKER`マーカーのトリガーが最低でも1つ期待されます。
     
     ```
     - oob:
       - dns
     ```
 
-    !!! info "Available OOB markers"
-        Currently, there is only one Out-of-Band marker available: `DNS_MARKER`.
+    !!! info "利用可能なOOBマーカー"
+        現在、利用可能なバンド外マーカーは `DNS_MARKER`のみです。
 
-!!! info "The Out-of-Band attack mechanism"
-    The Out-of-Band (resource load) attack mechanism fully corresponds to its name. When performing the attack, the malefactor forces the server to download malicious content from the external source.
-    
-    For example, when performing an OOB DNS attack, the malefactor can embed the domain name into the `<img>` tag as follows: `<img src=http://vulnerable.example.com>`.
-    
-    Upon receiving the malicious request, the server resolves the domain name using DNS and addresses the resource controlled by the malefactor.
+!!! info "バンド外攻撃メカニズム"
+    バンド外（リソースロード）攻撃メカニズムはその名のとおりで、攻撃を行う際に悪意のある者がサーバーに外部源から悪意のあるコンテンツをダウンロードさせます。
+
+    例えば、OOB DNS攻撃を行う際、悪意のある者はドメイン名を以下のように`<img>`タグに埋め込むことができます：`<img src=http://vulnerable.example.com>`。
+
+    悪意のあるリクエストを受け取ったサーバーは、DNSを使用してドメイン名を解決し、悪意のある者が制御するリソースにアクセスします。
 
 ##  Response
 
-This parameter checks whether the necessary elements are present in the server's response to a test request. If at least one of these elements is found, then it is assumed that a vulnerability was detected.
+このパラメータは、サーバーのテストリクエストへの応答に必要な要素が存在するかどうかをチェックします。これらの要素のうち少なくとも1つが見つかれば、脆弱性が検出されたとされます。
 
-![!`response` parameter structure][img-response]
+![!`response` パラメータの構造][img-response]
 
-* The response should contain any marker.
+* 応答は任意のマーカーを含むべきです。
     
     ```
     - response
     ```
 
-### Checking the HTTP Statuses
+### HTTPステータスのチェック
 
-![!`HTTP Status` parameter structure][img-http-status]
+![!`HTTP Status` パラメータの構造][img-http-status]
 
-* The response should contain a certain HTTP status.
+* 応答には特定のHTTPステータスが含まれているべきです。
     ```
     - response:
       - status: value
     ```
     
-    ??? info "Example"
-        `- status: 500` — the status should have the value of `500`.
+    ??? info "例"
+        `- status: 500` — ステータスは値が `500` であるべきです。
             
-        `- status: '5\d\d'` — this regular expression covers all the `5xx` statuses.
+        `- status: '5\d\d'` — この正規表現は全ての `5xx` ステータスを含みます。
 
-* The response should contain any of the HTTP statuses from the list.
-    
+* 応答にはリストからの任意のHTTPステータスが含まれているべきです。
+
     ```
     - response:
       - status:
@@ -88,8 +88,8 @@ This parameter checks whether the necessary elements are present in the server's
         - value S
     ```
     
-    ??? info "Example"
-        The HTTP status should contain one of the following values: `500`, `404`, any of the `2xx` statuses.
+    ??? info "例"
+        HTTPステータスは次の値のうち一つを含むべきです： `500`、`404`、いずれかの`2xx`ステータス。
             
         ```
             - response:
@@ -99,41 +99,41 @@ This parameter checks whether the necessary elements are present in the server's
                 - '2\d\d'
         ```    
 
-### Checking the HTTP headers
+### HTTPヘッダーのチェック
 
-![!`headers` parameter structure][img-headers]
+![!`headers` パラメータの構造][img-headers]
 
-* The response headers should contain any marker.
+* 応答ヘッダーは任意のマーカーを含むべきです。
     
     ```
     - response:
       - headers
     ```
 
-* The response headers should contain certain data (the `value` can be a regular expression).
+* 応答ヘッダーは特定のデータを含むべきです（`value`は正規表現であってもよい）。
     
     ```
     - response:
       - headers: value
     ```
     
-    ??? info "Example"
-        * At least one of the HTTP headers should contain `qwerty` as a substring.
+    ??? info "例"
+        * HTTPヘッダーの少なくとも一つが `qwerty` を部分文字列として含むべきです。
                 
             ```
                 - response:
                   - headers: "qwerty"
             ```
             
-        * This regular expression covers any header that has a numeric value.
+        * この正規表現は数値である全てのヘッダーを含みます。
                 
             ```
                 - response:
                   - headers: '\d+'
             ```    
     
-* The certain response header should contain certain data (the `header_#` and `header_#_value` can be regular expressions).
-    
+* 特定の応答ヘッダーは特定のデータを含むべきです（`header_#`と`header_#_value`は正規表現であってもよい）。
+
     ```
     - response:
       - headers:
@@ -142,8 +142,8 @@ This parameter checks whether the necessary elements are present in the server's
         - header_N: header_N_value
     ```
     
-    ??? info "Example"
-        The `Cookie` header should contain the `uid=123` data. All of the headers starting with `X-` should not contain any data.
+    ??? info "例"
+        `Cookie`ヘッダーは`uid=123`のデータを含むべきです。全ての`X-`で始まるヘッダーは何もデータを含んではいけません。
           
         ```
             - response:
@@ -152,7 +152,7 @@ This parameter checks whether the necessary elements are present in the server's
                 - 'X-': ""
         ```    
     
-* The certain response headers should contain data from the specified list (the `header_#` and `header_#_value_#` can be regular expressions).
+* 特定の応答ヘッダーは指定されたリストからのデータを含むべきです（`header_#`と`header_#_value_#`は正規表現であってもよい）。
 
     ```
     - response:
@@ -168,8 +168,8 @@ This parameter checks whether the necessary elements are present in the server's
           - header_N_value_K
     ```
     
-    ??? info "Example"
-        The `Cookie` header should contain one of the following data options: `"test=qwerty"`, `"uid=123"`. All of the headers starting with `X-` should not contain any data.
+    ??? info "例"
+        `Cookie`ヘッダーは次のデータオプションのうち一つを含むべきです： "test=qwerty"、`uid=123`。全ての`X-`で始まるヘッダーは何もデータを含んではいけません。
             
         ```
             - response:
@@ -180,7 +180,7 @@ This parameter checks whether the necessary elements are present in the server's
                 - 'X-': "" 
         ```
     
-* The Detect phase can also check whether a certain header is absent from the server's response. To do this, assign `null` to the certain header's value.
+* 検出フェーズは特定のヘッダーがサーバーの応答から欠けているかどうかもチェックできます。これを行うには、特定のヘッダーの値に `null` を代入します。
     
     ```
     - response:
@@ -188,26 +188,26 @@ This parameter checks whether the necessary elements are present in the server's
         - header_X: null
     ```
 
-### Checking the Body of the HTTP Response
+### HTTP応答のボディのチェック
 
-![!`body` parameter structure][img-body]
+![!`body` パラメータの構造][img-body]
 
-* The body of the response should contain any marker.
+* 応答のボディは任意のマーカーを含むべきです。
     
     ```
     - response:
       - body
     ```
 
-* The body of the response should contain certain data (the `value` can be a regular expression).
+* 応答のボディは特定のデータを含むべきです（`value`は正規表現であってもよい）。
     
     ```
     - response:
       - body: value
     ```
     
-    ??? info "Example"
-        The body of the response should contain either the `STR_MARKER` or the `demo_string` substring.
+    ??? info "例"
+        応答のボディは `STR_MARKER` または `demo_string` の部分文字列を含むべきです。
             
         ```
             - response:
@@ -215,11 +215,11 @@ This parameter checks whether the necessary elements are present in the server's
               - body: 'demo_string'
         ```
 
-### Checking the HTML Markup
+### HTMLマークアップのチェック
 
-![!`html` parameter structure][img-html]
+![!`html` パラメータの構造][img-html]
 
-* The HTML markup should contain the `STR_MARKER`.
+* HTMLマークアップは `STR_MARKER` を含むべきです。
     
     ```
     - response:
@@ -227,7 +227,7 @@ This parameter checks whether the necessary elements are present in the server's
         - html
     ```
 
-* The HTML tag in the response should contain the `STR_MARKER`.
+* 応答のHTMLタグは `STR_MARKER` を含むべきです。
     
     ```
     - response:
@@ -236,7 +236,7 @@ This parameter checks whether the necessary elements are present in the server's
           - tag
     ```
 
-* The HTML tag in the response should contain certain data (the `value` can be a regular expression).
+* 応答のHTMLタグは特定のデータを含むべきです（`value`は正規表現であってもよい）。
     
     ```
     - response:
@@ -245,8 +245,8 @@ This parameter checks whether the necessary elements are present in the server's
           - tag: value
     ```
     
-    ??? info "Example"
-        The HTML markup of the response should contain the `а` tag.
+    ??? info "例"
+        応答のHTMLマークアップは `а` タグを含むべきです。
             
         ```
             - response:
@@ -255,7 +255,7 @@ This parameter checks whether the necessary elements are present in the server's
                   - tag: 'a'
         ```
 
-* The HTML tag in the response should contain any data from the specified list (the `value_#` can be a regular expression).
+* 応答のHTMLタグは指定されたリストからの任意のデータを含むべきです（`value_#`は正規表現であってもよい）。
     
     ```
     - response:
@@ -267,8 +267,8 @@ This parameter checks whether the necessary elements are present in the server's
             - value_R
     ```
     
-    ??? info "Example"
-        The HTML markup of the response should contain one of the following tags: `а`, `img`, or `tr`.
+    ??? info "例"
+        応答のHTMLマークアップは次のタグのうち一つを含むべきです：`а`、`img`、または`tr`。
             
         ```
             - response:
@@ -280,7 +280,7 @@ This parameter checks whether the necessary elements are present in the server's
                     - 'tr'
         ```    
     
-* The HTML attribute of the response should contain the `STR_MARKER`.
+* 応答のHTML属性は `STR_MARKER` を含むべきです。
     
     ```
     - response:
@@ -289,7 +289,7 @@ This parameter checks whether the necessary elements are present in the server's
           - attribute
     ```
 
-* The HTML attribute should contain certain data (the `value` can be a regular expression).
+* HTML属性は特定のデータを含むべきです（`value`は正規表現であってもよい）。
     
     ```
     - response:
@@ -298,8 +298,8 @@ This parameter checks whether the necessary elements are present in the server's
           - attribute: value
     ```
     
-    ??? info "Example"
-        The HTML attribute of the response should either contain `abc` as a substring or the calculation marker.
+    ??? info "例"
+        応答のHTML属性は `abc` を部分文字列として含むか、または計算マーカーを含むべきです。
             
         ```
             - response:
@@ -308,7 +308,7 @@ This parameter checks whether the necessary elements are present in the server's
                   - attribute: '(abc|CALC_MARKER)'
         ```    
 
-* The HTML attribute of the response should contain any of the data from the specified list (the `value_#` can be a regular expression):
+* 応答のHTML属性は指定されたリストからの任意のデータを含むべきです（`value_#`は正規表現であってもよい）：
     
     ```
     - response:
@@ -320,8 +320,8 @@ This parameter checks whether the necessary elements are present in the server's
             - value_F
     ```
     
-    ??? info "Example"
-        The HTML markup should contain one of the following attributes: `src`, `id`, or `style`.
+    ??? info "例"
+        HTMLマークアップは次の属性の一つを含むべきです：`src`、`id`、または`style`。
             
         ```
             - response:
@@ -333,10 +333,10 @@ This parameter checks whether the necessary elements are present in the server's
                     - 'style'
         ```    
 
-!!! info "The shortened version of the `attribute` parameter"
-    Instead of using the `attribute` parameter, you can use the shortened version — `attr`.
+!!! info "`attribute`パラメータの省略版"
+    `attribute`パラメータを使用する代わりに、省略版の `attr` を使用できます。
 
-* The HREF link of the response should contain the `STR_MARKER`.
+* 応答のHREFリンクは `STR_MARKER` を含むべきです。
     
     ```
     - response:
@@ -345,7 +345,7 @@ This parameter checks whether the necessary elements are present in the server's
           - href
     ```
 
-* The HREF link of the response should contain certain data (the `value` can be a regular expression).
+* 応答のHREFリンクは特定のデータを含むべきです（`value`は正規表現であってもよい）。
     
     ```
     - response:
@@ -354,8 +354,8 @@ This parameter checks whether the necessary elements are present in the server's
           - href: value
     ```
     
-    ??? info "Example"
-        The HREF link should contain the DNS marker.
+    ??? info "例"
+        HREFリンクはDNSマーカーを含むべきです。
             
         ```
             - response:
@@ -364,7 +364,7 @@ This parameter checks whether the necessary elements are present in the server's
                   - href: 'DNS_MARKER'
         ```    
     
-* The HREF link of the response should contain any data from the specified list (the `value_#` can be a regular expression).
+* 応答のHREFリンクは指定されたリストからの任意のデータを含むべきです（`value_#`は正規表現であってもよい）。
     
     ```
     - response:
@@ -376,8 +376,8 @@ This parameter checks whether the necessary elements are present in the server's
             - value_J
     ```
     
-    ??? info "Example"
-        The HREF link of the response should contain either `google` or `cloudflare` as a substring.
+    ??? info "例"
+        応答のHREFリンクは `google` または `cloudflare` を部分文字列として含むべきです。
             
         ```
             - response:
@@ -388,7 +388,7 @@ This parameter checks whether the necessary elements are present in the server's
                     - 'cloudflare'
         ```
 
-* The JavaScript tokens of the response should contain the `STR_MARKER`.
+* 応答のJavaScriptトークンは `STR_MARKER` を含むべきです。
     
     ```
     - response:
@@ -397,10 +397,10 @@ This parameter checks whether the necessary elements are present in the server's
           - js
     ```
     
-    !!! info "JavaScript tokens"
-        The JavaScript token is any JavaScript code script that lies within the `<script>` and `</script>` tags.
+    !!! info "JavaScriptのトークン"
+        JavaScriptのトークンは、`<script>` タグと `</script>` タグの間にある任意のJavaScriptコードスクリプトを指します。
         
-        For example, the following script contains a token with the `wlrm` value:
+        例えば、次のスクリプトは `wlrm` 値を持つトークンを含んでいます：
         
         ```
         <body>
@@ -411,7 +411,7 @@ This parameter checks whether the necessary elements are present in the server's
         </body>
         ```
 
-* The JavaScript tokens of the response should contain certain data (the value can be a regular expression).
+* 応答のJavaScriptトークンは特定のデータを含むべきです（値は正規表現でもよい）。
     
     ```
     - response:
@@ -420,8 +420,8 @@ This parameter checks whether the necessary elements are present in the server's
           - js: value
     ```
     
-    ??? info "Example"
-        The JavaScript token should contain the `wlrm` value.
+    ??? info "例"
+        JavaScriptトークンは `wlrm` の値を含むべきです。
             
         ```
             - response:
@@ -430,7 +430,7 @@ This parameter checks whether the necessary elements are present in the server's
                   - js: 'wlrm'
         ```
 
-* The JavaScript tokens of the response should contain any data from the specified list (the `value_#` can be a regular expression).
+* 応答のJavaScriptトークンは指定されたリストからの任意のデータを含むべきです（`value_#`は正規表現であってもよい）。
     
     ```
     - response:
@@ -442,8 +442,8 @@ This parameter checks whether the necessary elements are present in the server's
             - value_H
     ```
     
-    ??? info "Example"
-        The JavaScript token should contain either the `wlrm` or the `test` value.
+    ??? info "例"
+        JavaScriptトークンは `wlrm` または `test` の値を含むべきです。
             
         ```
             - response:
@@ -452,4 +452,4 @@ This parameter checks whether the necessary elements are present in the server's
                   - js:
                     - 'wlrm'
                     - 'test'
-        ```    
+        ```

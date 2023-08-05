@@ -1,4 +1,4 @@
-# ステップ 4：G Suite 側で Wallarm アプリケーションへのアクセスを許可する
+# ステップ4：G Suite側でWallarmアプリケーションへのアクセスを許可する
 
 [img-gsuite-console]:           ../../../../images/admin-guides/configuration-guides/sso/gsuite/gsuite-console.png
 [img-user-list]:                ../../../../images/admin-guides/configuration-guides/sso/gsuite/user-list.png
@@ -7,28 +7,28 @@
 
 [doc-use-user-auth]:            ../employ-user-auth.md
 
-G Suite を介した認証を行うには、G Suite 側にアカウントが作成されている必要があり、また、ユーザーには Wallarm アプリケーションへのアクセス権が与えられている必要があります。アクセス権限を付与するための必要な一連の操作が以下に説明されています。
+G Suiteを通じて認証するためには、G Suite側でアカウントを作成し、ユーザーがWallarmアプリケーションへのアクセス権を持っている必要があります。アクセス権を付与するための必要な手順のシーケンスは以下に記載します。
 
-*Users* ブロックをクリックして、G Suite のユーザー管理セクションに移動します。
+まず、*ユーザー*ブロックをクリックして、G Suiteのユーザー管理セクションに移動します。
 
-![!G Suite console][img-gsuite-console]
+![!G Suiteコンソール][img-gsuite-console]
 
-組織のユーザーリストに SSO 認証を介してアプリケーションへのアクセスを許可しようとするユーザーが存在することを確認します。
+SSO認証を経由してアプリケーションへのアクセスを付与する予定のユーザーが、あなたの組織のユーザーリストに存在していることを確認してください。
 
-![!G Suite user list][img-user-list]
+![!G Suiteユーザーリスト][img-user-list]
 
-以下に示すように、 *SAML apps* メニュー項目をクリックして、SAML アプリケーションセクションに移動します。
+下図のように* SAMLアプリ *メニューアイテムをクリックして、SAMLアプリケーションセクションに移動します。
 
-![!Navigate to the SAML applications][img-gsuite-navigation-saml]
+![!SAMLアプリケーションへの移動][img-gsuite-navigation-saml]
 
-所望のアプリケーションの設定に入り、「すべてのユーザーに対して ON」というステータスが設定されていることを確認します。アプリケーションのステータスが「すべてのユーザーに対して OFF」となっている場合、*Edit service*ボタンをクリックしてください。
+望むアプリケーションの設定を入力し、アプリケーションのステータスが“全員に対してON”であることを確認します。アプリケーションのステータスが“全員に対してOFF”である場合は、*サービスを編集*ボタンをクリックします。
 
-![!Application page in G Suite][img-app-page]
+![!G Suite内のアプリケーションページ][img-app-page]
 
-「すべてのみなさんについての ON」のステータスを選択し、*Save* をクリックします。
+“全員に対してON”のステータスを選択し、*保存*をクリックします。
 
-その後、サービスのステータスが更新されたというメッセージが表示されます。これで、Wallarm アプリケーションが G Suite の組織内のすべてのユーザーの SSO 認証に利用できるようになります。
+その後、サービスのステータスが更新されたというメッセージが表示されます。 Wallarmアプリケーションは、G Suiteのあなたの組織のすべてのユーザーに対してSSO認証を通じて利用可能になりました。
 
-##  設定完了
+## 設定完了
 
-これで G Suite ベースの SSO の設定が完了し、Wallarm 側で [ユーザー固有][doc-use-user-auth] の SSO 認証を設定することができます。
+これでG SuiteベースのSSOの設定が完了し、次にWallarm側で[user specific][doc-use-user-auth] SSO認証を設定することができます。

@@ -1,4 +1,4 @@
-[img-test-scheme]:                  ../../images/fast/qsg/en/test-preparation/12-qsg-fast-test-prep-scheme.png
+[img-test-scheme]:                  ../../images/fast/qsg/ja/test-preparation/12-qsg-fast-test-prep-scheme.png
 [img-google-gruyere-startpage]:     ../../images/fast/qsg/common/test-preparation/13-qsg-fast-test-prep-gruyere.png
 [img-policy-screen]:                ../../images/fast/qsg/common/test-preparation/14-qsg-fast-test-prep-policy-screen.png
 [img-wizard-general]:               ../../images/fast/qsg/common/test-preparation/15-qsg-fast-test-prep-policy-wizard-general.png
@@ -14,79 +14,79 @@
 [gl-element]:                       ../TERMS-GLOSSARY.md#baseline-request-element
 [gl-testpolicy]:                    ../TERMS-GLOSSARY.md#test-policy
 
-[anchor1]:  #1-prepare-the-baseline-request                       
-[anchor2]:  #2-create-a-test-policy-targeted-at-xss-vulnerabilities
+[anchor1]:  #1-基準リクエストの準備                       
+[anchor2]:  #2-xss脆弱性に対象したテストポリシーの作成
+   
     
+#   テストのための環境設定
+
+この章では、Google GruyereアプリケーションのXSS脆弱性を検出するためのFASTの設定手順を説明します。必要なすべての手順を完了したら、HTTPS基準リクエストをFASTノードを経由してプロキシし、XSS脆弱性を見つけることができるようになります。
+
+セキュリティテストセットを生成するためには、Wallarm FASTが以下を要求します：
+* 基準リクエストをプロキシするFASTノードのデプロイ
+* FASTノードとWallarmクラウドの接続 
+* 基準リクエスト
+* テストポリシー
+
+[前の章][link-previous-chapter]でFASTノードのデプロイとクラウド接続に成功したことになります。この章では、[テストポリシー][gl-testpolicy]と基準リクエストの作成に焦点を当てます。
+
+![!使用するテストスキーム][img-test-scheme]
+
+!!! info "テストポリシーの作成"
+    テスト対象の各アプリケーションごとに専用のポリシーを作成することを強くお勧めします。ただし、Wallarmクラウドが自動的に作成するデフォルトのポリシーを使用することもできます。このドキュメントでは、専用のポリシーの作成手順を説明しますが、デフォルトのポリシーはこのガイドの対象外です。
+
+テスト用の環境を設定するには、以下の手順を実行します：
+
+1.  [基準リクエストの準備][anchor1]
+2.  [XSS脆弱性に対象したテストポリシーの作成][anchor2]
+   
+!!! info "ターゲットアプリケーション"
+    現在の例では、[Google Gruyere][link-https-google-gruyere]をターゲットアプリケーションとして使用しています。あなたのローカルアプリケーションに対して基準リクエストを構築する場合は、Google Gruyereのアドレスの代わりに、このアプリケーションを実行しているマシンのIPアドレスを使用してください。
     
-#   Setting the environment for testing
+    IPアドレスを取得するには、`ifconfig`や`ip addr`のようなツールを使用できます。
 
-This chapter will guide you through the process of configuring FAST to detect XSS vulnerabilities in the Google Gruyere application. Upon completion of all necessary steps, you will be ready to proxy an HTTPS baseline request through the FAST node in order to find XSS vulnerabilities.
+ ##  1.  基準リクエストの準備
 
-To generate a security test set, Wallarm FAST requires the following:
-* A deployed FAST node, proxying baseline requests
-* A connection of the FAST node to the Wallarm cloud 
-* A baseline request
-* A test policy
+1.  提供される基準リクエストは[Google Gruyere][link-https-google-gruyere]アプリケーションに対象しているため、まずはアプリケーションのインスタンスを作成し、そのインスタンスの一意の識別子を取得する必要があります。
 
-You have successfully deployed a FAST node and connected it to the cloud in the [previous chapter][link-previous-chapter]. In this chapter you will focus on creating a [test policy][gl-testpolicy] and a baseline request.
+    それには、この[リンク][link-https-google-gruyere-start]にナビゲートしてください。Google Gruyereのインスタンスの識別子が与えられますので、コピーしてください。利用規約を読み、**同意して開始**ボタンを選択します。
 
-![!The test scheme in use][img-test-scheme]
+    ![!Google Gruyereの開始ページ][img-google-gruyere-startpage]
 
-!!! info "Creating a test policy"
-    It is strongly recommended that you create a dedicated policy for each target application under the test. However, you could make use of the default policy that is automatically created by the Wallarm cloud. This document will guide you through the process of creating a dedicated policy, while the default policy is beyond the scope of this guide.
-    
-To set the environment for testing, do the following:
+    隔離されたGoogle Gruyereのインスタンスが実行されます。次のアドレスでアクセス可能になります：
 
-1.  [Prepare the baseline request][anchor1]
-2.  [Create the test policy targeted at XSS vulnerabilities][anchor2]
-    
-!!! info "Target application"
-    The current example uses [Google Gruyere][link-https-google-gruyere] as the target application. If you construct the baseline request to your local application, please use the IP address of the machine running this application instead of Google Gruyere address.
-    
-    To get the IP address, you can use tools like `ifconfig` or `ip addr`.
-        
-##  1.  Prepare the baseline request
+    `https://google-gruyere.appspot.com/<あなたのインスタンスID>/`
 
-1.  Provided baseline request is targeted to the [Google Gruyere][link-https-google-gruyere] application, you should create a sandboxed instance of the application first. Then you should obtain a unique identifier of the instance.
-    
-    To do that, navigate to this [link][link-https-google-gruyere-start]. You will be given the identifier of the Google Gruyere instance, which you should copy. Read the terms of service and select the **Agree & Start** button.
-    
-    ![!Google Gruyere start page][img-google-gruyere-startpage]
+2.  Google Gruyereアプリケーションのインスタンスに対する基準リクエストを構築します。このガイドでは、合法的なリクエストを使用することを提案します。
 
-    The isolated Google Gruyere instance will be run. It will be made accessible to you by the following address:
-    
-    `https://google-gruyere.appspot.com/<your instance ID>/`
-
-2.  Construct the baseline request to your instance of the Google Gruyere application.     It is suggested in the guide that you use a legitimate request.
-
-    The request is as follows:
+    リクエストは次のとおりです：
 
     ```
-    https://google-gruyere.appspot.com/<your instance ID>/snippets.gtl?password=paSSw0rd&uid=123
+    https://google-gruyere.appspot.com/<あなたのインスタンスID>/snippets.gtl?password=paSSw0rd&uid=123
     ```
 
-    !!! info "Example of a request"
+    !!! info "リクエストの例"
         <https://google-gruyere.appspot.com/430232491618310677730226710602783767322/snippets.gtl?password=paSSw0rd&uid=123>
-    
-##  2.  Create a test policy targeted at XSS vulnerabilities
+   
+##  2.  XSS脆弱性に対象したテストポリシーの作成
 
-1.  Log in to the [My Wallarm portal][link-wl-console] using the account you created [earlier][link-previous-chapter].
+1.  [ワイルラームポータル][link-wl-console]にログインします。[以前][link-previous-chapter]作成したアカウントを使用します。
 
-2.  Select the “Test policies” tab and click the **Create test policy** button.
+2.  「テストポリシー」タブを選択し、**テストポリシー作成**ボタンをクリックします。
 
-    ![!Test policy creation][img-policy-screen]
+    ![!テストポリシーの作成][img-policy-screen]
 
-3.  In the “General” tab set a meaningful name and description for the policy. It is suggested in this guide that you use the name `DEMO POLICY`. 
+3.  「一般」タブにて、ポリシーに意味のある名前と説明を設定します。このガイドでは、`DEMO POLICY`という名前を使用することを提案します。
 
-    ![!Test policy wizard: the “General” tab.][img-wizard-general]
+    ![!テストポリシーウィザード："一般"タブ.][img-wizard-general]
 
-4.  In the “Insertion points” tab set the [baseline request elements][gl-element] that are eligible for processing during the process of security test set requests generation. It is are sufficient for the purposes of this guide to allow the processing of all GET parameters. To allow this, please add the `GET_.*` expression in the “Where to include” block. When creating a policy, FAST allows processing of some parameters by default. You can delete them using the «—» symbol.
+4.  「挿入点」タブにて、セキュリティテストセットのリクエスト生成プロセス中に処理が可能な[基準リクエスト要素][gl-element]を設定します。このガイドの目的のためには、すべてのGETパラメーターの処理を許可するだけで十分です。これを許可するには、「含める場所」ブロックに`GET_.*`表現を追加してください。ポリシーを作成する際、FASTは一部のパラメーターの処理をデフォルトで許可します。それらは「ー」記号を使用して削除できます。
 
-    ![!Test policy wizard: the “Insertion points” tab.][img-wizard-insertion-points]
+    ![!テストポリシーウィザード："挿入点"タブ.][img-wizard-insertion-points]
 
-5.  In the “Attacks to test” tab select one type of attack to exploit the vulnerability in the target application — XSS.
+5. 「攻撃テスト」タブで、ターゲットアプリケーションの脆弱性を悪用する一種の攻撃、すなわちXSSを選択します。
 
-6.  Make sure that the policy preview in the column on the very right looks as follows:
+6.  最右の列にあるポリシープレビューが以下のようになっていることを確認します：
 
     ```
     X-Wallarm-Test-Policy: 
@@ -94,12 +94,12 @@ To set the environment for testing, do the following:
     insertion=include:'GET_.*'; 
     ```
 
-7.  Select the **Save** button to save the policy.
+7.  **保存**ボタンを選択してポリシーを保存します。
 
-8.  Return to the test policy list by selecting the **Back to test policies** button.
+8.  **テストポリシーに戻る**ボタンを選択してテストポリシーリストに戻ります。
     
     
-!!! info "Test policy details"
-    Detailed information about test policies is available by the [link][doc-policy-in-detail].
+!!! info "テストポリシーの詳細"
+    テストポリシーについての詳細情報は、[リンク][doc-policy-in-detail]からご覧いただけます。
 
-Now you should have all of the chapter goals completed, with the HTTPS baseline request to the Google Gruyere application and the test policy targeted at XSS vulnerabilities.    
+以上で、Google GruyereアプリケーションへのHTTPS基準リクエストと、XSS脆弱性に対象したテストポリシーの2つの目標をすべて達成したはずです。

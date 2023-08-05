@@ -1,17 +1,17 @@
-# Addressing Wallarm node issues alerted by OWASP dashboards
+# OWASPダッシュボードで警告されるWallarmノードの問題への対処法
 
-When Wallarm nodes are not updated or face synchronization issues with the Cloud, error messages appear on the [OWASP dashboards](../user-guides/dashboards/owasp-api-top-ten.md) indicating problems that can impact infrastructure security. This article describes how to address these issues.
+Wallarmノードが更新されないか、クラウドとの同期に問題が発生した場合、インフラストラクチャのセキュリティに影響を及ぼす可能性のある問題を示すエラーメッセージが[OWASPダッシュボード](../user-guides/dashboards/owasp-api-top-ten.md)に表示されます。本記事では、これらの問題に対処する方法を説明します。
 
-Outdated nodes may lack important security updates, allowing malicious traffic to bypass defenses. Synchronization issues can disrupt the nodes' functionality, preventing them from receiving vital security policies from the Cloud. These issues are primarily related to the **OWASP API7 (Security Misconfiguration)** threat, where a missing security solution in any part of the application stack can make the system vulnerable. To prevent this, the dashboard alerts you to node operation issues, e.g.:
+古いノードでは重要なセキュリティ更新が欠けている可能性があり、その結果、悪意のあるトラフィックが防御を回避することができます。同期の問題はノードの機能を中断させ、クラウドから重要なセキュリティポリシーを受け取ることを防ぐことがあります。これらの問題は主に、**OWASP API7（セキュリティ設定ミス）**という脅威に関連しており、アプリケーションスタックの任意の部分にセキュリティソリューションが欠けていると、システムが脆弱になる可能性があります。これを防ぐため、ダッシュボードはノードの運用問題、例えば以下のようなものを警告します：
 
 ![!OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
-To maintain a secure environment, it is crucial to regularly update Wallarm nodes and address synchronization problems. Here are instructions on how to handle the error messages:
+安全な環境を維持するためには、Wallarmノードを定期的に更新し、同期問題に対処することが重要です。エラーメッセージを処理する方法についての指示は以下の通りです：
 
-1. If your Wallarm node version is [at or approaching its end-of-life](../updating-migrating/versioning-policy.md#version-list), it is recommended to upgrade your node to the latest version.
-1. If you encounter issues with Wallarm Cloud synchronization, make sure that the [corresponding settings](../admin-en/configure-cloud-node-synchronization-en.md) are correct.
+1. あなたのWallarmノードのバージョンが[終わり、または終わりが近づいている](../updating-migrating/versioning-policy.md#version-list)場合、ノードを最新バージョンにアップグレードすることをお勧めします。
+1. Wallarm Cloudとの同期に問題が発生した場合は、[対応する設定](../admin-en/configure-cloud-node-synchronization-en.md)が正しいことを確認してください。
 
-If you need assistance in resolving synchronization or other issues or any other requests, you can seek help from the [Wallarm support team](mailto:support@wallarm.com). Provide them with the following [logs](../admin-en/configure-logging.md) for analysis:
+同期やその他の問題、またはその他の要求の解決に助けが必要な場合は、[Wallarmサポートチーム](mailto:support@wallarm.com)に助けを求めることができます。以下の[ログ](../admin-en/configure-logging.md)を提供し、解析を依頼してください：
 
-* Logs from `/var/log/wallarm/syncnode.log` to check for any problems with the `syncnode` script
-* Logs from the `/var/log/syslog` or `/var/log/messages` directory (depending on the deployment option) to provide additional details about the synchronization issue
+* `syncnode`スクリプトの問題をチェックするための`/var/log/wallarm/syncnode.log`からのログ
+* 同期問題に関する追加の詳細を提供するための`/var/log/syslog`または`/var/log/messages`ディレクトリ（デプロイオプションによる）からのログ

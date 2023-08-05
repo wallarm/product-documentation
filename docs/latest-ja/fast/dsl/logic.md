@@ -24,10 +24,9 @@
 
 [link-points]:              points/intro.md
 
+# 拡張のロジック
 
-# The Logic of Extensions
-
-The logic of the extension can be described using several phases:
+拡張のロジックはいくつかのフェーズを使用して説明できます：
 1.  [Collect][link-phase-collect]
 2.  [Match][link-phase-match]
 3.  [Modify][link-phase-modify]
@@ -35,69 +34,68 @@ The logic of the extension can be described using several phases:
 5.  [Send][link-phase-send]
 6.  [Detect][link-phase-detect]
 
-By combining these phases, FAST DSL allows you to describe two extension types:
-* The first one creates one or more test requests by changing the parameters of an incoming baseline request.
+これらのフェーズを組み合わせることで、FAST DSLは2つの拡張タイプを記述することができます：
+* 最初のものは、ベースラインリクエストのパラメータを変更し、1つまたは複数のテストリクエストを作成します。
 
-    This extension will be referred to as a “modifying extension” throughout this guide.
+    このガイド全体で、この拡張は「変更拡張」を指します。
 
-* The second one uses predefined test requests and does not change the parameters of an incoming baseline request.
+* 二番目のものは、定義済みのテストリクエストを使用し、ベースラインリクエストのパラメータを変更しません。
 
-    This extension will be referred to as a “non-modifying extension” throughout this guide.
+    このガイド全体で、この拡張は「非変更拡張」を指します。
 
-Each extension type employs a distinct set of phases. Some of these phases are mandatory, while others are not. 
+それぞれの拡張タイプは、特性のフェーズセットを使用します。これらのフェーズのいくつかは必須で、他のフェーズはそうではありません。
 
-The use of the Detect phase is obligatory for each extension type. This phase receives the responses of the target application to the test requests. The extension uses these responses to determine whether the application has certain vulnerabilities. The information from the Detect phase is sent to the Wallarm cloud.
+Detectフェーズの使用は、それぞれの拡張タイプに必須です。このフェーズは、ターゲットアプリケーションからのテストリクエストのレスポンスを受け取ります。拡張は、これらのレスポンスを使用して、アプリケーションが特定の脆弱性を持つかどうかを判断します。Detectフェーズからの情報はWallarmクラウドに送信されます。
 
-!!! info "Request elements description syntax"
-    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points.
-    
-    To see detailed information, proceed to this [link][link-points].
- 
-##  How a Modifying Extension Works
+!!! info "リクエスト要素記述の構文"
+   FAST拡張を作成する際には、HTTPリクエストの構造とアプリケーションから受信したHTTPレスポンスの構造を理解する必要があります。これにより、ポイントを使用して作業する必要があるリクエスト要素を正確に記述できます。
 
-During a modifying extension operation, a baseline request sequentially proceeds through the Collect, Match, Modify, and Generate phases, all of which are optional and may not be included in the extension. A single test request or multiple test requests will be formed as a result of proceeding through these phases. These requests will be sent to the target application to check it for vulnerabilities.
+    詳しい情報を参照するには、この[link][link-points]に進んでください。
 
-!!! info "An extension without optional phases"
-    If no optional phases are applied to the baseline request, the test request matches the baseline request. 
+##  変更拡張がどのように機能するか
 
-![!Modifying extension phases overview][img-phases-mod-overview]
+変更拡張の操作中、ベースラインリクエストは順番にCollect、Match、Modify、およびGenerateフェーズを通過します。これら全ては任意であり、拡張に含まれる必要はありません。これらのフェーズを通過する結果として、1つのテストリクエストか複数のテストリクエストが作成されます。これらのリクエストは、脆弱性をチェックするためにターゲットアプリケーションに送信されます。
 
-If a baseline request satisfies a defined FAST [test policy][doc-policy-in-detail] then the request contains one or more parameters that are allowed for processing. The modifying extension iterates through these parameters:
+!!! info "任意のフェーズがない拡張"
+    ベースラインリクエストに任意のフェーズが適用されなければ、テストリクエストはベースラインリクエストと一致します。
 
- 1. Each parameter passes through the extension phases and the corresponding test requests are created and executed.
- 2. The extension proceeds with the next parameter until all parameters that comply with the policy are processed.  
+![変更拡張のフェーズ概要][img-phases-mod-overview]
 
-The image below shows a POST request with some POST parameters as an example.
+ベースラインリクエストが明確なFAST [test policy][doc-policy-in-detail]を満足していれば、そのリクエストには、処理を許可された1つまたは複数のパラメータが含まれます。変更拡張はこれらのパラメータを反復します：
 
-![!Modifying extension workflow overview][img-mod-workflow]
+ 1. 各パラメータは拡張フェーズを通過し、対応するテストリクエストが作成され、実行されます。
+ 2. ポリシーに準拠しているすべてのパラメータが処理されるまで、拡張は次のパラメータに進みます。
 
-##  How a Nonmodifying Extension Works
+以下の画像は、いくつかのPOSTパラメータを持つPOSTリクエストを例として示しています。
 
-During a nonmodifying extension operation, the baseline request proceeds through a single Send phase.
+![変更拡張のワークフロー概要][img-mod-workflow]
 
-While in this phase, only the host name of the IP address is derived from the `Host` header value of the baseline request. Then, the predefined test requests are sent to this host. 
+##  非変更拡張がどのように機能するか
 
-Due to the possibility of the FAST node encountering several incoming baseline requests with the same `Host` header value, these requests proceed through the implicit Collect phase to gather only those requests with a unique `Host` header value (see [“The Uniqueness Condition”][doc-collect-uniq]).
+非変更拡張の操作中、ベースラインリクエストは単一のSendフェーズを通過します。
 
-![!Non-modifying extension phases overview][img-phases-non-mod-overview]
+このフェーズでは、ベースラインリクエストの`Host`ヘッダの値からホスト名のIPアドレスだけが導出されます。その後、定義済みのテストリクエストがこのホストに送信されます。
 
-When a nonmodifying extension works, one or more predefined test requests are sent to the host that is mentioned in the `Host` header of every baseline request that is processed in the Send phase:
+`Host`ヘッダの値が同じであるいくつかの受信ベースラインリクエストがFASTノードに遭遇する可能性があるため、これらのリクエストはユニークな`Host`ヘッダ値を持つリクエストだけを集めるための暗黙のCollectフェーズを通過します（[“ユニークネス条件”][doc-collect-uniq]参照）。
 
-![!Non-modifying extension workflow overview][img-non-mod-workflow]
+![非変更拡張のフェーズ概要][img-phases-non-mod-overview]
 
+非変更拡張の動作時に、1つ以上の定義済みのテストリクエストが、Sendフェーズで処理される各ベースラインリクエストの`Host`ヘッダに記載されたホストに送信されます：
 
-##  How Extensions Process Requests
+![非変更拡張のワークフロー概要][img-non-mod-workflow]
 
-### Processing a Request with Several Extensions
+##  拡張がリクエストをどのように処理するか
 
-Several extensions may be defined for use by a FAST node at the same time.
-Each incoming baseline request will proceed through all plugged in extensions.
+### 複数の拡張と共にリクエストを処理する
 
-![!Extensions used by workers][img-workers]
+FASTノードは同時に使用するために定義された複数の拡張を持つことができます。
+各受信ベースラインリクエストは、全てのプラグイン拡張を通過します。
 
-At each moment of time, the extension processes a single baseline request. FAST supports parallel baseline request processing; each of the baseline requests received will be sent to a free worker to accelerate processing. Different workers may run the same extensions at the same time for different baseline requests. The extension defines whether test requests should be created on the basis of the baseline request.
+![作業者が使用する拡張][img-workers]
 
-The number of requests that the FAST node can process in parallel depends on the number of workers. The number of workers is defined by the value assigned to the environment variable `WORKERS` upon FAST node Docker container execution (the default variable value is 10).
+各時間点で、拡張は単一のベースラインリクエストを処理します。FASTは平行したベースラインリクエストの処理をサポートします。受信した各ベースラインリクエストは、処理を加速するために空いている作業者に送信されます。異なる作業者は、同時に異なるベースラインリクエストに対して同じ拡張を実行することがあります。拡張は、ベースラインリクエストを基にテストリクエストが作成されるべきかどうかを定義します。
 
-!!! info "Test policy details"
-    More detailed description of working with test policies is available by the [link][doc-policy-in-detail].
+FASTノードが平行して処理できるリクエストの数は、作業者の数に依存します。作業者の数は、FASTノードDockerコンテナの実行時に環境変数`WORKERS`に割り当てられた値によって定義されます（デフォルトの変数値は10）。
+
+!!! info "Test policyの詳細"
+   [link][doc-policy-in-detail]に、テストポリシーの作業に関するより詳細な説明があります。

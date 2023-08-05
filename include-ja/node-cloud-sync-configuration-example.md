@@ -1,4 +1,4 @@
-有効な `node.yaml` コンテンツの例：
+有効な `node.yaml` の内容の例：
 
 ```bash
 hostname: example-node-name
@@ -12,6 +12,24 @@ api:
 
 syncnode:
     owner: root
+    group: wallarm
+    mode: 0640
+```
+
+翻訳結果：
+
+```bash
+hostname: 例えばノード名
+uuid: ea1xa0xe-xxxx-42a0-xxxx-b1b446xxxxxx
+secret: b827axxxxxxxxxxxcbe45c855c71389a2a5564920xxxxxxxxxxxxxxxxxxc4613260
+
+api:
+    host: api.wallarm.com
+    port: 443
+    ca_verify: 真
+
+syncnode:
+    owner: ルート
     group: wallarm
     mode: 0640
 ```

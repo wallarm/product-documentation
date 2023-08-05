@@ -10,7 +10,10 @@
     ```bash
     sudo yum install wallarm-node nginx-module-wallarm
     ```
-					=== "デビアン"
+---
+---
+
+=== "デビアン"
     ```bash
     sudo apt install --no-install-recommends wallarm-node nginx-module-wallarm
     ```

@@ -1,104 +1,104 @@
-[img-sample-job-recording]:     ../../images/fast/poc/en/integration-overview/sample-job.png
-[img-sample-job-no-recording]:  ../../images/fast/poc/en/integration-overview/sample-job-no-recording.png
+[img-sample-job-recording]:     ../../images/fast/poc/jp/integration-overview/sample-job.png
+[img-sample-job-no-recording]:  ../../images/fast/poc/jp/integration-overview/sample-job-no-recording.png
 
-[doc-testrun]:                  ../operations/internals.md#test-run
-[doc-container-deployment]:     node-deployment.md#deployment-of-the-docker-container
-[doc-testrun-creation]:         node-deployment.md#creating-a-test-run 
-[doc-testrun-copying]:          node-deployment.md#copying-a-test-run     
+[doc-testrun]:                  ../operations/internals.md#テスト-ラン
+[doc-container-deployment]:     node-deployment.md#dockerコンテナのデプロイ
+[doc-testrun-creation]:         node-deployment.md#テストランの作成
+[doc-testrun-copying]:          node-deployment.md#テストランのコピー
 [doc-proxy-configuration]:      proxy-configuration.md
 [doc-stopping-recording]:       stopping-recording.md
-[doc-testrecord]:               ../operations/internals.md#test-record
+[doc-testrecord]:               ../operations/internals.md#テスト-レコード
 [doc-waiting-for-tests]:        waiting-for-tests.md
 
-[anchor-recording]:             #deployment-via-the-api-when-baseline-requests-recording-takes-place 
-[anchor-no-recording]:          #deployment-via-the-api-when-prerecorded-baseline-requests-are-used
+[anchor-recording]:             #api経由でのデプロイ-初期リクエストが記録される場合
+[anchor-no-recording]:          #api経由でのデプロイ-事前記録済みの初期リクエストが使われる場合
 
 [doc-integration-overview]:     integration-overview.md
 
-#   Integration via Wallarm API
+#   Wallarm APIを通じた統合
 
-There are several methods of deployment:
-1.  [Deployment via the API when baseline requests recording takes place.][anchor-recording]
-2.  [Deployment via the API when pre-recorded baseline requests are used.][anchor-no-recording]
+デプロイ方法にはいくつかあります：
+1.  [API経由でのデプロイで、初期リクエストが記録される場合。][anchor-recording]
+2.  [API経由でのデプロイで、事前に記録された初期リクエストが利用される場合。][anchor-no-recording]
 
 
-##  Deployment via the API when Baseline Requests Recording Takes Place
+##  API経由でのデプロイ時に基本リクエストが記録される
 
-A [test run][doc-testrun] is created in this scenario. Baseline requests will be recorded into a test record that corresponds to the test run.
+このシナリオでは、[テストラン][doc-testrun]が作成されます。ベースラインリクエストは、テストランに対応するテストレコードに記録されます。
 
-The corresponding workflow steps are:
+対応するワークフローステップは次のとおりです：
 
-1.  Building and deploying the target application.
+1.  対象となるアプリケーションの構築とデプロイメント。
 
-2.  Deploying and setting up the FAST node:
+2.  FASTノードのデプロイメントと設定：
     
-    1.  [Deploying a Docker container with the FAST node][doc-container-deployment].
+    1.  [FASTノード付きのDockerコンテナのデプロイメント][doc-container-deployment]。
     
-    2.  [Creating a test run][doc-testrun-creation].
+    2.  [テストランの作成][doc-testrun-creation]。
     
-        After you perform these actions, make sure that the FAST node is ready to begin the baseline requests recording process.
+        これらのアクションを実行した後、FASTノードがベースラインリクエストの記録プロセスを開始するために準備が整っていることを確認してください。
     
-3.  Preparing and setting up a test tool:
+3.  テストツールの準備と設定：
     
-    1.  Deploying and performing a basic configuration of the test tool.
+    1.  テストツールのデプロイメントと基本的な設定。
     
-    2.  [Configuring the FAST node as a proxy server][doc-proxy-configuration].
+    2.  [FASTノードをプロキシサーバーとして設定する][doc-proxy-configuration]。
     
-4.  Running the existing tests.
+4.  既存のテストの実行。
     
-    The FAST node will begin to create and execute the security test set when it receives the first baseline request.
+    FASTノードは、最初のベースラインリクエストを受け取ったときに、セキュリティテストセットの作成と実行を開始します。
     
-5.  Stopping the baseline requests recording process.
+5.  初期リクエストの記録プロセスを停止します。
     
-    The recording process [should be stopped][doc-stopping-recording] after all of the existing tests are executed.
+    記録プロセスは、すべての既存のテストが実行された後に[停止][doc-stopping-recording]するべきです。
     
-    Now, the [test record][doc-testrecord] that holds the recorded baseline requests, is ready to be reused in the CI/CD workflow that works with the already recorded baseline requests.  
+    これで、記録された初期リクエストを保持する[テストレコード][doc-testrecord]は、すでに記録された初期リクエストを用いて作業するCI/CDワークフローに再利用可能となります。  
     
-6.  Waiting for the FAST security tests to finish.
+6.  FASTのセキュリティテストが終了するのを待つ。
     
-    Periodically check the status of the test run by making an API request. This helps [to determine whether the security tests are completed or not][doc-waiting-for-tests].
+    定期的にAPIリクエストによりテストランのステータスをチェックします。これによって、セキュリティテストが完了したかどうか[判断][doc-waiting-for-tests]できます。
     
-7.  Obtaining the results of the testing.
+7.  テストの結果を取得する。
 
-This scenario is shown on the picture below:
+このシナリオは以下の画像で示されています：
 
-![!An example of a CI/CD job with requests recording][img-sample-job-recording]
-
-
-##  Deployment via the API when Prerecorded Baseline Requests are Used
-
-A test run is copied in this scenario. While copying, an existing test record identifier is passed to the test run. The test record is acquired in the CI/CD workflow with baseline requests recording.
-
-The corresponding workflow steps are:
-
-1.  Building and deploying the target application.
-
-2.  Deploying and setting up the FAST node:
-    
-    1.  [Deploying a Docker container with the FAST node][doc-container-deployment].
-    
-    2.  [Copying a test run][doc-testrun-copying].    
-
-3.  Extracting the baseline requests from the given test record with the FAST node. 
-
-4.  Conducting security testing of the target application with the FAST node.
-
-5.  Waiting for the FAST security tests to finish.
-    
-    Periodically check the status of the test run by making an API request. This helps [to determine whether the security tests are completed or not][doc-waiting-for-tests].
-    
-6.  Obtaining the results of the testing.
-
-![!An example of a CI/CD job with use of pre-recorded requests][img-sample-job-no-recording]   
+![!リクエスト記録があるCI/CDジョブの例][img-sample-job-recording]
 
 
-##  A FAST Node Container's Lifecycle (Deployment via API)
+##  事前に記録された基本リクエストが使用されるAPIを介したデプロイ
 
-This scenario assumes that the Docker container with the FAST node runs only once for a given CI/CD job and is removed when the job ends.
+このシナリオでは、テストランがコピーされます。コピー時に、既存のテストレコード識別子がテストランに渡されます。テストレコードは、初期リクエスト記録を伴うCI/CDワークフローに取得されます。
+
+対応するワークフローステップは次のとおりです：
+
+1.  対象となるアプリケーションの構築とデプロイメント。
+
+2.  FASTノードのデプロイメントと設定：
+    
+    1.  [FASTノード付きのDockerコンテナのデプロイメント][doc-container-deployment]。
+    
+    2.  [テストランのコピー][doc-testrun-copying]。    
+
+3.  FASTノードを使って指定されたテストレコードから初期リクエストを抽出します。 
+
+4.  FASTノードを使用して目標アプリケーションのセキュリティテストを実施します。
+
+5.  FASTのセキュリティテストが終了するのを待つ。
+    
+    定期的にAPIリクエストによりテストランのステータスをチェックします。これによって、セキュリティテストが完了したかどうか[判断][doc-waiting-for-tests]できます。
+    
+6.  テストの結果を取得する。
+
+![!事前に記録されたリクエストを使用したCI/CDジョブの例][img-sample-job-no-recording]   
+
+
+##  FASTノードコンテナのライフサイクル（API経由でのデプロイ）
+
+このシナリオでは、FASTノードが付属したDockerコンテナはCI/CDジョブごとに一度だけ実行され、ジョブが終了すると削除されることを前提としています。
  
-If the FAST node does not encounter critical errors during operation, it runs in an infinite loop, waiting for new test runs and baseline requests to test the target application again.
+FASTノードが操作中に深刻なエラーに遭遇しない限り、新しいテストランと初期リクエストを待つ無限ループで動作します。
   
-The Docker container with the node should be stopped explicitly by the CI/CD tool when the CI/CD job is finished. 
+ジョブ完了時には、CI/CDツールによって明示的にFASTノードのDockerコンテナを停止する必要があります。
 
 <!-- -->
-You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.
+必要に応じて、[「FASTを使ったCI/CDワークフロー」][doc-integration-overview]ドキュメントを参照してください。

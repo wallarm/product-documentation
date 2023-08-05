@@ -12,30 +12,30 @@
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 
 
-#   Creation of Modifying Extension
+#   変更拡張の作成
 
-The extension described in this document will modify an incoming baseline request to inject some payload into. These payloads could lead to exploitation of the SQLi vulnerability in the [“OWASP Juice Shop”][link-juice-shop] target application's login form.
+このドキュメントに記載の拡張は、受信した基本のリクエストを変更し、ペイロードを注入します。このペイロードは、[OWASP Juice Shop][link-juice-shop] ターゲットアプリケーションのログインフォームにおけるSQLi脆弱性の攻撃につながる可能性があります。
   
-##  Preparations
+##  準備
 
-It is highly recommended to take these steps prior to creation of a FAST extension:
-1.  [Investigate the behavior of the target application][link-app-examination] you are creating the extension for.
-2.  [Read the principles of point construction for an extension][link-points].
+FAST拡張の作成に先立って、以下のステップを実行することを強く推奨します：
+1.  拡張を作る対象となる[ターゲットアプリケーションの動作を調査してください][link-app-examination]。
+2.  [拡張のポイント構築の原則を読むこと][link-points]。
 
 
-##  Constructing the Extension
+##  拡張の作成
 
-Create a file that describes the extension (e.g., `mod-extension.yaml`) and populate it with the required sections:
+拡張を記述するファイル（例：`mod-extension.yaml`）を作成し、必要なセクションで埋めてください：
 
-1.  [**The `meta-info` section**][link-meta-info].
+1.  [**`meta-info`セクション**][link-meta-info]。
 
-    Prepare the description of the vulnerability that the extension will try to detect.
-    * vulnerability header: `OWASP Juice Shop SQLi (mod extension)`
-    * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
-    * vulnerability type: SQL injection
-    * vulnerability threat level: high
+    拡張が検出しようとする脆弱性の説明を用意してください。
+    * 脆弱性ヘッダー: `OWASP Juice Shop SQLi (mod extension)`
+    * 脆弱性説明: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
+    * 脆弱性タイプ: SQLインジェクション
+    * 脆弱性の脅威レベル: 高
     
-    The corresponding `meta-info` section should look as follows:
+    対応する `meta-info` セクションは以下のようになります：
     
     ```
     meta-info:
@@ -45,29 +45,29 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
       - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
     ```
     
-2.  **The `collect` section, the [Collect phase][doc-collect-phase]**.
+2.  **`collect`セクション、[Collect phase][doc-collect-phase]**。
     
-    The REST API `POST /rest/user/login` method is called upon trying to log in.
+    ログインを試みる際に、REST APIの `POST /rest/user/login` メソッドが使用されます。
     
-    There is no need to create test requests for each of the baseline requests for logging in that were sent to the API as the testing for vulnerabilities will be performed the same way for each piece of data passed in the POST request.
+    ログイン用のAPIに送信される基礎リクエスト全てでテストリクエストを作成する必要はありません。それぞれのPOSTリクエストに含まれるデータに対して、脆弱性のテストは同じ方式で実施されるからです。
     
-    Set up the extension in such a way that it executes once when the API receives the request for logging in. To do so, add the Collect phase with the uniqueness condition to the extension.
+    拡張設定をAPIのログインリクエストを受け取ったときに一度だけ実行するようにします。これには、ユニーク性条件を持つCollectフェーズを拡張に追加します。
 
-    The `/rest/user/login` request to the API for logging in comprises:
+    ログインのためのAPIへの `/rest/user/login` リクエストは以下を含みます：
 
-    1.  the first part of the path with the `rest` value,
-    2.  the second part of the path with the `user` value, and
-    3.  the `login` action method
+    1.  パスの最初の部分で、値は `rest`、
+    2.  パスの二番目の部分で、値は `user`、そして
+    3.  `login` アクションメソッド
     
-    The corresponding points that refer to these values are the following:
+    これらの値を参照する対応するポイントは次のとおりです：
 
-    1.  `PATH_0_value` for the first part of the path
-    2.  `PATH_1_value` for the second part of the path
-    3.  `ACTION_NAME_value` for the `login` action method
+    1.  パスの最初の部分の `PATH_0_value`
+    2.  パスの二番目の部分の `PATH_1_value`
+    3.  `login` アクションメソッドの `ACTION_NAME_value`
     
-    If you add the condition that the combination of these three elements must be unique, then the extension will only run for the first `/rest/user/login` baseline request to the API (such request will be treated as unique one, and all the following requests to the API for logging in will not be unique). 
-    
-    Add the corresponding `collect` section to the extension YAML file. 
+    これら三つの要素の組み合わせがユニークでなければならないという条件の追加を行った場合、拡張は初めてAPIに `/rest/user/login` ベースラインリクエスト（このリクエストはユニークと見なされ、その後のログインのためのAPIへのリクエストはそれがユニークでないため実行されません）が送信されたときにのみ実行されます。
+     
+    拡張のYAMLファイルに対応する `collect` セクションを追加します。 
     
     ```
     collect:
@@ -75,11 +75,11 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
         - [PATH_0_value, PATH_1_value, ACTION_NAME_value]
     ```
 
-3.  **The `match` section, the [Match phase][doc-match-phase]**.
+3.  **`match`セクション、[Match phase][doc-match-phase]**。
     
-    It is necessary to check whether the incoming baseline requests is really the request to the API for logging in, because the extension we are creating will exploit the vulnerabilities that the login form contains.
+    送られてきた基本リクエストが本当にAPIのログインリクエストであるかを確認する必要があります。なぜなら、私たちが作成している拡張はログインフォームが持つ脆弱性を攻撃するからです。
     
-    Set up the extension so that it only runs if a baseline request is targeted to the following URI: `/rest/user/login`. Add the Match phase that checks whether the received request contains the required elements. This can be done using the following `match` section:
+    拡張は、基本リクエストが以下のURI：`/rest/user/login`に対象している場合にのみ実行されるように設定します。定められた要素を含んだリクエストを受け取ったかどうかを確認するMatchフェーズを追加します。これは以下の `match` セクションを使用することで行えます。
 
     ```
     match:
@@ -88,13 +88,13 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
       - ACTION_NAME_value: 'login'
     ```
 
-4.  **The `modify` section, the [Modify phase][doc-modify-phase]**.
+4.  **`modify`セクション、[Modify phase][doc-modify-phase]**。
     
-    Let us suggest that it is required to modify the baseline request to reach the following goals:
-    * To clear the `Accept-Language` HTTP header value (this value is not required for vulnerability to be detected).
-    * To replace the real values of the `email` and `password` parameters with the neutral `dummy` values.
+    以下の目標を達成するために基本リクエストを変更する必要があるとしましょう：
+    * `Accept-Language` HTTPヘッダー値をクリア（この値は脆弱性の検出のためには必要ありません）。
+    * `email` と `password` パラメータの実際の値を中立的な `dummy` の値に置き換える。
     
-    Add to the extension the following `modify` section that alters the request to meet the goals described above:
+    拡張に以上の目標を満たすようにリクエストを変更する `modify` セクションを追加します。
     
     ```
     modify:
@@ -103,19 +103,19 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
       - "POST_JSON_DOC_HASH_password_value": "dummy"
     ```
     
-    !!! info "Request elements description syntax"
-        Because the request data that is contained in the JSON format is stored in `<key: value>` pairs, the point that refers to the `email` element value will look as shown above. The point that refers to the `password` element value has a similar structure.
+    !!! info "リクエスト要素の説明構文"
+        JSON形式のリクエストデータは `<key: value>` ペアに保存されているため、 `email` 要素の値を参照するポイントは上記のようになります。`password`要素の値を参照するポイントも同様の構造を持っています。
         
-        To see detailed information about constructing the points, proceed to this [link][link-points].
+        ポイントの構築に関する詳細情報は、この[リンク][link-points]を参照してください。
  
-5.  **The `generate` section, the [Generate phase][doc-generate-phase]**.
+5.  **`generate`セクション、[Generate phase][doc-generate-phase]**。
 
-    It is known that there are two payloads that should replace the value of the `email` parameter in the baseline request in order to exploit the SQL injection vulnerability in the target application:
+    ターゲットアプリケーションのSQLインジェクション脆弱性を攻撃するために、基本リクエストの `email` パラメータの値を変更するべきペイロードが二つあることが既知です：
     * `'or 1=1 --`
     * `admin@juice-sh.op'--`
         
-    !!! info "Inserting the payload into the modified request"
-        The payload will be inserted into the previously modified request, because the extension contains the `modify` section. Thus, after inserting the first payload into the `email` field, the test request data should look as follows:
+    !!! info "修正済みリクエストへのペイロードの挿入"
+        ペイロードは、拡張が `modify` セクションを含んでいるため、以前に修正されたリクエストに挿入されます。したがって、最初のペイロードを `email` フィールドに挿入した後のテストリクエストのデータは次のようになります：
     
         ```
         {
@@ -124,9 +124,9 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
         }
         ```
     
-        Because any password can be used to log in successfully due to the chosen payloads, it is not necessary to insert the payload into the password field, which will have a `dummy` value after the Modify phase is applied.
+        選ばれたペイロードのために任意のパスワードが成功するログインに使われるため、パスワードフィールドにペイロードを挿入する必要はありません。これは、Modifyフェーズが適用された後に `dummy` の値を持つでしょう。
     
-        Add the `generate` section that will create the test requests that meet the requirements discussed above.
+        上記で議論した要件を満たすテストリクエストを作成する `generate` セクションを追加します。
     
         ```
         generate:
@@ -138,22 +138,22 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
             - replace
         ```
 
-6.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
+6.  **`detect`セクション、[Detect phase][doc-detect-phase]**。
     
-    The following conditions indicate that the user authentication with administrator's rights was successful:
-    * The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in the JSON format and should look the following way:
+    次の条件が管理者権限でのユーザー認証が成功したことを示します：
+    * レスポンスボディ内の、ショッピングカート識別子パラメータが `1` 値を持つ存在。このパラメータはJSON形式で、次のように見えます：
     
         ```
         "bid":1
         ```
     
-    * The presence of the user email parameter with the `admin@juice-sh.op` value in the response body. The parameter is in the JSON format and should look the following way:
+    * レスポンスボディ内の、`admin@juice-sh.op` 値を持つユーザーの電子メールパラメータの存在。このパラメータはJSON形式で、次のように見えます：
     
         ```
          "umail":"admin@juice-sh.op"
         ```
     
-    Add the `detect` section that checks whether the attack was successful according to the conditions described above.
+    攻撃が上記に述べた条件に従って成功したかどうかを検証する `detect` セクションを追加します。
     
     ```
     detect:
@@ -162,12 +162,12 @@ Create a file that describes the extension (e.g., `mod-extension.yaml`) and popu
         - body: "\"bid\":1"
     ```
     
-!!! info "Escaping the special symbols"
-    Remember to escape the special symbols in the strings.
+!!! info "特殊記号のエスケープ"
+    文字列中の特殊記号をエスケープすることを忘れないでください。
 
-##  Extension File
+##  拡張ファイル
 
-Now the `mod-extension.yaml` file contains the complete set of the sections required for the extension to operate. The listing of the file's content is below:
+ここで `mod-extension.yaml` ファイルには、拡張の操作に必要な全てのセクションが含まれています。ファイルの内容のリストが以下になります：
 
 ??? info "mod-extension.yaml"
     ```
@@ -205,6 +205,6 @@ Now the `mod-extension.yaml` file contains the complete set of the sections requ
         - body: "\"bid\":1"
     ```
 
-##  Using Extension
+##  拡張の使用
 
-For detailed information about how to use the created expression, read [this document][link-using-extension]. 
+作成した拡張の使用方法についての詳細情報は、[このドキュメント][link-using-extension]を参照してください。

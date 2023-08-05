@@ -2,42 +2,42 @@
 [link-ruby-regexp]:     http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-ext-logic]:       logic.md
 
-# The Match Phase
+# マッチ段階
 
-!!! info "Scope of the phase"  
-    This phase is used in a modifying extension and is optional for its operation (the `match` section may be either absent or present in the YAML file).
+!!! info "段階の範囲"  
+    この段階は、拡張子を変更した際に使用し、その動作には任意です（`match`セクションはYAMLファイルに存在してもしなくても構いません）。
 
-    This phase should be absent from the non-modifying extension's YAML file.
+    この段階は、非修正拡張子のYAMLファイルには存在してはなりません。
+
+    拡張子の種類についての詳細は[ここ][link-ext-logic]で読むことができます。
+
+!!! info "リクエスト要素記述構文"
+     FAST拡張子を作成する際には、アプリケーションに送信されるHTTPリクエストの構造と、アプリケーションから受信したHTTPレスポンスの構造を理解する必要があります。それにより、ポイントを使用して作業する必要のあるリクエスト要素を正確に記述することができます。
+
+    詳細情報を見るには、この[リンク][link-points]に進んでください。
+
+この段階では、指定された基準に基づいたリクエストが一致するかどうかをチェックします。
+
+拡張的YAMLファイル内の `match` セクションには `<key: value>` のペアの配列が含まれています。各ペアはリクエストの特定の要素（キー）とその要素のデータ（値）を記述します。キーと値には [Ruby正規表現形式][link-ruby-regexp]の正規表現を含めることができます。
+
+マッチ段階では、指定された `<key: value>` のペアすべてについて、基線リクエスト内でマッチを探します。
+* リクエストは、必要な要素（例えば、URLのパス値、GETパラメータ、またはHTTPヘッダー）が必要なデータを持つことについてチェックされます。
     
-    Read about the extension types in detail [here][link-ext-logic].
-
-!!! info "Request element description syntax"
-     When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with, using the points. 
+    ??? info "例1"
+        `'GET_a_value': '^\d+$'` — `a` という名前のGETパラメータを含む値は、リクエストに含まれている必要があります。
     
-    To see detailed information, proceed to this [link][link-points].
- 
- This phase checks if an incoming baseline request matches specified criteria.
+    ??? info "例2"
+        `'GET_b*_value': '.*'` — `b` から始まる名前のGETパラメータ（値が何でも、空の値も含む）がリクエストに含まれている必要があります。
 
-The `match` section in the extension YAML file contains an array of `<key: value>` pairs. Each pair describes a certain element of the request (the key) and this element's data (the value). The key and the value may contain regular expressions in the [Ruby regular expression format][link-ruby-regexp].
+* キーの値が `null` に設定されている場合、リクエストから対応する要素の存在がチェックされます。
 
-The Match phase looks for matches for all the given `<key: value>` pairs in the baseline request.
-* The request is checked against the presence of the required elements (for example, the path value in the URL, the GET parameter, or the HTTP header) with the required data. 
-    
-    ??? info "Example 1"
-        `'GET_a_value': '^\d+$'` — the GET parameter named `a` with a value containing only digits should be present in the request.
-    
-    ??? info "Example 2"
-        `'GET_b*_value': '.*'` — the GET parameter with the name starting with `b`, with any value (including the empty value), should be present in the request.
-    
-* If the value is set to `null` for a given key, then the absence of the corresponding element is checked in the request.
-    
-    ??? info "Example"
-        `'GET_a': null` — the GET parameter named `a` should be absent from the request.
+    ??? info "例"
+        `'GET_a': null` — `a` という名前のGETパラメータがリクエストには存在していないはずです。
 
-For the baseline request to get through the Match phase, it is necessary that the request satisfy all of the `<key: value>` pairs in the `match` section. If no match for any of the `<key: value>` pairs described in the `match` section is found in the baseline request, then the request will be discarded.
+基線リクエストがマッチ段階を通過するためには、リクエストが `match` セクションの `<key: value>` のペアすべてを満たしている必要があります。もし、`match` セクションで記述された `<key: value>` のペアのどれも基線リクエストにマッチしない場合、そのリクエストは破棄されます。
 
-??? info "Example"
-    The `match` section shown below contains the list of the `<key: values>` pairs. For the baseline request to get through the Match phase, it has to satisfy all of these pairs.
+??? info "例"
+    下記の `match` セクションには、`<key: values>` のペアのリストが含まれています。基線リクエストがマッチ段階を通過するためには、これらのペアすべてを満たす必要があります。
 
     ```
     match:
@@ -46,6 +46,6 @@ For the baseline request to get through the Match phase, it is necessary that th
     - 'HEADER_CONTENT-TYPE_value': null
     ```
 
-    1. The baseline request should contain the HTTP header named `Header`, with the value containing `example.com` as a substring.
-    2. The `password` GET parameter's value should contain digits only.
-    3. The `Content-Type` header should be absent.
+    1. 基線リクエストは、`Header` という名前のHTTPヘッダを含むべきで、その値は `example.com` を含むサブストリングであるべきです。
+    2. `password` のGETパラメータの値は数字のみであるべきです。
+    3. `Content-Type` ヘッダは存在してはなりません。

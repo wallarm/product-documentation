@@ -1,9 +1,9 @@
-# GCPマシンイメージからWallarmの展開
+# GCPマシンイメージからWallarmをデプロイする
 
-この記事では、[公式マシンイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を使用してGCP上にWallarmを展開する方法を提供します。このソリューションは、インラインまたは[アウトオブバンド][oob-docs]で展開することができます。
+この記事では、[公式マシンイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を使用してGCP上にWallarmをデプロイするための手順を提供します。解決策は、[インライン][inline-docs]または[帯域外][oob-docs]でデプロイできます。
 
 <!-- ???
-すべての地域が対応していると言います -->
+すべての地域がサポートされていると言う -->
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
@@ -15,7 +15,7 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 7. Wallarmインスタンスへのトラフィック送信を設定する
+## 7. トラフィックをWallarmインスタンスに送信する設定を行う
 
 --8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
@@ -23,6 +23,6 @@
 
 --8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
 
-## 9. 展開したソリューションを微調整する
+## 9. デプロイしたソリューションの微調整
 
 --8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"

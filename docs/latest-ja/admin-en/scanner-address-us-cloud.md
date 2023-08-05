@@ -3,13 +3,13 @@
 # USクラウド用スキャナーアドレス <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
 !!! info
-    このリストは、USクラウド<https://us1.my.wallarm.com>を利用しているユーザーのみ対応しています。
-    
-    EUクラウド<https://my.wallarm.com>を利用している場合は、[EUクラウド用スキャナーアドレスのリスト](scanner-address-eu-cloud.md)に進んでください。
+    このリストは、USクラウド <https://us1.my.wallarm.com>を使用しているユーザーのみが作動します。
 
-WallarmがUSクラウドから企業リソースを[脆弱性](../glossary-en.md#vulnerability)のスキャンおよび攻撃と脆弱性の再チェックを行うIPアドレスのリスト：
+    EUクラウド<https://my.wallarm.com>を使用している場合は、[EUクラウドのスキャナーアドレスリスト](scanner-address-eu-cloud.md)に進んでください。
 
---8<-- "../include-ja/scanner-ip-request-us.md"
+Wallarmが会社のリソースを[脆弱性](../glossary-en.md#vulnerability)に対してスキャンし、攻撃と脆弱性を再確認するUSクラウドのIPアドレスリスト：
+
+--8<-- "../include/scanner-ip-request-us.md"
 
 !!! info "IPアドレスのリストを取得する"
-    [スキャナーのIPアドレスを含む平文ファイルをダウンロードしてください。][file-ips-list]
+    [スキャナのIPアドレスのリストが含まれているプレーンテキストファイルをダウンロードしてください。][file-ips-list]

@@ -1,8 +1,8 @@
-レポートおよび通知の送信を一時的に停止するには、統合を無効にすることができます：
+一時的にレポートと通知の送信を停止するために、統合を無効にすることができます:
 
-1. [米国](https://us1.my.wallarm.com/integrations/)または[欧州](https://my.wallarm.com/integrations/)のクラウドでWallarmコンソール → **統合**に移動します。
-2. アクティブな統合を開き、**無効化**をクリックします。
+1. Wallarm Consoleへ移動します → [US](https://us1.my.wallarm.com/integrations/)または[EU](https://my.wallarm.com/integrations/) Cloudの**Integrations**をクリックします。
+2. アクティブな統合を開き、**Disable**をクリックします。
 
-レポートと通知の送信を再度有効にするには、無効化された統合を開き、**有効化**をクリックします。
+レポートと通知の送信を再度有効にするには、無効にした統合を開き、**Enable**をクリックします。
 
-統合を無効にすることはシステムイベントです。システム通知を受信する場合、無効化された統合に関するメッセージは、[構成済みのシステム](integrations-intro.md#integration-types)に送信されます。
+統合を無効にすることはシステムイベントです。システム通知を受け取る場合、無効になった統合についてのメッセージが[設定されたシステム](integrations-intro.md#integration-types)に送られます。

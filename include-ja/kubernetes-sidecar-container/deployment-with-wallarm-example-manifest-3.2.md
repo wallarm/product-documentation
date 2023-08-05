@@ -13,48 +13,47 @@ spec:
         app: myapp
     spec:
       containers:
-        # Wallarm 要素: Wallarm サイドカーコンテナの定義
+        # Wallarmのエレメント：Wallarmサイドカーコンテナの定義
         - name: wallarm
           image: wallarm/node:3.2.1-1
           imagePullPolicy: Always
           env:
-          # Wallarm API エンドポイント:
-          # "api.wallarm.com" (EU クラウド用)
-          # "us1.api.wallarm.com" (US クラウド用)
+          # Wallarm APIエンドポイント：
+          # "api.wallarm.com"はEUクラウドの場合
+          # "us1.api.wallarm.com"はUSクラウドの場合
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # Deploy ロールを持つユーザのユーザ名
+          # デプロイロールを持つユーザーのユーザー名
           - name: DEPLOY_USER
             value: "username"
-          # Deploy ロールを持つユーザのパスワード
+          # デプロイロールを持つユーザーのパスワード
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # 要求分析データのメモリ量（GB）、
-          # 推奨値はサーバーの合計メモリの 75％
+          # リクエスト分析データのためのメモリ量（GB）
           - name: TARANTOOL_MEMORY_GB
             value: "2"
           ports:
           - name: http
-            # Wallarm サイドカーコンテナが Service オブジェクトからのリクエストを受け入れるポート
+            # Wallarmサイドカーコンテナがサービスオブジェクトからのリクエストを受け入れるポート
             containerPort: 80
-          volumeMounts:    
-          - mountPath: /etc/nginx/sites-enabled    
-            readOnly: true    
+          volumeMounts:	
+          - mountPath: /etc/nginx/sites-enabled	
+            readOnly: true	
             name: wallarm-nginx-conf
         # メインアプリコンテナの定義
         - name: myapp
-          image: <イメージ>
+          image: <Image>
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナが受信リクエストを受け入れるポート
+          # アプリケーションコンテナがインバウンドリクエストを受け入れるポート
           - containerPort: 8080
       volumes:
-      # Wallarm 要素: wallarm-nginx-conf ボリュームの定義
+      # Wallarmのエレメント：wallarm-nginx-confボリュームの定義
       - name: wallarm-nginx-conf
         configMap:
           name: wallarm-sidecar-nginx-conf

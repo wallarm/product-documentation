@@ -3,26 +3,26 @@
 
 # マルチテナントノードのアップグレード
 
-これらの手順は、マルチテナントノード 4.x を 4.4 にアップグレードするための手順を説明しています。
+これらの指示は、マルチテナントノード 4.x を 4.6 までアップグレードするための手順を説明しています。
 
-サポート終了のマルチテナントノード（3.6 以前）をアップグレードする場合は、[別の手順](older-versions/multi-tenant.md)を使用してください。
+エンド・オブ・ライフのマルチテナントノード（3.6 またはそれ以下）のアップグレードには、[別の指示](older-versions/multi-tenant.md)をご利用ください。
 
-## 要件
+## 必要条件
 
-* [技術テナントアカウント](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)の下で追加された **Global administrator** 役割を持つユーザーによるさらなるコマンドの実行
-* 米国 Wallarm クラウドを利用している場合は `https://us1.api.wallarm.com` へのアクセス、または欧州 Wallarm クラウドを利用している場合は `https://api.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされないことを確認してください
+* [技術的テナントアカウント](../installation/multi-tenant/configure-accounts.md#tenant-account-structure)で付与された**グローバル管理者**ロールを持つユーザーによるさらなるコマンドの実行
+* US Wallarm Cloudで作業している場合は `https://us1.api.wallarm.com`、EU Wallarm Cloudで作業している場合は `https://api.wallarm.com`へのアクセス。ファイヤーウォールによってアクセスがブロックされていないことを確認してください
 
-## 標準アップグレード手順に従う
+## 標準のアップグレード手順に従う
 
-標準手順とは以下のものです：
+標準手順は次の通りです：
 
-* [Wallarm NGINX modules のアップグレード](nginx-modules.md)
-* [postanalytics module のアップグレード](separate-postanalytics.md)
-* [Wallarm Docker NGINX- または Envoy-based image のアップグレード](docker-container.md)
-* [統合された Wallarm modules の NGINX Ingress controller のアップグレード](ingress-controller.md)
-* [クラウドノードイメージのアップグレード](cloud-image.md)
+* [ Wallarm NGINXモジュールのアップグレード](nginx-modules.md)
+* [postanalyticsモジュールのアップグレード](separate-postanalytics.md)
+* [ Wallarm Docker NGINX-またはEnvoyベースのイメージのアップグレード](docker-container.md)
+* [ Wallarmモジュール統合付きNGINX Ingressコントローラのアップグレード](ingress-controller.md)
+* [ クラウドノードイメージのアップグレード](cloud-image.md)
 
 !!! warning "マルチテナントノードの作成"
-    Wallarm ノードを作成する際は、**Multi-tenant node** オプションを選択してください:
+    Wallarmノード作成中に、**マルチテナントノード**オプションを選択してください：
 
-    ![!Multi-tenant node creation](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![!マルチテナントノードの作成](../images/user-guides/nodes/create-multi-tenant-node.png)

@@ -21,15 +21,14 @@ data:
           }
       }
 ```
-
-上記のWallarmのドキュメントを日本語訳する:
+が
 ```
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: wallarm-sidecar-nginx-conf
+  名前: wallarm-sidecar-nginx-conf
 data:
-  default: |
+  既定値: |
       server {
           listen 80 default_server;
           listen [::]:80 default_server ipv6only=on;

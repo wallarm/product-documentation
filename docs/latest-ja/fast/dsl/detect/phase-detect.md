@@ -9,21 +9,21 @@
 [anchor6]:      parameters.md#checking-the-html-markup
 
 
-# The Detect Phase
+# ディテクトフェーズ
 
-!!! info "Scope of the phase"
-    This phase is obligatory for any FAST extension type to operate (the YAML file should contain the `detect` section).
+!!! info "フェーズの範囲"
+    このフェーズは、任意のFAST拡張タイプが動作するために必須であり（YAMLファイルには `detect` セクションを含める必要があります）。
   
-    Read about the extension types in detail [here][link-ext-logic].
+    拡張タイプの詳細については、[こちら][link-ext-logic]をご覧ください。
 
-!!! info "Request elements description syntax"
-    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+!!! info "リクエスト要素の記述方法"
+    FAST拡張を作成する際、アプリケーションへ送信されるHTTPリクエストの構造と、アプリケーションから受信されるHTTPレスポンスの構造を理解し、ポイントを使用して作業する必要のあるリクエスト要素を正しく記述する必要があります。
 
-    To see detailed information, proceed to this [link][link-points].
+    詳細な情報については、[こちら][link-points]のリンクをご覧ください。
 
-This phase specifies the parameters to look for in the server response in order to make a conclusion about whether a vulnerability was successfully exploited by a test request.
+このフェーズでは、サーバーのレスポンスで探すパラメータを指定し、テスト要求が脆弱性を成功裏に悪用したかどうかを判断します。
 
-The `detect` section has the following structure:
+`detect` セクションの構造は次のとおりです：
 
 ```
 detect:
@@ -68,40 +68,40 @@ detect:
           - value Z
 ```
 
-This section contains the set of the parameters. Each of the parameters describes a single element of the response. Some of the parameters can contain an array of other parameters as a value, creating a hierarchy.
+このセクションには、パラメータのセットが含まれています。各パラメータは、レスポンスの一つの要素を記述します。パラメータの一部は、値として他のパラメータの配列を含むことが可能で、階層を生成します。
 
-The parameter may have the following characteristics:
-* Be optional (the parameter can be either present or absent from the request). All of the parameters in the `detect` section satisfy this characteristic.
- 
-    !!! warning "A note on the parameters that are required in the `detect` section"
-        Despite the fact that both `oob` and `response` parameters are optional, one of them must be present in the `detect` section. Otherwise, the Detect phase will be unable to operate. The `detect` section might also contain both of these parameters.
+パラメータは次の特性を持つ可能性があります：
+* 任意（パラメータはリクエストに存在することも、存在しないこともあります）。 `detect` セクションのすべてのパラメータがこの特性を満たします。
 
-* Not have an assigned value.  
+    !!! warning "`detect`セクションで必要なパラメータについて"
+        `oob`と`response`のパラメータが任意であるにもかかわらず、どちらか一つが `detect` セクションに存在しなければなりません。もしそうでない場合、ディテクトフェーズは動作できません。 `detect`セクションにはこれらのパラメータの両方が含まれることもあります。
+
+* 割り当てられた値を持っていません。
     
-    ??? info "Example"
+    ??? info "例"
         ```
         - response
         ```    
 
-* Have a single value specified as a string or number.
+* 文字列または数値として指定された単一の値を持ちます。
     
-    ??? info "Example"
+    ??? info "例"
         ```
         - status: 500
         ```
 
-* Have one of multiple assigned values that are specified as a string or number array. 
+* 文字列または数値の配列として指定された複数の割り当てられた値のうちの一つを持ちます。
     
-    ??? info "Example"
+    ??? info "例"
         ```
             - status: 
                 - 404
                 - 500
         ```
 
-* Contain other parameters as a value (the parameters are specified as an array).
+* 値として他のパラメータを含みます（パラメータは配列として指定されます）。
     
-    ??? info "Example"
+    ??? info "例"
         ```
             - headers: 
                 - "Cookie": "example"
@@ -110,7 +110,7 @@ The parameter may have the following characteristics:
                     - "Chrome"
         ```
 
-The acceptable values for the parameters of the detect section are described in the following sections:
+detectセクションのパラメータの許容値は、以下のセクションで説明されています：
 * [oob][anchor1],
 * [response][anchor2],
     * [status][anchor3],

@@ -1,71 +1,67 @@
 [access-wallarm-api-docs]: #your-own-client
 [application-docs]:        ../user-guides/settings/applications.md
 
-# Wallarm APIリクエスト例
+# Wallarm APIリクエストの例
 
-以下は、Wallarm APIの使用例です。[米国クラウド](https://apiconsole.us1.wallarm.com/)または[EUクラウド](https://apiconsole.eu1.wallarm.com/)のAPI Reference UIからコード例を生成することもできます。経験豊富なユーザーは、ブラウザの開発者コンソール（「ネットワーク」タブ）を使用して、WallarmアカウントのUIが公開APIからデータを取得するために使用するAPIエンドポイントとリクエストをすばやく確認することができます。開発者コンソールを開く方法については、公式ブラウザのドキュメント([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/))を参照してください。
+以下は、Wallarm APIの使用例です。またAPIリファレンスUIからコード例を生成することもできます。[USクラウド](https://apiconsole.us1.wallarm.com/)または[EUクラウド](https://apiconsole.eu1.wallarm.com/)で利用可能です。経験豊富なユーザーは、ブラウザーの開発者コンソール("Network"タブ)を使って、UIが公開APIからデータを取得するためにどのAPIエンドポイントとリクエストを使用しているかをすばやく把握することも出来ます。開発者コンソールを開く方法については、公式のブラウザードキュメンテーションをご覧ください。([Safari](https://support.apple.com/guide/safari/use-the-developer-tools-in-the-develop-menu-sfri20948/mac), [Chrome](https://developers.google.com/web/tools/chrome-devtools/), [Firefox](https://developer.mozilla.org/en-US/docs/Tools), [Vivaldi](https://help.vivaldi.com/article/developer-tools/))。
 
-## 過去24時間で検出された最初の50件の攻撃を取得
+## 過去24時間で検出された最初の50件の攻撃を取得する
 
-`TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
+`TIMESTAMP`は、24時間前の日付を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換して指定してください。
 
---8<-- "../include-ja/api-request-examples/get-attacks-en.md"
+--8<-- "../include/api-request-examples/get-attacks-en.md"
 
-## 大量の攻撃（100以上）を取得する
+## 大量の攻撃を取得する (100件以上)
 
-攻撃やヒットセットに含まれるレコードが100件以上の場合、パフォーマンスを最適化するために、一度に大量のデータセットを取得するのではなく、小さな部分で取得することが最善です。対応するWallarm APIエンドポイントは、ページごとに100件のレコードでカーソルベースのページネーションをサポートしています。
+100件以上の攻撃やヒットセットは、一度に大量のデータセットを取得するよりも、小さな部分で取得する方がパフォーマンスを最適化するため、おすすめです。対応するWallarm APIエンドポイントは、ページごとに100件のレコードでカーソルベースのページネーションをサポートします。
 
-この技術は、データセット内の特定のアイテムにポインタを返すことで、ページングが可能になります。カーソルページネーションを有効にするには、リクエストパラメータに`"paging": true`を含めます。
+このテクニックは、データセットの特定の項目へのポインタを返すことで、次回のリクエストでそのポインタ以降の結果をサーバーが返すようになります。カーソルページネーションを有効にするには、リクエストパラメータに`"paging": true` を含めます。
 
-以下は、カーソルページネーションを使用して`<TIMESTAMP>`以降に検出されたすべての攻撃を取得するAPI呼び出しの例です。
+次に、カーソルページネーションを使用して、`<TIMESTAMP>`以降に検出されたすべての攻撃を取得するAPI呼び出しの例を示します：
 
-=== "EUクラウド"
+=== "EU Cloud"
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
-=== "USクラウド"
+=== "US Cloud"
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
-このリクエストは、最初の100件の攻撃に関する情報を最新から古い順に返します。また、`cursor`パラメータも含めて、次の100件の攻撃セットへのポインタが含まれます。
+このリクエストは、最も新しいものから最も古いものまでの順序で、最新の100件の攻撃に関する情報を返します。さらに、応答には、次の100件の攻撃セットへのポインタを含む`cursor`パラメータが含まれます。
 
-次の100件の攻撃を取得するには、前のリクエストと同じリクエストを使用して、前回のレスポンスからコピーしたポインタ値で`cursor`パラメータを含めます。これにより、APIが次の100件の攻撃セットを返す開始位置を識別できます。例えば:
+次の100件の攻撃を取得するには、前回と同じリクエストを使用し、前回の応答からコピーしたポインタ値を`cursor`パラメータに含めます。これにより、APIは次の100件の攻撃をどこから返し始めるかを知ることができます。例えば：
 
-=== "EUクラウド"
+=== "EU Cloud"
     ```bash
     curl -k 'https://api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
-=== "USクラウド"
+=== "US Cloud"
     ```bash
     curl -k 'https://us1.api.wallarm.com/v2/objects/attack' \
       -X POST \
-      -H 'X-WallarmAPI-UUID: <YOUR_UUID>' \
-      -H 'X-WallarmAPI-Secret: <YOUR_SECRET_KEY>' \
+      -H 'X-WallarmApi-Token: <YOUR_TOKEN>' \
       -H 'Content-Type: application/json' \
       -d '{"cursor":"<POINTER_FROM_PREVIOUS_RESPONSE>", "paging": true, "filter": {"clientid": [<YOUR_CLIENT_ID>], "vulnid": null, "time": [[<TIMESTAMP>, null]], "!state": "falsepositive"}}'
     ```
 
-さらなるページの結果を取得するには、前回の応答からコピーした値で`cursor`パラメータを含むリクエストを実行します。
+引き続き結果のページを取得するには、前回の応答からコピーした値を使用した`cursor`パラメータを含むリクエストを実行します。
 
-以下は、カーソルページングを使用して攻撃を取得するためのPythonコード例です。
+以下は、Pythonのコード例で、カーソルページングを使用して攻撃を取得します：
 
-=== "EUクラウド"
+=== "EU Cloud"
     ```python
     import json
     from pprint import pprint as pp
@@ -78,8 +74,7 @@
 
     url = "https://api.wallarm.com/v2/objects/attack"
     headers = {
-        "X-WallarmAPI-UUID": "<YOUR_UUID>",
-        "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
+        "X-WallarmApi-Token": "<YOUR_TOKEN>",
         "Content-Type": "application/json",
     }
     payload = {
@@ -104,7 +99,7 @@
         pp(data)
         payload["cursor"] = cursor
     ```
-=== "USクラウド"
+=== "US Cloud"
     ```python
     import json
     from pprint import pprint as pp
@@ -117,7 +112,7 @@
 
     url = "https://us1.api.wallarm.com/v2/objects/attack"
     headers = {
-        "X-WallarmAPI-UUID": "<YOUR_UUID>",
+        "X-WallarmApi-Token": "<YOUR_TOKEN>",
         "X-WallarmAPI-Secret": "<YOUR_SECRET_KEY>",
         "Content-Type": "application/json",
     }
@@ -146,98 +141,100 @@
 
 ## 過去24時間で確認された最初の50件のインシデントを取得する
 
-このリクエストは、攻撃のリストの前の例に非常に似ています。`"!vulnid": null`項がこのリクエストに追加されます。この項目は、APIに特定の脆弱性IDが指定されていないすべての攻撃を無視するよう指示し、これによりシステムは攻撃とインシデントを区別します。
+このリクエストは攻撃リストの前回の例と非常に似ています。ただし、このリクエストには`"!vulnid": null`項目が追加されています。この項目により、APIは特定の脆弱性IDが指定されていないすべての攻撃を無視し、これによりシステムは攻撃とインシデントを区別します。
 
-`TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
+`TIMESTAMP`は、24時間前の日付を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換して指定してください。
 
---8<-- "../include-ja/api-request-examples/get-incidents-en.md"
+--8<-- "../include/api-request-examples/get-incidents-en.md"
 
-## 過去24時間以内にステータスが「アクティブ」である最初の50件の脆弱性を取得する
+## 過去24時間でステータスが "active" の最初の50件の脆弱性を取得する
 
-`TIMESTAMP`を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換された24時間前の日付に置き換えてください。
+`TIMESTAMP` は、24時間前の日付を[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換して指定してください。
 
---8<-- "../include-ja/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include/api-request-examples/get-vulnerabilities.md"
 
-## すべての設定済みルールを取得する
+## すべての構成ルールを取得する
 
---8<-- "../include-ja/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include/api-request-examples/get-all-configured-rules.md"
 
 ## すべてのルールの条件のみを取得する
 
---8<-- "../include-ja/api-request-examples/get-conditions.md"
+--8<-- "../include/api-request-examples/get-conditions.md"
 
-## 特定の条件に関連付けられたルールを取得する
+## 特定の条件に添付されたルールを取得する
 
-特定の条件を指定するには、そのIDを使用します。すべてのルールの条件を要求するときにそれを取得することができます（上記参照）。
+特定の条件を指定するには、そのIDを使用します - すべてのルールの条件をリクエストするときに取得できます（上記をご覧ください）。
 
---8<-- "../include-ja/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
 
-## `/my/api/*`に送信されるすべてのリクエストをブロックする仮想パッチを作成する
+## すべてのリクエストをブロックする仮想パッチを作成する`/my/api/*`
 
---8<-- "../include-ja/api-request-examples/create-rule-en.md"
+--8<-- "../include/api-request-examples/create-rule-en.md"
 
-## 特定のアプリケーションインスタンスIDに対して `/my/api/*` に送信されるすべてのリクエストをブロックする仮想パッチを作成する
+## 特定のアプリケーションインスタンスのIDに対して、すべてのリクエストをブロックする仮想パッチを作成する `/my/api/*`
 
-アプリケーションは、このリクエストを送信する前に[設定](../user-guides/settings/applications.md)する必要があります。`action.point[instance].value`に既存のアプリケーションのIDを指定します。
+このリクエストを送信する前に、アプリケーションは[設定](../user-guides/settings/applications.md)されている必要があります。`action.point[instance].value`には、既存のアプリケーションのIDを指定します。
 
---8<-- "../include-ja/api-request-examples/create-rule-for-app-id.md"`X-FORWARDED-FOR` ヘッダーの特定の値を持つリクエストを攻撃として考慮するルールを作成する
+--8<-- "../include/api-request-examples/create-rule-for-app-id.md"
 
-次のリクエストは、正規表現 `^(~(44[.]33[.]22[.]11))$` に基づく[カスタム攻撃指標](../user-guides/rules/regex-rule.md)を作成します。
+## `X-FORWARDED-FOR`ヘッダーの特定の値を持つリクエストを攻撃とみなすルールを作成する
 
-ドメイン `MY.DOMAIN.COM` へのリクエストが HTTP ヘッダー `X-FORWARDED-FOR: 44.33.22.11` を持っている場合、Wallarm ノードはそれらをスキャナー攻撃とみなし、対応する[フィルタリングモード](../admin-en/configure-wallarm-mode.md)が設定されている場合、攻撃をブロックします。
+次のリクエストは、正規表現`^(~(44[.]33[.]22[.]11))$`に基づいて[カスタム攻撃インジケータを作成します](../user-guides/rules/regex-rule.md)。
 
---8<-- "../include-ja/api-request-examples/create-rule-scanner.md"
+もしリクエストが`MY.DOMAIN.COM`というドメインに`X-FORWARDED-FOR: 44.33.22.11`というHTTPヘッダーを持っていた場合、Wallarm nodeはそれをスキャナ攻撃とみなし、対応する[フィルタモード](../admin-en/configure-wallarm-mode.md)が設定されていれば攻撃をブロックします。
 
-特定のアプリケーションに対してフィルタリングモードを監視に設定するルールを作成する
+--8<-- "../include/api-request-examples/create-rule-scanner.md"
 
-次のリクエストは、ID `3` の [アプリケーション](../user-guides/settings/applications.md) に対して [トラフィックのフィルタリングを行うノードの設定](../user-guides/rules/wallarm-mode-rule.md)をするルールを作成します。
+## 特定のアプリケーションのフィルタリングモードを監視に設定するルールを作成する
 
---8<-- "../include-ja/api-request-examples/create-filtration-mode-rule-for-app.md"
+次のリクエストは、 [アプリケーション](../user-guides/settings/applications.md) ID `3`へのトラフィックをフィルタリングする[ノードの設定ルール](../user-guides/rules/wallarm-mode-rule.md)を作成します。
 
-IDでルールを削除する
+--8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
 
-削除するルールのIDを[すべての設定済みルールを取得する](#get-all-configured-rules)ことでコピーできます。また、ルール作成リクエストに対する返答の `id` レスポンスパラメータにもルールIDが入っています。
+## IDによるルールの削除
 
---8<-- "../include-ja/api-request-examples/delete-rule-by-id.md"
+削除するルールのIDは[すべての構成ルールを取得](#get-all-configured-rules)するときにコピーできます。また、ルールの作成のリクエストに対する応答で、 `id` 応答パラメータにルールIDが返されます。
 
-IP リストオブジェクトを取得し、追加、削除するための API コール
+--8<-- "../include/api-request-examples/delete-rule-by-id.md"
 
-以下は、 [IP リスト](../user-guides/ip-lists/overview.md) オブジェクトを取得、追加、削除する API コールの例です。
+## IPリストオブジェクトを取得、追加、削除するAPIコール
 
-### API リクエストパラメータ
+以下は、IPリストオブジェクトを取得、追加、削除するためのAPI呼び出しの例です。
 
-IP リストを読み取り、変更する API リクエストで渡すパラメータ：
+### APIリクエストパラメータ
 
---8<-- "../include-ja/api-request-examples/ip-list-request-params.md"
+IPリストを読み込み変更するためのAPIリクエストに渡すパラメータ：
 
-### `.csv` ファイルからリストにエントリを追加する
+--8<-- "../include/api-request-examples/ip-list-request-params.md"
 
-`.csv` ファイルから IP やサブネットをリストに追加するには、次の bash スクリプトを使用してください：
+### `.csv`ファイルからリストにエントリを追加する
 
---8<-- "../include-ja/api-request-examples/add-ips-to-lists-from-file.md"
+`.csv`ファイルからIPまたはサブネットをリストに追加するには、次のbashスクリプトを使用します：
 
-### リストに単一の IP またはサブネットを追加する
+--8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
 
---8<-- "../include-ja/api-request-examples/add-some-ips-to-lists.md"
+### リストに単一のIPまたはサブネットを追加する
+
+--8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
 
 ### リストに複数の国を追加する
 
---8<-- "../include-ja/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
 
 ### リストに複数のプロキシサービスを追加する
 
---8<-- "../include-ja/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
 
-### IP リストからオブジェクトを削除する
+### IPリストからオブジェクトを削除する
 
-オブジェクトは、ID によって IP リストから削除されます。
+オブジェクトは、それらのIDによってIPリストから削除されます。
 
-オブジェクト ID を取得するには、IP リストの内容を要求し、レスポンスから必要なオブジェクトの `objects.id` をコピーしてください：
+オブジェクトIDを取得するには、IPリストの内容をリクエストし、必要なオブジェクトの`objects.id`をレスポンスからコピーします：
 
---8<-- "../include-ja/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include/api-request-examples/get-ip-list-contents.md"
 
-オブジェクト ID を持っていれば、次のリクエストを使用してリストから削除できます：
+オブジェクトIDを持っていれば、次のリクエストを送信してリストからそれを削除します：
 
---8<-- "../include-ja/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
 
-削除リクエストにおいて、ID を配列として渡すことで複数のオブジェクトを一度に削除できます。
+削除リクエストの配列内にIDを渡すことで一度に複数のオブジェクトを削除することができます。

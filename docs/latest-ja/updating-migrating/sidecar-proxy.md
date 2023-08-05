@@ -2,72 +2,72 @@
 
 # Wallarm Sidecar プロキシのアップグレード
 
-これらの手順は、Wallarm Sidecar プロキシ 4.x を Wallarm ノード 4.4 を備えた新しいバージョンにアップグレードする方法を説明しています。
+これらの指示は、Wallarm Sidecar プロキシ 4.x を Wallarm ノード 4.6 を含む新バージョンにアップグレードする手順を説明しています。
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/sidecar-proxy-reqs.md"
+--8<-- "../include/waf/installation/sidecar-proxy-reqs.md"
 
-## ステップ1：Wallarm Helmチャートリポジトリを更新する
+## ステップ 1：Wallarm Helm チャートリポジトリを更新する
 
 ```bash
 helm repo update wallarm
 ```
 
-## ステップ2：すべての来るK8sマニフェストの変更をチェックアウトする
+## ステップ 2：すべての新たな K8s マニフェスト変更を確認する
 
-予期しない Sidecar プロキシの動作の変更を防ぐために、[Helm Diff プラグイン](https://github.com/databus23/helm-diff)を使用して、すべての来るK8sマニフェストの変更をチェックアウトしてください。このプラグインは、デプロイされた Sidecar プロキシバージョンのK8sマニフェストと新しいものの違いを出力します。
+Sidecar プロキシの動作が予期せずに変更されないように、[Helm Diff Plugin](https://github.com/databus23/helm-diff) を使用してすべての新たな K8s マニフェスト変更を確認します。このプラグインは、展開された Sidecar プロキシバージョンの K8s マニフェストと新しいものとの差分を出力します。
 
-プラグインをインストールして実行するには：
+プラグインのインストールと実行方法：
 
-1. プラグインをインストールする:
+1. プラグインのインストール：
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. プラグインを実行する:
+2. プラグインの実行：
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.4.5 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6.4 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: Sidecar プロキシチャートの Helm リリースの名前
-    * `<NAMESPACE>`: Sidecar プロキシがデプロイされている名前空間
-    * `<PATH_TO_VALUES>`: Sidecar プロキシ 4.4 の設定を定義する `values.yaml` ファイルへのパス - 以前の Sidecar プロキシバージョンを実行するために作成されたものを使用できます
-3. 実行中のサービスの安定性に影響を与える変更がないことを確認し、stdout からのエラーを注意深く調べてください。
+    * `<RELEASE_NAME>`: Sidecar プロキシチャートの Helm リリース名
+    * `<NAMESPACE>`: Sidecar プロキシがデプロイされているネームスペース
+    * `<PATH_TO_VALUES>`: Sidecar プロキシ 4.6 の設定を定義する `values.yaml` ファイルへのパス - 前の Sidecar プロキシバージョンの実行に作成したものを使用できます
+3. 実行中のサービスの安定性に影響を及ぼす変更がないことを確認し、stdout からのエラーを慎重に調査します。
 
-    stdout が空の場合は、`values.yaml` ファイルが有効であることを確認してください。
+    stdout が空の場合は、`values.yaml` ファイルが有効であることを確認します。
 
-## ステップ3：Sidecar プロキシソリューションのアップグレード
+## ステップ 3：Sidecar プロキシソリューションのアップグレード
 
-Sidecar プロキシソリューションのデプロイ済みコンポーネントをアップグレードする：
+Sidecar プロキシソリューションのデプロイされたコンポーネントをアップグレードします：
 
-``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.4.5 -f <PATH_TO_VALUES>
+```bash
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.6.4 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: デプロイされた Sidecar プロキシチャートのHelmリリースの名前
-* `<NAMESPACE>`: Sidecar プロキシがデプロイされている名前空間
-* `<PATH_TO_VALUES>`: Sidecar プロキシ 4.4 の設定を定義する `values.yaml` ファイルへのパス - 以前の Sidecar プロキシバージョンを実行するために作成されたものを使用できます
+* `<RELEASE_NAME>`: デプロイされた Sidecar プロキシチャートの Helm リリース名
+* `<NAMESPACE>`: Sidecar プロキシがデプロイされているネームスペース
+* `<PATH_TO_VALUES>`: Sidecar プロキシ 4.6 の設定を定義する `values.yaml` ファイルへのパス - 前の Sidecar プロキシバージョンの実行に作成したものを使用できます
 
-## ステップ4：アップグレードされた Sidecar ソリューションをテストする
+## ステップ 4：アップグレードされた Sidecar ソリューションのテスト
 
-1. Helm チャートのバージョンがアップグレードされたことを確認する：
+1. Helm chartのバージョンがアップグレードされたことを確認します：
 
     ```bash
     helm list -n <NAMESPACE>
     ```
+   
+    ここで、`<NAMESPACE>`は、Sidecarプロキシがデプロイされているネームスペースです。
 
-    ここで、`<NAMESPACE>`はSidecarプロキシがデプロイされている名前空間です。
-
-    チャートのバージョンは `wallarm-sidecar-1.1.5` に対応している必要があります。
-1. Wallarm ポッドの詳細を取得して、正常に開始されたことを確認します：
+    チャートバージョンは `wallarm-sidecar-1.1.5` に対応しているべきです。
+1. Wallarm ポッドの詳細を取得して、正常に起動したかどうかを確認します：
 
     ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-sidecar
     ```
 
-    各ポッドは、次のように表示される必要があります：**READY: N/N**および**STATUS: Running**、例えば：
+    各ポッドは次のように表示されるべきです：**READY: N/N** 及び **STATUS: Running**、例えば：
 
     ```
     NAME                                              READY   STATUS    RESTARTS   AGE
@@ -75,12 +75,12 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-sidecar --version 4.4
     wallarm-sidecar-controller-54cf88b989-gp2vg      1/1     Running   0          91m
     wallarm-sidecar-postanalytics-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. テスト [Path Traversal](../attacks-vulns-list.md#path-traversal) 攻撃をアプリケーションクラスタのアドレスに送信する：
+1. テスト [Path Traversal](../attacks-vulns-list.md#path-traversal) 攻撃をアプリケーションクラスターアドレスに送信します：
 
     ```bash
     curl http://<APPLICATION_CLUSTER_IP>/etc/passwd
     ```
 
-    要求されたアプリケーションPodには、`wallarm-sidecar: enabled`ラベルが付いている必要があります。
+    要求されたアプリケーション Pod は `wallarm-sidecar: enabled` ラベルを持つべきです。
 
-    新しいバージョンのソリューションが、前のバージョンで行っていたように、悪意のあるリクエストを処理していることを確認します。
+    新バージョンのソリューションが、以前のバージョンと同様に悪意のあるリクエストを処理することを確認してください。

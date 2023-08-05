@@ -1,14 +1,14 @@
-Splunk 9.0 以降で Wallarm イベントを整理してすぐに使用できるダッシュボードにするには、 [Splunk 用 Wallarm アプリケーション](https://splunkbase.splunk.com/app/6610) をインストールできます。
+Splunk 9.0以降でWallarmのイベントを整理し、使用する準備ができたダッシュボードにするには、[Splunk用のWallarmアプリケーション](https://splunkbase.splunk.com/app/6610)をインストールできます。
 
-このアプリケーションでは、Wallarm から受信したイベントで自動的に充填される事前に設定されたダッシュボードが提供されます。さらに、アプリケーションを使用すると、各イベントの詳細ログに進むことができ、ダッシュボードからデータをエクスポートすることができます。
+このアプリケーションでは、Wallarmから受け取ったイベントが自動的に入力される事前に設定されたダッシュボードを提供します。さらに、各イベントの詳細なログに進み、ダッシュボードからデータをエクスポートすることも可能になります。
 
-![!Splunk dashboard][splunk-dashboard-by-wallarm-img]
+![!Splunkダッシュボード][splunk-dashboard-by-wallarm-img]
 
-Splunk 用の Wallarm アプリケーションをインストールするには、
+Splunk用のWallarmアプリケーションをインストールするには：
 
-1. Splunk UI ➝ **アプリ**で `Wallarm API セキュリティ` アプリケーションを見つけます。
-1. **インストール** をクリックし、Splunkbase の資格情報を入力します。
+1. Splunk UI➝ **Apps**で`Wallarm API Security`アプリケーションを探します。
+1. **install** をクリックして、Splunkbaseの認証情報を入力します。
 
-すでに Splunk に Wallarm イベントがログされている場合、ダッシュボードに表示され、Wallarm が発見するさらにイベントも表示されます。
+一部のWallarmイベントがすでにSplunkにログインされている場合、それらはダッシュボードに表示され、Wallarmがさらに発見するイベントも同様です。
 
-また、すぐに使用できるダッシュボードを完全にカスタマイズすることができます。 例えば、そのビューまたは [検索文字列](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Search)を、すべての Splunk レコードからデータを抽出するために使用します。
+さらに、準備済みのダッシュボードを完全にカスタマイズすることもできます。例えば、そのビューだけでなく、すべてのSplunkレコードからデータを抽出するために使用する[検索文字列](https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Search)などです。

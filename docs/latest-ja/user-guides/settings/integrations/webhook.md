@@ -1,19 +1,19 @@
 # Webhook
 
-Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意のシステムへの瞬時の通知を送信するように設定することができます。このために、以下のイベントタイプの通知を受信するためのWebhook URLを指定します：
+Wallarmを任意のシステムへ即時通知を送付するよう設定することができます。通知を送付するためのシステムはHTTPプロコトコルを通じて受信するWebhookを受け入れることができる必要があります。これを行うには、以下のイベントタイプを受信するためのWebhook URLを指定してください：
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-## 通知の形式
+## 通知形式
 
-通知はJSONフォーマットで送信されます。JSONオブジェクトのセットは、通知が送信されるイベントに依存します。例えば：
+通知はJSON形式で送られます。JSONオブジェクトのセットは、通知が送られるイベントによります。例えば：
 
 * ヒット検出
 
     ```json
     [
         {
-            "summary": "[Wallarm] New hit detected",
+            "summary": "[Wallarm] 新しいヒットが検出されました",
             "details": {
             "client_name": "TestCompany",
             "cloud": "EU",
@@ -65,27 +65,26 @@ Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意の
     ```json
     [
         {
-            summary:"[Wallarm] New vulnerability detected",
-            description:"Notification type: vuln
+            summary:"[Wallarm] 新しい脆弱性が検出されました",
+            description:"通知種類: 脆弱性
 
-                        　　システムに新しい脆弱性が検出されました。
+                        あなたのシステムで新しい脆弱性が検出されました。
 
                         ID: 
-                        タイトル: Test
+                        タイトル: テスト
                         ドメイン: example.com
                         パス: 
                         メソッド: 
-                        発見者: 
-                        パラメーター: 
-                        タイプ: Info
-                        脅威: Medium
+                        検出者: 
+                        パラメータ: 
+                        型: 情報
+                        脅威: 中程度
 
-                        詳細情報：https://us1.my.wallarm.com/object/555
+                        詳細: https://us1.my.wallarm.com/object/555
 
 
-                        クライアント：TestCompany
-                        クラウド：US
-
+                        クライアント: TestCompany
+                        クラウド: US
                         ",
             details:{
                 client_name:"TestCompany",
@@ -111,57 +110,58 @@ Wallarmは、HTTPSプロトコルを通じて受信webhooksを認める任意の
 ## インテグレーションの設定
 
 1. Wallarm UI → **インテグレーション**を開きます。
-2. **Webhook** ブロックをクリックするか、**インテグレーションを追加** ボタンをクリックして **Webhook** を選択します。
-3. インテグレーションの名前を入力します。
-4. ターゲットWebhook URLを入力します。
-5. 必要に応じて、詳細設定を設定します：
+2. **Webhook** ブロックをクリックするか、**インテグレーションを追加** ボタンをクリックして**Webhook**を選択します。
+3. インテグレーション名を入力します。
+4. 目標とするWebhook URLを入力します。
+5. 必要に応じて、詳細設定を行います：
 
-    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
+    --8<-- "../include/integrations/webhook-advanced-settings.md"
 
-    ![!詳細設定の例](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
-6. 通知送信をトリガーするイベントタイプを選択します。イベントが選択されていない場合、通知は送信されません。
-7. [インテグレーションをテスト](#integration-testing)し、設定が正しいことを確認します。
-8. **インテグレーションを追加** をクリックします。
+    ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+6. Webhook URLへの通知送信をトリガするイベントタイプを選択します。何もイベントが選択されなかった場合、通知は送られません。
+7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
+8. **インテグレーションを追加**をクリックします。
 
     ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
 ## インテグレーションの例
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
-人気のログコレクターとのインテグレーションの設定例をいくつか紹介します。これらのログコレクターはログをSIEMシステムに転送します：
+以下に、人気のログ収集器を設定してログをSIEMシステムに転送する方法についての例をいくつか説明します：
 
-* **Fluentd**は、ログを [IBM QRadar](webhook-examples/fluentd-qradar.md), [Splunk Enterprise](webhook-examples/fluentd-splunk.md), [ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
-* **Logstash**は、ログを [IBM QRadar](webhook-examples/logstash-qradar.md), [Splunk Enterprise](webhook-examples/logstash-splunk.md), [ArcSight Logger](webhook-examples/logstash-arcsight-logger.md), [Datadog](webhook-examples/fluentd-logstash-datadog.md) へ転送するように設定されています。
+* [IBM QRadar](webhook-examples/fluentd-qradar.md)、[Splunk Enterprise](webhook-examples/fluentd-splunk.md)、[ArcSight Logger](webhook-examples/fluentd-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)へのログ転送を設定した**Fluentd**とともに
+* [IBM QRadar](webhook-examples/logstash-qradar.md)、[Splunk Enterprise](webhook-examples/logstash-splunk.md)、[ArcSight Logger](webhook-examples/logstash-arcsight-logger.md)、[Datadog](webhook-examples/fluentd-logstash-datadog.md)へのログ転送を設定した**Logstash**とともに
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
-Webhookのテスト例：
+ウェブフックの例をテストします：
 
 ```json
 [
     {
-        summary:"[Test message] [Test partner(US)] New vulnerability detected",
-        description:"Notification type: vuln
+        summary:"[テストメッセージ] [Test partner(US)] 新しい脆弱性が検出されました",
+        description:"通知種類: 脆弱性
 
-                    　　システムに新しい脆弱性が検出されました。
+                    あなたのシステムで新しい脆弱性が検出されました。
 
                     ID: 
-                    タイトル：Test
-                    ドメイン：example.com
-                    パス：
-                    メソッド：
-                    発見者：
-                    パラメーター：
-                    タイプ：Info
-                    脅威：Medium
+                    タイトル: テスト
+                    ドメイン: example.com
+                    パス: 
+                    メソッド: 
+                    検出者: 
+                    パラメータ: 
+                    型: 情報
+                    脅威: 中程度
 
-                    詳細情報：https://us1.my.wallarm.com/object/555
+                    さらなる詳細: https://us1.my.wallarm.com/object/555
+
 
                     クライアント: TestCompany
-                    クラウド: US                    
+                    クラウド: US
                     ",
         details:{
             client_name:"TestCompany",
@@ -186,12 +186,12 @@ Webhookのテスト例：
 
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.md"

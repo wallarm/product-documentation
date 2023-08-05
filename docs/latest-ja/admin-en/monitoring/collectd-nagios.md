@@ -16,88 +16,86 @@
 
 [anchor-header-7]:          #7-add-commands-to-the-nrpe-service-configuration-file-on-the-filter-node-to-get-the-required-metrics
 
-#   `collectd-nagios`ユーティリティを介したNagiosへのメトリックのエクスポート
+＃ `collectd-nagios`ユーティリティを使用してNagiosへのメトリクスのエクスポート
 
-このドキュメントでは、[`collectd-nagios`][link-collectd-nagios]ユーティリティを使用して、フィルタノードメトリックを[Nagios][link-nagios]モニタリングシステム（[Nagios Core][link-nagios-core]エディションが推奨されますが、このドキュメントはどのNagiosエディションでも適用できます）にエクスポートする例を示します。
+このドキュメントでは、[`collectd-nagios`][link-collectd-nagios]ユーティリティを利用してフィルタノードメトリクスを[Nagios][link-nagios]監視システムにエクスポートする例を示しています（当ドキュメントはすべてのNagiosエディションに適用可能ですが、[Nagios Core][link-nagios-core]エディションの使用が推奨されます）。
 
-
-!!! info "前提条件と要件"
-    *   `collectd`サービスは、Unixドメインソケットを介して動作するように設定する必要があります（詳細については[こちら][doc-unixsock]を参照してください）。
-    *   すでにNagios Coreエディションがインストールされていることが前提です。
+!!! info "前提と要件"
+    *   `collectd` サービスは、Unixドメインソケットを介して作業するように設定する必要があります（詳細は[こちら][doc-unixsock]を参照してください）。
+    *   すでにNagios Coreエディションがインストールされていると想定しています。
         
-        まだインストールされていない場合は、Nagios Coreをインストールしてください（例：[これらの手順][link-nagios-core-install]に従ってください）。
+        そうでない場合は、Nagios Coreをインストールしてください（例えば、[這記載の手順][link-nagios-core-install]に従います）。
     
-        必要に応じて、別のエディションのNagios（例：Nagios XI）を使用することができます。
+        必要であれば、Nagios XIなどの他のエディションを使用できます。
         
-        以下では、「Nagios」という用語は、特に別の記載がない限り、どのエディションのNagiosにも適用されるものとします。
+        「Nagios」は後述するすべてのNagiosエディションを指す用語として使用されます。
         
-    *   フィルタノードおよびNagiosホスト（例：SSHプロトコルを介して）に接続する能力を持っており、スーパーユーザ権限を持つ`root`アカウントまたは別のアカウントで作業ができる必要があります。
-    *   [Nagios Remote Plugin Executor][link-nrpe-docs]サービス（以下では*NRPE*と記載されます）がフィルタノードにインストールされている必要があります。
+    *   フィルタノードとNagiosホストに接続する能力が必要であり（例えば、SSHプロトコル経由で）、`root`アカウントまたは他の特権アカウントで作業を行うことができます。
+    *   フィルタノードに[Nagios Remote Plugin Executor][link-nrpe-docs]サービス（これ以降、この例では*NRPE*と呼ばれます）がインストールされている必要があります。
 
-##  例：ワークフロー
+## 例：ワークフロー
 
---8<-- "../include-ja/monitoring/metric-example.md"
+--8<-- "../include/monitoring/metric-example.md"
 
 ![!Example workflow][img-collectd-nagios]
 
-このドキュメントで使用されている展開スキームは、以下のとおりです。
-*   Wallarmフィルタノードは、`10.0.30.5`IPアドレスおよび`node.example.local`完全修飾ドメイン名を介してアクセスできるホストに展開されています。
-*   Nagiosは、`10.0.30.30` IPアドレスを介してアクセスできる別のホストにインストールされています。
-*   リモートホストでコマンドを実行するために、NRPEプラグインが使用されます。このプラグインには、
-    *   フィルタノードと一緒に監視されたホストにインストールされている`nrpe`サービスが含まれます。標準のNRPEポートである`5666/TCP`でリッスンします。
-    *   Nagiosホストにインストールされている`check_nrpe` NRPE Nagiosプラグインで、`nrpe`サービスがインストールされているリモートホストでコマンドを実行できるようになっています。
-*   NRPEは、Nagios互換のフォーマットで`collectd`メトリックを提供する`collectd_nagios`ユーティリティを呼び出すために使用されます。
+このドキュメントでは以下のデプロイメントスキームを使用します：
+*   Wallarmフィルタノードは、`10.0.30.5`IPアドレス及び`node.example.local`完全修飾ドメイン名を介してアクセス可能なホストにデプロイされています。
+*   Nagiosは、`10.0.30.30` IPアドレスを介してアクセス可能な別のホストにインストールされています。
+*   リモートホストでコマンドを実行するために、NRPEプラグインが使用されます。このプラグインは下記を含んでいます
+    *   フィルタノードとともに監視対象ホストにインストールされた`nrpe`サービス。`5666/TCP`標準NRPEポートでリッスンします。
+    *   Nagiosホストにインストールされ、`nrpe`サービスがインストールされているリモートホストでコマンドを実行できるようにする`check_nrpe`NRPE Nagiosプラグイン。
+*   NRPEはNagios互換フォーマットで`collectd`メトリクスを提供する`collectd_nagios`ユーティリティを呼び出すために使用されます。
 
-##  Nagiosへのメトリックのエクスポート設定
+## Nagiosへのメトリクスエクスポートの設定
 
+!!! info "このインストールの例についてのメモ"
+    この文書では、NRPEプラグインをインストールする方法と設定する方法を説明していますが、Nagiosが既にデフォルトのパラメータでインストールされていることを前提としています（Nagiosが`/usr/local/nagios`ディレクトリにインストールされていて、操作には`nagios`ユーザを使用すると想定しています）。プラグインやNagiosをデフォルトでない状態でインストールする場合は、コマンドとドキュメントの指示を必要に応じて調整してください。
 
-!!! info "このインストール例に関して"
-    このドキュメントでは、Nagiosが既にデフォルトのパラメータでインストールされている場合のNRPEプラグインのインストールと設定方法を説明しています（Nagiosが`/usr/local/nagios`ディレクトリにインストールされており、`nagios`ユーザーを使用して操作していることが前提です）。プラグインやNagiosの非デフォルトのインストールを行っている場合は、必要に応じてドキュメントから対応するコマンドと手順を調整してください。
+フィルタノードからNagiosへのメトリクスエクスポートを設定するには、次のステップを実行します：
 
-フィルタノードからNagiosへのメトリックのエクスポートを設定するには、次の手順を実行します。
+### 1. Nagiosホストと通信するようにNRPEを設定します
 
-### 1.  NRPEのNagiosホストとの通信を設定する
+これには、フィルタノードホストで以下の操作を行います：
+1.  NRPEの設定ファイル（デフォルトでは`/usr/local/nagios/etc/nrpe.cfg`）を開きます。
 
-これを行うには、フィルタノードホストで以下を実行します。
-1.  NRPE設定ファイルを開きます（デフォルト：`/usr/local/nagios/etc/nrpe.cfg`）。
-    
-2.  このファイルの`allowed_hosts`ディレクティブに、NagiosサーバーのIPアドレスまたは完全修飾ドメイン名を追加します。例えば、Nagiosホストが`10.0.30.30` IPアドレスを使用している場合：
-    
+2.  このファイルの`allowed_hosts`ディレクティブにNagiosサーバのIPアドレスまたは完全修飾ドメイン名を追加します。たとえば、Nagiosホストが`10.0.30.30`のIPアドレスを使用している場合は、次のように指定します：
+
     ```
     allowed_hosts=127.0.0.1,10.0.30.30
     ```
-    
-3.  適切なコマンドを実行して、NRPEサービスを再起動します。
 
-    --8<-- "../include-ja/monitoring/nrpe-restart-2.16.md"
+3.  適切なコマンドを実行してNRPEサービスを再起動します。
 
-### 2.  Nagios NRPEプラグインをNagiosホストにインストールする
+    --8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
-これを行うには、Nagiosホストで次の手順を実行します。
-1.  NRPEプラグインのソースファイルをダウンロードして解凍し、プラグインのビルドとインストールに必要なユーティリティをインストールします（[NRPEドキュメント][link-nrpe-docs]を参照してください）。
-2.  プラグインのソースコードがあるディレクトリに移動し、ソースからビルドし、プラグインをインストールします。
+### 2. NagiosホストにNagios NRPEプラグインをインストールします
 
-    最小限の手順は以下の通りです。
-    
+これには、Nagiosホストで以下の操作を行います：
+1.  NRPEプラグインのソースファイルをダウンロードして解凍し、プラグインをビルドしてインストールするための必要なユーティリティをインストールします（詳細については[NRPEのドキュメンテーション][link-nrpe-docs]を参照してください）。
+2.  プラグインソースコードのディレクトリに移動し、ソースからビルドし、プラグインをインストールします。
+
+    最小限のステップは次のとおりです：
+
     ```
     ./configure
     make all
     make install-plugin
     ```
-    
-### 3.  NRPE NagiosプラグインがNRPEサービスと正常にやり取りできることを確認する
 
-これを行うには、Nagiosホストで次のコマンドを実行します。
+### 3. NRPE NagiosプラグインがNRPEサービスと正常に対話することを確認します
+
+これには、Nagiosホストで次のコマンドを実行します：
 
 ``` bash
 /usr/local/nagios/libexec/check_nrpe -H node.example.local
 ```
 
-NRPEが正常に動作している場合、コマンドの出力にはNRPEのバージョン（例：`NRPE v3.2.1`）が含まれます。
+NRPEが正常に動作している場合、コマンドの出力にはNRPEのバージョン（例えば、`NRPE v3.2.1`）が含まれるはずです。
 
-### 4.  Nagiosホストで1つの引数を使用してNRPE Nagiosプラグインを実行する`check_nrpe`コマンドを定義する
+### 4. Nagiosホストで、`check_nrpe`コマンドを定義して、NRPE Nagiosプラグインを単一の引数で実行します
 
-これを行うには、`/usr/local/nagios/etc/objects/commands.cfg`ファイルに次の行を追加します。
+これには、`/usr/local/nagios/etc/objects/commands.cfg`ファイルに次の行を追加します：
 
 ```
 define command{
@@ -106,67 +104,70 @@ define command{
  }
 ```
 
-### 5. フィルタノードホストに`collectd_nagios`ユーティリティをインストールする
+### 5. フィルタノードホストに`collectd_nagios`ユーティリティをインストールします
 
-以下のコマンドのいずれかを実行します。
+次のいずれかのコマンドを実行します：
 
---8<-- "../include-ja/monitoring/install-collectd-utils.md"
+--8<-- "../include/monitoring/install-collectd-utils.md"
 
-### 6.  `nagios`ユーザーに代わって`collectd-nagios`ユーティリティを特権で実行するように設定する
+### 6. `collectd-nagios`ユーティリティを`nagios`ユーザの代わりに特権を持って実行するように設定します
 
-これを行うには、フィルタノードホストで以下の手順を実行します。
-1.  [`visudo`][link-visudo]ユーティリティを使用して、`/etc/sudoers`ファイルに次の行を追加します。
-    
+これには、フィルタノードホストで以下の操作を行います：
+1.  [`visudo`][link-visudo]ユーティリティを使用して、`/etc/sudoers`ファイルに以下の行を追加します：
+
     ```
     nagios ALL=(ALL:ALL) NOPASSWD:/usr/bin/collectd-nagios
     ```
     
-    これにより、`nagios`ユーザーは、パスワードを提供することなく`sudo`を使用して`collectd-nagios`ユーティリティをスーパーユーザー権限で実行できるようになります。
+    これにより、`nagios`ユーザは、パスワードを提供することなく、`sudo`を使用して超ユーザー権限で`collectd-nagios`ユーティリティを実行することができます。
 
     
-    !!! info "スーパーユーザー権限で`collectd-nagios`を実行する"
-        ユーティリティは、`collectd` Unixドメインソケットを使用してデータを受信するため、スーパーユーザー権限で実行する必要があります。このソケットには、スーパーユーザーのみがアクセスできます。
+    !!! info "`collectd-nagios`をスーパーユーザー権限で実行する"
+        `collectd`のUnixドメインソケットを使用してデータを受け取るため、ユーティリティはスーパーユーザー権限で実行する必要があります。このソケットには、スーパーユーザーのみがアクセスできます。
 
-2.  次のテストコマンドを実行して、`nagios`ユーザーが`collectd`からメトリック値を取得できることを確認します。
-    
+2.   次のテストコマンドを実行して、`nagios`ユーザが`collectd`からメトリクス値を取得できることを確認します：
+
     ```
     sudo -u nagios sudo /usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
     ```
     
-    このコマンドにより、`nagios`ユーザーは`node.example.local`ホストの[`curl_json-wallarm_nginx/gauge-abnormal`][link-metric]メトリック（処理されたリクエストの数）の値を取得できます。
-    
-    **コマンド出力の例：**
-    
+    このコマンドにより、`nagios`ユーザは`node.example.local`ホストの[`curl_json-wallarm_nginx/gauge-abnormal`][link-metric]メトリクス（処理済みのリクエスト数）の値を取得できます。
+
+    **コマンドの出力例：**
+
     ```
     OKAY: 0 critical, 0 warning, 1 okay | value=0.000000;;;;
     ```
 
-3.  NRPEサービスの設定ファイルにプレフィックスを追加して、`sudo`ユーティリティを使ってコマンドを実行できるようにします。
-    
+3.  `sudo`ユーティリティを使用してコマンドを実行できるように、NRPEサービス設定ファイルにプレフィックスを追加します：
+
     ```
     command_prefix=/usr/bin/sudo
-    ```### 7. 必要なメトリックスを取得するために、フィルタノードのNRPEサービス設定ファイルにコマンドを追加する
+    ```
 
-例えば、`node.example.local`の完全修飾ドメイン名を持つフィルタノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックを受信する`check_wallarm_nginx_abnormal`という名前のコマンドを作成するには、NRPEサービスの設定ファイルに以下の行を追加します。
+### 7. 必要なメトリクスを取得するために、フィルタノードのNRPEサービス設定ファイルにコマンドを追加します
+
+例えば、フィルタノード（`node.example.local`完全修飾ドメイン名）の最初のメトリクス`curl_json-wallarm_nginx/gauge-abnormal`を受信するためのコマンド`check_wallarm_nginx_abnormal` を作成するには、次の行をNRPEサービスの設定ファイルに追加します：
 
 ```
 command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/wallarm-collectd-unixsock -n curl_json-wallarm_nginx/gauge-abnormal -H node.example.local
 ```
 
-!!! info "メトリックの閾値を設定する方法"
-    必要に応じて、`-w`および`-c`オプションを使用して、`collectd-nagios`ユーティリティが`WARNING`または`CRITICAL`ステータスを返す値の範囲を指定することができます（詳細情報は、ユーティリティの[ドキュメント][link-collectd-docs]で入手できます）。
-    
-必要なすべてのコマンドをNRPEサービス設定ファイルに追加したら、適切なコマンドを実行してサービスを再起動します。
 
---8<-- "../include-ja/monitoring/nrpe-restart-2.16.md"
+!!! info "メトリクスの閾値を設定する方法"
+    必要に応じて、`collectd-nagios`ユーティリティが`WARNING`または`CRITICAL`ステータスを返す値の範囲を、対応する`-w`および`-c`オプションを使用して指定できます（詳細はユーティリティの[ドキュメンテーション][link-collectd-docs]をご覧ください）。
 
-### 8. Nagiosホストで、フィルタノードホストを指定し、監視するサービスを定義するために設定ファイルを使用します
+NRPEサービス設定のファイルに必要なすべてのコマンドを追加したあとは、適切なコマンドを実行してサービスを再起動します：
 
-!!! info "サービスとメトリック"
-    このドキュメントでは、1つのNagiosサービスが1つのメトリックに相当すると仮定されています。
+--8<-- "../include/monitoring/nrpe-restart-2.16.md"
 
-例を以下のように行うことができます：
-1. 以下の内容を持つ`/usr/local/nagios/etc/objects/nodes.cfg`ファイルを作成します。
+### 8. Nagiosホストで、フィルタノードホストを指定し、モニタリングするサービスを定義するために設定ファイルを利用します
+
+!!! info "サービスとメトリクス"
+    このドキュメントでは、1つのNagiosサービスと1つのメトリクスが同等と想定しています。
+
+たとえば、次の方法で行います：
+1.  次の内容の`/usr/local/nagios/etc/objects/nodes.cfg`ファイルを作成します：
 
     ```
     define host{
@@ -184,26 +185,26 @@ command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/walla
     }
     ```
 
-    このファイルでは、`10.0.30.5` IPアドレスを持つ`node.example.local`ホストと、`wallarm_nginx_abnormal`サービスのステータスをチェックするコマンドを定義しています。これは、フィルタノードから`curl_json-wallarm_nginx/gauge-abnormal`メトリックを受信することを意味します（[`check_wallarm_nginx_abnormal`][anchor-header-7]コマンドの説明を参照）。
+    このファイルでは、`10.0.30.5` IPアドレスを持つ`node.example.local`ホストと、`wallarm_nginx_abnormal`サービスのステータスをチェックするコマンドを定義しています。これは、フィルタノードから`curl_json-wallarm_nginx/gauge-abnormal`メトリクスを取得することを意味します（[`check_wallarm_nginx_abnormal`][anchor-header-7]コマンドの説明を参照）。
 
-2. Nagios設定ファイルに（デフォルトでは`/usr/local/nagios/etc/nagios.cfg`）以下の行を追加します。
-
+2.  Nagiosの設定ファイル（デフォルトでは`/usr/local/nagios/etc/nagios.cfg`）に以下の行を追加します：
+    
     ```
     cfg_file=/usr/local/nagios/etc/objects/nodes.cfg
     ```
+    
+    次回起動から`nodes.cfg`ファイルのデータをNagiosが使用するために必要です。
 
-    これにより、Nagiosは次の起動時から`nodes.cfg`ファイルのデータを使用するようになります。
+3.  適切なコマンドを実行してNagiosサービスを再起動します：
 
-3. 適切なコマンドを実行してNagiosサービスを再起動します。
+--8<-- "../include/monitoring/nagios-restart-2.16.md"
 
---8<-- "../include-ja/monitoring/nagios-restart-2.16.md"
+## 設定が完了しました
 
-## 設定が完了しました。
-
-Nagiosは、フィルタノードの特定のメトリックに関連するサービスを監視しています。必要に応じて、他のコマンドやサービスを定義して、関心のあるメトリックをチェックすることができます。
+これでNagiosはフィルタノードの特定のメトリクスに関連するサービスを監視します。必要に応じて、興味のあるメトリクスをチェックするための他のコマンドとサービスを定義できます。
 
 !!! info "NRPEに関する情報"
-    NRPEに関する追加情報のソース：
+    NRPEについての追加情報のソース：
     
-    *   GitHub上のNRPEの[README][link-nrpe-readme]；
-    *   NRPEドキュメント（[PDF][link-nrpe-pdf]）。
+    *   NRPEのGitHubの[README][link-nrpe-readme]；
+    *   NRPEのドキュメンテーション（[PDF][link-nrpe-pdf]）。

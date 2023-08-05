@@ -1,19 +1,19 @@
 [img-tab-general]:        ../../../images/fast/operations/common/test-policy/policy-editor/tab-general.png
 
-# Basic Policy Configuration
+# 基本的なポリシー設定
 
-When creating or editing the policy, you will be directed to the **General** section of the policy editor in your Wallarm account. This section contains general policy settings:
+ポリシーを作成または編集する場合、あなたはWallarmアカウントのポリシー編集器の**一般**セクションに移動されます。このセクションには一般的なポリシー設定が含まれています：
 
-![!General section of the policy editor][img-tab-general]
+![!ポリシー編集の一般セクション][img-tab-general]
 
-The section requires the filling in of the following fields:
+このセクションでは、次の項目を記入する必要があります：
 
-* policy name
-* policy description
+* ポリシー名
+* ポリシーの説明
 
-You can also add one or more tags to the policy. This allows you to quickly find tests used in a particular policy with this tag.
+また、ポリシーに1つ以上のタグを追加することも可能です。これにより、特定のポリシーで使用されているテストをこのタグで素早く見つけることができます。
 
-The first part of the policy editor contains the following options:
+ポリシー編集の最初の部分には以下のオプションが含まれています：
 
-* Statistics on the policy usage (this data is only available for existing policies)
-* Test policy described in the text format
+* ポリシーの使用に関する統計（このデータは既存のポリシーにのみ利用可能です）
+* テキスト形式で説明されたテストポリシー

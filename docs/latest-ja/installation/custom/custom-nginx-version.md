@@ -1,25 +1,25 @@
-# Building Wallarm Packages for Custom NGINX
+# カスタムNGINXパッケージ
 
-If you require Wallarm DEB/RPM packages for an NGINX version that is different from the stable version, NGINX Plus, or the distributive version, you can request a custom Wallarm build by following these instructions.
+安定版と異なるバージョンのNGINX、NGINX Plus、またはディストリビューションバージョン用のWallarm DEB/RPMパッケージが必要な場合は、以下の指示にしたがってカスタムWallarmビルドをリクエストできます。
 
-By default, Wallarm DEB/RPM packages are available for the following NGINX versions:
+デフォルトでは、Wallarm DEB/RPMパッケージは以下のNGINXバージョンで利用可能です:
 
-* Official open source NGINX `stable` - refer to the [installation instructions](../nginx/dynamic-module.md)
-* Distribution-provided NGINX - refer to the [installation instructions](../nginx/dynamic-module-from-distr.md)
-* Official commercial NGINX Plus - refer to the [installation instructions](../nginx-plus.md)
+* 公式オープンソースのNGINX `stable` - [インストール手順](../nginx/dynamic-module.md)を参照してください 
+* ディストリビューション提供のNGINX - [インストール手順](../nginx/dynamic-module-from-distr.md)を参照してください
+* 公式商用NGINX Plus - [インストール手順](../nginx-plus.md)を参照してください
 
-The Wallarm module can be integrated with a custom build of NGINX, including NGINX `mainline`, by rebuilding the Wallarm packages. To rebuild the packages, please contact the [Wallarm technical support](mailto:support@wallarm.com) team and provide the following information:
+Wallarmモジュールは、NGINX `mainline`を含むカスタムビルドのNGINXと統合できます。Wallarmパッケージを再構築するためには、[Wallarm テクニカルサポート](mailto:support@wallarm.com) チームに連絡し、以下の情報を提供してください:
 
-* Linux kernel version: `uname -a`
-* Linux distributive: `cat /etc/*release`
-* NGINX version:
+* Linuxカーネルバージョン: `uname -a`
+* Linuxディストリビューション: `cat /etc/*release`
+* NGINXバージョン:
 
-    * [NGINX official build](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
-    * NGINX custom build: `<path to nginx>/nginx -V`
+    * [NGINX公式ビルド](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
+    * NGINXカスタムビルド: `<nginxへのパス>/nginx -V`
 
-* Compatibility signature:
+* 互換性シグネチャ:
   
-      * [NGINX official build](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
-      * NGINX custom build: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
+      * [NGINX公式ビルド](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
+      * NGINXカスタムビルド: `egrep -ao '.,.,.,[01]{33}' <nginxへのパス>/nginx`
 
-* The user (and the user's group) who is running the NGINX worker processes: `grep -w 'user' <path-to-the-NGINX-configuration-files/nginx.conf>`
+* NGINXワーカープロセスを実行しているユーザー(およびそのユーザーグループ): `grep -w 'user' <nginx設定ファイルへのパス/nginx.conf>`

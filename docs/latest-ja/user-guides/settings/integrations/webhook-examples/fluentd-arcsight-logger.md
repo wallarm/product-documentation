@@ -1,64 +1,64 @@
-# Micro Focus ArcSight Logger と Fluentd を経由
+# Fluentdを介したMicro Focus ArcSight Logger 
 
-これらの指示は、Fluentd データ収集器を使用した Wallarm との例の統合を提供し、その後、ArcSight Logger システムにイベントを転送します。
+この指示書は、WallarmとFluentdデータコレクタの統合例を提供し、さらにイベントをArcSight Loggerシステムに転送する方法を説明します。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
-!!! info "ArcSight ESM のエンタープライズ版との統合"
-    Fluentd から ArcSight ESM のエンタープライズ版にログを転送するように設定するには、ArcSight 側で Syslog Connector を設定し、Fluentd からのログをコネクタポートに転送することをお勧めします. コネクタの詳細な説明を入手するには、[公式 ArcSight SmartConnector ドキュメント](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs)から **SmartConnector User Guide** をダウンロードしてください。
+!!! info "ArcSight ESMのエンタープライズ版との統合"
+    FluentdからArcSight ESMのエンタープライズ版にログを転送するには、ArcSight側でSyslogコネクタを設定してから、Fluentdからコネクタポートにログを転送することを推奨します。コネクタの詳細な説明を入手するには、[公式のArcSight SmartConnector文書](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs)から**SmartConnectorユーザーガイド**をダウンロードしてください。
 
- ## 使用されるリソース
+## 使用したリソース
 
-* [ArcSight Logger 7.1](#arcsight-logger-configuration) を WEB URL `https://192.168.1.73:443` にインストールし、CentOS 7.8 上にインストール
-* [Fluentd](#fluentd-configuration) を Debian 11.x (bullseye) にインストールし、`https://fluentd-example-domain.com` で利用可能
-* [Fluentd 統合の設定](#configuration-of-fluentd-integration)を行うために [EU クラウド](https://my.wallarm.com) での Wallarm Console への管理者アクセス
+* WEB URL `https://192.168.1.73:443` でインストールされた[ArcSight Logger 7.1](#arcsight-logger-configuration)
+* `https://fluentd-example-domain.com`で利用可能なDebian 11.x (bullseye)にインストールされた[Fluentd](#fluentd-configuration)
+* [EUクラウド](https://my.wallarm.com)のWallarmコンソールへの管理者アクセスを持つ[Fluentd統合の設定](#configuration-of-fluentd-integration)
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-ArcSight Logger および Fluentd サービスへのリンクは、例として引用されているため、応答しません。
+ArcSight LoggerとFluentdサービスへのリンクは例として引用されているので、応答しません。
 
-### ArcSight Logger の設定
+### ArcSight Loggerの設定
 
-ArcSight Logger は、次のように設定されたログ受信機 `Wallarm Fluentd logs` を持っています。
+ArcSight Loggerには、以下のように設定されたログ受信器 `Wallarm Fluentd logs` があります：
 
-* ログは UDP 経由で受信されます（`Type = UDP Receiver`）
-* 設定されているリスニング・ポートは `514`
-* イベントは syslog パーサを使って解析されます
-* その他のデフォルトの設定
+* ログはUDP経由で受信されます（`Type = UDP Receiver`）
+* リスニングポートは `514`
+* イベントはsyslogパーサーで解析されます
+* その他のデフォルト設定
 
 ![!Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
-  受信機の設定の詳細な説明を入手するには、適切なバージョンの [公式 ArcSight Logger ドキュメント](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) から **Logger Installation Guide** をダウンロードしてください。
+受信器の設定に関する詳しい説明書を入手するには、適切なバージョンの**Loggerインストールガイド**を[公式のArcSight Logger文書](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc)からダウンロードしてください。
 
-### Fluentd の設定
+### Fluentdの設定
 
-Wallarm は、Fluentd の間接データ収集機へのログを Webhook 経由で送信するため、Fluentd の設定は次の要件を満たす必要があります。
+Wallarmはwebhooksを使ってFluentdの中間データコレクタにログを送信するため、Fluentdの設定は以下の要件を満たすべきです：
 
-* POST または PUT リクエストを受け入れる
-* HTTPS リクエストを受け入れる
-* 公開された URL を持つ
-* この例では、ログを `remote_syslog` プラグインを使って ArcSight Logger に転送する
+* POSTまたはPUTリクエストを受け入れる
+* HTTPSリクエストを受け入れる
+* 公開URLを持つ
+* ログをArcSight Loggerに転送する。この例では、`remote_syslog`プラグインを使用してログを転送します
 
-Fluentd は `td-agent.conf` ファイルで設定されています。
+Fluentdは `td-agent.conf` ファイルで設定されます：
 
-* 入力 Webhook の処理は、 `source` ディレクティブで設定されています。
-    * トラフィックはポート 9880 に送られます
-    * Fluentd は HTTPS 接続のみを受け入れるように設定されています
-    * Fluentd の TLS 証明書は、ファイル `/etc/ssl/certs/fluentd.crt` 中にあります
-    * TLS 証明書の秘密鍵は、ファイル `/etc/ssl/private/fluentd.key` にあります
-* ArcSight Logger へのログ転送とログ出力は `match` ディレクティブで設定されています。
-    * すべてのイベントログが Fluentd からコピーされ、IP アドレス `https://192.168.1.73:514` の ArcSight Logger に転送されます
-    * Fluentd から ArcSight Logger へのログ転送は、[Syslog](https://en.wikipedia.org/wiki/Syslog) 標準に従って JSON 形式で行われます
-    * ArcSight Logger との接続は UDP 経由で確立されます
-    * Fluentd のログはさらにコマンドラインで JSON 形式で表示されます（コード行 19-22）。この設定は、Fluentd を介してイベントがログに記録されることを確認するために使用されます。
+* 受信webhookの処理は `source` ディレクティブで設定されます：
+    * トラフィックはポート9880に送られます
+    * FluentdはHTTPS接続のみ受け入れるように設定されています
+    * FluentdのTLS証明書は公開信頼可能なCAによって署名され、ファイル `/etc/ssl/certs/fluentd.crt` 内に位置しています
+    * TLS証明書の秘密鍵はファイル `/etc/ssl/private/fluentd.key` 内に位置しています
+* ログのArcSight Loggerへの転送とログ出力は `match` ディレクティブで設定されます：
+    * すべてのイベントログはFluentdからコピーされ、IPアドレス `https://192.168.1.73:514` のArcSight Loggerに転送されます
+    * ログは[Syslog](https://en.wikipedia.org/wiki/Syslog)標準に従ってJSON形式でFluentdからArcSight Loggerに転送されます
+    * ArcSight Loggerとの接続はUDP経由で確立されます
+    * FluentdのログはさらにJSON形式でコマンドラインに印刷されます（19-22行目のコード）。この設定は、イベントがFluentd経由で記録されていることを確認するために使われます
 
 ```bash linenums="1"
 <source>
-  @type http # input plugin for HTTP and HTTPS traffic
-  port 9880 # port for incoming requests
-  <transport tls> # configuration for connections handling
+  @type http # HTTPとHTTPSトラフィックの入力プラグイン
+  port 9880 # 受信リクエストのポート
+  <transport tls> # 接続処理の設定
     cert_path /etc/ssl/certs/fluentd.crt
     private_key_path /etc/ssl/private/fluentd.key
   </transport>
@@ -66,53 +66,53 @@ Fluentd は `td-agent.conf` ファイルで設定されています。
 <match **>
   @type copy
   <store>
-      @type remote_syslog # output plugin to forward logs from Fluentd via Syslog
-      host 192.168.1.73 # IP address to forward logs to
-      port 514 # port to forward logs to
-      protocol udp # connection protocol
+      @type remote_syslog # FluentdからSyslog経由でログを転送する出力プラグイン
+      host 192.168.1.73 # ログを転送するIPアドレス
+      port 514 # ログを転送するポート
+      protocol udp # 接続プロトコル
     <format>
-      @type json # format of forwarded logs
+      @type json # 転送されるログの形式
     </format>
   </store>
   <store>
-     @type stdout # output plugin to print Fluentd logs on the command line
-     output_type json # format of logs printed on the command line
+     @type stdout # コマンドラインでFluentdログを印刷する出力プラグイン
+     output_type json # コマンドラインに印刷されるログの形式
   </store>
 </match>
 ```
 
-設定ファイルの詳細な説明は、[公式の Fluentd ドキュメント](https://docs.fluentd.org/configuration/config-file)で利用できます。
+設定ファイルの詳しい説明は、[公式のFluentd文書](https://docs.fluentd.org/configuration/config-file)で利用可能です。
 
-!!! info "Fluentd の設定のテスト"
-    Fluentd のログが作成され、ArcSight Logger に転送されていることを確認するため、PUT または POST リクエストを Fluentd に送信することができます。
+!!! info "Fluentd設定のテスト"
+    Fluentdのログが作成され、ArcSight Loggerに転送されることを確認するために、PUTまたはPOSTリクエストをFluentdに送信することができます。
 
-    **リクエストの例:**
+    **リクエスト例：**
     ```curl
     curl -X POST 'https://fluentd-example-domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Fluentd のログ:**
+    **Fluentdのログ：**
     ![!Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
-    **ArcSight Logger:**
+    **ArcSight Loggerのイベント：**
     ![!Logs in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
-### Fluentd 統合の設定
+### Fluentd統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
 ![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
-[Fluentd 統合の設定の詳細について](../fluentd.md)
+[Fluentd統合設定の詳細](../fluentd.md)
 
 ## 例のテスト
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Fluentd は次のようにイベントをログに記録します。
+Fluentdは以下のようにイベントをログします：
 
 ![!Fluentd log about new user](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
-次のエントリが ArcSight Logger イベントに表示されます。
+次のエントリがArcSight Loggerのイベントに表示されます：
 
 ![!Events in ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

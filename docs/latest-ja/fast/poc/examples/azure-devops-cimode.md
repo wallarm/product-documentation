@@ -1,67 +1,67 @@
-# Integration of FAST with Azure DevOps
+# FASTとAzure DevOpsの統合
 
-The integration of FAST in CI MODE into the Azure DevOps pipeline is configured via the `azure-pipelines.yml` file. The detailed schema of the `azure-pipelines.yml` file is described in [Azure DevOps official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema).
+FASTがCIモードでAzure DevOpsパイプラインに統合される設定は`azure-pipelines.yml`ファイルを通じて行います。`azure-pipelines.yml`ファイルの詳細なスキーマは[Azure DevOps公式ドキュメンテーション](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema)に説明されています。
 
-!!! info "Configured workflow"
-    Further instructions require already configured workflow that corresponds to one of the following points:
+!!! info "設定済みのワークフロー"
+    以下の指示は、次のいずれかの要件を満たすすでに設定されたワークフローが必要です:
 
-    * Test automation is implemented. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [request recording](#adding-the-step-of-request-recording) and [security testing](#adding-the-step-of-security-testing) steps should be added.
-    * The set of baseline requests is already recorded. In this case, the FAST node token should be [passed](#passing-fast-node-token) and the [security testing](#adding-the-step-of-security-testing) step should be added.
+    * テスト自動化が実装されています。この場合、FASTノードトークンを[渡す](#passing-fast-node-token)必要があり、[リクエスト記録](#adding-the-step-of-request-recording)と[セキュリティテスト](#adding-the-step-of-security-testing)のステップを追加する必要があります。
+    * ベースラインのリクエストのセットがすでに記録されています。この場合、FASTノードトークンを[渡す](#passing-fast-node-token)必要があり、[セキュリティテスト](#adding-the-step-of-security-testing)のステップを追加する必要があります。
 
-## Passing FAST Node Token
+## FASTノードトークンの渡し方
 
-To securely use the [FAST node token](../../operations/create-node.md), open your current pipeline settings and pass the token value in the [Azure DevOps environment variable](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables).
+[FASTノードトークン](../../operations/create-node.md)を安全に使用するために、現在のパイプライン設定を開き、トークンの値を[Azure DevOps環境変数](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#environment-variables)に渡します。
 
 ![!Passing Azure DevOps environment variable](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-env-var-example.png)
 
-## Adding the Step of Request Recording
+## リクエスト記録のステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Example of the automated testing step with running FAST node in the recording mode"
+??? info "レコードモードでFASTノードを起動する自動テストステップの例"
     ```
     - job: tests
       steps:
       - script: docker network create my-network
-        displayName: 'Create my-network'
+        displayName: 'my-networkの作成'
       - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-        displayName: 'Run test application on my-network'
+        displayName: 'my-network上でのテストアプリケーションの実行'
       - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-        displayName: 'Run FAST node in recording mode on my-network'
+        displayName: 'my-network上での記録モードでのFASTノードの実行'
       - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-        displayName: 'Run Selenium with FAST node as a proxy on my-network'
+        displayName: 'my-network上でFASTノードをプロキシとしてSeleniumを実行'
       - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-        displayName: 'Run automated tests on my-network'
+        displayName: 'my-network上での自動テストの実行'
       - script: docker stop selenium fast
-        displayName: 'Stop Selenium and FAST node in recording mode'
+        displayName: 'Seleniumと記録モードでのFASTノードの停止'
     ```
 
-## Adding the Step of Security Testing
+## セキュリティテストのステップの追加
 
-The method of security testing setup depends on the authentication method used in the test application:
+セキュリティテストの設定方法は、テストアプリケーションで使用される認証方法に依存します:
 
-* If authentication is required, add the step of security testing to the same job as the step of request recording.
-* If authentication is not required, add the step of security testing as a separate job to your pipeline.
+* 認証が必要な場合は、リクエスト記録のステップと同じジョブにセキュリティテストのステップを追加します。
+* 認証が不要な場合は、パイプラインに別のジョブとしてセキュリティテストのステップを追加します。
 
-To implement security testing, follow the instructions:
+セキュリティテストを実装するために以下の手順に従ってください:
 
-1. Make sure the test application is running. If required, add the command to run the application.
-2. Add the command running FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
+1. テストアプリケーションが実行中であることを確認します。必要に応じて、アプリケーションを実行するコマンドを追加します。
+2. アプリケーションを実行するコマンドの__後に__、他の必要な[変数](../ci-mode-testing.md#environment-variables-in-testing-mode)とともに`CI_MODE=testing`モードでFAST Dockerコンテナを実行するコマンドを追加します。
 
-    !!! info "Using the recorded set of baseline requests"
-        If the set of baseline requests was recorded in another pipeline, specify the record ID in the [TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования) variable. Otherwise, the last recorded set will be used.
+    !!! info "記録されたベースラインリクエストのセットを使用する"
+        ベースラインリクエストのセットが別のパイプラインで記録されていた場合は、その記録IDを[TEST_RECORD_ID](../ci-mode-testing.md#переменные-в-режиме-тестирования)変数で指定します。それ以外の場合は、最後に記録されたセットが使用されます。
 
-    Example of the command:
+    コマンドの例:
 
     ```
     docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://app-test:3000 --network my-network --rm wallarm/fast
     ```
 
-!!! warning "Docker Network"
-    Before security testing, make sure that the FAST node and test application are running on the same network.
+!!! warning "Dockerのネットワーク"
+    セキュリティテスト前に、FASTノードとテストアプリケーションが同じネットワーク上で動作していることを確認してください。
 
-??? info "Example of the automated testing step with running FAST node in the testing mode"
-    Since the example below tests the application DVWA that requires authentication, the step of security testing is added to the same job as the step of request recording.
+??? info "テストモードでFASTノードを起動する自動テストステップの例"
+    下の例では、認証が必要なDVWAアプリケーションのテストを行っているため、セキュリティテストのステップはリクエスト記録のステップと同じジョブに追加されています。
 
     ```
     stages:
@@ -70,34 +70,34 @@ To implement security testing, follow the instructions:
       - job: tests
         steps:
         - script: docker network create my-network
-          displayName: 'Create my-network'
+          displayName: 'my-networkの作成'
         - script: docker run --rm --name dvwa -d --network my-network wallarm/fast-example-dvwa-base
-          displayName: 'Run test application on my-network'
+          displayName: 'my-network上でのテストアプリケーションの実行'
         - script: docker run --name fast -d -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
-          displayName: 'Run FAST node in recording mode on my-network'
+          displayName: 'my-network上での記録モードでのFASTノードの実行'
         - script: docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
-          displayName: 'Run Selenium with FAST node as a proxy on my-network'
+          displayName: 'my-network上でFASTノードをプロキシとしてSeleniumを実行'
         - script: docker run --rm --name tests --network my-network wallarm/fast-example-dvwa-tests
-          displayName: 'Run automated tests on my-network'
+          displayName: 'my-network上での自動テストの実行'
         - script: docker stop selenium fast
-          displayName: 'Stop Selenium and FAST node in recording mode'
+          displayName: 'Seleniumと記録モードでのFASTノードの停止'
         - script: docker run --name fast -e WALLARM_API_TOKEN=$WALLARM_API_TOKEN -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast 
-          displayName: 'Run FAST node in testing mode on my-network'
+          displayName: 'my-network上でのテストモードでのFASTノードの実行'
         - script: docker stop dvwa
-          displayName: 'Stop test application'
+          displayName: 'テストアプリケーションの停止'
         - script: docker network rm my-network
-          displayName: 'Delete my-network'
+          displayName: 'my-networkの削除'
     ```
 
-## Getting the Result of Testing
+## テスト結果の取得
 
-The result of security testing will be displayed on the Azure DevOps interface.
+セキュリティテストの結果はAzure DevOpsのインターフェースに表示されます。
 
 ![!The result of running FAST node in testing mode](../../../images/fast/poc/common/examples/azure-devops-cimode/azure-ci-example.png)
 
-## More Examples
+## その他の例
 
-You can find examples of integrating FAST to Azure DevOps workflow on our [GitHub](https://github.com/wallarm/fast-examples).
+FASTをAzure DevOpsワークフローに統合する例は、私たちの[GitHub](https://github.com/wallarm/fast-examples)で見つけることができます。
 
-!!! info "Further questions"
-    If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).
+!!! info "その他の質問"
+   FASTの統合に関する質問がある場合は、お気軽に[ご連絡ください](mailto:support@wallarm.com)。

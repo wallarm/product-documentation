@@ -10,22 +10,22 @@
 [anchor6]:      #xmltagarray-filter
 [anchor7]:      #xmlattr-filter
 
-# XML Parser
+# XML パーサー
 
-The **XML** parser is used for working with data in XML format that can be located in any part of the request. Its name must be specified in a point upon using filters provided by it.
+**XML** パーサーは、リクエストの任意の部分に存在する XML 形式のデータを扱うために使用されます。その名前は、それによって提供されるフィルターを利用する際にポイントで特定しなければなりません。
 
-You can use the XML parser name in the point without any filters that are provided by it to work with the top-level XML data container contents in their raw format.
+XML パーサーの名前を、その提供するフィルターなしでポイントに使用して、最上位の XML データコンテナの内容をその生の形式で扱うことができます。
 
-**Example:** 
+**例：** 
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -37,7 +37,7 @@ request with the
 </text>
 ```
 
-body, the `POST_XML_value` point refers to the following data in raw format:
+というボディの場合、`POST_XML_value` ポイントは以下の生データを参照します：
 
 ```
 <!DOCTYPE foo [<!ENTITY eee SYSTEM "aaaa">]>
@@ -48,37 +48,37 @@ body, the `POST_XML_value` point refers to the following data in raw format:
 </text>
 ```
 
-The XML parser builds a complex data structure on the basis of the input data. You can use the following filters to address the elements of this data structure:
-* [Xml_comment filter][anchor1];
-* [Xml_dtd filter][anchor2];
-* [Xml_dtd_entity filter][anchor3];
-* [Xml_pi filter][anchor4];
-* [Xml_tag filter][anchor5];
-* [Xml_tag_array filter][anchor6];
-* [Xml_attr filter][anchor7].
+XML パーサーは、入力データに基づいて複雑なデータ構造を構築します。このデータ構造の要素にアクセスするために以下のフィルターを使用することができます：
+* [Xml_comment フィルター][anchor1];
+* [Xml_dtd フィルター][anchor2];
+* [Xml_dtd_entity フィルター][anchor3];
+* [Xml_pi フィルター][anchor4];
+* [Xml_tag フィルター][anchor5];
+* [Xml_tag_array フィルター][anchor6];
+* [Xml_attr フィルター][anchor7].
 
-Add the names of the XML parser and the filter provided by it in upper case to the point to use the filter in the point.
+ポイントでフィルターを使用するためには、XML パーサーとそれによって提供されるフィルターの名前をポイントに大文字で追加します。
 
 
-## Xml_comment Filter
- 
-The **Xml_comment** filter refers to the array containing comments from data in XML format. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`.
+## Xml_comment フィルター
 
-!!! info "Regular expressions in points"
-    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+**Xml_comment** フィルターは、XML形式のデータからのコメントを含む配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
 
-The Xml_comment filter can only be used in the point together with the XML parser.
+!!! info "ポイントの正規表現"
+    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-**Example:** 
+Xml_comment フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
 
-For the
+**例：** 
+
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -91,33 +91,33 @@ request with the
 <!-- second -->
 ```
 
-body, the Xml_comment applied together with the XML parser refers to the following array:
+というボディの場合、XML パーサーと一緒に適用された Xml_comment は次の配列を参照します：
 
-| Index  | Value    |
+| インデックス  | 値      |
 |--------|----------|
 | 0      | first    |
 | 1      | second   |
 
-* The `POST_XML_XML_COMMENT_0_value` point refers to the `first` value that corresponds to the `0` index from the array addressed by the Xml_comment filter.
-* The `POST_XML_XML_COMMENT_1_value` point refers to the `second` value that corresponds to the `1` index from the array addressed by the Xml_comment filter.
+* `POST_XML_XML_COMMENT_0_value` ポイントは、Xml_comment フィルターによって指定された配列から `0` インデックスに対応する `first` 値を参照します。
+* `POST_XML_XML_COMMENT_1_value` ポイントは、Xml_comment フィルターによって指定された配列から `1` インデックスに対応する `second` 値を参照します。
 
-## Xml_dtd Filter
+## Xml_dtd フィルター
 
-The **Xml_dtd** filter refers to the external DTD schema used in the XML data. This filter can only be used in the point together with the XML parser.
+**Xml_dtd** フィルターは、XMLデータに使用される外部DTDスキーマを参照します。このフィルターは、XMLパーサーと一緒にポイントでのみ使用することができます。
 
-The Xml_dtd filter refers to a string value. This filter cannot refer to complex data structures (such as arrays or hash tables).
+Xml_dtd フィルターは文字列値を参照します。このフィルターは、複雑なデータ構造（配列やハッシュテーブルなど）を参照することはできません。
 
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、 
 
 ```
 <?xml version="1.0" standalone="no"?>
@@ -129,27 +129,27 @@ request with the
 </text>
 ```
 
-body, the `POST_XML_DTD_value` point refers to the `example.dtd` value.
+というボディの場合、`POST_XML_DTD_value` ポイントは `example.dtd` 値を参照します。
 
-## Xml_dtd_entity Filter
+## Xml_dtd_entity フィルター
 
-The **Xml_dtd_entity** filter refers to the array containing the DTD schema directives defined in the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. 
+**Xml_dtd_entity** フィルターは、XMLデータに定義されたDTDスキーマディレクティブを含む配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
 
-!!! info "Regular expressions in points"
-    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "ポイントの正規表現"
+    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-The Xml_dtd_entity filter can only be used in the point together with the XML parser.
+Xml_dtd_entity フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the 
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -167,41 +167,42 @@ request with the
 </text>
 ```
 
-body, the Xml_dtd_entity filter applied to the request body together with the XML parser refers to the following array:
+というボディの場合、リクエストボディに適用された Xml_dtd_entity フィルターとXML パーサーは次の配列を参照します： 
 
-| Index  | Name   | Value                |
+| インデックス  | 名前    | 値                   |
 |--------|--------|----------------------|
 | 0      | xxe    | aaaa                 |
 | 1      | sample | This is sample text. |
 
-In this array, each index refers to the name-value pair that corresponds with the name and the value of the DTD schema.
-* Add the `_name` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the name of the schema directive.
-* Add the `_value` postfix at the end of the point that uses the Xml_dtd_entity filter to refer to the value of the schema directive.
+この配列では、各インデックスは、DTDスキーマの名前と値に対応する名前-値ペアを参照します。
+
+* スキーマ指令の名前を参照するには、Xml_dtd_entity フィルターを使用するポイントの末尾に `_name` サフィックスを追加します。
+* スキーマ指令の値を参照するには、Xml_dtd_entity フィルターを使用するポイントの末尾に `_value` サフィックスを追加します。
 
 
 
-* The `POST_XML_XML_DTD_ENTITY_0_name` point refers to the `xxe` directive name that corresponds to the `0` index from the array addressed by the Xml_dtd_entity filter.
-* The `POST_XML_XML_DTD_ENTITY_1_value` point refers to the `This is sample text.` directive value that corresponds to the `1` index from the array addressed by the Xml_dtd_entity filter.
+* `POST_XML_XML_DTD_ENTITY_0_name` ポイントは、Xml_dtd_entity フィルターによって指定された配列から `0` インデックスに対応する `xxe` ディレクティブ名を参照します。
+* `POST_XML_XML_DTD_ENTITY_1_value` ポイントは、Xml_dtd_entity フィルターによって指定された配列から `1` インデックスに対応する `This is sample text.` ディレクティブ値を参照します。
 
-## Xml_pi Filter
+## Xml_pi フィルター
 
-The **Xml_pi** filter refers to the array of the processing instructions defined for the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. 
+**Xml_pi** フィルターは、XMLデータの処理命令の配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。
 
-!!! info "Regular expressions in points"
-    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "ポイントの正規表現"
+    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-The Xml_pi filter can only be used in the point together with the XML parser.
+Xml_pi フィルターは、XML パーサーと一緒にポイントでのみ使用できます。
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -214,41 +215,42 @@ request with the
 </text>
 ```
 
-body, the Xml_pi filter applied to the request body together with the XML parser refers to the following array:
+というボディの場合、リクエストボディに適用された Xml_piフィルターとXMLパーサーは、次の配列を参照します：
 
-| Index  | Name           | Value                            |
+| インデックス  | 名前            | 値                               |
 |--------|----------------|----------------------------------|
 | 0      | xml-stylesheet | type="text/xsl" href="style.xsl" |
 | 1      | last-edit      | user="John" date="2019-05-11"    |
 
-In this array, each index refers to the name-value pair that corresponds with the name and the value of the data processing instruction.
-* Add the `_name` postfix at the end of the point that uses the Xml_pi filter to refer to the name of the processing instruction.
-* Add the `_value` postfix at the end of the point that uses the Xml_pi filter to refer to the value of the processing instruction.
+この配列では、各インデックスは、データ処理命令の名前と値に対応する名前-値ペアを参照します。
+
+* 処理指示の名前を参照するには、Xml_pi フィルターを使用するポイントの末尾に `_name` サフィックスを追加します。
+* 処理指示の値を参照するには、Xml_pi フィルターを使用するポイントの末尾に `_value` サフィックスを追加します。
 
 
 
-* The `POST_XML_XML_PI_0_name` point refers to the `xml-stylesheet` instruction name that corresponds to the `0` index from the array addressed by the Xml_pi filter.
-* The `POST_XML_XML_PI_1_value` point refers to the `user="John" date="2019-05-11"` instruction value that corresponds to the `1` index from the array addressed by the Xml_pi filter.
+* `POST_XML_XML_PI_0_name` ポイントは、Xml_pi フィルターによって指定された配列から `0` インデックスに対応する `xml-stylesheet` 命令名を参照します。
+* `POST_XML_XML_PI_1_value` ポイントは、Xml_pi フィルターによって指定された配列から `1` インデックスに対応する `user="John" date="2019-05-11"` 命令値を参照します。
 
-## Xml_tag Filter
+## Xml_tag フィルター
 
-The **Xml_tag** filter refers to the hash table of the XML tags from the XML data. The elements of this hash table need to be referred to by using the names of the tags. This filter can only be used in the point together with the XML parser. 
+**Xml_tag** フィルターは、XMLデータのXMLタグのハッシュテーブルを参照します。このハッシュテーブルの要素はタグの名前を使用して参照する必要があります。このフィルターは、XMLパーサーと一緒にポイントでのみ使用できます。
 
-!!! info "Regular expressions in points"
-    The tag name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "ポイントの正規表現"
+    ポイントのタグ名は [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-The tags from the XML data may also contain arrays of values. Use the [Array][link-xmltag-array] or the [Xml_tag_array][anchor6] filter to refer to the values from these arrays.
+XMLデータのタグは、値の配列も含むことがあります。これらの配列の値にアクセスするためには、[Array][link-xmltag-array] フィルターまたは [Xml_tag_array][anchor6] フィルターを使用してください。
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -263,40 +265,40 @@ request with the
 </sample>
 ```
 
-body, the Xml_tag filter applied to the request body together with the XML parser refers to the following hash table:
+というボディの場合、リクエストボディに適用された Xml_tag フィルターとXML パーサーは、次のハッシュテーブルを参照します：
 
-| Key    | Value        |
+| キー   | 値           |
 |--------|--------------|
 | text   | Sample text. |
 | sample | aaaa         |
 
-* The `POST_XML_XML_TAG_text_value` point refers to the `Sample text.` value that corresponds to the `text` key from the hash table addressed by the Xml_tag filter.
-* The `POST_XML_XML_TAG_sample_value` point refers to the `aaaa` value that corresponds to the `sample` key from the hash table addressed by the Xml_tag filter.
+* `POST_XML_XML_TAG_text_value` ポイントは、Xml_tag フィルターによって指定されたハッシュテーブルから `text` キーに対応する `Sample text.` 値を参照します。
+* `POST_XML_XML_TAG_sample_value` ポイントは、Xml_tag フィルターによって指定されたハッシュテーブルから `sample` キーに対応する `aaaa` 値を参照します。
 
-## Xml_tag_array Filter
+## Xml_tag_array フィルター
 
-The **Xml_tag_array** filter refers to the array of the tag values from the XML data. The elements of this array need to be referred to by using their indexes. The array indexing starts with `0`. This filter can only be used in the point together with the XML parser. 
+**Xml_tag_array** フィルターは、XMLデータのタグ値の配列を参照します。この配列の要素はそのインデックスを使用して参照する必要があります。配列のインデックスは `0` から始まります。このフィルターは、XMLパーサーと一緒にポイントでのみ使用できます。
 
-!!! info "Regular expressions in points"
-    The index in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "ポイントの正規表現"
+    ポイントのインデックスは [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-The [Array][link-array] filter applied to the XML data works similarly to the Xml_tag_array.
+XMLデータに適用される [Array][link-array] フィルターは、Xml_tag_arrayと同様に機能します。
 
-!!! info "The ways of addressing tag content"
-    The XML parser does not differentiate between the tag value and the first element in the tag values array.
+!!! info "タグのコンテンツの参照方法"
+    XMLパーサーは、タグ値とタグ値配列の最初の要素を区別しません。
 
-For example, the `POST_XML_XML_TAG_myTag_value` and the `POST_XML_XML_TAG_myTag_ARRAY_0_value` points refer to the same value.
+例えば、`POST_XML_XML_TAG_myTag_value` ポイントと `POST_XML_XML_TAG_myTag_ARRAY_0_value` ポイントは同じ値を参照します。
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -311,35 +313,35 @@ request with the
 </text>
 ```
 
-body, the Xml_tag_array applied to the `text` tag in the request body refers to the following array:
+というボディの場合、リクエストボディの `text` タグに適用された Xml_tag_array は、次の配列を参照します：
 
-| Index  | Value        |
+| インデックス  | 値           |
 |--------|--------------|
 | 0      | Sample text. |
 | 1      | aaaa         |
 
-* The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` point refers to the `Sample text.` value that corresponds to the `0` index from the text tag values array addressed by the Xml_tag_array filter.
-* The `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` point refers to the `aaaa` value that corresponds to the `1` index from the text tag values array addressed by the Xml_tag_array filter.
+* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_0_value` ポイントは、Xml_tag_array フィルターによって指定されたテキストタグ値配列から `0` インデックスに対応する `Sample text.` 値を参照します。
+* `POST_XML_XML_TAG_text_XML_TAG_ARRAY_1_value` ポイントは、Xml_tag_array フィルターによって指定されたテキストタグ値配列から `1` インデックスに対応する `aaaa` 値を参照します。
 
-## Xml_attr Filter
+## Xml_attr フィルター
 
-The **Xml_attr** filter refers to the hash table of the tag attributes from the XML data. The elements of this hash table need to be referred to by using the names of the attributes.
+**Xml_attr** フィルターは、XMLデータのタグ属性のハッシュテーブルを参照します。このハッシュテーブルの要素は属性の名前を使用して参照する必要があります。
 
-!!! info "Regular expressions in points"
-    The attribute name in the point can be a regular expression of the [Ruby programming language][link-ruby].  
+!!! info "ポイントの正規表現"
+    ポイントの属性名は [Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-This filter can only be used in the point together with the Xml_tag filter.
+このフィルターは、Xml_tag フィルターと一緒にポイントでのみ使用できます。
 
-**Example:** 
+**例：**
 
-For the
+以下の
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/xml
 ```
 
-request with the
+というリクエストと、
 
 ```
 <?xml version="1.0"?>
@@ -351,12 +353,12 @@ request with the
 </text>
 ```
 
-body, the Xml_attr filter applied to the `text` tag from the request body together with the XML parser and the Xml_tag filter refers to the following hash table:
+というボディの場合、リクエストボディの `text` タグに適用された Xml_attr フィルターとXMLパーサーとXml_tag フィルターは、次のハッシュテーブルを参照します：
 
-| Key      | Value         |
+| キー      | 値             |
 |----------|---------------|
 | category | informational |
 | font     | 12            |
 
-* The `POST_XML_XML_TAG_text_XML_ATTR_category_value` point refers to the `informational` value that corresponds with the `category` key from the `text` tag attributes hash table addressed by the Xml_attr filter.
-* The `POST_XML_XML_TAG_text_XML_ATTR_font_value` point refers to the `12` value that corresponds with the `font` key from the `text` tag attributes hash table addressed by the Xml_attr filter.
+* `POST_XML_XML_TAG_text_XML_ATTR_category_value` ポイントは、Xml_attr フィルターによって指定された `text` タグ属性ハッシュテーブルから `category` キーに対応する `informational` 値を参照します。
+* `POST_XML_XML_TAG_text_XML_ATTR_font_value` ポイントは、Xml_attr フィルターによって指定された `text` タグ属性ハッシュテーブルから `font` キーに対応する `12` 値を参照します。

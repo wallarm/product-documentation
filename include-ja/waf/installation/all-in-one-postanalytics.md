@@ -1,21 +1,21 @@
-To install postanalytics separately with all-in-one installer, use:
+すべてを一つにまとめたインストーラーを使ってpostanalyticsを別々にインストールするには、以下を使用します：
 
-=== "API token"
+=== "APIトークン"
     ```bash
-    # If using the x86_64 version:
+    # x86_64バージョンを使用する場合：
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
 
-    # If using the ARM64 version:
+    # ARM64バージョンを使用する場合：
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
     ```        
 
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    `WALLARM_LABELS`変数は、ノードが追加されるグループを設定します（Wallarm Console UIでのノードの論理的なグループ化に使用されます）。
 
-=== "Node token"
+=== "ノードトークン"
     ```bash
-    # If using the x86_64 version:
+    # x86_64バージョンを使用する場合：
     sudo sh wallarm-4.6.12.x86_64-glibc.sh postanalytics
 
-    # If using the ARM64 version:
+    # ARM64バージョンを使用する場合：
     sudo sh wallarm-4.6.12.aarch64-glibc.sh postanalytics
     ```

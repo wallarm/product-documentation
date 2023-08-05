@@ -1,5 +1,5 @@
 ---
-description: This document lists software vulnerabilities that FAST detects. Each entity in the list has the Wallarm code that corresponds to this vulnerability. Most vulnerabilities are also accompanied by the CWE codes.
+description: この文書は、FASTが検出するソフトウェアの脆弱性をリストアップしています。リストに含まれる各エンティティは、該当する脆弱性に対応するWallarmのコードを持っています。ほとんどの脆弱性は、CWEのコードも添えられています。
 ---
 
 [cwe-22]:   https://cwe.mitre.org/data/definitions/22.html
@@ -41,295 +41,294 @@ description: This document lists software vulnerabilities that FAST detects. Eac
 [anchor-rce]:   #remote-code-execution-rce
 [anchor-ssrf]:  #server-side-request-forgery-ssrf
 
-# Vulnerabilities That Can be Detected by FAST
+# FASTによって検出可能な脆弱性
 
-This document lists software vulnerabilities that FAST detects. Each entity in the list has the Wallarm code that corresponds to this vulnerability. Most vulnerabilities are also accompanied by the [Common Weakness Enumeration (CWE)][link-cwe] codes.
+この文書は、FASTが検出するソフトウェアの脆弱性をリストアップしています。リストに含まれる各エンティティは、該当する脆弱性に対応するWallarmのコードを持っています。ほとんどの脆弱性は、[Common Weakness Enumeration（CWE）][link-cwe]のコードも添えられています。
 
-Each entity in the list has the Wallarm code that corresponds to this vulnerability.
+リストに含まれる各エンティティは、該当する脆弱性に対応するWallarmのコードを持っています。
 
-## Vulnerabilities List
+## 脆弱性リスト
 
-### Anomaly
+### 異常
 
-**CWE code:** none<br>
-**Wallarm code:** `anomaly`
+**CWEコード:** なし<br>
+**Wallarmコード:** `anomaly`
 
-####    Description
+####    説明
 
-Anomaly is characterized by an atypical reaction of the application to a received request.
+異常は、アプリケーションが受信した要求に対する非典型的な反応によって表現されます。
 
-The detected anomaly indicates a weak and potentially vulnerable area of the application. This vulnerability allows an attacker to either directly attack the application or to collect the data before the attack.
+検出された異常は、アプリケーションの弱く、潜在的に脆弱な領域を示しています。この脆弱性は、攻撃者がアプリケーションを直接攻撃するか、攻撃前にデータを収集することを可能にします。
 
-### Attack on XML External Entity (XXE)
+### XML外部エンティティ（XXE）への攻撃
 
-**CWE code:** [CWE-611][cwe-611]<br>
-**Wallarm code:** `xxe`
+**CWEコード:** [CWE-611][cwe-611]<br>
+**Wallarmコード:** `xxe`
 
-####    Description
+####    説明
 
-The XXE vulnerability allows an attacker to inject an external entity in an XML document to be evaluated by an XML parser and then executed on the target web server.
+XXE脆弱性により、攻撃者はXMLパーサーに評価され、その後、ターゲットのWebサーバー上で実行される外部エンティティをXMLドキュメントに注入することができます。
 
-As the result of a successful attack, an attacker will be able to
-* get access to the web application's confidential data
-* scan internal data networks
-* read the files located on the web server
-* perform an [SSRF][anchor-ssrf] attack
-* perform a Denial of Service (DoS) attack
+成功した攻撃の結果として、攻撃者は以下のことが可能となります。
+* Webアプリケーションの機密データにアクセスする
+* 内部データネットワークをスキャンする
+* Webサーバー上のファイルを読む
+* [SSRF][anchor-ssrf]攻撃を行う
+* サービス拒否（DoS）攻撃を行う
 
-This vulnerability occurs due to a lack of restriction on the parsing of XML external entities in a web application.
+脆弱性は、WebアプリケーションでXML外部エンティティのパースに制限がない場合に発生します。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Disable the parsing of XML external entities when working with the XML documents supplied by a user.
-* Apply the recommendations from the [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet].
+次の対策を講じることができます：
+* ユーザーが提供するXMLドキュメントを扱う際に、XML外部エンティティのパースを無効にします。
+* [OWASP XXE Prevention Cheat Sheet][link-owasp-xxe-cheatsheet]の推奨事項を適用します。
 
 
-### Server-Side Template Injection (SSTI)
+### サーバーサイドテンプレートインジェクション（SSTI）
 
-**CWE codes:** [CWE-94][cwe-94], [CWE-159][cwe-159]<br>
-**Wallarm code:** `ssti`
+**CWEコード:** [CWE-94][cwe-94], [CWE-159][cwe-159]<br>
+**Wallarmコード:** `ssti`
 
-####    Description
+####    説明
 
-An intruder can inject an executable code into a user-filled form on a web server vulnerable to SSTI attacks so that code will be parsed and executed by the web server.
+不正アクセス者が、SSTI攻撃に対して脆弱なWebサーバー上のユーザーが入力したフォームに実行可能なコードを注入することができます。このコードは、Webサーバーによって解析および実行されます。
 
-A successful attack may render a vulnerable web server completely compromised, potentially allowing an intruder to execute arbitrary requests, explore the server's file systems, and, under certain conditions, remotely execute arbitrary code (see [“RCE attack”][anchor-rce] for details), as well as many other things.   
+成功した攻撃により、脆弱なWebサーバーが完全に侵害される可能性があります。これにより、不正アクセス者は恣意的なリクエストを実行したり、サーバーのファイルシステムを探索したり、特定の条件下で任意のコードをリモートで実行したり（[「RCE攻撃」][anchor-rce]の詳細）、その他の多くのことが可能となります。
 
-This vulnerability arises from the incorrect validation and parsing of user input.
+この脆弱性は、ユーザー入力の誤った検証とパースにより発生します。
 
-####    Remediation
+####    対策
 
-You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
+次の対策を講じることができます：すべてのユーザー入力をサニタイズおよびフィルタリングし、入力内のエンティティが実行されないようにします。
 
 
-### Cross-Site Request Forgery (CSRF)
+### クロスサイトリクエストフォージェリ（CSRF）
 
-**CWE code:** [CWE-352][cwe-352]<br>
-**Wallarm code:** `csrf`
+**CWEコード:** [CWE-352][cwe-352]<br>
+**Wallarmコード:** `csrf`
 
-####    Description
+####    説明
 
-A CSRF attack allows an intruder to send requests to a vulnerable application on behalf of a legitimate user.
+CSRF攻撃により、攻撃者は合法的なユーザーになりすまして脆弱なアプリケーションへのリクエストを送信することができます。
 
-The corresponding vulnerability occurs due to the user's browser automatically adding cookies that are set for the target domain name while performing the cross-site request. 
+該当の脆弱性は、クロスサイトリクエストを実行する際にユーザーのブラウザが自動的にターゲットのドメイン名に対して設定されたクッキーを追加するために発生します。
 
-As a result, the intruder can send a request to the vulnerable web application from a malicious website by posing as a legitimate user who is authenticated on the vulnerable site; the intruder does not even need to have access to that user's cookies.
+その結果、攻撃者は、悪意のあるウェブサイトから脆弱なウェブアプリケーションにリクエストを送信し、そのサイトで認証された合法的なユーザーとして装うことができます。攻撃者は、そのユーザーのクッキーへのアクセスを必要としません。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Employ anti-CSRF protection mechanisms, such as CSRF tokens and others.
-* Set the `SameSite` cookie attribute.
-* Apply the recommendations from the [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet].
+次の対策を講じることができます：
+* CSRFトークンなどのアンチCSRF保護メカニズムを使用します。
+* `SameSite`のクッキー属性を設定します。
+* [OWASP CSRF Prevention Cheat Sheet][link-owasp-csrf-cheatsheet]の推奨事項を適用します。
 
 
-### Cross-site Scripting (XSS)
+### クロスサイトスクリプティング（XSS）
 
-**CWE code:** [CWE-79][cwe-79]<br>
-**Wallarm code:** `xss`
+**CWEコード:** [CWE-79][cwe-79]<br>
+**Wallarmコード:** `xss`
 
-####    Description
+####    説明
 
-A cross-site scripting attack allows an intruder to execute a prepared arbitrary code in a user's browser.
+クロスサイトスクリプティング攻撃では、攻撃者がユーザーのブラウザで準備した任意のコードを実行することができます。
 
-There are a few XSS attack types:
-* Stored XSS is when a malicious code is pre-embedded in the web application's page.
+いくつかのXSS攻撃のタイプがあります：
+* ストアドXSSは、悪意のあるコードがWebアプリケーションのページに事前に組み込まれている場合です。
 
-    If the web application is vulnerable to the stored XSS attack, then it is possible for an attacker to inject a malicious code into the web application's HTML page; moreover, this code will persist and be executed by the browser of any user who requests the infected webpage.
-    
-* Reflected XSS is when an intruder tricks a user into opening a specially crafted link.      
+    もしWebアプリケーションがストアドXSS攻撃に対して脆弱である場合、攻撃者はWebアプリケーションのHTMLページに悪意のあるコードを注入することが可能です。さらに、このコードは持続して存在し、感染したウェブページを要求するすべてのユーザーのブラウザによって実行されます。
 
-* DOM-based XSS is when a JavaScript code snippet built into the web application's page parses the input and executes it as a JavaScript command due to errors in this code snippet.
+* リフレクテッドXSSは、攻撃者がユーザーに特別に作られたリンクを開かせる場合です。      
 
-Exploiting any of the vulnerabilities listed above leads to the execution of an arbitrary JavaScript code. Provided that the XSS attack was successful, an intruder may steal a user's session or credentials, make requests on behalf of the user, and perform other malicious actions. 
+* DOMベースのXSSは、Webアプリケーションのページに組み込まれたJavaScriptコードスニペットが、このコードスニペットのエラーにより、入力をパースしてJavaScriptコマンドとして実行する場合です。
 
-This class of vulnerabilities occurs due to the incorrect validation and parsing of user input.
+上記のいずれかの脆弱性を利用すると、任意のJavaScriptコードが実行されます。もしXSS攻撃が成功した場合、攻撃者はユーザーのセッションや認証情報を盗んだり、ユーザーになりすましてリクエストを送信したり、その他の悪意のある行為を行うことが可能になります。
 
+このクラスの脆弱性は、ユーザー入力の誤った検証とパースに起因しています。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* While forming the web application's pages, sanitize and escape any entities that are formed dynamically.
-* Apply the recommendations from the [OWASP XXS Prevention Cheat Sheet][link-owasp-xss-cheatsheet].
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* Webアプリケーションのページを形成する際に、動的に形成されるエンティティをサニタイズし、エスケープします。
+* [OWASP XSS Prevention Cheat Sheet][link-owasp-xss-cheatsheet]の推奨事項を適用します。
 
 
-### Insecure Direct Object References (IDOR)
+### 不適切な直接オブジェクト参照（IDOR）
 
-**CWE code:** [CWE-639][cwe-639]<br>
-**Wallarm code:** `idor`
+**CWEコード:** [CWE-639][cwe-639]<br>
+**Wallarmコード:** `idor`
 
-####    Description
+####    説明
 
-With the IDOR vulnerability, the authentication and authorization mechanisms of a vulnerable web application do not prevent a user from accessing the data or resources of another user. 
+IDORの脆弱性により、脆弱なWebアプリケーションの認証および承認メカニズムが、あるユーザーが別のユーザーのデータやリソースにアクセスするのを防ぐことができません。 
 
-This vulnerability occurs due to the web application granting the ability to access an object (e.g., a file, a directory, a database entry) by changing part of the request string and not implementing proper access control mechanisms.  
+この脆弱性は、Webアプリケーションがリクエスト文字列の一部を変更することでオブジェクト（例えば、ファイル、ディレクトリ、データベースエントリ）にアクセスする能力を付与し、適切なアクセス制御メカニズムを実装していない場合に発生します。
 
-To exploit this vulnerability, an intruder manipulates the request string to gain unauthorized access to confidential information that belongs either to the vulnerable web application or to its users. 
+この脆弱性を悪用するために、攻撃者はリクエスト文字列を操作して、脆弱なWebアプリケーションまたはそのユーザーが所有する機密情報に無許可でアクセスします。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Implement proper access control mechanisms for the web application's resources.
-* Implement role-based access control mechanisms to grant access to resources based on roles that are assigned to the users.
-* Use indirect object references.
-* Apply the recommendations from the [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet].
+次の対策を講じることができます：
+* Webアプリケーションのリソースに対する適切なアクセス制御メカニズムを実装します。
+* ロールベースのアクセス制御メカニズムを実装して、ユーザーに割り当てられたロールに基づいてリソースへのアクセスを許可します。
+* 間接的なオブジェクト参照を使用します。
+* [OWASP IDOR Prevention Cheat Sheet][link-owasp-idor-cheatsheet]の推奨事項を適用します。
 
 
-### Open Redirect
+### オープンリダイレクト
 
-**CWE code:** [CWE-601][cwe-601]<br>
-**Wallarm code:** `redir`
+**CWEコード:** [CWE-601][cwe-601]<br>
+**Wallarmコード:** `redir`
 
-####    Description
+####    説明
 
-An intruder can use an open redirect attack to redirect a user to a malicious web page via a legitimate web application.
+攻撃者は、オープンリダイレクト攻撃を利用して、ユーザーを合法的なWebアプリケーションを介して悪意のあるWebページにリダイレクトすることができます。
 
-Vulnerability to this attack occurs due to incorrect filtering of URL inputs.
+この攻撃に対する脆弱性は、URL入力の不十分なフィルタリングにより発生します。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* Notify users about all pending redirects, and ask for explicit permission.
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* すべての保留中のリダイレクトについてユーザーに通知し、明示的な許可を求めます。
 
 
-### Server-Side Request Forgery (SSRF)
+### サーバーサイドリクエストフォージェリ（SSRF）
 
-**CWE code:** [CWE-918][cwe-918]<br>
-**Wallarm code:** `ssrf`
+**CWEコード:** [CWE-918][cwe-918]<br>
+**Wallarmコード:** `ssrf`
 
-####    Description
+####    説明
 
-A successful SSRF attack may allow an intruder to make requests on behalf of the attacked web server; this potentially leads to revealing the vulnerable web application's network ports in use, scanning the internal networks, and bypassing authorization.  
+成功したSSRF攻撃により、攻撃者が攻撃されたWebサーバーに代わってリクエストを行うことができる可能性があります。これにより、脆弱なWebアプリケーションの使用中のネットワークポートの開示、内部ネットワークのスキャン、および認証の回避が可能となります。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* Apply the recommendations from the [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet].
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* [OWASP SSRF Prevention Cheat Sheet][link-owasp-ssrf-cheatsheet]の推奨事項を適用します。
 
 
-### Information Exposure
+### 情報の露出
 
-**CWE codes:** [CWE-200][cwe-200] (see also: [CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548])<br>
-**Wallarm code:** `info`
+**CWEコード:** [CWE-200][cwe-200]（参照：[CWE-209][cwe-209], [CWE-215][cwe-215], [CWE-538][cwe-538], [CWE-541][cwe-541], [CWE-548][cwe-548]）<br>
+**Wallarmコード:** `info`
 
-####    Description
+####    説明
 
-The vulnerable web application either intentionally or unintentionally discloses confidential information to a subject that is not authorized to access it. 
+脆弱なウェブアプリケーションは、故意または無意識に機密情報を、それにアクセスする権限を持たない主体に開示します。 
 
-####    Remediation
+####    対策
 
-You may follow the recommendation to prohibit a web application from having the ability to display any confidential information.
+次の対策を講じることができます：ウェブアプリケーションが任意の機密情報を表示する機能を禁止します。
 
 
-### Remote Code Execution (RCE)
+### リモートコード実行（RCE）
 
-**CWE codes:** [CWE-78][cwe-78], [CWE-94][cwe-94] and others<br>
-**Wallarm code:** `rce`
+**CWEコード:** [CWE-78][cwe-78], [CWE-94][cwe-94] など<br>
+**Wallarmコード:** `rce`
 
-####    Description
+####    説明
 
-An intruder can inject malicious code into a request to a web application, and the application will execute this code. Also, the intruder can try to execute certain commands for the operating system that the vulnerable web application runs on. 
+攻撃者はウェブアプリケーションへのリクエストに悪意のあるコードを注入し、そのアプリケーションがこのコードを実行します。また、攻撃者は、脆弱なウェブアプリケーションが動作するオペレーティングシステムで特定のコマンドを実行しようとすることもあります。
 
-Provided that an RCE attack is successful, an intruder can perform a wide range of actions, including
-* Compromising the confidentiality, accessibility, and integrity of the vulnerable web application's data.
-* Taking control of the operating system and the server that the web application runs on.
-* Other possible actions.
+成功したRCE攻撃により、攻撃者は以下のような広範な行動を行うことができます。
+* 脆弱なWebアプリケーションのデータの機密性、アクセシビリティ、および完全性を脅かす。
+* Webアプリケーションが動作するオペレーティングシステムおよびサーバーを制御する。
+* その他の可能な行動。
 
-This vulnerability occurs due to incorrect validation and parsing of user input.
+この脆弱性は、ユーザー入力の誤った検証とパースに起因しています。
 
-####    Remediation
+####    対策
 
-You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
+次の対策を講じることができます：すべてのユーザー入力をサニタイズおよびフィルタリングし、入力内のエンティティが実行されないようにします。
 
 
-### Authentication Bypass
+### 認証バイパス
 
-**CWE code:** [CWE-288][cwe-288]<br>
-**Wallarm code:** `auth`
+**CWEコード:** [CWE-288][cwe-288]<br>
+**Wallarmコード:** `auth`
 
-####    Description
+####    説明
 
-Despite having authentication mechanisms in place, a web application can have alternative authentication methods that allow either bypassing the main authentication mechanism or exploiting its weaknesses. This combination of factors may result in an attacker gaining access with user or administrator permissions.
+認証メカニズムが存在するにも関わらず、ウェブアプリケーションには主要な認証メカニズムをバイパスするか、その弱点を悪用する代替的な認証方法が存在することがあります。この要素の組み合わせが、攻撃者がユーザーまたは管理者の権限でアクセスを得る結果となる可能性があります。
 
-A successful authentication bypass attack potentially leads to disclosing users' confidential data or taking control of the vulnerable application with administrator permissions.
+成功した認証バイパス攻撃は、ユーザーの機密データの開示や、管理者権限で脆弱なアプリケーションを制御する可能性を含みます。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Improve and strengthen existing authentication mechanisms.
-* Eliminate any alternative authentication methods that may allow attackers to access an application while bypassing the required authentication procedure via pre-defined mechanisms.
-* Apply the recommendations from the [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet].
+次の対策を講じることができます：
+* 既存の認証メカニズムを改善し、強化します。
+* 攻撃者が必要な認証手続きをバイパスしてアプリケーションにアクセスできるようにする事前定義されたメカニズムを介して代替的な認証方法を排除します。
+* [OWASP Authentication Cheat Sheet][link-owasp-auth-cheatsheet] の推奨事項を適用します。
 
 
-### LDAP Injection
+### LDAPインジェクション
 
-**CWE code:** [CWE-90][cwe-90]<br>
-**Wallarm code:** `ldapi`
+**CWEコード:** [CWE-90][cwe-90]<br>
+**Wallarmコード:** `ldapi`
 
-####    Description
+####    説明
 
-LDAP injections represent a class of attacks that allow an intruder to alter LDAP search filters by modifying requests to an LDAP server.
+LDAPインジェクションは、攻撃者がLDAPサーバーへのリクエストを変更して、LDAP検索フィルタを変更することを可能にする攻撃のクラスを表します。
 
-A successful LDAP injection attack potentially grants access to the read and write operations on confidential data about LDAP users and hosts.
+成功したLDAPインジェクション攻撃は、LDAPユーザーやホストに関する機密データに対する読み取りおよび書き込み操作へのアクセスを可能にします。
 
-This vulnerability occurs due to the incorrect validation and parsing of user input.
+この脆弱性は、ユーザー入力の誤った検証とパースに起因しています。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* Apply the recommendations from the [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet].
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* [OWASP LDAP Injection Prevention Cheat Sheet][link-owasp-ldapi-cheatsheet]の推奨事項を適用します。
 
 
-### NoSQL Injection
+### NoSQLインジェクション
 
-**CWE code:** [CWE-943][cwe-943]<br>
-**Wallarm code:** `nosqli`
+**CWEコード:** [CWE-943][cwe-943]<br>
+**Wallarmコード:** `nosqli`
 
-####    Description
+####    説明
 
-Vulnerability to this attack occurs due to insufficient filtering of user input. A NoSQL injection attack is performed by injecting a specially crafted query to a NoSQL database.
+この攻撃に対する脆弱性は、ユーザー入力の不十分なフィルタリングにより発生します。NoSQLインジェクション攻撃は、NoSQLデータベースに特別に作成されたクエリを注入することによって行います。
 
-####    Remediation
+####    対策
 
-You may follow the recommendation to sanitize and filter all user input to prevent an entity in the input from being executed.
+次の対策を講じることができます：すべてのユーザー入力をサニタイズおよびフィルタリングし、入力内のエンティティが実行されないようにします。
 
 
-### Path Traversal
+### パストラバーサル
 
-**CWE code:** [CWE-22][cwe-22]<br>
-**Wallarm code:** `ptrav`
+**CWEコード:** [CWE-22][cwe-22]<br>
+**Wallarmコード:** `ptrav`
 
-####    Description
+####    説明
 
-A path traversal attack allows an intruder to access files and directories with confidential data stored in the file system where the vulnerable web application resides by altering existing paths via the web application's parameters.
+パストラバーサル攻撃により、攻撃者は既存のパスを変更して、脆弱なウェブアプリケーションが存在するファイルシステムに保存された機密データを含むファイルやディレクトリにアクセスすることができます。これは、ウェブアプリケーションのパラメータを介して行われます。
 
-Vulnerability to this attack occurs due to insufficient filtering of user input when a user requests a file or directory via the web application.
+この攻撃に対する脆弱性は、ユーザーがウェブアプリケーションを介してファイルやディレクトリを要求するときのユーザー入力の不十分なフィルタリングにより発生します。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* Additional recommendations for mitigating such attacks are available [here][link-ptrav-mitigation].
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* このような攻撃を軽減するための追加の推奨事項は[こちら][link-ptrav-mitigation]で利用可能です。
 
 
-### SQL Injection
+### SQLインジェクション
 
-**CWE code:** [CWE-89][cwe-89]<br>
-**Wallarm code:** `sqli`
+**CWEコード:** [CWE-89][cwe-89]<br>
+**Wallarmコード:** `sqli`
 
-####    Description
+####    説明
 
-Vulnerability to this attack occurs due to insufficient filtration of user input. [An SQL injection attack](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1) is performed by injecting a specially crafted query to an SQL database.
+この攻撃に対する脆弱性は、ユーザー入力の不十分なフィルタリングにより発生します。[SQLインジェクション攻撃](https://www.wallarm.com/what/structured-query-language-injection-sqli-part-1)は、SQLデータベースに特別に作られたクエリを注入することにより行います。
 
-An SQL injection attack allows an intruder to inject arbitrary SQL code into an SQL query. This potentially leads to the attacker being granted access to read and modify confidential data as well as to DBMS administrator rights. 
+SQLインジェクション攻撃により攻撃者は、SQLクエリに任意のSQLコードを注入することが可能になります。これにより、攻撃者が機密データを読み取りおよび変更するアクセスを獲得し、DBMSの管理者権限を取得する可能性があります。
 
-####    Remediation
+####    対策
 
-You may follow these recommendations:
-* Sanitize and filter all parameters that a web application receives as input to prevent an entity in the input from being executed.
-* Apply the recommendations from the [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet].
+次の対策を講じることができます：
+* Webアプリケーションが入力として受け取るすべてのパラメータをサニタイズおよびフィルタリングし、入力のエンティティが実行されないようにします。
+* [OWASP SQL Injection Prevention Cheat Sheet][link-owasp-sqli-cheatsheet]の推奨事項を適用します。

@@ -1,27 +1,27 @@
 ```
 wallarm:
   image:
-     repository: wallarm/node
-     tag: 3.0.0-3
-     pullPolicy: Always
-  # Wallarm API エンドポイント:
-  # EUクラウドの場合："api.wallarm.com"
-  # 米国クラウドの場合："us1.api.wallarm.com"
+     リポジトリ: wallarm/node
+     タグ: 3.0.0-3
+     プルポリシー: 常に
+  # WallarmのAPIエンドポイント: 
+  # EUクラウドの場合は "api.wallarm.com"
+  # USクラウドの場合は "us1.api.wallarm.com"
   wallarm_host_api: "api.wallarm.com"
-  # Deployロールを持つユーザーのユーザー名
+  # Deploy役割を持つユーザーのユーザー名
   deploy_username: "username"
-  # Deployロールを持つユーザーのパスワード
-  deploy_password: "password"
-  # コンテナが着信リクエストを受け入れるポート
-  # 値はプリンシパルアプリコンテナの概念におけるports.containerPortと同じである必要があります
+  # Deploy役割を持つユーザーのパスワード
+  deploy_password: "パスワード"
+  # コンテナが受信リクエストを受け付けるポート
+  # 値はポート.containerPort
+  # あなたのメインアプリコンテナの設定と同じでなければなりません
   app_container_port: 80
-  # リクエストフィルタリングモード:
-  # リクエスト処理を無効にするには"off"
-  # リクエストを処理するがブロックしない："monitoring"
-  # グレイリスト化されたIPからの悪意のあるリクエストをブロック："safe_blocking"
-  # すべてのリクエストを処理し、悪意のあるものをブロック："block"
-  mode: "block"
-  # リクエスト分析データのメモリ量(GB)、
-  # 推奨値はサーバーの総メモリの75％
+  # リクエストフィルトレーションモード：
+  # "off"でリクエスト処理を無効化
+  # "モニタリング"でリクエストを処理するがブロックしない
+  # "safe_blocking"で、グレイリストに登録されたIPからの悪意のあるリクエストをブロック
+  # "block"で全てのリクエストを処理し、悪意のあるものはブロック
+  モード: "block"
+  # リクエスト分析データ用のメモリ容量（GB）
   tarantool_memory_gb: 2
 ```

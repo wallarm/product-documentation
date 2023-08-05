@@ -1,4 +1,4 @@
-[img-custom-dsl-slider]:    ../../../images/fast/operations/en/test-policy/policy-editor/custom-slider.png
+[img-custom-dsl-slider]:    ../../../images/fast/operations/ja/test-policy/policy-editor/custom-slider.png
 
 [link-user-extensions]:     ../../dsl/intro.md
 [link-connect-extensions]:  ../../dsl/using-extension.md
@@ -14,32 +14,32 @@
 [vuln-xxe]:                 ../../VULN-LIST.md#attack-on-xml-external-entity-xxe
 
 
-#   Configuration of Vulnerability Detection Process
+#   脆弱性検出プロセスの設定
 
-FAST detects [vulnerabilities][gl-vuln] using the following options:
+FASTは次のオプションを使用して[脆弱性][gl-vuln]を検出します:
 
-* Built-in FAST extensions
-* [Custom extensions][link-user-extensions]
+* 組み込みのFASTエクステンション
+* [カスタムエクステンション][link-user-extensions]
 
-    !!! info "Custom extensions"
-        To use custom extensions, please [connect][link-connect-extensions] them to the FAST node.
+    !!! info "カスタムエクステンション"
+        カスタムエクステンションを使用するには、それらをFASTノードに[接続][link-connect-extensions]してください。
 
-You can control the way of detecting vulnerabilities in the application in the following ways:
+アプリケーションの脆弱性検出方法は次のように制御できます:
 
-* If you want to perform tests using the built-in FAST extension, then tick the vulnerability checkboxes you want to run tests on.
-* If you want to perform tests using only custom extensions excluding the built-in FAST extensions, then untick all the checkboxes or activate the **Use only custom DSL** switch and select vulnerabilities from the list.
+* 組み込みのFASTエクステンションを使用してテストを実行したい場合は、テストを実行したい脆弱性のチェックボックスをチェックします。
+* 組み込みのFASTエクステンションを除外してカスタムエクステンションのみを使用してテストを実行したい場合は、すべてのチェックボックスのチェックを外すか、**カスタムDSLのみを使用する** スイッチをアクティブにして、リストから脆弱性を選択します。
 
-    ![!The custom DSL switch][img-custom-dsl-slider]
+    ![カスタムDSLスイッチ][img-custom-dsl-slider]
 
-    Please note that if the **Use only custom DSL** switch is activated, then the built-in FAST extensions and [FAST fuzzer][doc-fuzzer] will be disabled. If the FAST fuzzer is enabled, then the **Use only custom DSL** switch will become inactive again.
+    **カスタムDSLのみを使用する** スイッチがアクティブになっている場合、組み込みのFASTエクステンションと[FASTのfuzzer][doc-fuzzer]は無効になります。FASTのfuzzerが有効になっていると、**カスタムDSLのみを使用する** スイッチは再度非アクティブになります。
 
-!!! info "Basic vulnerabilities"
-    When creating a policy, the most typical vulnerabilities that can be detected in applications are selected by default:
+!!! info "基本的な脆弱性"
+    ポリシーを作成する際には、アプリケーションで検出できる最も典型的な脆弱性がデフォルトで選択されています:
 
-    * [path traversal (PTRAV)][vuln-ptrav],
-    * [remote code execution (RCE)][vuln-rce],
-    * [SQL injection (SQLi)][vuln-sqli],
-    * [cross-site scripting (XSS)][vuln-xss],
-    * [vulnerability to attack on XML external entity (XXE)][vuln-xxe].
+    * [パストラバーサル（PTRAV）][vuln-ptrav]
+    * [リモートコード実行（RCE）][vuln-rce]
+    * [SQLインジェクション（SQLi）][vuln-sqli]
+    * [クロスサイトスクリプティング（XSS）][vuln-xss]
+    * [XML外部エンティティへの攻撃に対する脆弱性（XXE）][vuln-xxe]
     
-    If you use custom policies, you can disable testing the application for a specific vulnerability by unticking the corresponding checkbox at any moment.
+    カスタムポリシーを使用している場合、特定の脆弱性のアプリケーションテストを無効にするには、対応するチェックボックスのチェックをいつでも外すことができます。

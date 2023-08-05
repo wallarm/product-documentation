@@ -6,32 +6,32 @@
 
 [doc-integration-overview]:         integration-overview.md
 
-#   Waiting for the Testing to Finish
+#   テストの終了を待つ
 
-!!! info "Chapter Prerequisites"
-    To follow the steps described in this chapter, you need to obtain:
+!!! info "章の前提条件"
+    この章で説明されている手順を行うためには、以下のものを取得する必要があります。
     
-    * a [token][doc-get-token].
-    * an [identifier][doc-get-testrun-id] of a test run.
+    * [トークン][doc-get-token]。
+    * テストの実行[識別子][doc-get-testrun-id]。
     
-    The following values are used as example values throughout the chapter:
-        
-    * `token_Qwe12345` as a token.
-    * `tr_1234` as an identifier of a test run.
+    以下の値は、章全体を通じて例として使用されます。
+    
+    * トークンとしての`token_Qwe12345`
+    * テスト実行の識別子としての`tr_1234`
 
-The processes of creating and executing the test requests begin when the first baseline request is recorded and could take a significant amount of time after the process of baseline requests recording has been stopped. You could check the state of the test run periodically to get some insights into the performing processes.
+最初の基準リクエストが記録された時点でテストリクエストの作成と実行のプロセスが始まり、基準リクエストの記録プロセクスが停止された後も相当な時間を要する可能性があります。テスト実行の状態を定期的に確認することで、実行中のプロセスについての洞察を得ることができます。
 
-After executing [the API call][doc-get-testrun-status], you will get a response from an API server with information regarding the test run state.
+[APIコール][doc-get-testrun-status]を実行した後、APIサーバからテスト実行の状態に関する情報がレスポンスとして返されます。
 
-It is possible to make a conclusion on the presence or absence of vulnerabilities in the application on the basis of the `state` and `vulns` parameters’ values.
+`state`と`vulns`パラメータの値に基づいて、アプリケーションに脆弱性が存在するかどうかの結論を導き出すことが可能です。
 
-??? info "Example"
-    A process, that is querying the test run state by making the API call periodically, could terminate with the exit code `0` if there was the `state:passed` parameter found in the API server’s response and with the exit code `1` if there was the `state:failed` parameter found in the API server’s response.
+??? info "例"
+    テスト実行の状態を問い合わせるためにAPIコールを定期的に発行するプロセスは、APIサーバのレスポンスで`state:passed`パラメータが見つかった場合には終了コード `0`で終了し、`state:failed`パラメータが見つかった場合には終了コード `1`で終了する場合があります。
 
-    The exit code value could be employed by the CI/CD tool in order to calculate the overall CI/CD job’s status. 
+    終了コードの値は、CI/CDツールが全体のCI/CDジョブのステータスを算出するために利用可能です。
 
-    If a FAST node is deployed via [CI mode](integration-overview-ci-mode.md), then FAST node's exit code might be sufficient to interpret the overall CI/CD job’s status. 
+    FASTノードが[CIモード](integration-overview-ci-mode.md)でデプロイされている場合は、FASTノードの終了コードだけで全体のCI/CDジョブの状態を判断するのに十分かもしれません。
 
-    It is possible to establish even more complex logic of how the FAST-enabled CI/CD job should interact with the CI/CD tool. To do so, use other pieces of data that could be found in the API server’s response.
+    FASTを有効化したCI/CDジョブがCI/CDツールとどのようにやりとりを行うべきかのより複雑なロジックを構築することも可能です。その方法として、APIサーバのレスポンスで見つけることができる他のデータを用いることができます。
 
- You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.
+ 必要に応じて、[「FASTによるCI/CDワークフロー」][doc-integration-overview]文書を参照してください。

@@ -1,6 +1,3 @@
-Wallarmのドキュメントを英語から日本語に翻訳します:
-
-```markdown
 					=== "Ubuntu 14.04"
     ```bash
     sudo service nrpe restart
@@ -9,4 +6,3 @@ Wallarmのドキュメントを英語から日本語に翻訳します:
     ```bash
     sudo systemctl restart nrpe
     ```
-```
