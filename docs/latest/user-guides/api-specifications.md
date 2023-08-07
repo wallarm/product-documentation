@@ -2,7 +2,7 @@
 
 In the **API Specifications** section of the Wallarm Console UI, you can keep your API specifications which Wallarm uses to uncover shadow and orphan APIs. This article gives an information on how to use this section.
 
-**Administrators** and **Global administrators** can add, remove and download specifications and change settings of shadow API detection. Users of other [roles](../user-guides/settings/users.md#user-roles) can only view the list of uploaded specifications.
+**Administrators** and **Global administrators** can add, remove and download specifications and change settings of shadow and orphan API detection. Users of other [roles](../user-guides/settings/users.md#user-roles) can only view the list of uploaded specifications.
 
 ## Revealing shadow and orphan API
 
