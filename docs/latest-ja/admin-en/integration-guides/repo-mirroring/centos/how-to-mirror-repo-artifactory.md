@@ -9,100 +9,105 @@
 
 [doc-installation-from-artifactory]:    how-to-use-mirrored-repo.md
 
-[anchor-fetch-repo]:                    #1-wallarm-リポジトリのローカルコピーを作成する
-[anchor-setup-repo-artifactory]:        #2-JFrog-アーティファクトリーでローカル-RPMリポジトリを作成する
-[anchor-import-repo]:                   #3-ローカル-Wallarm-リポジトリのコピーを-JFrog-artifactoryにインポートする
+[anchor-fetch-repo]:                    #1-ウォールアームリポジトリのローカルコピーを作成する
+[anchor-setup-repo-artifactory]:        #2-JFrog Artifactory内でローカルRPMリポジトリを作成する
+[anchor-import-repo]:                   #3-ローカルのウォールアームリポジトリをJFrog Artifactoryに取り込む
 
-#   WallarmリポジトリをCentOS用にミラーリングする方法
 
-あなたは、インフラのすべてのフィルタノードが同じソースからデプロイされ、同じバージョン番号であることを確認するために、Wallarmリポジトリのローカルコピー（*ミラー*とも呼ばれる）を作成して使用することができます。
+#   CentOS用ウォールアームリポジトリのミラーリング方法
 
-このドキュメントでは、JFrog Artifactoryリポジトリマネージャを使用して、CentOS 7サーバ用のWallarmリポジトリのミラーリングを行う手順について説明します。
+ウォールアームリポジトリのローカルコピー（*ミラー*とも呼ばれます）を作成して利用することで、インフラストラクチャ内のすべてのフィルターノードが単一のソースからデプロイされ、同じバージョン番号になることを確認できます。
 
-!!! info "前提条件"
-    以下の条件が満たされていることを確認してから、次のステップに進んでください。
+このドキュメントでは、JFrog Artifactoryリポジトリマネージャを介したCentOS 7サーバー用ウォールアームリポジトリのミラーリングプロセスを説明します。
 
-    *   サーバに以下のコンポーネントがインストールされています。
 
+!!! info "事前準備"
+    以下の条件を満たしてから次のステップを進めてください：
+    
+    *   サーバーに以下のコンポーネントがインストールされています：
+    
         *   CentOS 7オペレーティングシステム
-        *   `yum-utils`および`epel-release`パッケージ
-        *   RPMリポジトリの作成が可能なJFrog Artifactoryソフトウェア（[インストール手順][link-jfrog-installation]）
+        *   `yum-utils`と`epel-release`パッケージ
+        *   RPMリポジトリを作成可能なJFrog Artifactoryソフトウェア ([インストール手順][link-jfrog-installation])
+            
+            JFrog Artifactoryのエディションと機能については[こちら][link-jfrog-comparison-matrix]を参照してください。
+        
+    *   JFrog Artifactoryが稼働しています。
+    *   サーバーはインターネット接続があります。
 
-            JFrog Artifactoryのエディションと機能について[こちら][link-jfrog-comparison-matrix]で詳細を確認してください。
 
-    *   JFrog Artifactoryが起動して稼働しています。
-    *   サーバーはインターネットに接続されています。
+ウォールアームリポジトリのミラーリングには、以下が含まれます
+1.  [ウォールアームリポジトリのローカルコピーを作成する][anchor-fetch-repo]
+2.  [JFrog Artifactory内でローカルRPMリポジトリを作成する][anchor-setup-repo-artifactory]
+3.  [ローカルのウォールアームリポジトリをJFrog Artifactoryに取り込む][anchor-import-repo]
 
-Wallarmリポジトリのミラーリングは、次のような構成になります。
-1.  [Wallarmリポジトリのローカルコピーを作成する][anchor-fetch-repo]
-2.  [JFrog ArtifactoryでローカルRPMリポジトリを作成する][anchor-setup-repo-artifactory]
-3.  [ローカルのWallarmリポジトリのコピーをJFrog Artifactoryにインポートする][anchor-import-repo]
+##  1.  ウォールアームリポジトリのローカルコピーを作成する
 
-##  1.  Wallarmリポジトリのローカルコピーを作成する
-
-Wallarmリポジトリのローカルコピーを作成するには、以下の手順を実行します。
-1.  次のコマンドを実行して、Wallarmリポジトリを追加します。
+ウォールアームリポジトリのローカルコピーを作成するには、以下の手順を実行します：
+1.  以下のコマンドを実行してウォールアームリポジトリを追加します：
 
     ```bash
-    sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/4.4/x86_64/wallarm-node-repo-4.4-0.el7.noarch.rpm
+    sudo rpm --install https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
     ```
 
-2.  一時ディレクトリ（例：`/tmp`）に移動し、次のコマンドを実行して、Wallarmリポジトリをこのディレクトリに同期させます。
+2.  一時ディレクトリ（例：`/tmp`）へ移動し、以下のコマンドを実行してこのディレクトリにウォールアームリポジトリを同期させます：
 
     ```bash
     reposync -r wallarm-node -p .
     ```
 
-`reposync`コマンドが正常に終了すると、Wallarmパッケージが一時ディレクトリ（例：`/tmp/wallarm-node/Packages`）の`wallarm-node/Packages`サブディレクトリに配置されます。
+`reposync`コマンドが正常に終了した場合、ウォールアームパッケージは一時ディレクトリの`wallarm-node/Packages`サブディレクトリ（例：`/tmp/wallarm-node/Packages`）に置かれます。 
 
-##  2.  JFrog ArtifactoryでローカルRPMリポジトリを作成する
 
-JFrog ArtifactoryでローカルRPMリポジトリを作成するには、以下の手順を実行します。
-1.  ドメイン名またはIPアドレス（例：`http://jfrog.example.local:8081/artifactory`）を使用して、JFrog Artifactory Web UIに移動します。
+##  2.  JFrog Artifactory内でローカルRPMリポジトリを作成する
 
-    管理者アカウントでWeb UIにログインします。
+JFrog Artifactory内でローカルRPMリポジトリを作成するには、以下の手順を実行します：
+1.  ドメイン名またはIPアドレス（例：`http://jfrog.example.local:8081/artifactory`）でJFrog ArtifactoryウェブUIへ移動します。
 
-2.  *Admin*メニューエントリをクリックし、*Repositories*セクションの*Local*リンクをクリックします。
+    管理者アカウントでウェブUIにログインします。
 
-3.  *New*ボタンをクリックして、新しいローカルリポジトリを作成します。
+2.  *Admin*メニュー項目をクリックし、その後*Repositories*セクションの*Local*リンクをクリックします。
 
-    ![!新しいローカルリポジトリを作成する][img-new-local-repo]
+3.  新しいローカルリポジトリを作成するために*New*ボタンをクリックします。
 
-4.  「RPM」パッケージタイプを選択します。
+    ![!ローカルリポジトリの新規作成][img-new-local-repo]
 
-5.  *Repository Key*フィールドにリポジトリ名を入力します。この名前は、JFrog Artifactory内で一意である必要があります。 [Artifactoryリポジトリネーミングのベストプラクティス][link-artifactory-naming-agreement]に準拠する名前を選択することをお勧めします（例：`wallarm-centos-upload-local`）。
+4.  パッケージタイプに“RPM”を選択します。
 
-    *Repository*レイアウトのドロップダウンリストから「maven-2-default」レイアウトを選択してください。
+5.  *Repository Key*フィールドにリポジトリ名を入力します。この名前はJFrog Artifactory内で一意である必要があります。[Artifactoryリポジトリの命名規則][link-artifactory-naming-agreement]に従った名前の選択をお勧めします（例：`wallarm-centos-upload-local`）。
 
+    *Repository* Layoutのドロップダウンリストから“maven-2-default”レイアウトを選択します。
+    
     他の設定はそのままにしておいて構いません。
 
-    *Save & Finish*ボタンをクリックして、ローカルArtifactoryリポジトリを作成します。
-
+    ローカルArtifactoryリポジトリを作成するために*Save & Finish*ボタンをクリックします。
+    
     ![!リポジトリ設定][img-artifactory-repo-settings]
 
-    これで、新しく作成されたリポジトリがローカルリポジトリのリストに表示されるようになります。
+    これで、新しく作成されたリポジトリがローカルリポジトリリストに表示されるはずです。
 
-Wallarmリポジトリのミラーリングを完了するには、ローカルArtifactoryリポジトリに[同期したパッケージをインポートします][anchor-fetch-repo]。
-
-##  3.  ローカルWallarmリポジトリのコピーをJFrog Artifactoryにインポートする
-
-ArtifactoryローカルRPMリポジトリにWallarmパッケージをインポートするには、以下の手順を実行します。
-1.  管理者アカウントでJFrog Artifactory Web UIにログインします。
-
-2.  *Admin*メニューエントリをクリックし、*Import & Export*セクションの*Repositories*リンクをクリックします。
-
-3.  *Import Repository from Path*セクションで、*Repository from Path*ドロップダウンリストから、[以前に作成した][anchor-setup-repo-artifactory]ローカルリポジトリを選択します。
-
-4.  *Browse*ボタンをクリックし、[以前に作成した][anchor-fetch-repo]Wallarmパッケージが入ったディレクトリを選択します。
-
-5.  *Import*ボタンをクリックして、ディレクトリからWallarmパッケージをインポートします。
-
-    ![!パッケージをインポートする][img-import-into-artifactory]
-
-6.  *Artifacts*メニューエントリをクリックし、インポートされたWallarmパッケージが、目的のローカルリポジトリに存在することを確認します。
-
-    ![!リポジトリのパッケージ][img-local-repo-ok]
+ウォールアームリポジトリのミラーリングを完了するには、同期パッケージをローカルArtifactoryリポジトリに[取り込みます][anchor-fetch-repo]。
 
 
+##  3.  ローカルのウォールアームリポジトリをJFrog Artifactoryに取り込む
 
-これで、Wallarmリポジトリのローカルミラーを使用して[Wallarmフィルタノードをデプロイできます。][doc-installation-from-artifactory]
+ArtifactoryのローカルRPMリポジトリにウォールアームパッケージを取り込むには、以下の手順を実行します：
+1.  管理者アカウントでJFrog ArtifactoryウェブUIにログインします。
+
+2.  *Admin*メニュー項目をクリックし、その後*Import & Export*セクションの*Repositories*リンクをクリックします。
+
+3.  *Import Repository from Path*セクションで、*Repository from Path*ドロップダウンリストから先ほど[こちらで作成した][anchor-setup-repo-artifactory]ローカルリポジトリを選択します。
+
+4.  *Browse*ボタンをクリックし、先ほど[作成した][anchor-fetch-repo]ウォールアームパッケージがあるディレクトリを選択します。
+
+5.  *Import*ボタンをクリックしてディレクトリからウォールアームパッケージを取り込みます。
+
+    ![!パッケージの取り込み][img-import-into-artifactory]
+    
+6.  *Artifacts*メニュー項目をクリックし、所望のローカルリポジトリにインポートしたウォールアームパッケージが存在することを確認します。
+
+    ![!リポジトリ内のパッケージ][img-local-repo-ok]
+    
+
+
+これで、ウォールアームリポジトリのローカルミラーを使用して[Wallarmフィルターノードをデプロイできるようになります][doc-installation-from-artifactory]。

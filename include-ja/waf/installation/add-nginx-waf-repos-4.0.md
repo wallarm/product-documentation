@@ -1,4 +1,4 @@
-					=== "Debian 10.x (buster)"
+=== "Debian 10.x (buster)"
     ```bash
     sudo apt install dirmngr
     curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
@@ -34,12 +34,12 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
     ```
-=== "Amazon Linux 2.0.2021x以下"
+=== "Amazon Linux 2.0.2021x 以下"
     ```bash
     sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.0/x86_64/wallarm-node-repo-4-0.el7.noarch.rpm
     ```
-=== "AlmaLinux、Rocky LinuxまたはOracle Linux 8.x"
+=== "AlmaLinux、Rocky Linux、または Oracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.0/x86_64/wallarm-node-repo-4-0.el8.noarch.rpm

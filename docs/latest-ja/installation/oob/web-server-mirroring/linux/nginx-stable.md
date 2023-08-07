@@ -28,57 +28,59 @@
 [web-server-mirroring-examples]:    ../overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
-# Wallarm OOB Dynamic ModuleのLinuxパッケージを使用してNGINX Stableにインストールします
+# NGINX Stable用のWallarm OOB Dynamic ModuleをLinuxパッケージを使用してインストールする
 
-これらの指示は、nginx.orgからのNGINX `stable`用のLinuxパッケージを使用してWallarmをOOB（[Out Of Band][../overview.md]）動的モジュールとしてインストールする手順を説明します。
+これらの指示は、nginx.orgからのNGINX `stable`のLinuxパッケージを使用して、Wallarmを[OOB](../overview.md) ダイナミックモジュールとしてインストールする手順を説明しています。
 
 Wallarmは次のオペレーティングシステムをサポートしています：
 
-* Debian 11.x（bullseye）
-* Ubuntu 18.04 LTS（bionic）
-* Ubuntu 20.04 LTS（focal）
-* Ubuntu 22.04 LTS（jammy）
+* Debian 11.x (bullseye)
+* Ubuntu 18.04 LTS (bionic)
+* Ubuntu 20.04 LTS (focal)
+* Ubuntu 22.04 LTS (jammy)
 * CentOS 7.x
-* Amazon Linux 2.0.2021x以降
+* Amazon Linux 2.0.2021xおよび以下のバージョン
 * AlmaLinux、Rocky Linux、Oracle Linux 8.x
 
---8<-- "../include-ja/waf/installation/linux-packages/requirements-nginx-stable.md"
+## 要件
 
---8<-- "../include-ja/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
+--8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 
-## 6. Wallarmがトラフィックを分析できるように設定します
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
 
---8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-linux.md"
+## 6. Wallarmにトラフィック分析を許可する
 
-## 7. NGINXを再起動します
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
 
---8<-- "../include-ja/waf/root_perm_info.md"
+## 7. NGINXを再起動する
 
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
+--8<-- "../include/waf/root_perm_info.md"
 
-## 8. Wallarmインスタンスへのトラフィック送信を設定します
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
---8<-- "../include-ja/waf/installation/sending-traffic-to-node-oob.md"
+## 8. トラフィックの送信先をWallarmのインスタンスに設定する
 
-## 9. Wallarmノードの操作をテストします
+--8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
 
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
+## 9. Wallarmノードの動作をテストする
 
-## 10. デプロイ済みのソリューションを微調整します
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-デフォルト設定でNGINX `stable`用にインストールされた動的Wallarmモジュールです。デプロイメント後にフィルタリングノードに追加の設定が必要な場合があります。
+## 10. 導入したソリューションの詳細設定
 
-Wallarmの設定は、[NGINXのディレクティブ](../../../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードのマシン上の次のファイルに設定する必要があります：
+デフォルト設定のダイナミックWallarmモジュールはNGINX `stable`にインストールされています。フィルタリングノードは、デプロイした後にいくつかの追加設定が必要な場合があります。
 
-* NGINXの設定である`/etc/nginx/conf.d/default.conf`
-* グローバルフィルタリングノード設定である`/etc/nginx/conf.d/wallarm.conf`
+Wallarmの設定は、[NGINXのディレクティブ](../../../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードがあるマシンの次のファイルに設定するべきです：
 
-    このファイルは、すべてのドメインに適用される設定に使用されます。異なるドメイングループに異なる設定を適用するには、`default.conf`ファイルを使用するか、各ドメイングループ用の新しい設定ファイル（例えば、`example.com.conf`と`test.com.conf`）を作成します。NGINXの設定ファイルについての詳しい情報は、[公式NGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)で利用可能です。
-* Wallarmノードの監視設定がある`/etc/nginx/conf.d/wallarm-status.conf`。詳しい説明は[リンク][wallarm-status-instr]内にあります
-* Tarantoolデータベースの設定がある`/etc/default/wallarm-tarantool`または`/etc/sysconfig/wallarm-tarantool`
+* NGINX設定の`/etc/nginx/conf.d/default.conf`
+* グローバルなフィルタリングノード設定の`/etc/nginx/conf.d/wallarm.conf`
 
-以下は、必要に応じて適用できる典型的な設定のいくつかです：
+    このファイルはすべてのドメインに適用される設定に使われます。異なる設定を異なるドメイングループに適用するには、`default.conf`ファイルを使用するか、それぞれのドメイングループ(`例：example.com.conf`と`test.com.conf`)の新しい設定ファイルを作成します。NGINX設定ファイルに関するより詳しい情報は、[公式NGINX文書](https://nginx.org/en/docs/beginners_guide.html)で利用できます。
+* Wallarmノード監視設定の`/etc/nginx/conf.d/wallarm-status.conf`。詳細な説明は[リンク][wallarm-status-instr]で利用できます。
+* Tarantoolデータベース設定の`/etc/default/wallarm-tarantool`または`/etc/sysconfig/wallarm-tarantool`
 
---8<-- "../include-ja/waf/installation/linux-packages/common-customization-options.md"
+以下に必要に応じて適用できる典型的な設定がいくつかあります：
 
-* [NGINXにおける動的DNS解決の設定][dynamic-dns-resolution-nginx]
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+
+* [NGINXでの動的DNS解決の設定][dynamic-dns-resolution-nginx]

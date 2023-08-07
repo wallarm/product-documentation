@@ -1,9 +1,9 @@
-!!! info "いくつかのWallarmノードをデプロイする場合"
-    環境にデプロイされたすべてのWallarmノードは、**同じバージョン**である必要があります。別々のサーバーにインストールされたpostanalyticsモジュールも**同じバージョン**である必要があります。
+					!!! info "複数のWallarmノードをデプロイする場合"
+    あなたの環境にデプロイされるすべてのWallarmノードは、全て**同じバージョン**である必要があります。分散したサーバーにインストールされたpostanalyticsモジュールも、**同じバージョン**でなければなりません。
 
-    追加ノードのインストール前に、そのバージョンが既にデプロイされているモジュールのバージョンと一致することを確認してください。デプロイされたモジュールのバージョンが[廃止または間もなく廃止される予定（`4.0`以下）][versioning-policy]の場合は、すべてのモジュールを最新バージョンにアップグレードしてください。
+    追加ノードのインストール前に、すでにデプロイされているモジュールのバージョンと一致することを確認してください。デプロイ済みモジュールのバージョンが[非推奨、または近く非推奨になる(`4.0`以下)][versioning-policy]場合、すべてのモジュールを最新バージョンにアップグレードしてください。
 
-    同じサーバーにインストールされたフィルタリングノードとpostanalyticsのバージョンを確認するには：
+    同じサーバーにインストールされたフィルタリングノードとpostanalyticsのインストールバージョンを確認するには：
 
     === "Debian"
         ```bash
@@ -13,31 +13,31 @@
         ```bash
         apt list wallarm-node
         ```
-    === "CentOSまたはAmazon Linux 2.0.2021x以前"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
         yum list wallarm-node
         ```
 
-    異なるサーバーにインストールされたフィルタリングノードとpostanalyticsのバージョンを確認するには：
+    別のサーバーにインストールされたフィルタリングノードとpostanalyticsのバージョンを確認するには：
 
     === "Debian"
         ```bash
-        # Wallarmフィルタリングノードがインストールされたサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーから実行
         apt list wallarm-node-nginx
-        # postanalyticsがインストールされたサーバーから実行
+        # postanalyticsがインストールされているサーバーから実行
         apt list wallarm-node-tarantool
         ```
     === "Ubuntu"
         ```bash
-        # Wallarmフィルタリングノードがインストールされたサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーから実行
         apt list wallarm-node-nginx
-        # postanalyticsがインストールされたサーバーから実行
+        # postanalyticsがインストールされているサーバーから実行
         apt list wallarm-node-tarantool
         ```
-    === "CentOSまたはAmazon Linux 2.0.2021x以前"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
-        # Wallarmフィルタリングノードがインストールされたサーバーから実行
+        # Wallarmフィルタリングノードがインストールされているサーバーから実行
         yum list wallarm-node-nginx
-        # postanalyticsがインストールされたサーバーから実行
+        # postanalyticsがインストールされているサーバーから実行
         yum list wallarm-node-tarantool
         ```

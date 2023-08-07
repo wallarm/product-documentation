@@ -1,50 +1,30 @@
-GCP上でのDEBまたはRPMパッケージからのフィルタリングノードのインストール
-# 
+# GCP上でDEBまたはRPMパッケージからフィルタリングノードのインストール
 
-このクイックガイドでは、別のGoogle Engineインスタンス上のソースパッケージからフィルタリングノードをインストールする方法を説明します。このガイドに従うことで、サポートされるオペレーティングシステムイメージからインスタンスを作成し、このオペレーティングシステムにWallarmフィルタリングノードをインストールします。
+このクイックガイドは、別のGoogle Engineインスタンスでソースパッケージからフィルタリングノードをインストールする手順を提供します。このガイドに従うことで、サポートされているオペレーティングシステムのイメージからインスタンスを作成し、そのオペレーティングシステムにWallarmフィルタリングノードをインストールします。
 
-!!! warning "手順の制限事項"
-    これらの手順では、ロードバランシングおよびノードのオートスケーリングの設定はカバーされていません。これらのコンポーネントを自分で設定する場合は、[GCPの手順](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling)を参照することをお勧めします。
+!!! warning "指示の制限"
+    これらの指示では、ロードバランシングとノードのオートスケール化の設定はカバーされていません。これらのコンポーネントを自分で設定する場合は、[GCPの指示](https://cloud.google.com/compute/docs/load-balancing-and-autoscaling)を見直すことをおすすめします。
 
 ## 要件
 
 * アクティブなGCPアカウント
-* [GCPプロジェクトが作成済み](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-* Wallarm Consoleの**Administrator**ロールを持つアカウントへのアクセス、[US Cloud](https://us1.my.wallarm.com/)または[EU Cloud](https://my.wallarm.com/)
+* [作成済みのGCPプロジェクト](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
+* Wallarm Consoleで**管理者**ロールを持つアカウントへのアクセス ([US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/))
 
 ## フィルタリングノードのインストールオプション
 
-フィルタリングノードは、Webサーバーまたは[APIゲートウェイ](https://www.wallarm.com/what/the-concept-of-an-api-gateway)モジュールとして動作するため、オペレーティングシステムにフィルタリングノードパッケージと一緒にWebサーバーやAPIゲートウェイパッケージをインストールする必要があります。
+フィルタリングノードは、ウェブサーバーまたは [APIゲートウェイ](https://www.wallarm.com/what/the-concept-of-an-api-gateway) モジュールとして動作するため、フィルタリングノードのパッケージと共に、ウェブサーバーまたはAPIゲートウェイのパッケージをオペレーティングシステムにインストールする必要があります。
 
-以下のリストからアプリケーションアーキテクチャに最適なWebサーバーやAPIゲートウェイを選択できます:
+以下のリストから、アプリケーションアーキテクチャに最も適しているウェブサーバーまたはAPIゲートウェイを選択できます：
 
-* [フィルタリングノードをNGINX Stableモジュールとしてインストールする](#nginx-stableモジュールとしてフィルタリングノードをインストールする)
-* [フィルタリングノードをNGINX Plusモジュールとしてインストールする](#nginx-plusモジュールとしてフィルタリングノードをインストールする)
+* [NGINX Stableモジュールとしてのフィルタリングノードのインストール](#nginx-stableモジュールとしてのフィルタリングノードのインストール)
+* [NGINX Plusモジュールとしてのフィルタリングノードのインストール](#nginx-plusモジュールとしてのフィルタリングノードのインストール)
 
-## NGINX Stableモジュールとしてフィルタリングノードをインストールする
+## NGINX Stableモジュールとしてのフィルタリングノードのインストール
 
-Google EngineインスタンスにNGINX Stableモジュールをフィルタリングノードとしてインストールするには：
+Google EngineインスタンスでNGINX Stableモジュールとしてフィルタリングノードをインストールするには：
 
-1. Wallarmがサポートしているオペレーティングシステムイメージから、[GCPの手順](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage)に従ってGoogle Engineインスタンスを作成します:
-
-    * Debian 11.x Bullseye
-    * Ubuntu 18.04 Bionic
-    * Ubuntu 20.04 Focal
-    * Ubuntu 22.04 Jammy
-    * CentOS 7.x
-    * AlmaLinux
-    * Rocky Linux
-    * Oracle Linux 8.x
-2. [GCPの手順](https://cloud.google.com/compute/docs/instances/connecting-to-instance)に従って作成したインスタンスに接続します。
-3. インスタンス内で、NGINX StableパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
-
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
-
-## NGINX Plusモジュールとしてフィルタリングノードをインストールする
-
-Google EngineインスタンスにNGINX Plusモジュールをフィルタリングノードとしてインストールするには：
-
-1. Wallarmがサポートしているオペレーティングシステムイメージから、[GCPの手順](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage)に従ってGoogle Engineインスタンスを作成します:
+1. WallarmがサポートするオペレーティングシステムのイメージからGoogle Engineインスタンスを作成します。以下に従って操作します：[GCPの指示](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage)：
 
     * Debian 11.x Bullseye
     * Ubuntu 18.04 Bionic
@@ -54,7 +34,26 @@ Google EngineインスタンスにNGINX Plusモジュールをフィルタリン
     * AlmaLinux
     * Rocky Linux
     * Oracle Linux 8.x
-2. [GCPの手順](https://cloud.google.com/compute/docs/instances/connecting-to-instance)に従って作成したインスタンスに接続します。
-3. インスタンス内で、NGINX PlusパッケージとWallarmフィルタリングノードパッケージを[Wallarmの手順](../../../installation/nginx/dynamic-module.md)に従ってインストールします。
+2. 作成したインスタンスに接続します。以下に従って操作します： [GCPの指示](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
+3. インスタンス内で、NGINX StableのパッケージとWallarmフィルタリングノードのパッケージをインストールします。以下に従って操作します： [Wallarmの指示](../../../installation/nginx/dynamic-module.md).
 
-別のインスタンスでpostanalyticsモジュールをインストールするには、手順1-2を繰り返し、[Wallarmの手順](../../../admin-en/installation-postanalytics-en.md)に従ってpostanalyticsモジュールをインストールしてください。
+別のインスタンスでpostanalyticsモジュールをインストールするには、ステップ1-2を繰り返し、以下に従ってpostanalyticsモジュールをインストールします： [Wallarmの指示](../../../admin-en/installation-postanalytics-en.md).
+
+## NGINX Plusモジュールとしてのフィルタリングノードのインストール
+
+Google EngineインスタンスでNGINX Plusモジュールとしてフィルタリングノードをインストールするには：
+
+1. WallarmがサポートするオペレーティングシステムのイメージからGoogle Engineインスタンスを作成します。以下に従って操作します：[GCPの指示](https://cloud.google.com/compute/docs/instances/create-start-instance#publicimage)：
+
+    * Debian 11.x Bullseye
+    * Ubuntu 18.04 Bionic
+    * Ubuntu 20.04 Focal
+    * Ubuntu 22.04 Jammy
+    * CentOS 7.x
+    * AlmaLinux
+    * Rocky Linux
+    * Oracle Linux 8.x
+2. 作成したインスタンスに接続します。以下に従って操作します： [GCPの指示](https://cloud.google.com/compute/docs/instances/connecting-to-instance).
+3. インスタンス内で、NGINX PlusのパッケージとWallarmフィルタリングノードのパッケージをインストールします。以下に従って操作します： [Wallarmの指示](../../../installation/nginx/dynamic-module.md).
+
+別のインスタンスでpostanalyticsモジュールをインストールするには、ステップ1-2を繰り返し、以下に従ってpostanalyticsモジュールをインストールします： [Wallarmの指示](../../../admin-en/installation-postanalytics-en.md).

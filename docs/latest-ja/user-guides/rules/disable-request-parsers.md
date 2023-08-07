@@ -1,32 +1,32 @@
-					# リクエストパーサーの管理
+# リクエストパーサの管理
 
-ルール **Disable/Enable request parser** では、リクエストの解析中に適用されるパーサーセットを管理することができます。
+ルール **リクエストパーサの無効化/有効化** は、分析中のリクエストに適用されるパーサのセットを管理することを可能にします。
 
-デフォルトでは、リクエストを解析する際、Wallarm ノードはリクエストの各要素に対して適切な [パーサー](request-processing.md) を順番に適用しようとします。ただし、特定のパーサーが誤って適用されることがあり、その結果、Wallarm ノードはデコードされた値に攻撃の兆候を検出することがあります。
+デフォルトでは、リクエストの分析時にWallarmノードは、リクエストの各要素に対して適切な[パーサ](request-processing.md)を順番に適用しようと試みます。しかし、一部のパーサは誤って適用される場合があり、結果として、Wallarmノードはデコードされた値内の攻撃の兆候を検出することがあります。
 
-例えば、Wallarm ノードは、未エンコードのデータを [Base64](https://en.wikipedia.org/wiki/Base64) にエンコードされたデータと誤って特定することがあります。なぜなら、Base64 のアルファベットの記号は、通常のテキスト、トークン値、UUID 値、および他のデータ形式でよく使用されるためです。未エンコードのデータをデコードし、結果の値に攻撃の兆候を検出した場合、[誤検出](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生します。
+例えば、Wallarmノードは、[Base64](https://en.wikipedia.org/wiki/Base64)にエンコードされたデータとして誤って未エンコードのデータを認識することがあります。なぜなら、Base64のアルファベットの記号は、通常のテキスト、トークン値、UUID値、その他のデータフォーマットでよく使用されるからです。未エンコードのデータをデコードして結果の値内の攻撃の兆候を検出すると、[偽陽性](../../about-wallarm/protecting-against-attacks.md#false-positives)が発生します。
 
-このようなケースで誤検出を防ぐためには、ルール **Disable/Enable request parser** を使用して、誤って適用されたパーサーを特定のリクエスト要素に対して無効にすることができます。
+このような場合の偽陽性を防ぐために、ルール **リクエストパーサの無効化/有効化** を使用して、誤って適用されたパーサを特定のリクエスト要素に対して無効化することができます。
 
 ## ルールの作成と適用
 
---8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
+--8<-- "../include/waf/features/rules/rule-creation-options.md"
 
-**Rules** セクションでのルールの作成と適用：
+**ルール**セクションでルールを作成して適用するには：
 
-1. Wallarm Console の **Rules** セクションで、**Disable/Enable request parser** ルールを作成します。このルールは、以下のコンポーネントで構成されています：
+1. Wallarmコンソールの **ルール** セクションで、**リクエストパーサの無効化/有効化** のルールを作成します。ルールは次のコンポーネントで構成されます：
 
-      * **Condition** は、ルールを適用するエンドポイントを [記述](add-rule.md#branch-description) します。
-      * 指定されたリクエスト要素に対して無効化/有効化されるべきパーサー。
-      * **Part of request** は、選択されたパーサーで解析/未解析とする元のリクエスト要素を指します。
+      * **条件**は、ルールを適用するエンドポイントを[記述](add-rule.md#branch-description)します。
+      * 指定されたリクエスト要素に対して無効化/有効化されるべきパーサ。
+      * **リクエストの部分**は、選択されたパーサで解析する/解析しない元のリクエスト要素を指します。
 
-         --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
+         --8<-- "../include/waf/features/rules/request-part-reference.md"
 2. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
 
 ## ルールの例
 
-たとえば、`https://example.com/users/` へのリクエストには認証ヘッダー `X-AUTHTOKEN` が必要です。ヘッダーの値には特定の記号の組み合わせ（例：末尾に `=`）が含まれている可能性があり、Wallarm はパーサー `base64` でデコードされる可能性があります。
+リクエストが `https://example.com/users/`に送信され、認証ヘッダ `X-AUTHTOKEN`が必要とするとしましょう。ヘッダの値は、特定の記号組み合わせ（例えば、末尾の `=`）を含む可能性があり、Wallarmによって `base64` のパーサでデコードされる可能性があります。
 
-`X-AUTHTOKEN` の値で誤検出を防ぐための **Disable/Enable request parser** ルールは、以下のように設定できます：
+`X-AUTHTOKEN`値における偽陽性を防ぐための**リクエストパーサの無効化/有効化** ルールは、次のように設定できます：
 
-![!ルール "Disable/Enable request parser" の例](../../images/user-guides/rules/disable-parsers-example.png)
+![リクエストパーサの無効化/有効化ルールの例](../../images/user-guides/rules/disable-parsers-example.png)

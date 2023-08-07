@@ -30,7 +30,7 @@
 
 ## 1. Amazon Web Services アカウントにログインする
 
-[aws.amazon.com](https://aws.amazon.com/jp/) にログインします。
+[aws.amazon.com](https://aws.amazon.com/en/) にログインします。
 
 ## 2. SSH キーペアを作成する
 

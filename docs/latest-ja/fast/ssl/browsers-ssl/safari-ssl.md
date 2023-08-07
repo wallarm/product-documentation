@@ -7,52 +7,52 @@
 [img-trusted-cert]:         ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-keychain-trusted-certificate.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/safari-ssl/s-https-ok.png
 
-#   FAST Node Self-signed SSL-certificate Installation for Apple Safari
+#   Apple Safari用 FAST Node Self-signed SSL証明書のインストール
 
-To install the certificate for the Apple Safari browser, do the following: 
+Apple Safariブラウザに証明書をインストールするには、以下の手順を実行します。
 
-1.  Make sure that you have set up your browser to use the FAST node as the HTTP and HTTPS proxy.
+1.  ブラウザがFASTノードをHTTPおよびHTTPSプロキシとして使用するように設定していることを確認します。
 
-2.  Request the file `cert.der` from any domain via HTTP using the browser.
+2.  ブラウザを使用して、任意のドメインから `cert.der` ファイルをHTTPで要求します。
 
-    For example, you can use one of the following links:
+    例えば、次のリンクのいずれかを使用できます。
 
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
+    ブラウザは証明書ファイルをダウンロードします。設定により、そのファイルはデフォルトのダウンロードディレクトリに配置されるか、あなたが選択したディレクトリに配置されます。
     
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!自己署名FASTノード証明書の要求][img-cert-request]
     
-    Open the downloaded file.
+    ダウンロードしたファイルを開きます。
 
-    ![!The downloaded certificate][img-downloaded-cert]
+    ![!ダウンロード済みの証明書][img-downloaded-cert]
 
-3.  The Keychain Access application will offer to import the certificate.  
+3.  Keychain Accessアプリケーションが証明書のインポートを提案します。
 
-    You can install the certificate either for the current user or for all users. Choose the appropriate option and select the **Add** button.
+    現在のユーザーまたはすべてのユーザーのために証明書をインストールできます。適切なオプションを選択し、**追加**ボタンをクリックします。
 
-    ![!Keychain Access “Add Certificates” window][img-keychain-import]
+    ![!Keychain Access「証明書の追加」ウィンドウ][img-keychain-import]
 
-4.  You will see the imported certificate marked as an untrusted certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image.
+4.  インポートされた証明書が信頼できない証明書として印付けされていることがわかります。証明書の名前と有効期限はイメージに示されているものとは異なることに注意してください。
 
-    ![!Untrusted certificate in Keychain Access application][img-untrusted-cert]
+    ![!Keychain Accessアプリケーション内の信頼できない証明書][img-untrusted-cert]
 
-5.  To convert the certificate to a trusted one, double-click on it to open the certificate properties window. Expand the “Trust” list and select **Always Trust** for SSL.
+5.  証明書を信頼されたものに変換するために、証明書のプロパティウィンドウを開くためにそれをダブルクリックします。「信頼」リストを展開し、SSLについて**常に信頼**を選択します。
 
-    ![!The certificate properties window][img-cert-properties]
+    ![!証明書のプロパティウィンドウ][img-cert-properties]
 
-    You will be asked to enter your password to continue.
+    オペレーションを続けるためにパスワードの入力が求められます。
 
-    ![!Prompt for credentials][img-credentials-prompt]
+    ![!クレデンシャルのプロンプト][img-credentials-prompt]
 
-    Now the imported certificate should be marked as trusted.
+    インポートされた証明書は信頼済みとしてマークされるべきです。
     
-    ![!Trusted certificate in Keychain Access application][img-trusted-cert]
+    ![!Keychain Accessアプリケーション内の信頼済み証明書][img-trusted-cert]
 
-6.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
+6.  証明書が正しくインストールされたことを確認します。そのために、HTTPS経由で任意のサイトに移動します。信頼できない証明書に関する警告メッセージなしに、HTTPSバージョンのサイトにリダイレクトされるはずです。
 
-    For example, you could browse to the HTTPS version of the Google Gruyere site:
+    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![!HTTPSが動作しています][img-https-ok]

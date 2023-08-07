@@ -14,85 +14,85 @@
 [anchor-stopping-fast-node]:        ci-mode-recording.md#stopping-and-removing-the-docker-container-with-the-fast-node-in-recording-mode
 [anchor-testing-mode]:              #deployment-of-a-fast-node-in-the-testing-mode
 
-#  Running a FAST Node in Testing Mode
+#  テストモードでのFASTノードの実行
 
-While in testing mode, the FAST node creates a test run based on the test record that was populated from baseline requests in recording mode and executes the security test set for the target application.
+テストモードでは、FASTノードは録音モードでベースラインリクエストから取得したテストレコードに基づいてテストランを作成し、ターゲットアプリケーションのセキュリティテストセットを実行します。
 
-!!! info "Chapter Prerequisites"
-    To follow the steps described in this chapter, you need to obtain a [token][doc-get-token].
+!!! info "章の前提条件"
+    この章で説明されている手順に従うためには、[トークン][doc-get-token]を取得する必要があります。
     
-    The following values are used as examples throughout this chapter:
+    この章全体で次の値を例として使用します：
         
-    * `tr_1234` as an identifier of a test run
-    * `rec_0001` as an identifier of a test record
-    * `bl_7777` as an identifier of a baseline request
+    * テストランの識別子として `tr_1234`
+    * テストレコードの識別子として `rec_0001`
+    * ベースラインリクエストの識別子として `bl_7777`
 
-!!! info "Install `docker-compose`"
-    The [`docker-compose`][link-docker-compose] tool will be used throughout this chapter to demonstrate how the FAST node operates in the testing mode.
+!!! info "`docker-compose` のインストール"
+    [`docker-compose`][link-docker-compose] ツールはこの章全体で、FASTノードがテストモードでどのように動作するかを示すために使用されます。
     
-    The installation instructions for this tool are available [here][link-docker-compose-install].
+    このツールのインストール手順は[こちら][link-docker-compose-install]で利用できます。
 
-## Environment Variables in Testing Mode
+## テストモードでの環境変数
 
-FAST node configuration is done via environment variables. The table below holds all environment variables that can be used to configure a FAST node in testing mode.
+FASTノードの設定は環境変数を介して行われます。以下の表は、テストモードでFASTノードを設定するために使用できるすべての環境変数を示しています。
 
-| Environment Variable   | Value  | Required? |
-|--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  	| The token for a node. | Yes |
-| `WALLARM_API_HOST`   	| The domain name of the Wallarm API server to use. <br>Allowed values: <br>`us1.api.wallarm.com` for use with the US cloud;<br>`api.wallarm.com` for use with the EU cloud.| Yes |
-| `CI_MODE`            	| The FAST node's operation mode. <br>Required value: `testing`. | Yes |
-| `WORKERS` | The number of concurrent threads that work with multiple baseline requests in a parallel fashion.<br>Default value: `10`.| No |
-| `TEST_RECORD_ID` | The identifier of a test record.<br>Default: empty value. | No |
-| `TEST_RUN_NAME` | The name of the test run.<br>The default value is in a similar format: “TestRun Sep 24 12:31 UTC”. | No |
-| `TEST_RUN_DESC` | The description of the test run.<br>The default value: empty string. | No |
-| `TEST_RUN_POLICY_ID` | The identifier of the test policy.<br>If the parameter is missing, then the default policy takes action. | No |
-| `TEST_RUN_RPS` | The parameter specifies a limit on the number of test requests (*RPS*, *requests per second*) to be sent to the target application during test run execution.<br>Allowed value range: from 1 to 1000 (requests per second)<br>Default value: unlimited. | No |
-| `TEST_RUN_STOP_ON_FIRST_FAIL` | This parameter specifies FAST’s behavior when a vulnerability is detected:<br>`true`: stops the execution of the test run on the first detected vulnerability.<br>`false`: processes all the baseline requests regardless of whether any vulnerability is detected.<br>Default value: `false`. | No |
-| `TEST_RUN_URI` | A URI of the target application.<br>The IP address of the target application may change during the CI/CD process, so you can use the application URI. <br>For example, the URI of the application deployed via `docker-compose` can look like `http://app-test:3000`.  | No |
-| `BUILD_ID` | The identifier of a CI/CD workflow. This identifier allows several FAST nodes to work concurrently using the same cloud FAST node. See [this][doc-concurrent-pipelines] document for details.| No |
-| `FILE_EXTENSIONS_TO_EXCLUDE` | The list of static file extensions that should be excluded from the evaluation process during testing.<br>You can enumerate these extensions using the <code>&#124;</code> character: <br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | No |
-| `PROCESSES`            | The number of processes that can be used by FAST node. Each process uses the number of threads specified in the `WORKERS` variable.<br>Default number of processes: `1`.<br>Special value: `auto` equal to half of the CPU number calculated using the [nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) command. | No |
+| 環境変数   | 値  | 必須? |
+|-------------------- | -------- | ----------- |
+| `WALLARM_API_TOKEN`  | ノードのトークン。 | はい |
+| `WALLARM_API_HOST`   | 使用するWallarm APIサーバーのドメイン名。<br>許可される値: <br>`us1.api.wallarm.com` は米国のクラウドでの使用用；<br>`api.wallarm.com` はEUのクラウドでの使用用。| はい |
+| `CI_MODE`            | FASTノードの操作モード。<br>要求される値: `testing`。 | はい |
+| `WORKERS` | 平行して複数のベースラインリクエストを処理するスレッドの数。<br>デフォルト値: `10`。| いいえ |
+| `TEST_RECORD_ID` | テストレコードの識別子。<br>デフォルト: 空の値。 | いいえ |
+| `TEST_RUN_NAME` | テストランの名前。<br>デフォルト値は次のような形式です: “TestRun Sep 24 12:31 UTC”。 | いいえ |
+| `TEST_RUN_DESC` | テストランの説明。<br>デフォルト値: 空文字列。 | いいえ |
+| `TEST_RUN_POLICY_ID` | テストポリシーの識別子。<br>このパラメータが欠けている場合、デフォルトのポリシーが動作します。 | いいえ |
+| `TEST_RUN_RPS` | このパラメータは、テストラン実行中にターゲットアプリケーションに送信されるテストリクエストの数（*RPS*、*リクエスト/秒*）への制限を指定します。<br>許可される値の範囲: 1から1000（リクエスト/秒）まで<br>デフォルト値: 制限なし。 | いいえ |
+| `TEST_RUN_STOP_ON_FIRST_FAIL` | このパラメータは、脆弱性が検出された場合のFASTの動作を指定します:<br>`true`: 最初に検出された脆弱性でテストランの実行を停止します。<br>`false`: 脆弱性が検出されたかどうかにかかわらず、すべてのベースラインリクエストを処理します。<br>デフォルト値: `false`。 | いいえ |
+| `TEST_RUN_URI` | 対象アプリケーションのURI。<br>CI/CDプロセス中にターゲットアプリケーションのIPアドレスが変更される可能性がありますので、アプリケーションのURIを使用することが可能です。<br>例えば、`docker-compose` を介してデプロイされたアプリケーションのURIは `http://app-test:3000` のようになるかもしれません。 | いいえ |
+| `BUILD_ID` | CI/CDワークフローの識別子。この識別子により、複数のFASTノードが同一のクラウドFASTノードを使用して並行して動作することが可能になります。詳細は[この][doc-concurrent-pipelines]ドキュメントを参照してください。| いいえ |
+| `FILE_EXTENSIONS_TO_EXCLUDE` | テスト中に評価プロセスから除外するべき静的ファイル拡張子のリスト。<br>これらの拡張子を <code>&#124;</code> 文字を使って列挙することができます：<br><code>FILE_EXTENSIONS_TO_EXCLUDE='jpg&#124;ico&#124;png'</code> | いいえ |
+| `PROCESSES`            | FASTノードが使用できるプロセスの数。各プロセスは、`WORKERS`変数で指定された数のスレッドを使用します。<br>プロセスのデフォルト数: `1`。<br>特殊な値: `auto`。これはCPUの数の半数に等しく、[nproc](https://www.gnu.org/software/coreutils/manual/html_node/nproc-invocation.html#nproc-invocation) コマンドを使用して計算されます。 | いいえ |
 
-!!! info "See also"
-    The descriptions of the environment variables that are not specific to a certain FAST node operation mode are available [here][doc-env-variables].
+!!! info "参照も参照"
+    特定のFASTノード動作モードに特化したものでない環境変数の説明は[こちら][doc-env-variables]で利用可能です。
 
-## Acquiring a Test Policy Identifier
+## テストポリシー識別子の取得
 
-If you plan to employ your own [test policy][doc-testpolicy], then [create one][link-wl-portal-new-policy] in the Wallarm cloud. Later, pass the identifier to the FAST node's Docker container via the `TEST_RUN_POLICY_ID` environment variable when running the FAST node in testing mode. 
+自分自身のテストポリシー[テストポリシー][doc-testpolicy]を使用する予定であれば、Wallarmクラウド内で[作成][link-wl-portal-new-policy]し、後でその識別子を`TEST_RUN_POLICY_ID`環境変数を介してFASTノードのDockerコンテナに渡し、テストモードでFASTノードを実行します。
 
-Otherwise, if you choose to use the default test policy, then do not set the `TEST_RUN_POLICY_ID` environment variable for the container.
+そうでなければ、デフォルトのテストポリシーを使用することを選択した場合、コンテナの `TEST_RUN_POLICY_ID` 環境変数を設定しないでください。
 
-!!! info "How to Create a Test Policy"
-    The “Quick Start” guide contains [step-by-step instructions][doc-testpolicy-creation-example] on how to create a sample test policy.
+!!! info "テストポリシーの作成方法"
+    “クイックスタート”ガイドには、サンプルテストポリシーを作成する方法の[ステップバイステップの手順][doc-testpolicy-creation-example]が含まれています。
 
-## Obtaining a test record identifier
- 
-To use a specific test record in testing mode, you can pass the test record's identifier to the FAST node using the [`TEST_RECORD_ID`][anchor-testing-variables] parameter. Thus, there is no need to run the FAST node in the recording mode first. Rather, you can use a pre-formed test record to perform the same security tests several times in different nodes and test runs.
- 
-You can get the identifier of the test record in the Wallarm portal interface or from the FAST node log in the testing mode. If you do not use the `TEST_RECORD_ID` parameter, then the FAST node will use the last test record of the node.
+## テストレコード識別子の取得
 
-## Deployment of a FAST Node in the Testing Mode
+テストモードで特定のテストレコードを使用するためには、[`TEST_RECORD_ID`][anchor-testing-variables] パラメータを使用してテストレコードの識別子をFASTノードに渡します。そのため、最初にFASTノードを録画モードで実行する必要はありません。代わりに、事前に形成されたテストレコードを使用して、異なるノードとテストランで何度も同じセキュリティテストを実行できます。
 
-The `docker-compose.yaml` file that was created earlier is suitable for running a FAST node in testing mode.
-To do so, it is necessary to alter the `CI_MODE` environment variable's value to the `testing` one.
+テストレコードの識別子は、WallarmポータルインタフェースまたはテストモードでのFASTノードログから取得できます。`TEST_RECORD_ID` パラメータを使用しない場合、FASTノードはノードの最後のテストレコードを使用します。
 
-You either can change the variable's value by modifying it in the `docker-compose.yaml` file or passing the environment variable with the required value to the Docker container via the `-e` option of the `docker-compose run` command:
+## テストモードでのFASTノードのデプロイ
+
+以前に作成した `docker-compose.yaml` ファイルは、テストモードでFASTノードを実行するのに適しています。
+これを行うためには、`CI_MODE`環境変数の値を `testing` に変える必要があります。
+
+変数の値を変えるには、`docker-compose.yaml` ファイルの中でそれを修正するか、`docker-compose run` コマンドの `-e` オプションを使って必要な値を持つ環境変数をDockerコンテナに渡すことができます：
 
 ```
 docker-compose run --rm -e CI_MODE=testing fast
 ```
 
-!!! info "Getting the report about the test"
-    To get the report with the test results, mount the directory to download the report via the `-v {DIRECTORY_FOR_REPORTS}:/opt/reports/` option when deploying the FAST node Docker container.
+!!! info "テストについてのレポートの取得"
+    テスト結果のレポートを取得するためには、レポートをダウンロードするためのディレクトリを `-v {DIRECTORY_FOR_REPORTS}:/opt/reports/` オプションを使用してマウントすることが必要です。
 
-    When security testing is finished, you will find the brief `<TEST RUN NAME>.<UNIX TIME>.txt` report and the detailed `<TEST RUN NAME>.<UNIX TIME>.json` report in the `{DIRECTORY_FOR_REPORTS}` directory.
+    セキュリティテストが完了すると、`{DIRECTORY_FOR_REPORTS}` ディレクトリに簡単な `<TEST RUN NAME>.<UNIX TIME>.txt` レポートと詳細な `<TEST RUN NAME>.<UNIX TIME>.json` レポートが見つかります。
 
-!!! info "Options of the `docker-compose` command"
-    You can pass any of the environment variables described above to a FAST node Docker container via the `-e` option.
+!!! info "`docker-compose` コマンドのオプション"
+    上記の例で使用されている `-e` オプションを介して、上記で説明された任意の環境変数をFASTノードのDockerコンテナに渡すことができます。
 
-    The `--rm` option is also used in the example above, so that the FAST node container will be automatically disposed of when the node is stopped.
+    上記の例ではまた、`--rm` オプションも使用されていて、これによりノードが停止した時にFASTノードのコンテナが自動的に削除されます。
 
-If the command executes successfully, then a console output similar to the one shown here will be generated:
+コマンドが正常に実行されると、以下に示すようなコンソール出力が生成されます：
 
 ```
  __      __    _ _
@@ -112,9 +112,9 @@ INFO [1]: Use TestRecord#rec_0001 for creating TestRun
 INFO [1]: TestRun#tr_1234 created
 ```
 
-This output informs us that the test record with the `rec_0001` identifier was used to create a test run with the `tr_1234` identifier, and this operation was completed successfully.
+この出力は、`rec_0001` 識別子のテストレコードが使用され、`tr_1234` 識別子のテストランが正常に作成されたことを示しています。
 
-Next, security tests are created and executed by the FAST node for each baseline request in the test record that satisfies the test policy. The console output will contain similar messages to these:
+次に、テストレコード中のテストポリシーを満たす各ベースラインリクエストについて、FASTノードによりセキュリティテストが作成および実行されます。コンソール出力には以下のメッセージが含まれます：
 
 ```
 INFO [1]: Running a test set for the baseline #bl_7777
@@ -123,39 +123,39 @@ INFO [1]: Retrieving the baseline request Hit#["hits_production_202_20xx10_v_1",
 INFO [1]: Use TestPolicy with name 'Default Policy'
 ```
 
-This output informs us that the test set is running for the baseline requests with the `bl_7777` identifier. Also, it tells us that the default test policy is being used due to a lack of the `TEST_RUN_POLICY_ID` environment variable.
+この出力は、`bl_7777` 識別子のベースラインリクエストのテストセットが実行中であることを通知しています。また、`TEST_RUN_POLICY_ID` 環境変数がないため、デフォルトのテストポリシーが使用されていることを表示しています。
 
-## Stopping and Removing the Docker Container with the FAST Node in Testing Mode
+## テストモードのFASTノードのDockerコンテナの停止と削除
 
-Depending on the testing results obtained, FAST nodes can terminate in different ways.
+得られたテスト結果によって、FASTノードはさまざまな方法で終了することができます。
 
-If some vulnerabilities are detected in the target application, then the FAST node shows a message similar to this:
+ターゲットアプリケーションに何らかの脆弱性が検出されると、FASTノードは次のようなメッセージを表示します：
 
 ```
 INFO [1]: Found 4 vulnerabilities, marking the test set for baseline #bl_7777 as failed
 ERROR [1]: TestRun#tr_1234 failed
 ```
 
-In this case, four vulnerabilities were found. A test set for the baseline with the `bl_7777` identifier is considered failed. The corresponding test run with the `tr_1234` identifier is also marked as failed.
+この場合、4つの脆弱性が見つかりました。`bl_7777` 識別子のベースライン用のテストセットは失敗と見なされ、対応する `tr_1234` 識別子のテストランも失敗とマークされます。
 
-If no vulnerabilities are detected in the target application, the FAST node shows a message similar to this:
+ターゲットアプリケーションで脆弱性が検出されない場合、FASTノードは次のようなメッセージを表示します：
 
 ```
 INFO [1]: No issues found. Test set for baseline #bl_7777 passed.
 INFO [1]: TestRun#tr_1234 passed
 ```
 
-In this case, the test run with the `tr_1234` identifier is considered passed.
+この場合、 `tr_1234` 識別子のテストランは通過と見なされます。
 
-!!! warning "About security test sets"
-    Note that the above examples do not imply that only one test set was executed. A test set is formed for each baseline request that complies with the FAST test policy.
+!!! warning "セキュリティテストセットについて"
+    上記の例は、1つのテストセットのみが実行されたことを示しているわけではないことに注意してください。テストセットは、FASTテストポリシーに準拠する各ベースラインリクエストに対して形成されます。
     
-    A single test-set-related message is shown here for demonstration purposes.
+    ここではデモンストレーション用に1つのテストセットに関連するメッセージが表示されています。
 
-After the FAST node has finished the testing process, it terminates and returns an exit code to the process that runs as part of a CI/CD job. 
-* If security test status is “passed” and the FAST node encounters no errors during testing process, then the `0` exit code is returned. 
-* Otherwise, if security tests do fail or the FAST node encounters some errors during testing process, then the `1` exit code is returned.
+FASTノードがテストプロセスを終了した後、CI/CDジョブの一部として動作するプロセスに終了コードを返します。 
+* セキュリティテストのステータスが “通過” であり、FASTノードがテストプロセス中にエラーに遭遇しない場合、終了コード `0` が返されます。 
+* それ以外の場合、セキュリティテストが失敗するか、またはFASTノードがテストプロセス中に何らかのエラーに遭遇すると、終了コード `1` が返されます。
 
-The FAST node container in testing mode will stop automatically after security testing is complete. Nonetheless, a CI/CD tool can still be in control of the node and its container lifecycle by the means [described earlier][anchor-stopping-fast-node].
+テストが完了すると、テストモードのFASTノードコンテナは自動的に停止します。それでも、CI/CDツールは[以前に説明した][anchor-stopping-fast-node]手段を用いてノードとそのコンテナのライフサイクルを制御することができます。
 
-In the [example above][anchor-testing-mode] the FAST node container ran with the `--rm` option. This means the stopped container is automatically removed.
+[上記の例][anchor-testing-mode]では、FASTノードコンテナは `--rm` オプションで動作しています。これは、停止したコンテナが自動的に削除されることを意味します。

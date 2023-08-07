@@ -1,13 +1,11 @@
-## 要件
+* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) にてWallarm Consoleで**管理者**ロールを持つアカウントへのアクセス
+* SELinuxが無効化されているか、[指示][configure-selinux-instr]に従って設定されている
+* NGINX Plusリリース28（R28）
 
-* Wallarm Consoleの**管理者**ロールを持つアカウントへのアクセス。[US クラウド](https://us1.my.wallarm.com/)または[EU クラウド](https://my.wallarm.com/)
-* SELinux が無効化されているか、[指示に][configure-selinux-instr]基づいて設定します
-* NGINX Plus リリース 28 (R28)
-
-    !!! info "カスタム NGINX Plus バージョン"
-        異なるバージョンをお持ちの場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]の指示を参照してください
-* 全てのコマンドをスーパーユーザー (例：`root`) として実行します
-* `https://repo.wallarm.com` へのアクセスしてパッケージをダウンロードします。ファイアウォールでアクセスがブロックされないようにしてください
-* US Wallarm Cloudを利用するためには `https://us1.api.wallarm.com`、EU Wallarm Cloudを利用するためには `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定可能な場合は、[指示][configure-proxy-balancer-instr]を使用してください
-* [許可リスト、拒否リスト、またはグレーリストに][ip-lists-docs]記録されている国、地域、またはデータセンターのIPアドレスの最新リストをダウンロードするための [GCPストレージアドレス](https://www.gstatic.com/ipranges/goog.json)へのアクセス
-* テキストエディタ **vim**、**nano**、またはその他をインストールします。この指示では **vim** が使用されています
+    !!! info "カスタムNGINX Plusバージョン"
+        そちらが異なるバージョンをお持ちの場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]に関する指示をご参照ください
+* 全てのコマンドをスーパーユーザー（例えば `root`）として実行
+* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください
+* US Wallarm Cloudを使用するための `https://us1.api.wallarm.com` またはEU Wallarm Cloudを使用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定可能な場合は、[指示][configure-proxy-balancer-instr]を使用してください
+* Google Cloud StorageのIPアドレスへのアクセスが[リンク](https://www.gstatic.com/ipranges/goog.json)内にリストされています。あなたが個々のIPアドレスではなく、全体の国、地域、またはデータセンターを[ホワイトリスト化、ブラックリスト化、またはグレーリスト化][ip-lists-docs]すると、WallarmノードはGoogleストレージにホストされている集約データベースからIPリストのエントリーに関連する正確なIPアドレスを取得します
+* **vim**、 **nano** 、またはその他のテキストエディタをインストールしている。この指示では、**vim**が使用されます

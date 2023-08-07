@@ -1,15 +1,16 @@
-* Wallarm Consoleの**管理者**ロールでのアカウントへのアクセス。[US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) を使用します。
-* 対応OS：
+* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) のWallarmコンソールで**管理者**ロールとしてのアカウントへのアクセス。
+* サポートされているOS：
 
-    * Debian 10, 11, 12.x
+    * Debian 10, 11および12.x
     * Ubuntu LTS 18.04, 20.04, 22.04
-    * CentOS 7, 8 Stream, 9 Stream
+    * CentOS 7, 8ストリーム、9ストリーム
     * Alma/Rocky Linux 9
     * Oracle Linux 8.x
     * Redos
     * SuSe Linux
-    * その他（リストは常に広がります。お使いのOSがリストに含まれているかどうかを確認するために、[Wallarm サポート チーム](mailto:support@wallarm.com)にお問い合わせください。）
+    * その他（リストは常に広がっています、あなたのOSがリストにあるかどうかを確認するために[Wallarmサポートチーム](mailto:support@wallarm.com)に連絡してください）
 
-* 全部入りのWallarmインストーラーをダウンロードするための、`https://meganode.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認してください。
-* US Wallarm Cloudで作業するための `https://us1.api.wallarm.com` へのアクセスまたはEU Wallarm Cloudで作業するための `https://api.wallarm.com` へのアクセス。アクセスはプロキシサーバを経由してのみ設定できる場合は、[指示に従って][configure-proxy-balancer-instr] ください。
-* スーパーユーザー（例：`root`）として全てのコマンドを実行します。
+* all-in-one Wallarmインストーラーをダウンロードするための `https://meganode.wallarm.com` へのアクセス。アクセスがファイアウォールによってブロックされていないことを確認してください。
+* US Wallarm Cloudを利用するための `https://us1.api.wallarm.com` または EU Wallarm Cloudを利用するための `https://api.wallarm.com` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[instructions][configure-proxy-balancer-instr] を使用してください。
+* Google Cloud StorageのIPアドレスへのアクセスはここから[list](https://www.gstatic.com/ipranges/goog.json) にリストされています。個々のIPアドレスではなく全国、地域、またはデータセンターを [許可リスト、拒否リスト、グレーリスト][ip-lists-docs] として設定する際、WallarmノードはGoogleストレージにホストされている集約データベースからIPリストのエントリに関連する正確なIPアドレスを取得します。
+* 全てのコマンドをスーパーユーザー（例：`root`）として実行します。

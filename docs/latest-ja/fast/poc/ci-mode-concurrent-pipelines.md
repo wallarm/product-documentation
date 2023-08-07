@@ -3,96 +3,95 @@
 [doc-ci-testing]:               ci-mode-testing.md
 [doc-ci-testing-example]:       ci-mode-testing.md#deployment-of-a-fast-node-in-the-testing-mode
 
-#   Using FAST in Concurrent CI/CD Workflows
+#   FASTを並行するCI/CDワークフローに使用する
 
-!!! info "Necessary data" 
-    The following values are used as examples in this document:
+!!! info "必要なデータ"
+    以下の値は、このドキュメントでの例として使用されます:
 
-    * `token_Qwe12345` as a token.
-    * `rec_1111` and `rec_2222` as test records identifiers.
+    * `token_Qwe12345` をトークンとして。
+    * `rec_1111` と `rec_2222` をテストレコード識別子として。
 
-Several FAST nodes can be deployed simultaneously in concurrent CI/CD workflows. These nodes share the same token and work with a single cloud FAST node.
+複数のFASTノードは、並行するCI/CDワークフローで同時にデプロイすることができます。これらのノードは同じトークンを共有し、単一のクラウドFASTノードと連携します。
 
-This deployment scheme is applicable to FAST nodes that operate in both [recording][doc-ci-recording] and [testing][doc-ci-testing] modes.
+このデプロイスキームは、[レコーディング][doc-ci-recording]モードと[テスト][doc-ci-testing]モードの両方で稼働するFASTノードに適用可能です。
 
-To avoid conflicts during concurrent FAST nodes operation, the `BUILD_ID` environment variable is passed to each node's container. This variable serves the following purposes:
-1.  It is used as an additional identifier for a test record that is created by a FAST node in recording mode.
-2.  It allows determining which test record should be used by a test run that is created by a FAST node in testing mode (so the test run become tied to the test record). 
-3.  It identifies a certain CI/CD workflow.
+並行するFASTノードの運用中の競合を避けるために、 `BUILD_ID` 環境変数が各ノードのコンテナに渡されます。この変数は次の目的で使用されます:
+1.  レコーディングモードでFASTノードによって作成されたテストレコードの追加識別子として使用します。
+2.  テストモードでFASTノードによって作成されるテストランが、どのテストレコードを使用するべきかを決定することを可能にします（テストランがテストレコードに紐づく）。
+3.  特定のCI/CDワークフローを識別します。
 
-The `BUILD_ID` environment variable can comprise any combination of letters and digits as its value.
+`BUILD_ID` 環境変数は、その値として任意の文字と数字の組み合わせを含むことができます。
 
-Next, an example will be given on how to run two FAST nodes simultaneously: in recording mode first, then in testing mode. The approach described below is scalable (you can use as many nodes as you need, the number of nodes is not limited to two as in the example below) and is applicable to a real CI/CD workflow.
+次に、まずレコーディングモードで、次にテストモードで2つのFASTノードを同時に実行する方法について例を挙げます。以下に説明するアプローチは、スケーラブルです（必要な数のノードを使用することができ、ノード数は下記の例のように2つに限定されません）実際のCI/CDワークフローに適用可能です。
 
+##  並行するCI/CDワークフローで使用するためのレコーディングモードでのFASTノードの実行
 
-##  Running the FAST Node in Recording Mode to Use in Concurrent CI/CD Workflows
+!!! info "例についての注意"
+    下記の例では、FASTノードコンテナが起動し、稼働するために必要な最低限の環境変数セットのみを使用します。これは単純化のためです。
 
-!!! info "Note on the examples"
-    The examples below use only the essential set of environment variables, enough for a FAST node container to be up and operational. This is for the sake of simplicity. 
-
-Run the following command to run the first FAST node container in recording mode:
+以下のコマンドを実行して、最初のFASTノードコンテナをレコーディングモードで起動します:
 
 ```
-docker run --rm --name fast-node-1 \    # This command run the fast-node-1 container
--e WALLARM_API_HOST=api.wallarm.com \   # Wallarm API server host (in this case the host is located in the european Wallarm cloud)
--e WALLARM_API_TOKEN='qwe_12345' \      # The token to connect to the cloud FAST node
--e CI_MODE=recording \                  # This node will operate in recording mode
--e BUILD_ID=1 \                         # The BUILD_ID value (it must differ from the another one for the concurrent pipeline)
--p 8080:8080 wallarm/fast               # The port mapping is done here. Also, the Docker image to use is specified here.
+docker run --rm --name fast-node-1 \    # このコマンドで fast-node-1 コンテナを実行します
+-e WALLARM_API_HOST=api.wallarm.com \   # Wallarm API サーバーホスト（この場合、ホストはヨーロッパの Wallarm クラウドに位置しています）
+-e WALLARM_API_TOKEN='qwe_12345' \      # クラウドの FAST ノードに接続するためのトークン
+-e CI_MODE=recording \                  # このノードはレコーディングモードで稼働します
+-e BUILD_ID=1 \                         # BUILD_ID の値（別の並行パイプラインのものとは異なる必要があります）
+-p 8080:8080 wallarm/fast               # ポートのマッピングがここで行われます。また、使用する Docker イメージもここで指定します。
 ```
 
-Run the following command to run the second concurrent FAST node container in recording mode:
+以下のコマンドを実行して、2つ目の並行するFASTノードコンテナをレコーディングモードで起動します:
 
 ```
 docker run --rm --name fast-node-2 \
 -e WALLARM_API_HOST=api.wallarm.com \
--e WALLARM_API_TOKEN='qwe_12345' \      # The token value should be identical to the one used for the first FAST node
+-e WALLARM_API_TOKEN='qwe_12345' \      # トークンの値は、最初のFASTノードで使用されたものと同一である必要があります
 -e CI_MODE=recording \
--e BUILD_ID=2 \                         # The BUILD_ID value differs from the one used for the first FAST node in another CI/CD workflow.
+-e BUILD_ID=2 \                         # BUILD_ID の値は、1つ目のFASTノードが使用したものとは異なる必要があります
 -p 8000:8080 wallarm/fast
 ```
 
-!!! info "Note on the `docker run` commands"
-    The aforementioned commands are supposed to be run on the same Docker host, so in addition to the different `BUILD_ID` values, these commands have distinct container names (`fast-node-1` and `fast-node-2`) and target ports values (`8080` and `8000`).
-    
-    If you run FAST node containers on separate Docker hosts, then the `docker run` commands may differ only in the `BUILD_ID` values.
+!!! info "`docker run` コマンドについての注意"
+    前述のコマンドは同じDockerホスト上で実行されることを想定しています。したがって、異なる `BUILD_ID` 値に加えて、これらのコマンドは異なるコンテナ名（`fast-node-1` および `fast-node-2`）とターゲットポートの値（`8080` および `8000`）を持ちます。
 
-After executing these two commands, two FAST nodes will operate in recording mode using the same cloud FAST node, but **distinct test records will be created**.
+    FASTノードコンテナを別のDockerホストで実行する場合、`docker run` コマンドは `BUILD_ID` の値のみで異なる場合があります。
 
-The CI/CD tool console output will be similar to that described [here][doc-ci-recording-example].
+これら2つのコマンドを実行した後、2つのFASTノードが同じクラウドFASTノードを使用してレコーディングモードで稼働しますが、**別々のテストレコードが作成されます**。
 
-When the test records are populated with all the necessary baseline requests, shut down the corresponding FAST nodes and spin up other nodes in testing mode.
+CI/CDツールのコンソール出力は、[こちら][doc-ci-recording-example]で説明されているものと同様になります。
 
-##  Running the FAST Node in Testing Mode to Use in Concurrent CI/CD Workflows
+すべての必要なベースラインリクエストでテストレコードが満たされたら、対応するFASTノードをシャットダウンし、テストモードで他のノードを起動します。
 
-Let's assume that the `rec_1111` and `rec_2222` test records were prepared during the operation of the FAST nodes `fast-node-1` and `fast-node-2` in recording mode.  
+##  並行するCI/CDワークフローで使用するためのテストモードでのFASTノードの実行
 
-Then, to direct a FAST node in testing mode to use the `rec_1111` test record, pass the `BUILD_ID=1` environment variable to the node container. Similarly, pass the `BUILD_ID=2` environment variable to use the `rec_2222` test record. Use the corresponding `docker run` commands below to run FAST nodes in testing mode.
+レコーディングモードでの `fast-node-1` と `fast-node-2` のFASTノードの運用中に `rec_1111` と `rec_2222` のテストレコードが準備されたと仮定しましょう。
 
-Run the following command to run the first FAST node container in testing mode:
+次に、テストモードでのFASTノードが `rec_1111` テストレコードを使用するように指示するには、 `BUILD_ID=1` 環境変数をノードコンテナに渡します。同様に、`rec_2222` テストレコードを使用するためには `BUILD_ID=2` 環境変数を渡します。以下の対応する `docker run` コマンドを使用してテストモードでFASTノードを実行します。
+
+以下のコマンドを実行して、最初のFASTノードコンテナをテストモードで起動します:
 
 ```
 docker run --rm --name fast-node-1 \
 -e WALLARM_API_HOST=api.wallarm.com \
 -e WALLARM_API_TOKEN='qwe_12345' \
--e CI_MODE=testing \                    # This node will operate in testing mode
--e BUILD_ID=1 \                         # The `BUILD_ID=1` variable corresponds to the `rec_1111` test record
+-e CI_MODE=testing \                    # このノードはテストモードで稼働します
+-e BUILD_ID=1 \                         # `BUILD_ID=1` 変数は、`rec_1111` テストレコードに対応します
 wallarm/fast
 ```
 
-Run the following command to run the second concurrent FAST node container in recording mode:
+以下のコマンドを実行して、2つ目の並行するFASTノードコンテナをテストモードで起動します:
 
 ```
 docker run --rm --name fast-node-2 \
 -e WALLARM_API_HOST=api.wallarm.com \
 -e WALLARM_API_TOKEN='qwe_12345' \
--e CI_MODE=testing \                    # This node will operate in testing mode
--e BUILD_ID=2 \                         # The `BUILD_ID=2` variable corresponds to the `rec_2222` test record
+-e CI_MODE=testing \                    # このノードはテストモードで稼働します
+-e BUILD_ID=2 \                         # `BUILD_ID=2` 変数は、`rec_2222` テストレコードに対応します
 wallarm/fast
 ```
 
-The CI/CD tool console output will be similar to that described [here][doc-ci-testing-example].
+CI/CDツールのコンソール出力は、[こちら][doc-ci-testing-example]で説明されているものと同様になります。
 
-As a result of passing the corresponding values of the `BUILD_ID` environment variables to the FAST nodes, **two test runs will begin to execute simultaneously**, each working with a distinct test record.
+対応する `BUILD_ID` 環境変数の値をFASTノードに渡す結果として、**2つのテストランが同時に実行を開始し**、それぞれが異なるテストレコードと連携します。
 
-So you can run a few FAST nodes for concurrent CI/CD workflows by specifying the `BUILD_ID` environment variable without creating any conflict between the nodes (a newly created test run will not abort the execution of a running test run).  
+したがって、`BUILD_ID` 環境変数を指定して、いくつかのFASTノードを並行するCI/CDワークフローのために実行することができ、ノード間での競合を生成せずに（新たに作成されたテストランが実行中のテストランの実行を中断することはありません）。

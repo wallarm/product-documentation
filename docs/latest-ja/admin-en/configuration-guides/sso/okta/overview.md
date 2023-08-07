@@ -1,4 +1,4 @@
-# Okta との SSO 接続
+# OktaとSSOを接続する
 
 [doc-setup-sp]:                     setup-sp.md
 [doc-setup-idp]:                    setup-idp.md    
@@ -12,23 +12,23 @@
 
 [link-okta]:                        https://www.okta.com/
 
-このガイドでは、[Okta][link-okta] サービスを Wallarm のサービスプロバイダとしてのアイデンティティプロバイダとして接続するプロセスについて説明します。
+このガイドでは、[Okta][link-okta]サービスをアイデンティティプロバイダとしてWallarm（サービスプロバイダとして機能）に接続するプロセスを説明します。
 
-!!! note
+!!! 注意
 
-    デフォルトでは、Wallarm 上の SSO 接続は適切なサービスをアクティブ化しないと利用できません。SSO サービスをアクティブ化するには、アカウントマネージャーまたは [Wallarm サポートチーム](mailto:support@wallarm.com) にお問い合わせください。
+    既定では、適切なサービスを有効にしない限り、Wallarm上でのSSO接続は利用できません。SSOサービスを有効にするには、アカウントマネージャーや[Wallarmのサポートチーム](mailto:support@wallarm.com)にご連絡ください。
     
-    サービスをアクティブ化した後
+    サービスを有効にした後には、
     
-    *   以下の SSO 接続手順を実行できるようになり、
-    *   SSO 関連のブロックが「インテグレーション」タブに表示されます。
+    * 以下のSSO接続手順を実行でき、また
+    * 「インテグレーション」タブにSSO関連のブロックが表示されます。
     
-    さらに、Wallarm と Okta の両方で管理権限を持つアカウントが必要です。
+    さらに、WallarmとOktaの両方の管理権限を持つアカウントが必要です。
 
-Okta との SSO 接続のプロセスは、以下のステップで構成されています：
-1.  [Wallarm 側でのパラメータ生成。][doc-setup-sp]
-2.  [Okta でのアプリケーションの作成と設定。][doc-setup-idp]
-3.  [Okta のメタデータを Wallarm 設定ウィザードに転送する。][doc-metadata-transfer]
-4.  [Okta 側で Wallarm アプリケーションへのアクセスを許可する][doc-allow-access-to-wl]
+OktaとSSOを接続するプロセスは以下の手順で行います：
+1.  [Wallarm側でパラメータを生成する。][doc-setup-sp]
+2.  [Oktaでアプリケーションを作成し設定する。][doc-setup-idp]
+3.  [OktaのメタデータをWallarm設定ウィザードに転送する。][doc-metadata-transfer]
+4.  [Okta側でWallarmアプリケーションへのアクセスを許可する][doc-allow-access-to-wl]
 
-その後、[Wallarm ユーザーの SSO 認証を設定][doc-employ-sso] します。
+その後、[SSO認証を設定する][doc-employ-sso] Wallarmユーザー。

@@ -1,4 +1,4 @@
-## 1. Debian/CentOSリポジトリを追加します
+## 1. Debian/CentOSリポジトリを追加する
 
 === "Debian 10.x (buster)"
     ```bash
@@ -20,19 +20,19 @@
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/7/4.6/x86_64/wallarm-node-repo-4.6-0.el7.noarch.rpm
     ```
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y epel-release
     sudo rpm -i https://repo.wallarm.com/centos/wallarm-node/8/4.6/x86_64/wallarm-node-repo-4.6-0.el8.noarch.rpm
     ```
 
-## 2. WallarmパッケージつきのNGINXをインストールします
+## 2. Wallarmパッケージと共にNGINXをインストールする
 
-このコマンドは次のパッケージをインストールします：
+次のパッケージをインストールするコマンドです：
 
-* NGINXのための`nginx`
-* NGINX-Wallarmモジュールのための`libnginx-mod-http-wallarm`または`nginx-mod-http-wallarm`
-* [postanalytics][install-postanalytics-docs]モジュール、Tarantoolデータベース、そして追加のNGINX-Wallarmパッケージ用の`wallarm-node`
+* NGINX用の`nginx`
+* NGINX-Wallarmモジュール用の`libnginx-mod-http-wallarm`または`nginx-mod-http-wallarm`
+* [postanalytics][install-postanalytics-docs]モジュール、Tarantoolデータベース、追加のNGINX-Wallarmパッケージ用の`wallarm-node`
 
 === "Debian 10.x (buster)"
     ```bash
@@ -46,14 +46,14 @@
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo yum install -y nginx wallarm-node nginx-mod-http-wallarm
     ```
 
-## 3. Wallarmモジュールを接続します
+## 3. Wallarmモジュールを接続する
 
-システムセットアップ用の設定ファイルをコピーします：
+システム設定用の設定ファイルをコピーします：
 
 === "Debian"
     ```bash
@@ -63,11 +63,11 @@
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
-=== "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+=== "AlmaLinux, Rocky LinuxまたはOracle Linux 8.x"
     ```bash
     sudo cp /usr/share/doc/nginx-mod-http-wallarm/examples/*conf /etc/nginx/conf.d/
     ```
 
-## 4. フィルタリングノードをWallarmクラウドに接続します
+## 4. フィルタリングノードをWallarm Cloudに接続する
 
 --8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"

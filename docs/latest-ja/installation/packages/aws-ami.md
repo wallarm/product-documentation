@@ -2,19 +2,19 @@
 [link-sg]:                  https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
 [link-launch-instance]:     https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
 
-[anchor1]:      #2-セキュリティグループの作成
-[anchor2]:      #1-AWSでSSHキーペアを作成
+[anchor1]:      #2-セキュリティグループを作成する
+[anchor2]:      #1-awsにsshキーペアを作成する
 
 [img-create-sg]:                ../../images/installation-ami/common/create_sg.png
-[versioning-policy]:            ../../updating-migrating/versioning-policy.md#バージョン一覧
+[versioning-policy]:            ../../updating-migrating/versioning-policy.md#version-list
 [img-wl-console-users]:         ../../images/check-user-no-2fa.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [deployment-platform-docs]:     ../../installation/supported-deployment-options.md
-[node-token]:                       ../../quickstart.md#Wallarmフィルタリングノードのデプロイ
+[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#ノード作成用のAPIとノードトークン
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [platform]:                         ../../installation/supported-deployment-options.md
-[ptrav-attack-docs]:                ../../attacks-vulns-list.md#パストラバーサル
+[ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart.png
 [wallarm-nginx-directives]:         ../../admin-en/configure-parameters-en.md
 [autoscaling-docs]:                 ../../admin-en/installation-guides/amazon-cloud/autoscaling-overview.md
@@ -22,11 +22,12 @@
 [allocate-memory-docs]:             ../../admin-en/configuration-guides/allocate-resources-for-node.md
 [limiting-request-processing]:      ../../user-guides/rules/configure-overlimit-res-detection.md
 [logs-docs]:                        ../../admin-en/configure-logging.md
-[oob-advantages-limitations]:       ../oob/overview.md#利点と制限事項
+[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [wallarm-mode]:                     ../../admin-en/configure-wallarm-mode.md
+[inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [wallarm-api-via-proxy]:            ../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
-[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#トラフィックミラーリングのWebサーバー設定の事例
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "../include-ja/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"

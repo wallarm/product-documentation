@@ -4,50 +4,50 @@
 [gl-point]:                 ../../TERMS-GLOSSARY.md#point
 [gl-anomaly]:               ../../TERMS-GLOSSARY.md#anomaly
 
-# FAST Test Policies: Overview
+# FASTテストポリシー：概観
 
-FAST uses test policies that allow you to set up FAST node behavior when testing an application for [vulnerabilities][gl-vuln]. Documents in this section contain instructions for test policy management.
+FASTは、アプリケーションの[脆弱性][gl-vuln]をテストする際のFASTノードの動作を設定できるテストポリシーを使用します。このセクションのドキュメントには、テストポリシーの管理に関する指示が含まれています。
 
-!!! info "Terminology"
-    The "FAST test policy" term can be abbreviated as "policy" in this documentation section.
+!!! info "用語"
+    このドキュメンテーションセクションでは、「FASTテストポリシー」の言葉は「ポリシー」と略すことができます。
 
-## Test Policy Principles
+## テストポリシーの原則
 
-FAST represents request elements as [points][gl-point] and works only with those requests that contain one or more points allowed for processing. The list of such points is defined via the policy. If the request does not contain allowed points, it will be discarded and no test requests will be created on its basis.
+FASTはリクエスト要素を[ポイント][gl-point]として表現し、処理が許可された1つ以上のポイントを含むリクエストのみを処理します。そのようなポイントのリストはポリシーを通じて定義されます。リクエストに許可されたポイントが含まれていない場合、それは破棄され、その基本上にテストリクエストは作成されません。
 
-The policy regulates the following points:
+ポリシーは以下のポイントを規制します：
 
-* The way tests are performed
-    
-    During testing, FAST follows one or more methods listed below:
-    
-    * vulnerabilities detection using built-in FAST extensions, also known as *detects*
-    * vulnerabilities detection using custom extensions
-    * [anomaly][gl-anomaly] detection using FAST fuzz testing
+* テストが行われる方法
 
-* Elements of the baseline request that FAST node processes during application testing
+    テスト中、FASTは以下のいずれか、または複数の方法を使用します：
 
-    Points allowed for processing are configured in the **Insertion points** > **Where in the request to include** section of policy editor on your Wallarm account. See details about insertion points by this [link][doc-insertion-points].
+    * 組み込みのFAST拡張機能を使用した脆弱性の検出、*detects*とも呼ばれる
+    * カスタム拡張機能を使用した脆弱性の検出
+    * FASTファズテストを使用した[異常][gl-anomaly]の検出
 
-* Elements of the baseline request that FAST node does not process during application testing
+* アプリケーションのテスト中にFASTノードが処理するベースラインリクエストの要素
 
-    Points that are not allowed for processing are configured in the **Insertion points** > **Where in the request to exclude** section of the test policy settings on your Wallarm account. You can find more details about insertion points within this [link][doc-insertion-points].
+    処理が許可されたポイントは、Wallarmアカウントのポリシーエディターの **挿入点** > **リクエスト内で含める場所**セクションで設定されます。挿入点についての詳細は[こちら][doc-insertion-points]のリンクで確認できます。
 
-    Points not allowed for processing can be used when there is a wide variety of points in the **Where in the request to include** section and it is required to exclude processing of separate elements. For example, if all GET parameters are allowed for processing (`GET_.*`) and it is required to exclude processing of the `uuid` parameter, the `GET_uid_value` expression should be added in the **Where in the request to exclude** section.
+* アプリケーションのテスト中にFASTノードが処理しないベースラインリクエストの要素
 
-!!! warning "Policy scope"
-    When explicitly excluding points, FAST node processes are the only points allowed by the policy.
-    
-    Processing of any other points in the request is not performed.
+    処理が許可されていないポイントは、Wallarmアカウントのテストポリシー設定の**挿入点** > **リクエスト内で除外する場所**セクションで設定されます。挿入点についての詳細は[こちら][doc-insertion-points]のリンクで確認できます。
 
-??? info "Policy example"
+    処理が許可されていないポイントは、**リクエスト内で含める場所**セクションに多くのポイントがある場合や、特定の要素の処理を除外する必要がある場合に使用できます。例えば、すべてのGETパラメーターが処理の許可されている場合（`GET_.*`）、`uuid`パラメーターの処理を除外する必要がある場合、`GET_uid_value`表現は**リクエスト内で除外する場所**セクションに追加するべきです。
+
+!!! warning "ポリシーの範囲"
+    明示的にポイントを除外すると、FASTノードの処理はポリシーによって許可されたポイントのみに制限されます。
+
+    リクエスト内の他の任意のポイントの処理は行われません。
+
+??? info "ポリシーの例"
     ![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
-    The image above demonstrates the policy used by the FAST node in vulnerability detection. This policy allows processing of all GET parameters in the baseline request excluding the `token` GET parameter, which always is passed to the target application untouched.
+    上の画像は、脆弱性の検出にFASTノードが使用するポリシーを示しています。このポリシーは、基本リクエストのすべてのGETパラメーターを処理することを許容し、常に目標アプリケーションにそのまま渡される`token`GETパラメーターを除きます。
 
-    Furthermore, the policy allows you to use the built-in FAST extensions and custom extensions while the fuzzer is inactive.
+    さらに、このポリシーは、ファズャーが非アクティブの間、組み込みのFAST拡張機能とカスタム拡張機能を使用することを許可します。
 
-    Thus, testing for vulnerabilities using detects and extensions will be performed only for the baseline request **A** (`/app.php?uid=1234`)
-    .
+    したがって、detectsと拡張機能を使用した脆弱性のテストは、基本リクエスト**A**(`/app.php?uid=1234`)
+    に対してのみ実施されます。
 
-    Testing for vulnerabilities on the baseline request **B** (`/app.php?token=qwe1234`) will not be performed since it does not contain GET parameters allowed for processing. It instead contains the excluded parameter `token`.
+    基本リクエスト**B**(`/app.php?token=qwe1234`)に対する脆弱性のテストは、処理が許可されたGETパラメーターを含まないため実施されません。その代わりに、除外されたパラメーター`token`が含まれています。

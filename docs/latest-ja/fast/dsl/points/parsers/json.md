@@ -8,27 +8,23 @@
 [anchor1]:          #jsonobj-filter
 [anchor2]:          #jsonarray-filter
 
+# Json_docパーサー
 
-# Json_doc Parser
+**Json_doc**パーサーは、リクエストの任意の部分に配置できるJSON形式のデータを操作するために使用されます。Json_docパーサーは、その生形式で最上位のJSONデータコンテナの内容を参照します。
 
-The **Json_doc** parser is used for working with data in the JSON format that can be located in any part of the request. The Json_doc parser refers to the top-level JSON data container contents in their raw format.
+Json_docパーサーは入力データを基に複雑なデータ構造を構築します。次のフィルターを使用して、このデータ構造の要素にアクセスすることができます：
+* [Json_objフィルター][anchor1];
+* [Json_arrayフィルター][anchor2]。
 
-The Json_doc parser builds a complex data structure on the basis of the input data. You can use the following filters to address the elements of this data structure: 
-* [Json_obj filter][anchor1];
-* [Json_array filter][anchor2].
+フィルターを使用する場所に、Json_docパーサーとその提供するフィルターの名前を大文字で追加してください。
 
-Add the names of the Json_doc parser and the filter provided by it in upper case to the point to use the filter in the point.
-
-**Example:** 
-
-For the
-
+**例：** 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-request with the
+でのリクエストに対して、
 
 ```
 {
@@ -40,7 +36,7 @@ request with the
 }
 ```
 
-body, the Json_doc parser applied to the request body refers to the following data:
+といった内容がある場合、Json_docパーサーはリクエストボディに対して次のデータを参照します：
 
 ```
 {
@@ -52,30 +48,26 @@ body, the Json_doc parser applied to the request body refers to the following da
 }
 ```
 
+## Json_objフィルター
 
-## Json_obj Filter
+**Json_obj**フィルターはJSONオブジェクトのハッシュテーブルを参照します。このハッシュテーブルの要素は、JSONオブジェクトの名前を使用して参照する必要があります。
 
-The **Json_obj** filter refers to the hash table of the JSON objects. The elements of this hash table need to be referred to by using the names of the JSON objects.
+!!! info "ポイント内の正規表現"
+    ポイント内のJSONオブジェクトの名前は、[Rubyプログラミング言語の正規表現][link-ruby]になることができます。
 
-!!! info "Regular expressions in points"
-    The name of the JSON object in the point can be a [regular expression of the Ruby programming language][link-ruby].  
+[ハッシュ][link-hash]フィルターをJSONデータに適用すると、Json_objと同様に動作します。
 
-The [Hash][link-hash] filter applied to the JSON data works similarly to the Json_obj.
+JSON形式のハッシュテーブルの値は、配列やハッシュテーブルといった複雑なデータ構造も含むことができます。これらの構造の要素にアクセスするために次のフィルターを使用します：
+* 配列のための[配列][link-jsonobj-array]フィルターまたは[Json_array][anchor2]フィルター
+* ハッシュテーブルのための[ハッシュ][link-jsonobj-hash]フィルターまたは[Json_obj][anchor1]フィルター
 
-The values from the hash tables in JSON format may also contain the following complex data structures: arrays and hash tables. Use the following filters to address the elements in these structures:
-* The [Array][link-jsonobj-array] filter or the [Json_array][anchor2] filter for arrays
-* The [Hash][link-jsonobj-hash] filter or the [Json_obj][anchor1] filter for hash tables
-
-**Example:** 
-
-For the
-
+**例：** 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-request with the
+でのリクエストに対して、
 
 ```
 {
@@ -84,37 +76,35 @@ request with the
 }
 ```
 
-body, the Json_obj filter applied to the request body together with the Json_doc parser refers to the following table:
+といった内容がある場合、Json_docパーサーと一緒にリクエストボディに適用されたJson_objフィルターは次のテーブルを参照します：
 
-| Key      | Value    |
+| キー      | 値    |
 |----------|----------|
 | username | user     |
 | rights   | read     |
 
-* The `POST_JSON_DOC_JSON_OBJ_username_value` point refers to the `user` value.
-* The `POST_JSON_DOC_JSON_OBJ_rights_value` point refers to the `read` value.
+* `POST_JSON_DOC_JSON_OBJ_username_value` のポイントは `user` の値を参照します。
+* `POST_JSON_DOC_JSON_OBJ_rights_value` のポイントは `read` の値を参照します。
 
-## Json_array Filter
+## Json_arrayフィルター
 
-The **Json_array** filter refers to the array of the JSON object values. The elements of this array need to be referred to by using the indexes. The array indexing starts with `0`.
+**Json_array**フィルターはJSONオブジェクト値の配列を参照します。この配列の要素は、インデックスを使用して参照する必要があります。配列のインデックスは `0`から始まります。
 
-!!! info "Regular expressions in points"
-    The index in the point can be a [regular expression of the Ruby programming language][link-ruby]. 
+!!! info "ポイント内の正規表現"
+    ポイント内のインデックスは、[Rubyプログラミング言語の正規表現][link-ruby]になることができます。
 
-The [Array][link-array] filter applied to the JSON data works similarly to the Json_array filter.
+[配列][link-array]フィルターをJSONデータに適用すると、Json_arrayフィルターと同様に動作します。
 
-The values from the arrays in the JSON format may also contain hash tables. Use the [Hash][link-jsonarray-hash] or [Json_obj][anchor1].
+JSON形式の配列の値はハッシュテーブルも含むことができます。それを利用するためには [ハッシュ][link-jsonarray-hash] または [Json_obj][anchor1] を使用します。
 
-**Example:** 
-
-For the
+**例：** 
 
 ```
 POST http://example.com/main/login HTTP/1.1
 Content-type: application/json
 ```
 
-request with the
+でのリクエストに対して、
 
 ```
 {
@@ -123,12 +113,12 @@ request with the
 }
 ```
 
-body, the Json_array filter applied to the `rights` JSON object together with the Json_doc parser and the Json_obj filter refers to the following array:
+といった内容がある場合、Json_docパーサーとJson_objフィルターと一緒に`rights` JSONオブジェクトに適用されたJson_arrayフィルターは次の配列を参照します：
 
-| Index  | Value    |
+| インデックス  | 値    |
 |--------|----------|
 | 0      | read     |
 | 1      | write    |
 
-* The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` point refers to the `read` value that corresponds with the `0` index from the array of the `rights` JSON object values addressed by the Json_array filter.
-* The `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` point refers to the `write` value that corresponds with the `1` index from the array of the `rights` JSON object values addressed by the Json_array filter.
+* `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_0_value` のポイントは `read` の値を参照します。これは、Json_arrayフィルターでアドレス指定された `rights` JSONオブジェクト値の配列からの `0` インデックスに対応します。
+* `POST_JSON_DOC_JSON_OBJ_rights_JSON_ARRAY_1_value` のポイントは `write` の値を参照します。これは、Json_arrayフィルターでアドレス指定された `rights` JSONオブジェクト値の配列からの `1` インデックスに対応します。

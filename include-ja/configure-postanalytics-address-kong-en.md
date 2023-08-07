@@ -1,4 +1,4 @@
-postanalyticsのサーバーアドレスを `/etc/kong/nginx-wallarm.template` に追加してください。
+postanalyticsのサーバーアドレスを`/etc/kong/nginx-wallarm.template`に追加してください：
 
 ```bash
 upstream wallarm_tarantool {
@@ -8,15 +8,15 @@ upstream wallarm_tarantool {
     keepalive 2;
 }
 
-# 省略されている部分
+# 省略
 
 wallarm_tarantool_upstream wallarm_tarantool;
 ```
 
-!!! warning "必要条件"
-    `max_conns` および `keepalive` パラメータについて、以下の条件が満たされている必要があります：
+!!! warning "必要な条件"
+    `max_conns`パラメータと`keepalive`パラメータに対して以下の条件が満たされていることが必要です：
     
-    * `keepalive` パラメータの値は、Tarantoolサーバーの数より低くしてはいけません。
-    * 上流のTarantoolサーバーごとに `max_conns` パラメータの値を指定して、過剰な接続の作成を防ぐ必要があります。
+    * `keepalive`パラメータの値は、Tarantoolサーバーの数より小さくないこと。
+    * 過剰な接続が作成されるのを防ぐために、上流のTarantoolサーバーごとに`max_conns`パラメータの値を指定してください。
 
-    `# wallarm_tarantool_upstream wallarm_tarantool;` 文字列はデフォルトでコメントされています。`#` を削除してください。
+    `# wallarm_tarantool_upstream wallarm_tarantool;`の文字列はデフォルトでコメントアウトされています - `#`を削除してください。

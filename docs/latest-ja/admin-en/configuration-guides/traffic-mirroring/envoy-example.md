@@ -1,10 +1,10 @@
-`# トラフィックミラーリングのためのEnvoy設定例
+# トラフィックミラーリングのためのEnvoy設定の例
 
-この記事では、Envoy を使用して[トラフィックをミラーリングし、Wallarm ノードにルーティングする](overview.md)ために必要な設定例を提供します。
+この記事では、トラフィックをミラーリングし、それをWallarmノードにルーティングするために必要なEnvoyの[設定例](overview.md)を提供します。
 
-## ステップ1： Envoy を通じてトラフィックミラーリングを設定する
+## ステップ1: トラフィックミラーリングのためのEnvoy設定
 
-この例では、ポート80（TLSなし）でリッスンする唯一の`listener`を使ってEnvoyを経由してトラフィックミラーリングを設定しています。元のバックエンドとミラーリングされたトラフィックを受信する追加のバックエンドのアドレスは、`clusters`ブロックに記述されています。
+この例では、単一の`listener`がポート80（TLSなし）をリッスニングし、単一の`filter`を持つことで、Envoyを使ったトラフィックミラーリングを設定します。オリジナルのバックエンドと、ミラーリングされたトラフィックを受け取る追加のバックエンドのアドレスは、`clusters`ブロックで指定されます。
 
 ```yaml
 static_resources:
@@ -30,9 +30,9 @@ static_resources:
                 - match:
                     prefix: "/"
                   route:
-                    cluster: httpbin     # <-- 元のクラスタへのリンク
+                    cluster: httpbin     # <-- オリジナルのクラスタへのリンク
                     request_mirror_policies:
-                    - cluster: wallarm   # <-- ミラーリングされたリクエストを受信するクラスタへのリンク
+                    - cluster: wallarm   # <-- ミラーリングされた要求を受け取るクラスタへのリンク
                       runtime_fraction:
                         default_value:
                           numerator: 100
@@ -42,7 +42,7 @@ static_resources:
                 "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
 
   clusters:
-  ### 元のクラスタの定義
+  ### オリジナルのクラスタの定義
   ###
   - name: httpbin
     type: STRICT_DNS
@@ -53,14 +53,14 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### オリジナルエンドポイントのアドレス。アドレスはDNS名
-              ### またはIPアドレスであり、port_valueはTCPポート番号
+              ### オリジナルのエンドポイントのアドレス。AddressはDNS名
+              ### またはIPアドレス、port_valueはTCPポート番号です
               ###
               socket_address:
-                address: httpbin # <-- 元のクラスタの定義
+                address: httpbin # <-- オリジナルのクラスタの定義
                 port_value: 80
 
-  ### ミラーリングされたリクエストを受信するクラスタの定義
+  ### ミラーリングされたリクエストを受け取るクラスタの定義
   ###
   - name: wallarm
     type: STRICT_DNS
@@ -71,18 +71,18 @@ static_resources:
       - lb_endpoints:
         - endpoint:
             address:
-              ### オリジナルエンドポイントのアドレス。アドレスは DNS 名
-              ### または IP アドレスであり、port_value は TCP ポート番号です。巻
-              ### 拡張鏡スキームは任意のポートでデプロイできますが、
-              ### デフォルト値は TCP/8445 です。
+              ### オリジナルのエンドポイントのアドレス。AddressはDNS名
+              ### またはIPアドレス、port_valueはTCPポート番号です。Wallarm
+              ### のミラースキーマは任意のポートでデプロイできますが、
+              ### デフォルト値はTCP/8445です。
               ###
               socket_address:
                 address: wallarm
                 port_value: 8445
 ```
 
-`[Envoy のドキュメント](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto) を確認する`
+[Envoyのドキュメンテーションを確認してください](https://www.envoyproxy.io/docs/envoy/latest/api-v3/config/route/v3/route_components.proto)
 
-## ステップ2： Wallarm ノードを構成して、ミラーリングされたトラフィックのフィルタリングを行う
+## ステップ2: ミラーリングされたトラフィックをフィルタするためのWallarmノードの設定
 
-`--8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"`
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

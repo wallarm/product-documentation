@@ -24,28 +24,28 @@
 
 # GCPマシンイメージからWallarm OOBをデプロイする
 
-この記事では、[公式マシンイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を使用して、GCP上の[Wallarm OOB](overview.md)をデプロイするための手順を提供します。ここで説明されているソリューションは、ウェブサーバまたはプロキシサーバによってミラーリングされたトラフィックを分析するために設計されています。
+この記事では、 [公式マシンイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を使用してGCPに[Wallarm OOB](overview.md)をデプロイする方法を説明します。ここで説明するソリューションは、ウェブサーバーやプロキシサーバーによってミラーリングされたトラフィックを分析するために設計されています。
 
---8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
-## 5. Wallarmがミラーリングされたトラフィックを分析できるようにする
+## 5. Wallarmにミラーリングされたトラフィックの分析を有効にする
 
---8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 6. NGINXを再起動する
 
---8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 7. ウェブサーバまたはプロキシサーバを設定し、そのトラフィックをWallarmノードにミラーリングする
+## 7. 自分のウェブサーバーやプロキシサーバーを設定して、トラフィックをWallarmノードにミラーリングする
 
-ウェブサーバまたはサーバ（例：NGINX、Envoy）を設定して、インカムトラフィックをWallarmノードにミラーリングします。設定の詳細については、ウェブサーバまたはプロキシサーバのドキュメンテーションを参照することをお勧めします。
+あなたのウェブまたはサーバー（例：NGINX、Envoy）を設定し、着信トラフィックをWallarmノードにミラーリングします。設定の詳細については、あなたのウェブサーバーまたはプロキシサーバーのドキュメンテーションを参照することをお勧めします。
 
-この[リンク](overview.md#examples-of-web-server-configuration-for-traffic-mirroring)の中には、最も人気のあるウェブサーバとプロキシサーバ（NGINX、Traefik、Envoy）の設定例があります。
+[リンク](overview.md#examples-of-web-server-configuration-for-traffic-mirroring)の中には、最も人気のあるウェブおよびプロキシサーバー（NGINX、Traefik、Envoy）の設定例があります。
 
-## 8. Wallarmの操作をテストする
+## 8. Wallarmの動作をテストする
 
---8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
 
-## 9. デプロイされたソリューションの微調整
+## 9. デプロイしたソリューションの微調整
 
---8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"

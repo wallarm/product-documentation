@@ -5,46 +5,46 @@
 [doc-get-token]:                   create-node.md
 [deploy-docker-with-fast-node]:    ../qsg/deployment.md#4-deploy-the-fast-node-docker-container
 
-# Getting the Report with Test Results
+# テスト結果レポートの取得
 
-The FAST node allows you to get test results in TXT and JSON formats:
+FASTノードは、テスト結果をTXTとJSONの形式で取得することができます。
 
-* The TXT file contains brief test results — baseline statistics and detected vulnerabilities list.
-* The JSON file contains detailed test results — details on the security test and basic requests, as well as the detected vulnerabilities list. JSON file content corresponds to the data provided on your Wallarm account > **Test runs**.
+* TXTファイルには、基本的な統計と検出した脆弱性のリストが含まれます。
+* JSONファイルには、詳細なテスト結果が含まれます — セキュリティテストと基本リクエストの詳細、及び検出した脆弱性のリスト。JSONファイルの内容は、Wallarmアカウント > **Test runs**で提供されるデータに対応しています。
 
-To get the report, select the report generation method and follow the instructions below:
+レポートを取得するためには、レポート生成方法を選択し、以下の指示に従ってください。
 
-* [Running FAST node in report mode][anchor-report-mode]
-* [Running FAST node in testing mode with the option to download a report][doc-ci-mode-testing-report]
+* [レポートモードでのFASTノードの実行][anchor-report-mode]
+* [レポートのダウンロードオプション付きのテストモードでのFASTノードの実行][doc-ci-mode-testing-report] 
 
-## Running FAST Node in Report Mode
+## レポートモードでのFASTノードの実行
 
-To run FAST node in report mode, perform the following steps when [deploying the Docker container][deploy-docker-with-fast-node]:
+レポートモードでFASTノードを実行するためには、[Dockerコンテナのデプロイ][deploy-docker-with-fast-node]時に以下の手順を実行します。
 
-<ol start="1"><li>Set environment variables:</li></ol>
+<ol start="1"><li>環境変数を設定します。</li></ol>
 
-| Variable           	| Description 	| Required 	|
-|--------------------	| --------	| -----------	|
-| `WALLARM_API_TOKEN`  	| A [token][doc-get-token] from the Wallarm cloud. | Yes |
-| `WALLARM_API_HOST`   	| The address of the Wallarm API server. <br>Allowed values: <br>`us1.api.wallarm.com` for the server in the Wallarm US cloud and <br>`api.wallarm.com` for the server in the Wallarm EU cloud.| Yes |
-| `CI_MODE`            	| The FAST node's operation mode.<br>Must be `report`. | Yes |
-| `TEST_RUN_ID`      	| The test run ID needed to get the report.<br>The ID is displayed on your Wallarm account > **Test runs** and in logs of running the FAST node in testing mode.<br>By default, ID of the last test run is used. | No |
+| 変数                   	| 説明 	| 必須 	|
+|------------------------	|--------	|-------	|
+| `WALLARM_API_TOKEN`     	| Wallarmクラウドからの[token][doc-get-token] | はい |
+| `WALLARM_API_HOST`      	| Wallarm APIサーバーのアドレス。<br>許可されている値：<br>`us1.api.wallarm.com` （Wallarm USクラウド内のサーバー用）<br>`api.wallarm.com` （Wallarm EUクラウド内のサーバー用）。 | はい |
+| `CI_MODE`               	| FASTノードの操作モード。<br>`report`である必要があります。 | はい |
+| `TEST_RUN_ID`         	| レポートを取得するために必要なテスト実行ID。<br>IDはWallarmアカウント > **Test runs**とFASTノードのテストモードでの実行ログで表示されます。<br>デフォルトでは、最後のテスト実行のIDが使用されます。 | いいえ |
 
-<ol start="2"><li>Pass the path to the folder for reports via the  <code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code> option.</li></ol>
+<ol start="2"><li>オプション<code>-v {DIRECTORY_FOR_REPORTS}:/opt/reports/</code>を使って、レポートのフォルダへのパスを渡します。</li></ol>
 
-**Example of the command to run the FAST node Docker container in report mode:**
+**レポートモードでFASTノードDockerコンテナを実行するコマンドの例：**
 
 ```
 docker run  --rm -e WALLARM_API_HOST=us1.api.wallarm.com -e WALLARM_API_TOKEN=qwe53UTb2 -e CI_MODE=report -e TEST_RUN_ID=9012 -v documents/reports:/opt/reports/ wallarm/fast
 ```
 
-## Getting the Report
+## レポートの取得
 
-If the command was successfully executed, you will get brief data about the test run in the terminal:
+コマンドが正常に実行された場合、ターミナルにテスト実行の簡単なデータが表示されます。
 
---8<-- "../include-ja/fast/console-include/operations/node-in-ci-mode-report.md"
+--8<-- "../include/fast/console-include/operations/node-in-ci-mode-report.md"
 
-When the report generation is finished, you will find the following files with reports in the `DIRECTORY_FOR_REPORTS` folder:
+レポート生成が完了したら、`DIRECTORY_FOR_REPORTS`フォルダに以下のレポートファイルが作成されます：
 
 * `<TEST RUN NAME>.<UNIX TIME>.txt`
 * `<TEST RUN NAME>.<UNIX TIME>.json`

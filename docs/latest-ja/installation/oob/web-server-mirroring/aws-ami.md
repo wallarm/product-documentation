@@ -1,9 +1,9 @@
 [link-ssh-keys]:            https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair
-[link-sg]:                  https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
-[link-launch-instance]:     https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
+[link-sg]:                  https://docs.aws.amazon.com/en_us/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-base-security-group
+[link-launch-instance]:     https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance
 
-[anchor1]:      #2-セキュリティ-グループを作る
-[anchor2]:      #1-awsでsshキーペアを作成する
+[anchor1]:      #2-create-a-security-group
+[anchor2]:      #1-create-a-pair-of-ssh-keys-in-aws
 
 [img-create-sg]:                ../../../images/installation-ami/common/create_sg.png
 [versioning-policy]:            ../../../updating-migrating/versioning-policy.md#version-list
@@ -27,33 +27,33 @@
 [wallarm-api-via-proxy]:            ../../../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
-# Amazon ImageからWallarm OOBをデプロイする
+# AmazonイメージからWallarm OOBをデプロイ
 
-この記事では、[公式のAmazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を使用してAWS上で[Wallarm OOB](overview.md)をデプロイするための手順を提供します。ここで説明されているソリューションは、ウェブサーバーまたはプロキシサーバーからミラーリングされたトラフィックを分析するように設計されています。
+この記事では、[Wallarm OOB](overview.md)を[AWS公式のAmazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD)を利用してAWSにデプロイする方法を提供します。 ここで説明されているソリューションは、ウェブサーバーやプロキシサーバーによってミラーリングされたトラフィックの分析を目指して設計されています。
 
 <!-- ???
-指す全ての地域がサポートできます -->
+すべての地域がサポートされています -->
 
---8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
-## 6. Wallarmにミラーリングされたトラフィックの分析を許可する
+## 6. Wallarmにミラーリングトラフィックの分析を許可
 
---8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
 
-## 7. NGINXの再起動
+## 7. NGINXを再起動
 
---8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
 
-## 8. あなたのウェブまたはプロキシサーバーをWallarmノードにトラフィックをミラーリングするように設定します
+## 8. Wおためのェブサーバーまたはプロキシサーバーを設定して、Wallarmノードにトラフィックをミラーリング
 
-あなたのウェブまたはプロキシサーバー（例えば、NGINX、Envoy）を、受信トラフィックをWallarmノードにミラーリングするように設定します。設定の詳細については、あなたのウェブまたはプロキシサーバーのドキュメンテーションを参照することをお勧めします。
+ウェブまたはプロキシサーバー（例：NGINX、Envoy）を設定して、インカムトラフィックをWallarmノードにミラーリングします。設定の詳細については、ウェブまたはプロキシサーバーのマニュアルを参照することを推奨します。
 
-[リンク](overview.md#examples-of-web-server-configuration-for-traffic-mirroring)の中では、最も人気のあるウェブ・プロキシサーバー（NGINX、Traefik、Envoy）の構成例が見つけることができます。
+[link](overview.md#examples-of-web-server-configuration-for-traffic-mirroring)の中には、最も一般的なウェブとプロキシサーバー（NGINX、Traefik、Envoy）のサンプル設定が見つかります。
 
-## 9. Wallarmの動作テスト
+## 9. Wallarmの動作をテスト
 
---8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 10. デプロイしたソリューションの微調整
 
---8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"

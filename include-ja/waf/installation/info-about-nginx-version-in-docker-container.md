@@ -1,2 +1,2 @@
-					!!! info "DockerコンテナのNGINXバージョン"
-    Dockerコンテナでは、バージョン`1.14.x`のNGINXが使用されています。このNGINXバージョンにはいくつかの脆弱性が存在するかもしれませんが、実際には[ほとんどがDebianチームによってパッチが当てられています](https://security-tracker.debian.org/tracker/source-package/nginx)。DockerコンテナはDebian 10.x上でサービスを実行しているため、発見された脆弱性がデータの危険につながることはありません。
+					!!! info "Dockerコンテナ内のNGINXバージョン"
+    Dockerコンテナはバージョン`1.14.x`のNGINXを使用しています。このNGINXバージョンではいくつかの脆弱性が存在するかもしれませんが、実際にはそのほとんどが[Debianチームによって修正されています](https://security-tracker.debian.org/tracker/source-package/nginx)。DockerコンテナはDebian 10.xでサービスを実行しているので、見つけられた脆弱性がデータの損失につながるはずはありません。

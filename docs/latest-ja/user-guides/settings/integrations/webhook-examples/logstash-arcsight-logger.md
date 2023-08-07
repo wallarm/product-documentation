@@ -1,111 +1,111 @@
-# Micro Focus ArcSight Logger 経由の Logstash
+# Micro Focus ArcSight Logger経由のLogstash
 
-これらの指示は、WallarmとLogstashデータコレクタとの間の例示的な統合を提供し、さらにイベントをArcSight Loggerシステムに転送します。
+これらの指示により、WallarmとLogstashデータコレクタの統合の例を提供し、さらにArcSight Loggerシステムにイベントを転送する方法を示します。
 
---8<-- "../include-ja/integrations/webhook-examples/overview.md"
+--8<-- "../include/integrations/webhook-examples/overview.md"
 
 ![!Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "ArcSight ESMのエンタープライズ版との統合"
-    LogstashからArcSight ESMのエンタープライズ版にログを転送するには、ArcSight側でSyslogコネクタを設定し、ログをLogstashからコネクタポートに転送することが推奨されます。コネクタのより詳細な説明については、[公式のArcSight SmartConnectorドキュメント](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs) より**SmartConnector User Guide** をダウンロードしてください。
+    LogstashからArcSight ESMのエンタープライズ版へのログの転送を設定するには、ArcSight側でSyslog Connectorを設定し、その後、Logstashからコネクタポートにログを転送することを推奨します。コネクタについての詳細な説明を得るために、[公式のArcSight SmartConnectorドキュメンテーション](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs)から**SmartConnectorユーザーガイド**をダウンロードしてください。
 
-## 使用されるリソース
+## 用いたリソース
 
-* [ArcSight Logger 7.1](#arcsight-logger-configuration) をCentOS 7.8にインストールし、WEB URL `https://192.168.1.73:443`で利用可能
-* [Logstash 7.7.0](#logstash-configuration) をDebian 11.x（bullseye）にインストールし、`https://logstash.example.domain.com`で利用可能
-* [EUクラウド](https://my.wallarm.com)のWallarmコンソールへの管理者アクセスを使用して、[Logstash統合を設定](#configuration-of-logstash-integration)
+* WEB URL `https://192.168.1.73:443` でインストールされた [ArcSight Logger 7.1](#arcsight-logger-configuration)
+* `https://logstash.example.domain.com` で利用可能で、Debian 11.x (bullseye)にインストールされた [Logstash 7.7.0](#logstash-configuration)
+* [EU cloud](https://my.wallarm.com) におけるWallarm Consoleへの管理者アクセス、[Logstash統合の設定](#configuration-of-logstash-integration) ができます
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-ArcSight LoggerとLogstashサービスへのリンクは例示的なものであり、応答しません。
+ArcSight LoggerおよびLogstashサービスへのリンクは例として引用されているので、対応していません。
 
 ### ArcSight Loggerの設定
 
-ArcSight Loggerには、以下のように設定されたログ受信機能「Wallarm Logstashログ」があります。
+ArcSight Loggerは、以下のように設定されたログレシーバ `Wallarm Logstash logs` を持っています：
 
 * ログはUDP経由で受信されます（`Type = UDP Receiver`）
-* リスニングポートは「514」
+* 待ち受けポートは `514`
 * イベントはsyslogパーサで解析されます
 * その他のデフォルト設定
 
-![!ArcSight Loggerの受信機能の設定](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![!ArcSight Loggerでのレシーバの設定](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
-受信機能の設定の詳細については、[公式のArcSight Loggerドキュメント](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) より適切なバージョンの**Logger Installation Guide** をダウンロードしてください。
+レシーバの設定の詳細な説明を得るために、適切なバージョンの**Loggerインストールガイド**を [公式のArcSight Loggerドキュメンテーション](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc) からダウンロードしてください。
 
 ### Logstashの設定
 
-WallarmがWebhookを介してLogstashの中間データコレクタにログを送信するため、Logstashの設定は以下の要件を満たす必要があります。
+Wallarmがwebhooks経由でLogstashの中間データコレクタにログを送信するため、Logstashの設定は次の要件を満たす必要があります：
 
 * POSTまたはPUTリクエストを受け入れる
 * HTTPSリクエストを受け入れる
-* 公開されたURLを持つ
-* ログをArcSight Loggerに転送する（この例では`syslog`プラグインを使用してログを転送）
+* 公開URLを持つ
+* ArcSight Loggerへのログの転送。この例では `syslog` プラグインがログの転送に使用されています
 
-Logstashは`logstash-sample.conf`ファイルで設定されます。
+Logstashは `logstash-sample.conf` ファイルで設定されています：
 
-* `input`セクションで受信Webhookの処理が設定されています。
+* `input` セクションでの入力webhookの処理は次のように設定されています：
     * トラフィックはポート5044に送信されます
     * LogstashはHTTPS接続のみを受け入れるように設定されています
-    * LogstashのTLS証明書（公的に信頼されたCAによって署名されたもの）はファイル`/etc/server.crt`内にあります
-    * TLS証明書の秘密鍵はファイル`/etc/server.key`内にあります
-* `output`セクションでArcSight Loggerへのログ転送とログ出力が設定されています。
-    * すべてのイベントログはLogstashからIPアドレス`https://192.168.1.73:514`のArcSight Loggerに転送されます
-    * LogstashからArcSight Loggerにログが転送される際、[Syslog](https://ja.wikipedia.org/wiki/Syslog) 標準に従ってJSON形式で行われます
+    * Logstashの公的に信頼できるCAによって署名されたTLS証明書は `/etc/server.crt` ファイル内に配置されています
+    * TLS証明書の秘密鍵は `/etc/server.key` ファイル内に配置されています
+* ArcSight Loggerへのログ転送とログ出力は `output` セクションで設定されています：
+    * すべてのイベントログがLogstashからIPアドレス `https://192.168.1.73:514` 上のArcSight Loggerに転送されます
+    * ログはLogstashからArcSight Loggerに、 [Syslog](https://en.wikipedia.org/wiki/Syslog) 標準に基づいてJSON形式で転送されます
     * ArcSight Loggerとの接続はUDP経由で確立されます
-    * Logstashのログはさらにコマンドラインに表示されます（15行目のコード）これは、Logstashを介してイベントが記録されていることを確認するために使用される設定です
+    * Logstashのログは追加でコマンドラインに出力されます（15行目）。この設定は、イベントがLogstash経由でログに記録されていることを確認するために使用されます
 
 ```bash linenums="1"
 input {
   http { # HTTPおよびHTTPSトラフィックのための入力プラグイン
-    port => 5044 # 入力リクエスト用のポート
+    port => 5044 # 入力リクエストのためのポート
     ssl => true # HTTPSトラフィックの処理
-    ssl_certificate => "/etc/server.crt" # Logstash TLS証明書
-    ssl_key => "/etc/server.key" # TLS証明書の秘密鍵
+    ssl_certificate => "/etc/server.crt" # LogstashのTLS証明書
+    ssl_key => "/etc/server.key" # TLS証明書のための秘密鍵
   }
 }
 output {
-  syslog { # LogstashからSyslog経由でログを転送するための出力プラグイン
+  syslog { # Syslog経由でLogstashからログを転送するための出力プラグイン
     host => "192.168.1.73" # ログを転送するIPアドレス
     port => "514" # ログを転送するポート
     protocol => "udp" # 接続プロトコル
-    codec => json # 転送されるログの形式
+    codec => json # 転送するログの形式
   }
-  stdout {} # コマンドラインにLogstashのログを表示するための出力プラグイン
+  stdout {} # コマンドライン上にLogstashのログを出力する出力プラグイン
 }
 ```
 
-設定ファイルの詳細説明は、[公式のLogstashドキュメント](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html)で入手できます。
+設定ファイルに関するより詳細な説明は、[公式のLogstashドキュメンテーション](https://www.elastic.co/guide/en/logstash/current/configuration-file-structure.html) で利用可能です。
 
-!!! info "Logstash構成のテスト"
-    Logstashのログが作成され、ArcSight Loggerに転送されていることを確認するために、LogstashにPOSTリクエストを送信することができます。
+!!! info "Logstash設定のテスト"
+    Logstashのログが作成され、ArcSight Loggerに転送されていることを確認するために、POSTリクエストをLogstashに送信できます。
 
-    **リクエスト例:**
+    **リクエストの例：**
     ```curl
     curl -X POST 'https://logstash.example.domain.com' -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}'
     ```
 
-    **Logstashログ:**
-    ![!Logstashログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    **Logstashのログ：**
+    ![!Logstashのログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
-    **ArcSight Loggerでのイベント:**
-    ![!ArcSight Loggerイベント](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    **ArcSight Loggerでのイベント：**
+    ![!ArcSight Loggerでのイベント](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Logstash統合の設定
 
---8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![!LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
-[Logstash統合設定の詳細](../logstash.md)
+[Logstash統合設定に関する詳細](../logstash.md)
 
-## 例のテスト
+## テスト例
 
---8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
 
-Logstashは次のようにイベントをログします。
+Logstashは次のようにイベントをログに記録します：
 
-![!LogstashからのArcSight Loggerの新規ユーザーログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![!ArcSight LoggerでのLogstashからの新規ユーザーに関するログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
-ArcSight Loggerのイベントには次のエントリが表示されます。
+ArcSight Loggerのイベントには次のエントリが表示されます：
 
-![!LogstashからのArcSight Loggerの新規ユーザーカード](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![!ArcSight LoggerでのLogstashからの新規ユーザーカード](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

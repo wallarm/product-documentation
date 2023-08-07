@@ -19,19 +19,19 @@ spec:
           imagePullPolicy: Always
           env:
           # Wallarm APIエンドポイント：
-          # EUクラウドの場合は"api.wallarm.com"
-          # USクラウドの場合は"us1.api.wallarm.com"
+          # EUクラウド用 "api.wallarm.com"
+          # USクラウド用 "us1.api.wallarm.com"
           - name: WALLARM_API_HOST
             value: "api.wallarm.com"
-          # デプロイロールを持つユーザーのユーザーネーム
+          # Deploy役割を持つユーザーのユーザー名
           - name: DEPLOY_USER
             value: "username"
-          # デプロイロールを持つユーザーのパスワード
+          # Deploy役割を持つユーザーのパスワード
           - name: DEPLOY_PASSWORD
             value: "password"
           - name: DEPLOY_FORCE
             value: "true"
-          # IPブロック機能を有効にするかどうか
+          # IPブロッキング機能を有効にするかどうか
           - name: WALLARM_ACL_ENABLE
             value: "true"
           # リクエスト分析データのメモリ量（GB）
@@ -39,21 +39,21 @@ spec:
             value: "2"
           ports:
           - name: http
-            # WallarmサイドカーコンテナがServiceオブジェクトからのリクエストを受け入れるポート
+            # Wallarmサイドカーコンテナがサービスオブジェクトからのリクエストを受け入れるポート
             containerPort: 80
           volumeMounts:
           - mountPath: /etc/nginx/sites-enabled
-            readOnly: true    
+            readOnly: true
             name: wallarm-nginx-conf
-        # メインアプリコンテナの定義
+        # あなたのメインアプリケーションコンテナの定義
         - name: myapp
-          image: <Image>
+          image: <イメージ>
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
-          # アプリケーションコンテナが受信リクエストを受け入れるポート
+          # アプリケーションコンテナが着信リクエストを受け入れるポート
           - containerPort: 8080
       volumes:
       # Wallarm要素：wallarm-nginx-confボリュームの定義

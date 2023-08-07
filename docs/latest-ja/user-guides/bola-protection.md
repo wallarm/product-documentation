@@ -1,49 +1,49 @@
-[variability-in-endpoints-docs]: ../about-wallarm/api-discovery.md#variability-in-endpoints
-[changes-in-api-docs]: api-discovery.md#tracking-changes-in-api
-[bola-protection-for-endpoints-docs]: ../about-wallarm/api-discovery.md#automatic-bola-protection
+[variability-in-endpoints-docs]:       ../about-wallarm/api-discovery.md#variability-in-endpoints
+[changes-in-api-docs]:       api-discovery.md#tracking-changes-in-api
+[bola-protection-for-endpoints-docs]:  ../about-wallarm/api-discovery.md#automatic-bola-protection
 
 # BOLA保護 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarm Console UI の **BOLA保護** セクションでは、**API Discovery** モジュールによって探索されたAPIエンドポイントを対象とした [BOLA（IDOR）攻撃](../attacks-vulns-list.md#broken-object-level-authorization-bola) の軽減を設定することができます。
+WallarmコンソールUIの **BOLA保護** セクションでは、**API Discovery** モジュールが探索したAPIエンドポイントを対象とした [BOLA (IDOR) 攻撃](../attacks-vulns-list.md#broken-object-level-authorization-bola) の軽減を設定することができます。
 
-このセクションは、以下の条件で利用可能です。
+次の条件の下でこのセクションは利用できます：
 
-* [API Discovery](../about-wallarm/api-discovery.md) モジュールが有効
-* ユーザー[ロール](settings/users.md#user-roles) が **管理者** または **グローバル管理者** であること
+* [API Discovery](../about-wallarm/api-discovery.md) モジュールが有効化されている
+* ユーザーの[役割](settings/users.md#user-roles)が**管理者**または**グローバル管理者**である
 
-    また、セクションは **アナリスト** と **グローバルアナリスト** の場合も読み取り専用で利用可能です。
-
+    また、このセクションは、**アナリスト**と**グローバルアナリスト**に対して、読み取り専用モードでも利用可能です。
+    
 !!! info "BOLA軽減のバリエーション"
 
-    BOLA軽減は以下のバリエーションで利用可能です：
+    BOLA軽減は次のバリエーションで利用可能です:
 
-    * **API Discovery** モジュールで探索されたエンドポイントに対する自動軽減（この記事で説明されている UIを使用して設定）
-    * Wallarmノードで保護されたすべてのエンドポイントに対する軽減 - このオプションは、対応するトリガを介して手動で設定されます。
+    * **API Discovery** モジュールが探索したエンドポイントの自動軽減（UIの設定はこの記事でカバーされています）
+    * Wallarmノードによって保護された任意のエンドポイントの軽減 - このオプションは対応するトリガーを介して手動で設定されます
 
-    [BOLA（IDOR）保護の一般的な指示](../admin-en/configuration-guides/protecting-against-bola.md)で詳細をご覧いただけます。
+    [一般的なBOLA (IDOR)保護の手順](../admin-en/configuration-guides/protecting-against-bola.md)で詳細を確認してください。
 
 ## 自動BOLA保護の設定
 
-API Discoveryモジュールで探索されたエンドポイントをBOLAの脆弱性の分析対象とし、リスクのあるものを保護するためには、**スイッチを有効状態に切り替え** ます。
+API Discoveryモジュールが探索したエンドポイントをWallarmがBOLAの脆弱性について分析し、リスクがあるものを保護するためには、**スイッチを有効な状態にする** ことです。
 
-![!BOLAトリガ](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![!BOLAトリガー](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
-次に、以下のようにBOLA自動検出テンプレートを編集して、Wallarmのデフォルトの動作を微調整できます。
+その後、BOLAの自動検出テンプレートを編集することにより、デフォルトのWallarmの動作を微調整することが出来ます：
 
-* 同じIPからのリクエストがBOLA攻撃としてマークされるしきい値を変更する。
-* しきい値を超えた時の反応を変更する：
+* 同じIPからのリクエストがBOLA攻撃としてマークされる閾値を変更します。
+* 閾値を超えた時の反応を変更します：
 
-    * **Denylist IP** - WallarmはBOLA攻撃元の[denylist](ip-lists/denylist.md)にIPを追加し、これらのIPからのすべてのトラフィックをブロックします。
-    * **Graylist IP** - WallarmはBOLA攻撃元の[graylist](ip-lists/graylist.md)にIPを追加し、これらのIPからの悪意あるリクエストのみをブロックし、フィルタリングノードが安全なブロック[モード](../admin-en/configure-wallarm-mode.md)にある場合にのみブロックします。
+    * **Denylist IP** - WallarmはBOLA攻撃の発生源となるIPを[denylist](ip-lists/denylist.md)に登録し、これらのIPから発生する全てのトラフィックをブロックします。
+    * **Graylist IP** - WallarmはBOLA攻撃の発生源となるIPを[graylist](ip-lists/graylist.md)に登録し、フィルタリングノードが安全ブロック[モード](../admin-en/configure-wallarm-mode.md)にある場合のみ、これらのIPからの悪意のあるリクエストをブロックします。
 
-![!BOLAトリガ](../images/user-guides/bola-protection/trigger-template.png)
+![!BOLAトリガー](../images/user-guides/bola-protection/trigger-template.png)
 
 ## 自動BOLA保護ロジック
 
---8<-- "../include-ja/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
+--8<-- "../include/waf/features/bola-mitigation/bola-auto-mitigation-logic.md"
 
 ## 自動BOLA保護の無効化
 
-自動BOLA保護を無効にするには、**BOLA保護** セクションでスイッチを無効状態に切り替えます。
+自動BOLA保護を無効にするには、**BOLA保護**セクションでスイッチを無効な状態にします。
 
-API Discoveryのサブスクリプションが期限切れになると、自動BOLA保護は自動的に無効になります。
+API Discoveryのサブスクリプションが有効期限が切れると、自動BOLA保護は自動的に無効化されます。

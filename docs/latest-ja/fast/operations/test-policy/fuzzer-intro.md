@@ -4,20 +4,20 @@
 [gl-vuln]:                      ../../TERMS-GLOSSARY.md#vulnerability
 [gl-anomaly]:                   ../../TERMS-GLOSSARY.md#anomaly
 
-# Configuration of Anomaly Detection Process: Overview
+# 異常検知プロセスの設定：概要
 
-In addition to [vulnerabilities][gl-vuln] detection, FAST can detect [anomalies][gl-anomaly] using the *fuzzer*.
+[脆弱性][gl-vuln]の検出に加えて、FASTは*fuzzer*を使用して[異常][gl-anomaly]を検出することができます。
 
-This documentation section describes the following points:
+このドキュメンテーションセクションでは、以下のポイントについて説明します：
 
-* [Principles of Fuzzer Operation][doc-fuzzer-internals]
-* [Fuzzer Configuration Using the Policy Editor][doc-fuzzer-configuration]
+* [Fuzzerの操作原則][doc-fuzzer-internals]
+* [ポリシーエディタを使用したFuzzerの設定][doc-fuzzer-configuration]
 
-??? info "Anomaly example"
-    The anomalous behavior of the target application [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) is demonstrated in the [example of the FAST extension](../../dsl/extensions-examples/mod-extension.md).
+??? info "異常の例"
+    対象アプリケーションの異常な振る舞い、 [OWASP Juice Shop](https://www.owasp.org/www-project-juice-shop/) は [FAST エクステンションの例](../../dsl/extensions-examples/mod-extension.md)で示されています。
 
-    This target application usually responds with the `403 Unauthorized` code and the `Invalid email or password.` message to the authorization request with an incorrect combination of login and password.
+    このターゲットアプリケーションは、通常、ログインとパスワードの組み合わせが間違っている認証要求に対して、`403 Unauthorized` コードと `Invalid email or password.` メッセージで応答します。
 
-    However, if the `'` symbol is passed within any part of the login value, the application responds with the `500 Internal Server Error` code and the `...SequelizeDatabaseError: SQLITE_ERROR:...` message; such behavior is anomalous.
+    しかし、ログイン値の任意の部分に `'` シンボルが渡されると、アプリケーションは `500 Internal Server Error` コードと `...SequelizeDatabaseError: SQLITE_ERROR:...` メッセージで応答します。このような振る舞いは異常です。
 
-    This anomaly does not lead to the direct exploitation of any vulnerability, but it provides an attacker with information about the application architecture and prompts to execute the [SQL Injection](../../VULN-LIST.md#sql-injection) attack.
+    この異常は直接的な脆弱性の悪用にはつながりませんが、攻撃者にアプリケーションのアーキテクチャについての情報を提供し、[SQLインジェクション](../../VULN-LIST.md#sql-injection)攻撃の実行を促します。

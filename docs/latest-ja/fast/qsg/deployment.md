@@ -12,147 +12,148 @@
 
 [wl-cloud-list]:    ../CLOUD-LIST.md
       
-[anchor1]:  #1-install-the-docker-software              
-[anchor2]:  #2-obtain-a-token-that-will-be-used-to-connect-your-fast-node-to-the-wallarm-cloud
-[anchor3]:  #3-prepare-a-file-containing-the-necessary-environment-variables 
-[anchor4]:  #4-deploy-the-fast-node-docker-container 
-[anchor5]:  #5-configure-the-browser-to-work-with-the-proxy
-[anchor6]:  #6-install-ssl-certificates 
-    
-    
-# FAST node deployment
+[anchor1]:  #1-docker-ソフトウェアのインストール
+[anchor2]:  #2-wallarm-クラウドに-fast-ノードを接続するためのトークンの取得
+[anchor3]:  #3-必要な環境変数を含むファイルの準備
+[anchor4]:  #4-fast-ノード-docker-コンテナのデプロイ
+[anchor5]:  #5-プロキシを利用するブラウザの設定
+[anchor6]:  #6-ssl-証明書のインストール
 
-This chapter will guide you through the process of installation and initial configuration of the FAST node. Upon completion of all necessary steps, you will have an operating FAST node. It will be listening on `localhost:8080`, ready to proxy HTTP and HTTPS requests to the [Google Gruyere][link-https-google-gruyere] application. The node will be installed on your machine along with the Mozilla Firefox browser.
     
-!!! info "Note on the browser to use"
-    It is suggested in the guide that you use the Mozilla Firefox browser. However, it is possible to use any browser of your choice, provided that you successfully configured it to send all the HTTP and HTTPS traffic to the FAST node.
+# FASTノードのデプロイ
 
-![!FAST node deployment scheme in use][img-qsg-deployment-scheme]    
+この章では、FASTノードのインストールと初期設定のプロセスをガイドします。すべての必要な手順を完了すると、操作可能なFASTノードが得られます。これは `localhost:8080` で待機し、HTTPおよびHTTPSのリクエストを[Google Gruyere][link-https-google-gruyere]アプリケーションへプロキシする準備ができています。FASTノードは、Mozilla Firefoxブラウザと一緒にあなたのマシンにインストールされます。
+    
+!!! info "ブラウザの使用に関する注釈"
+    このガイドでは、Mozilla Firefoxブラウザの使用を推奨しています。しかし、すべてのHTTPおよびHTTPSのトラフィックをFASTノードに送信するように正しく設定した場合、任意のブラウザを使用することも可能です。
+
+![！FASTノードのデプロイスキーム][img-qsg-deployment-scheme]    
         
-To install and configure the FAST node, do the following:
+FASTノードをインストールおよび設定するには、次の手順を実行します:
 
-1.  [Install the Docker software][anchor1].
-2.  [Obtain a token that will be used to connect your FAST node to the Wallarm cloud][anchor2].
-3.  [Prepare a file containing the necessary environment variables][anchor3].
-4.  [Deploy the FAST node Docker container][anchor4].
-5.  [Configure the browser to work with the proxy][anchor5].
-6.  [Install SSL certificates][anchor6].
+1.  [Dockerソフトウェアのインストール][anchor1].
+2.  [WallarmクラウドにFASTノードを接続するためのトークンを取得します][anchor2].
+3.  [必要な環境変数を含むファイルを準備します][anchor3].
+4.  [FASTノードのDockerコンテナをデプロイします][anchor4].
+5.  [プロキシで動作するようにブラウザを設定します][anchor5].
+6.  [SSL証明書をインストールします][anchor6].
             
-##  1.  Install the Docker software 
+##  1.  Dockerソフトウェアのインストール 
 
-Set up the Docker software on your machine. See the official Docker [installation guide][link-docker-docs] for more information.
+あなたのマシンにDockerソフトウェアをセットアップします。詳細については、公式Dockerの[インストールガイド][link-docker-docs]を参照してください。
 
-It is suggested that you use the Docker Community Edition (CE). However, any Docker edition can be used.
+Docker Community Edition（CE）の使用を推奨します。ただし、任意のDockerエディションを使用できます。
     
     
-##  2.  Obtain a token that will be used to connect your FAST node to the Wallarm cloud
+##  2.  WallarmクラウドにFASTノードを接続するためのトークンを取得します
 
-1.  Log in to the [My Wallarm portal][link-wl-console] using your Wallarm account.
+1.  Wallarmアカウントを使って[My Wallarmポータル][link-wl-console]にログインします。
 
-    If you do not have one, then [create an account][link-wl-fast-trial].
+    アカウントを持っていない場合は、[新規作成][link-wl-fast-trial]してください。
 
-2.  Select the “Nodes” tab, then click the **Create FAST node** button (or the **Add FAST node** link).
+2.  「Nodes」タブを選択してから、**Create FAST node ボタン** か **Add FAST node リンク** をクリックします。
 
-    ![!Creation of a new node][img-fast-create-node]
+    ![！
 
-3.  A dialog window will appear. Give a meaningful name to the node and select the **Create** button. The guide suggests that you use the name `DEMO NODE`.
-    
-4.  Move your mouse cursor over the **Token** field of the created node and copy the value.
+新ノードの作成][img-fast-create-node]
 
-    !!! info "Note on token"
-        It is possible to retrieve the token via a Wallarm API call as well. However, that is beyond the scope of this document. 
-        
-##  3.  Prepare a file containing the necessary environment variables 
+3.  ダイアログウィンドウが表示されます。ノードに意味のある名前を付け、**作成** ボタンを選択します。このガイドでは、`DEMO NODE` の名前を使用することを推奨しています。
 
-It is required that you set up several environment variables in order to get the FAST node working.
+4.  マウスカーソルを作成したノードの**トークン**フィールドに移動し、その値をコピーします。
 
-In order to do that, create a text file and add the following text to it:
+    !!! info "トークンに関する注釈"
+        Wallarm API呼び出しを介してトークンを取得することも可能です。ただし、それはこのドキュメントの範囲を超えています。
+
+##  3.  必要な環境変数を含むファイルの準備 
+
+FASTノードを動作させるためには、いくつかの環境変数を設定する必要があります。
+
+そのためには、テキストファイルを作成し、次のテキストを追加します:
 
 ```
-WALLARM_API_TOKEN=<the token value you obtained in step 2>
+WALLARM_API_TOKEN=<ステップ2で取得したトークンの値>
 ALLOWED_HOSTS=google-gruyere.appspot.com
 ```
 
-You have set the environment variables. Their purpose can be described as follows:
-* `WALLARM_API_TOKEN` — sets the token value that is used to connect the node to the Wallarm cloud
-* `ALLOWED_HOSTS` — limits the scope of requests to generate a security test from; security tests will be generated only from the requests to the domain `google-gruyere.appspot.com`, which is where the target application resides.
-    
-!!! info "Using the `ALLOWED_HOSTS` environment variable"
-    Setting the fully qualified domain name is not necessary. You could use a substring (e. g. `google-gruyere` or `appspot.com`).
+環境変数を設定しました。その目的は次の通りです：
+* `WALLARM_API_TOKEN` — ノードをWallarmクラウドに接続するために使用されるトークン値を設定します
+* `ALLOWED_HOSTS` — セキュリティテスト生成の対象とするリクエストの範囲を制限します。`google-gruyere.appspot.com` ドメインへのリクエストのみからセキュリティテストが生成されます。これはターゲットアプリケーションが存在する場所です。
 
---8<-- "../include-ja/fast/wallarm-api-host-note.md"
+!!! info "`ALLOWED_HOSTS`環境変数の使用"
+完全なドメイン名の設定は必須ではありません。部分文字列（例：`google-gruyere` や `appspot.com`）を使用することも可能です。
+
+--8<-- "../include/fast/wallarm-api-host-note.md"
    
-##  4.  Deploy the FAST node Docker container
+##  4.  FASTノード Dockerコンテナのデプロイ
 
-To do this, execute the following command:
+これを行うには、次のコマンドを実行します:
 
 ```
-docker run --name <name> --env-file=<environment variables file created on the previous step> -p <target port>:8080 wallarm/fast
+docker run --name <name> --env-file=<前のステップで作成された環境変数ファイル> -p <target port>:8080 wallarm/fast
 ```
 
-You should provide several arguments to the command:
+コマンドにはいくつかの引数を提供するべきです：
     
 * **`--name`** *`<name>`*
         
-    Specifies the name of the Docker container.
+    Dockerコンテナの名前を指定します。
     
-    It should be unique among all existing containers' names.
+    すべての既存のコンテナ名の中でユニークであるべきです。
+
+* **`--env-file=`** *`<前のステップで作成した環境変数ファイル>`*
     
-* **`--env-file=`** *`<environment variables file created in the previous step>`*
+    コンテナにエクスポートするすべての環境変数を含むファイルを指定します。
     
-    Specifies a file containing all the environment variables to export into the container.
-    
-    You should specify a path to the file you created in the [previous step][anchor3].
+    [前のステップ][anchor3]で作成したファイルへのパスを指定します。
 
 * **`-p`** *`<target port>`* **`:8080`**
     
-    Specifies a port of the Docker host to which the container’s 8080 port should be mapped. None of the container ports are available to the Docker host by default. 
+    どのDockerホストのポートにコンテナの8080ポートをマッピングするかを指定します。デフォルトでは、コンテナのポートはDockerホストから利用できません。 
     
-    To grant access to a certain container’s port from the Docker host, you should publish the container’s internal port to the external port by employing the `-p` argument. 
-    
-    You also could publish the container’s port to a non-loopback IP address on the host by providing the `-p <host IP>:<target port>:8080` argument to make it accessible from outside the Docker host as well.        
+    Dockerホストから特定のコンテナのポートにアクセスできるようにするためには、コンテナの内部ポートを `-p` 引数を使用して外部ポートに公開する必要があります。
 
-!!! info "Example of a `docker run` command"
-    The execution of the following command will run a container named `fast-node` employing the environment variables file `/home/user/fast.cfg` and publish its port to `localhost:8080`:
+    また、Dockerホストの外部からもアクセスできるようにするために、`-p <host IP>:<target port>:8080` 引数を提供してコンテナのポートをホストの非ループバックIPアドレスに公開することもできます。 
+
+!!! info "docker run コマンドの例"
+    次のコマンドの実行は、環境変数ファイル `/home/user/fast.cfg` を使用し、そのポートを `localhost:8080` に公開する `fast-node` という名前のコンテナを起動します：
 
     ```
     docker run --name fast-node --env-file=/home/user/fast.cfg -p 8080:8080 wallarm/fast
     ```
 
-If the container deployment is successful, you will be presented with a console output like this:
+コンテナのデプロイが成功した場合、次のようなコンソール出力が表示されます：
 
---8<-- "../include-ja/fast/console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include/fast/console-include/qsg/fast-node-deployment-ok.md"
 
-Now you should have the ready-to-work FAST node connected to the Wallarm cloud. The node is listening to the incoming HTTP and HTTPS requests on `localhost:8080` by recognizing the requests to the `google-gruyere.appspot.com` domain as baseline ones.
+これで、Wallarmクラウドに接続した作業用のFASTノードが提供されるべきです。ノードは、`google-gruyere.appspot.com` ドメインへのリクエストを基準として認識する `localhost:8080` 上の受信HTTPおよびHTTPSリクエストを待機しています。
     
     
-##  5.  Configure the browser to work with the proxy
+##  5.  プロキシで動作するようにブラウザを設定します
 
-Configure the browser to proxy all HTTP and HTTPS requests through the FAST node. 
+ブラウザのすべてのHTTPおよびHTTPSリクエストをFASTノードを通してプロキシするように設定します。
 
-To set up proxying in the Mozilla Firefox browser, do the following:
+Mozilla Firefoxブラウザでプロキシ設定を行うには、次の手順を実行します：
 
-1.  Open the browser. Select “Preferences” in the menu. Select the “General” tab and scroll down to the “Network Settings.” Select the **Settings** button.
+1.  ブラウザを開きます。メニューから「設定」を選択します。「一般」タブを選択し、「ネットワーク設定」までスクロールします。**設定** ボタンを選択します。
 
-    ![!Mozilla Firefox options][img-firefox-options]
+    ![！Mozilla Firefoxの設定][img-firefox-options]
 
-2.  The “Connection Settings” window should open up. Select the **Manual proxy configuration** option. Configure the proxy by entering the following values:
+2.  「接続設定」ウィンドウが開きます。**手動のプロキシ設定** のオプションを選択します。以下の値を入力してプロキシを設定します：
 
-    * **`localhost`** as HTTP proxy address and **`8080`** as HTTP proxy port. 
-    * **`localhost`** as SSL proxy address and **`8080`** as SSL proxy port.
-        
-    Select the **ОК** button to apply the changes you have made.
+    * HTTPプロキシアドレスには **`localhost`** 、HTTPプロキシポートには **`8080`**。
+    * SSLプロキシアドレスには **`localhost`** 、SSLプロキシポートには **`8080`**。
 
-    ![!Mozilla Firefox proxy settings][img-firefox-proxy-options]
+    行った変更を適用するために **ОК** ボタンを選択します。
+
+    ![！Mozilla Firefoxのプロキシ設定][img-firefox-proxy-options]
     
     
-##  6.  Install SSL certificates
+##  6.  SSL証明書をインストールします
 
-While working with the [Google Gruyere][link-https-google-gruyere] application via HTTPS you might encounter the following browser message regarding the interruption of a safe connection:
+HTTPSを介した[Google Gruyere][link-https-google-gruyere]アプリケーションの使用中に、以下のようなブラウザメッセージが表示される場合があります:
 
-![!“Insecure connection” message][img-insecure-connection]
+![！“Insecure connection” message][img-insecure-connection]
 
-You should add a self-signed FAST node SSL certificate to be able to interact with the web application via HTTPS. To do so, navigate to this [link][link-ssl-installation], select your browser from the list, and perform the necessary actions described. This guide suggests that you use the Mozilla Firefox browser.
-        
-Having run and configured your FAST node, you should now have all of the chapter goals completed. In the next chapter, you will learn what is required to generate a set of security tests based on a few baseline requests.
-    
+HTTPSを介してWebアプリケーションと対話するためには、自己署名のFASTノードSSL証明書を追加する必要があります。それを行うには、この[リンク][link-ssl-installation]に移動し、リストからブラウザを選択し、説明されている必要な操作を実行します。このガイドでは、Mozilla Firefoxブラウザの使用を推奨しています。
+
+FASTノードの起動と設定を完了したら、この章のゴールはすべて達成されるはずです。次の章では、少なくともいくつかの基準リクエストに基づいたセキュリティテストのセットを生成するために必要なことを学びます。

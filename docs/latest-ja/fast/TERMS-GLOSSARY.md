@@ -5,108 +5,107 @@
 
 [vuln-anomaly]:     VULN-LIST.md#anomaly
 
-#   Glossary
+#   用語集
 
-## Vulnerability
+## 脆弱性
 
-A vulnerability is an error made due to negligence or inadequate information when building or implementing a web application that can lead to an information security risk.
+脆弱性は、ウェブアプリケーションの構築または実装時に過失または不十分な情報により生じたエラーで、情報セキュリティリスクにつながる可能性があります。
 
-The information security risks are:
+情報セキュリティリスクには以下のようなものがあります：
 
-* Unauthorized data access; for example, access to read and modify user data.
-* Denial of service.
-* Data corruption and other.
+* 不正なデータアクセス；例えば、ユーザーデータの読み取りや変更のアクセス。
+* サービス拒否。
+* データの破損など。
 
-A vulnerability is not a characteristic of the Internet. A vulnerability is a characteristic of your system. Whether or not you have vulnerabilities does not depend on your Internet traffic. The Internet traffic, however, can be used to detect the vulnerabilities, which is what Wallarm does, among other functions.
+脆弱性はインターネットの特性ではなく、あなたのシステムの特性です。脆弱性があるかどうかはインターネットのトラフィックには関与しません。ただし、インターネットのトラフィックは脆弱性を検出するために使用することができ、その中にはWallarmが行う機能も含まれています。
 
-## Anomaly
+## 異常
 
-A [kind][vuln-anomaly] of vulnerability.
+脆弱性の[一種][vuln-anomaly]です。
 
-##  Target Application
+##  対象アプリケーション
 
-A target application is a web application or an API that should be tested for vulnerabilities using FAST.
+対象アプリケーションは、FASTを使用して脆弱性検査を行うべきウェブアプリケーションまたはAPIです。
 
-**See also:** [relations between FAST components][doc-internals].
+**参照先:** [FASTコンポーネント間の関係][doc-internals]。
 
-##  Request Source 
+##  リクエストソース 
 
-A requests source is a tool that will test the target application using HTTP and HTTPS requests. FAST can create the security test set based on these requests (see “baseline requests”).
+リクエストソースは、HTTPおよびHTTPSリクエストを使用して対象アプリケーションをテストするツールです。FASTはこれらの要求に基づいてセキュリティテストセットを作成することができます（「ベースラインリクエスト」を参照）。
 
-##  Security Test Set
+##  セキュリティテストセット
 
-A security test set allows revealing vulnerabilities in the target application.
-Each security test comprises one or more test requests.
+セキュリティテストセットは、対象アプリケーションの脆弱性を検出することができます。
+一つのセキュリティテストは、一つ以上のテストリクエストで構成されています。
 
-##  Test Requests
+##  テストリクエスト
 
-The test requests are HTTP and HTTPS requests to be sent to the target application. The constructed requests are highly likely to trigger a vulnerability.
+テストリクエストは、対象アプリケーションに送信されるべきHTTPおよびHTTPSリクエストです。構築されたリクエストは、脆弱性を引き起こす可能性が高いです。
 
-Such requests are created by FAST on the basis of baseline requests that satisfy the test policy.
+このようなリクエストは、テストポリシーを満たすベースラインリクエストに基づいてFASTによって作成されます。
 
-##  FAST Node
+##  FASTノード
 
-The FAST node is one of the FAST components.
+FASTノードはFASTコンポーネントのひとつです。
 
-The node proxies HTTP and HTTPS requests and creates security tests based on the baseline requests.
+ノードはHTTPおよびHTTPSリクエストをプロキシし、ベースラインリクエストに基づいてセキュリティテストを作成します。
 
-In addition to this, FAST node executes the security tests. In other words, node sends test requests to the target application to check the application's response and determine if there are any security vulnerabilities in the application.
+さらに、FASTノードはセキュリティテストを実行します。つまり、ノードはテストリクエストを対象アプリケーションに送信し、アプリケーションの応答を確認し、アプリケーションにセキュリティ脆弱性がないかどうかを判断します。
 
-##  Wallarm Cloud
+##  Wallarmクラウド
 
-The Wallarm Cloud is one of the FAST components.
-The cloud provides the user with an interface for creating test policies, managing the test execution process and observing the testing results.
+Wallarm CloudはFASTコンポーネントの一つです。
+クラウドはテストポリシーの作成、テスト実行プロセスの管理、テスト結果の観察のためのインターフェースをユーザーに提供します。
 
-**See also:**
-* [relations between FAST components][doc-internals],
-* [working with test policies][doc-policies].
+**参照先:**
+* [FASTコンポーネント間の関係][doc-internals],
+* [テストポリシーの取扱い][doc-policies]。
 
+##  ベースラインリクエスト
 
-##  Baseline requests
+ベースラインリクエストは、リクエストソースから対象アプリケーションに向けて送信されるHTTPおよびHTTPSリクエストです。
+FASTはこれらのリクエストに基づいてセキュリティテストを作成します。
 
-The baseline requests are HTTP и HTTPS requests that are directed from the requests source to the target application.
-FAST creates the security tests on the basis of this requests.
+FASTノードを通過する非ベースラインリクエストは、テストセット作成プロセスのソースとして使用されません。
 
-All the non-baseline requests, that are proxied through the FAST node, would not be used as a source during the test set creation process.
+##  テストラン
 
-##  Test Run
+テストランは、FASTを使用した脆弱性テストプロセスの一回のイテレーションを表しています。
 
-A test run describes the single iteration of the vulnerability testing process using FAST.
+テストランでは、テストポリシーがFASTノードに渡されます。このポリシーは、セキュリティテストの基盤となるベースラインリクエストを定義します。
 
-Test run passes a test policy to a FAST node. The policy defines which baseline requests will serve as a basis for the security tests.
+各テストランは、トークンによって単一のFASTノードと密接に連携しています。
 
-Each test run is tightly coupled with a single FAST node by the token.
+##  テストポリシー
 
-##  Test Policy
+テストポリシーは、脆弱性検出プロセスをどのように進めるかを規定するルールのセットです。特に、アプリケーションがテストされるべき脆弱性の種類を選択することができます。さらに、ポリシーは、セキュリティテストセットを作成する際にベースラインリクエストのどのパラメータが変更可能かを決定します。これらのデータは、FASTノードが対象アプリケーションが攻撃可能かどうかを見つけるために使用するテストリクエストを作成するために利用されます。
 
-A test policy is a set of rules, according to which the process of vulnerability detection is conducted. In particular, you can select the vulnerability types which the application should be tested for. In addition to that, the policy determines which parameters in the baseline request are eligible to be modified while creating a security test set. These pieces of data are utilized by the FAST node to create test requests that are used to find out if the target application is exploitable.
+**参照先:**
+* [FASTコンポーネント間の関係][doc-internals],
+* [テストポリシーの取扱い][doc-policies]。
 
-**See also:**
-* [relations between FAST components][doc-internals],
-* [working with test policies][doc-policies].
+##  ベースラインリクエスト要素
 
-##  Baseline Request Element
+リクエスト要素はベースラインリクエストの一部です。
+要素の例には以下のものがあります：
 
-A request element is a part of a baseline request.
-Some examples of elements:
+* HTTPヘッダー、 
+* HTTPレスポンスボディ、 
+* GETパラメータ、 
+* POSTパラメータ。
 
-* HTTP header, 
-* HTTP response body, 
-* GET parameters, 
-* POST parameters.
+##  ポイント
 
-##  Point
+ポイントは、ベースラインリクエストの要素を指す文字列です。この文字列は、ベースラインリクエストに必要なデータを取得するために適用すべきパーサーとフィルターの名前の連続から成り立っています。
 
-A point is a string that points to the element of the baseline request. This string comprises a sequence of the names of parsers and filters that should be applied to the baseline request in order to obtain the required data.
+ポイントについては[こちら][doc-points]で詳しく説明されています。
 
-The points are described in more detail [here][doc-points].
+##  トークン
 
-##  Token
+トークンは、次の目的に使用される一意の秘密識別子です：
+* テストランとFASTノードを紐づける。
+* テストランを作成し管理する。
 
-A token is the unique secret identifier that serves the following purposes:
-* Binding a test run with the FAST node.
-* Creating and managing a test run.
+トークンはFASTノードの重要なプロパティの一つです。
 
-Token is one of the essential FAST node's properties.
-
-**See also:** [relations between FAST components][doc-internals].
+**参照先:** [FASTコンポーネント間の関係][doc-internals]。

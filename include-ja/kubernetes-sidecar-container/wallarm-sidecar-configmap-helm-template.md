@@ -21,12 +21,14 @@ data:
           }
       }
 ```
-apiVersion: v1
-種類: ConfigMap
-メタデータ:
-  名前: wallarm-sidecar-nginx-conf
-データ:
-  デフォルト: |
+は次のようになります：
+```
+apiVersion：v1
+kind：ConfigMap
+metadata：
+  名前：wallarm-sidecar-nginx-conf
+データ：
+  デフォルト：|
       サーバー {
           listen 80 default_server;
           listen [::]:80 default_server ipv6only=on;
@@ -42,3 +44,4 @@ apiVersion: v1
                   include proxy_params;
           }
       }
+```

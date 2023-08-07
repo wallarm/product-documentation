@@ -2,62 +2,62 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  名前: myapp
+  name: myapp
 spec:
-  選択器:
+  selector:
     matchLabels:
-      アプリ: myapp
-  テンプレート:
+      app: myapp
+  template:
     metadata:
-      ラベル:
-        アプリ: myapp
+      labels:
+        app: myapp
     spec:
-      コンテナ:
-        # Wallarm要素: Wallarmサイドカーコンテナの定義
-        - 名前: wallarm
-          画像: wallarm/node:3.6.2-1
-          imagePullPolicy: いつでも
+      containers:
+        # Wallarm 要素: Wallarm サイドカーコンテナの定義
+        - name: wallarm
+          image: wallarm/node:3.6.2-1
+          imagePullPolicy: Always
           env:
-          # Wallarm APIエンドポイント: 
-          # "api.wallarm.com"はEUクラウド向け
-          # "us1.api.wallarm.com"はUSクラウド向け
-          - 名前: WALLARM_API_HOST
-            値: "api.wallarm.com"
-          # デプロイ役割を持つユーザーのユーザー名
-          - 名前: DEPLOY_USER
-            値: "username"
-          # デプロイ役割を持つユーザーのパスワード
-          - 名前: DEPLOY_PASSWORD
-            値: "password"
-          - 名前: DEPLOY_FORCE
-            値: "true"
-          # リクエスト分析データのメモリ量（GB）
-          - 名前: TARANTOOL_MEMORY_GB
-            値: "2"
-          ポート:
-          - 名前: http
-            # ポートは、WallarmサイドカーコンテナがServiceオブジェクトからのリクエストを受け付けるポート
+          # Wallarm API エンドポイント: 
+          # "api.wallarm.com" は EU クラウドの場合
+          # "us1.api.wallarm.com" は US クラウドの場合
+          - name: WALLARM_API_HOST
+            value: "api.wallarm.com"
+          # Deploy ロールを持つユーザーのユーザー名
+          - name: DEPLOY_USER
+            value: "username"
+          # Deploy ロールを持つユーザーのパスワード
+          - name: DEPLOY_PASSWORD
+            value: "password"
+          - name: DEPLOY_FORCE
+            value: "true"
+          # リクエスト分析データのメモリ容量(GB)
+          - name: TARANTOOL_MEMORY_GB
+            value: "2"
+          ports:
+          - name: http
+            # Wallarm サイドカーコンテナが Service オブジェクトからのリクエストを受け付けるポート
             containerPort: 80
-          volumeMounts：	
-          - mountPath: /etc/nginx/sites-enabled	
-            読み取り専用: true	
-            名前: wallarm-nginx-conf
-        # メインアプリのコンテナの定義
-        - 名前: myapp
-          画像: <画像>
-          リソース:
-            制限:
-              メモリ: "128Mi"
+          volumeMounts:  
+          - mountPath: /etc/nginx/sites-enabled  
+            readOnly: true  
+            name: wallarm-nginx-conf
+        # メインのアプリケーションコンテナの定義
+        - name: myapp
+          image: <Image>
+          resources:
+            limits:
+              memory: "128Mi"
               cpu: "500m"
-          ポート:
-          # ポートは、アプリケーションコンテナが着信要求を受け付けるポート
+          ports:
+          # アプリケーションコンテナが受け付ける入力リクエストのポート
           - containerPort: 8080
-      ボリューム:
-      # Wallarm要素: wallarm-nginx-confボリュームの定義
-      - 名前: wallarm-nginx-conf
+      volumes:
+      # Wallarm 要素: wallarm-nginx-conf ボリュームの定義
+      - name: wallarm-nginx-conf
         configMap:
-          名前: wallarm-sidecar-nginx-conf
-          アイテム:
-            - キー: default
-              パス: default
+          name: wallarm-sidecar-nginx-conf
+          items:
+            - key: default
+              path: default
 ```

@@ -1,9 +1,8 @@
-Wallarmのドキュメントを英語から日本語に翻訳してください：
 					=== "Ubuntu 14.04"
     ```bash
     sudo service zabbix-agent restart
     ```
-=== "その他のサポートされているディストリビューション"
+=== "その他のサポート対象ディストリビューション"
     ```bash
     sudo systemctl restart zabbix-agent
     ```

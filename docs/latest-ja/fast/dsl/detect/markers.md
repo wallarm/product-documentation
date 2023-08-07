@@ -1,22 +1,21 @@
-# How the Detect Phase Operates with Markers
-Markers are useful instruments that allow checking if a vulnerability is exploited by the test request. Markers can be inserted into the majority of the detect section parameters.
+# マーカーを使用したDetectフェーズの動作方法
+マーカーは、テストリクエストによって脆弱性が悪用されているかどうかをチェックするための便利なツールです。マーカーは、Detectセクションのパラメータの大部分に挿入することができます。
 
-Currently, the FAST extensions support the following markers:
-* The `STR_MARKER` string marker is a string that consists of random symbols. 
-    
-    Upon transferring the `STR_MARKER` as a part of the payload, detecting it in the response may mean that the attack on the target application was successful.
-    
-    For example, the fact that the `alert` is present in the server's response HTML markup does not necessarily mean that the application has the vulnerability. The server can generate the `<alert>` by itself. The presence of the `alert` (`STR_MARKER`) in the response means that this is the response to the test request containing the payload that includes the string marker (i.e., the vulnerability exploitation was successful). 
-    
-    The string marker is mostly used to exploit XXS vulnerabilities.
+現在、FAST拡張機能では以下のマーカーがサポートされています：
+* `STR_MARKER` 文字列マーカーは、ランダムなシンボルから構成される文字列です。 
 
-* The numerical `CALC_MARKER` is an arithmetic expression that may be calculated during vulnerability exploitation.  
-    
-    Upon transferring the `CALC_MARKER` as a part of the payload, detecting the calculated expression’s result in the response may mean that the attack on the target application was successful.
-    
-    The numerical is mostly used to exploit RCE vulnerabilities.
+    ペイロードの一部として`STR_MARKER` を転送すると、レスポンスでこれを検出することは、目標とするアプリケーションへの攻撃が成功したことを意味する可能性があります。
 
-* The `DNS_MARKER` is a randomly generated domain name, such as `abc123.wlrm.tl`. The target application can try to resolve this name into an IP address.
-    
-    Upon transferring the `DNS_MARKER` as a part of the payload, detecting the DNS request to the generated domain name may mean that the attack on the target application was successful. 
+    例えば、`alert`がサーバーのレスポンスHTMLマークアップに存在するという事実は、アプリケーションが脆弱性を持っているとは必ずしも意味しません。サーバーは`<alert>`を自身で生成することができます。レスポンスに`alert`(`STR_MARKER`)が存在することは、このレスポンスが文字列マーカー（つまり、脆弱性の悪用が成功した）を含むペイロードを含むテストリクエストに対するものであることを意味します。 
 
+    文字列マーカーは主にXSSの脆弱性を悪用するために使用されます。
+
+* 数値の`CALC_MARKER`は、脆弱性を悪用する際に計算される可能性のある算術式です。 
+    
+    ペイロードの一部として`CALC_MARKER`を転送すると、レスポンスで計算式の結果を検出することは、目標とするアプリケーションへの攻撃が成功したことを意味する可能性があります。 
+
+    数値マーカーは主にRCEの脆弱性を悪用するために使用されます。
+
+* `DNS_MARKER`は、`abc123.wlrm.tl`のようなランダムに生成されたドメイン名です。目標とするアプリケーションはこの名前をIPアドレスに解決しようと試みることができます。 
+
+    ペイロードの一部として`DNS_MARKER`を転送すると、生成されたドメイン名へのDNSリクエストの検出は、目標とするアプリケーションへの攻撃が成功したことを意味する可能性があります。

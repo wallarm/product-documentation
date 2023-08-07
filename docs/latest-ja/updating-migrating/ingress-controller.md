@@ -5,77 +5,76 @@
 [ip-list-docs]:                     ../user-guides/ip-lists/overview.md
 [waf-mode-instr]:                   ../admin-en/configure-wallarm-mode.md
 
-# Wallarm付きのNGINX Ingressコントローラーをアップグレードする
+# Wallarm モジュール統合の NGINX Ingress コントローラーのアップグレード
 
-これらの手順は、デプロイ済みのWallarm NGINXベースのIngress Controller 4.xをWallarmノード4.4で新しいバージョンにアップグレードする方法を説明しています。
+この指示は、デプロイされた Wallarm の NGINX ベースの Ingress Controller 4.x を Wallarm node 4.6 を持つ新バージョンにアップグレードする手順を説明しています。
 
-既にサポートが終了したノード（3.6以下）をアップグレードする場合は、[別の手順](older-versions/ingress-controller.md)を使用してください。
+終了時期を指定したノード（バージョン3.6 またはそれ以下）をアップグレードするには、[別の指示](older-versions/ingress-controller.md)を使用してください。
 
-## 要件
+## 前提条件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
-## ステップ1: Wallarm Helmチャートリポジトリを更新する
+## ステップ 1: Wallarm の Helm チャートリポジトリを更新する
 
 ```bash
 helm repo update wallarm
 ```
 
-## ステップ2: すべての来るべきK8sマニフェスト変更を確認する
+## ステップ 2: すべての来る K8s マニフェストの変更を確認します
 
-予期せぬIngressコントローラーの振る舞い変更を避けるために、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用して今後のすべてのK8sマニフェストの変更を確認してください。このプラグインは、デプロイ済みのIngressコントローラーバージョンのK8sマニフェストと新しいバージョンのK8sマニフェストの差分を出力します。
+予期しない Ingress コントローラーの挙動の変更を避けるために、[Helm Diff Plugin](https://github.com/databus23/helm-diff) を使って全ての来る K8s マニフェスト変更を確認します。このプラグインは、デプロイされている Ingress コントローラーのバージョンと新しいバージョンの K8s マニフェストの差を出力します。
 
-プラグインをインストールおよび実行するには:
+プラグインのインストールと実行方法:
 
-1. プラグインをインストールします：
+1. プラグインをインストール：
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. プラグインを実行します:
+2. プラグインを実行：
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.8 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.6 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリース名
-    * `<NAMESPACE>`: Ingressコントローラがデプロイされているネームスペース
-    * `<PATH_TO_VALUES>`: Ingressコントローラ4.4の設定を定義する`values.yaml`ファイルへのパス。前のIngressコントローラーバージョンの実行に使用したものを使用できます。
-3. サービスの安定性に影響しない変更がないことを確認し、stdoutのエラーを慎重に検討します。
+    * `<RELEASE_NAME>`: Ingress Controller のチャートと Helm リリースの名称
+    * `<NAMESPACE>`: Ingress コントローラーがデプロイされているネームスペース
+    * `<PATH_TO_VALUES>`: Ingress コントローラー 4.6 の設定を定義した `values.yaml` ファイルへのパス - 以前の Ingress コントローラーのバージョンを実行するために作成されたものを使うことができます。
+3. 稼働中のサービスの安定性に影響を及ぼす変更がないことを確認し、標準出力からのエラーを注意深く調査します。
 
-    stdoutが空の場合、`values.yaml`ファイルが有効であることを確認してください。
+    stdout が空の場合、`values.yaml` ファイルが有効であることを確認してください。
 
-## ステップ3: Ingressコントローラをアップグレードする
+## ステップ 3: Ingress コントローラーをアップグレードする
 
-デプロイ済みのNGINX Ingressコントローラをアップグレードします：
+デプロイされている NGINX Ingress コントローラーをアップグレードします：
 
-``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4.8 -f <PATH_TO_VALUES>
+```bash
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.6.6 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリース名
-* `<NAMESPACE>`: Ingressコントローラがデプロイされているネームスペース
-* `<PATH_TO_VALUES>`: Ingressコントローラ4.4の設定を定義する`values.yaml`ファイルへのパス。前のIngressコントローラーバージョンの実行に使用したものを使用できます。
+* `<RELEASE_NAME>`: Ingress Controller のチャートと Helm リリースの名称
+* `<NAMESPACE>`: Ingress コントローラーがデプロイされているネームスペース
+* `<PATH_TO_VALUES>`: Ingress コントローラー 4.6 の設定を定義した `values.yaml` ファイルへのパス - 以前の Ingress コントローラーのバージョンを実行するために作成されたものを使うことができます。
 
-## ステップ4: アップグレードしたIngressコントローラをテストする
+## ステップ 4: アップグレードされた Ingress コントローラーをテストする
 
-1. Helmチャートのバージョンがアップグレードされたことを確認します：
+1. Helm チャートのバージョンがアップグレードされたことを確認します：
 
     ```bash
     helm list -n <NAMESPACE>
     ```
 
-    ここで`<NAMESPACE>`は、Ingressコントローラがデプロイされているネームスペースです。
+    ここで、`<NAMESPACE>` は Ingress コントローラーを含む Helm チャートがデプロイされているネームスペースです。
 
-    チャートバージョンは`wallarm-ingress-4.4.8`に対応する必要があります。
+    チャートのバージョンは `wallarm-ingress-4.6.6` に対応すべきです。
+1. ポッドのリストを取得します：
     
-1. Podのリストを取得します：
-    
-    ``` bash
+    ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    各Podのステータスは**STATUS: Running**または**READY: N/N**である必要があります。例：
+    各ポッドのステータスは **STATUS: Running** または **READY: N/N** であるべきです。例えば：
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
@@ -83,10 +82,16 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/wallarm-ingress --version 4.4
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
 
-1. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストをWallarm Ingressコントローラーのアドレスに送信します：
+1. テスト [パス トラバーサル](../attacks-vulns-list.md#path-traversal) 攻撃で Wallarm Ingress コントローラーのアドレスにリクエストを送ります：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    新しいバージョンのソリューションが、前のバージョンと同じように悪意のあるリクエストを処理していることを確認します。
+    新しいバージョンのソリューションが以前のバージョンと同様に悪意のあるリクエストを処理することを確認します。
+
+## ステップ 5: Wallarm のブロッキングページを更新する
+
+もしページ `&/usr/share/nginx/html/wallarm_blocked.html` が Ingress 注釈を通じて設定されていて、ブロックされたリクエストに返されている場合は、リリースされた変更に合わせて[その設定を調整](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)します。
+
+新しいノードのバージョンでは、Wallarm のブロッキングページには[更新](what-is-new.md#new-blocking-page)された UI があり、デフォルトではロゴとサポートのメールが指定されていません。

@@ -9,23 +9,23 @@
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
 [fast-example-gitlab-cicd]:     https://gitlab.com/wallarm/fast-example-gitlab-dvwa-integration
 
-# Integration of FAST with GitLab CI/CD
+# FASTのGitLab CI/CDとの統合
 
-The integration of FAST in CI MODE into the GitLab CI/CD workflow is configured via the `~/.gitlab-ci.yml` file. More details about GitLab CI/CD workflow configuration are available in the [GitLab official documentation][gitlabcicd-config-yaml].
+FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitlab-ci.yml`ファイルを使って設定されます。GitLab CI/CDワークフロー設定についての詳細は[GitLab公式ドキュメンテーション][gitlabcicd-config-yaml]で利用可能です。
 
-## Passing FAST Node Token
+## FASTノードトークンのパス
 
-To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][gitlabci-set-env-var].
+[FASTノードトークン][fast-node-token]を安全に使うには、その値を[プロジェクト設定の環境変数][gitlabci-set-env-var]で渡してください。
 
-![!Passing GitLab CI/CD environment variable][gitlabci-example-env-var]
+![!GitLab CI/CD環境変数のパス][gitlabci-example-env-var]
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## Adding the Step of Request Recording
+## リクエスト記録のステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Example of the automated testing step with running FAST node in the recording mode"
+??? info "記録モードでのFASTノードを実行する自動テストステップの例"
     ```
     test:
       stage: test
@@ -38,20 +38,20 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
         - docker network rm my-network
     ```
 
-    An example includes the following steps:
+    サンプルには以下のステップが含まれています：
 
-    1. Create the Docker network `my-network`.
-    2. Run the FAST node in the recording mode on the network `my-network`.
-    3. Run the tool for automated testing Selenium with FAST node as a proxy on the network `my-network`.
-    4. Run the test application and automated tests on the network `my-network`.
-    5. Stop Selenium and FAST node.
+    1. Dockerネットワーク `my-network` を作成します。
+    2. ネットワーク `my-network` 上で記録モードのFASTノードを起動します。
+    3. ネットワーク `my-network` 上でFASTノードをプロキシとして使用して自動テストツールSeleniumを動かします。
+    4. ネットワーク `my-network` 上でテストアプリケーションと自動テストを実行します。
+    5. SeleniumとFASTノードを停止します。
 
-## Adding the Step of Security Testing
+## セキュリティテストのステップの追加
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
-??? info "Example of the security testing step"
-    1. Add `security_test` to the list of `stages`.
+??? info "セキュリティテストステップの例"
+    1. `stages`のリストに`security_test`を追加します。
 
         ```
           stages:
@@ -60,7 +60,7 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
             - security_test
             - cleanup
         ```
-    2. Define the body of the new stage `security_test`.
+    2. 新たなステージ`security_test`の本文を定義します。
 
         ```
           security_test:
@@ -73,27 +73,27 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
               - docker stop app-test
         ```
 
-    An example includes the following steps:
+    サンプルには以下のステップが含まれています：
 
-    1. Create the Docker network `my-network`.
-    2. Run the test application on the network `my-network`.
-    3. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-    4. Stop the test application.
+    1. Dockerネットワーク `my-network` を作成します。
+    2. ネットワーク `my-network` 上でテストアプリケーションを動かします。
+    3. ネットワーク `my-network` 上でテストモードのFASTノードを動かします。`TEST_RECORD_ID`変数は省略されますが、これは基準となるリクエストセットが現在のパイプラインで作成され、最後に記録されたからです。テストが終了するとFASTノードは自動的に停止します。
+    4. テストアプリケーションを停止します。
 
-## Getting the Result of Testing
+## テスト結果の取得
 
-The result of security testing will be displayed on the GitLab CI/CD interface.
+セキュリティテストの結果はGitLab CI/CDインターフェースに表示されます。
 
-![!The result of running FAST node in testing mode][fast-example-gitlab-result]
+![!テストモードでFASTノードを実行する結果][fast-example-gitlab-result]
 
-## More Examples
+## その他の例
 
-You can find examples of integrating FAST to GitLab CI/CD workflow on our [GitHub][fast-examples-github] and [GitLab][fast-example-gitlab-cicd].
+FASTのGitLab CI/CDワークフローへの統合の例は私たちの[GitHub][fast-examples-github]と[GitLab][fast-example-gitlab-cicd]で見つけることができます。
 
-!!! info "Further questions"
-    If you have questions related to FAST integration, please [contact us][mail-to-us].
+!!! info "その他の質問"
+    FAST統合に関する質問がある場合は、[こちらからお問い合わせください][mail-to-us]。
 
-## Demo videos
+## デモビデオ
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/NRQT_7ZMeko" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

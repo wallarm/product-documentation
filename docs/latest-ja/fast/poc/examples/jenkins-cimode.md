@@ -9,23 +9,23 @@
 [fast-examples-github]:         https://github.com/wallarm/fast-examples 
 [fast-example-jenkins]:         https://jenkinsfast.demo.wallarm.com/
 
-# Integration of FAST with Jenkins
+# FASTとJenkinsの統合
 
-The integration of FAST in CI MODE into the Jenkins workflow is configured via the `Jenkinsfile` file. More details about the Jenkins workflow configuration are available in the [Jenkins official documentation][jenkins-config-pipeline].
+FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsfile` ファイルで行います。 Jenkinsワークフロー設定の詳細については、[Jenkinsの公式ドキュメンテーション][jenkins-config-pipeline]を参照してください。
 
-## Passing FAST Node Token
+## FASTノードトークンの受け渡し
 
-To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][jenkins-parameterized-build].
+[FASTノードトークン][fast-node-token]を安全に使用するためには、[プロジェクト設定の環境変数][jenkins-parameterized-build]でその値を渡してください。
 
-![!Passing Jenkins environment variable][jenkins-example-env-var]
+![!Jenkins環境変数の受け渡し][jenkins-example-env-var]
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## Adding the Step of Request Recording
+## リクエスト録画のステップを追加する
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
-??? info "Example of the automated testing step with running FAST node in the recording mode"
+??? info "記録モードでFASTノードを実行する自動テストステップの例"
     ```
     stage('Run autotests with recording FAST node') {
           steps {
@@ -40,20 +40,20 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
        }
     ```
 
-    An example includes the following steps:
+    この例には以下のステップが含まれています：
 
-    1. Create the Docker network `my-network`.
-    2. Run the FAST node in the recording mode on the network `my-network`.
-    3. Run the tool for automated testing Selenium with the FAST node as a proxy on the network `my-network`.
-    4. Run the test application and automated tests.
-    5. Stop Selenium and FAST node.
-    6. Delete the `my-network` network.
+    1. Dockerネットワーク `my-network` を作成します。
+    2. ネットワーク `my-network` 上で記録モードのFASTノードを実行します。
+    3. ネットワーク `my-network` 上でFASTノードをプロキシとして使用する自動テストツールのSeleniumを実行します。
+    4. テストアプリケーションと自動テストを実行します。
+    5. SeleniumとFASTノードを停止します。
+    6. `my-network` ネットワークを削除します。
 
-## Adding the Step of Security Testing
+## セキュリティテストのステップを追加する
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
-??? info "Example of the security testing step"
+??? info "セキュリティテストステップの例"
 
     ```
     stage('Run security tests') {
@@ -67,23 +67,23 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
        }
     ```
 
-    An example includes the following steps:
+    この例には以下のステップが含まれています：
 
-    1. Create the Docker network `my-network`.
-    2. Run the test application on the `my-network` network.
-    3. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-    4. Stop the test application.
-    5. Delete the `my-network` network.
+    1. Dockerネットワーク `my-network` を作成します。
+    2. `my-network` ネットワーク上でテストアプリケーションを実行します。
+    3. ネットワーク `my-network` 上でテストモードのFASTノードを実行します。 `TEST_RECORD_ID` 変数は省略されています。というのも、基準リクエストのセットは現在のパイプラインで作成され、最後に記録されたものだからです。テストが終了したらFASTノードは自動的に停止します。
+    4. テストアプリケーションを停止します。
+    5. `my-network` ネットワークを削除します。
 
-## Getting the Result of Testing
+## テストの結果を取得する
 
-The result of security testing will be displayed on the Jenkins interface.
+セキュリティテストの結果はJenkinsのインターフェースに表示されます。
 
-![!The result of running FAST node in testing mode][fast-example-jenkins-result]
+![!テストモードでFASTノードを実行する結果][fast-example-jenkins-result]
 
-## More Examples
+## 他の例
 
-You can find examples of integrating FAST to the Jenkins workflow on our [GitHub][fast-examples-github] and [Jenkins][fast-example-jenkins].
+FASTをJenkinsワークフローに統合する例は、私たちの [GitHub][fast-examples-github] と [Jenkins][fast-example-jenkins]で見つけることができます。
 
-!!! info "Further questions"
-    If you have questions related to FAST integration, please [contact us][mail-to-us].
+!!! info "その他の質問"
+    FASTの統合に関する質問がある場合は、[こちらからお問い合わせください][mail-to-us]。

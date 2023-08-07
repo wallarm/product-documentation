@@ -1,11 +1,11 @@
-# Wallarm特有のSidecarプロキシHelmチャートの値
+# Wallarm特有のSidecar Proxy Helm Chartの値
 
-このドキュメントでは、[Wallarm Sidecarのデプロイ](deployment.md)や[アップグレード](../../../updating-migrating/sidecar-proxy.md)の際に変更できるWallarm特有のHelmチャートの値について説明します。Wallarm固有の他のチャートの値は、SidecarプロキシHelmチャートのグローバル設定用です。
+この文書は、[Wallarm Sidecarの展開](deployment.md)または[アップグレード][sidecar-upgrade-docs]中に変更できるWallarm特有のHelm chartの値について説明しています。Wallarm特有の他のchartの値は、Sidecar proxy Helm chartのグローバル設定用です。
 
-!!! info "グローバルとper-podの設定の優先順位"
-     Per-podのアノテーションは、Helmチャートの値よりも[優先されます](customization.md#configuration-area)。
+!!! info "グローバル設定とPod毎の設定の優先順位"
+    Pod毎の注釈はHelm chartの値よりも[優先されます](customization.md#configuration-area)。
 
-Wallarm特有の[デフォルトの`values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)は以下のようになります。
+[デフォルトの`values.yaml`](https://github.com/wallarm/sidecar/blob/main/helm/values.yaml)のWallarm特有の部分は以下のようになっています：
 
 ```yaml
 config:
@@ -28,39 +28,44 @@ config:
     parseWebsocket: "off"
     unpackResponse: "on"
     ...
+postanalytics:
+  external:
+    enabled: false
+    host: ""
+    port: 3313
+  ...
 ```
-
 ## config.wallarm.api.token
 
-[Warm コンソール](https://us1.my.wallarm.com/nodes)の[US Cloud](https://my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で作成されたWallarm_node_token です。Wallarm APIにアクセスするために必要です。
+[US](https://us1.my.wallarm.com/nodes)または[EU](https://my.wallarm.com/nodes)クラウドでWallarm Consoleで作成されたWallarmノードトークンです。Wallarm APIにアクセスするために必要です。
 
-このパラメータは、[`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret)の場合無視されます。
+このパラメータは[`config.wallarm.api.existingSecret.enabled: true`](#configwallarmapiexistingsecret)の場合、無視されます。
 
 ## config.wallarm.api.host
 
-Wallarm APIエンドポイント。次のいずれかが使用できます。
+Wallarm APIのエンドポイントです。以下のいずれかが可能です：
 
-* [USクラウド](../../../about-wallarm/overview.md#us-cloud)の場合: `us1.api.wallarm.com`
-* [EUクラウド](../../../about-wallarm/overview.md#eu-cloud)の場合（デフォルト）: `api.wallarm.com`
+* [USクラウド][us-cloud-docs]向けの`us1.api.wallarm.com`
+* [EUクラウド][eu-cloud-docs]向けの`api.wallarm.com` (デフォルト)
 
 ## config.wallarm.api.existingSecret
 
-Helmチャートバージョン4.4.4から、この設定ブロックを使用して、KubernetesシークレットからWallarmノードトークンの値を取得できます。別の秘密管理用の環境（外部シークレットオペレーターを使用している場合など）で便利です。
+Helm chartバージョン4.4.4からは、この設定ブロックを使用して、KubernetesのシークレットからWallarmノードトークンの値を取得できます。これは、シークレット管理が独立した環境（例えば、外部のシークレットオペレータを使用している場合）で便利です。
 
-K8sのシークレットにノードトークンを保存して、Helmチャートに引き出すには：
+Helm chartにノードトークンを格納し、K8sのシークレットから取得するには：
 
-1. Wallarmノードトークンを使用してKubernetesシークレットを作成します。
+1. Wallarmノードトークンを含むKubernetesシークレットを作成します：
 
     ```bash
     kubectl -n <KUBERNETES_NAMESPACE> create secret generic wallarm-api-token --from-literal=token=<WALLARM_NODE_TOKEN>
     ```
 
-    * `<KUBERNETES_NAMESPACE>`は、Wallarm Sidecarコントローラー用のHelmリリースを作成したKubernetesの名前空間です。
-    * `wallarm-api-token`は、Kubernetesシークレット名です。
-    * `<WALLARM_NODE_TOKEN>`は、Wallarm Console UIでコピーしたWallarmノードトークン値です。
+    * `<KUBERNETES_NAMESPACE>`は、Wallarm SidecarコントローラーとともにHelmリリースに作成したKubernetesの名前空間です。
+    * `wallarm-api-token`はKubernetesのシークレット名です。
+    * `<WALLARM_NODE_TOKEN>`はWallarm Console UIからコピーしたWallarmノードトークンの値です。
 
-    何らかの外部シークレットオペレーターを使用している場合は、[適切なドキュメントでシークレットを作成する方法](https://external-secrets.io)に従ってください。
-1. `values.yaml` に以下の設定を記述して、wallarm-api-tokenを取得できるように設定する：
+    外部のシークレットオペレータを使用している場合は、[適切なドキュメントを参照してシークレットを作成](https://external-secrets.io)します。
+1. `values.yaml`に以下の設定を記述します：
 
     ```yaml
     config:
@@ -73,71 +78,100 @@ K8sのシークレットにノードトークンを保存して、Helmチャー�
             secretName: wallarm-api-token
     ```
 
-**デフォルト値**：`existingSecret.enabled: false`は、HelmチャートがWallarmノードトークンを`config.wallarm.api.token`から取得することを指示しています。
+**デフォルトの値**：`existingSecret.enabled: false` は、Helm chartがWallarmノードトークンを `config.wallarm.api.token` から取得するよう指示します。
 
 ## config.wallarm.fallback
 
-この値を`on`（デフォルト）に設定すると、NGINXサービスは緊急モードに入ることができます。proton.dbまたはカスタムルールセットがWallarm Cloudからダウンロードできない場合、この設定はWallarmモジュールを無効にし、NGINXを稼働させ続けます。
+値が`on`（デフォルト）に設定されている場合、NGINXサービスは緊急モードに入る能力を持っています。proton.dbまたはカスタムルールセットがWallarmクラウドからダウンロードできない場合、この設定はWallarmモジュールを無効にし、NGINXの機能を維持します。
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-fallback`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-fallback`.
 
 ## config.wallarm.mode
 
-グローバルな[トラフィックフィルターモード](../../../admin-en/configure-wallarm-mode.md)。値の選択肢：
+グローバル[トラフィックフィルタリングモード][configure-wallarm-mode-docs]。可能な値：
 
 * `monitoring` (デフォルト)
 * `safe_blocking`
 * `block`
 * `off`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-mode`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode`.
 
 ## config.wallarm.modeAllowOverride
 
-Cloud上の設定で `wallarm_mode`の値を上書きする[機能を管理する](../../../admin-en/configure-wallarm-mode.md#setting-up-priorities-of-the-filtration-mode-configuration-methods-using-wallarm_mode_allow_override)。値の選択肢：
+クラウド設定での `wallarm_mode` 値の上書き可能性を[管理][filtration-mode-priorities-docs]します。可能な値：
 
 * `on` (デフォルト)
 * `off`
 * `strict`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-mode-allow-override`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-mode-allow-override`.
 
 ## config.wallarm.enableLibDetection
 
-[libdetection](../../../about-wallarm/protecting-against-attacks.md#libdetection-overview) ライブラリを使用してSQLインジェクション攻撃の検証を追加で行うかどうか。値の選択肢：
+[libdetection][libdetection-docs]ライブラリを使用してSQLインジェクション攻撃を追加で検証するかどうか。可能な値：
 
-* `on`(デフォルト)
+* `on` (デフォルト)
 * `off`
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-enable-libdetection`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-enable-libdetection`.
 
 ## config.wallarm.parseResponse
 
-アプリケーションのレスポンスを攻撃の解析用に分析するかどうか。値の選択肢：
+アプリケーションの応答を攻撃について解析するかどうか。可能な値：
 
-* `on`(デフォルト)
+* `on` (デフォルト)
 * `off`
 
-レスポンス解析は、[受動検出](../../../about-wallarm/detecting-vulnerabilities.md#passive-detection)と[アクティブ脅威検証](../../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)の間の脆弱性検出に必要です。
+応答分析は、[パッシブ検出][passive-detection-docs]と[アクティブな脅威の確認][active-threat-verification-docs]の間の脆弱性検出に必要です。
 
-[**Podのアノテーション**](pod-annotations.md)：`sidecar.wallarm.io/wallarm-parse-response`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-response`.
 
 ## config.wallarm.parseWebsocket
 
-WallarmはWebSocketsを完全にサポートしています。デフォルトでは、WebSocketsのメッセージは攻撃の解析対象にはなりません。この機能を強制するには、APIセキュリティ[サブスクリプションプラン](../../../about-wallarm/subscription-plans.md#subscription-plans)を有効にして、この設定を使用してください。
+Wallarmは完全なWebSocketsをサポートしています。デフォルトでは、WebSocketsのメッセージは攻撃のために解析されません。この機能を強制するためには、APIセキュリティ[サブスクリプションプラン][subscriptions-docs]を有効にし、この設定を使用します。
 
-値の選択肢：
+可能な値：
 
 * `on`
 * `off` (デフォルト)
 
-[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket` 。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-parse-websocket`.
 
 ## config.wallarm.unpackResponse
 
-アプリケーションのレスポンスで返される圧縮されたデータを解凍するかどうか：
+アプリケーションの応答で返される圧縮データを解凍するかどうか：
 
-* `on`(デフォルト)
-* `off` 
+* `on` (デフォルト)
+* `off`
 
-[**Podのアノテーション**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`。
+[**Podの注釈**](pod-annotations.md): `sidecar.wallarm.io/wallarm-unpack-response`.
+
+## postanalytics.external.enabled
+
+Tarantoolモジュールを外部ホストにインストールするか、Sidecarソリューションの展開時にインストールするかどうかを決定します。
+
+この機能はHelmリリース4.6.4からサポートされています。
+
+可能な値：
+
+* `false` (デフォルト): Sidecarソリューションによってデプロイされたpostanalyticsモジュールを使用します。
+* `true`: 有効にする場合は、`postanalytics.external.host`と`postanalytics.external.port`の値でpostanalyticsモジュールの外部アドレスを提供してください。
+
+  `true`に設定すると、Sidecarソリューションはpostanalyticsモジュールを起動しませんが、指定した`postanalytics.external.host`と`postanalytics.external.port`でそれにアクセスすることを期待します。
+
+## postanalytics.external.host
+
+別途インストールされたpostanalyticsモジュールのドメインまたはIPアドレスです。`postanalytics.external.enabled`が`true`に設定されている場合、このフィールドは必須です。
+
+この機能はHelmリリース4.6.4からサポートされています。
+
+例示する値： `tarantool.domain.external` または `10.10.0.100`。
+
+指定したホストは、Sidecar HelmチャートがデプロイされたKubernetesクラスタからアクセス可能である必要があります。
+
+## postanalytics.external.port
+
+Wallarm postanalyticsモジュールが動作しているTCPポートです。デフォルトでは、Sidecarソリューションがこのポートにモジュールをデプロイするため、ポート3313を使用します。
+
+`postanalytics.external.enabled`が`true`に設定されている場合、指定された外部ホストでモジュールが動作しているポートを指定してください。

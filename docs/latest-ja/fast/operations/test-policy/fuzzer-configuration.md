@@ -11,93 +11,92 @@
 [anchor-not-anomaly-section]:   #the-consider-result-not-an-anomaly-if-response-section
 [anchor-stop-section]:          #the-stop-fuzzing-if-response-section
 
-# Fuzzer Configuration
+# Fuzzer設定
 
-!!! info "Enabling fuzzer"
-    The fuzzer is disabled by default. You can enable it in the **Fuzz testing** section of the policy editor on your Wallarm account:
+!!! info "Fuzzerを有効にする"
+    デフォルトでは、Fuzzerは無効です。 Wallarmアカウントのポリシーエディタの**Fuzzテスト**セクションで有効にできます。
     
-    ![!Enabling fuzzer][img-enable-fuzzer]
+    ![!Fuzzerを有効にする][img-enable-fuzzer]
 
-    The fuzzer switch and the **Use only custom DSL** switch in the **Attacks to test** section are mutually exclusive.
+    Fuzzerスイッチと**カスタムDSLのみを使用する**スイッチは**テストを攻撃**セクションで相互に排他的です。
 
-    The policy does not support a fuzzer by default.
+    デフォルトでは、ポリシーはFuzzerをサポートしていません。
 
-The settings related to the fuzzer and anomaly detection are placed in the **Fuzz testing** section of the policy editor.
+Fuzzerと異常検出に関連する設定は、ポリシーエディタの**Fuzzテスト**セクションに配置されます。
 
-To test the application for anomalies, FAST analyzes the response of the target application to a request with a payload containing anomaly bytes. Depending on the specified conditions, the request sent by FAST will be recognized as anomalous or not.
+異常をテストするために、FASTはターゲットアプリケーションが異常バイトを含むペイロードリクエストの応答を分析します。 指定された条件に応じて、FASTによって送信されたリクエストは異常として認識されますのでないか。
 
-The policy editor on your Wallarm account allows you to:
+Wallarmアカウントのポリシーエディタを使用して次の操作を行うことができます。
 
-* add payloads by clicking the **Add payload** and **Add another payload** buttons
-* add conditions affecting the fuzzer operation by clicking the **Add condition** and **Add another condition** buttons
-* delete created payloads and conditions by clicking the «—» symbol near them
+* **ペイロードを追加**ボタンと**別のペイロードを追加**ボタンをクリックしてペイロードを追加
+* **条件を追加**ボタンと**別の条件を追加**ボタンをクリックして、Fuzzer操作に影響を与える条件を追加
+* 「—」シンボルをクリックして作成したペイロードと条件を削除
 
-![!Payload and condition management][img-manipulate-items]
+![!ペイロードおよび条件管理][img-manipulate-items]
 
-When configuring conditions you can use the following parameters:
+条件設定する際、以下のパラメータを使用することができます。
 
-* **Status**: HTTPS response code
-* **Length**: response length in bytes
-* **Time**: response time in seconds
-* **Length diff**: difference in the length of the response to the FAST and original baseline requests in bytes
-* **Time diff**: difference between the response time to the FAST and original baseline requests in seconds
-* **DOM diff**: difference in the number of DOM elements in the FAST and original baseline requests
-* **Body**: [Ruby regular expression][link-ruby-regexp]. The condition is met if the response body satisfies this regular expression
+* **ステータス**： HTTPS応答コード
+* **長さ**：バイト単位の応答長
+* **時間**：秒単位の応答時間
+* **長さ diff**：FASTとオリジナルの基準リクエストへの応答の長さの差（バイト）
+* **時間diff**：FASTとオリジナルの基準リクエストへの応答時間の差（秒）
+* **DOM diff**：FASTとオリジナルの基準リクエストのDOM要素の数の差
+* **ボディ**：[Rubyの正規表現][link-ruby-regexp]。応答ボディがこの正規表現を満たす場合、条件が満たされます。
 
-In the [**Stop fuzzing if response**][anchor-stop-section] section, the following parameters can also be configured:
+[**応答した場合にFuzzingを停止する**][anchor-stop-section]セクションでは、以下のパラメータも設定可能です。
 
-* **Anomalies**: the number of detected anomalies
-* **Timeout errors**: the number of times when no response was received from the server
+* **異常**：検出された異常の数
+* **タイムアウトエラー**：サーバーからの応答が受け取れなかった回数
 
-Using a combination of these parameters, you can configure required conditions that affects fuzzer operations (see below).
+これらのパラメータの組み合わせを使用して、Fuzzer操作に影響を与える必要な条件を設定することができます（下記参照）。
 
-## The "Payloads" Section
+## "Payloads"セクション
 
-The section is used to configure one or more payloads.
+このセクションは1つ以上のペイロードを設定するために使用します。
 
-While the payload is inserted, the following data is specified:
+ペイロードが挿入される間、次のデータが指定されます：
 
-* the load size from 1 to 255 bytes
-* at which value the payload will be inserted: the beginning, random, or end position
+* 1から255バイトの負荷サイズ
+* ペイロードが挿入される値：始まり、ランダム、または終わり位置
 
-While the payload is replacing, the following data is specified:
+ペイロードが置換される間、次のデータが指定されます：
 
-* the method of replacement: replace a random segment in the value — first `M` bytes, last `M` bytes, or entire string
-* the load size `M` from 1 to 255 bytes
+* 置換方法：値のランダムなセグメントを置換 - 最初の`M`バイト、最後の`M`バイト、または全文字列
+* 負荷サイズ`M`は1から255バイトです。
 
+## "応答すると結果は異常と見なす"セクション
 
-## The "Consider Result an Anomaly if Response" Section
+アプリケーションからの応答が**応答すると結果は異常と見なす**セクションで設定されたすべての条件を満たす場合、異常が発見されたと見なされます。
 
-If the response from the application meets all the conditions configured in the **Consider result an anomaly if response** section, then an anomaly is considered found.
+**例：**
 
-**Example:**
+応答の本文が`.*SQLITE_ERROR.*`正規表現に合致する場合、FASTリクエストが異常を引き起こしたと見なします。
 
-If the response body meets the `.*SQLITE_ERROR.*` regular expression, then consider the sent FAST request has caused an anomaly:
+![!条件例][img-anomaly-condition]
 
-![!Condition example][img-anomaly-condition]
+!!! info "デフォルトの動作"
+    このセクションでは条件が設定されていない場合、Fuzzerは基準リクエストへの応答とあまりにも異なるパラメータでサーバーの応答を検出します。例えば、サーバーの応答時間が長いため、サーバーの応答が異常として検出される可能性があります。
 
-!!! info "Default behavior"
-    If there are no configured conditions in this section, the fuzzer will detect the server response with parameters anomalously different from the response to the baseline request. For example, a long server response time can be a reason to detect the server response as anomalous.
+## "応答すると結果は異常と見なさない"セクション
 
-## The "Consider result not an anomaly if response" section
+アプリケーションからの応答が**応答すると結果は異常と見なさない**セクションで設定されたすべての条件を満たす場合、異常が発見されていないと考えられます。
 
-If the response from the application meets all the conditions configured in the **Consider result not an anomaly if response** section, then an anomaly is considered not found.
+**例：**
 
-**Example:**
+応答コードが`500`未満なら、FASTリクエストが異常を引き起こしていないと見なします。
 
-If the response code is lower than `500`, then consider the sent FAST request has not caused an anomaly:
+![!条件例][img-not-anomaly-condition]
 
-![!Condition example][img-not-anomaly-condition]
+## "応答するとFuzzingを停止"セクション
 
-## The "Stop fuzzing if response" section
+アプリケーションの応答、検出された異常の数、またはタイムアウトエラーの数が**応答するとFuzzingを停止**セクションで設定された全条件を満たした場合、Fuzzerは異常を探すのを停止します。
 
-If the application response, the number of detected anomalies, or the number of timeout errors satisfies all the conditions configured in the **Stop fuzzing if response** section, then the fuzzer stops searching for anomalies.
+**例：**
 
-**Example:**
+2つ以上の異常が検出された場合、Fuzzingを停止します。各異常では、2と等しくない任意の個数の単一異常バイトを持つことができます。
 
-Fuzzing will be stopped if more than two anomalies are detected. In each anomaly, you can have any number of single anomalous bytes that is not equal to two.
+![!条件例][img-stop-condition]
 
-![!Condition example][img-stop-condition]
-
-!!! info "Default behavior"
-    If the conditions for stopping the fuzzing process are not configured, then the fuzzer will check all 255 anomalous bytes. If an anomaly is detected, each individual byte in the payload will be stopped.
+!!! info "デフォルトの動作"
+    Fuzzingプロセスを停止する条件が設定されていない場合、Fuzzerは255の異常バイトすべてをチェックします。異常が検出された場合、ペイロードの各個々のバイトで停止します。

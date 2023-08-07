@@ -8,19 +8,19 @@
 [img-insecure-connection]:      ../../images/fast/qsg/common/deployment/11-qsg-fast-inst-untrusted-cert.png
 
 
-# Introduction
+# はじめに
 
-When working with a web application through a browser using HTTPS, you may see this or a similar message about an untrusted certificate:
+HTTPSを使用してブラウザーからウェブアプリケーションを操作しているとき、これまたはこれに類似した信頼できない証明書についてのメッセージが表示される場合があります：
 
 ![!Mozilla Firefox's untrusted certificate message][img-insecure-connection]
 
-The FAST node interrupts HTTPS requests from a client and initiates connection to the remote server itself. Your browser must trust the FAST node certificate, otherwise the browser will treat this situation as a man-in-the-middle attack.  
+FASTノードは、クライアントからのHTTPSリクエストを中断し、自己接続をリモートサーバーに開始します。ブラウザーはFASTノードの証明書を信頼しなければならず、そうでなければブラウザーはこの状況をman-in-the-middle攻撃として扱います。
 
-If a FAST node does not have a certificate that is trusted by the browser you are using, then attempting to send HTTPS requests to the server from that browser will result in an unsecured connection warning. 
+ブラウザーが信頼する証明書をFASTノードが持っていない場合、そのブラウザーからサーバーにHTTPSリクエストを送信しようとすると、セキュリティが確保されていない接続の警告が表示されます。
 
-For successful work with web applications via HTTPS you can use one of the following solutions:
-* If you have your own SSL certificate that your browser already trusts, you can [add it to the FAST node][link-node-installation].
-* If you don't have your own SSL certificate, you can add the self-signed root certificate of the FAST node to your browser. To do this, follow the instructions for your browser:
+HTTPS経由でウェブアプリケーションとの正常な作業を行うには、次のうちのいずれかの解決策を使用できます：
+* ブラウザーがすでに信頼している自身のSSL証明書がある場合、それを[FASTノードに追加][link-node-installation]することができます。
+* 自身のSSL証明書がない場合、FASTノードの自己署名ルート証明書をブラウザーに追加できます。これを行うには、使用するブラウザーの指示に従ってください：
     * [Apple Safari][link-safari-ssl]
     * [Google Chrome][link-chrome-ssl]
     * [Microsoft Edge][link-edge-ssl]

@@ -2,67 +2,67 @@
 
 #   Splunk
 
-以下のイベントがトリガーされると、WallarmはSplunkへのアラートを設定できます：
+以下のイベントがトリガーされた際に、WallarmがSplunkにアラートを送信するように設定できます：
 
---8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
+--8<-- "../include/integrations/advanced-events-for-integrations.md"
 
-##  統合の設定
+##  インテグレーションの設定
 
 Splunk UIで：
 
 1. **設定** ➝ **データの追加** ➝ **モニター**を開きます。
-2. **HTTPイベントコレクター**のオプションを選択し、統合名を入力して**次へ**をクリックします。
+2. **HTTPイベントコレクター**のオプションを選択し、インテグレーション名を入力し、**次へ**をクリックします。
 3. **入力設定**ページでデータタイプの選択をスキップし、**設定の確認**に進みます。
-4. 設定を**確認**し、**送信**します。
+4. 設定を確認して**提出**します。
 5. 提供されたトークンをコピーします。
 
 Wallarm UIで：
 
-1. **統合**セクションを開きます。
-2. **Splunk**ブロックをクリックするか、**統合を追加**ボタンをクリックして**Splunk**を選択します。
-3. 統合名を入力します。
+1. **インテグレーション**セクションを開きます。
+2. **Splunk**ブロックをクリックするか、**インテグレーションを追加**ボタンをクリックして**Splunk**を選択します。
+3. インテグレーション名を入力します。
 4. コピーしたトークンを**HECトークン**フィールドに貼り付けます。
-5. あなたのSplunkインスタンスのHEC URIおよびポート番号を**HEC URI:PORT**フィールドに貼り付けます。例：`https://hec.splunk.com:8088`。
-6. 通知をトリガーするイベントタイプを選択します。イベントが選択されていない場合、Splunkへのアラートは送信されません。
-7. [統合をテスト](#統合のテスト)して設定が正しいことを確認します。
-8. **統合を追加**をクリックします。
+5. SplunkインスタンスのHEC URIとポート番号を**HEC URI:PORT**フィールドに貼り付けます。例：`https://hec.splunk.com:8088`。
+6. 通知をトリガーするイベントタイプを選択します。イベントが選択されない場合、Splunkへのアラートは送信されません。
+7. [インテグレーションをテスト](#テスト-インテグレーション)し、設定が正しいことを確認します。
+8. **インテグレーションを追加**をクリックします。
 
-![!Splunk統合](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
---8<-- "../include-ja/cloud-ip-by-request.md"
+--8<-- "../include/cloud-ip-by-request.md"
 
-## ダッシュボードにイベントを組織化する
+## ダッシュボードにイベントを整理する
 
---8<-- "../include-ja/integrations/application-for-splunk.md"
+--8<-- "../include/integrations/application-for-splunk.md"
 
-## 統合のテスト
+## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration-advanced-data.md"
+--8<-- "../include/integrations/test-integration-advanced-data.md"
 
 JSON形式でのSplunk通知をテストします：
 
 ```json
 {
-    summary:"[テストメッセージ] [テストパートナー(US)] 新規脆弱性を検出",
-    description:"通知タイプ：脆弱性
+    summary:"[テストメッセージ] [テストパートナー(US)] 新しい脆弱性が検出されました",
+    description:"通知タイプ： vuln
 
-                システム内で新しい脆弱性が发现されました。
+                システムに新しい脆弱性が検出されました。
 
                 ID: 
-                タイトル：テスト
-                ドメイン：example.com
-                パス：
-                メソッド: 
-                発見者: 
-                パラメーター: 
-                タイプ: インフォ
-                脅威: ミディアム
+                タイトル： テスト
+                ドメイン： example.com
+                パス： 
+                メソッド： 
+                発見者： 
+                パラメータ： 
+                タイプ： Info
+                脅威： Medium
 
-                詳細はこちら：https://us1.my.wallarm.com/object/555
+                詳細： https://us1.my.wallarm.com/object/555
 
 
-                クライアント：TestCompany
-                クラウド：US
+                クライアント： TestCompany
+                クラウド： US
                 ",
     details:{
         client_name:"TestCompany",
@@ -84,14 +84,14 @@ JSON形式でのSplunk通知をテストします：
 }
 ```
 
-## 統合の更新
+## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.md"
 
-## 統合の無効化
+## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.md"
 
-## 統合の削除
+## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.md"

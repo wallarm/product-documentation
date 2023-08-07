@@ -1,4 +1,4 @@
-!!! warning "Wallarm nodes 3.6 and lower are not supported"
-    You are recommended to upgrade the Wallarm nodes 3.6 and lower since these versions are [not supported, they are end-of-life](../versioning-policy.md#version-list).
+					!!! 警告 "Wallarmノード3.6以下はサポートされていません"
+    Wallarmノード3.6以下をアップグレードすることをお勧めします。これらのバージョンは[サポートされておらず、ライフサイクルの末期にあります](../versioning-policy.md#version-list)。
 
-    Node configuration and traffic filtration have been significantly simplified in the Wallarm node of the latest versions. Before upgrading the modules, please carefully review the [list of changes](what-is-new.md) and [general recommendations](../general-recommendations.md). Please note that some settings of the latest node are **incompatible** with the nodes 3.6 and lower.
+    ノードの設定とトラフィックフィルタリングは、最新バージョンのWallarmノードで大幅に簡略化されました。モジュールをアップグレードする前に、[変更の一覧](what-is-new.md)と[一般的な推奨事項](../general-recommendations.md)を必ず注意深く詳細にご確認ください。最新ノードの一部の設定は、ノード3.6以下と**互換性がありません**ので、ご注意ください。

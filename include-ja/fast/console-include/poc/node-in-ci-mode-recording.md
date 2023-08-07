@@ -8,9 +8,9 @@
             | _/ _ \\__ \ | |
             |_/_/ \_\___/ |_|
  
- Loading...
- [info] Node connected to Wallarm Cloud
- [info] Loaded 0 custom extensions for fast scanner
- [info] Loaded 44 default extensions for fast scanner
- [info] TestRecord#rec_0001 TestRecord Oct 01 01:01 UTC starts to record
+ 読み込み中...
+ [情報] ノードはWallarm Cloudに接続しました
+ [情報] ファストスキャナー用の0個のカスタム拡張を読み込みました
+ [情報] ファストスキャナー用の44個のデフォルト拡張を読み込みました
+ [情報] TestRecord#rec_0001 TestRecordがOct 01 01:01 UTCに記録を開始します
 ```

@@ -1,29 +1,29 @@
-					# WallarmフィルタリングノードとNGINXバージョンの互換性
+# WallarmフィルタリングノードとNGINXバージョンの互換性
 
-環境にインストールされているNGINXバージョンが安定版、PlusまたはDebian/CentOSリポジトリからインストールされたものと異なる場合は、このドキュメントからWallarmをインストールする方法を学んでください。
+あなたの環境にインストールされているNGINXのバージョンが安定版、Plus版、またはDebian/CentOSリポジトリからインストールされたものと異なる場合は、この文書からWallarmのインストール方法を学びましょう。
 
-## WallarmフィルタリングノードはNGINXのメインラインと互換性がありますか？
+## WallarmフィルタリングノードはNGINXマインラインと互換性がありますか？
 
-いいえ、WallarmフィルタリングノードはNGINX `mainline` と互換性がありません。次の方法でWallarmノードをインストールできます。
+いいえ、WallarmフィルタリングノードはNGINX `mainline` と互換性がありません。以下の方法でWallarmノードをインストールすることができます：
 
-* これらの[インストラクション](../installation/nginx/dynamic-module.md)に従って、公式のオープンソースNGINX `stable` に接続します。
-* これらの[インストラクション](../installation/nginx/dynamic-module-from-distr.md)に従って、Debian/CentOSリポジトリからインストールしたNGINXに接続します。
-* これらの[インストラクション](../installation/nginx-plus.md)に従って、公式の商用NGINX Plusに接続します。
+* 公式のオープンソースNGINX `stable`に接続します。これらの[指示](../installation/nginx/dynamic-module.md)に従ってください。
+* Debian/CentOSリポジトリからインストールされたNGINXに接続します。これらの[指示](../installation/nginx/dynamic-module-from-distr.md)に従ってください。
+* 公式の商用NGINX Plusに接続します。これらの[指示](../installation/nginx-plus.md)に従ってください。
 
 ## WallarmフィルタリングノードはNGINXのカスタムビルドと互換性がありますか？
 
-はい、Wallarmモジュールは、Wallarmパッケージを再構築した後、NGINXのカスタムビルドに接続できます。パッケージを再構築するには、[Wallarmテクニカルサポートチーム](mailto:support@wallarm.com)に連絡して、以下のデータを送信してください。
+はい、WallarmモジュールはWallarmパッケージを再ビルドした後で、NGINXのカスタムビルドに接続することができます。パッケージを再ビルドするには、[Wallarmテクニカルサポートチーム](mailto:support@wallarm.com)に連絡し、以下のデータを送信してください：
 
 * Linuxカーネルバージョン: `uname -a`
 * Linuxディストリビューション: `cat /etc/*release`
-* NGINXバージョン:
+* NGINXバージョン：
 
     * [NGINX公式ビルド](https://nginx.org/en/linux_packages.html): `/usr/sbin/nginx -V`
-    * NGINXカスタムビルド: `<path to nginx>/nginx -V`
+    * NGINXカスタムビルド: `<nginxへのパス>/nginx -V`
 
-* 互換性シグネチャ:
+* 互換性シグネチャ：
   
       * [NGINX公式ビルド](https://nginx.org/en/linux_packages.html): `egrep -ao '.,.,.,[01]{33}' /usr/sbin/nginx`
-      * NGINXカスタムビルド: `egrep -ao '.,.,.,[01]{33}' <path to nginx>/nginx`
+      * NGINXカスタムビルド: `egrep -ao '.,.,.,[01]{33}' <nginxへのパス>/nginx`
 
-* NGINXワーカープロセスを実行しているユーザー（およびそのグループ）: `grep -w 'user' <path-to-the-NGINX-configuration-files/nginx.conf>`
+* NGINXワーカープロセスを実行しているユーザー（およびそのユーザーグループ）: `grep -w 'user' <NGINX設定ファイルへのパス/nginx.conf>`

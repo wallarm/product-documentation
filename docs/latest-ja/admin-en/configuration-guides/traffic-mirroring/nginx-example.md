@@ -1,15 +1,15 @@
-トラフィックミラーリングの NGINX 設定例
+# トラフィックミラーリングのためのNGINX設定の例
 
-NGINX 1.13 以降では、追加のバックエンドにトラフィックをミラーリングすることができます。この記事では、NGINX が[トラフィックをミラーリングする](overview.md)ために必要な設定例と、ミラーリングされたトラフィックを処理するノードの設定例を提供します。
+NGINX 1.13からは、追加のバックエンドにトラフィックをミラーリングすることができます。この記事では、NGINXが[トラフィックをミラーリング](overview.md)するために必要な設定の例と、ミラーリングされたトラフィックを処理するノードの設定について説明します。
 
-## ステップ1：トラフィックをミラーリングするために NGINX を設定する
+## ステップ1: NGINX でトラフィックをミラーリングする設定
 
-NGINX でトラフィックをミラーリングするには:
+NGINXでトラフィックをミラーリングするためには：
 
-1. `location` または `server` ブロック内で `mirror` ディレクティブを設定することで [`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html) モジュールを設定します。
+1. [`ngx_http_mirror_module`](http://nginx.org/en/docs/http/ngx_http_mirror_module.html) モジュールを設定し、`location`や`server`ブロックの`mirror`ディレクティブを設定します。
 
-    以下の例では、`location /` で受信されたリクエストを `location /mirror-test` にミラーリングします。
-1. ミラーリングされたトラフィックを Wallarm ノードに送信するには、ミラーリングされるべきヘッダーをリストし、`mirror` ディレクティブが指す `location` 内でノードがあるマシンの IP アドレスを指定します。
+    以下の例では、 `location /`で受信したリクエストを`location /mirror-test`にミラーリングします。
+1. ミラーリングされたトラフィックをWallarmノードに送信するために、ミラーリングするヘッダーのリストを作成し、ノードが存在するマシンのIPアドレスを、`mirror`ディレクティブが指す`location`内に指定します。
 
 ```
 location / {
@@ -34,6 +34,6 @@ location /mirror-test {
     }
 ```
 
-## ステップ2：Wallarm ノードのミラーリングされたトラフィックをフィルタリングするように設定する
+## ステップ2: ミラーリングされたトラフィックをフィルターするためのWallarmノードの設定
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

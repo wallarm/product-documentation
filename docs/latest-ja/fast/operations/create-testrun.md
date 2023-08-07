@@ -11,68 +11,68 @@
 [link-create-node]:                 create-node.md
 [doc-inactivity-timeout]:           internals.md#test-run
 
-#   Creating a Test Run
+#   テストランの作成
 
-!!! info "Necessary data"
-    To create a test run via API methods, you need a token.
+!!! info "必要なデータ"
+    APIメソッドでテストランを作成するには、トークンが必要です。
     
-    To create a test run via the web interface, you need a Wallarm account.
+    ウェブインターフェイスでテストランを作成するためには、Wallarmのアカウントが必要です。
+
+    トークンに関する詳細な情報は[こちら][doc-token-information]をご覧ください。
     
-    You can get detailed information about token [here][doc-token-information].
+    このドキュメントでは、例として `token_Qwe12345` の値を使用しています。
+
+テストランを作成している時、新しい[テストレコード][doc-testrecord]も同時に作成されます。
+
+このテストランの作り方は、目標となるアプリケーションのテストと共にベースラインリクエストの録音を必要とする場合に使われます。
+
+## APIによるテストランの作成
+
+テストランを作成するためには、URL `https://us1.api.wallarm.com/v1/test_run` へのPOSTリクエストを送信してください：
+
+--8<-- "../include/fast/operations/api-create-testrun.md"
+
+APIサーバへのリクエストが成功すると、サーバーのレスポンスが表示されます。レスポンスには有用な情報が含まれています：
+
+1.  `id`：新しく作成されたテストランの識別子（例： `tr_1234`）。
+
+    次のアクションに必要なidパラメータの値が必要になります。これらのアクションは、FASTをCI/CDに統合するために必要です：
+
+    1.  FASTノードが録音プロセスを開始するのを確認する。  
+    2.  ベースラインリクエストの録音プロセスを停止する。
+    3.  FASTセキュリティテストが終了するのを待つ。
     
-    The `token_Qwe12345` value is used as an example token in this document.
-
-When a test run is being created, a new [test record][doc-testrecord] is created as well.
-
-This way of test run creation is to be used if it is required to test a target application along with recording of baseline requests.
-
-## Creating a Test Run via API
-
-To create a test run, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run`:
-
---8<-- "../include-ja/fast/operations/api-create-testrun.md"
-
-If the request to the API server is successful, you are presented with the server’s response. The response provides useful information, including:
-
-1.  `id`: the identifier of a newly created test run (e.g., `tr_1234`).
+2.  `state`：テストランの状態。
     
-    You will need the id parameter value to perform the following actions, required to integrate FAST into CI/CD:
+    新しく作成されたテストランの状態は `running` です。
+    `state` パラメータのすべての値についての詳細な説明は[こちら][doc-state-description]で確認できます。
     
-    1.  Checking for the FAST node to start the recording process.  
-    2.  Stopping the baseline requests recording process.
-    3.  Waiting for the FAST security tests to finish.
-    
-2.  `state`: the state of the test run.
-    
-    A newly created test run is in the `running` state.
-    A comprehensive description of all the values of the `state` parameter can be found [here][doc-state-description].
-    
-3.  `test_record_id`: the identifier of a newly created test record (e.g., `rec_0001`). All baseline requests will be placed into this test record.    
+3.  `test_record_id`：新しく作成されたテストレコードの識別子（例： `rec_0001`）。すべてのベースラインリクエストはこのテストレコードに格納されます。
 
-##  Creating a Test Run via Web Interface
-      
-To create a test run via your Wallarm account interface, follow the steps below:
+## ウェブインターフェイスを利用したテストランの作成
 
-1. Go to your Wallarm account > **Test runs** by [this link](https://my.wallarm.com/testing/testruns) for the EU cloud or by [this link](https://us1.my.wallarm.com/testing/testruns) for the US cloud.
+Wallarmアカウントのインターフェイスを通じてテストランを作成するには、以下の手順をご確認ください：
 
-2. Click the **Create test run** button.
+1. お持ちのWallarmアカウントにアクセスし、[このリンク](https://my.wallarm.com/testing/testruns)をEUクラウド向けに、または[このリンク](https://us1.my.wallarm.com/testing/testruns)をUSクラウド向けにクリックして**テストラン**に入ります。
 
-3. Enter the name of your test run.
+2. **テストラン作成**ボタンを押します。
 
-4. Select the test policy from the **Test policy** drop-down list. To create a new test policy, please follow this [instructions][link-create-policy]. Also, you can use the default policy.
+3. テストランの名前を入力します。
 
-5. Select FAST node from the **Node** drop-down list. To create FAST node, please follow this [instruction][link-create-node].
+4. **テストポリシー**のドロップダウンリストからテストポリシーを選択します。新しいテストポリシーを作成するには、[この手順][link-create-policy]をご覧ください。また、デフォルトのポリシーを使用することも可能です。
 
-    ![!Creating test run][img-test-run-creation]
+5. **ノード**のドロップダウンリストからFASTノードを選択します。FASTノードを作成するには、[この説明][link-create-node]をご覧ください。
 
-6. Add **Advanced settings** if required. This block of settings includes the following points:
+    ![テストラン作成][img-test-run-creation]
 
---8<-- "../include-ja/fast/test-run-adv-settings.md"
+6.必要に応じて**詳細設定**を追加します。この設定ブロックには、以下の点が含まれています：
 
-    ![!Test run advanced settings][img-testrun-adv-settings]
+--8<-- "../include/fast/test-run-adv-settings.md"
 
-7.  Click the **Create and run** button.
+    ![テストラン詳細設定][img-testrun-adv-settings]
 
-## Reusing test record
+7.**作成と実行**ボタンを押します。
 
-When the requests are sent from a requests source to the target application, and the [recording process is stopped][link-stopping-recording-chapter], it is possible to [reuse the test record][doc-copying-testrun] with other test runs.
+## テストレコードの再利用
+
+リクエストソースからターゲットアプリケーションへのリクエストが送信され、[録画プロセスが停止][link-stopping-recording-chapter]した後、他のテストランで[テストレコードを再利用][doc-copying-testrun]することが可能です。

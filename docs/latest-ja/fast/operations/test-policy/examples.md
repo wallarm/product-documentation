@@ -1,104 +1,104 @@
-# Test Policy Examples
+# テストポリシーの例
 
-A few examples of FAST test policies are presented in this document, including the following that are used in the FAST documentation. These examples demonstrate all aspects of working with the policies.
+このドキュメントでは、FASTドキュメントで使用される以下のテストポリシーポリシーの例をいくつか紹介します。これらの例はポリシーとのすべてのアスペクトの操作をデモンストレーションします。
 
-!!! info "Request element description syntax"
-    A FAST test policy allows or denies a FAST node permission to work with particular elements of a baseline request.
+!!! info "リクエスト要素の説明構文"
+FASTテストポリシーは、FASTノードが基準リクエストの特定の要素と作業を許可または拒否します。
 
-    These elements are described using the [points](../../dsl/points/intro.md).
+これらの要素は[points](../../dsl/points/intro.md)を使用して記述されます。
 
-    In the sample test policies below, every baseline request’s element is followed by the corresponding point, like this: any GET parameter (`GET_.*`).
+以下のサンプルテストポリシーでは、すべての基準リクエストの要素は対応するポイントに続きます。例えば、任意のGETパラメータ (`GET_.*`)
 
-!!! info "Detection of vulnerabilities"
-    [The list of vulnerabilities that FAST can detect](../../VULN-LIST.md)
+!!! info "脆弱性の検出"
+[FASTが検出できる脆弱性のリスト](../../VULN-LIST.md)
 
-    Please note that the choice of vulnerability types during configuration of a test policy influences which ones of the embedded FAST extensions (aka detects) will be executed.
+テストポリシーの設定時に脆弱性タイプを選択すると、組み込みのFAST拡張（別名検出）の中でどれが実行されるかが影響を受けることに注意してください。
 
-    Custom FAST extensions will try to detect the vulnerability type they are designed for, even if this vulnerability type was not selected when configuring a policy.
+カスタムFAST拡張は、構成時に選択されていなかったこの種の脆弱性であっても、設計通りに脆弱性タイプを検出しようとします。
 
-    For example, a policy can allow for testing a target application for RCE, but a custom extension will test the application for SQLi vulnerabilities.
+例えば、ポリシーはRCEの対象アプリケーションのテストを許可できますが、カスタム拡張はSQLi脆弱性をテストします。
 
-## Default Test Policy
+## デフォルトのテストポリシー
 
-This is an unchangeable test policy that allows for working with common request elements and testing for typical vulnerabilities.
+これは、共通のリクエスト要素と典型的な脆弱性のテストを許可する変更不可能なテストポリシーです。
 
-**This policy allows working with the following elements:**
+**このポリシーでは、次の要素の操作が許可されています:**
 
-* any GET and POST parameters (`GET_.*` and `POST_.*`)
+* 任意のGETとPOSTパラメータ (`GET_.*` と `POST_.*`)
 * URI (`URI`)
-* any paths in URI (`PATH_.*`)
-* URL action name and extension (`ACTION_NAME` and `ACTION_EXT`)
+* URIの任意のパス (`PATH_.*`)
+* URLのアクション名と拡張子 (`ACTION_NAME` と `ACTION_EXT`)
 
-**The target application will be tested by the embedded FAST extensions for** PTRAV, RCE, SQLI, XSS, and XXE vulnerabilities.
+**組み込みのFAST拡張により、ターゲットアプリケーションは** PTRAV、RCE、SQLI、XSS、およびXXEの脆弱性でテストされます。
 
-**This policy has the following specifics:** it does not support fuzzing. To enable the fuzzer, create a separate test policy ([example](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)).
+**このポリシーは以下の特性を持っています**：それはfuzzingをサポートしていません。fuzzerを有効にするためには、別のテストポリシーを作成してください（[例](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)）。
 
 ![!Policy example](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
 
-!!! info "Note"
-    Please take the following into account:
+!!! info "注記"
+以下を考慮に入れてください:
 
-    * When you create a new test policy, its settings will be identical to those used in the default policy. You can modify the settings of the new policy as needed.
-    * This policy can be used in the [example](../../poc/examples/circleci.md) of FAST integration into CI/CD.
+* 新しいテストポリシーを作成するとき、その設定はデフォルトのポリシーで使用されるものと同じになります。新しいポリシーの設定は必要に応じて変更できます。
+* このポリシーは、FASTをCI/CDに統合する[例](../../poc/examples/circleci.md)で使用できます。
 
-## Policy that Allows Working with All GET and POST Parameters
+## すべてのGETおよびPOSTパラメータで作業を許可するポリシー
 
-This test policy allows working with all GET (`GET_.*`) and POST parameters (`POST_.*`) in a request.
+このテストポリシーでは、リクエスト内のすべてのGET (`GET_.*`) とPOSTパラメータ (`POST_.*`) で作業を許可します。
 
-**The target application will be tested by the embedded FAST extensions for** XSS vulnerability.
+**組み込みのFAST拡張により、ターゲットアプリケーションは** XSSの脆弱性でテストされます。
 
-**This policy has the following specifics:** fuzzer is disabled.
+**このポリシーは次のとおりです**：fuzzerは無効です。
 
 ![!Policy example](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
 
-!!! info "Note"
-    In the Quick Start guide, this policy can be used to conduct security testing of the [Google Gruyere](../../qsg/test-run.md) target application.
+!!! info "注記"
+クイックスタートガイドでは、このポリシーを使って[Google Gruyere](../../qsg/test-run.md) ターゲットアプリケーションのセキュリティテストを行うことができます。
 
-## Policy that Allows Working with URI and Encoded email POST Parameter (Only Custom FAST Extensions Are Allowed to Run)
+## URIとエンコードされた電子メールPOSTパラメータで作業を許可するポリシー（カスタムFAST拡張のみが実行許可）
 
-This test policy allows working with URI (`URI`) and `email` POST parameters in a request. The `email` parameter is encoded in JSON (`POST_JSON_DOC_HASH_email_value`).
+このテストポリシーでは、リクエスト内のURI (`URI`) と `email` POSTパラメータで作業を許可します。`email` パラメータはJSON (`POST_JSON_DOC_HASH_email_value`) でエンコードされています。
 
-**This policy has the following specifics:**
+**このポリシーは以下の特性を持っています:**
 
-* Only custom FAST extensions are allowed to run, no embedded FAST detects will be executed.
-* Fuzzer is disabled.
+* カスタムFAST拡張のみを実行することが許可され、組み込みFAST検出は実行されません。
+* Fuzzerは無効です。
 
 ![!Policy example](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
 
-!!! info "Note"
-    This policy can be used to run the [sample custom extensions](../../dsl/using-extension.md).
+!!! info "注記"
+このポリシーは、[カスタム拡張のサンプル](../../dsl/using-extension.md)を実行するために使用できます。
 
-## Policy that Allows Working with URI and Encoded email POST Parameters (Fuzzer is Enabled)
+## URIとエンコードされた電子メールPOSTパラメータで作業を許可するポリシー（Fuzzerが有効）
 
-This policy allows working with `email` POST parameter in a request. The `email` parameter is encoded in JSON (`POST_JSON_DOC_HASH_email_value`).
+このポリシーでは、リクエスト内の`email` POSTパラメータで作業を許可します。 `email` パラメータはJSON (`POST_JSON_DOC_HASH_email_value`) でエンコードされています。
 
-**This policy has the following specifics:**
+**このポリシーは以下の特性を持っています:**
 
-* Fuzzer is enabled.
-* All embedded FAST extensions are disabled (no vulnerabilities are selected). This is possible to do when using the fuzzer.
+* Fuzzerが有効です。
+* すべての組み込みのFAST拡張機能が無効化されています(脆弱性は選択されません)。これはfuzzerを使用時に可能です。
 
-**In this sample policy, the fuzzer is configured as follows:**
+**このサンプルポリシーでは、fuzzerは以下のように設定されています:**
 
-* Payloads up to 123 bytes are to be inserted at the beginning of the decoded value of a point (in this particular case, there is the single point `POST_JSON_DOC_HASH_email_value`).
-* It is assumed that
+* ペイロードは最大123バイトまで、ポイントのデコード値の先頭に挿入されます（この具体的なケースでは、単一のポイント`POST_JSON_DOC_HASH_email_value`が存在します）。
+* 次のことが仮定されています
 
-    * An anomaly is found if the `SQLITE_ERROR` string is presented in the server response body.
-    * No anomaly is found if the server response code value is less than `500`.
-    * Fuzzer stops its execution if either all payloads have been checked or if more than two anomalies are found.
+    * サーバーのレスポンスボディに`SQLITE_ERROR`という文字列が存在する場合、異常が見つかったとみなされます。
+    * サーバーレスポンスコードの値が`500`未満の場合、異常は見つからないとみなされます。
+    * すべてのペイロードがチェックされた場合または2つ以上の異常が見つかった場合、Fuzzerは実行を停止します。
 
 ![!Policy example](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
-!!! info "Note"
-    This policy can be used to find vulnerabilities in the [OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md).
+!!! info "注記"
+このポリシーは、[OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md) の脆弱性を見つけるために使用できます。
 
-## Policy that Denies Working with the Value of a Particular Point
+## 特定のポイントの値で作業を拒否するポリシー
 
-This test policy allows working with all GET parameters (`GET_.*`) in a request except for the `sessionid` GET parameter (`GET_sessionid_value`).
+このテストポリシーでは、リクエスト内のすべてのGETパラメータ (`GET_.*`) で作業を許可しますが、`sessionid` GETパラメータ (`GET_sessionid_value`) を除きます。
 
-It can be useful to configure a behavior like this one if it is necessary to deny FAST from working with a particular point (for example, if unintentional modification of the specific parameter value may disrupt the operation of the target application).
+これは、特定のポイント（例えば、特定のパラメータ値を変更してしまうと、ターゲットアプリケーションの動作が妨げられてしまう可能性がある場合）との作業をFASTに拒否させるような動作を設定するのに便利です。
 
-**The target application will be tested by the embedded FAST extensions for** AUTH and IDOR vulnerabilities. 
+**ターゲットアプリケーションは、組み込みFAST拡張によって** AUTHとIDORの脆弱性でテストされます。
 
-**This policy has the following specifics:** fuzzer is disabled.
+**このポリシーは以下の特性を持っています**：fuzzerは無効です。
 
 ![!Example policy](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)

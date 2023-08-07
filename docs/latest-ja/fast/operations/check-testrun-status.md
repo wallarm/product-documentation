@@ -1,14 +1,13 @@
 [doc-about-tr-token]:   internals.md
 
 [img-testrun-velocity]: ../../images/fast/poc/en/checking-testrun-status/testrun-velocity.png
-[img-testrun-avg-rps]:  ../../images/fast/poc/en/checking-testrun-status/testrun-avg-rps.png
-[img-status-passed]:        ../../images/fast/qsg/common/test-interpretation/passed-colored.png
-[img-status-failed]:        ../../images/fast/qsg/common/test-interpretation/failed-colored.png
-[img-status-inprogress]:    ../../images/fast/qsg/common/test-interpretation/in-progress.png
-[img-status-error]:         ../../images/fast/qsg/common/test-interpretation/error-colored.png
-[img-status-waiting]:       ../../images/fast/qsg/common/test-interpretation/waiting-colored.png
-[img-status-interrupted]:   ../../images/fast/qsg/common/test-interpretation/interrupted-colored.png
-[img-test-runs]:            ../../images/fast/poc/en/checking-testrun-status/test-runs.png
+[img-status-passed]:         ../../images/fast/qsg/common/test-interpretation/passed-colored.png
+[img-status-failed]:         ../../images/fast/qsg/common/test-interpretation/failed-colored.png
+[img-status-inprogress]:     ../../images/fast/qsg/common/test-interpretation/in-progress.png
+[img-status-error]:          ../../images/fast/qsg/common/test-interpretation/error-colored.png
+[img-status-waiting]:        ../../images/fast/qsg/common/test-interpretation/waiting-colored.png
+[img-status-interrupted]:    ../../images/fast/qsg/common/test-interpretation/interrupted-colored.png
+[img-test-runs]:             ../../images/fast/poc/en/checking-testrun-status/test-runs.png
 
 [link-wl-portal-testruns-in-progress]:  https://us1.my.wallarm.com/testing/?status=running
 
@@ -20,171 +19,170 @@
 [doc-testrun-copying]:              copy-testrun.md
 [doc-stop-recording]:               stop-recording.md
 
+# テストランの状態の確認
 
-#   Checking of Test Run State
+最初のベースラインリクエストが記録されたときにテストリクエストの作成と実行のプロセスが始まり、ベースラインリクエストの記録のプロセスが[停止][doc-stop-recording]された後もかなりの時間続くことがあります。実行中のプロセスについてどのような洞察を得るために、テストランの状態を確認することができます。これには、次の方法が使用できます。
 
-The processes of creating and executing the test requests begin when the first baseline request is recorded and could last a significant amount of time after the process of baseline requests recording has been [stopped][doc-stop-recording]. You could check the state of the test run to get some insights into the performing processes. For this, the following methods can be used:
+* [Wallarm UIを通じての状態の確認](#wallarm-uiを通じての状態の確認)
+* [APIメソッドを使用しての状態の確認](#apiメソッドを使用しての状態の確認)
 
-* [Checking the state via Wallarm UI](#checking-the-state-via-wallarm-ui)
-* [Checking the state using API method](#checking-the-state-using-api-method)
+## Wallarm UIを通じての状態の確認
 
-## Checking the State via Wallarm UI
+テストランの状態はWallarm UIでリアルタイムで表示されます。状態を確認するには：
 
-The test run state is displayed in Wallarm UI in real-time mode. To check the state:
+1. [US cloud](https://us1.my.wallarm.com/)または[EU cloud](https://my.wallarm.com/)でWallarmアカウントにログインします。
+2. **Test runs**セクションを開き、必要なテストランをクリックします。
 
-1. Log in to your Wallarm account in [US cloud](https://us1.my.wallarm.com/) or [EU cloud](https://my.wallarm.com/).
-2. Open the **Test runs** section and click the required test run.
+![テストの実行の例][img-test-runs]
 
-![!Test run example][img-test-runs]
+それぞれのベースラインリクエストに対して状態が表示されます：
 
-The state is displayed for each baseline request:
+* **合格** ![!ステータス：合格][img-status-passed]
 
-* **Passed** ![!Status: Passed][img-status-passed]
-        
-    No vulnerabilities were found for the given baseline request.
-        
-* **In progress** ![!Status: In progress][img-status-inprogress]
+    与えられたベースラインリクエストに対して脆弱性が見つからなかった。
+
+* **進行中** ![!ステータス：進行中][img-status-inprogress]
               
-    The baseline request is being tested for vulnerabilities.
+    ベースラインリクエストが脆弱性のテスト中であります。
 
-* **Failed** ![!Status: Failed][img-status-failed]  
-        
-    Vulnerabilities were found for the given baseline request. The number of vulnerabilities and the link for details are displayed for each baseline request.
+* **失敗** ![!ステータス：失敗][img-status-failed]
+
+    与えられたベースラインリクエストに対して脆弱性が見つかりました。各ベースラインリクエストに対して脆弱性の詳細へのリンクと脆弱性の数が表示されます。
             
-* **Error** ![!Status: Error][img-status-error]  
+* **エラー** ![!ステータス：エラー][img-status-error]
             
-    The testing process was stopped due to the displayed error:
+    表示されたエラーが原因でテスト過程が停止しました：
 
-    * `Connection failed`: network error
-    * `Auth failed`: authentication parameters are not passed or passed incorrectly
-    * `Invalid policies`: failed to apply configured test policy
-    * `Internal exception`: incorrect security testing configuration
-    * `Recording error`: incorrect or missed request parameters
+    * `Connection failed`：ネットワークエラー
+    * `Auth failed`：認証パラメータが存在しないか、間違っています
+    * `Invalid policies`：設定したテストポリシーの適用に失敗しました
+    * `Internal exception`：セキュリティテスト設定に問題あり
+    * `Recording error`：リクエストパラメータが間違っているか、存在しない
 
-* **Waiting** ![!Status: Waiting][img-status-waiting]      
-        
-    The baseline request is queued for testing. Only a limited number of requests can be tested simultaneously. 
+* **待機中** ![!ステータス：待機中][img-status-waiting]
+
+    ベースラインリクエストがテストのために待機しています。一度にテストできるリクエストの数は限られています。
             
-* **Interrupted** ![!Status: Interrupted][img-status-interrupted]
+* **中断** ![!ステータス：中断][img-status-interrupted]
         
-    The testing process was either interrupted by the **Interrupt testing** button or another test run was executed on the same FAST node.
+    テスト過程は、**Interrupt testing**ボタンによる中断か、同じFASTノード上で別のテストランが実行されたために中断されました。
 
-## Checking the State Using API Method
+## APIメソッドを使用しての状態の確認
 
-!!! info "Necessary data"
-    To proceed with the steps described below, the following pieces of data are required:
+!!! info "必要なデータ"
+    下記の手順を進めるには、次のデータが必要です：
     
-    * a token
-    * a test run identifier
+    * トークン
+    * テストランの識別子
     
-    You can get detailed information about test run and token [here][doc-about-tr-token].
+    テストランとトークンについての詳細情報は[こちら][doc-about-tr-token]で確認できます。
     
-    The following values are used as example values in this document:
+    本ドキュメントでは、以下の値を例として使用しています：
 
-    * `token_Qwe12345` as a token.
-    * `tr_1234` as an identifier of a test run.
+    * `token_Qwe12345` トークンとして。
+    * `tr_1234` テストランの識別子として。
+
+!!! info "テストランの状態をチェックするための適切な時間帯の選び方"
+    テストランの状態は、事前に定義された時間帯（例えば、15秒）で確認できます。あるいは、テストランの完了予定時刻を使用して次のチェックを行う時間を決定できます。この予定時間は、テストランの状態を確認するときに取得できます。[下記の詳細を参照してください。][anchor-testrun-estimates]
 
 
-!!! info "How to choose the right period of time to perform check of a test run"
-    You can check the state of the test run in the pre-defined period of time (e.g., 15 seconds). Alternatively, you can employ the estimated time of completion for a test run to determine when the next check is to be done. You can obtain this estimate while checking the state of a test run. [See details below.][anchor-testrun-estimates]
+テストランの状態を一度だけ確認するためには、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`にGETリクエストを送信します：
 
-To perform a single check of the test run state, send the GET request to the URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`:
+--8<-- "../include/fast/operations/api-check-testrun-status.md"
 
---8<-- "../include-ja/fast/operations/api-check-testrun-status.md"
+もしAPIサーバへのリクエストが成功した場合、サーバのレスポンスが表示されます。レスポンスには、以下の有用な情報が提供されます：
 
-If the request to the API server is successful, you are presented with the server’s response. The response provides a lot of useful information, including:
+* `vulns`：ターゲットアプリケーションで検出された脆弱性に関する情報が含まれる配列。各脆弱性レコードには、特定の脆弱性に関する以下のデータが含まれています：
+    * `id`：脆弱性の識別子。
 
-* `vulns`: an array that contains information about the detected vulnerabilities in the target application. Each of the vulnerability records holds the following data regarding the certain vulnerability:
-    * `id`: an identifier of the vulnerability.
+    * `threat`：脆弱性の脅威レベルを示す1から100の範囲の数値。レベルが高いほど、脆弱性は深刻です。
+    * `code`：脆弱性に割り当てられたコード。
+
+    * `type`：脆弱性のタイプ。パラメータは[ここ][link-vuln-list]で説明されている値のいずれかになります。
     
-    * `threat`: the number in the range from 1 to 100, that describes the threat level for the vulnerability. The higher the level, the more severe the vulnerability.
-    * `code`: a code assigned to the vulnerability.
+* `state`：テストランの状態。パラメータは以下の値をとることができます：
+    * `cloning`：ベースラインリクエストのクローニングが進行中（テストランの[コピーを作成][doc-testrun-copying]するとき）。
+    * `running`：テストランが実行中。
+    * `paused`：テストランの実行が一時停止しています。
+    * `interrupted`：テストランの実行が中断されています（例：現在のテストランがこのノードで行われている間に、FASTノードの新しいテストランが作成されました）。
+    * `passed`：テストランの実行が成功（脆弱性は見つからなかった）。
+    * `failed`：テストランの実行が失敗（いくつかの脆弱性が見つかった）。
 
-    * `type`: the vulnerability type. The parameter can take one of the values which are described [here][link-vuln-list].
+* `baseline_check_all_terminated_count`：すべてのテストリクエストのチェックが完了したベースラインリクエストの数。
     
-* `state`: the test run’s state. The parameter can take one of the following values:
-    * `cloning`: cloning of the baseline requests is in progress (when [creating a copy][doc-testrun-copying] of a test run).
-    * `running`: the test run is running and executing.
-    * `paused`: the test run execution is paused.
-    * `interrupted`: the test run execution is interrupted (e.g. a new test run for the FAST node was created while the current test run was being conducted by this node).
-    * `passed`: the test run execution has completed successfully (no vulnerabilities were found).
-    * `failed`: the test run execution has completed unsuccessfully (some vulnerabilities were found).
+* `baseline_check_fail_count`：テストリクエストの一部のチェックが失敗したベースラインリクエストの数（つまり、FASTが脆弱性を見つけた）。
     
-* `baseline_check_all_terminated_count`: the number of baseline requests for which all of the test request checks are completed.
+* `baseline_check_tech_fail_count`：テクニカルな問題によりテストリクエストの一部のチェックが失敗したベースラインリクエストの数（例えば、ターゲットアプリケーションが一部の時間利用できなかった場合など）。
     
-* `baseline_check_fail_count`: the number of baseline requests for which some of the test request checks are failed (in other words, FAST found a vulnerability).
+* `baseline_check_passed_count`：すべてのテストリクエストのチェックが合格したベースラインリクエストの数（つまり、FASTは脆弱性を見つけませんでした）。
+
+* `baseline_check_running_count`：テストリクエストのチェックがまだ進行中であるベースラインリクエストの数。
     
-* `baseline_check_tech_fail_count`: the number of baseline requests for which some of the test request checks are failed due to the technical issues (e.g. if the target application was unavailable for some period of time).
+* `baseline_check_interrupted_count`：すべてのテストリクエストのチェックが中断されたベースラインリクエストの数（例えば、テストランの中断による）。
     
-* `baseline_check_passed_count`: the number of baseline requests for which all of the test request checks are passed (in other words, FAST did not find a vulnerability). 
+* `sended_requests_count`：ターゲットアプリケーションに送信したテストリクエストの総数。
+
+* `start_time`と`end_time`：テストランが開始され、終了した時間。時間はUNIX時間形式で指定されます。
     
-* `baseline_check_running_count`: the number of baseline requests for which the test request checks are still in progress.
+* `domains`：ベースラインリクエストが対象としたターゲットアプリケーションのドメイン名のリスト。
     
-* `baseline_check_interrupted_count`: the number of baseline requests for which all of the test request checks were interrupted (e.g. due to interruption of the test run)
+* `baseline_count`：記録されたベースラインリクエストの数。
+
+* `baseline_check_waiting_count`：チェック待ちのベースラインリクエストの数。
+
+* `planing_requests_count`：ターゲットアプリケーションに送信予定のテストリクエストの総数。
+
+### テストランの実行速度と完了時間の見積もり
+
+APIサーバのレスポンスには、テストランの実行速度と完了時間を見積もることができる別のパラメータグループがあります。このグループには、以下のパラメータが含まれています：
+
+* `current_rps`：現在、FASTがターゲットアプリケーションにリクエストを送信している速度（テストランの状態取得時点）。
+
+    この値は、平均リクエスト毎秒（RPS）です。この平均RPSは、テストランの状態が取得される10秒間隔の前にFASTがターゲットアプリケーションに送信したリクエストの数として計算されます。
+
+    **例：**
+    もしテストランの状態が12:03:01に取得された場合、`current_rps`パラメータの値は、*[12:02:51-12:03:01]時間帯に送信されたリクエストの数/10*として計算されます。
+
+* `avg_rps`：平均的にFASTがターゲットアプリケーションにリクエストを送信している速度（テストランの状態取得時点）。
+
+    この値は、*テストランの実行全体の時間*でFASTがターゲットアプリケーションに送信した平均リクエスト毎秒（RPS）数です：
+
+    * テストランがまだ実行中である場合、テストランの実行開始から現在の時間まで（これは`現在の時間`-`start_time`に等しい）。
+    * テストランの実行が完了している場合、テストランの実行開始からテストランの実行終了まで（これは`end_time`-`start_time`に等しい）。
+
+        `avg_rps`パラメータの値は、*(`sended_requests_count`/(テストランの実行全時間))*として計算されます。
+
+* `estimated_time_to_completion`：テストランの実行が完了すると予測される時間（秒単位）（テストランの状態取得時点）。
+
+    パラメータの値が`null`になる場合は：
     
-* `sended_requests_count`: the total number of test requests that were sent to the target application.
+    * まだ脆弱性のチェックが進行中でない場合（例えば、新しく作成されたテストランにはまだベースラインリクエストが記録されていない）。
+    * テストランが実行中でない場合（つまり、 `"state":"running"`以外の状態にある）。
+
+    `estimated_time_to_completion`パラメータの値は、*(`planing_requests_count`/`current_rps`)*として計算されます。
+
+!!! warning "テストランの実行速度と時間推定に関連するパラメータの可能な値"
+    上記のパラメータ値は、テストランの実行開始から初めて10秒間は`null`です。
+
+`estimated_time_to_completion`パラメータの値を使用して、次にテストランの状態を確認する時間を決定できます。この値は増減する可能性があります。
+
+**例：**
+
+`estimated_time_to_completion`期間だけテストランの状態を確認するには、以下の手順を行ってください：
+
+1. テストランの実行が始まった後、何度かテストランの状態を取得します。例えば、10秒間隔で行うことができます。`estimated_time_to_completion`パラメータの値が`null`以外になるまで続けます。
+
+2. `estimated_time_to_completion`秒後に次のテストランの状態の確認を行います。
+
+3. 前の手順をテストランの実行が完了するまで繰り返します。
+
+!!! info "推定値のグラフ表示"
+    WallarmのWebインターフェースを使用しても推定値を取得することができます。
     
-* `start_time` and `end_time`: time when the test run started and ended, respectively. The time is specified in the UNIX time format.
+    そのためには、Wallarmポータルにログインし、現在実行中の[テストランのリスト][link-wl-portal-testruns-in-progress]に移動します：
     
-* `domains`: the list of the target application’s domain names the baseline requests were targeted to. 
+    ![テストランの速度と実行時間の推定][img-testrun-velocity]
     
-* `baseline_count`: the number of recorded baseline requests.
+    テストランの実行が完了すると、平均リクエスト毎秒の値が表示されます：
     
-* `baseline_check_waiting_count`: the number of baseline requests that are waiting to be checked;
-
-* `planing_requests_count`: the total number of test requests that are queued to be sent to the target application.
-
-###  Estimates of test run's execution speed and time to completion
-
-There is a separate group of parameters in the API server's response, that allows you to estimate a test run's execution speed and time to completion. The group comprises the following parameters:
-
-* `current_rps`—the current speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
-
-    This value is the average requests per second (RPS). This average RPS is calculated as the number of requests FAST sent to the target application in the 10 second interval before the test run's state was acquired. 
-
-    **Example:**
-    If the test run's state is acquired in 12:03:01 that the `current_rps` parameter's value is calculated as *(the number of requests sent in [12:02:51-12:03:01] time interval)/10*.
-
-* `avg_rps`—the average speed with which FAST sends requests to the target application (in the moment of obtaining the test run's state).
-
-    This value is the average number of requests per second (RPS) that FAST sent to the target application in *the whole test run's execution time*:
-
-    * From the start of the test run's execution to the current moment of time if the test run is still executing (which is equal to `current time`-`start_time`).
-    * From the start of the test run's execution to the end of the test run's execution if the test run's execution is complete (which is equal to `end_time`-`start_time`).
-
-        The value of the `avg_rps` parameter is calculated as *(`sended_requests_count`/(the whole test run's execution time))*.
-    
-* `estimated_time_to_completion`—the amount of time (in seconds) after which test run's execution is likely to be completed (in the moment of obtaining the test run's state). 
-
-    The parameter's value is `null` if:
-    
-    * There are no vulnerability checks in progress yet (e.g., there are no baseline requests recorded for the newly created test run so far).
-    * Test run is not executing (i.e., it is in any state, excluding `"state":"running"`).
-
-    The value of the `estimated_time_to_completion` parameter is calculated as *(`planing_requests_count`/`current_rps`)*.
-    
-!!! warning "The possible values of the parameters related to test run's execution speed and time estimates"
-    The aforementioned parameters' values are `null` in the first 10 seconds of a test run's execution.
-
-You can employ the `estimated_time_to_completion` parameter's value to determine when the next test run's state check is to be done. Note that the value may either increase or decrease.
-
-**Example:**
-
-To check a test run's state in an `estimated_time_to_completion` period of time, do the following:
-
-1.  After the test run's execution begins, acquire the test run's state several times. For example, you can do it in the 10 seconds interval. Continue to do so until the `estimated_time_to_completion` parameter's value is not `null`.
-
-2.  Perform the next checking of the test run's state after the `estimated_time_to_completion` seconds.
-
-3.  Repeat the previous step until the test run's execution is complete.
-
-!!! info "The graphical representation of the estimates"
-    You can obtain the estimates' values by using the Wallarm web interface as well.
-    
-    To do so, log in to the Wallarm portal and navigate to [the list of test runs][link-wl-portal-testruns-in-progress] which are executing now:
-    
-    ![!Test run's speed and execution time estimates][img-testrun-velocity]
-    
-    When the test run's execution is complete, you are presented with the average requests per second value:
-    
-    ![!Average requests per second value][img-testrun-avg-rps]
+    ![平均リクエスト毎秒値][img-testrun-avg-rps]

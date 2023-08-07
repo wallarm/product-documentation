@@ -21,210 +21,64 @@
 [img-node-with-several-instances]:  ../../images/user-guides/nodes/wallarm-node-with-two-instances.png
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../custom/custom-nginx-version.md
+[node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
+[api-token]:                        ../../user-guides/settings/api-tokens.md
+[wallarm-token-types]:              ../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
+[platform]:                         ../../installation/supported-deployment-options.md
+[inline-docs]:                      ../inline/overview.md
+[oob-docs]:                         ../oob/overview.md
+[oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
+[web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
+[img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
-# NGINX リポジトリからの NGINX 安定版に対する動的 Wallarm モジュールのインストール
+# NGINXリポジトリから、NGINX安定版用のダイナミックWallarmモジュールをインストールする
 
-これらの手順では、NGINX リポジトリからインストールされた NGINX `stable` のオープンソースバージョンに対して、Wallarm のフィルタリングノードを動的モジュールとしてインストールする方法を説明しています。
+この手順書では、NGINXリポジトリからインストールされたオープンソースバージョンのNGINX `stable` に対して、Wallarmフィルタリングノードをダイナミックモジュールとしてインストールする方法を説明しています。
+
+!!! info "オールインワンのインストール"
+    Wallarmノード 4.6から、以下のすべての手順を自動化する[オールインワンのインストール](all-in-one.md)を使用することを推奨しています。これにより、ノードのデプロイがはるかに容易になります。
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/nginx-requirements-4.0.md"
+--8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"
 
-## インストールオプション
+--8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-stable.md"
 
---8<-- "../include-ja/waf/installation/nginx-installation-options.md"
+## 6. Wallarmによるトラフィックの分析を有効化する
 
-両オプションのインストールコマンドは、以下の説明で説明されています。
+--8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
-## インストール
+## 7. NGINXを再起動する
 
-### 1. NGINX 安定版と依存関係のインストール
+--8<-- "../include/waf/root_perm_info.md"
 
-NGINX リポジトリからの NGINX `stable` のインストールには、以下のオプションがあります。
+--8<-- "../include/waf/restart-nginx-3.6.md"
 
-* ビルトパッケージからのインストール
+## 8. トラフィックの送信をWallarmインスタンスに設定する
 
-    === "Debian"
-        ```bash
-        sudo apt -y install curl gnupg2 ca-certificates lsb-release debian-archive-keyring
-        echo "deb http://nginx.org/packages/debian `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
-        curl -fSsL https://nginx.org/keys/nginx_signing.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/nginx.gpg --import
-        sudo chmod 644 /etc/apt/trusted.gpg.d/nginx.gpg
-        sudo apt update
-        sudo apt -y install nginx
-        ```
-    === "Ubuntu"
-        1. NGINX 安定版に必要な依存関係をインストールします。
+--8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
 
-            ```bash
-            sudo apt -y install curl gnupg2 ca-certificates lsb-release
-            ```
-        1. NGINX 安定版をインストールします。
+## 9. Wallarmノードの動作をテストする
 
-            ```bash
-            echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
-            curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
-            sudo apt update
-            sudo apt -y install nginx
-            ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+--8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
 
-        1. CentOS 7.x に EPEL リポジトリが追加されている場合は、このリポジトリからの NGINX 安定版のインストールを無効にするために、ファイル `/etc/yum.repos.d/epel.repo` に `exclude=nginx*` を追加してください。
+## 10. デプロイしたソリューションの微調整
 
-            変更されたファイル `/etc/yum.repos.d/epel.repo` の例：
+デフォルトの設定でNGINX `stable` にダイナミックWallarmモジュールがインストールされています。フィルタリングノードはデプロイメント後に追加の設定が必要な場合があります。
 
-            ```bash
-            [epel]
-            name=Extra Packages for Enterprise Linux 7 - $basearch
-            #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
-            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
-            failovermethod=priority
-            enabled=1
-            gpgcheck=1
-            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-            exclude=nginx*
+Wallarmの設定は、[NGINXディレクティブ](../../admin-en/configure-parameters-en.md)またはWallarm Console UIを使用して定義されます。ディレクティブは、Wallarmノードを含むマシン上の以下のファイルに設定する必要があります。
 
-            [epel-debuginfo]
-            name=Extra Packages for Enterprise Linux 7 - $basearch - Debug
-            #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug
-            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&arch=$basearch
-            failovermethod=priority
-            enabled=0
-            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-            gpgcheck=1
+* NGINX設定の `/etc/nginx/conf.d/default.conf`
+* グローバルフィルタリングノード設定の `/etc/nginx/conf.d/wallarm.conf`
 
-            [epel-source]
-            name=Extra Packages for Enterprise Linux 7 - $basearch - Source
-            #baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS
-            metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&arch=$basearch
-            failovermethod=priority
-            enabled=0
-            gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-            gpgcheck=1
-            ```
-        
-        2. 公式リポジトリから NGINX 安定版をインストールします。
+    このファイルは、すべてのドメインに適用される設定のために使用されます。「default.conf」を使用するか、各ドメイングループ（例： `example.com.conf`、 `test.com.conf`など）の新しい設定ファイルを作成して、異なる設定を異なるドメイングループに適用します。NGINX設定ファイルに関する詳細な情報は、[公式のNGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)にてご覧いただけます。
+* Wallarmノードの監視設定の `/etc/nginx/conf.d/wallarm-status.conf`。詳細な説明は、[リンク][wallarm-status-instr]にてご覧いただけます
+* Tarantoolデータベースの設定の `/etc/default/wallarm-tarantool`または `/etc/sysconfig/wallarm-tarantool`
 
-            ```bash
-            echo -e '\n[nginx-stable] \nname=nginx stable repo \nbaseurl=http://nginx.org/packages/centos/$releasever/$basearch/ \ngpgcheck=1 \nenabled=1 \ngpgkey=https://nginx.org/keys/nginx_signing.key \nmodule_hotfixes=true' | sudo tee /etc/yum.repos.d/nginx.repo
-            sudo yum install -y nginx
-            ```
+以下で必要に応じて適用できる一般的な設定のいくつかを示します。
 
-* ソースコードの `stable` ブランチからの [NGINX リポジトリ](https://hg.nginx.org/pkg-oss/branches) のコンパイルと同じオプションでのインストール。
+* [フィルタリングモードの設定][waf-mode-instr]
 
-    !!! info "AlmaLinux、Rocky Linux または Oracle Linux 8.x 用の NGINX"
-        これは、AlmaLinux、Rocky Linux、または Oracle Linux 8.x に NGINX をインストールする唯一のオプションです。
+--8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
 
-インストールに関する詳細情報は、[公式 NGINX ドキュメント](https://www.nginx.com/resources/admin-guide/installing-nginx-open-source/)で利用できます。
-
-!!! info "Amazon Linux 2.0.2021x およびそれ以前のバージョンでのインストール"
-    Amazon Linux 2.0.2021x およびそれ以前のバージョンに NGINX Plus をインストールするには、CentOS 7 の手順を使用してください。
-
-### 2. Wallarm リポジトリの追加
-
-Wallarm ノードは、Wallarm リポジトリからインストールおよび更新されます。リポジトリを追加するには、プラットフォーム用のコマンドを使用してください。
-
---8<-- "../include-ja/waf/installation/add-nginx-waf-repos-4.4.md"
-
-### 3. Wallarm パッケージのインストール
-
-#### 同じサーバー上でのリクエスト処理と投稿解析
-
-同じサーバーで投稿解析とリクエスト処理を実行するには、次のパッケージが必要です。
-
-* NGINX-Wallarm モジュールの `nginx-module-wallarm`
-* Tarantool データベース、追加の NGINX-Wallarm パッケージ用の投稿解析モジュール、`wallarm-node`
-
-=== "Debian"
-    ```bash
-    sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
-    ```
-=== "Ubuntu"
-    ```bash
-    sudo apt -y install --no-install-recommends wallarm-node nginx-module-wallarm
-    ```
-=== "CentOS or Amazon Linux 2.0.2021x and lower"
-    ```bash
-    sudo yum install -y wallarm-node nginx-module-wallarm
-    ```
-=== "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
-    ```bash
-    sudo yum install -y wallarm-node nginx-module-wallarm
-    ```
-リクエスト処理とポストアナリティクスを異なるサーバーで実行する場合、以下のパッケージが必要です:
-
-* NGINX-Wallarm モジュール用の `wallarm-node-nginx` および `nginx-module-wallarm`
-
-    === "Debian"
-        ```bash
-        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "Ubuntu"
-        ```bash
-        sudo apt -y install --no-install-recommends wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "CentOS または Amazon Linux 2.0.2021x およびそれ以前"
-        ```bash
-        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
-        ```
-    === "AlmaLinux, Rocky Linux または Oracle Linux 8.x"
-        ```bash
-        sudo yum install -y wallarm-node-nginx nginx-module-wallarm
-        ```
-
-* ポストアナリティクスモジュールと Tarantool データベース用に別のサーバーに `wallarm-node-tarantool` をインストール（インストール手順は[こちらの説明文書](../../admin-en/installation-postanalytics-en.md)に記載されています）。
-
-### 4. Wallarm モジュールの接続
-
-1. `/etc/nginx/nginx.conf` ファイルを開きます:
-
-    ```bash
-    sudo vim /etc/nginx/nginx.conf
-    ```
-2. `include /etc/nginx/conf.d/*;` 行がファイルに追加されていることを確認します。もし存在しなければ、追加してください。
-3. 次のディレクティブを `worker_processes` ディレクティブの直後に追加します。
-
-    ```bash
-    load_module modules/ngx_http_wallarm_module.so;
-    ```
-
-   追加されたディレクティブを含む設定例:
-
-    ```
-    user  nginx;
-    worker_processes  auto;
-    load_module modules/ngx_http_wallarm_module.so;
-
-    error_log  /var/log/nginx/error.log notice;
-    pid        /var/run/nginx.pid;
-    ```
-
-4. システム設定用の設定ファイルをコピーします:
-
-    ``` bash
-    sudo cp /usr/share/doc/nginx-module-wallarm/examples/*.conf /etc/nginx/conf.d/
-    ```
-
-### 5. フィルタリングノードを Wallarm Cloud に接続
-
---8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.4.md"
-
-### 6. Wallarm ノード設定を更新
-
---8<-- "../include-ja/waf/installation/nginx-waf-min-configuration-3.6.md"
-
-### 7. NGINX の再起動
-
---8<-- "../include-ja/waf/root_perm_info.md"
-
---8<-- "../include-ja/waf/restart-nginx-3.6.md"
-
-### 8. Wallarm ノード動作のテスト
-
---8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
-
-## 設定のカスタマイズ
-
-デフォルト設定のダイナミック Wallarm モジュールが NGINX `stable` 用にインストールされています。Wallarm ノード設定のカスタマイズには、[利用可能なディレクティブ](../../admin-en/configure-parameters-en.md)を使用してください。
-
---8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"
+* [NGINXでの動的DNS解決の設定][dynamic-dns-resolution-nginx]

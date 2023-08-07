@@ -1,48 +1,48 @@
 # サブスクリプション
 
-Wallarm Console の **設定** → **サブスクリプション** セクションには、お客様の Wallarm [サブスクリプション プラン](../../about-wallarm/subscription-plans.md)の詳細が表示されます。
+Wallarmコンソールの**設定**→**サブスクリプション**セクションでは、あなたのWallarm [サブスクリプションプラン](../../about-wallarm/subscription-plans.md)の詳細が表示されます。
 
-## 有料サブスクリプションプラン
+## 有料のサブスクリプションプラン
 
-有料の Wallarm サブスクリプションプランをお持ちの場合、サブスクリプションカードに以下の情報が表示されます。
+有料のWallarmサブスクリプションプランをお持ちの場合、サブスクリプションカードには以下の情報が表示されます：
 
-* サブスクリプション名とステータス
+* サブスクリプションの名前とステータス
 * サブスクリプションの有効期限
-* フィルタリングノードで処理されたリクエストの統計
-* サブスクリプションプランに含まれるモジュールと機能のセット（セットは選択したサブスクリプションプランにより異なります）
+* フィルタリングノードによって処理されたリクエストの統計
+* サブスクリプションプランに含まれるモジュールと機能のセット（セットは選択したサブスクリプションプランによります）
 
-![!有料サブスクリプションプラン](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![有料のサブスクリプションプラン](../../images/user-guides/settings/subscriptions/subscriptions.png)
 
-サブスクリプションを有効化、キャンセル、または変更するには、[sales@wallarm.com](mailto:sales@wallarm.com) までリクエストをお送りください。
+サブスクリプションを有効化、キャンセル、または変更するには、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送ってください。
 
-## 無料枠の利用（US クラウド）
+## フリーティアの利用（米国クラウド）
 
-US クラウドに登録し、[無料枠](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)サブスクリプションプランを利用している場合、サブスクリプションカードに以下の情報が表示されます。
+USクラウドで登録し、[フリーティア](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)のサブスクリプションプランを使用している場合、サブスクリプションカードには以下の情報が表示されます：
 
-* **Free Tier** サブスクリプションタイル
-* **API Discovery** サブスクリプションタイル（無料枠に含まれています）
-* フィルタリングノードで処理されたリクエストの統計
-* [有効化されたモジュールと機能](../../about-wallarm/subscription-plans.md#free-tier-us-cloud)のセット
+* **フリーティア**のサブスクリプションタイル
+* **APIディスカバリー**のサブスクリプションタイル（フリーティアに含まれる）
+* フィルタリングノードによって処理されたリクエストの統計
+* [有効化されたモジュールと機能のセット](../../about-wallarm/subscription-plans.md#free-tier-us-cloud)
 
-サブスクリプションを有効化、キャンセル、または変更するには、[sales@wallarm.com](mailto:sales@wallarm.com) までリクエストをお送りください。
+サブスクリプションを有効化、キャンセル、または変更するには、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送ってください。
 
-## トライアル期間（EU クラウド）
+## トライアル期間（欧州クラウド）
 
-最近 EU クラウドに登録し、Wallarm の[試用版](../../about-wallarm/subscription-plans.md#trial-period)を利用している場合、サブスクリプションカードに以下の情報が表示されます。
+最近EUクラウドで登録し、Wallarmの[トライアルバージョン](../../about-wallarm/subscription-plans.md#trial-period)を使用している場合、サブスクリプションカードには以下の情報が表示されます：
 
-* サブスクリプション名とステータス
+* サブスクリプションの名前とステータス
 * サブスクリプションの有効期限
 
-    トライアル期間は 14 日間で、一度だけ 14 日間延長できます。
+    トライアル期間は14日間で、一度だけ14日間延長することができます。
 * トライアル期間を延長するボタン
 
-    トライアル期間は 14 日間で、一度だけ 14 日間延長できます。 トライアル期間がすでに延長されている場合、ボタンは使用できません。
-* フィルタリングノードで処理されたリクエストの統計
+    トライアル期間は14日間で、一度だけ14日間延長することができます。もしトライアル期間がすでに延長されていた場合、ボタンは使用不可能になります。
+* フィルタリングノードによって処理されたリクエストの統計
 * 有効化されたモジュールと機能のセット
 
-    Wallarm トライアルでは、API セキュリティ[プラン](../../about-wallarm/subscription-plans.md#subscription-plans) に含めることができる最大のモジュールと機能のセットが提供されます。
-* Wallarm チームと承認された PoC プランがある場合、PoC 結果ドキュメントへのリンク
+    Wallarmのトライアルは、APIセキュリティ[プラン](../../about-wallarm/subscription-plans.md#subscription-plans)に含めることができる最大のモジュールと機能のセットを提供します。
+* Wallarmチームと承認したPoCプランをお持ちの場合、PoC結果のドキュメントへのリンク
 
-![!トライアル期間](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
+  ![トライアル期間](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
-Wallarm のサブスクリプションに関する詳細情報を入手するか、有料のサブスクリプションプランを有効化するには、[sales@wallarm.com](mailto:sales@wallarm.com) までリクエストをお送りください。
+Wallarmへのサブスクリプションに関する詳細情報を取得するか、有料のサブスクリプションプランを有効にするには、[sales@wallarm.com](mailto:sales@wallarm.com)にリクエストを送ってください。

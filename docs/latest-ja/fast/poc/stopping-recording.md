@@ -1,27 +1,25 @@
-[doc-get-token]:                    prerequisites.md#anchor-token
-[doc-get-testrun-id]:               node-deployment.md#obtaining-a-test-run
+[doc-get-token]: prerequisites.md#anchor-token
+[doc-get-testrun-id]: node-deployment.md#録音プロセスの停止-テスト-実行の特定
+[doc-about-recording]: ../operations/internals.md#テスト-実行
+[doc-stop-recording]: ../operations/stop-recording.md#api経由での録音プロセスの停止
+[doc-waiting-for-tests]: waiting-for-tests.md
+[doc-integration-overview]: integration-overview.md
 
-[doc-about-recording]:              ../operations/internals.md#test-run
-[doc-stop-recording]:               ../operations/stop-recording.md#stopping-the-recording-process-via-api
-[doc-waiting-for-tests]:            waiting-for-tests.md
+# 録音プロセスの停止
 
-[doc-integration-overview]:         integration-overview.md
-
-#   Stopping the Recording Process
-
-!!! info "Chapter Prerequisites"
-    To follow the steps described in this chapter, you need to obtain:
+!!! info "章の前提条件"
+    この章で説明されている手順に従うためには、次のものを取得する必要があります:
         
-    * [Token][doc-get-token]
-    * [Identifier][doc-get-testrun-id] of a test run
+    * [トークン][doc-get-token]
+    * [識別子][doc-get-testrun-id]のテスト実行
     
-    The following values are used as example values throughout the chapter:
+    以下の値は、章全体の例として使用されます：
 
-    * `token_Qwe12345` as a token
-    * `tr_1234` as an identifier of a test run
+    * トークンとしての `token_Qwe12345`
+    * テストランの識別子としての `tr_1234`
 
-Stop the baseline requests recording process via API by following the steps described [here][doc-stop-recording].
+APIを使用してベースラインリクエストの録音プロセスを停止します。手順については[こちら][doc-stop-recording]を参照してください。
 
-The process of testing the target application against the vulnerabilities could last a long time after the recording process was stopped. Use information from [this document][doc-waiting-for-tests] to determine if the FAST security tests are completed.
+録音プロセスが停止した後も、ターゲットアプリケーションの脆弱性に対するテストプロセスは長時間続く場合があります。FASTセキュリティテストが完了したかどうかを判断するためには、[このドキュメント][doc-waiting-for-tests]の情報を利用してください。
 
- You could refer back to the [“CI/CD Workflow with FAST”][doc-integration-overview] document if necessary.
+必要に応じて、[「CI/CDワークフローとFAST」][doc-integration-overview]ドキュメントを参照することができます。

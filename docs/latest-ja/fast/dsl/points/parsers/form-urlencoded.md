@@ -1,41 +1,40 @@
 [link-ruby]:                        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
-[link-formurlencoded-array]:        array.md#the-example-of-using-the-formurlencoded-parser-and-the-array-filter
-[link-formurlencoded-hash]:         hash.md#the-example-of-using-the-formurlencoded-parser-with-the-hash-filter
+[link-formurlencoded-array]:        array.md#formurlencoded-パーサーアンド-アレイ-フィルター-使う-例
+[link-formurlencoded-hash]:         hash.md#formurlencoded-パーサーと-ハッシュ-フィルター-使う-例
 
-# Form_urlencoded Parser
+# Form_urlencoded パーサー
 
-The **Form_urlencoded** parser is used for working with the request body in the form-urlencoded format. This parser creates a hash table where the names of the request body parameters are the keys and the values of the corresponding parameters are the hash table values. The elements of this hash table need to be referred to by using the names of the parameters.
+**Form_urlencoded** パーサーは、form-urlencoded 形式でリクエストボディを操作するために使用します。このパーサーは、リクエストボディパラメーターの名前がキーで、対応するパラメーターの値がハッシュテーブルの値になるハッシュテーブルを作成します。このハッシュテーブルの要素は、パラメーターの名前を使用して参照する必要があります。
 
-!!! info "Regular expressions in points"
-    The parameter name in the point can be a regular expression of the [Ruby programming language][link-ruby].
+!!! info "ポイントの正規表現"
+    ポイントのパラメーター名は、[Rubyプログラミング言語][link-ruby]の正規表現であることができます。
 
-!!! warning "Using the Form_urlencoded parser in the point"
-    The Form_urlencoded parser can only be used in the point together with the Post filter that refers to the baseline request body.
+!!! warning "ポイントでのForm_urlencodedパーサーの使用"
+    Form_urlencodedパーサーは、基線のリクエストボディを参考にしたPostフィルターと共に、ポイントでのみ使用できます。
 
-The request body in the form-urlencoded format may also contain the following complex data structures: arrays and hash tables. Use the [Array][link-formurlencoded-array] and [Hash][link-formurlencoded-hash] filters correspondingly to address the elements in these structures.
+form-urlencoded形式のリクエストボディには、次の複雑なデータ構造も含まれることがあります：配列とハッシュテーブル。これらの構造の要素にアクセスするためには、それぞれに対応する[配列][link-formurlencoded-array]と[ハッシュ][link-formurlencoded-hash]フィルターを使用してください。
 
-**Example:** 
+**例：** 
 
-For the
+以下の
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-request with the
+というリクエストに対して
 
 ```
 id=01234&username=John
 ```
 
-body, the Form_urlencoded parser applied to the request body creates the following hash table:
+というボディがある場合、リクエストボディに適用されたForm_urlencodedパーサーによって次のハッシュテーブルが作成されます：
 
-| Key      | Value    |
-|----------|----------|
-| id       | 01234    |
-| username | John     |
+| キー     | 値      |
+|----------|---------|
+| id       | 01234   |
+| username | John    |
 
-* The `POST_FORM_URLENCODED_id_value` point refers to the `01234` value that corresponds to the `id` key from the hash table created by the Form_urlencoded parser.
-* The `POST_FORM_URLENCODED_username_value` point refers to the `John` value that corresponds to the `username` key from the hash table created by the Form_urlencoded parser.
-
+* `POST_FORM_URLENCODED_id_value` ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブル内の `id` キーに対応する `01234` の値を指します。
+* `POST_FORM_URLENCODED_username_value` ポイントは、Form_urlencodedパーサーによって作成されたハッシュテーブル内の `username` キーに対応する `John` の値を指します。

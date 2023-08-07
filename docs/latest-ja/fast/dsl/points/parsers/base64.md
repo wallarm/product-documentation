@@ -1,22 +1,20 @@
+# Base64パーサー
 
-# Base64 Parser
+**Base64**パーサーは、リクエスト要素の値をBase64エンコーディングでエンコードおよびデコードします。このパーサーは任意の文字列に適用できます。
 
-The **Base64** parser encodes and decodes the request element value in base64 encoding. This parser can be applied to any string.
+**例:**
 
-**Example:** 
-
-For the
+以下の
 
 ```
 POST http://example.com/login/index.php HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 ```
 
-request with the
+リクエストと
 
 ```
 username=admin&passwd=MDEyMzQ=
 ```
 
-body, the `POST_FORM_URLENCODED_passwd_BASE64_value` point refers to the `01234` value decoded from the base64 that is passed in the `passwd` parameter of the request body in the form-urlencoded format.
-
+本文に対して、`POST_FORM_URLENCODED_passwd_BASE64_value`ポイントは、フォームエンコード形式のリクエスト本文の`passwd`パラメータに渡されるBase64からデコードされた`01234`値を指します。

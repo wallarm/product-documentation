@@ -1,6 +1,6 @@
 * [トラフィックフィルタリングモードの設定][operation-mode-rule-docs]
 * [トラフィックフィルタリングルールのカスタマイズ][rules-docs]
-* [IPアドレスの許可リスト、拒否リスト、グレーリスト][ip-lists-docs]
-* システムイベント通知は[DevOpsツールとのネイティブインテグレーション][integration-docs]と[トリガー][trigger-docs]で設定されています
-* [**ノード**セクションのUI][nodes-ui-docs]を使用して、保護対象リソースのオリジンアドレスを更新し、カスタムSSL/TLS証明書をアップロードしてCDNノードを削除する
-* [Varnishキャッシュの使用選択][using-varnish-cache] をコンテンツ配信の高速化のために行う。
+* [IPアドレスのホワイトリスト、ブラックリスト、グレーリスト][ip-lists-docs]
+* [DevOpsツールとのネイティブな統合][integration-docs]と[トリガー][trigger-docs]を介して設定されるシステムイベント通知
+* [**ノード** セクションのUIの使用][nodes-ui-docs] 保護リソースの元のアドレスを更新し、カスタムSSL/TLS証明書をアップロードし、CDNノードを削除する
+* [コンテンツ配信を高速化するためにVarnish Cacheを使用するかどうかを選択][using-varnish-cache]

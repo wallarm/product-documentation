@@ -1,33 +1,33 @@
-# Helm chart for Wallarm API Firewall
+# Wallarm API FirewallのためのHelmチャート
 
-This chart bootstraps Wallarm API Firewall deployment on a [Kubernetes](http://kubernetes.io/) cluster using the [Helm](https://helm.sh/) package manager.
+このチャートは、[Helm](https://helm.sh/)パッケージマネージャを使用して、[Kubernetes](http://kubernetes.io/)クラスター上にWallarm API Firewallのデプロイメントをブートストラップします。
 
-This chart is not uploaded to any public Helm registry yet. To deploy the Helm chart, please use this repository.
+このチャートはまだ公開Helmレジストリにアップロードされていません。Helmチャートをデプロイするには、このリポジトリをご利用ください。
 
-## Requirements
+## 要件
 
-* Kubernetes 1.16 or later
-* Helm 2.16 or later
+* Kubernetes 1.16以上
+* Helm 2.16以上
 
-## Deployment
+## デプロイメント
 
-To deploy the Wallarm API Firewall Helm chart:
+Wallarm API FirewallのHelmチャートをデプロイするには：
 
-1. Add our repository if you haven't yet:
+1. まだ追加していない場合は、当社のリポジトリを追加します：
 
 ```bash
 helm repo add wallarm https://charts.wallarm.com
 ```
 
-2. Fetch latest version of helm chart:
+2. Helmチャートの最新バージョンをフェッチします：
 
 ```bash
 helm fetch wallarm/api-firewall
 tar -xf api-firewall*.tgz
 ```
 
-3. Configure chart by changing the `api-firewall/values.yaml` file following the code comments.
+3. `api-firewall/values.yaml`ファイルのコードコメントに従ってチャートを設定します。
 
-4. Deploy Wallarm API Firewall from this Helm chart.
+4. このHelmチャートからWallarm API Firewallをデプロイします。
 
-To see the example of this Helm chart deployment, you can run our [Kuberentes demo](https://github.com/wallarm/api-firewall/tree/main/demo/kubernetes).
+このHelmチャートのデプロイメントの例を見るには、当社の[Kuberentesデモ](https://github.com/wallarm/api-firewall/tree/main/demo/kubernetes)を実行できます。

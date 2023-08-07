@@ -5,133 +5,133 @@
 [sqli-attack-docs]:                         ../attacks-vulns-list.md#sql-injection
 [xss-attack-docs]:                          ../attacks-vulns-list.md#crosssite-scripting-xss
 
-# Upgrading Wallarm node with All-in-One Installer
+# オールインワンインストーラーを使用してWallarmノードをアップグレードする
 
-These instructions describe the steps to upgrade the Wallarm node 4.6.x installed using [all-in-one installer](../installation/nginx/all-in-one.md) to version 4.6.x+.
+これらの手順では、[オールインワンインストーラー](../installation/nginx/all-in-one.md)を使用してインストールしたWallarmノード4.6.xをバージョン4.6.x+にアップグレードする手順を説明します。
 
-## Requirements
+## 要件
 
 --8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
 
-## Upgrade procedure
+## アップグレード手順
 
-The upgrade procedure differs depending on how filtering node and postanalytics modules are installed:
+フィルタリングノードとpostanalyticsモジュールがどのようにインストールされているかにより、アップグレード手順が異なります：
 
-* [On the same server](#filtering-node-and-postanalytics-on-the-same-server): modules are upgraded altogether
-* [On different servers](#filtering-node-and-postanalytics-on-different-servers): **first** upgrade the postanalytics module and **then** the filtering module
+* [同じサーバー上](#filtering-node-and-postanalytics-on-the-same-server)：モジュールは一緒にアップグレードされます
+* [異なるサーバー上](#filtering-node-and-postanalytics-on-different-servers)：**最初に** postanalyticsモジュールをアップグレードし、**次に** フィルタリングモジュールをアップグレードします
 
-## Filtering node and postanalytics on the same server
+## 同じサーバー上のフィルタリングノードとpostanalytics
 
-Use the procedure below to upgrade altogether the filtering node and postanalytics modules installed using all-in-one installer on the same server.
+以下の手順を使用して、同じサーバー上にオールインワンインストーラーを使用してインストールされたフィルタリングノードとpostanalyticsモジュールを一度にアップグレードします。
 
-### Step 1: Prepare Wallarm token
+### ステップ1：Wallarmトークンを準備する
 
-To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
+ノードをアップグレードするには、[タイプの一つ](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)のWallarmトークンが必要です。トークンを準備するには：
 
-=== "API token"
+=== "APIトークン"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
-    1. Copy this token.
+    1. Wallarm Consoleを開き、**設定** → **APIトークン**をクリックします、[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)。
+    1. `Deploy`ソースロールを持つAPIトークンを見つけるか作成します。
+    1. このトークンをコピーします。
 
-=== "Node token"
+=== "ノードトークン"
 
-    For upgrade, use the same node token that was used for installation:
+    アップグレードのために、インストール時に使用した同じノードトークンを使用します：
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. In your existing node group, copy token using node's menu → **Copy token**.
+    1. Wallarm Consoleを開き、**ノード**を選択します、[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)。
+    1. 既存のノードグループで、ノードのメニュー→ **トークンをコピー**を使用してトークンをコピーします。
 
-### Step 2: Download newest version of all-in-one Wallarm installer
+### ステップ2：最新版のWallarm一体型インストーラーをダウンロードする
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 3: Run all-in-one Wallarm installer
+### ステップ3：オールインワンWallarmインストーラーを実行する
 
 --8<-- "../include/waf/installation/all-in-one-installer-run.md"
 
-### Step 4: Restart NGINX
+### ステップ4：NGINXを再起動する
 
 --8<-- "../include/waf/installation/restart-nginx-systemctl.md"
 
-### Step 5: Test Wallarm node operation
+### ステップ5：新しいノードの操作をテストする
 
-To test the new node operation:
+新しいノードの操作をテストするには：
 
-1. Send the request with test [SQLI][sqli-attack-docs] and [XSS][xss-attack-docs] attacks to the protected resource address:
+1. テスト[SQLI][sqli-attack-docs]と[XSS][xss-attack-docs]攻撃を含むリクエストを保護されたリソースアドレスに送信します：
 
     ```
     curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 
-1. Open the Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and ensure attacks are displayed in the list.
-1. As soon as your Cloud stored data (rules, IP lists) is synchronized to the new node, perform some test attacks to make sure your rules work as expected.
+1. Wallarm Consoleを開き、**イベント**セクションを選択します、[USクラウド](https://us1.my.wallarm.com/search)または[EUクラウド](https://my.wallarm.com/search)、攻撃がリストに表示されていることを確認します。
+1. クラウドから新しいノードに保存されたデータ（ルール、IPリスト）が同期されると、ルールが期待通りに動作することを確認するためにテスト攻撃を実行します。
 
-## Filtering node and postanalytics on different servers
+## 異なるサーバー上のフィルタリングノードとpostanalytics
 
-!!! warning "Sequence of steps to upgrade the filtering node and postanalytics modules"
-    If the filtering node and postanalytics modules are installed on different servers, then it is required to upgrade the postanalytics packages before updating the filtering node packages.
+!!! warning "フィルタリングノードとpostanalyticsモジュールのアップグレード手順の順序"
+    フィルタリングノードとpostanalyticsモジュールが異なるサーバーにインストールされている場合、フィルタリングノードのパッケージを更新する前に、postanalyticsパッケージをアップグレードする必要があります。
 
-### Step 1: Prepare Wallarm token
+### ステップ1：Wallarmトークンを準備する
 
-To upgrade node, you will need a Wallarm token of [one of the types](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation). To prepare a token:
+ノードをアップグレードするには、[タイプの一つ](../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation)のWallarmトークンが必要です。トークンを準備するには：
 
-=== "API token"
+=== "APIトークン"
 
-    1. Open Wallarm Console → **Settings** → **API tokens** in the [US Cloud](https://us1.my.wallarm.com/settings/api-tokens) or [EU Cloud](https://my.wallarm.com/settings/api-tokens).
-    1. Find or create API token with the `Deploy` source role.
-    1. Copy this token.
+    1. Wallarm Consoleを開き、**設定** → **APIトークン**をクリックします、[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)。
+    1. `Deploy`ソースロールを持つAPIトークンを見つけるか作成します。
+    1. このトークンをコピーします。
 
-=== "Node token"
+=== "ノードトークン"
 
-    For upgrade, use the same node token that was used for installation:
+    アップグレードのために、インストール時に使用した同じノードトークンを使用します：
 
-    1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes).
-    1. In your existing node group, copy token using node's menu → **Copy token**.
+    1. Wallarm Consoleを開き、**ノード**を選択します、[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)。
+    1. 既存のノードグループで、ノードのメニュー→ **トークンをコピー**を使用してトークンをコピーします。
 
-### Step 2: Download newest version of all-in-one Wallarm installer to postanalytics machine
+### ステップ2：最新版のWallarm一体型インストーラーをpostanalyticsマシンにダウンロードする
 
-This step is performed on the postanalytics machine.
+このステップは、postanalyticsマシンで実行されます。
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 3: Run all-in-one Wallarm installer to upgrade postanalytics
+### ステップ3：オールインワンWallarmインストーラーを実行してpostanalyticsをアップグレードする
 
-This step is performed on the postanalytics machine.
+このステップは、postanalyticsマシンで実行されます。
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics.md"
 
-### Step 4: Download newest version of all-in-one Wallarm installer to filtering node machine
+### ステップ4：新しいバージョンのオールインワンのWallarmインストーラーをフィルタリングノードマシンにダウンロードする
 
-This step is performed on the filtering node machine.
+このステップは、フィルタリングノードマシンで実行されます。
 
 --8<-- "../include/waf/installation/all-in-one-installer-download.md"
 
-### Step 5: Run all-in-one Wallarm installer to upgrade filtering node
+### ステップ5：オールインワンWallarmインストーラーを実行してフィルタリングノードをアップグレードする
 
-This step is performed on the filtering node machine.
+このステップは、フィルタリングノードマシンで実行されます。
 
-To upgrade filtering node separately with all-in-one installer, use:
+オールインワンインストーラーを使用してフィルタリングノードを別途アップグレードするには、次を使用します：
 
-=== "API token"
+=== "APIトークン"
     ```bash
-    # If using the x86_64 version:
+    # x86_64バージョンを使用している場合：
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.x86_64-glibc.sh filtering
 
-    # If using the ARM64 version:
+    # ARM64バージョンを使用している場合：
     sudo env WALLARM_LABELS='group=<GROUP>' sh wallarm-4.6.12.aarch64-glibc.sh filtering
     ```        
 
-    The `WALLARM_LABELS` variable sets group into which the node will be added (used for logical grouping of nodes in the Wallarm Console UI).
+    `WALLARM_LABELS`変数はノードが追加されるグループを設定します（Wallarm Console UIでのノードの論理的なグルーピングに使用されます）。
 
-=== "Node token"
+=== "ノードトークン"
     ```bash
-    # If using the x86_64 version:
+    # x86_64バージョンを使用している場合：
     sudo sh wallarm-4.6.12.x86_64-glibc.sh filtering
 
-    # If using the ARM64 version:
+    # ARM64バージョンを使用している場合：
     sudo sh wallarm-4.6.12.aarch64-glibc.sh filtering
     ```
 
-### Step 6: Check the filtering node and separate postanalytics modules interaction
+### ステップ6：フィルタリングノードと別々のpostanalyticsモジュールの相互作用を確認します
 
 --8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"

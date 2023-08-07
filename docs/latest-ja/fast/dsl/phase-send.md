@@ -1,39 +1,39 @@
 [link-ext-logic]:       logic.md
 
-# The Send Phase
+# 送信フェーズ
 
-!!! info "Scope of the phase"
-    This phase is obligatory for a nonmodifying extension to operate (the YAML file should contain the `send` section).
+!!! info "フェーズの範囲"
+    これは、非修正拡張が動作するための必須のフェーズであり（YAMLファイルは `send` セクションを含めなければなりません）。
     
-    Note that this phase is absent in a modifying extension because the Send phase would render other phases unusable (except for the Detect phase and implicit Collect phase) if combined with them.
+    このフェーズは、修正拡張では存在せず、送信フェーズと組み合わせると他のフェーズが使用できなくなるためです（ただし、検出フェーズと暗黙的な収集フェーズは除く）。
     
-    Read about the extension types in detail [here][link-ext-logic].
+    拡張のタイプについて詳しくは、[こちら][link-ext-logic] をご覧ください。
 
- This phase sends the predefined test requests to test a target application for vulnerabilities. The host that the test requests should be sent to is determined by the `Host` header value in incoming baseline requests.
+このフェーズでは、定義済みのテストリクエストを送信して、ターゲットアプリケーションが脆弱性を持っているかどうかをテストします。テストリクエストが送信されるべきホストは、元のベースラインリクエストの `Host` ヘッダー値によって決定されます。
 
-The `send` section has the following structure:
+`send` セクションは次の構造を持っています：
 
 ```
 send:
-  - method: <HTTP method>
+  - method: <HTTP メソッド>
     url: <URI>
     headers:
-    - header 1: value
+    - ヘッダー 1: 値
     ...
-    - header N: value
-    body: <the request body>
+    - ヘッダー N: 値
+    body: <リクエストボディ>
   ...
-  - method: <HTTP method>
+  - method: <HTTP メソッド>
     ...
 ```
 
-The `send` section in the extension YAML file contains one or more parameter set. Each parameter is specified as a `<key: value>` pair. A given parameter set describes a single HTTP request to be sent as a test request. The following parameters are part of the set:
+拡張のYAMLファイル内の `send` セクションには、1つ以上のパラメーターセットが含まれています。各パラメーターは `<キー：値>` のペアで指定されます。指定されたパラメーターセットは、テストリクエストとして送信される1つのHTTPリクエストを表します。以下のパラメーターがセットの一部となります：
 
-* `method`: the HTTP method to be used by the request.
+* `method`：リクエストで使用されるHTTPメソッド。
 
-    This is a required parameter: it should be present in any parameter set.
+    これは必須のパラメーターで、任意のパラメーターセットに存在する必要があります。
     
-    ??? info "List of the allowed parameter's values"
+    ??? info "許可されたパラメーター値のリスト"
 
         * `GET`
         * `POST`
@@ -48,45 +48,45 @@ The `send` section in the extension YAML file contains one or more parameter set
         * `MOVE`
         * `TRACE`
 
-    ??? info "Example"
+    ??? info "例"
         `method: 'POST'`
 
-* `url`: a URL string. The request will be targeted to this URI.
+* `url`：URL文字列。リクエストはこのURIに対して行われます。
 
-    This is a required parameter: it should be present in any parameter set.
+    これは必須のパラメーターで、任意のパラメーターセットに存在する必要があります。
     
-    ??? info "Example"
+    ??? info "例"
         `url: '/en/login.php'`
 
-* `headers`: an array that contains one or more HTTP headers in the `header name: header value` format.
+* `headers`：1つ以上のHTTPヘッダーを含む配列。フォーマットは `ヘッダー名：ヘッダー値` です。
 
-    If the constructed HTTP request does not use any header, then this parameter can be omitted.
+    構築したHTTPリクエストがヘッダーを使用しない場合、このパラメーターは省略することができます。
     
-    FAST automatically adds the headers required for the resulting HTTP request to be correct (even if they are missing in the `headers` array); for example, `Host` and `Content-Length`.
+    FASTは、結果のHTTPリクエストが正確になるように必要なヘッダーを自動的に追加します（たとえそれらが `headers` 配列に存在しなくても）。たとえば、 `Host` および `Content-Length` です。
     
-    ??? info "Example"
+    ??? info "例"
         ```
         headers:
         - 'Accept-Language': 'en-US,en;q=0.9'
         - 'Content-Type': 'application/xml'
         ```
       
-    !!! info "Working with the `Host` header"
-        You can add a `Host` header to a test request that differs from the one extracted from a baseline request, if necessary. 
+    !!! info "`Host` ヘッダーの操作"
+        必要に応じて、ベースラインリクエストから抽出したものとは異なる `Host` ヘッダーをテストリクエストに追加することができます。
         
-        For example, it is possible to add the `Host: demo.com` header to a test request in the Send section.
+        たとえば、Sendセクションのテストリクエストに `Host: demo.com` ヘッダーを追加することが可能です。
     
-        If the corresponding extension is running and the FAST node receives a baseline request with the `Host: example.com` header, then the test request with the header `Host: demo.com` will be sent to the `example.com` host. The resulting request is similar to this one:
+        適応拡張機能が動作しており、FASTノードが `Host: example.com` ヘッダーを持つベースラインリクエストを受信した場合、ヘッダーが `Host: demo.com` のテストリクエストが `example.com` ホストに送信されます。結果のリクエストは以下のようになります：
 
         ```
         curl -k -g -X POST -L -H "Host: demo.com" -H "Content-Type: application/json" "http://example.com/app" --data "{"field":"value"}"
         ```
     
-* `body`: a string that contains the request's body. You can specify any required request body, as long as you escape special characters, if any, in the resulting string.
+* `body`：リクエストのボディを含む文字列。必要なリクエストボディを任意に指定することができます。ただし、結果の文字列内の特殊文字はエスケープする必要があります。
 
-    This is a required parameter: it should be present in any parameter set.
-    
-    ??? info "Example"
-        `body: 'field1=value1&field2=value2`
+  これは必須のパラメーターで、任意のパラメーターセットに存在する必要があります。
+  
+   ??? info "例"
+       `body: 'field1=value1&field2=value2`
 
-If the `send` section is populated with `N` parameter sets describing the `N` HTTP requests, then for a single incoming baseline request, the FAST node will send `N` test requests to the target application that resides on a host specified in the `Host` header of the baseline request.
+`send` セクションが `N` 個のパラメーターセットで構成され、その各々が `N` 個のHTTPリクエストを説明している場合、単一の入力ベースラインリクエストについて、FASTノードはベースラインリクエストの `Host` ヘッダーで指定されたホスト上のターゲットアプリケーションに `N` 個のテストリクエストを送信します。

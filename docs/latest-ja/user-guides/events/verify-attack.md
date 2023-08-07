@@ -9,52 +9,52 @@
 [al-brute-force-attack]:      ../../attacks-vulns-list.md#bruteforce-attack
 [al-forced-browsing]:         ../../attacks-vulns-list.md#forced-browsing
 
-# アタックの検証
+# 攻撃の検証
 
-Wallarmは、アクティブ脆弱性検出のために攻撃を自動的に[再チェック](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)します。
+Wallarmは、積極的な脆弱性検出のために攻撃を自動的に[再確認](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) します。
 
-*イベント*タブで、攻撃検証のステータスを確認し、攻撃の再チェックを強制できます。選択された攻撃は、テスト攻撃セット生成の基本になります。
+*イベント* タブで攻撃の検証状況を確認し、攻撃の再確認を強制することができます。選択された攻撃はテスト攻撃セットの生成の基礎となります。
 
-![!様々な検証ステータスがあるアタック][img-verification-statuses]
+![!さまざまな検証ステータスを持つ攻撃][img-verification-statuses]
 
-## アタック検証ステータスの確認
+## 攻撃の検証状況を確認する
 
-1. *イベント*タブをクリックします。
-2. "検証"列でステータスを確認してください。
+1. *イベント* タブをクリックします。
+2. "検証"列のステータスを確認します。
 
-## アタック検証ステータスの説明
+## 攻撃の検証のステータスの凡例
 
-* ![!検証済み][img-verified-icon] *検証済み*: 攻撃が検証されました。
-* ![!エラー][img-error-icon] *エラー*: 検証をサポートしていない攻撃タイプの検証を試みます。
-* ![!強制][img-forced-icon] *強制*: 検証キューで攻撃の優先度が上がりました。
-* ![!予定][img-sheduled-icon] *予定*: 攻撃が検証キューに入りました。
-* ![!サーバーに接続できません][img-cloud-icon] *サーバーに接続できません*: 現在サーバーにアクセスすることはできません。
+* ![!確認済][img-verified-icon] *確認済*：攻撃が確認されました。
+* ![!エラー][img-error-icon] *エラー*：検証がサポートされていない攻撃タイプを検証しようとした試み。
+* ![!強制][img-forced-icon] *強制*：攻撃は検証キューの優先順位が上がっています。
+* ![!予定][img-sheduled-icon] *予定*：攻撃は検証のためのキューに組み込まれています。
+* ![!サーバーに接続できません][img-cloud-icon] *サーバーに接続できません*：現在、サーバーにアクセスすることはできません。
 
-## アタック検証の強制
+## 攻撃の検証を強制する
 
 1. 攻撃を選択します。
-2. "検証"列のステータス記号をクリックします。
-3. *強制検証*をクリックします。
+2. "検証" 列の状態記号をクリックします。
+3. *検証を強制する* をクリックします。
 
-Wallarmは、キュー内の攻撃検証の優先度を上げます。
+Wallarmは攻撃の検証の優先順位をキューで上げます。
 
-![!アタック検証][img-verify-attack]
+![!攻撃の検証][img-verify-attack]
 
 ## 検証をサポートしていない攻撃タイプ
 
-以下のタイプの攻撃は検証に対応していません。
+以下のタイプの攻撃は、検証をサポートしていません:
 
 * [ブルートフォース][al-brute-force-attack]
 * [強制ブラウジング][al-forced-browsing]
-* リクエスト処理制限のある攻撃
+* リクエスト処理の制限がある攻撃
 * 既に脆弱性が閉じられている攻撃
-* 検証に十分なデータが含まれていない攻撃
+* 検証するための十分なデータを含まない攻撃
 
-次のケースでは、アタックの再チェックが失敗します。
+以下の場合、攻撃の再確認は失敗します:
 
-* gRPCまたはProtobuffプロトコルを介して送信された攻撃
-* バージョン1.x以外のHTTPプロトコルを介して送信された攻撃
-* 次の方法と異なる方法で送信された攻撃: GET、POST、PUT、HEAD、PATCH、OPTIONS、DELETE、LOCK、UNLOCK、MOVE、TRACE
-* オリジナルリクエストのアドレスに到達できなかった
-* 攻撃サインが `HOST` ヘッダーにある
-* 攻撃サインを含む[リクエスト要素](../rules/request-processing.md)が次のいずれかと異なる: `uri` 、`header`、 `query`、`post`、`path`、 `action_name`、 `action_ext`
+* gRPCまたはProtobuffプロトコルを介して送信される攻撃
+* 1.xとは異なるバージョンのHTTPプロトコルを介して送信された攻撃
+* 次のいずれかとは異なる方法で送信された攻撃: GET, POST, PUT, HEAD, PATCH, OPTIONS, DELETE, LOCK, UNLOCK, MOVE, TRACE
+* 元のリクエストのアドレスに到達できなかった
+* 攻撃のサインが `HOST`ヘッダーにあります
+* 攻撃のサインを含む[リクエスト要素](../rules/request-processing.md)が次のいずれかと異なる: `uri` , `header`, `query`, `post`, `path`, `action_name`, `action_ext`

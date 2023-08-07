@@ -1,55 +1,55 @@
 [ptrav-attack-docs]:                ../../attacks-vulns-list.md#path-traversal
 [attacks-in-ui-image]:              ../../images/admin-guides/test-attacks-quickstart-sqli-xss.png
 
-# Akamai EdgeWorkersとWallarmコードバンドル
+# Wallarmコードバンドルを使用したAkamai EdgeWorkers
 
-[Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs)は、カスタムロジックの実行や、軽量のJavaScript関数をプラットフォームのエッジにデプロイすることを可能にする強力なエッジコンピューティングプラットフォームです。APIやトラフィックをAkamai EdgeWorkersで稼働させているお客様に対して、WallarmはAkamai EdgeWorkersにデプロイ可能なコードバンドルを提供して、インフラストラクチャを保護します。
+[Akamai EdgeWorkers](https://techdocs.akamai.com/edgeworkers/docs)は、プラットフォームのエッジでカスタムロジックの実行と軽量JavaScript関数のデプロイを許可する強力なエッジコンピューティングプラットフォームです。APIとトラフィックをAkamai EdgeWorkersで実行している顧客のために、WallarmはAkamai EdgeWorkersにデプロイすることができるコードバンドルを提供します。
 
-このソリューションは、Wallarmノードを外部にデプロイして、特定のプラットフォームにカスタムコードやポリシーをインジェクトすることで動作します。これにより、トラフィックは潜在的な脅威に対する分析と保護のために外部のWallarmノードに向けられます。Wallarmのコネクタと呼ばれるこれらのコンポーネントは、Azion Edge、Akamai Edge、Mulesoft、Apigee、AWS Lambdaなどのプラットフォームと外部のWallarmノードとの間の重要なリンクとなります。このアプローチにより、シームレスな統合、安全なトラフィック分析、リスク緩和、および全体的なプラットフォームのセキュリティが確保されます。
+このソリューションは、特定のプラットフォームにカスタムコードやポリシーを注入しながら、Wallarmノードを外部でデプロイすることを含みます。これにより、トラフィックは外部のWallarmノードにある潜在的な脅威の分析と保護のために指向することができます。Wallarmのコネクタと呼ばれるこれらのノードは、Azion Edge、Akamai Edge、Mulesoft、Apigee、AWS Lambdaのようなプラットフォームと外部のWallarmノードとの間の必要不可欠なリンクとして機能します。このアプローチはシームレスな統合、安全なトラフィック分析、リスク軽減、および全体のプラットフォームセキュリティを保証します。
 
-## 使用例
+## 使用事例
 
-全てのサポートされている[Wallarmのデプロイオプション](../supported-deployment-options.md)の中で、以下の使用例に対して、このソリューションが推奨されます：
+すべてのサポートされている[Wallarmのデプロイメントオプション](../supported-deployment-options.md)の中で、次の使用事例にはこのソリューションを推奨します：
 
-* Akamai EdgeWorkers上で稼働するAPIまたはトラフィックを保護する。
-* 攻撃の観察、報告、および悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションを必要とする。
+* Akamai EdgeWorkersで実行されているAPIまたはトラフィックを保護する。
+* 攻撃の観察、報告、および悪意のあるリクエストの即時ブロックを提供するセキュリティソリューションが必要。
 
-## 制約
+## 制限事項
 
-このソリューションは、受信リクエストのみで動作するため、一部の制約があります：
+このソリューションは、着信リクエストのみで動作するため、特定の制限があります：
 
-* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)法を用いた脆弱性発見は、正常に機能しません。ソリューションは、テスト対象の脆弱性に対する典型的な悪意のあるリクエストへのサーバーの応答に基づいて、APIが脆弱かどうかを判断します。
-* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、ソリューションがレスポンス分析に依存しているため、トラフィックに基づいたAPIインベントリーを探索することができません。
-* [強制ブラウジングへの保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は、レスポンスコード分析が必要なため、利用できません。
+* [パッシブ検出](../../about-wallarm/detecting-vulnerabilities.md#passive-detection)方法を使用した脆弱性発見は正しく機能しません。このソリューションは、それがテストする脆弱性に典型的な悪意のあるリクエストへのサーバー応答に基づいて、APIが脆弱かどうかを判断します。
+* [Wallarm API Discovery](../../about-wallarm/api-discovery.md)は、応答分析に依存する解決策として、トラフィックに基づいてAPIインベントリを探索することができません。
+* 応答コード分析が必要なため、[強制的なブラウジングに対する保護](../../admin-en/configuration-guides/protecting-against-bruteforce.md)は利用できません。
 
-また、[EdgeWorkersプロダクトの制約](https://techdocs.akamai.com/edgeworkers/docs/limitations)と[http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request)による制約もあります：
+[EdgeWorkers製品の制限](https://techdocs.akamai.com/edgeworkers/docs/limitations)および[http-request](https://techdocs.akamai.com/edgeworkers/docs/http-request)による制限もあります：
 
-* トラフィック配信方法は、強化TLSのみをサポートしています。
-* レスポンスヘッダの最大サイズは8000バイトです。
-* ボディの最大サイズは1MBです。
-* サポートしていないHTTPメソッド：`CONNECT`, `TRACE`, `OPTIONS` (サポートしているメソッド：`GET`, `POST`, `HEAD`, `PUT`, `PATCH`, `DELETE`).
-* サポートしていないヘッダ：`connection`, `keep-alive`, `proxy-authenticate`, `proxy-authorization`, `te`, `trailers`, `transfer-encoding`, `host`, `content-length`, `vary`, `accept-encoding`, `content-encoding`, `upgrade`.
+* サポートされているトラフィック配信方法は強化されたTLSのみです。
+* 最大応答ヘッダーサイズは8000バイトです。
+* 最大本文サイズは1MBです。
+* サポートされていないHTTPメソッド:`CONNECT`、`TRACE`、`OPTIONS`（サポートされているメソッド：`GET`、`POST`、`HEAD`、`PUT`、`PATCH`、`DELETE`）。
+* サポートされていないヘッダー：`connection`、`keep-alive`、`proxy-authenticate`、`proxy-authorization`、`te`、`trailers`、`transfer-encoding`、`host`、`content-length`、`vary`、`accept-encoding`、`content-encoding`、`upgrade`。
 
 ## 要件
 
-デプロイを進めるために、以下の要件を満たしていることを確認してください：
+デプロイメントを進めるには、以下の要件を満たしていることを確認してください：
 
-* Akamai EdgeWorkers技術の理解
-* Akamai EdgeWorkersを経由して稼働しているAPIあるいはトラフィック。
+* Akamai EdgeWorkersの技術を理解している。
+* Akamai EdgeWorkersを通じて実行されているAPIまたはトラフィック。
 
 ## デプロイメント
 
-Akamai EdgeWorkers上のAPIをWallarmで保護するには、以下の手順に従ってください：
+Akamai EdgeWorkers上のAPIをWallarmで保護するには、次の手順に従ってください：
 
-1. 利用可能なデプロイオプションのいずれかを使用してWallarmノードをデプロイします。
-1. Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で実行します。
+1. 利用可能なデプロイメントオプションの1つを使用してWallarmノードをデプロイします。
+1. Wallarmのコードバンドルを取得し、それをAkamai EdgeWorkersで実行します。
 
 ### 1. Wallarmノードのデプロイ
 
-Akami EdgeWorkersでWallarmを使用する際、トラフィックフローはインライン方式です。
+Akami EdgeWorkersでWallarmを利用するとき、トラフィックフローは[インライン](../inline/overview.md)です。
 
-1. インラインデプロイのための[supported Wallarmノードデプロイソリューションまたはアーティファクト](../supported-deployment-options.md)のいずれかを選択し、提供されたデプロイ指示に従います。
-1. デプロイしたノードに以下のテンプレートを使用して設定します：
+1. インラインデプロイメント用の[supported Wallarmノードデプロイメントソリューションまたはアーティファクト](../supported-deployment-options.md#in-line)の1つを選択し、指定されたデプロイメント指示に従います。
+1. 次のテンプレートを使用してデプロイしたノードを設定します：
 
     ```
     server {
@@ -102,22 +102,22 @@ Akami EdgeWorkersでWallarmを使用する際、トラフィックフローは�
 
     次の設定に注意してください：
 
-    * HTTPSトラフィックのためのTLS/SSL証明書：WallarmノードがセキュアなHTTPSトラフィックを処理できるようにするため、TLS/SSL証明書を適切に設定します。具体的な設定は、選択したデプロイ方法によります。たとえば、NGINXを使用している場合、ガイダンスのために[こちらの記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照できます。
-    * [Wallarmの操作モード](../../admin-en/configure-wallarm-mode.md)の設定。
-    * デプロイが完了したら、後でリクエストの転送先アドレスを設定するために、ノードインスタンスのIPをメモしておきます。
+    * HTTPSトラフィック向けのTLS/SSL証明書：Wallarmノードが安全なHTTPSトラフィックを処理できるようにするため、TLS/SSL証明書を適切に設定してください。特定の設定は選択したデプロイメント方法によります。例えば、NGINXを使用している場合、ガイダンスのために[その記事](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)を参照できます。
+    * [Wallarm操作モード](../../admin-en/configure-wallarm-mode.md)の設定。
+1. デプロイメントが完了したら、着信リクエストの転送先を設定するために後で必要となるノードインスタンスのIPをメモします。
 
-### 2. Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で実行する
+### 2. Wallarmのコードバンドルを取得し、それをAkamai EdgeWorkersで実行する
 
-Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で[実行](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1)するには、以下の手順に従ってください：
+Akamai EdgeWorkersでWallarmのコードバンドルを取得し、[実行](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1)するには、次の手順に従ってください：
 
-1. [support@wallarm.com](mailto:support@wallarm.com)に連絡してWallarmのコードバンドルを取得します。
+1. Wallarmのコードバンドルを取得するために、[support@wallarm.com](mailto:support@wallarm.com)に連絡します。
 1. Akamaiの契約にEdgeWorkersを[追加](https://techdocs.akamai.com/edgeworkers/docs/add-edgeworkers-to-contract)します。
 1. EdgeWorker IDを[作成](https://techdocs.akamai.com/edgeworkers/docs/create-an-edgeworker-id)します。
-1. 作成したIDを開き、**バージョンを作成**を押して、Wallarmのコードバンドルを[アップロード](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1)します。
-1. 作成したバージョンを**アクティベート**し、初めにステージング環境で行います。
-1. 全てが正常に動作していることを確認したら、本番環境でバージョンの公開を繰り返します。
-1. **Akamai Property Manager**で、Wallarmをインストールしたいプロパティを選択または新規作成します。
-1. 新たに作成したEdgeWorkerで新しい振る舞いを[作成](https://techdocs.akamai.com/edgeworkers/docs/add-the-edgeworker-behavior-1)し、例えば**Wallarm Edge**と呼びましょう。その後、以下の条件を追加します：
+1. 作成したIDを開き、**Create Version**を押して、Wallarmのコードバンドルを[アップロード](https://techdocs.akamai.com/edgeworkers/docs/deploy-hello-world-1)します。
+1. 作成したバージョンを**Activate**します。最初はステージング環境でアクティブにします。
+1. すべてが正しく動作していることを確認したら、プロダクション環境でバージョンの公開を再度行います。
+1. **Akamai Property Manager**で、Wallarmをインストールしたい新しいプロパティを選択または作成します。
+1. 新たに作成したEdgeWorkerで新しい振る舞いを[作成](https://techdocs.akamai.com/edgeworkers/docs/add-the-edgeworker-behavior-1)し、それを例えば**Wallarm Edge**と呼び、次の基準を追加します：
 
     ```
     If 
@@ -125,7 +125,7 @@ Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で[実行](h
     X-EDGEWRK-REAL-IP 
     does not exist
     ```
-1. **Wallarm Node**という別の振る舞いを作成し、**Origin Server**を[前にデプロイされたノード](#1-deploy-a-wallarm-node)に指定します。**Forward Host Header**を**Origin Hostname**に切り替え、以下の条件を追加します：
+1.  **Origin Server**を[前回デプロイしたノード](#1-deploy-a-wallarm-node)に指す別の振る舞い**Wallarm Node**を作成します。**Forward Host Header**を**Origin Hostname**に切り替え、次の基準を追加します：
 
     ```
     If 
@@ -133,26 +133,26 @@ Wallarmのコードバンドルを取得し、Akamai EdgeWorkers上で[実行](h
     X-EDGEWRK-REAL-IP 
     exist
     ```
-1. 新たなプロパティ変数`PMUSER_WALLARM_MODE`を追加し、[値](../../admin-en/configure-wallarm-mode.md)を`monitoring`(デフォルト)または`block`に設定します。
-
-    セキュリティ設定には**Hidden**を選択します。
-1. 新しいバージョンを保存し、初めにステージング環境にデプロイし、[その後](https://techdocs.akamai.com/api-acceleration/docs/test-stage)本番環境にデプロイします。
+1. 新しいプロパティ変数`PMUSER_WALLARM_MODE`に[value](../../admin-en/configure-wallarm-mode.md)`monitoring`（デフォルト）または`block`を追加します。 
+    
+    セキュリティ設定に対して**Hidden**を選択してください。
+1. 新しいバージョンを保存し、最初はステージング環境にデプロイします。そして、[その後](https://techdocs.akamai.com/api-acceleration/docs/test-stage)はプロダクションにデプロイします。
 
 ## テスト
 
 デプロイされたポリシーの機能をテストするには、以下の手順に従ってください：
 
-1. テスト[パストラバーサル][ptrav-attack-docs]攻撃を含むリクエストをAPIに送信します：
+1. テスト[Path Traversal][ptrav-attack-docs]攻撃であなたのAPIにリクエストを送信します：
 
     ```
     curl http://<YOUR_APP_IP_OR_DOMAIN>/etc/passwd
     ```
-1. Wallarm Consoleで **イベント** セクションを開き、[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)から、攻撃がリストに表示されていることを確認します。
+1. Wallarm Console → **Events**セクションを[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)で開き、攻撃がリストに表示されることを確認します。
     
     ![!Attacks in the interface][attacks-in-ui-image]
 
-    Wallarmのノードモードがブロッキングに設定されている場合、リクエストもブロックされます。
+    Wallarmノードモードがブロッキングに設定されている場合、リクエストもブロックされます。
 
 ## アシスタンスが必要ですか？
 
-Akamai EdgeWorkersと連携してWallarmをデプロイする過程で何か問題が発生した場合や、アシスタンスが必要な場合は、[Wallarmのサポート](mailto:support@wallarm.com)にご連絡ください。彼らは、実装のプロセス中に発生する問題の解決やガイダンスの提供を行います。
+Akamai EdgeWorkersと併せてのWallarmのデプロイメントについて問題が発生した場合や、実装プロセス中に問題が発生した場合は、[Wallarmのサポート](mailto:support@wallarm.com)チームに問い合わせることができます。彼らはガイダンスを提供し、あなたが実装プロセス中に直面する可能性のある問題の解決を支援します。

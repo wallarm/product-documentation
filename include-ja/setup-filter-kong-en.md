@@ -1,21 +1,21 @@
-フィルタリングとプロキシングルールは、`/etc/kong/nginx-wallarm.template`ファイルで設定されます。
+フィルタリングとプロキシングのルールは `/etc/kong/nginx-wallarm.template` ファイルで設定されます。
 
-NGINX設定ファイルの詳細な情報については、[公式NGINXドキュメント](https://nginx.org/en/docs/beginners_guide.html)を参照してください。
+NGINX設定ファイルの詳細な取り扱いについては、[公式のNGINXドキュメンテーション](https://nginx.org/en/docs/beginners_guide.html)を参照してください。
 
-Wallarmディレクティブは、Wallarmフィルタリングノードの動作ロジックを定義します。利用可能なWallarmディレクティブの一覧を見るには、[Wallarm設定オプション](../admin-en/configure-parameters-en.md)ページに進んでください。
+WallarmのディレクティブはWallarmのフィルタリングノードの操作ロジックを定義します。利用可能なWallarmディレクティブのリストを見るには、[Wallarm設定オプション](../admin-en/configure-parameters-en.md) ページに進んでください。
 
 **設定ファイルの例**
 
-次の条件でサーバーを設定する必要があると仮定しましょう。
-* HTTPトラフィックのみが処理されます。 HTTPSリクエストは処理されません。
-* 次のドメインがリクエストを受け取ります：`example.com`および`www.example.com`。
-* すべてのリクエストは、サーバー`10.80.0.5`に渡す必要があります。
-* すべての受信リクエストは1MB未満のサイズ（デフォルト設定）であると見なされます。
-* リクエストの処理にかかる時間は最大60秒（デフォルト設定）です。
-* Wallarmは監視モードで動作する必要があります。
-* クライアントは、中間HTTPロードバランサなしでフィルタリングノードに直接アクセスします。
+以下の条件でサーバーを設定する必要があると仮定しましょう:
+* HTTPトラフィックのみが処理されます。HTTPSリクエストは処理されません。
+* リクエストを受け付けるドメインは `example.com` と `www.example.com` です。
+* すべてのリクエストは `10.80.0.5` のサーバーに渡されなければなりません。
+* すべての受信リクエストは1MB未満と見なされます（デフォルト設定）。
+* リクエストの処理には最大60秒かかります（デフォルト設定）。
+* Wallarmはモニタリングモードで動作しなければなりません。
+* クライアントは、中間のHTTPロードバランサーなしで直接フィルタリングノードにアクセスします。
 
-上記の条件を満たすために、設定ファイルの内容は次のようになります。
+上記の条件を満たすためには、設定ファイルの内容は以下のようになります：
 
 ```
 
@@ -23,16 +23,16 @@ Wallarmディレクティブは、Wallarmフィルタリングノードの動作
       listen 80;
       listen [::]:80 ipv6only=on;
 
-      # トラフィックを処理するドメイン
+      # トラフィックが処理されるドメイン
       server_name example.com; 
       server_name www.example.com;
 
-      # トラフィック処理の監視モードをオンにする
+      # トラフィック処理のモニタリングモードをオンにする
       wallarm_mode monitoring; 
       # wallarm_instance 1;
 
       location / {
-        # リクエスト転送のアドレスを設定
+        # リクエスト転送のためのアドレスを設定する
         proxy_pass http://10.80.0.5; 
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;

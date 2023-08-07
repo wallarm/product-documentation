@@ -1,43 +1,42 @@
-# 要求の分析とパース
+# リクエストの解析とパース
 
-効果的なリクエスト分析のために、Wallarmは次の原則に従います：
+効果的なリクエスト解析のために、Wallarmは以下の原則に従います。
 
-* 保護されたアプリケーションと同じデータで作業します。例えば：
-    アプリケーションがJSON APIを提供する場合、処理されるパラメータもJSON形式でエンコードされます。パラメータの値を取得するために、WallarmはJSONパーサーを使用します。また、データが複数回エンコードされるより複雑なケースもあります。例えば、JSONからBase64へのJSONです。このようなケースでは、複数のパーサーでデコードする必要があります。
+* 保護されたアプリケーションと同じデータを扱います。例えば:
+    アプリケーションがJSON APIを提供している場合、処理されるパラメータもJSON形式でエンコードされます。パラメータ値を取得するために、WallarmはJSONパーサを使用します。データが何度もエンコードされるより複雑なケースも存在します。例えば、JSONからBase64にエンコードされた後、再度JSONにエンコードされる場合などです。これらのケースでは、複数のパーサでデコードする必要があります。
 
-* データ処理の文脈を考慮します。例えば：
+* データ処理のコンテキストを考慮します。例えば:
+    
+    パラメータ`name`は、製品名とユーザー名の両方として作成リクエストに渡すことができます。しかし、そのようなリクエストを処理するためのコードは異なる場合があります。このようなパラメータを解析する方法を定義するために、Wallarmはリクエストが送信されたURLや他のパラメータを使用することがあります。
 
-    パラメータ `name`は、製品名としても、ユーザ名としても作成リクエストに渡すことができます。しかし、そのようなリクエストの処理コードは異なる場合があります。
-    このようなパラメータの分析方法を定義するために、Wallarmはリクエストが送信されたURLや他のパラメータを使用することがあります。
+## リクエスト部分の識別とパース
 
-## リクエストパートの識別とパース
+HTTPリクエストの最上位から始めて、フィルタリングノードは適切なパーサを各部分に順次適用しようとします。適用されるパーサのリストは、データの性質とシステムの前回のトレーニング結果によります。
 
-HTTPリクエストのトップレベルから始めて、フィルタリングノードは各パートに対して適切なパーサを順番に適用しようとします。適用されるパーサのリストは、データの性質とシステムの前回のトレーニング結果によって異なります。
+パーサからの出力は、同様に分析される必要がある追加のパラメータセットとなります。パーサの出力は、時々、JSON、配列、連想配列のような複雑な構造になります。
 
-パーサからの出力は、同様に分析される必要がある追加のパラメータセットになります。パーサの出力は、JSON、配列、連想配列などの複雑な構造になることがあります。
+!!! info "パーサのタグ"
+    各パーサには識別子（タグ）があります。例えば、リクエストヘッダのパーサの場合は`header`です。リクエスト解析で使用されるタグのセットは、Wallarmコンソール内のイベント詳細で表示されます。このデータは、攻撃が検出されたリクエスト部分と使用されたパーサを示します。
 
-!!! info "パーサータグ"
-    各パーサには識別子(タグ)があります。例えば、リクエストヘッダーのパーサーには `header` があります。リクエスト分析で使用されるタグのセットは、Wallarm Consoleのイベント詳細内に表示されます。このデータは、検出された攻撃と使用されたパーサを持つリクエスト部分を示します。
-
-    例えば、`SOAPACTION`ヘッダーで攻撃が検出された場合：
+    例えば、`SOAPACTION`ヘッダで攻撃が検出された場合：
 
     ![!タグの例](../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
-各HTTPリクエストにはURLが含まれています。攻撃を見つけるために、フィルタリングノードはオリジナルの値とその個々のコンポーネントを分析します：**path**、**action_name**、**action_ext**、**query**。
+各HTTPリクエストにはURLが含まれています。攻撃を見つけるために、フィルタリングノードは元の値と個々のコンポーネント：**path**、**action_name**、**action_ext**、**query**の両方を分析します。
 
-以下のタグはURLパーサーに対応します：
+URLパーサに対応するタグは次のとおりです。
 
-* ドメインなしのオリジナルのURL値（例：`http://example.com/blogs/123/index.php?q=aaa` へのリクエストの場合、`/blogs/123/index.php?q=aaa`）のための **uri** 。
-* `/`シンボルで区切られたURLパーツを持つ配列のための **path** (最後のURLパーツは配列に含まれません)。URLにパーツが1つしかない場合、配列は空です。
-* `/`シンボルの後のURLの最後の部分と最初のピリオド（`.`）の前にある部分のための **action_name** 。
-* 最後のピリオド(`.`)の後にあるURLの部分のための **action_ext** 。リクエストには存在しない場合があります。
+* **uri** は、ドメインを除いたオリジナルのURL値（例：`http://example.com/blogs/123/index.php?q=aaa`へのリクエストの場合は`/blogs/123/index.php?q=aaa`）を指します。
+* **path** は、`/`記号で分割されたURL部分の配列（最後のURL部分は配列に含まれません）。URLに1つの部分だけがある場合、配列は空になります。
+* **action_name** は、`/`記号の後の最後の部分から最初のピリオド(`.`)までのURLの部分を指します。このURL部分は常にリクエストに存在し、その値が空文字列であっても。
+* **action_ext** は、最後のピリオド(`.`)の後のURLの部分を指します。これはリクエストに存在しない場合があります。
 
-    !!! warning "いくつかの期間の後で**action_name**と**action_ext**の間の境界"
-        `/`シンボルの後のURLの最後の部分にいくつかのピリオド(`.`)がある場合、**action_name**と**action_ext**の間の境界に問題が発生する可能性があります。
-
-        * 最初のピリオドに基づいて境界を設定する場合：
+    !!! warning "**action_name**と**action_ext**の境界について（ピリオドが複数ある場合)"
+        URLの最後の部分の`/`記号の後に複数のピリオド(`.`)がある場合、**action_name**と**action_ext**の間の境界に問題が発生することがあります。例えば：
+        
+        * 境界が**最初の**ピリオドに基づいて設定される場合、たとえば：
 
             `/modern/static/js/cb-common.ffc63abe.chunk.js.map` →
 
@@ -45,14 +44,14 @@ HTTPリクエストのトップレベルから始めて、フィルタリング�
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe.chunk.js.map`
 
-        * 例のように、パーサリング後にいくつかの要素が欠けている場合：
+        * パース後に一部の要素が欠落している場合、上記の例ではこれになります：
 
             * `action_name` — `cb-common`
             * `action_ext` — `ffc63abe`
         
-        これを修正するには、URIコンストラクタの[advanced edit form](add-rule.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
+        これを修正するには、URIコンストラクタの[高度な編集フォーム](add-rule.md#advanced-edit-form)で**action_name**と**action_ext**のポイントを手動で編集します。
 
-* `?`シンボルの後の[query string parameters](#query-string-parameters)用の **query** 。
+* **query**は`?`記号の後の[クエリストリングパラメータ](#query-string-parameters)を指します。
 
 例：
 
@@ -65,19 +64,23 @@ HTTPリクエストのトップレベルから始めて、フィルタリング�
 * `[action_ext]` — `php`
 * `[query, 'q']` — `aaa`
 
-### クエリ文字列パラメータ
+### クエリストリングのパラメータ
 
-クエリ文字列パラメータは、`key=value`形式で `?` の文字の後にリクエストURLでアプリケーションに渡されます。**query**タグは、パーサーに対応します。
+クエリストリングのパラメータは、「キー=値」の形式で、リクエストURLの文字`?`の後にアプリケーションに渡されます。パーサに対応するタグは**query**です。
 
-Request example | クエリ文字列パラメータと値
+リクエストの例 | クエリストリングのパラメータと値
 ---- | -----
 `/?q=some+text&check=yes` | <ul><li>`[query, 'q']` — `some text`</li><li>`[query, 'check']` — `yes`</li></ul>
 `/?p1[x]=1&p1[y]=2&p2[]=aaa&p2[]=bbb` | <ul><li>`[query, 'p1', hash, 'x']` — `1`</li><li>`[query, 'p1', hash, 'y']` — `2`</li><li>`[query, 'p2', array, 0]` — `aaa`</li><li>`[query, 'p2', array, 1]` — `bbb`</li></ul>
 `/?p3=1&p3=2` | <ul><li>`[query, 'p3', array, 0]` — `1`</li><li>`[query, 'p3', array, 1]` — `2`</li><li>`[query, 'p3', pollution]` — `1,2`</li></ul>
 
-### ヘッダー
+### リクエスト元のIPアドレス
 
-ヘッダーはHTTPリクエストに表示され、その他のフォーマット（例：**multipart**）でも表示されます。**header**タグはパーサーに対応します。ヘッダー名は常に大文字に変換されます。
+リクエスト元のIPアドレスのリクエストポイントはWallarmルールの`remote_addr`です。このポイントは、IPごとのリクエストを制限するための[**レート制限の設定**](rate-limiting.md)ルールでのみ使用されます。
+
+### ヘッダ
+
+ヘッダはHTTPリクエストと他のいくつかの形式（例えば、**multipart**）で提供されます。パーサに対応するタグは**header**です。ヘッダの名前は常に大文字に変換されます。
 
 例：
 
@@ -95,40 +98,40 @@ X-Test: bbb
 
 ### メタデータ
 
-以下のタグは、HTTPリクエストメタデータのパーサーに対応します：
+次のタグは、HTTPリクエストのメタデータのパーサに対応しています。
 
-* **post** for the HTTPリクエスト本文
-* **method** for the HTTPリクエスト方法: `GET`, `POST`, `PUT`, `DELETE`
-* **proto** for the HTTPプロトコルバージョン
-* **scheme**: http/https
-* **application** for the アプリケーションID
+* **post** はHTTPリクエストの本体を意味します。
+* **method** はHTTPリクエストの方法を意味します：`GET`、`POST`、`PUT`、`DELETE`
+* **proto** はHTTPプロトコルのバージョンを意味します。
+* **scheme**：http/https
+* **application** はアプリケーションIDを意味します。
 
-### 追加のパーサー
+### 追加のパーサ
 
-複雑なリクエスト部分は、追加のパーサリングが必要になる場合があります（例：データがBase64エンコードされている場合や、配列形式で表示されている場合）。そのような場合、以下にリストされているパーサがリクエストパートに追加で適用されます。
+複雑なリクエスト部分は追加のパースが必要になることがあります（例えば、データがBase64でエンコードされているか、配列形式で表示されている場合など）。これらの場合、以下に示すパーサがリクエスト部分に追加で適用されます。
 
 #### base64
 
-Base64エンコードされたデータをデコードし、リクエストの任意の部分に適用できます。
+Base64でエンコードされたデータをデコードし、リクエストの任意の部分に適用することができます。
 
 #### gzip
 
-GZIPエンコードされたデータをデコードし、リクエストの任意の部分に適用できます。
+GZIPでエンコードされたデータをデコードし、リクエストの任意の部分に適用することができます。
 
 #### htmljs
 
-HTMLおよびJSシンボルをテキスト形式に変換し、リクエストの任意の部分に適用できます。
+HTMLとJSのシンボルをテキスト形式に変換し、リクエストの任意の部分に適用することができます。
 
-例: `&#x22;&#97;&#97;&#97;&#x22;` は `"aaa"` に変換されます。
+例： `&#x22;&#97;&#97;&#97;&#x22;`は`"aaa"`に変換されます。
 
 #### json_doc
 
-JSON形式のデータを解析し、リクエストの任意の部分に適用できます。
+JSON形式のデータをパースし、リクエストの任意の部分に適用することができます。
 
 フィルタ：
 
-* 配列要素の値のための **json_array** または **array**
-* 連想配列のキーの値（`key:value`）用の **json_obj** または **hash**
+* **json_array**または**array**は配列要素の値を指します。
+* **json_obj**または**hash**は連想配列のキー（`key:value`）の値を指します。
 
 例：
 
@@ -139,21 +142,23 @@ JSON形式のデータを解析し、リクエストの任意の部分に適用�
 * `[..., json_doc, hash, 'p1']` — `value`
 * `[..., json_doc, hash, 'p2', array, 0]` — `v1`
 * `[..., json_doc, hash, 'p2', array, 1]` — `v2`
-* `[..., json_doc, hash, 'p3', hash, 'somekey']` — `somevalue`### XML
+* `[..., json_doc, hash, 'p3', hash, 'somekey']` — `somevalue`
 
-XML形式のデータを解析し、リクエストの任意の部分に適用できます。
+#### xml
 
-フィルター:
+XML形式のデータをパースし、リクエストの任意の部分に適用することができます。
 
-* **xml_comment**：XMLドキュメントの本文にあるコメントを含む配列
-* **xml_dtd**：使用されている外部DTDスキーマのアドレス
-* **xml_dtd_entity**：Entity DTDドキュメントで定義されている配列
-* **xml_pi**：処理する命令の配列
-* **xml_tag** または **hash**：タグの連想配列
-* **xml_tag_array** または **array**：タグ値の配列
-* **xml_attr**：属性の連想配列。**xml_tag**フィルターの後にのみ使用できます
+フィルタ：
 
-XMLパーサは、タグの内容とタグの値の配列の最初の要素を区別しません。つまり、パラメータ`[..., xml, xml_tag, 't1']`と`[..., xml, xml_tag, 't1', array, 0]`は同一であり、互換性があります。
+* **xml_comment**はXML文書本体内のコメントの配列を指します。
+* **xml_dtd**は使用される外部DTDスキーマのアドレスを指します。
+* **xml_dtd_entity**はEntity DTD文書で定義された配列を指します。
+* **xml_pi**は指示文の配列を指します。
+* **xml_tag**または**hash**はタグの連想配列を指します。
+* **xml_tag_array**または**array**はタグの値の配列を指します。
+* **xml_attr**は属性の連想配列を指します；**xml_tag**フィルタの後でのみ使用できます。
+
+XMLパーサはタグの内容とタグの値の配列の最初の要素を区別しません。つまり、パラメータ`[..., xml, xml_tag, 't1']`と`[..., xml, xml_tag, 't1', array, 0]`は同一であり、互換性があります。
 
 例：
 
@@ -169,17 +174,17 @@ XMLパーサは、タグの内容とタグの値の配列の最初の要素を�
 </methodCall>
 ```
 
-* `[..., xml, xml_dtd_entity, 0]` — 名前 = `xxe`, 値 = `aaaa`
-* `[..., xml, xml_pi, 0]` — 名前 = `xml-stylesheet`, 値 = `type="text/xsl" href="style.xsl"`
+* `[..., xml, xml_dtd_entity, 0]` — name = `xxe`, value = `aaaa`
+* `[..., xml, xml_pi, 0]` — name = `xml-stylesheet`, value = `type="text/xsl" href="style.xsl"`
 * `[..., xml, xml_comment, 0]` — ` test `
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodName']` — `aaaa`
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs']` — `123`
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', xml_attr, 'check']` — `true`
 * `[..., xml, xml_tag, 'methodCall', xml_tag, 'methodArgs', array, 1]` — `234`
 
-### 配列
+#### array
 
-データ配列を解析します。リクエストの任意の部分に適用できます。
+データ配列をパースします。リクエストの任意の部分に適用することができます。
 
 例：
 
@@ -190,9 +195,9 @@ XMLパーサは、タグの内容とタグの値の配列の最初の要素を�
 * `[query, 'p2', array, 0]` — `aaa`
 * `[query, 'p2', array, 1]` — `bbb`
 
-### ハッシュ
+#### hash
 
-連想データ配列（`key:value`）を解析し、リクエストの任意の部分に適用できます。
+連想データ配列（`key:value`）をパースし、リクエストの任意の部分に適用することができます。
 
 例：
 
@@ -203,9 +208,9 @@ XMLパーサは、タグの内容とタグの値の配列の最初の要素を�
 * `[query, 'p1', hash, 'x']` — `1`
 * `[query, 'p1', hash, 'y']` — `2`
 
-### pollution
+#### pollution
 
-同じ名前のパラメータの値を組み合わせ、初期または復号化された形式のリクエストの任意の部分に適用できます。
+同じ名前のパラメータの値を組み合わせ、初期形式またはデコード形式のリクエストの任意の部分に適用することができます。
 
 例：
 
@@ -215,13 +220,13 @@ XMLパーサは、タグの内容とタグの値の配列の最初の要素を�
 
 * `[query, 'p3', pollution]` — `1,2`
 
-### percent
+#### percent
 
-URLのシンボルを復号化し、URLの**uri**コンポーネントにのみ適用できます。
+URLのシンボルをデコードし、URLの**uri**コンポーネントにのみ適用することができます。
 
-### cookie
+#### cookie
 
-Cookieリクエストパラメータを解析し、リクエストヘッダーにのみ適用できます。
+Cookieリクエストパラメータをパースし、リクエストヘッダにのみ適用することができます。
 
 例：
 
@@ -231,11 +236,11 @@ Cookie: a=1; b=2
 ```
 
 * `[header, 'COOKIE', cookie, 'a']` = `1`;
-* `[header, 'COOKIE', cookie, 'b']` = `2`;
+* `[header, 'COOKIE', cookie, 'b']` = `2`.
 
-### form_urlencoded
+#### form_urlencoded
 
-`application/x-www-form-urlencoded`形式で渡されるリクエストの本文を解析し、リクエストの本文にのみ適用できます。
+リクエスト本体を`application/x-www-form-urlencoded`形式でパースし、リクエスト本体にのみ適用することができます。
 
 例：
 
@@ -252,17 +257,17 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, form_urlencoded, 'p4', array, 1]` — `7`
 * `[post, form_urlencoded, 'p4', pollution]` — `6,7`
 
-### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
+#### grpc <a href="../../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../../images/api-security-tag.svg" style="border: none;height: 21px;margin-bottom: -4px;"></a>
 
-gRPC APIリクエストを解析し、リクエストの本文にのみ適用できます。
+gRPC APIリクエストをパースし、リクエスト本体にのみ適用することができます。
 
-プロトコルバッファーのデータに対しては、**protobuf**フィルターがサポートされています。
+Protocol Buffersデータの**protobuf**フィルタをサポートしています。
 
-### multipart
+#### multipart
 
-`multipart`形式で渡されるリクエストの本文を解析し、リクエストの本文にのみ適用できます。
+リクエスト本体を`multipart`形式でパースし、リクエスト本体にのみ適用することができます。
 
-リクエスト本文のヘッダーに対しては、**header**フィルターがサポートされています。
+リクエスト本体のヘッダに対応する**header**フィルタをサポートしています。
 
 例：
 
@@ -279,37 +284,37 @@ p1=1&p2[a]=2&p2[b]=3&p3[]=4&p3[]=5&p4=6&p4=7
 * `[post, multipart, 'p4', array, 1]` — `7`
 * `[post, multipart, 'p4', pollution]` — `6,7`
 
-`Content-Disposition`ヘッダーでファイル名が指定されている場合、このパラメータでファイルが読み込まれていると見なされます。パラメータは次のようになります。
+`Content-Disposition`ヘッダにファイル名が指定されている場合、そのパラメータではファイルがロードされると見なされます。そのパラメータは次のように見えるでしょう：
 
-* `[post, multipart, 'someparam', file]` — ファイルの内容
+* `[post, multipart, 'someparam', file]` — file contents
 
-### viewstate
+#### viewstate
 
-セッション状態の分析を目的としています。Microsoft ASP.NETで使用される技術で、リクエストの本文にのみ適用できます。
+セッションの状態を分析するために設計されています。この技術はMicrosoft ASP.NETによって使用され、リクエスト本体にのみ適用可能です。
 
-フィルター:
+フィルタ：
 
-* **viewstate_array**：配列用
-* **viewstate_pair**：配列用
-* **viewstate_triplet**：配列用
-* **viewstate_dict**：連想配列用
-* **viewstate_dict_key**：文字列用
-* **viewstate_dict_value**：文字列用
-* **viewstate_sparse_array**：連想配列用
+* **viewstate_array**は配列を意味します。
+* **viewstate_pair**は配列を意味します。
+* **viewstate_triplet**は配列を意味します。
+* **viewstate_dict**は連想配列を意味します。
+* **viewstate_dict_key**は文字列を意味します。
+* **viewstate_dict_value**は文字列を意味します。
+* **viewstate_sparse_array**は連想配列を意味します。
 
-### jwt
+#### jwt
 
-JWTトークンを解析し、リクエストの任意の部分に適用できます。
+JWTトークンをパースし、リクエストの任意の部分に適用することができます。
 
-JWTパーサは、検出されたJWT構造に基づいて以下のパラメータで結果を返します。
+JWTパーサは、検出されたJWT構造に基づいて、以下のパラメータで結果を返します。
 
-* `jwt_prefix`：サポートされているJWT値のプレフィックス（lsapi2、mobapp2、bearer）のいずれか。パーサはプレフィックス値を任意のレジスタで読み取ります。
-* `jwt_header`：JWTヘッダー。値を取得した後、Wallarmは通常、[`base64`](#base64)および[`json_doc`](#json_doc)パーサを適用します。
-* `jwt_payload`：JWTペイロード。値を取得した後、Wallarmは通常、[`base64`](#base64)および[`json_doc`](#json_doc)パーサを適用します。
+* `jwt_prefix`：サポートされているJWT値のプレフィックスの一つ - lsapi2、mobapp2、bearer。パーサはプレフィックス値を任意のレジスタで読み取ります。
+* `jwt_header`：JWTヘッダ。値を取得した後、Wallarmは通常、[`base64`](#base64)と[`json_doc`](#json_doc)のパーサをそれに適用します。
+* `jwt_payload`：JWTペイロード。値を取得した後、Wallarmは通常、[`base64`](#base64)と[`json_doc`](#json_doc)のパーサをそれに適用します。
 
-JWTはリクエストの任意の部分で渡すことができます。そのため、`jwt`パーサを適用する前に、Wallarmは特定のリクエスト部分パーサ（[`query`](#query-string-parameters)や[`header`](#headers)など）を使用します。
+JWTは任意のリクエスト部分で渡すことができます。したがって、`jwt`パーサを適用する前にWallarmは特定のリクエスト部分パーサを使用します。例えば、[`query`](#query-string-parameters)や[`header`](#headers)。
 
-`Authentication`ヘッダーに渡されるJWTの例：
+`Authentication`ヘッダで渡されるJWTの例：
 
 ```bash
 Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
@@ -322,34 +327,35 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'name']` — `John Doe`
 * `[header, AUTHENTICATION, jwt, 'jwt_payload', base64,  json_doc, hash, 'iat']` — `1516239022`
 
-[ルール](add-rule.md)が適用されるリクエスト要素を定義するときには、
+[rule](add-rule.md)が適用されるリクエスト要素を定義するときには：
 
 * 最初にJWTを含むリクエスト部分のパーサを選択します
-* `jwt`パーサの値として上記の`jwt_*`パラメータの1つを指定します。例：JWTペイロードの`name`パラメータ値を指定する場合：
+* `jwt`パーサの値として上記の`jwt_*`パラメータの一つを指定します。例えば、`name` JWTペイロードパラメータの値に対しては：
 
 ![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
-### 標準
+### ノルム
 
-配列とキーデータ型のパーサに適用される標準です。標準は、データ分析の範囲を定義するために使用されます。標準の値は、パーサタグで示されます。例：**hash_all**、**hash_name**。
+ノルムは、配列およびキーデータ型のパーサに適用されます。ノルムは、データ解析の境界を定義するために使用されます。ノルムの値は、パーサのタグで示されます。例えば：**hash_all**、**hash_name**。
 
-標準が指定されていない場合、処理が必要なエンティティの識別子がパーサに渡されます。例：JSONオブジェクトの名前やその他の識別子が**hash**の後に渡されます。
+ノルムが指定されていない場合、処理が必要なエンティティの識別子がパーサに渡されます。例えば：**hash**の後にJSONオブジェクトの名前や他の識別子が渡されます。
 
 #### all
 
-すべての要素、パラメータ、またはオブジェクトの値を取得するために使用されます。例：
+すべての要素、パラメータ、またはオブジェクトの値を取得するために使用されます。例えば：
 
-* **query_all**：すべてのクエリ文字列パラメーター値
-* **header_all**：すべてのヘッダー値
-* **array_all**：すべての配列要素の値
-* **hash_all**：すべてのJSONオブジェクトまたはXML属性値
-* **jwt_all**：すべてのJWT値
+* **path_all**はすべてのURLパス部分を指します。
+* **query_all**はすべてのクエリストリングパラメータ値を指します。
+* **header_all**はすべてのヘッダ値を指します。
+* **array_all**はすべての配列要素値を指します。
+* **hash_all**はすべてのJSONオブジェクトまたはXML属性値を指します。
+* **jwt_all**はすべてのJWT値を指します。
 
 #### name
 
-すべての要素、パラメータ、またはオブジェクトの名前を取得するために使用されます。例：
+すべての要素、パラメータ、またはオブジェクトの名前を取得するために使用されます。例えば：
 
-* **query_name**：すべてのクエリ文字列パラメータ名
-* **header_name**：すべてのヘッダー名
-* **hash_name**：すべてのJSONオブジェクトまたはXML属性名
-* **jwt_name**：すべてのJWT所持パラメータの名前
+* **query_name**はすべてのクエリストリングパラメータの名前を指します。
+* **header_name**はすべてのヘッダの名前を指します。
+* **hash_name**はすべてのJSONオブジェクトまたはXML属性の名前を指します。
+* **jwt_name**はすべてのパラメータのJWTの名前を指します。

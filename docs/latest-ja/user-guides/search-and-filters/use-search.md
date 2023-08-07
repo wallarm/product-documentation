@@ -1,125 +1,126 @@
-[al-sqli]: ../../attacks-vulns-list.md#sql-injection
-[al-xss]: ../../attacks-vulns-list.md#crosssite-scripting-xss
-[al-rce]: ../../attacks-vulns-list.md#remote-code-execution-rce
-[al-brute-force]: ../../attacks-vulns-list.md#bruteforce-attack
-[al-path-traversal]: ../../attacks-vulns-list.md#path-traversal
-[al-crlf]: ../../attacks-vulns-list.md#crlf-injection
-[al-open-redirect]: ../../attacks-vulns-list.md#open-redirect
-[al-nosqli]: ../../attacks-vulns-list.md#nosql-injection
-[al-logic-bomb]: ../../attacks-vulns-list.md#data-bomb
-[al-xxe]: ../../attacks-vulns-list.md#attack-on-xml-external-entity-xxe
-[al-virtual-patch]: ../../attacks-vulns-list.md#virtual-patch
-[al-forced-browsing]: ../../attacks-vulns-list.md#forced-browsing
-[al-ldapi]: ../../attacks-vulns-list.md#ldap-injection
-[al-port-scanner]: ../../attacks-vulns-list.md#resource-scanning
-[al-infoleak]: ../../attacks-vulns-list.md#information-exposure
-[al-vuln-component]: ../../attacks-vulns-list.md#vulnerable-component
-[al-overlimit]: ../../attacks-vulns-list.md#overlimiting-of-computational-resources
-[email-injection]: ../../attacks-vulns-list.md#email-injection
-[ssi-injection]: ../../attacks-vulns-list.md#ssi-injection
-[invalid-xml]: ../../attacks-vulns-list.md#unsafe-xml-header
-[ssti-injection]: ../../attacks-vulns-list.md#serverside-template-injection-ssti
-[overlimit-res]: ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[al-sqli]:                ../../attacks-vulns-list.md#sql-injection
+[al-xss]:                 ../../attacks-vulns-list.md#crosssite-scripting-xss
+[al-rce]:                 ../../attacks-vulns-list.md#remote-code-execution-rce
+[al-brute-force]:         ../../attacks-vulns-list.md#bruteforce-attack
+[al-path-traversal]:      ../../attacks-vulns-list.md#path-traversal
+[al-crlf]:                ../../attacks-vulns-list.md#crlf-injection
+[al-open-redirect]:       ../../attacks-vulns-list.md#open-redirect
+[al-nosqli]:              ../../attacks-vulns-list.md#nosql-injection
+[al-logic-bomb]:          ../../attacks-vulns-list.md#data-bomb
+[al-xxe]:                 ../../attacks-vulns-list.md#attack-on-xml-external-entity-xxe
+[al-virtual-patch]:       ../../attacks-vulns-list.md#virtual-patch
+[al-forced-browsing]:     ../../attacks-vulns-list.md#forced-browsing
+[al-ldapi]:               ../../attacks-vulns-list.md#ldap-injection
+[al-port-scanner]:        ../../attacks-vulns-list.md#resource-scanning
+[al-infoleak]:            ../../attacks-vulns-list.md#information-exposure
+[al-vuln-component]:      ../../attacks-vulns-list.md#vulnerable-component
+[al-overlimit]:           ../../attacks-vulns-list.md#overlimiting-of-computational-resources
+[email-injection]:        ../../attacks-vulns-list.md#email-injection
+[ssi-injection]:          ../../attacks-vulns-list.md#ssi-injection
+[invalid-xml]:            ../../attacks-vulns-list.md#unsafe-xml-header
+[ssti-injection]:         ../../attacks-vulns-list.md#serverside-template-injection-ssti
+[overlimit-res]:          ../../attacks-vulns-list.md#overlimiting-of-computational-resources
 
 # 検索とフィルタの使用
 
-Wallarmは、検出された攻撃、インシデント、および脆弱性を検索するための便利な方法を提供しています。Wallarmコンソールの**イベント**セクションには、次の検索方法が利用可能です。
+Wallarmは、検出された攻撃やインシデントを検索するための便利な方法を提供します。Wallarm Consoleの**イベント**セクションでは、次の検索方法が利用できます :
 
-* フィルタリング基準を選択するための**フィルタ**
-* 属性と修飾子を含む検索クエリを入力するための**検索フィールド**
+* **フィルタ** で選択基準を設定
+* **検索フィールド** で属性と修飾子を含む検索クエリを入力（人間の言葉に近い）
 
-フィルターで設定された値は、検索フィールドに自動的に複製され、その逆も同様です。
+フィルタで設定された値は、検索フィールドに自動的に複製され、逆もまた同様です。
 
-**Save a query**をクリックして、任意の検索クエリやフィルターの組み合わせを保存できます。
+任意の検索クエリまたはフィルタの組み合わせは、**クエリを保存** をクリックすることで保存できます。
 
 ## フィルタ
 
-利用可能なフィルタは、Wallarmコンソールで複数の形式で表示されます。
+利用可能なフィルタは、Wallarm Consoleで複数の形態で提示されています :
 
-* **Filter**ボタンを使用して展開および折りたたむことができるフィルタパネル
-* 特定のパラメーター値を持つイベントを除外または表示するためのクイックフィルタ
+* **フィルタ** ボタンを使用して展開および折りたたむことができるフィルタパネル
+* 特定のパラメータ値を有するイベントだけを表示または除外するためのクイックフィルタ
 
-![!Filters in the UI](../../images/user-guides/search-and-filters/filters.png)
+![!フィルタのUI](../../images/user-guides/search-and-filters/filters.png)
 
-異なるフィルターの値が選択されると、結果はそれらの条件をすべて満たします。同じフィルターに対して異なる値が指定された場合、結果はそれらの条件のいずれかを満たします。
+異なるフィルタの値が選択された場合、結果はそれらすべての条件を満たすものとなります。同じフィルタに異なる値が指定された場合、結果はいずれかの条件を満たすものとなります。
 
 ## 検索フィールド
 
-検索フィールドは、人間の言語に似た属性と修飾子を含むクエリを受け入れるため、クエリの送信が直感的になります。例：
+検索フィールドは、属性と修飾子が人間の言葉に似ているクエリを受け付けるため、クエリの提出が直感的です。例えば：
 
-* `attacks xss`: [XSS-攻撃][al-xss]をすべて検索するには
-* `attacks today`: 今日発生したすべての攻撃を検索するには
-* `vulns sqli`: [SQLインジェクション][al-sqli]の脆弱性を検索するには
-* `vulns 11/01/2020-11/10/2020`: ある期間内の脆弱性を検索するには
-* `xss 12/14/2020`: 2020年12月14日の[クロスサイトスクリプティング][al-xss]に関連するすべての脆弱性、疑義、攻撃、およびインシデントを検索するには
-* `p:xss 12/14/2020`: 2020年12月14日にxss HTTP要求パラメータ（つまり、「http://<span>localhost/？xss=attack-here」）内で発生したすべての種類の脆弱性、疑念、攻撃、およびインシデントを検索するには
-* `attacks 9-12/2020`: 2020年9月から12月までのすべての攻撃を検索するには
-* `rce /catalog/import.php`: `/catalog/import.php`パス에서のすべての[RCE][al-rce]攻撃、インシデントおよび脆弱性を昨日から検索するには
+* `attacks xss`: すべての[XSS-攻撃][al-xss]を検索
+* `attacks today`: 今日発生したすべての攻撃を検索
+* `xss 2020/12/14`: 2020年12月14日のすべての疑わしきもの、攻撃、および[cross‑site scripting][al-xss]のインシデントを検索
+* `p:xss 2020/12/14`: 2020年12月14日にxss HTTPリクエストパラメータ（すなわち `http://localhost/?xss=attack-here`）内のすべてのタイプの疑わしきもの、攻撃、およびインシデントを検索
+* `attacks 2020/9-12`: 2020年9月から12月までのすべての攻撃を検索
+* `rce /catalog/import.php`: `/catalog/import.php`パス上のすべての[RCE][al-rce]攻撃およびインシデントを検索
 
-異なるパラメータの値が指定されている場合、結果はそれらの条件すべてを満たします。同じパラメータに対して異なる値が指定されている場合、結果はそれらの条件のうちのいずれかを満たします。
+異なるパラメータの値が指定された場合、結果はそれらすべての条件を満たすものとなります。同じパラメータに異なる値が指定された場合、結果はいずれかの条件を満たすものとなります。
 
 !!! info "属性値をNOTに設定する"
-    属性値を否定するには、属性または修飾子名の前に `!` を使用してください。 例： `attacks !ip:111.111.111.111` すべての IP アドレスから生成された攻撃(*) ！= `111.111.111.111`.
+    属性値を否定するためには、属性または修飾子の名前の前に`!`を使用してください。例えば： `attacks !ip:111.111.111.111` は、`111.111.111.111` を除く任意のIPアドレスから発生した全攻撃を示します。
 
-以下は、検索クエリで使用できる属性と修飾子のリストです。
+以下に、検索クエリで使用できる属性と修飾子のリストを示します。
 
-### オブジェクトタイプでの検索
+### オブジェクトタイプによる検索
 
-検索文字列に指定してください：
+検索文字列で指定してください :
 
-* `attack`, `attacks`: 既知の脆弱性に対する攻撃では *ない* 攻撃のみを検索する場合。
-* `incident`, `incidents`: 既知の脆弱性を悪用する攻撃であるインシデントのみを検索する場合。
-* `vuln`, `vulns`, `vulnerability`, `vulnerabilities`: 脆弱性のみを検索する場合。
+* `attack`, `attacks`: 既知の脆弱性を狙ったものでは*ない*攻撃のみを検索する。
+* `incident`, `incidents`: 既知の脆弱性を悪用するインシデント（攻撃）のみを検索する。
 
-### 攻撃タイプまたは脆弱性タイプでの検索
+### 攻撃タイプによる検索
 
-検索文字列に指定してください：
+検索文字列で指定してください :
 
-* `sqli`: [SQL インジェクション][al-sqli]の攻撃/脆弱性を検索します。
-* `xss`: [Cross Site Scripting][al-xss]の攻撃/脆弱性を検索します。
-* `rce`: [OS コマンド][al-rce]の攻撃/脆弱性を検索します。
-* `brute`: [brute-force][al-brute-force]攻撃を検索します。
-* `ptrav`: [パストラバーサル][al-path-traversal]の攻撃を検索します。
-* `crlf`: [CRLFインジェクション][al-crlf]の攻撃/脆弱性を検索します。
-* `redir`: [オープンリダイレクト][al-open-redirect]の脆弱性を検索します。
-* `nosqli`: [NoSQLインジェクション][al-nosqli]の攻撃/脆弱性を検索します。
-* `data_bomb`: [データ爆弾][al-logic-bomb]攻撃を検索します。
-* `ssti`: [サーバーサイドテンプレートインジェクション][ssti-injection]を検索します。
-* `invalid_xml`: [安全でないXMLヘッダーの使用][invalid-xml]を検索します。
-* `overlimit_res`: [計算リソースのオーバーリミット][al-overlimit]を目的とした攻撃を検索します。
-* `xxe`: [XML外部エンティティ][al-xxe]攻撃を検索します。
-* `vpatch`: [仮想パッチ][al-virtual-patch]を検索します。
-* `dirbust`: [強制ブラウジング][al-forced-browsing]攻撃を検索します。
-* `ldapi`: [LDAPインジェクション][al-ldapi]攻撃/脆弱性を検索します。
-* `scanner`: [ポートスキャナー][al-port-scanner]攻撃/脆弱性を検索します。
-* `infoleak`: [情報漏洩][al-infoleak]の攻撃/脆弱性を検索します。
-* `vuln_component`: [脆弱なコンポーネント][al-vuln-component]使用に起因する脆弱性を検索します。
-* `mail_injection`: [Eメールインジェクション][email-injection]を検索します。
-* `ssi`: [SSIインジェクション][ssi-injection]を検索します。
-* `overlimit_res`: [リソースオーバーリミット][overlimit-res]タイプの攻撃を検索します。
-* `experimental`: [カスタム正規表現](../rules/regex-rule.md)に基づいて検出された実験的な攻撃を検索します。
-* `idor`: [BOLA（IDOR）](../../attacks-vulns-list.md#broken-object-level-authorization-bola)タイプの脆弱性を検索します。
-* `bola`: [BOLA（IDOR）脆弱性](../../attacks-vulns-list.md#broken-object-level-authorization-bola)を悪用した攻撃を検索します。
-* `weak_auth`: [JWT脆弱性](../../attacks-vulns-list.md#weak-jwt)を検索します。
-* `mass_assignment`: [マスアサインメント](../../attacks-vulns-list.md#mass-assignment)攻撃を検索します。
-* `api_abuse`: [ボットによって実行されたAPIへの攻撃](../../attacks-vulns-list.md#api-abuse)を検索します。
-* `csrf`: [クロスサイトリクエストフォージェリ（CSRF）脆弱性](../../attacks-vulns-list.md#cross-site-request-forgery-csrf)を検索します。
-* `ssrf`: [サーバーサイドリクエストフォージェリ（SSRF）脆弱性および攻撃](../../attacks-vulns-list.md#serverside-request-forgery-ssrf)を検索します。
+* `sqli`: [SQLインジェクション][al-sqli]攻撃を検索する。
+* `xss`: [Cross Site Scripting][al-xss]攻撃を検索する。
+* `rce`: [OS Commanding][al-rce]攻撃を検索する。
+* `brute`: [brute-force][al-brute-force]攻撃を検索する。
+* `ptrav`: [path traversal][al-path-traversal]攻撃を検索する。
+* `crlf`: [CRLF injection][al-crlf]攻撃を検索する。
+* `redir`: [open redirect][al-open-redirect]攻撃を検索する。
+* `nosqli`: [NoSQL injection][al-nosqli]攻撃を検索する。
+* `data_bomb`: [logic bomb][al-logic-bomb]攻撃を検索する。
+* `ssti`: [Server‑Side Template Injections][ssti-injection] を検索する。
+* `invalid_xml`: [安全でないXMLヘッダの使用][invalid-xml] を検索する。
+* `overlimit_res`: [計算リソースの過剰制限][al-overlimit]を狙った攻撃を検索する。
+* `xxe`: [XML External Entity][al-xxe]攻撃を検索する。
+* `vpatch`: [virtual patches][al-virtual-patch]を検索する。
+* `dirbust`: [forced browsing][al-forced-browsing]攻撃を検索する。
+* `ldapi`: [LDAP injection][al-ldapi]攻撃を検索する。
+* `scanner`: [port scanner][al-port-scanner]攻撃を検索する。
+* `infoleak`: [情報漏えい][al-infoleak]の攻撃を検索する。
+* `mail_injection`: [Email Injections][email-injection] を検索する。
+* `ssi`: [SSI Injections][ssi-injection] を検索する。
+* `overlimit_res`: [リソース過剰制限][overlimit-res]タイプの攻撃を検索する。
+* `experimental`: [カスタム正規表現](../rules/regex-rule.md)に基づいて検出された実験的な攻撃を検索する。
+* `bola`: [BOLA (IDOR)脆弱性](../../attacks-vulns-list.md#broken-object-level-authorization-bola)を悪用する攻撃を検索する。
+* `mass_assignment`: [Mass Assignment](../../attacks-vulns-list.md#mass-assignment)の攻撃試行を検索する。
+* `api_abuse`: [ボットによるAPI攻撃](../../attacks-vulns-list.md#api-abuse)を検索する。
+* `ssrf`: [Server‑side Request Forgery (SSRF)と攻撃](../../attacks-vulns-list.md#serverside-request-forgery-ssrf)を検索する。
 
-攻撃名または脆弱性名は大文字と小文字の両方で指定できます。「SQLI」、「sqli」、「SQLi」は同様に正しいです。### 既知の攻撃（CVEおよびよく知られたエクスプロイト）による検索
+大文字小文字を問わずに攻撃名を指定できます：`SQLI`、`sqli`、および`SQLi`は同じく正しいです。
 
-* `known`：CVEの脆弱性や他のよく知られた脆弱性タイプを悪用することで、正確に攻撃を仕掛けるリクエストを検索します。
+### OWASPトップ脅威と関連する攻撃の検索
 
-    特定のCVEや他のよく知られた脆弱性タイプによる攻撃をフィルタリングするには、`known` タグに加えて適切なタグを渡すか、別のタグで渡すことができます。例：`known:CVE-2004-2402 CVE-2018-6008` または `CVE-2004-2402 CVE-2018-6008` は、[CVE-2004-2402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2402) および [CVE-2018-6008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6008) の脆弱性を悪用する攻撃を検索します。
-* `!known`：潜在的な誤検知。これらのリクエストは、あまり知られていないエクスプロイトや、エクスプロイトを正当なパラメータ値に変換するコンテキストを含む場合があります。
+OWASPの脅威タグを使用して、OWASPのトップ脅威と関連する攻撃を見つけることができます。これらの攻撃を検索するための形式は`owasp_api1_2023`です。
 
-CVEおよびよく知られたエクスプロイトによる攻撃をフィルタリングするには、イベントタイプと **CVEおよびエクスプロイト** によるクイックフィルターが使用できます。
+これらのタグは、OWASPにより定められた脅威の元の番号に対応しています。Wallarmは攻撃を2019年と2023年の両方のOWASP API Top脅威に関連付けます。
 
-### APIプロトコルによる検索ヒット
+### 既知の攻撃（CVEおよびよく知られているエクスプロイト）による検索
 
-APIプロトコルによるヒットをフィルタリングするには、`proto:` または `protocol:` タグを使用します。
+* `known`: 彼らがCVE脆弱性または他のよく知られている脆弱性タイプを悪用するので、明確な攻撃を検索します。
 
-このタグは以下の値を許可します。
+    特定のCVEまたは他のよく知られている脆弱性タイプによる攻撃をフィルタリングするためには、`known`タグに加えて該当のタグを追加または別途指定できます。例えば、`known:CVE-2004-2402 CVE-2018-6008`または`CVE-2004-2402 CVE-2018-6008`は[CVE-2004-2402](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-2402)と[CVE-2018-6008](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-6008)の脆弱性を悪用する攻撃を検索します。
+* `!known`: 潜在的な誤検知。これらの要求には、あまり知られていないエクスプロイトが含まれている場合があります。
+
+CVEおよびよく知られているエクスプロイトによる攻撃をフィルタリングするためには、イベントタイプと**CVEとエクスプロイト**によるクイックフィルタを使用できます。
+
+### APIプロトコルによるヒットの検索
+
+APIプロトコルによるヒットをフィルタリングするために、`proto:`または`protocol:`タグを使用します。
+
+このタグは以下の値を許可します:
 
 * `proto:graphql`
 * `proto:grpc`
@@ -131,11 +132,11 @@ APIプロトコルによるヒットをフィルタリングするには、`prot
 * `proto:webdav`
 * `proto:json-rpc`
 
-### 認証プロトコルによる検索ヒット
+### 認証プロトコルによるヒットの検索
 
-攻撃者が使用した認証プロトコルによるヒットをフィルタリングするには、`auth:` タグを使用します。
+攻撃者が使用した認証プロトコルによるヒットをフィルタリングするために、`auth:`タグを使用します。
 
-このタグは以下の値を許可します。
+このタグは以下の値を許可します:
 
 * `auth:none`
 * `auth:api-key`
@@ -151,202 +152,191 @@ APIプロトコルによるヒットをフィルタリングするには、`prot
 * `auth:oauth2`
 * `auth:scram`
 
-### 攻撃対象または脆弱性対象による検索
+### 攻撃対象による検索
 
-検索文字列で次のいずれかを指定します。
+検索文字列で指定してください :
 
-* `client`：クライアントデータの攻撃/脆弱性を検索するため。
-* `database`：データベースの攻撃/脆弱性を検索するため。
-* `server`：アプリサーバーの攻撃/脆弱性を検索するため。
+* `client`: クライアントデータの攻撃を検索する。
+* `database`: データベース攻撃を検索する。
+* `server`: アプリケーションサーバ攻撃を検索する。
 
-### リスクレベルでの検索
+### リスクレベルによる検索
 
 検索文字列でリスクレベルを指定してください：
 
-* `low`：リスクレベルが低い。
-* `medium`：リスクレベルが中間。
-* `high`：リスクレベルが高い。
+* `low`: 低リスクレベル。
+* `medium`: 中リスクレベル。
+* `high`: 高リスクレベル。
 
-### 脆弱性識別子での検索
+### イベント時間による検索
 
-特定の脆弱性を検索するには、その識別子を指定してください。2つの方法で指定できます。
+検索文字列で時間を指定してください。期間が設定されていない場合、検索は最後の24時間に発生したイベントで行われます。
 
-* 完全に：`WLRM-ABCD-X0123`
-* 省略形で：`X0123`
+期間の設定には次の方法があります：
 
-### 脆弱性ステータスでの検索
+* 日付による設定：`2020/11/10-2020/11/14`
+* 日時による設定（秒は無視されます）：`2020/11/10 11:11`、`11:30-12:22`、`2020/11/10 11:12-2020/1/14 12:14`
+* 特定の時間に関連する設定：`>2020/11/10`
+* 文字列エイリアスを利用する：
+    * `yesterday`は昨日の日付に等しい
+    * `today`は今日の日付に等しい
+    * `last <unit>`は過去のユニット全体の開始から現在の日付と時間までの期間に等しい
 
-検索文字列で脆弱性のステータスを指定してください。脆弱性は次の3つのステータスのいずれかを持っています。
+        `<unit>`は`week`、`month`、`year`またはこれらのユニットの数を使うことが出来ます。例： `last week`、`last 3 month`または`last 3 months`。
+    
+    * `this <unit>`は現在のユニットに等しい
 
-* `open`：現在関連性のある脆弱性
-* `closed`：修正済みの脆弱性
+        `<unit>`は`week`、`month`、`year`を使うことが出来ます。例えば、`this week`は今日が水曜日なら、今週の月曜日、火曜日、そして水曜日に検出されたイベントを返します。
 
-### イベント時刻での検索
+日付と時間の形式は、あなたの[プロフィール](../settings/account.md#changing-your-date-time-format)で指定されている設定に依存します :
 
-検索文字列で期間を指定してください。期間が指定されていない場合、検索は過去24時間以内に発生したイベント内で行われます。
+* **MDY**が選択されている場合はMM/DD/YYYY
+* **DMY**が選択されている場合はDD/MM/YYYY
+* **24‑hour**をチェックすると `13:00`
+* **24‑hour**をチェックしていない場合は `1pm`
 
-期間を指定する方法は以下の通りです。
+月は数または名前で指定できます：`01`、`1`、`January`、`Jan` はすべて1月を意味します。年は完全な形式（`2020`）または短縮形式（`20`）で指定できます。日付に年が指定されていない場合、現在の年が使用されます。
 
-* 日付で：`11/10/2020-11/14/2020`
-* 日付と時刻で（秒数は無視されます）：`11/10/2020 11:11`, `11:30-12:22`, `11/10/2020 11:12-01/14/2020 12:14`
-* 特定の時点を基準として：`>11/10/20`
-* 文字列エイリアスを使用して：
-    * `yesterday`：昨日の日付と同じ
-    * `today`：今日の日付と同じ
-    * `last <unit>`：過去のユニット全体から現在の日付と時刻までの期間
+### IPアドレスによる検索
 
-        `<unit>`には `week`、`month`、`year`またはこれらのユニット数を使用できます。例：`last week` 、 `last 3 month` または `last 3 months`。
+IPアドレスによる検索をするためには、`ip:`接頭辞を使用し、以下を指定できます
+* 特定のIPアドレス、例えば `192.168.0.1` - この場合、攻撃のソースアドレスがこのIPアドレスに対応するすべての攻撃とインシデントが見つかります。
+* IPアドレスの範囲を表す表現。
+* 攻撃またはインシデントに関連したIPアドレスの総数。
 
-    * `this <unit>`：現在のユニットに等しい
+#### IPアドレス範囲による検索
 
-        `<unit>`には `week`、`month`、`year` を使用できます。例：今日が水曜日の場合、`this week` は今週の月曜日、火曜日、水曜日に検出されたイベントを返します。
-
-日付と時刻の形式は、あなたの[プロファイル](../settings/account.md#changing-your-date-time-format)で指定された設定に依存します。
-
-* MM/DD/YYYY は **MDY**が選択されている場合。
-* DD/MM/YYYY は **DMY** が選択されている場合。
-* `13:00` は **24‑hour** がチェックされている場合。
-* `1pm` は **24‑hour** がチェックされていない場合。
-
-月は数字または名前で指定できます：`01`、`1`、`January`、`Jan`は1月に対応します。年は完全な形式（`2020`）と短縮形式（`20`）のどちらで指定することができます。日付に年が指定されていない場合、現在の年が使用されます。
-
-### IPアドレスでの検索
-
-IPアドレスで検索するには、`ip:`プレフィックスを使用し、次のいずれかを指定できます。
-* 特定のIPアドレス、例：`192.168.0.1` － この場合、攻撃の送信元アドレスがこのIPアドレスに対応するすべての攻撃とインシデントが見つかります。
-* IPアドレスの範囲を説明する表現。
-* 攻撃またはインシデントに関連するIPアドレスの総数。
-
-#### IPアドレス範囲での検索
-
-IPアドレスの必要な範囲を設定するには、次のいずれかを使用できます。
-* 明示的なIPアドレスの範囲：
+必要なIPアドレスの範囲を設定するためには、以下を使用できます
+* 明示的なIPアドレス範囲：
     * `192.168.0.0-192.168.63.255`
     * `10.0.0.0-10.255.255.255`
 * IPアドレスの一部：
-    * `192.168.` － `192.168.0.0-192.168.255.255` と同等です。余分な形式で `*` 修飾子が許可されている - `192.168.*`
-    * `192.168.0.` － `192.168.0.0-192.168.0.255` と同等です。
-* 式の最後のオクテット内の値の範囲を持つIPアドレスまたはその一部：
-    * `192.168.1.0-255` － `192.168.1.0-192.168.1.255` と同等です。
-    * `192.168.0-255` － `192.168.0.0-192.168.255.255` と同等です。
-
+    * `192.168.`—`192.168.0.0-192.168.255.255`に等しい。冗長な形式で`*`修飾子が許可されています—`192.168.*`
+    * `192.168.0.`—`192.168.0.0-192.168.0.255`に等しい
+* 数式内の最後のオクテットで値の範囲を持つIPアドレスまたはその一部：
+    * `192.168.1.0-255`—`192.168.1.0-192.168.1.255`に等しい
+    * `192.168.0-255`—`192.168.0.0-192.168.255.255`に等しい。
+    
     !!! warning "重要"
-        オクテット内の値の範囲を使用する場合、最後にドットを設定しないでください。
+        オクテット内の値の範囲を使用するとき、最後にドットは設定されません。
 
 * サブネットプレフィックス（[CIDR表記](https://tools.ietf.org/html/rfc4632)）：
-    * `192.168.1.0/24` － `192.168.1.0-192.168.1.255` と同等です。
-    * `192.168.0.0/17` － `192.168.0.1-192.168.127.255` と同等です。
+    * `192.168.1.0/24`—`192.168.1.0-192.168.1.255`に等しい
+    * `192.168.0.0/17`—`192.168.0.1-192.168.127.255`に等しい
 
 !!! note
-    IPアドレス範囲の定義方法を上記のように組み合わせることができます。これを行うには、ip:プレフィックスを別々にすべての必要な範囲でリストします。
-    
+    IPアドレス範囲を定義するための上記の方法を組み合わせることができます。これには、ip:プレフィックスを個別にすべての必要な範囲に列挙する必要があります。
+
     **例**：`ip:192.168.0.0/24 ip:10.10. ip:10.0.10.0-128`
 
-#### IPアドレスの数での検索
+#### IPアドレスの数による検索
 
-攻撃またはインシデントに関連するIPアドレスの総数で検索することができます（攻撃およびインシデントのみ）：
-* `ip:1000+ last month` － 過去1ヶ月間に、一意のIPアドレスの数が1000を超える攻撃およびインシデントを検索します （`attacks incidents ip:1000+ last month`に等しい）。
-* `xss ip:100+` － すべてのクロスサイトスクリプティング攻撃およびインシデントを検索します。検索結果は、攻撃IPアドレスの数（XSS攻撃タイプで）が100未満の場合、空になります。
-* `xss p:id ip:100+` －`？id=aaa`に関連するすべてのXSS攻撃およびインシデントを検索します。異なるIPアドレスの数が100を超える場合にのみ結果が返されます。
+攻撃またはインシデント（攻撃とインシデントのみ）に関連するIPアドレスの総数による検索が可能です：
+* `ip:1000+ last month` — 過去1か月で、ユニークなIPアドレスの数が1000以上の攻撃とインシデントを検索 （`attacks incidents ip:1000+ last month`に相当）。
+* `xss ip:100+` — すべてのクロスサイトスクリプティング攻撃とインシデントを検索します。攻撃するIPアドレスの数（XSS攻撃タイプ）が100未満の場合、検索結果は空になります。
+* `xss p:id ip:100+` — idパラメータ（`?id=aaa`）に関連するすべてのXSS攻撃とインシデントを検索します。異なるIPアドレスの数が100を超える場合にのみ結果が返されます。
 
-### IPアドレスの所属データセンターでの検索
+### IPアドレスの所属するデータセンターによる検索
 
-攻撃の発生元となるIPアドレスが所属するデータセンターで検索するには、`source:`プレフィックスを使用します。
+攻撃が起こったIPアドレスが所属するデータセンターによる検索をするためには、`source:`接頭辞を使用します。
 
-この属性の値は次のいずれかになります。
+この属性の値は次のことができます :
 
-* `tor`: Torネットワーク用
-* `proxy`: パブリックまたはWebプロキシサーバ用
-* `vpn`: VPN用
-* `aws`: Amazon用
-* `azure`: Microsoft Azure用
-* `gce`: Google Cloud Platform用
-* `ibm`: IBM Cloud用
-* `alibaba`: Alibaba Cloud用
-* `huawei`: Huawei Cloud用
-* `rackspace`: Rackspace Cloud用
-* `plusserver`: PlusServer用
-* `hetzner`: Hetzner用
-* `oracle`: Oracle Cloud用
-* `ovh`: OVHcloud用
-* `tencent`: Tencent用
-* `linode`: Linode用
-* `docean`: Digital Ocean用
+* `tor` は Torネットワーク用
+* `proxy` は公開またはウェブプロキシサーバ用
+* `vpn` は VPN用
+* `aws` は Amazon用
+* `azure` は Microsoft Azure用
+* `gce` は Google Cloud Platform用
+* `ibm` は IBM Cloud用
+* `alibaba` は Alibaba Cloud用
+* `huawei` は Huawei Cloud用
+* `rackspace` は Rackspace Cloud用
+* `plusserver` は PlusServer用
+* `hetzner` は Hetzner用
+* `oracle` は Oracle Cloud用
+* `ovh` は OVHcloud用
+* `tencent` は Tencent用
+* `linode` は Linode用
+* `docean` は Digital Ocean用
 
-### IPアドレスが登録されている国または地域での検索
+### IPアドレスが登録されている国または地域による検索
 
-攻撃の発生源となるIPアドレスが登録されている国または地域で検索するには、`country:`プレフィックスを使用します。
+攻撃が起こったIPアドレスが登録されている国または地域による検索をするためには、`country:`接頭辞を使用します。
 
-国/地域の名前は、標準[ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)に対応する形式で、大文字または小文字で属性に渡されます。例：`country:CN` または `country:cn` は中国から発生した攻撃を示します。
+国/地域の名前は、標準 [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)に対応する形式で属性に渡す必要があります。大文字または小文字で書かれています。たとえば、`country:CN`または`country:cn`は中国からの攻撃を検索します。
 
-### サーバー応答ステータスでの検索
+### サーバレスポンスステータスによる検索
 
-サーバー応答ステータスで検索するには、`statuscode:`プレフィックスを指定してください。
+サーバレスポンスステータスによる検索をするためには、`statuscode:`接頭辞を指定してください。
 
-応答ステータスは次のように指定できます。
+レスポンスステータスは次のように指定できます：
 * 100から999までの数字。
-* 「N-M」範囲。NおよびMは100から999までの数字。
-* 「N+」および「N-」範囲。Nは100から999までの数字。### サーバーレスポンスサイズで検索
+* «N–M»範囲、NとMは100から999までの数値。
+* 「N+」および「N-」範囲、Nは100から999までの数値。
 
-サーバーレスポンスサイズで検索するには、 `s:` または `size:` のプレフィックスを使用します。
+### サーバレスポンスサイズによる検索
 
-任意の整数値を検索できます。999より大きい数値はプレフィックスなしで指定できます。「N-M」、「N+」および「N-」の範囲を指定でき、999より大きい数値もプレフィックスなしで指定できます。
+サーバレスポンスのサイズによる検索をするためには、`s:`または`size:`接頭辞を使用します。
 
-### HTTPリクエストメソッドで検索
+任意の整数値を検索することができます。999以上の数字は接頭辞なしで指定できます。「N–M」、「N+」および「N-」の範囲も指定できます。これらの場合も999以上の数字は接頭辞なしで指定できます。
 
-HTTPリクエストメソッドで検索するには、`method:` プレフィックスを指定します。
+### HTTPリクエストメソッドによる検索
 
-`GET`、`POST`、`PUT`、`DELETE`、`OPTIONS`を検索する場合：大文字が使用されている場合、検索文字列はプレフィックスなしで指定できます。それ以外の値の場合、プレフィックスを指定する必要があります。
+HTTPリクエストメソッドによる検索をするためには、`method:`接頭辞を指定してください。
 
-### 攻撃/インシデント内のヒット数で検索
+`GET`、`POST`、`PUT`、`DELETE`、`OPTIONS`については、大文字を使用している場合、検索文字列は接頭辞なしで指定できます。他のすべての値については、接頭辞を指定する必要があります。
 
-攻撃とインシデントをヒット数で検索するには、`N:` プレフィックスを指定します。
+### ヒット数内の攻撃/インシデントによる検索
 
-例えば、100回以上のヒットがある攻撃を検索するには `attacks N:>100` です。または、ヒット数が10未満の攻撃を `attacks N:<10` で検索できます。
+攻撃とインシデントをヒット数によって検索するには、`N:`接頭辞を指定してください。
 
-### ドメインで検索
+例えば、100以上のヒットを持つ攻撃を検索するためには：`attacks N:>100`を使用します。または10未満のヒットを持つ攻撃を検索するには：`attacks N:<10`を使用します。
 
-ドメインで検索するには、`d:` または `domain:` のプレフィックスを使用します。
+### ドメインによる検索
 
-2番目以上のレベルのドメインが可能な文字列はプレフィックスなしで指定できます。任意の文字列はプレフィックスと一緒に指定できます。
+ドメインによる検索をするためには、`d:`または`domain:`接頭辞を使います。
 
-ドメイン内でマスクを使用できます。記号 `*` は任意の文字数を置き換えます。記号 `?` は1つの文字を置き換えます。
+あらゆる文字列をドメインとして指定できます、二次レベルまでのドメインは接頭辞無しで指定できます。任何の文字列は接頭辞を使って指定できます。
 
-### パスで検索
+ドメイン内でマスクを使用することができます。`*`記号は任意の数の文字を置き換え、「?」記号は任意の単一文字を置き換えます。
 
-パスで検索するには、`u:` または `url:` のプレフィックスを使用します。
+### パスによる検索
 
-`/` で始まる文字列はプレフィックスなしで処理されます。任意の文字列はプレフィックスと一緒に指定できます。
+パスによる検索をするためには以下のどちらかを使用します：
 
-### アプリケーションで検索
+* `u:`または`url:`接頭辞を使用し、引用符で始まるパスを指定します（例： `url:"/api/users"`）
+* 接頭辞を使用せずにパスを`/`で開始します（例：`/api/users`）
 
-攻撃が送信されたアプリケーションや脆弱性が見つかったアプリケーションを検索するには、 `application:` または `app:` のプレフィックスを使用します（以前の `pool:` プレフィックスもサポートされていますが、推奨されません）。
+### アプリケーションによる検索
 
-属性値は、**Settings** セクションの **Applications** タブで設定されたアプリケーション名です。例：`application:'Example application'`。
+攻撃が送信されたアプリケーションによる検索をするためには、「application:」または「app:」接頭辞を使用します（以前の「pool:」接頭辞はまだサポートされていますが、推奨はされていません）。
 
-### パラメーターやパーサーで検索
+属性値は、**設定**セクションの**アプリケーション**タブに設定されているアプリケーション名です。例： `application:'Example application'`。
 
-パラメーターやパーサーで検索するには、 `p:`、`param:`、または `parameter:` のプレフィックスを使うか、 `=` 接尾辞を使用します。接尾辞を使用する場合、`/` で始まらない文字列はパラメータと見なされます（ただし、終了 `=` 文字は値に含まれません）。
+### パラメータまたはパーサーによる検索
 
-可能な属性値：
+パラメータまたはパーサーによる検索をするためには、`p:`、`param:`、または`parameter:`接頭辞、または`=`接尾辞を使用します。接尾辞を使用する場合、`/`で始まらない文字列はパラメータと見なされます（これには最後の`=`文字は含まれません）。
 
-* ターゲットパラメータの名前。
+可能な属性値は次のとおりです :
 
-    例えば、`xss` パラメータを狙った攻撃（XSS攻撃ではなく、例えばGETパラメータに `xss` が含まれるSQLインジェクション攻撃など）を見つける必要がある場合、検索文字列に `attacks sqli p:xss` を指定します。
-* Wallarmノードがパラメータ値を読み取るために使用する[パーサー](../rules/request-processing.md) の名前。名前は大文字でなければなりません。
+* 狙われたパラメータの名前。
 
-    例えば、`attacks p:*BASE64` で、base64パーサーで解析された任意のパラメータを狙った攻撃を見つけます。
-* パラメータとパーサーのシーケンス。
+    例えば、`xss`パラメータを狙った攻撃を見つける必要がありますが、XSS攻撃（例えば、GETパラメータに`xss`が含まれているSQLインジェクション攻撃）ではない場合は、検索文字列に`attacks sqli p:xss`を指定します。
+* Wallarmノードがパラメータ値を読み取るために使用した[パーサ](../rules/request-processing.md)の名前。名前は大文字でなければなりません。
 
-    例：`attacks p:"POST_JSON_DOC_HASH_from"` で、リクエストのJSONボディ内の `from` パラメータに送信された攻撃を見つけます。
+    例えば、`attacks p:*BASE64`を使用して、base64パーサによって読み取られた任意のパラメータを狙った攻撃を見つけます。
+* パラメータとパーサのシーケンス。
 
-値内でマスクを使うことができます。記号 `*` は任意の数の文字を置き換え、記号 `?` は1つの文字を置き換えます。
+    例えば： `attacks p:"POST_JSON_DOC_HASH_from"`を使って、リクエストのJSON本文の`from`パラメータに攻撃が送信された場合の攻撃を見つけます。
 
-### 攻撃の異常検索
+マスクを値内で使用することができます。記号`*`は任意の数の文字を代替し、記号`?`は任意の単一文字を代替します。
 
-攻撃の異常を検索するには、`a:` または `anomaly:` のプレフィックスを使用します。
+### 攻撃の異常による検索
 
-異常検索を絞り込むには、以下のパラメータを使います：
+攻撃の異常を検索するためには、`a:`または`anomaly:`接頭辞を使用します。
+
+異常検索を絞り込むためには、次のパラメータを使用します：
 
 * `size`
 * `statuscode`
@@ -357,30 +347,33 @@ HTTPリクエストメソッドで検索するには、`method:` プレフィッ
 
 例：
 
-`attacks sqli a:size` は、リクエストにレスポンスサイズの異常があるすべてのSQLインジェクション攻撃を検索します。
+`attacks sqli a:size`はリクエスト内で応答のサイズの異常を持つすべてのSQLインジェクション攻撃を検索します。
 
-### リクエストIDで検索
+### リクエスト識別子による検索
 
-攻撃とインシデントをリクエストIDで検索するには、`request_id` プレフィックスを指定します。
-`request_id`パラメータの値の形式は `a79199bcea606040cc79f913325401fb` です。読みやすくするために、以下の例ではこのパラメータがプレースホルダの略 `<requestId>` に置き換えられています。
+攻撃とインシデントをリクエスト識別子によって検索するには、`request_id`接頭辞を指定します。
+`request_id`パラメータには、その値が形式`a79199bcea606040cc79f913325401fb`です。以下の例では、このパラメータがプレースホルダの省略形`<requestId>`で置き換えられています。
 
-例:
-
-*   `attacks incidents request_id:<requestId>`：`request_id` が `<requestId>` に等しい攻撃またはインシデントを検索します。
-*   `attacks incidents !request_id:<requestId>`：`request_id` が `<requestId>` と等しくない攻撃とインシデントを検索します。
-*   `attacks incidents request_id`：任意の `request_id` を持つ攻撃とインシデントを検索します。
-*   `attacks incidents !request_id`：`request_id` を持たない攻撃とインシデントを検索します。
+例：
+* `attacks incidents request_id:<requestId>`：`request_id`が`<requestId>`に等しい攻撃またはインシデントを検索します。
+* `attacks incidents !request_id:<requestId>`：`request_id`が`<requestId>`と等しくない攻撃とインシデントを検索します。
+* `attacks incidents request_id`：任意の`request_id`を持つ攻撃とインシデントを検索します。
+* `attacks incidents !request_id`: `request_id`を持たない攻撃とインシデントを検索します。
 
 ### サンプリングされたヒットの検索
 
-[サンプリングされたヒット](../events/analyze-attack.md#sampling-of-hits)を検索するには、検索文字列に `sampled` を追加します。
+[サンプリングされたヒット](../events/analyze-attack.md#sampling-of-hits)を検索するには、検索文字列に`sampled`を追加します。
 
-### Search by regexp-based customer rule
+### ノードUUIDによる検索
 
-To get the list of attacks detected by [regexp-based customer rules](../../user-guides/rules/regex-rule.md), in the search field specify `custom_rule`.
+特定のノードによって検出された攻撃を検索するには、`node_uuid`接頭辞を指定した後にノードのUUIDを指定します。
 
-For any of such attacks, in its details, the links to the corresponding rules are presented (there can be more than one). Click the link to access the rule details and edit them if necessary.
+例：
 
-![!Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+* `attacks incidents today node_uuid:<NODE UUID>`：この`<NODE UUID>`を持つノードによって見つかった今日のすべての攻撃とインシデントを検索します。
+* `attacks today !node_uuid:<NODE UUID>`：この`<NODE UUID>`を持つノードを除く任意のノードによって見つかった今日のすべての攻撃を検索します。
 
-You can use `!custom_rule` to get the list of attacks not related to any regexp-based customer rules.
+!!! info "新しい攻撃のみを検索"
+    ノードUUIDによる検索を行った場合、2023年5月31日以降に検出された攻撃のみが表示されます。
+
+ノードのUUIDは**ノード**セクションの[ノードの詳細](../../user-guides/nodes/nodes.md#viewing-details-of-a-node)で見つけることができます。UUIDをクリックしてコピーします。

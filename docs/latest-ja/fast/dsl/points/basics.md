@@ -1,18 +1,17 @@
 [link-fast]:                ../intro.md
 [link-parsers]:             parsers.md
 
-# Basic Concepts
+# 基本的な概念
 
-[FAST extensions][link-fast] describe the logic of baseline request element processing that is used to create new test requests. The main purpose of *points* is to specify which piece of data from the baseline request should undergo the actions that are described in the extension.
+[FAST拡張][link-fast]では、新しいテスト要求を作成するために使用される基本要求要素の処理ロジックを説明します。*ポイント*の主な目的は、基本要求からどのデータが拡張で説明されている行動を受けるべきかを指定することです。
 
-A point is a string that points to the part of the baseline request that the action specified in the extension should be applied to. This string comprises a sequence of the names of parsers and filters that should be applied to the baseline request in order to obtain the required data.
+ポイントは、拡張で指定されたアクションが適用されるべき基本要求の部分を指す文字列です。この文字列は、必要なデータを取得するために基本要求に適用されるべきパーサとフィルタの名前のシーケンスを含みます。
 
-* *Parsers* create data structures based on the received string input. 
-* *Filters* are used to 
-obtain certain values from the data structures created by parsers. 
+* *パーサ*は、受け取った文字列入力に基づいてデータ構造を作成します。
+* *フィルタ*は、パーサによって作成されたデータ構造から特定の値を取得するために使用されます。
 
-Other filters and parsers can be applied to the values that filters point to. By sequentially applying parsers and filters to the request, you can extract the request element values that are required for further processing.  
+他のフィルタとパーサは、フィルタが指す値に適用することができます。パーサとフィルタを要求に順次適用することで、さらなる処理に必要な要求要素の値を抽出できます。
 
-The variety of parsers and filters that can be used in a point allows for the creation of extensions that use the target web application’s requests format.
+ポイントで使用できるパーサとフィルタの種類は、ターゲットウェブアプリケーションの要求フォーマットを使用する拡張の作成を可能にします。
 
-The [following subsections][link-parsers] describe parsers and filters that can be used in FAST DSL extension points.
+[次のサブセクション][link-parsers]では、FAST DSL拡張ポイントで使用できるパーサとフィルタについて説明します。

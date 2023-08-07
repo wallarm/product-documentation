@@ -1,4 +1,4 @@
-You can upgrade in two different ways:
+2つの異なる方法でアップグレードできます：
 
-* Migrate to the [all-in-one installer](#upgrade-with-all-in-one-installer) usage during the upgrade procedure. This is the recommended approach as it automates various node installation and upgrade activities, such as NGINX and OS version identification, adding appropriate Wallarm repositories, installing packages, and others.
-* Keep using the current [manual](#manual-upgrade) installation method via individual DEB/RPM packages. However, it's important to note that in further upgrades this approach will require additional effort and manual configuration in comparison to the new method.
+* アップグレード手順中に[オールインワンインストーラ](#upgrade-with-all-in-one-installer)の使用に移行します。これは、NGINXおよびOSバージョンの特定、適切なWallarmリポジトリの追加、パッケージのインストールなど、さまざまなノードのインストールおよびアップグレード活動を自動化するため、推奨されるアプローチです。
+* 現在の[マニュアル](#manual-upgrade)インストール方法を個々のDEB/RPMパッケージを介して引き続き使用してください。ただし、今後のアップグレードでは、このアプローチが新しい方法と比較して追加の労力と手動設定を必要とすることに注意が必要です。

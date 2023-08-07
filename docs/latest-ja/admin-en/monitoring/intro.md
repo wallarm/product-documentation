@@ -25,49 +25,47 @@
 
 [doc-selinux]:  ../configure-selinux.md
 
-# フィルタリングノード監視の概要
+# フィルタノード監視の導入
 
-フィルタリングノードの状態を、ノードが提供するメトリクスを使用して監視することができます。この記事では、すべてのWallarmフィルタリングノードにインストールされている [`collectd`][link-collectd] サービスによって収集されたメトリクスを操作する方法について説明します。`collectd` サービスは、データ転送方法をいくつか提供し、多くの監視システムのメトリクスソースとして機能し、フィルタリングノードの状態を制御することができます。
+フィルタノードの状態は、ノード提供のメトリクスを使用して監視できます。本記事では、すべてのWallarmフィルタノードにインストールされている [`collectd`][link-collectd] サービスによって収集されたメトリクスの操作方法について説明します。`collectd` サービスは、データの転送方法を幾つか提供し、多くの監視システムのメトリクスソースとして機能することができ、フィルタノードの状態を制御することができます。
 
-`collectd`メトリクスに加えて、WallarmはPrometheusと基本的なJSONメトリクスと互換性のあるメトリクス形式を提供しています。これらの形式については、[別の記事](../configure-statistics-service.md)で説明しています。
+`collectd`メトリクスに加えて、WallarmはPrometheusと基本的なJSONメトリクスと互換性のあるメトリクス形式を提供します。これらの形式については、[別の記事](../configure-statistics-service.md)で読むことができます。
 
 !!! warning "CDNノード上の監視サービスのサポート"
-    なお、`collectd`サービスは、[Wallarm CDNノード](../../installation/cdn-node.md)ではサポートされていません。
+    [Wallarm CDN ノード](../../installation/cdn-node.md)では `collectd` サービスはサポートされていないことに注意してください。
 
 ##  監視の必要性
 
-Wallarmモジュールの障害や不安定な動作は、フィルタリングノードで保護されたアプリケーションへのユーザーリクエストの完全または部分的なサービス拒否につながる可能性があります。
+Wallarmモジュールの故障または不安定な作業は、フィルタノードに保護されたアプリケーションへのユーザーリクエストの全面的または部分的なサービス拒否を引き起こすことがあります。
 
-postanalyticsモジュールの障害や不安定な動作は、以下の機能が利用できなくなる可能性があります。
-*   攻撃データをWallarmクラウドにアップロードする。その結果、Wallarmポータルに攻撃が表示されなくなります。
-*   行動攻撃（[ブルートフォース攻撃][av-bruteforce]など）の検出。
-*   保護対象アプリケーションの構造に関する情報の取得。
+postanalyticsモジュールの故障または不安定な作業により、以下の機能が利用できなくなることがあります：
+*   攻撃データをWallarmクラウドにアップロードします。その結果、攻撃はWallarmポータルに表示されません。
+*   行動攻撃の検出（[ブルートフォース攻撃][av-bruteforce]参照）。
+*   保護されたアプリケーションの構造に関する情報の取得。
 
-ポストアナリティクスモジュールが[別途インストールされている][doc-postanalitycs]場合でも、Wallarmモジュールとポストアナリティクスモジュールの両方を監視することができます。
+Wallarmモジュールとpostanalyticsモジュールの両方を監視できます、後者が[別途インストールされている][doc-postanalitycs]場合でも。
 
-ณ ตามที่กำหนด "用語合意"
+!!! info "使用語の合意"
 
-    Wallarmモジュールとpostanalyticsモジュールの監視には、同じツールと方法が使用されているため、このガイドでは特に断りがない限り、両方のモジュールを「フィルタリングノード」と呼んでいます。
-    
-    フィルタリングノードの監視を設定する方法を説明するすべてのドキュメントは、
+    Wallarmモジュールとpostanalyticsモジュールの監視には同じツールと方法が使用されるので、このガイド全体で両方のモジュールは「フィルタノード」として参照されます、特別なことが述べられていない限り。
+
+    フィルタノードの監視設定方法を説明するすべてのドキュメントは次に適用されます：
 
     *   別々にデプロイされたWallarmモジュール、
-    *   別々にデプロイされたポストアナリティクスモジュール、および
-    *   共同してデプロイされたWallarmとポストアナリティクスモジュール。
+    *   別々にデプロイされたpostanalyticsモジュール、そして
+    *   共 conjointly deployed Wallarm and postanalytics modules.
 
-に適用されます。
+## 監視の前提条件
 
-##  監視の前提条件
+監視を行うには、以下が必要です：
+*   NGINXがフィルタノードに統計情報を返すこと（`wallarm_status on`)、
+*   フィルタモードが`monitoring`、`safe_blocking`、または`block`[モード](../configure-wallarm-mode.md#available-filtration-modes)になっていること。
 
-監視が機能するためには、次の条件が必要です。
-* NGINXがフィルタリングノードに統計情報を返す（`wallarm_status on`）。
-* フィルタリングモードが `monitoring`/`safe_blocking`/`block` [モード](../configure-wallarm-mode.md#available-filtration-modes) になっています。
+デフォルトでは、このサービスは `http://127.0.0.8/wallarm-status` でアクセスできます。
 
-デフォルトでは、このサービスは `http://127.0.0.8/wallarm-status` でアクセス可能です。
+統計サービスを非標準アドレスで利用可能に[設定](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service)している場合：
 
-統計サービスを非標準アドレスで利用可能に[設定](../configure-statistics-service.md#changing-an-ip-address-of-the-statistics-service)する場合は :
-
-1. `/etc/wallarm/node.yaml` ファイルに、新しいアドレス値を持つ `status_endpoint` パラメータを追加します。例えば :
+1. 新しいアドレスの値をもった `status_endpoint` パラメーターを `/etc/wallarm/node.yaml` ファイルに追加します。例えば：
 
     ```bash
     hostname: example-node-name
@@ -75,97 +73,100 @@ postanalyticsモジュールの障害や不安定な動作は、以下の機能�
     ...
     status_endpoint: 'http://127.0.0.2:8082/wallarm-status'
     ```
-1. オペレーティングシステムのディストリビューションの種類に応じてこのファイルの場所は、`collectd`設定ファイルの `URL`パラメータが正しく設定されていることを確認します。
+1. オペレーティングシステムの種類により、`collectd` の設定ファイルの `URL` パラメーターを適切に修正します：
 
-    --8<-- "../include-ja/monitoring/collectd-config-location.md"
+    --8<-- "../include/monitoring/collectd-config-location.md"
 
-Tarantool用の非標準のIPアドレスかポートが使用されている場合、そのTarantoolの設定ファイルを適切に修正する必要があります。このファイルの場所は、オペレーティングシステムのディストリビューションのタイプによって異なります。
+Tarantoolの非標準のIPアドレスまたはポートが使用されている場合、その設定ファイルを適切に修正する必要があります。このファイルの場所は、オペレーティングシステムの種類によります：
 
---8<-- "../include-ja/monitoring/tarantool-config-location.md"
+--8<-- "../include/monitoring/tarantool-config-location.md"
 
-フィルタリングノードのホストにSELinuxがインストールされている場合は、SELinuxが[設定または無効化][doc-selinux]されていることを確認してください。簡単のため、このドキュメントではSELinuxが無効化されていることを前提としています。
+SELinuxがフィルタノードホストにインストールされている場合、SELinuxが[設定または無効化][doc-selinux]されていることを確認します。簡単のため、このドキュメントではSELinuxが無効化されていることを前提としています。
 
-##  メトリクスの表示方法
+## メトリクスの見え方
 
-### `collectd` メトリクスの見た目
+###  `collectd` メトリクスの見え方
 
-`collectd`メトリクスの識別子は次の形式で表されます。
+`collectd` メトリック識別子は次の形式を持っています：
 
 ```
 host/plugin[-plugin_instance]/type[-type_instance]
 ```
 
 ここで
-*   `host`: メトリクスが取得されるホストの完全修飾ドメイン名（FQDN）
-*   `plugin`: メトリクスが取得されるプラグインの名前
-*   `-plugin_instance`: ある場合、プラグインのインスタンス
-*   `type`: メトリクス値のタイプ。許可されるタイプは
+*   `host`: メトリックが取得されるホストの完全修飾ドメイン名(FQDN)
+*   `plugin`: メトリックが取得されるプラグインの名前、
+*   `-plugin_instance`: プラグインのインスタンス（存在する場合）、
+*   `type`: メトリック値のタイプ。許されるタイプ：
     *   `counter`
     *   `derive`
-    *   `gauge`
-    
-    値タイプの詳しい情報は[こちら][link-data-source]にあります。
+    *   `gauge` 
 
-*   `-type_instance`: ある場合、タイプのインスタンス。インスタンスとしてタイプは、メトリクスを取得したい値に相当します。
+    値のタイプについての詳細な情報は[ここ][link-data-source]で利用可能です。
 
-メトリクスの形式の詳細な説明は[こちら][link-collectd-naming]にあります。
+*   `-type_instance`: タイプのインスタンス（存在する場合）。タイプのインスタンスは、メトリックを取得したい値に相当します。
 
-### Wallarm固有の `collectd` メトリクスの見た目
+メトリックの形式に関する完全な説明は[こちら][link-collectd-naming]で利用可能です。
 
-フィルタリングノードは `collectd` を使用して、Wallarm固有のメトリクスを収集します。
+### Wallarm特有の `collectd` メトリクスの見え方
 
-Wallarmモジュールを含むNGINXのメトリックスは、次の形式で表されます。
+フィルタノードは `collectd` を使用してWallarm特有のメトリクスを収集します。
+
+Wallarmモジュール付きのNGINXのメトリクスは次の形式を持ちます：
 
 ```
 host/curl_json-wallarm_nginx/type-type_instance
 ```
 
-postanalyticsモジュールのメトリクスは次の形式で表されます。
+postanalyticsモジュールのメトリクスは次の形式を持ちます：
 
 ```
 host/wallarm-tarantool/type-type_instance
 ```
 
-！！！ info "メトリック例"
-    `node.example.local` ホスト上のフィルタリングノードについて：
 
-    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` は、処理されたリクエストの数を表すメトリックです。
-    * `node.example.local/wallarm-tarantool/gauge-export_delay` は、Tarantoolのエクスポート遅延を秒単位で表すメトリックです。
-    
-    監視できるメトリックの完全なリストは[こちら][doc-available-metrics]です。## メトリックの取得方法
+!!! info "メトリック例"
+    ホスト `node.example.local` 上のフィルタノードについて：
 
-フィルターノードからのメトリックをいくつかの方法で収集できます：
-*   `collectd` サービスからデータを直接エクスポートする
-    *   [`collectd` の Network プラグインを介して][doc-network-plugin]。
+    * `node.example.local/curl_json-wallarm_nginx/gauge-abnormal` は、処理されたリクエストの数のメトリクです；
+    * `node.example.local/wallarm-tarantool/gauge-export_delay` は、Tarantoolのエクスポート遅延（秒）のメトリクスです。
+
+    監視可能なメトリクスの完全なリストは[こちら][doc-available-metrics]で利用可能です。
+
+##  メトリクスの取得方法
+
+フィルタノードからメトリクスをいくつかの方法で収集できます：
+*   `collectd` サービスから直接データをエクスポートする
+    * [ `collectd` のNetworkプラグインを経由して][doc-network-plugin]。
     
-        この [プラグイン][link-network-plugin] は `collectd` がフィルターノードからメトリックを [`collectd`][link-collectd-networking] サーバまたは [InfluxDB][link-influxdb] データベースにダウンロードできるようにします。
+        この[プラグイン][link-network-plugin]は `collectd` にフィルタノードからのメトリクスを[`collectd`][link-collectd-networking] serverまたは[InfluxDB][link-influxdb] データベースにダウンロードすることを可能にします。
         
         
         !!! info "InfluxDB"
-            InfluxDB は、`collectd` および他のデータソースからのメトリックの集約と、後続の可視化（例：InfluxDB に格納されているメトリックを可視化する [Grafana][link-grafana] 監視システム）に使用できます。
+            InfluxDBは、`collectd` と他のデータソースからのメトリクスの集約およびその後の可視化（例えば、InfluxDBに格納されたメトリクスを可視化する[Grafana][link-grafana] 監視システム）に使用できます。
         
-    *   [`collectd` の write プラグインのいずれかを介して][doc-write-plugins]。
+    * [`collectd` のwrite プラグインの一つを経由して][doc-write-plugins]。
   
-        例えば、`write_graphite` プラグインを使用して、収集されたデータを [Graphite][link-graphite] にエクスポートできます。
+        例えば、 `write_graphite` プラグインを使用して収集されたデータを [Graphite][link-graphite] にエクスポートできます。
   
         
         !!! info "Graphite"
-            Graphite は、監視および可視化システムのデータソースとして使用できます（例：[Grafana][link-grafana]）。
+            Graphiteは、監視および可視化システムのデータソースとして使用できます（例えば、[Grafana][link-grafana]）。
         
   
-    この方法は、以下のフィルターノード展開タイプに適しています：
+    この方法は次のフィルタノードのデプロイメントタイプに適用されます：
 
-    *   クラウド内：Amazon AWS、Google Cloud;
-    *   Linux 上の NGINX/NGINX Plus プラットフォーム。
-  
-*   [`collectd-nagios` を介してデータをエクスポートする][doc-collectd-nagios]。
-  
-    この [ユーティリティ][link-collectd-nagios] は、`collectd` から指定されたメトリックの値を受け取り、[Nagios 互換フォーマット][link-nagios-format] で表示します。
-  
-    このユーティリティを使用して、メトリックを [Nagios][link-nagios] または [Zabbix][link-zabbix] 監視システムにエクスポートできます。
-  
-    この方法は、どのようにデプロイされているかに関係なく、すべての Wallarm フィルターノードでサポートされています。
-  
-*   メトリックが所定のしきい値を達成したときに `collectd` から通知を送信する[ことにより][doc-collectd-notices]。
+    *   クラウド中：Amazon AWS、Google Cloud；
+    *   NGINX/NGINX Plus プラットフォーム向けの Linux上。
 
-    この方法は、どのようにデプロイされているかに関係なく、すべての Wallarm フィルターノードでサポートされています。
+*   [`collectd-nagios` を経由してデータをエクスポートする][doc-collectd-nagios]。
+  
+    この[ユーティリティ][link-collectd-nagios]は `collectd` から与えられたメトリクスの値を受け取り、[Nagios互換フォーマット][link-nagios-format]でそれを表示します。
+  
+    このユーティリティを利用して、メトリクスを [Nagios][link-nagios] または [Zabbix][link-zabbix] 監視システムにエクスポートできます。
+  
+    この方法は、どのようにそのノードがデプロイされているかに関係なく、任意のWallarmフィルタノードによってサポートされています。
+  
+*   メトリクスが予定された閾値に達したときに `collectd` から[通知を送る][doc-collectd-notices]。
+
+    この方法は、どのようにそのノードがデプロイされているかに関係なく、任意のWallarmフィルタノードによってサポートされています。

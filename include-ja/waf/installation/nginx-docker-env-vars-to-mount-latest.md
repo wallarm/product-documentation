@@ -1,4 +1,5 @@
 環境変数 | 説明 | 必須
 --- | ---- | ----
-`WALLARM_API_TOKEN` | Wallarmノードトークン。<br><div class="admonition info"> <p class="admonition-title">複数のインストールで1つのトークンを使用する</p> <p>選択したプラットフォームに関係なく、複数のインストールで1つのトークンを使用できます。これにより、Wallarm Console UIでノードインスタンスを論理的にグループ化できます。例：開発環境に複数のWallarmノードをデプロイし、各ノードは特定の開発者が所有する独自のマシン上にあります。</p></div> | はい
-`WALLARM_API_HOST` | Wallarm APIサーバー：<ul><li>`us1.api.wallarm.com`：USクラウド用</li><li>`api.wallarm.com`：EUクラウド用</li></ul>デフォルト：`api.wallarm.com`。 | いいえ
+`WALLARM_API_TOKEN` | WallarmノードまたはAPIトークン。 | はい
+`WALLARM_API_HOST` | Wallarm APIサーバー:<ul><li>`us1.api.wallarm.com` はUSクラウドのため</li><li>`api.wallarm.com` はEUクラウドのため</li></ul>デフォルトは `api.wallarm.com`。 | いいえ
+`WALLARM_LABELS` | <p>ノード4.6から利用可能。`WALLARM_API_TOKEN`が`Deploy`ロールを持つ[API token][api-token]に設定されている場合のみ動作します。例として、ノードインスタンスのグループ化に`group`ラベルをセットします：</p> <p>`WALLARM_LABELS="group=<GROUP>"`</p> <p>...これにより、ノードインスタンスは`<GROUP>`インスタンスグループ（既存の場合、または存在しない場合は作成されます）に配置されます。</p> | はい（APIトークンの場合）

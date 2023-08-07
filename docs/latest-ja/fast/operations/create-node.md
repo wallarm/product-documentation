@@ -2,18 +2,18 @@
 [link-wl-portal-node-tab]:      https://us1.my.wallarm.com/testing/nodes
 
 
-#   Creating FAST Node and Getting a Token
+#   FASTノードの作成とトークンの取得
 
-!!! info "Additional information"
-    You can read about FAST node and token in details [here][doc-about-token].
+!!! info "追加情報"
+    FASTノードとトークンについての詳細は[ここ][doc-about-token]で読むことができます。
 
-To create a FAST node in the Wallarm cloud, do the following:
-1.  Go to the [“FAST: Nodes” section][link-wl-portal-node-tab] on the Wallarm portal.
+WallarmクラウドでFASTノードを作成するには、次の手順を実行します：
+1.  Wallarmポータルの[「FAST：ノード」セクション][link-wl-portal-node-tab]に移動してください。
 
-    If the “FAST” section is not available, please contact [sales@wallarm.com](mailto:sales@wallarm.com) to get the FAST subscription first.
-2.  Press the “Create FAST node” button.
-3.  Enter the name of the node and press the “Create” button.
-4.  Copy the node’s token and press the “OK” button.
+    「FAST」セクションが利用できない場合は、まずFASTサブスクリプションを取得するために、[sales@wallarm.com](mailto:sales@wallarm.com)に連絡してください。
+2. 「FASTノードを作成」ボタンを押します。
+3. ノードの名前を入力し、「作成」ボタンを押します。
+4. ノードのトークンをコピーして、「OK」ボタンを押します。
 
-!!! warning "Precautions while working with the token"
-    It is strongly not recommended to make the value of any token public available.
+!!! warning "トークンの取り扱い注意"
+    いかなるトークンの値も公にすることは強く推奨されません。

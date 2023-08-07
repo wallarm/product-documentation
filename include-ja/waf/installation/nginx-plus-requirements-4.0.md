@@ -1,12 +1,12 @@
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* SELinux disabled or configured upon the [instructions][configure-selinux-instr]
-* NGINX Plus release 28 (R28)
+* [USクラウド](https://us1.my.wallarm.com/)あるいは[EUクラウド](https://my.wallarm.com/)のWallarm Consoleで**管理者**ロールにアクセスすること
+* SELinuxは無効にするか、[指示][configure-selinux-instr]に従って設定すること
+* NGINX Plusリリース28（R28）
 
-    !!! info "Custom NGINX Plus versions"
-        If you have a different version, refer to the instructions on [how to connect the Wallarm module to custom build of NGINX][nginx-custom]
-* Executing all commands as a superuser (e.g. `root`)
-* For the request processing and postanalytics on different servers: postanalytics installed on the separate server upon the [instructions][install-postanalytics-instr]
-* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` for working with US Wallarm Cloud or to `https://api.wallarm.com` for working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted][ip-lists-docs] countries, regions or data centers
-* Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
+    !!! info "カスタムNGINX Plusバージョン"
+        他のバージョンを使用している場合は、[NGINXのカスタムビルドにWallarmモジュールを接続する方法][nginx-custom]の指示を参照してください
+* 全てのコマンドは超ユーザー（例：`root`）として実行すること
+* リクエストの処理とポストアナリティクスは別のサーバで行います：ポストアナリティクスは[指示][install-postanalytics-instr]に従って別のサーバでインストールすること
+* パッケージをダウンロードするために `https://repo.wallarm.com` へのアクセス。ファイアウォールによってアクセスがブロックされていないことを確認すること
+* US Wallarm Cloudを使うために `https://us1.api.wallarm.com` へのアクセス、またはEU Wallarm Cloudを使うために `https://api.wallarm.com` へのアクセス。アクセスはプロキシサーバ経由でのみ設定できる場合は、[指示][configure-proxy-balancer-instr]を使用してください
+* [リンク](https://www.gstatic.com/ipranges/goog.json)内に掲載されているGoogle Cloud StorageのIPアドレスへのアクセス。個々のIPアドレスの代わりに全体の国、地域、データセンターを[許可リスト、拒否リスト、またはグレーリスト][ip-lists-docs]に登録する場合、WallarmノードはGoogle Storageにホストされている集約データベースから関連する正確なIPアドレスを取得します
+* テキストエディタ **vim**、 **nano**、または他のいずれかをインストールすること。この説明書では、**vim** を使用します

@@ -3,56 +3,57 @@
 [img-false-attack]:             ../../images/user-guides/events/false-attack.png
 [img-removed-attack-info]:      ../../images/user-guides/events/removed-attack-info.png
 
-# 偽陽性攻撃の取り扱い
 
-**偽陽性**とは、適切なリクエストで攻撃の兆候が検出されることです。攻撃を分析した後、その攻撃のすべてまたは一部のリクエストが偽陽性であると結論付けることがあります。今後のトラフィック分析でこのようなリクエストを攻撃として認識しないようにするために、いくつかのリクエストや攻撃全体を偽陽性としてマークすることができます。
+# 偽陽性アタックの取り扱い
 
-## 偽陽性マークの仕組みは？
+**偽陽性**は、合法的なリクエストに攻撃の兆候が検出された際に発生します。攻撃を分析した後、この攻撃の全リクエストまたは一部のリクエストが偽陽性であると結論付けることができます。過去の送信トラフィックから同様のリクエストを攻撃として認識することを防ぐために、いくつかのリクエストや攻撃全体を偽陽性としてマークすることができます。
 
-* [情報漏えい](../../attacks-vulns-list.md#information-exposure) と異なるタイプの攻撃に対して偽陽性マークが追加されると、同じリクエストに対する検出された攻撃の兆候 ([トークン](../../about-wallarm/protecting-against-attacks.md#library-libproton)) の解析を無効にするルールが自動的に作成されます。
-* [情報漏えい](../../attacks-vulns-list.md#information-exposure) タイプのインシデントに対して偽陽性マークが追加されると、検出された[脆弱性の兆候](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)の同じリクエストの解析を無効にするルールが自動的に作成されます。
+## 偽陽性マークの動作は？
 
-作成されたルールは、保護されたアプリケーションへのリクエストの分析時に適用されます。ルールは Wallarm Console に表示されず、[Wallarm の技術サポート](mailto: support@wallarm.com) に送信されるリクエストによってのみ変更または削除できます。
+* [Information Exposure](../../attacks-vulns-list.md#information-exposure)と異なるタイプの攻撃に偽陽性マークが追加された場合、検出した攻撃の兆候（[トークン](../../about-wallarm/protecting-against-attacks.md#library-libproton)）の同一リクエストの分析が無効になるルールが自動的に作成されます。
+* [Information Exposure](../../attacks-vulns-list.md#information-exposure)の攻撃タイプのインシデントに対して偽陽性マークが追加された場合、検出した[脆弱性の兆候](../../about-wallarm/detecting-vulnerabilities.md#vulnerability-detection-methods)の同一リクエストの分析を無効にするルールが自動的に作成されます。
 
-## ヒットを偽陽性としてマークする
+作成されたルールは、保護対象のアプリケーションへのリクエストを分析するときに適用されます。ルールはWallarm Consoleに表示されず、[Wallarmの技術サポート](mailto: support@wallarm.com)へのリクエストによってのみ変更または削除することができます。
 
-1つのリクエスト（ヒット）を偽陽性としてマークするには：
+## ヒットを偽陽性とマークする
 
-1. Wallarm Console → **イベント**で、偽陽性と思われる攻撃のリクエスト一覧を展開します。
+1つのリクエスト（ヒット）を偽陽性とマークするには：
 
-    リクエスト分析の時間を短縮するために、[タグ `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits) を使用して、確実に悪意のあるリクエストを非表示にすることができます。
-2. 有効なリクエストを特定し、**アクション**列で**False**をクリックします。
+1. Wallarm Console → **イベント**　では、偽陽性と思われる攻撃のリクエストリストを展開します。
 
-    ![!False hit][img-false-attack]
+    リクエスト分析の時間を節約するために、正確に悪意のあるリクエストを隠すことができます。[tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)を使用します。
+2. 有効なリクエストを定義し、**アクション**列の**偽**をクリックします。
 
-## 攻撃を偽陽性としてマークする
+    ![!偽のヒット][img-false-attack]
 
-攻撃内のすべてのリクエスト（ヒット）を偽陽性としてマークするには：
+## 攻撃を偽陽性とマークする
 
-1. Wallarm Console → **イベント**で、有効なリクエストが含まれる攻撃を選択します。
+攻撃の全てのリクエスト（ヒット）を偽陽性とマークするには：
 
-    リクエスト分析の時間を短縮するために、[タグ `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits) を使用して、確実に悪意のあるリクエストを非表示にすることができます。
-2. **Mark as false positive（偽陽性としてマーク）**をクリックします。
+1. Wallarm Console → **イベント**　では、有効なリクエストを持つ攻撃を選択します。
 
-    ![!False attack](../../images/user-guides/events/analyze-attack.png)
+    リクエスト分析の時間を節約するために、正確に悪意のあるリクエストを隠すことが可能です。[tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)を使用します。
+2. **偽陽性とマークする**をクリックします。
 
-!!! warning "攻撃がIPによってグループ化されたヒットの場合"
-    攻撃がIPアドレスごとに[グループ化](../../about-wallarm/protecting-against-attacks.md#attack)されたヒットで構成されている場合、**Mark as false positive（偽陽性としてマーク）** ボタンは利用できません。偽陽性として[特定のヒットをマーク](#mark-a-hit-as-a-false-positive)することができます。
+    ![!偽の攻撃](../../images/user-guides/events/analyze-attack.png)
 
-攻撃のすべてのリクエストが偽陽性としてマークされた場合、その攻撃に関する情報は次のようになります：
+!!! warning "攻撃がIPによってグループ化されたヒットである場合"
+    攻撃がIPアドレスによって[グループ化](../../about-wallarm/protecting-against-attacks.md#attack)されたヒットで構成されている場合、**偽陽性とマークする**ボタンは利用できません。特定のヒットを偽陽性と[マーク](#mark-a-hit-as-a-false-positive)することができます。
 
-![!The whole attack is marked as false one][img-removed-attack-info]
+攻撃の全てのリクエストが偽陽性とマークされた場合、その攻撃に関する情報は次のようになります：
+
+![!全攻撃が偽陽性にマークされている][img-removed-attack-info]
 
 ## 偽陽性マークを削除する
 
-ヒットまたは攻撃から偽陽性マークを削除するには、[Wallarm の技術サポート](mailto: support@wallarm.com) にリクエストを送信してください。また、Wallarm Console のダイアログボックスでマークが適用された数秒以内に偽陽性マークを元に戻すことができます。
+ヒットや攻撃の偽陽性マークを削除するには、[Wallarmの技術サポート](mailto: support@wallarm.com)へリクエストを送ってください。また、マークが適用された数秒後に、Wallarm Consoleのダイアログボックスで偽陽性マークを元に戻すこともできます。
 
-## 攻撃リストに偽陽性を表示する
+## 攻撃リストの偽陽性表示
 
-Wallarm Console では、別のフィルタを使用して攻撃リスト内の偽陽性の表示を制御することができます。以下のフィルタオプションがあります：
+Wallarm Consoleでは、別のフィルターを通じて攻撃リストの偽陽性表示を制御することができます。以下のフィルターのオプションがあります：
 
 * **デフォルトビュー**：実際の攻撃のみ
-* **偽陽性あり**：実際の攻撃と偽陽性
+* **偽陽性を含む**：実際の攻撃と偽陽性
 * **偽陽性のみ**
 
-![!False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
+![!偽陽性フィルタ](../../images/user-guides/events/filter-for-falsepositive.png)

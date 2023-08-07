@@ -1,17 +1,17 @@
-# トラフィックミラーリング用のIstio設定例
+# トラフィックミラーリング用の Istio 設定の例
 
-この記事では、Istioで[トラフィックをミラーリングし、Wallarmノードにルートする](overview.md)ために必要な設定例を提供します。
+この記事では、Istio が[トラフィックをミラーリングし、それを Wallarm ノードにルーティングする](overview.md)ために必要な設定の例を提供しています。
 
-## ステップ1: トラフィックをミラーリングするためにIstioを設定する
+## ステップ 1：トラフィックミラーリングを可能にする Istio の設定
 
-Istioでトラフィックをミラーリングするために、`VirtualService`を内部エンドポイント（Istio用の内部、たとえばKubernetes内にホストされている）または`ServiceEntry`を用いた外部エンドポイントにミラーリングルートを設定することができます:
+Istio がトラフィックをミラーリングするためには、内部エンドポイント（Istioの内部、つまり Kubernetes でホストされているなど）または `ServiceEntry` とともに外部エンドポイントにミラーリング・ルートを設定するための `VirtualService` を設定することができます：
 
-* クラスタ内のリクエスト（例：ポッド間）のミラーリングを有効にするには、`.spec.gateways` に `mesh`を追加します。
-* 外部リクエスト（例：LoadBalancerやNodePortサービス経由）のミラーリングを有効にするには、Istioの`Gateway`コンポーネントを設定し、そのコンポーネント名を `VirtualService` の `.spec.gateways` に追加します。このオプションは、以下の例で示されています。
+* クラスタ内のリクエスト（例えばポッド間）のミラーリングを可能にするには、`mesh` を `.spec.gateways` に追加します。
+* 外部リクエストのミラーリングを可能にするには（例えばLoadBalancerやNodePortサービスを通じて）、Istioの `Gateway` コンポーネントを設定し、そのコンポーネントの名前を `VirtualService` の `.spec.gateways` に追加します。このオプションは下の例で示されています。
 
 ```yaml
 ---
-### ミラーリング先のトラフィックの設定
+### ミラーリングされたトラフィックの送信先設定
 ###
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
@@ -35,11 +35,10 @@ spec:
   hosts:
     - ...
   gateways:
-    ### istio `Gateway` コンポーネントの名前。外部ソースからのトラフィックを処理するために必要です
+    ### Istio `Gateway` コンポーネントの名前。外部からのトラフィックを取り扱うために必要です。
     ###
     - httpbin-gateway
-    ### 特別なラベル。この仮想サービスルートがゲートウェイ以外でKubernetesポッドからのリクエストを
-    ### 処理できるようにする
+    ### 特定のラベル、この仮想サービスのルートがKubernetesのポッドからのリクエスト（ゲートウェイを経由しないクラスタ内通信）を取り扱うことを可能にする
     ###
     - mesh
   http:
@@ -54,7 +53,7 @@ spec:
         port:
           number: 8445 # ミラーリング先のポート
 ---
-### 外部リクエストの処理機能
+### 外部リクエストの取り扱い用
 ###
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
@@ -73,8 +72,8 @@ spec:
     - "httpbin.local"
 ```
 
-[Istioのドキュメントをご確認ください](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
+[Istio のドキュメンテーションを確認する](https://istio.io/latest/docs/tasks/traffic-management/mirroring/)
 
-## ステップ2: Wallarmノードをミラーリングされたトラフィックをフィルタリングするように設定する
+## ステップ 2：ミラーリングされたトラフィックをフィルタするための Wallarm ノードの設定
 
---8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"

@@ -4,21 +4,21 @@
 [link-juice-shop]:          https://www.owasp.org/index.php/OWASP_Juice_Shop_Project
 [link-ojs-install-manual]:  https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/part1/running.html
 
-#   Examination of the Sample Application
+#   サンプルアプリケーションの調査
 
-!!! info "A few words about the application"
-    This guide uses the vulnerable [OWASP Juice Shop][link-juice-shop] application to demonstrate the capabilities of the FAST extension mechanism.
+!!! info "アプリケーションについてのいくつかの言葉"
+    このガイドでは、脆弱性を持つ [OWASP Juice Shop][link-juice-shop] アプリケーションを使用して、FAST拡張機構の機能を示しています。
     
-    It is assumed that an instance of this application is accessible via the `ojs.example.local` domain name. If a different domain name is assigned to the deployed application (see [installation instructions][link-ojs-install-manual]), please replace `ojs.example.local` with the appropriate domain name.
- To successfully construct a FAST extension, you need to understand the mechanism of operation of the web application or API that you need to test for vulnerabilities (the internal architecture of the application or API, request and response format, the logic of exception handling, etc).
+    このアプリケーションのインスタンスが `ojs.example.local` ドメイン名経由でアクセス可能であると想定しています。デプロイされたアプリケーションに別のドメイン名が割り当てられている場合（[インストール手順][link-ojs-install-manual]を参照）、適切なドメイン名に `ojs.example.local` を置き換えてください。
+    脆弱性をテストするために必要なウェブアプリケーションまたはAPIの操作メカニズムを理解した上で、FAST拡張を正常に構築する必要があります（アプリケーションまたはAPIの内部アーキテクチャ、リクエストとレスポンスの形式、例外処理のロジックなど）。
 
-Let us perform an inspection of the OWASP Juice Shop application to find out a few potential ways of exploiting vulnerabilities.
+OWASP Juice Shopアプリケーションを調査して、脆弱性を悪用する可能性のあるいくつかの方法を見つけましょう。
 
-To do this, proceed to the login page (`http://ojs.example.local/#/login`) using a browser, enter the `'` symbol into the “Email” field and the `12345` password into the “Password” field, and press the “Log in” button. With the help of the browser's developer tools or Wireshark traffic capturing software, we can figure out that using the apostrophe symbol in the “Email” field causes an internal error in the server. 
+これを行うために、ブラウザを使用してログインページ (`http://ojs.example.local/#/login`) に進み、"Email" フィールドに `'` シンボルを、"Password" フィールドに `12345` パスワードを入力し、"Log in" ボタンを押します。ブラウザの開発者ツールやWiresharkトラフィックキャプチャソフトウェアを使用して、"Email" フィールドでアポストロフィシンボルを使用するとサーバー内部でエラーが発生することがわかります。
 
-After analyzing all information from the request to the server, we can come to the following conclusions:
-* The REST API method `POST /rest/user/login` is called when a user is trying to log in.
-* The credentials for logging in are transferred to this API method in JSON format as shown below.
+サーバーへのリクエストから得られた全ての情報を分析した結果、次の結論を得ることができます：
+* ユーザーがログインしようとすると、REST APIメソッド `POST /rest/user/login` が呼び出されます。
+* ログインのための資格情報は、以下に示すように、このAPIメソッドにJSON形式で転送されます。
     
     ```
     {
@@ -27,24 +27,24 @@ After analyzing all information from the request to the server, we can come to t
     }
     ```
     
-After analyzing all information from the server's response, we can come to the conclusion that the `email` and `password` values are used in the following SQL query: 
+サーバーのレスポンスから得られる全ての情報を分析した結果、次のSQLクエリで `email` および `password` 値が使用されると結論付けることができます：
     
 ```
 SELECT * FROM Users WHERE email = ''' AND password = '827ccb0eea8a706c4c34a16891f84e7b'
 ```
 
-Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL injection attacks (SQLi) through the login form.
+したがって、OWASP Juice Shopが、ログインフォームを介したSQLインジェクション攻撃（SQLi）に対して脆弱である可能性があると推測できます。
 
-![!The OWASP Juice Shop application login form][img-login]
+![!OWASP Juice Shopアプリケーションのログインフォーム][img-login]
 
-!!! info "Exploiting the vulnerability"
-    The exploitable vulnerability: SQLi.
+!!! info "脆弱性の悪用"
+    悪用可能な脆弱性：SQLi。
     
-    The official documentation exploits the SQLi vulnerability by passing the `'or 1=1 -- ` email and any password into the login form.
+    公式ドキュメンテーションでは、SQLi脆弱性を利用して、ログインフォームに `'or 1=1 -- ` のメールと任意のパスワードを入力します。
     
-    After this attack you will be logged in as the web application administrator.
+    この攻撃後、ウェブアプリケーション管理者としてログインします。
     
-    Alternatively, you can use the payload that contains the existing administrator's email as the `email` field value (the `password` field may contain any value).
+    または、既存の管理者のメールを `email` フィールドの値として含むペイロードを使用することもできます（`password` フィールドは任意の値を含んで構いません）。
     
     ```
     {
@@ -52,19 +52,18 @@ Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL in
         "password": "12345"
     }
     ```
- To understand how to detect the case of a successful vulnerability exploitation, log in to the site as the administrator using the email and password values mentioned above. Intercept the API server's response using the Wireshark application:
-* The HTTP status of the response: `200 OK` (if there are any issues during login, then the server will respond with the `401 Unauthorized` status). 
-* The server's response in JSON format that informs about a successful authentication:
+上記のメールとパスワードの値を使用して、管理者としてサイトにログインし、成功した脆弱性の悪用のケースを検出する方法を理解するために、Wiresharkアプリケーションを使ってAPIサーバーのレスポンスをインターセプトします：
+* レスポンスのHTTPステータス：`200 OK` （ログイン中に問題がある場合、サーバーは `401 Unauthorized` ステータスで応答します）。 
+* 成功した認証について通知するサーバーからのJSON形式のレスポンス：
 
     ```
     {
         "authentication": {
-            "token": "some long token",     # token value is not important
-            "bid": 1,                       # user's shopping cart identifier
-            "umail": "admin@juice-sh.op"    # user's email address is stored in the umail parameter
+            "token": "some long token",     # トークンの値は重要ではありません
+            "bid": 1,                       # ユーザーのショッピングカート識別子
+            "umail": "admin@juice-sh.op"    # umailパラメータにはユーザーのメールアドレスが格納されています
         }
     }
     ```
 
-![!Intercepting the API server's response using the Wireshark application][img-wireshark]
-
+![!Wiresharkアプリケーションを用いてAPIサーバーのレスポンスをインターセプトする][img-wireshark]

@@ -1,18 +1,19 @@
-!!! warning "エラー「署名を検証できませんでした」"
-    追加されたGPGキーが期限切れの場合、次のエラーが返されます。
+警告 "「署名を検証できません」エラー" !!!
 
-    ```
-    W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release:以下の署名が
-    検証できませんでした。公開鍵が利用できません: NO_PUBKEY 1111FQQW999
-    E: リポジトリ 'https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release' は署名されていません。
-    N: そのようなリポジトリからの更新は安全に行えないため、デフォルトでは無効になっています。
-    N: リポジトリの作成とユーザー構成の詳細については、apt-secure(8)マニュアルページを参照してください。
-    ```
+GPGキーが期限切れの場合、次のエラーが返されます：
 
-    問題を解決するには、Wallarmパッケージの新しいGPGキーをインポートしてから、次のコマンドを使用してパッケージをアップグレードしてください。
+```
+W: GPG error: https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release:The following
+signatures couldn't be verified because the public key is not available: NO_PUBKEY 1111FQQW999
+E: The repository 'https://repo.wallarm.com/ubuntu/wallarm-node focal/4.4/ Release' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+```
 
-    ```
-    curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
-    sudo apt update
-    sudo apt dist-upgrade
-    ```
+問題を解決するためには、Wallarmパッケージの新しいGPGキーをインポートしてから、以下のコマンドを使用してパッケージをアップグレードしてください：
+
+```
+curl -fsSL https://repo.wallarm.com/wallarm.gpg | sudo apt-key add -
+sudo apt update
+sudo apt dist-upgrade
+```

@@ -1,12 +1,12 @@
 [ip-lists-docs]: ../user-guides/ip-lists/overview.md
 
-# Wallarm統合Kong Ingressコントローラをアップグレードする
+# Wallarmモジュールが統合されたKong Ingressコントローラーのアップグレード
 
-これらの手順は、デプロイされたWallarm KongベースのIngress Controller 4.xをWallarmノード4.4で新しいバージョンにアップグレードする手順を説明しています。
+これらの指示は、デプロイされたWallarm KongベースのIngress Controller 4.xをWallarm node 4.6が含まれた新バージョンにアップグレードする手順を説明します。
 
-## 要件
+## 必要条件
 
---8<-- "../include-ja/waf/installation/kong-ingress-controller-reqs.md"
+--8<-- "../include/waf/installation/kong-ingress-controller-reqs.md"
 
 ## ステップ1：Wallarm Helmチャートリポジトリを更新する
 
@@ -14,43 +14,43 @@
 helm repo update wallarm
 ```
 
-## ステップ2：すべての来K8sマニフェストの変更をチェックアウトする
+## ステップ2：すべての来るK8sマニフェストの変更を確認する
 
-予期しないIngressコントローラの変更を回避するために、[Helm Diff Plugin](https://github.com/databus23/helm-diff)を使用してすべての来K8sマニフェストの変更をチェックアウトしてください。このプラグインは、デプロイされたIngressコントローラのバージョンと新しいバージョンのK8sマニフェストの間の差分を出力します。
+予想外に変更されたIngressコントローラーの振る舞いを避けるために、[Helm Diffプラグイン](https://github.com/databus23/helm-diff)を使用して、すべての来るK8sマニフェストの変更を確認します。このプラグインは、デプロイされたIngressコントローラーのバージョンと新しいバージョンのK8sマニフェストの違いを出力します。
 
 プラグインをインストールして実行するには：
 
-1. プラグインをインストールする：
+1. プラグインをインストールします。
 
     ```bash
     helm plugin install https://github.com/databus23/helm-diff
     ```
-2. プラグインを実行する：
+2. プラグインを実行します。
 
     ```bash
-    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.4.3 -f <PATH_TO_VALUES>
+    helm diff upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.6.1 -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリース名
-    * `<NAMESPACE>`: Ingressコントローラーをデプロイしている名前空間
-    * `<PATH_TO_VALUES>`: Ingressコントローラ4.4の設定を定義した`values.yaml`ファイルへのパス－以前のIngressコントローラバージョンを実行するために作成したものを使用できます
-3. 実行中のサービスの安定性に影響を与える変更がないことを確認し、stdoutのエラーを注意深く確認してください。
+    * `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリースの名前
+    * `<NAMESPACE>`: Ingressコントローラーがデプロイされているネームスペース
+    * `<PATH_TO_VALUES>`: Ingressコントローラー4.6の設定を定義する`values.yaml`ファイルへのパス - 以前のIngressコントローラーバージョンの実行のために作成したものを使用することができます
+3. 実行中のサービスの安定性に影響を与える変更がないことを確認し、stdoutからのエラーを慎重に調査します。
 
-    stdoutが空の場合は、`values.yaml`ファイルが有効であることを確認してください。
+    stdoutが空の場合は、`values.yaml`ファイルが有効であることを確認します。
 
-## ステップ3：Ingressコントローラをアップグレードする
+## ステップ3：イングレンスコントローラーをアップグレードする
 
-デプロイされたKong Ingressコントローラをアップグレードします：
+デプロイされたKong Ingressコントローラーをアップグレードします：
 
 ``` bash
-helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.4.3 -f <PATH_TO_VALUES>
+helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.6.1 -f <PATH_TO_VALUES>
 ```
 
-* `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリース名
-* `<NAMESPACE>`: Ingressコントローラーをデプロイしている名前空間
-* `<PATH_TO_VALUES>`: Ingressコントローラ4.4の設定を定義した`values.yaml`ファイルへのパス－以前のIngressコントローラバージョンを実行するために作成したものを使用できます
+* `<RELEASE_NAME>`: IngressコントローラーチャートのHelmリリースの名前
+* `<NAMESPACE>`: Ingressコントローラーがデプロイされているネームスペース
+* `<PATH_TO_VALUES>`: Ingressコントローラーチャート部署4.6設定を定義する`values.yaml`ファイルへのパス - 以前のIngressコントローラーバージョンの実行のために作成したものを使用することができます
 
-## ステップ4：アップグレードされたIngressコントローラをテストする
+## ステップ4：アップグレードされたIngressコントローラーをテストする
 
 1. Helmチャートのバージョンがアップグレードされたことを確認します：
 
@@ -58,26 +58,26 @@ helm upgrade <RELEASE_NAME> -n <NAMESPACE> wallarm/kong --version 4.4.3 -f <PATH
     helm list -n <NAMESPACE>
     ```
 
-    ここで、`<NAMESPACE>`はIngressコントローラがデプロイされている名前空間です。
+    ここで`<NAMESPACE>`は、IngressコントローラーのHelmチャートがデプロイされているネームスペースです。
 
-    チャートのバージョンは`kong-4.4.0`に対応する必要があります。
-1. Wallarmポッドの詳細が正常に開始されたことを確認する：
+    チャートのバージョンは`kong-4.6.0`に対応しているべきです。
+1. Wallarm podの詳細を取得して、成功して開始されたことを確認します：
 
     ```bash
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=kong
     ```
 
-    各ポッドは以下の内容を表示する必要があります：**READY：N / N**および**STATUS：Running**、例：
+    各ポッドは次のような状況を表示するべきです： **READY: N/N**および**STATUS: Running**、例えば：
 
     ```
     NAME                                                      READY   STATUS    RESTARTS   AGE
     wallarm-ingress-kong-54cf88b989-gp2vg                     1/1     Running   0          91m
     wallarm-ingress-kong-wallarm-tarantool-86d9d4b6cd-hpd5k   4/4     Running   0          91m
     ```
-1. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃をKong Ingress Controller Serviceに送信します：
+1. Kong Ingress Controller Serviceへのテスト用[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃を送信します：
 
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    新しいバージョンのソリューションが以前のバージョンで行ったように悪意のあるリクエストを処理することを確認します。
+    新しいバージョンのソリューションが、前のバージョンと同様に悪意あるリクエストを処理することを確認します。

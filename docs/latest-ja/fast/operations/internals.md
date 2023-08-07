@@ -30,199 +30,199 @@
 [link-wl-portal-policy-tab]:    https://us1.my.wallarm.com/testing/policies
 [link-wl-portal-node-tab]:      https://us1.my.wallarm.com/testing/nodes
 
-#   How FAST Operates
+#   FASTの操作方法
 
---8<-- "../include-ja/fast/cloud-note.md"
+--8<-- "../include/fast/cloud-note.md"
 
-!!! info "A short note on the document content"
-    The relationships between the entities (see below) and the testing scenarios that are described in this chapter relate to testing with the use of the Wallarm API. This kind of testing employs all entities; therefore, it is possible to provide the reader with integral insights into how these entities interact with each other.
+!!! info "文書内容についての簡単な注意事項"
+    本章で説明されているエンティティ間の関係（以下参照）とテストシナリオは、Wallarm APIを用いたテストに関連しています。この種のテストではすべてのエンティティが使用されるため、これらのエンティティがどのように相互作用するかについての包括的な洞察を読者に提供することが可能です。
     
-    When integrating FAST into a CI/CD workflow, these entities remain unchanged; however, the order of steps may differ for a particular case. Read [this document][doc-ci-intro] for extra details.
+    FASTをCI/CDワークフローに統合する際、これらのエンティティは変わりませんが、特定のケースではステップの順序が異なることがあります。詳細については、[この文書][doc-ci-intro]をご覧ください。
 
-FAST makes use of the following entities:
+FASTは以下のエンティティを使用しています：
 
-* [Test record.][anchor-testrecord]
-* [FAST test policy.][anchor-testpolicy]
-* [Test run.][anchor-testrun]
-* [Token.][anchor-token]
+* [テストレコード。][anchor-testrecord]
+* [FAST テストポリシー。][anchor-testpolicy]
+* [テスト実行。][anchor-testrun]
+* [トークン。][anchor-token]
 
-There are a few important relationships between the entities mentioned earlier:
-* A test policy and a test record may be used by several test runs and FAST nodes.
-* A token relates to a single FAST node in the Wallarm cloud, a single Docker container with that FAST node, and a single test run.
-* You can pass the existing token value into a Docker container with the FAST node, provided that the token is not in use by any other Docker container with the node.
-* If you create a new test run for the FAST node while another test run is in place, then the current test run will stop and be replaced by the new one.
+先に述べたエンティティ間にはいくつかの重要な関係があります：
+* テストポリシーとテストレコードは、複数のテストランとFASTノードで使用することができます。
+* トークンはWallarmクラウド内の単一のFASTノード、そのFASTノードを含む単一のDockerコンテナ、および単一のテストランに関連しています。
+* トークンが他のノードを含むDockerコンテナで使用されていない場合、既存のトークン値をFASTノードを含むDockerコンテナに渡すことができます。
+* 別のテストランが実施中の場合、そのFASTノードの新しいテストランを作成すると、現在のテストランは停止して新しいものに置き換えられます。
 
-![!Relations between the components][img-components-relations]
+![!コンポーネント間の関係][img-components-relations]
 
-##   The Entities Used by FAST
+##   FASTが使用するエンティティ
 
-The FAST node acts as a proxy for all requests from the request source to the target application. According to Wallarm terminology, these requests are called *baseline requests*.
+FASTノードは、リクエストソースからターゲットアプリケーションへのすべてのリクエストのプロキシとして機能します。Wallarmの用語では、これらのリクエストは*ベースラインリクエスト*と呼ばれます。
 
-When FAST node receives requests, it saves them into the special “test record” object to later create security tests based on them. According to Wallarm terminology, this process is called “baseline requests recording”.
+FASTノードがリクエストを受信すると、それらを特別な「テストレコード」オブジェクトに保存して後でそこからセキュリティテストを作成します。Wallarmの用語では、このプロセスは「ベースラインリクエストの記録」と呼ばれます。
 
-After recording the baseline requests, the FAST node creates a security test set according to a [*test policy*][anchor-testpolicy]. Then, the security test set is executed to evaluate the target application against vulnerabilities.
+ベースラインリクエストの記録が終わると、FASTノードは[*テストポリシー*][anchor-testpolicy]に従ってセキュリティテストセットを作成します。その後、セキュリティテストセットは、ターゲットアプリケーションが脆弱性に対してどの程度評価可能かを調査するために実行されます。
 
-The test record allows for previously recorded baseline requests to be reused to test the same target application or another target application again; there is no need to repeat the sending of identical baseline requests through the FAST node. This is only possible if the baseline requests in the test record are suitable for testing the application.
+テストレコードを使用すると、以前に記録されたベースラインリクエストを再利用して同じターゲットアプリケーションまたは別のターゲットアプリケーションを再テストすることができます。そのため、同一のベースラインリクエストをFASTノードを通じて送信する手間が省けます。ただし、これはテストレコード内のベースラインリクエストがアプリケーションをテストするのに適している場合に限ります。
 
 
-### Test Record
+### テストレコード
 
-FAST creates a security test set from baseline requests that are stored in the test record.
+FASTは、テストレコードに保存されたベースラインリクエストからセキュリティテストセットを作成します。
 
-To populate a test record with some baseline requests, a [test run][anchor-testrun] that is tied to this test record and a FAST node must be executed and some baseline requests must be sent through the FAST node.  
+テストレコードにいくつかのベースラインリクエストを記録するには、このテストレコードとFASTノードに紐づいた[テストラン][anchor-testrun]を実行し、いくつかのベースラインリクエストをFASTノードを通じて送信する必要があります。  
 
-Alternatively, it is possible to populate a test record without creation of a test run. To do so, you must run the FAST node in recording mode. See [this document][doc-node-deployment-ci-mode] for details. 
+もしくは、テストランを作成せずにテストレコードを記録することも可能です。そのためには、記録モードでFASTノードを実行する必要があります。詳細については[この文書][doc-node-deployment-ci-mode]をご覧ください。 
 
-Given that the test record is populated with requests, it is possible to use it with another test run if an application under the test can be evaluated for vulnerabilities using a subset of the baseline requests stored in the test record.  
+テストレコードがリクエストで記録されていると、テストレコード内に格納されているベースラインリクエストのサブセットを使用して評価対象のアプリケーションが脆弱性を持っている可能性があるかどうかを調べることができる別のテストランでそれを使用することが可能となります。  
 
-A single test record could be employed by multiple FAST nodes and test runs. This may be useful if:
-* The same target application is being tested again.
-* Multiple target applications are being tested concurrently with the same baseline requests.
+単一のテストレコードは、複数のFASTノードとテストランで使用することができます。これは以下のような場合に有用です：
+* 同じターゲットアプリケーションが再度テストされる場合。
+* 同じベースラインリクエストを使用して複数のターゲットアプリケーションが同時にテストされる場合。
 
-![!Working with a test record][img-testrecord]
+![!テストレコードとの連携][img-testrecord]
  
 
-### FAST Test Policy
+### FAST テストポリシー
 
-A *test policy* defines a set of rules for conducting the process of vulnerability detection. In particular, you can select the vulnerability types that the application should be tested for. In addition, the policy determines which parameters in the baseline request are eligible to be processed while creating a security test set. These pieces of data are used by FAST to create test requests that are used to find out if the target application is exploitable.
+*テストポリシー*は、脆弱性検出プロセスを行うためのルールセットを定義します。特に、アプリケーションがテストされるべき脆弱性のタイプを選択することができます。さらに、ポリシーは、セキュリティテストセットを作成する際に、ベースラインリクエストのどのパラメータが処理可能であるかを決定します。これらのデータは、FASTが攻撃対象のアプリケーションが攻撃可能であるかどうかを確認するために使用するテストリクエストを作成するために使用されます。
 
-You can [create][link-create-policy] a new policy or [use an existing][link-use-policy] one.
+新しいポリシーを[作成][link-create-policy]することも、既存のものを[使用][link-use-policy]することもできます。
 
-!!! info "Choosing the Appropriate Test Policy"
-    The choice of the test policy depends on how the tested target application works. It is recommended that you create a distinct test policy for each of the applications you test.
+!!! info "適切なテストポリシーの選択"
+    テストポリシーの選択は、テスト対象のアプリケーションの動作方法に依存します。それぞれのアプリケーションに対して個別のテストポリシーを作成することをお勧めします。
 
-!!! info "Additional Information"
+!!! info "追加情報"
 
-    * [Test policy example][doc-testpolicy-creation-example] from the Quick Start guide
-    * [Test policy details][doc-policy-in-detail]
+    * クイックスタートガイドからの[テストポリシーの例][doc-testpolicy-creation-example]
+    * [テストポリシーの詳細][doc-policy-in-detail]
 
-### Test Run
+### テストラン
 
-A *test run* describes the single iteration of the vulnerability testing process.
+*テストラン*は、脆弱性テストプロセスの単一の反復を記述します。
 
-A test run contains:
+テストランには以下のものが含まれます：
 
-* [Test policy][anchor-testpolicy] identifier
-* [Test record][anchor-testrecord] identifier
+* [テストポリシー][anchor-testpolicy]の識別子
+* [テストレコード][anchor-testrecord]の識別子
 
-FAST node employs these values while conducting a security test of a target application.
+FASTノードは、これらの値を使用してターゲットアプリケーションのセキュリティテストを実行します。
 
-Each test run is tightly coupled with a single FAST node. If you create a new test run `B` for the FAST node while there is another test run `A` in progress for this node, then the test run `A`’s execution is aborted and replaced by test run `B`.
+各テストランは、単一のFASTノードと密接に関連しています。FASTノードで新しいテストラン `B`を作成して、別のテストラン `A`がこのノードで進行中の場合、テストラン `A`の実行は中止されてテストラン `B`で置き換えられます。
 
-It is possible to create a test run for two different testing scenarios:
-* In the first scenario, a target application is being tested for vulnerabilities and the baseline requests' recordings are taking place simultaneously (to a new test record). The requests should flow from the request source to the target application through the FAST node for the baseline requests to be recorded. 
+テストランの作成は、2つの異なるテストシナリオで可能です：
+* 最初のシナリオでは、ターゲットアプリケーションが脆弱性のテストを受け、ベースラインリクエストの記録が同時に行われます（新しいテストレコードに）。ベースラインリクエストが記録されるためには、リクエストソースからターゲットアプリケーションにリクエストが通過する必要があります。 
 
-    A creation of a test run for this scenario will be referred to as “test run creation”  throughout the guide.
+    このガイドでは、このシナリオでのテストランの作成を「テストランの作成」と呼びます。
 
-* In the second scenario, a target application is being tested for vulnerabilities with the baseline requests extracted from an existing, non-empty test record. In this scenario, it is not necessary to deploy any request source.
+* 2つ目のシナリオでは、ターゲットアプリケーションが既存の、空でないテストレコードから抽出したベースラインリクエストで脆弱性のテストを受けます。このシナリオでは、リクエストソースをデプロイする必要はありません。
 
-    A creation of a test run for this scenario will be referred to as “test run copying”  throughout the guide.
+    このガイドでは、このシナリオでのテストランの作成を「テストランのコピー」と呼びます。
 
-When you create or copy a test run, its execution begins immediately. Depending on the testing scenario in action, the execution process will follow different steps (see below).
+テストランを作成またはコピーすると、その実行は直ちに開始されます。実行プロセスは、動作中のテストシナリオに応じて異なるステップを辿ります（下記を参照）。
 
-### Test Run Execution Flow (baseline requests recording takes place)
+### テストランの実行フロー（ベースラインリクエストの記録が行われます）
 
-When you create a test run, its execution begins immediately and follows the following steps:
+テストランを作成すると、その実行は直ちに開始され、以下のステップが実行されます：
 
-1.  A FAST node awaits a test run. 
+1.  FASTノードはテストランを待ちます。
 
-    When the FAST node determines that the test run has started, the node fetches the test policy and the test record identifiers from the test run.
+    FASTノードがテストランが開始したことを確認すると、ノードはテストランからテストポリシーとテストレコードの識別子を取得します。
     
-2.  After obtaining the identifiers, the *baseline requests recording process* starts.
+2.  識別子を取得した後、*ベースラインリクエストの記録プロセス*が開始されます。
     
-    Now the FAST node is ready to receive requests from the request source to the target application.
+    この時点で、FASTノードはリクエストソースからターゲットアプリケーションへのリクエストの受信を待つ状態になります。
     
-3.  Given that the request recording is active, it is time to start the execution of existing tests. HTTP and HTTPS requests are sent through the FAST node, which recognizes them as baseline requests.
+3.  リクエストの記録がアクティブになると、既存のテストの実行を開始することができます。HTTPとHTTPSのリクエストがFASTノードに送信され、それらをベースラインリクエストとして認識します。
 
-    All baseline requests will be stored in the test record that corresponds to the test run.
+    すべてのベースラインリクエストは、テストランに対応するテストレコードに保存されます。
     
-4.  After the test execution is finished, you can stop the recording process.
+4.  テストの実行が終わったら、記録プロセスを停止することができます。
     
-    There is a special timeout value set after the creation of a test run. It determines how long FAST should wait for new baseline requests before stopping the recording process due to the absence of baseline requests (the [`inactivity_timeout`][doc-about-timeout] parameter).
-    
-    If you do not stop the recording process manually, then: 
-    
-    * The test run continues its execution until the timeout value expires, even if the FAST security tests are already finished.
-    * Other test runs are not able to reuse the test record until this test run stops. 
-    
-    You could stop the recording process on the FAST node if there are no more baseline requests awaiting. Note the following:
+    テストランの作成後に特別なタイムアウト値が設定されています。これは、FASTが新しいベースラインリクエストを待つべき時間を決定します。ベースラインリクエストがない場合の記録プロセスの停止（[`inactivity_timeout`][doc-about-timeout]パラメータ）。
 
-    *  The processes of creation and execution of the security tests are not to be stopped. Test run execution stops when the evaluation of the target application against the vulnerabilities finishes. This behavior helps to decrease the execution time of the CI/CD job.
-    *  Other test runs gain the ability to reuse the test record once recording is stopped.
+    手動で記録プロセスを停止しない場合、
     
-5.  The FAST node creates one or more test requests based on each of the incoming baseline requests (only if the baseline request satisfies the applied test policy).
+    * テストランは、FASTのセキュリティテストがすでに完了していても、タイムアウト値が切れるまで実行を続けます。
+    * 他のテストランは、このテストランが停止するまでテストレコードを再利用することができません。
+    
+    ベースラインリクエストがこれ以上待たなくなったら、FASTノード上で記録プロセスを停止することができます。以下の点に注意してください：
+
+    * セキュリティテストの作成と実行のプロセスは停止すべきではありません。テストランの実行は、ターゲットアプリケーションに対する評価が終了するまで停止します。この挙動は、CI/CDジョブの実行時間を短縮するのに役立ちます。
+    * 他のテストランは、記録が停止されるとテストレコードを再利用することができるようになります。
+    
+5.  FASTノードは、各入力ベースラインリクエストに基づいて1つ以上のテストリクエストを作成します（ただし、ベースラインリクエストが適用されたテストポリシーを満たしている場合のみ）。
      
-6.  The FAST node executes the test requests by sending them to the target application.
+6.  FASTノードは、テストリクエストをターゲットアプリケーションに送信することでテストリクエストを実行します。
 
-Stopping the baseline requests' recording process has no impact on the processes of creation and execution of the test requests.
+ベースラインリクエストの記録プロセスを停止しても、テストリクエストの作成と実行のプロセスには影響がありません。
 
-The processes of baseline requests recording and the creation and execution of the FAST security tests run in parallel:
+ベースラインリクエストの記録プロセスとFASTセキュリティテストの作成と実行のプロセスは並行して実行します：
 
-![!Test run execution flow (baseline request recording takes place)][img-execution-timeline-recording]
+![!テストランの実行フロー（ベースラインリクエストの記録が行われます）][img-execution-timeline-recording]
 
-Note: the chart above shows the flow described in the [FAST quick start guide][doc-quick-start]. A flow with baseline requests recording is suitable either for manual security testing or automated security testing using CI/CD tools.
+注：上記のチャートは、[FASTクイックスタートガイド][doc-quick-start]で説明されているフローを示しています。ベースラインリクエストの記録が行われるフローは、手動のセキュリティテストまたはCI/CDツールを使用した自動化されたセキュリティテストに適しています。
 
-In this scenario, Wallarm API is required to manipulate the test run. See [this document][doc-node-deployment-api] for details. 
+このシナリオでは、テストランを操作するためにWallarm APIが必要となります。詳細は[このドキュメント][doc-node-deployment-api]をご覧ください。 
 
 
-### Test Run Execution Flow (pre-recorded baseline requests are used)
+### テストランの実行フロー（事前に記録されたベースラインリクエストが使用されます）
 
-When you copy a test run, its execution begins immediately and follows the following steps:
+テストランをコピーすると、その実行は直ちに開始され、以下のステップが実行されます：
 
-1.  A FAST node awaits a test run. 
+1.  FASTノードはテストランを待ちます。 
 
-    When the FAST node determines that the test run has started, the node fetches the test policy and the test record identifiers from the test run.
+    FASTノードがテストランが開始したことを確認すると、ノードはテストランからテストポリシーとテストレコードの識別子を取得します。
     
-2.  After obtaining the identifiers, the node extracts the baseline requests from the test record.
+2.  識別子を取得した後、ノードはテストレコードからベースラインリクエストを抽出します。
 
-3.  The FAST node creates one or more test requests based on each of the extracted baseline requests (only if the baseline request satisfies the applied test policy).
+3.  FASTノードは、各抽出されたベースラインリクエストに基づいて1つ以上のテストリクエストを作成します（ただし、ベースラインリクエストが適用されたテストポリシーを満たしている場合のみ）。
 
-4.  The FAST node executes the test requests by sending them to the target application.
+4.  FASTノードは、テストリクエストをターゲットアプリケーションに送信することでテストリクエストを実行します。
 
-The process of baseline request extracting takes place prior to the creation and execution of the FAST security tests:
+ベースラインリクエストの抽出プロセスは、FASTセキュリティテストの作成と実行の前に行われます：
 
-![!Test run execution flow (pre-recorded baseline requests are used)][img-execution-timeline-no-recording]
+![!テストランの実行フロー（事前に記録されたベースラインリクエストが使用されます）][img-execution-timeline-no-recording]
 
-Note that it is the execution flow that is used in the [FAST quick start guide][doc-quick-start]. The flow that makes use of pre-recorded baseline requests is suitable for automated security testing with use of CI/CD tools.
+注：ここでは、[FASTクイックスタートガイド][doc-quick-start]で使用されている実行フローを示しています。事前に記録されたベースラインリクエストを使用するフローは、CI/CDツールを使用した自動化されたセキュリティテストに適しています。
 
-In this scenario, the Wallarm API or FAST node in CI mode can be used to manipulate the test run. See [this document][doc-integration-overview] for details.
+このシナリオでは、テストランを操作するためにWallarm APIまたはCIモードのFASTノードを使用することができます。詳細は[このドキュメント][doc-integration-overview]をご覧ください。
 
-The chart below shows the most commonly encountered CI/CD workflow, which complies with the timeline shown above:
+以下のチャートは、最も一般的に遭遇されるCI/CDワークフローを示しており、上記のタイムラインに準じています：
 
-![!Test run execution flow (CI Mode)][img-common-timeline-no-recording]
+![!テストランの実行フロー（CIモード）][img-common-timeline-no-recording]
 
 
-##  Working with Test Runs
+##  テストランの操作
 
-While reading this guide, you will learn how to manage the test run execution process using API calls, specifically:
-* How to stop the baseline requests recording process if there are no more requests from the request source.
-* How to check the test run execution status.
+このガイドを読んでいると、API呼び出しを使ってテストランの実行プロセスを管理する方法を学べます。具体的には、以下の機能について学びます：
+* リクエストソースからのリクエストがこれ以上ない場合に、ベースラインリクエストの記録プロセスを停止する方法。
+* テストランの実行ステータスを確認する方法。
 
-You need to obtain a [*token*][anchor-token] in order to make such API calls and to bind the test run to the FAST node.
+これらのAPI呼び出しを行い、テストランをFASTノードに結びつけるためには、[*トークン*][anchor-token]を取得する必要があります。
 
-### Token
+### トークン
 
-A FAST node comprises of:
-* The up and running Docker container with FAST software.
+FASTノードは次のように構成されます：
+*  FASTソフトウェアを含む稼働中のDockerコンテナ。
     
-    This is where the process of traffic proxying, security test creation, execution take place.
+    ここでトラフィックのプロキシング、セキュリティテストの作成、実行が行われます。
     
-* The Wallarm cloud FAST node.
+*  WallarmクラウドのFASTノード。
 
-A token binds the running Docker container with the FAST node in the cloud:
+トークンは、稼働中のDockerコンテナとクラウド内のFASTノードとを結びつけます：
 
-![!FAST node][img-fast-node]
+![!FASTノード][img-fast-node]
 
-To deploy a FAST node, do the following:
-1.  Create a FAST node in the Wallarm cloud using the [Wallarm portal][link-wl-portal-node-tab]. Copy the provided token.
-2.  Deploy a Docker container with the node and pass the token value into the container (this process is described in detail [here][doc-node-deployment]).
+FASTノードをデプロイするには、次の手順を実行します：
+1.  [Wallarmポータル][link-wl-portal-node-tab]を使用して、Wallarmクラウド内にFASTノードを作成します。提供されたトークンをコピーします。
+2.  ノードと一緒にDockerコンテナをデプロイし、トークン値をコンテナに渡します（このプロセスは[ここ][doc-node-deployment]で詳しく説明されています）。
 
-The token serves the following purposes as well:
-* Connecting the test run with the FAST node.
-* Allowing you to manage the test run execution process by making API calls.
+トークンは、以下の目的でも使用されます：
+* テストランをFASTノードに接続します。
+* API呼び出しを行うことでテストランの実行プロセスを管理することができます。
 
-You could create as many FAST nodes in the Wallarm cloud as you need and obtain a token for each of the nodes. For example, if you have several CI/CD jobs where FAST is required, you may spin up a FAST node in the cloud for each job.
+必要なだけのFASTノードをWallarmクラウドに作成し、各ノードに対してトークンを取得することができます。例えば、FASTが必要なCI/CDジョブがいくつかある場合、各ジョブに対してクラウド内にFASTノードを作成することができます。
 
-It is possible to reuse tokens you obtained earlier if the tokens are not in use by other active Docker containers with the FAST node (e.g., any Docker container with a node that employs the same token is stopped or removed):
+他のアクティブなDockerコンテナのFASTノード（同じトークンを使用するノードを含む任意のDockerコンテナが停止または削除されている）がそれを使用していない場合、以前に取得したトークンを再利用することが可能です：
 
-![!Reusing the token][img-reuse-token]
+![!トークンを再利用する][img-reuse-token]

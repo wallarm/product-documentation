@@ -1,9 +1,9 @@
-1. Delete old postanalytics module in Wallarm Console → **Nodes** by selecting your postanalytics module node and clicking **Delete**.
-1. Confirm the action.
-    
-    When the postanalytics module node is deleted from Cloud, it will stop participation in filtration of requests to your applications. Deleting cannot be undone. The postanalytics module node will be deleted from the list of nodes permanently.
+1. Wallarm Consoleの**Nodes**で、古いpostanalyticsモジュールを選択して**Delete**をクリックすることで、古いpostanalyticsモジュールを削除します。
+1. この操作を確認してください。
 
-1. Delete machine with the old postanalytics module or just clean it from Wallarm postanalytics module components:
+    postanalyticsモジュールノードがクラウドから削除されると、あなたのアプリケーションへのリクエストのフィルタリングに参加するのを停止します。削除は元に戻すことができません。postanalyticsモジュールノードは、ノードのリストから永久に削除されます。
+
+1. 古いpostanalyticsモジュールがあるマシンを削除するか、Wallarm postanalyticsモジュールのコンポーネントをクリーンにします：
 
     === "Debian"
         ```bash
@@ -13,11 +13,11 @@
         ```bash
         sudo apt remove wallarm-node-tarantool
         ```
-    === "CentOS or Amazon Linux 2.0.2021x and lower"
+    === "CentOSまたはAmazon Linux 2.0.2021x以下"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```
-    === "AlmaLinux, Rocky Linux or Oracle Linux 8.x"
+    === "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
         ```bash
         sudo yum remove wallarm-node-tarantool
         ```

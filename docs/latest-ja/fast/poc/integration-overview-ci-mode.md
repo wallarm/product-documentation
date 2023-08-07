@@ -1,72 +1,71 @@
 [img-sample-job-ci-mode]:       ../../images/fast/poc/en/integration-overview/sample-job-ci-mode.png
 
-[doc-recording-mode]:           ci-mode-recording.md#running-a-fast-node-in-recording-mode
-[doc-testing-mode]:             ci-mode-testing.md#running-a-fast-node-in-testing-mode
+[doc-recording-mode]:           ci-mode-recording.md#recording-modeでのfast-nodeの実行
+[doc-testing-mode]:             ci-mode-testing.md#testing-modeでのfast-nodeの実行
 [doc-proxy-configuration]:      proxy-configuration.md
-[doc-fast-container-stopping]:  ci-mode-recording.md#stopping-and-removing-the-docker-container-with-the-fast-node-in-recording-mode
-[doc-recording-variables]:      ci-mode-recording.md#environment-variables-in-recording-mode
+[doc-fast-container-stopping]:  ci-mode-recording.md#recording-modeでのdockerコンテナーを停止させ、削除する方法
+[doc-recording-variables]:      ci-mode-recording.md#recording-modeでの環境変数
 [doc-integration-overview]:     integration-overview.md
 
+#   FAST Nodeを用いた統合：原理と手順
 
-#   Integration via FAST Node: Principles and Steps
+CIモードによるセキュリティテストを行うためには、FASTノードを次の2つのモードで順番に実行する必要があります：
+1.  [記録モード（Recording mode）][doc-recording-mode]
+2.  [テストモード（Testing mode）][doc-testing-mode]
 
-To conduct a security testing in CI mode, a FAST node must be sequentially run in two modes:
-1.  [Recording mode][doc-recording-mode]
-2.  [Testing mode][doc-testing-mode]
+`CI_MODE`環境変数はFASTノードの動作モードを決定します。この変数は以下の値を取ることができます：
+* `記録モード（recording）`
+* `テストモード（testing）`
 
-The `CI_MODE` environment variable defines the operation mode of a FAST node. This variable can take the following values:
-* `recording`
-* `testing`
+このシナリオでは、まず、FASTノードがテストレコードを作成し、ベースラインリクエストを記録します。記録が完了したら、ノードは事前に記録されたベースラインリクエストをベースにセキュリティテストを行うテストランを作成します。
 
-In this scenario, the FAST node first creates a test record and writes baseline requests to it. When the recording is finished, the node creates a test run that uses the prerecorded baseline requests as a basis for its security testing.  
+このシナリオは以下の画像で表示されています：
 
-This scenario is shown in the picture below:
+![!CIモードのFASTノードを持つCI/CDジョブの例][img-sample-job-ci-mode]
 
-![!An example of a CI/CD job with FAST node in the CI Mode][img-sample-job-ci-mode]
+対応するワークフローステップは次の通りです：
 
-The corresponding workflow steps are:
+1.  ターゲットアプリケーションのビルドとデプロイ。   
 
-1.  Building and deploying the target application.   
+2. [FASTノードを記録モードで実行する][doc-recording-mode]。
 
-2.  [Running the FAST node in recording mode][doc-recording-mode].
-
-    In recording mode the FAST node performs the following actions:
+    記録モードでは、FASTノードが次のアクションを行います：
     
-    * Proxies baseline requests from the requests' source to the target application.
-    * Records these baseline requests in the test record to later create the security test set based on them.
+    * ターゲットアプリケーションへのリクエストソースからのベースラインリクエストをプロキシします。
+    * これらのベースラインリクエストをテストレコードに記録し、それらを元にセキュリティーテストセットを作成します。
     
-    !!! info "Note on Test Runs"
-        A test run is not created in the recording mode.
+    !!! info "テストランについての注釈"
+        記録モードでは、テストランは作成されません。
 
-3.  Preparing and setting up a test tool:
+3. テストツールの準備と設定：
     
-    1.  Deploying and performing a basic configuration of the test tool.
+    1. テストツールをデプロイし、基本的な設定を行います。
     
-    2.  [Configuring the FAST node as a proxy server][doc-proxy-configuration].
+    2. [FASTノードをプロキシサーバーとして設定します][doc-proxy-configuration]。
         
-4.  Running the existing tests.
+4. 既存のテストを実行する。
     
-    The FAST node will proxy and record baseline requests to the target application.
+    FASTノードは、ターゲットアプリケーションへのベースラインリクエストをプロキシして記録します。
     
-5.  Stopping and removing the FAST node container.
+5. FASTノードコンテナを停止し、削除します。
 
-    If the FAST node does not encounter critical errors during operation, it runs until either the [`INACTIVITY_TIMEOUT`][doc-recording-variables] timer ticks out or the CI/CD tool explicitly stops the container.
+    FASTノードが運用中にクリティカルなエラーに遭遇しなかった場合、[`INACTIVITY_TIMEOUT`][doc-recording-variables]タイマーが切れるか、CI/CDツールが明示的にコンテナを停止してくれるまで稼働します。
     
-    After the existing tests are complete, the FAST node [needs to be stopped][doc-fast-container-stopping]. This will stop the baseline requests recording process. Then the node container may be disposed of.          
+    既存のテストが完了した後、FASTノードを[停止させる必要があります][doc-fast-container-stopping]。これにより、ベースラインリクエストの記録プロセスが停止します。その後、ノードコンテナは廃棄することができます。          
 
-6.  [Running the FAST node in testing mode][doc-testing-mode].
+6. [FASTノードをテスティングモードで実行します][doc-testing-mode]。
 
-    In testing mode, the FAST node performs the following actions:
+    テストモードでは、FASTノードが次のアクションを行います：
     
-    * Creates a test run based on the baseline requests recorded on the step 4.
-    * Starts to create and execute a security test set.
+    * ステップ4で記録されたベースラインリクエストに基づいてテストランを作成します。
+    * セキュリティテストセットの作成と実行を開始します。
     
-7.  Obtaining the results of the testing. Stopping the FAST node container.    
+7. テストの結果を取得し、FASTノードコンテナを停止します。   
     
-    If the FAST node does not encounter critical errors during operation, it runs until the security tests are complete. The node shuts down automatically. Then the node container may be disposed of.
+    FASTノードが運用中にクリティカルなエラーに遭遇しなかった場合、セキュリティテストが完了するまで稼働します。ノードは自動的にシャットダウンします。その後、ノードコンテナは廃棄することができます。
 
-##  A FAST Node Container's Lifecycle (Deployment via CI Mode)
+##  FASTノードコンテナのライフサイクル（CIモードでのデプロイ）
    
-This scenario assumes that the Docker container with the FAST node first runs in the recording mode, then in the testing mode. 
+このシナリオでは、まず記録モードで動作し、次にテストモードで動作するアプリケーションをFASTノードが実行すると想定しています。
  
-After FAST node execution is finished in any of the modes, the node container is removed. In other words, a FAST node container is recreated every time the operation mode changes. 
+どちらのモードでも、FASTノードの実行が終了した後は、ノードコンテナを削除します。つまり、操作モードが変わるたびにFASTノードコンテナが再作成されます。

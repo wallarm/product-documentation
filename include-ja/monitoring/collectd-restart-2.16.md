@@ -1,9 +1,8 @@
-次のWallarmのドキュメントを英語から日本語に翻訳してください:
 					=== "Ubuntu 14.04 LTS"
     ```bash
-    sudo service collectd restart
+    sudo service collectdを再起動します
     ```
 === "他のサポートされているディストリビューション"
     ```bash
-    sudo systemctl restart collectd
+    sudo systemctl collectdを再起動します
     ```

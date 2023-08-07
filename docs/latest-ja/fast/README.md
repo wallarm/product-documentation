@@ -1,25 +1,25 @@
 ---
-description: Wallarm's (FAST) is a purpose-built tool that identifies vulnerabilities in web applications by generating and executing automated security tests.
+description: Wallarmの（FAST）は自動セキュリティテストを生成して実行することでWebアプリケーションの脆弱性を特定するために構築された専用ツールです。
 ---
 
 [link-agreements]:      AGREEMENTS.md
 
-#   Wallarm FAST Overview
+#   Wallarm FAST 概要
 
-Wallarm's Framework for API Security Testing (FAST) is a purpose-built tool that allows you to reveal vulnerabilities in web applications by generating and executing security tests in an automatic way. SQL injections and XSS are examples of such vulnerabilities.
+WallarmのAPIセキュリティテストのフレームワーク（FAST）は自動的にセキュリティテストを生成および実行することでWebアプリケーションの脆弱性を明らかにするための専用ツールです。SQLインジェクションとXSSはそのような脆弱性の例です。
 
-A FAST node, which redirects HTTP and HTTPS requests to the target application, is a core component of the solution. It intercepts requests to the target application and constructs a security test set by modifying the original requests. This is possible due to the incorporation of fuzzing techniques and a vulnerabilities knowledge base directly into the FAST node. The node can obtain queries from a wide range of sources. For example, an existing automated test set could serve as the query source for FAST.
+目標とするアプリケーションにHTTPとHTTPSのリクエストをリダイレクトするFASTノードは、このソリューションのコアコンポーネントです。FASTノードは目標とするアプリケーションへのリクエストをインターセプトし、オリジナルのリクエストを変更してセキュリティテストセットを作成します。これは、ファジング技術と脆弱性知識ベースをFASTノードに直接組み込むことで可能になります。ノードは広範囲のソースからクエリを取得することができます。例えば、既存の自動テストセットがFASTのクエリソースとして機能することができます。
 
-A testing policy defines the parameters of the security test generation process. Such policies are created using Wallarm Cloud, another component of the solution. The cloud provides the user with an interface for creating test policies, managing the test execution process and observing the testing results.
+テストポリシーはセキュリティテスト生成プロセスのパラメータを定義します。このようなポリシーは、ソリューションの別のコンポーネントであるWallarm Cloudを使用して作成されます。クラウドはユーザーにテストポリシーの作成、テスト実行プロセスの管理、テスト結果の観察のためのインターフェースを提供します。
 
-After getting the security test set ready, the FAST node will execute the test set by sending the requests to the target application and will give a conclusion regarding the existence of certain vulnerabilities. 
+セキュリティテストセットが準備できた後、FASTノードはテストセットを実行し、リクエストを目標とするアプリケーションに送信し、特定の脆弱性の存在について結論を出します。
 
-Given the automatization capabilities combined with the built-in vulnerabilities knowledge base, FAST is a suitable tool for DevOps, security experts, software developers and QA engineers. With FAST, it is possible to use the security experts' deep knowledge to construct security testing policies, while giving developers with no expertise in the security field a way to automate security test generation and execution. Therefore, both groups of team members could effectively communicate in an asynchronous way with each other. The FAST architecture allows integrating security test generation and execution processes into the existing CI/CD process, so that the overall quality of software being developed can be increased.
+自動化機能と脆弱性知識ベースが組み込まれていることから、FASTはDevOps、セキュリティ専門家、ソフトウェア開発者、QAエンジニアに適しています。FASTを使用すると、セキュリティ専門家の深い知識を利用してセキュリティテストポリシーを構築する一方で、セキュリティ分野に専門知識がない開発者がセキュリティテストの生成と実行を自動化する方法を提供します。したがって、両方のチームメンバーグループは非同期的に互いに有効にコミュニケーションを取ることができます。FASTのアーキテクチャは、既存のCI/CDプロセスにセキュリティテスト生成と実行プロセスを統合し、開発中のソフトウェアの全体的な品質を向上させることができます。
 
---8<-- "../include-ja/fast/cloud-note-readme.md"
+--8<-- "../include/fast/cloud-note-readme.md"
 
-!!! info "Text formatting conventions"
-    This guides contain a variety of text strings and commands that need to be entered or run to get the desired result. For your convenience, all of them are formatted according to the text formatting conventions. To see the conventions, proceed to this [link][link-agreements].
+!!! info "テキストフォーマットの規則"
+    このガイドには、必要な結果を得るために入力または実行する必要がある様々なテキスト文字列とコマンドが含まれています。便宜のために、それらすべてがテキストフォーマット規約に従ってフォーマットされています。規約を見るためには、この[link][リンク-合意事項]へ進んでください。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/Me4o4v7dPyM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

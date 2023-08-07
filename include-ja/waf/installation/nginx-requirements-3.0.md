@@ -1,8 +1,8 @@
-* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) の Wallarm Console で **管理者** または **デプロイ** ロールと二要素認証が無効化されたアカウントへのアクセス
-* SELinux を無効化するか、[手順][configure-selinux-instr] に従って設定
+* [US Cloud](https://us1.my.wallarm.com/) または [EU Cloud](https://my.wallarm.com/) のWallarmコンソールで2要素認証が無効化された **管理者** または **Deploy** 役割のアカウントへのアクセス
+* SELinuxが無効化されているか、[指示書][configure-selinux-instr]に基づき設定されている
 * すべてのコマンドをスーパーユーザー（例：`root`）として実行
-* リクエスト処理と postanalytics を異なるサーバーで行う場合：別のサーバーに [手順][install-postanalytics-instr] に従って postanalytics をインストール
-* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス（ファイアウォールによってアクセスがブロックされていないことを確認）
-* US Wallarm Cloud との連携のための `https://us1.api.wallarm.com:444` へのアクセスまたは EU Wallarm Cloud との連携のための `https://api.wallarm.com:444` へのアクセス。プロキシサーバー経由でのみアクセスが設定されている場合は、[手順][configure-proxy-balancer-instr] を使用
-* [許可リスト、ブロックリスト、グレーリストに登録された][ip-lists-docs] 国や地域、データセンターで登録された IP アドレスの実際のリストをダウンロードするための [GCP ストレージアドレス](https://www.gstatic.com/ipranges/goog.json) へのアクセス
-* テキストエディタ **vim**、 **nano**、またはそれ以外のものがインストール済み。この手順では **vim** を使用します
+* リクエスト処理とポストアナリティクスを異なるサーバーで行う場合：ポストアナリティクスが[指示書][install-postanalytics-instr]に基づき別のサーバーにインストールされている
+* パッケージをダウンロードするための `https://repo.wallarm.com` へのアクセス。 アクセスがファイヤーウォールによりブロックされていないことを確認してください
+* US Wallarm Cloudで作業するための `https://us1.api.wallarm.com:444` へのアクセス、または EU Wallarm Cloudで作業するための `https://api.wallarm.com:444` へのアクセス。アクセスがプロキシサーバー経由でのみ設定できる場合は、[指示書][configure-proxy-balancer-instr]を使用してください
+* [リンク](https://www.gstatic.com/ipranges/goog.json)で記載されているGoogle Cloud StorageのIPアドレスへのアクセス。 個々のIPアドレスの代わりに国、地域、データセンター全体を[ホワイトリスト、ブラックリスト、グレーリスト][ip-lists-docs]に登録する場合、WallarmノードはGoogleストレージでホストされている集約データベースからIPリストのエントリーに関連する正確なIPアドレスを取得します
+* テキストエディタ **vim**、**nano** またはそれ以外のものがインストールされている。 この指示書では **vim** を使用しています

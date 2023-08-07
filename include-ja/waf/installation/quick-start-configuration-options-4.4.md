@@ -1,4 +1,4 @@
-* [トラフィックフィルタリングモードの設定][operation-mode-rule-docs]
-* [トラフィックフィルタリングルールのカスタマイズ][rules-docs]
-* [IPアドレスの許可リスト、拒否リスト、グレーリスト][ip-lists-docs]
-* システムイベント通知は、[DevOpsツールとのネイティブな連携][integration-docs]と[トリガー][trigger-docs]で設定されます
+* [トラフィックフィルタモードの設定][operation-mode-rule-docs]
+* [トラフィックフィルタルールのカスタマイズ][rules-docs]
+* [IPアドレスのホワイトリスト、ブラックリスト、グレーリスト][ip-lists-docs]
+* [DevOpsツールとのネイティブな統合][integration-docs]と[トリガー][trigger-docs]を経由して設定されるシステムイベント通知

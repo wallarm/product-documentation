@@ -1,89 +1,89 @@
 [link-ruby]:        http://ruby-doc.org/core-2.6.1/doc/regexp_rdoc.html
 [link-yaml]:        https://yaml.org/spec/1.2/spec.html
 
-# Points Building Principles
+# ポイント作成の原則
 
-!!! warning "Reserved words"
-    Do not use the following names and keys for the baseline request elements in order to prevent collisions with the reserved words:
+!!! 警告 "予約語"
+    予約語との衝突を防ぐため、基本リクエスト要素の名前とキーに以下の名称を使用しないでください。
         
-    * Names and keys that match the names of the parsers
-    * Names and keys that match the names of the filters
-    * Names and keys that match the `name` and `value` service words 
+    * パーサーの名称と一致する名前とキー
+    * フィルターの名称と一致する名前とキー
+    * サービス語の`name`および`value`と一致する名前とキー 
 
-There are several universal points building principles that must be considered when developing a custom extension.
+カスタム拡張を開発する際に考慮すべき、いくつかの普遍的なポイント作成の原則があります。
 
-* All Points are treated as regular expressions.
+* 全てのポイントは正規表現として扱われます。
     
-    **Example:**
+    **例:**
 
-    * The `HEADER_A.*_value` point refers to the header with the name starting with `A` if such a header is present in the request.
-    * The `PATH_\d_value` point refers to the first 10 parts of the request's URI path.
+    * `HEADER_A.*_value`ポイントは、リクエストに`A`から始まる名前のヘッダーが存在する場合、そのヘッダーを参照します。
+    * `PATH_\d_value`ポイントは、リクエストのURIパスの最初の10部分を参照します。
 
-* The parts of the point should be divided using the `_` symbol.
+* ポイントの部分は`_`シンボルを使って分割する必要があります。
     
-    **Example:** 
+    **例:** 
     
     `URI_value`.
 
-* The names of parsers and filters should be added to the point in upper case.
+* パーサーとフィルターの名前は、ポイントに大文字で追加する必要があります。
     
-    **Example:** 
+    **例:** 
     
     `ACTION_EXT_value`.
 
-* The names of the request elements should be added to the point in exactly the same way as they appear in the baseline request.
+* リクエスト要素の名前は、基本リクエスト内で表示されるのとまったく同じ方法でポイントに追加する必要があります。
     
-    **Example:** 
+    **例:** 
     
-    For the `GET http://example.com/login/?Uid=01234` request, the `GET_Uid_value` point refers to the `Uid` query string parameter.
+    `GET http://example.com/login/?Uid=01234`リクエストの場合、`GET_Uid_value` ポイントは `Uid` クエリ文字列パラメータを指します。
     
-    !!! info "Escaping special symbols"
-        Some of the service symbols might require escaping when used in points. To get detailed information, proceed to the documentation on the [Ruby programming language regular expressions][link-ruby].
+    !!! 情報 "特殊符号のエスケープ"
+        ポイントで使用する際に一部のサービス記号をエスケープする必要があるかもしれません。詳細情報は、[Rubyプログラミング言語の正規表現][link-ruby]に関するドキュメンテーションを参照してください。
 
-* A point can be placed into the extension in the following ways:
-    * surrounded by the `"` symbols. 
+* ポイントは次の方法で拡張に配置することができます：
+    * `"`シンボルで囲まれています. 
         
-        **Example:** 
+        **例:** 
         
         `"PATH_.*_value"`.
     
-    * surrounded by the `'` symbols. 
+    * `'`シンボルで囲まれています. 
         
-        **Example:** 
+        **例:** 
         
         `'GET_.*_value'`.
     
-    * not surrounded by any symbols. 
+    * どのシンボルにも囲まれていません. 
         
-        **Example:** 
+        **例:** 
         
         `HEADER_.*_value`.
     
-    !!! info "Surrounding points with symbols"
-        YAML syntax defines the difference between using various symbols to surround points. To get detailed information, proceed to this [link][link-yaml].
+    !!! 情報 "ポイントを記号で囲む"
+        YAML構文は、ポイントを囲むためにさまざまな記号を使用する違いを定義します。詳しい情報は、こちらの[リンク][link-yaml]をご覧ください。
 
-* Points divided with the `,` symbol and surrounded by the `[` and the `]` symbols are treated as an array of points. 
+* `,`シンボルで分割され、`[`と`]`で囲まれたポイントは、ポイントの配列として扱われます。 
     
-    **Example:** 
+    **例:** 
     
     `[GET_uid_value, GET_passwd_value]`.
 
-* The service word must always be present at the end of the point to indicate whether the extension should work with the name or the value of the request element. 
-    * The `name` service word must be specified to work with the name of the request element. 
+* サービスワードは、拡張がリクエスト要素の名前または値で動作するかを示すために、ポイントの最後に常に存在する必要があります。 
+    * リクエスト要素の名前を扱うためには`name`サービスワードを指定する必要があります。 
         
-        The `name` service word can be used together with the following filters:
+        `name`サービスワードは次のフィルターと一緒に使用することができます:
         
         * Xml_pi;
         * Xml_dtd_entity.
         
-        **Example:** 
+        **例:** 
         
-        The `POST_XML_XML_DTD_ENTITY_0_name` point refers to the name of the first DTD schema directive specified in XML data in the body of the request.
+        `POST_XML_XML_DTD_ENTITY_0_name`ポイントは、リクエスト本体のXMLデータに指定された最初のDTDスキーマディレクティブの名前を指します。
     
-    * The `value` service word must be specified to work with the value of the request element.
+    * リクエスト要素の値で動作するためには`value`サービスワードを指定する必要があります。 
         
-        The `value` service word can be used together with any of the available FAST DSL filters and parsers.
+        `value`サービスワードは、利用可能な全てのFAST DSLフィルターとパーサーと一緒に使用することができます。
         
-        **Example:** 
+        **例:** 
         
-        The `PATH_0_value` point refers to the value of the first request URI path part.
+        `PATH_0_value`ポイントは、最初のリクエストURIパス部分の値を参照します。

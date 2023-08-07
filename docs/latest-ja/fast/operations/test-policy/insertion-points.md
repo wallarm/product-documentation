@@ -1,46 +1,46 @@
-[img-remove-point]:         ../../../images/fast/operations/common/test-policy/policy-editor/remove-point.png         
-[img-point-help]:           ../../../images/fast/operations/common/test-policy/policy-editor/point-help.png                
+[img-remove-point]:          ../../../images/fast/operations/common/test-policy/policy-editor/remove-point.png         
+[img-point-help]:            ../../../images/fast/operations/common/test-policy/policy-editor/point-help.png                
 
-[link-get-point]:           ../../dsl/points/parsers/http.md#get-filter
-[link-post-point]:          ../../dsl/points/parsers/http.md#post-filter
-[link-path-point]:          ../../dsl/points/parsers/http.md#path-filter
-[link-action-name-point]:   ../../dsl/points/parsers/http.md#actionname-filter
-[link-action-ext-point]:    ../../dsl/points/parsers/http.md#actionext-filter
-[link-uri-point]:           ../../dsl/points/parsers/http.md#uri-filter
+[link-get-point]:            ../../dsl/points/parsers/http.md#get-filter
+[link-post-point]:           ../../dsl/points/parsers/http.md#post-filter
+[link-path-point]:           ../../dsl/points/parsers/http.md#path-filter
+[link-action-name-point]:    ../../dsl/points/parsers/http.md#actionname-filter
+[link-action-ext-point]:     ../../dsl/points/parsers/http.md#actionext-filter
+[link-uri-point]:            ../../dsl/points/parsers/http.md#uri-filter
 
-[doc-point-list]:           ../../dsl/points/parsers.md
+[doc-point-list]:            ../../dsl/points/parsers.md
 
-# Configuration of Point Processing Rules
+# ポイント処理ルールの設定
 
-Points are configured in the **Insertion Points** section of the policy editor on your Wallarm account. This section is divided into two blocks:
+ポイントは、Wallarmアカウントのポリシーエディタの**挿入ポイント**セクションで構成されています。このセクションは2つのブロックに分かれています：
 
-* **Where in the request to include** for points allowed for processing
-* **Where in the request to exclude** for points not allowed for processing
+* 処理を許可したポイントの**リクエストに含める場所**
+* 処理を許可していないポイントの**リクエストから除外する場所**
 
-To add the formed list of points, use the **Add insertion point** button in the required block.
+形成したポイントリストを追加するには、必要なブロックで**挿入ポイントを追加**ボタンを使います。
 
-To delete the point, use the «—» symbol next to it:
+ポイントを削除するには、その隣にある「—」記号を使います：
 
-![!Deleteing a point][img-remove-point]
+![!点を削除する][img-remove-point]
 
-!!! info "Basic points"
-    When creating a policy, typical points are automatically added to the **Where in the request to include** section:
+!!! info "基本的なポイント"
+    ポリシーを作成するとき、典型的なポイントが自動的に**リクエストに含める場所**セクションに追加されます：
 
     * `URI_value`: [URI][link-uri-point]
-    * `PATH_.*`: any part of the URI [path][link-path-point]
-    * `ACTION_NAME`: [action][link-action-name-point]
-    * `ACTION_EXT`: [extension][link-action-ext-point]
-    * `GET_.*`: any [GET parameter][link-get-point]
-    * `POST_.*`: any [POST parameter][link-post-point]
+    * `PATH_.*`: URIの[path][link-path-point]
+    * `ACTION_NAME`: [アクション][link-action-name-point]
+    * `ACTION_EXT`: [拡張子][link-action-ext-point]
+    * `GET_.*`: 全ての[GETパラメータ][link-get-point]
+    * `POST_.*`: 全ての[POSTパラメータ][link-post-point]
     
-    The list of points in the **Where in the request to exclude** section is empty by default.
+    **リクエストから除外する場所**セクションのポイントリストはデフォルトで空です。
 
-    The same list of points is configured for the default policy. This policy cannot be changed.
+    同じポイントリストがデフォルトポリシーに設定されています。このポリシーは変更できません。
 
  
-!!! info "Point reference"
-    When creating or editing points, you can click on the **How to use** link to get additional details regarding points.
+!!! info "ポイントの参照"
+    ポイントを作成または編集するとき、ポイントに関する詳細な情報を取得するために**使い方**リンクをクリックできます。
 
-    ![!Point reference][img-point-help]
+    ![!ポイント参照][img-point-help]
 
-    The full list of points which FAST can process is available by the [link][doc-point-list].
+    FASTが処理できるポイントの完全なリストは[リンク][doc-point-list]から利用可能です。

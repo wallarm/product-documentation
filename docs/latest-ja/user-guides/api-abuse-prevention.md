@@ -1,90 +1,103 @@
-# API Abuse Preventionプロファイル管理 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
+# API Abuse Preventionプロファイルの管理 <a href="../../about-wallarm/subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-Wallarmコンソールの**API Abuse Prevention**セクションでは、[**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md)モジュールの設定に必要なAPI abuseプロファイルを管理できます。
+Wallarm Consoleの**API Abuse Prevention**セクションでは、[**API Abuse Prevention**](../about-wallarm/api-abuse-prevention.md)モジュールの設定に必要なAPI abuseプロファイルを管理することができます。
 
-このセクションは、次の[ロール](../user-guides/settings/users.md#user-roles)のユーザーのみが利用できます:
+このセクションは、以下の[役割](../user-guides/settings/users.md#user-roles)を持つユーザーのみが利用可能です：
 
-* 通常アカウント用の**管理者**または**アナリスト**
-* マルチテナンシー機能があるアカウント用の**グローバル管理者**または**グローバルアナリスト**
+* 通常のアカウントでは **管理者**または**アナリスト**
+* マルチテナンシ機能を持つアカウントでは **グローバル管理者**または**グローバルアナリスト**
 
 ## API abuseプロファイルの作成
 
 API abuseプロファイルを作成するには：
 
-1. Wallarm Console → **API Abuse Prevention** で、**Create profile** をクリックします。
+1. Wallarm Console → **API Abuse Prevention** で **プロファイル作成** をクリックします。
 1. 保護するアプリケーションを選択します。
-1. [トレランス](../about-wallarm/api-abuse-prevention.md#tolerance)レベルを選択します。
-1. 必要に応じて、**Protect from** セクションで、保護対象の [ボットの種類](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention) を制限します。
-1. [denylistやgraylistにボットを追加](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots)するかを選択します。
+1. [容忍度](../about-wallarm/api-abuse-prevention.md#tolerance)レベルを選択します。
+1. 必要に応じて、**Protect from**セクションで、保護対象とする[ボットのタイプ](../about-wallarm/api-abuse-prevention.md#automated-threats-blocked-by-api-abuse-prevention)を制限します。
+1. 適切な[悪意のあるボットへの反応](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots)を選択します。
 1. 名前とオプションで説明を設定します。
 
     ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
-    API abuseプロファイルが設定されると、モジュールは[トラフィック分析と対応する自動化脅威のブロック](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)を開始します。
+    API abuseプロファイルが設定されると、モジュールは[トラフィック分析と自動化された脅威のブロック](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)を開始します。
 
 ## API abuseプロファイルの無効化
 
-無効化されたプロファイルとは、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないが、プロファイルリストには表示されるものです。無効化されたプロファイルをいつでも再度有効化することができます。有効なプロファイルがない場合、モジュールは悪意のあるボットをブロックしません。
+無効化されたプロファイルは、**API Abuse Prevention**モジュールがトラフィック分析中には使用しないものの、プロファイルリストには依然として表示されます。有効なプロファイルがない場合、モジュールは悪意のあるボットをブロックしません。
 
-対応する **Disable** オプションを使用して、プロファイルを無効化できます。
+対応する**Disable**オプションを使用してプロファイルを無効化できます。
 
 ## API abuseプロファイルの削除
 
-削除されたプロファイルとは、復元できず、**API Abuse Prevention**モジュールがトラフィック分析中に使用しないものです。
+削除されたプロファイルは、復元することができず、**API Abuse Prevention**モジュールがトラフィック分析中に使用しません。
 
-対応する **Delete** オプションを使用して、プロファイルを削除できます。
+対応する**Delete**オプションを使用してプロファイルを削除できます。
 
 ## ブロックされた悪意のあるボットとその攻撃の調査
 
-**API Abuse Prevention** モジュールは、[denylist](../user-guides/ip-lists/denylist.md) または [graylist](../user-guides/ip-lists/graylist.md) に追加されたボットを 1 時間ブロックします。
+**API Abuse Prevention**モジュールは、[denylist](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)にボットを追加することで、ボットを1時間ブロックします。
 
-Wallarm Console → **IP lists** → **Denylist** もしくは **Graylist** でブロックされたボットの IP を調査できます。`Bot` **Reason**で追加されたIPを見ます。
+Wallarm Console → **IPリスト** → **Denylist** または **Graylist** でブロックされたボットのIPを調査することができます。`Bot` という**原因**で追加されたIPを調査します。
 
 ![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
-ボット保護プロセスに干渉することができます。denylistやgraylistのIPが実際には悪意のあるボットに使用されていない場合、リストからIPを削除するか、[allowlist](../user-guides/ip-lists/allowlist.md)に追加できます。Wallarmは、allowlisted IPからのいかなるリクエストもブロックしません (悪意のあるものを含む)。
+!!! info "確信度"
+    [ディテクターの作業](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)結果、検出された全てのボットには**確信度のパーセンテージ**が与えられます。つまり、これがボットであると私たちはどの程度確信しているかということです。ボットタイプごとにディテクターには異なる相対的重要性/投票数があります。そのため、確信度のパーセンテージは、このボットタイプで可能な全投票数の中で獲得した投票数です（作業したディテクターから提供されます）。
 
-また、Wallarm Console → **Events** セクションで、ボットによるAPI Abuse攻撃を調査できます。`api_abuse` 検索キーを使用するか、**Type** フィルタから `API Abuse` を選択します。
+ボット保護プロセスに介入することができます。denylistまたはgraylistに追加されているIPが実際には悪意のあるボットに使用されていない場合、リストからIPを削除するか、[allowlist](../user-guides/ip-lists/allowlist.md)に追加することができます。Wallarmは、allowlistに追加されたIPからのすべてのリクエスト、悪意のあるものも含めてブロックすることはありません。
+
+また、ボットによるAPI abuse攻撃を調査することもできます。これは、Wallarm Console → **イベント**セクションで行うことができます。`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択します。
 
 ![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
-<!-- ボット情報は3つのバブルプロットで可視化されます。すべてのプロットで、バブルが大きいほど赤色に近く、右上隅に近いほど、このIPをボットと見なす理由が多くなります。
+ボット情報は3つのヒートマップで視覚化されます。全てのヒートマップでは、バブルが大きくなり、色が赤くなり、右上角に近づくほど、そのIPをボットと見なす理由が増えます。
 
-プロットでは、過去24時間以内に同じアプリケーションを攻撃した他のボットと比較して現在のボット(**this bot**)を表示することもできます。あまりにも多くのボットが存在する場合、最も疑わしいボット30件のみが表示されます。
+ヒートマップでは、現在のボット（**this bot**）を過去24時間以内に同一のアプリケーションを攻撃した他のボットと比較することもできます。攻撃したボットが多すぎる場合、もっとも疑わしい30個だけが表示されます。
 
-バブルプロット：
+ヒートマップは以下のとおりです：
 
-* **Bot performance** は、ボット活動の強度を表示します。これには以下が含まれます。
+* **パフォーマンス**は、現在と他の検出されたボットのパフォーマンスを視覚化します。これには、リクエストの非一意性、スケジュールされたリクエスト、RPS、リクエスト間隔が含まれます。
+* **行動**は、現在と他の検出されたボットの疑わしい行動のスコアを視覚化します。これには、疑わしい行動の度合い、重要または敏感なエンドポイントへのリクエストの量、RPS、ボットとして彼らを検出したボットディテクターの数が含まれます。
+* **HTTPエラー**は、ボットの活動によって引き起こされたAPIエラーを視覚化します。これには、彼らがターゲットする異なるエンドポイントの数、彼らが行う安全でないリクエストの数、彼らのRPS、彼らが受け取るエラーレスポンスコードの数が含まれます。
 
-    * バブルサイズ：リクエストの非ユニーク性。IPが同じ（ユニークでない）APIエンドポイントをリクエストするほど、サイズが大きくなります。
-    * 色：スケジュールされたリクエスト。APIエンドポイントがスケジュールに従ってリクエストされるほど（同じ時間間隔）、色が赤に近くなります。
-    * 横方向：RPS（1秒あたりのリクエスト数）が多いほど、バブルが右に離れます。
-    * 縦方向：リクエストレート（IPがリクエストを送信する速さ）が高いほど、グラフ上でバブルが高くなります。RPSと比較して：IPは1秒あたり3回のリクエストを送信することができます（これは多くありませんが）、3ミリ秒以内に送信されます（これは非常に速いです）。
+各ヒートマップには、バブルのサイズ、色、位置の詳細な説明が含まれています（**詳細表示**を使用）。必要な領域を矩形で囲んでヒートマップをズームインすることができます。
 
-* **Bot behavior** は、ボットの行動のさまざまな側面を表示します。これには以下が含まれます。
+**API Abuse Prevention**モジュールは、クライアントのトラフィックをURLパターンにまとめます。URLパターンには以下のセグメントがあります：
 
-    * バブルサイズ：ビジネスロジックスコア。あなたのすべてのAPIエンドポイントの中で、IPが批判的または機密性の高いものをリクエストした頻度が高いほど、サイズが大きくなります。
-    * 色：怪しい行動のスコア。あなたのすべてのAPIエンドポイントの中で、IPが通常のユーザーがあなたのアプリケーションに興味を持つのが珍しいものをリクエストした頻度が高いほど、色が赤に近くなります。
-    * 横方向：RPS（1秒あたりのリクエスト数）が多いほど、バブルが右に離れます。
-    * 縦方向：ボット検出器が「これはボットだ」と判断した回数が多いほど、グラフ上でバブルが高くなります。
-
-* **Bot scope** は、ボットとその対象との関係を表示します。これには以下が含まれます。
-
-    * バブルサイズ：IPが要求したAPIエンドポイントの種類が多いほど、サイズが大きくなります。
-    * 色：IPが要求した安全でない方法のリクエストが多いほど、色が赤に近くなります。
-    * 横方向：RPS（1秒あたりのリクエスト数）が多いほど、バブルが右に離れます。
-    * 縦方向：オリジンサーバからのエラーレスポンス（4XX、5XX）が多いほど、グラフ上でバブルが高くなります。 -->
-
-**API Abuse Prevention** モジュールは、クライアントのトラフィックをURLパターンにコンパイルします。URLパターンには、以下のセグメントがあります：
-
-| セグメント  | 内容 | 例 |
+| セグメント | 含む内容 | 例 |
 |---|---|---|
-| SENSITIVE | アプリケーションの重要な機能やリソースにアクセスするためのURLの一部。これらは管理者パネルなどです。潜在的なセキュリティ侵害を防ぐため、これらは機密に扱われ、承認された人員に限定されるべきです。 | `wp-admin` |
-| IDENTIFIER | 数値識別子、UUIDなどのさまざまな識別子。 | - |
-| STATIC | 異なる種類の静的ファイルが含まれるフォルダ。 | `images`, `js`, `css` |
+| SENSITIVE | 例えば管理パネルなど、アプリケーションの重要な機能やリソースへのアクセスを提供するURL部分。これらは潜在的なセキュリティ侵害を防ぐため、機密情報として保持され、承認された担当者のみが利用できるように制限すべきです。 | `wp-admin` |
+| IDENTIFIER | 例えば数値識別子、UUIDなどのさまざまな識別子。 | - |
+| STATIC | 様々な種類の静的ファイルを含むフォルダ。 | `images`, `js`, `css` |
 | FILE | 静的ファイル名。 | `image.png` |
 | QUERY | クエリパラメータ。 | - |
-| AUTH | 認証/承認エンドポイントに関連するコンテンツ。 | - |
-| LANGUAGE | 言語に関連する部分。 | `en`, `fr` |
+| AUTH | 認証/認可エンドポイントに関連するコンテンツ。 | - |
+| LANGUAGE | 言語関連部分。 | `en`, `fr` |
 | HEALTHCHECK | ヘルスチェックエンドポイントに関連するコンテンツ。 | - |
-| VARY | そのセグメントが他のカテゴリに割り当てられない場合、VARYとしてマークされます。URLパスの可変部分。 | - |
+| VARY | その他のカテゴリに分類することができない場合、そのセグメントはVARYとマークされます。URLパスの可変部分。 | - |
+
+## 例外リストの使用
+
+API Abuse Preventionによってこれらをブロックするのを防ぐため、いくつかのIPを正当なボットやクローラーと関連付けるためにマークするには、[**例外リスト**](../about-wallarm/api-abuse-prevention.md#exception-list)を使用します。
+
+IPアドレスまたは範囲を例外リストに追加し、ターゲットアプリケーションを指定します。これにより、これらのアドレスからの任意のリクエストは、これらのアドレスを悪意のあるボットとしてマークすることなく、ターゲットアプリケーションへと送られます。また、これらのアドレスはAPI Abuse Preventionによって[deny-](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)に追加されません。
+
+例外リストへのIPアドレスの追加方法は2つあります：
+
+*  **API Abuse Prevention** セクション → **例外リスト** タブにある **例外追加**を通じて。ここでは、IPやサブネットの他にAPI Abuse Preventionが無視すべき位置やソースタイプも追加できます。
+
+    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+
+*  **イベント** セクションから：`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択した後、必要なイベントを展開し**例外リストに追加**をクリックします。
+
+    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+
+IPアドレスが例外リストに追加されると、そのアドレスは自動的に[deny-](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)から削除されますが、それはAPI Abuse Prevention自体が（`Bot`の原因で）そこに追加した場合のみです。
+
+!!! info "IPからの他の攻撃タイプのブロック"
+    例外リストのIPが他の[攻撃タイプ](../attacks-vulns-list.md)を生み出す場合、例えばブルートフォース攻撃や入力検証攻撃など、Wallarmはそのようなリクエストをブロックします。
+
+デフォルトでは、IPは永久に例外リストに追加されます。これを変更し、アドレスが例外リストから削除されるべき時間を設定することができます。また、必要に応じて任意の時間にすぐにアドレスを例外から削除することもできます。
+
+**例外リスト**タブは、過去の選択された期間内にリストに存在したアイテムを表示する履歴データを提供します。

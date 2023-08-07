@@ -1,97 +1,99 @@
-# HTTPプロキシまたはロードバランサ（NGINX）を使用した場合のオリジナルクライアントIPアドレスの識別
+# HTTPプロキシまたはロードバランサ（NGINX）を使用している場合の元のクライアントIPアドレスの特定方法
 
-これらの手順では、HTTPプロキシまたはロードバランサを介してサーバーに接続するクライアントの発信元IPアドレスを識別するために必要なNGINX設定について説明します。
+これらの指示は、HTTPプロキシまたはロードバランサを経由してサーバに接続するクライアントのIPアドレスを特定するために必要なNGINXの設定方法を説明しています。
 
-* WallarmノードがDEB / RPMパッケージ、AWS / GCPイメージ、またはNGINXベースのDockerイメージからインストールされている場合は、**現在の手順**を使用してください。
-* WallarmノードがK8s Ingressコントローラーとしてデプロイされている場合は、[これらの指示](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)を使用してください。
+* WallarmノードがDEB / RPMパッケージからインストールされた場合、AWS / GCPイメージ、またはNGINXベースのDockerイメージから、**現行の指示**を使用してください。
+* WallarmノードがK8s Ingressコントローラとしてデプロイされた場合、 [指示](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md) をご覧ください。
 
-## WallarmノードがリクエストのIPアドレスを識別する方法
+## WallarmノードがリクエストのIPアドレスを特定する方法
 
-Wallarmノードは、NGINX変数`$remote_addr`からリクエスト元のIPアドレスを読み取ります。リクエストがプロキシサーバーまたはロードバランサを経由してノードに送信される場合、変数`$remote_addr`にはプロキシサーバーまたはロードバランサのIPアドレスが保持されます。
+Wallarmノードは、NGINX変数`$remote_addr`からリクエストソースのIPアドレスを読み取ります。リクエストがプロキシサーバやロードバランサを経由してノードに送信された場合、変数`$remote_addr`はプロキシサーバやロードバランサのIPアドレスを保持します。
 
-![!バランサーを使う](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![!バランサの使用](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
-Wallarmノードによって識別されたリクエスト元のIPアドレスは、Wallarmコンソールの[攻撃の詳細](../user-guides/events/check-attack.md#attacks)に表示されます。
+Wallarmノードによって特定されたリクエストソースのIPアドレスは、Wallarmコンソールの[攻撃の詳細](../user-guides/events/check-attack.md#attacks)に表示されます。
 
-## プロキシサーバーまたはロードバランサのIPアドレスをリクエスト元のアドレスとして使用する際の問題点
+## プロキシサーバまたはロードバランサのIPアドレスをリクエストソースアドレスとして使用する際の可能な問題点
 
-WallarmノードがプロキシサーバーまたはロードバランサのIPアドレスをリクエスト元のIPアドレスとみなす場合、Wallarmの以下の機能が正しく動作しない場合があります。
+WallarmノードがプロキシサーバまたはロードバランサのIPアドレスをリクエストソースのIPアドレスと見なす場合、以下のWallarmの機能が正しく動作しない場合があります：
 
-* [IPアドレスによるアプリケーションへのアクセス制御](../user-guides/ip-lists/overview.md)。例：
+* [IPアドレスによるアプリケーションへのアクセス制御](../user-guides/ip-lists/overview.md)    
 
-	元のクライアントIPアドレスがdenylistに登録されていても、WallarmノードはロードバランサのIPアドレスをリクエスト元のIPアドレスとみなすため、それらからのリクエストはブロックされません。
-* [ブルートフォース攻撃対策](configuration-guides/protecting-against-bruteforce.md)。例：
+  もしもオリジナルのクライアントIPアドレスがブラックリストに登録されていたとしても、WallarmノードはロードバランサのIPアドレスをリクエストソースのIPアドレスとみなすため、それらからのリクエストをブロックすることはありません。
+* [ブルートフォース攻撃対策](configuration-guides/protecting-against-bruteforce.md) 
 
-	ロードバランサを経由したリクエストにブルートフォース攻撃の兆候がある場合、WallarmはこのロードバランサのIPアドレスをdenylistに登録し、このロードバランサを経由したすべてのリクエストをブロックします。
-* [アクティブ脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification)モジュールおよび[脆弱性スキャナー](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner)。例：
+  例えば、ロードバランサ経由で送信されたリクエストにブルートフォース攻撃の兆候がある場合、WallarmはこのロードバランサのIPアドレスをブラックリストに登録することで、このロードバランサを通じて送信されるすべての後続のリクエストをブロックします。
+* [アクティブな脅威検証](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) モジュールと[脆弱性スキャナ](../about-wallarm/detecting-vulnerabilities.md#vulnerability-scanner) 
 
-	Wallarmは、アクティブ脅威検証モジュールおよび脆弱性スキャナーによって生成された[テスト攻撃の発信元IPアドレス](scanner-address-eu-cloud.md)としてロードバランサのIPアドレスを考慮します。したがって、テスト攻撃は、WallarmコンソールでロードバランサのIPアドレスから発信された攻撃として表示され、Wallarmによって追加でチェックされ、アプリケーションに負荷がかかります。
+  例えば、WallarmはロードバランサのIPアドレスを、アクティブな脅威検証モジュールと脆弱性スキャナによって生成される攻撃テストの[起源となるIPアドレス](scanner-address-eu-cloud.md)とみなします。結果として、テスト攻撃はWallarmコンソール上でロードバランサのIPアドレスから発生した攻撃として表示され、Wallarmによってさらなるチェックが行われることでアプリケーションへの負荷が増加します。
 
-Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_socket)を介して接続されている場合、`0.0.0.0`がリクエスト元として考慮されます。
+Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_socket)経由で接続されている場合、`0.0.0.0`がリクエストのソースと見なされます。
 
-## オリジナルクライアントIPアドレス識別の設定
+## オリジナルのクライアントIPアドレス特定の設定方法
 
-オリジナルクライアントIPアドレス識別を設定するには、[NGINXモジュール **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html)を使用できます。このモジュールを使用すると、WallarmノードがクライアントIPアドレスを取得するために[使用](#how-wallarm-node-identifies-an-ip-address-of-a-request)する`$remote_addr`の値を再定義できます。
+オリジナルのクライアントIPアドレスの特定の設定を行うために、[NGINXモジュール **ngx_http_realip_module**](https://nginx.org/en/docs/http/ngx_http_realip_module.html) を使用することができます。このモジュールを使用すると、WallarmノードがクライアントのIPアドレスを取得するために使用する`$remote_addr` [の値を再定義する](#how-wallarm-node-identifies-an-ip-address-of-a-request)ことが可能です。
 
-NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法で使用できます。
+以下のいずれかの方法でNGINXモジュール **ngx_http_realip_module** を使用することができます：
 
-* ロードバランサまたはプロキシサーバによってリクエストに追加された特定のヘッダー（通常は、[`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)）からオリジナルクライアントIPアドレスを読み取る。
-* ロードバランサまたはプロキシサーバが[PROXYプロトコル](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)をサポートしている場合は、ヘッダー`PROXY`からオリジナルクライアントIPアドレスを読み取る。
+* プロキシサーバまたはロードバランサから加えられた特定のヘッダからオリジナルのクライアントIPアドレスを読み取る（通常は[`X-Forwarded-For`](https://en.wikipedia.org/wiki/X-Forwarded-For)）。
+* プロキシサーバまたはロードバランサが [PROXYプロトコル](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) をサポートする場合、ヘッダ`PROXY`からオリジナルのクライアントIPアドレスを読み取る。
 
-### ヘッダー`X-Forwarded-For`（`X-Real-IP`またはそれに類する）を読むようにNGINXを設定する
+### ヘッダ`X-Forwarded-For`（`X-Real-IP`または同様のもの）を読み取るためのNGINXの設定
 
-ロードバランサまたはプロキシサーバがオリジナルクライアントIPアドレスを含むヘッダ`X-Forwarded-For`（`X-Real-IP`またはそれに類する）を追加する場合、NGINXモジュール**ngx_http_realip_module**を次のように設定して、このヘッダを読み取るようにしてください。
+ロードバランサまたはプロキシサーバがオリジナルのクライアントIPアドレスを含むヘッダ`X-Forwarded-For`（`X-Real-IP`または同様のもの）を付与する場合、次のようにNGINXモジュール **ngx_http_realip_module** を設定してこのヘッダを読み取るようにしてください:
 
-1. WallarmノードをインストールしたNGINXの以下の設定ファイルを開きます。
+1. Wallarmノードと共にインストールされたNGINXの以下の設定ファイルを開きます：
 
-   * WallarmノードがDEB / RPMパッケージからインストールされている場合は、`/etc/nginx/conf.d/default.conf`。
-   * WallarmノードがAWS / GCPイメージからデプロイされている場合は、`/etc/nginx/nginx.conf`。
-   * WallarmノードがNGINXベースのDockerイメージからデプロイされている場合、ローカルでNGINX設定ファイルを作成および編集し、Dockerコンテナに`/etc/nginx/sites-enabled/default`のパスでマウントする必要があります。初期NGINX設定ファイルのコピーとコンテナへのファイルマウントの手順は、[Wallarm NGINXベースのDocker指示](installation-docker-en.md#run-the-container-mounting-the-configuration-file)で入手できます。
-2. NGINXのコンテキスト`location`またはそれ以上に、プロキシサーバまたはロードバランサのIPアドレスを持つディレクティブ`set_real_ip_from`を追加します。プロキシサーバまたはロードバランサに複数のIPアドレスがある場合は、適切な数の個別のディレクティブを追加してください。例：
+    * DEB / RPMパッケージからWallarmノードがインストールされた場合：`/etc/nginx/conf.d/default.conf`
+    * AWS / GCPイメージからWallarmノードがデプロイされた場合：`/etc/nginx/nginx.conf`
+    * NGINXベースのDockerイメージからWallarmノードがデプロイされた場合：ローカルでNGINXの設定ファイルを作成・編集し、Dockerコンテナのパス`/etc/nginx/sites-enabled/default`にそれをマウントします。初期設定ファイルのコピーと、ファイルをコンテナにマウントする方法については、[WallarmのNGINXベースのDockerの手順](installation-docker-en.md#run-the-container-mounting-the-configuration-file)をご覧ください。
+2. NGINXの`location`コンテキストまたはそれ以上のレベルで、ディレクティブ`set_real_ip_from`にプロキシサーバまたはロードバランサのIPアドレスを指定します。もしこれらのサーバが複数のIPアドレスを持っている場合は、それぞれのIPアドレスについて別々のディレクティブを追加します。例：
 
-   ```bash
-   ...
-   location / {
-       wallarm_mode block;
+    ```bash
+    ...
+    location / {
+        wallarm_mode block;
 
-       set_real_ip_from 1.2.3.4;
-       set_real_ip_from 192.0.2.0/24;
-   }
-   ...
-   ```
-3. 使用しているロードバランサのドキュメントで、このロードバランサによってオリジナルクライアントIPアドレスを渡すために追加されるヘッダーの名前を探します。最も一般的なヘッダーは`X-Forwarded-For`と呼ばれます。
-4. NGINXのコンテキスト`location`またはそれ以上に、前のステップで見つけたヘッダー名を持つディレクティブ`real_ip_header`を追加します。例：
+        set_real_ip_from 1.2.3.4;
+        set_real_ip_from 192.0.2.0/24;
+    }
+    ...
+    ```
+3. 使用しているロードバランサのドキュメントで、このロードバランサがオリジナルのクライアントIPアドレスを伝達するために添付するヘッダ名を探します。最も一般的には`X-Forwarded-For`と呼ばれています。
+4. NGINXの`location`コンテキストまたはそれ以上のレベルで、先述の手順で見つけたヘッダ名を持つ`real_ip_header`ディレクティブを追加します。例：
 
-   ```bash
-   ...
-   location / {
-       wallarm_mode block;
+    ```bash
+    ...
+    location / {
+        wallarm_mode block;
 
-       set_real_ip_from 1.2.3.4;
-       set_real_ip_from 192.0.2.0/24;
-       real_ip_header X-Forwarded-For;
-   }
-   ...
-   ```
+        set_real_ip_from 1.2.3.4;
+        set_real_ip_from 192.0.2.0/24;
+        real_ip_header X-Forwarded-For;
+    }
+    ...
+    ```
 5. NGINXを再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
+    --8<-- "../include/waf/restart-nginx-3.6.md"
 
-    NGINXは、`real_ip_header`ディレクティブで指定されたヘッダーの値を`$remote_addr`変数に割り当てるため、Wallarmノードはこの変数からオリジナルクライアントIPアドレスを読み取ります。
-6. [設定をテストします](#testing-the-configuration)。### ヘッダー `PROXY` を読み取るように NGINX を設定する
+    NGINXは`real_ip_header`ディレクティブで指定されたヘッダの値を変数`$remote_addr`に割り当て、その結果、Wallarmノードがこの変数からオリジナルのクライアントIPアドレスを読み取ることが可能になります。
+6. [設定をテスト](#設定のテスト)します。
 
-ロードバランサーまたはプロキシサーバーが [PROXY プロトコル](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) をサポートしている場合、NGINX モジュール **ngx_http_realip_module** を次のように設定して、ヘッダー `PROXY` を読み取ることができます。
+### ヘッダ`PROXY`を読み取るためのNGINXの設定
 
-1. Wallarm ノードとともにインストールされた NGINX の次の設定ファイルを開きます。
+ロードバランサまたはプロキシサーバが[PROXYプロトコル](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)をサポートしている場合は、次のようにNGINXモジュール **ngx_http_realip_module** をヘッダ `PROXY` を読み取るように設定することができます：
 
-    * Wallarm ノードが DEB / RPM パッケージからインストールされている場合は、`/etc/nginx/conf.d/default.conf` 。
-    * Wallarm ノードが AWS / GCP イメージからデプロイされている場合は、`/etc/nginx/nginx.conf` 。
-    * Wallarm ノードが NGINX ベースの Docker イメージからデプロイされている場合は、ローカルで NGINX 設定ファイルを作成して編集し、Docker コンテナに `/etc/nginx/sites-enabled/default` のパスでマウントする必要があります。初期の NGINX 設定ファイルのコピーと、コンテナへのファイルのマウント方法に関する説明は、[Wallarm の NGINX ベースの Docker の説明書](installation-docker-en.md#run-the-container-mounting-the-configuration-file)から取得できます。
-2. NGINX コンテキスト `server` に、ディレクティブ `listen` にパラメーター `proxy_protocol` を追加します。
-3. NGINX コンテキスト `location` またはいずれかの上位に、プロキシサーバーまたはロードバランサーの IP アドレスを指定したディレクティブ `set_real_ip_from` を追加します。プロキシサーバーまたはロードバランサーに複数の IP アドレスがある場合は、適切な数の別々のディレクティブを追加してください。例：
-4. NGINX コンテキスト `location` またはいずれかの上位に、値 `proxy_protocol` を持つディレクティブ `real_ip_header` を追加します。
+1. Wallarmノードと共にインストールされたNGINXの以下の設定ファイルを開きます：
 
-    すべてのディレクティブが追加された NGINX 設定ファイルの例：
+    * DEB / RPMパッケージからWallarmノードがインストールされた場合：`/etc/nginx/conf.d/default.conf`
+    * AWS / GCPイメージからWallarmノードがデプロイされた場合：`/etc/nginx/nginx.conf`
+    * NGINXベースのDockerイメージからWallarmノードがデプロイされた場合：ローカルでNGINXの設定ファイルを作成・編集し、Dockerコンテナのパス`/etc/nginx/sites-enabled/default`にそれをマウントします。初期設定ファイルのコピーと、ファイルをコンテナにマウントする方法については、[WallarmのNGINXベースのDockerの手順](installation-docker-en.md#run-the-container-mounting-the-configuration-file)をご覧ください。
+2. NGINXの`server`コンテキストで、`listen`ディレクティブにパラメータ `proxy_protocol`を追加します。
+3. NGINXの`location`コンテキストまたはそれ以上のレベルで、ディレクティブ `set_real_ip_from` にプロキシサーバまたはロードバランサのIPアドレスを指定します。もしこれらのサーバが複数のIPアドレスを持っている場合は、それぞれのIPアドレスについて別々のディレクティブを追加します。例：
+4. NGINXの`location`コンテキストまたはそれ以上のレベルで、`real_ip_header`ディレクティブに `proxy_protocol` の値を追加します。
+
+    上記の指示に基づいたNGINX設定ファイルの例を下記に示します：
 
     ```bash
     server {
@@ -105,45 +107,45 @@ NGINXモジュール**ngx_http_realip_module**は、次のいずれかの方法�
     }
     ```
 
-    * NGINX は、ポート 80 での受信接続をリッスンします。
-    * 受信リクエストでヘッダー `PROXY` が渡されない場合、NGINX はこのリクエストを無効とみなし、受け入れません。
-    * アドレス `<IP_ADDRESS_OF_YOUR_PROXY>` からのリクエストについて、NGINX はヘッダー `PROXY` で渡されたソースアドレスを変数 `$remote_addr` に割り当てるため、Wallarm ノードはこの変数から元のクライアント IP アドレスを読み取ります。
-5. NGINX を再起動します：
+    * NGINXはポート80で着信接続をリスニングします。
+    * ヘッダ`PROXY`が着信リクエストに含まれていない場合、NGINXはこのリクエストを受け入れません（有効とみなされません）。
+    * アドレス`<IP_ADDRESS_OF_YOUR_PROXY>`から発生するリクエストについては、NGINXはヘッダ`PROXY`に含まれるソースアドレスを変数`$remote_addr`に割り当てるため、Wallarmノードはこの変数からオリジナルのクライアントIPアドレスを読み取ります。
+5. NGINXを再起動します：
 
-    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
-6. [設定をテストする](#testing-the-configuration)。
+    --8<-- "../include/waf/restart-nginx-3.6.md"
+6. [設定をテスト](#設定のテスト)します。
 
-オリジナルのクライアント IP アドレスをログに含めるには、ディレクティブ `proxy_set_header` を追加し、NGINX の設定に記載されている [NGINX ロギングの手順](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address) に従って、`log_format` ディレクティブ内の変数リストを編集する必要があります。
+オリジナルのクライアントIPアドレスをログに含めるためには、`proxy_set_header`ディレクティブを追加し、`log_format`ディレクティブの変数リストをNGINXの設定で編集する必要があります。詳細については、[NGINXのログ指示](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#logging-the-original-ip-address)をご覧ください。
 
-ヘッダー `PROXY` に基づいてオリジナルのクライアント IP アドレスを識別する詳細は、[NGINX のドキュメント](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address)で入手できます。
+`PROXY`ヘッダに基づいてオリジナルのクライアントIPアドレスを特定する詳細については、[NGINXのドキュメンテーション](https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/#changing-the-load-balancers-ip-address-to-the-client-ip-address)をご覧ください。
 
-### 設定をテストする
+### 設定のテスト
 
-1. 保護されたアプリケーションアドレスにテストアタックを送信します。
+1. 保護すべきアプリケーションのアドレスに対してテスト攻撃を送信します：
 
-    === "cURL を使用"
+    === "cURLを使用"
         ```bash
         curl http://localhost/etc/passwd
         ```
-    === "printf と Netcat を使用 (ヘッダー `PROXY` の場合)"
+    === "printfとNetcatを使用（ヘッダ `PROXY` ）"
         ```bash
         printf "PROXY TCP4 <IP_ADDRESS_OF_YOUR_PROXY> <REAL_CLIENT_IP> 0 80\r\nGET /etc/passwd\r\n\r\n" | nc localhost 80
         ```
-2. Wallarm コンソールを開いて、オリジナルのクライアント IP アドレスがアタックの詳細に表示されていることを確認します。
+2. Wallarmコンソールを開き、攻撃の詳細にオリジナルのクライアントIPアドレスが表示されていることを確認します：
 
-    ![!リクエストを開始した IP アドレス](../images/request-ip-address.png)
+    ![!リクエストの発信者のIPアドレス](../images/request-ip-address.png)
 
-    NGINX がヘッダー `X-Forwarded-For`（`X-Real-IP` または同様のもの）からオリジナルのアドレスを読み取った場合、ヘッダーの値も生のアタックに表示されます。
+    もしNGINXが元のアドレスをヘッダ`X-Forwarded-For`（`X-Real-IP`または同様のもの）から読み取った場合、このヘッダの値もraw攻撃で表示されます。
 
-    ![!ヘッダー X-Forwarded-For](../images/x-forwarded-for-header.png)
+    ![!ヘッダ X-Forwarded-For](../images/x-forwarded-for-header.png)
 
-## 設定例
+## 設定の例
 
-以下に、人気のあるロードバランサーを介してサーバーに接続するクライアントの発信元 IP アドレスを識別するために必要な NGINX 設定の例が示されています。
+以下に、人気のあるロードバランサを通じてサーバに接続するクライアントのIPアドレスを特定するために必要なNGINXの設定の例を示します。
 
 ### Cloudflare CDN
 
-Cloudflare CDN を使用している場合は、[NGINX モジュール **ngx_http_realip_module** を設定](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar)して、オリジナルのクライアント IP アドレスを識別できます。
+Cloudflare CDNを使用している場合、オリジナルのクライアントIPアドレスを特定するために[NGINXモジュール **ngx_http_realip_module** の設定](#設定のテスト)が可能です。
 
 ```bash
 ...
@@ -175,12 +177,12 @@ real_ip_recursive on;
 ...
 ```
 
-* 設定を保存する前に、上記の設定で指定された Cloudflare IP アドレスが [Cloudflare のドキュメント](https://www.cloudflare.com/ips/) に記載されているものと一致していることを確認してください。
-* `real_ip_header` ディレクティブの値には、`CF-Connecting-IP` または `X-Forwarded-For` のいずれかを指定できます。Cloudflare CDN は両方のヘッダーを追加するため、どちらのヘッダーを読み取るように NGINX を設定できます。詳細は [Cloudflare CDN での](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs) 。
+* 設定を保存する前に、上記の設定に記載されたCloudflare IPアドレスが[Cloudflareドキュメンテーション](https://www.cloudflare.com/ips/)のものと一致していることを確認してください。 
+* `real_ip_header`ディレクティブの値としては、`CF-Connecting-IP`または`X-Forwarded-For`のいずれかを指定することができます。Cloudflare CDNはどちらもヘッダを追加し、ユーザーはNGINXがどちらを読み取るように設定できます。[Cloudflare CDNの詳細](https://support.cloudflare.com/hc/en-us/articles/200170786-Restoring-original-visitor-IPs)をご覧ください。
 
 ### Fastly CDN
 
-Fastly CDN を使用している場合は、[NGINX モジュール **ngx_http_realip_module** を設定](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar)して、オリジナルのクライアント IP アドレスを識別できます。
+Fastly CDNを使用している場合、オリジナルのクライアントIPアドレスを特定するために[NGINXモジュール **ngx_http_realip_module** の設定](#設定のテスト)が可能です。
 
 ```bash
 ...
@@ -209,25 +211,27 @@ real_ip_recursive on;
 ...
 ```
 
-設定を保存する前に、Fastly IP アドレスが上記設定で指定されているものと、[Fastly のドキュメント](https://api.fastly.com/public-ip-list)に記載されているものが一致していることを確認してください。### HAProxy
+設定を保存する前に、上記の設定に記載されたFastly IPアドレスが[Fastlyドキュメンテーション](https://api.fastly.com/public-ip-list)のものと一致していることを確認してください。 
 
-HAProxyを使用する場合、HAProxyとWallarmノードの両方がオリジナルのクライアントIPアドレスを正しく識別できるように設定する必要があります：
+### HAProxy
 
-* `/etc/haproxy/haproxy.cfg`設定ファイルで、`option forwardfor header X-Client-IP`行を、HAProxyをWallarmノードに接続するための`backend`ディレクティブブロックに挿入します。
+HAProxyを使用している場合、HAProxyとWallarmノード双方の設定を正しく行うことで、オリジナルのクライアントIPアドレスを特定することができます：
 
-	`option forwardfor`ディレクティブは、HAProxyバランサーに、クライアントのIPアドレスが記載されたヘッダーがリクエストに追加されるべきであることを指示します。[HAProxyドキュメントでの詳細](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
+* `/etc/haproxy/haproxy.cfg`設定ファイルにおいて、`backend`ディレクティブブロックに`option forwardfor header X-Client-IP`の行を挿入します。このブロックはHAProxyをWallarmノードに接続するために使用されます。
 
-	設定例：
+    `option forwardfor`ディレクティブはリクエストにクライアントのIPアドレスを持つヘッダを加えるようにHAProxyバランサに指示します。[HAProxyのドキュメンテーションで詳細をご覧いただけます](https://cbonte.github.io/haproxy-dconv/1.9/configuration.html#option%20forwardfor)
+
+    設定の例：
 
     ```
     ...
-    # リクエストを受け取るためのパブリックIPアドレス
+    # 公開IPアドレスでリクエストを受信
     frontend my_frontend
         bind <HAPROXY_IP>
         mode http
         default_backend my_backend
 
-    # Wallarm node を含むバックエンド
+    # Wallarmノードとのバックエンド
     backend my_backend
         mode http
     option forwardfor header X-Client-IP
@@ -235,11 +239,11 @@ HAProxyを使用する場合、HAProxyとWallarmノードの両方がオリジ�
     ...
     ```
 
-    *   `<HAPROXY_IP>`は、クライアントのリクエストを受け取るHAProxyサーバーのIPアドレスです。
-    *   `<WALLARM_NODE_IP>`は、HAProxyサーバーからのリクエストを受け取るWallarmノードのIPアドレスです。
+*   `<HAPROXY_IP>` はクライアントリクエストを受け取るためのHAProxyサーバのIPアドレスです。
+*   `<WALLARM_NODE_IP>` はHAProxyサーバからのリクエストを受け取るためのWallarmノードのIPアドレスです。
 
-* WallarmノードでインストールされたNGINXの設定ファイルで、[**ngx_http_realip_module** モジュール](#configuring-nginx-to-read-the-header-x-forwarded-for-x-real-ip-or-a-similar) を以下のように設定します：
-
+* WallarmノードにインストールされたNGINXの設定ファイルにおいて、ヘッダ`X-Forwarded-For`（`X-Real-IP`または同様のもの）を読み取るようにNGINXモジュール **ngx_http_realip_module** を設定すると[#設定のテスト]のようになります：
+    
     ```bash
     ...
     location / {
@@ -253,5 +257,5 @@ HAProxyを使用する場合、HAProxyとWallarmノードの両方がオリジ�
     ...
     ```
 
-    *   `<APPLICATION_IP>`は、Wallarmノードからのリクエストに対する保護されたアプリケーションのIPアドレスです。
-    *   `<HAPROXY_IP1>`および`<HAPROXY_IP2>`は、リクエストをWallarmノードに渡すHAProxyバランサーのIPアドレスです。
+    *   `<APPLICATION_IP>` はWallarmノードからのリクエストが送信される保護対象のアプリケーションのIPアドレスです。
+    *   `<HAPROXY_IP1>`と`<HAPROXY_IP2>`は、Wallarmノードにリクエストを送信するHAProxyバランサのIPアドレスです。

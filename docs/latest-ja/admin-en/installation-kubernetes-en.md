@@ -1,60 +1,61 @@
-[ip-list-docs]: ../user-guides/ip-lists/overview.md
-[deployment-platform-docs]: ../installation/supported-deployment-options.md
+# Wallarmサービス統合付きのNGINX Ingressコントローラのデプロイ
 
-# Wallarmサービスを統合したNGINX Ingressコントローラのインストール
+この手順書では、K8sクラスタへのWallarm NGINXベースのIngressコントローラのデプロイ手順を提供します。ソリューションは、統合されたWallarmサービスを備えた[Community Ingress NGINXコントローラ](https://github.com/kubernetes/ingress-nginx)のデフォルト機能を活用しています。
 
-この手順では、Wallarmを使用するNGINXベースのIngressコントローラをK8sクラスタにデプロイする方法を説明しています。このソリューションは、[Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)のデフォルトの機能と統合されたWallarmサービスが含まれています。
+そのソリューションのアーキテクチャは以下の通りです：
 
-ソリューションはWallarmのHelmチャートからデプロイされます。
+![!ソリューションのアーキテクチャ][nginx-ing-image]
+
+ソリューションはWallarm Helmチャートからデプロイされます。
 
 ## ユースケース
 
-すべてのサポートされる[Wallarm展開オプション](../installation/supported-deployment-options.md)の中で、このソリューションは以下の**ユースケース**において推奨されるものです。
+全てのサポート対象の[Wallarmのデプロイオプション][deployment-platform-docs]の中で、以下の**ユースケース**に対して本ソリューションが推奨されます：
 
-* [Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)と互換性のあるIngressリソースにトラフィックをルーティングするIngressコントローラやセキュリティレイヤがない
-* 開発技術スタックと互換性のあるセキュリティソリューションを探している[Community Ingress NGINX Controller](https://github.com/kubernetes/ingress-nginx)を使用している。
+* Ingressリソースと[Community Ingress NGINXコントローラ](https://github.com/kubernetes/ingress-nginx)と互換性のあるトラフィックをルーティングするIngressコントローラおよびセキュリティレイヤが存在しない。
+* [Community Ingress NGINXコントローラ](https://github.com/kubernetes/ingress-nginx)を使用しており、自身の技術スタックと互換性のあるセキュリティソリューションを探している。
 
-    これらの手順で説明されている新しいデプロイメントに設定を移動するだけで、デプロイされたNGINX Ingressコントローラをシームレスに置き換えることができます。
+    これらの手順書で説明されているものと、デプロイされたNGINX Ingressコントローラをシームレスに置き換えることが可能です。新たなデプロイに設定を移動するだけです。
 
 ## 要件
 
---8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
 !!! info "参照"
-    * [Ingressとは？](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+    * [Ingressとは何ですか？](https://kubernetes.io/docs/concepts/services-networking/ingress/)
     * [Helmのインストール](https://helm.sh/docs/intro/install/)
 
 ## 既知の制限事項
 
-* postanalyticsモジュールなしでの運用はサポートされていません。 
-* postanalyticsモジュールのスケールダウンにより、攻撃データの一部が損失する可能性があります。
+* postanalyticsモジュールなしの操作はサポートされていません。
+* postanalyticsモジュールをスケールダウンすると、攻撃データの一部の損失が発生する可能性があります。
 
 ## インストール
 
-1. [Wallarm Ingressコントローラをインストール](#step-1-installing-the-wallarm-ingress-controller)します。
-2. [Ingressでトラフィック分析を有効に](#step-2-enabling-traffic-analysis-for-your-ingress)します。
-3. [Wallarm Ingressコントローラの動作を確認](#step-3-checking-the-wallarm-ingress-controller-operation)します。 
+1. [Wallarm Ingressコントローラのインストール](#ステップ1-wallarm-ingress-コントローラのインストール)
+2. [Ingressに対するトラフィック分析の有効化](#ステップ2-Ingressに対するトラフィック分析の有効化)
+3. [Wallarm Ingressコントローラ操作の確認](#ステップ3-wallarm-ingress-コントローラ操作の確認)
 
-### ステップ1：Wallarm Ingressコントローラのインストール
+### ステップ1: Wallarm Ingressコントローラのインストール
 
-1. 以下のリンクからWallarm Console → **Nodes** にアクセスします。
-    * https://us1.my.wallarm.com/nodes（米国 クラウド用）
-    * https://my.wallarm.com/nodes（EU クラウド用）
-1. **Wallarm node**タイプのフィルタリングノードを作成し、生成されたトークンをコピーしてください。
-    
-    ![!Wallarm nodeの作成](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
-1. Wallarm Ingressコントローラを含むHelmチャートをデプロイするためのKubernetesの名前空間を作成します：
+1. 以下のリンクからWallarm Console → **ノード**に移動します：
+   * US Cloudの場合：https://us1.my.wallarm.com/nodes
+   * EU Cloudの場合：https://my.wallarm.com/nodes
+2. **Wallarmノード**タイプのフィルタリングノードを作成し、生成されたトークンをコピーします。
+
+    ![Wallarmノード作成][nginx-ing-create-node-img]
+3. Wallarm Ingressコントローラを備えたHelmチャートをデプロイするためのKubernetesの名前空間を作成します：
 
     ```bash
     kubectl create namespace <KUBERNETES_NAMESPACE>
     ```
-1. [Wallarmチャートリポジトリ](https://charts.wallarm.com/)を追加します：
+4. [Wallarmのチャートリポジトリ](https://charts.wallarm.com/)を追加します：
     ```
     helm repo add wallarm https://charts.wallarm.com
     ```
-4. [Wallarm設定](configure-kubernetes-en.md)を含む`values.yaml`ファイルを作成します。
+4. [Wallarmの設定][configure-nginx-ing-controller-docs]を含む`values.yaml`ファイルを作成します。
 
-    最小構成のファイルの例：
+    最小限設定のファイル例は以下の通りです：
 
     === "US Cloud"
         ```yaml
@@ -71,59 +72,59 @@
             enabled: "true"
             token: "<NODE_TOKEN>"
         ```    
+
+    Helmチャートのバージョン4.4.1から、Kubernetes secretsにWallarmノードトークンを保存し、Helmチャートにプルすることも可能です。[詳しくはこちら][controllerwallarmexistingsecret-docs]
     
-    Helmチャートのバージョン4.4.1から、WallarmノードのトークンをKubernetesシークレットに保存し、Helmチャートに引っ張ってくることができます。[詳細はこちら](configure-kubernetes-en.md#controllerwallarmexistingsecret)
-    
-    --8<-- "../include-ja/waf/installation/info-about-using-one-token-for-several-nodes.md"
-1. Wallarmパッケージをインストールします：
+    --8<-- "../include/waf/installation/info-about-using-one-token-for-several-nodes.md"
+5. Wallarmパッケージをインストールします：
 
     ``` bash
-    helm install --version 4.4.8 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
+    helm install --version 4.6.6 <RELEASE_NAME> wallarm/wallarm-ingress -n <KUBERNETES_NAMESPACE> -f <PATH_TO_VALUES>
     ```
 
-    * `<RELEASE_NAME>`は、IngressコントローラチャートのHelmリリース名です
-    * `<KUBERNETES_NAMESPACE>`は、Wallarm Ingressコントローラを含むHelmチャート用に作成したKubernetesの名前空間です
-    * `<PATH_TO_VALUES>`は、`values.yaml`ファイルへのパスです
+    * `<RELEASE_NAME>`はIngressコントローラチャートのHelmリリース名
+    * `<KUBERNETES_NAMESPACE>`はWallarm Ingressコントローラを備えたHelmチャート用に作成したKubernetesの名前空間
+    * `<PATH_TO_VALUES>`は`values.yaml`ファイルへのパス
 
-### ステップ2：Ingressでトラフィック分析を有効にする
+### ステップ2: Ingressに対するトラフィック分析の有効化
 
 ``` bash
 kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-mode=monitoring
 kubectl annotate ingress <YOUR_INGRESS_NAME> -n <YOUR_INGRESS_NAMESPACE> nginx.ingress.kubernetes.io/wallarm-application=<APPLICATION>
 ```
-* `<YOUR_INGRESS_NAME>`は、Ingressの名前です
-* `<YOUR_INGRESS_NAMESPACE>`は、Ingressの名前空間です
-* `<APPLICATION>`は、[アプリケーションまたはアプリケーショングループ](../user-guides/settings/applications.md)ごとに固有の正の数です。これにより、個別の統計を取得し、対応するアプリケーションに対する攻撃を区別することができます
+* `<YOUR_INGRESS_NAME>`はIngressの名前
+* `<YOUR_INGRESS_NAMESPACE>`はIngressの名前空間
+* `<APPLICATION>`は各[アプリケーションまたはアプリケーショングループ][application-docs]ごとに一意になる正の数値。これにより、個別の統計を取得し、対応するアプリケーションに向けられた攻撃を区別することができます。
 
-### ステップ3：Wallarm Ingressコントローラの動作を確認する
+### ステップ3: Wallarm Ingressコントローラ操作の確認
 
-1. Podの一覧を取得します：
+1. ポッドのリストを取得します：
     ```
     kubectl get pods -n <NAMESPACE> -l app.kubernetes.io/name=wallarm-ingress
     ```
 
-    各Podには次のように表示される必要があります：**STATUS：Running** および **READY：N / N**。 例：
+    各ポッドは以下の状態を示すべきです： **STATUS: Running**と**READY: N/N**。例：
 
     ```
     NAME                                                              READY     STATUS    RESTARTS   AGE
     ingress-controller-nginx-ingress-controller-675c68d46d-cfck8      4/4       Running   0          5m
     ingress-controller-nginx-ingress-controller-wallarm-tarantljj8g   4/4       Running   0          5m
     ```
-2. テスト[Path Traversal](../attacks-vulns-list.md#path-traversal)攻撃を含むリクエストをIngress Controller Serviceに送信します：
-
+2. Ingress Controller Serviceにテスト[Path Traversal][ptrav-attack-docs]攻撃を含むリクエストを送信します：
+   
     ```bash
     curl http://<INGRESS_CONTROLLER_IP>/etc/passwd
     ```
 
-    フィルタリングノードが`block`モードで動作している場合、リクエストの応答に`403 Forbidden`のコードが返され、攻撃がWallarm Console → **イベント**に表示されます。
+    フィルタリングノードが`block`モードで動作している場合、リクエストへの応答で`403 Forbidden`コードが返り、攻撃はWallarm Console → **Events**で表示されます。
 
 ## 設定
 
-Wallarm Ingressコントローラが正常にインストールされ確認された後、ソリューションに対して高度な設定を行うことができます。
+Wallarm Ingressコントローラが正常にインストールされ、チェックされた後で、ソリューションに対して以下のような詳細な設定を行うことが可能です：
 
-* [エンドユーザーの公開IPアドレスを適切に報告する](configuration-guides/wallarm-ingress-controller/best-practices/report-public-user-ip.md)
-* [IPアドレスのブロック管理](../user-guides/ip-lists/overview.md)
-* [高可用性に関する考慮事項](configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
-* [Ingressコントローラの監視](configuration-guides/wallarm-ingress-controller/best-practices/ingress-controller-monitoring.md)
+* [エンドユーザの公開IPアドレスの適切な報告][best-practices-for-public-ip]
+* [IPアドレスのブロック管理][ip-lists-docs]
+* [高可用性についての考慮点][best-practices-for-high-availability]
+* [Ingress Controllerのモニタリング][best-practices-for-ingress-monitoring]
 
-高度な設定に使用されるパラメータや適切な手順を見つけるには、[リンク](configure-kubernetes-en.md)をご覧ください。
+詳細設定用のパラメータと適切な指示を見つけるためには、[こちらのリンク][configure-nginx-ing-controller-docs]を参照してください。

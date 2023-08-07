@@ -1,27 +1,27 @@
 [link-trial-account]:   https://fast.wallarm.com/signup/
 
-#   Wallarm Clouds List
+# Wallarmのクラウドリスト
 
-FAST relies on two clouds for its operation. These clouds are divided based on geographical location. They are:
-* American cloud (aka *US cloud*).
-* European cloud (aka *EU cloud*).
+FASTは、その運用のために2つのクラウドに依存しています。これらのクラウドは地理的な位置に基づいて区分されています。それらは以下の通りです：
+* アメリカのクラウド (別名： *USクラウド*)
+* ヨーロッパのクラウド (別名：*EUクラウド*)
 
-During its operation, FAST interacts with the Wallarm portal and API server that are located in one of the clouds:
-* US cloud:
-    * Wallarm portal: <https://us1.my.wallarm.com>
-    * Wallarm API server: `us1.api.wallarm.com`
-* EU cloud:
-    * Wallarm portal: <https://my.wallarm.com>
-    * Wallarm API server: `api.wallarm.com`
+運用中、FASTは次のうちのいずれかのクラウドに位置するWallarmポータルとAPIサーバーと相互作用します:
+* USクラウド:
+    * Wallarmポータル: <https://us1.my.wallarm.com>
+    * Wallarm APIサーバー: `us1.api.wallarm.com`
+* EUクラウド:
+    * Wallarmポータル: <https://my.wallarm.com>
+    * Wallarm APIサーバー: `api.wallarm.com`
 
-!!! warning "Please, pay attention"
-    **Rules of interaction with Wallarm clouds:**
+!!! 警告 "注意してください"
+    **Wallarmクラウドとの相互作用のルール:**
         
-    * You can only interact with a Wallarm portal and API server that are located in the same cloud.
-    * If you sign up for a [Wallarm trial account][link-trial-account], then it will be tied to the American cloud.
+    * 同じクラウドに位置しているWallarmポータルとAPIサーバーとのみ相互作用できます。
+    * [Wallarm試用アカウント][link-trial-account]にサインアップすると、それはアメリカのクラウドに紐づけられます。
         
-    **Wallarm clouds and FAST documentation:** 
+    **WallarmのクラウドとFASTの文書化:** 
 
-    * For the sake of simplicity, it is assumed throughout the documentation that FAST interacts with the American Wallarm cloud.
-    * All information from the documentation is equally applicable to all available clouds, unless stated otherwise.   
-    * If you interact with the European cloud, then use the corresponding addresses of the Wallarm portal and the API server when working with FAST and the documentation.
+    * 簡潔さを保つため、文書全体を通じてFASTがアメリカのWallarmクラウドと相互作用していると想定しています。
+    * ドキュメンテーションからのすべての情報は、特に指定がない限り、すべての利用可能なクラウドに等しく適用されます。   
+    * ヨーロッパのクラウドを使用している場合は、FASTおよびドキュメンテーションの作業時に、WallarmポータルとAPIサーバーの対応するアドレスを使用してください。

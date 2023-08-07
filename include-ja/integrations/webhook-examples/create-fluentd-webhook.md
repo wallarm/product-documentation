@@ -1,4 +1,4 @@
-* Webhooksは `https://fluentd-example-domain.com` に送信されます
-* WebhooksはPOSTリクエストを介して送信されます
-* Webhookインテグレーションにはデフォルトの高度な設定があります
-* Webhook URLに送信されるWebhooksは、すべての利用可能なイベントです：ヒット、システムイベント、脆弱性、スコープの変更
+* Webフックは `https://fluentd-example-domain.com` へ送信されます
+* WebフックはPOSTリクエストを介して送信されます
+* Webフックのインテグレーションにはデフォルトの高度な設定があります
+* WebフックURLに送信されるWebフックにはすべての利用可能なイベントが含まれます：ヒット、システムイベント、脆弱性、範囲の変更

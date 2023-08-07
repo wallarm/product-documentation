@@ -6,52 +6,52 @@
 [img-fingerprint-warning]:  ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-fingerprint-warning.png
 [img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-import-success.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/ie11-ssl/i-https-ok.png
-        
-    
-#   FAST Node Self-signed SSL-certificate Installation for Microsoft Internet Explorer 11
 
-To install the certificate for the Internet Explorer 11 browser, do the following:
 
-1.  Make sure that you have set up your browser to use the FAST node as the HTTP and HTTPS proxy.
+#   Microsoft Internet Explorer 11 のためのFAST ノード自己署名 SSL証明書インストール
 
-2.  Request the file `cert.der` from any domain via HTTP using the browser.
-    
-    For example, you can use one of the following links:
+Internet Explorer 11 ブラウザに証明書をインストールするには、以下の手順に従ってください:
+
+1.  HTTPおよびHTTPSプロキシとしてFASTノードを使用するようにブラウザを設定していることを確認してください。
+
+2.  ブラウザを使用してHTTPを介して任意のドメインから `cert.der` ファイルをリクエストします。
+
+    例えば、以下のリンク人気のリンクを使うことができます。
     
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    The browser will give you the choice to open the certificate file or to save it. Select the **Open** button.
+    ブラウザは証明書ファイルを開くか保存するかを選ぶことができます。**開く**ボタンを選択します。
 
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!自己署名FAST ノード証明書のリクエスト][img-cert-request]
 
-3.  A window will open containing information about the certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image. Select the **Install Certificate** button.
+3.  証明書に関する情報が含まれているウィンドウが開きます。あなたの証明書の名前と有効期限は画像に表示されているものと異なることに注意してください。**証明書のインストール**ボタンを選択します。
 
-    ![!“Certificate” window][img-cert-window]
+    ![!“Certification” window][img-cert-window]
 
-4.  Select the suitable certificate installation option in the opened window. You can install the certificate either for the current user or for all users. Choose the appropriate option and select the **Next** button.  
+4.  開かれたウィンドウで適切な証明書のインストールオプションを選択します。現在のユーザーまたはすべてのユーザーのために証明書をインストールすることができます。適切なオプションを選択し、**次へ**ボタンを選択します。
 
-    ![!Select certificate store location][img-store-location]
+    ![!証明書ストアの場所の選択][img-store-location]
 
-5.  You will be asked to choose a certificate store. Select the option “Place all certificates in the following store” and set “Trusted Root Certification Authorities” as the store. Select the **Next** button.
+5.  証明書ストアを選択するよう求められます。“以下のストアにすべての証明書を配置する”というオプションを選択し、ストアとして“信頼されたルート認証局”を設定します。**次へ**ボタンを選択します。
 
-    ![!Select certificate store][img-store]
+    ![!証明書ストアの選択][img-store]
 
-    Make sure that you have selected the appropriate store for the certificate and start the import process by selecting the **Finish** button.
-    
-    ![!Certificate import wizard resume][img-wizard-resume]
+    証明書の適切なストアが選択されていることを確認し、**完了**ボタンを選択してインポートのプロセスを開始します。
 
-6.  You will be presented with a warning message about the inability to validate the fingerprint of the certificate being imported. Select the **Yes** button in order to complete the import process.
+    ![!証明書インポートウィザードの再開][img-wizard-resume]
 
-    ![!Fingerprint validation warning][img-fingerprint-warning]
+6.  インポートされる証明書の指紋の検証ができないという警告メッセージが表示されます。インポートプロセスを完了するためには、**はい**ボタンを選択します。
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    ![!指紋検証警告][img-fingerprint-warning]
 
-    ![!Successful import of the certificate][img-import-ok]
-    
-7.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificate.
+    インポートが成功した場合、“インポートは成功しました”という情報メッセージが表示されます。
 
-    For example, you could browse to the HTTPS version of the Google Gruyere site:
+    ![!証明書のインポートの成功][img-import-ok]
+
+7.  証明書が正しくインストールされたことを確認します。それを行うために、HTTPS経由で任意のサイトにアクセスします。信頼できない証明書についての警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるべきです。
+
+    例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます:
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![!HTTPS が動作している][img-https-ok]

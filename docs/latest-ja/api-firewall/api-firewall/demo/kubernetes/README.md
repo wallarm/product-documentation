@@ -1,81 +1,81 @@
-# Wallarm API Firewall demo with Kubernetes
+# KubernetesとのWallarm API Firewallデモ
 
-This demo deploys the application [**httpbin**](https://httpbin.org/) and Wallarm API Firewall as a proxy protecting **httpbin** API. Both applications are running in the Docker containers in Kubernetes.
+このデモでは、アプリケーション[**httpbin**](https://httpbin.org/)とWallarm API Firewallをプロキシとしてデプロイし、**httpbin** APIを保護します。両方のアプリケーションはKubernetesのDockerコンテナで実行されています。
 
-## System requirements
+## システム要件
 
-Before running this demo, please ensure your system meets the following requirements:
+このデモを実行する前に、お使いのシステムが以下の要件を満たしていることを確認してください：
 
-* Docker Engine 20.x or later installed for [Mac](https://docs.docker.com/docker-for-mac/install/), [Windows](https://docs.docker.com/docker-for-windows/install/), or [Linux](https://docs.docker.com/engine/install/#server)
-* [Docker Compose](https://docs.docker.com/compose/install/) installed
-* **make** installed for [Mac](https://formulae.brew.sh/formula/make), [Windows](https://sourceforge.net/projects/ezwinports/files/make-4.3-without-guile-w32-bin.zip/download), or Linux (using suitable package-management utilities)
+* Docker Engine 20.x 以上が [Mac](https://docs.docker.com/docker-for-mac/install/)、[Windows](https://docs.docker.com/docker-for-windows/install/)、または [Linux](https://docs.docker.com/engine/install/#server)にインストールされている
+* [Docker Compose](https://docs.docker.com/compose/install/)がインストールされている
+* **make**が [Mac](https://formulae.brew.sh/formula/make)、[Windows](https://sourceforge.net/projects/ezwinports/files/make-4.3-without-guile-w32-bin.zip/download)、または Linux（適切なパッケージ管理ユーティリティを使用して）にインストールされている
 
-Running this demo environment can be resource-intensive. Please ensure you have the following resources available:
+このデモ環境の実行はリソースを多く消費する可能性があります。以下のリソースが利用可能なことを確認してください：
 
-* At least 2 CPU cores
-* At least 6GB volatile memory
+* 少なくとも2つのCPUコア
+* 少なくとも6GBの揮発性メモリ
 
-## Used resources
+## 使用されるリソース
 
-The following resources are used in this demo:
+このデモで使用されるリソースは次のとおりです：
 
-* [**httpbin** Docker image](https://hub.docker.com/r/kennethreitz/httpbin/)
-* [API Firewall Docker image](https://hub.docker.com/r/wallarm/api-firewall)
+* [**httpbin** Docker イメージ](https://hub.docker.com/r/kennethreitz/httpbin/)
+* [API Firewall Docker イメージ](https://hub.docker.com/r/wallarm/api-firewall)
 
-## Demo code description
+## デモコードの説明
 
-The [demo code](https://github.com/wallarm/api-firewall/tree/main/demo/kubernetes) runs the Kubernetes cluster with deployed **httpbin** and API Firewall.
+[デモコード](https://github.com/wallarm/api-firewall/tree/main/demo/kubernetes)は、デプロイされた**httpbin**とAPI Firewallを持つKubernetesクラスタを実行します。
 
-To run the Kubernetes cluster, this demo uses the tool [**kind**](https://kind.sigs.k8s.io/) which allows running the K8s cluster in minutes using Docker containers as nodes. By using several abstraction layers, **kind** and its dependencies are packed into the Docker image which starts the Kubernetes cluster.
+Kubernetesクラスタを実行するために、このデモはツール[**kind**](https://kind.sigs.k8s.io/)を使用します。これは、Dockerコンテナをノードとして使用してK8sクラスタを数分で実行することが可能です。いくつかの抽象化レイヤーを使用して、**kind**およびその依存関係は、Kubernetesクラスタを起動するDockerイメージにパックされています。
 
-The demo deployment is configured via the following directories/files:
+デモのデプロイメントは以下のディレクトリ/ファイルを通じて設定されます：
 
-* The OpenAPI 3.0 specification for **httpbin** API is located in the file `volumes/helm/api-firewall.yaml` under the `manifest.body` path. Using this specification, API Firewall will validate whether requests and responses sent to the application address match the application API schema.
+* **httpbin** APIのOpenAPI 3.0仕様は、ファイル `volumes/helm/api-firewall.yaml`の `manifest.body` パスに位置しています。この仕様を使用して、API Firewallではアプリケーションのアドレスに送信されるリクエストとレスポンスがアプリケーションのAPIスキーマと一致するかどうかを検証します。
+    
+    この仕様は、[元の**httpbin**のAPIスキーマ](https://httpbin.org/spec.json)を定義していません。API Firewallの機能をより透明に示すために、元のOpenAPI 2.0スキーマを明示的に変換し、複雑にし、変更された仕様を `volumes/helm/api-firewall.yaml` > `manifest.body`に保存しました。
+* `Makefile` はDockerルーチンを定義する設定ファイルです。
+* `docker-compose.yml`は次の設定を定義するファイルです。一時的なKubernetesクラスタを実行するための：
 
-    This specification does not define the [original API schema of **httpbin**](https://httpbin.org/spec.json). To demonstrate more transparently the API Firewall features, we have explicitly converted and complicated the original OpenAPI 2.0 schema and saved the changed specification to `volumes/helm/api-firewall.yaml` > `manifest.body`.
-* `Makefile` is the configuration file defining Docker routines.
-* `docker-compose.yml` is the file defining the following configuration for running the temporary Kubernetes cluster:
+    * [`docker/Dockerfile`](https://github.com/wallarm/api-firewall/blob/main/demo/kubernetes/docker/Dockerfile)に基づいて[**kind**](https://kind.sigs.k8s.io/) ノードの構築。
+    * KubernetesとDockerのサービスディスカバリーを同時に提供するDNSサーバーのデプロイメント。
+    * ローカルDockerレジストリと `dind` サービスのデプロイメント。
+    * **httpbin**と [API Firewall Docker](https://docs.wallarm.com/api-firewall/installation-guides/docker-container/) イメージの設定。
 
-    * The [**kind**](https://kind.sigs.k8s.io/) node building based on [`docker/Dockerfile`](https://github.com/wallarm/api-firewall/blob/main/demo/kubernetes/docker/Dockerfile).
-    * Deployment of the DNS server providing simultaneous Kubernetes and Docker service discovery.
-    * Local Docker registry and the `dind` service deployment.
-    * **httpbin** and [API Firewall Docker](https://docs.wallarm.com/api-firewall/installation-guides/docker-container/) images configuration.
+## ステップ1：デモコードの実行
 
-## Step 1: Running the demo code
+デモコードを実行するには：
 
-To run the demo code:
-
-1. Clone the GitHub repository containing the demo code:
+1. デモコードが含まれる GitHubリポジトリをクローンします：
 
     ```bash
     git clone https://github.com/wallarm/api-firewall.git
     ```
-2. Change to the `demo/kubernetes` directory of the cloned repository:
+2.  クローンしたリポジトリの `demo/kubernetes` ディレクトリに変更します：
 
     ```bash
     cd api-firewall/demo/kubernetes
     ```
-3. Run the demo code by using the command below. Please note that running this demo can be resource-intensive. It takes up to 3 minutes to start the demo environment.
+3. 以下のコマンドを使用してデモコードを実行します。このデモの実行はリソースを多く消費する可能性があることに注意してください。デモ環境の開始には最大3分かかることがあります。
 
     ```bash
     make start
     ```
 
-    * The application **httpbin** protected by API Firewall will be available at http://localhost:8080.
-    * The application **httpbin** unprotected by API Firewall will be available at http://localhost:8090. When testing the demo deployment, you can send requests to the unprotected application to know the difference.
-4. Proceed to the demo testing.
+    * API Firewallによって保護されたアプリケーション**httpbin**は http://localhost:8080 で利用可能になります。
+    * API Firewallによって保護されていないアプリケーション**httpbin**は http://localhost:8090 で利用可能になります。デモのデプロイメントをテストする際には、保護されていないアプリケーションにリクエストを送信して、二つのアプリケーションの違いを確認できます。
+4.  デモのテストに進みます。
 
-## Step 2: Testing the demo
+## ステップ2：デモのテスト
 
-Using the following request, you can test deployed API Firewall:
+以下のリクエストを用いて、デプロイしたAPI Firewallをテストすることができます：
 
-* Check that API Firewall blocks requests sent to the unexposed path:
+* API Firewallが露出していないパスに送信されるリクエストをブロックします：
 
     ```bash
     curl -sD - http://localhost:8080/unexposed/path
     ```
 
-    Expected response:
+    予測されるレスポンス：
 
     ```bash
     HTTP/1.1 403 Forbidden
@@ -83,13 +83,13 @@ Using the following request, you can test deployed API Firewall:
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
     ```
-* Check that API Firewall blocks requests with string value passed in the parameter that requires integer data type:
+* API Firewallが整数データタイプが必要なパラメータに文字列値が渡されたリクエストをブロックします：
 
     ```bash
     curl -sD - http://localhost:8080/cache/arewfser
     ```
 
-    Expected response:
+    予測されるレスポンス：
 
     ```bash
     HTTP/1.1 403 Forbidden
@@ -98,8 +98,8 @@ Using the following request, you can test deployed API Firewall:
     Content-Length: 0
     ```
 
-    This case demonstrates that API Firewall protects the application from Cache-Poisoned DoS attacks.
-* Check that API Firewall blocks requests with the required query parameter `int` that does not match the following definition:
+    このケースでは、API FirewallがアプリケーションをキャッシュベースのDoS攻撃から保護することを示しています。
+* API Firewallが以下の定義に一致しない必須クエリパラメータ `int` を持つリクエストをブロックします：
 
     ```json
     ...
@@ -116,23 +116,23 @@ Using the following request, you can test deployed API Firewall:
     ...
     ```
 
-    Test the definition by using the following requests:
+   以下のリクエストを使用して定義をテストします：
 
     ```bash
-    # Request with missed required query parameter
+    # 必須のクエリパラメータが間違ったリクエスト
     curl -sD - http://localhost:8080/get
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:09:08 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
 
     
-    # Request with the int parameter value which is in a valid range
+    # intパラメータの値が有効範囲内のリクエスト
     curl -sD - http://localhost:8080/get?int=15
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 200 OK
     Server: gunicorn/19.9.0
     Date: Mon, 31 May 2021 07:09:38 GMT
@@ -143,37 +143,37 @@ Using the following request, you can test deployed API Firewall:
     ...
 
 
-    # Request with the int parameter value which is out of range
+    # int パラメータの値が範囲外のリクエスト
     curl -sD - http://localhost:8080/get?int=5
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:09:27 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
 
 
-    # Request with the int parameter value which is out of range
+    # int パラメータの値が範囲外のリクエスト
     curl -sD - http://localhost:8080/get?int=1000
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:09:53 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
 
 
-    # Request with the int parameter value which is out of range
-    # POTENTIAL EVIL: 8-byte integer overflow can respond with stack drop
+    # int パラメータの値が範囲外のリクエスト
+    # 邪悪な可能性： 8バイト整数のオーバーフローがスタックドロップで反応する
     curl -sD - http://localhost:8080/get?int=18446744073710000001
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:10:04 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
     ```
-* Check that API Firewall blocks requests with the query parameter `str` that does not match the following definition:
+* API Firewallが以下の定義に一致しないクエリパラメータ `str` を持つリクエストをブロックします：
 
     ```json
     ...
@@ -188,33 +188,33 @@ Using the following request, you can test deployed API Firewall:
     ...
     ```
 
-    Test the definition by using the following requests (the `int` parameter is still required):
+   以下のリクエストを使用して定義をテストします（ `int` パラメータは依然として必要です）：
 
     ```bash
-    # Request with the str parameter value that does not match the defined regular expression
+    # 定義した正規表現に一致しないstrパラメータの値を持つリクエスト
     curl -sD - "http://localhost:8080/get?int=15&str=fasxxx.xxxawe-6354"
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:10:42 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
 
 
-    # Request with the str parameter value that does not match the defined regular expression
+    # 定義した正規表現に一致しないstrパラメータの値を持つリクエスト
     curl -sD - "http://localhost:8080/get?int=15&str=faswerffa-63sss54"
     
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:10:42 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
 
 
-    # Request with the str parameter value that matches the defined regular expression
+    # 定義した正規表現に一致するstrパラメータの値を持つリクエスト
     curl -sD - http://localhost:8080/get?int=15&str=ri0.2-3ur0-6354
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 200 OK
     Server: gunicorn/19.9.0
     Date: Mon, 31 May 2021 07:11:03 GMT
@@ -225,20 +225,20 @@ Using the following request, you can test deployed API Firewall:
     ...
 
 
-    # Request with the str parameter value that does not match the defined regular expression
-    # POTENTIAL EVIL: SQL Injection
+    # 定義した正規表現に一致しないstrパラメータの値を持つリクエスト
+    # 邪悪な可能性：SQLインジェクション
     curl -sD - 'http://localhost:8080/get?int=15&str=";SELECT%20*%20FROM%20users.credentials;"'
 
-    # Expected response
+    # 予測されるレスポンス
     HTTP/1.1 403 Forbidden
     Date: Mon, 31 May 2021 07:12:04 GMT
     Content-Type: text/plain; charset=utf-8
     Content-Length: 0
     ```
 
-## Step 4: Stopping the demo code
+## ステップ4：デモコードの停止
 
-To stop the demo deployment and clear your environment, use the command:
+デモデプロイメントを停止し、環境をクリアするために次のコマンドを使用します：
 
 ```bash
 make stop

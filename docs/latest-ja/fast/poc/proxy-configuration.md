@@ -4,20 +4,20 @@
 [doc-integration-overview]:         integration-overview.md
 
 
-#   Configuration of Proxying Rules
+#   プロキシルールの設定
 
-!!! warning "Attention"
-    Perform the steps described in this chapter only if FAST node is being deployed either via [API][doc-node-deployment-api] or via [CI Mode (recording mode)][doc-fast-recording-mode].
+!!! warning "注意"
+    この章で説明されている手順は、FASTノードが[API][doc-node-deployment-api]または[CIモード（記録モード）][doc-fast-recording-mode]経由でデプロイされている場合にのみ実行します。
 
-Configure your request source to use the FAST node as an HTTP proxy for all the requests issued towards the target application.
+リクエストの発生源を設定し、すべてのリクエストが目的のアプリケーションに向けてFASTノードをHTTPプロキシとして利用します。
 
-Depending on the way your CI/CD infrastructure interacts with the FAST node’s Docker container, you can address the node by one of the following means:
-* IP address.
-* Domain name.
+CI/CDインフラストラクチャがFASTノードのDockerコンテナとどのようにやり取りするかにより、ノードに次のいずれかの手段で対応することができます:
+* IPアドレス。
+* ドメイン名。
 
-!!! info "Example"
-    If your test tool runs as a Linux Docker container, you can pass the following environment variable into the container to enable proxying of all the HTTP requests from that container through the FAST node:
+!!! info "例"
+    テストツールがLinux Dockerコンテナとして動作している場合、コンテナに以下の環境変数を渡すことで、そのコンテナからのすべてのHTTPリクエストをFASTノード経由でプロキシすることができます：
     
     ```
-    HTTP_PROXY=http://<FAST node name or IP address>:<port>
+    HTTP_PROXY=http://<FASTノード名またはIPアドレス>:<ポート>
     ```

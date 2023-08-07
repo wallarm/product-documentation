@@ -1,48 +1,49 @@
-# Microsoftチーム
+# Microsoft Teams
 
-次のイベントがトリガーされたときに、WallarmからMicrosoftチームのチャンネルに通知を送信するように設定できます：
+あなたは以下のイベントがトリガーされたときにMicrosoft Teamsチャンネルに通知を送信するようにWallarmを設定できます：
 
---8<-- "../include-ja/integrations/events-for-integrations.md"
+--8<-- "../include/integrations/events-for-integrations.md"
 
 ## インテグレーションの設定
 
-1. **統合**セクションを開きます。
-2. **Microsoft Teams** ブロックをクリックするか、**統合を追加** ボタンをクリックして **Microsoft Teams** を選択します。
-3. 統合の名前を入力します。
-4. 通知を投稿したいMicrosoft Teamsチャンネルの設定を開き、[この指示](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)に従って新しいWebhookを設定します。
-5. 提供されたWebhookのURLをコピーし、Wallarmのコンソール内の**Webhook URL**フィールドにその値を貼り付けます。
-6. 通知をトリガーするイベントのタイプを選択します。 イベントが選択されていなければ、通知は送信されません。
-7. [インテグレーションをテスト](#integration-testing)して、設定が正しいことを確認します。
-8. **統合を追加**をクリックします。
+1. **Integrations**セクションを開きます。
+2. **Microsoft Teams**ブロックをクリックするか、**Add integration**ボタンをクリックして**Microsoft Teams**を選択します。
+3. インテグレーション名を入力します。
+4. 通知を投稿したいMicrosoft Teamsチャンネルの設定を開き、新しいWebhookを[これらの指示](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)を使って設定します。
+5. 提供されたWebhook URLをコピーして、Wallarm Consoleの**Webhook URL**フィールドに値を貼り付けます。
+6. 通知をトリガーするイベントの種類を選択します。イベントが選ばれていない場合、通知は送信されません。
+7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
+8. **Add integration**をクリックします。
 
-      ![!MSチーム統合](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+    ![!MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
 
 ## インテグレーションのテスト
 
---8<-- "../include-ja/integrations/test-integration-basic-data.md"
+--8<-- "../include/integrations/test-integration-basic-data.md"
 
-**wallarm**からのMicrosoft Teamsのメッセージをテストします：
+ユーザー**wallarm**からのMicrosoft Teamsメッセージをテストします：
 
 ```
-[テストメッセージ] [テストパートナー] ネットワークの周囲が変わりました。
+[テストメッセージ] [テストパートナー] ネットワークパーコメーターが変更されました
 
 通知タイプ：new_scope_object_ips
 
-新たに発見されたネットワーク内のIPアドレス：
+ネットワークパーコメーターに新しいIPアドレスが見つかりました：
 8.8.8.8
 
-クライアント：TestCompany
+クライアント名：TestCompany
 クラウド：EU
 ```
 
+
 ## インテグレーションの更新
 
---8<-- "../include-ja/integrations/update-integration.md"
+--8<-- "../include/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include-ja/integrations/disable-integration.md"
+--8<-- "../include/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include-ja/integrations/remove-integration.md"
+--8<-- "../include/integrations/remove-integration.md"

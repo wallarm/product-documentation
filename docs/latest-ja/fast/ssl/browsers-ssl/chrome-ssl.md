@@ -11,74 +11,71 @@
 [img-import-ok]:            ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-import-success.png
 [img-installed-cert]:       ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-installed-certificate.png
 [img-https-ok]:             ../../../images/fast/ssl/common/browsers-ssl/chrome-ssl/c-https-ok.png   
-    
-    
-    
-    
-#   FAST Node Self-signed SSL-certificate Installation for Google Chrome
 
-To install the certificate for the Google Chrome browser, do the following:
+#   Google Chrome用のFASTノード自己署名SSL証明書のインストール
 
-1.  Make sure that you have set up your browser to use the FAST node as the HTTP and HTTPS proxy.
+Google Chromeブラウザーに証明書をインストールするには、次の手順を実施してください：
 
-2.  Request the file `cert.der` from any domain via HTTP using the browser.
+1.  FASTノードをHTTPおよびHTTPSプロキシとして使用するようにブラウザを設定したことを確認します。
 
-    For example, you can use one of the following links:
+2.  ブラウザを使用して、任意のドメインからファイル`cert.der`をHTTPで要求します。
+
+    例えば、以下のリンクの一つを使用できます：
     
     * <http://wallarm.get/cert.der>
     * <http://example.com/cert.der>
 
-    The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
+    ブラウザは証明書ファイルをダウンロードします。設定により、ファイルはデフォルトのダウンロードディレクトリまたは選択したディレクトリに配置されます。
 
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![!自己署名のFASTノード証明書の要求][img-cert-request]
 
-3.  Open the browser's privacy and security settings list. To do this, either navigate to the <chrome://settings/privacy> link or open the browser settings and expand the additional settings by selecting the **Advanced** button in the end of the settings list.
+3.  ブラウザのプライバシーとセキュリティ設定のリストを開きます。これには、<chrome://settings/privacy>リンクに移動するか、ブラウザの設定を開き、設定リストの最後にある**詳細設定**ボタンを選択して追加設定を展開します。
 
-    ![!Chrome advanced settings][img-adv-settings]
+    ![!Chromeの詳細設定][img-adv-settings]
     
-    Select the “Manage certificates” option.
+    「証明書の管理」オプションを選択します。
     
-    ![!Chrome “Manage certificates” setting][img-cert-mgmt]
+    ![!Chromeの「証明書の管理」設定][img-cert-mgmt]
 
-4.  A “Certificates” window will open, containing information about Chrome certificates. Switch to the “Trusted Root Certification Authorities” tab and select the **Import** button. 
+4.  Chromeの証明書に関する情報を含む「証明書」ウィンドウが開きます。「信頼されたルート認証局」タブに切り替えて、**インポート**ボタンを選択します。 
 
-    ![!“Certificates” window][img-cert-window]
+    ![!「証明書」ウィンドウ][img-cert-window]
         
-    A Certificate Import Wizard should be opened. Select the **Next** button.
+    証明書のインポートウィザードが開かれます。**次へ**ボタンを選択します。
         
-    ![!Certificate Import Wizard][img-cert-wizard]
+    ![!証明書のインポートウィザード][img-cert-wizard]
 
-5.  Select the **Browse** button and then choose the certificate file you downloaded earlier. 
+5.  **参照**ボタンを選択し、前にダウンロードした証明書ファイルを選択します。
     
-    ![!Certificate file import][img-cert-import]
+    ![!証明書ファイルのインポート][img-cert-import]
 
-    Choose “All files” file type if necessary. Select the **Next** button.
+    必要に応じて、「すべてのファイル」のファイルタイプを選択します。次に、**次へ**ボタンを選択します。
 
-    ![!Selection of the certificate file][img-cert-select]
+    ![!証明書ファイルの選択][img-cert-select]
 
-6.  You will be asked to choose a certificate store. Select the option “Place all certificates in the following store” and set “Trusted Root Certification Authorities” as the store. Select the **Next** button.
+6.  証明書ストアを選択するように求められます。「次のストアにすべての証明書を配置します」というオプションを選び、「信頼されたルート認証局」をストアとして設定します。そして、**次へ**ボタンを選択します。
 
-    ![!Select certificate store][img-store]
+    ![!証明書ストアの選択][img-store]
     
-    Make sure that you have selected the appropriate store for the certificate and start the import process by selecting the **Finish** button.
+    証明書に適切なストアが選択されていることを確認し、**完了**ボタンを選択してインポートプロセスを開始します。
     
-    ![!Certificate import wizard resume][img-wizard-resume]
+    ![!証明書のインポートウィザードの再開][img-wizard-resume]
 
-7.  You will be presented with a warning message about the inability to validate the fingerprint of the certificate being imported. Select the **Yes** button in order to complete the import process.
+7.  インポート中の証明書の指紋を検証できないという警告メッセージが表示されます。インポートプロセスを完了させるために、**はい**ボタンを選択します。
 
-    ![!Fingerprint validation warning][img-fingerprint-warning]
+    ![!指紋検証の警告][img-fingerprint-warning]
 
-    Given that the import is successsful, “The import was successful” informational message will appear.
+    インポートが成功した場合、「インポートは成功しました」という情報メッセージが表示されます。
 
-    ![!Successful import of the certificate][img-import-ok]
+    ![!証明書のインポート成功][img-import-ok]
     
-    Now you will see the imported certificate in the “Trusted Root Certification Authorities” tab of the “Certificates” window. Notice that the name and expiration date of your certificate will differ from those shown in the image.
+    これで、「証明書」ウィンドウの「信頼されたルート認証局」タブにインポートした証明書が表示されます。画像に表示されているものとは異なり、証明書の名前と有効期限が異なることに注意してください。
     
-    ![!Installed certificate][img-installed-cert]
+    ![!インストールされた証明書][img-installed-cert]
 
-8.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
+8.  証明書が正しくインストールされたことを確認します。そのために、HTTPS経由で任意のサイトに移動します。証明書が信頼できないという警告メッセージなしに、サイトのHTTPSバージョンにリダイレクトされるはずです。
 
-    For example, you could browse to the HTTPS version of the Google Gruyere site:
+    例えば、Google GruyereサイトのHTTPSバージョンに移動してみてください：
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![!HTTPSが動作しています][img-https-ok]

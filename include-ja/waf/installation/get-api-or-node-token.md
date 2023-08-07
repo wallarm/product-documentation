@@ -1,14 +1,14 @@
-1. [適切なタイプ][wallarm-token-types]のWallarmトークンを取得します：
+1. [適切なタイプ][wallarm-token-types]のWallarmトークンを取得します:
 
-   === "APIトークン"
+    === "APIトークン"
 
-       1. Wallarmコンソールを開きます → **設定** → **APIトークン**を[USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)で開きます。
-       1. `Deploy`というソースロールを持つAPIトークンを見つける、または作成します。
-       1. このトークンをコピーします。
+        1. [USクラウド](https://us1.my.wallarm.com/settings/api-tokens)または[EUクラウド](https://my.wallarm.com/settings/api-tokens)でWallarmコンソールを開き、**設定** → **APIトークン**に進みます。
+        1. `Deploy`ソースロールを持つAPIトークンを探すか、作成します。
+        1. このトークンをコピーします。
 
-   === "ノードトークン"
+    === "ノードトークン"
 
-       1. Wallarmコンソールを開きます → **ノード**を[USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)で開きます。
-       1. 次のいずれかを行います: 
-           * **Wallarmノード**タイプのノードを作成し、生成されたトークンをコピーします。
-           * 既存のノードグループを使用する - ノードのメニューからトークンをコピーします → **トークンをコピー**。
+        1. [USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)でWallarmコンソールを開き、**ノード**に進みます。
+        1. 次のどちらかを行います:
+            * **Wallarmノード**タイプのノードを作成し、生成されたトークンをコピーします。
+            * 既存のノードグループを使用します - ノードのメニュー → **トークンをコピー**を使用してトークンをコピーします。

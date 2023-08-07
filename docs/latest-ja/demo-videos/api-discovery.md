@@ -1,12 +1,12 @@
 # API Discoveryの概要
 
-Wallarm プラットフォームの [**API Discovery**](../about-wallarm/api-discovery.md) モジュールの全体的な可能性を発見するために、私たちのデモビデオをご覧ください。実際のAPI使用に基づくAPIインベントリーを理解し、提示された情報をどのように活用するか学びましょう。
+Wallarmプラットフォームの[**API Discovery**](../about-wallarm/api-discovery.md)モジュールの全体的な潜在能力を知るために、デモビデオをご覧ください。実際のAPIの使用に基づいて構築されたAPIのインベントリーについて知り、提示された情報をどのように活用するかを学びます。
 
 <div class="video-wrapper">
   <iframe width="1280" height="720" src="https://www.youtube.com/embed/0bRHVtpWkJ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-**関連するドキュメンテーション記事**
+**関連するドキュメンテーションの記事**
 
 * [API Discoveryの概要](../about-wallarm/api-discovery.md)
 * [API Discoveryユーザーガイド](../user-guides/api-discovery.md)

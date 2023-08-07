@@ -7,37 +7,37 @@
 [img-similar-tr-item]:              ../../images/fast/operations/common/copy-testrun/create-similar-testrun-item.png
 [img-similar-tr-sidebar]:           ../../images/fast/operations/common/copy-testrun/create-similar-testrun-sidebar.png
 
-#   Copying a Test Run
+#   テストランのコピー
 
-!!! info "Necessary Data"
-    To copy a test run via an API call, the following pieces of data are required:
+!!! info "必要なデータ"
+    API呼び出しでテストランをコピーするためには、以下のデータが必要です:
     
-    * a token
-    * an existing test record identifier
+    * トークン
+    * 既存のテストレコード識別子
 
-    To copy a test run via a web interface, a Wallarm account is required.
+    Webインターフェースでテストランをコピーするためには、Wallarmアカウントが必要です。
 
-    You can get detailed information about token and test records [here][doc-tr-information].
+    トークンとテストレコードに関する詳細な情報は、[こちら][doc-tr-information]から取得できます。
     
-    The following values are used as examples in this document:
+    この文書では以下の値を例として使用します:
 
-    * `token_Qwe12345` as a token.
-    * `rec_0001` as a test record.
+    * トークンとして `token_Qwe12345`
+    * テストレコードとして `rec_0001` 
 
-When a test run is being copied, an existing [test record][doc-testrecord] is reused.
+テストランがコピーされる際、既存の[テストレコード][doc-testrecord]が再利用されます。
 
-This method of test run creation should be used if it is necessary to test a target application using already recorded baseline requests.
+このテストラン作成方法は、すでに記録されているベースラインリクエストを使用して対象アプリケーションをテストする必要がある場合に使用する必要があります。
 
 
-##  Rules of Test Run Copying
+##  テストランのコピーのルール
 
-The things to be taken into account when copying a test run are:
-* You can specify any test policy to be used by a copied test run. This policy may differ from the policy used in the original test run.
-* You can copy test runs in the following states: `failed`, `interrupted`, `passed`, `paused`, `running`. Descriptions of these test run states are given [here][doc-state-description]. 
-* It is not possible to copy a test run using an empty test record with no baseline requests in it.
-* If some baseline requests are being recorded in a test record, this record cannot be used to copy a test run.
+テストランをコピーする際の考慮点は以下の通りです:
+* コピーされたテストランで使用される任意のテストポリシーを指定することができます。このポリシーは、オリジナルのテストランで使用されたポリシーと異なる場合があります。
+* 次の状態のテストランをコピーすることができます: `failed`, `interrupted`, `passed`, `paused`, `running`. これらのテストラン状態の詳細は[こちら][doc-state-description]で説明されています。
+* ベースラインリクエストがない空のテストレコードを使用してテストランをコピーすることはできません。
+* ベースラインリクエストがテストレコードに記録されている場合、このレコードはテストランのコピーには使用できません。
  
-    If you try to copy a test run based on an unfinished test record, you will get the `400` error code (`Bad Request`) from the API server and an error message similar to the one below:
+    未完のテストレコードに基づいてテストランをコピーしようとすると、APIサーバから`400`のエラーコード(`Bad Request`)と下記のようなエラーメッセージが返されます:
 
     ```
     {
@@ -51,54 +51,54 @@ The things to be taken into account when copying a test run are:
     }
     ```
     
-    It is not possible to copy a test run from the web interface unless the recording process has been stopped.
+    録画プロセスがストップされていない限り、Webインターフェースからテストランをコピーすることはできません。
 
-##  Copying a Test Run via an API
+##  API経由でのテストランのコピー
 
-To copy and execute a test run, send the POST request to the URL `https://us1.api.wallarm.com/v1/test_run`:
+テストランをコピーし実行するには、URL `https://us1.api.wallarm.com/v1/test_run` にPOSTリクエストを送信します:
 
---8<-- "../include-ja/fast/operations/api-copy-testrun.md"
+--8<-- "../include/fast/operations/api-copy-testrun.md"
 
-If the request to the API server is successful, you will be presented with the server’s response. The response provides useful information, including:
+APIサーバへのリクエストが成功すると、サーバの応答が表示されます。応答には以下の有用な情報が含まれています:
 
-1.  `id`: the identifier of a test run's copy (e.g., `tr_1234`).
+1.  `id`: テストランのコピーの識別子 (例えば、 `tr_1234`).
     
-    You will need the `id` parameter value to control the test run execution status.
+    テストラン実行状態を制御するためには`id`パラメータ値が必要となります。
     
-2.  `state`: the state of the test run.
+2.  `state`: テストランの状態.
     
-    A newly copied test run is in the `running` state.
+    新しくコピーされたテストランは `running` 状態にあります。
     
-    A comprehensive description of all the values of the `state` parameter can be found [here][doc-state-description].
+    `state` パラメータの全ての値についての詳細な説明は[こちら][doc-state-description]で見つけることができます。
 
     
-##  Copying a Test Run via Web Interface    
+##  Webインターフェース経由でのテストランのコピー    
 
-To copy and execute a test run via the Wallarm portal's web interface:
-1.  Log in to the portal with your Wallarm account, then navigate to the “Test runs” tab.
-2.  Select a test run to copy, then open the action menu on the right of the test run.
-3.  Select the “Create similar testrun” menu entry. 
+WallarmポータルのWebインターフェースを通してテストランをコピーし実行するには以下の手順を実行します:
+1.  Wallarmアカウントでポータルにログインし、”Test runs"タブに移動します。
+2.  コピーするテストランを選択し、テストランの右側にある操作メニューを開きます。
+3.  "Create similar testrun"メニューエントリを選択します。 
 
-    ![!The “Create similar test run” menu entry][img-similar-tr-item]
+    ![!“Create similar test run” menu entry][img-similar-tr-item]
 
-4.  Select the following items in the opened sidebar:
-    * the name of the test run's copy
-    * the policy to use with the test run's copy
-    * the node on which the test run's copy will be executed
+4.  開いたサイドバーで以下の項目を選択します:
+    * テストランのコピーの名前
+    * テストランのコピーで使用するポリシー
+    * テストランのコピーが実行されるノード
     
-    ![!The “Test run” sidebar][img-similar-tr-sidebar]
+    ![!“Test run” sidebar][img-similar-tr-sidebar]
     
-    You may configure additional settings by selecting “Advanced settings” (if necessary):
+    必要に応じて"Advanced settings"を選択することで追加の設定を行うことができます:
     
---8<-- "../include-ja/fast/test-run-adv-settings.md"
+--8<-- "../include/fast/test-run-adv-settings.md"
     
-5.  Make sure that the “Use baselines from `<the name of the test record to reuse>`” option is checked.
+5.  ”Use baselines from `<the name of the test record to reuse>`” オプションがチェックされていることを確認します。
 
-    !!! info "Reusing a Test Record"
-        Note that it is the test record name that is displayed in the option, not the test run name.
+    !!! info "テストレコードの再利用"
+        オプションに表示されるのはテストランの名前ではなく、テストレコードの名前であることに注意してください。
         
-        A test record name is often omitted: for example, if [a test run is created][doc-create-testrun] without the `test_record_name` parameter specified, then the name of the test record is the same as the name of the test run.
+        テストレコードの名前はしばしば省略される: 例えば、[テストランが作成される][doc-create-testrun]際に`test_record_name` パラメータが指定されていない場合、テストレコードの名前はテストランの名前と同じです。
         
-        The figure above shows the copy dialogue that mentions a test record where the name is not equivalent to the name of the test run wthat made use of this test record in the past (the `MY TEST RECORD` test record was used by the `DEMO TEST RUN` test run). 
+        上記の図は、過去のテストラン(`DEMO TEST RUN`)で使用されたテストレコード(`MY TEST RECORD`)の名前がテストランの名前と等しくないテストレコードを言及しているコピーのダイアログを示しています。 
 
-6.  Execute the test run by clicking on the “Create and run” button.    
+6.  "Create and run"ボタンをクリックしてテストランを実行します。

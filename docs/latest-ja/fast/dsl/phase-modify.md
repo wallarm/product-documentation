@@ -4,43 +4,43 @@
 
 [img-modify]:           ../../images/fast/dsl/common/phases/modify.png
 
-# The Modify Phase
+# 修正フェーズ
 
-!!! info "Scope of the phase"
-    This phase is used in a modifying extension and is optional for its operation (the `modify` section may be either absent or present in the YAML file).
+!!! info "フェーズの範囲"
+    このフェーズは、修正拡張で使用され、その操作にはオプショナルです（YAMLファイル内に `modify`項目があってもなくてもよい）。
 
-    This phase should be absent from the non-modifying extension's YAML file.
-    
-    Read about the extension types in detail [here][link-ext-logic].
+    このフェーズは、非修正拡張のYAMLファイルから除外するべきです。
 
-!!! info "Request elements description syntax"
-    When creating a FAST extension, you need to understand the structure of the HTTP request sent to the application and that of the HTTP response received from the application in order to correctly describe the request elements that you need to work with using the points. 
+    拡張機能のタイプについては、[こちら][link-ext-logic]で詳しく読んでください。
 
-    To see detailed information, proceed to this [link][link-points].
- 
- This phase modifies values of a baseline request's parameters, if it is necessary. Note that you cannot add a new element that is absent from the baseline request using the Modify phase. For example, you cannot add the `Cookie` HTTP header if the baseline request does not contain it. 
+!!! info "リクエスト要素記述構文"
+    FAST拡張機能を作成する際には、アプリケーションに送信されるHTTPリクエストの構造と、アプリケーションから受信したHTTPレスポンスの構造を理解し、適切に記述する必要があります。
 
-The `modify` section in the extension YAML file contains an array of `<key: value>` pairs. Each pair describes a certain request element (the key) and data that should be inserted into this element (the value). The key can contain regular expressions in the [Ruby regular expressions format][link-ruby-regexp]. You cannot apply regular expressions to the key's value.
+    詳細情報は、[こちら][link-points]のリンク先でご覧ください。
 
-In the Modify phase, you can assign new values to the element or delete the element's data.
+ このフェーズでは、必要に応じて基準リクエストのパラメータの値を変更します。なお、Modifyフェーズを使用して、基準リクエストに存在しない新しい要素を追加することはできません。たとえば、基準リクエストに`Cookie` HTTPヘッダが含まれていない場合は、それを追加することはできません。
 
-* If the key's value is set, then this value will be assigned to the corresponding baseline request element. If there is no element corresponding to the key in the baseline request, then no new element insertion will be performed.
-    
-    ??? info "Example 1"
+拡張YAMLファイルの`modify`セクションには、`<キー：値>`のペアの配列が含まれています。各ペアは特定のリクエスト要素（キー）と、その要素に挿入されるデータ（値）を記述しています。キーは[Ruby正規表現フォーマット][link-ruby-regexp]で正規表現を含むことができます。ただし、キーの値に対して正規表現を適用することはできません。
+
+Modifyフェーズでは、要素に新しい値を割り当てるか、要素のデータを削除することができます。
+
+* キーの値が設定されている場合、その値は対応する基準リクエスト要素に割り当てられます。基準リクエストにキーに対応する要素がない場合、新しい要素の挿入は行われません。
+
+     ??? info "例1"
         `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-        ![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
+         ![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
 
-* If the key's value is not set, then the corresponding baseline request element's value will be cleared.
-    
-    ??? info "Example"
+* キーの値が設定されていない場合、対応する基準リクエスト要素の値がクリアされます。
+
+    ??? info "例"
         `'HEADER_COOKIE_value': ""`
 
-??? info "Example"
-    In the example below, the baseline request will be modified in the following way:
+??? info "例"
+    以下の例では、基準リクエストが次のように変更されます：
 
-    1.  The `Content-Type` header's value will be replaced with `application/xml`.
-    2.  The `uid` GET parameter's value will be cleared (the parameter itself will not be removed).
+    1.  `Content-Type`ヘッダーの値が`application/xml`に置換されます。
+    2.  `uid` GETパラメータの値がクリアされます（パラメータ自体は削除されません）。
 
     ```
     modify:

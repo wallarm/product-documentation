@@ -1,33 +1,33 @@
 					!!! info "`wallarm-node-tarantool` パッケージのバージョン"
-    `wallarm-node-tarantool`パッケージは、別のサーバーにインストールされた主要なNGINX-Wallarmモジュールのパッケージと同じかそれ以上のバージョンである必要があります。
+    `wallarm-node-tarantool` パッケージは、別のサーバーにインストールされた主要な NGINX-Wallarm モジュールパッケージと同じかそれ以上のバージョンでなければなりません。
 
-    バージョンを確認するには：
+    バージョンを確認するには:
 
     === "Debian"
         ```bash
-        # 主要なNGINX-Wallarmモジュールのサーバーから実行
+        # 主要な NGINX-Wallarm モジュールを持つサーバーから実行します
         apt list wallarm-node-nginx
-        # postanalyticsモジュールのサーバーから実行
+        # postanalytics モジュールを持つサーバーから実行します
         apt list wallarm-node-tarantool
         ```
     === "Ubuntu"
         ```bash
-        # 主要なNGINX-Wallarmモジュールのサーバーから実行
+        # 主要な NGINX-Wallarm モジュールを持つサーバーから実行します
         apt list wallarm-node-nginx
-        # postanalyticsモジュールのサーバーから実行
+        # postanalytics モジュールを持つサーバーから実行します
         apt list wallarm-node-tarantool
         ```
-    === "CentOSまたはAmazon Linux 2.0.2021x以前"
+    === "CentOS または Amazon Linux 2.0.2021x 及びそれ以下"
         ```bash
-        # 主要なNGINX-Wallarmモジュールのサーバーから実行
+        # 主要な NGINX-Wallarm モジュールを持つサーバーから実行します
         yum list wallarm-node-nginx
-        # postanalyticsモジュールのサーバーから実行
+        # postanalytics モジュールを持つサーバーから実行します
         yum list wallarm-node-tarantool
         ```
-    === "AlmaLinux、Rocky Linux、またはOracle Linux 8.x"
+    === "AlmaLinux、Rocky Linux または Oracle Linux 8.x"
         ```bash
-        # 主要なNGINX-Wallarmモジュールのサーバーから実行
+        # 主要な NGINX-Wallarm モジュールを持つサーバーから実行します
         yum list wallarm-node-nginx
-        # postanalyticsモジュールのサーバーから実行
+        # postanalytics モジュールを持つサーバーから実行します
         yum list wallarm-node-tarantool
         ```

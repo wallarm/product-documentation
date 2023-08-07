@@ -1,40 +1,40 @@
-# Integration of FAST with Bamboo
+# FASTとBambooの統合
 
-The integration of FAST in CI MODE into the Bamboo workflow can be configured using one of the methods below:
+CIモードのFASTをBambooワークフローに統合するには、以下の方法のいずれかを使用して設定できます：
 
-* via the [YAML specification](https://confluence.atlassian.com/bamboo/bamboo-yaml-specs-938844479.html)
-* via the [JAVA specification](https://confluence.atlassian.com/bamboo/bamboo-java-specs-941616821.html)
-* via [Bamboo UI](https://confluence.atlassian.com/bamboo/jobs-and-tasks-289277035.html)
+* [YAML仕様](https://confluence.atlassian.com/bamboo/bamboo-yaml-specs-938844479.html)を経由して
+* [JAVA仕様](https://confluence.atlassian.com/bamboo/bamboo-java-specs-941616821.html)を経由して
+* [Bamboo UI](https://confluence.atlassian.com/bamboo/jobs-and-tasks-289277035.html)を経由して
 
-The example below uses the YAML specification to configure the integration.
+以下の例はYAML仕様を使用して統合を設定しています。
 
-## Passing FAST Node Token
+## FASTノードトークンの渡し
 
-To securely use the [FAST node token](../../operations/create-node.md), pass its value in the [Bamboo global variable](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html).
+安全に[FASTノードトークン](../../operations/create-node.md)を使用するには、その値を[Bamboo全体変数](https://confluence.atlassian.com/bamboo/defining-global-variables-289277112.html)として渡します。
 
-![!Passing Bamboo global variable](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
+![Bamboo全体変数の渡し](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
---8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
-## Adding the Step of Request Recording
+## リクエスト記録ステップの追加
 
-To implement the request recording, apply the following settings to the job of automated application testing:
+リクエストの記録を実装するには、以下の設定を自動化されたアプリケーションテストのジョブに適用します：
 
-1. Add the command running FAST Docker container in the `CI_MODE=recording` mode with other required [variables](../ci-mode-recording.md#environment-variables-in-recording-mode) __before__ the command running automated tests. For example:
+1. `CI_MODE=recording`モードで他の必要な[変数](../ci-mode-recording.md#environment-variables-in-recording-mode)と共にFAST Dockerコンテナを稼働させるコマンドを、自動テストを実行するコマンドの__前__に追加します。例：
 
     ```
     docker run --name fast -d -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=recording -e WALLARM_API_HOST=us1.api.wallarm.com -e ALLOWED_HOSTS=dvwa -p 8080:8080 --network my-network --rm wallarm/fast
     ```
-2. Configure proxying of automated tests via FAST node. For example:
+2. 自動テストをFASTノード経由でプロキシ設定します。例：
 
     ```
     docker run --rm -d --name selenium -e http_proxy='http://fast:8080' --network my-network selenium/standalone-firefox:latest
     ```
 
-!!! warning "Docker Network"
-    Before recording requests, make sure that the FAST node and the tool for automated testing are running on the same network.
+!!! warning "Dockerネットワーク"
+    リクエストの記録を開始する前に、FASTノードと自動テストツールが同じネットワーク上で稼働していることを確認してください。
 
-??? info "Example of the automated testing step with running FAST node in the recording mode"
+??? info "記録モードでFASTノードを稼働させている自動テストステップの例"
     ```
     test:
     key: TST
@@ -50,38 +50,38 @@ To implement the request recording, apply the following settings to the job of a
             - docker stop selenium fast
     ```
 
-    An example includes the following steps:
+    例に含まれるステップ：
 
-    1. Create the Docker network `my-network`.
-    2. Run the test app `dvwa` on the `my-network` network.
-    3. Run the FAST node in the recording mode on the network `my-network`.
-    4. Run the tool for automated testing Selenium with FAST node as a proxy on the network `my-network`.
-    5. Run the automated tests on the network `my-network`.
-    6. Stop the tool for automated testing Selenium and FAST node in the recording mode.
+    1. Dockerネットワーク`my-network`を作成します。
+    2. テストアプリ`dvwa`を`my-network`ネットワーク上で稼働させます。
+    3. ネットワーク`my-network`上で記録モードのFASTノードを稼働させます。
+    4. ネットワーク`my-network`上で自動テストツールSeleniumをプロキシとして利用するFASTノードを稼働させます。
+    5. ネットワーク`my-network`上で自動テストを稼働させます。
+    6. 自動テストツールSeleniumと記録モードのFASTノードを停止します。
 
-## Adding the Step of Security Testing
+## セキュリティテストのステップの追加
 
-To implement the security testing, add the corresponding separate step to your workflow following instructions:
+セキュリティテストを実装するには、以下の手順に従ってワークフローに対応する別のステップを追加します：
 
-1. If the test application is not running, then add the command to run the application.
-2. Add the command running the FAST Docker container in the `CI_MODE=testing` mode with other required [variables](../ci-mode-testing.md#environment-variables-in-testing-mode) __after__ the command running the application.
+1. テストアプリケーションが稼働していない場合、アプリケーションを稼働させるコマンドを追加します。
+2. アプリケーションを稼働させるコマンドの__後__に、`CI_MODE=testing`モードで他の必要な[変数](../ci-mode-testing.md#environment-variables-in-testing-mode)と共にFAST Dockerコンテナを稼働させるコマンドを追加します。
 
-    !!! info "Using the recorded set of baseline requests"
-        If the set of baseline requests was recorded in another pipeline, specify the record ID in the [TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode) variable. Otherwise, the last recorded set will be used.
+    !!! info "記録されたベースラインリクエストセットの使用"
+        ベースラインリクエストのセットが別のパイプラインで記録された場合、[TEST_RECORD_ID](../ci-mode-testing.md#environment-variables-in-testing-mode)変数にレコードIDを指定します。そうでない場合、最後に記録されたセットが使用されます。
 
-    Example of the command:
+    コマンドの例：
 
     ```
     docker run --name fast -e WALLARM_API_TOKEN=${bamboo_WALLARM_API_TOKEN} -e CI_MODE=testing -e WALLARM_API_HOST=us1.api.wallarm.com -p 8080:8080 -e TEST_RUN_URI=http://dvwa:80 --network my-network --rm wallarm/fast
     ```
 
-!!! warning "Docker Network"
-    Before security testing, make sure that the FAST node and the test application are running on the same network.
+!!! warning "Dockerネットワーク"
+    セキュリティテストを開始する前に、FASTノードとテストアプリケーションが同じネットワーク上で稼働していることを確認してください。
 
-??? info "Example of the security testing step"
-    The commands are running on the `my-network` network created at the request recording step. The test app, `app-test`, is also running at the request recording step.
+??? info "セキュリティテストステップの例"
+    コマンドはリクエスト記録ステップで作成された`my-network`ネットワーク上で実行されています。テストアプリ`app-test`もリクエスト記録ステップで稼働しています。
 
-    1. Add `security_testing` to the list of `stages`. In the example, this step finalizes the workflow.
+    1. `stages`のリストに`security_testing`を追加します。この例では、このステップがワークフローを終了します。
 
         ```
         stages:
@@ -94,7 +94,7 @@ To implement the security testing, add the corresponding separate step to your w
             jobs:
                 - security_test
         ```
-    2. Define the body of the new job `security_test`.
+    2. 新しいジョブ`security_test`の本文を定義します。
 
         ```
         security_test:
@@ -108,21 +108,21 @@ To implement the security testing, add the corresponding separate step to your w
                 - docker network rm my-network
         ```
 
-    An example includes the following steps:
+    例に含まれるステップ：
 
-    1. Run the FAST node in the testing mode on the network `my-network`. The `TEST_RECORD_ID` variable is omitted since the set of baseline requests was created in the current pipeline and is the last recorded. The FAST node will be stopped automatically when testing is finished.
-    2. Stop the test application `dvwa`.
-    3. Delete the `my-network` network.
+    1. `my-network`ネットワーク上でテストモードのFASTノードを稼働させます。ベースラインリクエストのセットは現在のパイプラインで作成され、最後に記録されたものですので、`TEST_RECORD_ID`変数は省略されています。テストが完了するとFASTノードは自動的に停止します。
+    2. テストアプリケーション`dvwa`を停止します。
+    3. `my-network`ネットワークを削除します。
 
-## Getting the Result of Testing
+## テスト結果の取得
 
-The result of security testing will be displayed in the build logs in Bamboo UI. Also, Bamboo allows downloading the full `.log` file.
+セキュリティテストの結果は、Bamboo UIのビルドログに表示されます。また、Bambooでは完全な`.log`ファイルをダウンロードすることもできます。
 
-![!The result of running the FAST node in testing mode](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
+![テストモードでFASTノードを実行する結果](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-ci-example.png)
 
-## More Examples
+## その他の例
 
-You can find more examples of integrating FAST to Bamboo workflow on our [GitHub](https://github.com/wallarm/fast-examples).
+我々の[GitHub](https://github.com/wallarm/fast-examples)でFASTをBambooワークフローに統合するさらなる例を見つけることができます。
 
-!!! info "Further questions"
-    If you have questions related to FAST integration, please [contact us](mailto:support@wallarm.com).
+!!! info "その他の質問"
+    FAST統合に関連する質問がある場合は、[お問い合わせ](mailto:support@wallarm.com)ください。
