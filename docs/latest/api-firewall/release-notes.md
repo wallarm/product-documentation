@@ -13,6 +13,18 @@ This page describes new releases of Wallarm API Firewall.
 * Dependency updates
 * Bug fixes
 
+## v0.6.11 (2023-02-10)
+
+* Add the `APIFW_SERVER_DELETE_ACCEPT_ENCODING` environment variable. If it is set to `true`, the `Accept-Encoding` header is deleted from proxied requests. The default value is `false`.
+* https://github.com/wallarm/api-firewall/issues/56
+* https://github.com/wallarm/api-firewall/issues/57
+* Add decompression for the request body and response body
+
+## v0.6.10 (2022-12-15)
+
+* https://github.com/wallarm/api-firewall/issues/54
+* Update dependencies
+
 ## v0.6.9 (2022-09-12)
 
 * Upgrade Go to 1.19
