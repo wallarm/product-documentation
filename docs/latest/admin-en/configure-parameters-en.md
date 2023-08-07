@@ -53,7 +53,7 @@ The directive enables `on` / disables `off` sending of the requests/statistics f
 
     Thus, you can [search](../user-guides/search-and-filters/use-search.md#search-by-attack-type) for these events using the `blocked_source` in the search string and then open found event details to get full information on the request.
 
-* With `wallarm_acl_export_enable off` only the event will its status will be displayed - no request details will be presented.
+* With `wallarm_acl_export_enable off` only the event, its hits and their auxiliary information like date and time, source IP, response code and status, method, and other - no request themselves will be presented.
 
 !!! info
     This parameter is set inside the http block.
@@ -62,17 +62,17 @@ The directive enables `on` / disables `off` sending of the requests/statistics f
 
 Relative directives to control memory consumption and sampling:
 
-* wallarm_acl_export_shm_size
-* wallarm_acl_export_sample_limit
-* wallarm_acl_export_sample_group_lifetime
-* wallarm_acl_export_stats_bucket_interval
-* wallarm_acl_export_stats_bucket_lifetime
+* [`wallarm_acl_export_shm_size`](#wallarm_acl_export_shm_size)
+* [`wallarm_acl_export_sample_limit`](#wallarm_acl_export_sample_limit)
+* [`wallarm_acl_export_sample_group_lifetime`](#wallarm_acl_export_sample_group_lifetime)
+* [`wallarm_acl_export_stats_bucket_interval`](#wallarm_acl_export_stats_bucket_interval)
+* [`wallarm_acl_export_stats_bucket_lifetime`](#wallarm_acl_export_stats_bucket_lifetime)
 
 ### wallarm_acl_export_shm_size
 
-Applicable when `wallarm_acl_export_enable on`.
+Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets the maximum amount of memory that the Wallarm can use to store the internal statistics data prepared for export.
+Sets the maximum amount of memory that Wallarm can use to store the internal statistics data prepared for export.
 
 !!! info
     This parameter is set inside the http block.
@@ -81,11 +81,13 @@ Sets the maximum amount of memory that the Wallarm can use to store the internal
     
 ### wallarm_acl_export_sample_limit
 
-Applicable when `wallarm_acl_export_enable on`.
+Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Number of comparable and identical requests within time set by `wallarm_acl_export_sample_group_lifetime` which when exceeded the node stops sending requests from the denylisted IPs to the Cloud: already sent requests are kept and thus used as **sample**, remaining are not sent - only the number of them is recorded in a separate parameter.
+Number of comparable and identical requests within time set by [`wallarm_acl_export_sample_group_lifetime`](#wallarm_acl_export_sample_group_lifetime) which when exceeded the node stops sending requests from the denylisted IPs to the Cloud: already sent requests are kept and thus used as **sample**, remaining are not sent - only the number of them is recorded in a separate parameter.
 
 This and related directives configure sampling on the node side and only for requests from the denylisted IPs - on the contrary, sampling for other requests is [configured](../user-guides/events/analyze-attack.md#sampling-of-hits) in the Cloud. Cloud sampling always skips denylisted IPs requests, so two configurations do not interfere.
+
+As soon as sampling affects your data, the corresponding message will be displayed in your event details: `[NUMBER] similar hits have been detected but are not shown due to sampling`.
 
 !!! info
     This parameter is set inside the http block.
@@ -94,9 +96,9 @@ This and related directives configure sampling on the node side and only for req
 
 ### wallarm_acl_export_sample_group_lifetime
 
-Applicable with `wallarm_acl_export_enable on`.
+Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets time in seconds - if number of comparable and identical requests within this time exceeds `wallarm_acl_export_sample_limit` the node stops sending requests from the denylisted IPs to the Cloud and sends only the number of alike/identical requests.
+Sets time in seconds - if number of comparable and identical requests within this time exceeds [`wallarm_acl_export_sample_limit`](#wallarm_acl_export_sample_limit) the node stops sending requests from the denylisted IPs to the Cloud and sends only the number of alike/identical requests. This statistical information can be used to estimate the intensity of attack attempts from blocked IPs.
 
 !!! info
     This parameter is set inside the http block.
@@ -105,9 +107,9 @@ Sets time in seconds - if number of comparable and identical requests within thi
 
 ### wallarm_acl_export_stats_bucket_interval
 
-Applicable when `wallarm_acl_export_enable on`.
+Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets interval in seconds for sending statistics to the Tarantool. Statistics instead of full requests is sent when `wallarm_acl_export_sample_limit` is exceeded.
+Sets interval in seconds for sending statistics to the Tarantool. Statistics instead of full requests is sent when [`wallarm_acl_export_sample_limit`](#wallarm_acl_export_sample_limit) is exceeded.
 
 !!! info
     This parameter is set inside the http block.

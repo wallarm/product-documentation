@@ -104,6 +104,8 @@ Specify in the search string:
 
 * `payload_trigger`: to search for events blocked because their source IPs are [denylisted](../../user-guides/ip-lists/denylist.md) or [graylisted](../../user-guides/ip-lists/graylist.md) with the trigger with the [Number of malicious payloads](../../user-guides/triggers/triggers.md#step-1-choosing-a-condition) condition.
 
+    [Learn more about how you can analyze these events →](../../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips)
+
 An attack name can be specified in both uppercase and lowercase letters: `SQLI`, `sqli`, and `SQLi` are equally correct.
 
 ### Search attacks associated with the OWASP top threats
