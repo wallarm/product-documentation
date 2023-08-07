@@ -196,7 +196,7 @@ If you need to validate individual API requests based on a given OpenAPI specifi
 
 To do so:
 
-1. Instead of mounting the specification file to the container, mount the [SQLite database](https://www.sqlite.org/index.html) containing one or more OpenAPI 3.0 specifications. The database should adhere to the following schema:
+1. Instead of mounting the specification file to the container, mount the [SQLite database](https://www.sqlite.org/index.html) containing one or more OpenAPI 3.0 specifications to `/var/lib/wallarm-api/1/wallarm_api.db`. The database should adhere to the following schema:
 
     * `schema_id`, integer (auto-increment) - ID of the specification.
     * `schema_version`, string - Specification version. You can assign any preferred version. When this field changes, API Firewall assumes the specification itself has changed and updates it accordingly.
