@@ -2,7 +2,7 @@
 
 Wallarm provides the [Terraform module](https://registry.terraform.io/modules/wallarm/wallarm/aws/) to deploy the node to [AWS](https://aws.amazon.com/) from the Terraform-compatible environment. Use these instructions to explore the module and try the provided deployment examples.
 
-By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **proxy** and **mirror** security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable.
+By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **[in-line](../../../inline/overview.md) (which is proxy in this deployment method)** and [**Out‑of‑band (mirror)**](../../../oob/overview.md) security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable.
 
 ## Prerequisites
 
