@@ -5,10 +5,11 @@ This page describes new releases of Wallarm API Firewall.
 ## v0.6.12 (2023-08-04)
 
 * Ability to set the general API Firewall mode using the `APIFW_MODE` environment variable. The default value is `PROXY`. When set to API, you can [validate individual API requests based on a provided OpenAPI specification without further proxying](installation-guides/docker-container.md#validating-individual-requests-without-proxying-for-v0612-and-above).
-* Introduced the capability to configure API Firewall to allow all requests using the `OPTIONS` method. This can be achieved using the `APIFW_PASS_OPTIONS` variable.
+* Introduced the capability to allow `OPTIONS` requests to endpoints in the specification, even if the `OPTIONS` method is not described. The default value is `false`. This can be achieved using the `APIFW_PASS_OPTIONS` variable.
 * Introduced a feature that allows control over whether requests should be identified as non-matching the specification if their parameters do not align with those outlined in the OpenAPI specification. It is set to `true` by default.
 
     This can be controlled through the `APIFW_SHADOW_API_UNKNOWN_PARAMETERS_DETECTION` variable in `PROXY` mode and via the `APIFW_API_MODE_UNKNOWN_PARAMETERS_DETECTION` variable in `API` mode.
+* The new logging level mode `TRACE` to log incoming requests and API Firewall responses, including their content. This level can be set using the `APIFW_LOG_LEVEL` environment variable.
 * Dependency updates
 * Bug fixes
 
