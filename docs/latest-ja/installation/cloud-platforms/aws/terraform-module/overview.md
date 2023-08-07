@@ -92,7 +92,6 @@ Wallarmモジュールを使ったさまざまな方法の例を準備しまし�
 * [AWS VPC内のプロキシ](proxy-in-aws-vpc.md)
 * [Amazon API Gatewayのためのプロキシ](proxy-for-aws-api-gateway.md)
 * [NGINX、Envoyまたは類似のミラーリングのためのOOB](oob-for-web-server-mirroring.md)
-* [AWS VPCミラーリングのためのOOB](oob-for-aws-vpc-mirroring.md)
 
 ## WallarmとTerraformに関する詳細情報
 

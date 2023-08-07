@@ -1,5 +1,5 @@
 [link-2fa-android-app]:     https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ja
-[link-2fa-ios-app]:         https://apps.apple.com/jp/app/google-authenticator/id388497605
+[link-2fa-ios-app]:         https://apps.apple.com/en/app/google-authenticator/id388497605
 
 [img-profile]:              ../../images/user-guides/settings/profile.png
 [img-2fa-page]:             ../../images/user-guides/settings/2fa-page.png

@@ -1,5 +1,5 @@
-[img-sample-job-recording]:     ../../images/fast/poc/jp/integration-overview/sample-job.png
-[img-sample-job-no-recording]:  ../../images/fast/poc/jp/integration-overview/sample-job-no-recording.png
+[img-sample-job-recording]:     ../../images/fast/poc/en/integration-overview/sample-job.png
+[img-sample-job-no-recording]:  ../../images/fast/poc/en/integration-overview/sample-job-no-recording.png
 
 [doc-testrun]:                  ../operations/internals.md#テスト-ラン
 [doc-container-deployment]:     node-deployment.md#dockerコンテナのデプロイ

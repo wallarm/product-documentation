@@ -39,4 +39,3 @@ OOBアプローチを使用したWallarmのデプロイメントは、インラ�
 Wallarmは、さまざまな方法でミラーリングされたトラフィックのOutOfBand（OOB）デプロイメントオプションを提供しています：
 
 * NGINX、Envoy、Istioなどのほとんどのサービスは、トラフィックのミラーリング用の組み込みモジュールまたは機能を提供しています。これらのソリューションによってミラーリングされたトラフィックを分析するためのWallarmのOOBセキュリティソリューションを選好する場合、[適切なデプロイメントオプションの概要](web-server-mirroring/overview.md)をご覧ください。
-* 一般的に、クラウドプラットフォームはネイティブのトラフィックミラーリング機能を提供しています。[AWS VPC Traffic Mirroring](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)はその一例です。Terraform互換環境からAWSにサービスをデプロイする人々のために、Wallarmは必要なVPCミラーリング構成を持つエージェントレスなWallarmデプロイメントを有効にする[Terraformモジュール](terraform-module/aws-vpc-mirroring.md)を提供します。

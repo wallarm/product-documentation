@@ -1,4 +1,4 @@
-[img-custom-dsl-slider]:    ../../../images/fast/operations/ja/test-policy/policy-editor/custom-slider.png
+[img-custom-dsl-slider]:    ../../../images/fast/operations/en/test-policy/policy-editor/custom-slider.png
 
 [link-user-extensions]:     ../../dsl/intro.md
 [link-connect-extensions]:  ../../dsl/using-extension.md

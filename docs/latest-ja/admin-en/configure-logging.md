@@ -17,7 +17,7 @@
 * `sync-ip-lists-source.log`（前のノードバージョンでは `sync-mmdb.log`と名付けられていました）： フィルタリングノードが国、地域、データセンターに登録されたIPアドレスと[IPリスト](../user-guides/ip-lists/overview.md)と同期するログ。
 * `appstructure.log`（Dockerコンテナのみ）： [API Discovery](../about-wallarm/api-discovery.md)モジュールの活動ログ。
 * `registernode_loop.log`（Dockerコンテナのみ）： `register-node`スクリプトの実行を行うラッパースクリプトの活動ログ。 `register-node`スクリプトが成功するまで実行されます。
-* `weak-jwt-detect.log`： [JWTの脆弱性](../attacks-vuln-list.md#weak-jwt)の検出ログ。
+* `weak-jwt-detect.log`： [JWTの脆弱性](../attacks-vulns-list.md#weak-jwt)の検出ログ。
 
 ##  NGINXベースのフィルタノードに対する拡張ロギングの設定
 

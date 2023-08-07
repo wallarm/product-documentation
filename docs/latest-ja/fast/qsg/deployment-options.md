@@ -2,11 +2,11 @@
 description: FASTは、FASTノードとWallarmクラウドを含む二つのコンポーネントからなる解決策です。このガイドでは、FASTノードのデプロイ方法について説明します。
 ---
 
-[img-fast-integration]:         ../../images/fast/qsg/ja/deployment-options/0-qsg-fast-depl.png
-[img-fast-scheme]:              ../../images/fast/qsg/ja/deployment-options/1-qsg-fast-work-scheme.png       
-[img-fast-deployment-options]:  ../../images/fast/qsg/ja/deployment-options/2-qsg-fast-depl-options.png    
+[img-fast-integration]:         ../../images/fast/qsg/en/deployment-options/0-qsg-fast-depl.png
+[img-fast-scheme]:              ../../images/fast/qsg/en/deployment-options/1-qsg-fast-work-scheme.png       
+[img-fast-deployment-options]:  ../../images/fast/qsg/en/deployment-options/2-qsg-fast-depl-options.png    
 [img-insecure-connection]:     ../../images/fast/qsg/common/deployment-options/3-qsg-fast-depl-insecure-cert.png    
-[img-qsg-deployment-scheme]:    ../../images/fast/qsg/ja/deployment-options/4-qsg-fast-depl-scheme.png
+[img-qsg-deployment-scheme]:    ../../images/fast/qsg/en/deployment-options/4-qsg-fast-depl-scheme.png
     
 [link-https-google-gruyere]:    https://google-gruyere.appspot.com   
 

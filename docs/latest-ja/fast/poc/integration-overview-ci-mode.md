@@ -1,4 +1,4 @@
-[img-sample-job-ci-mode]:       ../../images/fast/poc/jp/integration-overview/sample-job-ci-mode.png
+[img-sample-job-ci-mode]:       ../../images/fast/poc/en/integration-overview/sample-job-ci-mode.png
 
 [doc-recording-mode]:           ci-mode-recording.md#recording-modeでのfast-nodeの実行
 [doc-testing-mode]:             ci-mode-testing.md#testing-modeでのfast-nodeの実行

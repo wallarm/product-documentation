@@ -1,6 +1,6 @@
-[link-config-parameters]:       ../../admin-ja/configure-wallarm-mode.md
+[link-config-parameters]:       ../../admin-en/configure-wallarm-mode.md
 
-[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/ja/general-settings-page-with-safe-blocking.png
+[img-general-settings]:         ../../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png
 
 # 一般設定
 

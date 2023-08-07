@@ -1,4 +1,4 @@
-[link-wallarm-mode-override]:       ../../admin-ja/configure-parameters-ja.md#wallarm_mode_allow_override
+[link-wallarm-mode-override]:       ../../admin-en/configure-parameters-en.md#wallarm_mode_allow_override
 
 [img-mode-rule]:        ../../images/user-guides/rules/wallarm-mode-rule-with-safe-blocking.png
 
@@ -8,7 +8,7 @@
 
 フィルタリングモードを設定するためには、*フィルタリングモードの設定*ルールを作成し、適切なモードを選択します。
 
-フィルタリングモードは以下の[値](../../admin-ja/configure-wallarm-mode.md#available-filtration-modes)のいずれかをとることができます：
+フィルタリングモードは以下の[値](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)のいずれかをとることができます：
 
 * **デフォルト**：システムは、NGINX設定ファイルで指定されたパラメータに従って動作します。
 * **無効**：[denylist](../ip-lists/denylist.md)にあるIPからのリクエストを除き、リクエストの分析とフィルタリングがオフになります。denylistに登録されたIPからのリクエストはブロックされます（インターフェイスには表示されません）。
@@ -24,9 +24,9 @@
 
 ## ルールのデフォルトインスタンス
 
-Wallarmは自動的に`フィルタリングモードの設定`ルールのインスタンスを[デフォルト](../../user-guides/rules/view.md#default-rules)レベルで作成します。システムはその値を[全体のフィルタリングモード](../../admin-ja/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定に基づいて設定します。
+Wallarmは自動的に`フィルタリングモードの設定`ルールのインスタンスを[デフォルト](../../user-guides/rules/view.md#default-rules)レベルで作成します。システムはその値を[全体のフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定に基づいて設定します。
 
-このルールのインスタンスは削除できません。その値を変更するためには、システムの[全体のフィルタリングモード](../../admin-ja/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更します。
+このルールのインスタンスは削除できません。その値を変更するためには、システムの[全体のフィルタリングモード](../../admin-en/configure-wallarm-mode.md#setting-up-the-general-filtration-rule-in-wallarm-console)設定を変更します。
 
 他のすべてのデフォルトルールと同様に、`フィルタリングモードの設定`デフォルトルールはすべてのブランチで[継承](../../user-guides/rules/view.md)されます。
 

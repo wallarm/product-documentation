@@ -1,4 +1,4 @@
-[img-search-for-anomalies]: ../../../images/fast/operations/ja/test-policy/fuzzer/search-for-anomalies-scheme.png
+[img-search-for-anomalies]: ../../../images/fast/operations/en/test-policy/fuzzer/search-for-anomalies-scheme.png
 [img-anomaly-description]: ../../../images/fast/operations/common/test-policy/fuzzer/anomaly-description.png
 
 [doc-fuzzer-configuration]: fuzzer-configuration.md
