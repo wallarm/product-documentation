@@ -1,11 +1,11 @@
 # Disabling bot protection for specific URLs
 
-The [**API Abuse Prevention**](../../about-wallarm/api-abuse-prevention.md) module of the Wallarm platform detects and mitigates malicious bots. What applications are being protected, from which bot types, and with what level of tolerance is configured by one or more [API abuse profiles](../../user-guides/api-abuse-prevention.md). Additionally, you can disable bot protection for specific URLs using the **Set API Abuse Prevention mode** rule described in this article.
+The [**API Abuse Prevention**](../../about-wallarm/api-abuse-prevention.md) module of the Wallarm platform identifies and counters bots based on the [profiles](../../user-guides/api-abuse-prevention.md) that set the specific applications to be protected, the types of bots targeted, the tolerance level, etc. Additionally, the **Set API Abuse Prevention mode** rule mentioned in this article allows you to turn off bot protection for particular URLs.
 
 !!! info "Rule support in different node versions"
     This feature is only supported by nodes version 4.8 and above.
 
-Note that this rule is different from the [exception list](../../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention: the exception lists sets **source** URLs, and the **Set API Abuse Prevention mode** rule - **target** URLs not to be checked.
+Note that this rule is different from the [exception list](../../about-wallarm/api-abuse-prevention.md#exception-list) of API Abuse Prevention: the exception lists sets **source** IPs, and the **Set API Abuse Prevention mode** rule - **target** URLs not to be checked.
 
 ## Creating and applying the rule
 
