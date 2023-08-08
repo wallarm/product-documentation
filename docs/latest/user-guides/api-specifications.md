@@ -19,7 +19,7 @@ To perform comparison:
         You can change comparison settings at any moment later - after this the comparison will be re-done providing new results.
 
     * From where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
-    * Whether the comparison should be performed once after specification upload or every hour (the **Perform regular comparison** option is selected by default). Hourly comparison allows finding additional shadow APIs as API Discovery discovers more endpoints. Specification uploaded from URL is updated before each comparison.
+    * Whether the comparison should be performed once after specification upload or every hour (the **Perform regular comparison** option is selected by default). Hourly comparison allows finding additional shadow and orphan APIs as API Discovery discovers more endpoints. Specification uploaded from URL is updated before each comparison.
 
     ![!API Discovery - API Specifications - uploading API specification to find shadow and orphan API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
