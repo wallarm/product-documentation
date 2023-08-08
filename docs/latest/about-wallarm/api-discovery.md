@@ -237,7 +237,7 @@ The API Discovery module automatically uncovers shadow and orphan APIs by compar
 ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
 
 * [Learn how to upload specifications for comparison to find shadow and orphan APIs →](../user-guides/api-specifications.md#revealing-shadow-and-orphan-api)
-* [Learn how to display found shadow and orphan API in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-api)
+* [Learn how to display found shadow and orphan API in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
 
 ## Security of data uploaded to the Wallarm Cloud
 
