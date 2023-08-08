@@ -105,6 +105,6 @@ The **Exception list** tab provides the historical data - you can view items tha
 
 ## Working with exceptions for target URLs
 
-Besides stopping bot protection based on **source** URLs with [exception list](#working-with-exception-list), you can disable it for specific **target** URLs using the [**Set API Abuse mode**](../user-guides/rules/api-abuse-url.md) rule.
+Besides stopping bot protection based on **source** URLs with [exception list](#working-with-exception-list), you can disable it for specific **target** URLs using the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
 
 Unlike other API Abuse Prevention configuration, this ability is an additional one, thus it is configured not within the API Abuse profile, but separately - with the help of the rule.

@@ -97,7 +97,7 @@ You can add IP addresses to the exception list in advance or if they have alread
 
 ## Disabling bot protection for specific URLs
 
-Besides stopping bot protection based on **source** URLs with [exception list](#exception-list), you can disable it for specific **target** URLs using the [**Set API Abuse mode**](../user-guides/rules/api-abuse-url.md) rule.
+Besides stopping bot protection based on **source** URLs with [exception list](#exception-list), you can disable it for specific **target** URLs using the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
 
 This can help to avoid false positive detections and may be also helpful in case of testing your applications when you may need to temporarily disable bot protection for some of their endpoints.
 
