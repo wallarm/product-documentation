@@ -224,7 +224,13 @@ You can filter API endpoints by the BOLA auto protection state. The correspondin
 
 A **shadow API** refers to an undocumented API that exists within an organization's infrastructure without proper authorization or oversight. They put businesses at risk, as attackers can exploit them to gain access to critical systems, steal valuable data, or disrupt operations, further compounded by the fact that APIs often act as gatekeepers to critical data and that a range of OWASP API vulnerabilities can be exploited to bypass API security.
 
-An **orphan API** refers to a documented API that does not receive traffic. This may be a sign of problem with application logic or with traffic checking settings.
+As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
+
+An **orphan API** refers to a documented API that does not receive traffic. The presence of orphan APIs can be a reason for a verification process. This involves:
+
+* Inspecting the Wallarm traffic checking settings to understand whether the traffic is truly not being received, or if it is simply not visible to the Wallarm nodes because they were deployed in such a way that not all traffic passes through them (this may be incorrect traffic routing, or another Web Gateway is presented that was forgotten to put the node on, and so on).
+* Determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration.
+* Making decision on obsolete endpoints: used in previous application versions and not used in the current - should they be deleted from the specification to reduce security check effort.
 
 The API Discovery module automatically uncovers shadow and orphan APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](../user-guides/api-specifications.md) section and the module automatically highlights shadow and orphan endpoints.
 
@@ -232,10 +238,6 @@ The API Discovery module automatically uncovers shadow and orphan APIs by compar
 
 * [Learn how to upload specifications for comparison to find shadow and orphan APIs →](../user-guides/api-specifications.md#revealing-shadow-and-orphan-api)
 * [Learn how to display found shadow and orphan API in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-api)
-
-As you find shadow APIs with Wallarm, you can update your specifications to include missing endpoints and further perform monitoring and security activities towards your API inventory in its full view.
-
-The presence of orphan APIs can be a reason for a verification process. This involves determining whether certain applications should not receive any traffic at these specific endpoints or it is some kind of misconfiguration. Also, it is the reason to inspect the Wallarm traffic checking settings to understand whether the traffic is truly not being received, or if it is simply not visible to the Wallarm nodes because they were deployed in such a way that not all traffic passes through them (this may be incorrect traffic routing, or another Web Gateway is presented that was forgotten to put the node on, and so on).
 
 ## Security of data uploaded to the Wallarm Cloud
 
