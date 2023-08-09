@@ -1,6 +1,6 @@
 # Running API Firewall on Docker
 
-This guide walks through downloading, installing, and starting Wallarm API Firewall on Docker.
+This guide walks through downloading, installing, and starting [Wallarm API Firewall](../overview.md) on Docker.
 
 ## Requirements
 
@@ -27,7 +27,7 @@ networks:
 services:
   api-firewall:
     container_name: api-firewall
-    image: wallarm/api-firewall:v0.6.9
+    image: wallarm/api-firewall:v0.6.12
     restart: on-failure
     volumes:
       - <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC>
@@ -87,11 +87,15 @@ Pass API Firewall configuration in **docker-compose.yml** → `services.api-fire
 | `APIFW_SERVER_URL`                | URL of the application described in the mounted OpenAPI specification that should be protected with API Firewall. For example: `http://backend:80`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Yes       |
 | `APIFW_REQUEST_VALIDATION`        | API Firewall mode when validating requests sent to the application URL:<ul><li>`BLOCK` to block and log the requests that do not match the schema provided in the mounted OpenAPI 3.0 specification (the `403 Forbidden` response will be returned to the blocked requests). Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`LOG_ONLY` to log but not block the requests that do not match the schema provided in the mounted OpenAPI 3.0 specification. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`DISABLE` to disable request validation.</li></ul>                                                                                                                           | Yes       |
 | `APIFW_RESPONSE_VALIDATION`       | API Firewall mode when validating application responses to incoming requests:<ul><li>`BLOCK` to block and log the request if the application response to this request does not match the schema provided in the mounted OpenAPI 3.0 specification. This request will be proxied to the application URL but the client will receive the `403 Forbidden` response. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`LOG_ONLY` to log but not block the request if the application response to this request does not match the schema provided in the mounted OpenAPI 3.0 specification. Logs are sent to the [`STDOUT` and `STDERR` Docker services](https://docs.docker.com/config/containers/logging/).</li><li>`DISABLE` to disable request validation.</li></ul> | Yes       |
-| `APIFW_LOG_LEVEL`                 | API Firewall logging level. Possible values:<ul><li>`DEBUG` to log events of any type (INFO, ERROR, WARNING, and DEBUG).</li><li>`INFO` to log events of the INFO, WARNING, and ERROR types.</li><li>`WARNING` to log events of the WARNING and ERROR types.</li><li>`ERROR` to log events of only the ERROR type.</li></ul> The default value is `DEBUG`. Logs on requests and responses that do not match the provided schema have the ERROR type.                                                                                                                                                                                                                                       | No        |
+| `APIFW_LOG_LEVEL`                 | API Firewall logging level. Possible values:<ul><li>`DEBUG` to log events of any type (INFO, ERROR, WARNING, and DEBUG).</li><li>`INFO` to log events of the INFO, WARNING, and ERROR types.</li><li>`WARNING` to log events of the WARNING and ERROR types.</li><li>`ERROR` to log events of only the ERROR type.</li><li>`TRACE` to log incoming requests and API Firewall responses, including their content.</li></ul> The default value is `DEBUG`. Logs on requests and responses that do not match the provided schema have the ERROR type.                                                                                                                                                                                                                                       | No        |
 | <a name="apifw-custom-block-status-code"></a>`APIFW_CUSTOM_BLOCK_STATUS_CODE` | [HTTP response status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) returned by API Firewall operating in the `BLOCK` mode if the request or response does not match the schema provided in the mounted OpenAPI 3.0 specification. The default value is `403`. | No 
 | `APIFW_ADD_VALIDATION_STATUS_HEADER`<br>(EXPERIMENTAL) | Whether to return the header `Apifw-Validation-Status` containing the reason for the request blocking in the response to this request. The value can be `true` or `false`. The default value is `false`.| No
+| `APIFW_SERVER_DELETE_ACCEPT_ENCODING` | If it is set to `true`, the `Accept-Encoding` header is deleted from proxied requests. The default value is `false`. | No |
 | `APIFW_LOG_FORMAT` | The format of API Firewall logs. The value can be `TEXT` or `JSON`. The default value is `TEXT`. | No |
 | `APIFW_SHADOW_API_EXCLUDE_LIST`<br>(only if API Firewall is operating in the `LOG_ONLY` mode for both the requests and responses) | [HTTP response status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) indicating that the requested API endpoint that is not included in the specification is NOT a shadow one. You can specify several status codes separated by a semicolon (e.g. `404;401`). The default value is `404`.<br><br>By default, API Firewall operating in the `LOG_ONLY` mode for both the requests and responses marks all endpoints that are not included in the specification and are returning the code different from `404` as the shadow ones. | No
+| `APIFW_MODE` | Sets the general API Firewall mode. Possible values are `PROXY` (default) and [`API`](#validating-individual-requests-without-proxying-for-v0612-and-above). | No |
+| `APIFW_PASS_OPTIONS` | When set to `true`, the API Firewall allows `OPTIONS` requests to endpoints in the specification, even if the `OPTIONS` method is not described. The default value is `false`. | No |
+| `APIFW_SHADOW_API_UNKNOWN_PARAMETERS_DETECTION` | This specifies whether requests are identified as non-matching the specification if their parameters do not align with those defined in the OpenAPI specification. The default value is `true`.<br><br>If running API Firewall in the [`API` mode](#validating-individual-requests-without-proxying-for-v0612-and-above), this variable takes on a different name `APIFW_API_MODE_UNKNOWN_PARAMETERS_DETECTION`. | No |
 
 More API Firewall configuration options are described within the [link](#api-firewall-fine-tuning-options).
 
@@ -187,6 +191,35 @@ To set up SSL/TLS for the server with the running API Firewall, use the followin
 | `APIFW_TLS_CERT_FILE`             | The name of the file with the SSL/TLS certificate generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `APIFW_TLS_CERT_KEY`              | The name of the file with the SSL/TLS private key generated for API Firewall and located in the directory specified in `APIFW_TLS_CERTS_PATH`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
+### Validating individual requests without proxying (for v0.6.12 and above)
+
+If you need to validate individual API requests based on a given OpenAPI specification without further proxying, you can utilize Wallarm API Firewall in a non-proxy mode. In this case, the solution does not validate responses.
+
+To do so:
+
+1. Instead of mounting the specification file to the container, mount the [SQLite database](https://www.sqlite.org/index.html) containing one or more OpenAPI 3.0 specifications to `/var/lib/wallarm-api/1/wallarm_api.db`. The database should adhere to the following schema:
+
+    * `schema_id`, integer (auto-increment) - ID of the specification.
+    * `schema_version`, string - Specification version. You can assign any preferred version. When this field changes, API Firewall assumes the specification itself has changed and updates it accordingly.
+    * `schema_format`, string - The specification format, can be `json` or `yaml`.
+    * `schema_content`, string - The specification content.
+1. Run the container with the environment variable `APIFW_MODE=API` and if needed, with other variables that specifically designed for this mode:
+
+    | Environment variable | Description |
+    | -------------------- | ----------- |
+    | `APIFW_MODE` | Sets the general API Firewall mode. Possible values are `PROXY` (default) and `API`. |
+    | `APIFW_SPECIFICATION_UPDATE_PERIOD` | Determines the frequency of specification updates. If set to `0`, the specification update is disabled. The default value is `1m` (1 minute). |
+    | `APIFW_API_MODE_UNKNOWN_PARAMETERS_DETECTION` | Specifies whether to return an error code if the request parameters do not match those defined in the the specification. The default value is `true`. |
+    | `APIFW_PASS_OPTIONS` | When set to `true`, the API Firewall allows `OPTIONS` requests to endpoints in the specification, even if the `OPTIONS` method is not described. The default value is `false`. |
+
+1. When evaluating whether requests align with the mounted specifications, include the header `X-Wallarm-Schema-ID: <schema_id>` to indicate to API Firewall which specification should be used for validation.
+
+API Firewall validates requests as follows:
+
+* If a request matches the specification, an empty response with a 200 status code is returned.
+* If a request does not match the specification, the response will provide a 403 status code and a JSON document explaining the reasons for the mismatch.
+* If it is unable to handle or validate a request, an empty response with a 500 status code is returned.
+
 ### System settings
 
 To fine-tune system API Firewall settings, use the following optional environment variables:
@@ -232,6 +265,6 @@ To start API Firewall on Docker, you can also use regular Docker commands as in 
         -v <HOST_PATH_TO_SPEC>:<CONTAINER_PATH_TO_SPEC> -e APIFW_API_SPECS=<PATH_TO_MOUNTED_SPEC> \
         -e APIFW_URL=<API_FIREWALL_URL> -e APIFW_SERVER_URL=<PROTECTED_APP_URL> \
         -e APIFW_REQUEST_VALIDATION=<REQUEST_VALIDATION_MODE> -e APIFW_RESPONSE_VALIDATION=<RESPONSE_VALIDATION_MODE> \
-        -p 8088:8088 wallarm/api-firewall:v0.6.9
+        -p 8088:8088 wallarm/api-firewall:v0.6.12
     ```
 4. When the environment is started, test it and enable traffic on API Firewall following steps 6 and 7.
