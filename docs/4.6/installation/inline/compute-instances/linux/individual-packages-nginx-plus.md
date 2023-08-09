@@ -31,7 +31,7 @@ search:
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Dynamic Wallarm Module for NGINX Plus
+# Installing as a Dynamic Module for NGINX Plus
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus. The node will perform traffic analysis in-line.
 

@@ -29,7 +29,7 @@
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Dynamic Wallarm Module for Distribution-Provided NGINX
+# Installing as a Dynamic Module for Distribution-Provided NGINX
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX installed from the Debian/CentOS repositories.
 

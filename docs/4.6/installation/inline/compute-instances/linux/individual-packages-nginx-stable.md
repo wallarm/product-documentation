@@ -32,7 +32,7 @@ search:
 [platform]:                         ../../../../installation/supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Dynamic Wallarm Module for NGINX stable from NGINX Repository
+# Installing as a Dynamic Module for NGINX Stable
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository. The node will perform traffic analysis in-line.
 
