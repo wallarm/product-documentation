@@ -243,3 +243,13 @@ Examples of the requests sent to the configured server `SERVER_A` and the action
 * The malicious request with the `/main/signup` path is blocked due to the `wallarm_mode_allow_override strict;` setting for the requests with the `/main/signup` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
 * The malicious request with the `/main/apply` path and the `GET` method is blocked due to the `wallarm_mode_allow_override on;` setting for the requests with the `/main/apply` path and the **Blocking** rule defined in Wallarm Console for the requests with the `/main` path.
 * The malicious request with the `/main/apply` path and the `POST` method is blocked due to the `wallarm_mode_allow_override on;` setting for those requests with the `/main/apply` path, the **Default** rule defined in Wallarm Console, and the `wallarm_mode block;` setting for the requests with the `/main/apply` path in the filtering node configuration file.
+
+## Best practices on gradual filtration mode application
+
+For a successful onboarding of a new Wallarm node, follow these step-by-step recommendations to switch filtration modes:
+
+1. Deploy Wallarm filtering nodes in your non-production environments with the operation mode set to `monitoring`.
+1. Deploy Wallarm filtering nodes in your production environment with the operation mode set to `monitoring`.
+1. Keep the traffic flowing via the filtering nodes in all your environments (including testing and production) for 7‑14 days to give the Wallarm cloud-based backend some time to learn about your application.
+1. Enable Wallarm `block` mode in all your non-production environments and use automated or manual tests to confirm that the protected application is working as expected.
+1. Enable Wallarm `block` mode in the production environment and use available methods to confirm that the application is working as expected.

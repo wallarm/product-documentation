@@ -34,7 +34,7 @@ nav:
           - クライアントのデータに対する共有責任のセキュリティモデル: about-wallarm/shared-responsibility.md
           - データ保持ポリシー: about-wallarm/data-retention-policy.md
         - Wallarmのサブスクリプションプラン: about-wallarm/subscription-plans.md
-        - Wallarmソリューションのデプロイメントとメンテナンスのベストプラクティス: about-wallarm/deployment-best-practices.md
+        - Wallarmを使用した攻撃防止のベストプラクティス: quickstart/attack-prevention-best-practices.md
     - クイックスタート: quickstart.md
     - デプロイメント:
       - デプロイメントオプション: installation/supported-deployment-options.md

@@ -4,7 +4,7 @@ Learn real examples of [Wallarm triggers](triggers.md) to better understand this
 
 ## Graylist IP if 4 or more malicious payloads are detected in 1 hour
 
-If 4 or more different malicious payloads are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour.
+If 4 or more different malicious payloads are sent to the protected resource from one IP address, this IP address will be graylisted for 1 hour for all applications in a Wallarm account.
 
 If you have recently created the Wallarm account, this [trigger is already created and enabled](triggers.md#pre-configured-triggers-default-triggers). You can edit, disable, delete, or copy this trigger as well as the manually created triggers.
 
@@ -32,7 +32,7 @@ The trigger is released in any node filtration mode, so that it will graylist IP
 
 ## Denylist IP if 4 or more malicious payloads are detected in 1 hour
 
-If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
+If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour for all applications in a Wallarm account.
 
 ![!Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
 

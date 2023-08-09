@@ -17,3 +17,5 @@ Custom ruleset build status and expected completion time are displayed in Wallar
 Custom ruleset build is unloaded to the filtering node during the filtering node and Wallarm Cloud synchronization. By default, synchronization of the filtering node and Wallarm Cloud is launched every 2‑4 minutes. [More details on the filtering node and Wallarm Cloud synchronization configuration →](../../admin-en/configure-cloud-node-synchronization-en.md)
 
 The status of unloading a custom ruleset to the filtering node is logged to the file `/var/log/wallarm/syncnode.log`.
+
+All Wallarm nodes connected to the same Wallarm account receive the same set of default and custom rules for traffic filtering. You still can apply different rules for different applications by using proper application IDs or unique HTTP request parameters like headers, query string parameters, etc.
