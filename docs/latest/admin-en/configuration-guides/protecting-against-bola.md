@@ -24,7 +24,7 @@ You have the following options to detect and block BOLA attacks with Wallarm:
         * These requests contain signs of [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks).
         * These requests match the regular expression specified in the [rule **Create regexp-based attack indicator**](../../user-guides/rules/regex-rule.md#adding-a-new-detection-rule).
 
-## Prerequisites
+## Requirements
 
 To protect resources from BOLA attacks, make sure your environment meets the following requirements:
 

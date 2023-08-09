@@ -36,8 +36,9 @@ search:
 
 This article provides instructions for deploying [Wallarm OOB](overview.md) on AWS using the [official Amazon Machine Image (AMI)](https://aws.amazon.com/marketplace/pp/B073VRFXSD). The solution described here is designed to analyze traffic mirrored by a web or proxy server.
 
-<!-- ???
-say that all regions are supported -->
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
 --8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 

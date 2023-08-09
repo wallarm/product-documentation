@@ -32,4 +32,4 @@ controller:
 * [`enable-real-ip`パラメータに関するドキュメンテーション](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-real-ip)
 * [`forwarded-for-header`](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#forwarded-for-header)パラメータでは、元のクライアントIPアドレスを含むロードバランサーのヘッダー名を指定してください。
 
---8<-- "../include/ingress-controller-best-practices-intro.md"
+--8<-- "../include-ja/ingress-controller-best-practices-intro.md"

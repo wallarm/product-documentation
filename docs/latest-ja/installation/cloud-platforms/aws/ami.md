@@ -30,4 +30,4 @@
 [web-server-mirroring-examples]:    ../../oob/web-server-mirroring/overview.md#トラフィックミラーリングのためのウェブサーバー設定の例
 [img-grouped-nodes]:                ../../../images/user-guides/nodes/grouped-nodes.png
 
---8<-- "../include/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/article-for-inline-oob-ami.md"

@@ -11,7 +11,7 @@ Wallarmが[脆弱性を検出](../about-wallarm/detecting-vulnerabilities.md)す
 
 ## アクティブな脅威の検証機能の動作方法
 
---8<-- "../include/how-attack-rechecker-works.md"
+--8<-- "../include-ja/how-attack-rechecker-works.md"
 
 ## 攻撃再チェッカーの活動からの潜在的なリスク
 

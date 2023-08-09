@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[platform]:                         ../../../../admin-en/supported-platforms.md
+[platform]:                         ../../../supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md
@@ -43,41 +43,41 @@ Wallarmが[NGINX](individual-packages-nginx-stable.md)、[NGINX Plus](individual
 
 ## 要件
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-requirements.md"
 
 ## ステップ1：NGINXと依存関係のインストール
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-ja/waf/installation/all-in-one-nginx.md"
 
 ## ステップ2：Wallarmトークンの準備
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-ja/waf/installation/all-in-one-token.md"
 
 ## ステップ3：一体型Wallarmインストーラのダウンロード
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ## ステップ4：一体型Wallarmインストーラの実行
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
 
 次のステップのコマンドは、x86_64とARM64のインストールで同じです。
 
 ## ステップ5：トラフィックの分析を可能にするためにWallarmノードを有効化
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include-ja/waf/installation/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## ステップ6：NGINXの再起動
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
 
 ## ステップ7：トラフィックの送信をWallarmノードに設定
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline.md"
 
 ## ステップ8：Wallarmノード操作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ステップ9：デプロイしたソリューションの微調整
 

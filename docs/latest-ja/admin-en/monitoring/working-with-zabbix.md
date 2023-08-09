@@ -56,17 +56,17 @@ ZabbixのWebインターフェイスログインページにアクセスする�
 4.  モニタリングの操作を確認します: 
     1.  フィルタノード上の`wallarm-status`の出力とZabbixウィジェットの現在の処理済みリクエストの数が一致していることを確認してください。
     
-        --8<-- "../include/monitoring/wallarm-status-check-padded-latest.md"
+        --8<-- "../include-ja/monitoring/wallarm-status-check-padded-latest.md"
 
         ![!Viewing the metric value][img-global-view-0]
 
     2.  フィルタノードによって保護されたアプリケーションに対するテスト攻撃を実行します。これを行うために、`curl` ユーティリティまたはブラウザを使用してアプリケーションに悪意のあるリクエストを送信できます。
 
-        --8<-- "../include/monitoring/sample-malicious-request.md"
+        --8<-- "../include-ja/monitoring/sample-malicious-request.md"
         
     3.  `wallarm-status` の出力とZabbixウィジェットのリクエストカウンターが共に増加していることを確認してください:
     
-        --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
+        --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
 
         ![!Viewing the changed metric value][img-global-view-16]
 

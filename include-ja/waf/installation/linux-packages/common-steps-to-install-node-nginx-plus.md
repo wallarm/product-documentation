@@ -107,4 +107,4 @@ WallarmノードはWallarmリポジトリからインストールおよびアッ
 
 ## 5. フィルタリングノードをWallarm Cloudに接続
 
---8<-- "../include/waf/installation/connect-waf-and-cloud-4.6.md"
+--8<-- "../include-ja/waf/installation/connect-waf-and-cloud-4.6.md"

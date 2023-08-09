@@ -75,11 +75,11 @@ Wallarmモジュールとpostanalyticsモジュールの両方を監視できま
     ```
 1. オペレーティングシステムの種類により、`collectd` の設定ファイルの `URL` パラメーターを適切に修正します：
 
-    --8<-- "../include/monitoring/collectd-config-location.md"
+    --8<-- "../include-ja/monitoring/collectd-config-location.md"
 
 Tarantoolの非標準のIPアドレスまたはポートが使用されている場合、その設定ファイルを適切に修正する必要があります。このファイルの場所は、オペレーティングシステムの種類によります：
 
---8<-- "../include/monitoring/tarantool-config-location.md"
+--8<-- "../include-ja/monitoring/tarantool-config-location.md"
 
 SELinuxがフィルタノードホストにインストールされている場合、SELinuxが[設定または無効化][doc-selinux]されていることを確認します。簡単のため、このドキュメントではSELinuxが無効化されていることを前提としています。
 

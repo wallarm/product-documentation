@@ -21,6 +21,10 @@
 [oob-advantages-limitations]:       ../overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [memory-instr]:                     ../../../admin-en/configuration-guides/allocate-resources-for-node.md
+[aws-ecs-docs]:                     ../../cloud-platforms/aws/docker-container.md
+[gcp-gce-docs]:                     ../../cloud-platforms/gcp/docker-container.md
+[azure-container-docs]:             ../../cloud-platforms/azure/docker-container.md
+[alibaba-ecs-docs]:                 ../../cloud-platforms/alibaba-cloud/docker-container.md
 
 # Deploying Wallarm OOB from the Docker Image
 
@@ -28,9 +32,13 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) usin
 
 --8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
 
+## Use cases
+
+--8<-- "../include/waf/installation/docker-images/nginx-based-use-cases.md"
+
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## 1. Configure traffic mirroring
 

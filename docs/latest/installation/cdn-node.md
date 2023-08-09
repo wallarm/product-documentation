@@ -25,16 +25,32 @@
 
 [Section](https://www.section.io/) is a Cloud-Native Hosting system that enables easy deployment of a Wallarm node. By routing traffic through it as a reverse proxy, you can effectively mitigate malicious traffic without adding third-party components to your application's infrastructure.
 
-!!! info "CDN nodes under Free tier"
-    Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
+## Use cases
 
-## How CDN node works
+Among all supported [Wallarm deployment options](supported-deployment-options.md), this solution is the recommended one for the following **use cases**:
 
---8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
+* You are looking for a security solution that is quick and easy to deploy for protecting lightweight services.
+* You lack the capability to deploy Wallarm nodes within your hosting infrastructure.
+* You prefer a hands-off approach to deployment, avoiding the management and maintenance of Wallarm filtering nodes.
+
+## Limitations
+
+The solution has certain limitations:
+
+* For high traffic analysis and filtration, the use of CDN nodes is not recommended.
+* Deployment of the CDN node type is not supported under the [Free tier plan](../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud).
+* With the CDN node you can protect the third-level (or lower, like 4th-, 5th- etc.) domains. For example, you can create CDN node for `ple.example.com`, but not for `example.com`.
+* The [`collectd` service](../admin-en/monitoring/intro.md) is not supported.
+* Direct [application setup](../user-guides/settings/applications.md) through standard procedures is unavailable. Contact the [Wallarm support team](mailto:support@wallarm.com) for configuration assistance.
+* [Custom blocking pages and error codes](../admin-en/configuration-guides/configure-block-page-and-code.md) are not configurable. As a default, CDN node returns a 403 response code for blocked requests.
 
 ## Requirements
 
 --8<-- "../include/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
+
+## How CDN node works
+
+--8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## CDN node deployment
 

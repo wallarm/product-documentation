@@ -280,7 +280,7 @@ Depending on the deployment approach being used, perform the following settings:
 
 ### Requirements for manual upgrade
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Upgrade procedure
 

@@ -45,4 +45,4 @@
 
 `node.yaml`ファイルは、この記事で説明されているファイルアクセスパラメータ(`syncnode`セクション)に加えて、フィルタリングノードの[Cloudへのアクセス](configure-cloud-node-synchronization-en.md)（一般セクションと`api`セクション）を提供するパラメータも含むことに注意してください。
 
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include-ja/node-cloud-sync-configuration-example.md"

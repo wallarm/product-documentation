@@ -44,27 +44,27 @@ Wallarmは以下のオペレーティングシステムをサポートしてい�
 
 ## 必要条件
 
---8<-- "../include/waf/installation/linux-packages/requirements-nginx-plus.md"
+--8<-- "../include-ja/waf/installation/linux-packages/requirements-nginx-plus.md"
 
---8<-- "../include/waf/installation/linux-packages/common-steps-to-install-node-nginx-plus.md"
+--8<-- "../include-ja/waf/installation/linux-packages/common-steps-to-install-node-nginx-plus.md"
 
 ## 6. Wallarmにトラフィックの解析を許可する
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
+--8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-linux.md"
 
 ## 7. NGINX Plusをリスタートする
 
---8<-- "../include/waf/root_perm_info.md"
+--8<-- "../include-ja/waf/root_perm_info.md"
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ## 8. トラフィックの送信先をWallarmインスタンスに設定する
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-ja/waf/installation/sending-traffic-to-node-oob.md"
 
 ## 9. Wallarmノードの動作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## 10. 展開したソリューションを微調整する
 
@@ -81,4 +81,4 @@ Wallarmの設定は、[NGINX指令](../../../../admin-en/configure-parameters-en
 
 以下に、必要に応じて適用可能ないくつかの典型的な設定を示します：
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-ja/waf/installation/linux-packages/common-customization-options.md"

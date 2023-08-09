@@ -35,7 +35,7 @@
 
 ## 例：ワークフロー
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-ja/monitoring/metric-example.md"
 
 ![!Example workflow][img-collectd-nagios]
 
@@ -67,7 +67,7 @@
 
 3.  適切なコマンドを実行してNRPEサービスを再起動します。
 
-    --8<-- "../include/monitoring/nrpe-restart-2.16.md"
+    --8<-- "../include-ja/monitoring/nrpe-restart-2.16.md"
 
 ### 2. NagiosホストにNagios NRPEプラグインをインストールします
 
@@ -108,7 +108,7 @@ define command{
 
 次のいずれかのコマンドを実行します：
 
---8<-- "../include/monitoring/install-collectd-utils.md"
+--8<-- "../include-ja/monitoring/install-collectd-utils.md"
 
 ### 6. `collectd-nagios`ユーティリティを`nagios`ユーザの代わりに特権を持って実行するように設定します
 
@@ -159,7 +159,7 @@ command[check_wallarm_nginx_abnormal]=/usr/bin/collectd-nagios -s /var/run/walla
 
 NRPEサービス設定のファイルに必要なすべてのコマンドを追加したあとは、適切なコマンドを実行してサービスを再起動します：
 
---8<-- "../include/monitoring/nrpe-restart-2.16.md"
+--8<-- "../include-ja/monitoring/nrpe-restart-2.16.md"
 
 ### 8. Nagiosホストで、フィルタノードホストを指定し、モニタリングするサービスを定義するために設定ファイルを利用します
 
@@ -197,7 +197,7 @@ NRPEサービス設定のファイルに必要なすべてのコマンドを追�
 
 3.  適切なコマンドを実行してNagiosサービスを再起動します：
 
---8<-- "../include/monitoring/nagios-restart-2.16.md"
+--8<-- "../include-ja/monitoring/nagios-restart-2.16.md"
 
 ## 設定が完了しました
 

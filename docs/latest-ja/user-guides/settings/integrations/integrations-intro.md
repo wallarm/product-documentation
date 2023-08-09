@@ -98,7 +98,7 @@ Wallarmノードは、処理されたトラフィックのメトリックを[収
 
 一つのシステムとの統合の数に制限はありません。例えば、3つのSlackチャンネルにセキュリティレポートを送信するために、Slackとの3つの異なる統合を作成することができます。
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-ja/cloud-ip-by-request.md"
 
 !!! info "詳細な通知設定"
     詳細な通知設定には、[トリガー](../../triggers/triggers.md)を使用できます。

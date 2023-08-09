@@ -38,7 +38,7 @@ Wallarmモジュールのさらなるデバッグを行うには：
     `off` モードは、 `wallarm-status` メトリクスが増加しない一般的な理由です。
 1. Wallarm ノードの設定が適用されていることを確認するために、NGINXを再起動します (ノードが DEB/RPM パッケージからインストールされている場合)：
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 1. 攻撃がまだクラウドにアップロードされていないことを確認するために、再度[Generate](#1-generate-some-malicious-traffic)悪意のあるトラフィックを生成します。
 
 ## 3. Tarantoolに十分なリソースがあることを確認する

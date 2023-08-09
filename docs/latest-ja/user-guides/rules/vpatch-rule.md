@@ -13,7 +13,7 @@
 
 ## ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 ## 例：クエリ文字列パラメータ `id` 内の SQLi 攻撃のブロック
 
@@ -32,7 +32,7 @@
 1. 攻撃の種類として *SQLi* を選択します
 1. *QUERY* パラメータを選択し、*in this part of request* の後にその値 `id` を入力します。
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 
 1. *Create* をクリックします
 
@@ -55,7 +55,7 @@
 1. *Any request* を選択します
 1. *QUERY* パラメータを選択し、*in this part of request* の後にその値 `refresh` を入力します。
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 
 1. *Create* をクリックします
 
@@ -67,10 +67,10 @@
 
 **`/my/api/*` 宛てのすべてのリクエストをブロックする仮想パッチを作成する**
 
---8<-- "../include/api-request-examples/create-rule-en.md"
+--8<-- "../include-ja/api-request-examples/create-rule-en.md"
 
 **特定のアプリケーションインスタンス ID のために `/my/api/*` 宛てのすべてのリクエストをブロックする仮想パッチを作成する**
 
 このリクエストを送信する前に、アプリケーションは[設定](../settings/applications.md)されているべきです。`action.point[instance].value` に既存のアプリケーションの ID を指定します。
 
---8<-- "../include/api-request-examples/create-rule-for-app-id.md"
+--8<-- "../include-ja/api-request-examples/create-rule-for-app-id.md"

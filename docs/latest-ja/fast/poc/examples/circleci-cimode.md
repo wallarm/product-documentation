@@ -20,11 +20,11 @@ FASTをCI MODEでCircleCIワークフローに統合する設定は、`~/.circle
 
 ![!CircleCI環境変数の通過][circleci-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## リクエスト記録のステップの追加
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "レコーディングモードでFASTノードを実行しながら自動化テストステップの例"
     ```
@@ -48,7 +48,7 @@ FASTをCI MODEでCircleCIワークフローに統合する設定は、`~/.circle
 
 ## セキュリティテストのステップの追加
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "セキュリティテストステップの例"
     ```

@@ -31,12 +31,16 @@
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Dynamic Wallarm Module for NGINX stable from NGINX Repository
+# Installing as a Dynamic Module for NGINX Stable
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the open source version of NGINX `stable` that was installed from the NGINX repository.
 
 !!! info "All-in-one installation"
     Starting from Wallarm node 4.6, it is recommended to use [all-in-one installation](all-in-one.md) which automates all the activities listed in the steps below and makes node deployment much easier.
+
+## Use cases
+
+--8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
 
 ## Requirements
 

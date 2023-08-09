@@ -33,24 +33,24 @@
 <!-- ???
 すべての地域がサポートされていることを述べます -->
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
 ## 6. Wallarmにトラフィックの分析を許可する
 
---8<-- "../include/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/common-steps-to-enable-traffic-analysis-inline.md"
 
 ## 7. NGINXの再起動
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 8. トラフィックをWallarmインスタンスに送信する設定
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline.md"
+--8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline.md"
 
 ## 9. Wallarmの操作のテスト
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-inline.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-inline.md"
 
 ## 10. デプロイされたソリューションの微調整
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"

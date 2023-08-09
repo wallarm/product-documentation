@@ -102,4 +102,4 @@ curl http://localhost/etc/passwd
 
 デプロイされたノードの微調整を行うためには、特性を学びます：
 
---8<-- "../include/waf/installation/quick-start-configuration-options-4.4.md"
+--8<-- "../include-ja/waf/installation/quick-start-configuration-options-4.4.md"

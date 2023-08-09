@@ -2,7 +2,7 @@
 
 Wallarmを任意のシステムへ即時通知を送付するよう設定することができます。通知を送付するためのシステムはHTTPプロコトコルを通じて受信するWebhookを受け入れることができる必要があります。これを行うには、以下のイベントタイプを受信するためのWebhook URLを指定してください：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
 
 ## 通知形式
 
@@ -115,7 +115,7 @@ Wallarmを任意のシステムへ即時通知を送付するよう設定する�
 4. 目標とするWebhook URLを入力します。
 5. 必要に応じて、詳細設定を行います：
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
 
     ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. Webhook URLへの通知送信をトリガするイベントタイプを選択します。何もイベントが選択されなかった場合、通知は送られません。
@@ -126,7 +126,7 @@ Wallarmを任意のシステムへ即時通知を送付するよう設定する�
 
 ## インテグレーションの例
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
 以下に、人気のログ収集器を設定してログをSIEMシステムに転送する方法についての例をいくつか説明します：
 
@@ -135,7 +135,7 @@ Wallarmを任意のシステムへ即時通知を送付するよう設定する�
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
 ウェブフックの例をテストします：
 
@@ -186,12 +186,12 @@ Wallarmを任意のシステムへ即時通知を送付するよう設定する�
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

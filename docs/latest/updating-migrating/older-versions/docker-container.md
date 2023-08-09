@@ -22,7 +22,7 @@ These instructions describe the steps to upgrade the running end‑of‑life Doc
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 

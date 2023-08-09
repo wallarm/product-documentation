@@ -2,7 +2,7 @@
 
 以下のイベントがトリガーされたときに、WallarmがSumo Logicにメッセージを送るよう設定できます：
 
---8<-- "../include/integrations/advanced-events-for-integrations.md"
+--8<-- "../include-ja/integrations/advanced-events-for-integrations.md"
 
 ## 統合の設定
 
@@ -26,7 +26,7 @@ Wallarm UIで：
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
 Sumo Logic通知のテスト：
 
@@ -75,12 +75,12 @@ Sumo Logic通知のテスト：
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

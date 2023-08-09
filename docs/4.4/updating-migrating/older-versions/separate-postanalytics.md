@@ -2,6 +2,7 @@
 [img-wl-console-users]:             ../../images/check-users.png 
 [img-create-wallarm-node]:      ../../images/user-guides/nodes/create-cloud-node.png
 [nginx-custom]:                 ../../installation/custom/custom-nginx-version.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 
 # Upgrading the EOL postanalytics module
 
@@ -11,7 +12,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Update API port
 

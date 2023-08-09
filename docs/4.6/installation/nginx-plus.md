@@ -30,12 +30,16 @@
 [web-server-mirroring-examples]:    oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
 [img-grouped-nodes]:                ../images/user-guides/nodes/grouped-nodes.png
 
-# Installing Dynamic Wallarm Module for NGINX Plus
+# Installing as a Dynamic Module for NGINX Plus
 
 These instructions describe the steps to install Wallarm filtering node as a dynamic module for the official commercial version of NGINX Plus.
 
 !!! info "All-in-one installation"
     Starting from Wallarm node 4.6, it is recommended to use [all-in-one installation](../installation/nginx/all-in-one.md) which automates all the activities listed in the steps below and makes node deployment much easier.
+
+## Use cases
+
+--8<-- "../include/waf/installation/linux-packages/nginx-plus-use-cases.md"
 
 ## Requirements
 

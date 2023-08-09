@@ -11,7 +11,7 @@
 
 ## ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 **ルール** セクションでルールを作成して適用するには：
 
@@ -20,14 +20,14 @@
       * **条件** [は](add-rule.md#branch-description)、ルールを適用するエンドポイントを記述します。
       * **リクエストの一部** は、バイナリデータを含む元のリクエスト要素を示します。
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 2. 特定のファイルタイプが指定されたリクエスト要素に渡される場合の攻撃検出ルールを調整するために、Wallarm Consoleの **ルール** セクションで **特定のファイルタイプを許可する** ルールを作成します。このルールは次のコンポーネントで構成されます：
 
       * **条件** [は](add-rule.md#branch-description)、ルールを適用するエンドポイントを記述します。
       * 攻撃サインを無視するファイルタイプ。
       * **リクエストの一部** は、指定したファイルタイプを含む元のリクエスト要素を示します。
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 3. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
 
 ## ルールの例

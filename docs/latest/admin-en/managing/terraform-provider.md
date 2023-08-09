@@ -2,7 +2,7 @@
 
 If you use [Terraform](https://www.terraform.io/) to manage your infrastructures, that may be a comfortable option for you to use it for managing Wallarm. The [Wallarm provider](https://registry.terraform.io/providers/wallarm/wallarm/latest/docs) for Terraform allows doing so.
 
-## Prerequisites
+## Requirements
 
 * Knowing the [Terraform](https://www.terraform.io/) basics
 * Terraform 0.15.5 binary or higher

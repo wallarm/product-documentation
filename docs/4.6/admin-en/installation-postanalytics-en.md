@@ -40,19 +40,13 @@ You can install the postanalytics module on a separate server in two different w
 
 When installing filtering and postanalytics module separately, you can combine manual and automatic approaches: install the postanalytics part manually and then the filtering part with all-in-one installer, and vise versa: the postanalytics part with all-in-one installer and then then the filtering part manually.
 
-## Requirements
-
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
-* SELinux disabled or configured upon the [instructions][configure-selinux-instr]
-* Executing all commands as a superuser (e.g. `root`)
-* Access to `https://repo.wallarm.com` to download packages. Ensure the access is not blocked by a firewall
-* Access to `https://us1.api.wallarm.com` if working with US Wallarm Cloud or to `https://api.wallarm.com` if working with EU Wallarm Cloud. If access can be configured only via the proxy server, then use the [instructions][configure-proxy-balancer-instr]
-* Access to [GCP storage addresses](https://www.gstatic.com/ipranges/goog.json) to download an actual list of IP addresses registered in [allowlisted, denylisted, or graylisted](../user-guides/ip-lists/overview.md) countries, regions or data centers
-* Installed text editor **vim**, **nano**, or any other. In the instruction, **vim** is used
-
 ## All-in-one automatic installation
 
 Starting from Wallarm node 4.6, to install postanalytics separately, it is recommended to use the [all-in-one installation](../installation/nginx/all-in-one.md#launch-options) which automates a lot of activities and makes postanalytics module deployment much easier.
+
+### Requirements
+
+--8<-- "../include/waf/installation/all-in-one/separate-postanalytics-reqs.md"
 
 ### Step 1: Download all-in-one Wallarm installer
 
@@ -223,6 +217,10 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     [Description of all parameters returned by the statistics service →](configure-statistics-service.md)
 
 ## Manual installation
+
+### Requirements
+
+--8<-- "../include/waf/installation/linux-packages/separate-postanalytics-reqs.md"
 
 ### Step 1: Add Wallarm repositories
 

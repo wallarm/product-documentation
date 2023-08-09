@@ -4,7 +4,7 @@ You can set up Wallarm to create trouble tickets in [ServiceNow](https://www.ser
 
 --8<-- "../include/integrations/events-for-integrations-mail.md"
 
-## Prerequisites
+## Requirements
 
 ServiceNow is a platform to help companies manage digital workflows for enterprise operations. Your company needs an owned ServiceNow [instance and workflow apps built within it](https://www.servicenow.com/lpdem/demonow-cloud-platform-app-dev.html) to integrate these apps with Wallarm.
 

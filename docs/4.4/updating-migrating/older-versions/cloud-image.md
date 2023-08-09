@@ -8,6 +8,7 @@
 [overlimit-res-rule-docs]:           ../../user-guides/rules/configure-overlimit-res-detection.md
 [graylist-docs]:                     ../../user-guides/ip-lists/graylist.md
 [waf-mode-instr]:                   ../../admin-en/configure-wallarm-mode.md
+[ip-lists-docs]:                    ../../user-guides/ip-lists/overview.md
 
 # Upgrading an EOL cloud node image
 
@@ -17,7 +18,7 @@ These instructions describe the steps to upgrade the end‑of‑life cloud node 
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules (only if upgrading node 2.18 or lower)
 

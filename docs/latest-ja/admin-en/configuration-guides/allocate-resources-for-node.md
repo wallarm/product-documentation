@@ -13,11 +13,11 @@ NGINXのCPU使用は、RPSレベル、リクエストとレスポンスの平均
 
 ## Tarantool
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory.md"
+--8<-- "../include-ja/allocate-resources-for-waf-node/tarantool-memory.md"
 
 ### Kubernetes Ingressコントローラーでのリソース割り当て
 
---8<-- "../include/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
+--8<-- "../include-ja/allocate-resources-for-waf-node/tarantool-memory-ingress-controller.md"
 
 ### その他のデプロイメントオプションでのリソース割り当て
 

@@ -26,15 +26,15 @@
 
 この記事では、 [公式マシンイメージ](https://console.cloud.google.com/launcher/details/wallarm-node-195710/wallarm-node)を使用してGCPに[Wallarm OOB](overview.md)をデプロイする方法を説明します。ここで説明するソリューションは、ウェブサーバーやプロキシサーバーによってミラーリングされたトラフィックを分析するために設計されています。
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-gcp-image.md"
 
 ## 5. Wallarmにミラーリングされたトラフィックの分析を有効にする
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 6. NGINXを再起動する
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 7. 自分のウェブサーバーやプロキシサーバーを設定して、トラフィックをWallarmノードにミラーリングする
 
@@ -44,8 +44,8 @@
 
 ## 8. Wallarmの動作をテストする
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 9. デプロイしたソリューションの微調整
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"

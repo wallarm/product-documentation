@@ -4,21 +4,21 @@ WallarmのNGINXベースのフィルタリングノードは、Dockerコンテ�
 
 Dockerコンテナー内にインストールされたフィルタリングノードの機能は、他のデプロイメントオプションの機能と完全に同一です。
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include-ja/waf/installation/info-about-nginx-version-in-docker-container.md"
 
 ## 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## コンテナの実行オプション
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-ja/waf/installation/docker-running-options.md"
 
 ## 環境変数を渡してコンテナを実行する
 
 コンテナを実行するには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. ノード付きのコンテナーを実行します：
 
@@ -33,7 +33,7 @@ Dockerコンテナー内にインストールされたフィルタリングノ�
 
 次の基本的なフィルタリングノード設定をオプション `-e` 経由でコンテナーに渡すことができます：
 
---8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+--8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
 
 このコマンドは次のように動作します：
 
@@ -52,7 +52,7 @@ Dockerコンテナー内にインストールされたフィルタリングノ�
 
 コンテナを実行するには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. ノード付きのコンテナーを実行します：
 
@@ -67,7 +67,7 @@ Dockerコンテナー内にインストールされたフィルタリングノ�
 
     * `-e` オプションは、コンテナーに必要な環境変数を渡します：
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
     
     * `-v` オプションは、設定ファイル `default` があるディレクトリをコンテナディレクトリ `/etc/nginx/sites-enabled` にマウントします。
 
@@ -143,10 +143,10 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 ## Wallarmノード操作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ユースケースの設定
 
 Dockerコンテナにマウントされた設定ファイルは、[使用可能な指示][nginx-directives-docs]のフィルタリングノード設定を記述するべきです。以下はよく使用されるフィルタリングノードの設定オプションのいくつかです：
 
---8<-- "../include/waf/installation/common-customization-options-docker-4.4.md"
+--8<-- "../include-ja/waf/installation/common-customization-options-docker-4.4.md"

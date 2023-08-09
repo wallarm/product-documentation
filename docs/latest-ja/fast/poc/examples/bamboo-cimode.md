@@ -14,7 +14,7 @@ CIモードのFASTをBambooワークフローに統合するには、以下の�
 
 ![Bamboo全体変数の渡し](../../../images/fast/poc/common/examples/bamboo-cimode/bamboo-env-var-example.png)
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## リクエスト記録ステップの追加
 

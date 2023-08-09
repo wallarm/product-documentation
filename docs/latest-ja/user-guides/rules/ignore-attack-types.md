@@ -8,7 +8,7 @@ Wallarmノードがリクエストの標準的なペイロードを悪意のあ�
 
 ## ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 **ルール**セクションでルールを作成し適用する方法は以下の通りです：
 
@@ -23,7 +23,7 @@ Wallarmノードがリクエストの標準的なペイロードを悪意のあ�
       
       * **リクエストの一部**は、選択した攻撃タイプの兆候の解析をするべきでないオリジナルのリクエスト要素を指します。
 
-         --8<-- "../include/waf/features/rules/request-part-reference.md"
+         --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 
 2. [ルールのコンパイルが完了する](compiling.md)のを待ちます。
 

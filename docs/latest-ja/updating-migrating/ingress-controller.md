@@ -13,7 +13,7 @@
 
 ## 前提条件
 
---8<-- "../include/waf/installation/requirements-nginx-ingress-controller-latest.md"
+--8<-- "../include-ja/waf/installation/requirements-nginx-ingress-controller-latest.md"
 
 ## ステップ 1: Wallarm の Helm チャートリポジトリを更新する
 

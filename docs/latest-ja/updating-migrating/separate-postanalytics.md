@@ -15,7 +15,7 @@
 
 ## アップグレード方法
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## 全体一式インストーラーによるアップグレード
 
@@ -23,23 +23,23 @@
 
 ### 全体一式インストーラーを使用したアップグレードの要件
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### ステップ1：クリーンなマシンを準備する
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-ja/waf/installation/all-in-one-clean-machine.md"
 
 ### ステップ 2: Wallarmトークンを準備する
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-ja/waf/installation/all-in-one-token.md"
 
 ### ステップ 3: 全体一式Wallarmインストーラーをダウンロードする
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ 4:全体一式Wallarmインストーラーを実行してpostanalyticsをインストールする
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics.md"
 
 ### ステップ 5: 別のサーバー上のNGINX-Wallarmモジュールをアップグレードする
 
@@ -50,15 +50,15 @@
 
 ### ステップ 6: NGINX-Wallarmモジュールをpostanalyticsモジュールに再接続する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-reconnect.md"
 
 ### ステップ 7: NGINX‑Wallarmと別のpostanalyticsモジュールとの相互作用を確認する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-check.md"
 
 ### ステップ 8:旧postanalyticsモジュールを削除する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-remove-old.md"
 
 ## 手動アップグレード
 
@@ -66,7 +66,7 @@
 
 ### 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ### ステップ 1: 新しいWallarmリポジトリを追加する
 
@@ -125,18 +125,18 @@
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOSまたはAmazon Linux 2.0.2021x以下"
     ```bash
     sudo yum update

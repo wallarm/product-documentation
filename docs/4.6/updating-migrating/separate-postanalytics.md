@@ -6,6 +6,7 @@
 [tarantool-status]:             ../images/tarantool-status.png
 [statistics-service-all-parameters]: ../admin-en/configure-statistics-service.md
 [configure-proxy-balancer-instr]:   ../admin-en/configuration-guides/access-to-wallarm-api-via-proxy.md
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 # Upgrading the postanalytics module
 
@@ -66,7 +67,7 @@ Use the procedure below to manually upgrade the postanalytics module 4.x install
 
 ### Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ### Step 1: Add new Wallarm repository
 

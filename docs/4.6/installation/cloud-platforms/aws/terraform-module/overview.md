@@ -4,7 +4,14 @@ Wallarm provides the [Terraform module](https://registry.terraform.io/modules/wa
 
 By implementing the Wallarm Terraform module, we have provided the solution enabling two core Wallarm deployment options: **[in-line](../../../inline/overview.md) (which is proxy in this deployment method)** and [**Out‑of‑band (mirror)**](../../../oob/overview.md) security solutions. The deployment option is easily controlled by the `preset` Wallarm module variable.
 
-## Prerequisites
+## Use cases
+
+Among all supported [Wallarm deployment options](../../../supported-deployment-options.md), Terraform module is recommended for Wallarm deployment in these **use cases**:
+
+* Your existing infrastructure resides on AWS.
+* You leverage the Infrastructure as Code (IaC) practice. Wallarm's Terraform module allows for the automated management and provisioning of the Wallarm node on AWS, enhancing efficiency and consistency.
+
+## Requirements
 
 * Terraform 1.0.5 or higher [installed locally](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 * Access to the account with the **Administrator** [role](../../../../user-guides/settings/users.md#user-roles) in Wallarm Console in the US or EU [Cloud](../../../../about-wallarm/overview.md#cloud)

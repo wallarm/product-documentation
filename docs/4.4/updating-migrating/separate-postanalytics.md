@@ -1,6 +1,7 @@
 [docs-module-update]:   nginx-modules.md
 [img-wl-console-users]:             ../images/check-users.png 
 [img-create-wallarm-node]:      ../images/user-guides/nodes/create-cloud-node.png
+[ip-lists-docs]:                    ../user-guides/ip-lists/overview.md
 
 #   Upgrading the postanalytics module
 
@@ -10,7 +11,7 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Add new Wallarm repository
 

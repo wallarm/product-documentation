@@ -9,7 +9,7 @@
 
 Wallarmが会社のリソースを[脆弱性](../glossary-en.md#vulnerability)に対してスキャンし、攻撃と脆弱性を再確認するUSクラウドのIPアドレスリスト：
 
---8<-- "../include/scanner-ip-request-us.md"
+--8<-- "../include-ja/scanner-ip-request-us.md"
 
 !!! info "IPアドレスのリストを取得する"
     [スキャナのIPアドレスのリストが含まれているプレーンテキストファイルをダウンロードしてください。][file-ips-list]

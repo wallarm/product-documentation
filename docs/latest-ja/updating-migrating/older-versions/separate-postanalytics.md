@@ -12,11 +12,11 @@
 
 これらの指示は、別のサーバーでインストールされたライフエンドのpostanalyticsモジュール（バージョン3.6以前）のアップグレード手順を説明しています。postanalyticsモジュールは[Wallarm NGINXモジュールの更新][docs-module-update]の前にアップグレードする必要があります。
 
---8<-- "../include/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
+--8<-- "../include-ja/waf/upgrade/warning-deprecated-version-upgrade-instructions.md"
 
 ## アップグレード方法
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ## オールインワンインストーラを使用したアップグレード
 
@@ -24,27 +24,27 @@
 
 ### オールインワンインストーラを使用したアップグレードの要件
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### ステップ1：クリーンマシンの準備
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-ja/waf/installation/all-in-one-clean-machine.md"
 
 ### ステップ2：Wallarmトークンの準備
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-ja/waf/installation/all-in-one-token.md"
 
 ### ステップ3：Wallarmオールインワンインストーラのダウンロード
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ4：オールインワンWallarmインストーラを実行して、postanalyticsをインストールする
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics.md"
 
 ### ステップ5：APIポートの更新
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-ja/waf/upgrade/api-port-443.md"
 
 ### ステップ6：別のサーバーでNGINX-Wallarmモジュールのアップグレード
 
@@ -55,15 +55,15 @@ postanalyticsモジュールが別のサーバーにインストールされた�
 
 ### ステップ7：NGINX-Wallarmモジュールをpostanalyticsモジュールに再接続する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-reconnect.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-reconnect.md"
 
 ### ステップ8：NGINX-Wallarmと別のpostanalyticsモジュール間のインタラクションを確認する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-check.md"
 
 ### ステップ9：古いpostanalyticsモジュールを削除する
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-remove-old.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-remove-old.md"
 
 ## 手動でのアップグレード
 
@@ -71,11 +71,11 @@ postanalyticsモジュールが別のサーバーにインストールされた�
 
 ### 要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ### ステップ1：APIポートの更新
 
---8<-- "../include/waf/upgrade/api-port-443.md"
+--8<-- "../include-ja/waf/upgrade/api-port-443.md"
 
 ### ステップ2：新しいWallarmリポジトリの追加
 
@@ -141,18 +141,18 @@ postanalyticsモジュールが別のサーバーにインストールされた�
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
 === "Ubuntu"
     ```bash
     sudo apt update
     sudo apt dist-upgrade
     ```
 
-    --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+    --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-    --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+    --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
 === "CentOSまたはAmazon Linux 2.0.2021x以前"
     ```bash
     sudo yum update

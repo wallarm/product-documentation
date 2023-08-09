@@ -26,10 +26,14 @@ This quick guide provides the steps to deploy the [Docker image of the NGINX-bas
 !!! warning "The instructions limitations"
     These instructions do not cover the configuration of load balancing and node autoscaling. If setting up these components yourself, we recommend that you read the appropriate [Alibaba Cloud documentation](https://www.alibabacloud.com/help/product/27537.htm?spm=a2c63.m28257.a1.82.dfbf5922VNtjka).
 
+## Use cases
+
+--8<-- "../include/waf/installation/cloud-platforms/alibaba-ecs-use-cases.md"
+
 ## Requirements
 
 * Access to the [Alibaba Cloud Console](https://account.alibabacloud.com/login/login.htm)
-* Access to the account with the **Administrator** role in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
+* Access to the account with the **Administrator** role and two‑factor authentication disabled in Wallarm Console for the [US Cloud](https://us1.my.wallarm.com/) or [EU Cloud](https://my.wallarm.com/)
 
 ## Options for the Wallarm node Docker container configuration
 

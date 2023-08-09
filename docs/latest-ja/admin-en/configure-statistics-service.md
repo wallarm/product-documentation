@@ -64,7 +64,7 @@ allow 127.0.0.0/8;
 
 設定が変更されたら、変更を適用するためにNGINXを再起動します:
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ### 統計サービスのIPアドレスを変更する
 
@@ -81,11 +81,11 @@ allow 127.0.0.0/8;
     ```
 1. [`collectd`](monitoring/intro.md)設定ファイルの `URL` パラメータを適宜修正します。このファイルの場所は、あなたが持っているオペレーティングシステムの分布型によります :
 
-    --8<-- "../include/monitoring/collectd-config-location.md"
+    --8<-- "../include-ja/monitoring/collectd-config-location.md"
 1. ループバックアドレス以外のアドレスからのアクセスを許可するために `allow` ディレクティブを追加または変更します (デフォルトの設定ファイルは、ループバックアドレスのみにアクセスを許可します) 。
 1. 変更を適用するためにNGINXを再起動します :
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ### Prometheus形式で統計情報を取得する
 
@@ -112,7 +112,7 @@ allow 127.0.0.0/8;
         `/wallarm-status` ロケーションのデフォルト設定を削除または変更しないでください。このエンドポイントのデフォルトの動作は、Wallarmクラウドへの正しいデータのアップロードにとって重要です。
 1. 変更を適用するためにNGINXを再起動します :
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 1. 新しいエンドポイントを呼び出して、Prometheusメトリクスを取得します:
 
     ```bash

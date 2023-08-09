@@ -4,7 +4,7 @@
 
 これらの手順は、WallarmとLogstashデータコレクターの統合例を提供し、その後Splunk SIEMシステムにイベントを転送します。
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
 ![!Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
@@ -14,7 +14,7 @@
 * Debian 11.x（bullseye）にインストールされ、`https://logstash.example.domain.com`で利用可能な[Logstash 7.7.0](#logstash-configuration)
 * [EUクラウド](https://my.wallarm.com)内のWallarmコンソールへの管理者アクセス、および[Logstash統合の設定](#configuration-of-logstash-integration)
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-ja/cloud-ip-by-request.md"
 
 Splunk EnterpriseとLogstashサービスへのリンクは例として引用されているので、応答しません。
 
@@ -87,7 +87,7 @@ output {
 
 ### Logstash統合の設定
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![!LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -95,7 +95,7 @@ output {
 
 ## テスト例
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
 
 Logstashは次のようにイベントをログに記録します：
 
@@ -107,4 +107,4 @@ Splunkイベントには次のエントリが表示されます：
 
 ## ダッシュボードにイベントを整理する
 
---8<-- "../include/integrations/application-for-splunk.md"
+--8<-- "../include-ja/integrations/application-for-splunk.md"

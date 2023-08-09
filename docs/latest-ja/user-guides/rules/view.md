@@ -67,14 +67,14 @@
 
 **全ての設定ルールを取得**
 
---8<-- "../include/api-request-examples/get-all-configured-rules.md"
+--8<-- "../include-ja/api-request-examples/get-all-configured-rules.md"
 
 **全てのルールの条件のみを取得**
 
---8<-- "../include/api-request-examples/get-conditions.md"
+--8<-- "../include-ja/api-request-examples/get-conditions.md"
 
 **特定の条件に添付されたルールを取得**
 
 特定の条件を指定するには、そのIDを使用します。IDは、全てのルールの条件をリクエストしたときに取得できます。
 
---8<-- "../include/api-request-examples/get-rules-by-condition-id.md"
+--8<-- "../include-ja/api-request-examples/get-rules-by-condition-id.md"

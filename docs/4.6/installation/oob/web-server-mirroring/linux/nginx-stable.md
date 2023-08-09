@@ -47,6 +47,10 @@ Wallarm supports the following operating systems:
 * Amazon Linux 2.0.2021x and lower
 * AlmaLinux, Rocky Linux or Oracle Linux 8.x
 
+## Use cases
+
+--8<-- "../include/waf/installation/linux-packages/nginx-stable-use-cases.md"
+
 ## Requirements
 
 --8<-- "../include/waf/installation/linux-packages/requirements-nginx-stable.md"

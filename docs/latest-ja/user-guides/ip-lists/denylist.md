@@ -4,7 +4,7 @@
 
 Wallarmのコンソール → **IPリスト** → **拒否リスト**にて、ブロックされたIPアドレスを以下のように管理できます：
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![!IP 拒否リスト](../../images/user-guides/ip-lists/denylist-apps.png)
 
@@ -66,7 +66,7 @@ IPアドレス、サブネット、又はIPアドレスのグループをリス�
 
 ### 自動的なボットIPの拒否リスト登録
 
---8<-- "../include/waf/features/ip-lists/autopopulation-by-antibot.md"
+--8<-- "../include-ja/waf/features/ip-lists/autopopulation-by-antibot.md"
 
 ## 拒否リストに登録されたIPについての通知の受け取り
 
@@ -74,4 +74,4 @@ IPアドレス、サブネット、又はIPアドレスのグループをリス�
 
 ![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

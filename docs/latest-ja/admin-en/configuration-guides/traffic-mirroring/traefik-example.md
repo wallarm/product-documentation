@@ -62,4 +62,4 @@ http:
 
 ## ステップ2：Wallarmノードをミラーリングされたトラフィックをフィルタリングするように設定します
 
---8<-- "../include/wallarm-node-configuration-for-mirrored-traffic.md"
+--8<-- "../include-ja/wallarm-node-configuration-for-mirrored-traffic.md"

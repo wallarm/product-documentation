@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[platform]:                         ../../admin-en/supported-platforms.md
+[platform]:                         ../supported-deployment-options.md
 [inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
@@ -47,41 +47,41 @@ Wallarmが提供する個々のLinuxパッケージ([NGINX](dynamic-module.md)�
 
 ## 要件
 
---8<-- "../include/waf/installation/all-in-one-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-requirements.md"
 
 ## ステップ1: NGINXと依存関係のインストール
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-ja/waf/installation/all-in-one-nginx.md"
 
 ## ステップ2: Wallarmトークンの準備
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-ja/waf/installation/all-in-one-token.md"
 
 ## ステップ3: 一括Wallarmインストーラーのダウンロード
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ## ステップ4: 一括Wallarmインストーラーの実行
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
 
 これからのステップのコマンドは、x86_64とARM64のインストールに同じです。
 
 ## ステップ5: Wallarmノードがトラフィックを分析するように設定する
 
---8<-- "../include/waf/installation/common-steps-to-enable-traffic-analysis.md"
+--8<-- "../include-ja/waf/installation/common-steps-to-enable-traffic-analysis.md"
 
 ## ステップ6: NGINXの再起動
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
 
 ## ステップ7: トラフィックの送信をWallarmノードに設定する
 
---8<-- "../include/waf/installation/sending-traffic-to-node-inline-oob.md"
+--8<-- "../include-ja/waf/installation/sending-traffic-to-node-inline-oob.md"
 
 ## ステップ8: Wallarmノードの操作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ステップ9: 展開されたソリューションの調整
 

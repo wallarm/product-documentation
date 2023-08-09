@@ -19,11 +19,11 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
 
 ![!Jenkins環境変数の受け渡し][jenkins-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## リクエスト録画のステップを追加する
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "記録モードでFASTノードを実行する自動テストステップの例"
     ```
@@ -51,7 +51,7 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
 
 ## セキュリティテストのステップを追加する
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "セキュリティテストステップの例"
 

@@ -9,5 +9,7 @@
 [api-tokens-docs]:                  ../../../user-guides/settings/api-tokens.md
 [allocate-resources-for-wallarm-docs]: ../../configuration-guides/allocate-resources-for-node.md
 [supported-deployments]:            ../../../installation/supported-deployment-options.md
+[ip-lists-docs]:                    ../../../user-guides/ip-lists/overview.md
+[rate-limit-docs]:                  ../../../user-guides/rules/rate-limiting.md
 
 --8<-- "latest/admin-en/installation-guides/envoy/envoy-docker.md"

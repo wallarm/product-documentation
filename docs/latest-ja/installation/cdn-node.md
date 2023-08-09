@@ -30,11 +30,11 @@
 
 ## CDNノードの仕組み
 
---8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include-ja/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## 必要条件
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
+--8<-- "../include-ja/waf/installation/cdn-node/cdn-node-deployment-requirements.md"
 
 ## CDNノードのデプロイ
 
@@ -80,8 +80,8 @@ WallarmのCDNノードは成功にデプロイされました！
 
 Wallarmの設定オプションを学びましょう：
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-configuration-options.md"
+--8<-- "../include-ja/waf/installation/cdn-node/cdn-node-configuration-options.md"
 
 ## CDNノードのトラブルシューティング
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include-ja/waf/installation/cdn-node/cdn-node-troubleshooting.md"

@@ -21,7 +21,7 @@
 
 #   FASTの新規登録案内
 
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-ja/fast/cloud-note.md"
 
 [Wallarm portal][link-wl-portal]へ初めてログインする時、FASTを理解するための5つのステップからなる新規登録案内を利用する機会があります。
 
