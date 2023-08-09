@@ -49,11 +49,9 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
 The directive enables `on` / disables `off` sending of the requests/statistics from the [denylisted](../user-guides/ip-lists/denylist.md) IPs from node to the Cloud.
 
-* With `wallarm_acl_export_enable on` the full information about the request from the denylisted IP will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the corresponding event in the **Events** section.
+* With `wallarm_acl_export_enable on` the attacks from the denylisted IPs will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the **Events** section.
 
-    Thus, you can [search](../user-guides/search-and-filters/use-search.md#search-by-attack-type) for these events using the `blocked_source` in the search string and then open found event details to get full information on the request.
-
-* With `wallarm_acl_export_enable off` only the event, its hits and their auxiliary information like date and time, source IP, response code and status, method, and other - no request themselves will be presented.
+* With `wallarm_acl_export_enable off` the attacks from the denylisted IPs will not be displayed.
 
 !!! info
     This parameter is set inside the http block.

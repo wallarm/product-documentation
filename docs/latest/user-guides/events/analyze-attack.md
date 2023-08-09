@@ -66,34 +66,41 @@ To view a request in a raw format, expand a required attack and then the request
 
 ## Analyze requests from denylisted IPs
 
-[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive statistics on all blocked packets for further analysis.
+[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. In Wallarm, there are several ways for IP to get into the denylist:
 
-You can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the events related to denylisted IPs and analyze them in the **Events** section:
+* You add it manually
+* It is automatically added by:
+    * [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) module
+    * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger
+    * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger
+    * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger
+    * `Number of malicious payloads` trigger
 
-| How IP is denylisted | Description | Search key | Filter |
+Let us consider what is happening in the **Events** section in the context of denylisting:
+
+* **Before** denylisting: as none of the Wallarm automatic functions denylists IP immediately as they need time to gather statistics for the final decision, attacks from these IPs are for some time displayed in the `Monitoring` status: all suspicions requests (hits) are displayed within these attacks.
+* **After** denylisting: by default nothing will appear in the **Events** section, as node blocks requests immediately and sends nothing to the Cloud, which saves resources. But it may be important to gather comprehensive information about attacks from denylisted IPs, so default behavior may be changed.
+
+    !!! info "Feature availability"
+        This change of behavior is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
+
+You can configure the node to send the information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). You can enable sending information and configure transfer parameters using the [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) and a set of relative directives.
+
+As soon as sending of information is enabled, you will see `Blocked` attacks from denylisted IPs in the event list.
+
+![!Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+
+Note that you can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the attacks which source IP can be at some moment **automatically** denylisted - this search will show you both requests before denylisting and (if sending information is enabled) after denylisting:
+
+| Reason for possible IP denylisting | Description | Search key | Filter |
 |--|--|--|--|
-| Manually | You can [denylist](../../user-guides/ip-lists/denylist.md#manual-denylist-population) objects **manually**. | `blocked_source` | Blocked Source |
-| [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) | The Wallarm's [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md) module automatically populates either the graylist or denylist with the malicious bots' IPs. | `api_abuse` | API Abuse |
-| [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of brute‑force attacks (basing on the number of requests originated from the same IP address). | `brute` | Brute force |
-| [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of forced browsing attacks (same as brute-force, but basing on the number of the 404 response codes returned to the requests having the same origin IP requests). | `dirbust` | Forced browsing |
-| [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger | Events are results of manual or automatic BOLA protection. | `bola` | BOLA |
-| `Number of malicious payloads` trigger | Trigger basing on the number of malicious payloads originating from the same IP. | `payload_trigger` | Payload Trigger |
+| [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) | The Wallarm's [API Abuse Prevention](../../about-wallarm/api-abuse-prevention.md) module automatically populates either the graylist or denylist with the malicious bots' IPs. | `api_abuse` | `API Abuse` |
+| [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of brute‑force attacks (basing on the number of requests originated from the same IP address). | `brute` | `Brute force` |
+| [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger | Triggers set the conditions for detection of forced browsing attacks (same as brute-force, but basing on the number of the 404 response codes returned to the requests having the same origin IP requests). | `dirbust` | `Forced browsing` |
+| [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger | Events are results of manual or automatic BOLA protection. | `bola` | `BOLA` |
+| `Number of malicious payloads` trigger | Trigger basing on the number of malicious payloads originating from the same IP. | `payload_trigger` | `Payload Trigger` |
 
-To provide you with comprehensive information regarding blocked requests due to denylisted source IPs, Wallarm offers the ability to collect and display requests themselves or - if there is a lot of requests - several sample requests and the total number of alike/identical. This empowers you to evaluate the potency of attacks originating from denylisted IPs and conduct a more precise analysis of the requests from these IPs, exploring various parameters.
-
-!!! info "Feature availability"
-    This feature is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
-
-By default, collecting extended information is not enabled - requests themselves are not presented in the event details.
-
-You can configure the node to send the full information about the requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). You can enable sending full information and configure transfer parameters using the [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) and a set of relative directives.
-
-As soon as sending full information is enabled, for each automatically denylisted IP you will have two events:
-
-* The one in the `Monitoring` status displaying information related to the reason of putting this IP into the denylist.
-* The one in the `Blocked` status displaying information about hits from this blocked IP that took place after putting it in denylist. This includes full request or - if there are too much requests - several requests as samples and the remaining as counter for the number of hits.
-
-![!Events related to denylisted IPs - export of full data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+You can also search for the attacks from the **manually** [denylisted](../../user-guides/ip-lists/denylist.md#manual-denylist-population) IPs using the `blocked_source` search key (equal to `Blocked Source` filter).
 
 ## Sampling of hits
 
