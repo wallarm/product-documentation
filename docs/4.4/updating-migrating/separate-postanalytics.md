@@ -11,7 +11,7 @@ To upgrade the end‑of‑life module (3.6 or lower), please use the [different 
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Add new Wallarm repository
 

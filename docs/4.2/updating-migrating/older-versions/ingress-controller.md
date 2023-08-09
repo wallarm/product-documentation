@@ -13,7 +13,7 @@ These instructions describe the steps to upgrade deployed Wallarm Ingress Contro
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Inform Wallarm technical support that you are upgrading filtering node modules
 

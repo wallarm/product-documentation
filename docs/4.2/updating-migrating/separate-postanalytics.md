@@ -11,7 +11,7 @@ To upgrade the module 2.18 or lower, please use the [different instructions](old
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Update API port
 

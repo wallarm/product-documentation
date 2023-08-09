@@ -12,7 +12,7 @@ These instructions describe the steps to upgrade the end‑of‑life postanalyti
 
 ## Requirements
 
---8<-- "../include/waf/installation/requirements-docker-nginx-4.0.md"
+--8<-- "../include/waf/installation/basic-reqs-for-upgrades.md"
 
 ## Step 1: Update API port
 
