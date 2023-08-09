@@ -32,5 +32,3 @@ Like with every other critical component in your production environment, Wallarm
 
 * [Instructions for NGINX-based Wallarm nodes](../admin-en/configure-backup-en.md) (including AWS / GCP images, Docker node container, and Kubernetes sidecars)
 * [Instructions for the filtering nodes deployed as the Wallarm Kubernetes Ingress controller](../admin-en/configuration-guides/wallarm-ingress-controller/best-practices/high-availability-considerations.md)
-
-перенести в технические бест практисы
