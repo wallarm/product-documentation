@@ -473,7 +473,7 @@ spec:
 
 ### Configuring Wallarm features
 
-In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration][wallarm-deployment-best-practices-docs].
+In addition to the listed general solution settings, we also recommend you to learn [best practices for attack prevention with Wallarm][wallarm-attack-prevention-best-practices-docs].
 
 This configuration is performed via [annotations](pod-annotations.md) and the Wallarm Console UI.
 

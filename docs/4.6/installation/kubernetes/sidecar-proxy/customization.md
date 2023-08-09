@@ -3,7 +3,7 @@
 [port-forwarding-without-iptables-img]:   ../../../images/waf-installation/kubernetes/sidecar-controller/port-forwarding-without-iptables.png
 [allocate-resources-for-node-docs]:       ../../../admin-en/configuration-guides/allocate-resources-for-node.md
 [disable-acl-directive-docs]:             ../../../admin-en/configure-parameters-en.md#disable_acl
-[wallarm-deployment-best-practices-docs]: ../../../about-wallarm/deployment-best-practices.md
+[wallarm-attack-prevention-best-practices-docs]: ../../../quickstart/attack-prevention-best-practices.md
 
 # Customizing Wallarm Sidecar Proxy
 
@@ -480,7 +480,7 @@ spec:
 
 ### Configuring Wallarm features
 
-In addition to the listed general solution settings, we also recommend you to learn [best practices in Wallarm feature configuration][wallarm-deployment-best-practices-docs].
+In addition to the listed general solution settings, we also recommend you to learn [best practices for attack prevention with Wallarm][wallarm-attack-prevention-best-practices-docs].
 
 This configuration is performed via [annotations](pod-annotations.md) and the Wallarm Console UI.
 
