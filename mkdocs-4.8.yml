@@ -21,7 +21,7 @@ nav:
           - Security model of shared responsibility for clients' data: about-wallarm/shared-responsibility.md
           - Data retention policy: about-wallarm/data-retention-policy.md
         - Wallarm subscription plans: about-wallarm/subscription-plans.md
-        - Wallarm solution deployment and maintenance best practices: about-wallarm/deployment-best-practices.md
+        - Best Practices for Attack Prevention with Wallarm: quickstart/attack-prevention-best-practices.md
     - Quick Start: quickstart.md
     - Deployment:
       - Deployment Options: installation/supported-deployment-options.md

@@ -542,3 +542,5 @@
 /4.4/ja/admin-en/supported-platforms/ /4.4/ja/installation/supported-deployment-options/
 
 /faq/nginx-compatibility/ /installation/custom/custom-nginx-version/
+
+/about-wallarm/deployment-best-practices/ /quickstart/attack-prevention-best-practices/
