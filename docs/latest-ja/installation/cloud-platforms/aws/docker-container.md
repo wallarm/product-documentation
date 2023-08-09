@@ -13,13 +13,13 @@
 
 ## WallarmノードDockerコンテナ設定のオプション
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-ja/waf/installation/docker-running-options.md"
 
 ## 環境変数で設定されたWallarmノードDockerコンテナのデプロイ
 
 AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定されたコンテナ化されたWallarmフィルタリングノードをデプロイします。
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. [AWS管理コンソール](https://console.aws.amazon.com/console/home)にサインイン → **サービス**リスト → **Elastic Container Service** に進みます。
 1. **クラスター作成**ボタンをクリックしてクラスター作成を進めます:
@@ -117,7 +117,7 @@ AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定�
 
        変数 `WALLARM_API_TOKEN` は `secrets` オブジェクトで渡すことをお勧めします。
 
-       --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+       --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
    
    * すべての構成ファイルパラメータは[AWSドキュメンテーション](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)で説明されています。
 1. 設定したJSONファイルを元にタスク定義を登録します。この操作を行うために、[`aws ecs register‑task‑definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) コマンドを使用します。:
@@ -147,7 +147,7 @@ AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定�
 
 環境変数とAWS EFSからマウントされた設定ファイルを持つコンテナをデプロイするには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. [AWS管理コンソール](https://console.aws.amazon.com/console/home)にサインイン → **サービス**リスト → **Elastic Container Service** に進みます。
 1. **クラスター作成**ボタンをクリックしてクラスター作成を進めます:
@@ -310,7 +310,7 @@ AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定�
 
        変数 `WALLARM_API_TOKEN` は `secrets` オブジェクトで渡すことをお勧めします。
 
-       --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+       --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
    
     * すべての構成ファイルパラメータは[AWSドキュメンテーション](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html)で説明されています。
 1. 設定したJSONファイルを元にタスク定義を登録します。この操作を行うために、[`aws ecs register-task-definition`](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html) コマンドを使用します。:

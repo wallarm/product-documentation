@@ -30,7 +30,7 @@
 
 テストランを作成するためには、URL `https://us1.api.wallarm.com/v1/test_run` へのPOSTリクエストを送信してください：
 
---8<-- "../include/fast/operations/api-create-testrun.md"
+--8<-- "../include-ja/fast/operations/api-create-testrun.md"
 
 APIサーバへのリクエストが成功すると、サーバーのレスポンスが表示されます。レスポンスには有用な情報が含まれています：
 
@@ -67,7 +67,7 @@ Wallarmアカウントのインターフェイスを通じてテストランを�
 
 6.必要に応じて**詳細設定**を追加します。この設定ブロックには、以下の点が含まれています：
 
---8<-- "../include/fast/test-run-adv-settings.md"
+--8<-- "../include-ja/fast/test-run-adv-settings.md"
 
     ![テストラン詳細設定][img-testrun-adv-settings]
 

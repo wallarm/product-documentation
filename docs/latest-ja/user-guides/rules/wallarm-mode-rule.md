@@ -20,7 +20,7 @@
 
 ## ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 ## ルールのデフォルトインスタンス
 
@@ -53,4 +53,4 @@ Wallarmは自動的に`フィルタリングモードの設定`ルールのイ�
 
 以下のリクエストでは、ID `3`の[アプリケーション](../settings/applications.md)へのトラフィックをフィルタリングするノードを設定するルールが作成されます。
 
---8<-- "../include/api-request-examples/create-filtration-mode-rule-for-app.md"
+--8<-- "../include-ja/api-request-examples/create-filtration-mode-rule-for-app.md"

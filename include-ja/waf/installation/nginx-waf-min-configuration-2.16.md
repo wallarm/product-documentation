@@ -80,7 +80,7 @@ Tarantoolへのメモリの割り当て：
 !!! info "同じサーバー上のNGINX-Wallarmとpostanalytics"
     NGINX-Wallarmとpostanalyticsモジュールが同じサーバーにインストールされている場合、この手順をスキップします。
 
---8<-- "../include/waf/configure-separate-postanalytics-address-nginx.md"
+--8<-- "../include-ja/waf/configure-separate-postanalytics-address-nginx.md"
 
 #### その他の設定
 

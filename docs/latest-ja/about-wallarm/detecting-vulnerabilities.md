@@ -30,7 +30,7 @@
 
 #### その動作方法
 
---8<-- "../include/how-attack-rechecker-works.md"
+--8<-- "../include-ja/how-attack-rechecker-works.md"
 
 !!! warning "IPによってグループ化されたヒットがある場合のアクティブな脅威の検証"
     攻撃が発生元のIPによって[グループ化](protecting-against-attacks.md#attack)されている場合、この攻撃のアクティブな検証は利用できません。

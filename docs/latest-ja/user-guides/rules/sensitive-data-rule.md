@@ -18,7 +18,7 @@ Wallarm Nodeはリクエストにおけるデータマスキングをサポー�
 
 ## ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 ## 例：Cookie値のマスキング
 
@@ -35,7 +35,7 @@ Wallarm Nodeはリクエストにおけるデータマスキングをサポー�
 1. *Mask sensitive data*を選択
 1. *Header*パラメータを選択し、その値として`COOKIE`を入力；*cookie*パラメータを選択し、*in this part of request*の後に`PHPSESSID`を入力
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 
 1. *Create*をクリック
 

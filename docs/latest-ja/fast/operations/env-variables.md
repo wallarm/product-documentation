@@ -61,7 +61,7 @@ FAST ノードによる要録画のリクエスト数を、アプリケーショ
 
 `ALLOWED_HOSTS` 環境変数を設定することで、すべてのベースラインでないリクエストをフィルタリングできます。
 
---8<--  "../include/fast/operations/env-vars-allowed-hosts.md"
+--8<--  "../include-ja/fast/operations/env-vars-allowed-hosts.md"
 
 FAST ノードはこの環境変数を以下のように使用します:
 * 送信リクエストの `Host` ヘッダの値が `ALLOWED_HOSTS` 変数で指定した値と一致する場合、FAST ノードはそのリクエストがベースラインリクエストであると見なします。そのリクエストは記録され、プロキシ化されます。

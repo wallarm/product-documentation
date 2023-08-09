@@ -66,7 +66,7 @@
 
 ### ルールの作成と適用
 
---8<-- "../include/waf/features/rules/rule-creation-options.md"
+--8<-- "../include-ja/waf/features/rules/rule-creation-options.md"
 
 **规则**セクションでルールを作成して適用するには：
 

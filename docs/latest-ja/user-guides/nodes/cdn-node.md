@@ -25,7 +25,7 @@ Wallarm Console UIの**ノード**セクションでは、[**Wallarm node**](nod
 !!! info "無料プランの下でのCDNノード"
     CDNノードタイプのデプロイは、[無料プラン](../../about-wallarm/subscription-plans.md#free-tier-subscription-plan-us-cloud)ではサポートされていません。
 
---8<-- "../include/waf/installation/cdn-node/how-cdn-node-works.md"
+--8<-- "../include-ja/waf/installation/cdn-node/how-cdn-node-works.md"
 
 ## ノードの作成
 
@@ -87,4 +87,4 @@ Wallarmは、CDNノードドメインでHTTPSを有効にするための[Let's E
 
 ## CDNノードのトラブルシューティング
 
---8<-- "../include/waf/installation/cdn-node/cdn-node-troubleshooting.md"
+--8<-- "../include-ja/waf/installation/cdn-node/cdn-node-troubleshooting.md"

@@ -82,7 +82,7 @@ ALLOWED_HOSTS=google-gruyere.appspot.com
 !!! info "`ALLOWED_HOSTS`環境変数の使用"
 完全なドメイン名の設定は必須ではありません。部分文字列（例：`google-gruyere` や `appspot.com`）を使用することも可能です。
 
---8<-- "../include/fast/wallarm-api-host-note.md"
+--8<-- "../include-ja/fast/wallarm-api-host-note.md"
    
 ##  4.  FASTノード Dockerコンテナのデプロイ
 
@@ -123,7 +123,7 @@ docker run --name <name> --env-file=<前のステップで作成された環境�
 
 コンテナのデプロイが成功した場合、次のようなコンソール出力が表示されます：
 
---8<-- "../include/fast/console-include/qsg/fast-node-deployment-ok.md"
+--8<-- "../include-ja/fast/console-include/qsg/fast-node-deployment-ok.md"
 
 これで、Wallarmクラウドに接続した作業用のFASTノードが提供されるべきです。ノードは、`google-gruyere.appspot.com` ドメインへのリクエストを基準として認識する `localhost:8080` 上の受信HTTPおよびHTTPSリクエストを待機しています。
     

@@ -20,7 +20,7 @@
 
 ##  例のワークフロー
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-ja/monitoring/metric-example.md"
 
 ![!Example workflow][img-zabbix-scheme]
 
@@ -67,7 +67,7 @@ docker run --name zabbix-appliance -p 80:80 -d zabbix/zabbix-appliance:alpine-4.
 2.  Zabbix リポジトリを接続します（あなたのオペレーティングシステム用の [手順書][link-zabbix-repo] の「Zabbix リポジトリのインストール」エントリを使用します）。
 3.  関連するコマンドを実行して Zabbix エージェントをインストールします：
 
-    --8<-- "../include/monitoring/install-zabbix-agent.md"
+    --8<-- "../include-ja/monitoring/install-zabbix-agent.md"
 
 4.  Zabbix アプライアンスと連携するために Zabbix エージェントを設定します。これを行うには、`/etc/zabbix/zabbix_agentd.conf` 設定ファイルに以下の変更を行います：
 
@@ -84,7 +84,7 @@ docker run --name zabbix-appliance -p 80:80 -d zabbix/zabbix-appliance:alpine-4.
     
 関連するコマンドを実行します：
 
---8<-- "../include/monitoring/install-collectd-utils.md"
+--8<-- "../include-ja/monitoring/install-collectd-utils.md"
 
 ####    2.  `zabbix` ユーザーを代表して `collectd-nagios` ユーティリティが特権を持って実行するように設定します
    
@@ -132,7 +132,7 @@ UserParameter=wallarm_nginx-gauge-abnormal, sudo /usr/bin/collectd-nagios -s /va
 
 ####    5.  必要なすべてのコマンドが Zabbix エージェントの設定ファイルに追加されたら、エージェントをリスタートします。
 
---8<-- "../include/monitoring/zabbix-agent-restart-2.16.md"
+--8<-- "../include-ja/monitoring/zabbix-agent-restart-2.16.md"
 
 ##  設定完了
 

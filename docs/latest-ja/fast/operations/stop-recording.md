@@ -30,7 +30,7 @@
 
 録画プロセスを停止するには、POSTリクエストをURL `https://us1.api.wallarm.com/v1/test_run/test_run_id/action/stop`に送信します：
 
---8<-- "../include/fast/operations/api-stop-recording.md"
+--8<-- "../include-ja/fast/operations/api-stop-recording.md"
 
 APIサーバーへのリクエストが成功した場合、サーバーのレスポンスが表示されます。レスポンスには、以下を含む有用な情報が提供されます：
 * 録画プロセスの状態（`recording`パラメータの値）。

@@ -95,4 +95,4 @@ PDFは、脆弱性とインシデントの要約を含む視覚的に豊かな�
 
 過去24時間以内にステータス**アクティブ**の最初の50の脆弱性を取得するには、次のリクエストを使用し、`TIMESTAMP`を24時間前の日付に[Unix Timestamp](https://www.unixtimestamp.com/)形式で変換して置き換えます：
 
---8<-- "../include/api-request-examples/get-vulnerabilities.md"
+--8<-- "../include-ja/api-request-examples/get-vulnerabilities.md"

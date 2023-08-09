@@ -19,11 +19,11 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
 
 ![!GitLab CI/CD環境変数のパス][gitlabci-example-env-var]
 
---8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
 ## リクエスト記録のステップの追加
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "記録モードでのFASTノードを実行する自動テストステップの例"
     ```
@@ -48,7 +48,7 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
 
 ## セキュリティテストのステップの追加
 
---8<-- "../include/fast/fast-cimode-integration-examples/security-testing-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/security-testing-setup.md"
 
 ??? info "セキュリティテストステップの例"
     1. `stages`のリストに`security_test`を追加します。

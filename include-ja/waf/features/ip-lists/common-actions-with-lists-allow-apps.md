@@ -55,25 +55,25 @@ IPリストのオブジェクトを取得、パプレート、削除するには
 
 IPリストを読み込むため、変更するAPIリクエストに渡すべきパラメータ：
 
---8<-- "../include/api-request-examples/ip-list-request-params.md"
+--8<-- "../include-ja/api-request-examples/ip-list-request-params.md"
 
 ### `.csv`ファイルからリストにエントリを追加する
 
 `.csv`ファイルからIPまたはサブネットをリストに追加する場合、以下のbashスクリプトを使用します：
 
---8<-- "../include/api-request-examples/add-ips-to-lists-from-file.md"
+--8<-- "../include-ja/api-request-examples/add-ips-to-lists-from-file.md"
 
 ### 単一のIPアドレスまたはサブネットを追加
 
---8<-- "../include/api-request-examples/add-some-ips-to-lists.md"
+--8<-- "../include-ja/api-request-examples/add-some-ips-to-lists.md"
 
 ### 複数の国をリストに追加する
 
---8<-- "../include/api-request-examples/add-some-countries-to-lists.md"
+--8<-- "../include-ja/api-request-examples/add-some-countries-to-lists.md"
 
 ### 複数のプロキシサービスをリストに追加する
 
---8<-- "../include/api-request-examples/add-some-proxies-to-lists.md"
+--8<-- "../include-ja/api-request-examples/add-some-proxies-to-lists.md"
 
 ### IPリストからオブジェクトを削除する
 
@@ -81,10 +81,10 @@ IPリストを読み込むため、変更するAPIリクエストに渡すべき
 
 オブジェクトIDを取得するために、IPリストの内容をリクエストし、必要なオブジェクトの`objects.id`をレスポンスからコピーします：
 
---8<-- "../include/api-request-examples/get-ip-list-contents.md"
+--8<-- "../include-ja/api-request-examples/get-ip-list-contents.md"
 
 オブジェクトIDを持っている場合、その以下のリクエストを送信してリストから削除します：
 
---8<-- "../include/api-request-examples/delete-object-from-ip-list.md"
+--8<-- "../include-ja/api-request-examples/delete-object-from-ip-list.md"
 
 削除リクエストの配列として彼らのIDを渡すことによって一度に複数のオブジェクトを削除できます。

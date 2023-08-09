@@ -4,7 +4,7 @@ Wallarmを設定すると、スケジュールされたレポートと即時通�
 
 * スケジュールレポートは、日次、週次、または月次で送信することができます。レポートには、選択された期間内にシステムで検出された脆弱性、攻撃、インシデントに関する詳細な情報が含まれます。
 * 通知には、トリガーされたイベントの簡単な詳細を含みます:
-    --8<-- "../include/integrations/events-for-integrations.md"
+    --8<-- "../include-ja/integrations/events-for-integrations.md"
 
 ## インテグレーションの設定
 
@@ -24,7 +24,7 @@ Wallarmを設定すると、スケジュールされたレポートと即時通�
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include-ja/integrations/test-integration-basic-data.md"
 
 Telegramとのインテグレーションは、すでにこのインテグレーションが作成されている場合にのみテストできます。テストTelegramメッセージ:
 
@@ -42,12 +42,12 @@ Telegramとのインテグレーションは、すでにこのインテグレー
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

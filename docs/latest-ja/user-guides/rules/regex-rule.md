@@ -25,7 +25,7 @@
 
 * *このリクエストの部分で*: システムが対応する攻撃を検出するべきリクエストの部分を決定します。
 
-    --8<-- "../include/waf/features/rules/request-part-reference.md"
+    --8<-- "../include-ja/waf/features/rules/request-part-reference.md"
 
 ### 例: 不正なX-Authenticationヘッダーを持つすべてのリクエストをブロックする
 
@@ -122,4 +122,4 @@ Spring Cloud Functionコンポーネントには、`CLASS-CLOUD-FUNCTION-ROUTING
 
 `MY.DOMAIN.COM`ドメインへのリクエストが`X-FORWARDED-FOR: 44.33.22.11`HTTPヘッダーを持つ場合、Wallarmノードはそれらをスキャナ攻撃とみなし、対応する[フィルタリングモード](../../admin-en/configure-wallarm-mode.md)が設定されている場合は攻撃をブロックします。
 
---8<-- "../include/api-request-examples/create-rule-scanner.md"
+--8<-- "../include-ja/api-request-examples/create-rule-scanner.md"

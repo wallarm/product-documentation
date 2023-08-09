@@ -138,17 +138,17 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 1.  自動的なメトリクス更新を5秒間隔で有効にします（Grafanaコンソールの右上隅のドロップダウンリストから値を選択します）。
 2.  Grafanaダッシュボード上の現在のリクエスト数がフィルターノードの`wallarm-status`の出力と一致することを確認します：
 
-    --8<-- "../include/monitoring/wallarm-status-check-latest.md"
+    --8<-- "../include-ja/monitoring/wallarm-status-check-latest.md"
     
     ![!Checking the attack counter][img-grafana-0-attacks]
     
 3.  フィルターノードで保護されたアプリケーションに対してテスト攻撃を行います。これには、`curl`ユーティリティまたはブラウザでアプリケーションに悪意のあるリクエストを送信できます。
 
-    --8<-- "../include/monitoring/sample-malicious-request.md"
+    --8<-- "../include-ja/monitoring/sample-malicious-request.md"
     
 4.  リクエストカウンターが`wallarm-status`の出力とGrafanaダッシュボードの両方で増加したことを確認します：
 
-    --8<-- "../include/monitoring/wallarm-status-output-padded-latest.md"
+    --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
 
     ![!Checking the attack counter][img-grafana-16-attacks]
 

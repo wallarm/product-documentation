@@ -15,13 +15,13 @@
 
 ## WallarmノードDockerコンテナ設定のオプション
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-ja/waf/installation/docker-running-options.md"
 
 ## 環境変数を通じて設定されたWallarmノードDockerコンテナのデプロイ
 
 環境変数だけを通じて設定されたコンテナ化されたWallarmフィルタリングノードをデプロイするには、[GCPコンソールまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)を使用できます。これらの指示では、gcloud CLIを使用します。
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. Wallarm Cloudにインスタンスを接続するために使用されるWallarmノードトークンのローカル環境変数を設定します:
 
@@ -56,7 +56,7 @@
     * `--container-image`: フィルタリングノードのDockerイメージのリンク。
     * `--container-env`: フィルタリングノードの設定の環境変数（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN`の値を明示的にパスすることは推奨されていません。
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
     
     * `gcloud compute instances create-with-container` コマンドのすべてのパラメータは、[GCPのドキュメント](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create-with-container)で説明されています。
 1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)を開いて、インスタンスがリストに表示されていることを確認します。
@@ -66,7 +66,7 @@
 
 環境変数とマウントされたファイルを通じて設定されたコンテナ化されたWallarmフィルタリングノードをデプロイするためには、インスタンスを作成し、このインスタンスのファイルシステムにフィルタリングノードの設定ファイルを配置し、このインスタンスでDockerコンテナを実行する必要があります。これらの手順は、[GCP Consoleまたはgcloud CLI](https://cloud.google.com/compute/docs/containers/deploying-containers)を経由で実行できます。これらの指示では、gcloud CLIが使用されます。
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) コマンドを使用して、Compute Engineレジストリからの任意のオペレーティングシステムイメージに基づいたインスタンスを作成します:
 
@@ -141,7 +141,7 @@
     * `-p`: フィルタリングノードがリッスンするポート。値はインスタンスのポートと同じであるべきです。
     * `-e`: フィルタリングノードの設定の環境変数（利用可能な変数は以下の表に記載されています）。`WALLARM_API_TOKEN`の値を明示的にパスすることは推奨されていません。
 
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. [フィルタリングノードの動作をテストします](#フィルタリングノードの動作のテスト)。
 
 ## フィルタリングノードの動作のテスト

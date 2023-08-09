@@ -4,7 +4,7 @@
 
 Wallarmコンソール → **IPリスト** → **許可リスト**にて、許可リスト内のIPアドレスを以下の通り管理できます：
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![!許可リスト](../../images/user-guides/ip-lists/allowlist-apps.png)
 
@@ -44,4 +44,4 @@ Wallarmコンソール → **IPリスト** → **許可リスト**にて、許�
 
 ![!リストにIPを追加（アプリ付き）](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

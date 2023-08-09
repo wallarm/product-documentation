@@ -17,7 +17,7 @@
 
 Wallarm のコンソール → **IP リスト** → **グレイリスト**で、グレイリスト化された IP アドレスを以下のように管理できます：
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
 ![!IP グレイリスト](../../images/user-guides/ip-lists/graylist.png)
 
@@ -79,6 +79,6 @@ IP アドレス、サブネット、または IP アドレスのグループを�
 
 ### 自動的なボットの IP グレイリスティング
 
---8<-- "../include/waf/features/ip-lists/autopopulation-by-antibot.md"
+--8<-- "../include-ja/waf/features/ip-lists/autopopulation-by-antibot.md"
 
---8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"
+--8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

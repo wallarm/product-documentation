@@ -163,12 +163,12 @@ Amazon S3の場合、統合テストはデータを含むJSONファイルをあ�
 
 ## インテグレーションを更新する
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## インテグレーションを無効にする
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## インテグレーションを削除する
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

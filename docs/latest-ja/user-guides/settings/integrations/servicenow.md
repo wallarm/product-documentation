@@ -2,7 +2,7 @@
 
 以下のイベントがトリガーされたときに、Wallarmで[ServiceNow](https://www.servicenow.com/)に問題チケットを作成するよう設定できます：
 
---8<-- "../include/integrations/events-for-integrations-mail.md"
+--8<-- "../include-ja/integrations/events-for-integrations-mail.md"
 
 ## 前提条件
 
@@ -31,16 +31,16 @@ WallarmのUI内で：
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include-ja/integrations/test-integration-basic-data.md"
 
 ## 統合の更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## 統合の無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## 統合の削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

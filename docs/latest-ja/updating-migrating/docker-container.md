@@ -72,7 +72,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 ## ステップ5：フィルタリングノード操作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ステップ6：前のバージョンのフィルタリングノードの削除
 

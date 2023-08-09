@@ -37,7 +37,7 @@
 
 --8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
---8<-- "../include/waf/installation/upgrade-methods.md"
+--8<-- "../include-ja/waf/installation/upgrade-methods.md"
 
 ## 一体型インストーラでのアップグレード
 
@@ -45,7 +45,7 @@
 
 ### 一体型インストーラでのアップグレード要件
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-upgrade-requirements.md"
 
 ### アップグレード手順
 
@@ -57,25 +57,25 @@
 
 ### ステップ1：クリーンマシンの準備
 
---8<-- "../include/waf/installation/all-in-one-clean-machine.md"
+--8<-- "../include-ja/waf/installation/all-in-one-clean-machine.md"
 
 ### ステップ2：NGINXと依存関係のインストール
 
---8<-- "../include/waf/installation/all-in-one-nginx.md"
+--8<-- "../include-ja/waf/installation/all-in-one-nginx.md"
 
 ### ステップ3：Wallarmトークンの準備
 
---8<-- "../include/waf/installation/all-in-one-token.md"
+--8<-- "../include-ja/waf/installation/all-in-one-token.md"
 
 ### ステップ4：一体型Wallarmインストーラのダウンロード
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ5：一体型Wallarmインストーラの実行
 
 #### 同じサーバー上のフィルタリングノードとpostanalytics
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
 
 #### 異なるサーバー上のフィルタリングノードとpostanalytics
 
@@ -131,7 +131,7 @@
 
 ### ステップ7：NGINXを再起動する
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
 
 ### ステップ8：Wallarmノード操作のテスト
 
@@ -192,7 +192,7 @@
 
 ### 手動アップグレードの要件
 
---8<-- "../include/waf/installation/requirements-docker-4.0.md"
+--8<-- "../include-ja/waf/installation/requirements-docker-nginx-4.0.md"
 
 ### アップグレード手順
 
@@ -286,18 +286,18 @@
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOSまたはAmazon Linux 2.0.2021xとそれ以前"
         ```bash
         sudo yum update
@@ -326,18 +326,18 @@
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
     === "Ubuntu"
         ```bash
         sudo apt update
         sudo apt dist-upgrade
         ```
 
-        --8<-- "../include/waf/upgrade/warning-expired-gpg-keys-4.6.md"
+        --8<-- "../include-ja/waf/upgrade/warning-expired-gpg-keys-4.6.md"
 
-        --8<-- "../include/waf/upgrade/details-about-dist-upgrade.md"
+        --8<-- "../include-ja/waf/upgrade/details-about-dist-upgrade.md"
     === "CentOSまたはAmazon Linux 2.0.2021xとそれ以前"
         ```bash
         sudo yum update
@@ -414,14 +414,14 @@
 
 ### ステップ6：NGINXを再開する
 
---8<-- "../include/waf/restart-nginx-3.6.md"
+--8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ### ステップ7：Wallarmノード操作のテスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ### 設定のカスタマイズ
 
 Wallarmモジュールはバージョン4.6に更新されました。以前のフィルタリングノードの設定は新しいバージョンに自動的に適用されます。追加の設定を行うために、[利用可能なディレクティブ](../admin-en/configure-parameters-en.md)を使用してください。
 
---8<-- "../include/waf/installation/common-customization-options-nginx-4.4.md"
+--8<-- "../include-ja/waf/installation/common-customization-options-nginx-4.4.md"

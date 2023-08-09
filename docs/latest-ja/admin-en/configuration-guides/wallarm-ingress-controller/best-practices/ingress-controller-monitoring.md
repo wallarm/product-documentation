@@ -1,6 +1,6 @@
 # NGINXベースのIngressコントローラーモニタリング
 
---8<-- "../include/ingress-controller-best-practices-intro.md"
+--8<-- "../include-ja/ingress-controller-best-practices-intro.md"
 
 NGINX Ingressコントローラーモニタリングの一般的な側面は、すでにインターネット上で十分にカバーされています。Wallarmは、ミッションクリティカルな環境で監視するべき追加のセットの監視メトリクスを提供します。`/wallarm-metrics` メトリクスサービスはデフォルトで無効になっています。
 

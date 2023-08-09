@@ -11,7 +11,7 @@
 
 ## 要件
 
---8<-- "../include/waf/installation/all-in-one-upgrade-requirements.md"
+--8<-- "../include-ja/waf/installation/all-in-one-upgrade-requirements.md"
 
 ## アップグレード手順
 
@@ -43,15 +43,15 @@
 
 ### ステップ2：最新版のWallarm一体型インストーラーをダウンロードする
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ3：オールインワンWallarmインストーラーを実行する
 
---8<-- "../include/waf/installation/all-in-one-installer-run.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-run.md"
 
 ### ステップ4：NGINXを再起動する
 
---8<-- "../include/waf/installation/restart-nginx-systemctl.md"
+--8<-- "../include-ja/waf/installation/restart-nginx-systemctl.md"
 
 ### ステップ5：新しいノードの操作をテストする
 
@@ -92,19 +92,19 @@
 
 このステップは、postanalyticsマシンで実行されます。
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ3：オールインワンWallarmインストーラーを実行してpostanalyticsをアップグレードする
 
 このステップは、postanalyticsマシンで実行されます。
 
---8<-- "../include/waf/installation/all-in-one-postanalytics.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics.md"
 
 ### ステップ4：新しいバージョンのオールインワンのWallarmインストーラーをフィルタリングノードマシンにダウンロードする
 
 このステップは、フィルタリングノードマシンで実行されます。
 
---8<-- "../include/waf/installation/all-in-one-installer-download.md"
+--8<-- "../include-ja/waf/installation/all-in-one-installer-download.md"
 
 ### ステップ5：オールインワンWallarmインストーラーを実行してフィルタリングノードをアップグレードする
 
@@ -134,4 +134,4 @@
 
 ### ステップ6：フィルタリングノードと別々のpostanalyticsモジュールの相互作用を確認します
 
---8<-- "../include/waf/installation/all-in-one-postanalytics-check.md"
+--8<-- "../include-ja/waf/installation/all-in-one-postanalytics-check.md"

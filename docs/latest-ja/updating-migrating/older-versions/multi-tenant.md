@@ -243,4 +243,4 @@ server {
 
 ## ステップ4：Wallarmマルチテナントノードの動作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"

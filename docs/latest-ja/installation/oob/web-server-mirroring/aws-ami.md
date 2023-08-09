@@ -34,15 +34,15 @@
 <!-- ???
 すべての地域がサポートされています -->
 
---8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
 
 ## 6. Wallarmにミラーリングトラフィックの分析を許可
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"
+--8<-- "../include-ja/waf/installation/oob/steps-for-mirroring-cloud.md"
 
 ## 7. NGINXを再起動
 
---8<-- "../include/waf/installation/cloud-platforms/restart-nginx.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/restart-nginx.md"
 
 ## 8. Wおためのェブサーバーまたはプロキシサーバーを設定して、Wallarmノードにトラフィックをミラーリング
 
@@ -52,8 +52,8 @@
 
 ## 9. Wallarmの動作をテスト
 
---8<-- "../include/waf/installation/cloud-platforms/test-operation-oob.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/test-operation-oob.md"
 
 ## 10. デプロイしたソリューションの微調整
 
---8<-- "../include/waf/installation/cloud-platforms/fine-tuning-options.md"
+--8<-- "../include-ja/waf/installation/cloud-platforms/fine-tuning-options.md"

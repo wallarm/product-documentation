@@ -2,7 +2,7 @@
 
 これらの指示は、WallarmとLogstashデータコレクターの統合の例を提供し、さらにイベントをQRadar SIEMシステムに転送します。
 
---8<-- "../include/integrations/webhook-examples/overview.md"
+--8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
 ![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
@@ -12,7 +12,7 @@
 * [QRadar V7.3.3](#qradar-configuration-optional) はLinux Red Hat上にインストールされ、IPアドレス `https://109.111.35.11:514`で利用可能です
 * Wallarm Consoleへの管理者アクセスは、[EUクラウド](https://my.wallarm.com)にあり、[Logstash統合の設定](#configuration-of-logstash-integration)を行います
 
---8<-- "../include/cloud-ip-by-request.md"
+--8<-- "../include-ja/cloud-ip-by-request.md"
 
 LogstashとQRadarのサービスへのリンクは例として引用されていますので、応答しません。
 
@@ -94,7 +94,7 @@ QRadarログソースの設定についての詳しい説明は、[公式IBMド�
 
 ### Logstash統合の設定
 
---8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
+--8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
 
 ![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
@@ -102,7 +102,7 @@ QRadarログソースの設定についての詳しい説明は、[公式IBMド�
 
 ## 例のテスト
 
---8<-- "../include/integrations/webhook-examples/send-test-webhook.md"
+--8<-- "../include-ja/integrations/webhook-examples/send-test-webhook.md"
 
 Logstashは次のようにイベントをログに記録します：
 

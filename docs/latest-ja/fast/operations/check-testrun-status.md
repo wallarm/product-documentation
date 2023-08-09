@@ -88,7 +88,7 @@
 
 テストランの状態を一度だけ確認するためには、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id`にGETリクエストを送信します：
 
---8<-- "../include/fast/operations/api-check-testrun-status.md"
+--8<-- "../include-ja/fast/operations/api-check-testrun-status.md"
 
 もしAPIサーバへのリクエストが成功した場合、サーバのレスポンスが表示されます。レスポンスには、以下の有用な情報が提供されます：
 

@@ -16,7 +16,7 @@ FASTがCIモードでAzure DevOpsパイプラインに統合される設定は`a
 
 ## リクエスト記録のステップの追加
 
---8<-- "../include/fast/fast-cimode-integration-examples/request-recording-setup.md"
+--8<-- "../include-ja/fast/fast-cimode-integration-examples/request-recording-setup.md"
 
 ??? info "レコードモードでFASTノードを起動する自動テストステップの例"
     ```

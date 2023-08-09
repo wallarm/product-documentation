@@ -13,7 +13,7 @@
 
 ##  ワークフローの例
 
---8<-- "../include/monitoring/metric-example.md"
+--8<-- "../include-ja/monitoring/metric-example.md"
 
 ![!ワークフローの例][img-network-plugin-influxdb]
 
@@ -44,7 +44,7 @@
 
 ##  InfluxDBへのメトリクスのエクスポートの設定
 
---8<-- "../include/monitoring/docker-prerequisites.md"
+--8<-- "../include-ja/monitoring/docker-prerequisites.md"
 
 ### InfluxDBとGrafanaのデプロイ
 
@@ -175,6 +175,6 @@ InfluxDBにメトリクスをエクスポートするために `collectd`を設�
     
 3. 適切なコマンドを実行して `collectd`サービスを再起動します：
 
-   --8<-- "../include/monitoring/collectd-restart-2.16.md"
+   --8<-- "../include-ja/monitoring/collectd-restart-2.16.md"
 
 今ではInfluxDBはフィルタノードのすべてのメトリックスを受け取ります。興味のあるメトリクスを視覚化し[Grafanaで監視できます][doc-grafana]。

@@ -104,7 +104,7 @@ Wallarmはwebhooks経由で中間データコレクターにログを送信す�
 1. 対象となるFluentdまたはLogstashのURL（Webhook URL）を指定します。
 1. 必要に応じて、詳細設定を構成します：
 
-    --8<-- "../include/integrations/webhook-advanced-settings.md"
+    --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
 1. 指定したURLに通知を送信するためにイベントタイプを選択します。イベントが選択されない場合、通知は送信されません。
 1. [統合をテスト](#統合のテスト)し、設定が正しいことを確認します。
 1. **統合を追加** をクリックします。
@@ -115,7 +115,7 @@ Fluentd統合の例：
 
 ## 統合のテスト
 
---8<-- "../include/integrations/test-integration-advanced-data.md"
+--8<-- "../include-ja/integrations/test-integration-advanced-data.md"
 
 FluentdまたはLogstashの中間データコレクターでのテストログ：
 

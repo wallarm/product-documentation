@@ -122,7 +122,7 @@ Test Runを作成したり、[copy][anchor-testrun-copying] したりする必�
 
 そのためには、URL `https://us1.api.wallarm.com/v1/test_run/test_run_id` へ GETリクエストを送ることにより、テストランのステータスを定期的に確認します：
 
---8<-- "../include/fast/poc/api-check-testrun-status-recording.md"
+--8<-- "../include-ja/fast/poc/api-check-testrun-status-recording.md"
 
 APIサーバへのリクエストが成功すれば、サーバの応答が表示されます。この応答には、記録プロセスの状態（ `ready_for_recording` パラメータの値）など、役立つ情報が含まれています。
 

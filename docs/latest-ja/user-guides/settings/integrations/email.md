@@ -4,7 +4,7 @@
 
 * 予定されたPDFレポートは、日次、週次、または月次で送信することが可能です。PDFレポートには、選択した期間にシステムで検出された脆弱性、攻撃、およびインシデントに関する詳細情報が含まれます。
 * 通知には、トリガーされたイベントの簡略な詳細が含まれます：
-    --8<-- "../include/integrations/events-for-integrations-mail.md"
+    --8<-- "../include-ja/integrations/events-for-integrations-mail.md"
 
 ## インテグレーションの設定
 
@@ -21,7 +21,7 @@
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-with-email.md"
+--8<-- "../include-ja/integrations/test-integration-with-email.md"
 
 テスト通知の例：
 
@@ -29,12 +29,12 @@
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

@@ -70,7 +70,7 @@ Wallarmコンソールの**イベント**セクションで検出された攻撃
 
 `TIMESTAMP`を24時間前の日付に置き換えて[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換してください。
 
---8<-- "../include/api-request-examples/get-attacks-en.md"
+--8<-- "../include-ja/api-request-examples/get-attacks-en.md"
 
 !!! warning "100件以上の攻撃を取得する"
     攻撃とヒットセットが100件以上の記録を含む場合、大量のデータセットを一度に取得するのではなく、パフォーマンスを最適化するために小さいサイズで取得することをお勧めします。[対応するリクエストの例を確認する](../../api/request-examples.md#get-a-large-number-of-attacks-100-and-more)
@@ -81,7 +81,7 @@ Wallarmコンソールの**イベント**セクションで検出された攻撃
 
 `TIMESTAMP`を24時間前の日付に置き換えて[Unix Timestamp](https://www.unixtimestamp.com/)形式に変換してください。
 
---8<-- "../include/api-request-examples/get-incidents-en.md"
+--8<-- "../include-ja/api-request-examples/get-incidents-en.md"
 
 <!-- ## Demo videos
 

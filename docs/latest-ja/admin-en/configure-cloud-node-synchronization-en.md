@@ -36,7 +36,7 @@
 1. 必要なパラメータを追加し、それらに所望の値を割り当てることで、`node.yaml` ファイルを変更します。
 1. NGINX を再起動して、同期プロセスに更新設定を適用します。
 
-    --8<-- "../include/waf/restart-nginx-3.6.md"
+    --8<-- "../include-ja/waf/restart-nginx-3.6.md"
 
 ## 同期間隔
 
@@ -56,4 +56,4 @@
 
 この記事で説明されている一般的な `api` セクションに加えて、フィルタリングノードがクラウドにアクセスするためのパラメータを提供する `node.yaml` ファイルは、異なるプロセスがノードの操作に必要なファイルへのアクセスを提供するパラメータ（`syncnode` セクション）も含めることができます。
 
---8<-- "../include/node-cloud-sync-configuration-example.md"
+--8<-- "../include-ja/node-cloud-sync-configuration-example.md"

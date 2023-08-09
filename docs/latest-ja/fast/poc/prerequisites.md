@@ -17,7 +17,7 @@ FASTをCI / CDワークフローに統合するには、次のものが必要で
     アカウントがない場合は[ここ][link-fast-trial]から作成してください（このアカウントはAmerican cloudに紐づけられます）
     
 * FASTノードのDockerコンテナは、HTTPSプロトコル（`TCP/443`）を介して`us1.api.wallarm.com` Wallarm APIサーバーにアクセスできる必要があります。
---8<-- "../include/fast/cloud-note.md"
+--8<-- "../include-ja/fast/cloud-note.md"
 
  * CI / CDワークフローにDockerコンテナを作成および運用するための権限
     

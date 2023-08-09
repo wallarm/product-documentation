@@ -12,7 +12,7 @@ Google Cloud Platform（GCP）上でWallarmのフィルタリングノードの�
     
     GCP上でWallarmフィルタリングノード付きの仮想マシンのイメージを作成するための詳細情報については、この[リンク][link-doc-image-creation]に進んでください。
 
---8<-- "../include/gcp-autoscaling-connect-ssh.md"
+--8<-- "../include-ja/gcp-autoscaling-connect-ssh.md"
 
 Google Cloud Platform上でフィルタリングノードを自動的にスケーリングするために、以下の手順を実行します：
 

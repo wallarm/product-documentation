@@ -69,7 +69,7 @@ sudo systemctl restart nginx
 
 ## ステップ5：Wallarmノードの動作をテストする
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ステップ6：AWSまたはGCPでフィルタリングノード4.6に基づく仮想マシンイメージを作成する
 

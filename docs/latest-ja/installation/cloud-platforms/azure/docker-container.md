@@ -13,7 +13,7 @@
 
 ## WallarmノードのDockerコンテナ設定のオプション
 
---8<-- "../include/waf/installation/docker-running-options.md"
+--8<-- "../include-ja/waf/installation/docker-running-options.md"
 
 ## 環境変数を通じて設定したWallarmノードのDockerコンテナのデプロイ
 
@@ -27,7 +27,7 @@
 
 これらの手順では、Azure CLIを使用してコンテナをデプロイします。
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします：
 
@@ -74,7 +74,7 @@
     * `--image`: WallarmノードDockerイメージの名前。
     * `--environment-variables`: フィルタリングノードの設定およびWallarm Cloudへの接続を含む環境変数（利用可能な変数は以下のテーブルに記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されていません。
 
-        --8<-- "../include/waf/installation/nginx-docker-all-env-vars-latest.md"
+        --8<-- "../include-ja/waf/installation/nginx-docker-all-env-vars-latest.md"
 1. [Azureポータル](https://portal.azure.com/)を開き、作成したリソースがリソースの一覧に表示されていることを確認します。
 1. [フィルタリングノードの動作テスト](#testing-the-filtering-node-operation)を行います。
 
@@ -84,7 +84,7 @@
 
 環境変数とマウント設定ファイルでコンテナをデプロイするには：
 
---8<-- "../include/waf/installation/get-api-or-node-token.md"
+--8<-- "../include-ja/waf/installation/get-api-or-node-token.md"
 
 1. [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login)コマンドを使用してAzure CLIにサインインします：
    
@@ -175,7 +175,7 @@
     
     * `--environment-variables`: フィルタリングノードとWallarm Cloud接続の設定を含む環境変数（利用可能な変数は以下のテーブルに記載されています）。なお、`WALLARM_API_TOKEN`の値を明示的に渡すことは推奨されていません。
     
-        --8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+        --8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 1. [Azureポータル](https://portal.azure.com/)を開き、作成したリソースがリソースの一覧に表示されていることを確認します。
 1. [フィルタリングノードの操作テスト](#testing-the-filtering-node-operation)を行います。
 

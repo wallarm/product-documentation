@@ -57,7 +57,7 @@
 
 テストランをコピーし実行するには、URL `https://us1.api.wallarm.com/v1/test_run` にPOSTリクエストを送信します:
 
---8<-- "../include/fast/operations/api-copy-testrun.md"
+--8<-- "../include-ja/fast/operations/api-copy-testrun.md"
 
 APIサーバへのリクエストが成功すると、サーバの応答が表示されます。応答には以下の有用な情報が含まれています:
 
@@ -90,7 +90,7 @@ WallarmポータルのWebインターフェースを通してテストランを�
     
     必要に応じて"Advanced settings"を選択することで追加の設定を行うことができます:
     
---8<-- "../include/fast/test-run-adv-settings.md"
+--8<-- "../include-ja/fast/test-run-adv-settings.md"
     
 5.  ”Use baselines from `<the name of the test record to reuse>`” オプションがチェックされていることを確認します。
 

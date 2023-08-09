@@ -2,7 +2,7 @@
 
 以下のイベントがトリガーされたときに、WallarmがあなたのSlackチャンネルに通知を送るように設定できます：
 
---8<-- "../include/integrations/events-for-integrations.md"
+--8<-- "../include-ja/integrations/events-for-integrations.md"
 
 ## インテグレーションの設定
 
@@ -19,7 +19,7 @@
 
 ## インテグレーションのテスト
 
---8<-- "../include/integrations/test-integration-basic-data.md"
+--8<-- "../include-ja/integrations/test-integration-basic-data.md"
 
 ユーザー **wallarm** からのテストSlackメッセージ：
 
@@ -37,12 +37,12 @@
 
 ## インテグレーションの更新
 
---8<-- "../include/integrations/update-integration.md"
+--8<-- "../include-ja/integrations/update-integration.md"
 
 ## インテグレーションの無効化
 
---8<-- "../include/integrations/disable-integration.md"
+--8<-- "../include-ja/integrations/disable-integration.md"
 
 ## インテグレーションの削除
 
---8<-- "../include/integrations/remove-integration.md"
+--8<-- "../include-ja/integrations/remove-integration.md"

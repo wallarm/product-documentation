@@ -26,7 +26,7 @@
 
 この記事では、[NGINXベースのDockerイメージ](https://hub.docker.com/r/wallarm/node)を使用して[Wallarm OOB](overview.md)をデプロイするための指示を提供します。このここで説明されているソリューションは、Webサーバーまたはプロキシサーバーによってミラーリングされたトラフィックを分析するために設計されています。
 
---8<-- "../include/waf/installation/info-about-nginx-version-in-docker-container.md"
+--8<-- "../include-ja/waf/installation/info-about-nginx-version-in-docker-container.md"
 
 ## 必要条件
 
@@ -34,7 +34,7 @@
 
 ## 1. トラフィックミラーリングの設定
 
---8<-- "../include/waf/installation/sending-traffic-to-node-oob.md"
+--8<-- "../include-ja/waf/installation/sending-traffic-to-node-oob.md"
 
 ## 2. ミラーリングされたトラフィックの分析に対する設定ファイルの準備とその他
 
@@ -123,11 +123,11 @@ Wallarmノードがミラーリングされたトラフィックを分析でき�
 
 以下の環境変数をコンテナに渡す必要があります:
 
---8<-- "../include/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
+--8<-- "../include-ja/waf/installation/nginx-docker-env-vars-to-mount-latest.md"
 
 ## 5. Wallarmノードの操作テスト
 
---8<-- "../include/waf/installation/test-waf-operation-no-stats.md"
+--8<-- "../include-ja/waf/installation/test-waf-operation-no-stats.md"
 
 ## ログ設定
 
@@ -160,4 +160,4 @@ docker exec -it <WALLARM_NODE_CONTAINER_ID> /usr/lib/nagios/plugins/check_wallar
 
 Dockerコンテナにマウントする設定ファイルは、[使用可能なディレクティブ](../../../admin-en/configure-parameters-en.md)にフィルタリングノード設定を記述する必要があります。以下に、一般的に使用されるフィルタリングノード設定のオプションを示します:
 
---8<-- "../include/waf/installation/linux-packages/common-customization-options.md"
+--8<-- "../include-ja/waf/installation/linux-packages/common-customization-options.md"
