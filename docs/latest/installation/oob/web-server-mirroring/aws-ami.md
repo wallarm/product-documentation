@@ -35,6 +35,8 @@ This article provides instructions for deploying [Wallarm OOB](overview.md) on A
 
 --8<-- "../include/waf/installation/cloud-platforms/ami-use-cases.md"
 
+--8<-- "../include/waf/installation/cloud-platforms/reqs-and-steps-to-deploy-ami.md"
+
 ## 6. Enable Wallarm to analyze the mirrored traffic
 
 --8<-- "../include/waf/installation/oob/steps-for-mirroring-cloud.md"

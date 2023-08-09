@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../../../user-guides/settings/api-tokens.md
-[platform]:                         ../../../../admin-en/supported-platforms.md
+[platform]:                         ../../../supported-deployment-options.md
 [img-grouped-nodes]:                ../../../../images/user-guides/nodes/grouped-nodes.png
 [wallarm-token-types]:              ../../../../user-guides/nodes/nodes.md#api-and-node-tokens-for-node-creation
 [ip-lists-docs]:                    ../../../../user-guides/ip-lists/overview.md

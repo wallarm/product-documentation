@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[platform]:                         ../../admin-en/supported-platforms.md
+[platform]:                         ../supported-deployment-options.md
 [inline-docs]:                      ../inline/overview.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations

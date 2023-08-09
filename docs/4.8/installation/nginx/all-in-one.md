@@ -22,7 +22,7 @@
 [nginx-custom]:                 ../../faq/nginx-compatibility.md#is-wallarm-filtering-node-compatible-with-the-custom-build-of-nginx
 [node-token]:                       ../../quickstart.md#deploy-the-wallarm-filtering-node
 [api-token]:                        ../../user-guides/settings/api-tokens.md
-[platform]:                         ../../admin-en/supported-platforms.md
+[platform]:                         ../supported-deployment-options.md
 [oob-docs]:                         ../oob/overview.md
 [oob-advantages-limitations]:       ../oob/overview.md#advantages-and-limitations
 [web-server-mirroring-examples]:    ../oob/web-server-mirroring/overview.md#examples-of-web-server-configuration-for-traffic-mirroring
