@@ -1,4 +1,4 @@
-On the machine with the NGINX-Wallarm module, in the NGINX configuration file, specify the postanalytics module server address:
+On the machine with the NGINX-Wallarm module, in the NGINX [configuration file](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/), specify the postanalytics module server address:
 
 ```
 upstream wallarm_tarantool {
