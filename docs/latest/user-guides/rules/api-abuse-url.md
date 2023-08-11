@@ -23,26 +23,20 @@ To disable bot protection for specific URL or request type:
 
 1. Optionally, in the comment, specify the reason of creating the rule for this URL/request type.
 
+Note that you can temporarily disable the exception for the URL and/or request type without deleting the rule: to do that, select the **Default** mode. You can go back to **Do not check for bot activity** at any moment later.
+
 ## Rule examples
 
-### Specific requests should not be checked for bot activities
+### Marking legitimate bot by its request headers
 
-If you need to turn off a bot protection (mark a good bot) for a long period of time and do not want to manipulate IPs related to bots by placing or removing them from [exception list](../../about-wallarm/api-abuse-prevention.md#exception-list), you can do that by creating the **Set API Abuse Prevention mode** rule for specific request headers, and setting the mode to **Do not check for bot activity** so that such request will not get blocked.
-
-In this example we set not to check for bot activities in GET requests from the Klaviyo/1.0 user agent for specific URIs:
+Suppose your application is integrated with the Klaviyo marketing automation tool having multiple IPs that send requests. So we set not to check for automated (bot) activities in GET requests from the `Klaviyo/1.0` user agent for specific URIs:
 
 ![!Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
 
-Note that you can temporarily disable the exception for this type of requests without deleting the rule: to do that, select the **Default** mode. You can go back to **Do not check for bot activity** at any moment later.
+### Disabling protection from bots for testing endpoint
 
-### Specific endpoint in your API inventory should not be checked for bot activities
-
-Let's say you have your API inventory discovered the [**API Discovery**](../../about-wallarm/api-discovery.md) module and you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception.
-
-General protection is configured by API Abuse profile, exception for the endpoint is set via the **Set API Abuse Prevention mode** rule set to **Do not check for bot activity**.
+Let's say you have the endpoint that belongs to your application. The application should be protected from bot activities but the testing endpoint should be an exception. Also, you have your API inventory discovered the [**API Discovery**](../../about-wallarm/api-discovery.md) module. 
 
 In this case it is easier to create rule from the **API Discovery** list of endpoints. Go there, find your endpoint and initiate rule creation from its page:
 
 ![!Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)
-
-Note that you can temporarily disable the exception for the endpoint without deleting the rule by selecting the **Default** mode. You can go back to **Do not check for bot activity** at any moment later.
