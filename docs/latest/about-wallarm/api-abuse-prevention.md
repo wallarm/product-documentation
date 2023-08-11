@@ -97,8 +97,8 @@ You can add IP addresses to the exception list in advance or if they have alread
 
 ## Disabling bot protection for specific URLs and requests
 
-In addition to marking good bots' IPs via [exception list](#exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers. You can do it using the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
+In addition to marking good bots' IPs via [exception list](#exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
 
 This may help to avoid false positive detections and may be also helpful in case of testing your applications when you may need to temporarily disable bot protection for some of their endpoints.
 
-Note that comparing to other API Abuse Prevention configuration, this ability is an additional one, thus it is configured [not within](../user-guides/api-abuse-prevention.md#working-with-exceptions-for-target-urls) the API Abuse profile, but separately - with the help of the rule.
+Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse [profile](../user-guides/api-abuse-prevention.md), but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
