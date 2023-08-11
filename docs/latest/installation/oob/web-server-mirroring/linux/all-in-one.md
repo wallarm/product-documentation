@@ -76,7 +76,7 @@ Commands in the further steps are the same for x86_64 and ARM64 installations.
 
 ## Step 5: Enable Wallarm node to analyze traffic
 
---8<-- "../include/waf/installation/oob/steps-for-mirroring-linux.md"
+--8<-- "../include/waf/installation/oob/steps-for-mirroring-linux-all-in-one.md"
 
 ## Step 6: Restart NGINX
 
