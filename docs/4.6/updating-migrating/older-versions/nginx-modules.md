@@ -140,7 +140,7 @@ Also, the configuration of the postanalytics module (Tarantool database settings
 
 **Target files**
 
-As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the target files may have different names and be located in different directories.
+As all-in-one installer works with different combinations of OS and NGINX versions, on your new machine, the [target files](https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/) may have different names and be located in different directories.
 
 When transferring configuration, you need to perform steps listed below.
 
