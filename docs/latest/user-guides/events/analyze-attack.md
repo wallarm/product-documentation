@@ -73,9 +73,9 @@ Wallarm offers the ability to collect and display information regarding blocked 
 !!! info "Feature availability"
     By default Wallarm does not display information regarding blocked requests (hits) from denylisted source IPs, as node blocks requests immediately and sends nothing to the Cloud, which saves resources.
     
-    You can enable collecting and displaying this information. This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
+    You can enable collecting and displaying this information via the set of [directives](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable). This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
 
-In Wallarm, there are several ways for IP to get into the denylist and you can [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for attacks from it:
+In Wallarm, there are several ways for IP to get into the denylist. Depending on the way used, you will need to [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the associated events using different tags/filters:
 
 * You add it manually (in the **Events** section, use `blocked_source` search or `Blocked Source` filter)
 * It performs a behavioral attack and is automatically denylisted by:
@@ -85,13 +85,11 @@ In Wallarm, there are several ways for IP to get into the denylist and you can [
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)
     * `Number of malicious payloads` trigger (`payload_trigger`, `Payload Trigger`)
 
-The listed behavioral attacks can be detected only after accumulating certain statistics, thus in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
+The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds, thus in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
 
-Once a malicious activity is detected, Wallarm places the IP in the denylist, the node starts immediate blocking of requests originating from them. By default, it sends nothing to the Cloud and thus nothing appears in the **Events** section.
+Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of requests originating from them.
 
-You can configure the node to send the information about the malicious requests from denylisted IPs. As transfer of this information is a resource consuming process, you can control this by configuring memory limits and [sampling](#sampling-of-hits). You can enable sending information and configure transfer parameters using the [`wallarm_acl_export_enable`](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable) and a set of relative directives.
-
-As soon as sending of information is enabled, you will see `Blocked` attacks from denylisted IPs in the event list.
+As soon as sending of information about malicious requests from denylisted IPs is enabled, you will see `Blocked` attacks from these IPs in the event list. This applies to manually denylisted IPs as well.
 
 ![!Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 

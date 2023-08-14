@@ -49,9 +49,9 @@ The directive forces the NGINX-based Wallarm node to block requests originating 
 
 The directive enables `on` / disables `off` sending information about the malicious requests (hits) from the [denylisted](../user-guides/ip-lists/denylist.md) IPs from node to the Cloud.
 
-* With `wallarm_acl_export_enable on` the attacks from the denylisted IPs will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the **Events** section.
+* With `wallarm_acl_export_enable on` the malicious requests from the denylisted IPs will be [displayed](../user-guides/events/analyze-attack.md#analyze-requests-from-denylisted-ips) in the **Events** section.
 
-* With `wallarm_acl_export_enable off` the attacks from the denylisted IPs will not be displayed.
+* With `wallarm_acl_export_enable off` the malicious requests from the denylisted IPs will not be displayed.
 
 !!! info
     This parameter is set inside the http block.
@@ -107,7 +107,7 @@ Sets time in seconds - if number of comparable and identical requests within thi
 
 Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets interval in seconds for sending data to the Tarantool.
+Sets interval in seconds for sending dada on malicious requests from denylisted IPs to the Tarantool.
 
 !!! info
     This parameter is set inside the http block.
@@ -116,7 +116,7 @@ Sets interval in seconds for sending data to the Tarantool.
 
 ### wallarm_acl_export_stats_bucket_lifetime
 
-Sets time in seconds to store data within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tarantool connection is not restored, the data is considered outdated and deleted.
+Sets time in seconds to store dada on malicious requests from denylisted IPs within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tarantool connection is not restored, the data is considered outdated and deleted.
 
 !!! info
     This parameter is set inside the http block.
