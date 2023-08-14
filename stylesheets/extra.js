@@ -29,12 +29,11 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
 // Show version selector only for Product guides
 var rootVersion = '4.6';
 var activeLinks = document.getElementsByClassName('md-tabs__link--active');
-if (activeLinks[0].text === ' Product guides ') {
-  document.getElementById('versionsDiv').style.display = 'inline-block'
-}
-else {
-  document.getElementById('versionsDiv').style.display = 'none'
-}
+document.getElementById('versionsDiv').style.display = 'inline-block'
+
+// else {
+//   document.getElementById('versionsDiv').style.display = 'none'
+// }
 
 // Show the list of available Wallarm versions
 function versionClicked (event) {

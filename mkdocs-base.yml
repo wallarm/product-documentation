@@ -21,7 +21,6 @@ theme:
   palette:
     scheme: wallarm-palette
   features:
-    - navigation.tabs
     - navigation.top
     - navigation.tracking
     - content.code.copy
