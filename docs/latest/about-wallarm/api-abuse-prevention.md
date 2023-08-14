@@ -94,3 +94,11 @@ An exception list is a list of IP addresses, subnets, locations and source types
 You can add IP addresses to the exception list in advance or if they have already been mistakenly flagged as being associated with malicious bot activity. [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
 
 ![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
+
+## Disabling bot protection for specific URLs and requests
+
+In addition to marking good bots' IPs via [exception list](#exception-list), you can disable bot protection both for URLs that the requests target and for the particular request types, for example, for the requests containing specific headers.
+
+This may help to avoid false positive detections and may be also helpful in case of testing your applications when you may need to temporarily disable bot protection for some of their endpoints.
+
+Note that comparing to other API Abuse Prevention configuration, this ability is configured **not** within the API Abuse [profile](../user-guides/api-abuse-prevention.md), but separately - with the help of the [**Set API Abuse Prevention mode**](../user-guides/rules/api-abuse-url.md) rule.
