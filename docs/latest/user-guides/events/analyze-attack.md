@@ -85,7 +85,7 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
     * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)
     * `Number of malicious payloads` trigger (`payload_trigger`, `Payload Trigger`)
 
-The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds, thus in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
+The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
 
 Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of requests originating from them.
 

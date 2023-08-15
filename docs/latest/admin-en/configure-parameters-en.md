@@ -70,7 +70,7 @@ Relative directives to control memory consumption and sampling:
 
 Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets the maximum amount of memory that Wallarm can use to store the data prepared for export.
+Sets the maximum amount of memory that Wallarm can use to store the data on the malicious requests from the denylisted IPs prepared for export.
 
 !!! info
     This parameter is set inside the http block.
@@ -96,7 +96,7 @@ As soon as sampling affects your data, the corresponding message will be display
 
 Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets time in seconds - if number of comparable and identical requests within this time exceeds [`wallarm_acl_export_sample_limit`](#wallarm_acl_export_sample_limit) the node stops sending  requests from the denylisted IPs to the Cloud and sends only the number of alike/identical requests. This statistical information can be used to estimate the intensity of attack attempts from blocked IPs.
+Sets time in seconds - if number of comparable and identical requests within this time exceeds [`wallarm_acl_export_sample_limit`](#wallarm_acl_export_sample_limit) the node stops sending requests from the denylisted IPs to the Cloud and sends only the number of alike/identical requests. This statistical information can be used to estimate the intensity of attack attempts from blocked IPs.
 
 !!! info
     This parameter is set inside the http block.
@@ -107,7 +107,7 @@ Sets time in seconds - if number of comparable and identical requests within thi
 
 Applicable when [`wallarm_acl_export_enable`](#wallarm_acl_export_enable) is `on`.
 
-Sets interval in seconds for sending dada on malicious requests from denylisted IPs to the Tarantool.
+Sets interval in seconds for sending data on malicious requests from denylisted IPs to the Tarantool.
 
 !!! info
     This parameter is set inside the http block.
@@ -116,7 +116,7 @@ Sets interval in seconds for sending dada on malicious requests from denylisted 
 
 ### wallarm_acl_export_stats_bucket_lifetime
 
-Sets time in seconds to store dada on malicious requests from denylisted IPs within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tarantool connection is not restored, the data is considered outdated and deleted.
+Sets time in seconds to store data on malicious requests from denylisted IPs within the NGINX process if Tarantool connection is interrupted. On exceeding the time, if Tarantool connection is not restored, the data is considered outdated and deleted.
 
 !!! info
     This parameter is set inside the http block.
