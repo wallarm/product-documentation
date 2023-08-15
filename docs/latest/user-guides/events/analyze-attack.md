@@ -68,10 +68,10 @@ To view a request in a raw format, expand a required attack and then the request
 
 [Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
 
-Wallarm offers the ability to collect and display information regarding blocked requests (hits) from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
+Wallarm offers the ability to collect and display information regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
 
 !!! info "Feature availability"
-    By default Wallarm does not display information regarding blocked requests (hits) from denylisted source IPs, as node blocks requests immediately and sends nothing to the Cloud, which saves resources.
+    By default Wallarm does not display information regarding requests from denylisted source IPs, as node blocks requests immediately and sends nothing to the Cloud, which saves resources.
     
     You can enable collecting and displaying this information via the set of [directives](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable). This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
 
@@ -87,9 +87,9 @@ In Wallarm, there are several ways for IP to get into the denylist. Depending on
 
 The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
 
-Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of requests originating from them.
+Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of all requests originating from them.
 
-As soon as sending of information about malicious requests from denylisted IPs is enabled, you will see `Blocked` attacks from these IPs in the event list. This applies to manually denylisted IPs as well.
+As soon as sending of information about requests from denylisted IPs is enabled, you will see `Blocked` requests from these IPs in the event list. This applies to manually denylisted IPs as well.
 
 ![!Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
 
