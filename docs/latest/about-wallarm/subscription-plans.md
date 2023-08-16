@@ -34,6 +34,7 @@ Wallarm provides the following subscription plans:
 | **Observability options** | | |
 | [API Discovery](../about-wallarm/api-discovery.md) | No | Yes |
 | [Finding shadow and orphan APIs](../about-wallarm/api-discovery.md#shadow-and-orphan-apis) with API Discovery | No | Yes |
+| [API Sessions](../about-wallarm/api-sessions.md) | No | Yes |
 | [Sensitive data detection](../about-wallarm/api-discovery.md) | No | Yes |
 | **Security testing and vulnerability assessment** | | |
 | [Active threat verification](../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) | No | Yes |
