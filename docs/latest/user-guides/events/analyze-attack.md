@@ -64,6 +64,37 @@ To view a request in a raw format, expand a required attack and then the request
 
 ![!Raw format of the request][img-analyze-attack-raw]
 
+## Analyze requests from denylisted IPs
+
+[Denylisting](../../user-guides/ip-lists/denylist.md) proves to be an effective defensive measure against high-volume attacks of different types. This is achieved by blocking requests at the earliest stage of processing. At the same time, it is equally important to gather comprehensive information on all blocked requests for further analysis.
+
+Wallarm offers the ability to collect and display information regarding blocked requests from denylisted source IPs. This empowers you to evaluate the potency of attacks originating from denylisted IPs, and conduct precise analysis of the requests from these IPs, exploring various parameters.
+
+!!! info "Feature availability"
+    By default Wallarm does not display information regarding requests from denylisted source IPs, as node blocks requests immediately and sends nothing to the Cloud, which saves resources.
+    
+    You can enable collecting and displaying this information via the set of [directives](../../admin-en/configure-parameters-en.md#wallarm_acl_export_enable). This is only available for NGINX-based nodes starting from version 4.8 and is not supported by the Envoy-based nodes.
+
+In Wallarm, there are several ways for IP to get into the denylist. Depending on the way used, you will need to [search](../../user-guides/search-and-filters/use-search.md#search-by-attack-type) for the associated events using different tags/filters:
+
+* You add it manually (in the **Events** section, use `blocked_source` search or `Blocked Source` filter)
+* It performs a behavioral attack and is automatically denylisted by:
+    * [API Abuse Prevention](../../user-guides/ip-lists/denylist.md#automatic-bots-ips-denylisting) module (`api_abuse` search, `API Abuse` filter)
+    * [`Brute force`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`brute`, `Brute force`)
+    * [`Forced browsing`](../../admin-en/configuration-guides/protecting-against-bruteforce.md) trigger (`dirbust`, `Forced browsing`)
+    * [`BOLA`](../../admin-en/configuration-guides/protecting-against-bola.md) trigger (`bola`, `BOLA`)
+    * `Number of malicious payloads` trigger (`payload_trigger`, `Payload Trigger`)
+
+The listed behavioral attacks can be detected only after accumulating certain statistics the required amount of which depends on the corresponding trigger thresholds. Thus, in the first stage, before denylisting, Wallarm collects this information but all requests are passed and displayed within the `Monitoring` events.
+
+Once trigger thresholds are exceeded, malicious activity is considered to be detected, and Wallarm places the IP in the denylist, the node starts immediate blocking of all requests originating from them.
+
+As soon as sending of information about requests from denylisted IPs is enabled, you will see `Blocked` requests from these IPs in the event list. This applies to manually denylisted IPs as well.
+
+![!Events related to denylisted IPs - sending data enabled](../../images/user-guides/events/events-denylisted-export-enabled.png)
+
+Note that search/filters will display both `Monitoring` and - if sending information is enabled - `Blocked` events for each attack type. For manually denylisted IPs a `Monitoring` event never exists.
+
 ## Sampling of hits
 
 Malicious traffic often consists of comparable and identical [hits](../../about-wallarm/protecting-against-attacks.md#what-is-attack-and-what-are-attack-components). Storing all hits results in duplicate entries in the event list that increases both the time for event analysis and the load on the Wallarm Cloud.
@@ -81,6 +112,7 @@ Hit sampling does not affect the quality of attack detection and only helps to a
 
 * For [input validation attacks](../../about-wallarm/protecting-against-attacks.md#input-validation-attacks), hit sampling is disabled by default. If the percentage of attacks in your traffic is high, hit sampling is performed in two sequential stages: **extreme** and **regular**.
 * For [behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks), attacks of the [Data bomb](../../attacks-vulns-list.md#data-bomb) and [Resource overlimiting](../../attacks-vulns-list.md#overlimiting-of-computational-resources): the **regular** sampling algorithm is enabled by default. **Extreme** sampling starts only if the percentage of attacks in your traffic is high.
+* For events from denylisted IPs, sampling is configured [on the node side](../../admin-en/configure-parameters-en.md#wallarm_acl_export_sample_limit).
 
 When the sampling algorithm is enabled, in the **Events** section, the **Hits sampling is enabled** notification is displayed.
 
