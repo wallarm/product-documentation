@@ -1,0 +1,1 @@
+--8<-- "latest/about-wallarm/api-sessions.md"
