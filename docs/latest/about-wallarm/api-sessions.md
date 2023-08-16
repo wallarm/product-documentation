@@ -10,9 +10,9 @@ The main issue the **API Sessions** module deals with is that when dealing only 
 
 **As you have the API sessions discovered by Wallarm, you can**:
 
-* Track user activity by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
-* Inspect how shadow and zombie APIs are requested in user sessions. (really so? TBD)
-* Identify performance issues (how? TBD) and bottlenecks to optimize user experience.
+* [Track user activity](#viewing-discovered-api-sessions) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
+* [Inspect shadow APIs](#inspecting-sessions-with-requests-to-shadow-apis) requested in user sessions.
+* [Identify performance issues](#analyzing-session-performance-issues) and bottlenecks to optimize user experience.
 * Know which API flow/business logic sequences will be affected before tuning a particular false positive, applying the virtual patch, adding rules, or enabling API Abuse controls.
 
 ## How API Sessions module works
@@ -45,25 +45,26 @@ These options are:
 
 Learn more about available options from the [User guide](../user-guides/api-sessions.md).
 
-## Enabling and configuring API Discovery
+## Inspecting sessions with requests to shadow APIs
 
-The API Discovery module but keeps it disabled by default.
+You can [get a list of shadow API endpoints](../user-guides/api-discovery.md#displaying-shadow-api) using the **API Discovery** module. Then, in **API Sessions**, use search to get the list of sessions with requests to these endpoints.
+
+## Analyzing session performance issues
+
+You can analyze session performance issues by expanding the session and then sorting its requests by the **Response time** column.
+
+## Enabling and configuring API Sessions
+
+The **API Discovery** module is disabled by default.
 
 To enable API Sessions:
 
-1. Make sure your Wallarm node is of the 4.10 (TBD) or higher [version](../updating-migrating/versioning-policy.md#version-list).
+1. Make sure your Wallarm node is of the 4.8 or higher [version](../updating-migrating/versioning-policy.md#version-list).
 1. Make sure your [subscription plan](subscription-plans.md#subscription-plans) includes the **API Sessions** module. To change the subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
-1. Make sure you are logged in under the user with the appropriate [role](../user-guides/settings/users.md#user-roles):
-
-    * TBD - for viewing API Sessions
-    * TBD - for enabling/configuring API Sessions
-
+1. Make sure you are logged in under user with the **Administrator** or **Global Administrator** [role](../user-guides/settings/users.md#user-roles).
 1. If you want to enable API Sessions only for the selected applications, ensure that the applications are added as described in the [Setting up applications](../user-guides/settings/applications.md) article.
 1. Enable API Sessions for the required applications/endpoints in Wallarm Console → **API Sessions** → **Configure API Sessions**.
 
-    ![!API Sessions - Settings](../images/api-sessions/TBD.png)
-
-    !!! info "Access to API Sessions settings"
-        Only administrators (TBD) of your company Wallarm account can access the API Sessions settings. Contact your administrator if you do not have this access.
+    ![!API Sessions - Settings](../images/api-sessions/api-sessions-settings.png)
 
 Once the API Sessions module is enabled, it will start the analysis of the requests to your selected applications/endpoints and joining these requests into user sessions. The discovered sessions will be displayed in the **API Sessions** section of Wallarm Console.
