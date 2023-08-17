@@ -36,6 +36,15 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
+    <h3>Vulnerability Detection</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">Overview</a></li>
+    <li><a href="./user-guides/vulnerabilities/">Managing Detected Vulnerabilities</a></li>
+    <li><a href="./admin-en/attack-rechecker-best-practices/">Active Threat Prevention</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
     <h3>API Discovery</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-discovery/">Overview</a></li>
@@ -52,15 +61,6 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3>Vulnerability Detection</h3>
-    <p><ul>
-    <li><a href="./about-wallarm/detecting-vulnerabilities/">Overview</a></li>
-    <li><a href="./user-guides/vulnerabilities/">Managing Detected Vulnerabilities</a></li>
-    <li><a href="./admin-en/attack-rechecker-best-practices/">Active Threat Prevention</a></li>
-    </ul></p>
-</div>
-
-<div class="navigation-card">
     <h3>API Leaks Prevention</h3>
     <p><ul>
     <li><a href="./about-wallarm/api-leaks/">Overview</a></li>
@@ -69,7 +69,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3>API Security Testing (FAST)</h3>
+    <h3>API Security Testing</h3>
     <p><ul>
     <li><a href="./fast/">Overview</a></li>
     <li><a href="./fast/qsg/deployment-options/">Quick Start</a></li>
@@ -102,7 +102,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3>Node Deployment</h3>
+    <h3>Deployment</h3>
     <p><ul>
     <li><a href="./installation/supported-deployment-options/">All Deployment Options</a></li>
     <li><a href="./installation/oob/overview/">Out-of-Band</a></li>
@@ -115,7 +115,7 @@ The Wallarm solution protects APIs, microservices and web applications from OWAS
 </div>
 
 <div class="navigation-card">
-    <h3>Node Operations</h3>
+    <h3>Operations</h3>
     <p><ul>
     <li><a href="./admin-en/configure-parameters-en/">Configuration Options for NGINX‑Based Node</a></li>
     <li><a href="./admin-en/configure-wallarm-mode/">Filtration Mode</a></li>
