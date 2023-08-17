@@ -65,6 +65,18 @@ nav:
     - Triggers:
       - Working with triggers: user-guides/triggers/triggers.md
       - Trigger examples: user-guides/triggers/trigger-examples.md
+  - Vulnerability Detection:
+    - Overview: about-wallarm/detecting-vulnerabilities.md
+    - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
+    - Support of the Scanner Operation:
+      - Scanner Settings: user-guides/scanner.md
+      - Scanner Addresses:
+        - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
+        - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
+      - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
+    - Active Threat Verification:
+      - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
+      - Configuration via Rules: user-guides/rules/change-request-for-active-verification.md
   - API Discovery:
     - Overview: about-wallarm/api-discovery.md
     - Managing API Portfolio: user-guides/api-discovery.md
@@ -79,22 +91,10 @@ nav:
     - API Abuse Prevention:
       - Overview: about-wallarm/api-abuse-prevention.md
       - API Abuse Prevention Profile Management: user-guides/api-abuse-prevention.md
-  - Vulnerability Detection:
-    - Overview: about-wallarm/detecting-vulnerabilities.md
-    - Managing Detected Vulnerabilities: user-guides/vulnerabilities.md
-    - Support of the Scanner Operation:
-      - Scanner Settings: user-guides/scanner.md
-      - Scanner Addresses:
-        - Scanner Addresses for EU Cloud: admin-en/scanner-address-eu-cloud.md
-        - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
-      - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
-    - Active Threat Verification:
-      - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
-      - Configuration via Rules: user-guides/rules/change-request-for-active-verification.md
   - API Leaks Prevention:
     - Overview: about-wallarm/api-leaks.md
     - Managing API Leaks: user-guides/api-leaks.md
-  - API Security Testing (FAST):
+  - API Security Testing:
     - Overview: fast/README.md
     - Onboarding: fast/onboarding/onboarding.md
     - Quick Start Guide:
@@ -253,7 +253,7 @@ nav:
       - Configuring SSO Authentication for Users: admin-en/configuration-guides/sso/employ-user-auth.md
       - Changing the Configured SSO Authentication: admin-en/configuration-guides/sso/change-sso-provider.md
       - Using single sign‑on to Wallarm account: user-guides/use-sso.md
-  - Node Deployment:
+  - Deployment:
     - Deployment Options: installation/supported-deployment-options.md
     - Out-of-Band:
       - Overview: installation/oob/overview.md
@@ -383,7 +383,7 @@ nav:
         - Creating Tenant Accounts in Wallarm Console: installation/multi-tenant/configure-accounts.md
         - Deploying and Configuring Multi-tenant Node: installation/multi-tenant/deploy-multi-tenant-node.md
       - Wallarm Deployment in Private Clouds: installation/cloud-platforms/private-cloud.md
-  - Node Operations:
+  - Operations:
     # - Autoscaling: ...
     - Overview:
       - Wallarm nodes: user-guides/nodes/nodes.md
