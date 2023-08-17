@@ -15,7 +15,7 @@ Since the API Discovery module uses the real traffic as a data source, it helps 
 **As you have your API inventory discovered by Wallarm, you can**:
 
 * Have a full visibility into the whole API estate including the list of [external and internal](#external-and-internal-apis) APIs.
-* See what data is [going into the APIs](../user-guides/api-discovery.md#params).
+* See [what data](../user-guides/api-discovery.md#params) is going into and out of the APIs.
 * Understand which endpoints are [most likely](#endpoint-risk-score) to be an attack target.
 * View most attacked APIs for the last 7 days.
 * Filter out only attacked APIs, sort them by number of hits.
@@ -35,7 +35,7 @@ API Discovery relies on request statistics and uses sophisticated algorithms to 
 
 API Discovery uses a hybrid approach to conduct analysis locally and in the Cloud. This approach enables a [privacy-first process](#security-of-data-uploaded-to-the-wallarm-cloud) where request data and sensitive data are kept locally while using the power of the Cloud for the statistics analysis:
 
-1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed.
+1. API Discovery analyzes legitimate traffic locally. Wallarm analyzes the endpoints to which requests are made and what parameters are passed and returned.
 1. According to this data, statistics are made and sent to the Сloud.
 1. Wallarm Cloud aggregates the received statistics and builds an [API description](../user-guides/api-discovery.md) on its basis.
 
@@ -49,7 +49,7 @@ The API Discovery module bases noise detection on the two major traffic paramete
 * Endpoint stability - at least 5 requests must be recorded within 5 minutes from the moment of the first request to the endpoint.
 * Parameter stability - the occurrence of the parameter in requests to the endpoint must be more than 1 percent.
 
-The API inventory will display the endpoints and parameters that exceeded these limits. The time required to build the complete API inventory depends on the traffic diversity and intensity. 
+The API inventory will display the endpoints and request parameters that exceeded these limits. The time required to build the complete API inventory depends on the traffic diversity and intensity.
 
 Also, the API Discovery performs filtering of requests relying on the other criteria:
 
@@ -63,7 +63,7 @@ The API inventory includes the following elements:
 
 * API endpoints
 * Request methods (GET, POST, and others)
-* Required and optional GET, POST, and header parameters including:
+* Required and optional GET, POST, and header parameters of requests and responses including:
     * [Type/format](#parameter-types-and-formats) of data sent in each parameter
     * Presence and type of sensitive data (PII) transmitted by the parameter:
 
@@ -127,7 +127,7 @@ These options are:
 
 * Search and filters.
 * Ability to list internal and external APIs separately.
-* Viewing endpoint parameters.
+* Viewing endpoint request and response parameters.
 * Tracking changes in API.
 * Quick navigation to attacks related to some endpoint.
 * Custom rule creation for the specific endpoint.
@@ -168,7 +168,7 @@ With the **API Discovery** module of Wallarm you can:
 
 * Track changes and check that they do not disrupt current business processes.
 * Make sure that no unknown endpoints have appeared in the infrastructure that could be a potential threat vector.
-* Make sure PII and other unexpected parameters did not start being transferred to the endpoints.
+* Make sure PII and other unexpected parameters did not start being transferred to or from the endpoints.
 * Configure notifications about changes in your API via [triggers](../user-guides/triggers/trigger-examples.md#new-endpoints-in-your-api-inventory) with the **Changes in API** condition.
 
 Learn how to work with the track changes feature in [User guide](../user-guides/api-discovery.md#tracking-changes-in-api).
@@ -198,7 +198,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 * `/api/articles/author/{parameter_X}`
 
-Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
+Click the endpoint to expand its request parameters and view which type was automatically detected for the diverse parameter.
 
 ![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
