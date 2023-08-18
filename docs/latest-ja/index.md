@@ -3,44 +3,140 @@
 Wallarmのソリューションは、OWASP APIトップ10の脅威、APIの乱用、および他の自動化された脅威からAPI、マイクロサービス、およびWebアプリケーションを保護します。これは手動ルール設定不要で、超低誤検知率を実現します。
 
 <div class="navigation">
-<a href="./quickstart/" class="navigation-card">
+
+<div class="navigation-card">
     <h3>クイックスタート</h3>
-    <p>すぐに開始: Wallarmをデプロイして、簡単なAPIセキュリティを実現します</p>
-</a>
+    <p><ul>
+    <li><a href="./about-wallarm/overview/">Wallarmの概要</a></li>
+    <li><a href="./quickstart/">クイックスタートガイド</a></li>
+    <li><a href="./demo-videos/overview/">ビデオガイド</a></li>
+    <li><a href="./installation/supported-deployment-options/">デプロイガイド</a></li>
+    <li><a href="./about-wallarm/subscription-plans/">サブスクリプションプラン</a></li>
+    <li><a href="./quickstart/attack-prevention-best-practices/">攻撃予防のベストプラクティス</a></li>
+    </ul></p>
+</div>
 
-<a href="./about-wallarm/overview/" class="navigation-card">
-    <h3>Wallarmの働き方</h3>
-    <p>Wallarmのハイブリッドアーキテクチャを学びます</p>
-</a>
+<div class="navigation-card">
+    <h3>ダッシュボードとレポート</h3>
+    <p><ul>
+    <li><a href="./user-guides/dashboards/threat-prevention/">脅威予防ダッシュボード</a></li>
+    <li><a href="./user-guides/dashboards/api-discovery/">API発見ダッシュボード</a></li>
+    <li><a href="./user-guides/dashboards/owasp-api-top-ten/">OWASP APIトップ10ダッシュボード</a></li>
+    <li><a href="./user-guides/search-and-filters/use-search/">イベント検索と分析</a></li>
+    <li><a href="./user-guides/search-and-filters/custom-report/">EメールPDFおよびCSVレポート</a></li>
+    <li><a href="./user-guides/settings/audit-log/">活動ログ</a></li>
+    </ul></p>
+</div>
 
-<a href="./admin-en/supported-platforms/" class="navigation-card">
-    <h3>デプロイメントオプション</h3>
-    <p>クラウドネイティブおよびその他の環境のためのフォール, インライン, ミラーリングのデプロイメントオプションを探ります</p>
-</a>
+<div class="navigation-card">
+    <h3>統合とアラート</h3>
+    <p><ul>
+    <li><a href="./user-guides/settings/integrations/integrations-intro/">統合</a></li>
+    <li><a href="./user-guides/triggers/triggers/">トリガーを使用したアラートの設定</a></li>
+    </ul></p>
+</div>
 
-<a href="./admin-en/configure-parameters-en/" class="navigation-card">
-    <h3>設定</h3>
-    <p>Wallarmをパフォーマンスとオートスケーリングに適した形で設定する方法を学びます</p>
-</a>  
+<div class="navigation-card">
+    <h3>脆弱性検出</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/detecting-vulnerabilities/">概要</a></li>
+    <li><a href="./user-guides/vulnerabilities/">検出された脆弱性の管理</a></li>
+    <li><a href="./admin-en/attack-rechecker-best-practices/">アクティブな脅威予防</a></li>
+    </ul></p>
+</div>
 
-<a href="./user-guides/user-intro/" class="navigation-card">
-    <h3>ユーザーガイド</h3>
-    <p>セキュリティチームとともに、Wallarmの操作方法と攻撃の軽減方法を学びます</p>
-</a>  
+<div class="navigation-card">
+    <h3>API発見</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/api-discovery/">概要</a></li>
+    <li><a href="./user-guides/api-discovery/">APIポートフォリオの管理</a></li>
+    </ul></p>
+</div>
 
-<a href="./updating-migrating/what-is-new/" class="navigation-card">
-    <h3>新機能とアップグレード</h3>
-    <p>最新のWallarmノード4.6の変更点を学び、モジュールを最新の状態に保ちます</p>
-</a>
+<div class="navigation-card">
+    <h3>API脅威予防</h3>
+    <p><ul>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bola/">BOLA (IDOR) 保護</a></li>
+    <li><a href="./about-wallarm/api-abuse-prevention/">API乱用予防</a></li>
+    </ul></p>
+</div>
 
-<a href="./user-guides/settings/integrations/integrations-intro/" class="navigation-card">
-    <h3>統合とDevSecOps</h3>
-    <p>WallarmをSIEM、SOAR、およびDevOpsツールと連携させます</p>
-</a>
+<div class="navigation-card">
+    <h3>API漏洩予防</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/api-leaks/">概要</a></li>
+    <li><a href="./user-guides/api-leaks/">API漏洩の管理</a></li>
+    </ul></p>
+</div>
 
-<a href="./api/overview/" class="navigation-card">
-    <h3>Wallarm API</h3>
-    <p>REST APIを介してカスタム統合を実現します</p>
-</a>
+<div class="navigation-card">
+    <h3>APIセキュリティテスト</h3>
+    <p><ul>
+    <li><a href="./fast/">概要</a></li>
+    <li><a href="./fast/qsg/deployment-options/">クイックスタート</a></li>
+    <li><a href="./fast/poc/integration-overview/">CI/CDへの統合</a></li>
+    <li><a href="./fast/operations/test-policy/fuzzer-intro/">ファジング</a></li>
+    <li><a href="./fast/dsl/intro/">カスタム検出のためのDSL</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3>WAAP/WAF</h3>
+    <p><ul>
+    <li><a href="./about-wallarm/protecting-against-attacks/">攻撃検出手順</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-ddos/">DDoS保護</a></li>
+    <li><a href="./admin-en/configuration-guides/protecting-against-bruteforce/">ブルートフォース保護</a></li>
+    <li><a href="./user-guides/ip-lists/overview/">ジオロケーション制限</a></li>
+    <li><a href="./user-guides/rules/intro/">ルール</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3>ユーザー管理</h3>
+    <p><ul>
+    <li><a href="./user-guides/settings/users/">概要</a></li>
+    <li><a href="./user-guides/settings/account/">ユーザープロファイル</a></li>
+    <li><a href="./user-guides/settings/general/">ログアウト設定</a></li>
+    <li><a href="./user-guides/settings/api-tokens/">APIトークン</a></li>
+    <li><a href="./admin-en/configuration-guides/sso/intro/">SAML SSO</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3>デプロイメント</h3>
+    <p><ul>
+    <li><a href="./installation/supported-deployment-options/">すべてのデプロイメントオプション</a></li>
+    <li><a href="./installation/oob/overview/">アウトオブバンド</a></li>
+    <li><a href="./installation/supported-deployment-options/#public-clouds">パブリッククラウド</a></li>
+    <li><a href="./installation/supported-deployment-options/#kubernetes">Kubernetes</a></li>
+    <li><a href="./installation/inline/overview/">インライン</a></li>
+    <li><a href="./installation/connectors/overview/">コネクタ</a></li>
+    <li><a href="./installation/supported-deployment-options/#packages">パッケージ</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3>オペレーション</h3>
+    <p><ul>
+    <li><a href="./admin-en/configure-parameters-en/">NGINXベースのノードの構成オプション</a></li>
+    <li><a href="./admin-en/configure-wallarm-mode/">フィルタリングモード</a></li>
+    <li><a href="./admin-en/using-proxy-or-balancer-en/">エンドユーザーIPの正確なレポート</a></li>
+    <li><a href="./admin-en/configuration-guides/allocate-resources-for-node/">リソース割り当て</a></li>
+    <li><a href="./user-guides/settings/applications/">アプリケーションごとのトラフィックと設定の分割</a></li>
+    <li><a href="./admin-en/configure-logging/">ノードログのフィルタリング</a></li>
+    <li><a href="./updating-migrating/what-is-new/">ノードアップグレード</a></li>
+    </ul></p>
+</div>
+
+<div class="navigation-card">
+    <h3>参考文献</h3>
+    <p><ul>
+    <li><a href="./faq/ingress-installation/">FAQ</a></li>
+    <li><a href="./news/">変更ログ & ニュース</a></li>
+    <li><a href="./api/overview/">Wallarm API リファレンス</a></li>
+    <li><a href="./admin-en/managing/terraform-provider/">Wallarm Terraform プロバイダ</a></li>
+    <li><a href="./integrations-devsecops/verify-docker-image-signature/">Docker イメージ署名の確認</a></li>
+    </ul></p>
+</div>
 
 </div>
