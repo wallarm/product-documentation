@@ -1,6 +1,6 @@
 # API Sessions <a href="../subscription-plans/#subscription-plans"><img src="../../images/api-security-tag.svg" style="border: none;"></a>
 
-The **API Sessions** module of the Wallarm platform discovers and displays the user sessions in your applications' traffic. Within each discovered session, Wallarm collects information about its requests. This article gives an overview of **API Sessions**: issues addressed by it, its purpose and main possibilities.
+The **API Sessions** module of the Wallarm platform monitors and displays the user sessions in your applications' traffic. Within each monitored session, Wallarm collects information about its requests. This article gives an overview of **API Sessions**: issues addressed by it, its purpose and main possibilities.
 
 For information on how to use the **API Sessions** module, refer to its [user guide](../user-guides/api-sessions.md).
 
@@ -8,32 +8,29 @@ For information on how to use the **API Sessions** module, refer to its [user gu
 
 The main issue the **API Sessions** module deals with is that when dealing only with attacks, presented in the **Events** section, you cannot see their full contexts: the logic sequence of requests that the attack is the part of. This context allows revealing of more general patterns in how your applications are being attacked as well as understanding of which business logic will be affected by the taken security measures.
 
-**As you have the API sessions discovered by Wallarm, you can**:
+**As you have the API sessions monitored by Wallarm, you can**:
 
-* [Track user activity](#viewing-discovered-api-sessions) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
+* [Track user activity](#viewing-monitored-api-sessions) by displaying a list of requests made in a single session, so you can identify unusual patterns of behavior or deviations from typical usage.
 * [Inspect shadow APIs](#inspecting-sessions-with-requests-to-shadow-apis) requested in user sessions.
 * [Identify performance issues](#analyzing-session-performance-issues) and bottlenecks to optimize user experience.
 * Know which API flow/business logic sequences will be affected before tuning a particular false positive, applying the virtual patch, adding rules, or enabling API Abuse controls.
 
 ## How API Sessions module works
 
-The **API Sessions** module analyzes requests to your selected applications or their particular endpoints to join them into the user sessions and display these user sessions for security analysis.
+The **API Sessions** module:
 
-### Default rule
-
-By default, the module includes the default set of request parameters, basing on which values Wallarm will be able to join requests in the separate sessions. However, you always need to manually define the scope: applications and endpoints, for which the session discovery should be performed. You can also enable session discovery for all traffic.
-
-### Custom rules
-
-You can configure the **API Sessions** module to discover sessions basing on your own set of parameters and the rules built in their basis.
+* Monitors requests for hosts/applications that are specified in the settings. You can also enable session monitoring for all traffic.
+* Saves the values of the parameters from the requests' data. Wallarm always uses the set of built-in parameters, you can add custom parameters in the settings.
+* Applies session ID rules to each request. Wallarm applies built-in rules, you can use your custom parameters to add your rules.
+* Using applied session ID, groups request into sessions and displays sessions with their requests in the **API Sessions** section.
 
 See [Configuring API Sessions →](../user-guides/api-sessions.md#configuring-api-sessions)
 
-## Viewing discovered API sessions
+## Viewing monitored API sessions
 
-The **API Sessions** section provides many options for analyzing the discovered API sessions.
+The **API Sessions** section provides many options for analyzing the monitored API sessions.
 
-![!API Sessions section - discovered sessions](../images/api-sessions/api-sessions.png)
+![!API Sessions section - monitored sessions](../images/api-sessions/api-sessions.png)
 
 These options are:
 
@@ -55,7 +52,7 @@ You can analyze session performance issues by expanding the session and then sor
 
 ## Enabling and configuring API Sessions
 
-The **API Discovery** module is disabled by default.
+The **API Sessions** module is disabled by default.
 
 To enable API Sessions:
 
@@ -67,4 +64,4 @@ To enable API Sessions:
 
     ![!API Sessions - Settings](../images/api-sessions/api-sessions-settings.png)
 
-Once the API Sessions module is enabled, it will start the analysis of the requests to your selected applications/endpoints and joining these requests into user sessions. The discovered sessions will be displayed in the **API Sessions** section of Wallarm Console.
+Once the API Sessions module is enabled, it will start the analysis of the requests to your selected applications/endpoints and joining these requests into user sessions. The monitored sessions will be displayed in the **API Sessions** section of Wallarm Console.
