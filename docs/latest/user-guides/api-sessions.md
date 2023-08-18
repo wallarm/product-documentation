@@ -20,7 +20,11 @@ By clicking the **Configure API Sessions** button in the **API Sessions** sectio
 
     ![!API Sessions - Settings](../images/api-sessions/api-sessions-settings.png)
 
-* At **Traced parameters**, specify up to 10 request parameters which values should be exported to Wallarm in order to use them for the session identification or for request analysis. Use selected parameters in **Session identification rules**. Wallarm always uses the set of built-in parameters and rules, the ones added manually extend this set.
+* At **Traced parameters**, specify up to 10 request parameters which values should be exported to Wallarm in order to use them for:
+
+    * Request analysis: add you own parameters that you want to have information about when looking through the details of session requests. 
+    * Session identification: use added parameters in **Session identification rules**. Wallarm always uses the set of built-in parameters for session identification, the ones added manually extend this set if they were added to the session identification rules.
+
 * At **Session identification rules**, add up to 5 rules, specify up to 3 parameters from the **Traced parameters** per each rule. Wallarm checks each request for these parameters. If all parameters from rule #1 are present, that rule determines the session ID. Otherwise, proceed to rule #2 and so on. After that the built-in rules are applied.
 
 For example, if you specify `example.com:8080/path1/path2` URI with `Application 01` additional condition, and add 4 parameters `traced-par-ex-1..4` to trace and then combined:
@@ -31,4 +35,5 @@ For example, if you specify `example.com:8080/path1/path2` URI with `Application
 
 ...requests to `Application 01`'s endpoint `example.com:8080/path1/path2` will be analyzed and requests containing both `traced-par-ex-1` and `traced-par-ex-2` and `traced-par-ex-3` will be considered to be the part of the same session. If some of the parameters are missing, rule 2 will be applied.
 
-If, for example, you did not select any custom parameters to trace, you do not create rules and requests to `Application 01`'s endpoint `example.com:8080/path1/path2` are analyzed using built-in set of parameters and rules.
+If, for example, you additionally want to have information about `traced-par-ex-5` parameter, you add this parameter to the list of traced, but do not add it to any identification rule. As a result, it will be displayed in the session request details, but will not be used for session identification.
+
