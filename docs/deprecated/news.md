@@ -1,1 +1,0 @@
---8<-- "latest/news.md"
