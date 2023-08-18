@@ -145,6 +145,21 @@
 /4.0/glossary-en /4.0
 /4.0/glossary-en/ /4.0
 
+/4.0/* /4.2
+/4.2/admin-en/* /4.2
+/4.2/installation/* /4.2
+/4.2/quickstart/ /4.2
+/4.2/quickstart /4.2
+/4.2/updating-migrating/* /4.2
+/4.2/user-guides/* /4.2
+/4.2/waf-installation/* /4.2
+/4.2/about-wallarm-waf/* /4.2
+/4.2/partner-waf-node/* /4.2
+/4.2/attacks-vulns-list /4.2
+/4.2/attacks-vulns-list/ /4.2
+/4.2/glossary-en /4.2
+/4.2/glossary-en/ /4.2
+
 /quickstart-en/how-wallarm-works/qs-intro-en /about-wallarm/overview/
 /quickstart-en/how-wallarm-works/shared-responsibility /about-wallarm/shared-responsibility/
 /quickstart-en/how-wallarm-works/subscription-plans /about-wallarm/subscription-plans/

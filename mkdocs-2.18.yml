@@ -208,12 +208,15 @@ nav:
         - Opsgenie: user-guides/settings/integrations/opsgenie.md
         - PagerDuty: user-guides/settings/integrations/pagerduty.md
         - Jira: user-guides/settings/integrations/jira.md
+        - ServiceNow: user-guides/settings/integrations/servicenow.md
         - Sumo Logic: user-guides/settings/integrations/sumologic.md
         - Splunk: user-guides/settings/integrations/splunk.md
         - Datadog: user-guides/settings/integrations/datadog.md
+        - Microsoft Sentinel: user-guides/settings/integrations/azure-sentinel.md
         - Fluentd: user-guides/settings/integrations/fluentd.md
         - Logstash: user-guides/settings/integrations/logstash.md
         - Webhook: user-guides/settings/integrations/webhook.md
+        - Amazon S3: user-guides/settings/integrations/amazon-s3.md
         - Examples of integrations via intermediate data collectors:
           - IBM QRadar via Fluentd: user-guides/settings/integrations/webhook-examples/fluentd-qradar.md
           - IBM QRadar via Logstash: user-guides/settings/integrations/webhook-examples/logstash-qradar.md
@@ -228,7 +231,6 @@ nav:
         - Subscriptions: user-guides/settings/subscriptions.md
         - Applications: user-guides/settings/applications.md
         - Users: user-guides/settings/users.md
-        - API tokens: user-guides/settings/api-tokens.md
         - Activity Log: user-guides/settings/audit-log.md
       - Using single sign‑on to Wallarm portal: user-guides/use-sso.md
     - Upgrading and Migrating:
@@ -364,8 +366,5 @@ nav:
       - Demo videos:
         - Wallarm platform settings: demo-videos/overview.md
         - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
-        - API Discovery overview: demo-videos/api-discovery.md
-        - API Abuse Prevention overview: demo-videos/api-abuse-prevention.md
-        - API Leaks overview: demo-videos/api-leaks.md
       - Changelog & news: news.md
   - "Open source: API Firewall": /api-firewall/overview/

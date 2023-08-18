@@ -1,1 +1,1 @@
---8<-- "4.2/admin-en/scanner-address-us-cloud.md"
+--8<-- "latest/admin-en/scanner-address-us-cloud.md"

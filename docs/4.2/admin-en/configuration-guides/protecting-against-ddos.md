@@ -1,1 +1,0 @@
---8<-- "4.4/admin-en/configuration-guides/protecting-against-ddos.md"

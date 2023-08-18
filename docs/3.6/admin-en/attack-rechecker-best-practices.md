@@ -1,1 +1,1 @@
---8<-- "4.2/admin-en/attack-rechecker-best-practices.md"
+--8<-- "latest/admin-en/attack-rechecker-best-practices.md"

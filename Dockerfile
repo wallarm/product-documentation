@@ -19,7 +19,6 @@ CMD ["mkdocs", "serve", "--dev-addr=0.0.0.0:8000", "--config-file=mkdocs-4.6.yml
 FROM latest as all
 RUN mkdocs build -f mkdocs-ja-4.6.yml
 RUN mkdocs build -f mkdocs-4.4.yml
-RUN mkdocs build -f mkdocs-4.2.yml
 RUN mkdocs build -f mkdocs-deprecated.yml
 RUN mkdocs build -f mkdocs-3.6.yml
 RUN mkdocs build -f mkdocs-2.18.yml
