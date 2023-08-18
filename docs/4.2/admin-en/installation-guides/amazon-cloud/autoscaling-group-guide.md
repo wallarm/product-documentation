@@ -1,1 +1,0 @@
---8<-- "4.4/admin-en/installation-guides/amazon-cloud/autoscaling-group-guide.md"

@@ -1,1 +1,0 @@
---8<-- "latest/installation/multi-tenant/overview.md"

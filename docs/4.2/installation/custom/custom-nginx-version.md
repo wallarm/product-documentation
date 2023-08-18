@@ -1,1 +1,0 @@
---8<-- "latest/installation/custom/custom-nginx-version.md"
