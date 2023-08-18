@@ -1,1 +1,1 @@
----8<-- "latest/admin-en/scanner-address-eu-cloud.md"
+--8<-- "latest/admin-en/scanner-address-eu-cloud.md"
