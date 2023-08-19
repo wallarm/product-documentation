@@ -75,6 +75,9 @@ The API inventory includes the following elements:
     
     * Date and time when parameter information was last updated
 
+!!! info "Availability of response parameters"
+    Response parameters are only available when using node 4.8 or higher.
+
 ### Parameter types and formats
 
 Wallarm analyzes the values that are passed in each of the endpoint parameters and tries to determine their format:

@@ -65,6 +65,9 @@ Each request/response parameter information includes:
 * [Type/format](../about-wallarm/api-discovery.md#parameter-types-and-formats) of data sent in this parameter
 * Date and time when parameter information was last updated
 
+!!! info "Availability of response parameters"
+    Response parameters are only available when using node 4.8 or higher.
+
 ## Tracking changes in API
 
 You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking-changes-in-api) in the API within the specified period of time. To do that, from the **Changes since** filter, select the appropriate period or date. The following marks will be displayed in the endpoint list:
