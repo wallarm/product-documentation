@@ -86,6 +86,9 @@ nav:
       # - Overview: ...
       # - OWASP Top 10: ...
       # - OWASP API Top 10: ...
+      - API Sessions:
+        - Overview: about-wallarm/api-sessions.md
+        - API Sessions Configuration and Usage: user-guides/api-sessions.md
       - BOLA (IDOR) Protection:
         - Configuration: admin-en/configuration-guides/protecting-against-bola.md
         - BOLA autodetection template: user-guides/bola-protection.md
