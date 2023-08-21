@@ -23,10 +23,10 @@ jobs:
         shell: bash
 
     steps:
-    - name: GitHub API Call to notify product-docs-en
+    - name: GitHub API Call to notify product-documentation
       env:
         FIREWALL_DOCS_TOKEN: ${{ secrets.FIREWALL_DOCS_TOKEN }}
-        PARENT_REPO: wallarm/product-docs-en
+        PARENT_REPO: wallarm/product-documentation
         PARENT_BRANCH: master
         WORKFLOW_ID: 11686992
       run: |-
