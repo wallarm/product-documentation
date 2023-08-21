@@ -266,6 +266,12 @@ To search by the country or the region, in which the IP address originated the a
 
 The country/region name should be passed to the attribute in the format corresponding to the standard [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) in uppercase or lowercase letters. For example: `country:CN` or `country:cn` for attacks originated from China.
 
+### Search for events originating from well-known malicious IPs
+
+Wallarm scans public resources for IP addresses that are widely recognized as being associated with malicious activities. We then validate this information to ensure its accuracy, making it easier for you to take necessary actions, such as denylisting these IPs.
+
+To search for events originating from these malicious IP addresses, use the `source:mip` tag. This stands for **Malicious IPs** and is named accordingly in the denylist, in the section for blocking by source type.
+
 ### Search by server response status
 
 To search by server response status, specify `statuscode:` prefix.
