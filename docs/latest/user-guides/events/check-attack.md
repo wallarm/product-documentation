@@ -26,6 +26,7 @@ You can check detected attacks and incidents in the **Events** section of Wallar
      * The total number of IP addresses from which the requests in the same attack originated during the specified timeframe. 
      * The country/region in which the IP address is registered (if it was found in the databases like IP2Location or others)
      * The source type, like **Public proxy**, **Web proxy**, **Tor** or the cloud platform the IP registered in, etc (if it was found in the databases like IP2Location or others)
+     * The **Malicious IPs** label will appear if the IP address is known for malicious activities. This is based on public records and expert validations
 * **Domain / Path**: The domain, path and the application ID that the request targeted.
 * **Status**: The attack blocking status (depends on the [traffic filtration mode](../../admin-en/configure-wallarm-mode.md)):
      * Blocked: all hits of the attack were blocked by the filtering node.
