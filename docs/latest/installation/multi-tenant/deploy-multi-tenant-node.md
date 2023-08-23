@@ -32,8 +32,8 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
     ![!Client several nodes scheme](../../images/partner-waf-node/client-several-nodes.png)
 
     * Several Wallarm nodes each filtering the traffic of a particular tenant (Tenant 1, Tenant 2).
-    * For the domain https://tenant1.com, the DNS record with the partner IP address 225.130.128.241 is configured.
-    * For the domain https://tenant2.com, the DNS record with the partner IP address 225.130.128.242 is configured.
+    * For the domain https://tenant1.com, the DNS record with the client IP address 225.130.128.241 is configured.
+    * For the domain https://tenant2.com, the DNS record with the client IP address 225.130.128.242 is configured.
     * Each node is proxying the legitimate requests to the addresses of its tenant:
         * Node 1 to Tenant 1 (http://upstream1:8080).
         * Node 2 to Tenant 2 (http://upstream2:8080).
