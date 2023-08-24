@@ -7,5 +7,4 @@ docs_dir: docs/deprecated
 site_dir: site/4.2
 
 nav:
-  - Product guides:
-    - Home: index.md
+  - Home: index.md
