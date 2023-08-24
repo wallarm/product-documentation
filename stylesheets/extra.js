@@ -31,8 +31,13 @@ var rootVersion = '4.6';
 
 // Temporarily hide the version selection in Japanese docs
 
-if (paths[1] != 'ja') {
+let pathsLang = window.location.pathname.split('/');
+
+if (pathsLang[1] != 'ja') {
   document.getElementById('versionsDiv').style.display = 'inline-block';
+}
+else {
+  document.getElementById('versionsDiv').style.display = 'none'
 }
 
 // Show the list of available Wallarm versions
