@@ -155,6 +155,12 @@ if (paths[1] == '2.18' || paths[1] == '3.6') {
  }
 }
 
+// Temporarily hide the version selection in Japanese docs
+
+if (paths[1] == 'ja' || paths[1] == 'ja') {
+  document.getElementById('versionsDiv').style.display = 'none';
+}
+
 // ZoomInfo script
 
 (function() {
