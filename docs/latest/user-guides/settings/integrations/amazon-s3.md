@@ -6,8 +6,8 @@ Data fields for each hit:
 
 * `time` - date and time of hit detection in the ISO 8601 format
 * `request_id`
-* `IP` - attacker's IP
-* Hit source type: `datacenter`, `proxy_type`, `tor`, `remote_country`
+* `ip` - attacker's IP
+* Hit source type: `datacenter`, `tor`, `remote_country`
 * `application_id`
 * `domain`
 * `method`
@@ -108,7 +108,6 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
-    "port":45070,
     "protocol":"none",
     "status_code":499,
     "attack_type":"ptrav",
@@ -138,7 +137,6 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
-    "port":45086,
     "protocol":"none",
     "status_code":499,
     "attack_type":"ptrav",

@@ -6,8 +6,8 @@
 
 * `time` - ヒット検出の日付と時間
 * `request_id`
-* `IP` - 攻撃者のIP
-* ヒットのソースタイプ: `datacenter`, `proxy_type`, `tor`, `remote_country`
+* `ip` - 攻撃者のIP
+* ヒットのソースタイプ: `datacenter`, `tor`, `remote_country`
 * `application_id`
 * `domain`
 * `method`
@@ -109,7 +109,6 @@ Amazon S3の場合、統合テストはデータを含むJSONファイルをあ�
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
-    "port":45070,
     "protocol":"none",
     "status_code":499,
     "attack_type":"ptrav",
@@ -139,7 +138,6 @@ Amazon S3の場合、統合テストはデータを含むJSONファイルをあ�
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
-    "port":45086,
     "protocol":"none",
     "status_code":499,
     "attack_type":"ptrav",
