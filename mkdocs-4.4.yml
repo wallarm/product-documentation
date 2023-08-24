@@ -420,4 +420,3 @@ nav:
         - Shared Responsibility Model for Clients' Data: about-wallarm/shared-responsibility.md
         - Data Retention Policy: about-wallarm/data-retention-policy.md
       - Glossary: glossary-en.md
-  - "Open source: API Firewall": /api-firewall/overview/

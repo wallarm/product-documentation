@@ -383,4 +383,3 @@ nav:
         - API Discovery overview: demo-videos/api-discovery.md
         - API Leaks overview: demo-videos/api-leaks.md
       - Changelog & news: news.md
-  - "Open source: API Firewall": /api-firewall/overview/

@@ -367,4 +367,3 @@ nav:
         - Wallarm platform settings: demo-videos/overview.md
         - Analyzing CVEs and related attacks: demo-videos/events-inspection.md
       - Changelog & news: news.md
-  - "Open source: API Firewall": /api-firewall/overview/

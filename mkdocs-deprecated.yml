@@ -9,4 +9,3 @@ site_dir: site/4.2
 nav:
   - Product guides:
     - Home: index.md
-  - "Open source: API Firewall": /api-firewall/overview/
