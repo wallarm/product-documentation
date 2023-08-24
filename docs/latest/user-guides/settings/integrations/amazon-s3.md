@@ -108,6 +108,7 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     "domain":"localhost",
     "method":"GET",
     "uri":"/etc/passwd",
+    "port":45070,
     "protocol":"none",
     "status_code":499,
     "attack_type":"ptrav",
