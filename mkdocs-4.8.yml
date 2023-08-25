@@ -15,7 +15,7 @@ nav:
       - Wallarm Platform Settings: demo-videos/overview.md
       - Analyzing CVEs and Related Attacks: demo-videos/events-inspection.md
       - API Discovery Overview: demo-videos/api-discovery.md
-      - Shadow API Detection: demo-videos/shadow-api.md
+      - Shadow and Orphan API: demo-videos/shadow-api.md
       - API Abuse Prevention Overview: demo-videos/api-abuse-prevention.md
       - API Leaks Overview: demo-videos/api-leaks.md
     - Deployment Guides: /installation/supported-deployment-options/
