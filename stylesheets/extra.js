@@ -26,11 +26,15 @@ if (window.location.href.indexOf("channeltivity-content") <= -1) {
   injectScript('https://js.hs-scripts.com/3989912.js');
 }
 
-// Show version selector only for Product guides
+// Version selection
 var rootVersion = '4.6';
-var activeLinks = document.getElementsByClassName('md-tabs__link--active');
-if (activeLinks[0].text === ' Product guides ') {
-  document.getElementById('versionsDiv').style.display = 'inline-block'
+
+// Temporarily hide the version selection in Japanese docs
+
+let pathsLang = window.location.pathname.split('/');
+
+if (pathsLang[1] != 'ja') {
+  document.getElementById('versionsDiv').style.display = 'inline-block';
 }
 else {
   document.getElementById('versionsDiv').style.display = 'none'

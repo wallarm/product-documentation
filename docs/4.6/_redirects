@@ -511,3 +511,9 @@
 /faq/nginx-compatibility/ /installation/custom/custom-nginx-version/
 
 /about-wallarm/deployment-best-practices/ /quickstart/attack-prevention-best-practices/
+
+/api-firewall/overview/ https://wallarm.github.io/api-firewall/
+/api-firewall/installation-guides/docker-container/ https://wallarm.github.io/api-firewall/installation-guides/docker-container/
+/api-firewall/demos/docker-compose/ https://wallarm.github.io/api-firewall/demos/docker-compose/
+/api-firewall/demos/kubernetes-cluster/ https://wallarm.github.io/api-firewall/demos/kubernetes-cluster/
+/api-firewall/release-notes/ https://wallarm.github.io/api-firewall/release-notes/
