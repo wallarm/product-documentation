@@ -1,1 +1,1 @@
---8<-- "latest/demo-videos/shadow-api.md"
+--8<-- "latest-ja/demo-videos/shadow-api.md"
