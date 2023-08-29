@@ -62,7 +62,7 @@ When utilizing the Wallarm policy, the traffic flow is [in-line](../inline/overv
 
         location / {
             proxy_set_header Host $http_x_forwarded_host;
-            proxy_pass http://127.0.0.1:18080;
+            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
         }
     }
 
@@ -78,21 +78,21 @@ When utilizing the Wallarm policy, the traffic flow is [in-line](../inline/overv
 
         location / {
             proxy_set_header Host $http_x_forwarded_host;
-            proxy_pass http://127.0.0.1:18080;
+            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
         }
     }
 
 
     server {
-        listen 127.0.0.1:18080;
+        listen unix:/tmp/wallarm-nginx.sock;
         
         server_name _;
         
         wallarm_mode monitoring;
         #wallarm_mode block;
 
-        real_ip_header X-FORWARDED-FOR;
-        set_real_ip_from 127.0.0.1;
+        real_ip_header X-REAL-IP;
+        set_real_ip_from unix:;
 
         location / {
             echo_read_request_body;
@@ -121,6 +121,22 @@ To acquire and [upload](https://docs.mulesoft.com/mule-gateway/policies-custom-u
 1. Within the `pom.xml` file → `groupId` parameter at the top of the file, specify your Mulesoft organization ID.
 
     You can find your organization ID by navigating to Mulesoft Anypoint Platform → **Access Management** → **Organization** → choose your organization → copy its ID.
+1. In your Maven `.m2` directory, update the `settings.xml` file with your Exchange credentials:
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+      <servers>
+        <server>
+          <id>exchange-server</id>
+          <username>myusername</username>
+          <password>mypassword</password>
+        </server>
+      </servers>
+    </settings>
+    ```
 1. Deploy the policy to Mulesoft using the following command:
 
     ```

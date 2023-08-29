@@ -54,7 +54,7 @@ When utilizing Wallarm on Azion Edge, the traffic flow is [in-line](../inline/ov
 
         location / {
             proxy_set_header Host $http_x_forwarded_host;
-            proxy_pass http://127.0.0.1:18080;
+            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
         }
     }
 
@@ -70,13 +70,13 @@ When utilizing Wallarm on Azion Edge, the traffic flow is [in-line](../inline/ov
 
         location / {
             proxy_set_header Host $http_x_forwarded_host;
-            proxy_pass http://127.0.0.1:18080;
+            proxy_pass http://unix:/tmp/wallarm-nginx.sock;
         }
     }
 
 
     server {
-        listen 127.0.0.1:18080;
+        listen unix:/tmp/wallarm-nginx.sock;
         
         server_name _;
         
@@ -84,7 +84,7 @@ When utilizing Wallarm on Azion Edge, the traffic flow is [in-line](../inline/ov
         #wallarm_mode block;
 
         real_ip_header X-EDGEWRK-REAL-IP;
-        set_real_ip_from 127.0.0.1;
+        set_real_ip_from unix:;
 
         location / {
             echo_read_request_body;
