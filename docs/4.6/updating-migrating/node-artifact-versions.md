@@ -80,6 +80,10 @@ History of updates simultaneously applies to the x86_64 and ARM64 (beta) version
 
 [How to upgrade](sidecar-proxy.md)
 
+### 4.6.5 (2023-08-29)
+
+* Fixed a bug where additional volume mounts failed to apply due to being wrapped in double quotes; replaced double quotes with single quotes
+
 ### 4.6.4 (2023-06-27)
 
 * Added support for [external postanalytics (Tarantool) module usage](../installation/kubernetes/sidecar-proxy/helm-chart-for-wallarm.md#postanalyticsexternalenabled)
