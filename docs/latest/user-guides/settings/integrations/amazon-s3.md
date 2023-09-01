@@ -4,7 +4,7 @@ You can set up Wallarm to send files with the information about detected hits to
 
 Data fields for each hit:
 
-* `time` - date and time of hit detection in the ISO 8601 format
+* `time` - date and time of hit detection in the Unix Timestamp format
 * `request_id`
 * `ip` - attacker's IP
 * Hit source type: `datacenter`, `tor`, `remote_country`
@@ -98,7 +98,7 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
 ```json
 [
 {
-    "time":"2023-06-20T09:11:10+03:00",
+    "time":"1687241470",
     "request_id":"d2a900a6efac7a7c893a00903205071a",
     "ip":"127.0.0.1",
     "datacenter":"unknown",
@@ -127,7 +127,7 @@ For Amazon S3, integration test sends the JSON file with data into your bucket. 
     }
 },
 {
-    "time":"2023-06-20T09:11:15+03:00",
+    "time":"1687241475",
     "request_id":"b457fccec9c66cdb07eab7228b34eca6",
     "ip":"127.0.0.1",
     "datacenter":"unknown",
