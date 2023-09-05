@@ -1,5 +1,3 @@
-Based on the initial detected attacks, the **Active threat verification** module creates a lot of new test requests with different payloads attacking the same endpoint. This mechanism allows Wallarm to detect vulnerabilities that could be potentially exploited during attacks. The process of active threat verification will either confirm that the application is not vulnerable to the specific attack vectors or find actual application security issues.
-
 [List of vulnerabilities that can be detected by the module](../attacks-vulns-list.md)
 
 The **Active threat verification** process uses the following logic to check the protected application for possible Web and API security vulnerabilities:

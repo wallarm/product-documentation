@@ -11,6 +11,8 @@ By default **Active threat verification** is disabled. To enable the module, [kn
 
 ## How the Active threat verification feature works
 
+Based on the initial detected attacks, the **Active threat verification** module creates a lot of new test requests with different payloads attacking the same endpoint. This mechanism allows Wallarm to detect vulnerabilities that could be potentially exploited during attacks. The process of active threat verification will either confirm that the application is not vulnerable to the specific attack vectors or find actual application security issues.
+
 --8<-- "../include/how-attack-rechecker-works.md"
 
 ## Potential risks from the Attack rechecker activity

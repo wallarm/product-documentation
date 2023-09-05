@@ -75,8 +75,12 @@ nav:
         - Scanner Addresses for US Cloud: admin-en/scanner-address-us-cloud.md
       - Contacting Wallarm Support to Stop the Resource Scanner: admin-en/scanner-complaint-en.md
     - Active Threat Verification:
-      - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
-      - Configuration via Rules: user-guides/rules/change-request-for-active-verification.md
+      - Overview: vulnerability-detection/active-threat-verification/overview.md
+      - Enabling: vulnerability-detection/active-threat-verification/enable-disable-active-threat-verification.md
+      - Running Attack Replays on Staging: vulnerability-detection/active-threat-verification/running-test-on-staging.md
+      - Authenticating Replayed Attacks: vulnerability-detection/active-threat-verification/request-authentication.md
+      # - Configuration Best Practices: admin-en/attack-rechecker-best-practices.md
+      # - Configuration via Rules: user-guides/rules/change-request-for-active-verification.md
   - API Discovery:
     - Overview: about-wallarm/api-discovery.md
     - Managing API Portfolio: user-guides/api-discovery.md
