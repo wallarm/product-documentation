@@ -270,7 +270,7 @@ The country/region name should be passed to the attribute in the format correspo
 
 Wallarm scans public resources for IP addresses that are widely recognized as being associated with malicious activities. We then validate this information to ensure its accuracy, making it easier for you to take necessary actions, such as denylisting these IPs.
 
-To search for events originating from these malicious IP addresses, use the `source:mip` tag. This stands for **Malicious IPs** and is named accordingly in the denylist, in the section for blocking by source type.
+To search for events originating from these malicious IP addresses, use the `source:malicious` tag. This stands for **Malicious IPs** and is named accordingly in the denylist, in the section for blocking by source type.
 
 ### Search by server response status
 
