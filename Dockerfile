@@ -3,9 +3,6 @@ EXPOSE 8000
 
 WORKDIR /tmp
 
-RUN git clone https://github.com/g-provost/lightgallery-markdown.git .
-RUN python setup.py install
-
 COPY requirements.txt /tmp
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
