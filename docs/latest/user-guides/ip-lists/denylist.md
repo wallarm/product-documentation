@@ -58,7 +58,17 @@ To add an IP address, subnet, or group of IP addresses to the list:
         * **Search Engine Spiders** for IP addresses of search engine spiders
         * **VPN** for IP addresses of virtual private networks
         * **AWS** for IP addresses registered in Amazon AWS
-        * **Malicious IPs** for IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis
+        * **Malicious IPs** for IP addresses that are well-known for malicious activity, as mentioned in public sources, and verified by expert analysis.  We pull this data from a combination of the following resources:
+        
+            * [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
+            * [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
+            * [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
+            * [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
+            * [www.blocklist.de](https://www.blocklist.de/en/export.html)
+            * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
+            * [IPsum](https://github.com/stamparm/ipsum)
+
+            Collectively, these sources provide a list comprising more than 50,000 records.
 3. Select the applications to which you allow or restrict access for the specified IP addresses.
 4. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
 5. Specify the reason for adding an IP address or a group of IP addresses to the list.
