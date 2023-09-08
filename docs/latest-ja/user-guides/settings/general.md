@@ -9,7 +9,7 @@
 * Wallarmのフィルタモードの切り替え
 * 自動ログアウトタイムアウトの管理
 
-![!一般タブ](../../images/user-guides/settings/general-tab.png)
+![一般タブ](../../images/user-guides/settings/general-tab.png)
 
 ## フィルタリングモード
 

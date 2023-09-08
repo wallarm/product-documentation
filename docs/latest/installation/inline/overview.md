@@ -34,7 +34,7 @@ In this model, you deploy Wallarm as a virtual appliance within your infrastruct
 
 When deploying a Wallarm node, you have the flexibility to position it in different locations within your network topology. However, the recommended approach is to place the node instance behind a public load balancer, in front of your backend services, or a private load balancer, typically located before the backend services. The following diagram illustrates the typical traffic flow in this setup:
 
-![!In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+![In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
 Load balancers can be classified into two types: L4 and L7. The load balancer type determines how SSL offloading is handled, which is crucial when integrating Wallarm into your existing infrastructure.
 

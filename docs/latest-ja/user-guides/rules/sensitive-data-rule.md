@@ -39,4 +39,4 @@ Wallarm Nodeはリクエストにおけるデータマスキングをサポー�
 
 1. *Create*をクリック
 
-![!機微なデータをマーク][img-masking]
+![機微なデータをマーク][img-masking]

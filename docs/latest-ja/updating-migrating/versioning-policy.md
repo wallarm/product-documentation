@@ -72,11 +72,11 @@ Wallarmは、新しいメジャーとマイナーバージョンについての�
 * [News portal](https://changelog.wallarm.com/)
 * Wallarm Console
 
-    ![!Wallarm Console内の新しいバージョンに関する通知](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![Wallarm Console内の新しいバージョンに関する通知](../images/updating-migrating/wallarm-console-new-version-notification.png)
 
 メジャーおよびマイナーバージョンとWallarmノードのパッチバージョンの利用可能な更新についての情報も、Wallarm Console → **Nodes**のレギュラーノードに表示されます。各パッケージには**Up to date**のステータスまたは利用可能な更新のリストがあります。例えば、最新のコンポーネントバージョンがインストールされているフィルタリングノードのカードは以下のようになります：
 
-![!Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### 更新手順
 

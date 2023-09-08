@@ -8,7 +8,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="nginx" class="platform-card-button" onClick="platformClicked(event, 'nginx')">
-        <img class="platform-icon" src="../../images/platform-icons/nginx.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/nginx.svg">
         <h3>NGINX Stable
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -26,7 +26,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="nginxPlus" class="platform-card-button" onClick="platformClicked(event, 'nginxPlus')">
-        <img class="platform-icon" src="../../images/platform-icons/nginx-plus.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/nginx-plus.svg">
         <h3>NGINX Plus
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -42,7 +42,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="kong" class="platform-card-button" onClick="platformClicked(event, 'kong')">
-        <img class="platform-icon" src="../../images/platform-icons/kong.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/kong.svg">
         <h3>Kong
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -58,7 +58,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="envoy" class="platform-card-button" onClick="platformClicked(event, 'envoy')">
-        <img class="platform-icon" src="../../images/platform-icons/envoy.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/envoy.svg">
         <h3>Envoy
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -79,7 +79,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="aws" class="platform-card-button" onClick="platformClicked(event, 'aws')">
-        <img class="platform-icon" src="../../images/platform-icons/aws.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/aws.svg">
         <h3>AWS
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -96,7 +96,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="gcp" class="platform-card-button" onClick="platformClicked(event, 'gcp')">
-        <img class="platform-icon" src="../../images/platform-icons/gcp.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/gcp.svg">
         <h3>Google Cloud<br>Platform
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -113,7 +113,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="azure" class="platform-card-button" onClick="platformClicked(event, 'azure')">
-        <img class="platform-icon" src="../../images/platform-icons/azure-cloud.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/azure-cloud.svg">
         <h3>Microsoft Azure
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -129,7 +129,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="alibaba" class="platform-card-button" onClick="platformClicked(event, 'alibaba')">
-        <img class="platform-icon" src="../../images/platform-icons/alibaba-cloud.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg">
         <h3>Alibaba Cloud
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -145,7 +145,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="privateCloud" class="platform-card-button" onClick="platformClicked(event, 'privateCloud')">
-        <img class="platform-icon" src="../../images/platform-icons/private-cloud.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/private-cloud.svg">
         <h3>Private clouds
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -174,7 +174,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <a href="../../admin-en/installation-guides/envoy/envoy-docker/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
             <svg xmlns="http://www.w3.org/2000/svg" style="height: 72px;" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 32 32"><defs><clipPath id="A"><path d="M76 2v46H54v23H35.58l-.206 2c-1.15 12.53 1.036 24.088 6.063 33.97l1.688 3.03c1 1.817 2.2 3.523 3.438 5.188s1.686 2.583 2.47 3.688C62.32 133.8 82.13 141 105 141c50.648 0 93.633-22.438 112.656-72.844C231.153 69.54 244.1 66.08 250 54.563c-9.4-5.424-21.478-3.685-28.437-.187L240 2l-72 46h-23V2z"/></clipPath></defs><g transform="matrix(.679423 0 0 .679423 -2.086149 13.781817)"><path d="M30.305-3.553h4.222V.763h2.135a9.26 9.26 0 0 0 2.934-.492c.46-.156.974-.372 1.426-.644-.596-.778-.9-1.76-1-2.73-.122-1.317.144-3.032 1.036-4.063l.444-.513.53.425c1.332 1.07 2.452 2.565 2.65 4.27 1.603-.472 3.486-.36 4.9.456l.58.335-.305.596c-1.187 2.33-3.687 3.053-6.13 2.925-3.656 9.105-11.615 13.416-21.265 13.416-4.986 0-9.56-1.864-12.164-6.287-.153-.275-.283-.562-.422-.844-.88-1.947-1.173-4.08-.975-6.2l.06-.638h3.6V-3.55h4.222v-4.222h8.445v-4.222h5.067v8.445" fill="#394d54"/><g transform="matrix(.184659 0 0 .184659 3.070472 -11.997864)" clip-path="url(#A)"><g id="B"><g id="C" transform="translate(0 -22.866)"><path d="M123.86 3.8h19.818v19.817H123.86z" fill="#00acd3"/><path d="M123.86 26.676h19.818v19.818H123.86z" fill="#20c2ef"/><path id="D" d="M126.292 21.977V5.46m2.972 16.516V5.46m3.002 16.516V5.46m3.003 16.516V5.46m3.003 16.516V5.46m2.97 16.516V5.46" stroke="#394d54" stroke-width="1.56"/><use xlink:href="#D" y="22.866"/></g><use xlink:href="#C" transform="matrix(1 0 0 -1 22.866 4.572651)"/></g><use xlink:href="#B" x="-91.464" y="45.732"/><use xlink:href="#B" x="-45.732" y="45.732"/><use xlink:href="#B" y="45.732"/><path d="M221.57 54.38c1.533-11.915-7.384-21.275-12.914-25.718-6.373 7.368-7.363 26.678 2.635 34.807-5.58 4.956-17.337 9.448-29.376 9.448H34C32.83 85.484 34 146 34 146h217l-.987-91.424c-9.4-5.424-21.484-3.694-28.443-.197" fill="#17b5eb"/><path d="M34 89v57h217V89" fill-opacity=".17"/><path d="M111.237 140.9c-13.54-6.425-20.972-15.16-25.107-24.694L45 118l21 28 45.237-5.1" fill="#d4edf1"/><path d="M222.5 53.938v.03c-20.86 26.9-50.783 50.38-82.906 62.72-28.655 11.008-53.638 11.06-70.875 2.22-1.856-1.048-3.676-2.212-5.5-3.312-12.637-8.832-19.754-23.44-19.156-42.687H34V146h217V50h-25z" fill-opacity=".085"/></g><path d="M11.496 9.613c2.616.143 5.407.17 7.842-.594" fill="none" stroke="#394d54" stroke-width=".628" stroke-linecap="round"/><path d="M21.937 7.753a1.01 1.01 0 0 1-1.009 1.009 1.01 1.01 0 0 1-1.01-1.009 1.01 1.01 0 0 1 1.01-1.01 1.01 1.01 0 0 1 1.009 1.01z" fill="#d4edf1"/><path d="M21.2 7.08c-.088.05-.148.146-.148.256 0 .163.132.295.295.295.112 0 .2-.062.26-.154a.73.73 0 0 1 .055.277c0 .4-.324.723-.723.723s-.723-.324-.723-.723.324-.723.723-.723a.72.72 0 0 1 .262.049zM3.07 4.65h46.964c-1.023-.26-3.235-.6-2.87-1.95-1.86 2.152-6.344 1.5-7.475.448-1.26 1.828-8.597 1.133-9.108-.3-1.58 1.854-6.475 1.854-8.055 0-.512 1.424-7.848 2.12-9.1.3C12.284 4.2 7.8 4.853 5.94 2.7c.365 1.34-1.848 1.7-2.87 1.95" fill="#394d54"/></g></svg>
-            <img class="platform-icon" src="../../images/platform-icons/envoy.svg">
+            <img class="platform-icon non-zoomable" src="../../images/platform-icons/envoy.svg">
             <h3>Docker image (Envoy)</h3>
             <p>Deploy the Envoy-based Wallarm node as a Docker container</p>
         </a>
@@ -207,7 +207,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
     
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="debian9" class="platform-card-button" onClick="platformClicked(event, 'debian9')">
-    <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+    <img class="platform-icon non-zoomable" src="../../images/platform-icons/debian.svg">
         <h3>Debian 9.x Stretch
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -222,7 +222,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="debian9back" onClick="platformClicked(event, 'debian9back')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/debian.svg">
         <h3>Debian 9.x Stretch (backports)
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -237,7 +237,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="debian10" onClick="platformClicked(event, 'debian10')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/debian.svg">
         <h3>Debian 10.x Buster
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -257,7 +257,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="debian11" onClick="platformClicked(event, 'debian11')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/debian.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/debian.svg">
         <h3>Debian 11.x Bullseye
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -274,7 +274,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="ubuntu18" onClick="platformClicked(event, 'ubuntu18')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/ubuntu.svg">
         <h3>Ubuntu 18.04 Bionic
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -291,7 +291,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="ubuntu20" onClick="platformClicked(event, 'ubuntu20')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/ubuntu.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/ubuntu.svg">
         <h3>Ubuntu 20.04 Focal
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -310,7 +310,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="centos6" onClick="platformClicked(event, 'centos6')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/centos.svg">
         <h3>CloudLinux OS 6.x
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -326,7 +326,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="centos7" onClick="platformClicked(event, 'centos7')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/centos.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/centos.svg">
         <h3>CentOS 7.x
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -344,7 +344,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div id="deployOptionsDiv" class="navigation-card platform-card">
         <div type="button" id="alinux2" onClick="platformClicked(event, 'alinux2')" class="platform-card-button">
-            <img class="platform-icon" src="../../images/platform-icons/amazon-linux.svg">
+            <img class="platform-icon non-zoomable" src="../../images/platform-icons/amazon-linux.svg">
             <h3>Amazon Linux 2.0.2021x and lower
                 <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -364,7 +364,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="almalinux" onClick="platformClicked(event, 'almalinux')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/almalinux.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/almalinux.svg">
         <h3>AlmaLinux
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -381,7 +381,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="rockylinux" onClick="platformClicked(event, 'rockylinux')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/rockylinux.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/rockylinux.svg">
         <h3>Rocky Linux
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>
@@ -398,7 +398,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
 <div id="deployOptionsDiv" class="navigation-card platform-card">
     <div type="button" id="oraclelinux" onClick="platformClicked(event, 'oraclelinux')" class="platform-card-button">
-        <img class="platform-icon" src="../../images/platform-icons/oracle-linux.svg">
+        <img class="platform-icon non-zoomable" src="../../images/platform-icons/oracle-linux.svg">
         <h3>Oracle Linux 8.x
             <svg class="options-drop" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.5 8L14.5 12L10.5 16" stroke="#959DAC" stroke-width="2" stroke-linecap="square"/>

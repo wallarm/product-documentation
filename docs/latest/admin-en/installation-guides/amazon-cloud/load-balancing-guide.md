@@ -37,7 +37,7 @@ Create a Load Balancer by completing the following actions:
 
 3.  Configure the basic Load Balancer parameters:
 
-    ![!General Load Balancer parameters configuration][img-lb-basics]
+    ![General Load Balancer parameters configuration][img-lb-basics]
     
     1.  The name of the balancer (the **Name** parameter).
     
@@ -58,7 +58,7 @@ Create a Load Balancer by completing the following actions:
 
     Configure the routing of the incoming requests to the filtering nodes in the Auto Scaling Group.
 
-    ![!Configuring the incoming connections routing][img-lb-routing]
+    ![Configuring the incoming connections routing][img-lb-routing]
     
     1.  Create a new target group and specify its name in the **Name** field. The Load Balancer will route incoming requests to the instances located in the specified target group (e.g., `demo-target`).
         
@@ -100,4 +100,4 @@ To check the deployed filtering nodes operation, perform the following steps:
 
 2.  Make sure that the Wallarm services protect your application by [performing a test attack][link-docs-check-operation].
 
-![!Checking filtering node operation][img-checking-operation]
+![Checking filtering node operation][img-checking-operation]

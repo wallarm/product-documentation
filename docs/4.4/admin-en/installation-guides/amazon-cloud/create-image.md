@@ -74,17 +74,17 @@ You can now create a virtual machine image based on the configured filtering nod
 2.  Select your configured filtering node instance.
 3.  Launch the image creation wizard by selecting **Image** and then **Create Image** in the **Actions** drop-down menu.
 
-    ![!Launching the AMI creation wizard][img-launch-ami-wizard]
+    ![Launching the AMI creation wizard][img-launch-ami-wizard]
     
 4.  The **Create Image** form will appear. Enter the image name into the **Image name** field. You can leave the remaining fields unaltered.
 
-    ![!Configuring parameters in the AMI creation wizard][img-config-ami-wizard]
+    ![Configuring parameters in the AMI creation wizard][img-config-ami-wizard]
     
 5.  Click the **Create Image** button to launch the virtual machine image creation process.
     
     When the image creation process is finished, the corresponding message is displayed. Navigate to the **AMIs** tab on the Amazon EC2 dashboard to make sure that the image was successfully created and has the **Available** status.
     
-    ![!Exploring the created AMI][img-explore-created-ami]
+    ![Exploring the created AMI][img-explore-created-ami]
 
 !!! info "Image visibility"
     Because the prepared image contains settings that are specific to your application and the Wallarm token, it is not recommended to change the image visibility setting and make it public (by default, AMIs are created with the **Private** visibility setting).

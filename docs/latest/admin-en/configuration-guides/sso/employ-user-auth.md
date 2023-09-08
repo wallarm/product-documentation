@@ -27,7 +27,7 @@ To enable SSO authentication for Wallarm users:
 1. Go to **Settings** → **Users**.
 1. From the user menu, select **Enable SSO login**.
 
-![!Enabling SSO for Wallarm user][img-enable-sso-for-user]
+![Enabling SSO for Wallarm user][img-enable-sso-for-user]
 
 In the pop-up window, you will be prompted to send a notification to the user that SSO authentication is enabled. Click the **Send notification** button. If the notification is not required, click **Cancel**.
 
@@ -42,7 +42,7 @@ To disable SSO authentication for Wallarm users:
 1. Go to **Settings** → **Users**.
 1. From the user menu, select **Disable SSO**.
 
-![!Disabling SSO for Wallarm user][img-disable-sso-for-user]
+![Disabling SSO for Wallarm user][img-disable-sso-for-user]
 
 After that, the user will be notified by an email that the login using SSO is disabled with a suggestion (link) to restore the password to log in with the login/password pair. In addition, two-factor authentication becomes available to the user.
 

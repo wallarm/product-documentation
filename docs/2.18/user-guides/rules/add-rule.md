@@ -17,7 +17,7 @@ To add a rule to an existing branch, click *Add rule* (after hovering the mouse 
 
 If necessary, it is possible to modify the branch to which a rule will be added. For this, click on the *If request is* clause in the rule-adding form and make changes to the branch description conditions. If a new branch is created, it will appear on the screen, and the application structure view will be updated.
 
-![!Adding a new rule][img-add-rule]
+![Adding a new rule][img-add-rule]
 
 
 ## Branch Description

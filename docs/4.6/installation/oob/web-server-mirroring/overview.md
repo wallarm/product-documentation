@@ -4,7 +4,7 @@ This article explains how to deploy Wallarm as the [OOB](../overview.md) solutio
 
 Traffic mirroring can be implemented by configuring a web, proxy or similar server to copy incoming traffic to the Wallarm services for analysis. With this approach, typical traffic flow looks as follows:
 
-![!OOB scheme](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![OOB scheme](../../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## Deployment procedure
 

@@ -8,7 +8,7 @@ The **Nodes** section of Wallarm UI allows you to manage filtering nodes:
 * Delete nodes
 * Create new nodes
 
-![!Nodes](../../images/user-guides/nodes/table-nodes.png)
+![Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Administrator access"
     The creating, deleting, and regenerating of Wallarm nodes/tokens is only available to users with the **Administrator** role. Viewing the details of installed nodes is available to all users.

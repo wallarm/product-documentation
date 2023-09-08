@@ -5,7 +5,7 @@
 
 In Wallarm Console → **Settings** → **API tokens**, you can manage tokens for [API request authentication](../../api/overview.md).
 
-![!Wallarm API token][img-api-tokens-edit]
+![Wallarm API token][img-api-tokens-edit]
 
 This section is available for the users of **[all roles][user-roles-article]** besides **Read Only** and **API developer**.
 

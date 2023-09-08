@@ -26,7 +26,7 @@ In Wallarm UI:
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-    ![!Jira integration](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jira integration](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 ## Testing integration
 
@@ -34,7 +34,7 @@ In Wallarm UI:
 
 Test Jira issue creation:
 
-![!Test Jira issue creation](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+![Test Jira issue creation](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 ## Updating integration
 

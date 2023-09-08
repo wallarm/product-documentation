@@ -85,11 +85,11 @@ To fetch a metric from the InfluxDB data source do the following:
 2.  Design a query to the InfluxDB
     *   either by using the graphical query design tool,
 
-        ![!Graphical query design tool][img-influxdb-query-graphical]
+        ![Graphical query design tool][img-influxdb-query-graphical]
 
     *   or by manually filling in a query in plain text (to do this, click the *Toggle text edit* button, which is highlighted in the screenshot below).
 
-        ![!Plaintext query design tool][img-influxdb-query-plaintext]
+        ![Plaintext query design tool][img-influxdb-query-plaintext]
 
 
 
@@ -130,7 +130,7 @@ For the `curl_json-wallarm_nginx/gauge-attacks` metric, we recommend using the â
 *   Select the *Calc: Last* option to display the current metric value.
 *   If necessary, you can configure thresholds and other parameters. 
 
-![!Configure visualization][img-query-visualization]
+![Configure visualization][img-query-visualization]
 
 ### Further Actions
 
@@ -147,7 +147,7 @@ After you have connected one of the data sources and configured the query and vi
 
     --8<-- "../include/monitoring/wallarm-status-check.md"
     
-    ![!Checking the attack counter][img-grafana-0-attacks]
+    ![Checking the attack counter][img-grafana-0-attacks]
     
 3.  Perform a test attack on an application protected by the filter node. To do this, you can send a malicious request to the application either with the `curl` utility or a browser.
 
@@ -157,6 +157,6 @@ After you have connected one of the data sources and configured the query and vi
 
     --8<-- "../include/monitoring/wallarm-status-output-padded.md"
 
-    ![!Checking the attack counter][img-grafana-16-attacks]
+    ![Checking the attack counter][img-grafana-16-attacks]
 
 The Grafana dashboard now displays the `curl_json-wallarm_nginx/gauge-attacks` metric values for the `node.example.local` filter node.

@@ -102,7 +102,7 @@ You will find more details in the [official Logstash documentation](https://www.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-![!Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 ## Testing integration
 
@@ -173,7 +173,7 @@ The test Logstash log:
 
 For example:
 
-![!Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 To log Wallarm events using this scheme:
 

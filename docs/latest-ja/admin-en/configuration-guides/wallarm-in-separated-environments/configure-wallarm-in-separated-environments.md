@@ -40,8 +40,8 @@
 * 新しい設定をまずテスト環境または開発環境に適用し、機能を確認した後、プロダクション環境に対する変更を適用します。
 * `Create regexp-based attack indicator`(正規表現に基づいた攻撃指標を作成)ルールを`Experimental`(実験的)モードで使用します。 このモードでは、ルールを間違って有効なエンドユーザーリクエストをブロックするリスクなしに、直接プロダクション環境にデプロイできます。
 
-    ![!Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
+    ![Creating experimental rule](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/define-attack-experimental.png)
 
 * `Set filtration mode`(フィルターモードの設定)ルールを使用して、特定の環境やリクエストに対するWallarmのフィルタリングモードを制御します。 このルールは、Wallarm保護を段階的に展開し、新たなエンドポイントや他のリソースを異なる環境で保護する方法に追加の柔軟性を提供します。 デフォルトでは、[`wallarm_mode`](../../configure-parameters-en.md#wallarm_mode)値は、[`wallarm_mode_allow_override`](../../configure-parameters-en.md#wallarm_mode_allow_override)設定に応じて使用されます。
 
-    ![!Creating a rule to overwrite the filtration mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)
+    ![Creating a rule to overwrite the filtration mode](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/rule-overwrite-filtering-mode.png)

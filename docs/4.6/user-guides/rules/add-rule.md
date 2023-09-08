@@ -17,7 +17,7 @@ To add a rule to an existing branch, click *Add rule* (after hovering the mouse 
 
 If necessary, it is possible to modify the branch to which a rule will be added. For this, click on the *If request is* clause in the rule-adding form and make changes to the branch description conditions. If a new branch is created, it will appear on the screen, and the application structure view will be updated.
 
-![!Adding a new rule][img-add-rule]
+![Adding a new rule][img-add-rule]
 
 
 ## Branch Description
@@ -75,7 +75,7 @@ The syntax of the regular expression is different from the classical wildcards, 
 
 But in Wallarm, your `something-1.example.com/user/create.com` will be parsed into:
 
-![!Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
+![Example of parsing URI into components](../../images/user-guides/rules/something-parsed.png)
 
 ...where `something-1.example.com` is a `header`-`HOST` point. We mentioned that wildcard cannot be used within the point, so instead we need to use regular expression: set the condition type to REGEX and then use the regular expression Wallarm [specific syntax](#condition-type-regex):
 
@@ -95,7 +95,7 @@ But in Wallarm, your `something-1.example.com/user/create.com` will be parsed in
     !!! info "The simpler way"
         You can omit `.*` and leave only `[.]example[.]com$`. In both cases, Wallarm will assume that any character can appear before `[.]example[.]com$` any number of times.
 
-    ![!Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
+    ![Using regular expression in header component](../../images/user-guides/rules/wildcard-regex.png)
 
 ### Advanced edit form
 

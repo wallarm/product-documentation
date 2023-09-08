@@ -33,7 +33,7 @@ The following node properties and metrics are available:
 * Versions of installed Wallarm packages, NGINX, and Envoy (if any)
 * Indicator of available component updates
 
-![!Regular node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![Regular node card](../../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ## Deleting a node
 

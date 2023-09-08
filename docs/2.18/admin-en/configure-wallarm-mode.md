@@ -90,7 +90,7 @@ On the **General** tab, you can specify one of the following filtration modes:
 * [**Monitoring**](#available-filtration-modes)
 * [**Blocking**](#available-filtration-modes)
     
-![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page.png)
+![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page.png)
 
 !!! info "The Wallarm Cloud and filtering node synchronization"
     The rules defined in Wallarm Console are applied during the Wallarm Cloud and filtering node synchronization process, which is conducted once every 2‑4 minutes.

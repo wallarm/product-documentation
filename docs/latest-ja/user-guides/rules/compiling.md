@@ -10,7 +10,7 @@ Wallarmコンソールの **ルール**で新規ルールを追加したり、�
 
 カスタムルールセットビルドの状態と予想される完了時間は、Wallarmコンソールに表示されます。構築中のものがない場合、インターフェースは最後に完成したビルドの日付を表示します。
 
-![!Build status](../../images/user-guides/rules/build-rules-status.png)
+![Build status](../../images/user-guides/rules/build-rules-status.png)
 
 ## カスタムルールセットをフィルタリングノードにアンロードする
 

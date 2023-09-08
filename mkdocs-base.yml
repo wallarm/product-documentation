@@ -12,7 +12,9 @@ plugins:
   - minify:
       minify_html: true
   - meta-descriptions
-  - glightbox
+  - glightbox:
+      skip_classes:
+        - non-zoomable
 dev_addr: '127.0.0.1:8000'
 
 theme:
@@ -88,3 +90,7 @@ markdown_extensions:
   - meta
 
 edit_uri: ../product-documentation/edit/master/docs/latest/
+
+validation:
+  absolute_links: ignore
+  unrecognized_links: ignore

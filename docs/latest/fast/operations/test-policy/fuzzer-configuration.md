@@ -16,7 +16,7 @@
 !!! info "Enabling fuzzer"
     The fuzzer is disabled by default. You can enable it in the **Fuzz testing** section of the policy editor on your Wallarm account:
     
-    ![!Enabling fuzzer][img-enable-fuzzer]
+    ![Enabling fuzzer][img-enable-fuzzer]
 
     The fuzzer switch and the **Use only custom DSL** switch in the **Attacks to test** section are mutually exclusive.
 
@@ -32,7 +32,7 @@ The policy editor on your Wallarm account allows you to:
 * add conditions affecting the fuzzer operation by clicking the **Add condition** and **Add another condition** buttons
 * delete created payloads and conditions by clicking the «—» symbol near them
 
-![!Payload and condition management][img-manipulate-items]
+![Payload and condition management][img-manipulate-items]
 
 When configuring conditions you can use the following parameters:
 
@@ -74,7 +74,7 @@ If the response from the application meets all the conditions configured in the 
 
 If the response body meets the `.*SQLITE_ERROR.*` regular expression, then consider the sent FAST request has caused an anomaly:
 
-![!Condition example][img-anomaly-condition]
+![Condition example][img-anomaly-condition]
 
 !!! info "Default behavior"
     If there are no configured conditions in this section, the fuzzer will detect the server response with parameters anomalously different from the response to the baseline request. For example, a long server response time can be a reason to detect the server response as anomalous.
@@ -87,7 +87,7 @@ If the response from the application meets all the conditions configured in the 
 
 If the response code is lower than `500`, then consider the sent FAST request has not caused an anomaly:
 
-![!Condition example][img-not-anomaly-condition]
+![Condition example][img-not-anomaly-condition]
 
 ## The "Stop fuzzing if response" section
 
@@ -97,7 +97,7 @@ If the application response, the number of detected anomalies, or the number of 
 
 Fuzzing will be stopped if more than two anomalies are detected. In each anomaly, you can have any number of single anomalous bytes that is not equal to two.
 
-![!Condition example][img-stop-condition]
+![Condition example][img-stop-condition]
 
 !!! info "Default behavior"
     If the conditions for stopping the fuzzing process are not configured, then the fuzzer will check all 255 anomalous bytes. If an anomaly is detected, each individual byte in the payload will be stopped.

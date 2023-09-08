@@ -19,7 +19,7 @@ To create an API abuse profile:
 1. If reaction is to add to deny- or graylist, set the time during which the IP will be in the list. Default value is `Add for a day`. 
 1. Set name and optionally description.
 
-    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
     Once the API abuse profile is configured, the module will start the [traffic analysis and blocking supported automated threats](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works).
 
@@ -41,7 +41,7 @@ The **API Abuse Prevention** module blocks bots by adding them to the [denylist]
 
 You can explore blocked bot's IPs in Wallarm Console → **IP lists** → **Denylist** or **Graylist**. Explore IPs added with the `Bot` **Reason**.
 
-![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+![Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
 !!! info "Confidence"
     As a result of [detectors' work](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works), every detected bot obtain **confidence percentage**: how sure we are that this is a bot. In each bot type, detectors have different relative importance / number of votes. Thus, the confidence percentage is the votes gained out of all possible votes in this bot type (provided by detectors that worked).
@@ -50,7 +50,7 @@ You can interfere in the bot protection process. If denylisted or graylisted IP 
 
 You can also explore bot API abuse attacks performed by bots in Wallarm Console → **Events** section. Use `api_abuse` search key or select `API Abuse` from the **Type** filter.
 
-![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 Bot information is visualized in three heatmaps. In all heatmaps, the bigger the bubble, the closer it to red color and to the right upper corner - the more reasons to consider this IP to be a bot.
 
@@ -88,11 +88,11 @@ There are two ways of adding IP addresses to the exception list:
 
 * From the **API Abuse Prevention** section → **Exception list** tab via **Add exception**. Here, besides IPs and subnets, you can add locations and source types that should be ignored by API Abuse Prevention.
 
-    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 * From the **Events** section: use `api_abuse` search key or select `API Abuse` from the **Type** filter, then expand the required event and click **Add to exception list**.
 
-    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 When the IP address is added to the exception list, the address is automatically removed from [deny-](../user-guides/ip-lists/denylist.md) or [graylist](../user-guides/ip-lists/graylist.md), but only if it was added there by API Abuse Prevention itself (has a `Bot` reason).
 

@@ -89,7 +89,7 @@ The directive  can be set inside the `http` block of the NGINX configuration fil
 
 The sample blocking page provided by Wallarm `/usr/share/nginx/html/wallarm_blocked.html` looks as follows:
 
-![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 You can use the sample page as a start point for your customization enhancing it by:
 

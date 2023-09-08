@@ -33,7 +33,7 @@ Oktaサービスに（アカウントは管理者権限が必要です）ログ�
 
 *Dashboard* セクションで、右側の*Add Applications* ボタンをクリックします。
 
-![!Okta dashboard][img-dashboard]
+![Okta dashboard][img-dashboard]
 
 新しいアプリケーションセクションで、右側の*Create New App* ボタンをクリックします。
 
@@ -59,7 +59,7 @@ Oktaサービスに（アカウントは管理者権限が必要です）ログ�
 
 *Next* ボタンをクリックします。
 
-![!General settings][img-general]
+![General settings][img-general]
 
 
 ##  2.  SAMLの設定
@@ -80,11 +80,11 @@ Oktaサービスに（アカウントは管理者権限が必要です）ログ�
 
 初期設定のためのその他のパラメータはデフォルトのままにしておけます。
 
-![!Configure SAML][img-saml]
+![Configure SAML][img-saml]
 
 設定を続けるには、*Next* をクリックします。前のステップに戻りたい場合は、*Previous* をクリックします。
 
-![!SAML settings preview][img-saml-preview]
+![SAML settings preview][img-saml-preview]
 
 
 ##  3.  フィードバック
@@ -95,7 +95,7 @@ Oktaサービスに（アカウントは管理者権限が必要です）ログ�
 
 その後、*Finish* ボタンをクリックしてSAML統合ウィザードを終了します。前のステップに戻りたい場合は、*Previous* ボタンをクリックします。
 
-![!Feedback form][img-feedback]
+![Feedback form][img-feedback]
 
 このステージの後、作成したアプリケーションの設定ページに進みます。
 
@@ -111,18 +111,18 @@ Oktaサービスに（アカウントは管理者権限が必要です）ログ�
 XMLファイルとしてダウンロードするには：
 1.  作成したアプリケーションの設定ページで、*Identity Provider metadata*リンクをクリックします：
 
-    ![!Metadata download link][img-fetch-metadata-xml]
+    ![Metadata download link][img-fetch-metadata-xml]
     
     結果として、次のような内容の新しいタブがブラウザに表示されます：
     
-    ![!Example of XML-formatted metadata][img-xml-metadata]
+    ![Example of XML-formatted metadata][img-xml-metadata]
     
 2.  内容をXMLファイルに保存します（ブラウザや他の適切な方法を用いて）。
 
 メタデータを「そのまま」ダウンロードするには：
 1.  作成したアプリケーションの設定ページで、*View Setup instructions*ボタンをクリックします。
 
-    ![!The “View Setup instructions” button][img-fetch-metadata-manually]
+    ![The “View Setup instructions” button][img-fetch-metadata-manually]
     
 2.  提供されたすべてのデータをコピーします。
 

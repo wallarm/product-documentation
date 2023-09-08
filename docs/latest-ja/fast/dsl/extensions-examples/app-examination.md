@@ -35,7 +35,7 @@ SELECT * FROM Users WHERE email = ''' AND password = '827ccb0eea8a706c4c34a16891
 
 したがって、OWASP Juice Shopが、ログインフォームを介したSQLインジェクション攻撃（SQLi）に対して脆弱である可能性があると推測できます。
 
-![!OWASP Juice Shopアプリケーションのログインフォーム][img-login]
+![OWASP Juice Shopアプリケーションのログインフォーム][img-login]
 
 !!! info "脆弱性の悪用"
     悪用可能な脆弱性：SQLi。
@@ -66,4 +66,4 @@ SELECT * FROM Users WHERE email = ''' AND password = '827ccb0eea8a706c4c34a16891
     }
     ```
 
-![!Wiresharkアプリケーションを用いてAPIサーバーのレスポンスをインターセプトする][img-wireshark]
+![Wiresharkアプリケーションを用いてAPIサーバーのレスポンスをインターセプトする][img-wireshark]

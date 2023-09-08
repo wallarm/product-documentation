@@ -11,7 +11,7 @@ If you have the paid Wallarm subscription plan, the subscription card displays t
 * Statistics on the requests processed by the filtering node
 * The set of modules and features included to the subscription plan (the set depends on the chosen subscription plan)
 
-![!Paid subscription plan](../../images/user-guides/settings/subscriptions/subscriptions.png)
+![Paid subscription plan](../../images/user-guides/settings/subscriptions/subscriptions.png)
 
 To activate, cancel, or change a subscription, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).
 
@@ -43,6 +43,6 @@ If you have recently registered in the EU Cloud and are using the [trial version
     Wallarm trial provides the maximum set of modules and features that can be included in the API Security [plan](../../about-wallarm/subscription-plans.md#subscription-plans).
 * If you have the approved PoC plan with the Wallarm team, link to the PoC results document
 
-![!Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
+![Trial period](../../images/user-guides/settings/subscriptions/subscriptions-trial-with-poc.png)
 
 To get more information on the subscription to Wallarm or to activate a paid subscription plan, please send a request to [sales@wallarm.com](mailto:sales@wallarm.com).

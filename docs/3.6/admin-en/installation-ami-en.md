@@ -64,7 +64,7 @@ Create a security group for the filtering node. To do this, proceed with the fol
 4.  Configure incoming and outgoing connections rules on the **Inbound** and **Outbound** tabs.
 5.  Click the **Create** button to create the security group.
 
-![!Creating a security group][img-create-sg]
+![Creating a security group][img-create-sg]
 
 To see detailed information about creating a security group, proceed to this [link][link-sg].
 

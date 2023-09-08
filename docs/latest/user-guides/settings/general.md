@@ -9,7 +9,7 @@ On the **General** tab of the **Settings** section you can:
 * Switch Wallarm filtration mode
 * Manage automatic logout timeouts
 
-![!General tab](../../images/user-guides/settings/general-tab.png)
+![General tab](../../images/user-guides/settings/general-tab.png)
 
 ## Filtration mode
 

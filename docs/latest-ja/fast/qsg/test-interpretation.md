@@ -24,7 +24,7 @@
 
 1.  "ダッシュボード → FAST"タブをクリックして、現状をすばやく確認します。ダッシュボードには、すべてのテストの実行とそのステータス、選択した期間の脆弱性数の概要が表示されます。
 
-    ![!Dashboard][img-dashboard]
+    ![Dashboard][img-dashboard]
 
     <!-- イベント検索ツールも利用できます。 ”イベント”タブを選択して必要なリクエストを検索ボックスに入力します。検索ボックスの近くにある “How to search” のリンクからヘルプを得ることができます。 -->
 
@@ -39,11 +39,11 @@
     * ターゲットアプリケーションのドメイン名
     * テスト生成と実行プロセスがどこで行われたか (ノードまたはクラウド)
 
-    ![!テスト実行][img-testrun]
+    ![テスト実行][img-testrun]
 
 3.  テストの実行を詳しく確認するためにそれをクリックします：
 
-    ![!テストの詳細][img-test-run-expanded]
+    ![テストの詳細][img-test-run-expanded]
 
     テストの詳細から以下の情報を取得できます：
 
@@ -53,33 +53,33 @@
     * ターゲットアプリケーションに送信されたリクエストの数
     * ベースラインリクエストテストプロセスのステータス：
 
-        * **成功** ![!Status: Passed][img-status-passed]
+        * **成功** ![Status: Passed][img-status-passed]
         
             与えられたベースラインリクエストに対して、脆弱性は見つかりませんでした（選択したテストポリシーによります - 別のものを選択すれば、脆弱性が見つかるかもしれません）または、テストポリシーがリクエストに適用可能ではありません。
         
-        * **失敗** ![!Status: Failed][img-status-failed]  
+        * **失敗** ![Status: Failed][img-status-failed]  
         
             与えられたベースラインリクエストについて、脆弱性が見つかりました。
             
-        * **進行中** ![!Status: In progress][img-status-inprogress]
+        * **進行中** ![Status: In progress][img-status-inprogress]
               
             ベースラインリクエストが脆弱性のテスト中です。
             
-        * **エラー** ![!Status: Error][img-status-error]  
+        * **エラー** ![Status: Error][img-status-error]  
             
             エラーが原因でテストプロセスが停止しました。
             
-        * **待機中** ![!Status: Waiting][img-status-waiting]      
+        * **待機中** ![Status: Waiting][img-status-waiting]      
         
             ベースラインリクエストがテストのためにキューに入れられています。同時にテストできるのは、制限された数のリクエストだけです。
             
-        * **中断** ![!Status: Interrupted][img-status-interrupted]
+        * **中断** ![Status: Interrupted][img-status-interrupted]
         
             テストプロセスは手動で中断された（「アクション」→「中断」）、または同じFASTノードで別のテストが実行されました。
 
 4.  ベースラインリクエストを詳しく確認するためにそれをクリックします：
 
-    ![!テストの詳細][img-testrun-expanded]
+    ![テストの詳細][img-testrun-expanded]
     
     各個のベースラインリクエストには以下の情報が提供されます：
 
@@ -90,14 +90,14 @@
 
 5.  リクエスト処理の完全なログを表示するには、最も右側にある”詳細”リンクを選択します：
 
-    ![!リクエスト処理ログ][img-log]
+    ![リクエスト処理ログ][img-log]
 
 6.  発見された脆弱性の概要を得るには、”問題”リンクをクリックします：
 
-    ![!脆弱性の簡単な説明][img-vuln-description]
+    ![脆弱性の簡単な説明][img-vuln-description]
 
     脆弱性を詳しく確認するために、脆弱性の説明をクリックします：
 
-    ![!脆弱性の詳細][img-vuln-details]
+    ![脆弱性の詳細][img-vuln-details]
             
 テスト結果を解釈するツールを理解するべきです。

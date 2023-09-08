@@ -14,7 +14,7 @@ To create a managed instance group and configure its auto scaling, perform the f
 
 1.  Navigate to the **Instance groups** page in the **Compute Engine** section of the menu and click the **Create instance group** button.
 
-    ![!Creating an instance group][img-creating-instance-group]
+    ![Creating an instance group][img-creating-instance-group]
 
 2.  Enter the instance group name into the **Name** field.
 
@@ -39,7 +39,7 @@ To create a managed instance group and configure its auto scaling, perform the f
     
     !!! info "Example"
         The following configuration describes the control of the instance group size to keep the average virtual machine processors' load at the 60 percent level.
-        ![!Example: creating an instance group][img-create-instance-group-example]
+        ![Example: creating an instance group][img-create-instance-group-example]
 
 6.  Specify the minimum instance group size in the **Minimum number of instances** field (e.g., two instances).
 
@@ -58,6 +58,6 @@ You can check that the auto scaling group was created correctly by viewing the n
 
 You can do this using Wallarm Console. For example, if two instances with filtering nodes are concurrently operating, Wallarm Console will display this number for the corresponding Wallarm node in the **Nodes** section.
 
-![!The **Nodes** nodes tab on the Wallarm web interface][img-checking-nodes-operation]
+![The **Nodes** nodes tab on the Wallarm web interface][img-checking-nodes-operation]
 
 You can now proceed with the [creation and configuration of a load balancer][link-creating-load-balancer].

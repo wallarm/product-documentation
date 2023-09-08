@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Denylist**, you can manage blocked
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
+![IP denylist](../../images/user-guides/ip-lists/denylist-apps.png)
 
 !!! info "Old name of the list"
     The old name of the IP address denylist is "IP address blacklist".
@@ -63,7 +63,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
 4. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
 5. Specify the reason for adding an IP address or a group of IP addresses to the list.
 
-![!Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ### Automatic bots' IPs denylisting
 
@@ -73,6 +73,6 @@ To add an IP address, subnet, or group of IP addresses to the list:
 
 You can get notifications about newly denylisted IPs via the messengers or SIEM systems you use every day. To enable notifications, configure the appropriate [trigger](../triggers/triggers.md), e.g.:
 
-![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

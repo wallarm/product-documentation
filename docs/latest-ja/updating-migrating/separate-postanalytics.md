@@ -153,10 +153,10 @@
 
 1. Wallarmアカウントが**管理者**ロールを持っていることを確認します。 [US Cloud](https://us1.my.wallarm.com/settings/users)または[EU Cloud](https://my.wallarm.com/settings/users)のユーザーリストに移動して確認します。
 
-    ![!Wallarmコンソールのユーザーリスト][img-wl-console-users]
+    ![Wallarmコンソールのユーザーリスト][img-wl-console-users]
 1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のWallarmコンソール→ **Nodes**を開き、**Wallarm node**タイプのノードを作成します。
 
-    ![!Wallarmノードの作成][img-create-wallarm-node]
+    ![Wallarmノードの作成][img-create-wallarm-node]
 1. 生成されたトークンをコピーします。
 1. ノードを実行するために`register-node`スクリプトを実行します：
 

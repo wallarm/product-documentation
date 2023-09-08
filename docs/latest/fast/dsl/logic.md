@@ -60,7 +60,7 @@ During a modifying extension operation, a baseline request sequentially proceeds
 !!! info "An extension without optional phases"
     If no optional phases are applied to the baseline request, the test request matches the baseline request. 
 
-![!Modifying extension phases overview][img-phases-mod-overview]
+![Modifying extension phases overview][img-phases-mod-overview]
 
 If a baseline request satisfies a defined FAST [test policy][doc-policy-in-detail] then the request contains one or more parameters that are allowed for processing. The modifying extension iterates through these parameters:
 
@@ -69,7 +69,7 @@ If a baseline request satisfies a defined FAST [test policy][doc-policy-in-detai
 
 The image below shows a POST request with some POST parameters as an example.
 
-![!Modifying extension workflow overview][img-mod-workflow]
+![Modifying extension workflow overview][img-mod-workflow]
 
 ##  How a Nonmodifying Extension Works
 
@@ -79,11 +79,11 @@ While in this phase, only the host name of the IP address is derived from the `H
 
 Due to the possibility of the FAST node encountering several incoming baseline requests with the same `Host` header value, these requests proceed through the implicit Collect phase to gather only those requests with a unique `Host` header value (see [“The Uniqueness Condition”][doc-collect-uniq]).
 
-![!Non-modifying extension phases overview][img-phases-non-mod-overview]
+![Non-modifying extension phases overview][img-phases-non-mod-overview]
 
 When a nonmodifying extension works, one or more predefined test requests are sent to the host that is mentioned in the `Host` header of every baseline request that is processed in the Send phase:
 
-![!Non-modifying extension workflow overview][img-non-mod-workflow]
+![Non-modifying extension workflow overview][img-non-mod-workflow]
 
 
 ##  How Extensions Process Requests
@@ -93,7 +93,7 @@ When a nonmodifying extension works, one or more predefined test requests are se
 Several extensions may be defined for use by a FAST node at the same time.
 Each incoming baseline request will proceed through all plugged in extensions.
 
-![!Extensions used by workers][img-workers]
+![Extensions used by workers][img-workers]
 
 At each moment of time, the extension processes a single baseline request. FAST supports parallel baseline request processing; each of the baseline requests received will be sent to a free worker to accelerate processing. Different workers may run the same extensions at the same time for different baseline requests. The extension defines whether test requests should be created on the basis of the baseline request.
 

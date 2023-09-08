@@ -10,17 +10,17 @@ Oktaを通じて認証を行うには、Okta側でアカウントを作成し、
 
 Oktaポータルの右上にある*Admin* ボタンをクリックします。 *Dashboard* セクションで、*Assign Applications* のリンクをクリックします。
 
-![!Okta dashboard][img-dashboard]
+![Okta dashboard][img-dashboard]
 
 選択したアプリケーションにアクセスできるように、適切なユーザーにアプリケーションを割り当てるように求められます。これを行うには、必要なアプリケーションとユーザーの横にあるチェックボックスにチェックを入れて*Next* をクリックします。
 
-![!Assigning users to the application][img-assignments]
+![Assigning users to the application][img-assignments]
 
 次に、アプリケーションの割り当てを確認し、確認するように求められます。すべて正しい場合は、*Confirm Assignments* ボタンをクリックして割り当てを確認します。
 
 その後、*Assignments* タブのアプリケーション設定ページに移動できます。ここでは、SSOが設定されているアプリケーションにアクセスできるユーザーのリストを見ることができます。
 
-![!User list for the Wallarm application][img-user-list]
+![User list for the Wallarm application][img-user-list]
 
 Wallarmアプリケーションへのアクセス権が設定されました。これで、アプリケーションに割り当てられたユーザーは、Oktaサービスを介したSSO認証を使用してアプリケーションにアクセスできます。
 

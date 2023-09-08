@@ -41,7 +41,7 @@ FASTはリクエスト要素を[ポイント][gl-point]として表現し、処�
     リクエスト内の他の任意のポイントの処理は行われません。
 
 ??? info "ポリシーの例"
-    ![!Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
+    ![Policy example](../../../images/fast/operations/common/test-policy/overview/policy-flow-example.png)
 
     上の画像は、脆弱性の検出にFASTノードが使用するポリシーを示しています。このポリシーは、基本リクエストのすべてのGETパラメーターを処理することを許容し、常に目標アプリケーションにそのまま渡される`token`GETパラメーターを除きます。
 

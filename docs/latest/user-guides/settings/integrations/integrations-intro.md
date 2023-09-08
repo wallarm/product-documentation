@@ -34,7 +34,7 @@ The **Integrations** section of Wallarm Console allows you to integrate with dif
 
 The systems available for integration are grouped by types as follows:
 
-![!Integrations Overview][integration-pane-img]
+![Integrations Overview][integration-pane-img]
 
 ### Email and messengers
 

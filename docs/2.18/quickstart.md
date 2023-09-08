@@ -72,7 +72,7 @@ The Shell script [**getwallarm.sh**](https://github.com/wallarm/quick-start/blob
     If any errors occurred during the script execution, the script would return appropriate error messages.
 7. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure the SQLi and XSS attacks are displayed in the list.
     
-    ![!Attacks in the interface](images/admin-guides/test-attacks-quickstart-sqli-xss.png)
+    ![Attacks in the interface](images/admin-guides/test-attacks-quickstart-sqli-xss.png)
 
 ## Next steps
 

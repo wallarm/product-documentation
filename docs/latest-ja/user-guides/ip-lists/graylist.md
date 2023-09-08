@@ -19,7 +19,7 @@ Wallarm のコンソール → **IP リスト** → **グレイリスト**で、
 
 --8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP グレイリスト](../../images/user-guides/ip-lists/graylist.png)
+![IP グレイリスト](../../images/user-guides/ip-lists/graylist.png)
 
 !!! info "リストの旧名称"
     IP アドレスのグレイリストの旧名称は "IP アドレスのグレイリスト"です。
@@ -75,7 +75,7 @@ IP アドレス、サブネット、または IP アドレスのグループを�
 4. IP アドレスまたは IP アドレスのグループをリストに追加する期間を選択します。最小値は5分、最大値は永遠です。
 5. IP アドレスまたは IP アドレスのグループをリストに追加する理由を指定します。
 
-![!リストへの IP の追加 (アプリとともに)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![リストへの IP の追加 (アプリとともに)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ### 自動的なボットの IP グレイリスティング
 

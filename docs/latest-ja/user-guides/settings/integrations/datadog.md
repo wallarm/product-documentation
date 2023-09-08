@@ -17,7 +17,7 @@ Wallarmを設定して、適切な統合を作成することにより、検出�
 1. [統合テスト](#統合のテスト) を行い、設定が正しいことを確認します。
 1. **統合を追加** をクリックします。
 
-![!Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+![Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
 ## 統合テスト
 
@@ -25,7 +25,7 @@ Wallarmを設定して、適切な統合を作成することにより、検出�
 
 Datadogのテストログ：
 
-![!The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 他のレコードの中にWallarmのログを見つけるために、Datadog Logsサービスで `source:wallarm_cloud` 検索タグを絨毯できます。
 

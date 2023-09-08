@@ -54,7 +54,7 @@ Create a Launch Template by doing the following steps:
 
 7.  Click the **Create launch template** button.
 
-    ![!Creating a Launch Template][img-create-lt-wizard]
+    ![Creating a Launch Template][img-create-lt-wizard]
     
 Wait until the template creation process is finished.
 
@@ -75,7 +75,7 @@ To create an Auto Scaling Group, do the following steps:
 
 2.  Select the **Launch Template** option, then select the [previously created][anchor-lt] Launch Template from the list and click the **Next Step** button. 
 
-    ![!Creating an Auto Scaling Group][img-create-asg-wizard]
+    ![Creating an Auto Scaling Group][img-create-asg-wizard]
     
 3.  Enter the desired Auto Scaling Group name into the **Group name** field.
 
@@ -104,7 +104,7 @@ To create an Auto Scaling Group, do the following steps:
         
         Make sure that you choose the correct VPC and subnets and [configure a security group][link-security-group-guide] in a way that does not prevent the filtering node access to Wallarm API servers.
 
-    ![!General Auto Scaling Group settings][img-asg-wizard-1]
+    ![General Auto Scaling Group settings][img-asg-wizard-1]
     
 9.  Navigate to the **Configure scaling policies** page by clicking the **Next: Configure scaling policies** button.
 
@@ -119,7 +119,7 @@ To create an Auto Scaling Group, do the following steps:
 
 13. Configure the group size increase policy using the **Increase Group Size** parameter group.
 
-    ![!Auto Scaling Group size increase policy][img-asg-increase-policy]
+    ![Auto Scaling Group size increase policy][img-asg-increase-policy]
     
     1.  If necessary, specify the group size increase policy name using the **Name** parameter.
 
@@ -133,7 +133,7 @@ To create an Auto Scaling Group, do the following steps:
         !!! info "Example"
             You can set up triggering of an event with the name **High CPU utilization** upon reaching a 60% average processor load within five minutes:
             
-            ![!An alarm example][img-alarm-example]
+            ![An alarm example][img-alarm-example]
         
         
         
@@ -154,7 +154,7 @@ To create an Auto Scaling Group, do the following steps:
     
 14. Similarly, use the **Decrease Group Size** parameter group to configure the group size decrease policy.
 
-    ![!Group size decrease policy][img-asg-decrease-policy]
+    ![Group size decrease policy][img-asg-decrease-policy]
     
 15. If necessary, configure notifications and tags for the Auto Scaling Group or proceed to the review of the changes by clicking the **Review** button.
 
@@ -166,6 +166,6 @@ You can check that the Auto Scaling Group has been created correctly by viewing 
 
 You can do this using Wallarm Console. For example, if two instances with filtering nodes are concurrently operating, Wallarm Console will display this number for the corresponding Wallarm node in the **Nodes** section.
 
-![!Checking the Auto Scaling Group status][img-check-asg-in-cloud]
+![Checking the Auto Scaling Group status][img-check-asg-in-cloud]
 
 You can now proceed with the [creation and configuration][link-doc-lb-guide] of a load balancer.

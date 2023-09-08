@@ -25,7 +25,7 @@ There are two ways to pass the identity provider metadata (in this case Okta) to
     *   **Identity Provider Issuer** to the **Identity provider issuer** field.
     *   **X.509 Certificate** to the **X.509 Certificate** field.
     
-    ![!Entering the metadata manually][img-transfer-metadata-manually]
+    ![Entering the metadata manually][img-transfer-metadata-manually]
     
 Click *Next* to go to the next step. If you want to return to the previous step, click *Back*.
 
@@ -38,11 +38,11 @@ After successful completion of the test (if all the necessary parameters are fil
 
 Finish configuring SSO by clicking the *Finish* button or going to the user page to configure SSO by clicking the corresponding button.
 
-![!Completing SSO wizard][img-sp-wizard-finish]
+![Completing SSO wizard][img-sp-wizard-finish]
 
 After completing the SSO configuration wizard, on the *Integration* tab you will see that the Okta service is connected as an identity provider and that no other SSO providers are available.
 
-![!The “Integration” tab after finishing the SSO wizard][img-integration-tab]
+![The “Integration” tab after finishing the SSO wizard][img-integration-tab]
 
 
 Now, navigate to [the next step][doc-allow-access-to-wl] of the SSO configuration process.

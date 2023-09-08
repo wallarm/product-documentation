@@ -24,7 +24,7 @@ To mark one request (hit) as a false positive:
     To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Define a valid request and click **False** in the **Actions** column.
 
-    ![!False hit][img-false-attack]
+    ![False hit][img-false-attack]
 
 ## Mark an attack as a false positive
 
@@ -35,14 +35,14 @@ To mark all requests (hits) in the attack as false positives:
     To reduce the time of request analysis, you can hide the requests that are precisely malicious by using the [tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits).
 2. Click **Mark as false positive**.
 
-    ![!False attack](../../images/user-guides/events/analyze-attack.png)
+    ![False attack](../../images/user-guides/events/analyze-attack.png)
 
 !!! warning "If an attack is hits grouped by IPs"
     If an attack consists of hits [grouped](../../about-wallarm/protecting-against-attacks.md#attack) by IP addresses, the **Mark as false positive** button is unavailable. You can [mark certain hits](#mark-a-hit-as-a-false-positive) as false positives.
 
 If all the requests in the attack are marked as false positives, then the information about that attack will look like this:
 
-![!The whole attack is marked as false one][img-removed-attack-info]
+![The whole attack is marked as false one][img-removed-attack-info]
 
 ## Remove a false positive mark
 
@@ -56,4 +56,4 @@ Wallarm Console enables controlling the display of false positives in the attack
 * **With false positives**: actual attacks and false positives
 * **Only false positives**
 
-![!False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)
+![False positive filter](../../images/user-guides/events/filter-for-falsepositive.png)

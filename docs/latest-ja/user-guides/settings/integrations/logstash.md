@@ -102,7 +102,7 @@ output {
 1. [統合をテスト](#testing-integration)し、設定が正しいことを確認します。
 1. **統合を追加**をクリックします。
 
-![!Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Logstash integration](../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 ## 統合のテスト
 
@@ -173,7 +173,7 @@ output {
 
 例えば：
 
-![!Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 このスキームを使用してWallarmイベントをログに記録するには：
 

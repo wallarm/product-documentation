@@ -18,7 +18,7 @@ The integration of FAST in CI MODE into the CircleCI workflow is configured via 
 
 To securely use the [FAST node token][fast-node-token], pass its value in the [environment variable in your project settings][circleci-set-env-var].
 
-![!Passing CircleCI environment variable][circleci-example-env-var]
+![Passing CircleCI environment variable][circleci-example-env-var]
 
 --8<-- "../include/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -70,7 +70,7 @@ To securely use the [FAST node token][fast-node-token], pass its value in the [e
 
 The result of security testing will be displayed in CircleCI interface.
 
-![!The result of running FAST node in testing mode][fast-example-result]
+![The result of running FAST node in testing mode][fast-example-result]
 
 ## More Examples
 

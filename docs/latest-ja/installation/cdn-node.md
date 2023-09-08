@@ -44,7 +44,7 @@
     指定するアドレスは、スキームとスラッシュを含まないサードレベル（またはそれ以下）のドメインでなければなりません。
 1. Wallarmが指定されたドメインに関連付けられたオリジンアドレスを正しく識別していることを確認します。そうでない場合、自動的に発見されたオリジンアドレスを変更してください。
 
-    ![!CDN node creation modal][cdn-node-creation-modal]
+    ![CDN node creation modal][cdn-node-creation-modal]
 
     !!! warning "オリジンアドレスのダイナミックな更新"
        保護リソースに関連付けられたオリジンIPアドレスまたはドメインをホストプロバイダーが動的に更新する場合は、CDNノード設定で指定されたオリジンアドレスを常に最新の状態に保つ必要があります。Wallarm Consoleを使用すると、いつでも[オリジンアドレスを変更][update-origin-ip-docs]できます。
@@ -57,7 +57,7 @@
 
     もしドメインのために既にCNAMEレコードが設定済みの場合、その値をWallarmが生成するものに取り換えてください。
 
-    ![!CDN node creation modal][cname-required-modal]
+    ![CDN node creation modal][cname-required-modal]
 
     DNSプロバイダーによりますが、DNSレコードの変更はインターネット上で効果を発揮し広がるのに最大24時間かかることがあります。新しいCNAMEレコードが広がったら、WallarmのCDNノードはすべての着信リクエストを保護スパイスにプロキシし、悪意のあるものをブロックします。
 1. 必要であれば、カスタムのSSL/TLS証明書をアップロードします。
@@ -72,7 +72,7 @@
     * もしも送り元のIPアドレスが[グレーリストに載っている][graylist-docs]場合、ノードは攻撃をブロックし（HTTPレスポンスコードは403）、記録します。
     * もしも送り元のIPアドレスが[グレーリストに載っていない][graylist-docs]場合、ノードは検出された攻撃を記録だけします。攻撃が登録されたことはWallarm Consoleから**イベント**で確認できます：
 
-        ![!Attacks in the interface][attacks-in-ui]
+        ![Attacks in the interface][attacks-in-ui]
 
 ## 次のステップ
 

@@ -4,7 +4,7 @@
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-scheme.png)
 
 !!! info "ArcSight ESMのエンタープライズ版との統合"
     FluentdからArcSight ESMのエンタープライズ版にログを転送するには、ArcSight側でSyslogコネクタを設定してから、Fluentdからコネクタポートにログを転送することを推奨します。コネクタの詳細な説明を入手するには、[公式のArcSight SmartConnector文書](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs)から**SmartConnectorユーザーガイド**をダウンロードしてください。
@@ -28,7 +28,7 @@ ArcSight Loggerには、以下のように設定されたログ受信器 `Wallar
 * イベントはsyslogパーサーで解析されます
 * その他のデフォルト設定
 
-![!Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
+![Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-setup.png)
 
 受信器の設定に関する詳しい説明書を入手するには、適切なバージョンの**Loggerインストールガイド**を[公式のArcSight Logger文書](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc)からダウンロードしてください。
 
@@ -92,16 +92,16 @@ Fluentdは `td-agent.conf` ファイルで設定されます：
     ```
 
     **Fluentdのログ：**
-    ![!Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-curl-log.png)
 
     **ArcSight Loggerのイベント：**
-    ![!Logs in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
+    ![Logs in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-curl-log.png)
 
 ### Fluentd統合の設定
 
 --8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Fluentd統合設定の詳細](../fluentd.md)
 
@@ -111,8 +111,8 @@ Fluentdは `td-agent.conf` ファイルで設定されます：
 
 Fluentdは以下のようにイベントをログします：
 
-![!Fluentd log about new user](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
+![Fluentd log about new user](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/arcsight-logger-user-log.png)
 
 次のエントリがArcSight Loggerのイベントに表示されます：
 
-![!Events in ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)
+![Events in ArccSiight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/fluentd-user.png)

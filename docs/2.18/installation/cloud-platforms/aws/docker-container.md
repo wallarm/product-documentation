@@ -361,7 +361,7 @@ To deploy the container with environment variables and configuration file mounte
 
 1. In the AWS Management Console, open the running task and copy the container IP address from the field **External Link**.
 
-    ![!Settig up container instance](../../../images/waf-installation/aws/container-copy-ip.png)
+    ![Settig up container instance](../../../images/waf-installation/aws/container-copy-ip.png)
 
     If the IP address is empty, please ensure the container is in the **RUNNING** status.
 
@@ -371,6 +371,6 @@ To deploy the container with environment variables and configuration file mounte
     curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
+    ![Attacks in UI](../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
 
 Details on errors that occurred during the container deployment are displayed in the task details in the AWS Management Console. If the container is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

@@ -1,7 +1,7 @@
 !!! info "If the postanalytics module is installed on a separate server"
     If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
 
-    ![!Node with several instances][img-node-with-several-instances]
+    ![Node with several instances][img-node-with-several-instances]
 
     The Wallarm node has already been created during the [separate postanalytics module installation][install-postanalytics-instr]. To connect the initial traffic processing module to the Cloud using the same node credentials:
 
@@ -12,7 +12,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
 1. Run the `register-node` script on a machine where you install the filtering node:
     

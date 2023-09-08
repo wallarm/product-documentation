@@ -14,7 +14,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 * Deploy one Wallarm node to filter traffic of all clients or isolated environments as follows:
 
-    ![!Partner node scheme](../../images/partner-waf-node/partner-traffic-processing-4.0.png)
+    ![Partner node scheme](../../images/partner-waf-node/partner-traffic-processing-4.0.png)
 
     * One Wallarm node processes the traffic of several tenants (Tenant 1, Tenant 2).
 
@@ -28,7 +28,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
         Since the `wallarm_application` configuration is not supported by the [Wallarm CDN node](../cdn-node.md), this deployment option is not supported by the CDN node type too. If the node type being used is CDN, please deploy several nodes each filtering the traffic of a particular tenant.
 * Deploy several Wallarm nodes each filtering the traffic of a particular tenant as follows:
 
-    ![!Client several nodes scheme](../../images/partner-waf-node/client-several-nodes.png)
+    ![Client several nodes scheme](../../images/partner-waf-node/client-several-nodes.png)
 
     * Several Wallarm nodes each filtering the traffic of a particular tenant (Tenant 1, Tenant 2).
     * For the domain https://tenant1.com, the DNS record with the client IP address 225.130.128.241 is configured.
@@ -68,7 +68,7 @@ Multi-tenant node:
         Once switched and confirmed, proceed to the 4th step.
 1. Select the **Multi-tenant node** option.
 
-    ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 1. Set node name and click **Create**.
 1. Copy the filtering node token.
 1. Depending on a filtering node deployment form, perform steps from the [appropriate instructions](../../installation/supported-deployment-options.md).

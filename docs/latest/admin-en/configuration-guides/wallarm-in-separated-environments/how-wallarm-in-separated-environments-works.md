@@ -32,13 +32,13 @@ When configuring a filter node you can add Wallarm IDs for your environments usi
 
 1. Add environment names and its IDs in your Wallarm account → **Settings** → **Applications** section.
 
-    ![!Added environments](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
+    ![Added environments](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/added-applications.png)
 2. Specify ID configuration in a filter node:
 
     * using the [`wallarm_application`](../../configure-parameters-en.md#wallarm_application) directive for Linux‑based, Kubernetes sidecar and Docker‑based deployments;
     * using the [`nginx.ingress.kubernetes.io/wallarm-application`](../../configure-kubernetes-en.md#ingress-annotations) annotation for Kubernetes NGINX Ingress controller deployments. Now, when creating a new filter node rule it is possible to specify that the rule will be assigned to a set of specific application IDs. Without the attribute, a new rule will be automatically applied to all protected resources in a Wallarm account.
 
-![!Creating rule for ID](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
+![Creating rule for ID](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-id.png)
 
 #### Environment Identification by Domain
 
@@ -46,7 +46,7 @@ If every environment is using different URL domain names passed in the `HOST` HT
 
 To use the feature, please add proper `HOST` header pointer for each configured filter node rule. In the following example the rule will be triggered only for requests with the `HOST` header equal to `dev.domain.com`:
 
-![!Creating rule for HOST](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
+![Creating rule for HOST](../../../images/admin-guides/configuration-guides/waf-in-separate-environments/create-rule-for-host.png)
 
 ### Separate Wallarm Accounts and Sub-accounts
 

@@ -26,7 +26,7 @@ To edit configured SSO authentication:
 
 To disable SSO, go to *Settings → Integration*. Click on the block of the corresponding SSO provider and then on the *Disable* button.
 
-![!disabling-sso-provider][img-disable-sso-provider]
+![disabling-sso-provider][img-disable-sso-provider]
 
 In the pop-up window, it is required to confirm the disabling of the SSO provider, as well as the disabling of the SSO authentication of all users.
 Click *Yes, disable*.

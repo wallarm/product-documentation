@@ -99,7 +99,7 @@ APIを代行するAPIプロキシをApigee上で作成し、合法的なトラ�
     ```
 1. [US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)のWallarm Console → **Events** セクションを開き、攻撃がリストに表示されていることを確認します。
 
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
     もしWallarmノードモードがブロッキングに設定されている場合、リクエストもブロックされます。
 

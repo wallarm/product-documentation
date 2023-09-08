@@ -12,7 +12,7 @@ Wallarm node UI management options:
 * Rename nodes
 * Delete nodes
 
-![!Nodes](../../images/user-guides/nodes/table-nodes.png)
+![Nodes](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "Administrator access"
     The creating, deleting, and regenerating of Wallarm nodes/tokens is only available to users with the **Administrator** or **Global Administrator** role. Viewing the details of installed nodes is available to all users.
@@ -37,7 +37,7 @@ To create a Wallarm node using the [appropriate token](#api-and-node-tokens-for-
 
     1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-        ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+        ![Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
     
     1. Copy the generated token.
     1. Deploy new node to the [convenient environment](../../installation/supported-deployment-options.md) using your node token.
@@ -70,7 +70,7 @@ The following node properties and metrics are available:
 * Versions of used LOM and proton.db
 * Versions of installed Wallarm packages, NGINX, and Envoy (if any)
 
-![!Node card](../../images/user-guides/nodes/view-wallarm-node.png)
+![Node card](../../images/user-guides/nodes/view-wallarm-node.png)
 
 If one Wallarm node is installed for multiple instances (e.g. for the initial traffic processing and request postanalytics performed by different server instances), then the corresponding number of filtering nodes is grouped into one record in the table. Properties and metrics will be available for each instance.
 
@@ -89,7 +89,7 @@ Token regeneration creates a new token for the node.
 2. Click **Regenerate token** in the node menu or card.
 3. If the node is already installed in your infrastructure, copy the new token value and specify it within the installed node settings.
 
-![!Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
+![Regenerating node token](../../images/user-guides/nodes/generate-new-token.png)
 
 ## Deleting a node
 

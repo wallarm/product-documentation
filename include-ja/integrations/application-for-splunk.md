@@ -2,7 +2,7 @@ Splunk 9.0以降でWallarmのイベントを整理し、使用する準備がで
 
 このアプリケーションでは、Wallarmから受け取ったイベントが自動的に入力される事前に設定されたダッシュボードを提供します。さらに、各イベントの詳細なログに進み、ダッシュボードからデータをエクスポートすることも可能になります。
 
-![!Splunkダッシュボード][splunk-dashboard-by-wallarm-img]
+![Splunkダッシュボード][splunk-dashboard-by-wallarm-img]
 
 Splunk用のWallarmアプリケーションをインストールするには：
 

@@ -4,4 +4,4 @@
     curl http://localhost/etc/passwd
     ```
 2. Open Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]

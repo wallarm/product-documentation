@@ -13,7 +13,7 @@ Wallarm ノードUI管理オプション：
 * ノードの削除
 <!--* 選択したノードによって検出された攻撃の表示 (**イベント**セクションにて）-->
 
-![!ノード](../../images/user-guides/nodes/table-nodes.png)
+![ノード](../../images/user-guides/nodes/table-nodes.png)
 
 !!! info "管理者アクセス"
     Wallarmノード/トークンの作成、削除、再生成は、**管理者**または**グローバル管理者**ロールを持つユーザーだけが使用できます。インストール済みノードの詳細は全てのユーザーが閲覧可能です。
@@ -38,7 +38,7 @@ Wallarm ノードUI管理オプション：
 
     1. Wallarmコンソール → **ノード** を[US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)で開き、**Wallarm ノード**タイプのノードを作成します。
    
-        ![!Wallarm ノード作成](../../images/user-guides/nodes/create-cloud-node.png)
+        ![Wallarm ノード作成](../../images/user-guides/nodes/create-cloud-node.png)
     
     1. 生成されたトークンをコピーします。
     1. ノードトークンを使用して、新しいノードを[利便性のある環境](../../installation/supported-deployment-options.md)にデプロイします。
@@ -71,7 +71,7 @@ Wallarm ノードUI管理オプション：
 * 利用されているLOMとproton.dbのバージョン
 * インストールされたWallarmのパッケージ、NGINX、及びEnvoy（実在する場合）のバージョン
 
-![!ノードのカード](../../images/user-guides/nodes/view-wallarm-node.png)
+![ノードのカード](../../images/user-guides/nodes/view-wallarm-node.png)
 
 複数のインスタンスに対して一つのWallarmノードがインストールされている場合（例えば、初期トラフィック処理と要求ポストアナリティクスが異なるサーバーインスタンスによって実行される場合）、それに対応するフィルタリングノードの数はテーブルの一つのレコードにグループ化されます。各インスタンスにはプロパティとメトリクスが利用可能です。
 
@@ -90,7 +90,7 @@ Wallarmでは、ノードインスタンスは `hostname_NodeUUID`として命�
 2. ノードのメニューやカード内の**トークン再生成**をクリックします。
 3. ノードが既にインフラストラクチャにインストールされている場合は、新しいトークン値をコピーし、それをインストールされているノードの設定内で指定します。
 
-![!ノードトークンの再生成](../../images/user-guides/nodes/generate-new-token.png)
+![ノードトークンの再生成](../../images/user-guides/nodes/generate-new-token.png)
 
 ## ノードの削除
 

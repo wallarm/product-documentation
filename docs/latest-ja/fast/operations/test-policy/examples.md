@@ -33,7 +33,7 @@ FASTテストポリシーは、FASTノードが基準リクエストの特定の
 
 **このポリシーは以下の特性を持っています**：それはfuzzingをサポートしていません。fuzzerを有効にするためには、別のテストポリシーを作成してください（[例](#policy-that-allows-working-with-uri-and-encoded-email-post-parameters-fuzzer-is-enabled)）。
 
-![!Policy example](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/default-policy-example.png)
 
 !!! info "注記"
 以下を考慮に入れてください:
@@ -49,7 +49,7 @@ FASTテストポリシーは、FASTノードが基準リクエストの特定の
 
 **このポリシーは次のとおりです**：fuzzerは無効です。
 
-![!Policy example](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/get-post-policy-example.png)
 
 !!! info "注記"
 クイックスタートガイドでは、このポリシーを使って[Google Gruyere](../../qsg/test-run.md) ターゲットアプリケーションのセキュリティテストを行うことができます。
@@ -63,7 +63,7 @@ FASTテストポリシーは、FASTノードが基準リクエストの特定の
 * カスタムFAST拡張のみを実行することが許可され、組み込みFAST検出は実行されません。
 * Fuzzerは無効です。
 
-![!Policy example](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/custom-dsl-example.png)
 
 !!! info "注記"
 このポリシーは、[カスタム拡張のサンプル](../../dsl/using-extension.md)を実行するために使用できます。
@@ -86,7 +86,7 @@ FASTテストポリシーは、FASTノードが基準リクエストの特定の
     * サーバーレスポンスコードの値が`500`未満の場合、異常は見つからないとみなされます。
     * すべてのペイロードがチェックされた場合または2つ以上の異常が見つかった場合、Fuzzerは実行を停止します。
 
-![!Policy example](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
+![Policy example](../../../images/fast/operations/en/test-policy/examples/enabled-fuzzer-example.png)
 
 !!! info "注記"
 このポリシーは、[OWASP Juice Shop login form](../../dsl/extensions-examples/overview.md) の脆弱性を見つけるために使用できます。
@@ -101,4 +101,4 @@ FASTテストポリシーは、FASTノードが基準リクエストの特定の
 
 **このポリシーは以下の特性を持っています**：fuzzerは無効です。
 
-![!Example policy](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)
+![Example policy](../../../images/fast/operations/en/test-policy/examples/sessionid-example.png)

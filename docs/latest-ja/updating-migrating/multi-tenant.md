@@ -25,4 +25,4 @@
 !!! warning "マルチテナントノードの作成"
     Wallarmノード作成中に、**マルチテナントノード**オプションを選択してください：
 
-    ![!マルチテナントノードの作成](../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![マルチテナントノードの作成](../images/user-guides/nodes/create-multi-tenant-node.png)

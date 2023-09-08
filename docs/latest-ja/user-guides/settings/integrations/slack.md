@@ -15,7 +15,7 @@
 7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
 8. **インテグレーションを追加**をクリックします。
 
-      ![!Slackインテグレーション](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+      ![Slackインテグレーション](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
 ## インテグレーションのテスト
 

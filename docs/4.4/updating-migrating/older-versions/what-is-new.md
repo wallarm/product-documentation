@@ -221,7 +221,7 @@ The sample blocking page `/usr/share/nginx/html/wallarm_blocked.html` has been u
     
 New blocking page with the new layout looks as follows by default:
 
-![!Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm blocking page](../../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [More details on the blocking page setup →](../../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 

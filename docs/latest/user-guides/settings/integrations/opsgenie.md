@@ -24,7 +24,7 @@ In Wallarm UI:
 7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
-    ![!Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Opsgenie integration](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
 ## Testing integration
 
@@ -32,7 +32,7 @@ In Wallarm UI:
 
 Test Opsgenie notification:
 
-![!Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+![Test Opsgenie message](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 ## Updating integration
 

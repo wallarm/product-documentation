@@ -6,7 +6,7 @@ Wallarmのコンソール → **IPリスト** → **拒否リスト**にて、�
 
 --8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP 拒否リスト](../../images/user-guides/ip-lists/denylist-apps.png)
+![IP 拒否リスト](../../images/user-guides/ip-lists/denylist-apps.png)
 
 !!! info "リストの古い名前"
     IPアドレスの拒否リストの古い名前は「IPアドレスブラックリスト」です。
@@ -62,7 +62,7 @@ IPアドレス、サブネット、又はIPアドレスのグループをリス�
 5. IPアドレス又はIPアドレス群をリストに登録する期間を選択します。最小値は5分です、最大値は永続です。
 6. IPアドレス又はIPアドレス群をリストに登録する理由を明記します。
 
-![!Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 ### 自動的なボットIPの拒否リスト登録
 
@@ -72,6 +72,6 @@ IPアドレス、サブネット、又はIPアドレスのグループをリス�
 
 あなたは日常的に使用するメッセンジャーやSIEMシステムを通じて新たに拒否リストに登録されたIPについての通知を受け取ることができます。通知を有効にするために、適切な[トリガー](../triggers/triggers.md)を設定してください、例えば：
 
-![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
 --8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

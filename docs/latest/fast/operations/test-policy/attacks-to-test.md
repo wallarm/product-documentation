@@ -29,7 +29,7 @@ You can control the way of detecting vulnerabilities in the application in the f
 * If you want to perform tests using the built-in FAST extension, then tick the vulnerability checkboxes you want to run tests on.
 * If you want to perform tests using only custom extensions excluding the built-in FAST extensions, then untick all the checkboxes or activate the **Use only custom DSL** switch and select vulnerabilities from the list.
 
-    ![!The custom DSL switch][img-custom-dsl-slider]
+    ![The custom DSL switch][img-custom-dsl-slider]
 
     Please note that if the **Use only custom DSL** switch is activated, then the built-in FAST extensions and [FAST fuzzer][doc-fuzzer] will be disabled. If the FAST fuzzer is enabled, then the **Use only custom DSL** switch will become inactive again.
 

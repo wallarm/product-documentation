@@ -224,7 +224,7 @@ All detected attacks are displayed in the Wallarm Console → **Events** section
 
 For more information on managing attacks, see the instructions on [working with attacks](../user-guides/events/analyze-attack.md).
 
-![!Attacks view](../images/user-guides/events/check-attack.png)
+![Attacks view](../images/user-guides/events/check-attack.png)
 
 ## Notifications about detected attacks, hits and malicious payloads
 

@@ -27,7 +27,7 @@ WallarmのUI内で：
 1. [統合をテスト](#統合のテスト)し、設定が正しいことを確認します。
 1. **統合を追加**をクリックします。
 
-![!ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+![ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
 ## 統合のテスト
 

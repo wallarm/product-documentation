@@ -42,4 +42,4 @@ curl -H "Content-Type: application/json" -X POST https://example.com/posts -d '{
 
  `https://example.com/posts/`へのリクエストの`postBody`パラメータでのSQLインジェクションを無視するために、**特定の攻撃タイプを無視する**ルールは以下のように設定できます：
 
-![!rule "Ignore certain attack types"の例](../../images/user-guides/rules/ignore-attack-types-rule-example.png)
+![rule "Ignore certain attack types"の例](../../images/user-guides/rules/ignore-attack-types-rule-example.png)

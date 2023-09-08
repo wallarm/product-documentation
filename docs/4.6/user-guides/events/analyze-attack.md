@@ -22,7 +22,7 @@ You can get information about an attack by investigating all the table columns d
 
 Clicking the number will unfold all requests in the selected attack.
 
-![!Requests in the attack][img-analyze-attack]
+![Requests in the attack][img-analyze-attack]
 
 Each request displays the associated information in the following columns:
 
@@ -39,7 +39,7 @@ Each request displays the associated information in the following columns:
 
 If the attack is happening at the current moment, the *“now”* label is shown under the request graph.
 
-![!A currently happening attack][img-current-attack]
+![A currently happening attack][img-current-attack]
 
 Request view provides the following options for Wallarm behavior fine-tuning:
 
@@ -53,7 +53,7 @@ Request view provides the following options for Wallarm behavior fine-tuning:
 
 * **Detected by custom rules** section is displayed if the attack was detected by a [regexp-based customer rule](../../user-guides/rules/regex-rule.md). The section contains the link to the corresponding rule (there can be more than one) - click the link to access the rule details and edit them if necessary.
 
-    ![!Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
+    ![Attack detected by regexp-based customer rule - editing rule](../../images/user-guides/search-and-filters/detected-by-custom-rule.png)
 
     [Learn how to search for such attacks →](../../user-guides/search-and-filters/use-search.md#search-by-regexp-based-customer-rule)
 
@@ -63,7 +63,7 @@ The raw format of a request is the maximum possible level of detail. Raw format 
 
 To view a request in a raw format, expand a required attack and then the request within it.
 
-![!Raw format of the request][img-analyze-attack-raw]
+![Raw format of the request][img-analyze-attack-raw]
 
 ## Sampling of hits
 
@@ -118,7 +118,7 @@ The regular sampling algorithm has the following core logic:
 
 Grouped hits are displayed in the **Events** section of Wallarm Console as follows:
 
-![!Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![Dropped hits](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 To filter the list of events so that it only displays the sampled hits, click the **Hits sampling is enabled** notification. The `sampled` attribute will be [added](../search-and-filters/use-search.md#search-for-sampled-hits) to the search field, and the list of events will display only the sampled hits.
 

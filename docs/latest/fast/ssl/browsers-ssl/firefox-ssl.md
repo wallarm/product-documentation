@@ -18,17 +18,17 @@ To install the certificate for the Mozilla Firefox browser, do the following:
 
     The browser will download the certificate file. Depending on the configuration, the file will be either placed in the default download directory or in the directory of your choice.
     
-    ![!Requesting the self-signed FAST node certificate][img-cert-request]
+    ![Requesting the self-signed FAST node certificate][img-cert-request]
 
 3.  A dialog window will open. You will be asked to install the certificate. Notice that the name and expiration date of your certificate will differ from those shown in the image.    
     
     Choose the “Trust this CA to identify websites” option and select the **OK** button.
 
-    ![!Downloading the certificate][img-cert-download]
+    ![Downloading the certificate][img-cert-download]
 
 4.  Check that the certificate was installed correctly. To do that, go to any site via HTTPS. You should be redirected to the HTTPS version of the site without any warning messages about untrusted certificates.
 
     For example, you could browse to the HTTPS version of the Google Gruyere site:
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPS is working][img-https-ok]
+    ![HTTPS is working][img-https-ok]

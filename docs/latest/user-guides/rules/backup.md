@@ -19,7 +19,7 @@ You can:
 * Load from existing backup: click **Load** for the required backup. When loading from the backup, your current rule configuration is deleted and replaced with the configuration from the backup.
 * Delete backup.
 
-    ![!Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
+    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
 
 !!! warning "Rule modification restrictions"
     You cannot create or modify rules until creating backup or load from backup is complete.

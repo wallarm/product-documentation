@@ -19,7 +19,7 @@ The filtering node interacts with the Wallarm Cloud. There are two ways of conne
     
     * If you are using <https://my.wallarm.com/>, proceed to the [following link][link-wl-console-users-eu] to check your user settings.
     * If you are using <https://us1.my.wallarm.com/>, proceed to the [following link][link-wl-console-users-us] to check your user settings.
-    ![!User list in Wallarm console][img-wl-console-users]
+    ![User list in Wallarm console][img-wl-console-users]
 
 #### Connecting using the filtering node token
 

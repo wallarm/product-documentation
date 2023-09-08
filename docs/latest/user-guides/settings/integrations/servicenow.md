@@ -27,7 +27,7 @@ In Wallarm UI:
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-![!ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
+![ServiceNow integration](../../../images/user-guides/settings/integrations/add-servicenow-integration.png)
 
 ## Testing integration
 

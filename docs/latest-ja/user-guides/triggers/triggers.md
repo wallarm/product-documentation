@@ -15,7 +15,7 @@
 
 トリガーは、Wallarm Consoleの「トリガー」セクションで設定します。このセクションは、「**管理者**」 [ロール](../settings/users.md)を持つユーザーのみが利用可能です。
 
-![!トリガーの設定箇所](../../images/user-guides/triggers/triggers-section.png)
+![トリガーの設定箇所](../../images/user-guides/triggers/triggers-section.png)
 
 ## トリガーの作成
 
@@ -45,7 +45,7 @@
 * 同じIPからのヒット、ただし、Brute force, Forced browsing, BOLA(IDOR), Resource overlimit, Data bomb、Virtual patchの攻撃タイプは除く
 * ユーザー追加された数
 
-![!利用可能な条件](../../images/user-guides/triggers/trigger-conditions.png)
+![利用可能な条件](../../images/user-guides/triggers/trigger-conditions.png)
 
 Wallarm Consoleインターフェースで条件を選択し、それに応じて反応の下限閾値を設定します（設定可能な場合）。
 
@@ -68,7 +68,7 @@ Wallarm Consoleインターフェースで条件を選択し、それに応じ�
 
 Wallarm Console インターフェースで1つ以上のフィルタを選択し、その値を設定します。
 
-![!利用可能なフィルタ](../../images/user-guides/triggers/trigger-filters.png)
+![利用可能なフィルタ](../../images/user-guides/triggers/trigger-filters.png)
 
 ### ステップ3: 反応の追加
 
@@ -90,7 +90,7 @@ Wallarm Console インターフェースで1つ以上のフィルタを選択し
 
 Wallarm Consoleインターフェースで1つ以上の反応を選択します。利用可能な反応は、条件によって位置が異なります。**攻撃の数**に存在します。
 
-![!統合の選択](../../images/user-guides/triggers/select-integration.png)
+![統合の選択](../../images/user-guides/triggers/select-integration.png)
 
 ### ステップ4: トリガーの保存
 

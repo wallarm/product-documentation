@@ -12,7 +12,7 @@
 
 HTTPSを使用してブラウザーからウェブアプリケーションを操作しているとき、これまたはこれに類似した信頼できない証明書についてのメッセージが表示される場合があります：
 
-![!Mozilla Firefox's untrusted certificate message][img-insecure-connection]
+![Mozilla Firefox's untrusted certificate message][img-insecure-connection]
 
 FASTノードは、クライアントからのHTTPSリクエストを中断し、自己接続をリモートサーバーに開始します。ブラウザーはFASTノードの証明書を信頼しなければならず、そうでなければブラウザーはこの状況をman-in-the-middle攻撃として扱います。
 

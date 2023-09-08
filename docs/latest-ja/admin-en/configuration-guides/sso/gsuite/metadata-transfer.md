@@ -24,7 +24,7 @@ Wallarm ConsoleのG Suite SSO設定ウィザードに戻り、*次へ*をクリ�
 
 以前にG Suiteでアプリケーションを設定する際にG SuiteのメタデータをXMLファイルとして保存した場合（[ステップ2][doc-setup-idp]参照）、*アップロード*ボタンをクリックし、必要なファイルを選択します。これは、ファイルマネージャーから「XML」アイコンにファイルをドラッグすることでも行うことができます。ファイルをアップロードした後、*次へ*をクリックして次のステップに進みます。
 
-![!メタデータのアップロード][img-sp-wizard-transfer-metadata]
+![メタデータのアップロード][img-sp-wizard-transfer-metadata]
 
 
 ##  手動でパラメータをコピーする
@@ -39,7 +39,7 @@ G Suiteによって生成されたパラメータを、以下のようにWallarm
 
 *次へ*をクリックして次のステップに進みます。前のステップに戻りたい場合は、*戻る*をクリックします。
 
-![!メタデータを手動で入力する][img-transfer-metadata-manually]
+![メタデータを手動で入力する][img-transfer-metadata-manually]
 
 
 ##  SSOウィザードの完了
@@ -50,11 +50,11 @@ Wallarm設定ウィザードの最終ステップでは、G Suiteサービスへ
 
 *完了*ボタンをクリックしてSSOの設定を完了させるか、対応するボタンをクリックしてユーザーページでSSOを設定します。
 
-![!SSOウィザードの完了][img-sp-wizard-finish]
+![SSOウィザードの完了][img-sp-wizard-finish]
 
 SSO設定ウィザードを完了した後、Integrationタブで、G SuiteサービスがIDプロバイダとして接続され、他のSSOプロバイダは利用できないことが確認できます。
 
-![!SSOウィザードを終了した後の「Integration」タブ][img-integration-tab]
+![SSOウィザードを終了した後の「Integration」タブ][img-integration-tab]
 
 
 次に、SSO設定プロセスの[次のステップ][doc-allow-access-to-wl]に進みます。

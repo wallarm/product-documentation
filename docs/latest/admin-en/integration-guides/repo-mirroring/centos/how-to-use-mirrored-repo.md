@@ -17,15 +17,15 @@ To install Wallarm packages from the [JFrog Artifactory repository][doc-repo-mir
 
 3.  Click the *Set Me Up* link.
 
-    ![!Working with the repository][img-working-with-repo]
+    ![Working with the repository][img-working-with-repo]
     
     A pop-up window will appear. Type your user account’s password in the *Type Password* field and press *Enter*. Now, the instructions in this window will contain your credentials.
     
-    ![!Typing in the credentials][img-repo-creds]
+    ![Typing in the credentials][img-repo-creds]
 
 4.  Scroll down to the `yum` configuration example and click the `Copy Snippet to Clipboard` button to copy this example to the clipboard.
 
-    ![!An example of configuration][img-repo-code-snippet]
+    ![An example of configuration][img-repo-code-snippet]
     
 5.  Create a `yum` configuration file (e.g., `/etc/yum.repos.d/artifactory.repo`) and paste the copied snippet into it.
 

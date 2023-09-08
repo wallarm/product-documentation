@@ -4,7 +4,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-scheme.png)
 
 !!! info "Integration with the Enterprise version of ArcSight ESM"
     To configure forwarding logs from Logstash to the Enterprise version of ArcSight ESM, it is recommended to configure the Syslog Connector on the ArcSight side and then forward logs from Logstash to the connector port. To get a more detailed description of the connectors, please download the **SmartConnector User Guide** from the [official ArcSight SmartConnector documentation](https://community.microfocus.com/t5/ArcSight-Connectors/ct-p/ConnectorsDocs).
@@ -28,7 +28,7 @@ ArcSight Logger has logs receiver `Wallarm Logstash logs` configured as follows:
 * Events are parsed with the syslog parser
 * Other default settings
 
-![!Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
+![Configuration of receiver in ArcSight Logger](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-setup.png)
 
 To get a more detailed description of the receiver configuration, please download the **Logger Installation Guide** of an appropriate version from the [official ArcSight Logger documentation](https://community.microfocus.com/t5/Logger-Documentation/ct-p/LoggerDoc).
 
@@ -85,16 +85,16 @@ A more detailed description of the configuration files is available in the [offi
     ```
 
     **Logstash logs:**
-    ![!Logstash logs](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
+    ![Logstash logs](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-curl-log.png)
 
     **Event in ArcSight Logger:**
-    ![!ArcSight Logger event](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
+    ![ArcSight Logger event](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-curl-log.png)
 
 ### Configuration of Logstash integration
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [More details on the Logstash integration configuration](../logstash.md)
 
@@ -104,8 +104,8 @@ A more detailed description of the configuration files is available in the [offi
 
 Logstash will log the event as follows:
 
-![!Log about new user in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
+![Log about new user in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/arcsight-logger-user-log.png)
 
 The following entry will be displayed in ArcSight Logger events:
 
-![!New user card in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)
+![New user card in ArcSight Logger from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/arcsight-logger/logstash-user.png)

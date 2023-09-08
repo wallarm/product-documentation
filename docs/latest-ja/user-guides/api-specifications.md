@@ -21,7 +21,7 @@ Wallarm Console UIの**API仕様**セクションでは、Wallarmがシャドウ
     * アップロード元: ご自身のローカルマシンまたはURL。URLの場合、ヘッダーフィールドを介して認証のためのトークンを指定できます。
     * 比較は、仕様のアップロード直後に一度だけ行うか、毎時行うかを選択します（**定期的な比較を行う**オプションはデフォルトで選択されます）。毎時に行う比較により、API Discoveryがさらにエンドポイントを発見すると、追加のシャドウAPIを見つけることができます。URLからアップロードした仕様は、各比較の前に更新されます。
 
-    ![!API Discovery - API Specifications - uploading API specification to find shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - API Specifications - uploading API specification to find shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
     仕様メニュー → **比較の再開** から、手動で比較を再開することができることに注意してください。
 
@@ -29,7 +29,7 @@ Wallarm Console UIの**API仕様**セクションでは、Wallarmがシャドウ
 
     アップロードが完了すると、各仕様のシャドウAPIの数が**API仕様**のリストに表示されます。また、発見されたユニークなシャドウAPIの総数も表示されます。シャドウAPIは**API Discovery**セクションでも[表示されます](api-discovery.md#displaying-shadow-api)。
 
-    ![!API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+    ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 ## 以前にアップロードした仕様のダウンロード
 

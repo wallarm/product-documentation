@@ -39,7 +39,7 @@ Wallarmが[NGINX](individual-packages-nginx-stable.md)、[NGINX Plus](individual
 1. インストールされたWallarmモジュールをNGINXに接続。
 1. 提供されたトークンを使用してフィルタリングノードをWallarm Cloudに接続。
 
-![!All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## 要件
 

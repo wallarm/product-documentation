@@ -14,7 +14,7 @@
 
 1.  メニューの**Compute Engine**セクションにある**Instance groups**ページに移動し、**Create instance group**ボタンをクリックします。
 
-    ![!インスタンスグループを作成する][img-creating-instance-group]
+    ![インスタンスグループを作成する][img-creating-instance-group]
 
 2.  **名前**フィールドにインスタンスグループ名を記入します。
 
@@ -39,7 +39,7 @@
 
     !!! info "例"
         以下の設定は、仮想マシンのプロセッサの平均負荷を60パーセントのレベルに保つためのインスタンスグループのサイズ制御を記述しています。
-        ![!例：インスタンスグループを作成する][img-create-instance-group-example]
+        ![例：インスタンスグループを作成する][img-create-instance-group-example]
 
 6.  **Minimum number of instances**フィールドに最小インスタンスグループのサイズを指定します（例：2インスタンス）。
 
@@ -58,6 +58,6 @@
 
 Wallarmコンソールを使用してこれを行うことができます。例えば、2つのインスタンスでフィルタリングノードが同時に稼働している場合、Wallarmコンソールは対応するWallarmノードの**Nodes**セクションでこの数を表示します。
 
-![!Wallarmウェブインターフェース上の**Nodes**ノードタブ][img-checking-nodes-operation]
+![Wallarmウェブインターフェース上の**Nodes**ノードタブ][img-checking-nodes-operation]
 
 これで、[ロードバランサーの作成と設定][link-creating-load-balancer]に進むことができます。

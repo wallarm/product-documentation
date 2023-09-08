@@ -73,7 +73,7 @@ generate:
     * `random` — insert the payload into a random place in the baseline request element value.
     * `replace` — replace the baseline request element value with the payload.
     
-    ![!Payload insertion methods][img-generate-methods]
+    ![Payload insertion methods][img-generate-methods]
     
     If the `method` parameter is absent, the `replace` method will be used by default.
     
@@ -93,7 +93,7 @@ generate:
     
     This parameter is obligatory, and it should always be present in the section. The list should contain at least one payload. If there are multiple payloads, the FAST node sequentially inserts payloads into the request parameter and tests the target application for vulnerabilities using each of the test requests created.
     
-    ![!Payload generation][img-generate-payload]
+    ![Payload generation][img-generate-payload]
     
     The payload is a string that is inserted into one of the parameters during the request processing.
     

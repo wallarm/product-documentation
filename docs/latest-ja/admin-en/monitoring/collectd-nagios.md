@@ -37,7 +37,7 @@
 
 --8<-- "../include-ja/monitoring/metric-example.md"
 
-![!Example workflow][img-collectd-nagios]
+![Example workflow][img-collectd-nagios]
 
 このドキュメントでは以下のデプロイメントスキームを使用します：
 *   Wallarmフィルタノードは、`10.0.30.5`IPアドレス及び`node.example.local`完全修飾ドメイン名を介してアクセス可能なホストにデプロイされています。

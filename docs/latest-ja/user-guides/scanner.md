@@ -4,13 +4,13 @@ Wallarmコンソールの**スキャナー**セクションでは、Wallarm Scan
 
 プロジェクトが成長するとリソースが増加し、管理が困難になります。リソースは会社のデータセンター外に位置する可能性があり、セキュリティが妥協されることがあります。Wallarmは、エシカルハッカーに似た方法を使用してセキュリティを評価し、結果を見える化することで支援します。
 
-![!スキャナーセクション](../images/user-guides/scanner/check-scope.png)
+![スキャナーセクション](../images/user-guides/scanner/check-scope.png)
 
 ## 資産を追加する
 
 Wallarmにあなたの会社の公開資産を発見させるためには、最初の公開資産を手動で追加します。**ドメインまたはIPを追加** をクリックし、あなたのドメインまたはIPのいずれかを入力します：
 
-![!スキャナーセクション](../images/user-guides/scanner/add-asset-manually.png)
+![スキャナーセクション](../images/user-guides/scanner/add-asset-manually.png)
 
 新しいドメインまたはIPアドレスが追加されると、Wallarm Scannerはリソースに関連する資産を検索し、それらをリストに追加するためのスキャンプロセスを開始します。Wallarmは最初にポートをスキャンし、その後これらのポート上のネットワークリソースを検出します。
 
@@ -38,7 +38,7 @@ Wallarmは公開資産を、ドメイン、IP、およびサービスグルー�
 
 リソースのドメイン、IPアドレス、およびポートは相互に依存しています。資産を選択すると、選択したIPアドレスに関連するドメインなど、その関連性を表示することができます：
 
-![!関連性を持つ要素](../images/user-guides/scanner/asset-with-associations.png)
+![関連性を持つ要素](../images/user-guides/scanner/asset-with-associations.png)
 
 ### 資産の接続を制御する
 
@@ -51,7 +51,7 @@ Wallarmは公開資産を、ドメイン、IP、およびサービスグルー�
 
     現在のリソースの名前は太字で表示されます。 UIにはその発見日も表示されます。
 
-![!リソース接続を無効化](../images/user-guides/scanner/disable-association.png)
+![リソース接続を無効化](../images/user-guides/scanner/disable-association.png)
 
 資産間の接続を有効化するには、接続を無効化するときと同様の手順を守ってください。
 
@@ -85,7 +85,7 @@ Cloud: EU
 
 Wallarmで資産スキャンを詳細に設定するには、**設定**ボタンをクリックします。ここから、Wallarm Scannerがあなたの会社の公開資産を発見するために使う方法を制御することができます。デフォルトでは、すべての利用可能な方法が使用されます。
 
-![!スキャナー設定](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
+![スキャナー設定](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
 
 Wallarm Scannerには**基本的なスキャナー機能**というグローバルスイッチがあります。このスイッチは、アセットのスキャニングと脆弱性発見の両方のプロセスを制御するために、会社全体のアカウントでスキャナーを有効化または無効化します。**脆弱性**セクションでも同じトグルスイッチを見つけることができます。一部のセクションでスイッチを切り替えると、他のセクションの設定も自動的に更新されます。
 
@@ -115,6 +115,6 @@ Wallarm Scannerは、リソースの応答に基づいてリソースに脆弱�
 
 デフォルトの設定に戻すには、空の値を使用するか、`0`を入力します。
 
-![!ドメインRPSの設定](../images/user-guides/scanner/set-rps-for-domain.png)
+![ドメインRPSの設定](../images/user-guides/scanner/set-rps-for-domain.png)
 
 同じIPアドレスに関連する複数のドメインがある場合、このIPアドレスへのリクエストの速度は、IPアドレスの制限を超えません。同じドメインに関連する複数のIPアドレスがある場合、このドメイン内でこれらのIPアドレスへのリクエストのトータルのスピードは、ドメインの制限を超えません。

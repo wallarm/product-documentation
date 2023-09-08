@@ -20,20 +20,20 @@ To authenticate using SSO, go to the Wallarm login page.
 
 If you use an address like `<some_domain>.wallarm.com` (e.g., `my.wallarm.com`) to log in to Wallarm, then you will need to click the *Sign in with SAML SSO* link to login with SSO (login/password pair is considered a priority).
 
-![!The “login/password” pair login page][img-basic-auth]
+![The “login/password” pair login page][img-basic-auth]
 
 If you use an address like `<company_domain>.wallarm.io` (the domain allocated to the company your account belongs to) to log in to Wallarm, then the priority login method is the SSO login, and the login form will be different from the one given above.
 
-![!SSO login form][img-sso-login-form]
+![SSO login form][img-sso-login-form]
 
 To log in to Wallarm using SSO, you need to enter your email.
 
 If the entered email is registered and SSO authentication is configured for it, you will be redirected to an identity provider (IdP) service, such as Okta or G Suite. If you are also not authorized by this provider, you will be redirected to the login page. The login pages for the Okta and G Suite services are shown below.
 
-![!Okta and G Suite login pages][img-idp-auth-pages]
+![Okta and G Suite login pages][img-idp-auth-pages]
 
 Enter your email and password (additional options with two-factor authentication). After successful authentication by the identity provider and verification of access rights to the requested resource (Wallarm), the provider redirects you to the Wallarm portal. At the same time, the provider sends a request to the Wallarm side confirming that you are a legitimate user, as well as other necessary parameters. In this way, you will be logged in to the Wallarm portal and the dashboard page will be opened.
 
-![!Wallarm portal's Dashboard][img-wl-dashboard]
+![Wallarm portal's Dashboard][img-wl-dashboard]
 
 This completes the SSO authentication process.

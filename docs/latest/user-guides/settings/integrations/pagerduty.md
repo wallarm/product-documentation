@@ -34,7 +34,7 @@ In Wallarm UI:
 6. [Test the integration](#testing-integration) and make sure the settings are correct.
 7. Click **Add integration**.
 
-    ![!PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
+    ![PagerDuty integration](../../../images/user-guides/settings/integrations/add-pagerduty-integration.png)
 
 ## Testing integration
 
@@ -42,7 +42,7 @@ In Wallarm UI:
 
 Test PagerDuty notification:
 
-![!Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
+![Test PagerDuty notification](../../../images/user-guides/settings/integrations/test-pagerduty-scope-changed.png)
 
 ## Updating integration
 

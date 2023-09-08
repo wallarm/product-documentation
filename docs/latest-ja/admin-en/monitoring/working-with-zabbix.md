@@ -25,7 +25,7 @@ ZabbixのWebインターフェイスログインページにアクセスする�
     6.  *有効化* チェックボックスがチェックされていることを確認してください。
     7.  *追加* ボタンをクリックしてホスト作成プロセスを完了してください。
     
-    ![!Configuring a Zabbix host][img-zabbix-hosts] 
+    ![Configuring a Zabbix host][img-zabbix-hosts] 
 
 2.  フィルターノードホストで監視すべきメトリクスを追加します。単一のメトリクスを追加するためには、以下の手順に従ってください:
     1. *設定 → ホスト* タブ上のホストのリストで、作成したホスト `node.example.local` の名前をクリックしてください。
@@ -37,7 +37,7 @@ ZabbixのWebインターフェイスログインページにアクセスする�
     7.  *有効化* チェックボックスがチェックされていることを確認してください。
     8. *追加* ボタンをクリックして、メトリクスの追加を完了してください。
 
-    ![!Adding a metric][img-zabbix-items]
+    ![Adding a metric][img-zabbix-items]
 
 3.  追加したメトリクスの視覚化を設定します:
     1.  ダッシュボードにアクセスするために、Webインターフェイスの左上角のZabbixロゴをクリックしてください。 
@@ -49,7 +49,7 @@ ZabbixのWebインターフェイスログインページにアクセスする�
         5. *テキストをHTMLとして表示* チェックボックスと *動的アイテム* チェックボックスがチェックされていることを確認してください。
         6.  *追加* ボタンをクリックして、ウィジェットの追加ウィザードを完了します。
         
-        ![!Adding widget with the metric][img-zabbix-widget]
+        ![Adding widget with the metric][img-zabbix-widget]
       
     3.  ダッシュボードに加えた変更を保存するために、*変更を保存* ボタンをクリックしてください。
 
@@ -58,7 +58,7 @@ ZabbixのWebインターフェイスログインページにアクセスする�
     
         --8<-- "../include-ja/monitoring/wallarm-status-check-padded-latest.md"
 
-        ![!Viewing the metric value][img-global-view-0]
+        ![Viewing the metric value][img-global-view-0]
 
     2.  フィルタノードによって保護されたアプリケーションに対するテスト攻撃を実行します。これを行うために、`curl` ユーティリティまたはブラウザを使用してアプリケーションに悪意のあるリクエストを送信できます。
 
@@ -68,6 +68,6 @@ ZabbixのWebインターフェイスログインページにアクセスする�
     
         --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
 
-        ![!Viewing the changed metric value][img-global-view-16]
+        ![Viewing the changed metric value][img-global-view-16]
 
 Zabbixダッシュボードでは、`node.example.local`フィルターノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリクスが表示されています。

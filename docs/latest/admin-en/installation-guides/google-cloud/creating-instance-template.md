@@ -10,7 +10,7 @@ A filtering node instance template will be used later as the base when creating 
 
 1.  Navigate to the **Instance templates** page in the **Compute Engine** section of the menu and click the **Create instance template** button.
     
-    ![!Creating an instance template][img-creating-template]
+    ![Creating an instance template][img-creating-template]
     
 2.  Enter the template name into the **Name** field.
 3.  Select the virtual machine type to be used to launch a virtual machine with the filtering node on from the **Machine type** field. 
@@ -22,7 +22,7 @@ A filtering node instance template will be used later as the base when creating 
 
 4.  Click the **Change** button in the **Boot disk** setting. In the window that appears, navigate to the **Custom images** tab and select the name of the project where you created your virtual machine image from the **Show images from** drop-down list. Select the [previously created image][link-creating-image] from the list of available images of the project and click the **Select** button.
 
-    ![!Selecting an image][img-selecting-image]
+    ![Selecting an image][img-selecting-image]
     
 5.  For the instances based on the template to be identical to the basic instance, configure all of the remaining parameters in the same way as you configured the parameters when [creating your base instance][link-creating-image].
     

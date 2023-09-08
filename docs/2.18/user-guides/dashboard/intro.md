@@ -9,10 +9,10 @@ The **Dashboards** section on your Wallarm account shows the event history's gra
 
 * [API Security dashboard](waf.md) with statistics on the filtering node operation
 
-    ![! API Security dashboard](../../images/user-guides/dashboard/dashboard.png)
+    ![ API Security dashboard](../../images/user-guides/dashboard/dashboard.png)
 * [Scanner Dashboard](scanner.md) with statistics on the detected vulnerabilities
 
-    ![! Dashboard Scanner](../../images/user-guides/dashboard/dashboard-scanner.png)
+    ![ Dashboard Scanner](../../images/user-guides/dashboard/dashboard-scanner.png)
 
 
 !!! info "Getting started with Wallarm"

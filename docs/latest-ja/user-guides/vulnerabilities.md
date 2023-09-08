@@ -10,7 +10,7 @@ Wallarmは、以下を含むセキュリティ弱点を[見つける](../about-w
 
 Wallarmは、全ての検出した脆弱性の履歴を**脆弱性**のセクションに保存します：
 
-![!脆弱性タブ](../images/user-guides/vulnerabilities/check-vuln.png)
+![脆弱性タブ](../images/user-guides/vulnerabilities/check-vuln.png)
 
 ## 脆弱性のライフサイクル
 
@@ -23,7 +23,7 @@ Wallarmは、全ての検出した脆弱性の履歴を**脆弱性**のセクシ
 
 脆弱性を管理する際、手動で脆弱性のステータスを切り替えることができます。また、Wallarmは定期的に脆弱性を[再チェック](#verifying-vulnerabilities)し、結果に応じて脆弱性のステータスを自動的に変更します。
 
-![!脆弱性ライフサイクル](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
+![脆弱性ライフサイクル](../images/user-guides/vulnerabilities/vulnerability-lifecycle.png)
 
 脆弱性ライフサイクルの変更は、脆弱性変更履歴で反映されます。
 
@@ -48,7 +48,7 @@ Wallarmは、リスクレベルを評価し、セキュリティ問題に対処�
 
 [検索文字列](search-and-filters/use-search.md)と事前に定義されたフィルターを使用して脆弱性をフィルタリングできます。
 
-![!詳細な脆弱性情報](../images/user-guides/vulnerabilities/vuln-info.png)
+![詳細な脆弱性情報](../images/user-guides/vulnerabilities/vuln-info.png)
 
 すべての脆弱性は、システムが不正な行為に対してより脆弱になるため、アプリケーション側で修正する必要があります。脆弱性を修正できない場合は、[バーチャルパッチ](rules/vpatch-rule.md)ルールを使用して関連する攻撃をブロックし、インシデントのリスクを排除することができます。
 
@@ -64,7 +64,7 @@ Wallarmは定期的にアクティブな脆弱性と解決済みの脆弱性の�
 
 脆弱性を手動で再チェックする必要がある場合は、脆弱性メニューの適切なオプションを使用して再チェックプロセスを開始できます：
 
-![!再チェック可能な脆弱性](../images/user-guides/vulnerabilities/recheck-vuln.png)
+![再チェック可能な脆弱性](../images/user-guides/vulnerabilities/recheck-vuln.png)
 
 ## 脆弱性検出の設定
 
@@ -79,7 +79,7 @@ Wallarmは定期的にアクティブな脆弱性と解決済みの脆弱性の�
 
     デフォルトでは、このモジュールは無効になっており、有効化する前にその設定[ベストプラクティス](../admin-en/attack-rechecker-best-practices.md)を学びます。
 
-![!脆弱性スキャンの設定](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
+![脆弱性スキャンの設定](../images/user-guides/vulnerabilities/vuln-scan-settings.png)
 
 さらに、UIの[**スキャナー**](scanner.md)セクションでは、どの公開資産を脆弱性スキャナーでスキャンするべきか、各資産に対してスキャナーが生成するRPS/RPMを制御することができます。
 

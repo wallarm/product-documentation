@@ -12,5 +12,5 @@
     * The attack is displayed in the list.
     * Hit details display the Wallarm node UUID.
 
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 

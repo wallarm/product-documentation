@@ -22,7 +22,7 @@ Wallarm Consoleの**イベント**セクションで攻撃を確認すること�
 
 数字をクリックすると、選択した攻撃内のすべてのリクエストが展開されます。
 
-![!攻撃内のリクエスト][img-analyze-attack]
+![攻撃内のリクエスト][img-analyze-attack]
 
 各リクエストは次の列内に関連情報を表示します:
 
@@ -38,7 +38,7 @@ Wallarm Consoleの**イベント**セクションで攻撃を確認すること�
 
 攻撃が現在進行中の場合、リクエストグラフの下に *"now"* ラベルが表示されます。
 
-![!現在進行中の攻撃][img-current-attack]
+![現在進行中の攻撃][img-current-attack]
 
 リクエストビューには、Wallarmの振る舞いの微調整を提供する以下のオプションがあります:
 
@@ -56,7 +56,7 @@ Wallarm Consoleの**イベント**セクションで攻撃を確認すること�
 
 Raw形式でリクエストを表示するためには、要求された攻撃を展開し、その中のリクエストも展開します。
 
-![!リクエストのRaw形式][img-analyze-attack-raw]
+![リクエストのRaw形式][img-analyze-attack-raw]
 
 ## ヒットのサンプリング
 
@@ -111,7 +111,7 @@ Raw形式でリクエストを表示するためには、要求された攻撃�
 
 グループ化されたヒットは、Wallarm Consoleの**イベント**セクションに以下のように表示されます:
 
-![!ドロップされたヒット](../../images/user-guides/events/bruteforce-dropped-hits.png)
+![ドロップされたヒット](../../images/user-guides/events/bruteforce-dropped-hits.png)
 
 サンプリングされたヒットのみを表示させるためにイベントリストをフィルタリングするには、**ヒットのサンプリングが有効**の通知をクリックします。`sampled` 属性が検索フィールドに[追加](../search-and-filters/use-search.md#search-for-sampled-hits)され、イベントリストにはサンプリングされたヒットのみが表示されます。
 

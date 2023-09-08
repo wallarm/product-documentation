@@ -33,7 +33,7 @@ Log in to the Okta service (the account must have administrator rights) and clic
 
 In the *Dashboard* section, click the *Add Applications* button on the right.
 
-![!Okta dashboard][img-dashboard]
+![Okta dashboard][img-dashboard]
 
 In the new application section, click the *Create New App* button on the right.
 
@@ -59,7 +59,7 @@ Optionally, you can download the logo of the application (**App logo**) and conf
 
 Click the *Next* button.
 
-![!General settings][img-general]
+![General settings][img-general]
 
 
 ##  2.  Configure SAML
@@ -80,11 +80,11 @@ Fill in the following basic parameters:
 
 The remaining parameters for the initial setup can be left as default.
 
-![!Configure SAML][img-saml]
+![Configure SAML][img-saml]
 
 Click *Next* to continue the setup. If you want to return to the previous step, click *Previous*.
 
-![!SAML settings preview][img-saml-preview]
+![SAML settings preview][img-saml-preview]
 
 
 ##  3.  Feedback
@@ -95,7 +95,7 @@ If required, fill in other available parameters.
 
 After that, you can finish the SAML integration wizard by clicking the *Finish* button. To go to the previous step, click the *Previous* button.
 
-![!Feedback form][img-feedback]
+![Feedback form][img-feedback]
 
 After this stage, you will be taken to the settings page of the created application.
 
@@ -111,18 +111,18 @@ You can download the metadata either as an XML file or “as is” in text form 
 To download as an XML file:
 1.  Click the *Identity Provider metadata* link on the settings page of the created application:
 
-    ![!Metadata download link][img-fetch-metadata-xml]
+    ![Metadata download link][img-fetch-metadata-xml]
     
     As a result, you will be taken to a new tab on your browser with similar content:
     
-    ![!Example of XML-formatted metadata][img-xml-metadata]
+    ![Example of XML-formatted metadata][img-xml-metadata]
     
 2.  Save the content to an XML file (with your browser or other suitable method).
 
 To download the metadata “as is”:
 1.  On the settings page of the created application, click the *View Setup instructions* button.
 
-    ![!The “View Setup instructions” button][img-fetch-metadata-manually]
+    ![The “View Setup instructions” button][img-fetch-metadata-manually]
     
 2.  Copy all the given data.
 

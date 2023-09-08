@@ -336,7 +336,7 @@ AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定�
 
 1. AWS 管理コンソールで実行中のタスクを開き、フィールド **External Link** からコンテナIPアドレスをコピーします。
 
-   ![!Settig up container instance][aws-copy-container-ip-img]
+   ![Settig up container instance][aws-copy-container-ip-img]
 
    IPアドレスが空の場合は、コンテナが **RUNNING** ステータスにあることを確認してください。
 
@@ -346,6 +346,6 @@ AWS管理コンソールとAWS CLIを使用して、環境変数のみで設定�
    curl http://<COPIED_IP>/etc/passwd
    ```
 3. [US Cloud](https://us1.my.wallarm.com/search) のWallarm コンソール → **イベント** または [EU Cloud](https://my.wallarm.com/search) を開き、攻撃がリストに表示されていることを確認します。
-   ![!Attacks in UI][attacks-in-ui-image]
+   ![Attacks in UI][attacks-in-ui-image]
 
 コンテナデプロイ中に生じたエラーの詳細はAWS管理コンソールのタスク詳細に表示されます。コンテナが利用できない場合は、必要なフィルタリングノードパラメータがコンテナに正しい値で渡されていることを確認してください。

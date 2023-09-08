@@ -15,7 +15,7 @@ You can set up Wallarm to send notifications to your Microsoft Teams channel whe
 7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
-      ![!MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+      ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
 
 ## Testing integration
 

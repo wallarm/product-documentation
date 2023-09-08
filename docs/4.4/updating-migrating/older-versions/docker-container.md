@@ -63,7 +63,7 @@ To create a new Wallarm node and get its token:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 
 ## Step 6: Migrate allowlists and denylists from the previous Wallarm node version to 4.4 (only if upgrading node 2.18 or lower)

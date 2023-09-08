@@ -2,7 +2,7 @@ WallarmのフィルターノードはWallarmクラウドと対話します。ノ
 
 ノードをクラウドに接続する際、表示されるノード名を設定し、適切な**ノードグループ**にノードを配置することができます（UIでノードを論理的に整理するために使用します）。
 
-![!Grouped nodes][img-grouped-nodes]
+![Grouped nodes][img-grouped-nodes]
 
 ノードをクラウドに接続するには、[適切なタイプ][wallarm-token-types]のWallarmトークンを使用します。
 

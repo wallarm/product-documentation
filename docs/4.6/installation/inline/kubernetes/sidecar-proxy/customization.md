@@ -47,7 +47,7 @@ Wallarm provides two options for deployment of Wallarm containers to a Pod:
 * Single deployment (by default)
 * Split deployment
 
-![!Single and split containers][single-split-containers-img]
+![Single and split containers][single-split-containers-img]
 
 You can set the container deployment options both on the global and per-pod basis:
 
@@ -104,11 +104,11 @@ By default, the Wallarm sidecar controller routes traffic as follows:
 
 Incoming traffic capture is implemented using the init container running iptables which is the best practice for automatic port forwarding. This container is run as privileged, with the `NET_ADMIN` capability.
 
-![!Default port forwarding with iptables][port-forwarding-with-iptables-img]
+![Default port forwarding with iptables][port-forwarding-with-iptables-img]
 
 However, this approach is incompatible with the service mesh like Istio since Istio already has iptables-based traffic capture implemented. In this case, you can disable iptables and port forwarding will work as follows:
 
-![!Port forwarding without iptables][port-forwarding-without-iptables-img]
+![Port forwarding without iptables][port-forwarding-without-iptables-img]
 
 !!! info "Unprotected application container"
     If iptables is disabled, an exposed application container will not be protected by Wallarm. As a result, malicious "east-west" traffic may reach the application container if its IP address and port are known to an attacker.

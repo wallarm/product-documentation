@@ -27,7 +27,7 @@ Wallarm UIで：
 7. [インテグレーションをテスト](#テスト-インテグレーション)し、設定が正しいことを確認します。
 8. **インテグレーションを追加**をクリックします。
 
-![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+![Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
 --8<-- "../include-ja/cloud-ip-by-request.md"
 

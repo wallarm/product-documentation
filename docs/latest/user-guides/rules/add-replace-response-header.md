@@ -35,4 +35,4 @@ To create and apply the rule in the **Rules** section:
 
 To allow all content of `https://example.com/*` to come only from the site's origin, you can add the response header [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) by using the rule **Change server response headers** as follows:
 
-![!Example of the rule "Change server response headers"](../../images/user-guides/rules/add-replace-response-header.png)
+![Example of the rule "Change server response headers"](../../images/user-guides/rules/add-replace-response-header.png)

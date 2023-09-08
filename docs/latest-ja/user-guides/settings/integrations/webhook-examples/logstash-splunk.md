@@ -6,7 +6,7 @@
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-![!Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
+![Webhookフロー](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-scheme.png)
 
 ## 使用されたリソース
 
@@ -22,7 +22,7 @@ Splunk EnterpriseとLogstashサービスへのリンクは例として引用さ�
 
 Logstashログは、`Wallarm Logstashログ`という名前のSplunk HTTPイベントコントローラーに送信され、他の設定はデフォルトのままです：
 
-![!HTTPイベントコレクタ設定](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
+![HTTPイベントコレクタ設定](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-setup.png)
 
 HTTPイベントコントローラにアクセスするために、生成されたトークン`93eaeba4-97a9-46c7-abf3-4e0c545fa5cb`が使用されます。
 
@@ -80,16 +80,16 @@ output {
     ```
 
     **Logstash logs：**
-    ![!Logstashログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
+    ![Logstashログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-curl-log.png)
 
     **Splunkイベント：**
-    ![!Splunkイベント](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)    
+    ![Splunkイベント](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-curl-log.png)    
 
 ### Logstash統合の設定
 
 --8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![LogstashとのWebhook統合](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstash統合設定の詳細](../logstash.md)
 
@@ -99,11 +99,11 @@ output {
 
 Logstashは次のようにイベントをログに記録します：
 
-![!LogstashからSplunkに新しいユーザーに関するログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
+![LogstashからSplunkに新しいユーザーに関するログ](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/splunk-user-log.png)
 
 Splunkイベントには次のエントリが表示されます：
 
-![!LogstashからSplunkに新しいユーザーカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
+![LogstashからSplunkに新しいユーザーカード](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/logstash-user.png)
 
 ## ダッシュボードにイベントを整理する
 

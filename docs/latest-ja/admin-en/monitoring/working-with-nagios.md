@@ -11,7 +11,7 @@
 2.  「サービス(Services)」リンクをクリックしてサービスページに移動します。
 3.  `wallarm_nginx_abnormal`サービスが表示され、「OK」ステータスであることを確認します：
 
-    ![!Service status][img-nagios-service-status]
+    ![Service status][img-nagios-service-status]
 
     
     !!! info "サービスチェックの強制"
@@ -22,7 +22,7 @@
 
 4.  「ステータス(Status)」列のサービス名のリンクをクリックしてサービスの詳細情報を表示します：
 
-    ![!Detailed information about service][img-nagios-service-details]
+    ![Detailed information about service][img-nagios-service-details]
 
     Nagiosに表示されているメトリック値（「Performance Data」行）がフィルタノードの`wallarm-status`出力と一致していることを確認します：
 
@@ -36,7 +36,7 @@
 
     --8<-- "../include-ja/monitoring/wallarm-status-output-latest.md"
 
-    ![!Updated Performance Data value][img-nagios-service-perfdata-updated]
+    ![Updated Performance Data value][img-nagios-service-perfdata-updated]
 
 これで、フィルタノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックの値がNagiosのサービスの状態情報に表示されるようになります。
 

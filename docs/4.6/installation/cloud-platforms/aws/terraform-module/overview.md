@@ -26,7 +26,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
 1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
 
-    ![!Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copy the generated node token.
 1. Add the `wallarm` module code to your Terraform configuration:
 

@@ -21,7 +21,7 @@ CIモードによるセキュリティテストを行うためには、FASTノ�
 
 このシナリオは以下の画像で表示されています：
 
-![!CIモードのFASTノードを持つCI/CDジョブの例][img-sample-job-ci-mode]
+![CIモードのFASTノードを持つCI/CDジョブの例][img-sample-job-ci-mode]
 
 対応するワークフローステップは次の通りです：
 

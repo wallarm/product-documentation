@@ -27,7 +27,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     6.  Make sure that the *Enabled* checkbox is checked.
     7.  Complete the host creation process by clicking the *Add* button.
     
-    ![!Configuring a Zabbix host][img-zabbix-hosts]
+    ![Configuring a Zabbix host][img-zabbix-hosts]
    
 2.  Add metrics that should be monitored for the filter node host. To add a single metric, follow the steps below:
     1.  Click the name of the created host `node.example.local` in the list of hosts on the *Configuration → Hosts* tab.
@@ -39,7 +39,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     7.  Make sure that the *Enabled* checkbox is checked.
     8.  Complete the process of adding a metric by clicking the *Add* button.
     
-    ![!Adding a metric][img-zabbix-items]
+    ![Adding a metric][img-zabbix-items]
 
 3.  Configure the visualization of the added metrics:
     1.  Click the Zabbix logo in the upper left corner of the web interface to access the dashboard. 
@@ -51,7 +51,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
         5. Make sure that the *Show text as HTML* and *Dynamic Items* checkboxes are checked.
         6. Complete the *Add widget* wizard by clicking the *Add* button.
         
-        ![!Adding widget with the metric][img-zabbix-widget]
+        ![Adding widget with the metric][img-zabbix-widget]
       
     3.  Save the changes that you made to the dashboard by clicking the *Save changes* button.
 
@@ -60,7 +60,7 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     
         --8<-- "../include/monitoring/wallarm-status-check-padded.md"
 
-        ![!Viewing the metric value][img-global-view-0]
+        ![Viewing the metric value][img-global-view-0]
 
     2.  Perform a test attack on an application protected by the filter node. To do this, you can send a malicious request to the application either with the `curl` utility or a browser.
         
@@ -70,6 +70,6 @@ To monitor the metrics of the `node.example.local` filter node, perform the foll
     
         --8<-- "../include/monitoring/wallarm-status-output-padded.md"
 
-        ![!Viewing the changed metric value][img-global-view-16]
+        ![Viewing the changed metric value][img-global-view-16]
 
 The Zabbix dashboard now displays the `curl_json-wallarm_nginx/gauge-attacks` metric of the `node.example.local` filter node. 

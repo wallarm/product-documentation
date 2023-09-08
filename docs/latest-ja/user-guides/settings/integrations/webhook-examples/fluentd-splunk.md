@@ -6,7 +6,7 @@
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## 使用リソース
 
@@ -22,7 +22,7 @@ Splunk EnterpriseとFluentdサービスへのリンクは例として引用さ�
 
 Fluentdのログは名前が`Wallarm Fluentd logs`、その他はデフォルト設定のSplunk HTTPイベントコントローラに送信されます。
 
-![!HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
 HTTPイベントコントローラにアクセスするためには、生成されたトークン`f44b3179-91aa-44f5-a6f7-202265e10475`が使用されます。
 
@@ -86,16 +86,16 @@ Fluentdは`td-agent.conf`ファイルで設定されます。
     ```
 
     **Fluentdのログ：**
-    ![!Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
     **Splunkのログ：**
-    ![!Logs in Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    ![Logs in Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
 ### Fluentd連携の設定
 
 --8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Fluentd連携設定の詳細](../fluentd.md)
 
@@ -105,11 +105,11 @@ Fluentdは`td-agent.conf`ファイルで設定されます。
 
 Fluentdは次のようにイベントをログとして記録します。
 
-![!Log about new user in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![Log about new user in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
 次のエントリがSplunkのイベントに表示されます。
 
-![!New user card in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![New user card in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
 ## スプランクエンタープライズでのイベントのダッシュボードへの整理の方法
 

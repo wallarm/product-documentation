@@ -86,11 +86,11 @@
 * 脆弱性のステータス検証を実行：アプリケーション側で依然としてアクティブか、または修正されている
 * 脆弱性をクローズするか、偽陽性としてマークする
 
-![!脆弱性セクション](../images/user-guides/vulnerabilities/check-vuln.png)
+![脆弱性セクション](../images/user-guides/vulnerabilities/check-vuln.png)
 
 Wallarmプラットフォームの[**API Discovery**モジュール](api-discovery.md)を使用している場合、脆弱性は検出されたAPIエンドポイントと関連付けられます。たとえば：
 
-![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 脆弱性の管理に関する詳細情報は、[脆弱性の操作](../user-guides/vulnerabilities.md)に関する指示をご覧ください。
 

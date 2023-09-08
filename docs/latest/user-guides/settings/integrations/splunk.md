@@ -27,7 +27,7 @@ In Wallarm UI:
 7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
-![!Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
+![Splunk integration](../../../images/user-guides/settings/integrations/add-splunk-integration.png)
 
 --8<-- "../include/cloud-ip-by-request.md"
 

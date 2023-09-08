@@ -50,7 +50,7 @@ CDNノードを作成するには、[手順](../../installation/cdn-node.md)に�
 * インストールされたWallarmパッケージのバージョン
 * 利用可能なコンポーネント更新のインジケーター
 
-![!CDNノードカード](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![CDNノードカード](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## 保護されたリソースの原点アドレスの更新
 
@@ -83,7 +83,7 @@ Wallarmは、CDNノードドメインでHTTPSを有効にするための[Let's E
 1. 変更が伝播するのを待ちます。実際のCNAMEレコードのステータスは、Wallarm Console → **ノード** → **CDN** → **ノードを削除**で表示されます。
 1. ノードリストからCDNノードを削除します。
 
-![!ノードの削除](../../images/user-guides/nodes/delete-cdn-node.png)
+![ノードの削除](../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## CDNノードのトラブルシューティング
 

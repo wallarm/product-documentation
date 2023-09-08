@@ -52,4 +52,4 @@ The rule DOES NOT allow to:
 * The rule increases the time limit for processing each POST request to `https://example.com/upload` up to 1,020 milliseconds. The specified endpoint performs large file uploading.
 * Other parameters of the node behavior remain default - if the node processes the request longer than 1,020 milliseconds, it stops the request processing and registers the `overlimit_res` attack.
 
-![!The "Register and display in the events" rule example](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![The "Register and display in the events" rule example](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

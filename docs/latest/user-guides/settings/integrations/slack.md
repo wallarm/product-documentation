@@ -15,7 +15,7 @@ You can set up Wallarm to send notifications to your Slack channel when the foll
 7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
-      ![!Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
+      ![Slack integration](../../../images/user-guides/settings/integrations/add-slack-integration.png)
 
 ## Testing integration
 

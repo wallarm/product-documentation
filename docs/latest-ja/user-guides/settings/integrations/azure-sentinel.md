@@ -27,7 +27,7 @@ Wallarm ConsoleのUIでは：
         Wallarm統合のためのSentinelでのワークスペース作成は、すべてのサービスが機能するまでに最大1時間かかる可能性があります。この遅延は統合のテストと使用中にエラーを引き起こすことがあります。すべての統合設定が正しく、それでもエラーが続く場合は、1時間後にもう一度お試しください。
 1. **統合を追加** をクリックします。
 
-    ![!Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
 ## 統合のテスト
 
@@ -35,7 +35,7 @@ Wallarm ConsoleのUIでは：
 
 Microsoft Workspace → **ログ** → **カスタムログ** でWallarmのログを見つけることができます。例えば、Microsoft Sentinelのテスト `create_user_CL` ログは次のように表示されます：
 
-![!Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+![Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
 ## Wallarmログの種類
 

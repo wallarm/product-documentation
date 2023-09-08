@@ -15,7 +15,7 @@ Wallarmコンソールの**イベント**セクションで検出された攻撃
 
 ## アタック
 
-![!Attacks tab][img-attacks-tab]
+![Attacks tab][img-attacks-tab]
 
 * **日付**: 悪意のあるリクエストの日付と時間。
     * 同じタイプのいくつかのリクエストが短時間に検出された場合、アタック継続時間が日付の下に表示されます。継続時間は、特定のタイプの最初のリクエストと同じタイプの最後のリクエストとの間の時間です。
@@ -33,13 +33,13 @@ Wallarmコンソールの**イベント**セクションで検出された攻撃
      * モニタリング：アタックのすべてのヒットは登録されましたが、ブロックはされていません。
 * **パラメータ**: 悪意のあるリクエストのパラメータとリクエストに適用された[parsers](../rules/request-processing.md)のタグ。
 * **アクティブな検証**: アタックの検証ステータス。攻撃が誤検知（FP）とされている場合、該当するマークがこの列（**FP**）に表示され、攻撃は再検証されません。誤検知アクションによる攻撃を検索するには、以下の検索フィルターを使用してください
-    ![!Filter for false positive][img-show-falsepositive]
+    ![Filter for false positive][img-show-falsepositive]
 
 最後のリクエストの時間で攻撃を並べ替えるには、**最新のヒットで並べ替える**スイッチを使用できます。
 
 ## インシデント
 
-![!Incidents tab][img-incidents-tab]
+![Incidents tab][img-incidents-tab]
 
 インシデントは攻撃と同じパラメーターを持ちますが、一つの列が違います： **脆弱性**列が攻撃の**検証**列を置き換えます。**脆弱性**列は、対応するインシデントが突き止めた脆弱性を表示します。
 
@@ -60,7 +60,7 @@ Wallarmコンソールの**イベント**セクションで検出された攻撃
 * `incidents now`は、現在進行中のインシデントを表示します。
 * `attacks incidents now`は、現在進行中の攻撃とインシデントを表示します。
 
-![!Attacks happening right now][img-current-attacks]
+![Attacks happening right now][img-current-attacks]
 
 ## アタックとインシデントを取得するAPIコール
 

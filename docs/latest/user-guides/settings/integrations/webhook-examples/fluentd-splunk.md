@@ -6,7 +6,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-scheme.png)
 
 ## Used resources
 
@@ -22,7 +22,7 @@ Since the links to the Splunk Enterprise and Fluentd services are cited as examp
 
 Fluentd logs are sent to Splunk HTTP Event Controller with the name `Wallarm Fluentd logs` and other default settings:
 
-![!HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
+![HTTP Event Collector Configuration](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-setup.png)
 
 To access the HTTP Event Controller, the generated token `f44b3179-91aa-44f5-a6f7-202265e10475` will be used.
 
@@ -86,16 +86,16 @@ A more detailed description of configuration files is available in the [official
     ```
 
     **Fluentd logs:**
-    ![!Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-curl-log.png)
 
     **Splunk logs:**
-    ![!Logs in Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
+    ![Logs in Splunk](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-curl-log.png)
 
 ### Configuration of Fluentd integration
 
 --8<-- "../include/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [More details on the Fluentd integration configuration](../fluentd.md)
 
@@ -105,11 +105,11 @@ A more detailed description of configuration files is available in the [official
 
 Fluentd will log the event as follows:
 
-![!Log about new user in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
+![Log about new user in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/splunk-user-log.png)
 
 The following entry will be displayed in Splunk events:
 
-![!New user card in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
+![New user card in Splunk from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/splunk/fluentd-user.png)
 
 ## Getting events in Splunk Enterprise organized into a dashboard
 

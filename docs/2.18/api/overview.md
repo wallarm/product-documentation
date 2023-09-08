@@ -18,7 +18,7 @@ Description of API methods is given in the **Wallarm API Console** available fro
 * https://apiconsole.us1.wallarm.com/ for the [US cloud](../about-wallarm/overview.md#us-cloud)
 * https://apiconsole.eu1.wallarm.com/ for the [EU cloud](../about-wallarm/overview.md#eu-cloud)
 
-![!Wallarm API Console](../images/wallarm-api-reference.png)
+![Wallarm API Console](../images/wallarm-api-reference.png)
 
 ## API endpoint
 

@@ -12,7 +12,7 @@ Wallarm can block most harmful traffic request-by-request if a malicious payload
 
 Wallarm can block bots and behavioral‑based attacks, such as application abuse, brute-force, and forced browsing, by automatically adding IPs to the denylist. Administrators can also manually add IP addresses for blocking.
 
-![!Denylist tab overview][img-denylist]
+![Denylist tab overview][img-denylist]
 
 The denylist is available in the **Denylist** section of your Wallarm account. The section allows you to:
 
@@ -57,13 +57,13 @@ You can filter the list of currently blocked IP addresses by:
 
 One can extend the blocking time for the currently blocked IP address via the **Change blocking time** menu.
 
-![!Change blocking time][img-denylist-change-time]
+![Change blocking time][img-denylist-change-time]
 
 ### Unblocking IPs
 
 To unblock IP addresses, use **Unblock** on the entry with a blocked IP or select several IP addresses and click **Unblock**.
 
-![!Unblock IP][img-denylist-unblock]
+![Unblock IP][img-denylist-unblock]
 
 !!! warning "Repeated blocking of unblocked IP address"
     After manually unblocking the automatically blocked IP address, this IP address will be repeatedly blocked after half of the previous blocking time.
@@ -101,4 +101,4 @@ To start blocking IP addresses:
 
     You can select the application the IP denylist is applied to. To select the application, please set the directive [`wallarm_acl`](../admin-en/configure-parameters-en.md#wallarm_acl) inside the required server or location block in the NGINX configuration file.
 
-![!Adding to denylist][img-denylist-add]
+![Adding to denylist][img-denylist-add]

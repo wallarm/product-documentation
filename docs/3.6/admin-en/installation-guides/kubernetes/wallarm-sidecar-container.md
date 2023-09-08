@@ -15,13 +15,13 @@ Normally, Kubernetes directly exposes a `Service` object with the `ClusterIP` or
 
 An application container accepts incoming requests on port `8080/TCP`, and the `Service` object forwards incoming requests to the same port (`8080/TCP`) on all healthy pods of the application (Kubernetes `Deployment` object).
 
-![!Scheme of the traffic flow without Wallarm sidecar container](../../../images/admin-guides/kubernetes/requests-scheme-without-wallarm-sidecar.png)
+![Scheme of the traffic flow without Wallarm sidecar container](../../../images/admin-guides/kubernetes/requests-scheme-without-wallarm-sidecar.png)
 
 ### Scheme of the traffic flow with the Wallarm sidecar container
 
 An application container accepts incoming requests on port `8080/TCP` and the `Service` object forwards incoming requests to another port (for example, `80/TCP`) on the Wallarm sidecar container. The Wallarm sidecar container filters requests and forwards the legitimate ones to the `8080/TCP` port on all healthy pods of the application (Kubernetes `Deployment` object).
 
-![!Scheme of the traffic flow with Wallarm sidecar container](../../../images/admin-guides/kubernetes/requests-scheme-with-wallarm-sidecar.png)
+![Scheme of the traffic flow with Wallarm sidecar container](../../../images/admin-guides/kubernetes/requests-scheme-with-wallarm-sidecar.png)
 
 When a Wallarm filtering node sidecar container is added to a Kubernetes pod it is necessary to change the flow of HTTP requests hitting the pod. A detailed description of changing this flow is provided in the instructions.
 

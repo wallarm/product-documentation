@@ -4,13 +4,13 @@ The **Scanner** section of Wallarm Console allows you to see all of your public 
 
 As the project grows, resources increase and control decreases. Resources may be located outside of the company's data centers, which can compromise security. Wallarm helps assess security using methods similar to ethical hackers, giving visibility over the results.
 
-![!Scanner section](../images/user-guides/scanner/check-scope.png)
+![Scanner section](../images/user-guides/scanner/check-scope.png)
 
 ## Adding assets
 
 To trigger Wallarm to discover your company's exposed assets, add the first public asset manually. Click **Add domain or IP** and enter one of your domains or IPs:
 
-![!Scanner section](../images/user-guides/scanner/add-asset-manually.png)
+![Scanner section](../images/user-guides/scanner/add-asset-manually.png)
 
 After the new domain or IP address is added, the Wallarm Scanner launches the scanning procedure to search for assets connected with the resource and adds them to the list. Wallarm first scans ports and then detects the network resources on these ports.
 
@@ -38,7 +38,7 @@ Newly discovered assets that have not been viewed by any user are displayed on t
 
 The resource's domain, IP address, and port are interdependent. By selecting an asset, you can view its associations, such as a domain associated with a selected IP address:
 
-![!Scope element with its associations](../images/user-guides/scanner/asset-with-associations.png)
+![Scope element with its associations](../images/user-guides/scanner/asset-with-associations.png)
 
 ### Controlling assets' connections
 
@@ -51,7 +51,7 @@ To manage each asset's scanning settings independently:
 
     The name of the current resource is shown in bold. The UI also displays its discovery date.
 
-![!Disable the resource connection](../images/user-guides/scanner/disable-association.png)
+![Disable the resource connection](../images/user-guides/scanner/disable-association.png)
 
 To enable assets' interconnection, follow the same steps as when you were disabling the interconnection.
 
@@ -85,7 +85,7 @@ Cloud: EU
 
 To fine-tune asset scanning in Wallarm, click the **Configure** button. From there, you can control which methods the Wallarm Scanner uses to find your company's exposed assets. By default, all available methods are used.
 
-![!Scanner config](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
+![Scanner config](../images/user-guides/vulnerabilities/scanner-configuration-options.png)
 
 There is also the global switcher for the Wallarm Scanner called **Basic Scanner functionality**. This switcher enables or disables the Scanner for your entire company account, controlling both the asset scanning and vulnerability discovery processes. You can also find the same toggle switch in the **Vulnerabilities** section. Changing the switch in one section will automatically update the setting in the other section as well.
 
@@ -115,6 +115,6 @@ To override limits for specific IP addresses or domains:
 
 To return to the default settings, use an empty value or enter `0`.
 
-![!Setting domain RPS](../images/user-guides/scanner/set-rps-for-domain.png)
+![Setting domain RPS](../images/user-guides/scanner/set-rps-for-domain.png)
 
 If multiple domains are associated with the same IP address, the speed of requests to this IP address will not exceed the limits for the IP address. If multiple IP addresses are associated with one domain, then the total speed of requests to these IP addresses within this domain will not exceed the limits for the domain.

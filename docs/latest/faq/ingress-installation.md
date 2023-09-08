@@ -11,7 +11,7 @@ This troubleshooting guide lists common issues you can face during the [Wallarm 
 
 * Go to your Wallarm Console for the [US cloud](https://us1.my.wallarm.com) or for the [EU cloud](https://my.wallarm.com) → the **Events** section and expand request details. An IP address is displayed in the *Source* field. For example:
 
-    ![!IP address from which the request was sent](../images/request-ip-address.png)
+    ![IP address from which the request was sent](../images/request-ip-address.png)
 
     If the list of attacks is empty, you can send a [test attack](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.
     
@@ -19,6 +19,6 @@ This troubleshooting guide lists common issues you can face during the [Wallarm 
 
 Please go to Wallarm Console for the [US cloud](https://us1.my.wallarm.com) or for the [EU cloud](https://my.wallarm.com) → the **Events** section and expand the request details. In the displayed request details, pay attention to the `X-FORWARDED-FOR` header. For example:
 
-![!The X-FORWARDED-FOR header of the request](../images/x-forwarded-for-header.png)
+![The X-FORWARDED-FOR header of the request](../images/x-forwarded-for-header.png)
 
 If the list of attacks is empty, you can send a [test attack](../admin-en/installation-check-operation-en.md#2-run-a-test-attack) to the application protected by the Wallarm Ingress controller.

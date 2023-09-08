@@ -25,7 +25,7 @@
 
 Install [Wallarm FAST plugin][jenkins-plugin-wallarm-fast] in the Jenkins project using Plugin Manager. There is more detailed information about managing plugins available in [Jenkins official documentation][jenkins-manage-plugin].
 
-![!Installation of Wallarm FAST plugin][jenkins-plugin-install]
+![Installation of Wallarm FAST plugin][jenkins-plugin-install]
 
 If problems have been encountered during installation, then build the plugin manually.
 
@@ -77,7 +77,7 @@ To add the step of request recording, select the `Record baselines` mode on the 
 
 **Example of configured plugin for test recording:**
 
-![!Example of plugin configuration to record requests][jenkins-plugin-record-params]
+![Example of plugin configuration to record requests][jenkins-plugin-record-params]
 
 Secondly, update the step of automated testing by adding FAST node as a proxy.
 
@@ -119,13 +119,13 @@ Please note that the application must be already started and available for testi
 
 **Example of a configured plugin for security testing:**
 
-![!Example of plugin configuration for security testing][jenkins-plugin-playback-params]
+![Example of plugin configuration for security testing][jenkins-plugin-playback-params]
 
 ## Step 3: Getting the Result of Testing
 
 The result of security testing will be displayed in the Jenkins interface.
 
-![!The result of the FAST plugin run][fast-example-jenkins-plugin-result]
+![The result of the FAST plugin run][fast-example-jenkins-plugin-result]
 
 ## More Examples
 

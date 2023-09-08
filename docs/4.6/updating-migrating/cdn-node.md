@@ -11,7 +11,7 @@ These instructions describe the steps to upgrade the Wallarm CDN node available 
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.
 1. Delete the CDN node from Wallarm Console → **Nodes**.
 
-    ![!Deleting the node](../images/user-guides/nodes/delete-cdn-node.png)
+    ![Deleting the node](../images/user-guides/nodes/delete-cdn-node.png)
 1. Create the CDN node of the newer version protecting the same domain following the [instructions](../installation/cdn-node.md).
 
 Since all CDN node settings are saved in the Wallarm Cloud, the new CDN node will get them automatically. You do not need to move the node configuration manually if the protected domain did not change.

@@ -20,7 +20,7 @@ The exact extra steps will differ depending on the test run creation scenario in
 
 In this scenario, the FAST node is managed via the Wallarm API. The API is also employed to manage test runs. The FAST node can either record baseline requests or work with already recorded baseline requests:
     
-![!Integration via API][img-api-mode] 
+![Integration via API][img-api-mode] 
 
 In this scenario, FAST demonstrates the following behavior:
 * A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you are planning to deploy.
@@ -35,7 +35,7 @@ In this scenario, the FAST node is used in the testing and recording modes. The 
 
 See the image below for a schematic explanation of this scenario:
 
-![!Integration with CI MODE][img-ci-mode]
+![Integration with CI MODE][img-ci-mode]
 
 In this scenario, FAST demonstrates the following behavior:
 * A single FAST node Docker container is bound to a single corresponding cloud FAST node. To run multiple containers with a FAST node simultaneously, you need the same number of cloud FAST nodes and tokens as the number of containers you plan to deploy.
@@ -54,7 +54,7 @@ The `BUILD_ID` parameter allows recording to several different test records whil
 
 See the image below for a schematic explanation of this scenario:
 
-![!Integration with BUILD_ID][img-ci-mode-build-id]
+![Integration with BUILD_ID][img-ci-mode-build-id]
 
 In this scenario, FAST demonstrates the following behavior:
 * A few FAST nodes can operate via a single cloud FAST node to work in concurrent CI/CD workflows. Note that **the same token is used** by all of these FAST nodes.

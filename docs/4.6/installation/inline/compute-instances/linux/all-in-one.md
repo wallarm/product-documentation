@@ -44,7 +44,7 @@ In comparison to the individual Linux packages offered by Wallarm for [NGINX](in
 1. Connecting the installed Wallarm module to your NGINX.
 1. Connecting the filtering node to Wallarm Cloud using the provided token.
 
-![!All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+![All-in-one compared to manual](../../../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## Use cases
 

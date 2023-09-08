@@ -15,7 +15,7 @@
 
 --8<-- "../include-ja/monitoring/metric-example.md"
 
-![!サンプルワークフロー][img-write-plugin-graphite]
+![サンプルワークフロー][img-write-plugin-graphite]
 
 このドキュメントでは、以下のデプロイメントスキームが使用されます:
 *   Wallarmフィルターノードは、`10.0.30.5` IPアドレスと`node.example.local`完全修飾ドメイン名を介してアクセス可能なホストにデプロイされています。

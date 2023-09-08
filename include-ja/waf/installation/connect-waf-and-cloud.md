@@ -4,7 +4,7 @@ WallarmノードはWallarmクラウドと対話します。フィルタリング
 
     これらの設定は、[US Cloud](https://us1.my.wallarm.com/settings/users)または[EU Cloud](https://my.wallarm.com/settings/users)のユーザーリストに移動することで確認できます。
 
-    ![!Wallarmコンソール内のユーザーリスト][img-wl-console-users]
+    ![Wallarmコンソール内のユーザーリスト][img-wl-console-users]
 
 2.  Wallarmノードがインストールされたシステムで`addnode`スクリプトを実行します：
 

@@ -105,7 +105,7 @@ server {
     === "Wallarm Console から"
          Wallarm Consoleユーザーインターフェイスの**ID**列から `clientid` をコピーします：
         
-        ![!Wallarm Console内のテナントのセレクタ](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![Wallarm Console内のテナントのセレクタ](../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "APIへのリクエストを送信する"
         1. `/v2/partner_client`ルートにGETリクエストを送信します：
 

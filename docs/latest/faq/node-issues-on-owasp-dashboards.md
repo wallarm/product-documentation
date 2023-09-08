@@ -4,7 +4,7 @@ When Wallarm nodes are not updated or face synchronization issues with the Cloud
 
 Outdated nodes may lack important security updates, allowing malicious traffic to bypass defenses. Synchronization issues can disrupt the nodes' functionality, preventing them from receiving vital security policies from the Cloud. These issues are primarily related to the **OWASP API7 (Security Misconfiguration)** threat, where a missing security solution in any part of the application stack can make the system vulnerable. To prevent this, the dashboard alerts you to node operation issues, e.g.:
 
-![!OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
+![OWASP dash with node issues](../images/user-guides/dashboard/owasp-dashboard-node-issues.png)
 
 To maintain a secure environment, it is crucial to regularly update Wallarm nodes and address synchronization problems. Here are instructions on how to handle the error messages:
 

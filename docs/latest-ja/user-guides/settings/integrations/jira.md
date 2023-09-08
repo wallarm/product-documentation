@@ -26,7 +26,7 @@ Wallarm UIにて：
 1. [統合テスト](#testing-integration)を行い設定が正しいことを確認します。
 1. **統合を追加**をクリックします。
 
-    ![!Jira統合](../../../images/user-guides/settings/integrations/add-jira-integration.png)
+    ![Jira統合](../../../images/user-guides/settings/integrations/add-jira-integration.png)
 
 ## 統合テスト
 
@@ -34,7 +34,7 @@ Wallarm UIにて：
 
 Jiraの問題作成をテストします：
 
-![!Jiraの問題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
+![Jiraの問題作成のテスト](../../../images/user-guides/settings/integrations/test-jira-issue-creation.png)
 
 ## 統合更新
 

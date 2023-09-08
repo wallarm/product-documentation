@@ -6,7 +6,7 @@ Wallarmコンソールの **IPリスト** セクションでは、許可リス�
 * **拒否リスト**は、アプリケーションへのアクセスが許可されていないIPアドレスのリストです。フィルタリングノードは、拒否リストに登録されたIPアドレスから発信されるすべてのリクエストをブロックします。
 * **グレーリスト**は、これらから発信されるリクエストに攻撃の兆候が含まれていない場合にのみ、アプリケーションへのアクセスを許可されているIPアドレスのリストです。
 
-![!すべてのIPリスト](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
+![すべてのIPリスト](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 ## IPリスト処理のアルゴリズム
 
@@ -14,7 +14,7 @@ Wallarmコンソールの **IPリスト** セクションでは、許可リス�
 
 以下の画像は、各操作モードにおけるIPリストの優先順位と組み合わせを視覚的に表現し、どのリストが各ケースで考慮されるかを強調しています：
 
-![!IPリストの優先順位](../../images/user-guides/ip-lists/ip-lists-priorities.png)
+![IPリストの優先順位](../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
 ## IPリストの設定
 

@@ -2,7 +2,7 @@ To get Wallarm events organized into a ready-to-use dashboard in Splunk 9.0 or l
 
 This application provides you with a pre-configured dashboard that is automatically filled with the events received from Wallarm. In addition to that, the application enables you to proceed to detailed logs on each event and export the data from the dashboard.
 
-![!Splunk dashboard][splunk-dashboard-by-wallarm-img]
+![Splunk dashboard][splunk-dashboard-by-wallarm-img]
 
 To install the Wallarm application for Splunk:
 

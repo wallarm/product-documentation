@@ -21,7 +21,7 @@ To perform comparison:
     * From where to upload: your local machine or URL. For URLs, via the header fields you can specify a token for authentication.
     * Whether the comparison should be performed once after specification upload or every hour (the **Perform regular comparison** option is selected by default). Hourly comparison allows finding additional shadow and orphan APIs as API Discovery discovers more endpoints. Specification uploaded from URL is updated before each comparison.
 
-    ![!API Discovery - API Specifications - uploading API specification to find shadow and orphan API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
+    ![API Discovery - API Specifications - uploading API specification to find shadow and orphan API](../images/about-wallarm-waf/api-discovery/api-discovery-specification-upload.png)
 
     Note that you can re-start comparison at any moment manually via specification menu → **Restart comparison**.
 
@@ -29,7 +29,7 @@ To perform comparison:
 
     As uploading is finished, the number of shadow and orphan APIs will be displayed for each specification in the list of **API Specifications** as well as the overall number of found unique shadow and orphan APIs. Also shadow and orphan APIs will be [displayed](api-discovery.md#displaying-shadow-and-orphan-api) in the **API Discovery** section.
 
-    ![!API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
+    ![API Specifications section](../images/about-wallarm-waf/api-discovery/api-discovery-specifications.png)
 
 ## Download previously uploaded specifications
 

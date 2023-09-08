@@ -28,7 +28,7 @@ Thirdly, finish the setup in Wallarm UI:
 3. [Test the integration](#testing-integration) and make sure the settings are correct.
 4. Click **Add integration**.
 
-![!InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+![InsightConnect integration](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
 ## Testing integration
 
@@ -36,7 +36,7 @@ Thirdly, finish the setup in Wallarm UI:
 
 Test InsightConnect message:
 
-![!Test InsightConnect notification](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+![Test InsightConnect notification](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 ## Updating integration
 

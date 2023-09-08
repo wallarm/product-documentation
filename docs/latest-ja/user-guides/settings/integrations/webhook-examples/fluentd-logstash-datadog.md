@@ -2,7 +2,7 @@
 
 Wallarmを設定して、FluentdまたはLogstashという中間データコレクターを通じてDatadogに検出されたイベントの通知を送信することができます。
 
-![!WallarmからDatadogへのデータコレクター経由での通知送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![WallarmからDatadogへのデータコレクター経由での通知送信](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "Datadogとのネイティブな統合"
     Wallarmはまた、[Datadog APIを経由したDatadogとのネイティブな統合](../datadog.md)もサポートしています。このネイティブな統合では、中間のデータコレクターの使用は必要ありません。
@@ -111,7 +111,7 @@ Wallarmはwebhooks経由で中間データコレクターにログを送信す�
 
 Fluentd統合の例：
 
-![!Fluentdとの統合を追加する](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentdとの統合を追加する](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## 統合のテスト
 
@@ -166,6 +166,6 @@ FluentdまたはLogstashの中間データコレクターでのテストログ�
 
 テストDatadogログ：
 
-![!テストDatadogログ](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![テストDatadogログ](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 他のレコードの中でWallarmログを見つけるために、Datadog Logsサービスで`source:wallarm_cloud`検索タグを使用できます。

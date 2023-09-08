@@ -70,7 +70,7 @@ JFrog Artifactory内でローカルRPMリポジトリを作成するには、以
 
 3.  新しいローカルリポジトリを作成するために*New*ボタンをクリックします。
 
-    ![!ローカルリポジトリの新規作成][img-new-local-repo]
+    ![ローカルリポジトリの新規作成][img-new-local-repo]
 
 4.  パッケージタイプに“RPM”を選択します。
 
@@ -82,7 +82,7 @@ JFrog Artifactory内でローカルRPMリポジトリを作成するには、以
 
     ローカルArtifactoryリポジトリを作成するために*Save & Finish*ボタンをクリックします。
     
-    ![!リポジトリ設定][img-artifactory-repo-settings]
+    ![リポジトリ設定][img-artifactory-repo-settings]
 
     これで、新しく作成されたリポジトリがローカルリポジトリリストに表示されるはずです。
 
@@ -102,11 +102,11 @@ ArtifactoryのローカルRPMリポジトリにウォールアームパッケー
 
 5.  *Import*ボタンをクリックしてディレクトリからウォールアームパッケージを取り込みます。
 
-    ![!パッケージの取り込み][img-import-into-artifactory]
+    ![パッケージの取り込み][img-import-into-artifactory]
     
 6.  *Artifacts*メニュー項目をクリックし、所望のローカルリポジトリにインポートしたウォールアームパッケージが存在することを確認します。
 
-    ![!リポジトリ内のパッケージ][img-local-repo-ok]
+    ![リポジトリ内のパッケージ][img-local-repo-ok]
     
 
 

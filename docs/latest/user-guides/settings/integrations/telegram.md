@@ -18,7 +18,7 @@ You can set up Wallarm to send scheduled reports and instant notifications to Te
 8. [Test the integration](#testing-integration) and make sure the settings are correct.
 9. Click **Add integration**.
 
-    ![!Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Telegram integration](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
 You can also start the chat with [@WallarmUSBot](https://t.me/WallarmUSBot) or [@WallarmBot](https://t.me/WallarmBot) directly. The bot will send reports and notifications as well.
 

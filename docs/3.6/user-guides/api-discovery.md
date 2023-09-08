@@ -16,7 +16,7 @@ The API inventory includes the following elements:
 * Customer applications with discovered API hosts.
 * Discovered endpoints grouped by API hosts. For each endpoint, the HTTP method is displayed.
 
-![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 ## Filtering endpoints
 
@@ -34,7 +34,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 <a name="params"></a>By clicking the endpoint, you can also find the set of required and optional parameters with the relevant data types:
 
-![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
 To sort, click the name of the column. To change the sorting order, click again.
 
@@ -67,7 +67,7 @@ You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking
 
     * An endpoint gets the `Unused` status if it is not requested (with the code 200 in response) for 7 days.
     * If later the endpoint in the `Unused` status is requested (with the code 200 in response) again it will lose the `Unused` status.
-![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 Using the **Changes since** filter only highlights the changed endpoints among the others. If you want to see only changes, additionally use the **Changes in API** filter where you can select one or several types of changes:
 
@@ -83,7 +83,7 @@ Number of attacks on API endpoints for the last 7 days are displayed in the **Hi
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
-![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
@@ -100,7 +100,7 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
-![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## Download OpenAPI specification (OAS) of your API inventory
 

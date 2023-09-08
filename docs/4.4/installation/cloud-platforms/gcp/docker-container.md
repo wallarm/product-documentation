@@ -31,7 +31,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Set the local environment variable with the Wallarm node token to be used to connect the instance to the Wallarm Cloud:
 
@@ -78,7 +78,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Create the instace based on any operating system image from the Compute Engine registry by using the [`gcloud compute instances create`](https://cloud.google.com/sdk/gcloud/reference/compute/instances/create) comand:
 
@@ -160,7 +160,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and copy the instance IP address from the **External IP** column.
 
-    ![!Settig up container instance](../../../images/waf-installation/gcp/container-copy-ip.png)
+    ![Settig up container instance](../../../images/waf-installation/gcp/container-copy-ip.png)
 
     If the IP address is empty, please ensure the instance is in the **RUNNING** status.
 
@@ -170,6 +170,6 @@ To deploy the containerized Wallarm filtering node configured through environmen
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors that occurred during the container deployment are displayed in the **View logs** instance menu. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

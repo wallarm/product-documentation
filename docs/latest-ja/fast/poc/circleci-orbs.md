@@ -23,7 +23,7 @@
 
 CircleCI プロジェクト設定の `WALLARM_API_TOKEN` 環境変数で [FAST ノードトークン][fast-node-token] の値を渡します。 環境変数の設定方法は、[CircleCI のドキュメンテーション][circleci-set-env-var]で説明されています。
 
-![!CircleCI 環境変数の渡し][circleci-example-env-var]
+![CircleCI 環境変数の渡し][circleci-example-env-var]
 
 ## ステップ 2： Wallarm FAST Orbs の接続
 

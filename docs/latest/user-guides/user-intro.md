@@ -16,7 +16,7 @@ This guide provides information on Wallarm operation options. All of these opera
 
 ##  Wallarm Portal Overview
 
-![!The portal overview][img-wallarm-portal-overview]
+![The portal overview][img-wallarm-portal-overview]
 
 After logging in to the Wallarm portal, you will be presented with the following:
 *   A sidebar with tabs on the left side of the portal.

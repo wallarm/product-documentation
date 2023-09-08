@@ -15,7 +15,7 @@ You can check detected attacks and incidents in the **Events** section of Wallar
 
 ## Attacks
 
-![!Attacks tab][img-attacks-tab]
+![Attacks tab][img-attacks-tab]
 
 * **Date**: The date and time of the malicious request.
     * If several requests of the same type were detected at short intervals, the attack duration appears under the date. Duration is the time period between the first request of a certain type and the last request of the same type in the specified timeframe. 
@@ -34,13 +34,13 @@ You can check detected attacks and incidents in the **Events** section of Wallar
      * Monitoring: all hits of the attack were registered but not blocked.
 * **Parameter**: The malicious request's parameters and tags of [parsers](../rules/request-processing.md) applied to the request
 * **Active verification**: The attack verification status. If the attack is ticked as false positive, the corresponding mark will be shown in this column (**FP**) and the attack will not be verified again. To find attacks by the false positive action, use the search filter below
-    ![!Filter for false positive][img-show-falsepositive]
+    ![Filter for false positive][img-show-falsepositive]
 
 To sort attacks by the time of the last request, you can use the **Sort by latest hit** switch.
 
 ## Incidents
 
-![!Incidents tab][img-incidents-tab]
+![Incidents tab][img-incidents-tab]
 
 Incidents have the same parameters as attacks, except for one column: the **Vulnerabilities** column replaces the **Verification** column of the attacks. The **Vulnerabilities** column displays the vulnerability, that the corresponding incident exploited.
 
@@ -61,7 +61,7 @@ You may also add the `now` keyword to the search field to only display those eve
 * `incidents now` to display incidents happening right now.
 * `attacks incidents now` to display attacks and incidents happening right now.
 
-![!Attacks happening right now][img-current-attacks]
+![Attacks happening right now][img-current-attacks]
 
 ## API calls to get attacks and incidents
 

@@ -21,7 +21,7 @@ To add the formed list of points, use the **Add insertion point** button in the 
 
 To delete the point, use the «—» symbol next to it:
 
-![!Deleteing a point][img-remove-point]
+![Deleteing a point][img-remove-point]
 
 !!! info "Basic points"
     When creating a policy, typical points are automatically added to the **Where in the request to include** section:
@@ -41,6 +41,6 @@ To delete the point, use the «—» symbol next to it:
 !!! info "Point reference"
     When creating or editing points, you can click on the **How to use** link to get additional details regarding points.
 
-    ![!Point reference][img-point-help]
+    ![Point reference][img-point-help]
 
     The full list of points which FAST can process is available by the [link][doc-point-list].

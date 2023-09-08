@@ -6,7 +6,7 @@ curl http://localhost/etc/passwd
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
-![!Attacks in the interface][img-attacks-in-interface]
+![Attacks in the interface][img-attacks-in-interface]
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
@@ -16,7 +16,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo systemctl status wallarm-tarantool
     ```
 
-    ![!wallarm-tarantool status][tarantool-status]
+    ![wallarm-tarantool status][tarantool-status]
 * Analyze the postanalytics module logs
 
     ```bash

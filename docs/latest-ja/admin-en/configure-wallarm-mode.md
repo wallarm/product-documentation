@@ -99,7 +99,7 @@ Wallarmコンソールの**Rules**タブのローカルフィルタリングモ�
 * [**安全ブロック**](#available-filtration-modes)
 * [**ブロック**](#available-filtration-modes)
     
-![!The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
+![The general settings tab](../images/configuration-guides/configure-wallarm-mode/en/general-settings-page-with-safe-blocking.png)
 
 !!! info "Wallarm Cloudとフィルタリングノードの同期"
     Wallarmコンソールで定義されたルールは、Wallarm Cloudとフィルタリングノードの同期プロセス中に適用されます。このプロセスは、2～4分ごとに行われます。

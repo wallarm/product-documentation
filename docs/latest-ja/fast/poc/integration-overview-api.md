@@ -62,7 +62,7 @@
 
 このシナリオは以下の画像で示されています：
 
-![!リクエスト記録があるCI/CDジョブの例][img-sample-job-recording]
+![リクエスト記録があるCI/CDジョブの例][img-sample-job-recording]
 
 
 ##  事前に記録された基本リクエストが使用されるAPIを介したデプロイ
@@ -89,7 +89,7 @@
     
 6.  テストの結果を取得する。
 
-![!事前に記録されたリクエストを使用したCI/CDジョブの例][img-sample-job-no-recording]   
+![事前に記録されたリクエストを使用したCI/CDジョブの例][img-sample-job-no-recording]   
 
 
 ##  FASTノードコンテナのライフサイクル（API経由でのデプロイ）

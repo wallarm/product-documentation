@@ -17,7 +17,7 @@
 7. [インテグレーションをテスト](#テスト-インテグレーション)し、設定が正しいことを確認します。
 8. **インテグレーションを追加** をクリックします。
 
-    ![!メールレポートのインテグレーション](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![メールレポートのインテグレーション](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
 ## インテグレーションのテスト
 
@@ -25,7 +25,7 @@
 
 テスト通知の例：
 
-![!テストメールメッセージ](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+![テストメールメッセージ](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 ## インテグレーションの更新
 

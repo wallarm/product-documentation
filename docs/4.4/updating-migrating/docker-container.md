@@ -49,7 +49,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 1. Proceed to Wallarm Console → **Nodes** and create **Wallarm node**.
 
-    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copy the generated token.
 1. Run the updated image using the copied token. You can pass the same configuration parameters that were passed when running a previous image version (except for the node token).
     

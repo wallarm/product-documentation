@@ -15,7 +15,7 @@
 
 Wallarmのプロキシソリューションは、Next-Gen WAFとAPIセキュリティ機能を備えた高度なHTTPトラフィックルーターとして機能する、追加の機能ネットワーク層を提供します。これは、最も機能的で実装が容易なソリューションを提供するため、**推奨**のデプロイオプションです。
 
-![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
+![Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
 
 ソリューションの主要な特徴：
 
@@ -46,7 +46,7 @@ Wallarmのプロキシソリューションは、Next-Gen WAFとAPIセキュリ�
 
 [この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror)は、WallarmのTerraformモジュールをミラードトラフィックを分析する帯域外ソリューションとしてデプロイする方法を示しています。NGINX、Envoy、Istio、および/またはTraefikがすでにトラフィックミラーリングを提供していることが期待されます。
 
-![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ソリューションの主要な特徴：
 
@@ -59,7 +59,7 @@ Wallarmのプロキシソリューションは、Next-Gen WAFとAPIセキュリ�
 
 [この例](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/vpc-mirror)は、[Amazon VPCによってミラーリングされたトラフィック](https://docs.aws.amazon.com/vpc/latest/mirroring/what-is-traffic-mirroring.html)を分析する帯域外ソリューションとしてWallarmのTerraformモジュールをデプロイする方法を示しています。
 
-![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-traffic-mirrored-by-vpc.png)
+![Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-traffic-mirrored-by-vpc.png)
 
 ソリューションの主要な特徴：
 

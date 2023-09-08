@@ -6,10 +6,10 @@ By implementing the Wallarm Terraform module, we have provided the solution enab
 
 === "Example architecture of the proxy solution"
 
-    ![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
+    ![Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
 === "Example architecture of the mirror solution"
     
-    ![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+    ![Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
     
 [How to deploy the provided example architecture?](examples.md)
 
@@ -28,7 +28,7 @@ To deploy Wallarm for production using the AWS Terraform module:
 1. Sign up for Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
 1. Open Wallarm Console → **Nodes** and create the node of the **Wallarm node** type.
 
-    ![!Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Copy the generated node token.
 1. Add the `wallarm` module code to your Terraform configuration:
 

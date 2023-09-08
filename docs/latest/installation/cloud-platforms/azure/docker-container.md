@@ -187,7 +187,7 @@ To deploy the container with environment variables and mounted configuration fil
 
 1. Open the created resource on the Azure portal and copy the **FQDN** value.
 
-    ![!Settig up container instance][copy-container-ip-azure-img]
+    ![Settig up container instance][copy-container-ip-azure-img]
 
     If the **FQDN** field is empty, please ensure the container is in the **Running** status.
 
@@ -197,6 +197,6 @@ To deploy the container with environment variables and mounted configuration fil
     curl http://<COPIED_DOMAIN>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI][attacks-in-ui-image]
+    ![Attacks in UI][attacks-in-ui-image]
 
 Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

@@ -15,7 +15,7 @@
 
 --8<-- "../include-ja/monitoring/metric-example.md"
 
-![!ワークフローの例][img-network-plugin-influxdb]
+![ワークフローの例][img-network-plugin-influxdb]
 
 このドキュメントでは次のデプロイメントスキームを使用します:
 *   Wallarmフィルタノードは`10.0.30.5` IPアドレスと `node.example.local`フル修飾ドメイン名を介してアクセス可能なホストにデプロイされています。

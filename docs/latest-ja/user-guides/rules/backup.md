@@ -19,7 +19,7 @@
 * 既存のバックアップからロードします：必要なバックアップの**Load**をクリックします。バックアップからロードすると、現在のルール設定は削除され、バックアップの設定に置き換えられます。
 * バックアップを削除します。
 
-    ![!Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
+    ![Rules - Creating backup](../../images/user-guides/rules/rules-create-backup.png)
 
 !!! warning "ルール変更の制限"
     バックアップの作成またはバックアップからのロードが完了するまで、ルールを作成したり変更したりすることはできません。

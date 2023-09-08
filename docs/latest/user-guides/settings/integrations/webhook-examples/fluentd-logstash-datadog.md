@@ -4,7 +4,7 @@ You can set up Wallarm to send notifications of detected events to Datadog throu
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![!Sending notifications from Wallarm to Datadog via data collector](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
+![Sending notifications from Wallarm to Datadog via data collector](../../../../images/user-guides/settings/integrations/wallarm-log-collector-datadog.png)
 
 !!! info "Native integration with Datadog"
     Wallarm also supports the [native integration with Datadog via Datadog API](../datadog.md). The native integration does not require the intermediate data collector to be used.
@@ -115,7 +115,7 @@ Since Wallarm sends logs to the intermediate data collector via webhooks, the co
 
 Fluentd integration example:
 
-![!Adding integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Adding integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## Testing integration
 
@@ -170,6 +170,6 @@ The test log in the Fluentd or Logstash intermediate data collector:
 
 The test Datadog log:
 
-![!The test Datadog log](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![The test Datadog log](../../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 To find the Wallarm logs among other records, you can use the `source:wallarm_cloud` search tag in the Datadog Logs service.

@@ -50,7 +50,7 @@ Webインタフェースを介した録画プロセスの停止には、以下�
 
 3. ** Stop recording**を選択します。
 
-    ![!ウェブインタフェースでの録音停止][img-stop-recording-item]
+    ![ウェブインタフェースでの録音停止][img-stop-recording-item]
 
 録画が停止したときに、**Baseline req.**の列の左側にあるREQインジケーターがオフになります。
 

@@ -6,7 +6,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
     1. Proceed to the 5th step in the list below. It is **recommended** to use one token for the node processing initial traffic and for the node performing postanalysis.
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
 1. Run the `register-node` script on a machine where you install the filtering node:
     
@@ -25,7 +25,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
 !!! info "Using one token for several installations"
     You can connect several Wallarm nodes to the Cloud using one token regardless of the selected deployment option. This option allows logical grouping of node instances in the Wallarm Console UI:
 
-    ![!Node with several instances][img-node-with-several-instances]
+    ![Node with several instances][img-node-with-several-instances]
     
     Below are some examples when you can choose to use one token for several installations:
 

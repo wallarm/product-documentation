@@ -113,7 +113,7 @@ To replace the regular postanalytics node with the Wallarm node:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
 1. Execute the `register-node` script to run the **Wallarm node**:
 

@@ -20,7 +20,7 @@ HTTPリクエストの最上位から始めて、フィルタリングノード�
 
     例えば、`SOAPACTION`ヘッダで攻撃が検出された場合：
 
-    ![!タグの例](../../images/user-guides/rules/tags-example.png)
+    ![タグの例](../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
@@ -332,7 +332,7 @@ Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3
 * 最初にJWTを含むリクエスト部分のパーサを選択します
 * `jwt`パーサの値として上記の`jwt_*`パラメータの一つを指定します。例えば、`name` JWTペイロードパラメータの値に対しては：
 
-![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
+![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
 ### ノルム
 

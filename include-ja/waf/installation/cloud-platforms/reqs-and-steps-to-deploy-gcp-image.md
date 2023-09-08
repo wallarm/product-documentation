@@ -54,7 +54,7 @@ Terraformのようなツールを使用して、Wallarm GCPイメージを使用
    2. **SSH Keys**設定の**Show and edit**ボタンをクリックして、SSHキーを入力するフィールドを拡張します。
    3. 公開キーと秘密キーのペアを生成します。例えば、`ssh-keygen`や`PuTTYgen`のようなユーティリティを使用することができます。
 
-        ![!PuTTYgenを使用してSSHキーを生成する][img-ssh-key-generation]
+        ![PuTTYgenを使用してSSHキーを生成する][img-ssh-key-generation]
 
    4. 使用したキージェネレータのインターフェイスからOpenSSH形式の公開キーをコピー（この例では、生成した公開キーはPuTTYgenインターフェイスの**Public key for pasting into OpenSSH authorized_keys file**エリアからコピーする）し、**Enter entire key data**のヒントが表示されるフィールドに貼り付けます。
    5. 秘密キーを保存します。これは将来、設定されたインスタンスに接続するために必要となります。

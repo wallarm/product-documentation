@@ -20,10 +20,10 @@ configuration file.
 
 To learn more about available configuration options, proceed to the [link][link-config-parameters].
 
-![!General tab overview][img-general-settings]
+![General tab overview][img-general-settings]
 
 ## Logout management
 
 [Administrators](users.md#user-roles) can set up logout timeouts for company account. Settings will affect all account users. Idle and absolute timeouts can be set.
 
-![!General tab - Logout management](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-logout-management.png)
+![General tab - Logout management](../../images/configuration-guides/configure-wallarm-mode/en/general-settings-logout-management.png)

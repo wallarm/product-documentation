@@ -22,37 +22,37 @@ Apple Safariブラウザに証明書をインストールするには、以下�
 
     ブラウザは証明書ファイルをダウンロードします。設定により、そのファイルはデフォルトのダウンロードディレクトリに配置されるか、あなたが選択したディレクトリに配置されます。
     
-    ![!自己署名FASTノード証明書の要求][img-cert-request]
+    ![自己署名FASTノード証明書の要求][img-cert-request]
     
     ダウンロードしたファイルを開きます。
 
-    ![!ダウンロード済みの証明書][img-downloaded-cert]
+    ![ダウンロード済みの証明書][img-downloaded-cert]
 
 3.  Keychain Accessアプリケーションが証明書のインポートを提案します。
 
     現在のユーザーまたはすべてのユーザーのために証明書をインストールできます。適切なオプションを選択し、**追加**ボタンをクリックします。
 
-    ![!Keychain Access「証明書の追加」ウィンドウ][img-keychain-import]
+    ![Keychain Access「証明書の追加」ウィンドウ][img-keychain-import]
 
 4.  インポートされた証明書が信頼できない証明書として印付けされていることがわかります。証明書の名前と有効期限はイメージに示されているものとは異なることに注意してください。
 
-    ![!Keychain Accessアプリケーション内の信頼できない証明書][img-untrusted-cert]
+    ![Keychain Accessアプリケーション内の信頼できない証明書][img-untrusted-cert]
 
 5.  証明書を信頼されたものに変換するために、証明書のプロパティウィンドウを開くためにそれをダブルクリックします。「信頼」リストを展開し、SSLについて**常に信頼**を選択します。
 
-    ![!証明書のプロパティウィンドウ][img-cert-properties]
+    ![証明書のプロパティウィンドウ][img-cert-properties]
 
     オペレーションを続けるためにパスワードの入力が求められます。
 
-    ![!クレデンシャルのプロンプト][img-credentials-prompt]
+    ![クレデンシャルのプロンプト][img-credentials-prompt]
 
     インポートされた証明書は信頼済みとしてマークされるべきです。
     
-    ![!Keychain Accessアプリケーション内の信頼済み証明書][img-trusted-cert]
+    ![Keychain Accessアプリケーション内の信頼済み証明書][img-trusted-cert]
 
 6.  証明書が正しくインストールされたことを確認します。そのために、HTTPS経由で任意のサイトに移動します。信頼できない証明書に関する警告メッセージなしに、HTTPSバージョンのサイトにリダイレクトされるはずです。
 
     例えば、Google GruyereサイトのHTTPSバージョンにアクセスすることができます：
     <https://google-gruyere.appspot.com>
 
-    ![!HTTPSが動作しています][img-https-ok]
+    ![HTTPSが動作しています][img-https-ok]

@@ -34,7 +34,7 @@ Among all supported [Wallarm deployment options](../../../installation/supported
 
 The solution has the following architecture:
 
-![!Solution architecture](../../../images/waf-installation/kubernetes/kong-ingress-controller/solution-architecture.png)
+![Solution architecture](../../../images/waf-installation/kubernetes/kong-ingress-controller/solution-architecture.png)
 
 The solution is based on the official Kong Ingress Controller, its architecture is described in the [official Kong documentation](https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/design/).
 
@@ -76,7 +76,7 @@ To deploy Kong Ingress Controller with integrated Wallarm services:
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../../../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 
 ### Step 2: Deploy the Wallarm Helm chart
 
@@ -224,7 +224,7 @@ To test that Kong Ingress Controller with integrated Wallarm services operates c
 
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![Attacks in the interface](../../../images/admin-guides/test-attacks-quickstart.png)
 
 ## Customization
 
