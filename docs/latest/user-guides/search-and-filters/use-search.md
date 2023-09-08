@@ -274,6 +274,18 @@ Wallarm scans public resources for IP addresses that are widely recognized as be
 
 To search for events originating from these malicious IP addresses, use the `source:malicious` tag. This stands for **Malicious IPs** and is named accordingly in the denylist, in the section for blocking by source type.
 
+We pull the data for this object from a combination of the following resources:
+
+* [Collective Intelligence Network Security](http://cinsscore.com/list/ci-badguys.txt)
+* [Proofpoint Emerging Threats Rules](https://rules.emergingthreats.net/blockrules/compromised-ips.txt)
+* [DigitalSide Threat-Intel Repository](http://osint.digitalside.it/Threat-Intel/lists/latestips.txt)
+* [GreenSnow](https://blocklist.greensnow.co/greensnow.txt)
+* [www.blocklist.de](https://www.blocklist.de/en/export.html)
+* [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
+* [IPsum](https://github.com/stamparm/ipsum)
+
+Collectively, these sources provide a list comprising more than 50,000 records.
+
 ### Search by server response status
 
 To search by server response status, specify `statuscode:` prefix.
