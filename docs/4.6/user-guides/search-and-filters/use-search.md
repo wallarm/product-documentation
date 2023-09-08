@@ -282,8 +282,6 @@ We pull the data for this object from a combination of the following resources:
 * [NGINX ultimate bad bot blocker](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/blob/master/_generator_lists/bad-ip-addresses.list)
 * [IPsum](https://github.com/stamparm/ipsum)
 
-Collectively, these sources provide a list comprising more than 50,000 records.
-
 ### Search by server response status
 
 To search by server response status, specify `statuscode:` prefix.
