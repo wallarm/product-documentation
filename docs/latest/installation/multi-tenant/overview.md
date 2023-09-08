@@ -2,6 +2,8 @@
 
 The **multitenancy** feature allows using Wallarm to protect several independent company infrastructures or isolated environments simultaneously.
 
+<! –– commit test ––> 
+
 **Tenant** represents the following entities:
 
 * An independent company (**client**) if integrating Wallarm as a partner.
