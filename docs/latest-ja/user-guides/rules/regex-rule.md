@@ -45,7 +45,7 @@
 6. ポイントとして`Header X-AUTHENTICATION`を設定します
 7. *Create*をクリックします
 
-![!Regex rule first example][img-regex-example1]
+![Regex rule first example][img-regex-example1]
 
 ### 例: `class.module.classLoader.*`ボディパラメータを持つすべてのリクエストをブロックする
 
@@ -59,7 +59,7 @@
 
 あなたが脆弱なSpring Core Frameworkを使用していて、Wallarmノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロックとは異なる場合、仮想パッチを使用して脆弱性の悪用を防ぐことができます。次のルールは、リストされたボディパラメータを持つすべてのリクエストをモニタリングモードおよびセーフブロッキングモードでもブロックします。
 
-![!Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
 正規表現フィールドの値は次のとおりです:
 
@@ -77,7 +77,7 @@ Spring Cloud Functionコンポーネントには、`CLASS-CLOUD-FUNCTION-ROUTING
 
 このコンポーネントを使用しており、Wallarmノードの[モード](../../admin-en/configure-wallarm-mode.md#available-filtration-modes)がブロックから異なる場合、仮想パッチを使用して脆弱性の悪用を防ぐことができます。次のルールは、`CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION`ヘッダーを含むすべてのリクエストをブロックします。
 
-![!Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーを持つリクエストのブロック"
     このルールは`CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION`ヘッダーを含むリクエストをブロックしませんが、デフォルトではNGINXはこのヘッダーを持つリクエストを無効なものとしてドロップします。
@@ -112,7 +112,7 @@ Spring Cloud Functionコンポーネントには、`CLASS-CLOUD-FUNCTION-ROUTING
 1. ポイントとして`Header X-AUTHENTICATION`を設定します
 1. *Create*をクリックします
 
-![!Regex rule second example][img-regex-example2]
+![Regex rule second example][img-regex-example2]
 
 ## API呼び出しでルールを作成する
 

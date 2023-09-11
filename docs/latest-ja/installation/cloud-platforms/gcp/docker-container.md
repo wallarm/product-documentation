@@ -148,7 +148,7 @@
 
 1. [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances)を開き、**External IP**列からインスタンスのIPアドレスをコピーします。
 
-    ![!コンテナインスタンスの設定][copy-container-ip-gcp-img]
+    ![コンテナインスタンスの設定][copy-container-ip-gcp-img]
 
     IPアドレスが空白の場合、インスタンスが**RUNNING**状態であることを確認してください。
 
@@ -158,6 +158,6 @@
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. [USクラウド](https://us1.my.wallarm.com/search)または[EUクラウド](https://my.wallarm.com/search)のWallarm Console → **Events**を開いて、攻撃がリストに表示されていることを確認します。
-    ![!UI内の攻撃][attacks-in-ui-image]
+    ![UI内の攻撃][attacks-in-ui-image]
 
 コンテナのデプロイ中に発生したエラーの詳細は、**View logs**インスタンスメニューに表示されます。インスタンスが利用できない場合、必須のフィルタリングノードパラメータが正しい値でコンテナに渡されていることを確認してください。

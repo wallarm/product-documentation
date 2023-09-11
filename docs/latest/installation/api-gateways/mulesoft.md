@@ -7,7 +7,7 @@
 
 The diagram below illustrates the high-level traffic flow when Wallarm policy is attached to APIs on the MuleSoft Anypoint platform, and Wallarm is configured to block malicious activity.
 
-![!Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow.png)
+![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/traffic-flow.png)
 
 The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
 
@@ -145,7 +145,7 @@ To acquire and [upload](https://docs.mulesoft.com/mule-gateway/policies-custom-u
 
 Your custom policy is now available in your Mulesoft Anypoint Platform Exchange.
 
-![!Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
+![Mulesoft with Wallarm policy](../../images/waf-installation/gateways/mulesoft/wallarm-policy-in-exchange.png)
 
 ### 3. Attach the Wallarm policy to your API
 
@@ -161,7 +161,7 @@ To apply the Wallarm policy to all APIs using [Mulesoft's Automated policy optio
 1. If necessary, modify the maximum time period for Wallarm to process a single request by changing the value of `WALLARM NODE REQUEST TIMEOUT`.
 1. Apply the policy.
 
-![!Wallarm policy](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
+![Wallarm policy](../../images/waf-installation/gateways/mulesoft/automated-policy.png)
 
 #### Attaching the policy to an individual API
 
@@ -173,7 +173,7 @@ To secure an individual API with the Wallarm policy, follow these steps:
 1. If necessary, modify the maximum time period for Wallarm to process a single request by changing the value of `WALLARM NODE REQUEST TIMEOUT`.
 1. Apply the policy.
 
-![!Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
+![Wallarm policy](../../images/waf-installation/gateways/mulesoft/policy-for-an-api.png)
 
 ## Testing
 
@@ -186,7 +186,7 @@ To test the functionality of the deployed policy, follow these steps:
     ```
 1. Open Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
 

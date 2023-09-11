@@ -6,7 +6,7 @@ Traffic mirroring enables original incoming traffic to be sent to multiple backe
 
 There is the example of the traffic flow diagram with the mirroring option enabled:
 
-![!Mirror scheme](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Mirror scheme](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## Approach use cases
 

@@ -29,7 +29,7 @@ Modifyフェーズでは、要素に新しい値を割り当てるか、要素�
      ??? info "例1"
         `'HEADER_COOKIE_value': 'C=qwerty123'`
 
-         ![!Modify phase](../../images/fast/dsl/en/phases/modify.png)
+         ![Modify phase](../../images/fast/dsl/en/phases/modify.png)
 
 * キーの値が設定されていない場合、対応する基準リクエスト要素の値がクリアされます。
 

@@ -4,7 +4,7 @@
 
 The trigger **Block IPs with high count of attack vectors** is created for all clients by default. If 4 or more different [malicious payloads](../../glossary-en.md#malicious-payload) are sent to the protected resource from one IP address, this IP address will be denylisted for 1 hour.
 
-![!Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
+![Default trigger](../../images/user-guides/triggers/trigger-example-default.png)
 
 You can perform all available trigger actions: edit, disable, delete, or copy the trigger.
 
@@ -21,7 +21,7 @@ You can perform all available trigger actions: edit, disable, delete, or copy th
 2. Open the Wallarm Console → **Denylist** and check that IP address from which the requests were originated is blocked for 1 hour.
 3. Open the section **Events** and check that requests are displayed in the list as the [SQLi](../../attacks-vulns-list.md#sql-injection), [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss), and [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks.
 
-    ![!Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events-no-libdetection.png)
+    ![Three attack vectors in UI](../../images/user-guides/triggers/test-3-attack-vectors-events-no-libdetection.png)
 
     To search for attacks, you can use the filters, for example: `sqli` for the [SQLi](../../attacks-vulns-list.md#sql-injection) attacks, `xss` for the [XSS](../../attacks-vulns-list.md#crosssite-scripting-xss) attacks, `ptrav` for the [Path Traversal](../../attacks-vulns-list.md#path-traversal) attacks. All filters are described in the [instructions on search use](../../user-guides/search-and-filters/use-search.md).
 
@@ -31,7 +31,7 @@ To mark requests as a regular brute-force attack, the trigger with the condition
 
 If 31 or more requests are sent to `https://example.com/api/v1/login` in 30 seconds, these requests will be marked as [brute‑force attack](../../attacks-vulns-list.md#bruteforce-attack) and the IP address from which requests were originated will be added to the denylist.
 
-![!Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
+![Brute force trigger with counter](../../images/user-guides/triggers/trigger-example6.png)
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
@@ -43,7 +43,7 @@ If the endpoint `https://example.com/**.**` returns 404 response code 31 or more
 
 Endpoint examples matching the URI value are `https://example.com/config.json`, `https://example.com/password.txt`.
 
-![!Forced browsing trigger](../../images/user-guides/triggers/trigger-example5.png)
+![Forced browsing trigger](../../images/user-guides/triggers/trigger-example5.png)
 
 [Details on configuration of brute force protection and trigger testing →](../../admin-en/configuration-guides/protecting-against-bruteforce.md)
 
@@ -51,7 +51,7 @@ Endpoint examples matching the URI value are `https://example.com/config.json`, 
 
 If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected resource, then a notification about this event will be sent to the Slack channel.
 
-![!Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
+![Example of a trigger sending the notification to Slack](../../images/user-guides/triggers/trigger-example1.png)
 
 **To test the trigger:**
 
@@ -63,7 +63,7 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected res
     ```
 2. Open the Wallarm Console → **Events** and check that 3 [SQLi](../../attacks-vulns-list.md#sql-injection) attacks are displayed in the list of events. The attack was detected in the second request twice, before and after the parser [`percent`](../rules/request-processing.md#percent) was applied.
 
-    ![!3 SQLi hits in Wallarm Console](../../images/user-guides/triggers/test-3-sqli-hits.png)
+    ![3 SQLi hits in Wallarm Console](../../images/user-guides/triggers/test-3-sqli-hits.png)
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
@@ -92,16 +92,16 @@ If 2 or more SQLi [hits](../../glossary-en.md#hit) are sent to the protected res
 
 If a new user with the **Administrator** or **Analyst** role is added to the company account in Wallarm Console, notification about this event will be sent to the email address specified in the integration and to the Slack channel.
 
-![!Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
+![Example of a trigger sending the notification to Slack and by email](../../images/user-guides/triggers/trigger-example2.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **Settings** → **Users** and add a new user. For example:
 
-    ![!Added user](../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
+    ![Added user](../../images/user-guides/settings/integrations/webhook-examples/adding-user.png)
 2. Open your email Inbox and check that the following message received:
 
-    ![!Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
+    ![Email about new user added](../../images/user-guides/triggers/test-new-user-email-message.png)
 3. Open the Slack channel and check that the following notification from the user **wallarm** received:
 
     ```
@@ -127,7 +127,7 @@ If a new user with the **Administrator** or **Analyst** role is added to the com
 
 If 2 or more incidents with the application server or database are detected in one second, the notification about this event will be sent to Opsgenie.
 
-![!Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
+![Example of a trigger sending the data to Splunk](../../images/user-guides/triggers/trigger-example3.png)
 
 **To test the trigger**, it is required to send the attack exploiting an active vulnerability to the protected resource. The Wallarm Console → **Vulnerabilities** section displays active vulnerabilities detected in your applications and the examples of attacks that exploit these vulnerabilities.
 
@@ -162,13 +162,13 @@ Cloud: EU
 
 If an IP address was added to the denylist, the webhook about this event will be sent to Webhook URL.
 
-![!Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
+![Example of trigger for denylisted IP](../../images/user-guides/triggers/trigger-example4.png)
 
 **To test the trigger:**
 
 1. Open the Wallarm Console → **Denylist** and add the IP address to the denylist. For example:
 
-    ![!Adding IP to the denylist](../../images/user-guides/triggers/test-ip-blocking.png)
+    ![Adding IP to the denylist](../../images/user-guides/triggers/test-ip-blocking.png)
 2. Check that the following webhook was sent to the Webhook URL:
 
     ```
@@ -198,7 +198,7 @@ If an IP address was added to the denylist, the webhook about this event will be
 
 If more than 100 [hits](../../about-wallarm/protecting-against-attacks.md#hit) from the same IP address are detected in an hour, the next hits from the same IP will be grouped into one attack in the [event list](../events/check-attack.md).
 
-![!Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
+![Example of a trigger for hit grouping](../../images/user-guides/triggers/trigger-example-group-hits.png)
 
 **To test the trigger**, send 101 or more hits as follows:
 
@@ -215,6 +215,6 @@ Example:
 
 The first 100 hits will appear in the event list as individual hits. All of the following hits will be grouped into one attack, e.g.:
 
-![!Hits grouped by IP into one attack](../../images/user-guides/events/attack-from-grouped-hits.png)
+![Hits grouped by IP into one attack](../../images/user-guides/events/attack-from-grouped-hits.png)
 
 The [**Mark as false positive**](../events/false-attack.md#mark-an-attack-as-a-false-positive) button and the [active verification](../../about-wallarm/detecting-vulnerabilities.md#active-threat-verification) option will be unavailable for the attack.

@@ -16,7 +16,7 @@ OOBソリューションは悪意のある活動を記録するだけでブロ�
 
 以下の図は、WallarmのOutOfBandデプロイメントにおける一般的なトラフィックフローの視覚的な表現を提供します。この図はすべての可能なインフラストラクチャのバリエーションを捉えているわけではありません。トラフィックミラーはインフラストラクチャの任意のサポートレイヤーで生成し、Wallarmのノードに送信することができます。また、特定のセットアップでは、ロードバランシングやその他のインフラレベルの設定が異なる場合があります。
 
-![!OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
+![OOB scheme](../../images/waf-installation/oob/wallarm-oob-deployment-scheme.png)
 
 ## 利点と限界
 

@@ -29,7 +29,7 @@ Among all supported [Wallarm deployment options][deployment-platform-docs], this
 
 Traffic flow with Wallarm Sidecar proxy:
 
-![!Traffic flow with Wallarm Sidecar proxy][traffic-flow-with-wallarm-sidecar-img]
+![Traffic flow with Wallarm Sidecar proxy][traffic-flow-with-wallarm-sidecar-img]
 
 ## Solution architecture
 
@@ -40,7 +40,7 @@ The Wallarm Sidecar proxy solution is arranged by the following Deployment objec
     Once a new pod with the `wallarm-sidecar: enabled` label in Kubernetes starts, the controller automatically injects the additional container filtering incoming traffic into the pod.
 * **Postanalytics module** (`wallarm-sidecar-postanalytics`) is the local data analytics backend for the Wallarm sidecar proxy solution. The module uses the in-memory storage Tarantool and the set of some helper containers (like the collectd, attack export services).
 
-![!Wallarm deployment objects][sidecar-deployment-objects-img]
+![Wallarm deployment objects][sidecar-deployment-objects-img]
 
 The Wallarm Sidecar proxy has 2 standard stages in its lifecycle:
 
@@ -68,7 +68,7 @@ To deploy the Wallarm Sidecar proxy solution:
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node][create-wallarm-node-img]
+    ![Creation of a Wallarm node][create-wallarm-node-img]
 
 ### Step 2: Deploy the Wallarm Helm chart
 
@@ -185,7 +185,7 @@ To test that the Wallarm Sidecar proxy operates correctly:
 
     To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
 ## Customization
 

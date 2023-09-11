@@ -35,7 +35,7 @@ Wallarmのフィルタリングノードは、NGINXまたはNGINX Plusと一緒�
     *   NGINX/NGINX Plusと同じサーバー上でインストール（サーバーの設定がこれを許す場合）
     *   NGINX/NGINX Plusとは別のサーバーグループ上でインストール
 
-![!Postanalytics Module Installation Options][img-postanalytics-options]
+![Postanalytics Module Installation Options][img-postanalytics-options]
 
 ##  モジュールのインストールと設定
 
@@ -46,7 +46,7 @@ Wallarmのフィルタリングノードは、NGINXまたはNGINX Plusと一緒�
 
 WallarmのNGINX用モジュールは、次のインストール方法のいずれかで接続できます（各インストールオプションの手順へのリンクは括弧内に記載されています）：
 
-![!Module for NGINX Installation Options][img-nginx-options]
+![Module for NGINX Installation Options][img-nginx-options]
 
 *   ソースファイルからNGINXをビルドする（[手順][link-ig-nginx]）
 *   NGINXのリポジトリからNGINXパッケージをインストールする（[手順][link-ig-nginx]）

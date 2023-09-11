@@ -19,7 +19,7 @@
 
     * <https://my.wallarm.com/>を使用している場合は、[こちらのリンク][link-wl-console-users-eu]に進んでユーザー設定を確認してください。
     * <https://us1.my.wallarm.com/>を使用している場合は、[こちらのリンク][link-wl-console-users-us]に進んでユーザー設定を確認してください。
-    ![!Wallarm consoleのユーザーリスト][img-wl-console-users]
+    ![Wallarm consoleのユーザーリスト][img-wl-console-users]
 
 #### フィルタリングノードのトークンを使用して接続します
 

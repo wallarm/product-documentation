@@ -10,7 +10,7 @@ You can create a Wallarm node while setting up integration with the platform or 
 2. Click **Create node** and select **Wallarm node**.
 3. Enter node name and click **Create**.
 
-    ![!Creating Wallarm node](../../images/user-guides/nodes/create-cloud-node.png)
+    ![Creating Wallarm node](../../images/user-guides/nodes/create-cloud-node.png)
 4. Copy the token of the created node. You can also copy the token from the node card.
 5. To complete the node installation, follow the instructions for your respective platfrom:
     * [Amazon AWS](../../admin-en/installation-ami-en.md)
@@ -32,7 +32,7 @@ The following node properties and metrics are available:
 * Date of the filtering node creation
 * Number of requests processed by the node in the current month
 
-![!Cloud node card](../../images/user-guides/nodes/view-wallarm-node.png)
+![Cloud node card](../../images/user-guides/nodes/view-wallarm-node.png)
 
 If one Wallarm filtering node is installed for multiple instances, then the corresponding number of filtering nodes is grouped into one record in the table. Properties and metrics will be available for each instance.
 
@@ -44,7 +44,7 @@ Token regeneration creates a new token for the node.
 2. Click **Regenerate token** in the node menu or card.
 3. If the node is already installed in your infrastructure, copy the new token value and specify it within the installed node settings.
 
-![!Regenerating Wallarm node token](../../images/user-guides/nodes/generate-new-token.png)
+![Regenerating Wallarm node token](../../images/user-guides/nodes/generate-new-token.png)
 
 ## Deleting filtering node
 

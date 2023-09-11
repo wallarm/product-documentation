@@ -43,7 +43,7 @@ However, an attacker could exploit this by changing the `size` parameter to an e
 
 Limiting connections to the endpoint helps to prevent such attacks. You can limit the number of connections to the endpoint to 1000 per minute. This assumes that, on average, 200 users are requested 5 times per minute. The rule specifies that this limit applies to each IP trying to access the endpoint within minute. The `remote_address` [point](request-processing.md) is used to identify the IP address of the requester.
 
-![!Example](../../images/user-guides/rules/rate-limit-for-200-users.png) -->
+![Example](../../images/user-guides/rules/rate-limit-for-200-users.png) -->
 
 ### Limiting connections by IP to ensure high API availability
 
@@ -53,7 +53,7 @@ Limiting connections by IP within a certain period of time specifically for the 
 
 For example, limit can be set to 5 POST requests per minute for each IP address as follows:
 
-![!Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### Limiting connections by sessions to prevent brute force attacks on auth parameters
 
@@ -61,13 +61,13 @@ By applying rate limiting to user sessions, you can restrict brute force attempt
 
 Suppose your application assigns each user session with a unique ID and reflects it in the `X-SESSION-ID` header. The API endpoint at the URL `https://example.com/api/login` accepts POST requests that include a Bearer JWT in the `Authorization` header. For this scenario, the rule limiting connections by sessions will appear as follows:
 
-![!Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
 The [regexp](add-rule.md#condition-type-regex) used for the `Authorization` value is ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`.
 
 If you use JWT (JSON Web Tokens) to manage user sessions, you can adjust the rule to [decrypt](request-processing.md#jwt) the JWT and extract the session ID from its payload as follows:
 
-![!Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 ### User-Agent based rate limiting to prevent attacks on API endpoints
 
@@ -75,7 +75,7 @@ Let's say you have an old version of your application has some known security vu
 
 For example, you can set a limit of 10 requests per minute for each `User-Agent`. If a specific `User-Agent` is making more than 10 requests evenly distributed per minute, further requests from that `User-Agent` are rejected till a new period start.
 
-![!Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 <!-- ### Endpoint-based rate limiting to prevent DoS attacks
 
@@ -94,7 +94,7 @@ In this specific case, the rate limiting rule is applied to connections by URI, 
     !!! info "Query parameters are not included into URI"
         This rule limits requests targeted at any path of the specified domain which does not contain any query parameters.
 
-![!Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
+![Example](../../images/user-guides/rules/rate-limit-by-uri.png) -->
 
 ### Limiting connections by customer IDs to prevent server overhelm
 
@@ -102,7 +102,7 @@ Let us consider a web service that provides access to customer orders data for a
 
 For example, the rule limiting each customer by 10 POST requests per minute to `https://example-domain.com/orders` may look as below. This example considers a customer ID is [passed](request-processing.md#json_doc) in the `data.customer_id` JSON body object.
 
-![!Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## Limitations and pecularities
 

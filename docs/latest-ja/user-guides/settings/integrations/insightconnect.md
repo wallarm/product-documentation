@@ -28,7 +28,7 @@
 3. [インテグレーションをテスト](#テスト-インテグレーション)し、設定が正しいことを確認します。
 4. **インテグレーションを追加** をクリックします。
 
-![!InsightConnectのインテグレーション](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
+![InsightConnectのインテグレーション](../../../images/user-guides/settings/integrations/add-insightconnect-integration.png)
 
 ## インテグレーションのテスト
 
@@ -36,7 +36,7 @@
 
 InsightConnectメッセージのテスト:
 
-![!InsightConnect通知のテスト](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
+![InsightConnect通知のテスト](../../../images/user-guides/settings/integrations/test-insightconnect-scope-changed.png)
 
 ## インテグレーションの更新
 

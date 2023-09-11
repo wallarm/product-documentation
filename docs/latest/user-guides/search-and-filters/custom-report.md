@@ -21,7 +21,7 @@ CSV report may include several CSV files, one for each type of event - attack, i
 1. Click **Export** and select PDF or CSV.
 1. Set the **Send to** email.
 
-    ![!Custom report creation window][img-custom-report]
+    ![Custom report creation window][img-custom-report]
 1. Click **Export**. Wallarm will generate the report and email it.
 
 ## Download previously created PDF report

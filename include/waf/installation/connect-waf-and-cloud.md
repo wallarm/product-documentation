@@ -4,7 +4,7 @@ The Wallarm node interacts with the Wallarm Cloud. To connect the filtering node
      
     You can check mentioned settings by navigating to the users list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
-    ![!User list in Wallarm console][img-wl-console-users]
+    ![User list in Wallarm console][img-wl-console-users]
 
 2.  Run the `addnode` script in a system with the installed Wallarm node:
     

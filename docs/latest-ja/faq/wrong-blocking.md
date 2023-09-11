@@ -8,7 +8,7 @@ Wallarmによって合法的な要求がブロックされる問題を解決す�
 
     * Wallarmの[ブロックページ](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)が設定されている場合に提供される情報（ユーザーのIPアドレス、要求のUUID、および他の設定されている要素を含む場合があります）。
 
-        ![!Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+        ![Wallarm blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
         !!! warning "ブロックページの使用"
             デフォルトやカスタマイズされたWallarmのブロックページを使用していない場合、ユーザーから適切な情報を取得するために、それを[設定する](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)ことを強く推奨します。サンプルページがブロックされた要求に関連する意味のある情報を収集し、簡単にコピーすることを忘れないでください。さらに、ユーザーに情報を提供するブロックメッセージを返すために、このようなページをカスタマイズまたは完全に再構築することもできます。

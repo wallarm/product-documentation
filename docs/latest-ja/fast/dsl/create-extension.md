@@ -73,14 +73,14 @@ meta-info:
     ??? info "例"
         `threat: 20`
     
-    ![!見つかった脆弱性のリスト][img-vulns]
+    ![見つかった脆弱性のリスト][img-vulns]
 
 * `description` — 拡張が検出する脆弱性の説明を含むオプショナルな文字列パラメータです。この情報は脆弱性の詳細説明に表示されます。
 
     ??? info "例"
         `description: "実証的な脆弱性"`
     
-    ![!Wallarmウェブインターフェース上の脆弱性の詳細説明][img-vuln-details]
+    ![Wallarmウェブインターフェース上の脆弱性の詳細説明][img-vuln-details]
 
 !!! info "FAST拡張のプラギング"
     FASTに拡張をプラグするためには、拡張のYAMLファイルが含まれているディレクトリをFASTノードDockerコンテナにマウントする必要があります。マウント手順の詳細な情報については、[こちら][link-extensions]のリンク先を参照してください。

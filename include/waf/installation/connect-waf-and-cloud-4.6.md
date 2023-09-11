@@ -2,7 +2,7 @@ The Wallarm filtering node interacts with the Wallarm Cloud. You need to connect
 
 When connecting node to the Cloud, you can set the node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in UI).
 
-![!Grouped nodes][img-grouped-nodes]
+![Grouped nodes][img-grouped-nodes]
 
 To connect the node to the Cloud, use a Wallarm token of the [appropriate type][wallarm-token-types]:
 

@@ -117,12 +117,12 @@ Wallarmを任意のシステムへ即時通知を送付するよう設定する�
 
     --8<-- "../include-ja/integrations/webhook-advanced-settings.md"
 
-    ![!Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
+    ![Advanced settings example](../../../images/user-guides/settings/integrations/additional-webhook-settings.png)
 6. Webhook URLへの通知送信をトリガするイベントタイプを選択します。何もイベントが選択されなかった場合、通知は送られません。
 7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
 8. **インテグレーションを追加**をクリックします。
 
-    ![!Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
+    ![Webhook integration](../../../images/user-guides/settings/integrations/add-webhook-integration.png)
 
 ## インテグレーションの例
 

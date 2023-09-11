@@ -24,7 +24,7 @@ Wallarm UIで：
 7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
 8. **インテグレーションの追加**をクリックします。
 
-    ![!Opsgenieインテグレーション設定](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
+    ![Opsgenieインテグレーション設定](../../../images/user-guides/settings/integrations/add-opsgenie-integration.png)
 
 ## インテグレーションのテスト
 
@@ -32,7 +32,7 @@ Wallarm UIで：
 
 Opsgenie通知のテスト：
 
-![!Opsgenieメッセージのテスト](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
+![Opsgenieメッセージのテスト](../../../images/user-guides/settings/integrations/test-opsgenie-new-vuln.png)
 
 ## インテグレーションの更新
 

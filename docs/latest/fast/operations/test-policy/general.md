@@ -4,7 +4,7 @@
 
 When creating or editing the policy, you will be directed to the **General** section of the policy editor in your Wallarm account. This section contains general policy settings:
 
-![!General section of the policy editor][img-tab-general]
+![General section of the policy editor][img-tab-general]
 
 The section requires the filling in of the following fields:
 

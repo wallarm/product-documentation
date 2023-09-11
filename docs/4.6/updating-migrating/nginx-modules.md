@@ -357,15 +357,15 @@ Delete the previous Wallarm repository address and add a repository with a new W
 
 1. Make sure that your Wallarm account has the **Administrator** role by navigating to the user list in the [US Cloud](https://us1.my.wallarm.com/settings/users) or [EU Cloud](https://my.wallarm.com/settings/users).
 
-    ![!User list in Wallarm console][img-wl-console-users]
+    ![User list in Wallarm console][img-wl-console-users]
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 
     !!! info "If the postanalytics module is installed on a separate server"
         If the initial traffic processing and postanalytics modules are installed on separate servers, it is recommended to connect these modules to the Wallarm Cloud using the same node token. The Wallarm Console UI will display each module as a separate node instance, e.g.:
 
-        ![!Node with several instances](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+        ![Node with several instances](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
 
         The Wallarm node has already been created during the [separate postanalytics module upgrade](separate-postanalytics.md). To connect the initial traffic processing module to the Cloud using the same node credentials:
 

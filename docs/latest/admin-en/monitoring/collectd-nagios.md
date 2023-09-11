@@ -38,7 +38,7 @@ This document provides an example of exporting filter node metrics to the [Nagio
 
 --8<-- "../include/monitoring/metric-example.md"
 
-![!Example workflow][img-collectd-nagios]
+![Example workflow][img-collectd-nagios]
 
 The following deployment scheme is used in this document:
 *   The Wallarm filter node is deployed on a host accessible via the `10.0.30.5` IP address and the `node.example.local` fully qualified domain name.

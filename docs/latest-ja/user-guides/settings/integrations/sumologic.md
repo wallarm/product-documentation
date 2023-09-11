@@ -22,7 +22,7 @@ Wallarm UIで：
 6. [統合をテスト](#testing-integration)し、設定が正しいことを確認します。
 7. **統合を追加**をクリックします。
 
-![!Sumo Logic統合](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+![Sumo Logic統合](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
 ## 統合のテスト
 

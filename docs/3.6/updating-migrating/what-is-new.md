@@ -33,7 +33,7 @@ There are the following changes available in Wallarm node 3.6:
     
     The sample blocking page with the new layout looks as follows:
 
-    ![!Wallarm sample blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+    ![Wallarm sample blocking page](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
     [More details on the blocking page setup →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 * The new [`wallarm_acl_access_phase`](../admin-en/configure-parameters-en.md#wallarm_acl_access_phase) directive enables you to increase the Wallarm node performance by omitting the attack search stage during the analysis of requests from [denylisted](../user-guides/ip-lists/denylist.md) IPs. This configuration option is useful if there are many denylisted IPs (e.g. the whole countries) producing high traffic that heavily loads the working machine CPU.

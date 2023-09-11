@@ -32,7 +32,7 @@ The widget displays the following data:
 * The number of detected [hits](../../about-wallarm/protecting-against-attacks.md#hit) and [blocked](../../admin-en/configure-wallarm-mode.md) ones during the current month
 * The real-time speed at which requests and hits are encountered
 
-![!Current month statistics](../../images/user-guides/dashboard/current-month-stats.png)
+![Current month statistics](../../images/user-guides/dashboard/current-month-stats.png)
 
 ## Normal and malicious traffic for a period
 
@@ -42,7 +42,7 @@ The widget displays the summary statistics for the traffic processed during the 
 * The total number of processed requests, [hits](../../glossary-en.md#hit), and [incidents](../../glossary-en.md#security-incident), and the number of blocked hits
 * Trends: change in the event number for a selected period and the same previous period
 
-![!Normal and malicious traffic](../../images/user-guides/dashboard/traffic-stats.png)
+![Normal and malicious traffic](../../images/user-guides/dashboard/traffic-stats.png)
 
 ## Attack types
 
@@ -50,7 +50,7 @@ This widget displays the [top types of detected attacks](../../attacks-vulns-lis
 
 Using this data, you can analyze the vulnerability of your services to different attack types and take appropriate measures to improve service security.
 
-![!Attack types](../../images/user-guides/dashboard/attack-types.png)
+![Attack types](../../images/user-guides/dashboard/attack-types.png)
 
 ## API protocols
 
@@ -67,7 +67,7 @@ This widget displays statistics on API protocols used by attackers. Wallarm can 
 
 Using the widget, you can analyze malicious requests sent via certain protocols and assess the vulnerability of your system to such requests.
 
-![!Attack types](../../images/user-guides/dashboard/api-protocols.png)
+![Attack types](../../images/user-guides/dashboard/api-protocols.png)
 
 ## CVEs
 
@@ -75,7 +75,7 @@ The **CVEs** widget displays the top of the CVE vulnerabilities attackers have e
 
 Each CVE is accompanied by the details like CVSS v3.0 score, attack complexity, privileges required and others received from the [Vulnerability database](https://vulners.com/). Vulnerabilities registered earlier than 2015 are not provided with the CVSS v3.0 score.
 
-![!CVE](../../images/user-guides/dashboard/cves.png)
+![CVE](../../images/user-guides/dashboard/cves.png)
 
 You can review your system for highlighted vulnerabilities and if found, implement appropriate remediation recommendations to eliminate the risk of vulnerability exploitation. 
 
@@ -88,7 +88,7 @@ This widget displays authentication methods attackers have used during the speci
 * Bearer Token
 * Cookie Auth, etc.
 
-![!Auth](../../images/user-guides/dashboard/authentication.png)
+![Auth](../../images/user-guides/dashboard/authentication.png)
 
 This information allows you to identify weak authentication methods and then take preventative steps.
 
@@ -103,7 +103,7 @@ This data can help to define abusive attack sources and enable the blocking of r
 
 You can view data on each source group on separate tabs.
 
-![!Attack sources](../../images/user-guides/dashboard/attack-sources.png)
+![Attack sources](../../images/user-guides/dashboard/attack-sources.png)
 
 ## Attack targets
 
@@ -115,7 +115,7 @@ This widget displays domains and [applications](../settings/applications.md) bei
 
 You can view data on domains and applications on separate tabs.
 
-![!Attack targets](../../images/user-guides/dashboard/attack-targets.png)
+![Attack targets](../../images/user-guides/dashboard/attack-targets.png)
 
 ## Vulnerability Scanner
 
@@ -125,7 +125,7 @@ The Scanner widget shows statistics on vulnerabilities detected in [public asset
 * The number of active vulnerabilities of all risk levels at the end of the selected period
 * Changes in the number of vulnerabilities of all risk levels for the selected period
 
-![!Scanner widget](../../images/user-guides/dashboard/dashboard-scanner.png)
+![Scanner widget](../../images/user-guides/dashboard/dashboard-scanner.png)
 
 <!-- ----------
 

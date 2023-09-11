@@ -36,4 +36,4 @@ Let's say when the user uploads the binary file with the image using the form on
 
 The rule **Allow binary data** fine‑tuning attack detection in the parameter `fileContents` looks as follows:
 
-![!Example of the rule "Allow binary data"](../../images/user-guides/rules/ignore-binary-attacks-example.png)
+![Example of the rule "Allow binary data"](../../images/user-guides/rules/ignore-binary-attacks-example.png)

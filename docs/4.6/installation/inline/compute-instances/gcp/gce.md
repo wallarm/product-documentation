@@ -172,7 +172,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open the [GCP Console → **Compute Engine** → VM instances](https://console.cloud.google.com/compute/instances) and copy the instance IP address from the **External IP** column.
 
-    ![!Settig up container instance][copy-container-ip-gcp-img]
+    ![Settig up container instance][copy-container-ip-gcp-img]
 
     If the IP address is empty, please ensure the instance is in the **RUNNING** status.
 
@@ -182,6 +182,6 @@ To deploy the containerized Wallarm filtering node configured through environmen
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI][attacks-in-ui-image]
+    ![Attacks in UI][attacks-in-ui-image]
 
 Details on errors that occurred during the container deployment are displayed in the **View logs** instance menu. If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

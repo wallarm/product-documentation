@@ -17,7 +17,7 @@ You can set additional email addresses that will be used to deliver scheduled [P
 7. [Test the integration](#testing-integration) and make sure the settings are correct.
 8. Click **Add integration**.
 
-    ![!Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
+    ![Email report integration](../../../images/user-guides/settings/integrations/add-email-report-integration.png)
 
 ## Testing integration
 
@@ -25,7 +25,7 @@ You can set additional email addresses that will be used to deliver scheduled [P
 
 Test notification example:
 
-![!Test email message](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
+![Test email message](../../../images/user-guides/settings/integrations/test-email-scope-changed.png)
 
 ## Updating integration
 

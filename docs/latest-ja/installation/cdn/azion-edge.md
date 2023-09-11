@@ -127,7 +127,7 @@ Azion Edge Functions用のWallarmコードを取得し、実行するには以�
     ```
 1. [USクラウド](https://us1.my.wallarm.com/search)または[EUクラウド](https://my.wallarm.com/search)のWallarmコンソールで**Events**セクションを開き、攻撃がリストに表示されていることを確認します。
     
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
     Wallarmノードモードがブロックに設定されている場合、リクエストもブロックされます。
 

@@ -14,7 +14,7 @@ There are 4 examples representing frequent deployment approaches:
 
 Wallarm proxy solution provides an additional functional network layer serving as an advanced HTTP traffic router with the Next-Gen WAF and API security functions. This is the **recommended** deployment option since it provides the most functional and easy to implement solution.
 
-![!Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
+![Proxy scheme](../../../../images/waf-installation/aws/terraform/wallarm-as-proxy.png)
 
 Key characteristics of the solution:
 
@@ -45,7 +45,7 @@ Wallarm proxy solution provides an additional functional network layer serving a
 
 [This example](https://github.com/wallarm/terraform-aws-wallarm/tree/main/examples/mirror) demonstrates how to deploy the Wallarm Terraform module as an Out-of-Band solution analyzing mirrored traffic. It is expected that NGINX, Envoy, Istio and/or Traefik already provides traffic mirroring.
 
-![!Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Mirror scheme](../../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 Key characteristics of the solution:
 

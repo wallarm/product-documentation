@@ -73,14 +73,14 @@ meta-info:
     ??? info "Example"
         `threat: 20`
     
-    ![!The list of the vulnerabilities found][img-vulns]
+    ![The list of the vulnerabilities found][img-vulns]
 
 * `description` — optional string parameter that contains the description of the vulnerability that the extension detects. This information will be shown in the detailed description of the vulnerability.
     
     ??? info "Example"
         `description: "A demonstrational vulnerability"`    
     
-    ![!Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
+    ![Detailed description of the vulnerability on the Wallarm web interface][img-vuln-details]
 
 !!! info "Plugging in FAST extensions"
     To plug an extension to FAST, you need to mount the directory containing the extension's YAML file to the FAST node Docker container. To see detailed information about the mounting procedure, navigate to this [link][link-extensions].

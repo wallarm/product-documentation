@@ -62,7 +62,7 @@ Wallarm ノード 2.16 以下をアップグレードする場合、Wallarm Cons
 
 1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のWallarm Console → **Nodes**を開き、**Wallarm node**タイプのノードを作成します。
 
-    ![!Wallarm ノードの作成](../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm ノードの作成](../../images/user-guides/nodes/create-cloud-node.png)
 1. 生成されたトークンをコピーします。
 
 ## Step 6: 前のバージョンのWallarmノードから4.6への許可リストと拒否リストを移行する (ノード2.18以下をアップグレードする場合のみ)

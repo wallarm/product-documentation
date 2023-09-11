@@ -36,4 +36,4 @@
 
 パラメータ `fileContents` の攻撃検出を微調整する **バイナリデータを許可する** ルールは、次のようになります：
 
-![!ルール「バイナリデータを許可する」の例](../../images/user-guides/rules/ignore-binary-attacks-example.png)
+![ルール「バイナリデータを許可する」の例](../../images/user-guides/rules/ignore-binary-attacks-example.png)

@@ -32,7 +32,7 @@ APIの乱用防止は、悪意のあるボットを特定するために複数�
 !!! info "信頼度"
     検出器の動作の結果として、すべての[検出された](../user-guides/api-abuse-prevention.md#exploring-blocked-malicious-bots-and-their-attacks)ボットは**信頼度のパーセンテージ**を得ます：私たちがそれがボットであることをどれほど確認しているか。各ボットタイプでは、検出器は相対的な重要性/投票数を持っています。したがって、信頼度のパーセンテージは、このボットタイプで可能なすべての投票中で得た投票数（動作した検出器によって提供される）です。
 
-![!API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
+![API abuse prevention statistics](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-prevention-statistics.png)
 
 1つまたは複数の検出器が[ボットの攻撃の兆候](#automated-threats-blocked-by-api-abuse-prevention)を指摘した場合、モジュールは異常トラフィックの源を1時間[ブラックリストまたはグレーリスト](#reaction-to-malicious-bots)に登録します。Wallarmは、30日以内にブラックリストとグレーリストに登録されたボットのIPをカウントし、前の30日間と比較してこれらの量がどれだけ増減したかを表示します。
 
@@ -51,7 +51,7 @@ API Abuse Preventionを有効にするには：
     !!! info "APIの乱用防止設定へのアクセス"
         会社のWallarmアカウントの[管理者](../user-guides/settings/users.md#user-roles)のみが**APIの乱用防止**セクションにアクセスできます。このアクセスがない場合は、管理者に連絡してください。
 
-    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
 ## トレランス
 
@@ -93,4 +93,4 @@ API Abuse Preventionを有効にするには：
 
 あらかじめIPアドレスを例外リストに追加することも、既に誤って悪意のあるボットの活動と関連付けられているとフラグが立てられている場合でも、例外リストに追加することができます。 [Learn how to work with exception list →](../user-guides/api-abuse-prevention.md#working-with-exception-list)
 
-![!API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)
+![API Abuse prevention - Exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list.png)

@@ -121,7 +121,7 @@ To create the filtering node and connect the postanalytics module to the Cloud:
      
     You can check mentioned settings by navigating to the users list in the [EU Cloud](https://my.wallarm.com/settings/users) or [US Cloud](https://us1.my.wallarm.com/settings/users).
 
-    ![!User list in Wallarm console][img-wl-console-users]
+    ![User list in Wallarm console][img-wl-console-users]
 
 2.  Run the `addnode` script in a system with the installed postanalytics module packages:
     
@@ -269,7 +269,7 @@ curl http://localhost/?id='or+1=1--a-<script>prompt(1)</script>'
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
-![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
+![Attacks in the interface](../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
@@ -279,7 +279,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo systemctl status wallarm-tarantool
     ```
 
-    ![!wallarm-tarantool status][tarantool-status]
+    ![wallarm-tarantool status][tarantool-status]
 * Analyze the postanalytics module logs
 
     ```bash

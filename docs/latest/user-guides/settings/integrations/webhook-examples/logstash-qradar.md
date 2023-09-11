@@ -4,7 +4,7 @@ These instructions provide you with the example integration of Wallarm with the 
 
 --8<-- "../include/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 ## Used resources
 
@@ -69,13 +69,13 @@ A more detailed description of the configuration files is available in the [offi
     ```
 
     **Logstash logs:**
-    ![!Logs in Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
+    ![Logs in Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
 
     **QRadar logs:**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
 
     **QRadar log payload:**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
 
 ### QRadar configuration (optional)
 
@@ -90,13 +90,13 @@ In QRadar, the log source is configured. It helps to easily find Logstash logs i
 
 A more detailed description of the QRadar log source setup is available in the [official IBM documentation](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf).
 
-![!QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
+![QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
 ### Configuration of Logstash integration
 
 --8<-- "../include/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [More details on the Logstash integration configuration](../logstash.md)
 
@@ -106,8 +106,8 @@ A more detailed description of the QRadar log source setup is available in the [
 
 Logstash will log the event as follows:
 
-![!Log about new user in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
+![Log about new user in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
 
 The following data in JSON format will be displayed in the QRadar log payload:
 
-![!New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
+![New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)

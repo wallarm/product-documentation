@@ -20,7 +20,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
     For example, if an attack was detected in the `SOAPACTION` header:
 
-    ![!Tag example](../../images/user-guides/rules/tags-example.png)
+    ![Tag example](../../images/user-guides/rules/tags-example.png)
 
 ### URL
 

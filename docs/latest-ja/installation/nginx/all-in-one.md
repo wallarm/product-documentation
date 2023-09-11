@@ -43,7 +43,7 @@ Wallarmが提供する個々のLinuxパッケージ([NGINX](dynamic-module.md)�
 1. インストールしたWallarmモジュールをNGINXに接続する
 1. 提供されたトークンを使用して、フィルタリングノードをWallarm Cloudに接続する
 
-![!All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
+![All-in-one compared to manual](../../images/installation-nginx-overview/manual-vs-all-in-one.png)
 
 ## 要件
 

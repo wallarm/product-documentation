@@ -9,7 +9,7 @@ These instructions describe the NGINX configuration required to identify an orig
 
 The Wallarm node reads a request source IP address from the NGINX variable `$remote_addr`. If the request passed through a proxy server or load balancer before being sent to the node, the variable `$remote_addr` retains the proxy server or load balancer IP address.
 
-![!Using balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![Using balancer](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
 The request source IP address identified by the Wallarm node is displayed in the [attack details](../user-guides/events/check-attack.md#attacks) in Wallarm Console.
 
@@ -133,11 +133,11 @@ More details on identifying an original client IP address based on the `PROXY` h
         ```
 2. Open Wallarm Console and make sure that the original client IP address is displayed in the attack details:
 
-    ![!IP address originated the request](../images/request-ip-address.png)
+    ![IP address originated the request](../images/request-ip-address.png)
 
     If NGINX read the original address from the header `X-Forwarded-For` (`X-Real-IP` or a similar), the header value would also be displayed in the raw attack.
 
-    ![!Header X-Forwarded-For](../images/x-forwarded-for-header.png)
+    ![Header X-Forwarded-For](../images/x-forwarded-for-header.png)
 
 ## Configuration examples
 

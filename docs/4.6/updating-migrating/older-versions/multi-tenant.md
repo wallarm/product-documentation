@@ -32,7 +32,7 @@ Standard procedures are the ones for:
 !!! warning "Creating the multi-tenant node"
     During the Wallarm node creation, please select the **Multi-tenant node** option:
 
-    ![!Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
+    ![Multi-tenant node creation](../../images/user-guides/nodes/create-multi-tenant-node.png)
 
 ## Step 3: Reconfigure multitenancy
 
@@ -106,7 +106,7 @@ To get the list of tenants, send authenticated requests to Wallarm API. Authenti
 
         Copy `clientid`(s) from the **ID** column in the Wallarm Console user interface:
         
-        ![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
+        ![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console-ann.png)
     === "By sending request to API"
         1. Send the GET request to the route `/v2/partner_client`:
 

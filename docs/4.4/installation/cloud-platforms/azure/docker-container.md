@@ -37,7 +37,7 @@ In these instructions, the container is deployed using the Azure CLI.
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
@@ -96,7 +96,7 @@ To deploy the container with environment variables and mounted configuration fil
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Sign in to the Azure CLI by using the [`az login`](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_login) command:
 
@@ -195,7 +195,7 @@ To deploy the container with environment variables and mounted configuration fil
 
 1. Open the created resource on the Azure portal and copy the **FQDN** value.
 
-    ![!Settig up container instance](../../../images/waf-installation/azure/container-copy-domain-name.png)
+    ![Settig up container instance](../../../images/waf-installation/azure/container-copy-domain-name.png)
 
     If the **FQDN** field is empty, please ensure the container is in the **Running** status.
 
@@ -205,6 +205,6 @@ To deploy the container with environment variables and mounted configuration fil
     curl http://<COPIED_DOMAIN>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors occurred during the container deployment are displayed on the **Containers** → **Logs** tab of the resource details on the Azure portal. If the resource is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

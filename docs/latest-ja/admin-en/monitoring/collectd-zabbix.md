@@ -22,7 +22,7 @@
 
 --8<-- "../include-ja/monitoring/metric-example.md"
 
-![!Example workflow][img-zabbix-scheme]
+![Example workflow][img-zabbix-scheme]
 
 この文書では、以下のデプロイスキームが使用されています：
 *   Wallarm のフィルターノードは、`10.0.30.5` の IP アドレスと、`node.example.local` のフルクオリファイドドメイン名を通じてアクセス可能なホストにデプロイされています。

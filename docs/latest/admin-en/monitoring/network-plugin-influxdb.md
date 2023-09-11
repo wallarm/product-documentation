@@ -15,7 +15,7 @@ This document provides an example of using the Network plugin to export metrics 
 
 --8<-- "../include/monitoring/metric-example.md"
 
-![!Example Workflow][img-network-plugin-influxdb]
+![Example Workflow][img-network-plugin-influxdb]
 
 The following deployment scheme is used in this document:
 *   The Wallarm filter node is deployed on a host accessible via the `10.0.30.5` IP address and the `node.example.local` fully qualified domain name.

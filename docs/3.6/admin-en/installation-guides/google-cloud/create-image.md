@@ -48,7 +48,7 @@ After you have finished configuring the filtering node, turn the virtual machine
 2.  Open the drop-down menu by clicking the menu button on the right of the **Connect** column.
 3.  Select **Stop** in the drop-down menu.
 
-![!Turning the virtual machine off][img-vm-instance-poweroff]
+![Turning the virtual machine off][img-vm-instance-poweroff]
 
 !!! info "Turning off using the `poweroff` command"
     You may also turn the virtual machine off by connecting to it via the SSH protocol and running the following command:
@@ -65,12 +65,12 @@ You can now create a virtual machine image based on the configured filtering nod
 3.  Select **Disk** from the **Source** drop-down list.
 4.  Select the name of the [previously created][anchor-node] virtual machine instance from the **Source disk** drop-down list.
 
-    ![!Creating an image][img-create-image]
+    ![Creating an image][img-create-image]
 
 5.  Click the **Create** button to launch the virtual machine image creation process.
 
 Once the image creation process is finished, you will be directed to a page that contains the list of available images. Make sure that the image was successfully created and is present in the list.
 
-![!Images list][img-check-image]
+![Images list][img-check-image]
 
 Now you can [set up the auto scaling][link-docs-gcp-autoscaling] of Wallarm filtering nodes on the Google Cloud Platform using the prepared image.

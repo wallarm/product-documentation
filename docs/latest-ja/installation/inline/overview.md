@@ -34,7 +34,7 @@ Wallarmをインラインでデプロイする場合、考慮すべき2つの一
 
 Wallarmノードをデプロイする際には、ネットワークトポロジー内のさまざまな位置に配置する柔軟性があります。しかし、推奨されるアプローチは、ノードインスタンスをパブリックロードバランサーの後ろ、あるいはバックエンドサービスの前、または通常はバックエンドサービスの前に位置するプライベートロードバランサーの前に配置することです。以下の図では、このセットアップでの一般的なトラフィックフローが示されています：
 
-![!In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
+![In-line filtering scheme](../../images/waf-installation/inline/wallarm-inline-deployment-scheme.png)
 
 ロードバランサーはL4とL7の2つのタイプに分類することができます。ロードバランサーのタイプは、SSLオフローディングの処理方法を決定します。これはWallarmを既存のインフラストラクチャに統合する際に重要です。
 

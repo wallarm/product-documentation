@@ -138,7 +138,7 @@ To deploy the containerized Wallarm filtering node configured through environmen
 
 1. Open the Alibaba Cloud Console → the list of services → **Elastic Compute Service** → **Instances** and copy the public IP address of the instance from the **IP address** column.
 
-    ![!Settig up container instance](../../../images/waf-installation/alibaba-cloud/container-copy-ip.png)
+    ![Settig up container instance](../../../images/waf-installation/alibaba-cloud/container-copy-ip.png)
 
     If the IP address is empty, please ensure the instance is in the **Running** status.
 
@@ -148,6 +148,6 @@ To deploy the containerized Wallarm filtering node configured through environmen
     curl http://<COPIED_IP>/?id='or+1=1--a-<script>prompt(1)</script>'
     ```
 3. Open the Wallarm Console → **Events** section in the [EU Cloud](https://my.wallarm.com/search) or [US Cloud](https://us1.my.wallarm.com/search) and ensure attacks are displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
+    ![Attacks in UI](../../../images/admin-guides/test-attacks-quickstart-sqli-xss.png)
 
 To view details on errors that occurred during the container deployment, please [connect to the instance by one of the methods](https://www.alibabacloud.com/help/doc-detail/71529.htm?spm=a2c63.p38356.b99.143.22388e44kpTM1l) and review the [container logs](../../../admin-en/configure-logging.md). If the instance is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

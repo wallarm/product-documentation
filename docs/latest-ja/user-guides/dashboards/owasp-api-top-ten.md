@@ -7,9 +7,9 @@
 これらのダッシュボードを使用することで、全体のセキュリティ状態を評価し、適切なセキュリティコントロールを設定することで発見されたセキュリティ問題に積極的に対応することができます。
 
 === "OWASP API Top 10 2019ダッシュボード"
-    ![!OWASP API Top 10 2019](../../images/user-guides/dashboard/owasp-api-top-ten-2019-dash.png)
+    ![OWASP API Top 10 2019](../../images/user-guides/dashboard/owasp-api-top-ten-2019-dash.png)
 === "OWASP API Top 10 2023ダッシュボード"
-    ![!OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+    ![OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## 脅威評価
 
@@ -21,7 +21,7 @@ Wallarmは、適用された**セキュリティコントロール**と発見さ
 
 OWASP APIトップ10の各脅威については、脅威の詳細情報、利用可能なセキュリティコントロール、対応する脆弱性、関連する攻撃を調査することができます：
 
-![!OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
 
 ## WallarmのOWASP API 2019向けセキュリティコントロール
 

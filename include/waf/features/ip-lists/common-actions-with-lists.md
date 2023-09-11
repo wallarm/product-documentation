@@ -21,7 +21,7 @@ To add an IP address, subnet, or group of IP addresses to the list:
 4. Specify the reason for adding an IP address or a group of IP addresses to the list.
 5. Confirm adding an IP address or a group of IP addresses to the list.
 
-![!Add IP to the list (without app)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
+![Add IP to the list (without app)](../../images/user-guides/ip-lists/add-ip-to-list-without-app.png)
 
 ## Analyzing objects added to the list
 

@@ -15,7 +15,7 @@ Choose the multi-tenant node deployment option based on your infrastructure and 
 
 * Deploy one Wallarm node to filter traffic of all clients or isolated environments as follows:
 
-    ![!Partner node scheme](../../images/partner-waf-node/partner-traffic-processing-3.6.png)
+    ![Partner node scheme](../../images/partner-waf-node/partner-traffic-processing-3.6.png)
 
     * One Wallarm node processes the traffic of several tenants (Tenant 1, Tenant 2).
 

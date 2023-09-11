@@ -29,7 +29,7 @@ To deploy the containerized Wallarm filtering node configured only through envir
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
@@ -159,7 +159,7 @@ To deploy the container with environment variables and configuration file mounte
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../../../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) → the **Services** list → **Elastic Container Service**.
 1. Proceed to cluster creation by the button **Create Cluster**:
@@ -348,7 +348,7 @@ To deploy the container with environment variables and configuration file mounte
 
 1. In the AWS Management Console, open the running task and copy the container IP address from the field **External Link**.
 
-    ![!Settig up container instance](../../../images/waf-installation/aws/container-copy-ip.png)
+    ![Settig up container instance](../../../images/waf-installation/aws/container-copy-ip.png)
 
     If the IP address is empty, please ensure the container is in the **RUNNING** status.
 
@@ -358,6 +358,6 @@ To deploy the container with environment variables and configuration file mounte
     curl http://<COPIED_IP>/etc/passwd
     ```
 3. Open Wallarm Console → **Events** in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
-    ![!Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
+    ![Attacks in UI](../../../images/admin-guides/test-attacks-quickstart.png)
 
 Details on errors that occurred during the container deployment are displayed in the task details in the AWS Management Console. If the container is unavailable, please ensure required filtering node parameters with correct values are passed to the container.

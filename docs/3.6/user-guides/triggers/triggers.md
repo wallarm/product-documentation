@@ -15,7 +15,7 @@ You can configure all the trigger components:
 
 Triggers are configured in the **Triggers** section of Wallarm Console. The section is available only for users with the **Administrator** [role](../settings/users.md).
 
-![!Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
+![Section to configure triggers](../../images/user-guides/triggers/triggers-section.png)
 
 ## Creating triggers
 
@@ -43,7 +43,7 @@ A condition is a system event to be notified about. The following conditions are
 * Hits from the same IP, except for the ones of the Brute force, Forced browsing, Resource overlimit, Data bomb and Virtual patch attack types
 * User added
 
-![!Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
+![Available conditions](../../images/user-guides/triggers/trigger-conditions.png)
 
 Choose a condition in the Wallarm Console interface and set the lower threshold for the reaction, if the setting is available.
 
@@ -66,7 +66,7 @@ The following filters are available:
 
 Choose one or more filters in the Wallarm Console interface and set values for them.
 
-![!Available filters](../../images/user-guides/triggers/trigger-filters.png)
+![Available filters](../../images/user-guides/triggers/trigger-filters.png)
 
 ### Step 3: Adding reactions
 
@@ -86,7 +86,7 @@ A reaction is an action that should be performed if the specified condition and 
 
 Choose one or more reactions in the Wallarm Console interface. Reactions available for the condition are located at **Number of attacks**:
 
-![!Choosing an integration](../../images/user-guides/triggers/select-integration.png)
+![Choosing an integration](../../images/user-guides/triggers/select-integration.png)
 
 ### Step 4: Saving the trigger
 

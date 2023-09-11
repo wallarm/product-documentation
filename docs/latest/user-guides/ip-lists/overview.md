@@ -6,7 +6,7 @@ In the **IP lists** section of Wallarm Console, you can control access to your a
 * **Denylist** is a list of IP addresses that are not allowed to access your applications. Filtering node blocks all requests originated from denylisted IP addresses.
 * **Graylist** is a list of IP addresses that are allowed to access your applications only if requests originated from them do not contain attack signs.
 
-![!All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
+![All IP lists](../../images/user-guides/ip-lists/ip-lists-home-apps.png)
 
 ## Algorithm of IP lists processing
 
@@ -14,7 +14,7 @@ The filtering node employs different approaches based on the selected operation 
 
 The image provided below visually represents the priorities and combinations of IP lists in each operation mode, highlighting which lists are considered in each case:
 
-![!IP list priorities](../../images/user-guides/ip-lists/ip-lists-priorities.png)
+![IP list priorities](../../images/user-guides/ip-lists/ip-lists-priorities.png)
 
 ## IP lists configuration
 

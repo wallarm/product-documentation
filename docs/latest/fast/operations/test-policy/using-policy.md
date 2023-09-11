@@ -22,7 +22,7 @@ You can specify the test policy in the following ways:
 
 * Using the interface, if the test is [created][doc-tr-creation-gui] or [copied][doc-tr-copying-gui], then select the policy from the **Test policy** drop-down list:
 
-    ![!Selecting the test policy during test run creation via the interface][img-set-policy-in-gui]
+    ![Selecting the test policy during test run creation via the interface][img-set-policy-in-gui]
 
 * Specify the test policy ID:
     * in the API request if the test is [created][doc-tr-creation-api] or [copied][doc-tr-copying-api] via API methods
@@ -30,7 +30,7 @@ You can specify the test policy in the following ways:
         
     You can find test policy ID in the list of policies on your Wallarm account for the [EU cloud][link-pol-list-eu] or the [US cloud][link-pol-list-us].
 
-    ![!Getting policy ID][img-get-policy-id]
+    ![Getting policy ID][img-get-policy-id]
 
 !!! info "Default test policy"
     FAST automatically creates and applies **Default Policy**. This policy tests an application for typical vulnerabilities by checking the most commonly used request points.

@@ -75,7 +75,7 @@ Perform the following actions to configure the launched filtering node instance:
     2.  Click the **Show and edit** button in the **SSH Keys** setting to expand the field for entering an SSH key.
     3.  Generate a pair of public and private SSH keys. For example, you can use the `ssh-keygen` and `PuTTYgen` utilities.
        
-        ![!Generating SSH keys using PuTTYgen][img-ssh-key-generation]
+        ![Generating SSH keys using PuTTYgen][img-ssh-key-generation]
 
     4.  Copy an open key in OpenSSH format from the interface of the used key generator (in the current example, the generated public key should be copied from the **Public key for pasting into OpenSSH authorized_keys file** area of the PuTTYgen interface) and paste it into the field containing the **Enter entire key data** hint.
     5.  Save the private key. It will be required for connecting to the configured instance in the future.

@@ -21,7 +21,7 @@ Wallarmの主なライセンス/請求方法は、あなたの環境にデプロ
 
 * AWSの顧客で、ELBまたはALBロードバランサーを使用している場合、ロードバランサーのAWS監視メトリクスを使用して、ロードバランサーによって提供されるアプリケーションの日別および週別リクエスト数を推定することができます。
 
-    ![!AWS monitoring example](../../images/operation/aws-requests-example.png)
+    ![AWS monitoring example](../../images/operation/aws-requests-example.png)
 
     例えば、グラフが平均リクエスト数/分が350であることを示していて、平均的に月に730時間あると仮定すると、月間リクエスト数は`350 * 60 * 730 = 15,330,000`となります。
 

@@ -80,11 +80,11 @@ InfluxDBデータソースからメトリクスを取得するには、以下の
 2.  InfluxDBへのクエリを設計します
     *   グラフィカルなクエリ設計ツールを使用するか、
 
-        ![!Graphical query design tool][img-influxdb-query-graphical]
+        ![Graphical query design tool][img-influxdb-query-graphical]
 
     *   平文のクエリを手動で入力します（これを行うには、下のスクリーンショットでハイライト表示されている*テキスト編集を切り替え*ボタンをクリックします）。
 
-        ![!Plaintext query design tool][img-influxdb-query-plaintext]
+        ![Plaintext query design tool][img-influxdb-query-plaintext]
 
 
 
@@ -123,7 +123,7 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 *   現在のメトリクス値を表示するには、*Calc: Last*オプションを選択します。
 *   必要に応じて、しきい値やその他のパラメータを設定できます。
 
-![!Configure visualization][img-query-visualization]
+![Configure visualization][img-query-visualization]
 
 ### その後の操作
 
@@ -140,7 +140,7 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 
     --8<-- "../include-ja/monitoring/wallarm-status-check-latest.md"
     
-    ![!Checking the attack counter][img-grafana-0-attacks]
+    ![Checking the attack counter][img-grafana-0-attacks]
     
 3.  フィルターノードで保護されたアプリケーションに対してテスト攻撃を行います。これには、`curl`ユーティリティまたはブラウザでアプリケーションに悪意のあるリクエストを送信できます。
 
@@ -150,6 +150,6 @@ Graphiteデータソースからメトリクスを取得するには、以下の
 
     --8<-- "../include-ja/monitoring/wallarm-status-output-padded-latest.md"
 
-    ![!Checking the attack counter][img-grafana-16-attacks]
+    ![Checking the attack counter][img-grafana-16-attacks]
 
 Grafanaダッシュボードは現在、`node.example.local`フィルターノードの`curl_json-wallarm_nginx/gauge-abnormal`メトリックの値を表示しています。

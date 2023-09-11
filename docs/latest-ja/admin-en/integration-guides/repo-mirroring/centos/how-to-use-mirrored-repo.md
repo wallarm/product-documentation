@@ -16,15 +16,15 @@
 
 3.  *Set Me Up*リンクをクリックします。
 
-    ![!リポジトリの操作][img-working-with-repo]
+    ![リポジトリの操作][img-working-with-repo]
     
     ポップアップウィンドウが表示されます。*Type Password*フィールドにユーザーアカウントのパスワードを入力し、*Enter*を押します。このウィンドウの指示書にはあなたの資格情報が含まれています。
     
-    ![!資格情報の入力][img-repo-creds]
+    ![資格情報の入力][img-repo-creds]
 
 4.  `yum`の設定例にスクロールダウンし、`Copy Snippet to Clipboard`ボタンをクリックしてこの例をクリップボードにコピーします。
 
-    ![!設定の例][img-repo-code-snippet]
+    ![設定の例][img-repo-code-snippet]
     
 5.  `yum`の設定ファイル(`/etc/yum.repos.d/artifactory.repo`など)を作成し、そこにコピーしたスニペットを貼り付けます。
 

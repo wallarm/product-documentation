@@ -42,7 +42,7 @@ Wallarmノード4.6のリリースとともに、クラウドでのWallarmノー
 
 新しいレイアウトを持つ新しいブロックページは、デフォルトでは以下のように見えます ：
 
-![!Wallarm のブロックページ](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
+![Wallarm のブロックページ](../images/configuration-guides/blocking-page-provided-by-wallarm-36.png)
 
 [ブロッキングページの設定に関する詳細 →](../admin-en/configuration-guides/configure-block-page-and-code.md#customizing-sample-blocking-page)
 

@@ -183,7 +183,7 @@
 
 1. Azureポータル上で作成したリソースを開き、**FQDN**の値をコピーします。
 
-    ![!Settig up container instance][copy-container-ip-azure-img]
+    ![Settig up container instance][copy-container-ip-azure-img]
 
     **FQDN**フィールドが空の場合、コンテナが**Running**状態にあることを確認してください。
 
@@ -193,6 +193,6 @@
     curl http://<COPIED_DOMAIN>/etc/passwd
     ```
 3. [US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)のWallarm Console → **Events**を開き、攻撃がリストに表示されていることを確認します。
-    ![!Attacks in UI][attacks-in-ui-image]
+    ![Attacks in UI][attacks-in-ui-image]
 
 コンテナデプロイ中に発生したエラーの詳細は、Azureポータルのリソース詳細の**Containers** → **Logs**タブに表示されます。リソースが利用できない場合は、必要なフィルタリングノードのパラメーターとその正しい値がコンテナに渡されていることを確認してください。

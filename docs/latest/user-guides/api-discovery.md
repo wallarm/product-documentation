@@ -9,7 +9,7 @@ The section is only available to the users of the following [roles](../user-guid
     **Global Administrator** and **Global Analyst** in the accounts with the multitenancy feature have the same rights.
 * **API Developer** can view and download the data discovered by the API Discovery module. This role allows distinguishing users whose tasks only require using Wallarm to get actual data on company APIs. These users do not have access to any Wallarm Console sections except for **API Discovery** and **Settings → Profile**.
 
-![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 !!! info "Default view: time period, sorting and grouping"
 
@@ -48,7 +48,7 @@ All filtered data can be exported in the OpenAPI v3 for additional analysis.
 
 <a name="params"></a>By clicking the endpoint, you can also find the endpoint details, including request statistics, required and optional parameters with the relevant data types:
 
-![!Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
+![Request parameters discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-request-params.png)
 
 Each parameter information includes:
 
@@ -83,7 +83,7 @@ You can check what [changes occurred](../about-wallarm/api-discovery.md#tracking
 
 Note that whatever period is selected, if nothing is highlighted with the **New**, **Changed** or **Unused** mark, this means there are no changes in API for that period.
 
-![!API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
+![API Discovery - track changes](../images/about-wallarm-waf/api-discovery/api-discovery-track-changes.png)
 
 !!! info "Default period"
     Each time you open the **API Discovery** section, the **Changes since** filter goes to the `Last week` state, which means only the changes occurred within the last week are highlighted.
@@ -122,7 +122,7 @@ Risk score may be from `1` (lowest) to `10` (highest):
 
 To understand what caused the risk score for the endpoint and how to reduce the risk, go to the endpoint details:
 
-![!API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
+![API Discovery - Risk score](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score.png)
 
 ## Monitoring attacks on API endpoints
 
@@ -135,7 +135,7 @@ You can:
 
 To see attacks to some endpoint, click number in the **Hits** column:
 
-![!API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
+![API endpoint - open events](../images/about-wallarm-waf/api-discovery/endpoint-open-events.png)
 
 The **Events** section will be displayed with the [filter applied](../user-guides/search-and-filters/use-search.md):
 
@@ -152,7 +152,7 @@ You can quickly create a new [custom rule](../user-guides/rules/intro.md) from a
 1. In this endpoint menu select **Create rule**. The create rule window is displayed. The endpoint address is parsed into the window automatically.
 1. In the create rule window, specify rule information and then click **Create**.
 
-![!Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
+![Create rule from endpoint](../images/about-wallarm-waf/api-discovery/endpoint-create-rule.png)
 
 ## Displaying shadow and orphan API
 
@@ -160,7 +160,7 @@ The **API Discovery** module automatically uncovers shadow and orphan APIs by co
 
 * Use the **Compare to...** filter to select specification comparisons - only for them the shadow and orphan APIs will be highlighted by the special marks in the **Issues** column.
 
-    ![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
+    ![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
 
 * Use the **Other** → **Shadow API** and **Orphan API** filters to see only shadow and orphan APIs related to the selected comparisons and filter out the remaining endpoints.
 
@@ -187,7 +187,7 @@ The API Discovery UI provides you with an option to download the [OpenAPI v3](ht
 
 Wallarm can [automatically discover and protect endpoints that are vulnerable to the BOLA attacks](../admin-en/configuration-guides/protecting-against-bola.md#automatic-bola-protection-for-endpoints-discovered-by-api-discovery) among the ones explored by the **API Discovery** module. If the option is enabled, protected endpoints are highlighted with the corresponding icon in the API inventory, e.g.:
 
-![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
 
@@ -201,7 +201,7 @@ If the [API Discovery](../about-wallarm/api-discovery.md) subscription is purcha
 
 You may enable/disable API Discovery for all applications or only the selected ones.
 
-![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
 When you add a new application in **Settings** → **[Applications](settings/applications.md)**, it is automatically added to the list of applications for API discovery in the **disabled** state.
 
@@ -230,5 +230,5 @@ To change how risk score is calculated:
 1. If necessary, disable factors you do not want to affect a risk score.
 1. Set weight for the remaining.
 
-    ![!API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
+    ![API Discovery - Risk score setup](../images/about-wallarm-waf/api-discovery/api-discovery-risk-score-setup.png)
 1. Save changes. Wallarm will re-calculate the risk score for your endpoints in accordance with the new settings in several minutes.

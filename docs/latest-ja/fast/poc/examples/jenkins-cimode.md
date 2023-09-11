@@ -17,7 +17,7 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
 
 [FASTノードトークン][fast-node-token]を安全に使用するためには、[プロジェクト設定の環境変数][jenkins-parameterized-build]でその値を渡してください。
 
-![!Jenkins環境変数の受け渡し][jenkins-example-env-var]
+![Jenkins環境変数の受け渡し][jenkins-example-env-var]
 
 --8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -79,7 +79,7 @@ FASTのCIモードをJenkinsワークフローに統合する設定は `Jenkinsf
 
 セキュリティテストの結果はJenkinsのインターフェースに表示されます。
 
-![!テストモードでFASTノードを実行する結果][fast-example-jenkins-result]
+![テストモードでFASTノードを実行する結果][fast-example-jenkins-result]
 
 ## 他の例
 

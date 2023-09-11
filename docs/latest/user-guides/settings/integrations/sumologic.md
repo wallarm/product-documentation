@@ -22,7 +22,7 @@ In Wallarm UI:
 6. [Test the integration](#testing-integration) and make sure the settings are correct.
 7. Click **Add integration**.
 
-![!Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
+![Sumo Logic integration](../../../images/user-guides/settings/integrations/add-sumologic-integration.png)
 
 ## Testing integration
 

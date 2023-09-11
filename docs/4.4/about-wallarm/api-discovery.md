@@ -114,13 +114,13 @@ This data allows checking that values of the expected format are passed in each 
 
 Before purchasing the [subscription plan](subscription-plans.md#subscription-plans) with API Discovery, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
 
-![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Using built API inventory
 
 The **API Discovery** section provides many options for the build API inventory usage.
 
-![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 These options are:
 
@@ -199,7 +199,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount of matching addresses.
 
@@ -211,11 +211,11 @@ Potential targets of the BOLA attacks are endpoints with variability. Wallarm ca
 
 To enable automatic BOLA protection, proceed to [Wallarm Console → **BOLA protection**](../user-guides/bola-protection.md) and turn the switch to the enabled state:
 
-![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Each protected API endpoint will be highlighted with the corresponding icon in the API inventory, e.g.:
 
-![!BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
+![BOLA trigger](../images/about-wallarm-waf/api-discovery/endpoints-protected-against-bola.png)
 
 You can filter API endpoints by the BOLA auto protection state. The corresponding parameter is available under the **Others** filter.
 
@@ -233,7 +233,7 @@ An **orphan API** refers to a documented API that does not receive traffic. The 
 
 The API Discovery module automatically uncovers shadow and orphan APIs by comparing the discovered API inventory with customers' provided specifications. You upload your API specifications in the [**API Specifications**](../user-guides/api-specifications.md) section and the module automatically highlights shadow and orphan endpoints.
 
-![!API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
+![API Discovery - highlighting and filtering shadow API](../images/about-wallarm-waf/api-discovery/api-discovery-highlight-shadow-orphan.png)
 
 * [Learn how to upload specifications for comparison to find shadow and orphan APIs →](../user-guides/api-specifications.md#revealing-shadow-and-orphan-api)
 * [Learn how to display found shadow and orphan API in the API Discovery section →](../user-guides/api-discovery.md#displaying-shadow-and-orphan-api)
@@ -277,7 +277,7 @@ To enable and run API Discovery correctly:
 
 1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
-    ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
     !!! info "Access to API Discovery settings"
         Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.

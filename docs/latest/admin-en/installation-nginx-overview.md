@@ -35,7 +35,7 @@ When the filtering node is used to process requests, incoming traffic sequential
     *   Installed on the same servers as NGINX/NGINX Plus (if server configurations allow this)
     *   Installed on a group of servers separate from NGINX/NGINX Plus
 
-![!Postanalytics Module Installation Options][img-postanalytics-options]
+![Postanalytics Module Installation Options][img-postanalytics-options]
 
 ##  Installing and configuring the modules
 
@@ -46,7 +46,7 @@ When the filtering node is used to process requests, incoming traffic sequential
 
 The Wallarm module for NGINX can be connected by one of the following installation methods (links to instructions for each of the installation options are listed in the parenthesis):
 
-![!Module for NGINX Installation Options][img-nginx-options]
+![Module for NGINX Installation Options][img-nginx-options]
 
 *   Building NGINX from the source files ([instruction][link-ig-nginx])
 *   Installing NGINX packages from the NGINX repository ([instruction][link-ig-nginx])

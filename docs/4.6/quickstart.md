@@ -24,7 +24,7 @@ To explore Wallarm even before signing up and deploying any components to your e
 
 In Playground, you can access the Wallarm Console view like it is filled with real data. Wallarm Console is the major Wallarm platform component that displays data on processed traffic and allows the platform fine-tuning. So, with Playground you can learn and try out how the product works, and get some useful examples of its usage in the read-only mode.
 
-![!UI to create account](images/playground.png)
+![UI to create account](images/playground.png)
 
 To try the Wallarm solution capabilities on your traffic, [create a Free tier account](#create-wallarm-account-and-get-free-tier).
 
@@ -57,7 +57,7 @@ Deploy the Wallarm filtering node from the Docker image:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](images/create-wallarm-node-empty-list.png)
+    ![Wallarm node creation](images/create-wallarm-node-empty-list.png)
 
     As for the **Multi-tenant node** checkbox, leave it unticked. This checkbox is related to the corresponding feature setup that is not a part of a quick start.
 1. Copy the generated token.
@@ -89,7 +89,7 @@ If `NGINX_BACKEND` is `example.com`, additionally pass the `-H 'Host: example.co
 
 Since the node operates in the **monitoring** [filtration mode](admin-en/configure-wallarm-mode.md#available-filtration-modes) by default, the Wallarm node will not block the attack but will register it. To check that the attack has been registered, proceed to Wallarm Console → **Events**:
 
-![!Attacks in the interface](images/admin-guides/test-attacks-quickstart.png)
+![Attacks in the interface](images/admin-guides/test-attacks-quickstart.png)
 
 ## Next steps
 

@@ -24,7 +24,7 @@
     リクエスト分析の時間を節約するために、正確に悪意のあるリクエストを隠すことができます。[tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)を使用します。
 2. 有効なリクエストを定義し、**アクション**列の**偽**をクリックします。
 
-    ![!偽のヒット][img-false-attack]
+    ![偽のヒット][img-false-attack]
 
 ## 攻撃を偽陽性とマークする
 
@@ -35,14 +35,14 @@
     リクエスト分析の時間を節約するために、正確に悪意のあるリクエストを隠すことが可能です。[tag `!known`](../search-and-filters/use-search.md#search-by-known-attacks-cve-and-wellknown-exploits)を使用します。
 2. **偽陽性とマークする**をクリックします。
 
-    ![!偽の攻撃](../../images/user-guides/events/analyze-attack.png)
+    ![偽の攻撃](../../images/user-guides/events/analyze-attack.png)
 
 !!! warning "攻撃がIPによってグループ化されたヒットである場合"
     攻撃がIPアドレスによって[グループ化](../../about-wallarm/protecting-against-attacks.md#attack)されたヒットで構成されている場合、**偽陽性とマークする**ボタンは利用できません。特定のヒットを偽陽性と[マーク](#mark-a-hit-as-a-false-positive)することができます。
 
 攻撃の全てのリクエストが偽陽性とマークされた場合、その攻撃に関する情報は次のようになります：
 
-![!全攻撃が偽陽性にマークされている][img-removed-attack-info]
+![全攻撃が偽陽性にマークされている][img-removed-attack-info]
 
 ## 偽陽性マークを削除する
 
@@ -56,4 +56,4 @@ Wallarm Consoleでは、別のフィルターを通じて攻撃リストの偽�
 * **偽陽性を含む**：実際の攻撃と偽陽性
 * **偽陽性のみ**
 
-![!偽陽性フィルタ](../../images/user-guides/events/filter-for-falsepositive.png)
+![偽陽性フィルタ](../../images/user-guides/events/filter-for-falsepositive.png)

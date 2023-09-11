@@ -45,7 +45,7 @@ To do this, you need to create the rule *Create regexp-based attack indicator* a
 6. Set the point `Header X-AUTHENTICATION`
 7. Click *Create*
 
-![!Regex rule first example][img-regex-example1]
+![Regex rule first example][img-regex-example1]
 
 ### Example: Block all requests with the `class.module.classLoader.*` body parameters
 
@@ -59,7 +59,7 @@ One of the ways to exploit the 0-day vulnerability in [Spring Core Framework](ht
 
 If you use vulnerable Spring Core Framework and the Wallarm node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) is different from blocking, you can prevent vulnerability exploitation using the virtual patch. The following rule will block all requests with listed body parameters even in the monitoring and safe blocking modes:
 
-![!Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
+![Virtual patch for specific post params](../../images/user-guides/rules/regexp-rule-post-params-spring.png)
 
 The regular expression field value is:
 
@@ -77,7 +77,7 @@ The Spring Cloud Function component has the active vulnerability (CVE-2022-22963
 
 If using this component and the Wallarm node [mode](../../admin-en/configure-wallarm-mode.md#available-filtration-modes) is different from blocking, you can prevent vulnerability exploitation using the virtual patch. The following rule will block all requests containing the `CLASS-CLOUD-FUNCTION-ROUTING-EXPRESSION` header:
 
-![!Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
+![Virtual patch for specific header](../../images/user-guides/rules/regexp-rule-header-spring.png)
 
 !!! info "Blocking requests with the `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header"
     This rule does not block requests with the `CLASS.CLOUD.FUNCTION.ROUTING-EXPRESSION` header but NGINX drops requests with this header as invalid ones by default.
@@ -112,7 +112,7 @@ To create the relevant rule:
 1. Set the point `Header X-AUTHENTICATION`
 1. Click *Create*
 
-![!Regex rule second example][img-regex-example2]
+![Regex rule second example][img-regex-example2]
 
 ## API call to create the rule
 

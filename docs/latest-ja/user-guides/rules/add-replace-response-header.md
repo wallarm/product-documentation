@@ -35,4 +35,4 @@
 
 `https://example.com/*` のすべてのコンテンツをサイトのオリジンからのみに許可するために、レスポンスヘッダー [`Content-Security-Policy: default-src 'self'`](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP#example_1) をルール **サーバーのレスポンスヘッダーを変更** を使用して以下のように追加できます：
 
-![!ルール "サーバーのレスポンスヘッダーを変更" の例](../../images/user-guides/rules/add-replace-response-header.png)
+![ルール "サーバーのレスポンスヘッダーを変更" の例](../../images/user-guides/rules/add-replace-response-header.png)

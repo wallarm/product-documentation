@@ -27,7 +27,7 @@ In the Wallarm Console UI:
         Creating a Workspace on Sentinel for Wallarm integration can take up to 1 hour for all services to function. This delay can result in errors during integration testing and usage. If all integration settings are correct but errors continue to appear, please try again after 1 hour.
 1. Click **Add integration**.
 
-    ![!Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
+    ![Sentinel integration](../../../images/user-guides/settings/integrations/add-sentinel-integration.png)
 
 ## Testing integration
 
@@ -35,7 +35,7 @@ In the Wallarm Console UI:
 
 You can find Wallarm logs in your Microsoft Workspace → **Logs** → **Custom Logs**, e.g. the test `create_user_CL` log in Microsoft Sentinel looks as follows:
 
-![!Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
+![Test Sentinel message](../../../images/user-guides/settings/integrations/test-sentinel-new-vuln.png)
 
 ## Types of Wallarm logs
 

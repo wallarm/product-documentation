@@ -6,7 +6,7 @@
 
 ヒットは、シリアライズされた悪意のあるリクエスト（オリジナルの悪意のあるリクエストとフィルタリングノードによって追加されたメタデータ）です。例：
 
-![!Hit の例](images/user-guides/events/analyze-attack-raw.png)
+![Hit の例](images/user-guides/events/analyze-attack-raw.png)
 
 [ヒットのパラメータ詳細](user-guides/events/analyze-attack.md#analyze-requests-in-an-attack)
 
@@ -27,11 +27,11 @@
 
 単一のヒットを含む攻撃の例：
 
-![!一つのヒットを含む攻撃](images/glossary/attack-with-one-hit-example.png)
+![一つのヒットを含む攻撃](images/glossary/attack-with-one-hit-example.png)
 
 多数のヒットを含む攻撃の例：
 
-![!いくつかのヒットを含む攻撃](images/glossary/attack-with-several-hits-example.png)
+![いくつかのヒットを含む攻撃](images/glossary/attack-with-several-hits-example.png)
 
 ## 悪意のあるペイロード
 

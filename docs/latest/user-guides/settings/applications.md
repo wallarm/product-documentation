@@ -19,7 +19,7 @@ By default, Wallarm considers each application to be the `default` application w
 
 1. (Optional) Add an application in Wallarm Console → **Settings** → **Applications**.
 
-    ![!Adding an application](../../images/user-guides/settings/configure-app.png)
+    ![Adding an application](../../images/user-guides/settings/configure-app.png)
 
     !!! warning "Administrator access"
         Only users with the **Administrator** role can access the section **Settings** → **Applications**.
@@ -80,7 +80,7 @@ This request will:
 * Be associated with application with ID `222`.
 * If the corresponding application does not exist, it will be added to the **Settings** → **Applications** and automatically named `Application #222`.
 
-![!Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
+![Adding an application on the base of header request](../../images/user-guides/settings/configure-app-auto-header.png)
 
 ### Application identification on base of specific request header or part of URLs using `map` NGINX directive 
 

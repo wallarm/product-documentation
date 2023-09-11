@@ -18,7 +18,7 @@ Wallarmを設定すると、スケジュールされたレポートと即時通�
 8. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
 9. **Add integration** をクリックします。
 
-    ![!Telegramの統合](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
+    ![Telegramの統合](../../../images/user-guides/settings/integrations/add-telegram-integration.png)
 
 また、[@WallarmUSBot](https://t.me/WallarmUSBot) または [@WallarmBot](https://t.me/WallarmBot) と直接チャットを開始することもできます。ボットはレポートと通知を送信します。
 

@@ -8,7 +8,7 @@ The solution involves deploying the Wallarm node externally and injecting custom
 
 The following scheme demonstrates high-level traffic flow in the Wallarm blocking [mode](../../admin-en/configure-wallarm-mode.md):
 
-![!image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
+![image](../../images/waf-installation/general-traffic-flow-for-connectors.png)
 
 Traffic is analyzed in-line, the injected Wallarm script captures requests and forwards them to the node for analysis. Depending on the response from the node, malicious activities are blocked, and only legitimate requests are allowed to access the APIs.
 

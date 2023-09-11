@@ -31,7 +31,7 @@ Note that you can temporarily disable the exception for the URL and/or request t
 
 Suppose your application is integrated with the Klaviyo marketing automation tool having multiple IPs that send requests. So we set not to check for automated (bot) activities in GET requests from the `Klaviyo/1.0` user agent for specific URIs:
 
-![!Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
+![Do not check for bot activity for requests with specific headers](../../images/user-guides/rules/api-abuse-url-request.png)
 
 ### Disabling protection from bots for testing endpoint
 
@@ -39,4 +39,4 @@ Let's say you have the endpoint that belongs to your application. The applicatio
 
 In this case it is easier to create rule from the **API Discovery** list of endpoints. Go there, find your endpoint and initiate rule creation from its page:
 
-![!Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)
+![Creating Set API Abuse Prevention mode for API Discovery endpoint](../../images/user-guides/rules/api-abuse-url.png)

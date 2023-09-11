@@ -26,7 +26,7 @@ WallarmコンソールUIの **BOLA保護** セクションでは、**API Discove
 
 API Discoveryモジュールが探索したエンドポイントをWallarmがBOLAの脆弱性について分析し、リスクがあるものを保護するためには、**スイッチを有効な状態にする** ことです。
 
-![!BOLAトリガー](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLAトリガー](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 その後、BOLAの自動検出テンプレートを編集することにより、デフォルトのWallarmの動作を微調整することが出来ます：
 
@@ -36,7 +36,7 @@ API Discoveryモジュールが探索したエンドポイントをWallarmがBOL
     * **Denylist IP** - WallarmはBOLA攻撃の発生源となるIPを[denylist](ip-lists/denylist.md)に登録し、これらのIPから発生する全てのトラフィックをブロックします。
     * **Graylist IP** - WallarmはBOLA攻撃の発生源となるIPを[graylist](ip-lists/graylist.md)に登録し、フィルタリングノードが安全ブロック[モード](../admin-en/configure-wallarm-mode.md)にある場合のみ、これらのIPからの悪意のあるリクエストをブロックします。
 
-![!BOLAトリガー](../images/user-guides/bola-protection/trigger-template.png)
+![BOLAトリガー](../images/user-guides/bola-protection/trigger-template.png)
 
 ## 自動BOLA保護ロジック
 

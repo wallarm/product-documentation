@@ -15,7 +15,7 @@ Wallarm automatically [rechecks](../../about-wallarm/detecting-vulnerabilities.m
 
 You can check the attack verification status and force an attack recheck on the *Events* tab. Selected attack will be the basis for the test attack set generation.
 
-![!Attacks with various verification statuses][img-verification-statuses]
+![Attacks with various verification statuses][img-verification-statuses]
 
 ## Check the Attack Verification Status
 
@@ -24,11 +24,11 @@ You can check the attack verification status and force an attack recheck on the 
 
 ## Attack Verification Status Legend
 
-* ![!Verified][img-verified-icon] *Verified*: The attack has been verified.
-* ![!Error][img-error-icon] *Error*: An attempt to verify an attack type that does not support verification.
-* ![!Forced][img-forced-icon] *Forced*: The attack has a raised priority in the verification queue.
-* ![!Sheduled][img-sheduled-icon] *Scheduled*: The attack is queued for verification.
-* ![!Could not connect][img-cloud-icon] *Could not connect to the server*: It is not possible to access the server at this time.
+* ![Verified][img-verified-icon] *Verified*: The attack has been verified.
+* ![Error][img-error-icon] *Error*: An attempt to verify an attack type that does not support verification.
+* ![Forced][img-forced-icon] *Forced*: The attack has a raised priority in the verification queue.
+* ![Sheduled][img-sheduled-icon] *Scheduled*: The attack is queued for verification.
+* ![Could not connect][img-cloud-icon] *Could not connect to the server*: It is not possible to access the server at this time.
 
 ## Forcing an Attack Verification
 
@@ -38,7 +38,7 @@ You can check the attack verification status and force an attack recheck on the 
 
 Wallarm will raise the priority of the attack verification in the queue.
 
-![!Attacks verification][img-verify-attack]
+![Attacks verification][img-verify-attack]
 
 ## Attack Types that Do Not Support Verification
 

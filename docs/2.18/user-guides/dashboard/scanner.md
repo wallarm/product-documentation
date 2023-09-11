@@ -15,4 +15,4 @@ The scanner dashboard shows statistics on vulnerabilities detected in the [scope
 
 You can filter data on the Scanner dashboard by time period. By default, the dashboard displays the data for one month prior to the current date.
 
-![!Scanner Dashboard][img-dashboard]
+![Scanner Dashboard][img-dashboard]

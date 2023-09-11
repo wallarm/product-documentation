@@ -29,4 +29,4 @@ Let's say the requests to `https://example.com/users/` require the authenticatio
 
 The rule **Disable/Enable request parser** preventing false positives in the `X-AUTHTOKEN` values can be configured as follows:
 
-![!Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)
+![Example of the rule "Disable/Enable request parser"](../../images/user-guides/rules/disable-parsers-example.png)

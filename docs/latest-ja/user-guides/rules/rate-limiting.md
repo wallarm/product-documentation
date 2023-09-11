@@ -43,7 +43,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
 たとえば、以下のように、各IPアドレスあたりの分ごとのPOSTリクエストを5に制限することができます：
 
-![!Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
+![Example](../../images/user-guides/rules/rate-limit-by-ip-for-patients.png)
 
 ### セッションによる接続の制限で認証パラメータへのブルートフォース攻撃を防止
 
@@ -51,13 +51,13 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
 アプリケーションが各ユーザーセッションに固有のIDを割り当て、それを `X-SESSION-ID` ヘッダーに反映していると仮定します。APIエンドポイントは `https://example.com/api/login` URLで、 `Authorization`ヘッダーにBearer JWTを含むPOSTリクエストを受け付けます。このシナリオでは、セッションによる接続制限のルールが次のように表示されます：
 
-![!Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
+![Example](../../images/user-guides/rules/rate-limit-for-jwt.png)
 
 `Authorization` の値に使用される[正規表現](add-rule.md#condition-type-regex)は ``^Bearer\s+([a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+[.][a-zA-Z0-9-_]+)$`` です。
 
 ユーザーセッションを管理するためにJWT（JSON Web Tokens）を使用している場合、ルールを調整してJWTを[復号](request-processing.md#jwt)し、そのペイロードからセッションIDを抽出することができます：
 
-![!Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
+![Example](../../images/user-guides/rules/rate-limit-for-session-in-jwt.png)
 
 ### User-Agentによるレート制限でAPIエンドポイントへの攻撃を防止
 
@@ -65,7 +65,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
 例えば、各 `User-Agent` ごとに分あたり10リクエストの制限を設定できます。特定の `User-Agent` からのリクエストが分あたり10リクエスト以上、均等に分散して送信された場合、その `User-Agent` からのさらなるリクエストは新たな期間が開始するまで拒否されます。
 
-![!Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
+![Example](../../images/user-guides/rules/rate-limit-by-user-agent.png)
 
 ### カスタマーIDによる接続の制限でサーバーへの負担を防止
 
@@ -73,7 +73,7 @@ WallarmはクッキーやJSONフィールドなどのさまざまなリクエス
 
 たとえば、顧客IDが `data.customer_id` JSON本文オブジェクトで[渡される](request-processing.md#json_doc)と仮定して、各顧客が `https://example-domain.com/orders` に対して1分あたり10 POSTリクエストを行うことだけを許可するルールは、以下のようになります：
 
-![!Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
+![Example](../../images/user-guides/rules/rate-limit-by-customer-id.png)
 
 ## 制限事項と注意点
 

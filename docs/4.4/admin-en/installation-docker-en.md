@@ -39,7 +39,7 @@ To run the container:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 
@@ -75,7 +75,7 @@ To run the container:
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
+    ![Wallarm node creation](../images/user-guides/nodes/create-cloud-node.png)
 1. Copy the generated token.
 1. Run the container with the created node:
 

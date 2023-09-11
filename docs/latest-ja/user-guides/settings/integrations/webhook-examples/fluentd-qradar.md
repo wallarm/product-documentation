@@ -4,7 +4,7 @@
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 ## 使用されるリソース
 
@@ -76,13 +76,13 @@ Fluentdは`td-agent.conf`ファイルで設定されます：
     ```
 
     **Fluentdログ：**
-    ![!Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
+    ![Logs in Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-curl-log.png)
 
     **QRadarログ：**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log.png)
 
     **QRadarログペイロード：**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-curl-log-payload.png)
 
 ### QRadarの設定（オプション）
 
@@ -97,13 +97,13 @@ QRadarでは、ログソースが設定されています。これにより、QR
 
 QRadarログソース設定の詳細は、[公式IBMドキュメンテーション](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf)で利用可能です。
 
-![!QRadar log source setup for Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
+![QRadar log source setup for Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-setup.png)
 
 ### Fluentd統合の設定
 
 --8<-- "../include-ja/integrations/webhook-examples/create-fluentd-webhook.md"
 
-![!Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Webhook integration with Fluentd](../../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 [Fluentdの統合設定についての詳細](../fluentd.md)
 
@@ -113,8 +113,8 @@ QRadarログソース設定の詳細は、[公式IBMドキュメンテーショ�
 
 Fluentdは次のようにイベントをログに記録します：
 
-![!Log about new user in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
+![Log about new user in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-user-log.png)
 
 QRadarのログペイロードには次のJSON形式のデータが表示されます：
 
-![!New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)
+![New user card in QRadar from Fluentd](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/fluentd-user.png)

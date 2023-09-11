@@ -46,7 +46,7 @@ Create a TCP Load Balancer for your instance group by completing the following a
             
             In the case of balancing traffic for several resources located in multiple regions, select the **Multiple regions (or not sure yet)** option.
 
-    ![!Creating a load balancer][img-creating-lb]
+    ![Creating a load balancer][img-creating-lb]
 
     Click the **Continue** button.
 
@@ -77,7 +77,7 @@ Create a TCP Load Balancer for your instance group by completing the following a
         !!! info "Configuring a method of choosing an instance"
             The method of choosing an instance for request processing is not in the scope of this document. Thus, here the **None** option is selected in the **Session affinity** drop-down list.
     
-        ![!Configuring a backend][img-backend-configuration]
+        ![Configuring a backend][img-backend-configuration]
 
 7.  Click the **Frontend configuration** button to specify the IP addresses and ports to which clients will send their requests.
 
@@ -100,7 +100,7 @@ Create a TCP Load Balancer for your instance group by completing the following a
         !!! info "Choosing the port"
             In this document, port `80` is specified for receiving requests via the HTTP protocol.
     
-    ![!New frontend IP and port creation form][img-new-frontend-ip-and-port]
+    ![New frontend IP and port creation form][img-new-frontend-ip-and-port]
     
     Click the **Done** button to create the configured IP address and port pair.
     
@@ -109,7 +109,7 @@ Create a TCP Load Balancer for your instance group by completing the following a
 
 9.  Click the **Create** button to create the configured load balancer.
 
-    ![!Creating a TCP load balancer][img-creating-tcp-lb]
+    ![Creating a TCP load balancer][img-creating-tcp-lb]
     
 Wait until the load balancer creation process is finished and the load balancer connects to the instance group that you created earlier.
 
@@ -121,4 +121,4 @@ To check the deployed filtering nodes operation, perform the following steps:
 1.  Make sure that your application is accessible through the load balancer and the Wallarm filtering nodes by referring to the balancer IP address or domain name using your browser.
 2.  Make sure that the Wallarm services protect your application by [performing a test attack][link-test-attack].
 
-![!The «Events» tab on the Wallarm web interface][img-checking-attacks]
+![The «Events» tab on the Wallarm web interface][img-checking-attacks]

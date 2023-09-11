@@ -57,7 +57,7 @@ docker stop <RUNNING_CONTAINER_NAME>
 
 1. Wallarm Consoleに進み、**Nodes**を選択し、**Wallarmノード**を作成します。
 
-    ![!Wallarmノードの作成](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Wallarmノードの作成](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. 生成されたトークンをコピーします。
 1. コピーしたトークンを使用して、更新されたイメージを実行します。前のイメージバージョンの実行時に渡された同じ設定パラメータを渡すことができます（ノードトークンを除く）。
     

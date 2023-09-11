@@ -70,7 +70,7 @@ To create a local RPM repository in JFrog Artifactory, do the following:
 
 3.  Click the *New* button to create a new local repository.
 
-    ![!Creating a new local repository][img-new-local-repo]
+    ![Creating a new local repository][img-new-local-repo]
 
 4.  Select the “RPM” package type.
 
@@ -82,7 +82,7 @@ To create a local RPM repository in JFrog Artifactory, do the following:
 
     Click the *Save & Finish* button to create the local Artifactory repository.
     
-    ![!Repository settings][img-artifactory-repo-settings]
+    ![Repository settings][img-artifactory-repo-settings]
 
     Now, the newly created repository should be displayed in the local repository list.
 
@@ -102,11 +102,11 @@ To import the Wallarm packages into the Artifactory local RPM repository, do the
 
 5.  Click the *Import* button to import the Wallarm packages from the directory.
 
-    ![!Importing packages][img-import-into-artifactory]
+    ![Importing packages][img-import-into-artifactory]
     
 6.  Click the *Artifacts* menu entry, and make sure that the imported Wallarm packages are present in the desired local repository.
 
-    ![!Packages in the repository][img-local-repo-ok]
+    ![Packages in the repository][img-local-repo-ok]
     
 
 

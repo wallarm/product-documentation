@@ -52,7 +52,7 @@ There are a few important relationships between the entities mentioned earlier:
 * You can pass the existing token value into a Docker container with the FAST node, provided that the token is not in use by any other Docker container with the node.
 * If you create a new test run for the FAST node while another test run is in place, then the current test run will stop and be replaced by the new one.
 
-![!Relations between the components][img-components-relations]
+![Relations between the components][img-components-relations]
 
 ##   The Entities Used by FAST
 
@@ -79,7 +79,7 @@ A single test record could be employed by multiple FAST nodes and test runs. Thi
 * The same target application is being tested again.
 * Multiple target applications are being tested concurrently with the same baseline requests.
 
-![!Working with a test record][img-testrecord]
+![Working with a test record][img-testrecord]
  
 
 ### FAST Test Policy
@@ -158,7 +158,7 @@ Stopping the baseline requests' recording process has no impact on the processes
 
 The processes of baseline requests recording and the creation and execution of the FAST security tests run in parallel:
 
-![!Test run execution flow (baseline request recording takes place)][img-execution-timeline-recording]
+![Test run execution flow (baseline request recording takes place)][img-execution-timeline-recording]
 
 Note: the chart above shows the flow described in the [FAST quick start guide][doc-quick-start]. A flow with baseline requests recording is suitable either for manual security testing or automated security testing using CI/CD tools.
 
@@ -181,7 +181,7 @@ When you copy a test run, its execution begins immediately and follows the follo
 
 The process of baseline request extracting takes place prior to the creation and execution of the FAST security tests:
 
-![!Test run execution flow (pre-recorded baseline requests are used)][img-execution-timeline-no-recording]
+![Test run execution flow (pre-recorded baseline requests are used)][img-execution-timeline-no-recording]
 
 Note that it is the execution flow that is used in the [FAST quick start guide][doc-quick-start]. The flow that makes use of pre-recorded baseline requests is suitable for automated security testing with use of CI/CD tools.
 
@@ -189,7 +189,7 @@ In this scenario, the Wallarm API or FAST node in CI mode can be used to manipul
 
 The chart below shows the most commonly encountered CI/CD workflow, which complies with the timeline shown above:
 
-![!Test run execution flow (CI Mode)][img-common-timeline-no-recording]
+![Test run execution flow (CI Mode)][img-common-timeline-no-recording]
 
 
 ##  Working with Test Runs
@@ -211,7 +211,7 @@ A FAST node comprises of:
 
 A token binds the running Docker container with the FAST node in the cloud:
 
-![!FAST node][img-fast-node]
+![FAST node][img-fast-node]
 
 To deploy a FAST node, do the following:
 1.  Create a FAST node in the Wallarm cloud using the [Wallarm portal][link-wl-portal-node-tab]. Copy the provided token.
@@ -225,4 +225,4 @@ You could create as many FAST nodes in the Wallarm cloud as you need and obtain 
 
 It is possible to reuse tokens you obtained earlier if the tokens are not in use by other active Docker containers with the FAST node (e.g., any Docker container with a node that employs the same token is stopped or removed):
 
-![!Reusing the token][img-reuse-token]
+![Reusing the token][img-reuse-token]

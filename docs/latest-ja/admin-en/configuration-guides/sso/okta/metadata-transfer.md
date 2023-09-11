@@ -25,7 +25,7 @@ IDプロバイダのメタデータ（この場合はOkta）をWallarm設定ウ�
     *   **Identity Provider Issuer**を**Identity provider issuer**フィールドに。
     *   **X.509 Certificate**を**X.509 Certificate**フィールドに。
     
-    ![!メタデータを手動で入力する][img-transfer-metadata-manually]
+    ![メタデータを手動で入力する][img-transfer-metadata-manually]
     
 次のステップに進むには*次へ*をクリックします。前のステップに戻りたい場合は*戻る*をクリックします。
 
@@ -37,10 +37,10 @@ Wallarm設定ウィザードの最終ステップでは、Oktaサービスへの
 
 *完了*ボタンをクリックするか、対応するボタンをクリックしてユーザーページに移動してSSOを設定します。
 
-![!SSOウィザードを完了する][img-sp-wizard-finish]
+![SSOウィザードを完了する][img-sp-wizard-finish]
 
 SSO設定ウィザードを完了した後、*インテグレーション*タブにOktaサービスがIDプロバイダとして接続され、他のSSOプロバイダは利用できないことが表示されます。
 
-![!SSOウィザード終了後の“インテグレーション”タブ][img-integration-tab]
+![SSOウィザード終了後の“インテグレーション”タブ][img-integration-tab]
 
 これで、SSO設定プロセスの[次のステップ][doc-allow-access-to-wl]に進みます。

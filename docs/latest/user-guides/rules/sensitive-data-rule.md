@@ -39,4 +39,4 @@ It can affect the display of attacks, active attack (threat) verification, and t
 
 1. Click *Create*
 
-![!Marking sensitive data][img-masking]
+![Marking sensitive data][img-masking]

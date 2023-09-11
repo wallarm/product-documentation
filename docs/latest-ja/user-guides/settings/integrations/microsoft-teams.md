@@ -15,7 +15,7 @@
 7. [インテグレーションをテスト](#testing-integration)し、設定が正しいことを確認します。
 8. **Add integration**をクリックします。
 
-    ![!MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
+    ![MS Teams integration](../../../images/user-guides/settings/integrations/add-ms-teams-integration.png)
 
 ## インテグレーションのテスト
 

@@ -30,7 +30,7 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Select the *QUERY* parameter and enter its value `id` after *in this part of request*
 1. Click *Create*
 
-![!Virtual patch for a certain request type][img-vpatch-example1]
+![Virtual patch for a certain request type][img-vpatch-example1]
 
 
 ## Example: Block All Requests With the Query String Parameter `refresh`
@@ -50,4 +50,4 @@ If the setting *Any request* is selected, the system will block the requests wit
 1. Select the *QUERY* parameter and enter its value `refresh` after *in this part of request*
 1. Click *Create*
 
-![!Virtual patch for any request type][img-vpatch-example2]
+![Virtual patch for any request type][img-vpatch-example2]

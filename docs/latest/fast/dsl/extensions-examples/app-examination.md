@@ -35,7 +35,7 @@ SELECT * FROM Users WHERE email = ''' AND password = '827ccb0eea8a706c4c34a16891
 
 Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL injection attacks (SQLi) through the login form.
 
-![!The OWASP Juice Shop application login form][img-login]
+![The OWASP Juice Shop application login form][img-login]
 
 !!! info "Exploiting the vulnerability"
     The exploitable vulnerability: SQLi.
@@ -66,5 +66,5 @@ Therefore, we can assume that the OWASP Juice Shop could be vulnerable to SQL in
     }
     ```
 
-![!Intercepting the API server's response using the Wireshark application][img-wireshark]
+![Intercepting the API server's response using the Wireshark application][img-wireshark]
 

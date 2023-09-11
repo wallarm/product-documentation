@@ -75,7 +75,7 @@ The steps to configure the trigger are:
 
 Example of the **Brute force** trigger to block the regular brute‑force attacks addressed to `https://example.com/api/v1/login`:
 
-![!Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
+![Brute force trigger example](../../images/user-guides/triggers/trigger-example6.png)
 
 Description of the provided example and other trigger examples used for brute force protection are available within this [link](../../user-guides/triggers/trigger-examples.md#mark-requests-as-a-bruteforce-attack-if-31-or-more-requests-are-sent-to-the-protected-resource).
 
@@ -91,7 +91,7 @@ You can configure several triggers for brute force protection.
 2. If the trigger reaction is **Denylist IP address**, open Wallarm Console → **Denylist** and check that source IP address is blocked.
 3. Open the section **Events** and check that requests are displayed in the list as the brute‑force or forced browsing attack.
 
-    ![!Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)
+    ![Forced browsing attack in the interface](../../images/user-guides/events/dirbust-attack.png)
 
     The number of displayed requests corresponds to the number of requests sent after the trigger threshold was exceeded ([more details on detecting behavioral attacks](../../about-wallarm/protecting-against-attacks.md#behavioral-attacks)). If this number is higher than 5, request sampling is applied and request details are displayed only for the first 5 hits ([more details on requests sampling](../../user-guides/events/analyze-attack.md#sampling-of-hits)).
 

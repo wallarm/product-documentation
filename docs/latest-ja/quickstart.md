@@ -24,7 +24,7 @@ Wallarmをより詳しく知るため、まず[Wallarm Playground](https://my.us
 
 Playgroundでは、実際のデータが最初から埋め込まれたWallarmコンソールを使用できます。これは、処理されたトラフィックに関するデータを表示し、プラットフォームの微調整を許可する主要なWallarmプラットフォームコンポーネントです。したがって、Playgroundを使用すると、製品の動きを理解し、その使用方法の有用な例を読み取り専用モードで試すことができます。
 
-![!アカウント作成用のUI](images/playground.png)
+![アカウント作成用のUI](images/playground.png)
 
 あなたのトラフィックでWallarmソリューションの機能を試すには、[無料ホスティングアカウントを作成します](#create-wallarm-account-and-get-free-tier)。
 
@@ -57,7 +57,7 @@ DockerイメージからWallarmフィルタリングノードをデプロイし�
 
 1. [USクラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)のWallarm Console → **Nodes** を開き、**Wallarmノード**タイプのノードを作成します。  
 
-    ![!Wallarmノード作成](images/create-wallarm-node-empty-list.png)
+    ![Wallarmノード作成](images/create-wallarm-node-empty-list.png)
 
     **マルチテナントノード**チェックボックスについては、チェックを外したままにしておきます。このチェックボックスは、クイックスタートの一部ではない対応する機能の設定に関連しています。
 1. 生成されたトークンをコピーします。
@@ -89,7 +89,7 @@ curl http://localhost/etc/passwd
 
 ノードはデフォルトで**監視**[フィルタモード](admin-en/configure-wallarm-mode.md#available-filtration-modes)で動作するため、Wallarmノードは攻撃をブロックせず、それを登録します。攻撃が登録されたことを確認するには、Wallarm Console → **Events**に進みます：
 
-![!インターフェースの攻撃](images/admin-guides/test-attacks-quickstart.png)
+![インターフェースの攻撃](images/admin-guides/test-attacks-quickstart.png)
 
 ## 次のステップ
 

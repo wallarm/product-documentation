@@ -244,11 +244,11 @@ Wallarmは優秀なリクエスト分析と偽陽性の少なさを保証しま�
 
 攻撃の管理についての詳細な情報は、[攻撃の操作についての指示](../user-guides/events/analyze-attack.md)を参照してください。
 
-![!Attacks view](../images/user-guides/events/check-attack.png)
+![Attacks view](../images/user-guides/events/check-attack.png)
 
 さらに、Wallarmは包括的なダッシュボードを提供して、システムのセキュリティ状態を常に把握することができます。Wallarmの[脅威防止](../user-guides/dashboards/threat-prevention.md)ダッシュボードは、システムのセキュリティ状態に関する一般的なメトリクスを提供し、[OWASP API Security Top 10](../user-guides/dashboards/owasp-api-top-ten.md)ダッシュボードは、システムのセキュリティ状態に対してOWASP API Top 10の脅威に対する詳細な可視性を提供します。
 
-![!OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+![OWASP API Top 10](../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## 検出された攻撃、ヒット、不正なペイロードに関する通知
 

@@ -11,7 +11,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 2.  Go to the services page by clicking on the “Services” link.
 3.  Make sure that the `wallarm_nginx_attacks` service is displayed and has the “OK” status:
 
-    ![!Service status][img-nagios-service-status]
+    ![Service status][img-nagios-service-status]
 
     
     !!! info "Forcing service check"
@@ -22,7 +22,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 
 4.  View detailed information about the service by clicking on the link with its name in the “Status” column:
 
-    ![!Detailed information about service][img-nagios-service-details]
+    ![Detailed information about service][img-nagios-service-details]
 
     Make sure that the metric value displayed in Nagios (the “Performance Data” row) matches the `wallarm-status` output on the filter node:
 
@@ -36,7 +36,7 @@ Verify that Nagios is successfully monitoring the status of the previously creat
 
     --8<-- "../include/monitoring/wallarm-status-output.md"
 
-    ![!Updated Performance Data value][img-nagios-service-perfdata-updated]
+    ![Updated Performance Data value][img-nagios-service-perfdata-updated]
 
 Now the values of the `curl_json-wallarm_nginx/gauge-attacks` metric of the filter node are displayed in the service state information in Nagios.
 

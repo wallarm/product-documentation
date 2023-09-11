@@ -1,6 +1,6 @@
 Wallarm CDN node operates as a reverse proxy to the protected server. It analyzes incoming traffic, mitigates malicious requests and forwards legitimate requests to the protected server.
 
-![!CDN node operation scheme][cdn-node-operation-scheme]
+![CDN node operation scheme][cdn-node-operation-scheme]
 
 !!! warning "What can be protected with CDN node"
     With the CDN node you can protect the third-level (or lower, like 4th-, 5th- etc.) domains. For example, you can create CDN node for `ple.example.com`, but not for `example.com`.

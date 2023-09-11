@@ -23,7 +23,7 @@ This instruction describes the method to integrate FAST with CircleCI workflow v
 
 Pass [FAST node token][fast-node-token] value in the `WALLARM_API_TOKEN`environment variable in CircleCI project settings. The method of environment variables setup is described in [CircleCI documentation][circleci-set-env-var].
 
-![!Passing CircleCI environment variable][circleci-example-env-var]
+![Passing CircleCI environment variable][circleci-example-env-var]
 
 ## Step 2: Connecting Wallarm FAST Orbs
 

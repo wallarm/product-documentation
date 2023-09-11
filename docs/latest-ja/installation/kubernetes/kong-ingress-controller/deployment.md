@@ -31,7 +31,7 @@ Wallarm サービスと統合した Kong Ingress Controllerの**主要な特長*
 
 このソリューションは以下のアーキテクチャを持っています:
 
-![!ソリューションアーキテクチャ][kong-ing-controller-scheme]
+![ソリューションアーキテクチャ][kong-ing-controller-scheme]
 
 このソリューションは公式のKong Ingress Controllerに基づいており、そのアーキテクチャは[公式Kongドキュメンテーション](https://docs.konghq.com/kubernetes-ingress-controller/latest/concepts/design/)で説明されています。
 
@@ -73,7 +73,7 @@ Wallarmサービスと統合したKong Ingress Controllerをデプロイする�
     * https://my.wallarm.com/nodes (EUクラウドの場合)
 1. **Wallarmノード**タイプのフィルタリングノードを作成し、生成されたトークンをコピーします。
     
-    ![!Wallarmノードの作成][create-wallarm-node-img]
+    ![Wallarmノードの作成][create-wallarm-node-img]
 
 ### ステップ2: Wallarm Helm チャートのデプロイ
 
@@ -221,7 +221,7 @@ Wallarmサービスと統合したKong Ingress Controllerが正しく動作し�
 
     攻撃が登録されたことを確認するには、Wallarm Console → **Events**に進みます:
 
-    ![!インターフェースの中の攻撃][attacks-in-ui-image]
+    ![インターフェースの中の攻撃][attacks-in-ui-image]
 
 ## カスタマイズ
 

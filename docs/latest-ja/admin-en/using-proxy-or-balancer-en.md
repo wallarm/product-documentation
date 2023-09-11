@@ -9,7 +9,7 @@
 
 Wallarmノードは、NGINX変数`$remote_addr`からリクエストソースのIPアドレスを読み取ります。リクエストがプロキシサーバやロードバランサを経由してノードに送信された場合、変数`$remote_addr`はプロキシサーバやロードバランサのIPアドレスを保持します。
 
-![!バランサの使用](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
+![バランサの使用](../images/admin-guides/using-proxy-or-balancer/using-balancer-en.png)
 
 Wallarmノードによって特定されたリクエストソースのIPアドレスは、Wallarmコンソールの[攻撃の詳細](../user-guides/events/check-attack.md#attacks)に表示されます。
 
@@ -133,11 +133,11 @@ Wallarmノードが[IPCソケット](https://en.wikipedia.org/wiki/Unix_domain_s
         ```
 2. Wallarmコンソールを開き、攻撃の詳細にオリジナルのクライアントIPアドレスが表示されていることを確認します：
 
-    ![!リクエストの発信者のIPアドレス](../images/request-ip-address.png)
+    ![リクエストの発信者のIPアドレス](../images/request-ip-address.png)
 
     もしNGINXが元のアドレスをヘッダ`X-Forwarded-For`（`X-Real-IP`または同様のもの）から読み取った場合、このヘッダの値もraw攻撃で表示されます。
 
-    ![!ヘッダ X-Forwarded-For](../images/x-forwarded-for-header.png)
+    ![ヘッダ X-Forwarded-For](../images/x-forwarded-for-header.png)
 
 ## 設定の例
 

@@ -18,7 +18,7 @@ FASTをCI MODEでCircleCIワークフローに統合する設定は、`~/.circle
 
 [FASTノードトークン][fast-node-token]を安全に利用するためには、その値を[プロジェクト設定の環境変数][circleci-set-env-var]に渡してください。
 
-![!CircleCI環境変数の通過][circleci-example-env-var]
+![CircleCI環境変数の通過][circleci-example-env-var]
 
 --8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -70,7 +70,7 @@ FASTをCI MODEでCircleCIワークフローに統合する設定は、`~/.circle
 
 セキュリティテストの結果は、CircleCIインターフェースに表示されます。
 
-![!テストモードでFASTノードを実行する結果][fast-example-result]
+![テストモードでFASTノードを実行する結果][fast-example-result]
 
 ## その他の例
 

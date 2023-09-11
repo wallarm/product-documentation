@@ -6,7 +6,7 @@ Wallarmノードのデプロイメント手法の一つは、ミラーリング�
 
 以下に、ミラーリングオプションが活用されているトラフィックフローダイアグラムの例を示します。
 
-![!Mirror scheme](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
+![Mirror scheme](../../../images/waf-installation/aws/terraform/wallarm-for-mirrored-traffic.png)
 
 ## 手法の使用事例
 

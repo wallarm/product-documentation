@@ -18,7 +18,7 @@ APIメソッドの説明は、Wallarm Console →右上→`?`→**Wallarm API Co
 * [US cloud](../about-wallarm/overview.md#us-cloud)の場合はhttps://apiconsole.us1.wallarm.com/
 * [EU cloud](../about-wallarm/overview.md#eu-cloud)の場合はhttps://apiconsole.eu1.wallarm.com/
 
-![!Wallarm API Console](../images/wallarm-api-reference.png)
+![Wallarm API Console](../images/wallarm-api-reference.png)
 
 ## APIエンドポイント
 

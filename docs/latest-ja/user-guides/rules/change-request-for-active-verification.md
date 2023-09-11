@@ -27,11 +27,11 @@
 
 `https://example.com/module/user/*`の**アクティブ脅威検証**モジュールを無効化する**アクティブ脅威検証のモード設定**ルールは以下のようになります：
 
-![!アクティブ脅威検証のモード設定ルールの例](../../images/user-guides/rules/disable-active-threat-verification-example.png)
+![アクティブ脅威検証のモード設定ルールの例](../../images/user-guides/rules/disable-active-threat-verification-example.png)
 
 上記のルールがすでに設定されている場合、次のルールでは`https://example.com/module/user/create`の**アクティブ脅威検証**モジュールを有効にします：
 
-![!アクティブ脅威検証のモード設定ルールの例](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
+![アクティブ脅威検証のモード設定ルールの例](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
 
 ## 攻撃再生前のリクエストの書き換え
 
@@ -94,10 +94,10 @@
 
     ヘッダー値の形式は`{{'PHPSESSID=mntdtbgt87j3auaq60iori2i63; security=low'}}`です。
 
-    ![!COOKIEを変更するルールの例](../../images/user-guides/rules/rewrite-request-example-cookie.png)
+    ![COOKIEを変更するルールの例](../../images/user-guides/rules/rewrite-request-example-cookie.png)
 
 * 元々`example.com`に送信された攻撃をテスト環境の`example-test.env.srv.loc`で再生します。
 
     アドレスの形式は`{{'example-test.env.srv.loc'}}`です。
 
-    ![!HOSTを変更するルールの例](../../images/user-guides/rules/rewrite-request-example-host.png)
+    ![HOSTを変更するルールの例](../../images/user-guides/rules/rewrite-request-example-host.png)

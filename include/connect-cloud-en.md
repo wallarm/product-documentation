@@ -25,7 +25,7 @@ To connect the node to the cloud using your cloud account requisites, proceed wi
     * If you are using <https://my.wallarm.com/>, proceed to the [following link][link-wl-console-users-eu] to check your user settings.
     * If you are using <https://us1.my.wallarm.com/>, proceed to the [following link][link-wl-console-users-us] to check your user settings.
 
-    ![!User list in Wallarm console][img-wl-console-users]
+    ![User list in Wallarm console][img-wl-console-users]
 
 2.  Run the `addnode` script on a machine where you install the filtering node:
     

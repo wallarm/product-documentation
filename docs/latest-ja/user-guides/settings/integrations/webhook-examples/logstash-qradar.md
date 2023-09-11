@@ -4,7 +4,7 @@
 
 --8<-- "../include-ja/integrations/webhook-examples/overview.md"
 
-![!Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
+![Webhook flow](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-scheme.png)
 
 ## 使用したリソース
 
@@ -69,13 +69,13 @@ output {
     ```
 
     **Logstashのログ：**
-    ![!Logs in Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
+    ![Logs in Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-curl-log.png)
 
     **QRadarのログ：**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log.png)
 
     **QRadarのログペイロード：**
-    ![!Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
+    ![Logs in QRadar](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-curl-log-payload.png)
 
 ### QRadarの設定 (オプショナル)
 
@@ -90,13 +90,13 @@ QRadarでは、ログソースが設定されます。これは、QRadarのす�
 
 QRadarログソースの設定についての詳しい説明は、[公式IBMドキュメンテーション](https://www.ibm.com/support/knowledgecenter/en/SS42VS_DSM/com.ibm.dsm.doc/b_dsm_guide.pdf?origURL=SS42VS_DSM/b_dsm_guide.pdf)で利用可能です。
 
-![!QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
+![QRadar log source setup for Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-setup.png)
 
 ### Logstash統合の設定
 
 --8<-- "../include-ja/integrations/webhook-examples/create-logstash-webhook.md"
 
-![!Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
+![Webhook integration with Logstash](../../../../images/user-guides/settings/integrations/add-logstash-integration.png)
 
 [Logstash統合設定の詳細](../logstash.md)
 
@@ -106,8 +106,8 @@ QRadarログソースの設定についての詳しい説明は、[公式IBMド�
 
 Logstashは次のようにイベントをログに記録します：
 
-![!Log about new user in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
+![Log about new user in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/logstash/qradar-user-log.png)
 
 次のデータがQRadarのログペイロードにJSON形式で表示されます：
 
-![!New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)
+![New user card in QRadar from Logstash](../../../../images/user-guides/settings/integrations/webhook-examples/qradar/logstash-user.png)

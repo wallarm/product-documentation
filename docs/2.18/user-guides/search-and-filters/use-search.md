@@ -39,7 +39,7 @@ Available filters are presented in Wallarm Console in multiple forms:
 * Filters panel that is expanded and collapsed using the **Filter** button
 * Quick filters for excluding or showing only events with the specific parameter values
 
-![!Filters in the UI](../../images/user-guides/search-and-filters/filters.png)
+![Filters in the UI](../../images/user-guides/search-and-filters/filters.png)
 
 When values of different filters are selected, the results will meet all those conditions. When different values for the same filter are specified, the results will meet any of those conditions.
 

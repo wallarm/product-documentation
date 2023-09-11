@@ -15,7 +15,7 @@
 
 ## Wallarmポータルの概要
 
-![!ポータルの概要][img-wallarm-portal-overview]
+![ポータルの概要][img-wallarm-portal-overview]
 
 Wallarmポータルにログインすると、次の画面が表示されます：
 * ポータルの左側には、タブが配置されたサイドバーが表示されます。

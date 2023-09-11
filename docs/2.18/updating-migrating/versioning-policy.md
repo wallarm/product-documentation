@@ -71,11 +71,11 @@ Wallarm publishes information about the new major and minor versions in the foll
 * [News portal](https://changelog.wallarm.com/)
 * Wallarm Console
 
-    ![!Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
+    ![Notification about a new version in Wallarm Console](../images/updating-migrating/wallarm-console-new-version-notification.png)
 
 Information about available updates for major and minor Wallarm node versions and for Wallarm node patch versions is also displayed in Wallarm Console → **Nodes** for regular nodes. Each package has the status **Up to date** or the list of available updates. For example, the card of the filtering node with the latest component versions installed looks like:
 
-![!Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
+![Node card](../images/user-guides/nodes/view-regular-node-comp-vers.png)
 
 ### Update procedure
 

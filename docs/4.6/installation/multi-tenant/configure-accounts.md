@@ -15,7 +15,7 @@ These instructions provide you with the steps for the correct configuration of t
 
 Tenant accounts are created according to the following structure:
 
-![!Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
+![Tenant account structure](../../images/partner-waf-node/accounts-scheme.png)
 
 * **Global account** is used only to group tenant accounts by a partner or a client.
 * **Technical tenant account** is used to add [global users](../../user-guides/settings/users.md#user-roles) providing them with access to tenant accounts. Global users are usually employees of Wallarm partner companies or Wallarm clients using multitenancy for isolated environments.
@@ -29,7 +29,7 @@ Tenant accounts are created according to the following structure:
 * Switch between accounts in Wallarm Console.
 * Monitor tenants' [subscriptions and quotas](../../about-wallarm/subscription-plans.md).
 
-![!Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
+![Tenant selector in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
 * `Technical tenant` is a technical tenant account
 * `Tenant 1` and `Tenant 2` are tenant accounts
@@ -47,7 +47,7 @@ To configure tenant accounts:
 
 1. Fill in and confirm the registration form in Wallarm Console in the [US Cloud](https://us1.my.wallarm.com/signup) or [EU Cloud](https://my.wallarm.com/signup).
 
-    ![!Registration form](../../images/signup-en.png)
+    ![Registration form](../../images/signup-en.png)
 
     !!! info "Corporate email"
         Please sign up using a corporate email address.
@@ -123,7 +123,7 @@ At this step, a tenant account linked to a global account will be created.
 
 Created tenants will be displayed in Wallarm Console for [global users](../../user-guides/settings/users.md#user-roles). For example, `Tenant 1` and `Tenant 2`:
 
-![!Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
+![Selector of tenants in Wallarm Console](../../images/partner-waf-node/clients-selector-in-console.png)
 
 ### Step 4: Associate specific traffic with your tenant
 
@@ -168,6 +168,6 @@ Deactivated accounts are not deleted and can be activated again.
 
 To deactivate a tenant account, in the tenant selector, from the tenant menu, select **Deactivate**, then confirm. The tenant account will be deactivated and hidden from the tenant list.
 
-![!Tenant - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
+![Tenant - Deactivate](../../images/partner-waf-node/tenant-deactivate.png)
 
 To activate previously deactivated tenant account, in the tenant selector, click **Show deactivated tenants**, then select **Activate** for your tenant.

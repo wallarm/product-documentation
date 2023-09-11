@@ -11,7 +11,7 @@
 
 * [USクラウド](https://us1.my.wallarm.com)用または[EUクラウド](https://my.wallarm.com)用のWallarmのコンソールに移動し、**イベント**セクションでリクエストの詳細を展開します。「ソース」フィールドにはIPアドレスが表示されます。例えば：
 
-    ![!リクエストが送信されたIPアドレス](../images/request-ip-address.png)
+    ![リクエストが送信されたIPアドレス](../images/request-ip-address.png)
 
     もし攻撃のリストが空の場合は、Wallarm Ingressコントローラによって保護されているアプリケーションに[テスト攻撃](../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信することができます。
     
@@ -19,6 +19,6 @@
 
 [USクラウド](https://us1.my.wallarm.com)または[EUクラウド](https://my.wallarm.com)用のWallarmのコンソールに移動し、**イベント**セクションでリクエストの詳細を展開します。表示されたリクエストの詳細で、`X-FORWARDED-FOR`ヘッダを確認してください。例えば:
 
-![! リクエストのX-FORWARDED-FORヘッダ](../images/x-forwarded-for-header.png)
+![ リクエストのX-FORWARDED-FORヘッダ](../images/x-forwarded-for-header.png)
 
 もし攻撃のリストが空の場合は、Wallarm Ingressコントローラによって保護されているアプリケーションに[テスト攻撃](../admin-en/installation-check-operation-en.md#2-run-a-test-attack)を送信することができます。

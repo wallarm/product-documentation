@@ -5,7 +5,7 @@
 
 Wallarm Console → **設定** → **APIトークン** で、[APIリクエスト認証](../../api/overview.md)用のトークンを管理できます。
 
-![!Wallarm APIトークン][img-api-tokens-edit]
+![Wallarm APIトークン][img-api-tokens-edit]
 
 このセクションは、**Read Only** および **API developer** を除く **[すべてのロールのユーザ][user-roles-article]** が利用できます。
 

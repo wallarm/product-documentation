@@ -2,7 +2,7 @@ The filtering node interacts with the Wallarm Cloud. To connect the node to the 
 
 1. Open Wallarm Console → **Nodes** in the [US Cloud](https://us1.my.wallarm.com/nodes) or [EU Cloud](https://my.wallarm.com/nodes) and create the node of the **Wallarm node** type.
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 1. Copy the generated token.
 1. Run the `register-node` script on a machine where you install the filtering node:
     

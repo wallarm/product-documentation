@@ -149,7 +149,7 @@ Akamai EdgeWorkersでWallarmのコードバンドルを取得し、[実行](http
     ```
 1. Wallarm Console → **Events**セクションを[US Cloud](https://us1.my.wallarm.com/search)または[EU Cloud](https://my.wallarm.com/search)で開き、攻撃がリストに表示されることを確認します。
     
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
     Wallarmノードモードがブロッキングに設定されている場合、リクエストもブロックされます。
 

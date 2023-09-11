@@ -14,12 +14,12 @@ OktaとSSOを接続するには、まずWallarm側でいくつかのパラメー
 
 あなたの管理者アカウントでWallarm Consoleにログインし、**設定 → インテグレーション → Okta SSO**の順に進んでOktaのインテグレーション設定を行います。
 
-![!“Okta SSO”ブロック][img-okta-sso-provider-wl]
+![“Okta SSO”ブロック][img-okta-sso-provider-wl]
 
 これにより、SSO設定ウィザードが表示されます。ウィザードの最初のステップでは、Oktaサービスに渡すべきパラメータ（サービスプロバイダのメタデータ）が記載されたフォームが表示されます。
 *   **Wallarm Entity ID**は、IdentityプロバイダーのためにWallarmアプリケーションが生成するユニークなアプリケーション識別子です。
 *   **Assertion Consumer Service URL (ACS URL)**は、IdentityプロバイダーがSamlResponseパラメータを持つリクエストを送信するアプリケーションのWallarm側のアドレスです。
 
-![!Service provider's metadata][img-sp-metadata]
+![Service provider's metadata][img-sp-metadata]
 
 生成されたパラメータは、Oktaサービス側の対応するフィールドに入力する必要があります（[ステップ2][doc-setup-idp]を参照してください）。

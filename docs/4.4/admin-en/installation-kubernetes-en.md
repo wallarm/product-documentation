@@ -7,7 +7,7 @@ These instructions provide you with the steps to deploy the Wallarm NGINX-based 
 
 The solution has the following architecture:
 
-![!Solution architecture](../images/waf-installation/kubernetes/nginx-ingress-controller.png)
+![Solution architecture](../images/waf-installation/kubernetes/nginx-ingress-controller.png)
 
 The solution is deployed from the Wallarm Helm chart.
 
@@ -46,7 +46,7 @@ Among all supported [Wallarm deployment options](../installation/supported-deplo
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Create a Kubernetes namespace to deploy the Helm chart with the Wallarm Ingress controller:
 
     ```bash

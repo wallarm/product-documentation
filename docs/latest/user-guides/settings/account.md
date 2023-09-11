@@ -19,7 +19,7 @@ In your profile, you can check your account information:
 
 You can click the *Sign out* button to log out of your Wallarm account.
 
-![!Profile overview][img-profile]
+![Profile overview][img-profile]
 
 If required, you can edit account information on the same page.
 
@@ -50,7 +50,7 @@ Whenever you sign in you will be prompted for your second factor code after pass
 
 The password is required if you want to turn two-factor authentication off.
 
-![!Two-factor authentication page overview][img-2fa-page]
+![Two-factor authentication page overview][img-2fa-page]
 
 !!! info "Compatibility"
     You can use any application or device that supports Time‑Based One‑Time Password Algorithm (RFC6238) to generate one‑time codes.

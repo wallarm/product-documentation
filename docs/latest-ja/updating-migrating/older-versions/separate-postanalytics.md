@@ -172,7 +172,7 @@ postanalyticsモジュールが別のサーバーにインストールされた�
 
 1. [US Cloud](https://us1.my.wallarm.com/nodes)または[EU Cloud](https://my.wallarm.com/nodes)のWallarm Console → **Nodes**を開き、**Wallarmノード**タイプのノードを作成します。
 
-    ![!Wallarm node creation][img-create-wallarm-node]
+    ![Wallarm node creation][img-create-wallarm-node]
 1. 生成されたトークンをコピーします。
 1. `register-node`スクリプトを実行して**Wallarmノード**を起動します：
 

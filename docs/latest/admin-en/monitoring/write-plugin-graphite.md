@@ -15,7 +15,7 @@ This document provides an example of using the `write_graphite` write plugin to 
 
 --8<-- "../include/monitoring/metric-example.md"
 
-![!Example workflow][img-write-plugin-graphite]
+![Example workflow][img-write-plugin-graphite]
 
 The following deployment scheme is used in this document:
 *   Wallarm filter node is deployed on a host accessible via the `10.0.30.5` IP address and the `node.example.local` fully qualified domain name.

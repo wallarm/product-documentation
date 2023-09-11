@@ -41,4 +41,4 @@ As all the other default rules, the `Set filtration mode` default rule is [inher
 1. Choose operation mode *monitoring*
 1. Click *Create*
 
-![!Setting traffic filtration mode][img-mode-rule]
+![Setting traffic filtration mode][img-mode-rule]

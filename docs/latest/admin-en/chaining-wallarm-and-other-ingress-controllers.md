@@ -43,7 +43,7 @@ To deploy the Wallarm Ingress controller and chain it with additional controller
     * https://my.wallarm.com/nodes for the EU Cloud
 1. Create a filtering node with the **Wallarm node** type and copy the generated token.
     
-    ![!Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
+    ![Creation of a Wallarm node](../images/user-guides/nodes/create-wallarm-node-name-specified.png)
 1. Add the [Wallarm Helm charts repository](https://charts.wallarm.com/):
     ```
     helm repo add wallarm https://charts.wallarm.com

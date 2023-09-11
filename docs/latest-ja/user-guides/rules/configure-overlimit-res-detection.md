@@ -52,4 +52,4 @@ Wallarm ノードは一つの受信要求に対する処理に制限時間を費
 * このルールでは、各POSTリクエストの処理時間制限を `https://example.com/upload` に1,020 ミリ秒まで拡張します。この特定のエンドポイントは大きなファイルのアップロードを行います。
 * ノードの他の動作パラメーターはデフォルトのままです - ノードがリクエストを 1,020 ミリ秒より長く処理する場合、リクエスト処理を停止し、`overlimit_res` 攻撃を登録します。
 
-![!「イベントで登録および表示」ルールの例](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)
+![「イベントで登録および表示」ルールの例](../../images/user-guides/rules/fine-tune-overlimit-detection-example.png)

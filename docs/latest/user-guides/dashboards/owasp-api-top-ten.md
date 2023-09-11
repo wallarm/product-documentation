@@ -7,9 +7,9 @@ The dashboards cover the OWASP API Security Top 10 risks of both the [2019](http
 By using these dashboards, you can assess the overall security state and proactively address discovered security issues by setting up appropriate security controls.
 
 === "OWASP API Top 10 2019 dashboard"
-    ![!OWASP API Top 10 2019](../../images/user-guides/dashboard/owasp-api-top-ten-2019-dash.png)
+    ![OWASP API Top 10 2019](../../images/user-guides/dashboard/owasp-api-top-ten-2019-dash.png)
 === "OWASP API Top 10 2023 dashboard"
-    ![!OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
+    ![OWASP API Top 10 2023](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash.png)
 
 ## Threat assessment
 
@@ -21,7 +21,7 @@ Wallarm estimates the risk for each API threat based on applied **security contr
 
 For each OWASP API Top 10 threat you can find detailed info about the threat, available security controls, corresponding vulnerabilities, and investigate related attacks:
 
-![!OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
+![OWASP API Top 10](../../images/user-guides/dashboard/owasp-api-top-ten-2023-dash-details.png)
 
 ## Wallarm security controls for OWASP API 2019
 

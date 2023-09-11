@@ -17,7 +17,7 @@ You can choose the following events to be sent to Datadog:
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-![!Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
+![Datadog integration](../../../images/user-guides/settings/integrations/add-datadog-integration.png)
 
 ## Testing integration
 
@@ -25,7 +25,7 @@ You can choose the following events to be sent to Datadog:
 
 The test Datadog log:
 
-![!The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
+![The test Datadog log](../../../images/user-guides/settings/integrations/test-datadog-vuln-detected.png)
 
 To find the Wallarm logs among other records, you can use the `source:wallarm_cloud` search tag in the Datadog Logs service.
 

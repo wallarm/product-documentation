@@ -26,7 +26,7 @@ This section is available under the following conditions:
 
 For Wallarm to analyze endpoints explored by the API Discovery module for BOLA vulnerabilities and protect those that are at risk, **turn the switch to the enabled state**.
 
-![!BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
+![BOLA trigger](../images/user-guides/bola-protection/trigger-enabled-state.png)
 
 Then you can fine-tune the default Wallarm behavior by editing the BOLA autodetection template as follows:
 
@@ -36,7 +36,7 @@ Then you can fine-tune the default Wallarm behavior by editing the BOLA autodete
     * **Denylist IP** - Wallarm will [denylist](ip-lists/denylist.md) the IPs of the BOLA attack source and thus block all traffic these IPs produce.
     * **Graylist IP** - Wallarm will [graylist](ip-lists/graylist.md) the IPs of the BOLA attack source and thus block only malicious requests from these IPs and only if the filtering node is in the safe blocking [mode](../admin-en/configure-wallarm-mode.md).
 
-![!BOLA trigger](../images/user-guides/bola-protection/trigger-template.png)
+![BOLA trigger](../images/user-guides/bola-protection/trigger-template.png)
 
 ## Automated BOLA protection logic
 

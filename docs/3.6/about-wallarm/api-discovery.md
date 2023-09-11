@@ -115,13 +115,13 @@ This data allows checking that values of the expected format are passed in each 
 
 Before purchasing the [subscription plan](subscription-plans.md#subscription-plans) with API Discovery, you can preview sample data. To do so, in the **API Discovery** section, click **Explore in a playground**.
 
-![!API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
+![API Discovery – Sample Data](../images/about-wallarm-waf/api-discovery/api-discovery-sample-data.png)
 
 ## Using built API inventory
 
 The **API Discovery** section provides many options for the build API inventory usage.
 
-![!Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
+![Endpoints discovered by API Discovery](../images/about-wallarm-waf/api-discovery/discovered-api-endpoints.png)
 
 These options are:
 
@@ -200,7 +200,7 @@ The **API Discovery** module unifies such elements into the `{parameter_X}` form
 
 Click the endpoint to expand its parameters and view which type was automatically detected for the diverse parameter.
 
-![!API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
+![API Discovery - Variability in path](../images/about-wallarm-waf/api-discovery/api-discovery-variability-in-path.png)
 
 Note that the algorithm analyzes the new traffic. If at some moment you see addresses, that should be unified but this did not happen yet, give it a time. As soon as more data arrives, the system will unify endpoints matching the newly found pattern with the appropriate amount on matching addresses.
 
@@ -243,7 +243,7 @@ To enable and run API Discovery correctly:
 
 1. Enable API Discovery for the required applications in Wallarm Console → **API Discovery** → **Configure API Discovery**.
 
-    ![!API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
+    ![API Discovery – Settings](../images/about-wallarm-waf/api-discovery/api-discovery-settings.png)
 
     !!! info "Access to API Discovery settings"
         Only administrators of your company Wallarm account can access the API Discovery settings. Contact your administrator if you do not have this access.

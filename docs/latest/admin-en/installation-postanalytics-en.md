@@ -27,9 +27,9 @@ The processing of requests in the Wallarm node consists of two stages:
 The schemes below depict module interaction in two scenarios: when installed on the same server and on different servers.
 
 === "NGINX-Wallarm and postanalytics on the same server"
-    ![!Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
+    ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-the-same-server.png)
 === "NGINX-Wallarm and postanalytics on different servers"
-    ![!Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
+    ![Traffic flow between postanalytics and nginx-wallarm](../images/waf-installation/separate-postanalytics/processing-postanalytics-on-different-servers.png)
 
 ## Installation methods
 
@@ -183,7 +183,7 @@ curl http://localhost/etc/passwd
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
-![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
+![Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
@@ -193,7 +193,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo systemctl status wallarm-tarantool
     ```
 
-    ![!wallarm-tarantool status][tarantool-status]
+    ![wallarm-tarantool status][tarantool-status]
 * Analyze the postanalytics module logs
 
     ```bash
@@ -300,7 +300,7 @@ Install the `wallarm-node-tarantool` package from the Wallarm repository for the
 
 The postanalytics module interacts with the Wallarm Cloud. It is required to create the Wallarm node for the postanalytics module and connect this node to the Cloud. When connecting, you can set the postanalytics node name, under which it will be displayed in the Wallarm Console UI and put the node into the appropriate **node group** (used to logically organize nodes in UI). It is **recommended** to use the same node group for the node processing initial traffic and for the node performing postanalysis.
 
-![!Grouped nodes](../images/user-guides/nodes/grouped-nodes.png)
+![Grouped nodes](../images/user-guides/nodes/grouped-nodes.png)
 
 To provide the node with access, you need to generate a token on the Cloud side and specify it on the machine with the node packages.
 
@@ -491,7 +491,7 @@ curl http://localhost/etc/passwd
 
 If the NGINX‑Wallarm and separate postanalytics modules are configured properly, the attack will be uploaded to the Wallarm Cloud and displayed in the **Events** section of Wallarm Console:
 
-![!Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
+![Attacks in the interface](../images/admin-guides/test-attacks-quickstart.png)
 
 If the attack was not uploaded to the Cloud, please check that there are no errors in the services operation:
 
@@ -501,7 +501,7 @@ If the attack was not uploaded to the Cloud, please check that there are no erro
     sudo systemctl status wallarm-tarantool
     ```
 
-    ![!wallarm-tarantool status][tarantool-status]
+    ![wallarm-tarantool status][tarantool-status]
 * Analyze the postanalytics module logs
 
     ```bash

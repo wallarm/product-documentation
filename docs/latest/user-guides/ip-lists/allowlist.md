@@ -6,7 +6,7 @@ In the Wallarm Console → **IP lists** → **Allowlist**, you can manage allowl
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!IP allowlist](../../images/user-guides/ip-lists/allowlist-apps.png)
+![IP allowlist](../../images/user-guides/ip-lists/allowlist-apps.png)
 
 !!! info "Old name of the list"
     The old name of the IP address allowlist is "IP address whitelist".
@@ -52,6 +52,6 @@ To add an IP address, subnet, or group of IP addresses to the list:
 4. Select the period for which an IP address or a group of IP addresses should be added to the list. The minimum value is 5 minutes, the maximum value is forever.
 5. Specify the reason for adding an IP address or a group of IP addresses to the list.
 
-![!Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![Add IP to the list (with app)](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 --8<-- "../include/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

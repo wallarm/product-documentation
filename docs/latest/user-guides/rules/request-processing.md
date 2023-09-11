@@ -20,7 +20,7 @@ The output from the parsers becomes an additional set of parameters that has to 
 
     For example, if an attack was detected in the `SOAPACTION` header:
 
-    ![!Tag example](../../images/user-guides/rules/tags-example.png)
+    ![Tag example](../../images/user-guides/rules/tags-example.png)
 
 ### URL
 
@@ -332,7 +332,7 @@ When defining a request element the [rule](add-rule.md) is applied to:
 * Choose the parser of the request part containing JWT first
 * Specify one of the listed `jwt_*` parameters as the `jwt` parser value, e.g. for the `name` JWT payload parameter value:
 
-![!JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
+![JWT param desc in a rule](../../images/user-guides/rules/request-element-desc.png)
 
 ### Norms
 

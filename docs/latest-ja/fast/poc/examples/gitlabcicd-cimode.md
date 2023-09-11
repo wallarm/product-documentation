@@ -17,7 +17,7 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
 
 [FASTノードトークン][fast-node-token]を安全に使うには、その値を[プロジェクト設定の環境変数][gitlabci-set-env-var]で渡してください。
 
-![!GitLab CI/CD環境変数のパス][gitlabci-example-env-var]
+![GitLab CI/CD環境変数のパス][gitlabci-example-env-var]
 
 --8<-- "../include-ja/fast/fast-cimode-integration-examples/configured-workflow.md"
 
@@ -84,7 +84,7 @@ FASTのCIモードのGitLab CI/CDワークフローへの統合は、`〜/.gitla
 
 セキュリティテストの結果はGitLab CI/CDインターフェースに表示されます。
 
-![!テストモードでFASTノードを実行する結果][fast-example-gitlab-result]
+![テストモードでFASTノードを実行する結果][fast-example-gitlab-result]
 
 ## その他の例
 

@@ -220,7 +220,7 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
 !!! info "postanalyticsモジュールが別のサーバーにインストールされている場合"
     トラフィック処理の初期段階とpostanalyticsモジュールが別のサーバーにインストールされている場合は、これらのモジュールを同じノードトークンを使用してWallarmクラウドに接続することを推奨します。WallarmコンソールUIは、各モジュールを別のノードインスタンスとして表示します。例えば：
 
-    ![!ノードにいくつかのインスタンスがある](../../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+    ![ノードにいくつかのインスタンスがある](../../images/user-guides/nodes/wallarm-node-with-two-instances.png)
 
     Wallarmノードは、[別のpostanalyticsモジュールのアップグレード](separate-postanalytics.md)中にすでに作成されています。初期のトラフィック処理モジュールを同じノード資格情報を使用してクラウドに接続するには：
 
@@ -233,10 +233,10 @@ Wallarmノード2.16以前をアップグレードする場合は、Wallarmコ�
     
     設定については、[USクラウド](https://us1.my.wallarm.com/settings/users)または[EUクラウド](https://my.wallarm.com/settings/users)でユーザーリストに移動してチェックできます。
 
-    ![!Wallarmコンソールのユーザーリスト][img-wl-console-users]
+    ![Wallarmコンソールのユーザーリスト][img-wl-console-users]
 2. [USクラウド](https://us1.my.wallarm.com/nodes)または [EUクラウド](https://my.wallarm.com/nodes) の Wallarmコンソール → **ノード** を開き、**Wallarmノード**タイプのノードを作成します。
 
-    ![!Wallarmノードの作成][img-create-wallarm-node]
+    ![Wallarmノードの作成][img-create-wallarm-node]
 3. 生成されたトークンをコピーします。
 4. 古いバージョンのノードがあるサーバーでNGINXサービスを一時停止します：
 

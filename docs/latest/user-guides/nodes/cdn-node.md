@@ -50,7 +50,7 @@ The following node properties and metrics are available:
 * Versions of installed Wallarm packages
 * Indicator of available component updates
 
-![!CDN node card](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
+![CDN node card](../../images/user-guides/nodes/view-cdn-node-comp-vers.png)
 
 ## Updating the origin address of the protected resourse
 
@@ -83,7 +83,7 @@ When the filtering node is deleted, the filtration of requests to your domain wi
 1. Wait for the changes to be propagated. The actual CNAME record status is displayed in Wallarm Console → **Nodes** → **CDN** → **Delete node**.
 1. Delete the CDN node from the node list.
 
-![!Deleting the node](../../images/user-guides/nodes/delete-cdn-node.png)
+![Deleting the node](../../images/user-guides/nodes/delete-cdn-node.png)
 
 ## CDN node troubleshooting
 

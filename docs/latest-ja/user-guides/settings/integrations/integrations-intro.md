@@ -34,7 +34,7 @@ Wallarm Consoleの**統合**セクションでは、定期レポートの送信�
 
 統合可能なシステムは、次のようにタイプごとに分類されています：
 
-![!Integrations Overview][integration-pane-img]
+![Integrations Overview][integration-pane-img]
 
 ### メールとメッセンジャー
 

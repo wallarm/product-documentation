@@ -359,15 +359,15 @@
 
 1. [米国クラウド](https://us1.my.wallarm.com/settings/users)または[EUクラウド](https://my.wallarm.com/settings/users)のユーザーリストを開いて、Wallarmアカウントが**管理者**ロールであることを確認します。
 
-    ![!Wallarmコンソール内のユーザーリスト][img-wl-console-users]
+    ![Wallarmコンソール内のユーザーリスト][img-wl-console-users]
 1. [米国クラウド](https://us1.my.wallarm.com/nodes)または[EUクラウド](https://my.wallarm.com/nodes)のWallarmコンソール→**ノード**を開いて、**Wallarmノード**タイプのノードを作成します。
 
-    ![!Wallarmノードの作成][img-create-wallarm-node]
+    ![Wallarmノードの作成][img-create-wallarm-node]
 
     !!! info "postanalyticsモジュールが別のサーバーにインストールされている場合"
         初期トラフィック処理モジュールとpostanalyticsモジュールが別々のサーバーにインストールされている場合、これらのモジュールを同じノードトークンを使用してWallarmクラウドに接続することをお勧めします。Wallarm Console UIには、各モジュールが別々のノードインスタンスとして表示されます、例えば：
 
-        ![!インスタンスが複数あるノード](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
+        ![インスタンスが複数あるノード](../images/user-guides/nodes/wallarm-node-with-two-instances.png)
 
         Wallarmノードはすでに[別々のpostanalyticsモジュールのアップグレード](separate-postanalytics.md)の間に作成されました。初期トラフィック処理モジュールを同じノードの資格情報を使用してクラウドに接続するために：
 

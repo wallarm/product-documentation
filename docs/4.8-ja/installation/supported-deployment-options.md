@@ -9,7 +9,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <div id="mirroring-by-web-servers" class="do-card">
-            <img src="../../images/platform-icons/web-server-mirroring.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
             <h3>Mirroring by NGINX, Envoy and similar</h3>
             <p>Out-of-band deployment for traffic mirrored by NGINX, Envoy and similar</p>
         </div>
@@ -17,7 +17,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers">
         <div class="do-card">
-            <img src="../../images/platform-icons/web-server-mirroring.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/web-server-mirroring.svg" />
             <h3>Mirroring by NGINX, Envoy and similar</h3>
             <p>Out-of-band deployment for traffic mirrored by NGINX, Envoy and similar</p>
         </div>
@@ -41,7 +41,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds">
         <div class="do-card">
-            <img src="../../images/platform-icons/cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
             <h3>Public clouds</h3>
             <p>Artifacts for Wallarm OOB deployment on public clouds</p>
         </div>
@@ -59,7 +59,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws">
         <div class="do-card">
-            <img src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for Wallarm OOB deployment on AWS</p>
         </div>
@@ -77,7 +77,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-aws-kubernetes">
         <div class="do-card">
-            <img src="../../images/platform-icons/kubernetes.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/kubernetes.svg" />
             <h3>Kubernetes</h3>
             <p>Artifacts for Wallarm OOB deployment on Kubernetes running on AWS</p>
         </div>
@@ -90,7 +90,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-public-clouds-gcp">
         <div class="do-card">
-            <img src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for Wallarm OOB deployment on Google Cloud</p>
         </div>
@@ -104,7 +104,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-docker">
         <div class="do-card">
-            <img src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker</h3>
             <p>Docker images for Wallarm OOB deployment</p>
         </div>
@@ -117,7 +117,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages">
         <div class="do-card">
-            <img src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>Linux</h3>
             <p>Linux packages for Wallarm OOB deployment on a supported OS</p>
         </div>
@@ -175,7 +175,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-10">
         <div class="do-card">
-            <img src="../../images/platform-icons/debian.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
         </div>
@@ -188,7 +188,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-debian-11">
         <div class="do-card">
-            <img src="../../images/platform-icons/debian.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
             <h3>Debian 11.x Bullseye</h3>
             <p>Wallarm packages for Debian 11.x Bullseye</p>
         </div>
@@ -211,7 +211,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-ubuntu-18">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 18.04 Bionic</h3>
             <p>Wallarm packages for Ubuntu 18.04 Bionic</p>
         </div>
@@ -229,7 +229,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-ubuntu-20">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 20.04 Focal</h3>
             <p>Wallarm packages for Ubuntu 20.04 Focal</p>
         </div>
@@ -247,7 +247,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-ubuntu-22">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 22.04 Jammy</h3>
             <p>Wallarm packages for Ubuntu 22.04 Jammy</p>
         </div>
@@ -265,7 +265,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-centos-7">
         <div class="do-card">
-            <img src="../../images/platform-icons/centos.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/centos.svg" />
             <h3>CentOS 7.x</h3>
             <p>Wallarm packages for CentOS 7.x</p>
         </div>
@@ -288,7 +288,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-amazon-linux">
         <div class="do-card">
-            <img src="../../images/platform-icons/amazon-linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/amazon-linux.svg" />
             <h3>Amazon Linux 2.0.2021x and lower</h3>
             <p>Wallarm packages for Amazon Linux 2.0.2021x and lower</p>
         </div>
@@ -306,7 +306,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-almalinux">
         <div class="do-card">
-            <img src="../../images/platform-icons/almalinux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/almalinux.svg" />
             <h3>AlmaLinux</h3>
             <p>Wallarm packages for AlmaLinux</p>
         </div>
@@ -329,7 +329,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-rocky-linux">
         <div class="do-card">
-            <img src="../../images/platform-icons/rockylinux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/rockylinux.svg" />
             <h3>Rocky Linux</h3>
             <p>Wallarm packages for Rocky Linux</p>
         </div>
@@ -352,7 +352,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="mirroring-by-web-servers-linux-packages-oracle-linux-8">
         <div class="do-card">
-            <img src="../../images/platform-icons/oracle-linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/oracle-linux.svg" />
             <h3>Oracle Linux 8.x</h3>
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
@@ -379,25 +379,25 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <div id="public-clouds-aws" class="do-card">
-            <img src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
 
         <div id="public-clouds-gcp" class="do-card">
-            <img src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
 
         <div id="public-clouds-azure" class="do-card">
-            <img src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
 
         <div id="public-clouds-alibaba" class="do-card">
-            <img src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
@@ -405,7 +405,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-aws">
         <div class="do-card">
-            <img src="../../images/platform-icons/aws.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/aws.svg" />
             <h3>Amazon Web Services</h3>
             <p>Artifacts for Wallarm deployment on AWS</p>
         </div>
@@ -428,7 +428,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-aws-terraform">
         <div class="do-card">
-            <img src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </div>
@@ -451,7 +451,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-gcp">
         <div class="do-card">
-            <img src="../../images/platform-icons/gcp.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/gcp.svg" />
             <h3>Google Cloud</h3>
             <p>Artifacts for Wallarm deployment on GCP</p>
         </div>
@@ -469,7 +469,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-azure">
         <div class="do-card">
-            <img src="../../images/platform-icons/azure-cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/azure-cloud.svg" />
             <h3>Microsoft Azure</h3>
             <p>Artifacts for Wallarm deployment on Microsoft Azure</p>
         </div>
@@ -482,7 +482,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="public-clouds-alibaba">
         <div class="do-card">
-            <img src="../../images/platform-icons/alibaba-cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/alibaba-cloud.svg" />
             <h3>Alibaba Cloud</h3>
             <p>Artifacts for Wallarm deployment on Alibaba Cloud</p>
         </div>
@@ -499,25 +499,25 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/cdn-node/">
-            <img src="../../images/platform-icons/section-io.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/section-io.svg" />
             <h3>Section.io</h3>
             <p>Deploy Wallarm node on Section.io without third-party components in your infrastructure</p>
         </a>
 
         <a class="do-card" href="../../installation/cdn/akamai-edgeworkers/">
-            <img src="../../images/platform-icons/akamai.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Deploy Wallarm to secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
         <a class="do-card" href="../../installation/cdn/azion-edge/">
-            <img src="../../images/platform-icons/azion-edge.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Deploy Wallarm to secure APIs running on Azion Edge</p>
         </a>
         
         <a class="do-card" href="../../installation/cdn/aws-lambda/">
-            <img src="../../images/platform-icons/aws-lambda.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/aws-lambda.svg" />
             <h3>AWS Lambda</h3>
             <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
         </a>
@@ -529,19 +529,19 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <div id="kubernetes-ingress" class="do-card">
-            <img src="../../images/platform-icons/ingress.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
             <h3>Ingress</h3>
             <p>Wallarm solutions for Ingress load balancing and security</p>
         </div>
 
         <a class="do-card" href="../../installation/kubernetes/sidecar-proxy/deployment/">
-            <img src="../../images/platform-icons/pod.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/pod.svg" />
             <h3>Sidecar</h3>
             <p>Deploy Wallarm Sidecar controller for pod security</p>
         </a>
 
         <a class="do-card" href="../../installation/kubernetes/terraform-module-for-aws/">
-            <img src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </a>
@@ -549,7 +549,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="kubernetes-ingress">
         <div class="do-card">
-            <img src="../../images/platform-icons/ingress.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ingress.svg" />
             <h3>Ingress</h3>
             <p>Wallarm solutions for Ingress load balancing and security</p>
         </div>
@@ -571,13 +571,13 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/api-gateways/mulesoft/">
-            <img src="../../images/platform-icons/mulesoft.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
             <h3>Mulesoft</h3>
             <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
         </a>
 
         <a class="do-card" href="../../installation/api-gateways/apigee/">
-            <img src="../../images/platform-icons/apigee.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
             <h3>Apigee</h3>
             <p>Deploy Wallarm to secure APIs running on Apigee</p>
         </a>
@@ -589,31 +589,31 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/connectors/mulesoft/">
-            <img src="../../images/platform-icons/mulesoft.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/mulesoft.svg" />
             <h3>Mulesoft</h3>
             <p>Deploy Wallarm to secure APIs deployed on the MuleSoft Anypoint platform</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/apigee/">
-            <img src="../../images/platform-icons/apigee.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/apigee.svg" />
             <h3>Apigee</h3>
             <p>Deploy Wallarm to secure APIs running on Apigee</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/akamai-edgeworkers/">
-            <img src="../../images/platform-icons/akamai.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/akamai.svg" />
             <h3>Akamai EdgeWorkers</h3>
             <p>Deploy Wallarm to secure APIs running on Akamai EdgeWorkers</p>
         </a>
 
         <a class="do-card" href="../../installation/connectors/azion-edge/">
-            <img src="../../images/platform-icons/azion-edge.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/azion-edge.svg" />
             <h3>Azion Edge</h3>
             <p>Deploy Wallarm to secure APIs running on Azion Edge</p>
         </a>
         
         <a class="do-card" href="../../installation/connectors/aws-lambda/">
-            <img src="../../images/platform-icons/aws-lambda.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/aws-lambda.svg" />
             <h3>AWS Lambda</h3>
             <p>Deploy Wallarm to secure APIs on AWS that utilize Node.js lambdas</p>
         </a>
@@ -625,25 +625,25 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <div id="packages-docker-images" class="do-card">
-            <img src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker images</h3>
             <p>Deploy the Wallarm node as a Docker container</p>
         </div>
 
         <div id="packages-linux" class="do-card">
-            <img src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>Linux packages</h3>
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
 
         <div id="packages-cloud-images" class="do-card">
-            <img src="../../images/platform-icons/cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
             <h3>Cloud images</h3>
             <p>Machine Images to deploy Wallarm on public clouds</p>
         </div>
 
         <a class="do-card" href="../../installation/cloud-platforms/aws/terraform-module/overview/">
-            <img src="../../images/platform-icons/terraform.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/terraform.svg" />
             <h3>Terraform module</h3>
             <p>Use the Terraform module for Wallarm deployment on AWS</p>
         </a>
@@ -651,7 +651,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-docker-images">
         <div class="do-card">
-            <img src="../../images/platform-icons/docker.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/docker.svg" />
             <h3>Docker images</h3>
             <p>Deploy the Wallarm node as a Docker container</p>
         </div>
@@ -669,7 +669,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-cloud-images">
         <div class="do-card">
-            <img src="../../images/platform-icons/cloud.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/cloud.svg" />
             <h3>Cloud images</h3>
             <p>Machine Images to deploy Wallarm on public clouds</p>
         </div>
@@ -687,7 +687,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux">
         <div class="do-card">
-            <img src="../../images/platform-icons/linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/linux.svg" />
             <h3>Linux packages</h3>
             <p>Install Wallarm on a supported OS as the NGINX module</p>
         </div>
@@ -750,7 +750,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-debian-10">
         <div class="do-card">
-            <img src="../../images/platform-icons/debian.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
             <h3>Debian 10.x Buster</h3>
             <p>Wallarm packages for Debian 10.x Buster</p>
         </div>
@@ -763,7 +763,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-debian-11">
         <div class="do-card">
-            <img src="../../images/platform-icons/debian.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/debian.svg" />
             <h3>Debian 11.x Bullseye</h3>
             <p>Wallarm packages for Debian 11.x Bullseye</p>
         </div>
@@ -786,7 +786,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-ubuntu-18">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 18.04 Bionic</h3>
             <p>Wallarm packages for Ubuntu 18.04 Bionic</p>
         </div>
@@ -804,7 +804,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-ubuntu-20">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 20.04 Focal</h3>
             <p>Wallarm packages for Ubuntu 20.04 Focal</p>
         </div>
@@ -822,7 +822,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-ubuntu-22">
         <div class="do-card">
-            <img src="../../images/platform-icons/ubuntu.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/ubuntu.svg" />
             <h3>Ubuntu 22.04 Jammy</h3>
             <p>Wallarm packages for Ubuntu 22.04 Jammy</p>
         </div>
@@ -840,7 +840,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-centos-7">
         <div class="do-card">
-            <img src="../../images/platform-icons/centos.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/centos.svg" />
             <h3>CentOS 7.x</h3>
             <p>Wallarm packages for CentOS 7.x</p>
         </div>
@@ -863,7 +863,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-amazon-linux">
         <div class="do-card">
-            <img src="../../images/platform-icons/amazon-linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/amazon-linux.svg" />
             <h3>Amazon Linux 2.0.2021x and lower</h3>
             <p>Wallarm packages for Amazon Linux 2.0.2021x and lower</p>
         </div>
@@ -881,7 +881,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-almalinux">
         <div class="do-card">
-            <img src="../../images/platform-icons/almalinux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/almalinux.svg" />
             <h3>AlmaLinux</h3>
             <p>Wallarm packages for AlmaLinux</p>
         </div>
@@ -904,7 +904,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-rocky-linux">
         <div class="do-card">
-            <img src="../../images/platform-icons/rockylinux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/rockylinux.svg" />
             <h3>Rocky Linux</h3>
             <p>Wallarm packages for Rocky Linux</p>
         </div>
@@ -927,7 +927,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 
     <div class="do-nested" data-for="packages-linux-oracle-linux-8">
         <div class="do-card">
-            <img src="../../images/platform-icons/oracle-linux.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/oracle-linux.svg" />
             <h3>Oracle Linux 8.x</h3>
             <p>Wallarm packages for Oracle Linux 8.x</p>
         </div>
@@ -954,13 +954,13 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="do-section">
     <div class="do-main">
         <a class="do-card" href="../../installation/custom/custom-nginx-version/">
-            <img src="../../images/platform-icons/nginx.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/nginx.svg" />
             <h3>Custom NGINX</h3>
             <p>Request Wallarm Linux packages for a custom NGINX</p>
         </a>
 
         <a class="do-card" href="../../installation/custom/request-custom-deployment/">
-            <img src="../../images/platform-icons/custom-deployment.svg" />
+            <img class="non-zoomable" src="../../images/platform-icons/custom-deployment.svg" />
             <h3>Custom Deployment</h3>
             <p style="margin-bottom: 8px">Can't find what you need? Let's discuss a custom solution</p>
         </a>

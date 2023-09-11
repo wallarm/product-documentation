@@ -10,7 +10,7 @@ Adding a new rule, deleting or changing existing rules in the Wallarm Console â†
 
 Custom ruleset build status and expected completion time are displayed in Wallarm Console. If there is no build in progress, the interface displays the date of the last completed build.
 
-![!Build status](../../images/user-guides/rules/build-rules-status.png)
+![Build status](../../images/user-guides/rules/build-rules-status.png)
 
 ## Unloading a custom ruleset to the filtering node
 

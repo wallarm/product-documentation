@@ -30,7 +30,7 @@ You can filter data from the last five blocks by the following parameters:
 
 ## Statistics for the current month and the speed of request encountering
 
-![!Current month statistics][img-traffic-cur-month]
+![Current month statistics][img-traffic-cur-month]
 
 The block contains the following parameters:
 
@@ -39,7 +39,7 @@ The block contains the following parameters:
 
 ## Normal and malicious traffic
 
-![!Normal and malicious traffic][img-traffic-stats]
+![Normal and malicious traffic][img-traffic-stats]
 
 The graph shows the following statistics for the selected period:
 
@@ -54,7 +54,7 @@ Points on the graph shows parameter values at a specific time:
 
 ## Top targets
 
-![!Top targets][img-attacks-stats]
+![Top targets][img-attacks-stats]
 
 The chart shows the ratio of hits in each application for the selected period. To hide the application from the chart, uncheck the box next to the application name in the table.
 
@@ -66,7 +66,7 @@ The table shows data for each application for the selected period:
 
 ## Attack types
 
-![!Attack types][img-attacks-type]
+![Attack types][img-attacks-type]
 
 The block contains the top types of attacks detected in requests for a selected period. Types are divided into blocks:
 
@@ -77,7 +77,7 @@ Clicking the attack type redirects to the [**Events** section][doc-events-tab] w
 
 ## Attack sources
 
-![!Attack sources][img-attacks-sources]
+![Attack sources][img-attacks-sources]
 
 The block shows statistics on the attack sources for the selected period:
 

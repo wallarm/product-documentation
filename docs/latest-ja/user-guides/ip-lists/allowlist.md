@@ -6,7 +6,7 @@ Wallarmコンソール → **IPリスト** → **許可リスト**にて、許�
 
 --8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-overview.md"
 
-![!許可リスト](../../images/user-guides/ip-lists/allowlist-apps.png)
+![許可リスト](../../images/user-guides/ip-lists/allowlist-apps.png)
 
 !!! info "リストの古い名称"
     IPアドレスの許可リストの古い名称は"IPアドレスホワイトリスト"です。
@@ -42,6 +42,6 @@ Wallarmコンソール → **IPリスト** → **許可リスト**にて、許�
 4. IPアドレスまたはIPアドレスのグループをリストに追加する期間を選択します。最小値は5分で、最大値は永遠です。
 5. IPアドレスまたはIPアドレスのグループをリストに追加する理由を指定します。
 
-![!リストにIPを追加（アプリ付き）](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
+![リストにIPを追加（アプリ付き）](../../images/user-guides/ip-lists/add-ip-to-list-app.png)
 
 --8<-- "../include-ja/waf/features/ip-lists/common-actions-with-lists-allow-apps.md"

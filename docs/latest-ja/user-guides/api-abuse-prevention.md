@@ -18,7 +18,7 @@ API abuseプロファイルを作成するには：
 1. 適切な[悪意のあるボットへの反応](../about-wallarm/api-abuse-prevention.md#reaction-to-malicious-bots)を選択します。
 1. 名前とオプションで説明を設定します。
 
-    ![!API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
+    ![API Abuse prevention profile](../images/about-wallarm-waf/abi-abuse-prevention/create-api-abuse-prevention.png)
 
     API abuseプロファイルが設定されると、モジュールは[トラフィック分析と自動化された脅威のブロック](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)を開始します。
 
@@ -40,7 +40,7 @@ API abuseプロファイルを作成するには：
 
 Wallarm Console → **IPリスト** → **Denylist** または **Graylist** でブロックされたボットのIPを調査することができます。`Bot` という**原因**で追加されたIPを調査します。
 
-![!Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
+![Denylisted bot IPs](../images/about-wallarm-waf/abi-abuse-prevention/denylisted-bot-ips.png)
 
 !!! info "確信度"
     [ディテクターの作業](../about-wallarm/api-abuse-prevention.md#how-api-abuse-prevention-works)結果、検出された全てのボットには**確信度のパーセンテージ**が与えられます。つまり、これがボットであると私たちはどの程度確信しているかということです。ボットタイプごとにディテクターには異なる相対的重要性/投票数があります。そのため、確信度のパーセンテージは、このボットタイプで可能な全投票数の中で獲得した投票数です（作業したディテクターから提供されます）。
@@ -49,7 +49,7 @@ Wallarm Console → **IPリスト** → **Denylist** または **Graylist** で�
 
 また、ボットによるAPI abuse攻撃を調査することもできます。これは、Wallarm Console → **イベント**セクションで行うことができます。`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択します。
 
-![!API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
+![API Abuse events](../images/about-wallarm-waf/abi-abuse-prevention/api-abuse-events.png)
 
 ボット情報は3つのヒートマップで視覚化されます。全てのヒートマップでは、バブルが大きくなり、色が赤くなり、右上角に近づくほど、そのIPをボットと見なす理由が増えます。
 
@@ -87,11 +87,11 @@ IPアドレスまたは範囲を例外リストに追加し、ターゲットア
 
 *  **API Abuse Prevention** セクション → **例外リスト** タブにある **例外追加**を通じて。ここでは、IPやサブネットの他にAPI Abuse Preventionが無視すべき位置やソースタイプも追加できます。
 
-    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
+    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-inside.png)
 
 *  **イベント** セクションから：`api_abuse`検索キーを使用するか、**タイプ**フィルターから`API Abuse`を選択した後、必要なイベントを展開し**例外リストに追加**をクリックします。
 
-    ![!API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
+    ![API Abuse prevention - adding items from inside exception list](../images/about-wallarm-waf/abi-abuse-prevention/exception-list-add-from-event.png)
 
 IPアドレスが例外リストに追加されると、そのアドレスは自動的に[deny-](../user-guides/ip-lists/denylist.md)または[graylist](../user-guides/ip-lists/graylist.md)から削除されますが、それはAPI Abuse Prevention自体が（`Bot`の原因で）そこに追加した場合のみです。
 

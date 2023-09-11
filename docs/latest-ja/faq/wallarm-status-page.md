@@ -9,7 +9,7 @@
 * **Wallarm US Cloud**
 * **Wallarm EU Cloud**
 
-![!Wallarm status page](../images/status-page.png)
+![Wallarm status page](../images/status-page.png)
 
 ## サービスステータスが変わったときに通知は受け取れますか？
 

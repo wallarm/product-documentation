@@ -27,11 +27,11 @@ To create and apply the rule:
 
 The rule **Set mode of active threat verification** disabling the **Active threat verification** module for `https://example.com/module/user/*` looks as follows:
 
-![!Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-example.png)
+![Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-example.png)
 
 If the rule above is already configured, the following rule will enable the **Active threat verification** module for `https://example.com/module/user/create`:
 
-![!Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
+![Example of the rule "Set mode of active threat verification"](../../images/user-guides/rules/disable-active-threat-verification-deeper-path-example.png)
 
 ## Rewriting the request before attack replaying
 
@@ -94,10 +94,10 @@ To set several conditions for the original request modification or to replace th
 
     The format of the header value is `{{'PHPSESSID=mntdtbgt87j3auaq60iori2i63; security=low'}}`.
 
-    ![!Example of the rule modifying COOKIE](../../images/user-guides/rules/rewrite-request-example-cookie.png)
+    ![Example of the rule modifying COOKIE](../../images/user-guides/rules/rewrite-request-example-cookie.png)
 
 * Replay attacks originally sent to `example.com` on the test environment `example-test.env.srv.loc`.
 
     The format of the address is `{{'example-test.env.srv.loc'}}`.
 
-     ![!Example of the rule modyfying HOST](../../images/user-guides/rules/rewrite-request-example-host.png)
+     ![Example of the rule modyfying HOST](../../images/user-guides/rules/rewrite-request-example-host.png)

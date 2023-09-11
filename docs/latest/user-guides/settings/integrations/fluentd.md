@@ -105,7 +105,7 @@ You will find more details in the [official Fluentd documentation](https://docs.
 1. [Test the integration](#testing-integration) and make sure the settings are correct.
 1. Click **Add integration**.
 
-![!Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
+![Fluentd integration](../../../images/user-guides/settings/integrations/add-fluentd-integration.png)
 
 ## Testing integration
 
@@ -176,7 +176,7 @@ The test Fluentd log:
 
 For example:
 
-![!Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
+![Webhook flow](../../../images/user-guides/settings/integrations/webhook-examples/fluentd/qradar-scheme.png)
 
 To log Wallarm events using this scheme:
 

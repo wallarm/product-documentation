@@ -33,7 +33,7 @@ To create a security group for the filtering node:
 4.  Configure incoming and outgoing connections rules on the **Inbound** and **Outbound** tabs.
 5.  Click the **Create** button to create the security group.
 
-![!Creating a security group][img-create-sg]
+![Creating a security group][img-create-sg]
 
 !!! warning "Rules for outgoing connections from the security group"
     When creating a security group, all of the outgoing connections are allowed by default. If you restrict outgoing connections from the filtering node, make sure that it is granted access to a Wallarm API server. The choice of a Wallarm API server depends on the Wallarm Cloud you are using:

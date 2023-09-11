@@ -5,7 +5,7 @@
 
 [AWS Lambda@Edge](https://aws.amazon.com/lambda/edge/) is a serverless, event-driven compute service that allows you to run code for various types of applications or backend services without the need to provision or manage servers. By incorporating Wallarm Node.js code, you can proxy incoming traffic to the Wallarm node for analysis and filtering. This article provides instructions on configuring Wallarm for traffic analysis and filtration specifically for Node.js lambdas in your AWS application.
 
-<!-- ![!Lambda](../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
+<!-- ![Lambda](../../images/waf-installation/gateways/aws-lambda-traffic-flow.png) -->
 
 The solution involves deploying the Wallarm node externally and injecting custom code or policies into the specific platform. This enables traffic to be directed to the external Wallarm node for analysis and protection against potential threats. Referred to as Wallarm's connectors, they serve as the essential link between platforms like Azion Edge, Akamai Edge, Mulesoft, Apigee, and AWS Lambda, and the external Wallarm node. This approach ensures seamless integration, secure traffic analysis, risk mitigation, and overall platform security.
 
@@ -179,7 +179,7 @@ To test the functionality of the deployed policy, follow these steps:
     ```
 1. Open Wallarm Console → **Events** section in the [US Cloud](https://us1.my.wallarm.com/search) or [EU Cloud](https://my.wallarm.com/search) and make sure the attack is displayed in the list.
     
-    ![!Attacks in the interface][attacks-in-ui-image]
+    ![Attacks in the interface][attacks-in-ui-image]
 
     If the Wallarm node mode is set to blocking, the request will also be blocked.
 

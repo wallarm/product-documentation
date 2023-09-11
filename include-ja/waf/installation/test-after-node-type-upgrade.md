@@ -14,4 +14,4 @@
    * 攻撃がリストに表示されていること。
    * ヒットの詳細に Wallarm ノードの UUID が表示されていること。
 
-    ![!インターフェースの攻撃][attacks-in-ui-image]
+    ![インターフェースの攻撃][attacks-in-ui-image]

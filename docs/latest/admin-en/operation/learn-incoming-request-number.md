@@ -21,7 +21,7 @@ There are several methods to look for the number of requests handled by the appl
 
 * AWS customers using ELB or ALB load balancers can use AWS monitoring metrics of load balancers to estimate the level of daily and weekly requests for applications served by the load balancers:
 
-    ![!AWS monitoring example](../../images/operation/aws-requests-example.png)
+    ![AWS monitoring example](../../images/operation/aws-requests-example.png)
 
     For example, if a graph shows that the average request per minute level is 350 and assuming that there are, on average, 730 hours in a month, then the number of monthly requests is `350 * 60 * 730 = 15,330,000`.
 

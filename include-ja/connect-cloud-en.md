@@ -25,7 +25,7 @@
     * <https://my.wallarm.com/>を利用している場合，ユーザー設定を確認するには[こちらのリンク][link-wl-console-users-eu]へ移動してください。
     * <https://us1.my.wallarm.com/>を利用している場合，ユーザー設定を確認するには[こちらのリンク][link-wl-console-users-us]へ移動してください。
 
-    ![!Wallarm consoleのユーザーリスト][img-wl-console-users]
+    ![Wallarm consoleのユーザーリスト][img-wl-console-users]
 
 2.  フィルタリングノードをインストールするマシンで`addnode`スクリプトを実行してください:
     

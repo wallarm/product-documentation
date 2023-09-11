@@ -6,7 +6,7 @@
 
 To view the rules in the application structure, go to the **Rules** section of Wallarm Console. This section represents branches and endpoints that are already known.
 
-![!Rules tab overview][img-rules-overview]
+![Rules tab overview][img-rules-overview]
 
 The system automatically groups the rules by branches, highlighting common conditions and building a tree-like structure. As a result, a branch may have child branches. To show or hide nested branches, click on the blue circle to the left of the branch description.
 
@@ -23,7 +23,7 @@ Branches with no rules available for the user (according to the privilege model)
 
 In each branch, the user can look through the list of rules attached to it. To switch over to the page with the rule list, click on the description of the corresponding branch.
 
-![!Viewing branch rules][img-view-rules]
+![Viewing branch rules][img-view-rules]
 
 The rules within a branch are grouped by the *point* field. The rules that affect the entire request, rather than individual parameters, are grouped together into one line. To see the entire list, click on the line.
 
@@ -56,12 +56,12 @@ Here are some details of how to work with the rules branch:
 * To expand the endpoint, click the blue circle.
 * Endpoints that do not have distinct rules are greyed out and not clickable.
     
-    ![!Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
+    ![Branch of endpoints](../../images/user-guides/rules/rules-branch.png)
 
 * To view rules for the endpoint, click it. First, distinct rules for this endpoint will be displayed.
 * When viewing the rule list for the specific endpoint, click **Distinct and inherited rules** to display the inherited ones. Inherited rules will be displayed together with the distinct; they will be greyed out compared to distinct.
 
-    ![!Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
+    ![Distinct and inherited rules for endpoint](../../images/user-guides/rules/rules-distinct-and-inherited.png)
 
 ## API calls to get rules
 

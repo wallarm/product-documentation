@@ -16,7 +16,7 @@ By default, Wallarm considers each application to be the `default` application w
 
 1. (Optional) Add an application in Wallarm Console → **Settings** → **Applications**.
 
-    ![!Adding an application](../../images/user-guides/settings/configure-app.png)
+    ![Adding an application](../../images/user-guides/settings/configure-app.png)
 
     !!! warning "Administrator access"
         Only users with the **Administrator** role can access the section **Settings** → **Applications**.
