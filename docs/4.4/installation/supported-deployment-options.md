@@ -400,7 +400,7 @@ Wallarm supports many deployment options enabling you to seamlessly integrate th
 <div class="navigation platforms">
 
     <a href="../../installation/cdn-node/" class="navigation-card platform-card" style="padding: 24px 32px; font-size: 14px;">
-        <img class="platform-icon" width="64px" height="64px" src="../../images/platform-icons/cdn-node.png">
+        <img class="platform-icon non-zoomable" width="64px" height="64px" src="../../images/platform-icons/cdn-node.png">
         <h3>CDN node</h3>
         <p>Deploy the Wallarm node without placing any third‑party components in the application's infrastructure</p>
     </a>
